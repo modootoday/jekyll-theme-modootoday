@@ -62,8 +62,12 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
 
 const browser = await chromium.launch();
 const report = { origin, sizes, contrast: [], axe: [], shots: 0, http: [] };
+const JOBS = Math.max(1, +process.env.QA_JOBS || 4); // pages checked concurrently per colour scheme
+const ctxs = [];
+const tasks = [];
 for (const scheme of SCHEMES) {
   const ctx = await browser.newContext({ colorScheme: scheme });
+  ctxs.push(ctx);
   const page = await ctx.newPage();
   await page.goto(origin);
   const prefixes = await page.evaluate(() => [...new Set([...document.styleSheets].flatMap((s) => { try { return [...s.cssRules]; } catch { return []; } }).flatMap((r) => [...(r.style || [])]).filter((p) => p.startsWith("--")).map((p) => p.split("-")[2]))]);
@@ -81,11 +85,14 @@ for (const scheme of SCHEMES) {
     report.contrast.push({ scheme, fg: rgb[f].used, bg: rgb[b].used, ratio: r, min });
     if (r < min) fails.push(`contrast ${scheme} ${rgb[f].used} on ${rgb[b].used} = ${r} < ${min}`);
   }
-  // 3. screenshots + axe
-  for (const lang of LANGS) for (const p of [...PAGES, ...(lang ? [] : [...RTL_PAGES, ...EN_ONLY])]) {
+  await page.close();
+  for (const lang of LANGS) for (const p of [...PAGES, ...(lang ? [] : [...RTL_PAGES, ...EN_ONLY])]) tasks.push({ ctx, scheme, lang, p });
+}
+// 3. screenshots + axe: a pool of JOBS pages per scheme drains one shared queue
+async function check(page, { scheme, lang, p }) {
     const url = origin + lang + p;
     const resp = await page.goto(url, { waitUntil: "networkidle" });
-    if (!resp || resp.status() !== 200) { if (lang === "ja/" ) continue; fails.push(`HTTP ${resp && resp.status()} ${url}`); continue; }
+    if (!resp || resp.status() !== 200) { if (lang === "ja/" ) return; fails.push(`HTTP ${resp && resp.status()} ${url}`); return; }
     const name = `${(lang || "en/").replace("/", "")}-${(p || "home/").replace(/\//g, "_").replace(/_$/, "")}`;
     for (const w of WIDTHS) {
       await page.setViewportSize({ width: w, height: 900 });
@@ -111,9 +118,13 @@ for (const scheme of SCHEMES) {
       report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });
       fails.push(`axe ${v.id} (${v.impact}) ${scheme} ${url}`);
     }
-  }
-  await ctx.close();
 }
+await Promise.all(ctxs.flatMap((ctx) => Array.from({ length: JOBS }, async () => {
+  const page = await ctx.newPage();
+  for (let t; (t = tasks.find((x) => x.ctx === ctx && !x.taken)); ) { t.taken = true; await check(page, t); }
+  await page.close();
+})));
+for (const ctx of ctxs) await ctx.close();
 // 4. registry parts after scripts run (static parts are checked in the built HTML by modootoday-check)
 {
   const comps = JSON.parse(execFileSync("ruby", ["-ryaml", "-rjson", "-e", "puts JSON.generate(YAML.safe_load(File.read(ARGV[0])) || {})", path.resolve("docs/_data/components.yml")]).toString());
@@ -135,7 +146,9 @@ for (const scheme of SCHEMES) {
 }
 await browser.close(); server.close();
 fs.mkdirSync(out, { recursive: true });
+fails.sort();
 report.fails = fails;
+report.axe.sort((a, b) => (a.scheme + a.url + a.id).localeCompare(b.scheme + b.url + b.id));
 fs.writeFileSync(path.join(out, "report.json"), JSON.stringify(report, null, 2));
 console.log(`shots ${report.shots}, css ${sizes.css.bytes} B (gzip ${sizes.css.gzip}), js ${sizes.js.bytes} B (gzip ${sizes.js.gzip}), contrast pairs ${report.contrast.length}`);
 fails.forEach((f) => console.log("FAIL " + f));
