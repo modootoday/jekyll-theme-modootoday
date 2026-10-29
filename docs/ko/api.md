@@ -104,7 +104,7 @@ archive: tags        # 또는 categories
 ---
 ```
 
-이 페이지에는 본문, 글 개수가 붙은 분류 목록, 분류마다 하나의 구역(`id="tags-<slug>"`, 최신 글 먼저)이 표시됩니다. 다른 곳에 아카이브를 넣으려면 레이아웃이나 include에서 `modootoday/archive.html`을 호출하고 `by`에 `tags` 또는 `categories`를, 필요하면 `lang`을 지정합니다.
+이 페이지에는 본문, 글 개수가 붙은 분류 목록, 분류마다 하나의 구역(`id="tags-<slug>"`, 최신 글 먼저)이 표시됩니다. 다른 곳에 아카이브를 넣으려면 레이아웃이나 include에서 `modootoday/archive.html`을 호출하고 `by`에 `tags` 또는 `categories`를, 필요하면 `lang`을 지정합니다. 아카이브 스타일은 `modootoday-blog.css`에 있습니다. `archive`와 `post` 레이아웃은 이 파일을 불러오고, 다른 페이지에서 include를 호출할 때는 front matter에 `blog_css: true`를 넣습니다.
 
 - 글의 언어는 `lang`(없으면 `site.lang`)입니다. 아카이브는 페이지와 같은 언어의 글만 보여 주고, `archive_lang: all`(include에서는 `lang="all"`)이면 모든 글을 보여 줍니다. `lang`이 `site.lang`과 다른 글의 하단 링크는 `/<lang>/tags/`로 이어지므로 언어 디렉터리마다 아카이브 페이지를 두세요.
 - 라벨은 `_data/i18n/<lang>.yml`의 `archive.tags`, `archive.categories`, `archive.posts`, `archive.empty`에서 가져오고, 없으면 영어를 씁니다.

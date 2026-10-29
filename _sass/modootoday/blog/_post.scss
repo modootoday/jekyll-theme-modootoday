@@ -1,4 +1,4 @@
-// Post meta line, post footer term links and the archive. Logical properties (RTL-safe); term links reuse .mt-badge-tag.
+// Post meta line, post footer term links and the archive (blog bundle: post, news-article and archive layouts). Logical properties (RTL-safe); term links reuse .mt-badge-tag.
 @include mt-layer(components) {
   .mt-post-meta, .mt-post-terms p, .mt-archive-index ul { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; align-items: center; }
   .mt-archive-index li { display: flex; margin: 0; }

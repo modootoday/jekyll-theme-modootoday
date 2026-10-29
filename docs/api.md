@@ -101,7 +101,7 @@ archive: tags        # or categories
 ---
 ```
 
-The page shows its own body, an index of terms with post counts, and one section per term (`id="tags-<slug>"`, newest post first). To place an archive anywhere else, call the include `modootoday/archive.html` from a layout or include, with `by` set to `tags` or `categories` and an optional `lang`.
+The page shows its own body, an index of terms with post counts, and one section per term (`id="tags-<slug>"`, newest post first). To place an archive anywhere else, call the include `modootoday/archive.html` from a layout or include, with `by` set to `tags` or `categories` and an optional `lang`. Archive styles live in `modootoday-blog.css`: the `archive` and `post` layouts load it, and any other page that calls the include needs `blog_css: true` in its front matter.
 
 - A post's language is its `lang` (or `site.lang`). An archive lists only posts in the page's language; `archive_lang: all` (or `lang="all"` on the include) lists every post. Footer links of a post whose `lang` differs from `site.lang` point at `/<lang>/tags/`, so add an archive page under each language directory.
 - Labels come from `archive.tags`, `archive.categories`, `archive.posts` and `archive.empty` in `_data/i18n/<lang>.yml`, with English fallbacks.
