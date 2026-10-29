@@ -1,0 +1,4 @@
+callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution: Caution}
+tabs: {label: Install method}
+status: {available: Available, partial: Partial, planned: Planned}
+skip: Skip to content

@@ -1,0 +1,5 @@
+---
+---
+# Example Docs (full)
+
+See ko/index.md for the full Markdown of each page.

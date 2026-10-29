@@ -1,0 +1,4 @@
+callout: {note: 注記, tip: ヒント, important: 重要, warning: 警告, caution: 注意}
+tabs: {label: インストール方法}
+status: {available: 利用可能, partial: 一部実装, planned: 予定}
+skip: 本文へスキップ

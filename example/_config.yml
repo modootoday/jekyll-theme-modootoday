@@ -1,0 +1,14 @@
+title: Example Docs
+description: A neutral example site for jekyll-theme-modootoday.
+lang: en
+theme: jekyll-theme-modootoday
+# GitHub Pages without a Gemfile: replace the line above with
+# remote_theme: modootoday/jekyll-theme-modootoday@v0.1.0   (and add jekyll-remote-theme to plugins)
+markdown: kramdown
+kramdown: {input: GFM, syntax_highlighter: rouge}
+permalink: pretty
+exclude: [Gemfile, Gemfile.lock, README.md]
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+  - {scope: {path: "ko"}, values: {lang: ko}}
+  - {scope: {path: "ja"}, values: {lang: ja}}

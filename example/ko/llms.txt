@@ -1,0 +1,5 @@
+---
+---
+# Example Docs
+
+- [Home](ko/index.md)

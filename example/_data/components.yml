@@ -1,0 +1,4 @@
+# Optional registry checked by modootoday-check: name -> params (allowed, required) and i18n keys
+features: {params: {cols: {allowed: [2, 3], required: false}}}
+tabs: {i18n: [tabs.label]}
+cta: {}
