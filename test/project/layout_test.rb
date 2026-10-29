@@ -24,6 +24,7 @@ class LayoutTest < Minitest::Test
   MAX_TEST_LINES = 300 # *_test.rb and *.test.js
   LONG_OK = {
     "test/checker/check_test.rb" => "one case table per checker rule; split together with lib/modootoday/check",
+    "lib/modootoday/schema/vocab.txt" => "generated data (script/schema-vocab), one schema.org term per line",
   }.freeze
 
   def tracked = @tracked ||= Dir.chdir(ROOT) { `git ls-files -z`.split("\0") }.select { |f| File.file?(File.join(ROOT, f)) }
