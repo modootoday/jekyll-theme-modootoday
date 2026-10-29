@@ -27,6 +27,8 @@ gem "jekyll-theme-modootoday", "~> 0.1"
 ```yaml
 # _config.yml
 theme: jekyll-theme-modootoday
+sass:
+  silence_deprecations: [import]   # Jekyll 4 / Dart Sass; the theme keeps @import for GitHub Pages
 ```
 
 ### On GitHub Pages without a Gemfile (`remote_theme:`)
@@ -38,7 +40,7 @@ plugins:
   - jekyll-remote-theme
 ```
 
-Pin a tag (or a commit) instead of `main`. The `modootoday-check` executable is not available this way; run it from a checkout of this repository or with `gem install jekyll-theme-modootoday`.
+Pin a tag (or a commit) instead of `main`. Twins and `llms.txt` need stub files in this setup (see below). The `modootoday-check` executable is not available this way; run it from a checkout of this repository or with `gem install jekyll-theme-modootoday`.
 
 ## Configuration
 
@@ -70,6 +72,8 @@ skip: Skip to content
 | `default` | HTML shell: stylesheet, skip link, site title, `md-tabs.js` |
 | `doc` | Pages: alerts, badges, then optional sections |
 | `twin` | Markdown twin stub: outputs the source body byte for byte |
+| `llms` | `llms.txt` from a front-matter-only stub: H1, summary, Docs link list of the language's pages (+ Translations at the root) |
+| `llms-full` | `llms-full.txt` from a front-matter-only stub: every page body of the language, byte for byte |
 
 ### Customising
 
@@ -98,9 +102,22 @@ skip: Skip to content
 
 Not allowed in bodies (outside code), for portability between github.com and kramdown: raw HTML and HTML comments, Liquid, kramdown IAL/ALD (`{: .x}`), header ids (`{#id}`), definition lists, abbreviations (`*[X]:`), bare URL autolinks (write `<https://…>`), code fence attributes (info string = one language word), setext/nested `##`, and alerts that are nested, empty, titled or of an unknown type. Footnotes are allowed. Details: [RULES.md](RULES.md).
 
-### Markdown twins (optional)
+### Markdown twins and llms.txt (optional)
 
-Next to `guide.md`, add `guide.md.txt`:
+Each page `guide.md` gets a twin `/guide/index.md` whose bytes equal the body of `guide.md` (front matter removed), plus `llms.txt` and `llms-full.txt` at `/` and under each `/<lang>/`. The `default` layout links the twin with `rel="alternate" type="text/markdown"` and the nearest `llms.txt` with `rel="describedby"`.
+
+**Automatic (Jekyll 4, or GitHub Pages built by GitHub Actions):** enable the bundled generator. No stub files are needed.
+
+```yaml
+# _config.yml (theme installed as a gem)
+plugins:
+  - jekyll-theme-modootoday
+# modootoday: {twins: false, llms: false}   # opt out of either part
+```
+
+It adds, for every Markdown page without one, exactly the virtual page a stub would be, so the output is identical to the stub setup. Hand-written stubs always win. Pages with `twin: false` and `README.md` are skipped.
+
+**Classic GitHub Pages build (branch publishing, `remote_theme`):** GitHub Pages runs only whitelisted plugins and Liquid cannot create new output files, so each twin needs a one-file stub. Next to `guide.md` add `guide.md.txt`:
 
 ```yaml
 ---
@@ -110,7 +127,9 @@ permalink: /guide/index.md
 ---
 ```
 
-The build then contains `/guide/index.md`, identical to the body of `guide.md`. Provide `llms.txt` (llmstxt.org format: `# Title`, `>` summary, `## Section` link lists) and `llms-full.txt` at `/` and under each `/<lang>/`. The `default` layout links the twin with `rel="alternate" type="text/markdown"` and the nearest `llms.txt` with `rel="describedby"`.
+and once per language directory `llms.txt` / `llms-full.txt` containing only front matter with `layout: llms` / `layout: llms-full`. These layouts generate the content: `llms.txt` lists the pages of that language (title, twin URL, `description:`), with a Translations list at the root; `llms-full.txt` concatenates the page bodies. Per-language titles come from `title`/`description` in `_data/i18n/<lang>.yml`, else the site's.
+
+`modootoday-check --twins` verifies the result either way.
 
 ## Checker
 
@@ -122,7 +141,7 @@ bundle exec modootoday-check . _site [--twins] [--github-pages[=232]] [--strict]
 | Flag | Checks |
 |---|---|
 | (always) | front matter present, forbidden syntax, alert form/type (any case), fence info strings, `status:` values, `sections:` count of top-level `##`, `_data/components.yml` (if present), unconverted markers in the build |
-| `--twins` | twin stubs, byte-identical twins, per-language `llms.txt` / `llms-full.txt` |
+| `--twins` | every page has a byte-identical twin (stub or plugin), stub front matter, per-language `llms.txt` (starts with `# `) and `llms-full.txt` (contains every page body) |
 | `--github-pages[=VER]` | `Gemfile.lock` pins `github-pages` VER (default 232) |
 | `--strict` | warnings (e.g. `> [! NOTE]` with a space) fail the run; unknown alert types are always errors |
 | `--gh` | renders each page with `gh api markdown` (network, `gh` login) |
