@@ -82,7 +82,7 @@ class BlogTest < Minitest::Test
     assert_includes h, 'rel="next" href="/world/2026/10/02/b/"'
     assert_includes h, 'class="mt-related"'
     assert_includes h, '<meta property="article:tag" content="x">'
-    ld = JSON.parse(h[%r{<script type="application/ld\+json">(.*?)</script>}m, 1])
+    ld = JSON.parse(h[%r{<script type="application/ld\+json">(.*?)</script>}m, 1])["@graph"].find { |n| n["@id"].end_with?("#main") }
     assert_equal "BlogPosting", ld["@type"]
     assert_equal "Jane Roe", ld["author"][0]["name"]
     %w[headline datePublished dateModified mainEntityOfPage image].each { |k| assert ld[k], k }
@@ -90,7 +90,7 @@ class BlogTest < Minitest::Test
 
   def test_news_article
     h = read("world/2026/10/04/n/index.html")
-    ld = JSON.parse(h[%r{<script type="application/ld\+json">(.*?)</script>}m, 1])
+    ld = JSON.parse(h[%r{<script type="application/ld\+json">(.*?)</script>}m, 1])["@graph"].find { |n| n["@id"].end_with?("#main") }
     assert_equal "NewsArticle", ld["@type"]
     assert_equal ["Jane Roe", "bob"], ld["author"].map { |a| a["name"] }
     assert_includes h, '<span class="mt-dateline">SEOUL</span>'
