@@ -50,7 +50,7 @@ class BuildTest < Minitest::Test
   end
 
   UNCONVERTED.each do |n|
-    define_method("test_not_alert_#{n.tr('-', '_')}") { refute_includes html(n), "md-callout" }
+    define_method("test_not_alert_#{n.tr('-', '_')}") { refute_includes html(n), "mt-callout" }
   end
 
   def test_alert_body_keeps_block_content
