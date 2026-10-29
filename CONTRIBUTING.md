@@ -18,6 +18,19 @@ gem build jekyll-theme-modootoday.gemspec
 
 Changes to `docs/` or the theme's look: `qa/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast and size budgets; CI runs the same job and uploads `qa-out/`.
 
+### Visual regression
+
+`npm run qa:visual` screenshots four pages (home, kitchen sink, configuration, Korean home) at 360, 1024 and 1440 px in light and dark mode and compares each shot with a PNG in `qa/visual-baseline/` using [pixelmatch](https://github.com/mapbox/pixelmatch). A shot fails when more than 0.1 % of its pixels differ by more than the colour threshold 0.1, or when its size changed; the failing shot and a diff image go to `qa-out/visual/`. Animations, the caret and the "Last updated" date are frozen.
+
+```sh
+qa/build-docs.sh docs/_site
+npm run qa:visual            # compare
+npm run qa:visual:update     # accept the current look as the new baseline
+node qa/visual.mjs docs/_site --baseline DIR --out DIR --threshold 0.1 --max-diff 0.001 --report
+```
+
+Fonts and anti-aliasing differ between operating systems, so a baseline is only comparable on the machine image that made it. Make and compare baselines on one machine; to compare two versions, run `--update` on the old build and compare the new build in the same place. The CI workflow `visual.yml` does exactly that: it builds `docs/` at the base commit and at the pushed commit on the same runner, compares them and lists the differences in the job summary with the images in the `visual` artifact. It is report-only and never fails the build; review the diffs when you change the theme's look.
+
 ## Releasing (maintainers)
 
 1. Move the `Unreleased` notes in `CHANGELOG.md` under the new version and bump `spec.version` in the gemspec.
