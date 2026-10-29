@@ -38,6 +38,16 @@ jobs:
         run: bundle exec jekyll build -s example -d example/_site
       - name: Check example
         run: bundle exec ruby exe/modootoday-check example example/_site ${{ matrix.check_flags }}
+      - name: Build example with remote_theme (this commit)
+        if: matrix.stack == 'github-pages'
+        env:
+          PAGES_REPO_NWO: ${{ github.repository }}
+          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          printf 'theme: null\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$RUNNER_TEMP/remote.yml"
+          bundle exec jekyll build -s example -d "$RUNNER_TEMP/remote-site" --config "example/_config.yml,$RUNNER_TEMP/remote.yml"
+          bundle exec ruby exe/modootoday-check example "$RUNNER_TEMP/remote-site" --twins --github-pages
+          diff -r -x '*.css' example/_site "$RUNNER_TEMP/remote-site"
       - name: Build gem
         run: gem build jekyll-theme-modootoday.gemspec
 
