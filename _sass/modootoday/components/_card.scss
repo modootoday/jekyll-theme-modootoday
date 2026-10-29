@@ -1,0 +1,8 @@
+// Cards: c: features section, list items "- **Title** — description".
+@include mt-layer(components) {
+  .mt-c-features > ul { --mt-card-padding: #{mt(space)};
+    list-style: none; padding: 0; display: grid; gap: mt(space); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  .mt-c-features > ul > li { border: 1px solid mt(border); border-radius: mt(radius); padding: var(--mt-card-padding);
+    background: mt(card); color: mt(card-foreground); }
+  .mt-c-features > ul > li > strong:first-child { display: block; }
+}

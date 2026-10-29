@@ -1,4 +1,12 @@
-// jekyll-theme-modootoday — import order: tokens, base, components.
-@import "modootoday/tokens";
-@import "modootoday/base";
-@import "modootoday/components";
+// jekyll-theme-modootoday — everything (core + all P0 components). For a site entry that
+// shadows assets/css/modootoday.scss: declare $mt-overrides etc., then @import "modootoday";
+@import "modootoday/core";
+@import "modootoday/components/callout";
+@import "modootoday/components/badge";
+@import "modootoday/components/hero";
+@import "modootoday/components/cta";
+@import "modootoday/components/card";
+@import "modootoday/components/tabs";
+@import "modootoday/components/code-copy";
+@import "modootoday/components/nav";
+@import "modootoday/components/pagination";

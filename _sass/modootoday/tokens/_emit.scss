@@ -1,0 +1,16 @@
+// Emits primitive + semantic tokens. Light by default; dark follows prefers-color-scheme unless
+// <html data-theme="light">, and is forced by <html data-theme="dark"> (modootoday.color_scheme).
+@include mt-layer(tokens) {
+  :root {
+    color-scheme: light dark;
+    @include mt-emit($mt-primitive, "mt-p-");
+    @include mt-emit($mt-base);
+    @include mt-emit($mt-light);
+    @if $mt-md-aliases { @include mt-md-aliases; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { @include mt-emit($mt-dark); }
+  }
+  :root[data-theme="dark"] { color-scheme: dark; @include mt-emit($mt-dark); }
+  :root[data-theme="light"] { color-scheme: light; }
+}

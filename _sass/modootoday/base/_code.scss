@@ -1,0 +1,5 @@
+@include mt-layer(base) {
+  code, pre { font-family: mt(font-mono); font-size: .9em; }
+  :not(pre) > code { background: mt(muted); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); }
+  pre { background: mt(muted); border: 1px solid mt(border); border-radius: mt(radius); padding: mt(space); overflow-x: auto; }
+}

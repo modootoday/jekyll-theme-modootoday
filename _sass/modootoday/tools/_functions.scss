@@ -1,0 +1,2 @@
+// mt(primary) → var(--mt-primary)
+@function mt($key) { @return var(--mt-#{$key}); }

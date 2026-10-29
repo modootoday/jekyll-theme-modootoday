@@ -1,0 +1,11 @@
+@include mt-layer(base) {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body.mt-body {
+    margin: 0; background: mt(background); color: mt(foreground);
+    font-family: mt(font-sans); font-size: mt(font-size); line-height: mt(line-height);
+  }
+  img { max-width: 100%; height: auto; }
+  :focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+}

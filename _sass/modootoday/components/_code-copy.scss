@@ -1,0 +1,9 @@
+// Copy button on code blocks (assets/js/modootoday/code-copy.js).
+@include mt-layer(components) {
+  .mt-code { position: relative; }
+  .mt-code-copy { position: absolute; top: .4rem; right: .4rem; font: inherit; font-size: .75rem; cursor: pointer;
+    padding: .2rem .55rem; border-radius: var(--mt-p-radius-sm); border: 1px solid mt(border);
+    background: mt(background); color: mt(muted-foreground); opacity: .85; }
+  .mt-code-copy:hover, .mt-code-copy:focus-visible { opacity: 1; color: mt(foreground); }
+  .mt-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}

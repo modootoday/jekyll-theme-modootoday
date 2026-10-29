@@ -1,0 +1,8 @@
+// Emit a map as custom properties. Always interpolate: Ruby Sass prints `--x: $v` literally.
+@mixin mt-emit($map, $prefix: "mt-") {
+  @each $k, $v in $map { --#{$prefix}#{$k}: #{$v}; }
+}
+// Optional cascade layer (modootoday.css_layers / $mt-css-layers).
+@mixin mt-layer($name) {
+  @if $mt-css-layers { @layer mt.#{$name} { @content; } } @else { @content; }
+}

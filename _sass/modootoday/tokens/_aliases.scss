@@ -1,0 +1,9 @@
+// Deprecated v0.1 names (--md-*), kept for one minor version (removed in 0.3).
+$mt-md-alias-map: (
+  font-sans: font-sans, font-mono: font-mono, font-size: font-size, line-height: line-height, measure: measure,
+  space: space, radius: radius, bg: background, bg-subtle: muted, fg: foreground, fg-muted: muted-foreground,
+  border: border, accent: primary, accent-fg: primary-foreground, focus: ring,
+  note: note, tip: tip, important: important, warning: warning, caution: caution,
+  available: status-available, partial: status-partial, planned: status-planned
+);
+@mixin mt-md-aliases { @each $old, $new in $mt-md-alias-map { --md-#{$old}: var(--mt-#{$new}); } }

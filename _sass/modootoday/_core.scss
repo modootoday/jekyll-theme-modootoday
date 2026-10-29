@@ -1,0 +1,15 @@
+// Core: settings → tools → tokens → base → layout. Components are imported separately
+// (assets/css/modootoday.scss picks them from modootoday.components; _sass/modootoday.scss imports all).
+@import "settings";
+@import "tools/functions";
+@import "tools/mixins";
+@import "tokens/primitive";
+@import "tokens/semantic";
+@import "tokens/aliases";
+@if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }
+@import "tokens/emit";
+@import "base/reset";
+@import "base/prose";
+@import "base/code";
+@import "base/table";
+@import "layout/shell";

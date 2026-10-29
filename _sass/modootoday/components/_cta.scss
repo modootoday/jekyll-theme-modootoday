@@ -1,0 +1,9 @@
+// CTA buttons: link-only paragraphs in the hero and in c: cta sections. Links stay links.
+@include mt-layer(components) {
+  .mt-hero, .mt-cta {
+    p:has(> a):not(:has(> :not(a))) { display: flex; flex-wrap: wrap; gap: .75rem; font-size: 0; }
+    p:has(> a):not(:has(> :not(a))) > a { font-size: 1rem; display: inline-block; padding: .55rem 1.1rem; border-radius: mt(radius);
+      border: 1px solid mt(primary); text-decoration: none; font-weight: 600; }
+    p:has(> a):not(:has(> :not(a))) > a:first-child { background: mt(primary); color: mt(primary-foreground); }
+  }
+}

@@ -1,0 +1,10 @@
+// Callout (GitHub alert): blockquote.mt-callout.mt-callout-<type> [data-variant]
+$mt-callout-variants: (note: note, tip: tip, important: important, warning: warning, caution: caution) !default;
+@include mt-layer(components) {
+  .mt-callout { --mt-callout-accent: #{mt(note)}; color: mt(foreground); border-left-color: var(--mt-callout-accent); padding: .5rem 1rem; }
+  .mt-callout > p:empty { display: none; }
+  .mt-callout-title { color: var(--mt-callout-accent); font-weight: 600; margin: .25rem 0; }
+  @each $name, $token in $mt-callout-variants {
+    .mt-callout-#{$name} { --mt-callout-accent: #{mt($token)}; }
+  }
+}

@@ -1,0 +1,6 @@
+// Tables scroll horizontally (scroll area) instead of overflowing the measure.
+@include mt-layer(base) {
+  table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+  th, td { border: 1px solid mt(border); padding: .4rem .75rem; }
+  th { background: mt(muted); text-align: left; }
+}

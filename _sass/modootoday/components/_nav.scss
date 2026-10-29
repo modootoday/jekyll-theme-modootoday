@@ -1,0 +1,7 @@
+// Header navigation from _data/nav/<modootoday.nav>.yml (or _data/nav.yml). Wraps on small screens.
+@include mt-layer(components) {
+  .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
+  .mt-nav a { color: mt(muted-foreground); text-decoration: none; }
+  .mt-nav a:hover { color: mt(foreground); }
+  .mt-nav a[aria-current="page"] { color: mt(foreground); font-weight: 600; }
+}
