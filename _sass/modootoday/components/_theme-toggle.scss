@@ -1,8 +1,16 @@
-// Light/dark toggle button (assets/js/modootoday/theme-toggle.js); hidden until the script runs.
+// Light/dark toggle button (assets/js/modootoday/theme-toggle.js). Shown from the first paint when scripting is on
+// (no header jump when the deferred script runs); the icon follows the scheme in CSS, not aria-pressed.
 @include mt-layer(components) {
-  // Icon button: a moon while light, a sun while dark (aria-pressed); the name is the aria-label.
+  // Icon button: a moon while light, a sun while dark; the name is the aria-label.
   .mt-theme-toggle { flex: none; display: grid; place-items: center; cursor: pointer; width: 2.25rem; height: 2.25rem; padding: 0;
     border: 1px solid mt(border); border-radius: mt(radius); background: mt(background); color: mt(foreground); }
-  .mt-theme-toggle[aria-pressed="true"] .mt-icon-moon, .mt-theme-toggle[aria-pressed="false"] .mt-icon-sun, .mt-theme-toggle[hidden] { display: none; }
+  .mt-theme-toggle .mt-icon-sun, .mt-theme-toggle[hidden] { display: none; }
+  @media (scripting: enabled) { .mt-theme-toggle[hidden] { display: grid; } }
+  :root[data-theme="dark"] .mt-theme-toggle .mt-icon-sun { display: block; }
+  :root[data-theme="dark"] .mt-theme-toggle .mt-icon-moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .mt-theme-toggle .mt-icon-sun { display: block; }
+    :root:not([data-theme="light"]) .mt-theme-toggle .mt-icon-moon { display: none; }
+  }
   .mt-theme-toggle:hover { background: mt(accent); }
 }

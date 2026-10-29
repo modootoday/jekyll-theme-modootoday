@@ -33,6 +33,7 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries.
 
 ### Fixed
+- Pages no longer flash on load: the header search box and light/dark toggle are drawn from the first paint instead of popping in when their scripts run (the header used to jump, most visibly after clicking the logo), and the toggle icon matches the colour scheme immediately. QA checks the first frames after a logo click.
 - Tabs: the tab list no longer shows a vertical scrollbar (the active-tab underline overflowed it by 1px); it scrolls sideways only, and the focus ring sits inside each tab. QA fails on any tabs scrollbar at 360/768/1280px.
 - Search on a page whose language has no other pages (the RTL sample) now prefers the site's default language instead of every language.
 - The table of contents sits a fixed gap after the text at wide widths instead of being pushed to the far edge; the narrow-screen menu row fades at its end to show it scrolls; inline code in cards no longer breaks inside a file name; figures are dimmed slightly in dark mode.

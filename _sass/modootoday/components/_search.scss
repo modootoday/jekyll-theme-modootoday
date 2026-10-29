@@ -1,6 +1,8 @@
 // Search box (header) and results list; needs a site /search.json (include modootoday/search.json).
 @include mt-layer(components) {
   .mt-search { position: relative; margin-inline-start: auto; flex: none; }
+  // Reserve the box from the first paint when scripting is on (search.js only wires it up), so the header does not jump.
+  @media (scripting: enabled) { .mt-search[hidden] { display: block; } }
   .mt-search > .mt-icon { position: absolute; inset-inline-start: .65rem; top: 1.125rem; translate: 0 -50%; color: mt(muted-foreground); pointer-events: none; }
   .mt-search input { font: inherit; font-size: .875rem; height: 2.25rem; padding: 0 .75rem; padding-inline-start: 2.1rem; border: 1px solid mt(border); border-radius: mt(radius);
     background: mt(muted); color: mt(foreground); width: 12rem; transition: border-color .15s, background-color .15s; }
