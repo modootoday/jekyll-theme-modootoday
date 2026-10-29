@@ -1,0 +1,8 @@
+{%- comment -%}Header navigation: items {title, url} from _data/nav/<modootoday.nav>.yml (or _data/nav.yml).{%- endcomment -%}
+{%- if mt_nav and mt_components contains "nav" %}
+<nav class="mt-nav" aria-label="{{ site.data.i18n[_lang].nav.label | default: 'Main' }}"><ul>
+{%- for it in mt_nav %}
+<li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
+{%- endfor %}
+</ul></nav>
+{%- endif -%}

@@ -1,0 +1,11 @@
+{%- comment -%}Inline token overrides from site.modootoday.tokens / tokens_dark (keys: semantic names, e.g. primary).
+Values are stripped of ; { } < > ; modootoday-check validates their format.{%- endcomment -%}
+{%- if mt.tokens or mt.tokens_dark -%}
+{%- capture _lb -%}{{ "{" }}{%- endcapture -%}{%- assign _rb = "%7D" | url_decode -%}
+{%- capture _l -%}{%- for t in mt.tokens -%}--mt-{{ t[0] | slugify }}:{{ t[1] | strip | remove: ";" | remove: _lb | remove: _rb | remove: "<" | remove: ">" }};{%- endfor -%}{%- endcapture -%}
+{%- capture _d -%}{%- for t in mt.tokens_dark -%}--mt-{{ t[0] | slugify }}:{{ t[1] | strip | remove: ";" | remove: _lb | remove: _rb | remove: "<" | remove: ">" }};{%- endfor -%}{%- endcapture %}
+<style id="mt-tokens">
+{%- if _l != "" %}:root{{ _lb }}{{ _l }}{{ _rb }}{% endif %}
+{%- if _d != "" %}@media (prefers-color-scheme: dark){{ _lb }}:root:not([data-theme="light"]){{ _lb }}{{ _d }}{{ _rb }}{{ _rb }}:root[data-theme="dark"]{{ _lb }}{{ _d }}{{ _rb }}{% endif -%}
+</style>
+{%- endif -%}

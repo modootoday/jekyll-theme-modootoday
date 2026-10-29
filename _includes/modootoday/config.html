@@ -1,0 +1,21 @@
+{%- comment -%}
+jekyll-theme-modootoday settings with defaults. A gem theme's _config.yml is not merged on
+Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* variables only.
+  site.modootoday.color_scheme  auto | light | dark          (default auto)
+  site.modootoday.css_layers    true | false                 (default false)
+  site.modootoday.components    list of component names      (default: all P0)
+  site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main)
+  site.modootoday.tokens / tokens_dark  semantic token overrides, inline :root CSS
+  site.modootoday.badges        false disables status badges (default true)
+{%- endcomment -%}
+{%- assign mt = site.modootoday -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,pagination" | split: "," -%}
+{%- assign mt_components = mt_all_components -%}
+{%- if mt.components -%}{%- assign mt_components = mt.components -%}{%- endif -%}
+{%- assign mt_color_scheme = "auto" -%}
+{%- if mt.color_scheme == "light" or mt.color_scheme == "dark" -%}{%- assign mt_color_scheme = mt.color_scheme -%}{%- endif -%}
+{%- if mt.css_layers == true -%}{%- assign mt_css_layers = "true" -%}{%- else -%}{%- assign mt_css_layers = "false" -%}{%- endif -%}
+{%- if mt.badges == false -%}{%- assign mt_badges = false -%}{%- else -%}{%- assign mt_badges = true -%}{%- endif -%}
+{%- assign mt_nav_name = mt.nav | default: "main" -%}
+{%- assign mt_nav = site.data.nav[mt_nav_name] -%}
+{%- if mt_nav == nil and site.data.nav.first.url -%}{%- assign mt_nav = site.data.nav -%}{%- endif -%}

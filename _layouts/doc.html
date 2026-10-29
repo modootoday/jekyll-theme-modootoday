@@ -2,7 +2,8 @@
 layout: default
 ---
 {%- comment -%}md-components v1 (draft) — doc layout: alerts/badges, then optional sections.{%- endcomment -%}
-{%- assign _badges = page.badges | default: site.modootoday.badges | default: true -%}
+{%- include modootoday/config.html -%}
+{%- assign _badges = mt_badges -%}{%- if page.badges == false -%}{%- assign _badges = false -%}{%- endif -%}
 {%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges %}{% endcapture -%}
 <article class="md-doc">
 {% include md-sections.html content=html sections=page.sections lang=page.lang %}

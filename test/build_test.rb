@@ -44,7 +44,7 @@ class BuildTest < Minitest::Test
     n, type = pair.split(":")
     define_method("test_alert_#{n.tr('-', '_')}") do
       h = html(n)
-      assert_includes h, %(class="md-callout md-callout-#{type}"), h
+      assert_includes h, %(class="mt-callout mt-callout-#{type} md-callout md-callout-#{type}"), h
       refute_match(/\[!\w+\]/, h)
     end
   end
@@ -66,7 +66,7 @@ class BuildTest < Minitest::Test
   SECTIONS.each do |n, count|
     define_method("test_sections_#{n.tr('-', '_')}") do
       h = html(n)
-      assert_equal count, h.scan('<section class="md-section').size, h
+      assert_equal count, h.scan('<section class="mt-section md-section').size, h
       h.scan(%r{<blockquote.*?</blockquote>}m) { |q| refute_includes q, "<section", h }
       h.scan(%r{<li.*?</li>}m) { |q| refute_includes q, "<section", h }
     end

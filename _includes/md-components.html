@@ -33,8 +33,8 @@ Titles/labels: site.data.i18n[lang], English fallback.
 {%- endif -%}
 {%- if _ok -%}
 {%- for _t in _types -%}{%- if _t == _ty -%}{%- assign _title = _i.callout[_t] | default: _deft[forloop.index0] -%}{%- endif -%}{%- endfor -%}
-<blockquote class="md-callout md-callout-{{ _ty }}" role="note">
-  <p class="md-callout-title">{{ _title }}</p>{{ _body }}
+<blockquote class="mt-callout mt-callout-{{ _ty }} md-callout md-callout-{{ _ty }}" data-variant="{{ _ty }}" role="note">
+  <p class="mt-callout-title md-callout-title">{{ _title }}</p>{{ _body }}
 {%- else -%}{{ _sep }}{{ _ch }}{%- endif -%}
 {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
@@ -44,7 +44,7 @@ Titles/labels: site.data.i18n[lang], English fallback.
     {%- assign _kv = _pair | split: ":" -%}
     {%- assign _k = _kv[0] -%}
     {%- assign _label = _i.status[_k] | default: _kv[2] -%}
-    {%- capture _to %}<span class="md-badge md-badge-{{ _kv[0] }}"><span aria-hidden="true">{{ _kv[1] }}</span> {{ _label }}</span>{% endcapture -%}
+    {%- capture _to %}<span class="mt-badge mt-badge-{{ _kv[0] }} md-badge md-badge-{{ _kv[0] }}" data-variant="{{ _kv[0] }}"><span aria-hidden="true">{{ _kv[1] }}</span> {{ _label }}</span>{% endcapture -%}
     {%- capture _from %}<code class="language-plaintext highlighter-rouge">status:{{ _kv[0] }}</code>{% endcapture -%}
     {%- capture _from2 %}<code>status:{{ _kv[0] }}</code>{% endcapture -%}
     {%- assign _c = _c | replace: _from, _to | replace: _from2, _to -%}
