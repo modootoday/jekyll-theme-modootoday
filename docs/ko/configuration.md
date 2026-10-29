@@ -19,7 +19,7 @@ sections:
 
 ```yaml
 modootoday:
-  color_scheme: auto  # auto | light | dark
+  color_scheme: auto  # auto | auto-dark | auto-light | light | dark
   components: [callout, badge, cta, card, tabs]
   tokens: {primary: "#4f46e5", radius: "0.5rem"}
   nav: main
@@ -28,10 +28,12 @@ modootoday:
 | 키 | 기본값 | 효과 |
 |---|---|---|
 | `badges` | `true` | 상태 코드 스팬을 배지로 바꿈. `false`면 코드 그대로 |
-| `color_scheme` | `auto` | OS를 따르거나 라이트·다크 고정 |
+| `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
 | `components` | 전체 | 내보낼 CSS와 JS를 제한 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
-| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 넓은 화면에서 드롭다운 그룹이 됨 |
+| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름 |
+| `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. 머리말의 `sidebar: false`로 한 페이지에서만 숨김 |
+| `page_actions` | `true` | Markdown 쌍둥이가 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 머리말에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
 | `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀 |
 | `twins` | 스텁 | 머리말 없는 쌍둥이는 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
@@ -90,6 +92,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙어요(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있어요. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역해요.
+
+테마가 아니라 사이트가 정하는 문구도 있어요. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름이에요(예: `tabs: {label: 설치 방법}`). 화면 낭독기가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
 
 직접 만든 include에서는 `modootoday/t.html`에 `key="nav.label"`을 넘기면 같은 순서를 따르는 문구를 출력할 수 있어요.
 

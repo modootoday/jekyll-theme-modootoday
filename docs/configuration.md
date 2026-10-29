@@ -16,7 +16,7 @@ Everything is optional. Settings live under one `modootoday:` key so they never 
 
 ```yaml
 modootoday:
-  color_scheme: auto  # auto | light | dark
+  color_scheme: auto  # auto | auto-dark | auto-light | light | dark
   components: [callout, badge, cta, card, tabs]
   tokens: {primary: "#4f46e5", radius: "0.5rem"}
   nav: main
@@ -25,10 +25,12 @@ modootoday:
 | Key | Default | Effect |
 |---|---|---|
 | `badges` | `true` | turn status code spans into badges; `false` keeps code |
-| `color_scheme` | `auto` | follow the OS or force light or dark |
+| `color_scheme` | `auto` | `auto` follows the OS; `auto-dark` or `auto-light` starts dark or light and keeps the toggle (the reader's choice is remembered); `light` or `dark` forces one scheme without a toggle. The starting scheme is printed in the HTML, so nothing flashes |
 | `components` | all | limit the CSS and JS that are shipped |
 | `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
-| `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a dropdown group on wide screens |
+| `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a group. Previous/next links walk the file in order: a group's own page, then its items |
+| `sidebar` | `auto` | `auto` adds a sidebar to `doc` pages when the nav has groups; `true` always, `false` never. Below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page |
+| `page_actions` | `true` | on pages with a Markdown twin, a menu with View as Markdown, Copy page and Copy for AI (copies the source URL, then the Markdown). `false` here or in front matter turns it off; leave `page-actions` out of `components` to drop it entirely |
 | `tokens`, `tokens_dark` | theme values | override semantic design tokens inline |
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
@@ -87,6 +89,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 For a language the theme does not ship, add `_data/i18n/<code>.yml` with the keys of the English catalog and list the code in `languages`. Pages get `dir="rtl"` for Arabic, Persian, Hebrew, Urdu and other right-to-left languages (`ur-Latn` stays left-to-right); `direction: rtl` or `ltr` in a catalog or in front matter overrides it. Page content is translated as Markdown in `<lang>/`, not in the catalogs.
+
+Some labels are your site's, not the theme's: `tabs.label` names the tab list on pages that use tabs (for example `tabs: {label: Install method}`), so screen readers announce what the tabs choose between. Put it in each language's catalog.
 
 In your own includes, `modootoday/t.html` with `key="nav.label"` prints a label with the same resolution.
 

@@ -40,6 +40,8 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 |---|---|---|---|
 | 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (고정 색 구성 또는 토글이 설정) |
 | 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| 문서 사이드바 | `aside.mt-doc-nav` > `nav.mt-sidebar`(64rem 이상), `details.mt-sidebar-mobile`(그보다 좁을 때) | `.mt-sidebar-group`, `.mt-sidebar-title`, 링크 `ul`. 현재 링크는 `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`, 모바일 메뉴의 `[open]` |
+| 페이지 도구 | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`(JS가 돌기 전엔 숨김)와 Markdown 보기 `a[type="text/markdown"]`가 든 `ul` | `[open]` |
 | 히어로 | `section.mt-hero` | `h1`, 리드 `p`, 링크만 있는 `p`(CTA 버튼, 첫 링크가 주 버튼) | — |
 | 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta`(섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에) |
 | 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |

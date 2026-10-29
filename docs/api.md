@@ -37,6 +37,8 @@ This is the markup you can target from your own CSS today. Classes and attribute
 |---|---|---|---|
 | Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
 | Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar` (from 64rem); `details.mt-sidebar-mobile` (below) | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links; the current link has `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
+| Page actions | `details.mt-menu.mt-page-actions` | `summary`, the `ul` of `button[data-mt-act=copy\|ai]` (hidden until JS runs) and the View as Markdown `a[type="text/markdown"]` | `[open]` |
 | Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |

@@ -9,6 +9,9 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 First public release. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.
 
 ### Added
+- **Doc sidebar:** `doc` pages get a sidebar built from the nav groups (`modootoday.sidebar: auto | true | false`, default `auto` = on when the nav has groups; `sidebar: false` in front matter). From 64rem it is a sticky column; below, a collapsed menu above the page shows the current group, replacing the horizontally scrolling link row. With a sidebar the header drops the flat group links.
+- **Page actions:** on pages with a Markdown twin, a menu offers View as Markdown, Copy page and Copy for AI (source URL, then the Markdown). `modootoday.page_actions: false`, front matter `page_actions: false`, or leaving `page-actions` out of `components` removes it. Labels (`page_actions.*`, `sidebar.label`) ship in all 23 catalogs.
+- `color_scheme: auto-dark` and `auto-light` start in that scheme and keep the toggle; the start is printed as `data-theme` in the HTML, so there is no flash and no `head-custom.html` script.
 - **Result container for CTA sections:** when a `c: cta` section holds an element with `data-mt-result`, the `.mt-cta` box (centering, gradient, border) goes on that element instead of the whole section. Sections without one render exactly as before. The docs Components page uses it, so the Buttons example card matches the other cards and only its result is framed.
 - `visual: <name>` on a `sections:` item and `hero: {visual: <name>}` render a site-provided `_includes/sections/<name>.html`; `modootoday-check` fails when it is missing.
 - `full_width: true` front matter removes the reading-column width of `main` (`.mt-main-full`).
@@ -36,6 +39,8 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - The header site title links to the current language's home (`/<lang>/`, with `baseurl`) instead of the default-language root, for every language in `languages` including right-to-left ones; it falls back to the site root when that language has no home page.
 
 ### Changed
+- **Previous/next follows the nav:** pagination walks `_data/nav` in order, a group's own page and then its items, instead of top-level entries only.
+- Doc-only includes live under `_includes/modootoday/doc/` (`pagination.html`, `sidebar.html`, `page-actions.html`, `twin.html`); the page-actions script is part of `code-copy.js`.
 - **One prefix, no aliases:** every class and custom property is `mt-*` / `--mt-*`; the `md-*` classes, `--md-*` properties, `$mt-md-aliases` and the checker's alias warnings are gone (they were never released). The skip-link target is `#mt-main`.
 - Theme includes and scripts live under `modootoday/`: `_includes/modootoday/markdown/{components,sections,raw-body,llms-pages}.html` and `assets/js/modootoday/tabs.js` (were `_includes/md-*.html` and `assets/js/md-tabs.js`); tab ids are `mt-tabs-*`.
 - `since:` version badges are not part of 1.0: they are no longer rendered and `modootoday-check` reports any `` `since:…` `` code span as an error.

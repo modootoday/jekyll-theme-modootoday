@@ -19,7 +19,7 @@ sections:
 
 ```yaml
 modootoday:
-  color_scheme: auto  # auto | light | dark
+  color_scheme: auto  # auto | auto-dark | auto-light | light | dark
   components: [callout, badge, cta, card, tabs]
   tokens: {primary: "#4f46e5", radius: "0.5rem"}
   nav: main
@@ -28,10 +28,12 @@ modootoday:
 | キー | 既定値 | 効果 |
 |---|---|---|
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
-| `color_scheme` | `auto` | OS に合わせるか、ライトまたはダークに固定する |
+| `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
 | `components` | すべて | 配信する CSS と JS を絞る |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
-| `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` を持つ項目は広い画面でドロップダウングループになる |
+| `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` を持つ項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
+| `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。フロントマターの `sidebar: false` でそのページだけ隠す |
+| `page_actions` | `true` | Markdown の双子があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューを出す。ここかフロントマターで `false` にすると消える。完全に外すなら `components` から `page-actions` を除く |
 | `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする |
 | `twins` | スタブ | `source` で front matter のないツインを使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
@@ -90,6 +92,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 テーマにない言語を追加するには、英語のカタログと同じキーで `_data/i18n/<code>.yml` を作り、`languages` にコードを加えます。アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページには `dir="rtl"` が付きます（`ur-Latn` は左から右）。カタログか front matter の `direction: rtl` または `ltr` で上書きできます。ページ本文はカタログではなく、`<lang>/` の Markdown で翻訳します。
+
+テーマではなくサイト側で決める文言もあります。`tabs.label` はタブを使うページでタブ一覧に付ける名前です(例: `tabs: {label: インストール方法}`)。スクリーンリーダーが何を切り替えるタブかを読み上げるので、言語ごとのカタログに入れてください。
 
 独自の include では、`modootoday/t.html` に `key="nav.label"` を渡すと、同じ順序で解決された文言を出力できます。
 

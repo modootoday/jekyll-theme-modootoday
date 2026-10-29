@@ -40,6 +40,8 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 |---|---|---|---|
 | ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (固定の配色、またはトグルが設定) |
 | ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| ドキュメントのサイドバー | `aside.mt-doc-nav` > `nav.mt-sidebar`(64rem 以上)、`details.mt-sidebar-mobile`(それより狭い画面) | `.mt-sidebar-group`、`.mt-sidebar-title`、リンクの `ul`。現在のリンクは `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`、モバイルメニューの `[open]` |
+| ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`(JS が動くまで非表示)と Markdown 表示の `a[type="text/markdown"]` を含む `ul` | `[open]` |
 | ヒーロー | `section.mt-hero` | `h1`、リードの `p`、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | — |
 | セクション | `section.mt-section` | `h2` とその内容 | `[data-section]` = 名前、`[data-c]` と `.mt-c-<c>` = コンポーネント、`.mt-cols-<n>`、`.mt-cta`(セクション内に `[data-mt-result]` 要素があればその要素に) |
 | 本文 (`sections:` なし) | `div.mt-prose` | レンダリングされた本文 | — |
