@@ -14,7 +14,7 @@ permalink: pretty
 exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
   nav: main
-  # Front-matter-less pages (docs/source-mode-demo/) are their own twins; other pages keep stubs.
+  # Front-matter-less pages are their own twins; other pages keep stubs.
   twins: source
   languages: [en, ko]
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
