@@ -3,7 +3,7 @@ id: adr:modootoday/20261029203024
 title: Front-matter-less source mode as a third twin option
 status: active
 created: 2026-10-29T20:30:24Z
-updated: 2026-10-29T20:30:39Z
+updated: 2026-10-29T20:45:05Z
 rel:
   governs: [lib]
 ---
@@ -21,3 +21,5 @@ Add an opt-in third twin mode, `modootoday.twins: source`, beside stubs and the 
 ## Consequences
 
 Classic Pages sites can drop stubs if they accept no per-page front matter: settings move to path-based `defaults:`, titles come from the first heading, per-page `sections:` is unavailable, and `.md` links in bodies point at the raw twin. Local builds must list `jekyll-optional-front-matter` and `jekyll-titles-from-headings` in `plugins:`. Stubs and the generator stay supported.
+
+Observed on 2026-10-30 (one classic GitHub Pages site with remote_theme, single check): the raw copy at /<name>.md and /<dir>/index.md is served as text/markdown; charset=utf-8 and is byte-identical to the source; llms.txt is text/plain; charset=utf-8; the HTML page carries the alternate text/markdown and describedby links; remote_theme of the public theme works from a private repository, whose Pages site is still public unless access control is set. Cache/CDN behaviour, other extensions and non-English pages were not verified.

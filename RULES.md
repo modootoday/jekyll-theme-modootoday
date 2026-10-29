@@ -83,6 +83,7 @@ Source mode relies on `jekyll-optional-front-matter`, a GitHub Pages default plu
 - `optional_front_matter.remove_originals: true` or `require_front_matter: true` disables the raw copy; the checker reports both.
 - Pages that keep front matter in source mode still need a stub or the generator; a stub next to a front-matter-less page is redundant (checker error).
 - The `default` layout and `llms.txt` link to the raw copy (`/<path>.md`) when it exists.
+- Observed on classic GitHub Pages (legacy build, `remote_theme`; one sample site, checked once on 2026-10-30): the raw copy at `/<name>.md` and `/<dir>/index.md` was served as `Content-Type: text/markdown; charset=utf-8` and was byte-identical to the source; `llms.txt` was served as `text/plain; charset=utf-8`; the HTML page carried the `rel="alternate" type="text/markdown"` and `rel="describedby"` links. `remote_theme` of this public theme also worked from a private repository (a Pages site built from a private repository is still public unless access control is set). Not verified: cache/CDN behaviour, other file extensions, non-English pages.
 
 Stub and generator details:
 - Source `<name>.md`. The twin comes from either
@@ -104,7 +105,7 @@ Stub and generator details:
 - kramdown differences that the checker does not flag: smart quotes and dashes (`"a" -- b` → “a” – b; GitHub leaves them), `#` headings indented one space are paragraphs, and `\|` inside a code span in a table cell keeps the backslash in kramdown (GitHub shows `|`). Avoid `|` in table code spans.
 - Liquid inside code (`{{ }}`) is still processed by Jekyll before kramdown; such pages need `{% raw %}` on the Jekyll side, which itself shows on GitHub.
 - The stylesheet uses Sass `@import` so it compiles with both Ruby Sass (GitHub Pages) and Dart Sass (Jekyll 4); Dart Sass prints deprecation warnings unless the site sets `sass: {silence_deprecations: [import, global-builtin]}` (jekyll-sass-converter ≥ 3.1). Custom properties holding Sass values must interpolate (`--x: #{$v}`); Ruby Sass prints `$v` literally.
-- Component classes are `mt-*` (with the deprecated `md-*` kept alongside for now; removal is planned for a later minor, see CHANGELOG).
+- Component classes are `mt-*` (with the deprecated `md-*` kept alongside for now; deprecated in 1.0 and removed in 2.0; the checker warns on `md-*` in site Sass, see the public API page).
 - CTA buttons need `:has()`; without it they stay links.
 
 ## 7. Design tokens artifact

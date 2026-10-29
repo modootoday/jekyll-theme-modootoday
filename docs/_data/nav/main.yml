@@ -5,3 +5,5 @@
 - {title: Customize, url: /customize/}
 - {title: Agents, url: /agents/}
 - {title: Changelog, url: /changelog/}
+- {title: Public API, url: /api/}
+- {title: Migrate, url: /upgrade/}

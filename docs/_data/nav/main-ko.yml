@@ -5,3 +5,5 @@
 - {title: 커스터마이즈, url: /ko/customize/}
 - {title: 에이전트, url: /ko/agents/}
 - {title: 변경 기록, url: /ko/changelog/}
+- {title: 공개 API, url: /ko/api/}
+- {title: 이전, url: /ko/upgrade/}

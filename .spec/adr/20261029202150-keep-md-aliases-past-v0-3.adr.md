@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029202150
 title: Keep md-* aliases past v0.3
-status: active
+status: superseded
 created: 2026-10-29T20:21:48Z
-updated: 2026-10-29T20:21:50Z
+updated: 2026-10-29T20:44:42Z
 rel:
   governs: [_sass/modootoday/tokens/_aliases.scss]
 ---

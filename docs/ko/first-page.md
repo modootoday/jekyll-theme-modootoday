@@ -12,7 +12,7 @@ sections:
 페이지는 작은 front matter가 붙은 Markdown 파일입니다. 나머지는 테마가 합니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../first-page/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](../../first-page/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## Front matter
 
