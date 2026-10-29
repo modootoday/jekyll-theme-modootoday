@@ -1,8 +1,10 @@
+// The tablist scrolls sideways only: no negative margins or outer focus rings that would overflow it vertically.
 // Tabs (assets/js/md-tabs.js): c: tabs, ### name + code block pairs → WAI-ARIA tabs.
 @include mt-layer(components) {
-  [role="tablist"] { display: flex; gap: .25rem; overflow-x: auto; scrollbar-width: thin; border-bottom: 1px solid mt(border); margin: 1.25rem 0 0; }
+  [role="tablist"] { display: flex; gap: .25rem; overflow: auto hidden; scrollbar-width: thin; box-shadow: inset 0 -1px mt(border); margin: 1.25rem 0 0; }
   [role="tab"] { font: inherit; font-size: .875rem; font-weight: 500; white-space: nowrap; background: none; color: mt(muted-foreground);
-    border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: .55rem .85rem; cursor: pointer; transition: color .15s; }
+    border: 0; border-bottom: 2px solid transparent; padding: .55rem .85rem; cursor: pointer; transition: color .15s; }
+  [role="tab"]:focus-visible { outline-offset: -2px; }
   [role="tab"]:hover { color: mt(foreground); }
   [role="tab"][aria-selected="true"] { color: mt(foreground); border-bottom-color: mt(primary); font-weight: 600; }
   [role="tabpanel"] { margin-top: .75rem; }

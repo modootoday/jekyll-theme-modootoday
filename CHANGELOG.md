@@ -30,6 +30,7 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries.
 
 ### Fixed
+- Tabs: the tab list no longer shows a vertical scrollbar (the active-tab underline overflowed it by 1px); it scrolls sideways only, and the focus ring sits inside each tab. QA fails on any tabs scrollbar at 360/768/1280px.
 - The header site title links to the current language's home (`/<lang>/`, with `baseurl`) instead of the default-language root, for every language in `languages` including right-to-left ones; it falls back to the site root when that language has no home page.
 
 ### Changed
