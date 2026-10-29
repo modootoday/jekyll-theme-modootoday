@@ -9,9 +9,19 @@ root = "modootoday"
 # [check]
 # count_paths = ["README.md", "docs/**/*.md"]
 
-# Development docs are local-only (.spec.local/, git-ignored); nothing is committed.
+# Public-safe docs are committed in .spec/ (not shipped: gemspec files is a whitelist).
+# Research, plans, drafts and anything internal stay in .spec.local/ (git-ignored).
 [local]
 path = ".spec.local"
 
-[forbid]
-paths = [".spec", "**/.spec", "docs/adr", "**/decisions"]
+# Site sources are published; they must hold no spec document (V1).
+[public]
+paths = ["example", "docs"]
+detect = ["pages", "site-generators"]
+
+# Cheap public-surface guard: secrets and box-local paths in committed docs.
+[[guards]]
+name = "public-surface"
+paths = [".spec/**"]
+secrets = true
+deny_regex = ['/workspace/', '/home/box', '\.spec\.local/']
