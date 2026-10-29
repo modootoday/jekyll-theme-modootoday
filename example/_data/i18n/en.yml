@@ -3,3 +3,9 @@ callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution:
 tabs: {label: Install method}
 status: {available: Available, partial: Partial, planned: Planned}
 skip: Skip to content
+theme: {toggle: Dark mode}
+breadcrumb: {label: Breadcrumb}
+toc: {label: On this page}
+badge: {since: Since}
+search: {label: Search}
+post: {date_format: "%Y-%m-%d"}

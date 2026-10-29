@@ -5,3 +5,9 @@ callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: �
 tabs: {label: 설치 방법}
 status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
+theme: {toggle: 다크 모드}
+breadcrumb: {label: 이동 경로}
+toc: {label: 이 페이지의 내용}
+badge: {since: 추가 버전}
+search: {label: 검색}
+post: {date_format: "%Y년 %m월 %d일"}
