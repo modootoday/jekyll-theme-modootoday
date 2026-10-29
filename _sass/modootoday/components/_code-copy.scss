@@ -6,5 +6,6 @@
     background: mt(background); color: mt(muted-foreground); transition: color .15s; }
   .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); }
   // Narrow screens: start the code below the button so it never covers the first line of a scrolling block.
-  @media (max-width: 47.99rem) { .mt-code pre, pre.mt-code { padding-top: 2.6rem; } }
+  // Reserved whenever scripting is on, before code-copy.js adds the button, so nothing moves after load.
+  @media (max-width: 47.99rem) and (scripting: enabled) { .mt-main pre { padding-top: 2.6rem; } }
 }

@@ -2,10 +2,20 @@
 // Tabs (assets/js/modootoday/tabs.js): c: tabs, ### name + code block pairs → WAI-ARIA tabs.
 @include mt-layer(components) {
   [role="tablist"] { display: flex; gap: .25rem; overflow: auto hidden; scrollbar-width: thin; box-shadow: inset 0 -1px mt(border); margin: 1.25rem 0 0; }
-  [role="tab"] { font: inherit; font-size: .875rem; font-weight: 500; white-space: nowrap; background: none; color: mt(muted-foreground);
+  [role="tab"] { font: inherit; font-size: .875rem; line-height: 1.5; font-weight: 500; white-space: nowrap; background: none; color: mt(muted-foreground);
     border: 0; border-bottom: 2px solid transparent; padding: .55rem .85rem; cursor: pointer; transition: color .15s; }
   [role="tab"]:hover { color: mt(foreground); }
   [role="tab"][aria-selected="true"] { color: mt(foreground); border-bottom-color: mt(primary); font-weight: 600; }
   [role="tabpanel"] { margin-top: .75rem; }
   [role="tabpanel"] pre { margin-top: 0; }
+}
+// Before tabs.js runs (scripting on): the first "### name" already draws as a tab row of the same height
+// and only its code block shows, so grouping after load moves nothing. Without JS every method stays visible.
+@media (scripting: enabled) {
+  @include mt-layer(components) {
+    [data-tabs]:not(:has([role="tablist"])) {
+      > h3:has(+ div, + pre) { font-size: .875rem; line-height: 1.5; padding: .55rem .85rem; margin: 1.25rem 0 0; border-bottom: 2px solid mt(primary); }
+      > h3 ~ h3:has(+ div, + pre), > h3 ~ h3 + * { display: none; }
+    }
+  }
 }

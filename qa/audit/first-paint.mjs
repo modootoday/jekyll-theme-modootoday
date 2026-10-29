@@ -4,8 +4,11 @@
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 export const FIRST_PAINT_MAX_CLS = 0.02;
+export const ANCHOR_MAX_CLS = 0.001; // in-view components must not move at all once painted
 const NET = { offline: false, latency: 150, downloadThroughput: 200000, uploadThroughput: 100000 };
 const CASES = [["light"], ["dark"], ["light", "dark"]]; // [system scheme, stored mt-theme]
+// Short phone viewport: also load the home quick start (tabs, code copy) in view, so a late regroup counts as CLS.
+const VIEWPORTS = [{ width: 1280, height: 800 }, { width: 390, height: 700, anchor: "#quick-start" }];
 
 function probe() {
   window.__cls = 0; window.__bg = new Set();
@@ -14,9 +17,10 @@ function probe() {
   requestAnimationFrame(rec);
 }
 
-async function run(browser, origin, scheme, stored, fails) {
-  const ctx = await browser.newContext({ colorScheme: scheme, viewport: { width: 1280, height: 800 } });
-  const page = await ctx.newPage(), cdp = await ctx.newCDPSession(page), tag = `${scheme}${stored ? "+stored " + stored : ""}`;
+async function run(browser, origin, scheme, stored, viewport, fails) {
+  const ctx = await browser.newContext({ colorScheme: scheme, viewport: { width: viewport.width, height: viewport.height } });
+  const page = await ctx.newPage(), cdp = await ctx.newCDPSession(page);
+  const tag = `${scheme}${stored ? "+stored " + stored : ""} ${viewport.width}x${viewport.height}`;
   if (stored) await page.addInitScript((t) => { try { localStorage.setItem("mt-theme", t); } catch (e) {} }, stored);
   await page.addInitScript(probe);
   await cdp.send("Network.enable"); await cdp.send("Network.emulateNetworkConditions", NET);
@@ -38,9 +42,16 @@ async function run(browser, origin, scheme, stored, fails) {
     const n = pixelmatch(band(first), band(last), null, last.width, 64, { threshold: 0.1 });
     if (n > 50) fails.push(`first paint: header changed after first paint (${n} px) after logo click (${tag})`);
   }
+  if (viewport.anchor) {
+    // Hold scripts back so the page paints first, as on a slow phone; any regroup by JS then shows up as CLS.
+    await page.route(/\.js$/, async (r) => { await new Promise((t) => setTimeout(t, 800)); await r.continue(); });
+    await page.goto("about:blank"); await page.goto(origin + viewport.anchor, { waitUntil: "load" }); await page.waitForTimeout(1500);
+    const cls = await page.evaluate(() => window.__cls);
+    if (cls >= ANCHOR_MAX_CLS) fails.push(`first paint: CLS ${cls.toFixed(4)} >= ${ANCHOR_MAX_CLS} at ${viewport.anchor} (${tag})`);
+  }
   await ctx.close();
 }
 
 export async function checkFirstPaint(browser, origin, fails) {
-  for (const [scheme, stored] of CASES) await run(browser, origin, scheme, stored, fails);
+  for (const viewport of VIEWPORTS) for (const [scheme, stored] of CASES) await run(browser, origin, scheme, stored, viewport, fails);
 }
