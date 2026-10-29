@@ -185,15 +185,28 @@ class CheckTest < Minitest::Test
     page "index.md", "---\ntitle: T\n---\n# T\n"
     page "index.md.txt", "---\nlayout: twin\ntwin_of: index.md\npermalink: /index.md\n---\n"
     page "g.md", "---\n---\n# G\n"
+    page "h.md", "---\ntwin: false\n---\n# H\n"
     out "index.md", "# T\n"
     out "llms.txt", ""
-    out "llms-full.txt", ""
+    out "llms-full.txt", "# T\n"
     o, code = check("--twins")
     assert_equal 1, code
-    assert_match(/g\.md: no twin stub/, o)
-    refute_match(/index\.md: twin/, o)
+    assert_match(/g\.md: twin missing at .*g\/index\.md: add a stub g\.md\.txt .*plugins: \[jekyll-theme-modootoday\]/, o)
+    assert_match(/llms\.txt: must start with an H1/, o)
+    assert_match(/llms-full\.txt: does not contain the body of g\.md/, o)
+    refute_match(/index\.md: twin|h\.md/, o)
+    out "g/index.md", "# G\n"
+    out "llms.txt", "# Site\n"
+    out "llms-full.txt", "# T\n\n# G\n"
+    assert_equal ["", 0], [check("--twins")[0][/^(?!md-components).*$/].to_s, check("--twins")[1]]
     out "index.md", "# T changed\n"
     assert_match(/not byte-identical/, check("--twins")[0])
+  end
+
+  def test_stub_must_use_twin_layout
+    page "a.md", "---\n---\n# A\n"
+    page "a.md.txt", "---\nlayout: doc\n---\n"
+    assert_match(/a\.md\.txt: stub must set layout: twin/, check("--twins")[0])
   end
 
   def test_usage

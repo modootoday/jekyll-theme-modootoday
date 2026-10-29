@@ -101,7 +101,7 @@ mds.each do |f|
           when /^:\s/ then "definition list"
           when /^\*\[[^\]]+\]:/ then "abbreviation definition *[X]: (kramdown-only)"
           when /^\s*([-*+]|\d+\.|\|).*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i, /^\s*(>\s*){2,}\[!/
-            "alert nested in list/table/quote"
+            "alert nested in list/table/quote (GitHub renders only top-level alerts; this shows as a plain quote); start '> [!TYPE]' at column 0"
           end
     why ||= "bare URL/e-mail autolink (kramdown does not link it); write <https://…> or [text](url)" if linkless =~ %r{(?<![<\w/@.])(https?://|www\.)\S|(?<![<\w.+-])[\w.+-]+@[\w-]+\.[a-z]{2,}}i
     errs << "#{rel[f]}:#{n}: #{why}" if why
@@ -114,11 +114,11 @@ mds.each do |f|
     msg = case l
           when /^##( |$)/ then (h2 += 1; nil)
           when /^\s+##( |$)/ then
-            if list then "'##' inside a list item is not a section; use ### or move it out"
+            if list then "'##' inside a list item is not a section (sections split only on column-0 '## '); use '###' or move it out of the list"
             elsif l =~ /^ {1,3}#/ then "indented '##' (kramdown: paragraph, GitHub: heading); start at column 0"
             end
-          when /^\s+> ?\[!\w+\]/ then list ? "alert nested in list/table/quote" : nil
-          when /^\s*(>\s*)+##( |$)/ then "'##' inside a quote/alert is not a section; use ### or move it out"
+          when /^\s+> ?\[!\w+\]/ then list ? "alert nested in list/table/quote (GitHub renders only top-level alerts; this shows as a plain quote); start '> [!TYPE]' at column 0" : nil
+          when /^\s*(>\s*)+##( |$)/ then "'##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text"
           when /^ {0,3}-+\s*$/
             if prev =~ /\S/ && prev !~ /^\s*([-*+>|#]|\d+\.)/
               n -= 1
@@ -184,31 +184,41 @@ if (gp = ARGV.find { |a| a == "--github-pages" || a.start_with?("--github-pages=
   end
 end
 
-# 7. twins: <name>.md + stub <name>.md.txt (layout twin, empty body)
-#    → /index.md for index.md, else /<dir>/<name>/index.md; byte-identical to the source body.
-#    llms.txt / llms-full.txt exist at / and at each /<lang>/.
+# 7. twins: every Markdown page (except README.md and `twin: false`) has /<page>/index.md
+#    (/index.md for index.md), byte-identical to its source body. It comes from a stub <name>.md.txt
+#    (layout: twin; works on GitHub Pages) or from the opt-in plugin (plugins: [jekyll-theme-modootoday]).
+#    llms.txt / llms-full.txt exist at / and at each /<lang>/; llms-full.txt contains every page body.
 if ARGV.include?("--twins")
+  hint = "add a stub #{"%s"} (front matter `layout: twin`, `twin_of`, `permalink`) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
+  bodies = Hash.new { |h, k| h[k] = [] }
   mds.each do |f|
     stub = "#{f}.txt"
-    next unless File.exist?(stub)
-    st = File.read(stub)
-    meta = (fm(st) rescue {})
-    errs << "#{rel[stub]}: stub must set layout: twin" unless meta["layout"] == "twin"
-    errs << "#{rel[stub]}: stub body must be empty" unless body(st).strip.empty?
+    if File.exist?(stub)
+      st = File.read(stub)
+      meta = (fm(st) rescue {})
+      errs << "#{rel[stub]}: stub must set layout: twin" unless meta["layout"] == "twin"
+      errs << "#{rel[stub]}: stub body must be empty" unless body(st).strip.empty?
+    end
+    next if File.basename(f) == "README.md" || (fm(File.read(f)) rescue {})["twin"] == false
     r = rel[f].delete_suffix(".md")
     out = File.basename(r) == "index" ? "#{site}/#{r}.md" : "#{site}/#{r}/index.md"
-    next errs << "#{rel[f]}: twin missing at #{out}" unless File.exist?(out)
-    errs << "#{out}: twin is not byte-identical to the body of #{rel[f]}" unless File.binread(out) == body(File.read(f)).b
-  end
-  mds.each do |f|
-    next if File.exist?("#{f}.txt") || File.basename(f) == "README.md"
-    errs << "#{rel[f]}: no twin stub #{rel[f]}.txt"
+    b = body(File.read(f))
+    lang = r.split("/").first if r.include?("/") && i18n.key?(r.split("/").first)
+    bodies[lang.to_s] << [rel[f], b]
+    next errs << "#{rel[f]}: twin missing at #{out}: #{format(hint, "#{rel[f]}.txt")}" unless File.exist?(out)
+    errs << "#{out}: twin is not byte-identical to the body of #{rel[f]}" unless File.binread(out) == b.b
   end
   langs = [""] + i18n.keys.select { |l| Dir.exist?("#{src}/#{l}") }
   langs.each do |l|
     %w[llms.txt llms-full.txt].each do |n|
       p = [site, l, n].reject(&:empty?).join("/")
-      errs << "#{p}: missing (per-language llms file)" unless File.exist?(p)
+      next errs << "#{p}: missing (per-language llms file; stub with `layout: #{n.delete_suffix('.txt')}` or the plugin)" unless File.exist?(p)
+      txt = File.read(p)
+      if n == "llms.txt"
+        errs << "#{p}: must start with an H1 (llmstxt.org)" unless txt.start_with?("# ")
+      else
+        bodies[l].each { |(name, b)| errs << "#{p}: does not contain the body of #{name}" unless b.strip.empty? || txt.include?(b.strip) }
+      end
     end
   end
 end
