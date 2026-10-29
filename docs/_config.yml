@@ -18,6 +18,8 @@ modootoday:
   twins: source
   languages: [en, ko, ja]
   language_switcher: header
+  logo: brand
+  favicon: brand
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
   # Post footers link tags and categories here (/ko/tags/ for lang: ko posts).
   archive: {tags: /tags/, categories: /categories/}

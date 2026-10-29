@@ -14,9 +14,9 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Design tokens | semantic and component custom properties `--mt-*` (not the primitives `--mt-p-*`); the generated `tokens.json` mirrors them |
 | Markdown rules | the patterns in `RULES.md` and their output classes `mt-*` |
 | Layouts | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
-| Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` can be included from your footer |
+| Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` and `modootoday/logo.html` (takes `size`) can be included from your footer; override `modootoday/logo.html` to draw your own logo |
 | Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../customize/#section-visuals-and-full-width-pages)) |
-| Includes you may call | `modootoday/archive.html` with `by` and `lang` |
+| Includes you may call | `modootoday/archive.html` with `by` and `lang`; `modootoday/icon.html` with `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL) |
 | Data files | `_data/i18n/<lang>.yml` keys, `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
 

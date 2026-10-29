@@ -6,7 +6,7 @@ $mt-callout-variants: (note: note, tip: tip, important: important, warning: warn
     border-radius: mt(radius); background: color-mix(in srgb, var(--mt-callout-accent) 6%, #{mt(background)}); }
   .mt-callout > p:empty { display: none; }
   .mt-callout > :last-child { margin-bottom: 0; }
-  .mt-callout-title { color: var(--mt-callout-accent); font-weight: 650; font-size: .875rem; letter-spacing: .01em; margin: 0 0 .3rem; }
+  .mt-callout-title { display: flex; align-items: center; gap: .4rem; color: var(--mt-callout-accent); font-weight: 650; font-size: .875rem; letter-spacing: .01em; margin: 0 0 .3rem; }
   .mt-callout pre { background: mt(background); }
   @each $name, $token in $mt-callout-variants {
     .mt-callout-#{$name} { --mt-callout-accent: #{mt($token)}; }

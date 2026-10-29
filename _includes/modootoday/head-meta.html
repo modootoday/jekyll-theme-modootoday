@@ -5,7 +5,16 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
   site.modootoday.feed       true adds the Atom link to /feed.xml (add jekyll-feed to plugins)
   site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
+  site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
 {%- endcomment -%}
+{%- assign _fav = site.modootoday.favicon -%}
+{%- if _fav == "brand" %}
+<link rel="icon" href="{{ '/assets/modootoday/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/modootoday/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ '/assets/modootoday/apple-touch-icon.png' | relative_url }}">
+{%- elsif _fav %}
+<link rel="icon" href="{{ _fav | relative_url }}">
+{%- endif -%}
 {%- if mt_components contains "theme-toggle" and mt_color_scheme == "auto" -%}
 {%- if site.modootoday.csp == "strict" %}
 <script src="{{ '/assets/js/modootoday/theme-init.js' | relative_url }}"></script>

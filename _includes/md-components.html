@@ -39,7 +39,7 @@ Titles/labels: site.data.i18n[lang], English fallback.
 {%- if _ok -%}
 {%- for _t in _types -%}{%- if _t == _ty -%}{%- assign _title = _i.callout[_t] | default: _deft[forloop.index0] -%}{%- endif -%}{%- endfor -%}
 <blockquote class="mt-callout mt-callout-{{ _ty }} md-callout md-callout-{{ _ty }}" data-variant="{{ _ty }}" role="note">
-  <p class="mt-callout-title md-callout-title">{{ _title }}</p>{{ _body }}
+  <p class="mt-callout-title md-callout-title">{% include modootoday/icon.html name=_ty size=16 %}{{ _title }}</p>{{ _body }}
 {%- else -%}{{ _sep }}{{ _ch }}{%- endif -%}
 {%- endfor -%}{%- endcapture -%}
 {%- endif -%}

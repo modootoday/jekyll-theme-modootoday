@@ -2,5 +2,8 @@
 @include mt-layer(components) {
   .mt-figure { margin: 1.5rem 0; }
   .mt-figure img { display: block; border-radius: mt(radius-lg); border: 1px solid mt(border); }
+  // Dim images a little in dark mode so a light screenshot does not glare.
+  :root[data-theme="dark"] .mt-figure img { filter: brightness(.85); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure img { filter: brightness(.85); } }
   .mt-figure figcaption { margin-top: .6rem; color: mt(muted-foreground); font-size: .875rem; text-align: center; }
 }

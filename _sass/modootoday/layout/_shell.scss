@@ -9,7 +9,7 @@
   .mt-header-inner { display: flex; align-items: center; gap: .5rem 1.25rem; min-height: mt(header-height); }
   .mt-site-title { flex: none; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.01em;
     text-decoration: none; color: mt(foreground); white-space: nowrap; }
-  .mt-site-title::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
+  .mt-site-title:not(.mt-has-logo)::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
     background: mt(brand); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
   .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
   .mt-main.mt-main-full { max-width: none; padding-inline: 0; }
@@ -31,12 +31,16 @@
   .mt-lang a[aria-current] { font-weight: 600; }
   details.mt-lang { position: relative; flex: none; }
   details.mt-lang > summary { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0; justify-content: center; border: 1px solid mt(border); border-radius: mt(radius); color: mt(foreground); }
-  .mt-icon { fill: none; stroke: currentColor; stroke-width: 1.6; }
+  // Icons (modootoday/icon.html) are sized and stroked by SVG attributes; only alignment and RTL mirroring live here.
+  .mt-icon { flex: none; vertical-align: -.125em; }
+  [dir="rtl"] .mt-icon-flip { transform: scaleX(-1); }
+  .mt-logo { flex: none; color: mt(brand); }
+  .mt-footer .mt-logo { vertical-align: middle; margin-inline-end: .4rem; }
   @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-header-inner { column-gap: .75rem; } }
   @media (max-width: 29.99rem) { .mt-site-title { margin-inline-end: auto; } }
   .mt-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   @media (min-width: 64rem) {
-    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) 14rem; justify-content: space-between; gap: 4rem; }
+    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) 14rem; gap: 3.5rem; }
     .mt-has-toc ~ .mt-page-meta, .mt-has-toc ~ .mt-pagination { max-width: mt(measure); margin-inline-start: 0; }
     .mt-doc-aside { display: block; }
     .mt-doc-aside .mt-toc { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }

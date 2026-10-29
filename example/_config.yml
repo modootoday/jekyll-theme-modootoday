@@ -8,6 +8,7 @@ markdown: kramdown
 sass: {silence_deprecations: [import, global-builtin]}  # Dart Sass (Jekyll 4); ignored by GitHub Pages
 kramdown: {input: GFM, syntax_highlighter: rouge}
 permalink: pretty
+# Logo and favicon from the modootoday mark (or a path to your own image): modootoday: {logo: brand, favicon: brand}
 exclude: [Gemfile, Gemfile.lock, README.md, source-mode]
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}

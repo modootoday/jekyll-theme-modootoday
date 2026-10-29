@@ -5,6 +5,7 @@
   .mt-c-features > ul > li { margin: 0; border: 1px solid mt(border); border-radius: mt(radius-lg); padding: var(--mt-card-padding);
     background: mt(card); color: mt(muted-foreground); box-shadow: mt(shadow-sm); font-size: .9375rem; line-height: 1.6;
     transition: border-color .15s, box-shadow .15s; }
+  .mt-c-features > ul > li code { white-space: nowrap; }
   .mt-c-features > ul > li:hover { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); box-shadow: mt(shadow); }
   .mt-c-features > ul > li > strong:first-child { display: block; margin-bottom: .35rem; color: mt(card-foreground); font-size: 1rem; }
   @media (min-width: 48rem) {

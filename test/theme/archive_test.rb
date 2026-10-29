@@ -40,7 +40,7 @@ class ArchiveTest < Minitest::Test
   def test_tag_archive_index_counts_and_groups
     h = read("tags/index.html")
     assert_includes h, '<nav class="mt-archive-index" aria-label="Tags">'
-    assert_match %r{<a class="mt-badge mt-badge-tag" data-variant="tag" href="#tags-news">news <span class="mt-archive-count">2<span class="mt-sr-only"> posts</span></span></a>}, h
+    assert_match %r{<a class="mt-badge mt-badge-tag" data-variant="tag" href="#tags-news"><svg class="mt-icon mt-icon-tag"[^>]*>.*?</svg>news <span class="mt-archive-count">2<span class="mt-sr-only"> posts</span></span></a>}, h
     assert_includes h, 'href="#tags-big-data"'
     assert_includes h, '<h2 id="tags-news">news</h2>'
     news = h[/<h2 id="tags-news">.*?<\/section>/m]

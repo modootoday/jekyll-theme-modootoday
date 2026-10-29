@@ -37,6 +37,8 @@ modootoday:
 | `language_switcher` | none | `header` (a globe button with a dropdown menu; same width however many languages) or `footer` (a list of language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page. Nothing renders with fewer than two languages. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click |
 | `og_image` | none | default Open Graph image; `image:` in front matter wins |
 | `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
+| `logo` | none | `brand` puts the modootoday mark before the site title in `currentColor` (the `brand` token, so it follows light and dark); a path shows your own image instead (decorative, `alt=""`). Override `modootoday/logo.html` to draw something else |
+| `favicon` | none | `brand` links the modootoday mark as SVG, 32 px PNG and Apple touch icon; a path links your own icon |
 | `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../api/#posts-and-archives)) |

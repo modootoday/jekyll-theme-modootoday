@@ -8,10 +8,10 @@
 {%- if _pi >= 0 or _ni < mt_nav.size %}
 <nav class="mt-pagination" aria-label="{{ _i18n.label | default: 'Pages' }}">
 {%- if _pi >= 0 %}{% assign _p = mt_nav[_pi] %}
-<a rel="prev" href="{{ _p.url | relative_url }}"><small>{{ _i18n.prev | default: "Previous" }}</small> {{ _p.title }}</a>
+<a rel="prev" href="{{ _p.url | relative_url }}"><small>{% include modootoday/icon.html name="prev" size=14 %} {{ _i18n.prev | default: "Previous" }}</small> {{ _p.title }}</a>
 {%- endif -%}
 {%- if _ni < mt_nav.size %}{% assign _n = mt_nav[_ni] %}
-<a rel="next" href="{{ _n.url | relative_url }}"><small>{{ _i18n.next | default: "Next" }}</small> {{ _n.title }}</a>
+<a rel="next" href="{{ _n.url | relative_url }}"><small>{{ _i18n.next | default: "Next" }} {% include modootoday/icon.html name="next" size=14 %}</small> {{ _n.title }}</a>
 {%- endif %}
 </nav>
 {%- endif -%}

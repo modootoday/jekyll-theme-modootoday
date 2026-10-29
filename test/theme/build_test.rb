@@ -54,10 +54,10 @@ class BuildTest < Minitest::Test
   end
 
   def test_alert_body_keeps_block_content
-    assert_match(%r{md-callout-title">Note</p>\s*<div class="language-sh}, html("a19-code-inside"))
-    assert_match(%r{md-callout-title">Note</p>\s*<ul>}, html("a24-list-first-body"))
-    assert_match(%r{md-callout-title">Note</p><p>Body\.</p>}, html("a28-trailing-spaces"))
-    assert_match(%r{md-callout-title">Note</p>\s*<p>Body after blank\.</p>}, html("a17-blank-gt-after"))
+    assert_match(%r{md-callout-title"><svg class="mt-icon mt-icon-note"[^>]*>.*?</svg>Note</p>\s*<div class="language-sh}, html("a19-code-inside"))
+    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<ul>}, html("a24-list-first-body"))
+    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p><p>Body\.</p>}, html("a28-trailing-spaces"))
+    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<p>Body after blank\.</p>}, html("a17-blank-gt-after"))
     h = html("a25-two-adjacent")
     assert_includes h, "md-callout-note"
     assert_includes h, "md-callout-tip"

@@ -23,6 +23,7 @@ sections:
   - navigation
   - language-switcher
   - theme-toggle
+  - icons
   - search
   - breadcrumb-toc
   - pagination
@@ -229,6 +230,16 @@ modootoday:
 ```yaml
 modootoday:
   color_scheme: auto   # auto | light | dark
+```
+
+## アイコンとロゴ
+
+`status:available` `since:1.0` テーマのアイコン(地球儀、太陽と月、検索、アラートの種類、コピー、編集、前後、外部リンク、パンくずの矢印)は `currentColor` のインライン SVG なので、ライト・ダークに追従し、追加のリクエストもありません。アイコンはスクリーンリーダーから隠し、アイコンだけのボタンには個別の名前を付けます。向きを持つ矢印は右から左へ書くページで反転します。`logo` を設定するとサイト名の前に modootoday マーク(または独自の画像)が表示され、`favicon` を設定すると同じ形のブラウザーアイコンが付きます。このページのヘッダーとフッターがその結果です。
+
+```yaml
+modootoday:
+  logo: brand        # brand | /assets/img/logo.svg
+  favicon: brand     # brand | /favicon.ico
 ```
 
 ## 検索

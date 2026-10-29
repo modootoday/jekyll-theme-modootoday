@@ -2,6 +2,9 @@
 // Groups (items with `items:`) open as a <details> menu from 64rem; below that their links are listed inline.
 @include mt-layer(components) {
   .mt-nav { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  // Below 64rem the row scrolls sideways: fade the inline end so cut-off items read as "more".
+  .mt-nav { mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent); }
+  [dir="rtl"] .mt-nav { mask-image: linear-gradient(to left, #000 calc(100% - 2rem), transparent); }
   .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .125rem; }
   .mt-nav li + li { margin-top: 0; }
   .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary { display: flex; align-items: center; min-height: 2rem; padding: .35rem .6rem; border-radius: mt(radius); font-size: .9rem; font-weight: 500;
@@ -11,15 +14,15 @@
   .mt-nav-group { display: none; position: relative; }
   .mt-menu summary { cursor: pointer; list-style: none; }
   .mt-menu summary::-webkit-details-marker { display: none; }
-  .mt-nav summary::after { content: ""; display: inline-block; width: .4em; height: .4em; margin: 0 0 .2em; margin-inline-start: .45em;
-    border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+  .mt-nav summary > .mt-icon { margin-inline-start: .3em; }
+  .mt-nav a > .mt-icon { margin-inline-start: .25em; opacity: .7; }
   .mt-nav a:focus-visible, .mt-menu a:focus-visible, .mt-menu summary:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
   .mt-menu > ul { list-style: none; margin: 0; position: absolute; top: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;
     background: mt(card); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow); }
   .mt-menu a { color: mt(card-foreground); }
   details.mt-lang > ul { inset-inline: auto 0; min-width: 10rem; }
   @media (min-width: 64rem) {
-    .mt-nav { overflow: visible; flex: none; }
+    .mt-nav, [dir="rtl"] .mt-nav { overflow: visible; flex: none; mask-image: none; }
     .mt-nav-group { display: block; }
     .mt-nav-flat { display: none; }
   }

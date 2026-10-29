@@ -56,7 +56,7 @@ class ComponentsTest < Minitest::Test
   def h = self.class.build
 
   def test_breadcrumb
-    assert_match(%r{<nav class="mt-breadcrumb" aria-label="Breadcrumb"><ol>\s*<li><a href="/">Home</a></li>\s*<li><a href="/guide/">Guide</a></li>\s*<li><span aria-current="page">Probe</span></li>}, h)
+    assert_match(%r{<nav class="mt-breadcrumb" aria-label="Breadcrumb"><ol>\s*<li><a href="/">Home</a></li>\s*<li><svg class="mt-icon mt-icon-chevron-right mt-icon-flip"[^>]*>.*?</svg><a href="/guide/">Guide</a></li>\s*<li><svg [^>]*>.*?</svg><span aria-current="page">Probe</span></li>}, h)
   end
 
   def test_toc
