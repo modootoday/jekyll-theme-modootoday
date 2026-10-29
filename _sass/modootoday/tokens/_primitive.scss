@@ -10,6 +10,8 @@ $mt-primitive: (
   purple-400: #ab7df8, purple-600: #8250df,
   yellow-400: #d29922, yellow-600: #9a6700,
   red-400: #f85149, red-600: #d1242f,
+  // caution uses rose (hue ~345deg) so it never reads as the orange-red brand link colour.
+  rose-400: #ff7b9c, rose-600: #b8174a,
   orange-400: #ffa657, orange-600: #953800, teal-400: #79c0ff, teal-600: #0550ae,
   space-1: 0.25rem, space-2: 0.5rem, space-3: 0.75rem, space-4: 1rem, space-6: 1.5rem, space-8: 2rem, space-10: 2.5rem, space-12: 3rem, space-16: 4rem,
   radius-sm: 0.25rem, radius-md: 0.5rem, radius-lg: 0.75rem, radius-full: 999px

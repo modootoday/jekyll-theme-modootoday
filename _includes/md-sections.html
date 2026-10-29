@@ -14,7 +14,12 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- assign _nl = "
 " -%}
 {%- assign _sep = _nl | append: "<h2 " -%}
-{%- assign _parts = include.content | prepend: _nl | split: _sep -%}
+{%- comment -%}kramdown appends footnotes at column 0 after the last block; keep them out of the last section (e.g. a CTA card).{%- endcomment -%}
+{%- assign _fsep = _nl | append: '<div class="footnotes"' -%}
+{%- assign _fparts = include.content | split: _fsep -%}
+{%- assign _main = _fparts[0] -%}{%- assign _notes = "" -%}
+{%- if _fparts.size > 1 -%}{%- assign _notes = include.content | remove_first: _main | strip -%}{%- endif -%}
+{%- assign _parts = _main | prepend: _nl | split: _sep -%}
 {%- assign _p0 = _parts[0] -%}{%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}
 <section class="mt-hero md-hero">{{ _hero }}</section>
 {%- for _p in _parts offset:1 -%}
@@ -26,6 +31,9 @@ modootoday-check fails when the item count differs from the h2 count.
 <section class="mt-section md-section{% if _cc %} mt-c-{{ _cc }} md-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %} mt-cta md-cta{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
 <h2 {{ _body }}</section>
 {%- endfor -%}
+{%- if _notes != "" %}
+<div class="mt-endnotes">{{ _notes }}</div>
+{%- endif -%}
 {%- else -%}
 <div class="mt-prose md-prose">{{ include.content }}</div>
 {%- endif -%}

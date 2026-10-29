@@ -15,6 +15,10 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 - [Math and diagrams](docs/math-diagrams.md) guide (en, ko): KaTeX and Mermaid under a strict CSP, rendered at build time or self-hosted. The theme bundles neither.
 
 ### Changed
+- The `caution` token is now rose (`#b8174a` light, `#ff7b9c` dark) instead of red, so caution alerts no longer read as the orange-red brand link colour. New primitives `--mt-p-rose-400/600`.
+- Search results show the current language first, title matches before body matches, and a muted text snippet; on narrow screens the results panel spans the header width.
+- Footnotes are rendered after the last section instead of inside it (they no longer land in a call-to-action card).
+- On screens under 48rem, code blocks with a Copy button start below the button so it never covers the first line.
 - `modootoday-check` also warns on `md-*` classes and `var(--md-*)` in the site's own includes, layouts, CSS and pages (code is ignored), not only in Sass.
 
 ## [0.5.0] - Unreleased
