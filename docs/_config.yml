@@ -6,7 +6,7 @@ baseurl: /jekyll-theme-modootoday
 # Dogfooding: GitHub Pages (classic, main /docs) builds this site with the theme from this repo.
 # Pinned to main until the first release; switch to @vX.Y.Z when a tag is published.
 remote_theme: modootoday/jekyll-theme-modootoday@main
-plugins: [jekyll-remote-theme]
+plugins: [jekyll-remote-theme, jekyll-optional-front-matter, jekyll-titles-from-headings]
 markdown: kramdown
 kramdown: {input: GFM, syntax_highlighter: rouge}
 sass: {silence_deprecations: [import]}
@@ -14,6 +14,8 @@ permalink: pretty
 exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
   nav: main
+  # Front-matter-less pages (docs/source-mode-demo/) are their own twins; other pages keep stubs.
+  twins: source
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "ko"}, values: {lang: ko}}
