@@ -1,0 +1,13 @@
+---
+layout: doc
+---
+{%- comment -%}md-components v1 (draft) — post layout: date/author/tags meta line, then the doc pipeline.{%- endcomment -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign _ui = site.data.i18n[_lang] -%}
+{%- assign _fmt = _ui.post.date_format | default: "%Y-%m-%d" -%}
+<p class="mt-post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: _fmt }}</time>
+{%- if page.author %} · <span class="mt-post-author">{{ page.author }}</span>{% endif -%}
+{%- for t in page.tags %} <span class="mt-badge mt-badge-tag" data-variant="tag">{{ t }}</span>{% endfor -%}
+</p>
+
+{{ content }}

@@ -5,7 +5,8 @@ layout: default
 {%- include modootoday/config.html -%}
 {%- assign _badges = mt_badges -%}{%- if page.badges == false -%}{%- assign _badges = false -%}{%- endif -%}{%- unless mt_components contains "badge" -%}{%- assign _badges = false -%}{%- endunless -%}
 {%- assign _fig = false -%}{%- if mt_components contains "figure" -%}{%- assign _fig = true -%}{%- endif -%}
-{%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges figure=_fig %}{% endcapture -%}
+{%- assign _kbd = false -%}{%- if mt_components contains "kbd" -%}{%- assign _kbd = true -%}{%- endif -%}
+{%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges figure=_fig kbd=_kbd %}{% endcapture -%}
 {%- include modootoday/breadcrumb.html -%}
 {%- include modootoday/toc.html html=html %}
 <article class="mt-doc md-doc">

@@ -1,0 +1,11 @@
+{%- comment -%}Search index. In your site add search.json:  ---\nlayout: null\n---\n{% include modootoday/search.json %}
+Pages with `search: false` or no title are skipped. Text is truncated to 300 words.{%- endcomment -%}
+[{%- assign _first = true -%}
+{%- for p in site.pages -%}{%- if p.title and p.search != false and p.layout != nil -%}{%- unless p.url contains ".json" or p.url contains ".txt" or p.url contains ".md" -%}
+{%- unless _first %},{% endunless -%}{%- assign _first = false -%}
+{"title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }},"lang":{{ p.lang | default: site.lang | default: "en" | jsonify }},"text":{{ p.content | markdownify | strip_html | normalize_whitespace | truncatewords: 300, "" | jsonify }}}
+{%- endunless -%}{%- endif -%}{%- endfor -%}
+{%- for p in site.posts -%}{%- if p.search != false -%}
+{%- unless _first %},{% endunless -%}{%- assign _first = false -%}
+{"title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }},"lang":{{ p.lang | default: site.lang | default: "en" | jsonify }},"text":{{ p.content | strip_html | normalize_whitespace | truncatewords: 300, "" | jsonify }}}
+{%- endif -%}{%- endfor -%}]
