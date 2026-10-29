@@ -7,7 +7,7 @@ require "fileutils"
 require "jekyll"
 
 class BuildTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   FIX = File.join(ROOT, "test/fixtures/md")
   CONVERTED = %w[a01-note:note a02-tip:tip a03-important:important a04-warning:warning a05-caution:caution
                  a06-lowercase:note a07-mixedcase:note a09-multipara:note a14-crlf:note a16-lazy-continuation:note

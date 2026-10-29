@@ -7,7 +7,7 @@ require "open3"
 require "rbconfig"
 
 class CheckTest < Minitest::Test
-  CHECK = File.expand_path("../exe/modootoday-check", __dir__)
+  CHECK = File.expand_path("../../exe/modootoday-check", __dir__)
 
   def setup
     @dir = Dir.mktmpdir
@@ -193,7 +193,7 @@ class CheckTest < Minitest::Test
   end
 
   # Audit fixtures (test/fixtures/md): source → expected checker messages ([] = clean).
-  FIX = File.expand_path("fixtures/md", __dir__)
+  FIX = File.expand_path("../fixtures/md", __dir__)
   EXPECT = {
     "a01-note" => [], "a06-lowercase" => [], "a07-mixedcase" => [], "a09-multipara" => [], "a14-crlf" => [],
     "a16-lazy-continuation" => [], "a17-blank-gt-after" => [], "a19-code-inside" => [], "a21-inline-first-body" => [],
@@ -338,7 +338,7 @@ class CheckTest < Minitest::Test
   end
 
   def test_theme_sass_sources_are_portable
-    root = File.expand_path("..", __dir__)
+    root = File.expand_path("../..", __dir__)
     Dir.glob("#{root}/{_sass,assets}/**/*.scss").each do |f|
       t = File.read(f).gsub(%r{/\*.*?\*/}m, "").gsub(%r{//[^\n]*}, "")
       refute_match(/^\s*@(use|forward)\b|@supports\s+(not\s+)?selector\(/, t, f)

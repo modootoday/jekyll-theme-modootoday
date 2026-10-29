@@ -6,10 +6,10 @@ const path = require("node:path");
 const { JSDOM } = require("jsdom");
 
 function load(rtl) {
-  let html = fs.readFileSync(path.join(__dirname, "fixtures/tabs.html"), "utf8");
+  let html = fs.readFileSync(path.join(__dirname, "../fixtures/tabs.html"), "utf8");
   if (rtl) html = html.replace(/<html\b/i, '<html dir="rtl"');
   const dom = new JSDOM(html, { runScripts: "outside-only" });
-  dom.window.eval(fs.readFileSync(path.join(__dirname, "../assets/js/md-tabs.js"), "utf8"));
+  dom.window.eval(fs.readFileSync(path.join(__dirname, "../../assets/js/md-tabs.js"), "utf8"));
   const d = dom.window.document;
   const groups = [...d.querySelectorAll("[role=tablist]")].map((l) => [...l.querySelectorAll("[role=tab]")]);
   const key = (el, k) => el.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: k, bubbles: true }));

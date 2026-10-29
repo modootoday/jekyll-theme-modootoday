@@ -7,7 +7,7 @@ require "open3"
 require "jekyll"
 
 class ArchiveTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
 
   def self.site
     @site ||= begin

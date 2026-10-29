@@ -3,7 +3,7 @@
 require "minitest/autorun"
 
 class VersionTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   def read(f) = File.read(File.join(ROOT, f))
   def version = read("jekyll-theme-modootoday.gemspec")[/spec\.version\s*=\s*"([^"]+)"/, 1]
 

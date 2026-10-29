@@ -6,7 +6,7 @@ require "tmpdir"
 require "open3"
 
 class ExampleGuidesTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   EXAMPLE = File.join(ROOT, "example")
 
   def test_guide_in_every_language

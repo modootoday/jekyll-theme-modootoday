@@ -7,7 +7,7 @@ require "fileutils"
 require "jekyll"
 
 class CssTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   CONFIGS = {
     "all" => "",
     "minimal" => "modootoday: {components: [callout]}\n",

@@ -13,7 +13,7 @@ require "open3"
 require "jekyll"
 
 class ConsumerTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   EXAMPLE = File.join(ROOT, "example")
   GH_PAGES = Gem.loaded_specs.key?("github-pages")
 

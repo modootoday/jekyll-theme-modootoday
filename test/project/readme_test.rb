@@ -4,7 +4,7 @@ require "minitest/autorun"
 require "open3"
 
 class ReadmeTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   EN = %w[Why Install Quick\ start Concepts Commands AI\ agents Guides Exit\ codes Contributing License].freeze
   KO = %w[왜 설치 빠른\ 시작 개념 명령 AI\ 에이전트 가이드 종료\ 코드 기여 라이선스].freeze
 

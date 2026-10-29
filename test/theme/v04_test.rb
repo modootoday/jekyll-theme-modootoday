@@ -5,10 +5,10 @@ require "tmpdir"
 require "fileutils"
 require "json"
 require "jekyll"
-load File.expand_path("../script/tokens-json", __dir__)
+load File.expand_path("../../script/tokens-json", __dir__)
 
 class V04Test < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
 
   def self.build(extra = "")
     (@b ||= {})[extra] ||= begin

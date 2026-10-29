@@ -6,7 +6,7 @@ require "tmpdir"
 require "open3"
 
 class HeadMetaTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   EXAMPLE = File.join(ROOT, "example")
   INLINE = "<script>try{var t=localStorage"
 

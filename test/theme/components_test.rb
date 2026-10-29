@@ -7,7 +7,7 @@ require "fileutils"
 require "jekyll"
 
 class ComponentsTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   PROBE = <<~MD
     ---
     title: Probe

@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { JSDOM } = require("jsdom");
 
-const js = (n) => fs.readFileSync(path.join(__dirname, "../assets/js/modootoday", n), "utf8");
+const js = (n) => fs.readFileSync(path.join(__dirname, "../../assets/js/modootoday", n), "utf8");
 function dom(body, opts = {}) {
   const d = new JSDOM(`<!doctype html><html><body>${body}</body></html>`, { runScripts: "outside-only", url: "https://x.test/", ...opts });
   return d;

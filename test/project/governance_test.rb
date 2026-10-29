@@ -4,7 +4,7 @@ require "minitest/autorun"
 require "yaml"
 
 class GovernanceTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   PVR = "https://github.com/modootoday/jekyll-theme-modootoday/security/advisories/new"
   def read(f) = File.read(File.join(ROOT, f))
 
