@@ -15,3 +15,6 @@ tmp/
 *.swp
 .idea/
 .vscode/
+
+# spec CLI local-only development docs
+.spec.local/

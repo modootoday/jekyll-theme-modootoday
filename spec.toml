@@ -1,0 +1,17 @@
+# specfold configuration. Run `spec explain config` for every key.
+[spec]
+schema = 1
+
+[owners]
+root = "modootoday"
+
+# Plain markdown outside documents whose <!-- spec:count --> markers N1 keeps current.
+# [check]
+# count_paths = ["README.md", "docs/**/*.md"]
+
+# Development docs are local-only (.spec.local/, git-ignored); nothing is committed.
+[local]
+path = ".spec.local"
+
+[forbid]
+paths = [".spec", "**/.spec", "docs/adr", "**/decisions"]
