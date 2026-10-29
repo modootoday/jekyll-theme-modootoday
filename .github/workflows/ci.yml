@@ -138,6 +138,8 @@ jobs:
         run: qa/build-docs.sh docs/_site
       - name: Check docs/
         run: bundle exec ruby exe/modootoday-check docs docs/_site --twins
+      - name: Internal links and anchors (external links are not fetched)
+        run: bundle exec ruby qa/links.rb docs/_site /jekyll-theme-modootoday
       - name: Kitchen-sink coverage
         run: ruby qa/coverage.rb
       - name: Install Chromium
