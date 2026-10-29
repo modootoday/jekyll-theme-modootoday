@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029222251
 title: Components docs pair each example's source with its live result
-status: draft
+status: active
 created: 2026-10-29T22:22:51Z
-updated: 2026-10-29T22:22:51Z
+updated: 2026-10-29T22:23:31Z
 rel:
   governs: [docs/_layouts/examples.html, docs/components/index.md, qa/coverage.rb]
 ---
