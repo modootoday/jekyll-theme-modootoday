@@ -30,6 +30,30 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 > [!IMPORTANT]
 > 예전 `md-*` 클래스와 `--md-*` 속성은 `mt-*`, `--mt-*`의 별칭입니다. 1.x 동안 유지되고 1.0에서 폐기 예정으로 표시되며 2.0에서 제거됩니다. 사이트의 Sass, CSS, include, 레이아웃, 페이지가 이를 쓰면 `modootoday-check`가 경고합니다. [대응표](../upgrade/)를 참고하세요.
 
+## 컴포넌트 구조
+
+지금 사이트 CSS에서 대상으로 삼을 수 있는 마크업입니다. 이 표의 클래스와 속성은 위 정책에 따라 안정적입니다. 표에 없는 내부 요소(래퍼, 생성된 id, 자식 요소의 순서)는 안정적이지 않습니다. 컴포넌트별 정식 슬롯 계약은 1.x에서 계획합니다. 아래 "1.0에 없는 것"을 보세요.
+
+| 컴포넌트 | 루트 | 스타일을 줄 수 있는 부분 | 상태와 변형 |
+|---|---|---|---|
+| 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (고정 색 구성 또는 토글이 설정) |
+| 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| 히어로 | `section.mt-hero` | `h1`, 리드 `p`, 링크만 있는 `p`(CTA 버튼, 첫 링크가 주 버튼) | — |
+| 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta` |
+| 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |
+| 카드 그리드 | `section.mt-section` | `ul > li`, 맨 앞 `strong`이 제목 | `.mt-cols-2`, `.mt-cols-3` (`c: features`) |
+| 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]`(JS가 만듦, JS 없으면 `h3`와 코드 블록 유지) | `[aria-selected]` |
+| 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
+| 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
+| 알림 | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, 본문 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
+| 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `.mt-badge-since`, `[data-variant]` |
+| 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |
+| 그림 | `figure.mt-figure` | `img`, `figcaption` | — |
+| 글 메타 | `p.mt-post-meta` | `time`, `.mt-post-author`, 태그 배지 | — |
+| 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | — |
+
+페이지 틀, 문서, 히어로, 섹션, 본문, 알림, 배지 요소에는 2.0까지 폐기 예정인 `md-*` 클래스도 함께 붙습니다([이전과 업그레이드](../upgrade/) 참고).
+
 ## 1.0에 없는 것
 
 - `_data/components.yml`의 파라미터 검사를 넘어서는 컴포넌트 슬롯 계약은 1.x에서 계획합니다.

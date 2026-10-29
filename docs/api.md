@@ -27,6 +27,30 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 > [!IMPORTANT]
 > The old `md-*` classes and `--md-*` properties are aliases of `mt-*` and `--mt-*`. They stay through 1.x, are marked deprecated in 1.0, and are removed in 2.0. `modootoday-check` warns when your own Sass, CSS, includes, layouts or pages use them. See the [mapping table](../upgrade/).
 
+## Component structure
+
+This is the markup you can target from your own CSS today. Classes and attributes in this table are stable under the policy above; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. A formal per-component slot contract is planned for 1.x, see [Not in 1.0](#not-in-10).
+
+| Component | Root | Parts you may style | State and variants |
+|---|---|---|---|
+| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
+| Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
+| Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` |
+| Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
+| Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3` (`c: features`) |
+| Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
+| Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
+| Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
+| Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
+| Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `.mt-badge-since`, `[data-variant]` |
+| Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
+| Figure | `figure.mt-figure` | `img`, `figcaption` | — |
+| Post meta | `p.mt-post-meta` | `time`, `.mt-post-author`, tag badges | — |
+| Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | — |
+
+Each `mt-*` class above also has a deprecated `md-*` twin on the shell, doc, hero, section, prose, alert and badge elements until 2.0 (see [Migrate and upgrade](../upgrade/)).
+
 ## Not in 1.0
 
 - A per-component slot contract in `_data/components.yml` beyond parameter checks is planned for 1.x.
