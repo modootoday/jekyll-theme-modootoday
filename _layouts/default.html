@@ -11,6 +11,18 @@
 {%- endif %}
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="{{ '/assets/css/modootoday.css' | relative_url }}">
+{%- comment -%}Markdown twin (llms.txt convention: /<page>/index.md) and the nearest llms.txt, when they exist.{%- endcomment -%}
+{%- assign _tw = page.url | append: "index.md" -%}{%- if page.url == "/" -%}{%- assign _tw = "/index.md" -%}{%- endif -%}
+{%- assign _twp = site.pages | where: "url", _tw | first -%}
+{%- if _twp %}
+<link rel="alternate" type="text/markdown" href="{{ _tw | relative_url }}">
+{%- endif -%}
+{%- assign _ll = "/" | append: _lang | append: "/llms.txt" -%}
+{%- assign _llp = site.pages | where: "url", _ll | first -%}
+{%- unless _llp -%}{%- assign _ll = "/llms.txt" -%}{%- assign _llp = site.pages | where: "url", _ll | first -%}{%- endunless -%}
+{%- if _llp %}
+<link rel="describedby" type="text/plain" href="{{ _ll | relative_url }}">
+{%- endif %}
 {%- include head-custom.html %}
 </head>
 <body class="md-body">

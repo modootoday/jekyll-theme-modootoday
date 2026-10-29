@@ -1,5 +1,9 @@
 ---
 ---
-# Example Docs
+# 예제 문서
 
-- [Home](ko/index.md)
+> Example Docs (ko).
+
+## Docs
+
+- [Home](index.md): 예제 문서

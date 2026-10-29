@@ -1,5 +1,9 @@
 ---
 ---
-# Example Docs
+# サンプル文書
 
-- [Home](ja/index.md)
+> Example Docs (ja).
+
+## Docs
+
+- [Home](index.md): サンプル文書
