@@ -1,5 +1,6 @@
 ---
 title: Example
+description: what the theme does and how to install it
 sections:
   - {c: features, name: features, cols: 2}
   - {c: tabs, name: install}

@@ -1,9 +1,3 @@
 ---
+layout: llms
 ---
-# 예제 문서
-
-> Example Docs (ko).
-
-## Docs
-
-- [Home](index.md): 예제 문서

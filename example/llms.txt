@@ -1,15 +1,3 @@
 ---
+layout: llms
 ---
-# Example Docs
-
-> A neutral example site for jekyll-theme-modootoday. Every page has a Markdown twin at `<page>/index.md`.
-
-## Docs
-
-- [Home](index.md): what the theme does and how to install it
-- [Guide](guide/index.md): alerts, status badges, tables and code
-
-## Translations
-
-- [한국어](ko/llms.txt): Korean pages
-- [日本語](ja/llms.txt): Japanese pages

@@ -1,5 +1,6 @@
 ---
 title: Guide
+description: alerts, status badges, tables and code
 ---
 # Guide
 

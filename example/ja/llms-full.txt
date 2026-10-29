@@ -1,5 +1,3 @@
 ---
+layout: llms-full
 ---
-# Example Docs (full)
-
-See ja/index.md for the full Markdown of each page.

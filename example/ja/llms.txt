@@ -1,9 +1,3 @@
 ---
+layout: llms
 ---
-# サンプル文書
-
-> Example Docs (ja).
-
-## Docs
-
-- [Home](index.md): サンプル文書
