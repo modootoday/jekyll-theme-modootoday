@@ -11,7 +11,7 @@ on:
 jobs:
   push:
     name: Push gem to RubyGems.org
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: rubygems
     permissions:
       contents: write   # release-gem pushes the tag / creates the release metadata
@@ -19,7 +19,7 @@ jobs:
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: ruby/setup-ruby@v1
