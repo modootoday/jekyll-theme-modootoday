@@ -1,0 +1,8 @@
+// Progress: `progress:60` → a labelled native <progress> plus the value as text.
+@include mt-layer(components) {
+  .mt-progress { display: inline-flex; align-items: center; gap: .5rem; vertical-align: middle; font-size: .875rem; color: mt(muted-foreground); }
+  .mt-progress progress { appearance: none; width: 8rem; height: .5rem; border: 0; border-radius: 999px; background: mt(muted); overflow: hidden; accent-color: mt(primary); }
+  .mt-progress progress::-webkit-progress-bar { background: mt(muted); }
+  .mt-progress progress::-webkit-progress-value { background: mt(primary); }
+  .mt-progress progress::-moz-progress-bar { background: mt(primary); }
+}

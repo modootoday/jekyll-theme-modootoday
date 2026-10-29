@@ -1,0 +1,10 @@
+{%- comment -%}c: pricing — every ### heading and the content up to the next one become a div.mt-plan inside
+  div.mt-plans; link-only paragraphs become buttons. Section param recommended: <n> (1-based) marks a plan
+  with the pricing.recommended flag (text, so colour is never the only cue).{%- endcomment -%}
+{%- assign _ds = "
+<h3 " -%}{%- assign _pp = include.html | split: _ds -%}
+{%- assign _rec = include.s.recommended | plus: 0 -%}
+{{ _pp[0] }}{% if _pp.size > 1 %}
+<div class="mt-plans">{% for _q in _pp offset: 1 %}{% assign _qh = _q | split: "</h3>" | first %}{% capture _qb %}{% include modootoday/actions.html html=_q %}{% endcapture %}
+<div class="mt-plan{% if forloop.index == _rec %} mt-plan-recommended{% endif %}"><h3 {{ _qh }}</h3>{% if forloop.index == _rec %}<p class="mt-plan-flag">{{ mt_t_pricing_recommended }}</p>{% endif %}{{ _qb | remove_first: _qh | remove_first: "</h3>" }}</div>{% endfor %}
+</div>{% endif %}

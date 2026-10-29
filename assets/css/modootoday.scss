@@ -1,10 +1,17 @@
 ---
-# md-components v1 — jekyll-theme-modootoday stylesheet entry. Shadow this file to customise.
-# Liquid runs first: modootoday.css_layers and modootoday.components (_config.yml) pick the output.
+# md-components v1 — jekyll-theme-modootoday core stylesheet. Shadow this file to customise.
+# Liquid runs first: modootoday.css_layers and modootoday.components (_config.yml) pick the output;
+# modootoday.css: bundle also folds every section and context sheet into this file.
 ---
 {%- include modootoday/config.html -%}
 $mt-css-layers: {{ mt_css_layers }};
 @import "modootoday/core";
-{% for c in mt_all_components %}{% if mt_components contains c %}@import "modootoday/components/{{ c }}";
+{% for p in mt_core_partials %}{% assign c = p | split: "/" | last %}{% if mt_components contains c %}@import "modootoday/components/{{ p }}";
 {% endif %}{% endfor %}
+{%- if mt.css == "bundle" -%}
+{% for s in mt_context_sheets %}{% assign kv = s | split: ":" %}{% assign cs = kv[1] | split: "|" %}{% for c in cs %}{% if mt_components contains c %}@import "modootoday/components/{{ kv[0] }}/{{ c }}";
+{% endif %}{% endfor %}{% endfor %}
+{% for s in mt_section_sheets %}{% assign kv = s | split: ":" %}{% assign c = kv[1] | split: "/" | last %}{% if mt_components contains c %}@import "modootoday/components/section/{{ kv[1] }}";
+{% endif %}{% endfor %}
+{%- endif -%}
 @import "modootoday/access";

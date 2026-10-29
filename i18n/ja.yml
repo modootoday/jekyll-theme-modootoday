@@ -11,14 +11,14 @@ theme: {toggle: ダークモード}
 sidebar: {label: "ドキュメント"}
 page_actions: {label: "ページの操作", copy: "ページをコピー", copy_ai: "AI 向けにコピー", view: "Markdown で表示", source: "出典"}
 breadcrumb: {label: パンくずリスト}
-nav: {label: メインメニュー}
+nav: {label: メインメニュー, back_to_top: ページの先頭へ}
 pagination: {label: ページ送り, prev: 前へ, next: 次へ}
-code: {copy: コピー, copied: コピーしました, label: コード}
+code: {copy: コピー, copied: コピーしました, label: コード, file: ファイル}
 table: {label: 表}
 search: {label: 検索}
 page: {edit: このページを編集, updated: 最終更新}
 languages: {label: 言語}
-post: {date_format: "%Y年%-m月%-d日"}
+post: {date_format: "%Y年%-m月%-d日", author: 著者について, related: 関連記事, share: 共有}
 fallback: {notice: このページはまだ翻訳されていないため、英語で表示しています。}
 archive:
   tags: "タグ"
@@ -46,3 +46,13 @@ blog:
   sources: "出典"
   more: "[section]の記事をもっと見る"
   authors: "著者一覧"
+filetree: {label: ファイル構成}
+gallery: {close: 閉じる}
+embed: {title: 埋め込みコンテンツ}
+pricing: {recommended: おすすめ}
+banner: {label: お知らせ}
+footnote: {back: 本文に戻る}
+progress: {label: 進捗}
+subscribe: {email: メールアドレス, submit: 購読する}
+params: {required: 必須}
+loading: {label: 読み込み中…}

@@ -50,6 +50,11 @@ modootoday:
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../../reference/api/#posts-and-archives)) |
 | `blog` | none | blog settings (`per_page`, `variant`, `related`, `share`, `reading_time`, ...); see [Blog and news](../../layouts/blog-news/#settings) |
 | `news` | none | news settings, such as `sections:` for the front page; see [Blog and news](../../layouts/blog-news/#settings) |
+| `css` | `split` | `split` links a small core sheet plus only the component sheets a page uses; `bundle` links one sheet with everything |
+| `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows a site-wide announcement bar under the skip link |
+| `back_to_top` | `false` | `true` adds a Back to top link at the end of every page |
+| `loading` | `false` | `true` loads the spinner and skeleton sheet on every page, for placeholders your own scripts add; pages that use them in Markdown load it on their own |
+| `subscribe` | none | `{action: https://…}` is where the `c: subscribe` email form posts |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
 

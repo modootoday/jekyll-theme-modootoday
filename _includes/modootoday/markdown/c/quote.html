@@ -1,0 +1,6 @@
+{%- comment -%}c: quote — a blockquote whose last paragraph starts with "— " becomes
+  figure.mt-quote > blockquote + figcaption (the attribution). Other quotes stay as they are.{%- endcomment -%}
+{%- assign _qb = include.html | split: "<blockquote>" -%}
+{{ _qb[0] }}{% for _b in _qb offset: 1 %}{% assign _in = _b | split: "</blockquote>" | first %}{% assign _cp = _in | split: "<p>— " %}{% if _cp.size > 1 and _in != _b %}{% assign _cap = _cp | last | split: "</p>" | first %}{% capture _cf %}<p>— {{ _cap }}</p>{% endcapture %}
+<figure class="mt-quote"><blockquote>{{ _in | remove: _cf | rstrip }}
+</blockquote><figcaption>— {{ _cap }}</figcaption></figure>{{ _b | remove_first: _in | remove_first: "</blockquote>" }}{% else %}<blockquote>{{ _b }}{% endif %}{% endfor %}

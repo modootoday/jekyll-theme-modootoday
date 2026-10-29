@@ -46,6 +46,17 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]`(JS가 만듦, JS 없으면 `h3`와 코드 블록 유지) | `[aria-selected]` |
 | 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
+| 파일 트리 | `section.mt-c-filetree` | `ul[aria-label]`, 중첩 `ul`(이를 가진 항목은 폴더) | — |
+| 세부 정보 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, 그 뒤의 내용(FAQ는 FAQPage JSON-LD 추가) | `[open]` |
+| 매개변수 표 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
+| 링크 카드 | `section.mt-c-linkcards` | `ul > li > a`(카드 전체가 링크 대상) | — |
+| 인용 | `figure.mt-quote` | `blockquote`, `figcaption` | — |
+| 갤러리 | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | 열린 라이트박스의 `:target` |
+| 요금제 | `.mt-plans` | `.mt-plan`, 그 `h3`, 링크만 있는 `p.mt-actions` | `.mt-plan-recommended`와 `.mt-plan-flag` |
+| 구독 | `section.mt-c-subscribe` | `form.mt-subscribe`(action 설정 시), `label`, `input[type=email]`, `button` | — |
+| 인라인 추가 요소 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
+| 로딩(선택 시트) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
+| 배너 | `div.mt-banner` | 그 `p`와 링크; `a.mt-back-to-top` | — |
 | 알림 | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, 본문 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |

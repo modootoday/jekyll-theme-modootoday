@@ -10,7 +10,6 @@ class LayoutTest < Minitest::Test
   # Directories whose shape a standard fixes, or pending a regroup. Each needs a reason.
   FLAT_OK = {
     "." => "gem and repository standard files (README, gemspec, Gemfile, LICENSE, ...)",
-    "_sass/modootoday/components" => "pending regroup: one partial per component; regroup once the concurrent visual work in _sass lands",
     ".spec/adr" => "spec tool convention: one dated record per file",
     "test/fixtures/md" => "fixture corpus: one source file per audit case, named by case",
     "i18n" => "one catalog per language code (23 languages) plus languages.yml",

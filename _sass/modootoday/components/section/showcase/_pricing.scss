@@ -1,0 +1,12 @@
+// Pricing: c: pricing; each ### is a plan card (price, feature list, link). recommended: <n> marks one plan in text.
+@include mt-layer(components) {
+  .mt-plans { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); align-items: stretch; }
+  .mt-plan { position: relative; display: flex; flex-direction: column; padding: 1.5rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); box-shadow: mt(shadow-sm); }
+  .mt-plan h3 { margin: 0 0 .5rem; font-size: 1.0625rem; }
+  .mt-plan h3 + p { margin: 0 0 1rem; color: mt(muted-foreground); }
+  .mt-plan h3 + p strong { color: mt(card-foreground); font-size: 1.875rem; font-weight: 750; letter-spacing: -.02em; }
+  .mt-plan ul { flex: 1; margin: 0 0 1.25rem; padding-inline-start: 1.1rem; color: mt(muted-foreground); font-size: .9375rem; }
+  .mt-plan .mt-actions { margin-top: auto; }
+  .mt-plan-recommended { border: 2px solid mt(primary); box-shadow: mt(shadow); }
+  .mt-plan-flag { align-self: flex-start; margin-bottom: .75rem; padding: .1rem .6rem; border-radius: 999px; background: mt(primary); color: mt(primary-foreground); font-size: .75rem; font-weight: 600; order: -1; }
+}

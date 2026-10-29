@@ -12,14 +12,14 @@ theme: {toggle: Dark mode}
 sidebar: {label: "Docs"}
 page_actions: {label: "Page actions", copy: "Copy page", copy_ai: "Copy for AI", view: "View as Markdown", source: "Source"}
 breadcrumb: {label: Breadcrumb}
-nav: {label: Main}
+nav: {label: Main, back_to_top: Back to top}
 pagination: {label: Pages, prev: Previous, next: Next}
-code: {copy: Copy, copied: Copied, label: Code}
+code: {copy: Copy, copied: Copied, label: Code, file: File}
 table: {label: Table}
 search: {label: Search}
 page: {edit: Edit this page, updated: Last updated}
 languages: {label: Languages}
-post: {date_format: "%Y-%m-%d"}
+post: {date_format: "%Y-%m-%d", author: About the author, related: Related posts, share: Share}
 fallback: {notice: "This page is not translated yet, so it is shown in English."}
 archive:
   tags: "Tags"
@@ -47,3 +47,13 @@ blog:
   sources: "Sources"
   more: "More in [section]"
   authors: "Authors"
+filetree: {label: File tree}
+gallery: {close: Close}
+embed: {title: Embedded content}
+pricing: {recommended: Recommended}
+banner: {label: Announcement}
+footnote: {back: Back to reference}
+progress: {label: Progress}
+subscribe: {email: Email address, submit: Subscribe}
+params: {required: Required}
+loading: {label: Loading…}

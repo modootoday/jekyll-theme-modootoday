@@ -1,0 +1,7 @@
+// Quote: c: quote; a quote whose last paragraph starts with "— " becomes figure > blockquote + figcaption.
+@include mt-layer(components) {
+  .mt-quote { margin: 1.5rem 0; padding: 1.5rem 1.75rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); }
+  .mt-quote blockquote { margin: 0; padding: 0; border: 0; color: mt(card-foreground); font-size: 1.125rem; line-height: 1.6; }
+  .mt-quote blockquote > :last-child { margin-bottom: 0; }
+  .mt-quote figcaption { margin-top: 1rem; color: mt(muted-foreground); font-size: .875rem; font-weight: 600; }
+}

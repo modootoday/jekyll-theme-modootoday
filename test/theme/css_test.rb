@@ -10,6 +10,7 @@ class CssTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
   CONFIGS = {
     "all" => "",
+    "bundle" => "modootoday: {css: bundle}\n",
     "minimal" => "modootoday: {components: [callout]}\n",
     "layers" => "modootoday: {css_layers: true, color_scheme: dark, components: [callout, tabs], " \
                 "tokens: {primary: '#c2410c'}, tokens_dark: {primary: '#fb923c'}}\n"
@@ -28,7 +29,8 @@ class CssTest < Minitest::Test
       Dir.chdir(src) { Jekyll::Site.new(cfg).process }
       at_exit { FileUtils.rm_rf(dir) }
       s = File.join(dir, "_site")
-      [File.read(File.join(s, "assets/css/modootoday.css")), File.read(File.join(s, "index.html"))]
+      sheets = Dir[File.join(s, "assets/css/modootoday/**/*.css")].sort.to_h { |f| [f.delete_prefix("#{s}/assets/css/modootoday/"), File.read(f)] }
+      [File.read(File.join(s, "assets/css/modootoday.css")), File.read(File.join(s, "index.html")), sheets]
     end
   end
 
@@ -44,11 +46,31 @@ class CssTest < Minitest::Test
   end
 
   def test_all_components_by_default
-    css, html = self.class.build("all")
-    [".mt-callout", ".mt-badge", ".mt-hero", ".mt-cta", ".mt-c-features", ".mt-code-copy", ".mt-nav", ".mt-pagination"].each { |c| assert_includes css, c, c }
+    core, html, sheets = self.class.build("all")
+    css = core + sheets.values.join
+    [".mt-callout", ".mt-badge", ".mt-hero", ".mt-cta", ".mt-c-features", ".mt-skeleton", ".mt-plan", ".mt-search", ".mt-code-copy", ".mt-nav", ".mt-pagination"].each { |c| assert_includes css, c, c }
     assert_match(/\[role="?tablist"?\]/, css)
     refute_includes css, "@layer"
     assert_includes html, "code-copy.js"
+  end
+
+  def test_split_sheets
+    core, html, sheets = self.class.build("all")
+    refute_includes core, ".mt-c-features"
+    refute_includes core, ".mt-skeleton"
+    assert_includes sheets.keys, "showcase/card.css"
+    assert_includes sheets.keys, "loading.css"
+    assert_match(/prefers-reduced-motion/, sheets["loading.css"])
+    assert_match(/forced-colors/, sheets["loading.css"])
+    assert_includes html, "modootoday/doc.css"
+    refute_includes html, "loading.css"
+  end
+
+  def test_bundle_mode
+    core, html, = self.class.build("bundle")
+    assert_includes core, ".mt-c-features"
+    assert_includes core, ".mt-skeleton"
+    refute_includes html, "modootoday/doc.css"
   end
 
   def test_component_list_narrows

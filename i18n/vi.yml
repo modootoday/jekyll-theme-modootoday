@@ -11,14 +11,14 @@ theme: {toggle: Chế độ tối}
 sidebar: {label: "Tài liệu"}
 page_actions: {label: "Thao tác trang", copy: "Sao chép trang", copy_ai: "Sao chép cho AI", view: "Xem dạng Markdown", source: "Nguồn"}
 breadcrumb: {label: Đường dẫn}
-nav: {label: Menu chính}
+nav: {label: Menu chính, back_to_top: Lên đầu trang}
 pagination: {label: Trang, prev: Trước, next: Tiếp}
-code: {copy: Sao chép, copied: Đã sao chép, label: Mã}
+code: {copy: Sao chép, copied: Đã sao chép, label: Mã, file: Tệp}
 table: {label: Bảng}
 search: {label: Tìm kiếm}
 page: {edit: Sửa trang này, updated: Cập nhật lần cuối}
 languages: {label: Ngôn ngữ}
-post: {date_format: "%d/%m/%Y"}
+post: {date_format: "%d/%m/%Y", author: Về tác giả, related: Bài viết liên quan, share: Chia sẻ}
 fallback: {notice: Trang này chưa được dịch nên đang hiển thị bằng tiếng Anh.}
 archive:
   tags: "Thẻ"
@@ -46,3 +46,13 @@ blog:
   sources: "Nguồn"
   more: "Thêm trong [section]"
   authors: "Tác giả"
+filetree: {label: Cây thư mục}
+gallery: {close: Đóng}
+embed: {title: Nội dung nhúng}
+pricing: {recommended: Đề xuất}
+banner: {label: Thông báo}
+footnote: {back: Quay lại chỗ tham chiếu}
+progress: {label: Tiến độ}
+subscribe: {email: Địa chỉ email, submit: Đăng ký}
+params: {required: Bắt buộc}
+loading: {label: Đang tải…}

@@ -4,7 +4,7 @@ nav_title: 部品
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
 sections:
   - alerts
   - alerts-content
@@ -22,6 +22,19 @@ sections:
   - figure
   - tables
   - code
+  - code-titles
+  - progress
+  - embeds
+  - loading
+  - {c: filetree, name: filetree}
+  - {c: details, name: details}
+  - {c: faq, name: faq}
+  - {c: params, name: params}
+  - {c: linkcards, name: linkcards}
+  - {c: quote, name: quote}
+  - {c: gallery, name: gallery}
+  - {c: pricing, name: pricing, recommended: 2}
+  - {c: subscribe, name: subscribe}
   - navigation
   - language-switcher
   - theme-toggle
@@ -202,6 +215,131 @@ Jekyll::Hooks.register :site, :post_write do |site|
   puts "Built #{site.pages.size} pages"
 end
 ```
+
+## コードのタイトルと diff
+
+`status:available` フェンスのコードブロックの直前に、file とコロンで始まるコードスパンだけの行を置くと、ブロックのタイトルバーになります。`diff` ブロックは追加行と削除行に色を付け、プラスとマイナスの記号を残します。
+
+`file:_config.yml`
+
+```yaml
+theme: jekyll-theme-modootoday
+```
+
+```diff
+- remote_theme: old/theme
++ theme: jekyll-theme-modootoday
+```
+
+## 進捗
+
+`status:available` progress とコロンのあとに 0 から 100 の整数が続くコードスパンは、値をテキストでも示すラベル付きの進捗バーになります。
+
+翻訳 `progress:60`
+
+## 埋め込み
+
+`status:available` embed とコロン、https の URL、任意のタイトルからなるコードスパンだけの段落は、遅延読み込みされる 16:9 のフレームになり、読み込み中も領域を確保します。
+
+`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg サンプルページの図`
+
+## 読み込み表示とスケルトン
+
+`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルを持ち、利用者が視差効果を減らす設定にすると動きが止まります。スタイルは、使うページだけが読み込む任意のシートにあります。
+
+`loading:spinner`
+
+`skeleton:avatar`
+`skeleton:text`
+`skeleton:card`
+
+## ファイルツリー
+
+`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストを持つ項目はフォルダーです。
+
+- docs
+  - _config.yml
+  - index.md
+  - ko
+    - index.md
+
+## 詳細
+
+`status:available` `c: details` セクションでは、各 `###` 見出しがブラウザー標準の開閉要素になります。JavaScript なしで開閉します。
+
+### 何が必要ですか？
+
+ブラウザーだけです。
+
+## よくある質問
+
+`status:available` `c: faq` セクションは詳細と同じように動き、検索エンジン向けの FAQPage 構造化データも追加します。
+
+### テーマは無料ですか？
+
+はい、MIT ライセンスです。
+
+### GitHub Pages で動きますか？
+
+はい、github-pages gem で動きます。
+
+## パラメーター表
+
+`status:available` `c: params` セクションでは、表が名前、型、既定値、説明でオプションを並べます。`required` だけのセルは必須バッジになります。
+
+| 名前 | 型 | 既定値 | 説明 |
+|---|---|---|---|
+| `title` | 文字列 | `required` | ページタイトル |
+| `cols` | 数値 | 2 | カードの列数 |
+
+## リンクカード
+
+`status:available` `c: linkcards` セクションでは、リンクで始まるリスト項目がカードになります。カード全体がリンク先です。
+
+- [インストール](../install/) — サイトにテーマを追加します。
+- [設定](../configuration/) — すべての設定を一か所で確認します。
+
+## 引用
+
+`status:available` `c: quote` セクションでは、最終行がダッシュ（—）で始まる引用の、その行が出典になります。
+
+> ドキュメントが github.com でもサイトでも読みやすい。
+>
+> — テーマの利用者
+
+## ギャラリー
+
+`status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
+
+- ![サンプルページの図](../../assets/images/sample.svg)
+- ![テーマのマーク](../../assets/modootoday/favicon.svg)
+
+## 料金プラン
+
+`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクを持つプランになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
+
+### 無料
+
+**$0**
+
+- サイト 1 つ
+
+[始める](../install/)
+
+### チーム
+
+**$12**
+
+- サイト 10 個
+- サポート
+
+[チームを選ぶ](../install/)
+
+## 購読
+
+`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。
+
+リリースのたびにメールを 1 通受け取れます。
 
 ## ナビゲーション
 

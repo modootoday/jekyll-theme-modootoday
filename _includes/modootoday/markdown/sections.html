@@ -22,6 +22,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- assign _main = _fparts[0] -%}{%- assign _notes = "" -%}
 {%- if _fparts.size > 1 -%}{%- assign _notes = include.content | remove_first: _main | strip -%}{%- endif -%}
 {%- assign _parts = _main | prepend: _nl | split: _sep -%}
+{%- assign mt_c_transforms = "|filetree|linkcards|details|faq|params|quote|gallery|pricing|subscribe|" -%}
 {%- assign _p0 = _parts[0] -%}{%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}
 <section class="mt-hero">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}</section>
 {%- for _p in _parts offset:1 -%}
@@ -30,6 +31,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- assign _body = _p -%}
 {%- if _cc == 'cta' -%}{%- capture _body %}{% include modootoday/actions.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'features' -%}{%- assign _body = _body | replace: "</strong> — ", "</strong> " | replace: "</strong> – ", "</strong> " | replace: "</strong> - ", "</strong> " -%}{%- endif -%}
+{%- if _cc and mt_c_transforms contains _cc -%}{%- capture _body %}{% include modootoday/markdown/c/{{ _cc }}.html html=_body s=_s i=forloop.index id=_n %}{% endcapture -%}{%- endif -%}
 <section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
 <h2 {{ _body }}{% if _s.visual %}{% include sections/{{ _s.visual }}.html section=_s %}{% endif %}</section>
 {%- endfor -%}

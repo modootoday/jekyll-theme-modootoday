@@ -1,19 +1,38 @@
-// Bundle size budgets: CSS and JS bytes under assets/, core and the optional blog/news bundle apart (gzip reported, not budgeted).
+// Size budgets: each core CSS sheet (core, context and section sheets), the core CSS one page links in total,
+// all core JS, and the optional blog/news bundle apart (gzip reported, not budgeted).
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
-import { BUDGET, BLOG_FILES } from "./config.mjs";
+import { BUDGET, BLOG_FILES, SHEETS, SECTION_SHEET, SHOWCASE } from "./config.mjs";
+
+const sheetBudget = (f) => SHEETS[f] ?? (/^css\/modootoday\/(showcase|structure)\//.test(f) ? SECTION_SHEET : null);
 
 export function checkBudgets(site, fails) {
-  const sizes = {};
   const dir = path.join(site, "assets");
   const all = fs.readdirSync(dir, { recursive: true }).map((f) => f.split(path.sep).join("/"));
+  const size = (f) => fs.statSync(path.join(dir, f)).size;
+  const sizes = {};
   for (const [kind, ext, blog] of [["css", ".css", false], ["js", ".js", false], ["blog-css", ".css", true], ["blog-js", ".js", true]]) {
-    const files = all.filter((f) => f.endsWith(ext) && BLOG_FILES.includes(f) === blog);
-    const bytes = files.reduce((n, f) => n + fs.statSync(path.join(dir, f)).size, 0);
+    const files = all.filter((f) => f.endsWith(ext) && f.includes("modootoday") && BLOG_FILES.includes(f) === blog);
+    const bytes = files.reduce((n, f) => n + size(f), 0);
     const gzip = files.reduce((n, f) => n + zlib.gzipSync(fs.readFileSync(path.join(dir, f))).length, 0);
     sizes[kind] = { files, bytes, gzip, budget: BUDGET[kind] };
-    if (bytes > BUDGET[kind]) fails.push(`${kind} ${bytes} B > budget ${BUDGET[kind]} B`);
+    if (kind !== "css" && bytes > BUDGET[kind]) fails.push(`${kind} ${bytes} B > budget ${BUDGET[kind]} B`);
   }
+  for (const f of sizes.css.files) {
+    const b = sheetBudget(f);
+    if (b == null) fails.push(`css ${f}: no budget in qa/audit/config.mjs`);
+    else if (size(f) > b) fails.push(`css ${f} ${size(f)} B > budget ${b} B`);
+  }
+  let worst = 0;
+  for (const h of fs.readdirSync(site, { recursive: true }).filter((f) => f.endsWith(".html"))) {
+    const html = fs.readFileSync(path.join(site, h), "utf8");
+    const links = [...html.matchAll(/<link rel="stylesheet" href="[^"]*\/assets\/(css\/modootoday[^"]*\.css)"/g)].map((m) => m[1]).filter((f) => !BLOG_FILES.includes(f));
+    const t = links.reduce((n, f) => n + (fs.existsSync(path.join(dir, f)) ? size(f) : 0), 0);
+    const cap = SHOWCASE.test(h) ? BUDGET.css_showcase : BUDGET.css;
+    if (cap === BUDGET.css) worst = Math.max(worst, t);
+    if (t > cap) fails.push(`css linked by ${h}: ${t} B > budget ${cap} B`);
+  }
+  sizes.css.page_max = worst;
   return sizes;
 }

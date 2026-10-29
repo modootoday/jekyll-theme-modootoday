@@ -11,14 +11,14 @@ theme: {toggle: Mod întunecat}
 sidebar: {label: "Documentație"}
 page_actions: {label: "Acțiuni pentru pagină", copy: "Copiază pagina", copy_ai: "Copiază pentru AI", view: "Vezi ca Markdown", source: "Sursă"}
 breadcrumb: {label: Traseu de navigare}
-nav: {label: Meniu principal}
+nav: {label: Meniu principal, back_to_top: Înapoi sus}
 pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
-code: {copy: Copiază, copied: Copiat, label: Cod}
+code: {copy: Copiază, copied: Copiat, label: Cod, file: Fișier}
 table: {label: Tabel}
 search: {label: Caută}
 page: {edit: Editează pagina, updated: Ultima actualizare}
 languages: {label: Limbi}
-post: {date_format: "%d.%m.%Y"}
+post: {date_format: "%d.%m.%Y", author: Despre autor, related: Articole similare, share: Distribuie}
 fallback: {notice: "Această pagină nu a fost încă tradusă, așa că este afișată în engleză."}
 archive:
   tags: "Etichete"
@@ -46,3 +46,13 @@ blog:
   sources: "Surse"
   more: "Mai multe în [section]"
   authors: "Autori"
+filetree: {label: Structura fișierelor}
+gallery: {close: Închide}
+embed: {title: Conținut încorporat}
+pricing: {recommended: Recomandat}
+banner: {label: Anunț}
+footnote: {back: Înapoi la referință}
+progress: {label: Progres}
+subscribe: {email: Adresă de e-mail, submit: Abonează-te}
+params: {required: Obligatoriu}
+loading: {label: Se încarcă…}

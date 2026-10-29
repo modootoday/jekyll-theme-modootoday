@@ -11,14 +11,14 @@ theme: {toggle: 深色模式}
 sidebar: {label: "文件"}
 page_actions: {label: "頁面操作", copy: "複製頁面", copy_ai: "複製給 AI", view: "以 Markdown 檢視", source: "來源"}
 breadcrumb: {label: 導覽路徑}
-nav: {label: 主選單}
+nav: {label: 主選單, back_to_top: 回到頂端}
 pagination: {label: 換頁, prev: 上一頁, next: 下一頁}
-code: {copy: 複製, copied: 已複製, label: 程式碼}
+code: {copy: 複製, copied: 已複製, label: 程式碼, file: 檔案}
 table: {label: 表格}
 search: {label: 搜尋}
 page: {edit: 編輯此頁, updated: 最後更新}
 languages: {label: 語言}
-post: {date_format: "%Y年%-m月%-d日"}
+post: {date_format: "%Y年%-m月%-d日", author: 關於作者, related: 相關文章, share: 分享}
 fallback: {notice: 本頁尚未翻譯，以下顯示英文原文。}
 archive:
   tags: "標籤"
@@ -46,3 +46,13 @@ blog:
   sources: "來源"
   more: "更多[section]"
   authors: "作者"
+filetree: {label: 檔案結構}
+gallery: {close: 關閉}
+embed: {title: 嵌入內容}
+pricing: {recommended: 推薦}
+banner: {label: 公告}
+footnote: {back: 返回正文}
+progress: {label: 進度}
+subscribe: {email: 電子郵件地址, submit: 訂閱}
+params: {required: 必填}
+loading: {label: 載入中…}

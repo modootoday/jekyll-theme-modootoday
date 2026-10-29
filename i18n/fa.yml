@@ -11,14 +11,14 @@ theme: {toggle: حالت تاریک}
 sidebar: {label: "مستندات"}
 page_actions: {label: "کارهای صفحه", copy: "کپی صفحه", copy_ai: "کپی برای هوش مصنوعی", view: "نمایش به‌صورت Markdown", source: "منبع"}
 breadcrumb: {label: مسیر راهنما}
-nav: {label: منوی اصلی}
+nav: {label: منوی اصلی, back_to_top: بازگشت به بالا}
 pagination: {label: صفحه‌ها, prev: قبلی, next: بعدی}
-code: {copy: کپی, copied: کپی شد, label: کد}
+code: {copy: کپی, copied: کپی شد, label: کد, file: پرونده}
 table: {label: جدول}
 search: {label: جستجو}
 page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی}
 languages: {label: زبان‌ها}
-post: {date_format: "%Y-%m-%d"}
+post: {date_format: "%Y-%m-%d", author: درباره نویسنده, related: نوشته‌های مرتبط, share: هم‌رسانی}
 fallback: {notice: این صفحه هنوز ترجمه نشده و به انگلیسی نمایش داده می‌شود.}
 archive:
   tags: "برچسب‌ها"
@@ -46,3 +46,13 @@ blog:
   sources: "منابع"
   more: "بیشتر در [section]"
   authors: "نویسندگان"
+filetree: {label: ساختار پرونده‌ها}
+gallery: {close: بستن}
+embed: {title: محتوای جاسازی‌شده}
+pricing: {recommended: پیشنهادی}
+banner: {label: اطلاعیه}
+footnote: {back: بازگشت به ارجاع}
+progress: {label: پیشرفت}
+subscribe: {email: نشانی ایمیل, submit: اشتراک}
+params: {required: الزامی}
+loading: {label: در حال بارگذاری…}

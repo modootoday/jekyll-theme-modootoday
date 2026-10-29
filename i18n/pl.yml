@@ -11,14 +11,14 @@ theme: {toggle: Tryb ciemny}
 sidebar: {label: "Dokumentacja"}
 page_actions: {label: "Działania na stronie", copy: "Kopiuj stronę", copy_ai: "Kopiuj dla AI", view: "Pokaż jako Markdown", source: "Źródło"}
 breadcrumb: {label: Ścieżka nawigacji}
-nav: {label: Menu główne}
+nav: {label: Menu główne, back_to_top: Do góry}
 pagination: {label: Strony, prev: Poprzednia, next: Następna}
-code: {copy: Kopiuj, copied: Skopiowano, label: Kod}
+code: {copy: Kopiuj, copied: Skopiowano, label: Kod, file: Plik}
 table: {label: Tabela}
 search: {label: Szukaj}
 page: {edit: Edytuj tę stronę, updated: Ostatnia aktualizacja}
 languages: {label: Języki}
-post: {date_format: "%d.%m.%Y"}
+post: {date_format: "%d.%m.%Y", author: O autorze, related: Powiązane wpisy, share: Udostępnij}
 fallback: {notice: "Ta strona nie została jeszcze przetłumaczona, dlatego wyświetlamy ją po angielsku."}
 archive:
   tags: "Tagi"
@@ -46,3 +46,13 @@ blog:
   sources: "Źródła"
   more: "Więcej w dziale [section]"
   authors: "Autorzy"
+filetree: {label: Struktura plików}
+gallery: {close: Zamknij}
+embed: {title: Osadzona treść}
+pricing: {recommended: Polecany}
+banner: {label: Ogłoszenie}
+footnote: {back: Powrót do odwołania}
+progress: {label: Postęp}
+subscribe: {email: Adres e-mail, submit: Subskrybuj}
+params: {required: Wymagane}
+loading: {label: Ładowanie…}

@@ -11,14 +11,14 @@ theme: {toggle: Σκούρο θέμα}
 sidebar: {label: "Τεκμηρίωση"}
 page_actions: {label: "Ενέργειες σελίδας", copy: "Αντιγραφή σελίδας", copy_ai: "Αντιγραφή για ΤΝ", view: "Προβολή ως Markdown", source: "Πηγή"}
 breadcrumb: {label: Διαδρομή πλοήγησης}
-nav: {label: Κύριο μενού}
+nav: {label: Κύριο μενού, back_to_top: Επιστροφή στην κορυφή}
 pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}
-code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας}
+code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας, file: Αρχείο}
 table: {label: Πίνακας}
 search: {label: Αναζήτηση}
 page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
 languages: {label: Γλώσσες}
-post: {date_format: "%d/%m/%Y"}
+post: {date_format: "%d/%m/%Y", author: Σχετικά με τον συγγραφέα, related: Σχετικά άρθρα, share: Κοινοποίηση}
 fallback: {notice: "Αυτή η σελίδα δεν έχει μεταφραστεί ακόμη, γι’ αυτό εμφανίζεται στα αγγλικά."}
 archive:
   tags: "Ετικέτες"
@@ -46,3 +46,13 @@ blog:
   sources: "Πηγές"
   more: "Περισσότερα στην ενότητα [section]"
   authors: "Συντάκτες"
+filetree: {label: Δομή αρχείων}
+gallery: {close: Κλείσιμο}
+embed: {title: Ενσωματωμένο περιεχόμενο}
+pricing: {recommended: Προτεινόμενο}
+banner: {label: Ανακοίνωση}
+footnote: {back: Επιστροφή στην παραπομπή}
+progress: {label: Πρόοδος}
+subscribe: {email: Διεύθυνση email, submit: Εγγραφή}
+params: {required: Υποχρεωτικό}
+loading: {label: Φόρτωση…}

@@ -3,7 +3,7 @@ nav_order: 0
 layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
 sections:
   - alerts
   - alerts-content
@@ -21,6 +21,19 @@ sections:
   - figure
   - tables
   - code
+  - code-titles
+  - progress
+  - embeds
+  - loading
+  - {c: filetree, name: filetree}
+  - {c: details, name: details}
+  - {c: faq, name: faq}
+  - {c: params, name: params}
+  - {c: linkcards, name: linkcards}
+  - {c: quote, name: quote}
+  - {c: gallery, name: gallery}
+  - {c: pricing, name: pricing, recommended: 2}
+  - {c: subscribe, name: subscribe}
   - navigation
   - language-switcher
   - theme-toggle
@@ -198,6 +211,131 @@ Jekyll::Hooks.register :site, :post_write do |site|
   puts "Built #{site.pages.size} pages"
 end
 ```
+
+## Code titles and diffs
+
+`status:available` A line holding only a code span that starts with file and a colon, right before a fenced block, becomes the block's title bar. A `diff` block tints added and removed lines and keeps the plus and minus signs.
+
+`file:_config.yml`
+
+```yaml
+theme: jekyll-theme-modootoday
+```
+
+```diff
+- remote_theme: old/theme
++ theme: jekyll-theme-modootoday
+```
+
+## Progress
+
+`status:available` A code span that starts with progress and a colon, followed by a whole number from 0 to 100, becomes a labelled progress bar with the value as text.
+
+Translation `progress:60`
+
+## Embeds
+
+`status:available` A paragraph holding only a code span that starts with embed and a colon, then an https URL and an optional title, becomes a lazy 16:9 frame that keeps its space while it loads.
+
+`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg Sample page drawing`
+
+## Loading and skeletons
+
+`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional sheet that only pages using them load.
+
+`loading:spinner`
+
+`skeleton:avatar`
+`skeleton:text`
+`skeleton:card`
+
+## File tree
+
+`status:available` In a `c: filetree` section, a nested list draws a folder tree. Items that hold a nested list are folders.
+
+- docs
+  - _config.yml
+  - index.md
+  - ko
+    - index.md
+
+## Details
+
+`status:available` In a `c: details` section, each `###` heading becomes a native disclosure. It opens and closes without JavaScript.
+
+### What does it need?
+
+Nothing but the browser.
+
+## FAQ
+
+`status:available` A `c: faq` section works like details and also adds FAQPage structured data for search engines.
+
+### Is the theme free?
+
+Yes, under the MIT license.
+
+### Does it run on GitHub Pages?
+
+Yes, with the github-pages gem.
+
+## Parameter table
+
+`status:available` In a `c: params` section, a table lists options: name, type, default, description. A cell holding only `required` shows a Required badge.
+
+| Name | Type | Default | Description |
+|---|---|---|---|
+| `title` | string | `required` | Page title |
+| `cols` | number | 2 | Card columns |
+
+## Link cards
+
+`status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.
+
+- [Install](../install/) — Add the theme to a site.
+- [Configuration](../configuration/) — Every setting in one place.
+
+## Quote
+
+`status:available` In a `c: quote` section, a quote whose last line starts with an em dash gets that line as its attribution.
+
+> The docs read well on github.com and on the site.
+>
+> — A theme user
+
+## Gallery
+
+`status:available` In a `c: gallery` section, a list of images becomes a thumbnail grid. Each thumbnail opens a full-size view without JavaScript. Every image needs alt text.
+
+- ![Theme logo](../assets/images/sample.svg)
+- ![Theme mark](../assets/modootoday/favicon.svg)
+
+## Pricing
+
+`status:available` In a `c: pricing` section, each `###` heading is a plan with a price, a feature list and a link. The `recommended` parameter marks one plan with a Recommended label.
+
+### Free
+
+**$0**
+
+- One site
+
+[Start](../install/)
+
+### Team
+
+**$12**
+
+- Ten sites
+- Support
+
+[Choose Team](../install/)
+
+## Subscribe
+
+`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text.
+
+Get one email when a release ships.
 
 ## Navigation
 

@@ -8,8 +8,4 @@
   .mt-actions > a:first-child { background: mt(primary); border-color: mt(primary); color: mt(primary-foreground); }
   .mt-actions > a:first-child:hover { background: color-mix(in srgb, #{mt(primary)} 88%, #{mt(foreground)}); }
   .mt-actions > a:active { transform: translateY(1px); }
-  .mt-cta { margin-top: mt(space-section); padding: 2.5rem 2rem; text-align: center; border: 1px solid mt(border); border-radius: mt(radius-lg);
-    background: radial-gradient(120% 140% at 50% 0%, color-mix(in srgb, #{mt(primary)} 10%, #{mt(background)}), #{mt(muted)}); }
-  .mt-cta > h2 { margin: 0 0 .5rem; }
-  .mt-cta > .mt-actions { justify-content: center; margin-top: 1.25rem; }
 }

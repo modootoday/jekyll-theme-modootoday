@@ -1,0 +1,15 @@
+// Details: c: details (and c: faq); each ### heading becomes a native <details> summary. No script needed.
+@include mt-layer(components) {
+  .mt-details { border-top: 1px solid mt(border); }
+  .mt-details:last-of-type { border-bottom: 1px solid mt(border); }
+  .mt-details > summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 0; cursor: pointer; list-style: none; }
+  .mt-details > summary::-webkit-details-marker { display: none; }
+  .mt-details > summary h3 { margin: 0; font-size: 1rem; }
+  .mt-details > summary:hover { color: mt(primary); }
+  .mt-details > summary:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-details > summary::after { content: ""; flex: none; width: .5rem; height: .5rem; margin-inline-end: .25rem; border: solid mt(muted-foreground);
+    border-width: 0 2px 2px 0; transform: translateY(-25%) rotate(45deg); transition: transform .2s; }
+  .mt-details[open] > summary::after { transform: translateY(25%) rotate(-135deg); }
+  .mt-details > summary ~ * { color: mt(muted-foreground); }
+  .mt-details > :last-child { margin-bottom: 1rem; }
+}

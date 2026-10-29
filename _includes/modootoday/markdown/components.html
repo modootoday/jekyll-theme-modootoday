@@ -12,6 +12,7 @@ Usage: {% include modootoday/markdown/components.html content=content lang=page.
    `since:` is not rendered in 1.0 (checker error).
 3) figure=true: a paragraph that is only an image, followed by a paragraph that is only *emphasis*
    → figure.mt-figure with figcaption. Images need alt text (checker).
+4) Always: `file:`, `progress:`, `embed:` and footnote labels (modootoday/markdown/inline.html).
 Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
 {%- endcomment -%}
 {%- assign _c = include.content -%}
@@ -103,6 +104,7 @@ Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
     {%- else -%}<p><img {{ _b }}{%- endif -%}
   {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
+{%- capture _c %}{% include modootoday/markdown/inline.html html=_c %}{% endcapture -%}
 {%- comment -%}3) Accessibility fix-ups of kramdown output (found by qa/qa.mjs + axe): focusable scrolling code
    blocks, labelled task-list checkboxes, and no deprecated role="doc-endnote" on footnote items.{%- endcomment -%}
 {%- assign _td = mt_t_task_done -%}{%- assign _topen = mt_t_task_open -%}

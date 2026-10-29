@@ -11,6 +11,8 @@ module Modootoday
         "panels" => ->(m) { m.scan(/^###(?: |$)/).size },
         "actions" => ->(m) { m.scan(/^(?:\[[^\]\n]+\]\([^)\n]*\)[ \t]*)+$/).size },
         "code" => ->(_m, raw) { n = 0; Markdown.strip_fences(raw) { n += 1 }; n },
+        "rows" => ->(m) { [m.scan(/^\s*\|.*\|\s*$/).size - 2, 0].max },
+        "quotes" => ->(m) { m.split(/\n\s*\n/).count { |p| p =~ /\A\s*>/ } },
         "figures" => ->(m) { m.scan(/^!\[[^\]\n]+\]\([^)\n]+\)/).size },
       }.freeze
 

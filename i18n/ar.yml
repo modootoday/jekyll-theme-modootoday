@@ -11,14 +11,14 @@ theme: {toggle: الوضع الداكن}
 sidebar: {label: "المستندات"}
 page_actions: {label: "إجراءات الصفحة", copy: "نسخ الصفحة", copy_ai: "نسخ للذكاء الاصطناعي", view: "عرض بصيغة Markdown", source: "المصدر"}
 breadcrumb: {label: مسار التنقل}
-nav: {label: القائمة الرئيسية}
+nav: {label: القائمة الرئيسية, back_to_top: العودة إلى الأعلى}
 pagination: {label: الصفحات, prev: السابق, next: التالي}
-code: {copy: نسخ, copied: تم النسخ, label: شيفرة}
+code: {copy: نسخ, copied: تم النسخ, label: شيفرة, file: ملف}
 table: {label: جدول}
 search: {label: بحث}
 page: {edit: تعديل هذه الصفحة, updated: آخر تحديث}
 languages: {label: اللغات}
-post: {date_format: "%Y-%m-%d"}
+post: {date_format: "%Y-%m-%d", author: عن الكاتب, related: مقالات ذات صلة, share: مشاركة}
 fallback: {notice: لم تُترجم هذه الصفحة بعد، لذا تُعرض باللغة الإنجليزية.}
 archive:
   tags: "الوسوم"
@@ -46,3 +46,13 @@ blog:
   sources: "المصادر"
   more: "المزيد في [section]"
   authors: "الكتّاب"
+filetree: {label: بنية الملفات}
+gallery: {close: إغلاق}
+embed: {title: محتوى مضمّن}
+pricing: {recommended: موصى به}
+banner: {label: إعلان}
+footnote: {back: العودة إلى موضع الإحالة}
+progress: {label: التقدّم}
+subscribe: {email: البريد الإلكتروني, submit: اشترك}
+params: {required: مطلوب}
+loading: {label: جارٍ التحميل…}

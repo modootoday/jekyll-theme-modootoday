@@ -46,6 +46,17 @@ description: このテーマがサイト向けに文書化している名前、�
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (JS が生成。JS がなければ `h3` とコードブロックのまま) | `[aria-selected]` |
 | アコーディオン | `section.mt-c-accordion` | `h3 > button[aria-expanded]`、その後のパネル | `[aria-expanded=true\|false]` |
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
+| ファイルツリー | `section.mt-c-filetree` | `ul[aria-label]`、入れ子の `ul`（それを持つ項目はフォルダー） | — |
+| 詳細 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`、`summary > h3`、その後の内容（FAQ は FAQPage JSON-LD を追加） | `[open]` |
+| パラメーター表 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
+| リンクカード | `section.mt-c-linkcards` | `ul > li > a`（カード全体がリンク先） | — |
+| 引用 | `figure.mt-quote` | `blockquote`, `figcaption` | — |
+| ギャラリー | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | 開いたライトボックスの `:target` |
+| 料金プラン | `.mt-plans` | `.mt-plan`、その `h3`、リンクだけの `p.mt-actions` | `.mt-plan-recommended` と `.mt-plan-flag` |
+| 購読 | `section.mt-c-subscribe` | `form.mt-subscribe`（action 設定時）、`label`, `input[type=email]`, `button` | — |
+| インライン追加要素 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
+| 読み込み表示（任意シート） | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
+| バナー | `div.mt-banner` | その `p` とリンク、`a.mt-back-to-top` | — |
 | アラート | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`、本文 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | バッジ | `span.mt-badge` | 記号 (`aria-hidden`)、ラベル | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | キーボードのキー | `kbd.mt-kbd` | キーごとの `kbd` | — |

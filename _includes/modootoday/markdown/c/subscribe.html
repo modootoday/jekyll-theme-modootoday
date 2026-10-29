@@ -1,0 +1,6 @@
+{%- comment -%}c: subscribe — the section text plus a static e-mail form. _config.yml:
+  modootoday.subscribe: {action: <https URL>, method: post, field: email}. Without action no form is printed
+  (modootoday-check warns). Labels: subscribe.email, subscribe.submit.{%- endcomment -%}
+{%- assign _sb = site.modootoday.subscribe -%}
+{{ include.html }}{% if _sb.action %}{% assign _fid = "mt-subscribe-" | append: include.i %}
+<form class="mt-subscribe" action="{{ _sb.action }}" method="{{ _sb.method | default: 'post' }}"><label for="{{ _fid }}">{{ mt_t_subscribe_email }}</label><input id="{{ _fid }}" type="email" name="{{ _sb.field | default: 'email' }}" autocomplete="email" required><button type="submit">{{ mt_t_subscribe_submit }}</button></form>{% endif %}

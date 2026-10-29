@@ -1,0 +1,33 @@
+// Loading and skeleton UI (optional sheet, CSS only): `loading:spinner`, `loading:bar` (thin top bar) and
+// `skeleton:text|card|image|avatar|row` placeholders, plus .mt-ratio-* boxes that reserve space for media.
+// Motion stops under prefers-reduced-motion; forced-colors keeps outlines visible; the shimmer follows dir.
+@include mt-layer(components) {
+  .mt-spinner { display: inline-block; width: 1.25rem; height: 1.25rem; vertical-align: middle; border: 2px solid mt(border); border-top-color: mt(primary);
+    border-radius: 50%; animation: mt-spin .8s linear infinite; }
+  .mt-topbar { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 200; display: block; height: 3px; overflow: hidden; background: color-mix(in srgb, #{mt(primary)} 20%, transparent); }
+  .mt-topbar::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 40%; background: mt(primary); animation: mt-bar 1.2s ease-in-out infinite; }
+  .mt-skeleton { display: block; margin: 0 0 .75rem; border-radius: mt(radius); background: linear-gradient(90deg, #{mt(muted)} 25%, #{mt(accent)} 50%, #{mt(muted)} 75%);
+    background-size: 200% 100%; animation: mt-shimmer 1.4s ease-in-out infinite; }
+  [dir="rtl"] .mt-skeleton { animation-direction: reverse; }
+  .mt-skeleton-text { height: .9rem; max-width: 36rem; box-shadow: 0 1.4rem 0 -.05rem mt(muted); margin-bottom: 2.1rem; }
+  .mt-skeleton-card { height: 9rem; border-radius: mt(radius-lg); }
+  .mt-skeleton-image, .mt-ratio-16x9 { aspect-ratio: 16 / 9; }
+  .mt-skeleton-image { width: 100%; }
+  .mt-skeleton-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+  .mt-skeleton-row { height: 2.5rem; border-radius: 0; border-bottom: 1px solid mt(border); }
+  .mt-ratio-4x3 { aspect-ratio: 4 / 3; }
+  .mt-ratio-1x1 { aspect-ratio: 1; }
+  .mt-prose img[width][height] { height: auto; }
+  @media (prefers-reduced-motion: reduce) {
+    .mt-spinner, .mt-skeleton, .mt-topbar::before { animation: none; }
+    .mt-topbar::before { width: 100%; opacity: .6; }
+  }
+  @media (forced-colors: active) {
+    .mt-skeleton { background: Canvas; border: 1px solid CanvasText; }
+    .mt-spinner { border-color: CanvasText; border-top-color: Highlight; }
+    .mt-topbar::before { background: Highlight; }
+  }
+}
+@keyframes mt-spin { to { transform: rotate(360deg); } }
+@keyframes mt-bar { 0% { inset-inline-start: -40%; } 100% { inset-inline-start: 100%; } }
+@keyframes mt-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }

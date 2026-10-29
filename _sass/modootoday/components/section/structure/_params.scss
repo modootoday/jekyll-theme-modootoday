@@ -1,0 +1,8 @@
+// Parameter table: c: params, a GFM table (name, type, default, description); `required` in a cell becomes a badge.
+@include mt-layer(components) {
+  .mt-c-params table { font-size: .9375rem; }
+  .mt-c-params td:first-child code { color: mt(primary); font-weight: 600; white-space: nowrap; }
+  .mt-c-params td:nth-child(2) { color: mt(muted-foreground); font-family: mt(font-mono); font-size: .8125rem; }
+  .mt-param-required { display: inline-block; padding: 0 .45rem; border: 1px solid color-mix(in srgb, #{mt(caution)} 50%, transparent); border-radius: 999px;
+    color: mt(caution); font-size: .75rem; font-weight: 600; white-space: nowrap; }
+}

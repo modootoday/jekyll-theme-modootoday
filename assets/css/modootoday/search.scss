@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday context sheet (site search box). Linked only when search is on.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% if mt_components contains "search" %}@import "modootoday/components/search/search";
+{% endif %}

@@ -1,0 +1,5 @@
+{%- comment -%}c: gallery — a tight list of images. Each becomes a thumbnail link to a :target lightbox
+  (#<section>-<n>); the lightbox links back to its thumbnail and is labelled gallery.close. No script.{%- endcomment -%}
+{%- assign _gp = include.html | split: "<li><img " -%}
+{%- assign _gid = include.id | default: "gallery" | slugify -%}
+{{ _gp[0] }}{% for _g in _gp offset: 1 %}{% assign _im = _g | split: " />" | first %}{% assign _id = _gid | append: "-" | append: forloop.index %}<li><a class="mt-gallery-thumb" id="{{ _id }}-thumb" href="#{{ _id }}"><img {{ _im }} loading="lazy" /></a><a class="mt-lightbox" id="{{ _id }}" href="#{{ _id }}-thumb" aria-label="{{ mt_t_gallery_close }}"><img {{ _im }} loading="lazy" /><span class="mt-lightbox-close" aria-hidden="true">{{ mt_t_gallery_close }}</span></a>{{ _g | remove_first: _im | remove_first: " />" }}{% endfor %}

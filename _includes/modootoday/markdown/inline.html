@@ -1,0 +1,46 @@
+{%- comment -%}md-components v1 — inline transforms (called by components.html; needs modootoday/i18n.html first).
+  `file:<name>` alone in a paragraph right before a fenced block → div.mt-code > p.mt-code-title + the block.
+  `progress:<0-100>` → span.mt-progress > progress[max=100] labelled progress.label, plus "N%" as text.
+  `embed:https://… Title` alone in a paragraph → div.mt-embed > iframe (lazy; title = the words after the URL,
+  else embed.title). `loading:spinner|bar` and `skeleton:text|card|image|avatar|row` → role=status
+  placeholders labelled loading.label (optional loading sheet). Footnote back-links get aria-label footnote.back. modootoday-check validates the values.{%- endcomment -%}
+{%- assign _x = include.html -%}
+{%- assign _ops = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
+{%- for _o in _ops -%}
+{%- assign _key = "<p>" | append: _o | append: "file:" -%}
+{%- if _x contains _key -%}{%- assign _bits = _x | split: _key -%}
+{%- capture _x -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+{%- assign _v = _b | split: "</code></p>" | first -%}{%- assign _r = _b | remove_first: _v | remove_first: "</code></p>" | lstrip -%}
+{%- assign _h = _r | slice: 0, 16 -%}
+{%- if _v contains "<" or _v == _b or _h != '<div class="lang' -%}{{ _key }}{{ _b }}
+{%- else -%}{%- assign _blk = _r | split: "</code></pre></div></div>" | first -%}
+<div class="mt-code"><p class="mt-code-title"><span class="mt-sr-only">{{ mt_t_code_file }}: </span>{{ _v }}</p>{{ _blk }}</code></pre></div></div></div>{{ _r | remove_first: _blk | remove_first: "</code></pre></div></div>" }}
+{%- endif -%}{%- endfor -%}{%- endcapture -%}{%- endif -%}
+{%- assign _key = _o | append: "progress:" -%}
+{%- if _x contains _key -%}{%- assign _bits = _x | split: _key -%}
+{%- capture _x -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+{%- assign _v = _b | split: "</code>" | first -%}{%- assign _n = _v | plus: 0 -%}{%- assign _ns = _n | append: "" -%}
+{%- if _ns != _v or _n < 0 or _n > 100 -%}{{ _key }}{{ _b }}
+{%- else -%}<span class="mt-progress"><progress max="100" value="{{ _n }}" aria-label="{{ mt_t_progress_label }}">{{ _n }}%</progress> {{ _n }}%</span>{{ _b | remove_first: _v | remove_first: "</code>" }}
+{%- endif -%}{%- endfor -%}{%- endcapture -%}{%- endif -%}
+{%- assign _key = "<p>" | append: _o | append: "embed:https://" -%}
+{%- if _x contains _key -%}{%- assign _bits = _x | split: _key -%}
+{%- capture _x -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+{%- assign _v = _b | split: "</code></p>" | first -%}
+{%- if _v contains "<" or _v contains '"' or _v == _b -%}{{ _key }}{{ _b }}
+{%- else -%}{%- assign _u = _v | split: " " | first -%}{%- assign _t = _v | remove_first: _u | strip | default: mt_t_embed_title -%}
+<div class="mt-embed"><iframe src="https://{{ _u }}" title="{{ _t }}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>{{ _b | remove_first: _v | remove_first: "</code></p>" }}
+{%- endif -%}{%- endfor -%}{%- endcapture -%}{%- endif -%}
+{%- assign _key = _o | append: "loading:" -%}
+{%- capture _ld %}<span class="mt-sr-only">{{ mt_t_loading_label }}</span>{% endcapture -%}
+{%- capture _sp %}<span class="mt-spinner" role="status">{{ _ld }}</span>{% endcapture -%}
+{%- capture _tb %}<span class="mt-topbar" role="status">{{ _ld }}</span>{% endcapture -%}
+{%- assign _f1 = _key | append: "spinner</code>" -%}{%- assign _f2 = _key | append: "bar</code>" -%}
+{%- assign _x = _x | replace: _f1, _sp | replace: _f2, _tb -%}
+{%- assign _sks = "text,card,image,avatar,row" | split: "," -%}
+{%- for _sk in _sks -%}{%- capture _sf %}{{ _o }}skeleton:{{ _sk }}</code>{% endcapture -%}
+{%- capture _st %}<span class="mt-skeleton mt-skeleton-{{ _sk }}" role="status" aria-busy="true">{{ _ld }}</span>{% endcapture -%}
+{%- assign _x = _x | replace: _sf, _st -%}{%- endfor -%}
+{%- endfor -%}
+{%- capture _fb %}class="reversefootnote" role="doc-backlink" aria-label="{{ mt_t_footnote_back }}"{% endcapture -%}
+{{ _x | replace: 'class="reversefootnote" role="doc-backlink"', _fb }}

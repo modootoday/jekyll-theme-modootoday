@@ -15,7 +15,9 @@ module Modootoday
         return errs << "#{r}: sections: must be a list" unless secs.is_a?(Array)
         code.scan(/<!--.*?-->/m) { |c| errs << "#{r}: '##' inside an HTML comment is not a heading" if c =~ /^##/ }
         errs << "#{r}: sections: has #{secs.size} item(s) but body has #{h2} top-level '## ' heading(s)" if secs.size != h2
-        components(ctx, r, secs, section_markdown(b, code)) if ctx.comps
+        sec_md = section_markdown(b, code)
+        secs.each_with_index { |s, i| ComponentRules.section(ctx, r, i, s, sec_md[i]) if s.is_a?(Hash) }
+        components(ctx, r, secs, sec_md) if ctx.comps
         hero = meta["hero"]
         errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)

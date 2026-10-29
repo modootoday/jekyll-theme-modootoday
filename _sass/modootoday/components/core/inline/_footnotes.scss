@@ -1,0 +1,6 @@
+// Footnotes (kramdown [^1]): compact reference marks and back-links that stay a 24px target.
+@include mt-layer(components) {
+  sup[role="doc-noteref"] a { padding: 0 .15em; text-decoration: none; font-weight: 600; }
+  .footnotes li:target { background: mt(muted); border-radius: mt(radius); }
+  .reversefootnote { display: inline-block; min-width: 24px; text-align: center; text-decoration: none; }
+}

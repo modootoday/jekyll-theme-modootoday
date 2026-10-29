@@ -35,6 +35,11 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Keyboard keys | `` `kbd:Ctrl+K` `` (keys joined by `+`, no spaces) | `kbd.mt-kbd > kbd` per key | bad values are checker errors |
 | Search | add `search.json` with `layout: null` and `{% include modootoday/search.json %}` | header `div.mt-search[role=search]` (i18n `search.label`) + `search.js` (under 1 KB compressed); pages with `search: false` are left out | rendered only when `/search.json` exists |
 | Post layout | `layout: post` (`date`, optional `author`, `tags`) | `p.mt-post-meta` (date with i18n `post.date_format`, author, tag badges), then the doc pipeline | — |
+| Code title | a line holding only `` `file:path` `` right before a fenced block | `div.mt-code` > `p.mt-code-title` + block | a lone `file:` line not followed by a fence is a checker error |
+| Progress | `` `progress:60` `` (whole number 0–100) | `span.mt-progress` > `progress` + value text (i18n `progress.label`) | out of range is a checker error |
+| Embed | a paragraph holding only `` `embed:https://… Title` `` | `div.mt-embed` > lazy `iframe[title]` (16:9 reserved) | non-https is a checker error |
+| Loading / skeleton | `` `loading:spinner` ``, `` `loading:bar` ``, `` `skeleton:text` `` / `card` / `image` / `avatar` / `row` | `span.mt-spinner`, `span.mt-topbar`, `span.mt-skeleton` with `role=status`, `aria-busy` and i18n `loading.label`; optional `loading` sheet; reduced motion, forced colors and RTL | unknown variants are checker errors |
+| File tree / Details / FAQ / Params / Link cards / Quote / Gallery / Pricing / Subscribe | `c: filetree` (nested list), `c: details` and `c: faq` (`###` per item), `c: params` (table), `c: linkcards` (link-first list), `c: quote` (quote ending in `— name`), `c: gallery` (tight image list), `c: pricing` (`###` per plan, param `recommended`), `c: subscribe` (text; form posts to `modootoday.subscribe.action`) | per-component markup listed in docs api.md; each has its own sheet | gallery images need alt; `recommended` must be in range; subscribe action must be https |
 | Component registry | optional `_data/components.yml`: `name: {params: {key: {allowed: [...], required: bool}}, i18n: [keys...]}` | when present the checker validates `c`, params and i18n keys | — |
 
 ## 3. Localisation

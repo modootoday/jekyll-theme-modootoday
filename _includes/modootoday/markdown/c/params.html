@@ -1,0 +1,3 @@
+{%- comment -%}c: params — header cells get scope="col"; a cell holding `required` shows the params.required badge.{%- endcomment -%}
+{%- capture _rq %}<span class="mt-param-required">{{ mt_t_params_required }}</span>{% endcapture -%}
+{{ include.html | replace: "<th>", '<th scope="col">' | replace: '<code class="language-plaintext highlighter-rouge">required</code>', _rq | replace: "<code>required</code>", _rq }}

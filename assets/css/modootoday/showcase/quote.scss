@@ -1,0 +1,7 @@
+---
+# md-components v1 — jekyll-theme-modootoday section sheet (c: quote). Linked only by pages that use it.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+@import "modootoday/components/section/showcase/quote";

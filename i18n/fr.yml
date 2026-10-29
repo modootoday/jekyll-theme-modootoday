@@ -11,14 +11,14 @@ theme: {toggle: Mode sombre}
 sidebar: {label: "Documentation"}
 page_actions: {label: "Actions de la page", copy: "Copier la page", copy_ai: "Copier pour l’IA", view: "Afficher en Markdown", source: "Source"}
 breadcrumb: {label: Fil d’Ariane}
-nav: {label: Menu principal}
+nav: {label: Menu principal, back_to_top: Haut de page}
 pagination: {label: Pages, prev: Précédent, next: Suivant}
-code: {copy: Copier, copied: Copié, label: Code}
+code: {copy: Copier, copied: Copié, label: Code, file: Fichier}
 table: {label: Tableau}
 search: {label: Rechercher}
 page: {edit: Modifier cette page, updated: Dernière mise à jour}
 languages: {label: Langues}
-post: {date_format: "%d/%m/%Y"}
+post: {date_format: "%d/%m/%Y", author: À propos de l’auteur, related: Articles liés, share: Partager}
 fallback: {notice: Cette page n’est pas encore traduite ; elle s’affiche donc en anglais.}
 archive:
   tags: "Étiquettes"
@@ -46,3 +46,13 @@ blog:
   sources: "Sources"
   more: "Plus dans [section]"
   authors: "Auteurs"
+filetree: {label: Arborescence}
+gallery: {close: Fermer}
+embed: {title: Contenu intégré}
+pricing: {recommended: Recommandé}
+banner: {label: Annonce}
+footnote: {back: Retour à l’appel de note}
+progress: {label: Progression}
+subscribe: {email: Adresse e-mail, submit: S’abonner}
+params: {required: Obligatoire}
+loading: {label: Chargement…}

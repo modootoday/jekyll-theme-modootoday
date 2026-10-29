@@ -1,0 +1,10 @@
+---
+# md-components v1 — jekyll-theme-modootoday context sheet (doc layouts). Linked only by pages that use it.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% if mt_components contains "sidebar" %}@import "modootoday/components/doc/sidebar";
+{% endif %}{% if mt_components contains "toc" %}@import "modootoday/components/doc/toc";
+{% endif %}{% if mt_components contains "page-actions" %}@import "modootoday/components/doc/page-actions";
+{% endif %}

@@ -53,6 +53,11 @@ modootoday:
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../../reference/api/#글과-아카이브) 참고) |
 | `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
+| `css` | `split` | `split`는 작은 핵심 시트와 페이지가 쓰는 컴포넌트 시트만 연결합니다. `bundle`은 모든 것이 담긴 시트 하나를 연결합니다 |
+| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`는 건너뛰기 링크 아래에 사이트 전체 공지 막대를 표시합니다 |
+| `back_to_top` | `false` | `true`는 모든 페이지 끝에 맨 위로 링크를 추가합니다 |
+| `loading` | `false` | `true`는 직접 작성한 스크립트가 추가하는 자리 표시자를 위해 스피너·스켈레톤 시트를 모든 페이지에서 불러옵니다. Markdown에서 이를 쓰는 페이지는 알아서 불러옵니다 |
+| `subscribe` | 없음 | `{action: https://…}`는 `c: subscribe` 이메일 양식이 전송되는 주소입니다 |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
 

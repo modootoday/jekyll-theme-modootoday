@@ -1,0 +1,7 @@
+// Announcement banner (modootoday.banner) above the header, and the back-to-top link in the page footer.
+@include mt-layer(components) {
+  .mt-banner { padding: .5rem 1rem; background: mt(primary); color: mt(primary-foreground); text-align: center; font-size: .875rem; }
+  .mt-banner p { margin: 0; }
+  .mt-banner a { color: inherit; font-weight: 600; text-underline-offset: 2px; }
+  .mt-back-to-top { display: inline-flex; align-items: center; min-height: 24px; margin-block: 2rem 0; color: mt(muted-foreground); font-size: .875rem; }
+}

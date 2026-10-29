@@ -1,0 +1,3 @@
+{%- comment -%}c: filetree — the first list gets aria-label filetree.label (folders are items with a nested list).{%- endcomment -%}
+{%- capture _ul %}<ul aria-label="{{ mt_t_filetree_label }}">{% endcapture -%}
+{{ include.html | replace_first: "<ul>", _ul }}

@@ -1,0 +1,15 @@
+// Gallery: c: gallery, a list of images → thumbnail grid; each opens a no-script :target lightbox with a close link.
+@include mt-layer(components) {
+  .mt-c-gallery > ul { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+  .mt-c-gallery > ul > li { margin: 0; }
+  .mt-gallery-thumb { display: block; border-radius: mt(radius); overflow: hidden; border: 1px solid mt(border); }
+  .mt-gallery-thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .2s; }
+  .mt-gallery-thumb:hover img { transform: scale(1.03); }
+  .mt-gallery-thumb:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-lightbox { display: none; }
+  .mt-lightbox:target { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+    padding: 1.5rem; background: rgba(0, 0, 0, .85); }
+  .mt-lightbox img { max-width: 100%; max-height: 80vh; border-radius: mt(radius); }
+  .mt-lightbox-close { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 1rem; border-radius: 999px; background: #fff; color: #111; font-weight: 600; text-decoration: none; }
+  @media (prefers-reduced-motion: reduce) { .mt-gallery-thumb img { transition: none; } }
+}

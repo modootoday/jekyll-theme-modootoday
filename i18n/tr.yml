@@ -11,14 +11,14 @@ theme: {toggle: Koyu mod}
 sidebar: {label: "Belgeler"}
 page_actions: {label: "Sayfa işlemleri", copy: "Sayfayı kopyala", copy_ai: "Yapay zekâ için kopyala", view: "Markdown olarak görüntüle", source: "Kaynak"}
 breadcrumb: {label: Konum}
-nav: {label: Ana menü}
+nav: {label: Ana menü, back_to_top: Başa dön}
 pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}
-code: {copy: Kopyala, copied: Kopyalandı, label: Kod}
+code: {copy: Kopyala, copied: Kopyalandı, label: Kod, file: Dosya}
 table: {label: Tablo}
 search: {label: Ara}
 page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}
 languages: {label: Diller}
-post: {date_format: "%d.%m.%Y"}
+post: {date_format: "%d.%m.%Y", author: Yazar hakkında, related: İlgili yazılar, share: Paylaş}
 fallback: {notice: Bu sayfa henüz çevrilmedi; İngilizce aslını görüyorsunuz.}
 archive:
   tags: "Etiketler"
@@ -46,3 +46,13 @@ blog:
   sources: "Kaynaklar"
   more: "[section] bölümünden daha fazlası"
   authors: "Yazarlar"
+filetree: {label: Dosya yapısı}
+gallery: {close: Kapat}
+embed: {title: Gömülü içerik}
+pricing: {recommended: Önerilen}
+banner: {label: Duyuru}
+footnote: {back: Göndermeye dön}
+progress: {label: İlerleme}
+subscribe: {email: E-posta adresi, submit: Abone ol}
+params: {required: Zorunlu}
+loading: {label: Yükleniyor…}

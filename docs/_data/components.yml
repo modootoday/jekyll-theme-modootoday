@@ -7,3 +7,12 @@ cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}, parts: [section.mt-c-accordion, 'h3 > button[aria-expanded]']}
 steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
 timeline: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-timeline, ol > li]}
+filetree: {i18n: [filetree.label], slots: {items: {min: 1}}, parts: [section.mt-c-filetree, 'ul[aria-label]']}
+details: {slots: {panels: {min: 1}}, parts: [section.mt-c-details, details.mt-details, summary > h3]}
+faq: {slots: {panels: {min: 1}}, parts: [section.mt-c-faq, details.mt-details]}
+params: {i18n: [params.required], slots: {rows: {min: 1}}, parts: [section.mt-c-params, 'th[scope=col]', .mt-param-required]}
+linkcards: {slots: {items: {min: 1}}, parts: [section.mt-c-linkcards, ul > li > a]}
+quote: {slots: {quotes: {min: 1}}, parts: [figure.mt-quote, figcaption]}
+gallery: {i18n: [gallery.close], slots: {items: {min: 1}}, parts: [a.mt-gallery-thumb, a.mt-lightbox, .mt-lightbox-close]}
+pricing: {i18n: [pricing.recommended], params: {recommended: {required: false}}, slots: {panels: {min: 1}}, parts: [.mt-plans, .mt-plan, .mt-plan-recommended, .mt-plan-flag]}
+subscribe: {i18n: [subscribe.email, subscribe.submit], slots: {lead: {min: 1}}, parts: [section.mt-c-subscribe]}

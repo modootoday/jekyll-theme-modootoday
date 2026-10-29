@@ -1,0 +1,29 @@
+{%- comment -%}
+Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|faq|": this page's section components).
+  split (default): the core sheet, the context sheets the layout chain names in front matter mt_sheets (doc),
+                   and one sheet per section component the page's sections: use. Page front matter css: [c, ...] adds more.
+  modootoday.css: bundle — only the core sheet, which then holds everything.
+{%- endcomment -%}
+{%- assign mt_page_c = "|" -%}
+{%- for _s in page.sections -%}{%- if _s.c -%}{%- assign mt_page_c = mt_page_c | append: _s.c | append: "|" -%}{%- endif -%}{%- endfor -%}
+{%- assign mt_search_index = site.pages | where: "url", "/search.json" | first -%}
+{%- if mt_components contains "search" and mt_search_index -%}{%- assign mt_page_c = mt_page_c | append: "search|" -%}{%- endif -%}
+{%- if site.modootoday.loading or content contains 'class="mt-spinner' or content contains 'class="mt-skeleton' or content contains 'class="mt-topbar' -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
+{%- for _x in page.css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor %}
+{%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}
+{%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif %}
+<link rel="stylesheet" href="{{ '/assets/css/modootoday.css' | relative_url }}">
+{%- if mt_blog_css %}
+<link rel="stylesheet" href="{{ '/assets/css/modootoday-blog.css' | relative_url }}">
+{%- endif -%}
+{%- unless mt.css == "bundle" -%}
+{%- assign _ls = layout.mt_sheets | default: "" -%}
+{%- for _s in mt_context_sheets -%}{%- assign _kv = _s | split: ":" -%}{%- assign _k = "|" | append: _kv[0] | append: "|" -%}
+{%- if _ls contains _kv[0] or mt_page_c contains _k %}
+<link rel="stylesheet" href="{{ '/assets/css/modootoday/' | append: _kv[0] | append: '.css' | relative_url }}">
+{%- endif -%}{%- endfor -%}
+{%- for _s in mt_section_sheets -%}{%- assign _kv = _s | split: ":" -%}{%- assign _k = "|" | append: _kv[0] | append: "|" -%}{%- assign _n = _kv[1] | split: "/" | last -%}
+{%- if mt_page_c contains _k and mt_components contains _n %}
+<link rel="stylesheet" href="{{ '/assets/css/modootoday/' | append: _kv[1] | append: '.css' | relative_url }}">
+{%- endif -%}{%- endfor -%}
+{%- endunless -%}

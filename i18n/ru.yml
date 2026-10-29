@@ -11,14 +11,14 @@ theme: {toggle: Тёмная тема}
 sidebar: {label: "Документация"}
 page_actions: {label: "Действия со страницей", copy: "Копировать страницу", copy_ai: "Копировать для ИИ", view: "Открыть как Markdown", source: "Источник"}
 breadcrumb: {label: Навигационная цепочка}
-nav: {label: Главное меню}
+nav: {label: Главное меню, back_to_top: Наверх}
 pagination: {label: Страницы, prev: Назад, next: Далее}
-code: {copy: Копировать, copied: Скопировано, label: Код}
+code: {copy: Копировать, copied: Скопировано, label: Код, file: Файл}
 table: {label: Таблица}
 search: {label: Поиск}
 page: {edit: Редактировать страницу, updated: Обновлено}
 languages: {label: Языки}
-post: {date_format: "%d.%m.%Y"}
+post: {date_format: "%d.%m.%Y", author: Об авторе, related: Похожие записи, share: Поделиться}
 fallback: {notice: "Эта страница ещё не переведена, поэтому показана на английском."}
 archive:
   tags: "Теги"
@@ -46,3 +46,13 @@ blog:
   sources: "Источники"
   more: "Ещё в разделе «[section]»"
   authors: "Авторы"
+filetree: {label: Структура файлов}
+gallery: {close: Закрыть}
+embed: {title: Встроенный контент}
+pricing: {recommended: Рекомендуем}
+banner: {label: Объявление}
+footnote: {back: Назад к ссылке}
+progress: {label: Прогресс}
+subscribe: {email: Адрес эл. почты, submit: Подписаться}
+params: {required: Обязательно}
+loading: {label: Загрузка…}

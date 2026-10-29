@@ -11,14 +11,14 @@ theme: {toggle: โหมดมืด}
 sidebar: {label: "เอกสาร"}
 page_actions: {label: "การทำงานกับหน้า", copy: "คัดลอกหน้า", copy_ai: "คัดลอกสำหรับ AI", view: "ดูเป็น Markdown", source: "ที่มา"}
 breadcrumb: {label: เส้นทางนำทาง}
-nav: {label: เมนูหลัก}
+nav: {label: เมนูหลัก, back_to_top: กลับขึ้นด้านบน}
 pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}
-code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด}
+code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด, file: ไฟล์}
 table: {label: ตาราง}
 search: {label: ค้นหา}
 page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
 languages: {label: ภาษา}
-post: {date_format: "%d/%m/%Y"}
+post: {date_format: "%d/%m/%Y", author: เกี่ยวกับผู้เขียน, related: บทความที่เกี่ยวข้อง, share: แชร์}
 fallback: {notice: หน้านี้ยังไม่ได้แปล จึงแสดงเป็นภาษาอังกฤษ}
 archive:
   tags: "แท็ก"
@@ -46,3 +46,13 @@ blog:
   sources: "แหล่งที่มา"
   more: "เพิ่มเติมใน [section]"
   authors: "ผู้เขียน"
+filetree: {label: โครงสร้างไฟล์}
+gallery: {close: ปิด}
+embed: {title: เนื้อหาที่ฝังไว้}
+pricing: {recommended: แนะนำ}
+banner: {label: ประกาศ}
+footnote: {back: กลับไปยังจุดอ้างอิง}
+progress: {label: ความคืบหน้า}
+subscribe: {email: อีเมล, submit: สมัครรับข่าวสาร}
+params: {required: จำเป็น}
+loading: {label: กำลังโหลด…}

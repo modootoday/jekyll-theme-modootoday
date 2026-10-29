@@ -11,14 +11,14 @@ theme: {toggle: ഡാർക്ക് മോഡ്}
 sidebar: {label: "ഡോക്യുമെന്റേഷൻ"}
 page_actions: {label: "പേജ് പ്രവർത്തനങ്ങൾ", copy: "പേജ് പകർത്തുക", copy_ai: "AI-ക്കായി പകർത്തുക", view: "Markdown ആയി കാണുക", source: "ഉറവിടം"}
 breadcrumb: {label: നാവിഗേഷൻ പാത}
-nav: {label: പ്രധാന മെനു}
+nav: {label: പ്രധാന മെനു, back_to_top: മുകളിലേക്ക്}
 pagination: {label: പേജുകൾ, prev: മുമ്പത്തേത്, next: അടുത്തത്}
-code: {copy: പകർത്തുക, copied: പകർത്തി, label: കോഡ്}
+code: {copy: പകർത്തുക, copied: പകർത്തി, label: കോഡ്, file: ഫയൽ}
 table: {label: പട്ടിക}
 search: {label: തിരയുക}
 page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്}
 languages: {label: ഭാഷകൾ}
-post: {date_format: "%d-%m-%Y"}
+post: {date_format: "%d-%m-%Y", author: ലേഖകനെക്കുറിച്ച്, related: ബന്ധപ്പെട്ട പോസ്റ്റുകൾ, share: പങ്കിടുക}
 fallback: {notice: "ഈ പേജ് ഇതുവരെ വിവർത്തനം ചെയ്തിട്ടില്ല, അതിനാൽ ഇംഗ്ലീഷിൽ കാണിക്കുന്നു."}
 archive:
   tags: "ടാഗുകൾ"
@@ -46,3 +46,13 @@ blog:
   sources: "ഉറവിടങ്ങൾ"
   more: "[section] വിഭാഗത്തിൽ കൂടുതൽ"
   authors: "എഴുത്തുകാർ"
+filetree: {label: ഫയൽ ഘടന}
+gallery: {close: അടയ്ക്കുക}
+embed: {title: ഉൾച്ചേർത്ത ഉള്ളടക്കം}
+pricing: {recommended: ശുപാർശ ചെയ്യുന്നത്}
+banner: {label: അറിയിപ്പ്}
+footnote: {back: സൂചനയിലേക്ക് മടങ്ങുക}
+progress: {label: പുരോഗതി}
+subscribe: {email: ഇമെയിൽ വിലാസം, submit: സബ്‌സ്‌ക്രൈബ് ചെയ്യുക}
+params: {required: നിർബന്ധം}
+loading: {label: ലോഡ് ചെയ്യുന്നു…}

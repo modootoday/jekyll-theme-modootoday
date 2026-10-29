@@ -43,6 +43,17 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
+| File tree | `section.mt-c-filetree` | `ul[aria-label]`, nested `ul` (items holding one are folders) | — |
+| Details / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, the content after it (FAQ adds FAQPage JSON-LD) | `[open]` |
+| Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
+| Link cards | `section.mt-c-linkcards` | `ul > li > a` (the whole card is the link target) | — |
+| Quote | `figure.mt-quote` | `blockquote`, `figcaption` | — |
+| Gallery | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | `:target` on the open lightbox |
+| Pricing | `.mt-plans` | `.mt-plan`, its `h3`, link-only `p.mt-actions` | `.mt-plan-recommended` with `.mt-plan-flag` |
+| Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe` (when an action is set), `label`, `input[type=email]`, `button` | — |
+| Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
+| Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
+| Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |
 | Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |

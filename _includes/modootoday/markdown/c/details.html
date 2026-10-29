@@ -1,0 +1,6 @@
+{%- comment -%}c: details (and faq) — every ### heading and the content up to the next one become
+  details.mt-details > summary > h3 + content. Text before the first ### stays as it is.{%- endcomment -%}
+{%- assign _ds = "
+<h3 " -%}{%- assign _dp = include.html | split: _ds -%}
+{{ _dp[0] }}{% for _q in _dp offset: 1 %}{% assign _qh = _q | split: "</h3>" | first %}
+<details class="mt-details"><summary><h3 {{ _qh }}</h3></summary>{{ _q | remove_first: _qh | remove_first: "</h3>" }}</details>{% endfor %}

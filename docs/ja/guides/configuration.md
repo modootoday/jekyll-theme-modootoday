@@ -53,6 +53,11 @@ modootoday:
 | `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照） |
 | `blog` | なし | ブログ設定（`per_page`、`variant`、`related`、`share`、`reading_time` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
 | `news` | なし | ニュース設定（トップページの `sections:` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
+| `css` | `split` | `split` は小さなコアシートと、ページが使うコンポーネントのシートだけを読み込みます。`bundle` はすべてを含む 1 枚のシートを読み込みます |
+| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` はスキップリンクの下にサイト全体のお知らせバーを表示します |
+| `back_to_top` | `false` | `true` はすべてのページの末尾に「先頭へ戻る」リンクを追加します |
+| `loading` | `false` | `true` は独自スクリプトが追加するプレースホルダーのため、スピナーとスケルトンのシートを全ページで読み込みます。Markdown で使うページは自動で読み込みます |
+| `subscribe` | なし | `{action: https://…}` は `c: subscribe` のメールフォームの送信先です |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
 

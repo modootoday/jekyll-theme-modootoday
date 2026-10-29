@@ -5,13 +5,20 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
                                 auto*: toggle shown; auto follows the system, auto-dark/auto-light start in that scheme
   site.modootoday.css_layers    true | false                 (default false)
   site.modootoday.components    list of component names      (default: all)
+  site.modootoday.css           split | bundle: split (default) links the core sheet plus only the sheets a page uses; bundle links one file with everything
   site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang
   site.modootoday.tokens / tokens_dark  semantic token overrides, inline :root CSS
   site.modootoday.sidebar       auto | true | false: doc-page sidebar from the nav (default auto: on when the nav has a group)
   site.modootoday.badges        false disables status badges (default true)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,loading" | split: "," -%}
+{%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
+  Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (c:sheet).
+  Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}
+{%- assign mt_core_partials = "core/inline/callout,core/inline/badge,core/inline/kbd,core/inline/figure,core/inline/code-copy,core/inline/hero,core/inline/cta,core/inline/code,core/inline/footnotes,core/inline/progress,core/inline/embed,core/chrome/nav,core/chrome/theme-toggle,core/chrome/breadcrumb,core/chrome/pagination,core/chrome/banner" | split: "," -%}
+{%- assign mt_section_sheets = "cta:showcase/cta,features:showcase/card,linkcards:showcase/linkcards,quote:showcase/quote,gallery:showcase/gallery,pricing:showcase/pricing,subscribe:showcase/subscribe,tabs:structure/tabs,accordion:structure/accordion,steps:structure/steps,timeline:structure/timeline,filetree:structure/filetree,details:structure/details,faq:structure/faq,params:structure/params" | split: "," -%}
+{%- assign mt_context_sheets = "doc:sidebar|toc|page-actions,search:search,loading:loading" | split: "," -%}
 {%- assign mt_components = mt_all_components -%}
 {%- if mt.components -%}{%- assign mt_components = mt.components -%}{%- endif -%}
 {%- assign mt_color_scheme = "auto" -%}

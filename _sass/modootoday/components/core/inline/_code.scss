@@ -1,0 +1,11 @@
+// Code titles and diffs: `file:<name>` alone in a paragraph right before a fenced block becomes the block's title bar;
+// ```diff blocks tint added and removed lines while keeping the +/- signs (colour is never the only cue).
+@include mt-layer(components) {
+  .mt-code { margin: 0 0 1.25rem; }
+  .mt-code-title { margin: 0; padding: .4rem .9rem; border: 1px solid mt(border); border-bottom: 0; border-radius: mt(radius-lg) mt(radius-lg) 0 0;
+    background: mt(background); color: mt(muted-foreground); font: .8125rem/1.5 mt(font-mono); }
+  .mt-code-title + div.highlighter-rouge pre { border-start-start-radius: 0; border-start-end-radius: 0; }
+  .language-diff .gi, .language-diff .gd { display: inline-block; min-width: 100%; }
+  .language-diff .gi { background: color-mix(in srgb, #{mt(tip)} 16%, transparent); }
+  .language-diff .gd { background: color-mix(in srgb, #{mt(caution)} 16%, transparent); }
+}

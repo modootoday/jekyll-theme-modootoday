@@ -11,14 +11,14 @@ theme: {toggle: Темний режим}
 sidebar: {label: "Документація"}
 page_actions: {label: "Дії зі сторінкою", copy: "Копіювати сторінку", copy_ai: "Копіювати для ШІ", view: "Переглянути як Markdown", source: "Джерело"}
 breadcrumb: {label: Навігаційний ланцюжок}
-nav: {label: Головне меню}
+nav: {label: Головне меню, back_to_top: Угору}
 pagination: {label: Сторінки, prev: Назад, next: Далі}
-code: {copy: Копіювати, copied: Скопійовано, label: Код}
+code: {copy: Копіювати, copied: Скопійовано, label: Код, file: Файл}
 table: {label: Таблиця}
 search: {label: Пошук}
 page: {edit: Редагувати сторінку, updated: Оновлено}
 languages: {label: Мови}
-post: {date_format: "%d.%m.%Y"}
+post: {date_format: "%d.%m.%Y", author: Про автора, related: Схожі дописи, share: Поділитися}
 fallback: {notice: "Цю сторінку ще не перекладено, тому вона показана англійською."}
 archive:
   tags: "Теги"
@@ -46,3 +46,13 @@ blog:
   sources: "Джерела"
   more: "Більше в розділі «[section]»"
   authors: "Автори"
+filetree: {label: Структура файлів}
+gallery: {close: Закрити}
+embed: {title: Вбудований вміст}
+pricing: {recommended: Рекомендовано}
+banner: {label: Оголошення}
+footnote: {back: Назад до посилання}
+progress: {label: Прогрес}
+subscribe: {email: Адреса ел. пошти, submit: Підписатися}
+params: {required: Обов’язково}
+loading: {label: Завантаження…}

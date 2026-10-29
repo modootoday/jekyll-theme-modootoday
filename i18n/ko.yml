@@ -11,14 +11,14 @@ theme: {toggle: 다크 모드}
 sidebar: {label: "문서"}
 page_actions: {label: "페이지 도구", copy: "페이지 복사", copy_ai: "AI용으로 복사", view: "Markdown으로 보기", source: "출처"}
 breadcrumb: {label: 이동 경로}
-nav: {label: 메인 메뉴}
+nav: {label: 메인 메뉴, back_to_top: 맨 위로}
 pagination: {label: 페이지 이동, prev: 이전, next: 다음}
-code: {copy: 복사, copied: 복사됨, label: 코드}
+code: {copy: 복사, copied: 복사됨, label: 코드, file: 파일}
 table: {label: 표}
 search: {label: 검색}
 page: {edit: 이 페이지 편집, updated: 최종 수정}
 languages: {label: 언어}
-post: {date_format: "%Y년 %-m월 %-d일"}
+post: {date_format: "%Y년 %-m월 %-d일", author: 글쓴이 소개, related: 관련 글, share: 공유}
 fallback: {notice: 이 페이지는 아직 번역되지 않아 영어로 보여 드려요.}
 archive:
   tags: "태그"
@@ -46,3 +46,13 @@ blog:
   sources: "출처"
   more: "[section] 더 보기"
   authors: "필자"
+filetree: {label: 파일 구조}
+gallery: {close: 닫기}
+embed: {title: 삽입된 콘텐츠}
+pricing: {recommended: 추천}
+banner: {label: 공지}
+footnote: {back: 본문으로 돌아가기}
+progress: {label: 진행률}
+subscribe: {email: 이메일 주소, submit: 구독하기}
+params: {required: 필수}
+loading: {label: 불러오는 중…}

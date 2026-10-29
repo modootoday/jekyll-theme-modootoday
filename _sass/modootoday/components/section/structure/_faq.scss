@@ -1,0 +1,5 @@
+// FAQ: c: faq; the details disclosure plus FAQPage structured data (printed by Liquid, not styled).
+@import "details";
+@include mt-layer(components) {
+  .mt-c-faq > h2 + .mt-details { margin-top: 1.25rem; }
+}

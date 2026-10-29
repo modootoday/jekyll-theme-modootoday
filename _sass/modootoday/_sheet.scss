@@ -1,0 +1,6 @@
+// Head of every optional sheet (assets/css/modootoday/**): settings and tools only, no output
+// except the layer order, so a sheet adds just its component rules on top of the core sheet.
+@import "settings";
+@import "tools/functions";
+@import "tools/mixins";
+@if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }

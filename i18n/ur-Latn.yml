@@ -11,14 +11,14 @@ theme: {toggle: Dark mode}
 sidebar: {label: "Dastavezat"}
 page_actions: {label: "Safhe ke iqdamat", copy: "Safha copy karein", copy_ai: "AI ke liye copy karein", view: "Markdown mein dekhein", source: "Maakhaz"}
 breadcrumb: {label: Raasta}
-nav: {label: Main menu}
+nav: {label: Main menu, back_to_top: Upar jaayein}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}
-code: {copy: Copy karein, copied: Copy ho gaya, label: Code}
+code: {copy: Copy karein, copied: Copy ho gaya, label: Code, file: File}
 table: {label: Jadval}
 search: {label: Talaash}
 page: {edit: Yeh safha edit karein, updated: Aakhri update}
 languages: {label: Zabanein}
-post: {date_format: "%d-%m-%Y"}
+post: {date_format: "%d-%m-%Y", author: Musannif ke baare mein, related: Mutaalliqa posts, share: Share karein}
 fallback: {notice: "Yeh safha abhi tarjuma nahin hua, is liye English mein dikhaya ja raha hai."}
 archive:
   tags: "Tags"
@@ -46,3 +46,13 @@ blog:
   sources: "Zaraye"
   more: "[section] mein mazeed"
   authors: "Musannifeen"
+filetree: {label: File ka dhaancha}
+gallery: {close: Band karein}
+embed: {title: Embed kiya gaya mawaad}
+pricing: {recommended: Tajweez karda}
+banner: {label: Elaan}
+footnote: {back: Hawale par wapas}
+progress: {label: Pesh-raft}
+subscribe: {email: Email pata, submit: Subscribe karein}
+params: {required: Laazmi}
+loading: {label: Load ho raha hai…}

@@ -1,0 +1,9 @@
+// Subscribe: c: subscribe; the section text plus a static e-mail form posting to modootoday.subscribe.action.
+@include mt-layer(components) {
+  .mt-subscribe { display: flex; flex-wrap: wrap; gap: .5rem; align-items: flex-end; margin-top: 1.25rem; }
+  .mt-subscribe label { flex-basis: 100%; font-size: .875rem; font-weight: 600; }
+  .mt-subscribe input { flex: 1 1 14rem; min-height: 2.75rem; padding: 0 .9rem; border: 1px solid mt(border); border-radius: mt(radius);
+    background: mt(background); color: mt(foreground); font: inherit; }
+  .mt-subscribe input:focus-visible, .mt-subscribe button:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-subscribe button { min-height: 2.75rem; padding: 0 1.25rem; border: 0; border-radius: mt(radius); background: mt(primary); color: mt(primary-foreground); font: inherit; font-weight: 600; cursor: pointer; }
+}

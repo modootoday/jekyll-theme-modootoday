@@ -1,0 +1,2 @@
+{%- comment -%}c: linkcards — "[Title](url) — text" list items; the dash after the link is dropped (the card shows it).{%- endcomment -%}
+{{ include.html | replace: "</a> — ", "</a> " | replace: "</a> – ", "</a> " | replace: "</a> - ", "</a> " }}

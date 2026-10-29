@@ -3,7 +3,7 @@ nav_order: 0
 layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줘요.
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
 sections:
   - alerts
   - alerts-content
@@ -21,6 +21,19 @@ sections:
   - figure
   - tables
   - code
+  - code-titles
+  - progress
+  - embeds
+  - loading
+  - {c: filetree, name: filetree}
+  - {c: details, name: details}
+  - {c: faq, name: faq}
+  - {c: params, name: params}
+  - {c: linkcards, name: linkcards}
+  - {c: quote, name: quote}
+  - {c: gallery, name: gallery}
+  - {c: pricing, name: pricing, recommended: 2}
+  - {c: subscribe, name: subscribe}
   - navigation
   - language-switcher
   - theme-toggle
@@ -201,6 +214,131 @@ Jekyll::Hooks.register :site, :post_write do |site|
   puts "Built #{site.pages.size} pages"
 end
 ```
+
+## 코드 제목과 diff
+
+`status:available` 펜스 코드 블록 바로 앞에 file과 콜론으로 시작하는 코드 스팬만 있는 줄을 두면 블록의 제목 표시줄이 됩니다. `diff` 블록은 추가된 줄과 삭제된 줄에 색을 입히고 더하기·빼기 기호를 유지합니다.
+
+`file:_config.yml`
+
+```yaml
+theme: jekyll-theme-modootoday
+```
+
+```diff
+- remote_theme: old/theme
++ theme: jekyll-theme-modootoday
+```
+
+## 진행률
+
+`status:available` progress와 콜론 뒤에 0부터 100까지의 정수가 오는 코드 스팬은 값을 텍스트로 함께 보여 주는 레이블 있는 진행률 막대가 됩니다.
+
+번역 `progress:60`
+
+## 임베드
+
+`status:available` embed와 콜론, https URL, 선택 제목으로 된 코드 스팬만 있는 문단은 지연 로드되는 16:9 프레임이 되며, 로드되는 동안에도 자리를 유지합니다.
+
+`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg 샘플 페이지 그림`
+
+## 로딩과 스켈레톤
+
+`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 각각 `role="status"`와 화면 낭독기용 로딩 레이블을 가지며, 사용자가 동작 줄이기를 요청하면 움직임이 멈춥니다. 스타일은 이를 쓰는 페이지만 불러오는 선택 시트에 있습니다.
+
+`loading:spinner`
+
+`skeleton:avatar`
+`skeleton:text`
+`skeleton:card`
+
+## 파일 트리
+
+`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 중첩 목록을 가진 항목은 폴더입니다.
+
+- docs
+  - _config.yml
+  - index.md
+  - ko
+    - index.md
+
+## 세부 정보
+
+`status:available` `c: details` 섹션에서는 각 `###` 제목이 브라우저 기본 펼침 요소가 됩니다. JavaScript 없이 열고 닫힙니다.
+
+### 무엇이 필요한가요?
+
+브라우저만 있으면 됩니다.
+
+## 자주 묻는 질문
+
+`status:available` `c: faq` 섹션은 세부 정보처럼 동작하며 검색 엔진용 FAQPage 구조화 데이터도 추가합니다.
+
+### 테마는 무료인가요?
+
+네, MIT 라이선스입니다.
+
+### GitHub Pages에서 동작하나요?
+
+네, github-pages gem으로 동작합니다.
+
+## 매개변수 표
+
+`status:available` `c: params` 섹션에서는 표가 옵션을 이름, 유형, 기본값, 설명으로 나열합니다. `required`만 있는 셀은 필수 배지로 표시됩니다.
+
+| 이름 | 유형 | 기본값 | 설명 |
+|---|---|---|---|
+| `title` | 문자열 | `required` | 페이지 제목 |
+| `cols` | 숫자 | 2 | 카드 열 수 |
+
+## 링크 카드
+
+`status:available` `c: linkcards` 섹션에서는 링크로 시작하는 목록 항목이 카드가 됩니다. 카드 전체가 링크 대상입니다.
+
+- [설치](../install/) — 사이트에 테마를 추가합니다.
+- [설정](../configuration/) — 모든 설정을 한곳에서 봅니다.
+
+## 인용
+
+`status:available` `c: quote` 섹션에서는 마지막 줄이 줄표(—)로 시작하는 인용문의 그 줄이 출처가 됩니다.
+
+> 문서가 github.com에서도 사이트에서도 잘 읽힙니다.
+>
+> — 테마 사용자
+
+## 갤러리
+
+`status:available` `c: gallery` 섹션에서는 이미지 목록이 썸네일 격자가 됩니다. 각 썸네일은 JavaScript 없이 원본 크기 보기를 엽니다. 모든 이미지에 대체 텍스트가 필요합니다.
+
+- ![샘플 페이지 그림](../../assets/images/sample.svg)
+- ![테마 마크](../../assets/modootoday/favicon.svg)
+
+## 요금제
+
+`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크를 가진 요금제가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
+
+### 무료
+
+**$0**
+
+- 사이트 1개
+
+[시작하기](../install/)
+
+### 팀
+
+**$12**
+
+- 사이트 10개
+- 지원
+
+[팀 선택](../install/)
+
+## 구독
+
+`status:available` `c: subscribe` 섹션은 텍스트와 `modootoday.subscribe.action`의 주소로 전송하는 이메일 양식을 표시합니다. 이 설정이 없으면 텍스트만 표시합니다.
+
+릴리스가 나오면 이메일을 한 통 받으세요.
 
 ## 내비게이션
 

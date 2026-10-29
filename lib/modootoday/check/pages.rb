@@ -2,6 +2,7 @@
 
 require_relative "page_syntax"
 require_relative "page_values"
+require_relative "component_rules"
 require_relative "page_sections"
 require_relative "a11y/content"
 
@@ -18,6 +19,7 @@ module Modootoday
           code = Markdown.strip_code(b)
           h2 = PageSyntax.call(ctx, f, text, b, code)
           PageValues.call(ctx, f, b)
+          ComponentRules.inline(ctx, ctx.rel(f), b)
           PageSections.call(ctx, f, text, b, code, h2)
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
         end
