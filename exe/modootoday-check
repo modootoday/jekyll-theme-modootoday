@@ -5,8 +5,25 @@ require "open3"
 require "yaml"
 require "date"
 USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict]"
-if ARGV.include?("-h") || ARGV.include?("--help")
-  puts USAGE
+# Single source for --help and the README "Commands" table (script/readme-commands, test/readme_test.rb).
+OPTIONS = [
+  ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`since:`/`kbd:` values, `sections:` count, `_data/components.yml`, Sass/CSS rules, unconverted markers in the build"],
+  ["--twins", "every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt`"],
+  ["--github-pages[=VERSION]", "`Gemfile.lock` pins `github-pages` VERSION (default 232)"],
+  ["--strict", "warnings fail the run"],
+  ["--gh", "also render each page with `gh api markdown` (network, `gh` login)"],
+  ["--help, -h", "print usage and options (`--help=markdown` prints the README table)"],
+  ["--version", "print the rules version"],
+].freeze
+if (h = ARGV.find { |a| a == "-h" || a.start_with?("--help") })
+  if h == "--help=markdown"
+    puts "| Option | Checks |", "|---|---|"
+    OPTIONS.each { |o, d| puts "| `#{o}` | #{d.gsub("|", "\\|")} |" }
+  else
+    puts USAGE, "", "options:"
+    OPTIONS.each { |o, d| puts format("  %-26s %s", o, d.delete("`")) }
+    puts "", "exit status: 0 no problems, 1 problems found or bad usage"
+  end
   exit 0
 end
 if ARGV.include?("--version")

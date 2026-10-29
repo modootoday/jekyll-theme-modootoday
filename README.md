@@ -1,23 +1,24 @@
 # jekyll-theme-modootoday
 
-[한국어](README.ko.md)
+A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them with layouts, includes and CSS.
 
-A Jekyll theme for documentation sites whose pages stay **plain GitHub Markdown**. Bodies use only GFM (plus GitHub's alert extension) that also renders on github.com; layouts, includes, CSS and a little optional JavaScript add the design:
+[![CI](https://github.com/modootoday/jekyll-theme-modootoday/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/modootoday/jekyll-theme-modootoday/actions/workflows/ci.yml)
+[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-modootoday)](https://rubygems.org/gems/jekyll-theme-modootoday)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-- GitHub alerts (`> [!NOTE]` …, a GitHub extension outside the GFM spec that degrades to a plain quote elsewhere) become styled callouts
-- status code spans (`` `status:available` ``) become badges
-- `##` sections can be mapped to components (feature grid, install tabs, call-to-action)
-- byte-identical Markdown "twins" of every page for agents and LLMs (`/guide/index.md`, `llms.txt`)
-- `modootoday-check` validates sources and build output
+[Documentation](https://modootoday.github.io/jekyll-theme-modootoday/) · [한국어](README.ko.md)
 
-Works with the GitHub Pages stack (`github-pages` gem, Jekyll 3.10) and with Jekyll 4. Layouts and includes are Liquid only, so `remote_theme` works on GitHub Pages.
+## Why
 
-> [!NOTE]
-> The content rules are `md-components v1 (draft)`. They may still change before v1 is declared final. See [RULES.md](RULES.md).
+- **Only standard Markdown in your pages.** GFM plus GitHub alerts; the same file reads well on github.com.
+- **Works on GitHub Pages.** Layouts and includes are Liquid only, so `remote_theme` works on the classic build; Jekyll 4 works too.
+- **Components without markup.** Alerts, status badges, card grids, tabs, buttons, accordion, steps, timeline and more come from plain Markdown patterns.
+- **Readable by agents.** Every page can have a byte-identical Markdown twin, plus `llms.txt` and `llms-full.txt`.
+- **Checked.** `modootoday-check` validates the sources and the built site.
 
 ## Install
 
-### As a gem (`theme:`)
+As a gem (`theme:`):
 
 ```ruby
 # Gemfile
@@ -27,11 +28,9 @@ gem "jekyll-theme-modootoday", "~> 0.1"
 ```yaml
 # _config.yml
 theme: jekyll-theme-modootoday
-sass:
-  silence_deprecations: [import]   # Jekyll 4 / Dart Sass; the theme keeps @import for GitHub Pages
 ```
 
-### On GitHub Pages without a Gemfile (`remote_theme:`)
+On GitHub Pages without a Gemfile (`remote_theme:`):
 
 ```yaml
 # _config.yml
@@ -40,150 +39,66 @@ plugins:
   - jekyll-remote-theme
 ```
 
-Pin a tag (or a commit) instead of `main`. Twins and `llms.txt` need stub files in this setup (see below). The `modootoday-check` executable is not available this way; run it from a checkout of this repository or with `gem install jekyll-theme-modootoday`.
+Pin a tag or a commit. More options: [Install guide](https://modootoday.github.io/jekyll-theme-modootoday/install/).
 
-## Configuration
-
-```yaml
-lang: en                      # default page language
-markdown: kramdown
-kramdown: {input: GFM, syntax_highlighter: rouge}
-permalink: pretty
-defaults:
-  - {scope: {path: ""}, values: {layout: doc}}
-  - {scope: {path: "ko"}, values: {lang: ko}}
-modootoday:                   # every key is optional; defaults shown
-  badges: true                # turn `status:*` code spans into badges (per page: badges: false)
-  color_scheme: auto          # auto (prefers-color-scheme) | light | dark
-  css_layers: false           # true: wrap theme CSS in @layer mt.tokens, mt.base, mt.layout, mt.components
-  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination]   # narrow to ship less CSS/JS
-  nav: main                   # _data/nav/main.yml: [{title: Guide, url: /guide/}, ...]
-  tokens: {primary: "#c2410c", radius: 0.375rem}   # semantic token overrides, inlined as <style id="mt-tokens">
-  tokens_dark: {primary: "#fb923c"}
-```
-
-Theme defaults live in Liquid (`_includes/modootoday/config.html`), not in a theme `_config.yml`: Jekyll 3.10 (GitHub Pages) does not merge a theme's `_config.yml`.
-
-Labels come from `_data/i18n/<lang>.yml` (English is the fallback):
-
-```yaml
-callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution: Caution}
-tabs: {label: Install method}
-status: {available: Available, partial: Partial, planned: Planned}
-skip: Skip to content
-nav: {label: Site}
-pagination: {label: Pages, prev: Previous, next: Next}
-code: {copy: Copy, copied: Copied}
-```
-
-### Layouts
-
-| Layout | Use |
-|---|---|
-| `default` | HTML shell: stylesheet, skip link, site title, `md-tabs.js` |
-| `doc` | Pages: alerts, badges, then optional sections |
-| `twin` | Markdown twin stub: outputs the source body byte for byte |
-| `llms` | `llms.txt` from a front-matter-only stub: H1, summary, Docs link list of the language's pages (+ Translations at the root) |
-| `llms-full` | `llms-full.txt` from a front-matter-only stub: every page body of the language, byte for byte |
-
-### Customising
-
-- Design tokens are CSS custom properties in three layers: primitives `--mt-p-*` ([`tokens/_primitive.scss`](_sass/modootoday/tokens/_primitive.scss)), semantic tokens with shadcn-style names (`--mt-background`, `--mt-foreground`, `--mt-muted`, `--mt-muted-foreground`, `--mt-card`, `--mt-primary`, `--mt-primary-foreground`, `--mt-accent`, `--mt-border`, `--mt-ring`, `--mt-note` … `--mt-caution`, `--mt-status-*`, `--mt-font-*`, `--mt-space`, `--mt-radius`, `--mt-measure`; [`tokens/_semantic.scss`](_sass/modootoday/tokens/_semantic.scss)), and component tokens (`--mt-callout-accent`, `--mt-badge-color`, `--mt-badge-radius`, `--mt-card-padding`). Set them with `modootoday.tokens` or in your own CSS. The v0.1 `--md-*` properties and `md-*` classes still work as aliases and will be removed in v0.3.
-- Force a scheme per page with `<html data-theme="light|dark">` (set from `color_scheme`).
-- Sass: shadow `assets/css/modootoday.scss` and `@import "modootoday/core";` plus only the `modootoday/components/<name>` partials you want. Use `@import`, never `@use`/`@forward` (Ruby Sass on GitHub Pages copies them into the CSS); the checker rejects them. Dart Sass prints `@import`/global-function deprecation warnings; silence them with `sass: {silence_deprecations: [import, global-builtin]}` on Jekyll 4.
-- Add footer content with `_includes/footer-custom.html`.
-- Add tags to `<head>` with your own `_includes/head-custom.html`.
-- Replace the whole stylesheet by adding your own `assets/css/modootoday.scss`.
-
-## Front matter rules
-
-- **Every content page needs front matter**, even an empty one (`---` / `---`). On GitHub Pages, a Markdown file without front matter is rendered by `jekyll-optional-front-matter` *and* copied raw to `_site/<name>.md`. The checker reports it.
-- `sections:` (optional) maps each `##` heading, in order, to a name or `{c: component, name: key, ...params}`. The number of items must equal the number of top-level `## ` headings; `##` inside quotes, alerts or list items never starts a section and is a checker error. Without `sections:` the page is one `div.md-prose`.
-- `badges: false` turns badges off for one page.
-
-## Components
-
-| Write in Markdown | Output |
-|---|---|
-| `> [!NOTE]` (also `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`) at top level | `blockquote.md-callout.md-callout-note[role=note]` with a localised title |
-| `` `status:available` `` / `partial` / `planned` | `span.md-badge.md-badge-<value>` (symbol + label) |
-| text before the first `##` (with `sections:`) | `section.md-hero` |
-| a `##` section | `section.md-section[data-section=<name>]`, plus `md-c-<c>` |
-| `c: features` + list `- **Title** — text` | card grid |
-| link-only paragraph in the hero or a `c: cta` section | buttons; the first link is the primary one |
-| `c: tabs` + `### name` + code block, repeated | ARIA tabs (with JS); without JS all blocks stay visible |
-| GFM table | horizontally scrollable table |
-
-Not allowed in bodies (outside code), for portability between github.com and kramdown: raw HTML and HTML comments, Liquid, kramdown IAL/ALD (`{: .x}`), header ids (`{#id}`), definition lists, abbreviations (`*[X]:`), bare URL autolinks (write `<https://…>`), code fence attributes (info string = one language word), setext/nested `##`, and alerts that are nested, empty, titled or of an unknown type. Footnotes are allowed. Details: [RULES.md](RULES.md).
-
-### Markdown twins and llms.txt (optional)
-
-Each page `guide.md` gets a twin `/guide/index.md` whose bytes equal the body of `guide.md` (front matter removed), plus `llms.txt` and `llms-full.txt` at `/` and under each `/<lang>/`. The `default` layout links the twin with `rel="alternate" type="text/markdown"` and the nearest `llms.txt` with `rel="describedby"`.
-
-**Automatic (Jekyll 4, or GitHub Pages built by GitHub Actions):** enable the bundled generator. No stub files are needed.
-
-```yaml
-# _config.yml (theme installed as a gem)
-plugins:
-  - jekyll-theme-modootoday
-# modootoday: {twins: false, llms: false}   # opt out of either part
-```
-
-It adds, for every Markdown page without one, exactly the virtual page a stub would be, so the output is identical to the stub setup. Hand-written stubs always win. Pages with `twin: false` and `README.md` are skipped.
-
-**Classic GitHub Pages build (branch publishing, `remote_theme`):** GitHub Pages runs only whitelisted plugins and Liquid cannot create new output files, so each twin needs a one-file stub. Next to `guide.md` add `guide.md.txt`:
-
-```yaml
----
-layout: twin
-twin_of: guide.md
-permalink: /guide/index.md
----
-```
-
-and once per language directory `llms.txt` / `llms-full.txt` containing only front matter with `layout: llms` / `layout: llms-full`. These layouts generate the content: `llms.txt` lists the pages of that language (title, twin URL, `description:`), with a Translations list at the root; `llms-full.txt` concatenates the page bodies. Per-language titles come from `title`/`description` in `_data/i18n/<lang>.yml`, else the site's.
-
-`modootoday-check --twins` verifies the result either way.
-
-## Checker
+## Quick start
 
 ```sh
-bundle exec jekyll build
-bundle exec modootoday-check . _site [--twins] [--github-pages[=232]] [--strict] [--gh]
+mkdir my-docs && cd my-docs
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.1"\n' > Gemfile
+printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {silence_deprecations: [import, global-builtin]}\n' > _config.yml
+printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
+bundle install && bundle exec jekyll build
+bundle exec modootoday-check . _site
 ```
 
-| Flag | Checks |
+Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/).
+
+## Concepts
+
+- **Plain body, rich layout.** The body is GFM; `sections:` front matter maps each `##` to a component. See [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) and the [kitchen sink](https://modootoday.github.io/jekyll-theme-modootoday/components/kitchen-sink/).
+- **Rules.** What may appear in a body, and what each pattern becomes, is defined in [RULES.md](RULES.md) (`md-components v1 (draft)`).
+- **Settings and tokens.** One `modootoday:` block in `_config.yml`, CSS custom properties `--mt-*`, one Sass partial per component. See [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) and [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/).
+
+## Commands
+
+`modootoday-check SRC SITE [options]` (run after `jekyll build`):
+
+<!-- commands:begin (generated by script/readme-commands; do not edit) -->
+| Option | Checks |
 |---|---|
-| (always) | front matter present, forbidden syntax, alert form/type (any case), fence info strings, `status:` values, `sections:` count of top-level `##`, `_data/components.yml` (if present), unconverted markers in the build |
-| `--twins` | every page has a byte-identical twin (stub or plugin), stub front matter, per-language `llms.txt` (starts with `# `) and `llms-full.txt` (contains every page body) |
-| `--github-pages[=VER]` | `Gemfile.lock` pins `github-pages` VER (default 232) |
-| `--strict` | warnings (e.g. `> [! NOTE]` with a space) fail the run; unknown alert types are always errors |
-| `--gh` | renders each page with `gh api markdown` (network, `gh` login) |
+| `SRC SITE` | always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`since:`/`kbd:` values, `sections:` count, `_data/components.yml`, Sass/CSS rules, unconverted markers in the build |
+| `--twins` | every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt` |
+| `--github-pages[=VERSION]` | `Gemfile.lock` pins `github-pages` VERSION (default 232) |
+| `--strict` | warnings fail the run |
+| `--gh` | also render each page with `gh api markdown` (network, `gh` login) |
+| `--help, -h` | print usage and options (`--help=markdown` prints the README table) |
+| `--version` | print the rules version |
+<!-- commands:end -->
 
-It uses only the Ruby standard library and exits 1 on problems.
+## AI agents
 
-## Example and development
+- Each page `guide.md` has a twin at `/guide/index.md` with the same bytes as its body, linked with `rel="alternate" type="text/markdown"`.
+- `llms.txt` and `llms-full.txt` exist at `/` and under each `/<lang>/`.
+- Jekyll 4: `plugins: [jekyll-theme-modootoday]` creates them; the classic GitHub Pages build uses one-file stubs.
+- Details: [Agents guide](https://modootoday.github.io/jekyll-theme-modootoday/agents/) and this repository's own [llms.txt](https://modootoday.github.io/jekyll-theme-modootoday/llms.txt).
 
-```sh
-BUNDLE_GEMFILE=gemfiles/jekyll4.gemfile bundle install
-BUNDLE_GEMFILE=gemfiles/jekyll4.gemfile bundle exec rake   # Ruby tests + example build + checker
-npm ci && npm test                                         # jsdom tests for md-tabs.js
-```
+## Guides
 
-Use `gemfiles/github-pages.gemfile` for the GitHub Pages stack. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- [Documentation site](https://modootoday.github.io/jekyll-theme-modootoday/) (built with this theme from [`docs/`](docs/))
+- [Install](https://modootoday.github.io/jekyll-theme-modootoday/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/) · [Changelog](CHANGELOG.md)
+- Supported stacks: GitHub Pages (`github-pages` 232, Jekyll 3.10, Ruby 3.3.4) and Jekyll 4.4 on Ruby 3.2 to 3.4, all tested in CI.
 
-## Supported stacks
+## Exit codes
 
-| Stack | Ruby | Tested in CI |
-|---|---|---|
-| GitHub Pages (`github-pages` 232, Jekyll 3.10.0, Ruby Sass 3.7.4, kramdown 2.4.0) | 3.3.4 (as in production) | `theme:` gem build, plus `remote_theme:` built by `actions/jekyll-build-pages@v1` |
-| Jekyll 4.4 (Dart Sass via `sass-embedded`) | 3.2 – 3.4 | 3.2 and 3.4 |
+| Code | Meaning |
+|---|---|
+| 0 | no problems |
+| 1 | problems found (listed on stderr) or bad usage |
 
-`required_ruby_version` is `>= 3.2` (the oldest Ruby tested, and the minimum of `sass-embedded`).
+## Contributing
 
-## Versioning
-
-The gem follows [Semantic Versioning](https://semver.org/); changes are listed in [CHANGELOG.md](CHANGELOG.md). Files copied from the theme carry a `md-components v1 (draft)` header so copies can be compared with the rules version.
+English is the canonical language: `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth. `README.ko.md` and the `ko/` and `ja/` pages are translations; when they differ, English wins. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
