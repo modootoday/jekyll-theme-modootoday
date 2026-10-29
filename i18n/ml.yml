@@ -8,6 +8,8 @@ task: {done: പൂർത്തിയായി, open: ബാക്കി}
 tabs: {label: ഓപ്ഷനുകൾ}
 toc: {label: ഈ പേജിൽ}
 theme: {toggle: ഡാർക്ക് മോഡ്}
+sidebar: {label: "ഡോക്യുമെന്റേഷൻ"}
+page_actions: {label: "പേജ് പ്രവർത്തനങ്ങൾ", copy: "പേജ് പകർത്തുക", copy_ai: "AI-ക്കായി പകർത്തുക", view: "Markdown ആയി കാണുക", source: "ഉറവിടം"}
 breadcrumb: {label: നാവിഗേഷൻ പാത}
 nav: {label: പ്രധാന മെനു}
 pagination: {label: പേജുകൾ, prev: മുമ്പത്തേത്, next: അടുത്തത്}

@@ -8,6 +8,8 @@ task: {done: Готово, open: Не выполнено}
 tabs: {label: Варианты}
 toc: {label: На этой странице}
 theme: {toggle: Тёмная тема}
+sidebar: {label: "Документация"}
+page_actions: {label: "Действия со страницей", copy: "Копировать страницу", copy_ai: "Копировать для ИИ", view: "Открыть как Markdown", source: "Источник"}
 breadcrumb: {label: Навигационная цепочка}
 nav: {label: Главное меню}
 pagination: {label: Страницы, prev: Назад, next: Далее}

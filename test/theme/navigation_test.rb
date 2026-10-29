@@ -68,6 +68,14 @@ class NavigationTest < Minitest::Test
     refute_includes self.class.site("modootoday: {page_actions: false}\n").call("one"), "mt-page-actions"
   end
 
+  def test_labels_come_from_the_theme_catalog
+    ko = self.class.site("lang: ko\n").call("one")
+    assert_includes ko, "<summary>페이지 도구</summary>"
+    assert_includes ko, 'data-mt-act="ai">AI용으로 복사</button>'
+    assert_includes ko, '<nav class="mt-sidebar" aria-label="문서">'
+    refute_match(/Page actions|Copy for AI|View as Markdown/, ko)
+  end
+
   def test_color_scheme_auto_dark_keeps_toggle_without_fouc
     h = self.class.site("modootoday: {color_scheme: auto-dark}\n").call("one")
     assert_match(/<html [^>]*data-theme="dark"/, h)

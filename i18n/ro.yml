@@ -8,6 +8,8 @@ task: {done: Gata, open: De făcut}
 tabs: {label: Opțiuni}
 toc: {label: Pe această pagină}
 theme: {toggle: Mod întunecat}
+sidebar: {label: "Documentație"}
+page_actions: {label: "Acțiuni pentru pagină", copy: "Copiază pagina", copy_ai: "Copiază pentru AI", view: "Vezi ca Markdown", source: "Sursă"}
 breadcrumb: {label: Traseu de navigare}
 nav: {label: Meniu principal}
 pagination: {label: Pagini, prev: Anterioara, next: Următoarea}

@@ -8,6 +8,8 @@ task: {done: Ολοκληρώθηκε, open: Εκκρεμεί}
 tabs: {label: Επιλογές}
 toc: {label: Σε αυτή τη σελίδα}
 theme: {toggle: Σκούρο θέμα}
+sidebar: {label: "Τεκμηρίωση"}
+page_actions: {label: "Ενέργειες σελίδας", copy: "Αντιγραφή σελίδας", copy_ai: "Αντιγραφή για ΤΝ", view: "Προβολή ως Markdown", source: "Πηγή"}
 breadcrumb: {label: Διαδρομή πλοήγησης}
 nav: {label: Κύριο μενού}
 pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}

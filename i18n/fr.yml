@@ -8,6 +8,8 @@ task: {done: Terminé, open: À faire}
 tabs: {label: Options}
 toc: {label: Sur cette page}
 theme: {toggle: Mode sombre}
+sidebar: {label: "Documentation"}
+page_actions: {label: "Actions de la page", copy: "Copier la page", copy_ai: "Copier pour l’IA", view: "Afficher en Markdown", source: "Source"}
 breadcrumb: {label: Fil d’Ariane}
 nav: {label: Menu principal}
 pagination: {label: Pages, prev: Précédent, next: Suivant}

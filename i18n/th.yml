@@ -8,6 +8,8 @@ task: {done: เสร็จแล้ว, open: ยังไม่เสร็�
 tabs: {label: ตัวเลือก}
 toc: {label: ในหน้านี้}
 theme: {toggle: โหมดมืด}
+sidebar: {label: "เอกสาร"}
+page_actions: {label: "การทำงานกับหน้า", copy: "คัดลอกหน้า", copy_ai: "คัดลอกสำหรับ AI", view: "ดูเป็น Markdown", source: "ที่มา"}
 breadcrumb: {label: เส้นทางนำทาง}
 nav: {label: เมนูหลัก}
 pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}

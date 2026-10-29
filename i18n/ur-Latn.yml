@@ -8,6 +8,8 @@ task: {done: Mukammal, open: Baqi}
 tabs: {label: Options}
 toc: {label: Is safhe par}
 theme: {toggle: Dark mode}
+sidebar: {label: "Dastavezat"}
+page_actions: {label: "Safhe ke iqdamat", copy: "Safha copy karein", copy_ai: "AI ke liye copy karein", view: "Markdown mein dekhein", source: "Maakhaz"}
 breadcrumb: {label: Raasta}
 nav: {label: Main menu}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}

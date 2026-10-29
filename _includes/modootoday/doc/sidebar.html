@@ -1,9 +1,9 @@
 {%- comment -%}Doc sidebar from the nav (needs modootoday/config.html; shown when mt_sidebar). Top-level items, then each
 group as a titled list. From 64rem a sticky column (aside.mt-doc-nav); below it a collapsed <details class="mt-sidebar-mobile">
-whose summary is the current group (or the label). include part=aside | mobile. Label: _data/i18n sidebar.label.{%- endcomment -%}
+whose summary is the current group (or the label). include part=aside | mobile. Label: i18n key sidebar.label.{%- endcomment -%}
 {%- if mt_sidebar -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
-{%- assign _sb_label = site.data.i18n[_lang].sidebar.label | default: site.data.i18n[_lang].nav.label | default: "Main" -%}
+{%- include modootoday/i18n.html lang=_lang -%}{%- assign _sb_label = mt_t_sidebar_label -%}
 {%- assign _sb_cur = nil -%}
 {%- capture _sb_list -%}<ul>
 {%- for it in mt_nav -%}

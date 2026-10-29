@@ -8,6 +8,8 @@ task: {done: 완료, open: 진행 전}
 tabs: {label: 옵션}
 toc: {label: 이 페이지의 내용}
 theme: {toggle: 다크 모드}
+sidebar: {label: "문서"}
+page_actions: {label: "페이지 도구", copy: "페이지 복사", copy_ai: "AI용으로 복사", view: "Markdown으로 보기", source: "출처"}
 breadcrumb: {label: 이동 경로}
 nav: {label: 메인 메뉴}
 pagination: {label: 페이지 이동, prev: 이전, next: 다음}

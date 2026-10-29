@@ -8,6 +8,8 @@ task: {done: Tamamlandı, open: Açık}
 tabs: {label: Seçenekler}
 toc: {label: Bu sayfada}
 theme: {toggle: Koyu mod}
+sidebar: {label: "Belgeler"}
+page_actions: {label: "Sayfa işlemleri", copy: "Sayfayı kopyala", copy_ai: "Yapay zekâ için kopyala", view: "Markdown olarak görüntüle", source: "Kaynak"}
 breadcrumb: {label: Konum}
 nav: {label: Ana menü}
 pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}

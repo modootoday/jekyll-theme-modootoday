@@ -8,6 +8,8 @@ task: {done: Erledigt, open: Offen}
 tabs: {label: Optionen}
 toc: {label: Auf dieser Seite}
 theme: {toggle: Dunkelmodus}
+sidebar: {label: "Dokumentation"}
+page_actions: {label: "Seitenaktionen", copy: "Seite kopieren", copy_ai: "Für KI kopieren", view: "Als Markdown anzeigen", source: "Quelle"}
 breadcrumb: {label: Brotkrümelnavigation}
 nav: {label: Hauptmenü}
 pagination: {label: Seiten, prev: Zurück, next: Weiter}

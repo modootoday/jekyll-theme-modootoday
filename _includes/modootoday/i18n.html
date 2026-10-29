@@ -5,7 +5,7 @@
 {%- assign _tl = include.lang | default: page.lang | default: site.lang | default: "en" -%}
 {%- unless mt_t_lang == _tl -%}
 {%- assign mt_t_lang = _tl -%}
-{%- capture _tc -%}Skip to contentNoteTipImportantWarningCautionAvailablePartialPlannedDoneOpenOptionsOn this pageDark modeBreadcrumbMainPagesPreviousNextCopyCopiedSearchEdit this pageLast updatedLanguages%Y-%m-%dThis page is not translated yet, so it is shown in English.TagsCategoriespostsNo posts yet.{%- endcapture -%}{%- assign _te = _tc | split: "" -%}
+{%- capture _tc -%}Skip to contentNoteTipImportantWarningCautionAvailablePartialPlannedDoneOpenOptionsOn this pageDark modeDocsPage actionsCopy pageCopy for AIView as MarkdownSourceBreadcrumbMainPagesPreviousNextCopyCopiedSearchEdit this pageLast updatedLanguages%Y-%m-%dThis page is not translated yet, so it is shown in English.TagsCategoriespostsNo posts yet.{%- endcapture -%}{%- assign _te = _tc | split: "" -%}
 {%- assign _tx = nil -%}{%- assign _tdir = nil -%}{%- assign _tf = nil -%}
 {%- assign _tb = _tl | split: "-" | first -%}
 {%- assign _tk = " " | append: _tl | append: " " -%}{%- assign _tbk = " " | append: _tb | append: " " -%}
@@ -27,22 +27,28 @@
 {%- assign mt_t_tabs_label = _ts.tabs.label | default: _tx[11] | default: _te[11] -%}
 {%- assign mt_t_toc_label = _ts.toc.label | default: _tx[12] | default: _te[12] -%}
 {%- assign mt_t_theme_toggle = _ts.theme.toggle | default: _tx[13] | default: _te[13] -%}
-{%- assign mt_t_breadcrumb_label = _ts.breadcrumb.label | default: _tx[14] | default: _te[14] -%}
-{%- assign mt_t_nav_label = _ts.nav.label | default: _tx[15] | default: _te[15] -%}
-{%- assign mt_t_pagination_label = _ts.pagination.label | default: _tx[16] | default: _te[16] -%}
-{%- assign mt_t_pagination_prev = _ts.pagination.prev | default: _tx[17] | default: _te[17] -%}
-{%- assign mt_t_pagination_next = _ts.pagination.next | default: _tx[18] | default: _te[18] -%}
-{%- assign mt_t_code_copy = _ts.code.copy | default: _tx[19] | default: _te[19] -%}
-{%- assign mt_t_code_copied = _ts.code.copied | default: _tx[20] | default: _te[20] -%}
-{%- assign mt_t_search_label = _ts.search.label | default: _tx[21] | default: _te[21] -%}
-{%- assign mt_t_page_edit = _ts.page.edit | default: _tx[22] | default: _te[22] -%}
-{%- assign mt_t_page_updated = _ts.page.updated | default: _tx[23] | default: _te[23] -%}
-{%- assign mt_t_languages_label = _ts.languages.label | default: _tx[24] | default: _te[24] -%}
-{%- assign mt_t_post_date_format = _ts.post.date_format | default: _tx[25] | default: _te[25] -%}
-{%- assign mt_t_fallback_notice = _ts.fallback.notice | default: _tx[26] | default: _te[26] -%}
-{%- assign mt_t_archive_tags = _ts.archive.tags | default: _tx[27] | default: _te[27] -%}
-{%- assign mt_t_archive_categories = _ts.archive.categories | default: _tx[28] | default: _te[28] -%}
-{%- assign mt_t_archive_posts = _ts.archive.posts | default: _tx[29] | default: _te[29] -%}
-{%- assign mt_t_archive_empty = _ts.archive.empty | default: _tx[30] | default: _te[30] -%}
+{%- assign mt_t_sidebar_label = _ts.sidebar.label | default: _tx[14] | default: _te[14] -%}
+{%- assign mt_t_page_actions_label = _ts.page_actions.label | default: _tx[15] | default: _te[15] -%}
+{%- assign mt_t_page_actions_copy = _ts.page_actions.copy | default: _tx[16] | default: _te[16] -%}
+{%- assign mt_t_page_actions_copy_ai = _ts.page_actions.copy_ai | default: _tx[17] | default: _te[17] -%}
+{%- assign mt_t_page_actions_view = _ts.page_actions.view | default: _tx[18] | default: _te[18] -%}
+{%- assign mt_t_page_actions_source = _ts.page_actions.source | default: _tx[19] | default: _te[19] -%}
+{%- assign mt_t_breadcrumb_label = _ts.breadcrumb.label | default: _tx[20] | default: _te[20] -%}
+{%- assign mt_t_nav_label = _ts.nav.label | default: _tx[21] | default: _te[21] -%}
+{%- assign mt_t_pagination_label = _ts.pagination.label | default: _tx[22] | default: _te[22] -%}
+{%- assign mt_t_pagination_prev = _ts.pagination.prev | default: _tx[23] | default: _te[23] -%}
+{%- assign mt_t_pagination_next = _ts.pagination.next | default: _tx[24] | default: _te[24] -%}
+{%- assign mt_t_code_copy = _ts.code.copy | default: _tx[25] | default: _te[25] -%}
+{%- assign mt_t_code_copied = _ts.code.copied | default: _tx[26] | default: _te[26] -%}
+{%- assign mt_t_search_label = _ts.search.label | default: _tx[27] | default: _te[27] -%}
+{%- assign mt_t_page_edit = _ts.page.edit | default: _tx[28] | default: _te[28] -%}
+{%- assign mt_t_page_updated = _ts.page.updated | default: _tx[29] | default: _te[29] -%}
+{%- assign mt_t_languages_label = _ts.languages.label | default: _tx[30] | default: _te[30] -%}
+{%- assign mt_t_post_date_format = _ts.post.date_format | default: _tx[31] | default: _te[31] -%}
+{%- assign mt_t_fallback_notice = _ts.fallback.notice | default: _tx[32] | default: _te[32] -%}
+{%- assign mt_t_archive_tags = _ts.archive.tags | default: _tx[33] | default: _te[33] -%}
+{%- assign mt_t_archive_categories = _ts.archive.categories | default: _tx[34] | default: _te[34] -%}
+{%- assign mt_t_archive_posts = _ts.archive.posts | default: _tx[35] | default: _te[35] -%}
+{%- assign mt_t_archive_empty = _ts.archive.empty | default: _tx[36] | default: _te[36] -%}
 {%- assign mt_t_direction = _ts.direction | default: _tdir -%}
 {%- endunless -%}

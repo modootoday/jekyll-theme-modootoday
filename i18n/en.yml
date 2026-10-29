@@ -9,6 +9,8 @@ task: {done: Done, open: Open}
 tabs: {label: Options}
 toc: {label: On this page}
 theme: {toggle: Dark mode}
+sidebar: {label: "Docs"}
+page_actions: {label: "Page actions", copy: "Copy page", copy_ai: "Copy for AI", view: "View as Markdown", source: "Source"}
 breadcrumb: {label: Breadcrumb}
 nav: {label: Main}
 pagination: {label: Pages, prev: Previous, next: Next}

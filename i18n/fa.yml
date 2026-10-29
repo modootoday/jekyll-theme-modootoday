@@ -8,6 +8,8 @@ task: {done: انجام‌شده, open: انجام‌نشده}
 tabs: {label: گزینه‌ها}
 toc: {label: در این صفحه}
 theme: {toggle: حالت تاریک}
+sidebar: {label: "مستندات"}
+page_actions: {label: "کارهای صفحه", copy: "کپی صفحه", copy_ai: "کپی برای هوش مصنوعی", view: "نمایش به‌صورت Markdown", source: "منبع"}
 breadcrumb: {label: مسیر راهنما}
 nav: {label: منوی اصلی}
 pagination: {label: صفحه‌ها, prev: قبلی, next: بعدی}

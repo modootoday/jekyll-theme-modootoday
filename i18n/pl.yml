@@ -8,6 +8,8 @@ task: {done: Gotowe, open: Do zrobienia}
 tabs: {label: Opcje}
 toc: {label: Na tej stronie}
 theme: {toggle: Tryb ciemny}
+sidebar: {label: "Dokumentacja"}
+page_actions: {label: "Działania na stronie", copy: "Kopiuj stronę", copy_ai: "Kopiuj dla AI", view: "Pokaż jako Markdown", source: "Źródło"}
 breadcrumb: {label: Ścieżka nawigacji}
 nav: {label: Menu główne}
 pagination: {label: Strony, prev: Poprzednia, next: Następna}

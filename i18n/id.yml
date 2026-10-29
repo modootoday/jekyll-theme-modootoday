@@ -8,6 +8,8 @@ task: {done: Selesai, open: Belum selesai}
 tabs: {label: Opsi}
 toc: {label: Di halaman ini}
 theme: {toggle: Mode gelap}
+sidebar: {label: "Dokumentasi"}
+page_actions: {label: "Tindakan halaman", copy: "Salin halaman", copy_ai: "Salin untuk AI", view: "Lihat sebagai Markdown", source: "Sumber"}
 breadcrumb: {label: Jejak navigasi}
 nav: {label: Menu utama}
 pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}

@@ -8,6 +8,8 @@ task: {done: 已完成, open: 未完成}
 tabs: {label: 選項}
 toc: {label: 本頁內容}
 theme: {toggle: 深色模式}
+sidebar: {label: "文件"}
+page_actions: {label: "頁面操作", copy: "複製頁面", copy_ai: "複製給 AI", view: "以 Markdown 檢視", source: "來源"}
 breadcrumb: {label: 導覽路徑}
 nav: {label: 主選單}
 pagination: {label: 換頁, prev: 上一頁, next: 下一頁}

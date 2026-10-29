@@ -8,6 +8,8 @@ task: {done: 完了, open: 未着手}
 tabs: {label: オプション}
 toc: {label: このページの内容}
 theme: {toggle: ダークモード}
+sidebar: {label: "ドキュメント"}
+page_actions: {label: "ページの操作", copy: "ページをコピー", copy_ai: "AI 向けにコピー", view: "Markdown で表示", source: "出典"}
 breadcrumb: {label: パンくずリスト}
 nav: {label: メインメニュー}
 pagination: {label: ページ送り, prev: 前へ, next: 次へ}

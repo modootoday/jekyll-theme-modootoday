@@ -8,6 +8,8 @@ task: {done: Xong, open: Chưa xong}
 tabs: {label: Tùy chọn}
 toc: {label: Trên trang này}
 theme: {toggle: Chế độ tối}
+sidebar: {label: "Tài liệu"}
+page_actions: {label: "Thao tác trang", copy: "Sao chép trang", copy_ai: "Sao chép cho AI", view: "Xem dạng Markdown", source: "Nguồn"}
 breadcrumb: {label: Đường dẫn}
 nav: {label: Menu chính}
 pagination: {label: Trang, prev: Trước, next: Tiếp}
