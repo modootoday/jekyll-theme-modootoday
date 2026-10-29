@@ -107,21 +107,21 @@ sudo apt install ruby-full
 
 ## バッジ
 
-`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）、tag、since があります。ステータス記号はスクリーンリーダーから隠し、名前を読み上げます。
+`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータス記号はスクリーンリーダーから隠し、名前を読み上げます。
 
 `status:available` `status:partial` `status:planned`
 
-`tag:beta` `since:1.0`
+`tag:beta`
 
 ## キーボードキー
 
-`status:available` `since:1.0` kbd とコロンで始まるコードスパンがキーボードキーになります。キーは空白なしの `+` でつなぎます。
+`status:available` kbd とコロンで始まるコードスパンがキーボードキーになります。キーは空白なしの `+` でつなぎます。
 
 Open search with `kbd:Ctrl+K`, or press `kbd:/`.
 
 ## アコーディオン
 
-`status:available` `since:1.0` `c: accordion` セクションでは、`###` 見出しが下の内容を開閉するボタン（`aria-expanded`）になります。Enter か Space で切り替えます。JavaScript がなければすべての答えが表示されます。
+`status:available` `c: accordion` セクションでは、`###` 見出しが下の内容を開閉するボタン（`aria-expanded`）になります。Enter か Space で切り替えます。JavaScript がなければすべての答えが表示されます。
 
 ### Does it work without JavaScript?
 
@@ -135,7 +135,7 @@ bundle exec jekyll serve
 
 ## ステップ
 
-`status:available` `since:1.0` `c: steps` セクションでは、番号付きリストが番号付きのステップになります。
+`status:available` `c: steps` セクションでは、番号付きリストが番号付きのステップになります。
 
 1. Add the theme to `_config.yml`.
 2. Write `index.md` in plain Markdown.
@@ -155,7 +155,7 @@ Push to `main` and turn on GitHub Pages.
 
 ## タイムライン
 
-`status:available` `since:1.0` `c: timeline` セクションでは、`###` 見出しが線上の点になります。
+`status:available` `c: timeline` セクションでは、`###` 見出しが線上の点になります。
 
 ### Install
 
@@ -175,7 +175,7 @@ Theme toggle, breadcrumb and table of contents.
 
 ## 図
 
-`status:available` `since:1.0` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
+`status:available` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
 
 ![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
 
@@ -214,7 +214,7 @@ end
 
 ## 言語切り替え
 
-`status:available` `since:1.0` `languages:` と `language_switcher: header` を設定すると、ヘッダーに言語一覧を開く地球儀ボタンが出ます。言語が増えても幅は変わりません。言語名はそれぞれの言語で書かれ、現在の言語には `aria-current` が付きます。一覧は Esc で閉じます。このページのヘッダーの地球儀がその表示結果です。
+`status:available` `languages:` と `language_switcher: header` を設定すると、ヘッダーに言語一覧を開く地球儀ボタンが出ます。言語が増えても幅は変わりません。言語名はそれぞれの言語で書かれ、現在の言語には `aria-current` が付きます。一覧は Esc で閉じます。このページのヘッダーの地球儀がその表示結果です。
 
 ```yaml
 modootoday:
@@ -224,7 +224,7 @@ modootoday:
 
 ## テーマ切り替え
 
-`status:available` `since:1.0` ヘッダーのボタンでライトとダークを切り替え、選んだ設定を記憶します。どちらかに固定するには `color_scheme` を使います。このページのヘッダーのボタンがその表示結果です。
+`status:available` ヘッダーのボタンでライトとダークを切り替え、選んだ設定を記憶します。どちらかに固定するには `color_scheme` を使います。このページのヘッダーのボタンがその表示結果です。
 
 ```yaml
 modootoday:
@@ -233,11 +233,11 @@ modootoday:
 
 ## 検索
 
-`status:available` `since:1.0` `search.json` ファイルを使うクライアント検索がヘッダーに入ります（`role="search"`）。`kbd:Ctrl+K` か `kbd:/` で検索欄に移動します。サイトのルートに `search.json` を置くと有効になります。[このサイトのファイル](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)をコピーしてください。このページのヘッダーの検索欄がその表示結果です。
+`status:available` `search.json` ファイルを使うクライアント検索がヘッダーに入ります（`role="search"`）。`kbd:Ctrl+K` か `kbd:/` で検索欄に移動します。サイトのルートに `search.json` を置くと有効になります。[このサイトのファイル](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)をコピーしてください。このページのヘッダーの検索欄がその表示結果です。
 
 ## パンくずリストと目次
 
-`status:available` `since:1.0` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外します。このページの上部と横がその表示結果です。
+`status:available` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外します。このページの上部と横がその表示結果です。
 
 ```yaml
 modootoday:
@@ -246,7 +246,7 @@ modootoday:
 
 ## 前後のページ
 
-`status:available` `since:1.0` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すにはフロントマターに `pagination: false` と書きます。このページの下部がその表示結果です。
+`status:available` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すにはフロントマターに `pagination: false` と書きます。このページの下部がその表示結果です。
 
 ```yaml
 ---
@@ -257,7 +257,7 @@ pagination: false
 
 ## 投稿とアーカイブ
 
-`status:available` `since:1.0` `layout: post` は日付、著者、タグを表示します（`p.mt-post-meta`）。
+`status:available` `layout: post` は日付、著者、タグを表示します（`p.mt-post-meta`）。
 
 ```yaml
 ---

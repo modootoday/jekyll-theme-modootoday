@@ -9,8 +9,7 @@ $mt-badge-variants: (available: status-available, partial: status-partial, plann
     .mt-badge-#{$name} { --mt-badge-color: #{mt($token)}; }
   }
 }
-// `tag:<word>` and `since:<version>` badges
+// `tag:<word>` badges
 @include mt-layer(components) {
   .mt-badge-tag { --mt-badge-color: #{mt(primary)}; --mt-badge-radius: #{mt(radius)}; }
-  .mt-badge-since { --mt-badge-color: #{mt(muted-foreground)}; --mt-badge-radius: #{mt(radius)}; font-weight: 500; }
 }

@@ -26,7 +26,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Component | Markdown | Transformation | Notes |
 |---|---|---|---|
 | Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.md-badge.md-badge-<value>` = symbol (●◐○, `aria-hidden`) + i18n `status.<value>` | unknown values and leftover `<code>status:` in the build are checker errors |
-| Tag / since badge | `` `tag:beta` `` / `` `since:0.3` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` / `.mt-badge-since` (i18n `badge.since`) | needs the `badge` component; bad values are checker errors |
+| Tag badge | `` `tag:beta` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` | needs the `badge` component; bad values are checker errors. `since:` is not part of 1.0 and is a checker error |
 | Accordion | `c: accordion` section, each `###` is a question | JS turns `###` into `button[aria-expanded]` + panel; content stays visible without JS | — |
 | Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |
 | Figure | an image-only paragraph followed by an `*emphasis*`-only paragraph | `figure` + `figcaption` | images without alt (`![](...)`) are checker errors |

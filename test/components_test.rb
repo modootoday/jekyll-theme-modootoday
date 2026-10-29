@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# v0.3 layout components (breadcrumb, TOC, figure, tag/since badges, accordion/steps sections, theme toggle)
+# v0.3 layout components (breadcrumb, TOC, figure, tag badges, accordion/steps sections, theme toggle)
 # built with the active bundle's Jekyll.
 require "minitest/autorun"
 require "tmpdir"
@@ -68,9 +68,9 @@ class ComponentsTest < Minitest::Test
     assert_includes h, '<p><img src="/x.png" alt="Alone" /></p>'
   end
 
-  def test_tag_and_since_badges
+  def test_tag_badge_and_since_not_rendered
     assert_includes h, '<span class="mt-badge mt-badge-tag" data-variant="tag">beta</span>'
-    assert_includes h, '<span class="mt-badge mt-badge-since" data-variant="since">Since 0.3</span>'
+    refute_includes h, 'mt-badge-since'
     assert_includes h, ">tag:two words</code>"
   end
 

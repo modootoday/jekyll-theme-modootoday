@@ -67,7 +67,7 @@ winget install RubyInstallerTeam.Ruby
 
 ## الشارات
 
-`status:available` `status:partial` `status:planned` `tag:beta` `since:1.0` واختصار لوحة المفاتيح `kbd:Ctrl+K`.
+`status:available` `status:partial` `status:planned` `tag:beta` واختصار لوحة المفاتيح `kbd:Ctrl+K`.
 
 ## الأسئلة الشائعة
 

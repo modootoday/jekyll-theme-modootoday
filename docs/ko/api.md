@@ -49,7 +49,7 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
 | 알림 | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, 본문 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `.mt-badge-since`, `[data-variant]` |
+| 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |
 | 그림 | `figure.mt-figure` | `img`, `figcaption` | — |
 | 글 메타 | `p.mt-post-meta` | `time`, `.mt-post-author`, 태그 배지 | — |
@@ -59,7 +59,7 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 
 ## 슬롯 계약
 
-`since:1.0` 슬롯은 섹션 Markdown 안의 이름 붙은 부분입니다. 슬롯 이름은 위 정책에 따라 안정적이며, 선언해도 생성되는 마크업은 바뀌지 않습니다. `_data/components.yml`에서 `slots:`가 있는 `c:`를 쓰는 섹션마다 `modootoday-check`가 슬롯 개수를 세고, 선언한 범위를 벗어나면 실패합니다.
+슬롯은 섹션 Markdown 안의 이름 붙은 부분입니다. 슬롯 이름은 위 정책에 따라 안정적이며, 선언해도 생성되는 마크업은 바뀌지 않습니다. `_data/components.yml`에서 `slots:`가 있는 `c:`를 쓰는 섹션마다 `modootoday-check`가 슬롯 개수를 세고, 선언한 범위를 벗어나면 실패합니다.
 
 | 슬롯 | 섹션(`##` 제목 뒤)에서 세는 것 | 렌더 결과 |
 |---|---|---|

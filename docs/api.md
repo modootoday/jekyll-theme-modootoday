@@ -46,7 +46,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
 | Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `.mt-badge-since`, `[data-variant]` |
+| Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
 | Figure | `figure.mt-figure` | `img`, `figcaption` | — |
 | Post meta | `p.mt-post-meta` | `time`, `.mt-post-author`, tag badges | — |
@@ -56,7 +56,7 @@ Each `mt-*` class above also has a deprecated `md-*` twin on the shell, doc, her
 
 ## Slot contract
 
-`since:1.0` A slot is a named part of a section's Markdown. Slot names are stable under the policy above, and declaring them never changes the generated markup. `modootoday-check` counts each slot in every section whose `c:` has a `slots:` entry in `_data/components.yml`, and fails when a count is outside the declared range.
+A slot is a named part of a section's Markdown. Slot names are stable under the policy above, and declaring them never changes the generated markup. `modootoday-check` counts each slot in every section whose `c:` has a `slots:` entry in `_data/components.yml`, and fails when a count is outside the declared range.
 
 | Slot | What it counts in the section (after its `##` heading) | Renders as |
 |---|---|---|

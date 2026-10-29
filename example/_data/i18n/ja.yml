@@ -8,7 +8,6 @@ skip: 本文へスキップ
 theme: {toggle: ダークモード}
 breadcrumb: {label: パンくずリスト}
 toc: {label: このページの内容}
-badge: {since: 追加バージョン}
 search: {label: 検索}
 post: {date_format: "%Y年%m月%d日"}
 page: {edit: このページを編集, updated: 最終更新}

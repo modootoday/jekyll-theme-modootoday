@@ -124,7 +124,7 @@ greeting: Hello
 
 インラインのバッジ: `status:available` `status:partial` `status:planned`
 
-タグとバージョンのバッジ: `tag:beta` `tag:experimental` `since:1.0`
+タグのバッジ: `tag:beta` `tag:experimental`
 
 | 機能 | ステータス |
 |---|---|

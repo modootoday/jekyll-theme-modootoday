@@ -104,21 +104,21 @@ sudo apt install ruby-full
 
 ## Badges
 
-`status:available` Code spans with a known prefix become badges: status (available, partial, planned), tag and since. The status symbol is hidden from screen readers, and the label is read instead.
+`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. The status symbol is hidden from screen readers, and the label is read instead.
 
 `status:available` `status:partial` `status:planned`
 
-`tag:beta` `since:1.0`
+`tag:beta`
 
 ## Keyboard keys
 
-`status:available` `since:1.0` A code span that starts with kbd and a colon becomes keyboard keys. Join keys with `+` and no spaces.
+`status:available` A code span that starts with kbd and a colon becomes keyboard keys. Join keys with `+` and no spaces.
 
 Open search with `kbd:Ctrl+K`, or press `kbd:/`.
 
 ## Accordion
 
-`status:available` `since:1.0` In a `c: accordion` section, each `###` heading becomes a button that shows or hides the content under it (`aria-expanded`). Enter or Space toggles it. Without JavaScript every answer stays visible.
+`status:available` In a `c: accordion` section, each `###` heading becomes a button that shows or hides the content under it (`aria-expanded`). Enter or Space toggles it. Without JavaScript every answer stays visible.
 
 ### Does it work without JavaScript?
 
@@ -132,7 +132,7 @@ bundle exec jekyll serve
 
 ## Steps
 
-`status:available` `since:1.0` In a `c: steps` section, an ordered list becomes numbered steps.
+`status:available` In a `c: steps` section, an ordered list becomes numbered steps.
 
 1. Add the theme to `_config.yml`.
 2. Write `index.md` in plain Markdown.
@@ -152,7 +152,7 @@ Push to `main` and turn on GitHub Pages.
 
 ## Timeline
 
-`status:available` `since:1.0` In a `c: timeline` section, `###` headings become points on a line.
+`status:available` In a `c: timeline` section, `###` headings become points on a line.
 
 ### Install
 
@@ -172,7 +172,7 @@ An ordered list works too.
 
 ## Figure
 
-`status:available` `since:1.0` A paragraph with only an image, followed by a paragraph with only *emphasis*, becomes a figure with a caption. Alt text is required.
+`status:available` A paragraph with only an image, followed by a paragraph with only *emphasis*, becomes a figure with a caption. Alt text is required.
 
 ![A Markdown source on the left becomes a styled page on the right](../assets/images/sample.svg)
 
@@ -211,7 +211,7 @@ end
 
 ## Language switcher
 
-`status:available` `since:1.0` With `languages:` and `language_switcher: header`, the header gets a globe button that opens a list of languages. It stays the same width however many languages you add. Each language is named in its own language, and the current one has `aria-current`. Esc closes the list. The result is the globe in the header of this page.
+`status:available` With `languages:` and `language_switcher: header`, the header gets a globe button that opens a list of languages. It stays the same width however many languages you add. Each language is named in its own language, and the current one has `aria-current`. Esc closes the list. The result is the globe in the header of this page.
 
 ```yaml
 modootoday:
@@ -221,7 +221,7 @@ modootoday:
 
 ## Theme toggle
 
-`status:available` `since:1.0` The header button switches between light and dark and remembers the choice. Use `color_scheme` to fix one scheme. The result is the button in the header of this page.
+`status:available` The header button switches between light and dark and remembers the choice. Use `color_scheme` to fix one scheme. The result is the button in the header of this page.
 
 ```yaml
 modootoday:
@@ -230,11 +230,11 @@ modootoday:
 
 ## Search
 
-`status:available` `since:1.0` Client-side search over a `search.json` file, in the header (`role="search"`). Press `kbd:Ctrl+K` or `kbd:/` to focus it. Add a `search.json` file at the site root to turn it on: copy [the one this site uses](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json). The result is the search box in the header of this page.
+`status:available` Client-side search over a `search.json` file, in the header (`role="search"`). Press `kbd:Ctrl+K` or `kbd:/` to focus it. Add a `search.json` file at the site root to turn it on: copy [the one this site uses](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json). The result is the search box in the header of this page.
 
 ## Breadcrumb and table of contents
 
-`status:available` `since:1.0` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off. The result is at the top and side of this page.
+`status:available` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off. The result is at the top and side of this page.
 
 ```yaml
 modootoday:
@@ -243,7 +243,7 @@ modootoday:
 
 ## Previous and next
 
-`status:available` `since:1.0` Pages listed in the nav get previous and next links in nav order. Set `pagination: false` in front matter to hide them. The result is at the bottom of this page.
+`status:available` Pages listed in the nav get previous and next links in nav order. Set `pagination: false` in front matter to hide them. The result is at the bottom of this page.
 
 ```yaml
 ---
@@ -254,7 +254,7 @@ pagination: false
 
 ## Posts and archives
 
-`status:available` `since:1.0` `layout: post` shows the date, author and tags (`p.mt-post-meta`).
+`status:available` `layout: post` shows the date, author and tags (`p.mt-post-meta`).
 
 ```yaml
 ---

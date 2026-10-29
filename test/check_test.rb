@@ -347,12 +347,12 @@ class CheckTest < Minitest::Test
   end
 
 
-  def test_tag_since_values_and_image_alt
-    page "a.md", "---\n---\n`tag:beta` `since:0.3.1` `tag:two words` `since:` `![](ok-in-code)`\n\n![](x.png)\n"
+  def test_tag_values_since_rejected_and_image_alt
+    page "a.md", "---\n---\n`tag:beta` `since:1.0` `tag:two words` `![](ok-in-code)`\n\n![](x.png)\n"
     o, code = check
     assert_equal 1, code
     assert_includes o, "`tag:two words` badge value"
-    assert_includes o, "`since:` badge value"
+    assert_includes o, "`since:1.0` is not supported before 1.1"
     refute_includes o, "`tag:beta`"
     assert_includes o, "image without alt text"
   end

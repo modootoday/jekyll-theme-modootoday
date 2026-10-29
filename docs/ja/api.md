@@ -49,7 +49,7 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 | アコーディオン | `section.mt-c-accordion` | `h3 > button[aria-expanded]`、その後のパネル | `[aria-expanded=true\|false]` |
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
 | アラート | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`、本文 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| バッジ | `span.mt-badge` | 記号 (`aria-hidden`)、ラベル | `.mt-badge-<status>`, `.mt-badge-tag`, `.mt-badge-since`, `[data-variant]` |
+| バッジ | `span.mt-badge` | 記号 (`aria-hidden`)、ラベル | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | キーボードのキー | `kbd.mt-kbd` | キーごとの `kbd` | — |
 | 図 | `figure.mt-figure` | `img`, `figcaption` | — |
 | 投稿のメタ情報 | `p.mt-post-meta` | `time`, `.mt-post-author`、タグバッジ | — |
@@ -59,7 +59,7 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 
 ## スロット契約
 
-`since:1.0` スロットはセクションの Markdown の中の名前付きの部分です。スロット名は上のポリシーのもとで安定しており、宣言しても生成されるマークアップは変わりません。`_data/components.yml` で `slots:` を持つ `c:` を使うセクションごとに `modootoday-check` がスロットの数を数え、宣言した範囲を外れると失敗します。
+スロットはセクションの Markdown の中の名前付きの部分です。スロット名は上のポリシーのもとで安定しており、宣言しても生成されるマークアップは変わりません。`_data/components.yml` で `slots:` を持つ `c:` を使うセクションごとに `modootoday-check` がスロットの数を数え、宣言した範囲を外れると失敗します。
 
 | スロット | セクション内 (`##` 見出しの後) で数えるもの | 表示 |
 |---|---|---|

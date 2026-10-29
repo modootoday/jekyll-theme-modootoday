@@ -28,7 +28,7 @@ class VersionTest < Minitest::Test
   def test_docs_name_no_unreleased_version
     Dir[File.join(ROOT, "{README.md,README.ko.md,docs/**/*.md}")].each do |f|
       t = File.read(f)
-      refute_match(/`since:0\./, t, "#{f}: since badge before the first release")
+      refute_match(/`since:[^`\s]/, t, "#{f}: since badge before 1.1")
       refute_match(/v0\.\d\.\d|~> 0\.\d/, t, "#{f}: unreleased 0.x version")
     end
   end

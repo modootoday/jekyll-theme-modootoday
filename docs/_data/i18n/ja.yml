@@ -13,7 +13,6 @@ breadcrumb: {label: 現在位置}
 nav: {label: メインメニュー}
 pagination: {label: ページ移動, prev: 前へ, next: 次へ}
 code: {copy: コピー, copied: コピーしました}
-badge: {since: 導入}
 search: {label: 検索}
 page: {edit: このページを編集, updated: 最終更新}
 post: {date_format: "%Y年%m月%d日"}

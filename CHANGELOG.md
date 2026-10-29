@@ -27,6 +27,7 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - The header site title links to the current language's home (`/<lang>/`, with `baseurl`) instead of the default-language root, for every language in `languages` including right-to-left ones; it falls back to the site root when that language has no home page.
 
 ### Changed
+- `since:` version badges are not part of 1.0: they are no longer rendered and `modootoday-check` reports any `` `since:…` `` code span as an error. They return in 1.1, only for features added after 1.0.
 - The docs site and the README quick start build CSS with `sass: {style: compressed}` (Ruby Sass 3.7 and Dart Sass): the stylesheet is about 10 % smaller with identical rendering. `qa/css-sizes.rb` reports the size of the core and each component.
 - Header, navigation, search, theme toggle and code copy use logical properties, so they mirror in right-to-left pages; the code Copy button sits at the inline end and never covers code. The docs navigation lists the math and diagrams guide.
 - `modootoday-check` validates `_data/components.yml` itself: unknown keys in a component entry (allowed: `params`, `i18n`, `slots`, `parts`) or a slot rule (allowed: `required`, `min`, `max`), non-integer or negative counts and `min` greater than `max` are errors, reported once per registry instead of once per section. Registries that use only these keys are unaffected.
@@ -83,7 +84,7 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - P2 components: timeline (`c: timeline`), keyboard keys (`` `kbd:Ctrl+K` ``), client search (`modootoday/search.json` include + `search.js`, under 1 KB compressed), `post` layout.
 - Read-only DTCG `tokens.json` generated in CI from the Sass maps (`script/tokens-json`), with a consistency test against the built CSS.
 - Checker: `kbd:` value format.
-- Example site: i18n keys `theme.toggle`, `breadcrumb.label`, `toc.label`, `badge.since`, `search.label`, `post.date_format` (en/ko/ja).
+- Example site: i18n keys `theme.toggle`, `breadcrumb.label`, `toc.label`, `search.label`, `post.date_format` (en/ko/ja).
 
 ##### Deferred
 - `_data/components.yml` slot contract.
@@ -91,11 +92,11 @@ Internal development milestones, never released. They are all part of 1.0.0.
 #### Milestone 0.3
 
 ##### Added
-- P1 components: theme toggle (localStorage `mt-theme`, pre-paint script), breadcrumb, table of contents, accordion (`c: accordion`), steps (`c: steps`), figure/figcaption, `tag:`/`since:` badges. All on by default; `modootoday.components` narrows them.
-- Checker: `tag:`/`since:` value format, images without alt text.
+- P1 components: theme toggle (localStorage `mt-theme`, pre-paint script), breadcrumb, table of contents, accordion (`c: accordion`), steps (`c: steps`), figure/figcaption, `tag:` badges. All on by default; `modootoday.components` narrows them.
+- Checker: `tag:` value format, images without alt text.
 
 ##### Changed
-- Status/tag/since badges are also turned off when `badge` is not in `modootoday.components`.
+- Status/tag badges are also turned off when `badge` is not in `modootoday.components`.
 
 ##### Deprecated
 - `md-*` class aliases remain for now (removal moved to a later minor).

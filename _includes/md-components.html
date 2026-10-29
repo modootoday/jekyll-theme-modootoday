@@ -8,8 +8,8 @@ Usage: {% include md-components.html content=content lang=page.lang badges=true 
 2) Optional (badges=true): code span `status:available|partial|planned` → span.md-badge.md-badge-<v>.
    Unregistered values are a modootoday-check error. Labels: i18n status.<v>.
    kbd=true: `kbd:Ctrl+K` -> kbd.mt-kbd > kbd + kbd (keys joined by '+', no spaces).
-   Also `tag:<word>` → span.mt-badge.mt-badge-tag and `since:<version>` → span.mt-badge.mt-badge-since
-   (label i18n badge.since); values must be one token (checker: [A-Za-z0-9._-]+).
+   Also `tag:<word>` → span.mt-badge.mt-badge-tag; values must be one token (checker: [A-Za-z0-9._-]+).
+   `since:` is not rendered in 1.0 (checker error).
 3) figure=true: a paragraph that is only an image, followed by a paragraph that is only *emphasis*
    → figure.mt-figure with figcaption. Images need alt text (checker).
 Titles/labels: site.data.i18n[lang], English fallback.
@@ -56,10 +56,9 @@ Titles/labels: site.data.i18n[lang], English fallback.
   {%- endfor -%}
 {%- endif -%}
 {%- if include.badges -%}
-  {%- assign _since = _i.badge.since | default: "Since" -%}
   {%- assign _opens = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
-  {%- for _o in _opens -%}{%- for _pf in (1..2) -%}
-    {%- if _pf == 1 -%}{%- assign _px = "tag:" -%}{%- else -%}{%- assign _px = "since:" -%}{%- endif -%}
+  {%- for _o in _opens -%}
+    {%- assign _px = "tag:" -%}
     {%- assign _key = _o | append: _px -%}
     {%- if _c contains _key -%}
       {%- assign _bits = _c | split: _key -%}
@@ -67,12 +66,11 @@ Titles/labels: site.data.i18n[lang], English fallback.
         {%- assign _v = _b | split: "</code>" | first -%}
         {%- if _v contains "<" or _v contains " " or _v == "" or _v == _b -%}{{ _key }}{{ _b }}
         {%- else -%}{%- assign _tail = _b | remove_first: _v | remove_first: "</code>" -%}
-          {%- if _pf == 1 -%}<span class="mt-badge mt-badge-tag" data-variant="tag">{{ _v }}</span>
-          {%- else -%}<span class="mt-badge mt-badge-since" data-variant="since">{{ _since }} {{ _v }}</span>{%- endif -%}{{ _tail }}
+<span class="mt-badge mt-badge-tag" data-variant="tag">{{ _v }}</span>{{ _tail }}
         {%- endif -%}
       {%- endfor -%}{%- endcapture -%}
     {%- endif -%}
-  {%- endfor -%}{%- endfor -%}
+  {%- endfor -%}
 {%- endif -%}
 {%- if include.kbd -%}
   {%- assign _opens = '<code class="language-plaintext highlighter-rouge">kbd:|<code>kbd:' | split: "|" -%}

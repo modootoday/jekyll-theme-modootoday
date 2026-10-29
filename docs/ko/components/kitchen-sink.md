@@ -124,7 +124,7 @@ greeting: Hello
 
 Inline badges: `status:available` `status:partial` `status:planned`
 
-Tag and version badges: `tag:beta` `tag:experimental` `since:1.0`
+Tag badges: `tag:beta` `tag:experimental`
 
 | Feature | Status |
 |---|---|

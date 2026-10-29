@@ -107,21 +107,21 @@ sudo apt install ruby-full
 
 ## 배지
 
-`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 돼요. status(available, partial, planned), tag, since가 있어요. 상태 기호는 스크린 리더에서 숨기고 이름을 읽어요.
+`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 돼요. status(available, partial, planned)와 tag가 있어요. 상태 기호는 스크린 리더에서 숨기고 이름을 읽어요.
 
 `status:available` `status:partial` `status:planned`
 
-`tag:beta` `since:1.0`
+`tag:beta`
 
 ## 키보드 키
 
-`status:available` `since:1.0` kbd와 콜론으로 시작하는 코드 스팬이 키보드 키가 돼요. 키는 공백 없이 `+`로 이어요.
+`status:available` kbd와 콜론으로 시작하는 코드 스팬이 키보드 키가 돼요. 키는 공백 없이 `+`로 이어요.
 
 Open search with `kbd:Ctrl+K`, or press `kbd:/`.
 
 ## 아코디언
 
-`status:available` `since:1.0` `c: accordion` 섹션에서 `###` 제목이 아래 내용을 펼치고 접는 버튼(`aria-expanded`)이 돼요. Enter나 Space로 전환해요. JavaScript가 없으면 모든 답이 보여요.
+`status:available` `c: accordion` 섹션에서 `###` 제목이 아래 내용을 펼치고 접는 버튼(`aria-expanded`)이 돼요. Enter나 Space로 전환해요. JavaScript가 없으면 모든 답이 보여요.
 
 ### Does it work without JavaScript?
 
@@ -135,7 +135,7 @@ bundle exec jekyll serve
 
 ## 단계
 
-`status:available` `since:1.0` `c: steps` 섹션에서 번호 목록이 번호 붙은 단계가 돼요.
+`status:available` `c: steps` 섹션에서 번호 목록이 번호 붙은 단계가 돼요.
 
 1. Add the theme to `_config.yml`.
 2. Write `index.md` in plain Markdown.
@@ -155,7 +155,7 @@ Push to `main` and turn on GitHub Pages.
 
 ## 타임라인
 
-`status:available` `since:1.0` `c: timeline` 섹션에서 `###` 제목이 선 위의 지점이 돼요.
+`status:available` `c: timeline` 섹션에서 `###` 제목이 선 위의 지점이 돼요.
 
 ### Install
 
@@ -175,7 +175,7 @@ Theme toggle, breadcrumb and table of contents.
 
 ## 그림
 
-`status:available` `since:1.0` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 돼요. 대체 텍스트는 필수예요.
+`status:available` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 돼요. 대체 텍스트는 필수예요.
 
 ![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
 
@@ -214,7 +214,7 @@ end
 
 ## 언어 선택기
 
-`status:available` `since:1.0` `languages:`와 `language_switcher: header`를 설정하면 헤더에 언어 목록을 여는 지구본 버튼이 생겨요. 언어가 늘어도 폭은 그대로예요. 언어 이름은 각 언어로 적고, 현재 언어에는 `aria-current`가 붙어요. 목록은 Esc로 닫아요. 이 페이지 헤더의 지구본이 그 결과예요.
+`status:available` `languages:`와 `language_switcher: header`를 설정하면 헤더에 언어 목록을 여는 지구본 버튼이 생겨요. 언어가 늘어도 폭은 그대로예요. 언어 이름은 각 언어로 적고, 현재 언어에는 `aria-current`가 붙어요. 목록은 Esc로 닫아요. 이 페이지 헤더의 지구본이 그 결과예요.
 
 ```yaml
 modootoday:
@@ -224,7 +224,7 @@ modootoday:
 
 ## 테마 전환
 
-`status:available` `since:1.0` 헤더 버튼으로 라이트와 다크를 바꾸고, 고른 값을 기억해요. 한 모드로 고정하려면 `color_scheme`을 쓰세요. 이 페이지 헤더의 버튼이 그 결과예요.
+`status:available` 헤더 버튼으로 라이트와 다크를 바꾸고, 고른 값을 기억해요. 한 모드로 고정하려면 `color_scheme`을 쓰세요. 이 페이지 헤더의 버튼이 그 결과예요.
 
 ```yaml
 modootoday:
@@ -233,11 +233,11 @@ modootoday:
 
 ## 검색
 
-`status:available` `since:1.0` `search.json` 파일로 동작하는 클라이언트 검색이 헤더에 들어가요(`role="search"`). `kbd:Ctrl+K`나 `kbd:/`로 검색창에 갈 수 있어요. 사이트 루트에 `search.json`을 두면 켜져요. [이 사이트가 쓰는 파일](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)을 복사해 쓰세요. 이 페이지 헤더의 검색창이 그 결과예요.
+`status:available` `search.json` 파일로 동작하는 클라이언트 검색이 헤더에 들어가요(`role="search"`). `kbd:Ctrl+K`나 `kbd:/`로 검색창에 갈 수 있어요. 사이트 루트에 `search.json`을 두면 켜져요. [이 사이트가 쓰는 파일](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)을 복사해 쓰세요. 이 페이지 헤더의 검색창이 그 결과예요.
 
 ## 브레드크럼과 목차
 
-`status:available` `since:1.0` 문서 페이지에는 URL로 만든 브레드크럼과, `##`·`###` 제목으로 만든 목차가 붙어요. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보여요. 레이아웃이 붙이므로 따로 쓸 소스는 없어요. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼세요. 이 페이지 위쪽과 옆이 그 결과예요.
+`status:available` 문서 페이지에는 URL로 만든 브레드크럼과, `##`·`###` 제목으로 만든 목차가 붙어요. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보여요. 레이아웃이 붙이므로 따로 쓸 소스는 없어요. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼세요. 이 페이지 위쪽과 옆이 그 결과예요.
 
 ```yaml
 modootoday:
@@ -246,7 +246,7 @@ modootoday:
 
 ## 이전·다음
 
-`status:available` `since:1.0` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙어요. 숨기려면 프런트 매터에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과예요.
+`status:available` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙어요. 숨기려면 프런트 매터에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과예요.
 
 ```yaml
 ---
@@ -257,7 +257,7 @@ pagination: false
 
 ## 글과 아카이브
 
-`status:available` `since:1.0` `layout: post`는 날짜, 글쓴이, 태그를 보여 줘요(`p.mt-post-meta`).
+`status:available` `layout: post`는 날짜, 글쓴이, 태그를 보여 줘요(`p.mt-post-meta`).
 
 ```yaml
 ---
