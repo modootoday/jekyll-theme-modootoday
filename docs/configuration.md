@@ -28,7 +28,7 @@ modootoday:
 | `color_scheme` | `auto` | follow the OS or force light or dark |
 | `components` | all | limit the CSS and JS that are shipped |
 | `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
-| `nav` | `main` | navigation file in `_data/nav/` |
+| `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a dropdown group on wide screens |
 | `tokens`, `tokens_dark` | theme values | override semantic design tokens inline |
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |

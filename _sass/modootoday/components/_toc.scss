@@ -12,5 +12,8 @@
   .mt-toc-mobile { margin: 0 0 1.5rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-toc-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
   .mt-toc-mobile > ol { padding: 0 .5rem .6rem 0; max-height: 50vh; overflow-y: auto; }
+  // The sticky column lists h2 only, so long pages stay scannable; the collapsed mobile list keeps h3 too.
+  .mt-doc-aside .mt-toc .mt-toc-h3 { display: none; }
+  .mt-doc-aside .mt-toc a { padding-top: .3rem; padding-bottom: .3rem; }
   @media (min-width: 64rem) { .mt-toc-mobile { display: none; } }
 }

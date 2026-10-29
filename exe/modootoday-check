@@ -242,7 +242,7 @@ end
 
 # 5c. modootoday: settings in the site _config.yml
 COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search].freeze
-SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground accent
+SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
               accent-foreground border ring note tip important warning caution status-available status-partial
               status-planned font-sans font-mono font-size line-height measure space radius].freeze
 if mtc.is_a?(Hash)

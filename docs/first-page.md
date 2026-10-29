@@ -34,8 +34,8 @@ One sentence that explains the page.
 
 ## Highlights
 
-- **Fast** — builds in under a second.
-- **Plain** — readable on GitHub.
+- **Fast** — Builds in under a second.
+- **Plain** — Readable on GitHub.
 
 ## Next
 

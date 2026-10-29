@@ -16,9 +16,9 @@ jekyll-theme-modootoday turns standard GitHub Flavored Markdown into a clean doc
 
 ## Why modootoday
 
-- **Only standard Markdown** — alerts, tables, lists and code blocks. No HTML, no Liquid, no kramdown extras in your pages.
+- **Only standard Markdown** — Alerts, tables, lists and code blocks. No HTML, no Liquid, no kramdown extras in your pages.
 - **Works on GitHub Pages** — Liquid-only theme for the classic `github-pages` build, and Jekyll 4 for everything else.
-- **Agent-readable** — every page has a byte-identical Markdown twin, plus `llms.txt` and `llms-full.txt`.
+- **Agent-readable** — Every page has a byte-identical Markdown twin, plus `llms.txt` and `llms-full.txt`.
 
 ## Quick start
 

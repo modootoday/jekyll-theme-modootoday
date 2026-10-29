@@ -12,7 +12,11 @@ First public release. It combines the internal milestones 0.1 to 0.4, which were
 
 ### Release readiness
 
+#### Changed
+- Layout: header, content and footer share one alignment line; footer text no longer truncates; kitchen sink sections are separated by rules; aside TOC lists h2 only; dark `muted`/`card` raised to `#1a212b` for contrast; footnotes styled.
+
 #### Added
+- Brand colour: `primary` and `ring` use the 모두의오늘 brand red (light `#b94022`, dark `#e96346`); new semantic `brand` token (`#d94925`) for the logo mark. Nav entries with `items:` render as a dropdown group at 64rem and up and as flat links below.
 - Head metadata on by default: canonical URL (when `url` is set), `hreflang` from `modootoday.languages`, Open Graph and Twitter card tags; `modootoday.seo: false` turns them off for sites that use jekyll-seo-tag. Sitemap and feed stay opt-in plugins (`modootoday.feed: true` adds the feed link).
 - `modootoday.csp: strict` loads the pre-paint script from `assets/js/modootoday/theme-init.js`, so no inline script is needed; CSP guide.
 - Optional "Last updated" (`last_modified_at`) and edit link (`modootoday.edit_url`, `edit: false` per page).

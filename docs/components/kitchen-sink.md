@@ -54,18 +54,18 @@ Every component the theme ships, in every variant. The same file is readable on 
 
 ## Cards in two columns
 
-- **Short** — one line.
-- **Longer card** — a card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
-- **With a badge** — cards can carry status. `status:available`
-- **With a link** — read the [install guide](../../install/).
+- **Short** — One line.
+- **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
+- **With a badge** — Cards can carry status. `status:available`
+- **With a link** — Read the [install guide](../../install/).
 
 ## Cards in three columns
 
-- **Alerts** — five GitHub alert types. `status:available`
-- **Tabs** — accessible install tabs. `status:partial`
-- **Search** — planned for a later release. `status:planned`
-- **Tokens** — colors, radius and fonts. `status:available`
-- **Sass** — one partial per component. `status:available`
+- **Alerts** — Five GitHub alert types. `status:available`
+- **Tabs** — Accessible install tabs. `status:partial`
+- **Search** — Planned for a later release. `status:planned`
+- **Tokens** — Colors, radius and fonts. `status:available`
+- **Sass** — One partial per component. `status:available`
 - **Twins** — Markdown for agents. `status:available`
 
 ## Tabs with two panels

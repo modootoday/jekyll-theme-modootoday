@@ -12,5 +12,5 @@
   .mt-search-results li + li { margin-top: 0; }
   .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; }
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
-  @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; } .mt-search-results { left: 0; min-width: 0; } }
+  @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; padding: 0 .5rem; } .mt-search-results { left: 0; min-width: 0; } }
 }

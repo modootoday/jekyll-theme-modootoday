@@ -10,19 +10,21 @@
   .mt-site-title { flex: none; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.01em;
     text-decoration: none; color: mt(foreground); white-space: nowrap; }
   .mt-site-title::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
-    background: linear-gradient(135deg, #{mt(primary)}, #{mt(important)}); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
+    background: mt(brand); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
   .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
-  .mt-doc-layout { max-width: 52rem; margin: 0 auto; }
+  // One alignment system: header, main and footer share the container. Pages with a TOC put the text column on the
+  // container's left edge (under the logo); pages without one (home, landing) centre a wider column.
+  .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: 52rem; margin-left: auto; margin-right: auto; }
   .mt-doc-layout.mt-has-toc { max-width: none; }
   .mt-doc-main { min-width: 0; }
   .mt-doc-aside { display: none; }
   .mt-footer { border-top: 1px solid mt(border); color: mt(muted-foreground); font-size: .875rem; background: mt(muted); }
   .mt-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem; }
-  .mt-footer p { margin: 0; }
+  .mt-footer p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
   .mt-footer a { color: mt(foreground); }
   @media (min-width: 64rem) {
-    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; gap: 4rem; }
-    .mt-has-toc .mt-doc-main { max-width: mt(measure); width: 100%; justify-self: center; }
+    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) 14rem; justify-content: space-between; gap: 4rem; }
+    .mt-has-toc ~ .mt-page-meta, .mt-has-toc ~ .mt-pagination { max-width: mt(measure); margin-left: 0; }
     .mt-doc-aside { display: block; }
     .mt-doc-aside .mt-toc { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }
   }

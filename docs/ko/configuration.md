@@ -31,7 +31,7 @@ modootoday:
 | `color_scheme` | `auto` | OS를 따르거나 라이트·다크 고정 |
 | `components` | 전체 | 내보낼 CSS와 JS를 제한 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
-| `nav` | `main` | `_data/nav/`의 내비게이션 파일 |
+| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 넓은 화면에서 드롭다운 그룹이 됨 |
 | `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀 |
 | `twins` | 스텁 | 머리말 없는 쌍둥이는 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |

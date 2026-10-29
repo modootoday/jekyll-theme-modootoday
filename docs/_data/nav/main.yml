@@ -4,6 +4,10 @@
 - {title: Configuration, url: /configuration/}
 - {title: Customize, url: /customize/}
 - {title: Agents, url: /agents/}
-- {title: Changelog, url: /changelog/}
-- {title: Public API, url: /api/}
-- {title: Migrate, url: /upgrade/}
+- title: More
+  items:
+    - {title: Public API, url: /api/}
+    - {title: Migrate, url: /upgrade/}
+    - {title: CSP, url: /csp/}
+    - {title: Roadmap, url: /roadmap/}
+    - {title: Changelog, url: /changelog/}

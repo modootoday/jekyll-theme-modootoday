@@ -4,6 +4,10 @@
 - {title: 설정, url: /ko/configuration/}
 - {title: 커스터마이즈, url: /ko/customize/}
 - {title: 에이전트, url: /ko/agents/}
-- {title: 변경 기록, url: /ko/changelog/}
-- {title: 공개 API, url: /ko/api/}
-- {title: 이전, url: /ko/upgrade/}
+- title: 더 보기
+  items:
+    - {title: 공개 API, url: /ko/api/}
+    - {title: 이전, url: /ko/upgrade/}
+    - {title: CSP, url: /ko/csp/}
+    - {title: 로드맵, url: /ko/roadmap/}
+    - {title: 변경 기록, url: /ko/changelog/}
