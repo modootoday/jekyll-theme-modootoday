@@ -16,7 +16,7 @@
       t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; t._panel.hidden = !on;
     });
     heads.forEach((h, i) => {
-      const panel = h.nextElementSibling, base = `md-tabs-${g}-${h.id || i}`;
+      const panel = h.nextElementSibling, base = `mt-tabs-${g}-${h.id || i}`;
       const b = document.createElement("button");
       b.type = "button"; b.setAttribute("role", "tab"); b.id = `${base}-tab`; b.textContent = h.textContent;
       if (!panel.id) panel.id = `${base}-panel`;

@@ -16,7 +16,7 @@ Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -
 {%- assign _nl = "
 " -%}
 {%- assign _fence = "~~~~~" -%}{%- assign _ob = "{" -%}{%- assign _cb = "}" -%}
-{%- capture _raw %}{% include md-raw-body.html file=page.name %}{% endcapture -%}
+{%- capture _raw %}{% include modootoday/markdown/raw-body.html file=page.name %}{% endcapture -%}
 {%- assign _md = _raw | prepend: _nl | split: "
 ## " -%}
 {%- assign _sep = _nl | append: "<h2 " -%}

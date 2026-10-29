@@ -1,11 +1,11 @@
 {%- comment -%}
 md-components v1 — jekyll-theme-modootoday
-Usage (doc layout): {% include md-sections.html content=html sections=page.sections %}
-No sections: whole body in one div.md-prose (no implicit split).
-With sections: part 0 (before the first h2) is section.md-hero; item i maps to the i-th top-level h2.
+Usage (doc layout): {% include modootoday/markdown/sections.html content=html sections=page.sections %}
+No sections: whole body in one div.mt-prose (no implicit split).
+With sections: part 0 (before the first h2) is section.mt-hero; item i maps to the i-th top-level h2.
 Only top-level h2 split: kramdown prints them at column 0 ("\n<h2 "), nested ones (quote, list,
 alert) are indented and stay inside their section. modootoday-check rejects nested/setext/indented ##.
-Item: "name" or {c: component, name: key, ...params}. c: tabs → data-tabs, c: cta → md-cta (on the section, or on its [data-mt-result] element when it holds one, so a showcase box only frames the result).
+Item: "name" or {c: component, name: key, ...params}. c: tabs → data-tabs, c: cta → (on the section, or on its [data-mt-result] element when it holds one, so a showcase box only frames the result).
 visual: <name> on an item (or include.hero.visual for the hero) appends the site's
 _includes/sections/<name>.html at the end of that section, called with section=<item> (hero=<hero>).
 modootoday-check fails when the item count differs from the h2 count.
@@ -23,19 +23,19 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _fparts.size > 1 -%}{%- assign _notes = include.content | remove_first: _main | strip -%}{%- endif -%}
 {%- assign _parts = _main | prepend: _nl | split: _sep -%}
 {%- assign _p0 = _parts[0] -%}{%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}
-<section class="mt-hero md-hero">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}</section>
+<section class="mt-hero">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}</section>
 {%- for _p in _parts offset:1 -%}
 {%- assign _s = include.sections[forloop.index0] -%}
 {%- if _s.name or _s.c -%}{%- assign _n = _s.name -%}{%- assign _cc = _s.c -%}{%- else -%}{%- assign _n = _s -%}{%- assign _cc = nil -%}{%- endif -%}
 {%- assign _body = _p -%}
 {%- if _cc == 'cta' -%}{%- capture _body %}{% include modootoday/actions.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'features' -%}{%- assign _body = _body | replace: "</strong> — ", "</strong> " | replace: "</strong> – ", "</strong> " | replace: "</strong> - ", "</strong> " -%}{%- endif -%}
-<section class="mt-section md-section{% if _cc %} mt-c-{{ _cc }} md-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta md-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
+<section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
 <h2 {{ _body }}{% if _s.visual %}{% include sections/{{ _s.visual }}.html section=_s %}{% endif %}</section>
 {%- endfor -%}
 {%- if _notes != "" %}
 <div class="mt-endnotes">{{ _notes }}</div>
 {%- endif -%}
 {%- else -%}
-<div class="mt-prose md-prose">{{ include.content }}</div>
+<div class="mt-prose">{{ include.content }}</div>
 {%- endif -%}

@@ -3,7 +3,7 @@
 module Modootoday
   module Check
     # Slot contract (1.x): named, stable parts of a section's Markdown. Detection is structural and
-    # mirrors what md-sections.html and the component scripts consume; markup does not change.
+    # mirrors what modootoday/markdown/sections.html and the component scripts consume; markup does not change.
     module Slots
       DETECT = {
         "lead" => ->(m) { m.split(/\n\s*\n/).reject { |p| p.strip.empty? }.take_while { |p| p !~ /\A\s*([-*+]\s|\d+[.)]\s|###|```|~~~|>)/ }.count { |p| p =~ /\S/ && p !~ /\A\s*(\[[^\]]+\]\([^)]*\)\s*)+\z/ } },

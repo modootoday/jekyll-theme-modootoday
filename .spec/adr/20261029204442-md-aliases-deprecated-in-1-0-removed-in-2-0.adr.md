@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029204442
 title: "md-* aliases deprecated in 1.0, removed in 2.0"
-status: active
+status: superseded
 created: 2026-10-29T20:44:42Z
-updated: 2026-10-29T20:45:01Z
+updated: 2026-10-29T22:42:00Z
 rel:
   supersedes: [adr:modootoday/20261029202150]
 ---

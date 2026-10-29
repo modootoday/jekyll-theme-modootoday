@@ -390,25 +390,4 @@ class CheckTest < Minitest::Test
     assert_equal 0, code, o
   end
 
-  def test_md_alias_in_site_sass_is_a_deprecation_warning
-    page "_sass/site.scss", ".md-callout { color: var(--md-primary); }\n"
-    page "_sass/modootoday/_x.scss", ".md-callout { color: red; }\n"
-    o, code = check
-    assert_equal 0, code, o
-    assert_match(/site\.scss:1: md-\* alias is deprecated \(removed in 2\.0\)/, o)
-    refute_includes o, "_x.scss"
-  end
-
-  def test_md_alias_in_site_markup_is_a_deprecation_warning
-    page "_includes/card.html", "<div class=\"mt-x md-hero\"></div>\n"
-    page "assets/site.css", "a { color: var(--md-accent); }\n"
-    page "notes.md", "---\ntitle: N\n---\n# N\n\n`class=\"md-hero\"` and\n\n```html\n<p class=\"md-prose\"></p>\n```\n"
-    o, code = check
-    assert_equal 0, code, o
-    assert_match(%r{_includes/card\.html:1: md-\* alias is deprecated}, o)
-    assert_match(%r{assets/site\.css:1: md-\* alias is deprecated}, o)
-    refute_includes o, "notes.md"
-    _, code = check("--strict")
-    assert_equal 1, code
-  end
 end

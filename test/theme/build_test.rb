@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# Builds the audit fixtures (test/fixtures/md, from the md-components v1 standards audit) with the
+# Builds the audit fixtures (test/fixtures/md, from the v1 standards audit) with the
 # theme's layouts/includes in-process, using whichever Jekyll the active bundle provides.
 require "minitest/autorun"
 require "tmpdir"
@@ -44,7 +44,7 @@ class BuildTest < Minitest::Test
     n, type = pair.split(":")
     define_method("test_alert_#{n.tr('-', '_')}") do
       h = html(n)
-      assert_includes h, %(class="mt-callout mt-callout-#{type} md-callout md-callout-#{type}"), h
+      assert_includes h, %(class="mt-callout mt-callout-#{type}"), h
       refute_match(/\[!\w+\]/, h)
     end
   end
@@ -54,19 +54,19 @@ class BuildTest < Minitest::Test
   end
 
   def test_alert_body_keeps_block_content
-    assert_match(%r{md-callout-title"><svg class="mt-icon mt-icon-note"[^>]*>.*?</svg>Note</p>\s*<div class="language-sh}, html("a19-code-inside"))
-    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<ul>}, html("a24-list-first-body"))
-    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p><p>Body\.</p>}, html("a28-trailing-spaces"))
-    assert_match(%r{md-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<p>Body after blank\.</p>}, html("a17-blank-gt-after"))
+    assert_match(%r{mt-callout-title"><svg class="mt-icon mt-icon-note"[^>]*>.*?</svg>Note</p>\s*<div class="language-sh}, html("a19-code-inside"))
+    assert_match(%r{mt-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<ul>}, html("a24-list-first-body"))
+    assert_match(%r{mt-callout-title"><svg [^>]*>.*?</svg>Note</p><p>Body\.</p>}, html("a28-trailing-spaces"))
+    assert_match(%r{mt-callout-title"><svg [^>]*>.*?</svg>Note</p>\s*<p>Body after blank\.</p>}, html("a17-blank-gt-after"))
     h = html("a25-two-adjacent")
-    assert_includes h, "md-callout-note"
-    assert_includes h, "md-callout-tip"
+    assert_includes h, "mt-callout-note"
+    assert_includes h, "mt-callout-tip"
   end
 
   SECTIONS.each do |n, count|
     define_method("test_sections_#{n.tr('-', '_')}") do
       h = html(n)
-      assert_equal count, h.scan('<section class="mt-section md-section').size, h
+      assert_equal count, h.scan('<section class="mt-section').size, h
       h.scan(%r{<blockquote.*?</blockquote>}m) { |q| refute_includes q, "<section", h }
       h.scan(%r{<li.*?</li>}m) { |q| refute_includes q, "<section", h }
     end

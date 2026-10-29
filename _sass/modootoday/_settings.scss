@@ -3,4 +3,3 @@
 $mt-css-layers: false !default;      // true: wrap output in @layer mt.* (site CSS outside layers always wins)
 $mt-overrides: () !default;          // partial semantic overrides, light: (primary: #c2410c)
 $mt-overrides-dark: () !default;     // partial semantic overrides, dark
-$mt-md-aliases: true !default;       // emit deprecated --md-* aliases (deprecated in 1.0, removed in 2.0)

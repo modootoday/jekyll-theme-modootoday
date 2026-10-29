@@ -68,7 +68,7 @@ class V04Test < Minitest::Test
   def test_post_layout
     h = read("2026/10/01/hello/index.html")
     assert_match(%r{<p class="mt-post-meta"><time datetime="2026-10-01T[^"]+">2026-10-01</time> · <span class="mt-post-author">Kim</span> <span class="mt-badge mt-badge-tag"[^>]*>news</span>}, h)
-    assert_includes h, '<article class="mt-doc md-doc">'
+    assert_includes h, '<article class="mt-doc">'
   end
 
   def test_disabled

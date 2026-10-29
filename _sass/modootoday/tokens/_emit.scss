@@ -6,7 +6,6 @@
     @include mt-emit($mt-primitive, "mt-p-");
     @include mt-emit($mt-base);
     @include mt-emit($mt-light);
-    @if $mt-md-aliases { @include mt-md-aliases; }
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) { @include mt-emit($mt-dark); }

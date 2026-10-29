@@ -5,7 +5,6 @@
 @import "tools/mixins";
 @import "tokens/primitive";
 @import "tokens/semantic";
-@import "tokens/aliases";
 @if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }
 @import "tokens/emit";
 @import "base/reset";

@@ -17,8 +17,7 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
 
 // page: already on the site's home page in the given scheme. Appends to rows and fails.
 export async function checkContrast(page, scheme, rows, fails) {
-  const prefixes = await page.evaluate(() => [...new Set([...document.styleSheets].flatMap((s) => { try { return [...s.cssRules]; } catch { return []; } }).flatMap((r) => [...(r.style || [])]).filter((p) => p.startsWith("--")).map((p) => p.split("-")[2]))]);
-  const pre = prefixes.includes("mt") ? "--mt-" : "--md-";
+  const pre = "--mt-";
   const rgb = await page.evaluate(({ pre, T }) => Object.fromEntries(Object.entries(T).map(([n, cands]) => {
     let v = "", used = null;
     for (const c of cands) { v = getComputedStyle(document.documentElement).getPropertyValue(pre + c).trim(); if (v) { used = pre + c; break; } }

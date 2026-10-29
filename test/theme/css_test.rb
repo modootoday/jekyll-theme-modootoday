@@ -37,7 +37,7 @@ class CssTest < Minitest::Test
       css, = self.class.build(n)
       refute_match(/@(use|forward)\s|@supports\s+selector\(|--[\w-]+:\s*\$/, css)
       assert_includes css, "--mt-primary:"
-      assert_includes css, "--md-accent:", "deprecated --md-* aliases"
+      refute_match(/--md-|\.md-[a-z]/, css, "md-* aliases never shipped")
       defined = css.scan(/(--mt-[\w-]+)\s*:/).flatten
       (css.scan(/var\((--mt-[\w-]+)/).flatten.uniq - defined).each { |v| flunk "undefined #{v}" }
     end

@@ -52,10 +52,10 @@ class ConsumerHooksTest < Minitest::Test
 
   def test_visual_includes_and_full_width
     _, h = self.class.site("")
-    assert_match(%r{<section class="mt-hero md-hero">.*<div class="v">hero</div></section>}m, h)
+    assert_match(%r{<section class="mt-hero">.*<div class="v">hero</div></section>}m, h)
     assert_match(%r{data-section="one">\s*<h2 .*<div class="v">dark</div></section>}m, h)
     assert_equal 2, h.scan('<div class="v">').size
-    assert_includes h, 'class="mt-main md-main mt-main-full"'
+    assert_includes h, 'class="mt-main mt-main-full"'
   end
 
   def test_hreflang_follows_seo_by_default_and_can_be_kept
