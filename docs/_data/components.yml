@@ -1,4 +1,6 @@
-# Registry checked by modootoday-check and by qa/kitchen-sink coverage (every key must appear in components/kitchen-sink.md)
+# Registry checked by modootoday-check and by qa/coverage.rb (every section component must appear in components/kitchen-sink.md)
 features: {params: {cols: {allowed: [2, 3], required: false}}}
 tabs: {i18n: [tabs.label]}
 cta: {}
+accordion: {}
+steps: {}

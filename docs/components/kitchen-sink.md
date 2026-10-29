@@ -8,6 +8,10 @@ sections:
   - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
   - badges
+  - {c: accordion, name: accordion}
+  - {c: steps, name: steps-list}
+  - {c: steps, name: steps-headings}
+  - figure
   - tables
   - code
   - typography
@@ -114,11 +118,56 @@ greeting: Hello
 
 Inline badges: `status:available` `status:partial` `status:planned`
 
+Tag and version badges: `tag:beta` `tag:experimental` `since:0.3`
+
 | Feature | Status |
 |---|---|
 | Alerts | `status:available` |
 | Tabs | `status:partial` |
 | Search | `status:planned` |
+
+## Accordion
+
+### What is the kitchen sink for?
+
+It shows every component in one place, so visual regressions are easy to spot.
+
+### Does it work without JavaScript?
+
+Yes. Without JavaScript every answer stays visible under its question.
+
+### Can an answer hold code?
+
+```sh
+bundle exec jekyll serve
+```
+
+## Steps as a list
+
+1. Add the theme to `_config.yml`.
+2. Write `index.md` in plain Markdown.
+3. Run `bundle exec jekyll build`.
+4. Check the result with `modootoday-check`.
+
+## Steps as headings
+
+### Install
+
+Add `remote_theme` and the plugin.
+
+### Write
+
+Create a page with front matter.
+
+### Publish
+
+Push to `main` and turn on GitHub Pages.
+
+## Figure
+
+![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
+
+*An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption.*
 
 ## Tables
 

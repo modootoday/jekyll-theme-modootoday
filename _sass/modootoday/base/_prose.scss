@@ -5,6 +5,7 @@
   h2 { font-size: 1.5rem; padding-bottom: .3em; border-bottom: 1px solid mt(border); }
   h3 { font-size: 1.2rem; }
   blockquote { margin: 1rem 0; padding: 0 1rem; color: mt(muted-foreground); border-left: 4px solid mt(border); }
+  :lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
   hr { border: 0; border-top: 1px solid mt(border); margin: 2rem 0; }
   @media (max-width: 40rem) { h1 { font-size: 1.6rem; } h2 { font-size: 1.3rem; } }
 }

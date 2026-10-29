@@ -41,8 +41,15 @@ for (const [kind, ext] of [["css", ".css"], ["js", ".js"]]) {
 }
 
 // 2. token-level WCAG AA contrast (foreground/background token pairs, light + dark)
+// logical name -> candidate token names (v0.2 semantic names first, v0.1 names as fallback)
+const T = {
+  fg: ["foreground", "fg"], "fg-muted": ["muted-foreground", "fg-muted"], bg: ["background", "bg"], "bg-subtle": ["muted", "bg-subtle"],
+  accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"],
+  ...Object.fromEntries(["note", "tip", "important", "warning", "caution"].map((t) => [t, [t]])),
+  ...Object.fromEntries(["available", "partial", "planned"].map((t) => [t, ["status-" + t, t]])),
+};
 const PAIRS = [
-  ["fg", "bg", 4.5], ["fg-muted", "bg", 4.5], ["fg", "bg-subtle", 4.5], ["fg-muted", "bg-subtle", 4.5],
+  ["fg", "bg", 4.5], ["fg-muted", "bg", 4.5], ["fg", "bg-subtle", 4.5], ["fg-muted", "bg-subtle", 4.5], ["card-fg", "card", 4.5],
   ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["border", "bg", 1.2],
   ...["note", "tip", "important", "warning", "caution", "available", "partial", "planned"].map((t) => [t, "bg", 4.5]),
   ...["note", "tip", "important", "warning", "caution"].map((t) => [t, "bg-subtle", 3]),
@@ -58,17 +65,18 @@ for (const scheme of SCHEMES) {
   await page.goto(origin);
   const prefixes = await page.evaluate(() => [...new Set([...document.styleSheets].flatMap((s) => { try { return [...s.cssRules]; } catch { return []; } }).flatMap((r) => [...(r.style || [])]).filter((p) => p.startsWith("--")).map((p) => p.split("-")[2]))]);
   const pre = prefixes.includes("mt") ? "--mt-" : "--md-";
-  const rgb = await page.evaluate(({ pre, names }) => Object.fromEntries(names.map((n) => {
-    const v = getComputedStyle(document.documentElement).getPropertyValue(pre + n).trim();
+  const rgb = await page.evaluate(({ pre, T }) => Object.fromEntries(Object.entries(T).map(([n, cands]) => {
+    let v = "", used = null;
+    for (const c of cands) { v = getComputedStyle(document.documentElement).getPropertyValue(pre + c).trim(); if (v) { used = pre + c; break; } }
     if (!v) return [n, null];
     const d = document.createElement("i"); d.style.color = v; document.body.append(d);
-    const c = getComputedStyle(d).color.match(/[\d.]+/g).slice(0, 3).map(Number); d.remove(); return [n, c];
-  })), { pre, names: [...new Set(PAIRS.flat().filter((x) => typeof x === "string"))] });
+    const c = getComputedStyle(d).color.match(/[\d.]+/g).slice(0, 3).map(Number); d.remove(); return [n, { c, used }];
+  })), { pre, T });
   for (const [f, b, min] of PAIRS) {
     if (!rgb[f] || !rgb[b]) continue;
-    const r = +ratio(rgb[f], rgb[b]).toFixed(2);
-    report.contrast.push({ scheme, fg: pre + f, bg: pre + b, ratio: r, min });
-    if (r < min) fails.push(`contrast ${scheme} ${pre}${f} on ${pre}${b} = ${r} < ${min}`);
+    const r = +ratio(rgb[f].c, rgb[b].c).toFixed(2);
+    report.contrast.push({ scheme, fg: rgb[f].used, bg: rgb[b].used, ratio: r, min });
+    if (r < min) fails.push(`contrast ${scheme} ${rgb[f].used} on ${rgb[b].used} = ${r} < ${min}`);
   }
   // 3. screenshots + axe
   for (const lang of LANGS) for (const p of PAGES) {

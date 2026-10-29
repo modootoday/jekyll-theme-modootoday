@@ -1,4 +1,5 @@
 ---
+toc: false
 title: 홈
 description: 평범한 Markdown을 그대로 두고, GitHub·GitHub Pages·AI 에이전트 모두에서 잘 읽히는 문서를 만듭니다.
 sections:
@@ -12,9 +13,6 @@ sections:
 jekyll-theme-modootoday는 표준 GitHub Flavored Markdown을 깔끔한 문서 사이트로 바꿔 줍니다. 같은 파일이 github.com에서도, GitHub Pages에서도, AI 에이전트용 Markdown 쌍둥이로도 잘 읽힙니다.
 
 [시작하기](install/) [컴포넌트 보기](components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
-
-> [!NOTE]
-> 이 페이지는 [영어 원문](../)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 왜 modootoday인가
 
@@ -51,6 +49,9 @@ permalink: pretty
 3. [컴포넌트](components/)와 [키친싱크](components/kitchen-sink/)에서 고릅니다.
 4. [설정](configuration/)을 조정하고 토큰과 `_sass`로 [모양을 바꿉니다](customize/).
 5. 쌍둥이와 `llms.txt`로 [에이전트가 읽게](agents/) 합니다.
+
+> [!NOTE]
+> 이 페이지는 [영어 원문](../)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 지금 시작
 

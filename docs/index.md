@@ -1,4 +1,5 @@
 ---
+toc: false
 title: Home
 description: Plain Markdown in, polished docs out — on GitHub, GitHub Pages and for AI agents.
 sections:
