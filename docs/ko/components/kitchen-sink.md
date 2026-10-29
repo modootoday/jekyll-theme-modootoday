@@ -12,6 +12,8 @@ sections:
   - {c: steps, name: steps-list}
   - {c: steps, name: steps-headings}
   - figure
+  - {c: timeline, name: timeline}
+  - keyboard
   - tables
   - code
   - typography
@@ -171,6 +173,28 @@ Push to `main` and turn on GitHub Pages.
 ![A Markdown source on the left becomes a styled page on the right](../../../assets/images/sample.svg)
 
 *An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption.*
+
+## Timeline
+
+### 0.1.0
+
+Alerts, sections, cards, tabs, status badges and the checker.
+
+### 0.2.0
+
+Design tokens, the `modootoday:` block, navigation and code copy.
+
+### 0.3.0
+
+Theme toggle, breadcrumb, table of contents, accordion, steps and figures.
+
+### 0.4.0
+
+Timeline, keyboard keys, client search and the post layout.
+
+## Keyboard keys
+
+Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 
 ## Tables
 

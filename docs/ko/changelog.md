@@ -11,9 +11,21 @@ description: jekyll-theme-modootoday 릴리스.
 
 ## 미출시
 
-- 디자인 토큰, 컴포넌트별 Sass 파셜, `modootoday:` 설정 블록. `status:partial`
-- 선택형 플러그인으로 Markdown 쌍둥이 자동 생성. `status:available`
-- 이 문서 사이트와 키친싱크. `status:available`
+- 이 문서 사이트, 키친싱크, QA 작업(스크린숏, axe, 대비, 용량 예산). `status:available`
+
+## 0.4.0
+
+- 타임라인, 키보드 키, 클라이언트 검색, `post` 레이아웃. `since:0.4`
+- CI에서 만드는 읽기 전용 DTCG `tokens.json`.
+
+## 0.3.0
+
+- 테마 전환, 브레드크럼, 목차, 아코디언, 단계, 그림, tag·since 배지. `since:0.3`
+
+## 0.2.0
+
+- 디자인 토큰, 컴포넌트별 Sass 파셜, `modootoday:` 설정 블록. `since:0.2`
+- 내비게이션, 이전/다음 링크, 코드 복사 버튼.
 
 ## 0.1.0
 
