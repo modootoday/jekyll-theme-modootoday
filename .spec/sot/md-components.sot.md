@@ -14,7 +14,7 @@ rel:
 ## Rule
 
 
-RULES.md (header `md-components v1 (draft)`) is the user-facing text; this sot is the judging rule set. Summary by RULES.md section:
+RULES.md (header `md-components v1`, final) is the user-facing text; this sot is the judging rule set. Summary by RULES.md section:
 - §0 every content page has front matter.
 - §1 core components: top-level alerts `> [!TYPE]` (5 types, any case); sections split only on top-level `##` with explicit `sections:` mapping (count must match); card grid, CTA, tabs, mermaid, tables; decoration only from front matter/layouts.
 - §2 optional: status badges (fixed set), `_data/components.yml` registry.
