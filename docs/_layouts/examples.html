@@ -5,7 +5,7 @@ layout: doc
 Front matter `examples:` lists section names (from `sections:`). In each listed `##` section the first paragraph
 is the description; everything after it is the example. The layout reads the page's Markdown source, prints
 the example as a fenced block (highlighted, theme copy button) plus the section's `sections:` entry when it has
-`c:`, then labels the live output that kramdown already rendered from the same text. Pure Liquid (GitHub Pages
+`c:`, then labels the live output (a c: cta result gets its own [data-mt-result] box, so the CTA frame never wraps the whole example; other components style direct children, which stay in place) that kramdown already rendered from the same text. Pure Liquid (GitHub Pages
 Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -%}
 {%- assign _l = page.lang | default: site.lang | default: "en" -%}
 {%- case _l -%}
@@ -55,7 +55,8 @@ Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -
 {%- endcapture %}
 <h2 {{ _lead }}
 <div class="docs-ex-code">{{ _srcmd | markdownify }}</div>
-<p class="docs-ex-label docs-ex-result">{{ _lr }}</p>{{ _rest }}
+<p class="docs-ex-label docs-ex-result">{{ _lr }}</p>
+{% if _s.c == 'cta' %}<div class="docs-ex-out mt-cta" data-mt-result>{{ _rest }}</div>{% else %}{{ _rest }}{% endif %}
 {%- else %}
 <h2 {{ _h }}
 {%- endif -%}

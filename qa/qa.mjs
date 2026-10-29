@@ -113,6 +113,15 @@ async function check(page, { scheme, lang, p }) {
       });
       for (const [k, ok] of Object.entries(r)) if (k === "dir" ? ok !== "rtl" : !ok) fails.push(`rtl ${k} not mirrored ${scheme} ${url}`);
     }
+    if (p === "components/") {
+      // every example card (a section holding a Result label) must share text-align and background: component box styles
+      // (e.g. the c: cta frame) belong on the result container, never on the whole card
+      const cards = await page.evaluate(() => [...document.querySelectorAll("section.mt-section")].filter((s) => s.querySelector(":scope > .docs-ex-result"))
+        .map((s) => { const c = getComputedStyle(s); return { n: s.dataset.section, k: `${c.textAlign}|${c.backgroundImage}|${c.backgroundColor}` }; }));
+      const base = cards[0] && cards[0].k;
+      for (const c of cards) if (c.k !== base) fails.push(`example card ${c.n} styled differently (${c.k} vs ${base}) ${scheme} ${url}`);
+      if (cards.length < 10) fails.push(`only ${cards.length} example cards found ${scheme} ${url}`);
+    }
     const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
     for (const v of axe.violations) {
       report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });
