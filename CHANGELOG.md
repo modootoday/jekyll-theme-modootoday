@@ -8,9 +8,6 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 First public release. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.
 
-### Deprecated
-- **Notice:** the `md-*` classes and `--md-*` custom properties will be marked deprecated in 1.0 and removed in 2.0. They work unchanged until then. Move to the `mt-*` / `--mt-*` names now with the mapping table in the [upgrade guide](docs/upgrade.md).
-
 ### Added
 - **Result container for CTA sections:** when a `c: cta` section holds an element with `data-mt-result`, the `.mt-cta` box (centering, gradient, border) goes on that element instead of the whole section. Sections without one render exactly as before. The docs Components page uses it, so the Buttons example card matches the other cards and only its result is framed.
 - `visual: <name>` on a `sections:` item and `hero: {visual: <name>}` render a site-provided `_includes/sections/<name>.html`; `modootoday-check` fails when it is missing.
@@ -38,7 +35,9 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - The header site title links to the current language's home (`/<lang>/`, with `baseurl`) instead of the default-language root, for every language in `languages` including right-to-left ones; it falls back to the site root when that language has no home page.
 
 ### Changed
-- `since:` version badges are not part of 1.0: they are no longer rendered and `modootoday-check` reports any `` `since:…` `` code span as an error. They return in 1.1, only for features added after 1.0.
+- **One prefix, no aliases:** every class and custom property is `mt-*` / `--mt-*`; the `md-*` classes, `--md-*` properties, `$mt-md-aliases` and the checker's alias warnings are gone (they were never released). The skip-link target is `#mt-main`.
+- Theme includes and scripts live under `modootoday/`: `_includes/modootoday/markdown/{components,sections,raw-body,llms-pages}.html` and `assets/js/modootoday/tabs.js` (were `_includes/md-*.html` and `assets/js/md-tabs.js`); tab ids are `mt-tabs-*`.
+- `since:` version badges are not part of 1.0: they are no longer rendered and `modootoday-check` reports any `` `since:…` `` code span as an error.
 - The docs site and the README quick start build CSS with `sass: {style: compressed}` (Ruby Sass 3.7 and Dart Sass): the stylesheet is about 10 % smaller with identical rendering. `qa/css-sizes.rb` reports the size of the core and each component.
 - Header, navigation, search, theme toggle and code copy use logical properties, so they mirror in right-to-left pages; the code Copy button sits at the inline end and never covers code. The docs navigation lists the math and diagrams guide.
 - `modootoday-check` validates `_data/components.yml` itself: unknown keys in a component entry (allowed: `params`, `i18n`, `slots`, `parts`) or a slot rule (allowed: `required`, `min`, `max`), non-integer or negative counts and `min` greater than `max` are errors, reported once per registry instead of once per section. Registries that use only these keys are unaffected.
@@ -70,8 +69,6 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - SECURITY.md (private vulnerability reporting), CODE_OF_CONDUCT.md (Contributor Covenant 2.1), issue and pull request templates, Dependabot for Actions, Bundler and npm, RELEASING.md.
 - CI job for the Jekyll 3.9 floor.
 
-##### Deprecated
-- `md-*` classes and `--md-*` properties: deprecated in 1.0, removed in 2.0. Use `mt-*` / `--mt-*`.
 
 #### Milestone 0.5
 
@@ -109,8 +106,6 @@ Internal development milestones, never released. They are all part of 1.0.0.
 ##### Changed
 - Status/tag badges are also turned off when `badge` is not in `modootoday.components`.
 
-##### Deprecated
-- `md-*` class aliases remain for now (removal moved to a later minor).
 
 #### Milestone 0.2
 
@@ -128,8 +123,6 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - `required_ruby_version` is now `>= 3.2`.
 - `badges: false` in `modootoday:` is honoured (it was swallowed by `default: true`).
 
-##### Deprecated
-- `--md-*` custom properties and `md-*` classes (aliases of `--mt-*`/`mt-*`); removal planned for v0.3.
 
 ##### Removed
 - `_sass/modootoday/{_tokens,_base,_components}.scss` (replaced by the new partials; `_sass/modootoday.scss` still imports everything).

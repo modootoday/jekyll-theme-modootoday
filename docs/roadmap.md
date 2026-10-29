@@ -24,4 +24,3 @@ description: What the theme supports, which stacks it runs on, and where it is h
 ## Next
 
 - 1.x adds components and options without breaking existing sites.
-- 2.0 removes the deprecated `md-*` classes and `--md-*` properties. Move to `mt-*` now with the [upgrade guide](../upgrade/#md--to-mt-).

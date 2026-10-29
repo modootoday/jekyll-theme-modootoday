@@ -43,64 +43,6 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 | 移行元 | 移行先 | やること |
 |---|---|---|
-| 1.0.0 より前のリポジトリからのビルド | 1.0 | `~> 1.0` または `@v1.0.0` に固定。 自分の CSS の `md-*` クラスと `--md-*` プロパティを `mt-*` と `--mt-*` に置き換える (1.x の間はチェッカーの警告付きで動作する)。`modootoday-check --strict` を実行する |
-| 1.x | 2.0 | `md-*` の別名が削除される |
+| 1.0.0 より前のリポジトリからのビルド | 1.0 | `~> 1.0` または `@v1.0.0` に固定し、`modootoday-check --strict` を実行する |
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
-
-### `md-*` から `mt-*` へ
-
-`md-*` クラスと `--md-*` カスタムプロパティは 1.0 で非推奨になり、2.0 で削除されます。サイト独自の Sass、CSS、インクルード、レイアウト、ページがこれらを使っていると `modootoday-check` が警告し (コードブロックは無視)、`--strict` で警告がエラーになります。各名前を対応する `mt-*` に置き換えてください。存在するのは以下の名前だけで、テーマにほかの `md-*` の名前はありませんでした。
-
-サイトを `grep -rnE '(\.|class=.*)md-[a-z]|--md-' _sass _includes _layouts assets` で検索します。
-
-クラス:
-
-| 旧 | 新 |
-|---|---|
-| `.md-body` | `.mt-body` |
-| `.md-header` | `.mt-header` |
-| `.md-site-title` | `.mt-site-title` |
-| `.md-skip` | `.mt-skip` |
-| `.md-main` | `.mt-main` |
-| `.md-doc` | `.mt-doc` |
-| `.md-hero` | `.mt-hero` |
-| `.md-section` | `.mt-section` |
-| `.md-c-<c>` | `.mt-c-<c>` |
-| `.md-cta` | `.mt-cta` |
-| `.md-prose` | `.mt-prose` |
-| `.md-callout` | `.mt-callout` |
-| `.md-callout-<type>` | `.mt-callout-<type>` |
-| `.md-callout-title` | `.mt-callout-title` |
-| `.md-badge` | `.mt-badge` |
-| `.md-badge-<value>` | `.mt-badge-<value>` |
-
-カスタムプロパティ:
-
-| 旧 | 新 |
-|---|---|
-| `--md-font-sans` | `--mt-font-sans` |
-| `--md-font-mono` | `--mt-font-mono` |
-| `--md-font-size` | `--mt-font-size` |
-| `--md-line-height` | `--mt-line-height` |
-| `--md-measure` | `--mt-measure` |
-| `--md-space` | `--mt-space` |
-| `--md-radius` | `--mt-radius` |
-| `--md-bg` | `--mt-background` |
-| `--md-bg-subtle` | `--mt-muted` |
-| `--md-fg` | `--mt-foreground` |
-| `--md-fg-muted` | `--mt-muted-foreground` |
-| `--md-border` | `--mt-border` |
-| `--md-accent` | `--mt-primary` |
-| `--md-accent-fg` | `--mt-primary-foreground` |
-| `--md-focus` | `--mt-ring` |
-| `--md-note` | `--mt-note` |
-| `--md-tip` | `--mt-tip` |
-| `--md-important` | `--mt-important` |
-| `--md-warning` | `--mt-warning` |
-| `--md-caution` | `--mt-caution` |
-| `--md-available` | `--mt-status-available` |
-| `--md-partial` | `--mt-status-partial` |
-| `--md-planned` | `--mt-status-planned` |
-
-`--md-*` では `bg-subtle`、`fg`、`accent` などの名前は接頭辞だけでなく名前自体が変わっています。右列の `mt-` の名前は[公開 API](../api/)の一部です。

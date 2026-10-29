@@ -16,7 +16,7 @@ rel:
 
 ## Decision
 
-Three layers: primitives `--mt-p-*`, semantic (`--mt-background`, `--mt-primary`, …), component tokens. `--md-*` properties and `md-*` classes remain as deprecated aliases for one minor version (removal planned for v0.3).
+Three layers: primitives `--mt-p-*`, semantic (`--mt-background`, `--mt-primary`, …), component tokens. `--md-*` properties and `md-*` classes remain as deprecated aliases for one minor version (removal planned for v0.3). Later decision: no aliases ship in 1.0.0, see [[adr:modootoday/20261029224200]].
 
 ## Consequences
 

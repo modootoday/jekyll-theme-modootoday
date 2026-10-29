@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T22:38:35Z
 updated: 2026-10-29T22:38:35Z
 rel:
-  governs: [_includes/md-sections.html, docs/_layouts/examples.html, qa/audit/example-cards.mjs]
+  governs: [_includes/modootoday/markdown/sections.html, docs/_layouts/examples.html, qa/audit/example-cards.mjs]
 ---
 
 # Section-level component boxes frame only the result container

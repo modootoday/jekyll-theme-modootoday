@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T20:21:33Z
 updated: 2026-10-29T20:21:50Z
 rel:
-  governs: [_includes/md-components.html]
+  governs: [_includes/modootoday/markdown/components.html]
 ---
 
 # Inline components use code-span prefixes and section c values

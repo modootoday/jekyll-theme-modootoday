@@ -12,12 +12,12 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 ## 1. Core components
 | Component | Markdown | Transformation | Fallback (no JS / GitHub viewer / twin) |
 |---|---|---|---|
-| Alerts (5) | top-level quote whose first line is exactly `> [!NOTE]` (TIP/IMPORTANT/WARNING/CAUTION; any case), body on the following `>` lines. The body may start with a paragraph, a blank `>` line, a list, a code block or a `###` heading. Alerts are a **GitHub extension outside the GFM spec**; other parsers show a plain quote | `_includes/md-components.html` converts kramdown's `<p>[!TYPE]` + body, standalone `<p>[!TYPE]</p>` and `[!TYPE]<br />` (trailing spaces) into `blockquote.md-callout.md-callout-<type>[role=note]` with a localised title | quote / GitHub alert / source |
-| Sections | `# Title`, lead paragraph, link-only paragraph (CTA), then `## Section`; front matter `sections:` | `doc` layout → `_includes/md-sections.html`: with `sections:` the part before the first `##` is `section.md-hero` and item *i* wraps the *i*-th **top-level** `##` in `section.md-section` (an `h2` nested in a quote, list or alert never splits); without it, one `div.md-prose` | plain document |
+| Alerts (5) | top-level quote whose first line is exactly `> [!NOTE]` (TIP/IMPORTANT/WARNING/CAUTION; any case), body on the following `>` lines. The body may start with a paragraph, a blank `>` line, a list, a code block or a `###` heading. Alerts are a **GitHub extension outside the GFM spec**; other parsers show a plain quote | `_includes/modootoday/markdown/components.html` converts kramdown's `<p>[!TYPE]` + body, standalone `<p>[!TYPE]</p>` and `[!TYPE]<br />` (trailing spaces) into `blockquote.mt-callout.mt-callout-<type>[role=note]` with a localised title | quote / GitHub alert / source |
+| Sections | `# Title`, lead paragraph, link-only paragraph (CTA), then `## Section`; front matter `sections:` | `doc` layout → `_includes/modootoday/markdown/sections.html`: with `sections:` the part before the first `##` is `section.mt-hero` and item *i* wraps the *i*-th **top-level** `##` in `section.mt-section` (an `h2` nested in a quote, list or alert never splits); without it, one `div.mt-prose` | plain document |
 | Section mapping | each `sections:` item is a string `name` or `{c: component, name: key, ...params}`. No implicit mapping. Item count ≠ top-level `## ` count is a checker error; setext `---` headings, `##` in quotes/alerts/list items, `##` indented 1–3 spaces and `##` inside HTML comments are checker errors | `data-section`=name, `data-c`=c, class `md-c-<c>` | none |
 | Card grid | under `##`, list items `- **Title** — text` or `- **Title**: text` | CSS only | list |
-| CTA buttons | every link-only paragraph in `section.md-hero` and in `c: cta` sections; the first link is primary. Separator text such as `·` between links is a text node, so the paragraph still counts as link-only | CSS `p:has(> a):not(:has(> :not(a)))` | links |
-| Install tabs | in a `c: tabs` section, repeated `### name` + fenced code block (info string = one language word) | `data-tabs` + i18n `tabs.label`; `assets/js/md-tabs.js` builds WAI-ARIA tabs (arrows, Home, End) | all blocks in order |
+| CTA buttons | every link-only paragraph in `section.mt-hero` and in `c: cta` sections; the first link is primary. Separator text such as `·` between links is a text node, so the paragraph still counts as link-only | CSS `p:has(> a):not(:has(> :not(a)))` | links |
+| Install tabs | in a `c: tabs` section, repeated `### name` + fenced code block (info string = one language word) | `data-tabs` + i18n `tabs.label`; `assets/js/modootoday/tabs.js` builds WAI-ARIA tabs (arrows, Home, End) | all blocks in order |
 | Diagrams, math | ```` ```mermaid ```` / ```` ```math ```` | none in the theme; the site renders at build time or self-hosts a renderer (docs: Math and diagrams) | code / GitHub mermaid, math |
 | Tables | GFM tables | CSS horizontal scroll | table |
 | Decoration | front matter or layout | read by layouts, never in bodies | none |
@@ -25,7 +25,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 ## 2. Optional components
 | Component | Markdown | Transformation | Notes |
 |---|---|---|---|
-| Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.md-badge.md-badge-<value>` = symbol (●◐○, `aria-hidden`) + i18n `status.<value>` | unknown values and leftover `<code>status:` in the build are checker errors |
+| Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.mt-badge.mt-badge-<value>` = symbol (●◐○, `aria-hidden`) + i18n `status.<value>` | unknown values and leftover `<code>status:` in the build are checker errors |
 | Tag badge | `` `tag:beta` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` | needs the `badge` component; bad values are checker errors. `since:` is not part of 1.0 and is a checker error |
 | Accordion | `c: accordion` section, each `###` is a question | JS turns `###` into `button[aria-expanded]` + panel; content stays visible without JS | — |
 | Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |
@@ -108,7 +108,7 @@ Stub and generator details:
 - kramdown differences that the checker does not flag: smart quotes and dashes (`"a" -- b` → “a” – b; GitHub leaves them), `#` headings indented one space are paragraphs, and `\|` inside a code span in a table cell keeps the backslash in kramdown (GitHub shows `|`). Avoid `|` in table code spans.
 - Liquid inside code (`{{ }}`) is still processed by Jekyll before kramdown; such pages need `{% raw %}` on the Jekyll side, which itself shows on GitHub.
 - The stylesheet uses Sass `@import` so it compiles with both Ruby Sass (GitHub Pages) and Dart Sass (Jekyll 4); Dart Sass prints deprecation warnings unless the site sets `sass: {silence_deprecations: [import, global-builtin]}` (jekyll-sass-converter ≥ 3.1). Custom properties holding Sass values must interpolate (`--x: #{$v}`); Ruby Sass prints `$v` literally.
-- Component classes are `mt-*` (with the deprecated `md-*` kept alongside for now; deprecated in 1.0 and removed in 2.0; the checker warns on `md-*` in site Sass, see the public API page).
+- Component classes are `mt-*`.
 - CTA buttons need `:has()`; without it they stay links.
 
 ## 7. Design tokens artifact

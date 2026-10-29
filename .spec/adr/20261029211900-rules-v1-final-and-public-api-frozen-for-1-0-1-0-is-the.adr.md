@@ -18,7 +18,7 @@ The roadmap had split work into 1.0 and 1.x: Japanese docs, the components.yml s
 
 - RULES.md is `md-components v1`, final. Every file that carried the `v1 (draft)` header now says `v1`. A rule is only removed or made stricter in a major version; new optional patterns can arrive in a minor version.
 - The public API on docs/api.md is frozen for 1.0. Names can be added in 1.x minors; nothing listed is removed or changed incompatibly before 2.0. This extends [[adr:modootoday/20261029204501]].
-- `md-*` classes and `--md-*` properties are deprecated as of 1.0 and removed in 2.0, as in [[adr:modootoday/20261029204442]].
+- Only `mt-*` names ship; see [[adr:modootoday/20261029224200]].
 - 1.0 ships only when every roadmap item is done: the former 1.x items (Japanese docs and example guides, slot contract, RTL, math and diagram guidance, visual regression baselines, post archives) move into 1.0. The roadmap page has no 1.x list.
 
 ## Consequences
