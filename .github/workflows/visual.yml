@@ -43,26 +43,28 @@ jobs:
       - name: Build docs/ at the base commit
         id: base
         run: |
-          if ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || ! git cat-file -e "$BASE_SHA:qa/build-docs.sh" 2>/dev/null; then
+          build=qa/site/build-docs.sh  # qa/build-docs.sh before the qa/ regrouping
+          git cat-file -e "$BASE_SHA:$build" 2>/dev/null || build=qa/build-docs.sh
+          if ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || ! git cat-file -e "$BASE_SHA:$build" 2>/dev/null; then
             echo "No usable base commit; skipping the comparison." >> "$GITHUB_STEP_SUMMARY"
             echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
           git worktree add -q "$RUNNER_TEMP/base" "$BASE_SHA"
           export BUNDLE_GEMFILE="$RUNNER_TEMP/base/gemfiles/github-pages.gemfile"
           bundle install --quiet
-          (cd "$RUNNER_TEMP/base" && qa/build-docs.sh "$RUNNER_TEMP/base-site")
+          (cd "$RUNNER_TEMP/base" && "$build" "$RUNNER_TEMP/base-site")
       - name: Baseline from the base commit
         if: steps.base.outputs.skip != 'true'
-        run: node qa/visual.mjs "$RUNNER_TEMP/base-site" --update --baseline qa-out/visual/baseline
+        run: node qa/visual/visual.mjs "$RUNNER_TEMP/base-site" --update --baseline qa-out/visual/baseline
       - name: Build docs/ at this commit
         if: steps.base.outputs.skip != 'true'
-        run: qa/build-docs.sh docs/_site
+        run: qa/site/build-docs.sh docs/_site
       - name: Compare
         if: steps.base.outputs.skip != 'true'
         env:
           # Blocking on pull requests unless labelled visual-ok; report only on pushes.
           REPORT: ${{ (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'visual-ok')) && '--report' || '' }}
-        run: node qa/visual.mjs docs/_site --baseline qa-out/visual/baseline --out qa-out/visual/changed $REPORT
+        run: node qa/visual/visual.mjs docs/_site --baseline qa-out/visual/baseline --out qa-out/visual/changed $REPORT
       - uses: actions/upload-artifact@v7
         if: always() && steps.base.outputs.skip != 'true'
         with:

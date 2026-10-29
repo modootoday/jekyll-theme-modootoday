@@ -1,11 +1,11 @@
 // Median Lighthouse scores per page/form factor from OUT/<name>-<mobile|desktop>.runN.json,
-// checked against qa/lighthouse-budget.json. Exit 1 on a miss unless --summary-only.
+// checked against qa/budget.json. Exit 1 on a miss unless --summary-only.
 import fs from "node:fs";
 import path from "node:path";
 const args = process.argv.slice(2);
 const summaryOnly = args.includes("--summary-only");
 const dir = args.find((a) => !a.startsWith("--")) || "qa-out/lighthouse";
-const budget = JSON.parse(fs.readFileSync(new URL("./lighthouse-budget.json", import.meta.url)));
+const budget = JSON.parse(fs.readFileSync(new URL("./budget.json", import.meta.url)));
 const cats = ["performance", "accessibility", "best-practices", "seo"];
 const groups = {};
 for (const f of fs.readdirSync(dir).filter((f) => /\.run\d+\.json$/.test(f))) {

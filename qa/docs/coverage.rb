@@ -2,7 +2,7 @@
 # Kitchen-sink coverage (dev-only): every component registered in docs/_data/components.yml and every
 # alert type and status value must appear in docs/components/kitchen-sink.md (and each translation).
 require "yaml"
-root = File.expand_path("..", __dir__)
+root = File.expand_path("../..", __dir__)
 reg = YAML.safe_load(File.read("#{root}/docs/_data/components.yml")) || {}
 errs = []
 Dir.glob("#{root}/docs/{,*/}components/kitchen-sink.md").each do |f|

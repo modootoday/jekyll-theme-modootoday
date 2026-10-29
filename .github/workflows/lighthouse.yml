@@ -1,7 +1,7 @@
 name: Lighthouse
 
 # Lighthouse budget for the docs site: each page runs 3 times per form factor and the median
-# score is checked against qa/lighthouse-budget.json. Accessibility, best practices and SEO are
+# score is checked against qa/lighthouse/budget.json. Accessibility, best practices and SEO are
 # pinned at 100; performance has a stable floor (runner load moves it by a few points).
 
 on:
@@ -31,11 +31,11 @@ jobs:
         with:
           node-version: 24
       - name: Build docs/ with this checkout's theme
-        run: qa/build-docs.sh docs/_site
+        run: qa/site/build-docs.sh docs/_site
       - name: Run Lighthouse
-        run: CHROME_PATH="$(command -v google-chrome)" qa/lighthouse.sh docs/_site qa-out/lighthouse
+        run: CHROME_PATH="$(command -v google-chrome)" qa/lighthouse/lighthouse.sh docs/_site qa-out/lighthouse
       - name: Check budget
-        run: node qa/lighthouse-budget.mjs qa-out/lighthouse
+        run: node qa/lighthouse/budget.mjs qa-out/lighthouse
       - uses: actions/upload-artifact@v7
         if: always()
         with:

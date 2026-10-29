@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # Internal link checker for a built Jekyll site (html-proofer equivalent, no extra gems).
-# Usage: ruby qa/links.rb SITE_DIR [BASEURL]
+# Usage: ruby qa/docs/links.rb SITE_DIR [BASEURL]
 # Checks every <a href>, <link href>, <img src>, <script src> and <source srcset> that points
 # inside the site: target file must exist, and "#fragment" must match an id/name on the target page.
 # External links (http/https/mailto/other schemes, other hosts) are NOT fetched: they are flaky

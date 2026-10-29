@@ -135,13 +135,13 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build docs/ with this checkout's theme (github-pages 232)
-        run: qa/build-docs.sh docs/_site
+        run: qa/site/build-docs.sh docs/_site
       - name: Check docs/
         run: bundle exec ruby exe/modootoday-check docs docs/_site --twins
       - name: Internal links and anchors (external links are not fetched)
-        run: bundle exec ruby qa/links.rb docs/_site /jekyll-theme-modootoday
+        run: bundle exec ruby qa/docs/links.rb docs/_site /jekyll-theme-modootoday
       - name: Kitchen-sink coverage
-        run: ruby qa/coverage.rb
+        run: ruby qa/docs/coverage.rb
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Screenshots, axe, contrast, budgets

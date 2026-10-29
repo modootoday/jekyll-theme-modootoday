@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Lighthouse on a built docs site, served at the Pages baseurl.
-# Usage: qa/lighthouse.sh [SITE_DIR=docs/_site] [OUT=qa-out/lighthouse]
+# Usage: qa/lighthouse/lighthouse.sh [SITE_DIR=docs/_site] [OUT=qa-out/lighthouse]
 # Env: RUNS (default 1; CI uses 3, the median score per category is kept), PORT, CHROME_PATH.
-# Then `node qa/lighthouse-budget.mjs OUT` checks the medians against qa/lighthouse-budget.json.
+# Then `node qa/lighthouse/budget.mjs OUT` checks the medians against qa/lighthouse/budget.json.
 set -euo pipefail
 site="${1:-docs/_site}"; out="${2:-qa-out/lighthouse}"; port="${PORT:-8799}"; runs="${RUNS:-1}"
 root="$(mktemp -d)"; mkdir -p "$root/jekyll-theme-modootoday" "$out"
@@ -20,4 +20,4 @@ for p in "" components/ components/kitchen-sink/ install/ ko/ ko/components/kitc
     done
   done
 done
-node qa/lighthouse-budget.mjs "$out" --summary-only
+node qa/lighthouse/budget.mjs "$out" --summary-only
