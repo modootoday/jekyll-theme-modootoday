@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
+### Added
+- Front-matter-less twin mode (`modootoday.twins: source`): on classic GitHub Pages, `jekyll-optional-front-matter` renders a page without front matter and copies the raw file to its own path, which becomes the twin without a stub. The `default` layout and `llms.txt` link to it; the generator skips such pages; the checker verifies the rendered page and the byte-identical raw copy and rejects `remove_originals`, `require_front_matter` and redundant stubs. Example site in `example/source-mode/`, built in CI on github-pages and Jekyll 4.
+- Checker: `modootoday.twins` value check; directories listed in `exclude:` are skipped.
+
 ## [0.4.0] - Unreleased
 
 ### Added

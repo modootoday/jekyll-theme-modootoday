@@ -7,7 +7,7 @@ Goal: page bodies (`*.md`, `<lang>/*.md`) use only standard GitHub Flavored Mark
 Status: **draft**. v1 has not been declared final.
 
 ## 0. Front matter
-Every content page starts with front matter; an empty block (`---` then `---`) is enough. Reason: on GitHub Pages, `jekyll-optional-front-matter` renders a file without front matter and the raw file is also copied to `_site/<name>.md`. Checker error.
+Every content page starts with front matter; an empty block (`---` then `---`) is enough. Reason: on GitHub Pages, `jekyll-optional-front-matter` renders a file without front matter and the raw file is also copied to `_site/<name>.md`. Checker error, except in the opt-in front-matter-less twin mode (`modootoday.twins: source`, §5a), which uses exactly that copy as the twin.
 
 ## 1. Core components
 | Component | Markdown | Transformation | Fallback (no JS / GitHub viewer / twin) |
@@ -65,9 +65,26 @@ The bans are about **portability**: the same source must look the same on github
 Allowed and portable: footnotes `[^1]` (markup differs slightly), task lists, strikethrough, GFM tables, `<url>` autolinks, hard breaks. Note: `> [! NOTE]` (space inside) is not an alert; the checker warns, `--strict` makes it an error.
 
 ## 5. Checker (`modootoday-check SRC SITE [--twins] [--github-pages[=VER]] [--strict] [--gh]`)
-1. front matter present 2. forbidden syntax, alert form, fence info strings 3. `status:` vocabulary 4. `sections:` count = top-level `## ` count, nested/setext/indented `##` 5. `_data/components.yml` if present 6. no `[!TYPE]` (any case, outside `<pre>`/`<code>`) / `<code>status:` in built HTML 7. `--github-pages`: `Gemfile.lock` pins github-pages VER (default 232, or `$MODOOTODAY_GITHUB_PAGES`) 8. `--twins`: rules below 8a. Sass sources (`_sass/`, `assets/**/*.scss`) and built CSS: no `@use`/`@forward`/`@supports selector()`, no `--x: $var` literals, every `var(--mt-*)` defined 8b. `_config.yml` `modootoday:`: known `color_scheme`/`components`, boolean `css_layers`/`badges`, `tokens`/`tokens_dark` values are plain CSS values (no `; { } < >`, valid hex), unknown token names warn 9. `--gh` (optional, network + `gh` auth): render with `gh api markdown`.
+1. front matter present 2. forbidden syntax, alert form, fence info strings 3. `status:` vocabulary 4. `sections:` count = top-level `## ` count, nested/setext/indented `##` 5. `_data/components.yml` if present 6. no `[!TYPE]` (any case, outside `<pre>`/`<code>`) / `<code>status:` in built HTML 7. `--github-pages`: `Gemfile.lock` pins github-pages VER (default 232, or `$MODOOTODAY_GITHUB_PAGES`) 8. `--twins`: rules below 8a. Sass sources (`_sass/`, `assets/**/*.scss`) and built CSS: no `@use`/`@forward`/`@supports selector()`, no `--x: $var` literals, every `var(--mt-*)` defined 8b. `_config.yml` `modootoday:`: `twins` is `true`, `false` or `source`, known `color_scheme`/`components`, boolean `css_layers`/`badges`, `tokens`/`tokens_dark` values are plain CSS values (no `; { } < >`, valid hex), unknown token names warn 9. `--gh` (optional, network + `gh` auth): render with `gh api markdown`.
 
 ## 5a. Markdown twins
+Three ways to publish a page's raw Markdown next to its HTML. Pick one per site (stubs may be mixed with the others for single pages).
+
+| Mode | How | Twin URL | Use when | Limits |
+|---|---|---|---|---|
+| Stub (default) | `<name>.md.txt` with `layout: twin`, `twin_of`, `permalink` | `/<name>/index.md` | classic GitHub Pages, pages need front matter (`sections:`, `title`, `lang`) | one extra file per page |
+| Generator | `plugins: [jekyll-theme-modootoday]` | `/<name>/index.md` | Jekyll 4 or a GitHub Actions build | not run by classic GitHub Pages |
+| Source (front-matter-less) | `modootoday.twins: source`; pages have **no** front matter | the source path: `/<name>.md`, `/<dir>/index.md` | classic GitHub Pages without stubs; simple doc trees | see below |
+
+Source mode relies on `jekyll-optional-front-matter`, a GitHub Pages default plugin: a `.md` file without front matter is rendered to HTML **and** copied verbatim to its own path, so the twin is the whole source file (byte-identical, no front matter to strip). Limits:
+- No per-page front matter: layout, `lang`, `permalink` and other settings come from path-based `defaults:` in `_config.yml`; the title comes from the first `# ` heading (`jekyll-titles-from-headings`). Per-page `sections:` is not available (use a `defaults:` scope for a single file if needed).
+- Links to `other.md` in bodies are not rewritten to the HTML page in this mode; they reach the raw twin. Link to `other/` instead.
+- Local and Actions builds must list `plugins: [jekyll-optional-front-matter, jekyll-titles-from-headings]` (Jekyll 4: add both gems); the classic GitHub Pages build enables them by default.
+- `optional_front_matter.remove_originals: true` or `require_front_matter: true` disables the raw copy; the checker reports both.
+- Pages that keep front matter in source mode still need a stub or the generator; a stub next to a front-matter-less page is redundant (checker error).
+- The `default` layout and `llms.txt` link to the raw copy (`/<path>.md`) when it exists.
+
+Stub and generator details:
 - Source `<name>.md`. The twin comes from either
   - the opt-in generator `plugins: [jekyll-theme-modootoday]` (Jekyll 4 or an Actions build; not run by the classic GitHub Pages build, which allows only whitelisted plugins), or
   - a stub `<name>.md.txt` next to it with only `layout: twin`, `twin_of`, `permalink` and no body (works everywhere). Liquid cannot create output files, so on classic GitHub Pages a stub per page is unavoidable.
@@ -76,6 +93,7 @@ Allowed and portable: footnotes `[^1]` (markup differs slightly), task lists, st
 - Twin body is **byte-identical** to the source minus front matter (no added headers; put extra information in `llms.txt`).
 - `llms.txt` and `llms-full.txt` exist at `/` and under each `/<lang>/`. `llms.txt` follows llmstxt.org: `# Title`, a `>` summary, then `## Section` lists of `- [Name](url): note`. `llms-full.txt` is a common convention, not part of llmstxt.org. Layouts `llms` and `llms-full` generate both from a front-matter-only stub (or the generator adds them); `llms-full.txt` is every page body of that language, byte-identical, separated by a blank line.
 - The `default` layout adds `<link rel="alternate" type="text/markdown" href=".../index.md">` when the twin exists and `<link rel="describedby" type="text/plain">` to the nearest `/<lang>/llms.txt` or `/llms.txt`.
+- With `--twins` and `modootoday.twins: source`: a front-matter-less page needs a rendered page (`<name>.html` or `<name>/index.html`) and a byte-identical raw copy at its source path.
 - With `--twins`: a missing or non-identical twin is an error (`README.md` and `twin: false` excepted), a stub must use `layout: twin` with an empty body, `llms.txt` must start with `# `, and `llms-full.txt` must contain every page body of its language.
 - Twins and the checker assume directory URLs (`permalink: pretty` or `/<name>/`); with `.html` permalinks the generator writes `/<name>.md` but the checker still expects `/<name>/index.md`.
 - Twin bodies go through Liquid (`include_relative`); bodies must not contain Liquid (already forbidden in §4).
