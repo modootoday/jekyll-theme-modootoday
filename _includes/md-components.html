@@ -1,8 +1,10 @@
 {%- comment -%}
 md-components v1 (draft) — jekyll-theme-modootoday
 Usage: {% include md-components.html content=content lang=page.lang badges=true %}
-1) GitHub alerts (> [!NOTE|TIP|IMPORTANT|WARNING|CAUTION]) → blockquote.md-callout.
-   Only top-level alerts convert; nested/list/table alerts stay and fail modootoday-check.
+1) GitHub alerts (> [!NOTE|TIP|IMPORTANT|WARNING|CAUTION], any case) → blockquote.md-callout.
+   Handles kramdown's "<p>[!TYPE]\nbody", standalone "<p>[!TYPE]</p>" (blank > line, or body
+   starting with code/list/heading) and "[!TYPE]<br />" (trailing spaces). Text after the marker,
+   unknown types and nested/list/table alerts stay unconverted and fail modootoday-check.
 2) Optional (badges=true): code span `status:available|partial|planned` → span.md-badge.md-badge-<v>.
    Unregistered values are a modootoday-check error. Labels: i18n status.<v>.
 Titles/labels: site.data.i18n[lang], English fallback.
@@ -10,20 +12,32 @@ Titles/labels: site.data.i18n[lang], English fallback.
 {%- assign _c = include.content -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
 {%- assign _i = site.data.i18n[_lang] -%}
-{%- assign _types = "note:Note,tip:Tip,important:Important,warning:Warning,caution:Caution" | split: "," -%}
-{%- for _pair in _types -%}
-  {%- assign _kv = _pair | split: ":" -%}
-  {%- assign _key = _kv[0] -%}
-  {%- assign _title = _i.callout[_key] | default: _kv[1] -%}
-  {%- assign _mark = _key | upcase | prepend: "[!" | append: "]" -%}
-  {%- capture _from %}<blockquote>
-  <p>{{ _mark }}
-{% endcapture -%}
-  {%- capture _to %}<blockquote class="md-callout md-callout-{{ _key }}" role="note">
-  <p class="md-callout-title">{{ _title }}</p><p>
-{% endcapture -%}
-  {%- assign _c = _c | replace: _from, _to -%}
-{%- endfor -%}
+{%- assign _types = "note,tip,important,warning,caution" | split: "," -%}
+{%- assign _deft = "Note,Tip,Important,Warning,Caution" | split: "," -%}
+{%- assign _sep = "<blockquote>
+  <p>[!" -%}
+{%- assign _nl = "
+" -%}
+{%- assign _chunks = _c | split: _sep -%}
+{%- if _chunks.size > 1 -%}
+{%- capture _c -%}{{ _chunks[0] }}{%- for _ch in _chunks offset:1 -%}
+{%- assign _ty = _ch | split: "]" | first | downcase -%}
+{%- assign _rest = _ch | slice: _ty.size, 1000000 | remove_first: "]" -%}
+{%- assign _l1 = _rest | split: _nl | first | strip -%}
+{%- assign _after = _rest | remove_first: _l1 | lstrip -%}
+{%- assign _ok = false -%}{%- assign _body = "" -%}
+{%- if _types contains _ty -%}
+  {%- if _l1 == "</p>" -%}{%- assign _ok = true -%}{%- assign _body = _after | prepend: "  " | prepend: _nl -%}
+  {%- elsif _l1 == "<br />" or _l1 == "" -%}{%- assign _ok = true -%}{%- assign _body = _after | prepend: "<p>" -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if _ok -%}
+{%- for _t in _types -%}{%- if _t == _ty -%}{%- assign _title = _i.callout[_t] | default: _deft[forloop.index0] -%}{%- endif -%}{%- endfor -%}
+<blockquote class="md-callout md-callout-{{ _ty }}" role="note">
+  <p class="md-callout-title">{{ _title }}</p>{{ _body }}
+{%- else -%}{{ _sep }}{{ _ch }}{%- endif -%}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
 {%- if include.badges -%}
   {%- assign _st = "available:●:Available,partial:◐:Partial,planned:○:Planned" | split: "," -%}
   {%- for _pair in _st -%}
