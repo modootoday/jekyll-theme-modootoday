@@ -1,0 +1,14 @@
+{%- comment -%}md-components v1 (draft): assigns _llms_pages = Markdown pages in the current page's directory tree and language (twin: false and README.md excluded), sorted by url.{%- endcomment -%}
+{%- assign _llms_lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign _llms_dir = page.path | split: "/" | pop | join: "/" -%}
+{%- if _llms_dir != "" -%}{%- assign _llms_dir = _llms_dir | append: "/" -%}{%- endif -%}
+{%- assign _llms_pages = "" | split: "" -%}
+{%- assign _llms_sorted = site.pages | sort: "url" -%}
+{%- for _p in _llms_sorted -%}
+  {%- assign _pext = _p.path | split: "." | last -%}
+  {%- assign _plang = _p.lang | default: site.lang | default: "en" -%}
+  {%- assign _pstart = _p.path | slice: 0, _llms_dir.size -%}
+  {%- if _pext == "md" and _p.name != "README.md" and _p.twin != false and _plang == _llms_lang and _pstart == _llms_dir -%}
+    {%- assign _llms_pages = _llms_pages | push: _p -%}
+  {%- endif -%}
+{%- endfor -%}

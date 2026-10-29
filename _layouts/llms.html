@@ -1,0 +1,31 @@
+{%- comment -%}md-components v1 (draft) llms.txt (https://llmstxt.org): H1, summary, a Docs H2 link list of this language's pages (twin URLs) and, at the root, a Translations H2. Use from a stub whose front matter is only `layout: llms` (title/description optional; else _data/i18n/<lang>.yml title/description, else site).{%- endcomment -%}
+{%- include md-llms-pages.html -%}
+{%- assign _t = site.data.i18n[_llms_lang] -%}
+# {{ page.title | default: _t.title | default: site.title }}
+
+> {{ page.description | default: _t.description | default: site.description | strip_newlines }}
+
+## Docs
+
+{% for _p in _llms_pages -%}
+{%- assign _tw = _p.url | append: "index.md" -%}{%- if _p.url contains ".html" -%}{%- assign _tw = _p.url | replace: ".html", ".md" -%}{%- endif -%}
+{%- if site.url -%}{%- assign _href = _tw | absolute_url -%}{%- else -%}{%- assign _href = _tw | relative_url -%}{%- endif -%}
+- [{{ _p.title | default: _p.name }}]({{ _href }}){% if _p.description %}: {{ _p.description | strip_newlines }}{% endif %}
+{% endfor -%}
+{%- if _llms_dir == "" -%}
+{%- assign _tr = "" -%}
+{%- for _l in site.data.i18n -%}
+  {%- assign _code = _l[0] -%}
+  {%- assign _lurl = "/" | append: _code | append: "/llms.txt" -%}
+  {%- assign _lp = site.pages | where: "url", _lurl | first -%}
+  {%- if _lp and _code != _llms_lang -%}
+    {%- if site.url -%}{%- assign _href = _lurl | absolute_url -%}{%- else -%}{%- assign _href = _lurl | relative_url -%}{%- endif -%}
+    {%- capture _tr %}{{ _tr }}- [{{ _l[1].language | default: _code }}]({{ _href }}): {{ _code }} pages
+{% endcapture -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if _tr != "" %}
+## Translations
+
+{{ _tr }}{% endif -%}
+{%- endif -%}

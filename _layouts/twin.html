@@ -1,6 +1,2 @@
-{%- comment -%}md-components v1 (draft) twin: outputs the source body byte-for-byte.{%- endcomment -%}
-{%- capture raw -%}{% include_relative {{ page.twin_of }} %}{%- endcapture -%}
-{%- assign fm = raw | split: "---" -%}
-{%- assign front = "---" | append: fm[1] | append: "---
-" -%}
-{{- raw | remove_first: front -}}
+{%- comment -%}md-components v1 (draft) twin: outputs the source body of page.twin_of byte-for-byte.{%- endcomment -%}
+{%- include md-raw-body.html file=page.twin_of -%}

@@ -1,0 +1,8 @@
+{%- comment -%}md-components v1 (draft) llms-full.txt: the source body of every page of this language under this directory, byte-for-byte, separated by a blank line. Use from a stub: front matter `layout: llms-full` only.{%- endcomment -%}
+{%- include md-llms-pages.html -%}
+{%- for _p in _llms_pages -%}
+{%- assign _rel = _p.path | remove_first: _llms_dir -%}
+{%- unless forloop.first %}
+{% endunless -%}
+{%- include md-raw-body.html file=_rel -%}
+{%- endfor -%}
