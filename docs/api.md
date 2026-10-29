@@ -29,7 +29,7 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 
 ## Component structure
 
-This is the markup you can target from your own CSS today. Classes and attributes in this table are stable under the policy above; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. A formal per-component slot contract is planned for 1.x, see [Not in 1.0](#not-in-10).
+This is the markup you can target from your own CSS today. Classes and attributes in this table are stable under the policy above; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. The [slot contract](#slot-contract) names the Markdown parts each component consumes.
 
 | Component | Root | Parts you may style | State and variants |
 |---|---|---|---|
@@ -51,7 +51,30 @@ This is the markup you can target from your own CSS today. Classes and attribute
 
 Each `mt-*` class above also has a deprecated `md-*` twin on the shell, doc, hero, section, prose, alert and badge elements until 2.0 (see [Migrate and upgrade](../upgrade/)).
 
+## Slot contract
+
+`since:1.0` A slot is a named part of a section's Markdown. Slot names are stable under the policy above, and declaring them never changes the generated markup. `modootoday-check` counts each slot in every section whose `c:` has a `slots:` entry in `_data/components.yml`, and fails when a count is outside the declared range.
+
+| Slot | What it counts in the section (after its `##` heading) | Renders as |
+|---|---|---|
+| `lead` | Plain paragraphs before the first list, `###`, code block or quote | `p` |
+| `items` | List items | `ul > li` or `ol > li` (cards, steps) |
+| `panels` | `###` headings | tab, accordion or step panels |
+| `actions` | Link-only lines | CTA buttons (`c: cta`) |
+| `code` | Fenced code blocks | `pre` (tab content) |
+| `figures` | Lines that start with an image | `figure.mt-figure` |
+
+Each slot takes `required: true` (same as `min: 1`), `min` and `max`. An unknown slot name is an error.
+
+```yaml
+features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}}
+tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
+cta: {slots: {actions: {required: true}}}
+accordion: {slots: {panels: {min: 1}}}
+```
+
+Components without `slots:` are not counted, so existing registries keep working.
+
 ## Not in 1.0
 
-- A per-component slot contract in `_data/components.yml` beyond parameter checks is planned for 1.x.
 - Right-to-left layouts, math and diagrams are non-goals for 1.0; see [Roadmap](../roadmap/).

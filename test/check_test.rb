@@ -85,6 +85,28 @@ class CheckTest < Minitest::Test
     assert_match(/missing key 'tabs.label'/, o)
   end
 
+  def test_slot_contract
+    write File.join(@src, "_data/components.yml"),
+          "features: {slots: {items: {min: 2, max: 3}, lead: {max: 0}}}\n" \
+          "tabs: {slots: {panels: {min: 2}, code: {required: true}}}\n" \
+          "cta: {slots: {actions: {required: true}, bogus: {}}}\n"
+    page "ok.md", "---\nsections: [{c: features}, {c: tabs}, {c: cta}]\n---\n# T\n\n## F\n\n- **a** x\n- **b** y\n\n" \
+                  "## Tabs\n\n### A\n\n```sh\n## not a heading\n```\n\n### B\n\n```sh\nb\n```\n\n## Next\n\n[Go](x/) [More](y/)\n"
+    o, = check
+    refute_match(/sections\[\d\]/, o)
+    assert_match(/unknown slot 'bogus'/, o)
+    page "bad.md", "---\nsections: [{c: features}, {c: tabs}, {c: cta}]\n---\n# T\n\n## F\n\nIntro.\n\n- one\n- two\n- three\n- four\n\n" \
+                   "## Tabs\n\n### Only\n\n## Next\n\nNo links here.\n"
+    o, code = check
+    assert_equal 1, code
+    assert_match(/bad.md: sections\[0\] features: slot 'items' has 4 item\(s\), allows at most 3/, o)
+    assert_match(/bad.md: sections\[0\] features: slot 'lead' has 1 item\(s\), allows at most 0/, o)
+    assert_match(/bad.md: sections\[1\] tabs: slot 'panels' has 1 item\(s\), needs at least 2/, o)
+    assert_match(/bad.md: sections\[1\] tabs: slot 'code' has 0 item\(s\), needs at least 1/, o)
+    assert_match(/bad.md: sections\[2\] cta: slot 'actions' has 0 item\(s\), needs at least 1/, o)
+    refute_match(/ok.md: sections/, o)
+  end
+
   def test_build_residue
     page "a.md", "---\n---\n# A\n"
     out "a/index.html", "<p>[!NOTE]</p><code>status:available</code>"

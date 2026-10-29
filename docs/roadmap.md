@@ -13,7 +13,7 @@ description: What 1.0 includes, what comes in 1.x, and the non-goals.
 
 ## 1.x
 
-- Slot contract for `_data/components.yml` beyond parameter checks. `status:planned`
+- Slot contract for `_data/components.yml` ([API](../api/#slot-contract)). `status:available`
 - Tag and category archive pages for the `post` layout. `status:planned`
 - Japanese documentation (the example site already has Japanese pages). `status:planned`
 - Visual regression checks against reference screenshots in CI. `status:planned`

@@ -67,8 +67,32 @@ def strip_code(t) = strip_fences(t).gsub(/(`+)(?!`).+?(?<!`)\1(?!`)/) { "``" }
 def strip_comments(t) = t.gsub(/<!--.*?-->/m) { |m| "\n" * m.count("\n") }
 rel = ->(f) { f.delete_prefix("#{src}/") }
 
+# Slot contract (1.x): named, stable parts of a section's Markdown. Detection is structural and
+# mirrors what md-sections.html and the component scripts consume; markup does not change.
+SLOTS = {
+  "lead" => ->(m) { m.split(/\n\s*\n/).reject { |p| p.strip.empty? }.take_while { |p| p !~ /\A\s*([-*+]\s|\d+[.)]\s|###|```|~~~|>)/ }.count { |p| p =~ /\S/ && p !~ /\A\s*(\[[^\]]+\]\([^)]*\)\s*)+\z/ } },
+  "items" => ->(m) { m.scan(/^([-*+]|\d+[.)])\s/).size },
+  "panels" => ->(m) { m.scan(/^###(?: |$)/).size },
+  "actions" => ->(m) { m.scan(/^(?:\[[^\]\n]+\]\([^)\n]*\)[ \t]*)+$/).size },
+  "code" => ->(_m, raw) { n = 0; strip_fences(raw) { n += 1 }; n },
+  "figures" => ->(m) { m.scan(/^!\[[^\]\n]+\]\([^)\n]+\)/).size },
+}.freeze
 comps_file = "#{src}/_data/components.yml"
 comps = File.exist?(comps_file) ? (YAML.safe_load(File.read(comps_file)) || {}) : nil
+slot_contract = lambda do |file, i, c, slots, md|
+  next if slots.nil?
+  next errs << "#{file}: _data/components.yml #{c}.slots must be a map of slot name -> {required, min, max}" unless slots.is_a?(Hash)
+  slots.each do |name, rule|
+    det = SLOTS[name]
+    next errs << "_data/components.yml: #{c}.slots: unknown slot '#{name}' (known: #{SLOTS.keys.join(', ')})" unless det
+    rule = {} unless rule.is_a?(Hash)
+    m, raw = md || ["", ""]
+    n = det.arity == 2 ? det.call(m, raw) : det.call(m)
+    min = rule["min"] || (rule["required"] ? 1 : nil)
+    errs << "#{file}: sections[#{i}] #{c}: slot '#{name}' has #{n} item(s), needs at least #{min}" if min && n < min
+    errs << "#{file}: sections[#{i}] #{c}: slot '#{name}' has #{n} item(s), allows at most #{rule['max']}" if rule["max"] && n > rule["max"]
+  end
+end
 i18n = Dir.glob("#{src}/_data/i18n/*.yml").to_h { |f| [File.basename(f, ".yml"), YAML.safe_load(File.read(f)) || {}] }
 dig = ->(h, key) { key.split(".").reduce(h) { |a, k| a.is_a?(Hash) ? a[k] : nil } }
 
@@ -179,11 +203,20 @@ mds.each do |f|
   errs << "#{rel[f]}: sections: has #{secs.size} item(s) but body has #{h2} top-level '## ' heading(s)" if secs.size != h2
   # 4. optional components registry
   next unless comps
+  # Markdown of each top-level ## section (index i = sections[i]); code spans/fences already blanked in `code`
+  bl = b.lines
+  cl = code.lines
+  starts = cl.each_index.select { |k| cl[k] =~ /^##(?: |$)/ }
+  sec_md = starts.each_with_index.map do |st, k|
+    raw = bl[st + 1...(starts[k + 1] || bl.size)].to_a.join
+    [cl[st + 1...(starts[k + 1] || cl.size)].to_a.join, raw]
+  end
   secs.each_with_index do |s, i|
     next unless s.is_a?(Hash) && s["c"]
     spec = comps[s["c"]]
     next errs << "#{rel[f]}: sections[#{i}] unknown component '#{s['c']}' (not in _data/components.yml)" unless spec
     params = spec["params"] || {}
+    slot_contract.call(rel[f], i, s["c"], spec["slots"], sec_md[i])
     (s.keys - %w[c name]).each do |k|
       next errs << "#{rel[f]}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)
       allowed = params[k].is_a?(Hash) && params[k]["allowed"]

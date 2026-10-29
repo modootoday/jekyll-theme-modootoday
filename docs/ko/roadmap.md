@@ -16,7 +16,7 @@ description: 1.0에 들어가는 것, 1.x에 올 것, 목표가 아닌 것.
 
 ## 1.x
 
-- 파라미터 검사를 넘어서는 `_data/components.yml` 슬롯 계약. `status:planned`
+- `_data/components.yml` 슬롯 계약([API](../api/#슬롯-계약)). `status:available`
 - `post` 레이아웃용 태그·카테고리 아카이브 페이지. `status:planned`
 - 일본어 문서 (예제 사이트에는 이미 일본어 페이지가 있음). `status:planned`
 - CI에서 기준 스크린숏과 비교하는 시각 회귀 검사. `status:planned`
