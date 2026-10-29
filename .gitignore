@@ -9,3 +9,9 @@ node_modules/
 Gemfile.lock
 gemfiles/*.lock
 pkg/
+coverage/
+tmp/
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -18,8 +18,13 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true"
   }
 
-  spec.files = Dir.glob("{_layouts,_includes,_sass,assets,exe}/**/*", File::FNM_DOTMATCH).select { |f| File.file?(f) } +
-               %w[LICENSE README.md README.ko.md RULES.md CHANGELOG.md]
+  # Ship only runtime theme files (jekyll new-theme / minima convention):
+  # tracked files under the theme dirs + top-level docs. test/, example/,
+  # gemfiles/, CI and JS tooling stay in the repo but out of the gem.
+  runtime = %r{\A(?:_layouts|_includes|_sass|assets|exe)/|\A(?:LICENSE|README(?:\.ko)?\.md|RULES\.md|CHANGELOG\.md)\z}
+  tracked = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL, &:read).to_s.split("\x0")
+  tracked = Dir.glob("**/*", File::FNM_DOTMATCH, base: __dir__) if tracked.empty?
+  spec.files = tracked.grep(runtime).select { |f| File.file?(File.join(__dir__, f)) }.sort
   spec.bindir        = "exe"
   spec.executables   = ["modootoday-check"]
 
