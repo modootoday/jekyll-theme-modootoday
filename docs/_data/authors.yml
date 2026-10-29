@@ -1,0 +1,2 @@
+# Byline data for posts: author: <id> or authors: [ids]. page: links the byline to an author page.
+modootoday: {name: modootoday, url: "https://github.com/modootoday", page: /authors/modootoday/, bio: "The team behind jekyll-theme-modootoday."}

@@ -1,0 +1,2 @@
+# Byline data: posts set author: <id> or authors: [ids].
+alex: {name: Alex Kim, url: "https://example.com", page: /authors/alex/, bio: "Writes the example posts."}

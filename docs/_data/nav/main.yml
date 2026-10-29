@@ -7,6 +7,7 @@
 - title: More
   items:
     - {title: Public API, url: /api/}
+    - {title: Blog and news, url: /blog-news/}
     - {title: Migrate, url: /upgrade/}
     - {title: Math and diagrams, url: /math-diagrams/}
     - {title: CSP, url: /csp/}

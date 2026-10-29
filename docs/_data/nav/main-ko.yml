@@ -7,6 +7,7 @@
 - title: 더 보기
   items:
     - {title: 공개 API, url: /ko/api/}
+    - {title: 블로그와 뉴스, url: /ko/blog-news/}
     - {title: 이전, url: /ko/upgrade/}
     - {title: 수식과 다이어그램, url: /ko/math-diagrams/}
     - {title: CSP, url: /ko/csp/}

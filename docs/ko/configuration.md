@@ -49,6 +49,8 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../api/#글과-아카이브) 참고) |
+| `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../blog-news/#설정) 참고 |
+| `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../blog-news/#설정) 참고 |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../api/)에 있습니다.
 

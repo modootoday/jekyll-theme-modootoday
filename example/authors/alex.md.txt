@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: alex.md
+permalink: /authors/alex/index.md
+---

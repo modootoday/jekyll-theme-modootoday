@@ -49,7 +49,10 @@ description: このテーマがサイト向けに文書化している名前、�
 | バッジ | `span.mt-badge` | 記号 (`aria-hidden`)、ラベル | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | キーボードのキー | `kbd.mt-kbd` | キーごとの `kbd` | — |
 | 図 | `figure.mt-figure` | `img`, `figcaption` | — |
-| 投稿のメタ情報 | `p.mt-post-meta` | `time`, `.mt-post-author`、タグバッジ | — |
+| 記事ヘッダー | `header.mt-post-header` | `h1.mt-post-title`、`.mt-post-deck`、`.mt-byline`（`.mt-byline-authors` > `.mt-post-author`、`.mt-byline-dates` > `time`）、`figure.mt-post-cover`、`nav.mt-series`、`p.mt-post-meta`（タグバッジ） | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
+| 記事フッター | `article.mt-doc` | `.mt-share` ボタン、`nav.mt-post-nav`、`section.mt-related`、`.mt-news-correction`、`.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
+| 記事カード | `article.mt-card-post` | `.mt-card-post-cover`、`.mt-card-post-meta`、`.mt-card-post-title`、`.mt-card-post-excerpt` | `.mt-card-post-featured`、`[data-kind=news]`、`.mt-post-list[data-variant=list\|grid\|magazine]` |
+| ニューストップ | `div.mt-news-top` | `.mt-news-lead`、`.mt-news-secondary`、`section.mt-news-latest`、`section.mt-news-section` | `[data-category]`、`.mt-badge[data-variant=breaking\|live]` |
 | 検索 | `div.mt-search[role=search]` | 入力欄、`.mt-search-results` | — |
 
 ## スロット契約

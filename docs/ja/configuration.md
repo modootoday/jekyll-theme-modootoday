@@ -49,6 +49,8 @@ modootoday:
 | `theme_color` | ページ背景 | ブラウザのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
 | `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../api/#記事とアーカイブ)を参照） |
+| `blog` | なし | ブログ設定（`per_page`、`variant`、`related`、`share`、`reading_time` など）。[ブログとニュース](../blog-news/#設定)を参照 |
+| `news` | なし | ニュース設定（トップページの `sections:` など）。[ブログとニュース](../blog-news/#設定)を参照 |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../api/)にあります。
 

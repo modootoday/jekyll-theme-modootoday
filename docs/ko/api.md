@@ -49,7 +49,10 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |
 | 그림 | `figure.mt-figure` | `img`, `figcaption` | — |
-| 글 메타 | `p.mt-post-meta` | `time`, `.mt-post-author`, 태그 배지 | — |
+| 글 머리 | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`(`.mt-byline-authors` > `.mt-post-author`, `.mt-byline-dates` > `time`), `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta`(태그 배지) | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
+| 글 끝 | `article.mt-doc` | `.mt-share` 버튼, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
+| 글 카드 | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
+| 뉴스 첫 화면 | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
 | 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | — |
 
 ## 슬롯 계약

@@ -46,6 +46,8 @@ modootoday:
 | `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../api/#posts-and-archives)) |
+| `blog` | none | blog settings (`per_page`, `variant`, `related`, `share`, `reading_time`, ...); see [Blog and news](../blog-news/#settings) |
+| `news` | none | news settings, such as `sections:` for the front page; see [Blog and news](../blog-news/#settings) |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../api/).
 
