@@ -107,6 +107,43 @@ class CheckTest < Minitest::Test
     refute_match(/ok.md: sections/, o)
   end
 
+  def test_registry_keys_and_ranges
+    write File.join(@src, "_data/components.yml"),
+          "features: {slots: {items: {min: 3, max: 2}, lead: {required: yes, most: 1}}, colour: red}\n" \
+          "cta: {slots: {actions: {min: -1}}, parts: oops}\n" \
+          "steps: {slots: [{items: {min: 1}}]}\n"
+    page "a.md", "---\n---\n# A\n"
+    o, code = check
+    assert_equal 1, code
+    assert_match(/features: unknown key 'colour'/, o)
+    assert_match(/features.slots.items: min 3 is greater than max 2/, o)
+    assert_match(/features.slots.lead: unknown key 'most'/, o)
+    assert_match(/cta.slots.actions.min must be a whole number/, o)
+    assert_match(/cta.parts must be a list of CSS selectors/, o)
+    assert_match(/steps.slots: a list of alternative forms needs at least 2 maps/, o)
+  end
+
+  def test_slot_alternatives
+    write File.join(@src, "_data/components.yml"), "steps: {slots: [{items: {min: 2}}, {panels: {min: 2}}]}\n"
+    page "ok.md", "---\nsections: [{c: steps}, {c: steps}]\n---\n# T\n\n## L\n\n1. a\n2. b\n\n## H\n\n### A\n\n### B\n"
+    o, = check
+    refute_match(/ok.md: sections/, o)
+    page "bad.md", "---\nsections: [{c: steps}]\n---\n# T\n\n## L\n\n1. a\n"
+    o, code = check
+    assert_equal 1, code
+    assert_match(/bad.md: sections\[0\] steps: matches none of 2 slot forms \(form 1: slot 'items' has 1 item\(s\), needs at least 2; form 2: slot 'panels' has 0/, o)
+  end
+
+  def test_parts_match_api_table
+    write File.join(@src, "_data/components.yml"), "tabs: {parts: ['[role=tab]', 'h3 > button[aria-expanded]', .mt-gone]}\n"
+    write File.join(@src, "api.md"), "---\n---\n# API\n\n## Component structure\n\n| C | Parts |\n|---|---|\n" \
+                                     "| Tabs | `[role=tab]`, `h3 > button[aria-expanded]` |\n\n## Next\n\n`.mt-gone`\n"
+    o, code = check
+    assert_equal 1, code
+    assert_match(/tabs.parts: '.mt-gone' is not in the Component structure table of api.md/, o)
+    refute_match(/'\[role=tab\]' is not/, o)
+  end
+
   def test_build_residue
     page "a.md", "---\n---\n# A\n"
     out "a/index.html", "<p>[!NOTE]</p><code>status:available</code>"

@@ -66,16 +66,17 @@ Each `mt-*` class above also has a deprecated `md-*` twin on the shell, doc, her
 | `code` | Fenced code blocks | `pre` (tab content) |
 | `figures` | Lines that start with an image | `figure.mt-figure` |
 
-Each slot takes `required: true` (same as `min: 1`), `min` and `max`. An unknown slot name is an error.
+Each slot takes `required: true` (same as `min: 1`), `min` and `max` (whole numbers, `min` not greater than `max`). For a component that has two valid shapes, `slots:` can be a list of alternative forms; a section passes when it satisfies any one of them. `parts:` lists the selectors from the [component structure](#component-structure) table that the component promises to keep; when the site has an `api.md` with that table, every part must appear in it.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}}
+features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
-cta: {slots: {actions: {required: true}}}
+cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}
+steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
 ```
 
-Components without `slots:` are not counted, so existing registries keep working.
+A component entry takes only `params`, `i18n`, `slots` and `parts`, and a slot rule only `required`, `min` and `max`. Any other key, an unknown slot name, a `min` above `max` or a list of fewer than two forms is an error, reported once per registry. Components without `slots:` are not counted, and a single-map `slots:` behaves exactly as before.
 
 ## Right-to-left and math
 

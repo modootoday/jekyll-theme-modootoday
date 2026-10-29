@@ -7,7 +7,7 @@ require "date"
 USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict]"
 # Single source for --help and the README "Commands" table (script/readme-commands, test/readme_test.rb).
 OPTIONS = [
-  ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`since:`/`kbd:` values, `sections:` count, `_data/components.yml`, Sass/CSS rules, unconverted markers in the build"],
+  ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`since:`/`kbd:` values, `sections:` count, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md`), Sass/CSS rules, unconverted markers in the build"],
   ["--twins", "every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt`"],
   ["--github-pages[=VERSION]", "`Gemfile.lock` pins `github-pages` VERSION (default 232)"],
   ["--strict", "warnings fail the run"],
@@ -79,18 +79,66 @@ SLOTS = {
 }.freeze
 comps_file = "#{src}/_data/components.yml"
 comps = File.exist?(comps_file) ? (YAML.safe_load(File.read(comps_file)) || {}) : nil
+REG_KEYS = %w[params i18n slots parts].freeze
+RULE_KEYS = %w[required min max].freeze
+# Validate the registry once: unknown keys, slot names, rule keys, min <= max, parts.
+# slots: is a map (one form) or a list of maps (alternative forms; a section must satisfy one).
+api_md = "#{src}/api.md"
+api_codes = File.exist?(api_md) && (tbl = File.read(api_md)[/^## Component structure\n.*?(?=^## )/m]) ? tbl.scan(/`([^`]+)`/).flatten.map { |x| x.gsub("\\|", "|") } : nil
+(comps.is_a?(Hash) ? comps : {}).each do |c, spec|
+  where = "_data/components.yml: #{c}"
+  next if spec.nil?
+  next errs << "#{where} must be a map (#{REG_KEYS.join(', ')})" unless spec.is_a?(Hash)
+  (spec.keys - REG_KEYS).each { |k| errs << "#{where}: unknown key '#{k}' (known: #{REG_KEYS.join(', ')})" }
+  if spec.key?("slots")
+    forms = spec["slots"].is_a?(Array) ? spec["slots"] : [spec["slots"]]
+    errs << "#{where}.slots: a list of alternative forms needs at least 2 maps" if spec["slots"].is_a?(Array) && forms.size < 2
+    forms.each_with_index do |form, fi|
+      fw = spec["slots"].is_a?(Array) ? "#{where}.slots[#{fi}]" : "#{where}.slots"
+      next errs << "#{fw} must be a map of slot name -> {required, min, max}" unless form.is_a?(Hash)
+      form.each do |name, rule|
+        next errs << "#{fw}: unknown slot '#{name}' (known: #{SLOTS.keys.join(', ')})" unless SLOTS[name]
+        next if rule.nil?
+        next errs << "#{fw}.#{name} must be a map of required, min, max" unless rule.is_a?(Hash)
+        (rule.keys - RULE_KEYS).each { |k| errs << "#{fw}.#{name}: unknown key '#{k}' (known: #{RULE_KEYS.join(', ')})" }
+        errs << "#{fw}.#{name}.required must be true or false" if rule.key?("required") && ![true, false].include?(rule["required"])
+        %w[min max].each { |k| errs << "#{fw}.#{name}.#{k} must be a whole number >= 0" if rule.key?(k) && !(rule[k].is_a?(Integer) && rule[k] >= 0) }
+        mn = rule["min"].is_a?(Integer) ? rule["min"] : (rule["required"] == true ? 1 : nil)
+        errs << "#{fw}.#{name}: min #{mn} is greater than max #{rule['max']}" if mn && rule["max"].is_a?(Integer) && mn > rule["max"]
+      end
+    end
+  end
+  if spec.key?("params") && !spec["params"].is_a?(Hash)
+    errs << "#{where}.params must be a map of param name -> {allowed, required}"
+  end
+  if spec.key?("parts")
+    parts = spec["parts"]
+    next errs << "#{where}.parts must be a list of CSS selectors" unless parts.is_a?(Array) && parts.all? { |x| x.is_a?(String) && !x.strip.empty? }
+    parts.each do |sel|
+      errs << "#{where}.parts: '#{sel}' does not look like a CSS selector" unless sel.match?(/\A[\w\s.#\[\]=|"'>+~:()*-]+\z/)
+      errs << "#{where}.parts: '#{sel}' is not in the Component structure table of api.md" if api_codes && !api_codes.include?(sel)
+    end
+  end
+end
+slot_count = lambda do |name, rule, md|
+  m, raw = md || ["", ""]
+  det = SLOTS[name]
+  n = det.arity == 2 ? det.call(m, raw) : det.call(m)
+  rule = {} unless rule.is_a?(Hash)
+  min = rule["min"].is_a?(Integer) ? rule["min"] : (rule["required"] == true ? 1 : nil)
+  max = rule["max"].is_a?(Integer) ? rule["max"] : nil
+  next "slot '#{name}' has #{n} item(s), needs at least #{min}" if min && n < min
+  next "slot '#{name}' has #{n} item(s), allows at most #{max}" if max && n > max
+end
 slot_contract = lambda do |file, i, c, slots, md|
   next if slots.nil?
-  next errs << "#{file}: _data/components.yml #{c}.slots must be a map of slot name -> {required, min, max}" unless slots.is_a?(Hash)
-  slots.each do |name, rule|
-    det = SLOTS[name]
-    next errs << "_data/components.yml: #{c}.slots: unknown slot '#{name}' (known: #{SLOTS.keys.join(', ')})" unless det
-    rule = {} unless rule.is_a?(Hash)
-    m, raw = md || ["", ""]
-    n = det.arity == 2 ? det.call(m, raw) : det.call(m)
-    min = rule["min"] || (rule["required"] ? 1 : nil)
-    errs << "#{file}: sections[#{i}] #{c}: slot '#{name}' has #{n} item(s), needs at least #{min}" if min && n < min
-    errs << "#{file}: sections[#{i}] #{c}: slot '#{name}' has #{n} item(s), allows at most #{rule['max']}" if rule["max"] && n > rule["max"]
+  forms = (slots.is_a?(Array) ? slots : [slots]).select { |f| f.is_a?(Hash) }
+  probs = forms.map { |form| form.select { |name, _| SLOTS[name] }.filter_map { |name, rule| slot_count.call(name, rule, md) } }
+  next if probs.empty? || probs.any?(&:empty?)
+  if slots.is_a?(Array)
+    errs << "#{file}: sections[#{i}] #{c}: matches none of #{forms.size} slot forms (#{probs.each_with_index.map { |p, k| "form #{k + 1}: #{p.join(', ')}" }.join('; ')})"
+  else
+    probs[0].each { |p| errs << "#{file}: sections[#{i}] #{c}: #{p}" }
   end
 end
 i18n = Dir.glob("#{src}/_data/i18n/*.yml").to_h { |f| [File.basename(f, ".yml"), YAML.safe_load(File.read(f)) || {}] }

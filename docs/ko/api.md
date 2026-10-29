@@ -69,16 +69,17 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | `code` | 펜스 코드 블록 | `pre`(탭 내용) |
 | `figures` | 이미지로 시작하는 줄 | `figure.mt-figure` |
 
-슬롯마다 `required: true`(`min: 1`과 같음), `min`, `max`를 쓸 수 있습니다. 알 수 없는 슬롯 이름은 오류입니다.
+슬롯마다 `required: true`(`min: 1`과 같음), `min`, `max`를 쓸 수 있습니다(정수, `min`은 `max`보다 클 수 없음). 올바른 형태가 두 가지인 컴포넌트는 `slots:`를 대안 형태의 목록으로 쓸 수 있고, 섹션이 그중 하나를 만족하면 통과합니다. `parts:`에는 [컴포넌트 구조](#컴포넌트-구조) 표에서 그 컴포넌트가 유지하기로 약속한 셀렉터를 적습니다. 사이트에 그 표가 있는 `api.md`가 있으면 모든 파트가 표에 있어야 합니다.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}}
+features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
-cta: {slots: {actions: {required: true}}}
+cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}
+steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
 ```
 
-`slots:`가 없는 컴포넌트는 세지 않으므로 기존 레지스트리는 그대로 동작합니다.
+컴포넌트 항목에는 `params`, `i18n`, `slots`, `parts`만, 슬롯 규칙에는 `required`, `min`, `max`만 쓸 수 있습니다. 그 밖의 키, 알 수 없는 슬롯 이름, `max`보다 큰 `min`, 형태가 두 개 미만인 목록은 오류이며 레지스트리 기준으로 한 번만 보고합니다. `slots:`가 없는 컴포넌트는 세지 않고, 맵 하나로 쓴 `slots:`는 이전과 똑같이 동작합니다.
 
 ## 오른쪽에서 왼쪽 쓰기와 수식
 

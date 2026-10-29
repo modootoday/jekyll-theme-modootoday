@@ -3,7 +3,7 @@ id: adr:modootoday/20261029212000
 title: Slot contract in _data/components.yml
 status: active
 created: 2026-10-29T21:20:00Z
-updated: 2026-10-29T21:20:09Z
+updated: 2026-10-29T21:42:35Z
 rel:
   governs: [exe/modootoday-check]
 ---
@@ -21,3 +21,7 @@ A slot is a named, structural part of a section's Markdown after its ## heading.
 ## Consequences
 
 Existing registries and pages keep working unchanged. The docs and example registries declare slots, so CI exercises the contract. Adding a slot name is a minor change; renaming or removing one needs a deprecation of at least one minor. Detection is line-based like the sections: count check, so content inside code fences and comments is ignored, while unusual Markdown (for example HTML blocks) is not counted.
+
+## Amendment: registry validation, alternative forms and parts
+
+The checker also validates the registry itself, once per registry: a component entry accepts only params, i18n, slots and parts; a slot rule accepts only required, min and max; min and max are whole numbers with min not above max. Unknown keys are errors rather than silently ignored, because a misspelt key (for example mni) would otherwise disable a rule without notice. Components such as steps and timeline have two valid shapes (a list or ### panels), so slots: may be a list of at least two alternative forms; a section passes when it satisfies any one, and the error names every form that failed. A single map keeps its previous meaning, so existing slot declarations are unaffected. We chose a plain list over a oneOf/anyOf keyword to keep the YAML short and the meaning fixed (any one form). parts: lists the stable selectors a component promises to keep; when the site has an api.md with a Component structure table, every part must appear there in backticks, so the registry and the documented API cannot drift. The docs registry declares parts for every section component.
