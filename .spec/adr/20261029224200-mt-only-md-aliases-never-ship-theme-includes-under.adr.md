@@ -23,4 +23,4 @@ The plan kept `md-*` classes and `--md-*` properties as deprecated aliases throu
 
 ## Consequences
 
-The bundle is smaller and has one name per token. Sites built from an unreleased commit that used `md-*` names or included `md-*.html` must rename them before moving to 1.0.0. The deprecation policy applies from 1.0.0 on.
+The bundle is smaller and has one name per token. Sites built from an unreleased commit that used `md-*` names or included `md-*.html` must rename them before moving to 1.0.0.

@@ -20,6 +20,6 @@ The first public version on RubyGems.
 Sites built from the repository before 1.0.0 should read [Migrate and upgrade](../upgrade/).
 
 > [!IMPORTANT]
-> The rules are final as `md-components v1`. From 1.0 on, a rule is only removed or made stricter in a major version.
+> The rules are final as `md-components v1`. Changes are listed in `CHANGELOG.md`.
 
 [Back to home](../)

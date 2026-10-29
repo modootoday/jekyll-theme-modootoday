@@ -23,4 +23,4 @@ Two sites built on the theme before 1.0 sent findings (twelve and ten). Until 1.
 
 ## Consequences
 
-Doc-only includes moved to `_includes/modootoday/doc/`. New keys follow the 1.x stability rules from 1.0. Deferred items need their own changes and appear in the changelog when they ship.
+Doc-only includes moved to `_includes/modootoday/doc/`. New keys are listed in the public API. Deferred items need their own changes and appear in the changelog when they ship.

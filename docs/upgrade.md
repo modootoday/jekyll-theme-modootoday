@@ -36,7 +36,7 @@ Switching between them does not change page bodies. See [Agents](../agents/) and
 
 ## Upgrading
 
-Read `CHANGELOG.md` for every version you skip. From 1.0 on, rules and the public API change incompatibly only in a major version (see [Public API](../api/)).
+Read `CHANGELOG.md` for every version you skip. The [Public API](../api/) page lists the documented names. After upgrading, run `modootoday-check --strict`.
 
 | From | To | What to do |
 |---|---|---|

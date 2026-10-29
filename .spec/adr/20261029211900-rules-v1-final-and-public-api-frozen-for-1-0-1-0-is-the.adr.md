@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029211900
 title: Rules v1 final and public API frozen for 1.0; 1.0 is the complete roadmap
-status: active
+status: superseded
 created: 2026-10-29T21:19:00Z
-updated: 2026-10-29T21:19:12Z
+updated: 2026-10-29T23:20:00Z
 rel:
   governs: [docs/api.md, RULES.md, docs/roadmap.md]
 ---

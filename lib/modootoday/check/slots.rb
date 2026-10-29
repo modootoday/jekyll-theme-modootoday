@@ -2,7 +2,7 @@
 
 module Modootoday
   module Check
-    # Slot contract (1.x): named, stable parts of a section's Markdown. Detection is structural and
+    # Slot contract: named, stable parts of a section's Markdown. Detection is structural and
     # mirrors what modootoday/markdown/sections.html and the component scripts consume; markup does not change.
     module Slots
       DETECT = {

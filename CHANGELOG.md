@@ -53,7 +53,7 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - Footnotes are rendered after the last section instead of inside it (they no longer land in a call-to-action card).
 - On screens under 48rem, code blocks with a Copy button start below the button so it never covers the first line.
 - The rules are final: `RULES.md` and every file header now say `md-components v1` instead of `md-components v1 (draft)`. No rule changed.
-- The public API on the docs site is frozen for 1.0: 1.x may add names but removes or breaks none before 2.0.
+- The public API is documented on the docs site; changes are listed in this CHANGELOG.
 - `modootoday-check` also warns on `md-*` classes and `var(--md-*)` in the site's own includes, layouts, CSS and pages (code is ignored), not only in Sass.
 
 ### Pre-release history
@@ -71,7 +71,7 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - `modootoday.csp: strict` loads the pre-paint script from `assets/js/modootoday/theme-init.js`, so no inline script is needed; CSP guide.
 - Optional "Last updated" (`last_modified_at`) and edit link (`modootoday.edit_url`, `edit: false` per page).
 - Checker validates `seo`, `feed`, `csp`, `languages` and `edit_url`, and warns on `md-*` names in site Sass.
-- Docs: public API and deprecation policy, migrate/upgrade guide, CSP guide, roadmap with non-goals (RTL, math, Mermaid), 404 page; the docs site uses sitemap, `hreflang` and edit links.
+- Docs: public API, migrate/upgrade guide, CSP guide, roadmap with non-goals (RTL, math, Mermaid), 404 page; the docs site uses sitemap, `hreflang` and edit links.
 - SECURITY.md (private vulnerability reporting), CODE_OF_CONDUCT.md (Contributor Covenant 2.1), issue and pull request templates, Dependabot for Actions, Bundler and npm, RELEASING.md.
 - CI job for the Jekyll 3.9 floor.
 

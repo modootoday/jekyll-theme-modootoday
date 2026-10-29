@@ -4,7 +4,7 @@ md-components v1
 
 Goal: page bodies (`*.md`, `<lang>/*.md`) use only standard GitHub Flavored Markdown (plus GitHub's alert extension) that renders unchanged on github.com. Design comes from layouts, includes, CSS and optional JS. Targets: the GitHub Pages build (`github-pages` gem 232, Jekyll 3.10, kramdown GFM, allowed plugins only, no build scripts) and Jekyll 4.
 
-Status: **final** (v1, approved 2026-10-30). Changes to these rules follow the deprecation policy in the public API (docs/api.md): a rule is only removed or made stricter in a major version.
+Status: **final** (v1, approved 2026-10-30). `md-components v1` is the name of this Markdown rules standard; changes are listed in `CHANGELOG.md`.
 
 ## 0. Front matter
 Every content page starts with front matter; an empty block (`---` then `---`) is enough. Reason: on GitHub Pages, `jekyll-optional-front-matter` renders a file without front matter and the raw file is also copied to `_site/<name>.md`. Checker error, except in the opt-in front-matter-less twin mode (`modootoday.twins: source`, §5a), which uses exactly that copy as the twin.

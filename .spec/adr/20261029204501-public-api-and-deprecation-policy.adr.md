@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029204501
 title: Public API and deprecation policy
-status: active
+status: superseded
 created: 2026-10-29T20:45:01Z
-updated: 2026-10-29T20:45:01Z
+updated: 2026-10-29T23:20:00Z
 rel:
   governs: [docs/api.md]
 ---

@@ -19,8 +19,8 @@ description: What the theme supports, which stacks it runs on, and where it is h
 ## Compatibility
 
 - GitHub Pages (`github-pages` 232, Jekyll 3.10) with `remote_theme`, and Jekyll 4.4 on Ruby 3.2 to 3.4. Jekyll 3.9 is the oldest supported version.
-- Within 1.x, nothing in the public API is removed or broken. See [Migrate and upgrade](../upgrade/).
+- The public API is documented on [Public API](../api/); changes are listed in the CHANGELOG. See [Migrate and upgrade](../upgrade/).
 
 ## Next
 
-- 1.x adds components and options without breaking existing sites.
+- New components and options are added without breaking existing sites where possible.

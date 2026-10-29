@@ -1,10 +1,10 @@
 ---
 title: Public API
-description: The names this theme keeps stable, and how they are deprecated and removed.
+description: The names, classes and files this theme documents for your site.
 ---
 # Public API
 
-From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): they change incompatibly only in a major version. Anything not listed (internal includes, Sass partial paths, private `--mt-p-*` primitives, HTML details that no rule describes) can change in any release.
+The public API is documented here; changes are listed in `CHANGELOG.md`. Anything not listed (internal includes, Sass partial paths, private `--mt-p-*` primitives, HTML details that no rule describes) can change in any release.
 
 ## Stable names
 
@@ -21,17 +21,13 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Data files | `_data/i18n/<lang>.yml` keys (optional overrides of the built-in catalogs), `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
 
-## Deprecation policy
+## Markdown rules
 
-1. A name that will go away is marked deprecated in `CHANGELOG.md` and in the docs, and the checker warns where it can.
-2. It keeps working for at least one minor release.
-3. It is removed only in the next major release.
-
-This list is frozen for 1.0. Releases in 1.x may add names; none of the names above is removed or changed incompatibly before 2.0. The Markdown rules are final as `md-components v1` in `RULES.md`.
+`md-components v1` is the name of the Markdown rules standard in `RULES.md`; it is not a CSS prefix. Output classes use `mt-*`.
 
 ## Component structure
 
-This is the markup you can target from your own CSS today. Classes and attributes in this table are stable under the policy above; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. The [slot contract](#slot-contract) names the Markdown parts each component consumes.
+This is the markup you can target from your own CSS today. Classes and attributes in this table are part of the public API; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. The [slot contract](#slot-contract) names the Markdown parts each component consumes.
 
 | Component | Root | Parts you may style | State and variants |
 |---|---|---|---|
