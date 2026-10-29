@@ -52,4 +52,13 @@ Your own CSS can read the insets as `--mt-safe-top`, `--mt-safe-right`, `--mt-sa
 
 ## Your content
 
-The theme cannot fix the content itself. Write descriptive link text and image `alt` text, keep one `#` heading per page and do not skip heading levels.
+The theme cannot fix the content itself. `modootoday-check` reports the common problems before you publish:
+
+- **Images:** give every image `alt` text that says what it shows (`![Sales doubled in May](chart.png)`). Use empty `alt` only when the image adds nothing; an HTML `<img>` without `alt` is an error.
+- **Links:** the text must name the destination, so it makes sense when read alone. Empty links are an error; "click here" or "read more" is a warning. Mention the file type for downloads, for example `[Price list (PDF, 2 MB)](prices.pdf)`.
+- **Headings:** the page title is the only `#` heading; start content at `##` and do not skip a level (`##` then `####` is a warning). Screen-reader users jump between headings by level.
+- **Tables:** give every table a header row, and introduce it with a sentence or heading that says what it lists.
+- **IDs:** an `id` used twice on one page is an error; it breaks anchors and labels.
+- **Language:** set `lang:` on every translated page, so screen readers pick the right voice. Right-to-left languages get `dir="rtl"` automatically.
+
+Search results are announced as they appear, and copy buttons announce when the text has been copied.
