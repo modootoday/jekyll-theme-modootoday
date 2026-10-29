@@ -49,6 +49,11 @@ jobs:
         run: bundle exec jekyll build -s example -d example/_site
       - name: Check example
         run: bundle exec ruby exe/modootoday-check example example/_site ${{ matrix.check_flags }}
+      - name: Structured data on the example (url overlay)
+        run: |
+          printf 'url: https://example.com\n' > "$RUNNER_TEMP/url.yml"
+          bundle exec jekyll build -s example -d "$RUNNER_TEMP/ld-site" --config "example/_config.yml,$RUNNER_TEMP/url.yml"
+          bundle exec ruby exe/modootoday-check example "$RUNNER_TEMP/ld-site"
       - name: Build example with remote_theme (this commit)
         if: matrix.stack == 'github-pages'
         env:
