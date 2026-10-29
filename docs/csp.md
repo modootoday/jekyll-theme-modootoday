@@ -18,3 +18,5 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 ```
 
 GitHub Pages cannot send response headers. A `<meta http-equiv="Content-Security-Policy">` tag in `_includes/head-custom.html` works for these directives. If you keep the inline script, allow it by hash instead; the hash changes only when the script changes, which `CHANGELOG.md` announces.
+
+To add math or diagrams under this policy, see [Math and diagrams](../math-diagrams/).

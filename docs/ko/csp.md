@@ -21,3 +21,5 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 ```
 
 GitHub Pages는 응답 헤더를 보낼 수 없습니다. 이 지시어들은 `_includes/head-custom.html`의 `<meta http-equiv="Content-Security-Policy">` 태그로 쓸 수 있습니다. 인라인 스크립트를 유지하려면 해시로 허용하세요. 해시는 스크립트가 바뀔 때만 바뀌며 `CHANGELOG.md`에 공지합니다.
+
+이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../math-diagrams/)을 보세요.

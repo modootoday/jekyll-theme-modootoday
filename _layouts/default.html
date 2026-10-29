@@ -3,7 +3,11 @@
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/config.html -%}
 {%- assign _ui = site.data.i18n[_lang] -%}
-<html lang="{{ _lang }}"{% if mt_color_scheme != "auto" %} data-theme="{{ mt_color_scheme }}"{% endif %} data-mt-copy="{{ _ui.code.copy | default: 'Copy' }}" data-mt-copied="{{ _ui.code.copied | default: 'Copied' }}">
+{%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}
+{%- assign _base = _lang | split: "-" | first -%}
+{%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
+{%- assign _dir = page.direction | default: _ui.direction | default: _dir -%}
+<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_color_scheme != "auto" %} data-theme="{{ mt_color_scheme }}"{% endif %} data-mt-copy="{{ _ui.code.copy | default: 'Copy' }}" data-mt-copied="{{ _ui.code.copied | default: 'Copied' }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

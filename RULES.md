@@ -18,7 +18,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Card grid | under `##`, list items `- **Title** — text` or `- **Title**: text` | CSS only | list |
 | CTA buttons | every link-only paragraph in `section.md-hero` and in `c: cta` sections; the first link is primary. Separator text such as `·` between links is a text node, so the paragraph still counts as link-only | CSS `p:has(> a):not(:has(> :not(a)))` | links |
 | Install tabs | in a `c: tabs` section, repeated `### name` + fenced code block (info string = one language word) | `data-tabs` + i18n `tabs.label`; `assets/js/md-tabs.js` builds WAI-ARIA tabs (arrows, Home, End) | all blocks in order |
-| Diagrams | ```` ```mermaid ```` | site-provided lazy renderer (not part of the theme) | code / GitHub mermaid |
+| Diagrams, math | ```` ```mermaid ```` / ```` ```math ```` | none in the theme; the site renders at build time or self-hosts a renderer (docs: Math and diagrams) | code / GitHub mermaid, math |
 | Tables | GFM tables | CSS horizontal scroll | table |
 | Decoration | front matter or layout | read by layouts, never in bodies | none |
 
@@ -40,6 +40,9 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 ## 3. Localisation
 - Chrome strings use `_data/i18n/<lang>.yml`: `callout.<type>`, `tabs.label`, `status.<value>`, `skip`. Missing keys fall back to English.
 - The same rules apply to `<lang>/*.md`.
+
+## 3a. Writing direction
+RTL languages (`ar fa he ur yi ps sd ug dv ckb`, by the first subtag of `lang`) get `<html dir="rtl">`; front matter `direction: rtl|ltr` or i18n `direction:` overrides. Theme CSS uses logical properties for inline-start/end; code blocks, inline code and `kbd` stay LTR/isolated. Write the Markdown in logical order; never use bidi control characters to fake layout.
 
 ## 4. Forbidden (outside code blocks and code spans)
 The bans are about **portability**: the same source must look the same on github.com, in kramdown (which passes raw HTML through and adds its own extensions) and in the plain-text twin.

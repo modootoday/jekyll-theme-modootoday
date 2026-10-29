@@ -29,7 +29,8 @@
     list.addEventListener("keydown", (e) => {
       const i = tabs.indexOf(document.activeElement);
       if (i < 0) return;
-      const n = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      const r = list.closest("[dir]"), d = r && r.getAttribute("dir") === "rtl" ? -1 : 1; // arrows follow the visual order in RTL
+      const n = { ArrowRight: i + d, ArrowLeft: i - d, Home: 0, End: tabs.length - 1 }[e.key];
       if (n === undefined) return;
       e.preventDefault();
       const t = tabs[(n + tabs.length) % tabs.length]; select(t); t.focus();

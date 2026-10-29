@@ -2,7 +2,7 @@
 $mt-callout-variants: (note: note, tip: tip, important: important, warning: warning, caution: caution) !default;
 @include mt-layer(components) {
   .mt-callout { --mt-callout-accent: #{mt(note)}; color: mt(foreground); padding: .85rem 1.1rem; margin: 1.25rem 0;
-    border: 1px solid color-mix(in srgb, var(--mt-callout-accent) 28%, #{mt(border)}); border-left: 4px solid var(--mt-callout-accent);
+    border: 1px solid color-mix(in srgb, var(--mt-callout-accent) 28%, #{mt(border)}); border-inline-start: 4px solid var(--mt-callout-accent);
     border-radius: mt(radius); background: color-mix(in srgb, var(--mt-callout-accent) 6%, #{mt(background)}); }
   .mt-callout > p:empty { display: none; }
   .mt-callout > :last-child { margin-bottom: 0; }

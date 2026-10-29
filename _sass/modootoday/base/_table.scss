@@ -4,5 +4,5 @@
     border-collapse: separate; border-spacing: 0; border: 1px solid mt(border); border-radius: mt(radius-lg); }
   th, td { padding: .6rem .9rem; border-bottom: 1px solid mt(border); vertical-align: top; }
   tr:last-child > td { border-bottom: 0; }
-  th { white-space: nowrap; background: mt(muted); text-align: left; font-weight: 600; font-size: .875rem; }
+  th { white-space: nowrap; background: mt(muted); text-align: start; font-weight: 600; font-size: .875rem; }
 }

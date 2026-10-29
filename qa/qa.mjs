@@ -14,6 +14,7 @@ const WIDTHS = [360, 768, 1024, 1440];
 const SCHEMES = ["light", "dark"];
 const LANGS = ["", "ko/", "ja/"].filter((l) => fs.existsSync(path.join(site, l, "index.html")));
 const PAGES = ["", "install/", "first-page/", "components/", "components/kitchen-sink/", "configuration/", "customize/", "agents/", "changelog/"];
+const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only: dir="rtl" mirroring checks
 const BUDGET = { css: 32 * 1024, js: 10 * 1024 }; // as built (Jekyll default Sass output, uncompressed); gzip is reported
 const fails = [];
 
@@ -79,7 +80,7 @@ for (const scheme of SCHEMES) {
     if (r < min) fails.push(`contrast ${scheme} ${rgb[f].used} on ${rgb[b].used} = ${r} < ${min}`);
   }
   // 3. screenshots + axe
-  for (const lang of LANGS) for (const p of PAGES) {
+  for (const lang of LANGS) for (const p of [...PAGES, ...(lang ? [] : RTL_PAGES)]) {
     const url = origin + lang + p;
     const resp = await page.goto(url, { waitUntil: "networkidle" });
     if (!resp || resp.status() !== 200) { if (lang === "ja/" ) continue; fails.push(`HTTP ${resp && resp.status()} ${url}`); continue; }
@@ -93,6 +94,16 @@ for (const scheme of SCHEMES) {
       if (overflow > 1) fails.push(`horizontal overflow ${overflow}px at ${w}px ${scheme} ${url}`);
     }
     await page.setViewportSize({ width: 1024, height: 900 });
+    if (RTL_PAGES.includes(p)) {
+      // logical properties must mirror: callout accent bar and steps rail on the right, code left-to-right
+      const r = await page.evaluate(() => {
+        const cs = (s) => { const e = document.querySelector(s); return e && getComputedStyle(e); };
+        const c = cs(".mt-callout"), st = cs(".mt-c-steps > ol > li"), pre = cs("pre");
+        return { dir: document.documentElement.dir, callout: c && parseFloat(c.borderRightWidth) > parseFloat(c.borderLeftWidth),
+          steps: st && parseFloat(st.paddingRight) > parseFloat(st.paddingLeft), pre: pre && pre.direction === "ltr" };
+      });
+      for (const [k, ok] of Object.entries(r)) if (k === "dir" ? ok !== "rtl" : !ok) fails.push(`rtl ${k} not mirrored ${scheme} ${url}`);
+    }
     const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
     for (const v of axe.violations) {
       report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });

@@ -6,7 +6,7 @@
     padding: 1rem 0; cursor: pointer; font-weight: 600; }
   .mt-accordion-trigger:hover { color: mt(primary); }
   .mt-accordion-trigger:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
-  .mt-accordion-trigger::after { content: ""; flex: none; width: .5rem; height: .5rem; margin-right: .25rem; border: solid mt(muted-foreground);
+  .mt-accordion-trigger::after { content: ""; flex: none; width: .5rem; height: .5rem; margin-inline-end: .25rem; border: solid mt(muted-foreground);
     border-width: 0 2px 2px 0; transform: translateY(-25%) rotate(45deg); transition: transform .2s; }
   .mt-accordion-trigger[aria-expanded="true"]::after { transform: translateY(25%) rotate(-135deg); }
   .mt-accordion-panel { padding-bottom: 1rem; color: mt(muted-foreground); }

@@ -75,6 +75,7 @@ accordion: {slots: {panels: {min: 1}}}
 
 Components without `slots:` are not counted, so existing registries keep working.
 
-## Not in 1.0
+## Right-to-left and math
 
-- Right-to-left layouts, math and diagrams are non-goals for 1.0; see [Roadmap](../roadmap/).
+- Pages in Arabic, Persian, Hebrew, Urdu and other RTL languages get `dir="rtl"` from `lang`; set `direction: rtl` or `ltr` in front matter (or `direction:` in `_data/i18n/<lang>.yml`) to override. Components use logical properties and mirror; code stays left-to-right.
+- The theme bundles no math or diagram renderer; see [Math and diagrams](../math-diagrams/).

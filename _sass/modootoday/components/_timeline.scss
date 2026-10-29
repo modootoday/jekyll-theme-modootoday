@@ -1,10 +1,10 @@
 // Timeline: sections with `c: timeline`; each ### heading is a date/milestone, content follows.
 @include mt-layer(components) {
   .mt-c-timeline { --mt-timeline-line: #{mt(border)}; --mt-timeline-dot: #{mt(primary)}; }
-  .mt-c-timeline > h3, .mt-c-timeline > h3 ~ * { position: relative; margin-left: .5rem; padding-left: 1.5rem; border-left: 2px solid var(--mt-timeline-line); }
+  .mt-c-timeline > h3, .mt-c-timeline > h3 ~ * { position: relative; margin-inline-start: .5rem; padding-inline-start: 1.5rem; border-inline-start: 2px solid var(--mt-timeline-line); }
   .mt-c-timeline > h3 { margin-bottom: 0; padding-top: 1.25rem; margin-top: 0; font-size: .8125rem; font-weight: 650; letter-spacing: .02em; color: mt(muted-foreground); font-family: mt(font-mono); }
   .mt-c-timeline > h2 + h3 { margin-top: 1rem; }
   .mt-c-timeline > h3 ~ * { margin-top: 0; margin-bottom: 0; padding-bottom: .5rem; }
-  .mt-c-timeline > h3::before { content: ""; position: absolute; left: -.45rem; top: 1.55rem;
+  .mt-c-timeline > h3::before { content: ""; position: absolute; inset-inline-start: -.45rem; top: 1.55rem;
     width: .75rem; height: .75rem; border-radius: 50%; background: var(--mt-timeline-dot); box-shadow: 0 0 0 3px #{mt(background)}; }
 }

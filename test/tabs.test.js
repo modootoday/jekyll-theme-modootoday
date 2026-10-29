@@ -5,8 +5,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { JSDOM } = require("jsdom");
 
-function load() {
-  const html = fs.readFileSync(path.join(__dirname, "fixtures/tabs.html"), "utf8");
+function load(rtl) {
+  let html = fs.readFileSync(path.join(__dirname, "fixtures/tabs.html"), "utf8");
+  if (rtl) html = html.replace(/<html\b/i, '<html dir="rtl"');
   const dom = new JSDOM(html, { runScripts: "outside-only" });
   dom.window.eval(fs.readFileSync(path.join(__dirname, "../assets/js/md-tabs.js"), "utf8"));
   const d = dom.window.document;
@@ -67,4 +68,13 @@ test("headings are hidden; single-pair sections are left alone", () => {
   const { d } = load();
   assert.ok([...d.querySelectorAll("section[data-tabs] > h3")].slice(0, 5).every((h) => h.hidden));
   assert.strictEqual(d.querySelectorAll("section")[2].querySelector("h3").hidden, false);
+});
+
+test("RTL: ArrowLeft moves to the next tab (visual order)", () => {
+  const { d, groups, key } = load(true);
+  const g = groups[0];
+  g[0].focus(); key(g[0], "ArrowLeft");
+  assert.strictEqual(d.activeElement, g[1]);
+  key(g[1], "ArrowRight");
+  assert.strictEqual(d.activeElement, g[0]);
 });

@@ -4,6 +4,6 @@
   .mt-pagination a { display: flex; flex-direction: column; gap: .15rem; text-decoration: none; padding: .9rem 1.1rem; font-weight: 600;
     border: 1px solid mt(border); border-radius: mt(radius-lg); transition: border-color .15s, box-shadow .15s; }
   .mt-pagination a:hover { border-color: mt(primary); box-shadow: mt(shadow-sm); }
-  .mt-pagination [rel="next"] { grid-column: 2; text-align: right; }
+  .mt-pagination [rel="next"] { grid-column: 2; text-align: end; }
   .mt-pagination small { color: mt(muted-foreground); font-weight: 500; font-size: .8125rem; }
 }

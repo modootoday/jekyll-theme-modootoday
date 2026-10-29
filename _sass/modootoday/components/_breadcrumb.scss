@@ -2,7 +2,7 @@
 @include mt-layer(components) {
   .mt-breadcrumb ol { list-style: none; margin: 0 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; font-size: .8125rem; }
   .mt-breadcrumb li + li { margin-top: 0; }
-  .mt-breadcrumb li + li::before { content: "/"; margin-right: .35rem; color: mt(border); }
+  .mt-breadcrumb li + li::before { content: "/"; margin-inline-end: .35rem; color: mt(border); }
   .mt-breadcrumb a { color: mt(muted-foreground); text-decoration: none; }
   .mt-breadcrumb a:hover { color: mt(foreground); text-decoration: underline; }
   .mt-breadcrumb [aria-current="page"] { color: mt(foreground); font-weight: 500; }

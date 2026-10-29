@@ -1,6 +1,6 @@
 ---
 title: 로드맵
-description: 1.0에 들어가는 것, 1.x에 올 것, 목표가 아닌 것.
+description: 1.0에 들어가는 것과 1.x에 올 것.
 ---
 # 로드맵
 
@@ -13,6 +13,8 @@ description: 1.0에 들어가는 것, 1.x에 올 것, 목표가 아닌 것.
 - 안정된 [공개 API](../api/)와 폐기 정책. `status:available`
 - canonical, hreflang, Open Graph 태그와 선택형 사이트맵·피드. `status:available`
 - 영어와 한국어 문서. `status:available`
+- 오른쪽에서 왼쪽으로 쓰는 문자: 논리 속성, 자동 `dir="rtl"`, [RTL 키친싱크](../../components/kitchen-sink-rtl/). `status:available`
+- 엄격한 CSP에서 KaTeX와 Mermaid를 쓰는 [수식·다이어그램 가이드](../math-diagrams/). 테마는 둘 다 포함하지 않음. `status:available`
 
 ## 1.x
 
@@ -20,8 +22,3 @@ description: 1.0에 들어가는 것, 1.x에 올 것, 목표가 아닌 것.
 - `post` 레이아웃용 태그·카테고리 아카이브 페이지. `status:planned`
 - 일본어 문서 (예제 사이트에는 이미 일본어 페이지가 있음). `status:planned`
 - CI에서 기준 스크린숏과 비교하는 시각 회귀 검사. `status:planned`
-
-## 1.0의 목표가 아닌 것
-
-- **오른쪽에서 왼쪽으로 쓰는 문자.** 레이아웃을 뒤집지 않습니다. 새 CSS는 논리 속성을 써서 1.x에서 RTL을 이어 갈 수 있게 합니다.
-- **수식과 다이어그램.** 테마는 MathJax, KaTeX, Mermaid를 포함하지 않습니다. github.com은 `math`, `mermaid` 코드 블록을 렌더링하고, 사이트에서는 `_includes/head-custom.html`이나 `footer-custom.html`에서 렌더러를 불러오세요.

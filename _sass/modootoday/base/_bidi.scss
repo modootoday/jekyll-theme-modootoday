@@ -1,0 +1,13 @@
+// Right-to-left: components use logical properties (inline-start/end), so dir="rtl" mirrors them.
+// Code and key combinations stay left-to-right inside RTL text (the copy button stays on the right of
+// the code); inline code is isolated so punctuation does not jump.
+@include mt-layer(base) {
+  pre, .highlight { direction: ltr; text-align: left; }
+  :not(pre) > code, kbd { unicode-bidi: isolate; }
+  .mt-kbd, div.highlighter-rouge, figure.highlight { direction: ltr; }
+}
+// The skip link parks off-screen on the inline-start side; in RTL that is the right edge
+// (parking it at left: -999px would make the page scroll sideways).
+@include mt-layer(layout) {
+  [dir="rtl"] .mt-skip:not(:focus) { left: auto; right: -999px; }
+}
