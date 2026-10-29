@@ -4,7 +4,7 @@
   .mt-nav { min-width: 0; overflow-x: auto; scrollbar-width: none; }
   .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .125rem; }
   .mt-nav li + li { margin-top: 0; }
-  .mt-nav a, .mt-nav summary { display: block; padding: .35rem .6rem; border-radius: mt(radius); font-size: .9rem; font-weight: 500;
+  .mt-nav a, .mt-nav summary { display: flex; align-items: center; min-height: 2rem; padding: .35rem .6rem; border-radius: mt(radius); font-size: .9rem; font-weight: 500;
     color: mt(muted-foreground); text-decoration: none; white-space: nowrap; transition: color .15s, background-color .15s; }
   .mt-nav a:hover, .mt-nav summary:hover { color: mt(foreground); background: mt(accent); }
   .mt-nav a[aria-current="page"], .mt-nav .mt-nav-current { color: mt(foreground); background: mt(accent); font-weight: 600; }
