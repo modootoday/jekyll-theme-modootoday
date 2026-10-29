@@ -1,11 +1,11 @@
 // Page shell: skip link, sticky header, main (with optional sticky TOC column), footer.
 @include mt-layer(layout) {
-  .mt-skip { position: absolute; left: -999px; top: 0; }
-  .mt-skip:focus { left: mt(space); top: mt(space); background: mt(background); padding: .5rem; z-index: 30; }
+  .mt-skip { position: absolute; inset-inline-start: -999px; top: 0; }
+  .mt-skip:focus { inset-inline-start: mt(space); top: mt(space); background: mt(background); padding: .5rem; z-index: 30; }
   .mt-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid mt(border);
     background: mt(background); background: color-mix(in srgb, #{mt(background)} 86%, transparent);
     -webkit-backdrop-filter: saturate(1.6) blur(10px); backdrop-filter: saturate(1.6) blur(10px); }
-  .mt-header-inner, .mt-main, .mt-footer-inner { width: 100%; max-width: mt(container); margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .mt-header-inner, .mt-main, .mt-footer-inner { width: 100%; max-width: mt(container); margin: 0 auto; padding-inline: 1.5rem; }
   .mt-header-inner { display: flex; align-items: center; gap: .5rem 1.25rem; min-height: mt(header-height); }
   .mt-site-title { flex: none; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.01em;
     text-decoration: none; color: mt(foreground); white-space: nowrap; }
@@ -14,7 +14,7 @@
   .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
   // One alignment system: header, main and footer share the container. Pages with a TOC put the text column on the
   // container's left edge (under the logo); pages without one (home, landing) centre a wider column.
-  .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: 52rem; margin-left: auto; margin-right: auto; }
+  .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: 52rem; margin-inline: auto; }
   .mt-doc-layout.mt-has-toc { max-width: none; }
   .mt-doc-main { min-width: 0; }
   .mt-doc-aside { display: none; }
@@ -24,13 +24,13 @@
   .mt-footer a { color: mt(foreground); }
   @media (min-width: 64rem) {
     .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) 14rem; justify-content: space-between; gap: 4rem; }
-    .mt-has-toc ~ .mt-page-meta, .mt-has-toc ~ .mt-pagination { max-width: mt(measure); margin-left: 0; }
+    .mt-has-toc ~ .mt-page-meta, .mt-has-toc ~ .mt-pagination { max-width: mt(measure); margin-inline-start: 0; }
     .mt-doc-aside { display: block; }
     .mt-doc-aside .mt-toc { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }
   }
   @media (max-width: 47.99rem) {
-    .mt-header-inner { flex-wrap: wrap; padding-top: .6rem; gap: .5rem .75rem; padding-left: 1rem; padding-right: 1rem; }
-    .mt-main, .mt-footer-inner { padding-left: 1rem; padding-right: 1rem; }
+    .mt-header-inner { flex-wrap: wrap; padding-top: .6rem; gap: .5rem .75rem; padding-inline: 1rem; }
+    .mt-main, .mt-footer-inner { padding-inline: 1rem; }
     .mt-main { padding-top: 1.5rem; }
   }
 }

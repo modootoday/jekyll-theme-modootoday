@@ -8,6 +8,7 @@
   items:
     - {title: Public API, url: /api/}
     - {title: Migrate, url: /upgrade/}
+    - {title: Math and diagrams, url: /math-diagrams/}
     - {title: CSP, url: /csp/}
     - {title: Roadmap, url: /roadmap/}
     - {title: Changelog, url: /changelog/}

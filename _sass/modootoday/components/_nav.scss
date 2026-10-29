@@ -14,7 +14,7 @@
   .mt-nav summary::after { content: ""; display: inline-block; width: .4em; height: .4em; margin: 0 0 .2em .45em;
     border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
   .mt-nav summary:focus-visible, .mt-nav a:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
-  .mt-nav details > ul { position: absolute; top: calc(100% + .4rem); left: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;
+  .mt-nav details > ul { position: absolute; top: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;
     background: mt(card); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow); }
   .mt-nav details a { color: mt(card-foreground); }
   @media (min-width: 64rem) {
@@ -30,5 +30,5 @@
   }
 }
 @include mt-layer(components) {
-  @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-nav a, .mt-nav summary { padding-left: .45rem; padding-right: .45rem; font-size: .875rem; } }
+  @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-nav a, .mt-nav summary { padding-inline: .45rem; font-size: .875rem; } }
 }

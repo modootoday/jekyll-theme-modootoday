@@ -6,8 +6,3 @@
   :not(pre) > code, kbd { unicode-bidi: isolate; }
   .mt-kbd, div.highlighter-rouge, figure.highlight { direction: ltr; }
 }
-// The skip link parks off-screen on the inline-start side; in RTL that is the right edge
-// (parking it at left: -999px would make the page scroll sideways).
-@include mt-layer(layout) {
-  [dir="rtl"] .mt-skip:not(:focus) { left: auto; right: -999px; }
-}

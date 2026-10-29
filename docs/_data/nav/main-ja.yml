@@ -8,6 +8,7 @@
   items:
     - {title: 公開 API, url: /ja/api/}
     - {title: 移行, url: /ja/upgrade/}
+    - {title: 数式と図, url: /ja/math-diagrams/}
     - {title: CSP, url: /ja/csp/}
     - {title: ロードマップ, url: /ja/roadmap/}
     - {title: 変更履歴, url: /ja/changelog/}
