@@ -172,6 +172,68 @@ Dir.glob("#{site}/**/*.html").each do |f|
   errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
 end
 
+# 5b. Sass/CSS portability (github-pages = Ruby Sass 3.7: @use/@forward pass through silently,
+#     @supports selector() is a syntax error) and token references.
+SASS_BAD = [[/^\s*@(use|forward)\b/, "@use/@forward (Ruby Sass on GitHub Pages copies it into the CSS untouched); use @import"],
+            [/@supports\s+(not\s+)?selector\(/, "@supports selector() (Ruby Sass syntax error on GitHub Pages)"]].freeze
+Dir.glob(["#{src}/_sass/**/*.scss", "#{src}/assets/**/*.scss"]).reject { |f| f.delete_prefix(src) =~ skip }.sort.each do |f|
+  File.read(f).gsub(%r{/\*.*?\*/}m) { |c| "\n" * c.count("\n") }.each_line.with_index(1) do |l, n|
+    l = l.sub(%r{//.*}, "")
+    SASS_BAD.each { |re, why| errs << "#{rel[f]}:#{n}: #{why}" if l =~ re }
+  end
+end
+css = Dir.glob("#{site}/**/*.css").sort
+defined = {}
+css.each do |f|
+  t = File.read(f)
+  errs << "#{f}: @use/@forward left in built CSS (Ruby Sass passes them through); use @import" if t =~ /@(use|forward)\s/
+  errs << "#{f}: @supports selector() in built CSS" if t =~ /@supports\s+(not\s+)?selector\(/
+  errs << "#{f}: custom property with a literal Sass variable (write --x: \#{$var})" if t =~ /--[\w-]+:\s*\$/
+  t.scan(/(--mt-[\w-]+)\s*:/) { defined[$1] = true }
+end
+Dir.glob("#{site}/**/*.html").each { |f| File.read(f).scan(%r{<style[^>]*>(.*?)</style>}m) { $1.scan(/(--mt-[\w-]+)\s*:/) { defined[$1] = true } } }
+css.each do |f|
+  File.read(f).scan(/var\((--mt-[\w-]+)/).flatten.uniq.each do |v|
+    errs << "#{f}: var(#{v}) is never defined" unless defined[v]
+  end
+end
+
+# 5c. modootoday: settings in the site _config.yml
+COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination].freeze
+SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground accent
+              accent-foreground border ring note tip important warning caution status-available status-partial
+              status-planned font-sans font-mono font-size line-height measure space radius].freeze
+cfg_file = "#{src}/_config.yml"
+mtc = (File.exist?(cfg_file) && ((YAML.safe_load(File.read(cfg_file), permitted_classes: [Date, Time]) rescue nil) || {})["modootoday"]) || {}
+if mtc.is_a?(Hash)
+  if mtc.key?("color_scheme") && !%w[auto light dark].include?(mtc["color_scheme"])
+    errs << "_config.yml: modootoday.color_scheme must be auto, light or dark (got #{mtc['color_scheme'].inspect})"
+  end
+  %w[css_layers badges].each do |k|
+    errs << "_config.yml: modootoday.#{k} must be true or false" if mtc.key?(k) && ![true, false].include?(mtc[k])
+  end
+  if mtc.key?("components")
+    list = mtc["components"]
+    next_list = list.is_a?(Array) ? list : (errs << "_config.yml: modootoday.components must be a list"; [])
+    (next_list.map(&:to_s) - COMPONENTS).each { |c| errs << "_config.yml: modootoday.components: unknown component '#{c}' (known: #{COMPONENTS.join(', ')})" }
+  end
+  %w[tokens tokens_dark].each do |k|
+    next unless mtc.key?(k)
+    next errs << "_config.yml: modootoday.#{k} must be a map" unless mtc[k].is_a?(Hash)
+    mtc[k].each do |name, val|
+      warns << "_config.yml: modootoday.#{k}.#{name}: not a semantic token (#{SEMANTIC.join(', ')})" unless SEMANTIC.include?(name.to_s)
+      v = val.to_s.strip
+      if v.empty? || v =~ /[;{}<>]/ || v !~ /\A[#\w\s.,%()"'+\-*\/]+\z/
+        errs << "_config.yml: modootoday.#{k}.#{name}: invalid CSS value #{val.inspect}"
+      elsif v.start_with?("#") && v !~ /\A#(\h{3}|\h{4}|\h{6}|\h{8})\z/
+        errs << "_config.yml: modootoday.#{k}.#{name}: invalid hex color #{val.inspect}"
+      end
+    end
+  end
+elsif mtc
+  errs << "_config.yml: modootoday: must be a map"
+end
+
 # 6. optional: github-pages pin (--github-pages[=VERSION], default 232 or $MODOOTODAY_GITHUB_PAGES)
 if (gp = ARGV.find { |a| a == "--github-pages" || a.start_with?("--github-pages=") })
   want = gp.include?("=") ? gp.split("=", 2)[1] : ENV.fetch("MODOOTODAY_GITHUB_PAGES", "232")

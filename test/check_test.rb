@@ -216,4 +216,59 @@ class CheckTest < Minitest::Test
     assert st.success?
     assert_match(/usage: modootoday-check/, o)
   end
+
+  def test_sass_use_forward_and_supports_selector_are_errors
+    page "_sass/x.scss", "// @use 'ok-in-comment';\n@use 'sass:map';\n@forward 'y';\n@supports selector(:has(a)) { a { b: c } }\n"
+    o, code = check
+    assert_equal 1, code
+    assert_match(/x\.scss:2: @use/, o)
+    assert_match(/x\.scss:3: @use\/@forward/, o)
+    assert_match(/x\.scss:4: @supports selector/, o)
+    refute_match(/x\.scss:1:/, o)
+  end
+
+  def test_built_css_portability_and_undefined_tokens
+    out "a.css", "@use \"x\";\n:root { --mt-a: 1px; --mt-b: $v; }\na { margin: var(--mt-a); color: var(--mt-missing); }\n"
+    out "i.html", "<style id=\"mt-tokens\">:root{--mt-inline:red}</style><style>a{}</style>"
+    out "b.css", "b { color: var(--mt-inline); }"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "@use/@forward left in built CSS"
+    assert_includes o, "literal Sass variable"
+    assert_includes o, "var(--mt-missing) is never defined"
+    refute_includes o, "--mt-inline) is never"
+    refute_includes o, "var(--mt-a) is never"
+  end
+
+  def test_modootoday_config_validation
+    page "_config.yml", "modootoday:\n  color_scheme: blue\n  css_layers: yes please\n  components: [callout, carousel]\n" \
+                        "  tokens: {primary: '#c2410c', accent: '#zz0000', foo: '1rem'}\n  tokens_dark: {primary: '#fb923c}x'}\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "color_scheme must be auto, light or dark"
+    assert_includes o, "css_layers must be true or false"
+    assert_includes o, "unknown component 'carousel'"
+    refute_includes o, "unknown component 'callout'"
+    assert_includes o, "tokens.accent: invalid hex color"
+    assert_includes o, "tokens_dark.primary: invalid CSS value"
+    assert_includes o, "tokens.foo: not a semantic token"
+    refute_includes o, "tokens.primary"
+  end
+
+  def test_valid_modootoday_config
+    page "_config.yml", "modootoday:\n  color_scheme: dark\n  css_layers: true\n  components: [callout, code-copy]\n" \
+                        "  tokens: {primary: 'oklch(0.6 0.2 40)', radius: 0.5rem, font-sans: '\"Inter\", sans-serif'}\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+  end
+
+  def test_theme_sass_sources_are_portable
+    root = File.expand_path("..", __dir__)
+    Dir.glob("#{root}/{_sass,assets}/**/*.scss").each do |f|
+      t = File.read(f).gsub(%r{/\*.*?\*/}m, "").gsub(%r{//[^\n]*}, "")
+      refute_match(/^\s*@(use|forward)\b|@supports\s+(not\s+)?selector\(/, t, f)
+      refute_match(/--[\w-]+:\s*\$/, t, "#{f}: write --x: \#{$v} (Ruby Sass prints $v literally)")
+    end
+  end
+
 end
