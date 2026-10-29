@@ -5,14 +5,14 @@ An item with `items:` (a list of {title, url}) is a group: a "More"-style <detai
 {%- for it in mt_nav %}
 {%- if it.items %}
 {%- assign _cur = it.items | where: "url", page.url | first %}
-<li class="mt-nav-group"><details class="mt-menu"><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}{% include modootoday/icon.html name="chevron-down" size=14 %}</summary><ul>
+<li class="mt-nav-group"><details class="mt-menu"><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}{% include modootoday/brand/icon.html name="chevron-down" size=14 %}</summary><ul>
 {%- for sub in it.items %}<li><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
 </ul></details></li>
 {%- for sub in it.items %}
 <li class="mt-nav-flat"><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>
 {%- endfor %}
 {%- else %}
-<li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}{% if it.url contains "://" %}{% include modootoday/icon.html name="external" size=12 %}{% endif %}</a></li>
+<li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}{% if it.url contains "://" %}{% include modootoday/brand/icon.html name="external" size=12 %}{% endif %}</a></li>
 {%- endif %}
 {%- endfor %}
 </ul></nav>

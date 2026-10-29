@@ -17,9 +17,9 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*` |
 | 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
-| 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/logo.html`(`size` 지정 가능)을 인클루드할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/logo.html`을 덮어쓰기 |
+| 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 인클루드할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
 | 직접 만드는 include | `_includes/sections/<name>.html`. `visual: <name>`을 쓴 섹션이나 히어로 끝에 렌더링됨 ([사용자 정의](../customize/#섹션-비주얼과-전체-폭-페이지) 참고) |
-| 호출해도 되는 인클루드 | `modootoday/archive.html`(`by`, `lang`); `modootoday/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
+| 호출해도 되는 인클루드 | `modootoday/archive.html`(`by`, `lang`); `modootoday/brand/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키, `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
 

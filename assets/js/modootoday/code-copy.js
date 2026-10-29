@@ -3,7 +3,7 @@
   if (!navigator.clipboard) return;
   var root = document.documentElement;
   var label = root.dataset.mtCopy || "Copy", done = root.dataset.mtCopied || "Copied";
-  // Icons match modootoday/icon.html (copy, check): decorative, the button text is the name.
+  // Icons match modootoday/brand/icon.html (copy, check): decorative, the button text is the name.
   function icon(d) { return '<svg class="mt-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + d + "</svg>"; }
   var copy = icon('<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/>'), check = icon('<path d="m5 12 5 5 9-10"/>');
   function show(b, ic, text) { b.innerHTML = ic; b.append(text); }

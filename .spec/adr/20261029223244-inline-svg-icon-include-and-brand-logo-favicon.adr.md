@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T22:32:44Z
 updated: 2026-10-29T22:32:44Z
 rel:
-  governs: [_includes/modootoday/icon.html, _includes/modootoday/logo.html, _includes/modootoday/head-meta.html, assets/modootoday/, test/icon_test.rb]
+  governs: [_includes/modootoday/brand/icon.html, _includes/modootoday/brand/logo.html, _includes/modootoday/head-meta.html, assets/modootoday/, test/theme/icon_test.rb]
 ---
 
 # Inline SVG icon include, brand logo and favicon
@@ -16,11 +16,11 @@ Icons were text glyphs, emoji or CSS-drawn shapes (globe, sun/moon, chevrons, se
 
 ## Decision
 
-- One include, `modootoday/icon.html` (`name`, `size` default 18, `label`, `class`), outputs inline SVG with `currentColor`; sizing lives in SVG attributes, not CSS. Decorative by default (`aria-hidden`, `focusable=false`); `label` makes it `role=img` with a name. Unknown names render nothing; a test fails when the theme or docs use an undefined name.
+- One include, `modootoday/brand/icon.html` (`name`, `size` default 18, `label`, `class`), outputs inline SVG with `currentColor`; sizing lives in SVG attributes, not CSS. Decorative by default (`aria-hidden`, `focusable=false`); `label` makes it `role=img` with a name. Unknown names render nothing; a test fails when the theme or docs use an undefined name.
 - Directional icons carry `.mt-icon-flip`, mirrored by one rule under `[dir=rtl]`.
 - The parameter is read as `include["size"]`: `include.size` returns the hash's size in Liquid.
 - Icon-only buttons (theme toggle, language menu) keep their accessible name on the control, at least 24 px targets.
-- `modootoday.logo: brand | <path>` renders through an overridable `modootoday/logo.html` (the mark as filled SVG in the `brand` token, or a decorative `img`). `modootoday.favicon: brand | <path>` links SVG, 32 px PNG and a 180 px apple-touch icon generated from the same mark.
+- `modootoday.logo: brand | <path>` renders through an overridable `modootoday/brand/logo.html` (the mark as filled SVG in the `brand` token, or a decorative `img`). `modootoday.favicon: brand | <path>` links SVG, 32 px PNG and a 180 px apple-touch icon generated from the same mark.
 - The code-copy script builds the copy/check SVG strings itself (same paths) because JS cannot call an include.
 
 ## Consequences

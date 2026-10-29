@@ -40,7 +40,7 @@ modootoday:
 | `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
 | `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
 | `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |
-| `logo` | なし | `brand` でサイト名の前に modootoday マークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/logo.html` を上書き |
+| `logo` | なし | `brand` でサイト名の前に modootoday マークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/brand/logo.html` を上書き |
 | `favicon` | なし | `brand` で modootoday マークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |

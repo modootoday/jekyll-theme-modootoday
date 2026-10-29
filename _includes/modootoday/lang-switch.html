@@ -24,7 +24,7 @@
 {%- endfor -%}
 {%- endcapture -%}
 {%- if include.style == "menu" -%}
-<details class="mt-lang mt-menu"><summary aria-label="{{ _ls_label }}: {{ _ls_curname }}" title="{{ _ls_label }}">{% include modootoday/icon.html name="globe" %}</summary><ul>{{ _ls_items }}</ul></details>
+<details class="mt-lang mt-menu"><summary aria-label="{{ _ls_label }}: {{ _ls_curname }}" title="{{ _ls_label }}">{% include modootoday/brand/icon.html name="globe" %}</summary><ul>{{ _ls_items }}</ul></details>
 {%- else -%}
 <nav class="mt-lang" aria-label="{{ _ls_label }}"><ul>{{ _ls_items }}</ul></nav>
 {%- endif -%}

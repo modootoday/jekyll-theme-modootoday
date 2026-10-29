@@ -40,7 +40,7 @@ modootoday:
 | `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
 | `og_image` | 없음 | 기본 Open Graph 이미지. 머리말의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
-| `logo` | 없음 | `brand`면 사이트 제목 앞에 modootoday 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/logo.html`을 덮어쓰기 |
+| `logo` | 없음 | `brand`면 사이트 제목 앞에 modootoday 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
 | `favicon` | 없음 | `brand`면 modootoday 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |

@@ -11,6 +11,6 @@ Optional page footer line (needs modootoday/config.html first).
 <p class="mt-page-meta">
 {%- if page.last_modified_at -%}<span>{{ _pm_ui.updated | default: "Last updated" }} <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%Y-%m-%d" }}</time></span>{%- endif -%}
 {%- if _pm_edit and page.last_modified_at %} · {% endif -%}
-{%- if _pm_edit -%}<a href="{{ _pm_edit }}" rel="nofollow">{% include modootoday/icon.html name="edit" size=14 %} {{ _pm_ui.edit | default: "Edit this page" }}</a>{%- endif -%}
+{%- if _pm_edit -%}<a href="{{ _pm_edit }}" rel="nofollow">{% include modootoday/brand/icon.html name="edit" size=14 %} {{ _pm_ui.edit | default: "Edit this page" }}</a>{%- endif -%}
 </p>
 {%- endif -%}

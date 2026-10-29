@@ -27,7 +27,7 @@
 {%- for _name in _anames -%}
 {%- assign _n = 0 -%}
 {%- for _p in site[_ab][_name] -%}{%- assign _pl = _p.lang | default: _site_lang -%}{%- if _al == "all" or _pl == _al -%}{%- assign _n = _n | plus: 1 -%}{%- endif -%}{%- endfor -%}
-<li><a class="mt-badge mt-badge-tag" data-variant="tag" href="#{{ _ab }}-{{ _name | slugify }}">{% if _ab == "tags" %}{% include modootoday/icon.html name="tag" size=12 %}{% else %}{% include modootoday/icon.html name="folder" size=12 %}{% endif %}{{ _name }} <span class="mt-archive-count">{{ _n }}<span class="mt-sr-only"> {{ _aunit }}</span></span></a></li>
+<li><a class="mt-badge mt-badge-tag" data-variant="tag" href="#{{ _ab }}-{{ _name | slugify }}">{% if _ab == "tags" %}{% include modootoday/brand/icon.html name="tag" size=12 %}{% else %}{% include modootoday/brand/icon.html name="folder" size=12 %}{% endif %}{{ _name }} <span class="mt-archive-count">{{ _n }}<span class="mt-sr-only"> {{ _aunit }}</span></span></a></li>
 {%- endfor -%}
 </ul></nav>
 {%- for _name in _anames %}

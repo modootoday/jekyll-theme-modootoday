@@ -2,6 +2,6 @@
 currentColor = the brand token, so it follows light/dark) or a path to your own image (decorative, alt=""). Unset: the
 header keeps its CSS square. Shadow this file to draw your own logo.{%- endcomment -%}
 {%- assign _lg = site.modootoday.logo -%}{%- assign _lgs = include["size"] | default: 28 -%}
-{%- if _lg == "brand" -%}{% include modootoday/icon.html name="brand" size=_lgs class="mt-logo" %}
+{%- if _lg == "brand" -%}{% include modootoday/brand/icon.html name="brand" size=_lgs class="mt-logo" %}
 {%- elsif _lg -%}<img class="mt-logo" src="{{ _lg | relative_url }}" alt="" width="{{ _lgs }}" height="{{ _lgs }}">
 {%- endif -%}

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
-# Icon include (_includes/modootoday/icon.html), the logo/favicon options and their accessibility.
+# Icon include (_includes/modootoday/brand/icon.html), the logo/favicon options and their accessibility.
 require "minitest/autorun"
 require "tmpdir"
 require "open3"
 require "fileutils"
 
 class IconTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   EXAMPLE = File.join(ROOT, "example")
-  ICON = File.read(File.join(ROOT, "_includes/modootoday/icon.html"))
+  ICON = File.read(File.join(ROOT, "_includes/modootoday/brand/icon.html"))
   DEFINED = ICON.scan(/\{%-? when (.+?) -?%\}/).flatten.flat_map { |w| w.scan(/"([a-z-]+)"/).flatten }
 
   def build(dir, overlay)
@@ -49,8 +49,8 @@ class IconTest < Minitest::Test
   def test_icon_label_and_unknown_name
     Dir.mktmpdir do |d|
       FileUtils.cp_r("#{EXAMPLE}/.", "#{d}/src")
-      File.write("#{d}/src/icons.md", "---\nlayout: null\n---\n{% include modootoday/icon.html name=\"rss\" label=\"Feed\" %}|" \
-                                      "{% include modootoday/icon.html name=\"nope\" %}|{% include modootoday/icon.html name=\"next\" size=12 %}")
+      File.write("#{d}/src/icons.md", "---\nlayout: null\n---\n{% include modootoday/brand/icon.html name=\"rss\" label=\"Feed\" %}|" \
+                                      "{% include modootoday/brand/icon.html name=\"nope\" %}|{% include modootoday/brand/icon.html name=\"next\" size=12 %}")
       out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", "#{d}/src", "-d", "#{d}/s", chdir: ROOT)
       assert st.success?, out
       a, b, c = File.read("#{d}/s/icons/index.html").split("|")
