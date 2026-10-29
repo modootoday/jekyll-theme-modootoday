@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
-The content rules have their own version header (`md-components v1 (draft)`) in [RULES.md](RULES.md).
+The content rules have their own version header (`md-components v1`) in [RULES.md](RULES.md).
 
 ## [Unreleased]
 
@@ -19,6 +19,8 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 - Search results show the current language first, title matches before body matches, and a muted text snippet; on narrow screens the results panel spans the header width.
 - Footnotes are rendered after the last section instead of inside it (they no longer land in a call-to-action card).
 - On screens under 48rem, code blocks with a Copy button start below the button so it never covers the first line.
+- The rules are final: `RULES.md` and every file header now say `md-components v1` instead of `md-components v1 (draft)`. No rule changed.
+- The public API on the docs site is frozen for 1.0: 1.x may add names but removes or breaks none before 2.0.
 - `modootoday-check` also warns on `md-*` classes and `var(--md-*)` in the site's own includes, layouts, CSS and pages (code is ignored), not only in Sass.
 
 ## [0.5.0] - Unreleased

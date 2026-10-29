@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: changelog.md
+permalink: /ja/changelog/index.md
+---

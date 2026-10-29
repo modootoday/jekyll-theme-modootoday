@@ -24,8 +24,10 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 2. It keeps working for at least one minor release.
 3. It is removed only in the next major release.
 
+This list is frozen for 1.0. Releases in 1.x may add names; none of the names above is removed or changed incompatibly before 2.0. The Markdown rules are final as `md-components v1` in `RULES.md`.
+
 > [!IMPORTANT]
-> The old `md-*` classes and `--md-*` properties are aliases of `mt-*` and `--mt-*`. They stay through 1.x, are marked deprecated in 1.0, and are removed in 2.0. `modootoday-check` warns when your own Sass, CSS, includes, layouts or pages use them. See the [mapping table](../upgrade/).
+> The old `md-*` classes and `--md-*` properties are aliases of `mt-*` and `--mt-*`. They are deprecated as of 1.0, keep working through 1.x, and are removed in 2.0. `modootoday-check` warns when your own Sass, CSS, includes, layouts or pages use them. See the [mapping table](../upgrade/).
 
 ## Component structure
 

@@ -60,7 +60,7 @@ bundle exec modootoday-check . _site
 ## 개념
 
 - **본문은 평범하게, 레이아웃은 풍부하게.** 본문은 GFM이고 `sections:` 머리말이 `##`마다 컴포넌트를 연결합니다. [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/)와 [키친싱크](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/kitchen-sink/)를 보세요.
-- **규칙.** 본문에 쓸 수 있는 것과 각 패턴의 변환 결과는 [RULES.md](RULES.md)(`md-components v1 (draft)`)가 정합니다.
+- **규칙.** 본문에 쓸 수 있는 것과 각 패턴의 변환 결과는 [RULES.md](RULES.md)(`md-components v1`)가 정합니다.
 - **설정과 토큰.** `_config.yml`의 `modootoday:` 블록 하나, CSS 사용자 속성 `--mt-*`, 컴포넌트별 Sass 파셜. [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/)과 [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/)를 보세요.
 - **쌍둥이: 세 가지 방식** — 스텁 파일(기본, 기본 Pages), `jekyll-theme-modootoday` 플러그인(Jekyll 4 / Actions), 또는 머리말 없는 페이지와 `modootoday.twins: source`(기본 Pages, 스텁 없음). [RULES.md §5a](RULES.md#5a-markdown-twins)를 보세요.
 

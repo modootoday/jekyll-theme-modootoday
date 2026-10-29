@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# md-components v1 (draft) — jekyll-theme-modootoday checker (Ruby stdlib only)
+# md-components v1 — jekyll-theme-modootoday checker (Ruby stdlib only)
 # Usage: modootoday-check SRC_DIR SITE_DIR [--twins] [--github-pages[=VERSION]] [--gh] [--strict]
 require "open3"
 require "yaml"
@@ -27,7 +27,7 @@ if (h = ARGV.find { |a| a == "-h" || a.start_with?("--help") })
   exit 0
 end
 if ARGV.include?("--version")
-  puts "modootoday-check (md-components v1 draft)"
+  puts "modootoday-check (md-components v1)"
   exit 0
 end
 pos = ARGV.reject { |a| a.start_with?("--") }

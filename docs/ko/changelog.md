@@ -36,6 +36,6 @@ description: jekyll-theme-modootoday 릴리스.
 - 첫 버전: 알림, 섹션, 카드, 버튼, 탭, 상태 배지, 쌍둥이, 검사기.
 
 > [!IMPORTANT]
-> 규칙은 아직 초안(`md-components v1 (draft)`)입니다. 1.0 전에는 호환되지 않는 변경이 있을 수 있습니다.
+> 규칙은 `md-components v1`로 확정되었습니다. 1.0부터 규칙의 제거나 강화는 메이저 버전에서만 합니다.
 
 [홈으로](../)

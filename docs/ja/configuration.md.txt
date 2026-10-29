@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: configuration.md
+permalink: /ja/configuration/index.md
+---

@@ -1,4 +1,4 @@
-{%- comment -%}md-components v1 (draft) llms.txt (https://llmstxt.org): H1, summary, a Docs H2 link list of this language's pages (twin URLs) and, at the root, a Translations H2. Use from a stub whose front matter is only `layout: llms` (title/description optional; else _data/i18n/<lang>.yml title/description, else site).{%- endcomment -%}
+{%- comment -%}md-components v1 llms.txt (https://llmstxt.org): H1, summary, a Docs H2 link list of this language's pages (twin URLs) and, at the root, a Translations H2. Use from a stub whose front matter is only `layout: llms` (title/description optional; else _data/i18n/<lang>.yml title/description, else site).{%- endcomment -%}
 {%- include md-llms-pages.html -%}
 {%- assign _t = site.data.i18n[_llms_lang] -%}
 # {{ page.title | default: _t.title | default: site.title }}

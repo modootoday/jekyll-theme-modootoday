@@ -1,4 +1,4 @@
-{%- comment -%}md-components v1 (draft): assigns _llms_pages = Markdown pages in the current page's directory tree and language (twin: false and README.md excluded), sorted by url.{%- endcomment -%}
+{%- comment -%}md-components v1: assigns _llms_pages = Markdown pages in the current page's directory tree and language (twin: false and README.md excluded), sorted by url.{%- endcomment -%}
 {%- assign _llms_lang = page.lang | default: site.lang | default: "en" -%}
 {%- assign _llms_dir = page.path | split: "/" | pop | join: "/" -%}
 {%- if _llms_dir != "" -%}{%- assign _llms_dir = _llms_dir | append: "/" -%}{%- endif -%}

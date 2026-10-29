@@ -1,0 +1,13 @@
+- {title: 導入, url: /ja/install/}
+- {title: 最初の一歩, url: /ja/first-page/}
+- {title: 部品, url: /ja/components/}
+- {title: 設定, url: /ja/configuration/}
+- {title: カスタム, url: /ja/customize/}
+- {title: AI 向け, url: /ja/agents/}
+- title: その他
+  items:
+    - {title: 公開 API, url: /ja/api/}
+    - {title: 移行, url: /ja/upgrade/}
+    - {title: CSP, url: /ja/csp/}
+    - {title: ロードマップ, url: /ja/roadmap/}
+    - {title: 変更履歴, url: /ja/changelog/}

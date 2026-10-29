@@ -33,6 +33,6 @@ The first public version. It combines the internal milestones below, which were 
 - First version: alerts, sections, cards, buttons, tabs, status badges, twins and the checker.
 
 > [!IMPORTANT]
-> The rules are still a draft (`md-components v1 (draft)`). Breaking changes are possible before 1.0.
+> The rules are final as `md-components v1`. From 1.0 on, a rule is only removed or made stricter in a major version.
 
 [Back to home](../)

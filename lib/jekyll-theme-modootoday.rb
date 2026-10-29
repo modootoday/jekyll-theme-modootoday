@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# md-components v1 (draft) — optional generator for Jekyll builds that can load plugins
+# md-components v1 — optional generator for Jekyll builds that can load plugins
 # (Jekyll 4 / GitHub Actions; NOT the classic GitHub Pages build, which only runs whitelisted plugins).
 # Enable with `plugins: [jekyll-theme-modootoday]`. For every Markdown page without a stub it adds the
 # same virtual page a hand-written stub would be:

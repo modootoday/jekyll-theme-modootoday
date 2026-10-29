@@ -57,7 +57,7 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 ## Concepts
 
 - **Plain body, rich layout.** The body is GFM; `sections:` front matter maps each `##` to a component. See [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) and the [kitchen sink](https://modootoday.github.io/jekyll-theme-modootoday/components/kitchen-sink/).
-- **Rules.** What may appear in a body, and what each pattern becomes, is defined in [RULES.md](RULES.md) (`md-components v1 (draft)`).
+- **Rules.** What may appear in a body, and what each pattern becomes, is defined in [RULES.md](RULES.md) (`md-components v1`).
 - **Settings and tokens.** One `modootoday:` block in `_config.yml`, CSS custom properties `--mt-*`, one Sass partial per component. See [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) and [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/).
 - **Twins: three ways** — stub files (default, classic Pages), the `jekyll-theme-modootoday` plugin (Jekyll 4 / Actions), or `modootoday.twins: source` with front-matter-less pages (classic Pages, no stubs). See [RULES.md §5a](RULES.md#5a-markdown-twins).
 

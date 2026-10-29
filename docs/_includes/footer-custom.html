@@ -1,1 +1,16 @@
-<footer class="mt-footer"><div class="mt-footer-inner"><p>{{ site.title }} · {{ site.description | default: "" }}</p><p><a href="https://github.com/modootoday/jekyll-theme-modootoday">GitHub</a> · <a href="https://rubygems.org/gems/jekyll-theme-modootoday">RubyGems</a> · MIT</p></div></footer>
+{%- comment -%}Docs site only: footer with a language switcher built from modootoday.languages (links only to pages that exist in that language).{%- endcomment -%}
+{%- assign _fl_def = site.lang | default: "en" -%}
+{%- assign _fl_cur = page.lang | default: _fl_def -%}
+{%- assign _fl_base = page.url -%}
+{%- if _fl_cur != _fl_def -%}{%- assign _fl_pre = "/" | append: _fl_cur -%}{%- assign _fl_base = page.url | remove_first: _fl_pre -%}{%- endif -%}
+{%- capture _fl_links -%}
+{%- for _l in site.modootoday.languages -%}
+{%- if _l == _fl_def -%}{%- assign _fl_alt = _fl_base -%}{%- else -%}{%- assign _fl_alt = "/" | append: _l | append: _fl_base -%}{%- endif -%}
+{%- assign _fl_p = site.pages | where: "url", _fl_alt | first -%}
+{%- unless _fl_p -%}{%- if _l == _fl_def -%}{%- assign _fl_alt = "/" -%}{%- else -%}{%- assign _fl_alt = "/" | append: _l | append: "/" -%}{%- endif -%}{%- endunless -%}
+{%- assign _fl_name = site.data.i18n[_l].language | default: _l -%}
+{%- unless forloop.first %} · {% endunless -%}
+{%- if _l == _fl_cur -%}<a href="{{ _fl_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}" aria-current="true">{{ _fl_name }}</a>{%- else -%}<a href="{{ _fl_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}">{{ _fl_name }}</a>{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+<footer class="mt-footer"><div class="mt-footer-inner"><p>{{ site.title }} · {{ site.description | default: "" }}</p>{% if site.modootoday.languages %}<p>{{ _fl_links }}</p>{% endif %}<p><a href="https://github.com/modootoday/jekyll-theme-modootoday">GitHub</a> · <a href="https://rubygems.org/gems/jekyll-theme-modootoday">RubyGems</a> · MIT</p></div></footer>

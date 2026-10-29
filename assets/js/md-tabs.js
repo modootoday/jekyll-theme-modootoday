@@ -1,4 +1,4 @@
-// md-components v1 (draft) — jekyll-theme-modootoday. Optional progressive enhancement:
+// md-components v1 — jekyll-theme-modootoday. Optional progressive enhancement:
 // inside section[data-tabs], consecutive h3 + code block pairs become ARIA tabs (WAI-ARIA APG Tabs).
 // Without JS every method stays visible in order.
 (function () {

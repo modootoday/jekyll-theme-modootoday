@@ -1,9 +1,9 @@
 ---
 id: sot:modootoday/md-components
 title: md-components v1 rules
-status: draft
+status: active
 created: 2026-10-29T20:10:48Z
-updated: 2026-10-29T20:11:20Z
+updated: 2026-10-29T21:18:54Z
 verify: [bundle exec rake]
 rel:
   governs: [_includes, exe, _layouts, test]
@@ -26,7 +26,7 @@ RULES.md (header `md-components v1 (draft)`) is the user-facing text; this sot i
 
 ## Why
 
-Bodies must render the same on github.com, in kramdown (GitHub Pages and Jekyll 4) and as plain-text twins for agents. Measured on GitHub's renderer, kramdown 2.4 and CommonMark parsers: alerts are a GitHub extension outside GFM and only top-level alerts render; nested `##` breaks section splitting. Decisions: [[adr:modootoday/20261029201117]] (alerts, ##), [[adr:modootoday/20261029201116]] (twins, llms). Status stays draft until v1 sign-off.
+Bodies must render the same on github.com, in kramdown (GitHub Pages and Jekyll 4) and as plain-text twins for agents. Measured on GitHub's renderer, kramdown 2.4 and CommonMark parsers: alerts are a GitHub extension outside GFM and only top-level alerts render; nested `##` breaks section splitting. Decisions: [[adr:modootoday/20261029201117]] (alerts, ##), [[adr:modootoday/20261029201116]] (twins, llms). v1 was approved by the maintainer on 2026-10-30; the status is final.
 
 ## Verification
 

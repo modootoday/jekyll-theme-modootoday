@@ -56,7 +56,11 @@ class HeadMetaTest < Minitest::Test
         refute_match(/<script>(?!<\/script>)/, h, "no inline script with csp: strict")
       end
       assert_includes ko, '<meta property="og:locale" content="ko">'
-      refute_includes File.read("#{s}/guide/index.html"), 'hreflang="ko"', "guide has no ko translation"
+      guide = File.read("#{s}/guide/index.html")
+      %w[ko ja].each do |l|
+        assert_includes guide, %(<link rel="alternate" hreflang="#{l}" href="https://example.org/docs/#{l}/guide/">)
+        assert_includes File.read("#{s}/#{l}/guide/index.html"), %(<link rel="alternate" hreflang="en" href="https://example.org/docs/guide/">)
+      end
       assert_includes en, 'href="https://github.com/o/r/edit/main/example/index.md"'
       assert File.exist?("#{s}/assets/js/modootoday/theme-init.js")
     end
