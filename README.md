@@ -2,9 +2,9 @@
 
 [한국어](README.ko.md)
 
-A Jekyll theme for documentation sites whose pages stay **plain GitHub Markdown**. Bodies use only GFM that also renders on github.com; layouts, includes, CSS and a little optional JavaScript add the design:
+A Jekyll theme for documentation sites whose pages stay **plain GitHub Markdown**. Bodies use only GFM (plus GitHub's alert extension) that also renders on github.com; layouts, includes, CSS and a little optional JavaScript add the design:
 
-- GitHub alerts (`> [!NOTE]` …) become styled callouts
+- GitHub alerts (`> [!NOTE]` …, a GitHub extension outside the GFM spec that degrades to a plain quote elsewhere) become styled callouts
 - status code spans (`` `status:available` ``) become badges
 - `##` sections can be mapped to components (feature grid, install tabs, call-to-action)
 - byte-identical Markdown "twins" of every page for agents and LLMs (`/guide/index.md`, `llms.txt`)
@@ -80,7 +80,7 @@ skip: Skip to content
 ## Front matter rules
 
 - **Every content page needs front matter**, even an empty one (`---` / `---`). On GitHub Pages, a Markdown file without front matter is rendered by `jekyll-optional-front-matter` *and* copied raw to `_site/<name>.md`. The checker reports it.
-- `sections:` (optional) maps each `##` heading, in order, to a name or `{c: component, name: key, ...params}`. The number of items must equal the number of `##` headings. Without `sections:` the page is one `div.md-prose`.
+- `sections:` (optional) maps each `##` heading, in order, to a name or `{c: component, name: key, ...params}`. The number of items must equal the number of top-level `## ` headings; `##` inside quotes, alerts or list items never starts a section and is a checker error. Without `sections:` the page is one `div.md-prose`.
 - `badges: false` turns badges off for one page.
 
 ## Components
@@ -96,7 +96,7 @@ skip: Skip to content
 | `c: tabs` + `### name` + code block, repeated | ARIA tabs (with JS); without JS all blocks stay visible |
 | GFM table | horizontally scrollable table |
 
-Not allowed in bodies (outside code): raw HTML, Liquid, kramdown IAL/ALD (`{: .x}`), header ids (`{#id}`), definition lists, alerts nested in lists, tables or quotes. Details: [RULES.md](RULES.md).
+Not allowed in bodies (outside code), for portability between github.com and kramdown: raw HTML and HTML comments, Liquid, kramdown IAL/ALD (`{: .x}`), header ids (`{#id}`), definition lists, abbreviations (`*[X]:`), bare URL autolinks (write `<https://…>`), code fence attributes (info string = one language word), setext/nested `##`, and alerts that are nested, empty, titled or of an unknown type. Footnotes are allowed. Details: [RULES.md](RULES.md).
 
 ### Markdown twins (optional)
 
@@ -110,7 +110,7 @@ permalink: /guide/index.md
 ---
 ```
 
-The build then contains `/guide/index.md`, identical to the body of `guide.md`. Provide `llms.txt` and `llms-full.txt` at `/` and under each `/<lang>/`.
+The build then contains `/guide/index.md`, identical to the body of `guide.md`. Provide `llms.txt` (llmstxt.org format: `# Title`, `>` summary, `## Section` link lists) and `llms-full.txt` at `/` and under each `/<lang>/`. The `default` layout links the twin with `rel="alternate" type="text/markdown"` and the nearest `llms.txt` with `rel="describedby"`.
 
 ## Checker
 
@@ -121,10 +121,10 @@ bundle exec modootoday-check . _site [--twins] [--github-pages[=232]] [--strict]
 
 | Flag | Checks |
 |---|---|
-| (always) | front matter present, forbidden syntax, `status:` values, `sections:` count, `_data/components.yml` (if present), unconverted markers in the build |
+| (always) | front matter present, forbidden syntax, alert form/type (any case), fence info strings, `status:` values, `sections:` count of top-level `##`, `_data/components.yml` (if present), unconverted markers in the build |
 | `--twins` | twin stubs, byte-identical twins, per-language `llms.txt` / `llms-full.txt` |
 | `--github-pages[=VER]` | `Gemfile.lock` pins `github-pages` VER (default 232) |
-| `--strict` | warnings (e.g. unknown alert type `> [!FOO]`) fail the run |
+| `--strict` | warnings (e.g. `> [! NOTE]` with a space) fail the run; unknown alert types are always errors |
 | `--gh` | renders each page with `gh api markdown` (network, `gh` login) |
 
 It uses only the Ruby standard library and exits 1 on problems.
