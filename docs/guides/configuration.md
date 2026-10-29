@@ -36,6 +36,7 @@ modootoday:
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |
+| `schema` | on when `url` is set | schema.org JSON-LD graph: `publisher`, `search_url`, `layouts`; `false` turns it off. See [Structured data](../structured-data/) |
 | `languages` | none | language codes for `hreflang`, such as `[en, ko]` The header site title links to the page language's home (`/<lang>/`) when it exists. |
 | `language_switcher` | none | `header` (a globe button with a dropdown menu; same width however many languages) or `footer` (a list of language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page. Nothing renders with fewer than two languages. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click |
 | `og_image` | none | default Open Graph image; `image:` in front matter wins |
