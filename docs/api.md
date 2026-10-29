@@ -17,7 +17,8 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`) can be included from your footer; override `modootoday/brand/logo.html` to draw your own logo |
 | Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../customize/#section-visuals-and-full-width-pages)) |
 | Includes you may call | `modootoday/archive.html` with `by` and `lang`; `modootoday/brand/icon.html` with `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL) |
-| Data files | `_data/i18n/<lang>.yml` keys, `_data/nav/<name>.yml`, `_data/components.yml` |
+| Includes | `modootoday/t.html` (`key=`, optional `n=` / `name=`) prints a theme label for the page language |
+| Data files | `_data/i18n/<lang>.yml` keys (optional overrides of the built-in catalogs), `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
 
 ## Deprecation policy

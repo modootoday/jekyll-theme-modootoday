@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Korean). Copy to _data/i18n/ko.yml; keys are fixed, values are yours.
+language: 한국어
+direction: ltr
+skip: 본문으로 건너뛰기
+callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
+status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
+task: {done: 완료, open: 진행 전}
+tabs: {label: 옵션}
+toc: {label: 이 페이지의 내용}
+theme: {toggle: 다크 모드}
+breadcrumb: {label: 이동 경로}
+nav: {label: 메인 메뉴}
+pagination: {label: 페이지 이동, prev: 이전, next: 다음}
+code: {copy: 복사, copied: 복사됨}
+search: {label: 검색}
+page: {edit: 이 페이지 편집, updated: 최종 수정}
+languages: {label: 언어}
+post: {date_format: "%Y년 %-m월 %-d일"}
+fallback: {notice: 이 페이지는 아직 번역되지 않아 영어로 보여 드려요.}
+archive:
+  tags: "태그"
+  categories: "카테고리"
+  posts: "개의 글"
+  empty: "아직 글이 없어요."

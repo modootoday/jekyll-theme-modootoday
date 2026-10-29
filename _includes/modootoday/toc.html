@@ -12,6 +12,6 @@ front matter toc: false hides it. Usage: {% include modootoday/toc.html html=htm
 {%- endif -%}{%- endif -%}{%- endfor -%}{%- endcapture -%}
 {%- assign _n = _items | split: '<li ' | size | minus: 1 -%}
 {%- if _n >= 2 %}
-<nav class="mt-toc" aria-labelledby="mt-toc-title"><p class="mt-toc-title" id="mt-toc-title">{{ site.data.i18n[_lang].toc.label | default: "On this page" }}</p><ol>{{ _items }}</ol></nav>
+<nav class="mt-toc" aria-labelledby="mt-toc-title"><p class="mt-toc-title" id="mt-toc-title">{% include modootoday/i18n.html lang=_lang %}{{ mt_t_toc_label }}</p><ol>{{ _items }}</ol></nav>
 {%- endif -%}
 {%- endif -%}

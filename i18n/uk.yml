@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Ukrainian). Copy to _data/i18n/uk.yml; keys are fixed, values are yours.
+language: Українська
+direction: ltr
+skip: Перейти до вмісту
+callout: {note: Примітка, tip: Порада, important: Важливо, warning: Попередження, caution: Обережно}
+status: {available: Доступно, partial: Частково, planned: Заплановано}
+task: {done: Виконано, open: Не виконано}
+tabs: {label: Варіанти}
+toc: {label: На цій сторінці}
+theme: {toggle: Темний режим}
+breadcrumb: {label: Навігаційний ланцюжок}
+nav: {label: Головне меню}
+pagination: {label: Сторінки, prev: Назад, next: Далі}
+code: {copy: Копіювати, copied: Скопійовано}
+search: {label: Пошук}
+page: {edit: Редагувати сторінку, updated: Оновлено}
+languages: {label: Мови}
+post: {date_format: "%d.%m.%Y"}
+fallback: {notice: "Цю сторінку ще не перекладено, тому вона показана англійською."}
+archive:
+  tags: "Теги"
+  categories: "Категорії"
+  posts: "дописів"
+  empty: "Дописів поки немає."

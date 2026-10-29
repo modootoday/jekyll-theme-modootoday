@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Arabic). Copy to _data/i18n/ar.yml; keys are fixed, values are yours.
+language: العربية
+direction: rtl
+skip: انتقل إلى المحتوى
+callout: {note: ملاحظة, tip: نصيحة, important: مهم, warning: تحذير, caution: تنبيه}
+status: {available: متاح, partial: جزئي, planned: مخطط له}
+task: {done: مكتمل, open: غير مكتمل}
+tabs: {label: الخيارات}
+toc: {label: في هذه الصفحة}
+theme: {toggle: الوضع الداكن}
+breadcrumb: {label: مسار التنقل}
+nav: {label: القائمة الرئيسية}
+pagination: {label: الصفحات, prev: السابق, next: التالي}
+code: {copy: نسخ, copied: تم النسخ}
+search: {label: بحث}
+page: {edit: تعديل هذه الصفحة, updated: آخر تحديث}
+languages: {label: اللغات}
+post: {date_format: "%Y-%m-%d"}
+fallback: {notice: لم تُترجم هذه الصفحة بعد، لذا تُعرض باللغة الإنجليزية.}
+archive:
+  tags: "الوسوم"
+  categories: "التصنيفات"
+  posts: "منشورات"
+  empty: "لا توجد منشورات بعد."

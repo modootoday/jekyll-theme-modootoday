@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Polish). Copy to _data/i18n/pl.yml; keys are fixed, values are yours.
+language: Polski
+direction: ltr
+skip: Przejdź do treści
+callout: {note: Uwaga, tip: Wskazówka, important: Ważne, warning: Ostrzeżenie, caution: Przestroga}
+status: {available: Dostępne, partial: Częściowo, planned: Planowane}
+task: {done: Gotowe, open: Do zrobienia}
+tabs: {label: Opcje}
+toc: {label: Na tej stronie}
+theme: {toggle: Tryb ciemny}
+breadcrumb: {label: Ścieżka nawigacji}
+nav: {label: Menu główne}
+pagination: {label: Strony, prev: Poprzednia, next: Następna}
+code: {copy: Kopiuj, copied: Skopiowano}
+search: {label: Szukaj}
+page: {edit: Edytuj tę stronę, updated: Ostatnia aktualizacja}
+languages: {label: Języki}
+post: {date_format: "%d.%m.%Y"}
+fallback: {notice: "Ta strona nie została jeszcze przetłumaczona, dlatego wyświetlamy ją po angielsku."}
+archive:
+  tags: "Tagi"
+  categories: "Kategorie"
+  posts: "wpisów"
+  empty: "Nie ma jeszcze wpisów."

@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Indonesian). Copy to _data/i18n/id.yml; keys are fixed, values are yours.
+language: Bahasa Indonesia
+direction: ltr
+skip: Langsung ke konten
+callout: {note: Catatan, tip: Kiat, important: Penting, warning: Peringatan, caution: Perhatian}
+status: {available: Tersedia, partial: Sebagian, planned: Direncanakan}
+task: {done: Selesai, open: Belum selesai}
+tabs: {label: Opsi}
+toc: {label: Di halaman ini}
+theme: {toggle: Mode gelap}
+breadcrumb: {label: Jejak navigasi}
+nav: {label: Menu utama}
+pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}
+code: {copy: Salin, copied: Tersalin}
+search: {label: Cari}
+page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}
+languages: {label: Bahasa}
+post: {date_format: "%d/%m/%Y"}
+fallback: {notice: "Halaman ini belum diterjemahkan, jadi ditampilkan dalam bahasa Inggris."}
+archive:
+  tags: "Tag"
+  categories: "Kategori"
+  posts: "tulisan"
+  empty: "Belum ada tulisan."

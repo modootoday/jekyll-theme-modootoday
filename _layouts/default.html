@@ -2,15 +2,15 @@
 {%- comment -%}md-components v1 — jekyll-theme-modootoday base layout. Liquid only (GitHub Pages safe).{%- endcomment -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/config.html -%}
-{%- assign _ui = site.data.i18n[_lang] -%}
+{%- include modootoday/i18n.html lang=_lang -%}
 {%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
 {%- assign mt_home = "/" -%}{%- assign _def_lang = site.lang | default: "en" -%}
 {%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- assign _lhp = site.pages | where: "url", _lh | first -%}{%- if _lhp -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
 {%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}
 {%- assign _base = _lang | split: "-" | first -%}
 {%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
-{%- assign _dir = page.direction | default: _ui.direction | default: _dir -%}
-<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_color_scheme != "auto" %} data-theme="{{ mt_color_scheme }}"{% endif %} data-mt-copy="{{ _ui.code.copy | default: 'Copy' }}" data-mt-copied="{{ _ui.code.copied | default: 'Copied' }}">
+{%- assign _dir = page.direction | default: mt_t_direction | default: _dir -%}
+<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_color_scheme != "auto" %} data-theme="{{ mt_color_scheme }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,9 +40,9 @@
 {%- include head-custom.html %}
 </head>
 <body class="mt-body">
-<a class="mt-skip" href="#mt-main">{{ site.data.i18n[_lang].skip | default: "Skip to content" }}</a>
+<a class="mt-skip" href="#mt-main">{{ mt_t_skip }}</a>
 {%- if site.title %}
-<header class="mt-header"><div class="mt-header-inner"><a class="mt-site-title{% if site.modootoday.logo %} mt-has-logo{% endif %}" href="{{ mt_home | relative_url }}">{% include modootoday/brand/logo.html %}{{ site.title }}</a>{% include modootoday/nav.html %}{%- assign _sidx = site.pages | where: "url", "/search.json" | first -%}{% if mt_components contains "search" and _sidx %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" data-lang="{{ site.lang | default: 'en' }}" hidden>{% include modootoday/brand/icon.html name="search" size=16 %}<input type="search" aria-label="{{ _ui.search.label | default: 'Search' }}" placeholder="{{ _ui.search.label | default: 'Search' }}"><ul class="mt-search-results"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_color_scheme == "auto" %}<button class="mt-theme-toggle" type="button" aria-pressed="false" aria-label="{{ _ui.theme.toggle | default: 'Dark mode' }}" title="{{ _ui.theme.toggle | default: 'Dark mode' }}" hidden>{% include modootoday/brand/icon.html name="moon" %}{% include modootoday/brand/icon.html name="sun" %}</button>{% endif %}</div></header>
+<header class="mt-header"><div class="mt-header-inner"><a class="mt-site-title{% if site.modootoday.logo %} mt-has-logo{% endif %}" href="{{ mt_home | relative_url }}">{% include modootoday/brand/logo.html %}{{ site.title }}</a>{% include modootoday/nav.html %}{%- assign _sidx = site.pages | where: "url", "/search.json" | first -%}{% if mt_components contains "search" and _sidx %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" data-lang="{{ site.lang | default: 'en' }}" hidden>{% include modootoday/brand/icon.html name="search" size=16 %}<input type="search" aria-label="{{ mt_t_search_label }}" placeholder="{{ mt_t_search_label }}"><ul class="mt-search-results"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_color_scheme == "auto" %}<button class="mt-theme-toggle" type="button" aria-pressed="false" aria-label="{{ mt_t_theme_toggle }}" title="{{ mt_t_theme_toggle }}" hidden>{% include modootoday/brand/icon.html name="moon" %}{% include modootoday/brand/icon.html name="sun" %}</button>{% endif %}</div></header>
 {%- endif %}
 <main id="mt-main" class="mt-main{% if page.full_width %} mt-main-full{% endif %}">
 {{ content }}

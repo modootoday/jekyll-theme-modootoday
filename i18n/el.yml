@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Greek). Copy to _data/i18n/el.yml; keys are fixed, values are yours.
+language: Ελληνικά
+direction: ltr
+skip: Μετάβαση στο περιεχόμενο
+callout: {note: Σημείωση, tip: Συμβουλή, important: Σημαντικό, warning: Προειδοποίηση, caution: Προσοχή}
+status: {available: Διαθέσιμο, partial: Μερικώς, planned: Προγραμματισμένο}
+task: {done: Ολοκληρώθηκε, open: Εκκρεμεί}
+tabs: {label: Επιλογές}
+toc: {label: Σε αυτή τη σελίδα}
+theme: {toggle: Σκούρο θέμα}
+breadcrumb: {label: Διαδρομή πλοήγησης}
+nav: {label: Κύριο μενού}
+pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}
+code: {copy: Αντιγραφή, copied: Αντιγράφηκε}
+search: {label: Αναζήτηση}
+page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
+languages: {label: Γλώσσες}
+post: {date_format: "%d/%m/%Y"}
+fallback: {notice: "Αυτή η σελίδα δεν έχει μεταφραστεί ακόμη, γι’ αυτό εμφανίζεται στα αγγλικά."}
+archive:
+  tags: "Ετικέτες"
+  categories: "Κατηγορίες"
+  posts: "αναρτήσεις"
+  empty: "Δεν υπάρχουν ακόμη αναρτήσεις."

@@ -1,7 +1,7 @@
 {%- comment -%}Header navigation: items {title, url} from _data/nav/<modootoday.nav>.yml (or _data/nav.yml).
 An item with `items:` (a list of {title, url}) is a group: a "More"-style <details> menu from 64rem, plain links below.{%- endcomment -%}
 {%- if mt_nav and mt_components contains "nav" %}
-<nav class="mt-nav" aria-label="{{ site.data.i18n[_lang].nav.label | default: 'Main' }}"><ul>
+<nav class="mt-nav" aria-label="{% include modootoday/i18n.html lang=_lang %}{{ mt_t_nav_label }}"><ul>
 {%- for it in mt_nav %}
 {%- if it.items %}
 {%- assign _cur = it.items | where: "url", page.url | first %}

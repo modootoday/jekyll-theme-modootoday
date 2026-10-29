@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Turkish). Copy to _data/i18n/tr.yml; keys are fixed, values are yours.
+language: Türkçe
+direction: ltr
+skip: İçeriğe geç
+callout: {note: Not, tip: İpucu, important: Önemli, warning: Uyarı, caution: Dikkat}
+status: {available: Kullanılabilir, partial: Kısmen, planned: Planlandı}
+task: {done: Tamamlandı, open: Açık}
+tabs: {label: Seçenekler}
+toc: {label: Bu sayfada}
+theme: {toggle: Koyu mod}
+breadcrumb: {label: Konum}
+nav: {label: Ana menü}
+pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}
+code: {copy: Kopyala, copied: Kopyalandı}
+search: {label: Ara}
+page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}
+languages: {label: Diller}
+post: {date_format: "%d.%m.%Y"}
+fallback: {notice: Bu sayfa henüz çevrilmedi; İngilizce aslını görüyorsunuz.}
+archive:
+  tags: "Etiketler"
+  categories: "Kategoriler"
+  posts: "yazı"
+  empty: "Henüz yazı yok."

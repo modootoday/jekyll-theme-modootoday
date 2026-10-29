@@ -2,7 +2,7 @@
   Language switcher, built from modootoday.languages (the same alternates as the hreflang links).
   Each language links to this page's translation when it exists, else to that language's home page.
   Opt in with modootoday.language_switcher: header | footer, or include it in your own footer-custom.html.
-  Label text: language (the language's own name) and languages.label from _data/i18n/<lang>.yml.
+  Label text: language (the language's own name) and languages.label (modootoday/i18n.html: site _data/i18n, theme catalog, English).
   include.style: "menu" renders a globe button with a <details> dropdown (fixed width however many languages); otherwise a list.
   Renders nothing with fewer than two languages.
 {%- endcomment -%}
@@ -11,15 +11,15 @@
 {%- assign _ls_cur = page.lang | default: _ls_def -%}
 {%- assign _ls_base = page.url -%}
 {%- if _ls_cur != _ls_def -%}{%- assign _ls_pre = "/" | append: _ls_cur -%}{%- assign _ls_base = page.url | remove_first: _ls_pre -%}{%- endif -%}
-{%- assign _ls_label = site.data.i18n[_ls_cur].languages.label | default: "Languages" -%}
-{%- assign _ls_curname = site.data.i18n[_ls_cur].language | default: _ls_cur -%}
+{%- include modootoday/i18n.html lang=_ls_cur -%}{%- assign _ls_label = mt_t_languages_label -%}
+{%- capture _ls_curname -%}{%- include modootoday/i18n/name.html code=_ls_cur -%}{%- endcapture -%}{%- assign _ls_curname = site.data.i18n[_ls_cur].language | default: _ls_curname -%}
 {%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
 {%- capture _ls_items -%}
 {%- for _l in site.modootoday.languages -%}
 {%- if _l == _ls_def -%}{%- assign _ls_alt = _ls_base -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: _ls_base -%}{%- endif -%}
 {%- assign _ls_key = "|" | append: _ls_alt | append: "|" -%}
 {%- unless mt_page_urls contains _ls_key -%}{%- if _l == _ls_def -%}{%- assign _ls_alt = "/" -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: "/" -%}{%- endif -%}{%- endunless -%}
-{%- assign _ls_name = site.data.i18n[_l].language | default: _l -%}
+{%- capture _ls_name -%}{%- include modootoday/i18n/name.html code=_l -%}{%- endcapture -%}{%- assign _ls_name = site.data.i18n[_l].language | default: _ls_name -%}
 <li><a href="{{ _ls_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}"{% if _l == _ls_cur %} aria-current="true"{% endif %}>{{ _ls_name }}</a></li>
 {%- endfor -%}
 {%- endcapture -%}

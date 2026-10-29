@@ -11,7 +11,7 @@ _includes/sections/<name>.html at the end of that section, called with section=<
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
-{%- assign _tl = site.data.i18n[_lang].tabs.label | default: "Options" -%}
+{%- include modootoday/i18n.html lang=_lang -%}{%- assign _tl = mt_t_tabs_label -%}
 {%- if include.sections -%}
 {%- assign _nl = "
 " -%}

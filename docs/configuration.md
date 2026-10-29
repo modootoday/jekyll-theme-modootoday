@@ -71,7 +71,24 @@ status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
 ```
 
-Missing keys fall back to English.
+Set `lang:` and the theme's own labels (skip link, navigation, callouts, status badges, table of contents, pagination, code copy, search, language menu) are already localized for 23 languages: en, zh-CN, zh-TW, ja, ko, tr, ru, vi, th, de, es, fr, uk, pl, pt-BR, ar, fa, id, it, el, ml, ur-Latn, ro. Nothing needs to be copied, on GitHub Pages or with Jekyll 4. A code with a region the theme does not ship uses its base language (`pt` → pt-BR, `zh` → zh-CN); any other language shows English.
+
+Each label is resolved in this order:
+
+1. your `_data/i18n/<lang>.yml`, key by key
+2. the theme's catalog for that language
+3. English
+
+So a site catalog only needs the keys you want to change, plus anything your own components read. Use the `.yml` extension; the checker rejects `.yaml`. To start from the theme's wording, copy a catalog and check it:
+
+```sh
+modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to edit
+modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
+```
+
+For a language the theme does not ship, add `_data/i18n/<code>.yml` with the keys of the English catalog and list the code in `languages`. Pages get `dir="rtl"` for Arabic, Persian, Hebrew, Urdu and other right-to-left languages (`ur-Latn` stays left-to-right); `direction: rtl` or `ltr` in a catalog or in front matter overrides it. Page content is translated as Markdown in `<lang>/`, not in the catalogs.
+
+In your own includes, `modootoday/t.html` with `key="nav.label"` prints a label with the same resolution.
 
 ## Component registry
 

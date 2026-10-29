@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Japanese). Copy to _data/i18n/ja.yml; keys are fixed, values are yours.
+language: 日本語
+direction: ltr
+skip: 本文へ移動
+callout: {note: メモ, tip: ヒント, important: 重要, warning: 警告, caution: 注意}
+status: {available: 利用可能, partial: 一部実装, planned: 予定}
+task: {done: 完了, open: 未着手}
+tabs: {label: オプション}
+toc: {label: このページの内容}
+theme: {toggle: ダークモード}
+breadcrumb: {label: パンくずリスト}
+nav: {label: メインメニュー}
+pagination: {label: ページ送り, prev: 前へ, next: 次へ}
+code: {copy: コピー, copied: コピーしました}
+search: {label: 検索}
+page: {edit: このページを編集, updated: 最終更新}
+languages: {label: 言語}
+post: {date_format: "%Y年%-m月%-d日"}
+fallback: {notice: このページはまだ翻訳されていないため、英語で表示しています。}
+archive:
+  tags: "タグ"
+  categories: "カテゴリー"
+  posts: "件の記事"
+  empty: "まだ記事がありません。"

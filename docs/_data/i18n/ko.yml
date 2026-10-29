@@ -1,19 +1,14 @@
-language: 한국어
 title: modootoday 문서
 description: 평범한 Markdown 문서 테마 jekyll-theme-modootoday 문서 (한국어).
-callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
-tabs: {label: 설치 방법}
-status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
-skip: 본문으로 건너뛰기
-languages: {label: 언어}
-task: {done: 완료, open: 미완료}
-toc: {label: 이 페이지의 내용}
-theme: {toggle: 다크 모드}
-breadcrumb: {label: 현재 위치}
-nav: {label: 주 메뉴}
-pagination: {label: 페이지 이동, prev: 이전, next: 다음}
-code: {copy: 복사, copied: 복사됨}
-search: {label: 검색}
-page: {edit: 이 페이지 편집, updated: 최종 수정}
-post: {date_format: "%Y년 %m월 %d일"}
-archive: {tags: 태그, categories: 카테고리, posts: 개의 글, empty: 아직 글이 없습니다.}
+tabs:
+  label: 설치 방법
+task:
+  open: 미완료
+breadcrumb:
+  label: 현재 위치
+nav:
+  label: 주 메뉴
+post:
+  date_format: "%Y년 %m월 %d일"
+archive:
+  empty: 아직 글이 없습니다.

@@ -12,13 +12,12 @@ Usage: {% include modootoday/markdown/components.html content=content lang=page.
    `since:` is not rendered in 1.0 (checker error).
 3) figure=true: a paragraph that is only an image, followed by a paragraph that is only *emphasis*
    → figure.mt-figure with figcaption. Images need alt text (checker).
-Titles/labels: site.data.i18n[lang], English fallback.
+Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
 {%- endcomment -%}
 {%- assign _c = include.content -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
-{%- assign _i = site.data.i18n[_lang] -%}
+{%- include modootoday/i18n.html lang=_lang -%}
 {%- assign _types = "note,tip,important,warning,caution" | split: "," -%}
-{%- assign _deft = "Note,Tip,Important,Warning,Caution" | split: "," -%}
 {%- assign _sep = "<blockquote>
   <p>[!" -%}
 {%- assign _nl = "
@@ -37,18 +36,18 @@ Titles/labels: site.data.i18n[lang], English fallback.
   {%- endif -%}
 {%- endif -%}
 {%- if _ok -%}
-{%- for _t in _types -%}{%- if _t == _ty -%}{%- assign _title = _i.callout[_t] | default: _deft[forloop.index0] -%}{%- endif -%}{%- endfor -%}
+{%- case _ty -%}{%- when "note" -%}{%- assign _title = mt_t_callout_note -%}{%- when "tip" -%}{%- assign _title = mt_t_callout_tip -%}{%- when "important" -%}{%- assign _title = mt_t_callout_important -%}{%- when "warning" -%}{%- assign _title = mt_t_callout_warning -%}{%- else -%}{%- assign _title = mt_t_callout_caution -%}{%- endcase -%}
 <blockquote class="mt-callout mt-callout-{{ _ty }}" data-variant="{{ _ty }}" role="note">
   <p class="mt-callout-title">{% include modootoday/brand/icon.html name=_ty size=16 %}{{ _title }}</p>{{ _body }}
 {%- else -%}{{ _sep }}{{ _ch }}{%- endif -%}
 {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
 {%- if include.badges -%}
-  {%- assign _st = "available:●:Available,partial:◐:Partial,planned:○:Planned" | split: "," -%}
+  {%- assign _st = "available:●,partial:◐,planned:○" | split: "," -%}
   {%- for _pair in _st -%}
     {%- assign _kv = _pair | split: ":" -%}
     {%- assign _k = _kv[0] -%}
-    {%- assign _label = _i.status[_k] | default: _kv[2] -%}
+    {%- case _k -%}{%- when "available" -%}{%- assign _label = mt_t_status_available -%}{%- when "partial" -%}{%- assign _label = mt_t_status_partial -%}{%- else -%}{%- assign _label = mt_t_status_planned -%}{%- endcase -%}
     {%- capture _to %}<span class="mt-badge mt-badge-{{ _kv[0] }}" data-variant="{{ _kv[0] }}"><span aria-hidden="true">{{ _kv[1] }}</span> {{ _label }}</span>{% endcapture -%}
     {%- capture _from %}<code class="language-plaintext highlighter-rouge">status:{{ _kv[0] }}</code>{% endcapture -%}
     {%- capture _from2 %}<code>status:{{ _kv[0] }}</code>{% endcapture -%}
@@ -106,7 +105,7 @@ Titles/labels: site.data.i18n[lang], English fallback.
 {%- endif -%}
 {%- comment -%}3) Accessibility fix-ups of kramdown output (found by qa/qa.mjs + axe): focusable scrolling code
    blocks, labelled task-list checkboxes, and no deprecated role="doc-endnote" on footnote items.{%- endcomment -%}
-{%- assign _td = _i.task.done | default: "Done" -%}{%- assign _topen = _i.task.open | default: "Open" -%}
+{%- assign _td = mt_t_task_done -%}{%- assign _topen = mt_t_task_open -%}
 {%- capture _cbd %}class="task-list-item-checkbox" disabled="disabled" checked="checked" aria-label="{{ _td }}" />{% endcapture -%}
 {%- capture _cbo %}class="task-list-item-checkbox" disabled="disabled" aria-label="{{ _topen }}" />{% endcapture -%}
 {%- assign _c = _c | replace: '<pre class="highlight">', '<pre class="highlight" tabindex="0">' | replace: 'class="task-list-item-checkbox" disabled="disabled" checked="checked" />', _cbd | replace: 'class="task-list-item-checkbox" disabled="disabled" />', _cbo | replace: ' role="doc-endnote">', '>' -%}

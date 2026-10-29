@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Romanian). Copy to _data/i18n/ro.yml; keys are fixed, values are yours.
+language: Română
+direction: ltr
+skip: Salt la conținut
+callout: {note: Notă, tip: Sfat, important: Important, warning: Avertisment, caution: Atenție}
+status: {available: Disponibil, partial: Parțial, planned: Planificat}
+task: {done: Gata, open: De făcut}
+tabs: {label: Opțiuni}
+toc: {label: Pe această pagină}
+theme: {toggle: Mod întunecat}
+breadcrumb: {label: Traseu de navigare}
+nav: {label: Meniu principal}
+pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
+code: {copy: Copiază, copied: Copiat}
+search: {label: Caută}
+page: {edit: Editează pagina, updated: Ultima actualizare}
+languages: {label: Limbi}
+post: {date_format: "%d.%m.%Y"}
+fallback: {notice: "Această pagină nu a fost încă tradusă, așa că este afișată în engleză."}
+archive:
+  tags: "Etichete"
+  categories: "Categorii"
+  posts: "articole"
+  empty: "Nu există încă articole."

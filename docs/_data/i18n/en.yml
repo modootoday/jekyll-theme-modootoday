@@ -1,10 +1,5 @@
-language: English
-callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution: Caution}
-tabs: {label: Install method}
-status: {available: Available, partial: Partial, planned: Planned}
-skip: Skip to content
-languages: {label: Languages}
-task: {done: Done, open: Open}
-page: {edit: Edit this page, updated: Last updated}
-post: {date_format: "%Y-%m-%d"}
-archive: {tags: Tags, categories: Categories, posts: posts, empty: No posts yet.}
+direction: ltr
+title: modootoday docs
+description: Docs for jekyll-theme-modootoday, a Jekyll theme for plain-Markdown docs.
+tabs:
+  label: Install method

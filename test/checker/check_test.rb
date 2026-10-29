@@ -34,6 +34,21 @@ class CheckTest < Minitest::Test
     [o + e, st.exitstatus]
   end
 
+  def test_i18n_translation_keys_follow_english
+    page "a.md", "---\ntitle: A\n---\n# A\n"
+    page "ko/a.md", "---\ntitle: A\n---\n# A\n"
+    page "ko/b.md", "---\ntitle: B\n---\n# B\n"
+    write File.join(@src, "_data/i18n/en.yml"), "skip: Skip\ntoc: {label: On this page}\nhero: {cta: Start}\n"
+    write File.join(@src, "_data/i18n/ko.yml"), "skip: 건너뛰기\ntoc: {lable: 목차}\n"
+    o, code = check
+    assert_equal 1, code, o
+    assert_includes o, "_data/i18n/ko.yml: key 'toc.lable' is not in _data/i18n/en.yml"
+    assert_includes o, "missing key 'hero.cta' (falls back to en)"
+    refute_includes o, "missing key 'toc.label'" # the theme ships ko toc.label
+    assert_includes o, "ko/b.md: no en page at b.md"
+    refute_includes o, "ko/a.md: no en page"
+  end
+
   def test_ok_page
     page "a.md", "---\ntitle: A\n---\n# A\n\n> [!NOTE]\n> hi\n"
     o, code = check
@@ -76,13 +91,14 @@ class CheckTest < Minitest::Test
   end
 
   def test_components_registry
-    write File.join(@src, "_data/components.yml"), "features: {params: {cols: {allowed: [2, 3], required: true}}}\ntabs: {i18n: [tabs.label]}\n"
+    write File.join(@src, "_data/components.yml"), "features: {params: {cols: {allowed: [2, 3], required: true}}}\ntabs: {i18n: [tabs.label, hero.cta]}\n"
     write File.join(@src, "_data/i18n/en.yml"), "callout: {}\n"
     page "a.md", "---\nsections: [{c: features, cols: 4}, {c: nope}]\n---\n## A\n## B\n"
     o, = check
     assert_match(/cols=4 not in/, o)
     assert_match(/unknown component 'nope'/, o)
-    assert_match(/missing key 'tabs.label'/, o)
+    assert_match(/missing key 'hero.cta'/, o)
+    refute_match(/missing key 'tabs.label'/, o) # the theme catalog has it
   end
 
   def test_slot_contract

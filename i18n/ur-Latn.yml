@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Roman Urdu). Copy to _data/i18n/ur-Latn.yml; keys are fixed, values are yours.
+language: Roman Urdu
+direction: ltr
+skip: Mawaad par jayen
+callout: {note: Note, tip: Mashwara, important: Ahem, warning: Khabardar, caution: Ehtiyat}
+status: {available: Dastiyab, partial: Juzvi, planned: Mansooba}
+task: {done: Mukammal, open: Baqi}
+tabs: {label: Options}
+toc: {label: Is safhe par}
+theme: {toggle: Dark mode}
+breadcrumb: {label: Raasta}
+nav: {label: Main menu}
+pagination: {label: Safhaat, prev: Pichla, next: Agla}
+code: {copy: Copy karein, copied: Copy ho gaya}
+search: {label: Talaash}
+page: {edit: Yeh safha edit karein, updated: Aakhri update}
+languages: {label: Zabanein}
+post: {date_format: "%d-%m-%Y"}
+fallback: {notice: "Yeh safha abhi tarjuma nahin hua, is liye English mein dikhaya ja raha hai."}
+archive:
+  tags: "Tags"
+  categories: "Categories"
+  posts: "posts"
+  empty: "Abhi koi post nahin hai."

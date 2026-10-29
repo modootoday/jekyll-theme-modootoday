@@ -41,6 +41,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+      - name: i18n catalogs in sync
+        run: ruby script/i18n-build --check
       - name: Ruby tests
         run: bundle exec rake test
       - name: Build example

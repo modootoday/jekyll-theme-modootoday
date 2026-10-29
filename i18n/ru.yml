@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Russian). Copy to _data/i18n/ru.yml; keys are fixed, values are yours.
+language: Русский
+direction: ltr
+skip: Перейти к содержимому
+callout: {note: Примечание, tip: Совет, important: Важно, warning: Предупреждение, caution: Осторожно}
+status: {available: Доступно, partial: Частично, planned: Запланировано}
+task: {done: Готово, open: Не выполнено}
+tabs: {label: Варианты}
+toc: {label: На этой странице}
+theme: {toggle: Тёмная тема}
+breadcrumb: {label: Навигационная цепочка}
+nav: {label: Главное меню}
+pagination: {label: Страницы, prev: Назад, next: Далее}
+code: {copy: Копировать, copied: Скопировано}
+search: {label: Поиск}
+page: {edit: Редактировать страницу, updated: Обновлено}
+languages: {label: Языки}
+post: {date_format: "%d.%m.%Y"}
+fallback: {notice: "Эта страница ещё не переведена, поэтому показана на английском."}
+archive:
+  tags: "Теги"
+  categories: "Категории"
+  posts: "записей"
+  empty: "Записей пока нет."

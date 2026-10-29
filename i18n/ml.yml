@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Malayalam). Copy to _data/i18n/ml.yml; keys are fixed, values are yours.
+language: മലയാളം
+direction: ltr
+skip: ഉള്ളടക്കത്തിലേക്ക് പോകുക
+callout: {note: കുറിപ്പ്, tip: നുറുങ്ങ്, important: പ്രധാനം, warning: മുന്നറിയിപ്പ്, caution: ജാഗ്രത}
+status: {available: ലഭ്യമാണ്, partial: ഭാഗികം, planned: ആസൂത്രണത്തിൽ}
+task: {done: പൂർത്തിയായി, open: ബാക്കി}
+tabs: {label: ഓപ്ഷനുകൾ}
+toc: {label: ഈ പേജിൽ}
+theme: {toggle: ഡാർക്ക് മോഡ്}
+breadcrumb: {label: നാവിഗേഷൻ പാത}
+nav: {label: പ്രധാന മെനു}
+pagination: {label: പേജുകൾ, prev: മുമ്പത്തേത്, next: അടുത്തത്}
+code: {copy: പകർത്തുക, copied: പകർത്തി}
+search: {label: തിരയുക}
+page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്}
+languages: {label: ഭാഷകൾ}
+post: {date_format: "%d-%m-%Y"}
+fallback: {notice: "ഈ പേജ് ഇതുവരെ വിവർത്തനം ചെയ്തിട്ടില്ല, അതിനാൽ ഇംഗ്ലീഷിൽ കാണിക്കുന്നു."}
+archive:
+  tags: "ടാഗുകൾ"
+  categories: "വിഭാഗങ്ങൾ"
+  posts: "പോസ്റ്റുകൾ"
+  empty: "ഇതുവരെ പോസ്റ്റുകളൊന്നുമില്ല."

@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Traditional Chinese). Copy to _data/i18n/zh-TW.yml; keys are fixed, values are yours.
+language: 繁體中文
+direction: ltr
+skip: 跳至主要內容
+callout: {note: 注意, tip: 提示, important: 重要, warning: 警告, caution: 小心}
+status: {available: 可用, partial: 部分支援, planned: 規劃中}
+task: {done: 已完成, open: 未完成}
+tabs: {label: 選項}
+toc: {label: 本頁內容}
+theme: {toggle: 深色模式}
+breadcrumb: {label: 導覽路徑}
+nav: {label: 主選單}
+pagination: {label: 換頁, prev: 上一頁, next: 下一頁}
+code: {copy: 複製, copied: 已複製}
+search: {label: 搜尋}
+page: {edit: 編輯此頁, updated: 最後更新}
+languages: {label: 語言}
+post: {date_format: "%Y年%-m月%-d日"}
+fallback: {notice: 本頁尚未翻譯，以下顯示英文原文。}
+archive:
+  tags: "標籤"
+  categories: "分類"
+  posts: "篇文章"
+  empty: "目前還沒有文章。"

@@ -1,0 +1,25 @@
+# Registry of every interface string the theme reads, with its canonical English text.
+# Includes fall back to these values; other languages have exactly these keys.
+language: English
+direction: ltr
+skip: Skip to content
+callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution: Caution}
+status: {available: Available, partial: Partial, planned: Planned}
+task: {done: Done, open: Open}
+tabs: {label: Options}
+toc: {label: On this page}
+theme: {toggle: Dark mode}
+breadcrumb: {label: Breadcrumb}
+nav: {label: Main}
+pagination: {label: Pages, prev: Previous, next: Next}
+code: {copy: Copy, copied: Copied}
+search: {label: Search}
+page: {edit: Edit this page, updated: Last updated}
+languages: {label: Languages}
+post: {date_format: "%Y-%m-%d"}
+fallback: {notice: "This page is not translated yet, so it is shown in English."}
+archive:
+  tags: "Tags"
+  categories: "Categories"
+  posts: "posts"
+  empty: "No posts yet."

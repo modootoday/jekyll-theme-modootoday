@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Thai). Copy to _data/i18n/th.yml; keys are fixed, values are yours.
+language: ไทย
+direction: ltr
+skip: ข้ามไปยังเนื้อหา
+callout: {note: หมายเหตุ, tip: เคล็ดลับ, important: สำคัญ, warning: คำเตือน, caution: ข้อควรระวัง}
+status: {available: ใช้งานได้, partial: รองรับบางส่วน, planned: วางแผนไว้}
+task: {done: เสร็จแล้ว, open: ยังไม่เสร็จ}
+tabs: {label: ตัวเลือก}
+toc: {label: ในหน้านี้}
+theme: {toggle: โหมดมืด}
+breadcrumb: {label: เส้นทางนำทาง}
+nav: {label: เมนูหลัก}
+pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}
+code: {copy: คัดลอก, copied: คัดลอกแล้ว}
+search: {label: ค้นหา}
+page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
+languages: {label: ภาษา}
+post: {date_format: "%d/%m/%Y"}
+fallback: {notice: หน้านี้ยังไม่ได้แปล จึงแสดงเป็นภาษาอังกฤษ}
+archive:
+  tags: "แท็ก"
+  categories: "หมวดหมู่"
+  posts: "โพสต์"
+  empty: "ยังไม่มีโพสต์"

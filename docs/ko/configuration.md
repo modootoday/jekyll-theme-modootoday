@@ -74,7 +74,24 @@ status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
 ```
 
-없는 키는 영어로 대체됩니다.
+`lang:`만 지정하면 테마가 표시하는 문구(본문 바로가기, 내비게이션, 알림 상자, 상태 배지, 목차, 이전/다음 페이지, 코드 복사, 검색, 언어 메뉴)가 23개 언어로 바로 현지화돼요. 지원 언어는 en, zh-CN, zh-TW, ja, ko, tr, ru, vi, th, de, es, fr, uk, pl, pt-BR, ar, fa, id, it, el, ml, ur-Latn, ro예요. GitHub Pages에서도, Jekyll 4에서도 아무것도 복사할 필요가 없어요. 테마에 없는 지역 코드는 기본 언어를 따르고(`pt` → pt-BR, `zh` → zh-CN), 그 밖의 언어는 영어로 표시돼요.
+
+각 문구는 다음 순서로 정해져요.
+
+1. 사이트의 `_data/i18n/<lang>.yml` (키 단위)
+2. 테마에 들어 있는 해당 언어 카탈로그
+3. 영어
+
+그래서 사이트 카탈로그에는 바꾸고 싶은 키와 직접 만든 컴포넌트가 쓰는 키만 넣으면 돼요. 확장자는 `.yml`을 쓰세요. 검사기는 `.yaml`을 오류로 처리해요. 테마 문구에서 시작하고 싶다면 카탈로그를 복사한 뒤 검사하세요.
+
+```sh
+modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to edit
+modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
+```
+
+테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙어요(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있어요. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역해요.
+
+직접 만든 include에서는 `modootoday/t.html`에 `key="nav.label"`을 넘기면 같은 순서를 따르는 문구를 출력할 수 있어요.
 
 ## 컴포넌트 레지스트리
 

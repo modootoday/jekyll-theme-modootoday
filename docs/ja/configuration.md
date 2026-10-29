@@ -74,7 +74,24 @@ status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
 ```
 
-ないキーは英語にフォールバックします。
+`lang:` を指定するだけで、テーマが表示する文言（本文へのスキップリンク、ナビゲーション、アラート、ステータスバッジ、目次、前後のページ、コードのコピー、検索、言語メニュー）が 23 言語でローカライズされます。対応言語は en、zh-CN、zh-TW、ja、ko、tr、ru、vi、th、de、es、fr、uk、pl、pt-BR、ar、fa、id、it、el、ml、ur-Latn、ro です。GitHub Pages でも Jekyll 4 でも、何もコピーする必要はありません。テーマにない地域コードは基本の言語を使い（`pt` → pt-BR、`zh` → zh-CN）、それ以外の言語は英語で表示されます。
+
+各文言は次の順に決まります。
+
+1. サイトの `_data/i18n/<lang>.yml`（キー単位）
+2. テーマに含まれるその言語のカタログ
+3. 英語
+
+そのため、サイトのカタログには変更したいキーと、独自のコンポーネントが使うキーだけを書けば十分です。拡張子は `.yml` を使ってください。チェッカーは `.yaml` をエラーにします。テーマの文言をもとに編集する場合は、カタログをコピーしてからチェックします。
+
+```sh
+modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to edit
+modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
+```
+
+テーマにない言語を追加するには、英語のカタログと同じキーで `_data/i18n/<code>.yml` を作り、`languages` にコードを加えます。アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページには `dir="rtl"` が付きます（`ur-Latn` は左から右）。カタログか front matter の `direction: rtl` または `ltr` で上書きできます。ページ本文はカタログではなく、`<lang>/` の Markdown で翻訳します。
+
+独自の include では、`modootoday/t.html` に `key="nav.label"` を渡すと、同じ順序で解決された文言を出力できます。
 
 ## コンポーネントレジストリ
 

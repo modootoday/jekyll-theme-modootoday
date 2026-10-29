@@ -54,13 +54,13 @@ module Modootoday
         end
       end
 
-      # Every i18n key a component declares exists in every _data/i18n/<lang>.yml.
+      # Every i18n key a component declares exists in every _data/i18n/<lang>.yml or the theme catalog for that language.
       def i18n_keys(ctx)
         return unless ctx.comps
         dig = ->(h, key) { key.split(".").reduce(h) { |a, k| a.is_a?(Hash) ? a[k] : nil } }
         ctx.comps.each do |name, spec|
           Array(spec && spec["i18n"]).each do |key|
-            ctx.i18n.each { |lang, h| ctx.errs << "_data/i18n/#{lang}.yml: missing key '#{key}' (component #{name})" if dig[h, key].nil? }
+            ctx.i18n.each { |lang, h| ctx.errs << "_data/i18n/#{lang}.yml: missing key '#{key}' (component #{name})" if dig[h, key].nil? && !I18n.theme_keys(lang).include?(key) }
           end
         end
       end

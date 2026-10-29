@@ -1,0 +1,24 @@
+# jekyll-theme-modootoday interface strings (Vietnamese). Copy to _data/i18n/vi.yml; keys are fixed, values are yours.
+language: Tiếng Việt
+direction: ltr
+skip: Chuyển đến nội dung
+callout: {note: Ghi chú, tip: Mẹo, important: Quan trọng, warning: Cảnh báo, caution: Thận trọng}
+status: {available: Đã có, partial: Một phần, planned: Dự kiến}
+task: {done: Xong, open: Chưa xong}
+tabs: {label: Tùy chọn}
+toc: {label: Trên trang này}
+theme: {toggle: Chế độ tối}
+breadcrumb: {label: Đường dẫn}
+nav: {label: Menu chính}
+pagination: {label: Trang, prev: Trước, next: Tiếp}
+code: {copy: Sao chép, copied: Đã sao chép}
+search: {label: Tìm kiếm}
+page: {edit: Sửa trang này, updated: Cập nhật lần cuối}
+languages: {label: Ngôn ngữ}
+post: {date_format: "%d/%m/%Y"}
+fallback: {notice: Trang này chưa được dịch nên đang hiển thị bằng tiếng Anh.}
+archive:
+  tags: "Thẻ"
+  categories: "Chuyên mục"
+  posts: "bài viết"
+  empty: "Chưa có bài viết nào."

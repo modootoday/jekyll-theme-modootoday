@@ -7,11 +7,10 @@
 {%- if _ab != "categories" -%}{%- assign _ab = "tags" -%}{%- endif -%}
 {%- assign _al = include.lang | default: page.lang | default: site.lang | default: "en" -%}
 {%- assign _site_lang = site.lang | default: "en" -%}
-{%- assign _ai = site.data.i18n[_al].archive -%}
-{%- if _al == "all" -%}{%- assign _ai = site.data.i18n[_site_lang].archive -%}{%- endif -%}
-{%- assign _afmt = site.data.i18n[_al].post.date_format | default: "%Y-%m-%d" -%}
-{%- if _ab == "tags" -%}{%- assign _alabel = _ai.tags | default: "Tags" -%}{%- else -%}{%- assign _alabel = _ai.categories | default: "Categories" -%}{%- endif -%}
-{%- assign _aunit = _ai.posts | default: "posts" -%}
+{%- if _al == "all" -%}{%- include modootoday/i18n.html lang=_site_lang -%}{%- else -%}{%- include modootoday/i18n.html lang=_al -%}{%- endif -%}
+{%- assign _afmt = mt_t_post_date_format -%}
+{%- if _ab == "tags" -%}{%- assign _alabel = mt_t_archive_tags -%}{%- else -%}{%- assign _alabel = mt_t_archive_categories -%}{%- endif -%}
+{%- assign _aunit = mt_t_archive_posts -%}
 {%- assign _anames = "" | split: "" -%}
 {%- for _t in site[_ab] -%}
 {%- assign _n = 0 -%}
@@ -21,7 +20,7 @@
 {%- assign _anames = _anames | sort_natural -%}
 <div class="mt-archive" data-by="{{ _ab }}">
 {%- if _anames.size == 0 %}
-<p class="mt-archive-empty">{{ _ai.empty | default: "No posts yet." }}</p>
+<p class="mt-archive-empty">{{ mt_t_archive_empty }}</p>
 {%- else %}
 <nav class="mt-archive-index" aria-label="{{ _alabel }}"><ul>
 {%- for _name in _anames -%}
