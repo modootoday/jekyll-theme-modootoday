@@ -13,8 +13,9 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Settings | every key under `modootoday:` listed in [Configuration](../configuration/) |
 | Design tokens | semantic and component custom properties `--mt-*` (not the primitives `--mt-p-*`); the generated `tokens.json` mirrors them |
 | Markdown rules | the patterns in `RULES.md` and their output classes `mt-*` |
-| Layouts | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
+| Layouts | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` can be included from your footer |
+| Includes you may call | `modootoday/archive.html` with `by` and `lang` |
 | Data files | `_data/i18n/<lang>.yml` keys, `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
 
@@ -82,3 +83,28 @@ A component entry takes only `params`, `i18n`, `slots` and `parts`, and a slot r
 
 - Pages in Arabic, Persian, Hebrew, Urdu and other RTL languages get `dir="rtl"` from `lang`; set `direction: rtl` or `ltr` in front matter (or `direction:` in `_data/i18n/<lang>.yml`) to override. Components use logical properties and mirror; code stays left-to-right.
 - The theme bundles no math or diagram renderer; see [Math and diagrams](../math-diagrams/).
+
+## Posts and archives
+
+Posts use the `post` layout: a date, author and tag line, the body, then a footer that links each category and tag to its archive section. Set the archive pages in `_config.yml`:
+
+```yaml
+modootoday:
+  archive: {tags: /tags/, categories: /categories/}
+```
+
+Then add one page per taxonomy, for example `tags.md`:
+
+```yaml
+---
+title: Tags
+layout: archive
+archive: tags        # or categories
+---
+```
+
+The page shows its own body, an index of terms with post counts, and one section per term (`id="tags-<slug>"`, newest post first). To place an archive anywhere else, call the include `modootoday/archive.html` from a layout or include, with `by` set to `tags` or `categories` and an optional `lang`.
+
+- A post's language is its `lang` (or `site.lang`). An archive lists only posts in the page's language; `archive_lang: all` (or `lang="all"` on the include) lists every post. Footer links of a post whose `lang` differs from `site.lang` point at `/<lang>/tags/`, so add an archive page under each language directory.
+- Labels come from `archive.tags`, `archive.categories`, `archive.posts` and `archive.empty` in `_data/i18n/<lang>.yml`, with English fallbacks.
+- Limits: classic GitHub Pages runs no custom plugin, so there is one page per taxonomy with an anchor per term, not one page per term. Posts get no Markdown twin; agents find them through the archive links. Jekyll puts the folder names above `_posts/` into `categories`, so keep posts in the top-level `_posts/` and set `lang:` in front matter.

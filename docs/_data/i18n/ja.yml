@@ -16,3 +16,5 @@ code: {copy: コピー, copied: コピーしました}
 badge: {since: 導入}
 search: {label: 検索}
 page: {edit: このページを編集, updated: 最終更新}
+post: {date_format: "%Y年%m月%d日"}
+archive: {tags: タグ, categories: カテゴリー, posts: 件の記事, empty: まだ記事がありません。}

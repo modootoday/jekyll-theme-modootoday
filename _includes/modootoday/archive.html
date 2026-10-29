@@ -1,0 +1,45 @@
+{%- comment -%}md-components v1 — tag/category archive (Liquid only; github-pages and Jekyll 4, no plugin).
+  {% include modootoday/archive.html by="tags" %}  (by: tags | categories; default tags)
+  lang: posts of this language only (default page.lang or site.lang; a post's language is post.lang or site.lang); lang="all" lists every post.
+  Output: an index of terms with counts, then one section per term (id="<by>-<slugified term>") listing its posts, newest first.
+  One page per archive with anchors: classic GitHub Pages cannot generate a page per term.{%- endcomment -%}
+{%- assign _ab = include.by | default: "tags" -%}
+{%- if _ab != "categories" -%}{%- assign _ab = "tags" -%}{%- endif -%}
+{%- assign _al = include.lang | default: page.lang | default: site.lang | default: "en" -%}
+{%- assign _site_lang = site.lang | default: "en" -%}
+{%- assign _ai = site.data.i18n[_al].archive -%}
+{%- if _al == "all" -%}{%- assign _ai = site.data.i18n[_site_lang].archive -%}{%- endif -%}
+{%- assign _afmt = site.data.i18n[_al].post.date_format | default: "%Y-%m-%d" -%}
+{%- if _ab == "tags" -%}{%- assign _alabel = _ai.tags | default: "Tags" -%}{%- else -%}{%- assign _alabel = _ai.categories | default: "Categories" -%}{%- endif -%}
+{%- assign _aunit = _ai.posts | default: "posts" -%}
+{%- assign _anames = "" | split: "" -%}
+{%- for _t in site[_ab] -%}
+{%- assign _n = 0 -%}
+{%- for _p in _t[1] -%}{%- assign _pl = _p.lang | default: _site_lang -%}{%- if _al == "all" or _pl == _al -%}{%- assign _n = _n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if _n > 0 -%}{%- assign _anames = _anames | push: _t[0] -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _anames = _anames | sort_natural -%}
+<div class="mt-archive" data-by="{{ _ab }}">
+{%- if _anames.size == 0 %}
+<p class="mt-archive-empty">{{ _ai.empty | default: "No posts yet." }}</p>
+{%- else %}
+<nav class="mt-archive-index" aria-label="{{ _alabel }}"><ul>
+{%- for _name in _anames -%}
+{%- assign _n = 0 -%}
+{%- for _p in site[_ab][_name] -%}{%- assign _pl = _p.lang | default: _site_lang -%}{%- if _al == "all" or _pl == _al -%}{%- assign _n = _n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+<li><a class="mt-badge mt-badge-tag" data-variant="tag" href="#{{ _ab }}-{{ _name | slugify }}">{{ _name }} <span class="mt-archive-count">{{ _n }}<span class="mt-sr-only"> {{ _aunit }}</span></span></a></li>
+{%- endfor -%}
+</ul></nav>
+{%- for _name in _anames %}
+{%- assign _id = _name | slugify | prepend: "-" | prepend: _ab %}
+<section class="mt-archive-group" aria-labelledby="{{ _id }}">
+<h2 id="{{ _id }}">{{ _name }}</h2>
+<ul class="mt-archive-list">
+{%- for _p in site[_ab][_name] -%}{%- assign _pl = _p.lang | default: _site_lang -%}{%- if _al == "all" or _pl == _al %}
+<li><time datetime="{{ _p.date | date_to_xmlschema }}">{{ _p.date | date: _afmt }}</time> <a href="{{ _p.url | relative_url }}">{{ _p.title | escape }}</a></li>
+{%- endif -%}{%- endfor %}
+</ul>
+</section>
+{%- endfor %}
+{%- endif %}
+</div>

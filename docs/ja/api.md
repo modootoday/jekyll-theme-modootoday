@@ -16,8 +16,9 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 | 設定 | [設定](../configuration/)に載っている `modootoday:` 配下のすべてのキー |
 | デザイントークン | セマンティックおよびコンポーネントのカスタムプロパティ `--mt-*` (プリミティブ `--mt-p-*` を除く)。生成される `tokens.json` も同じ |
 | Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*` |
-| レイアウト | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
+| レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 上書きしてよいインクルード | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` をインクルードできる |
+| 呼び出してよいインクルード | `modootoday/archive.html`（`by`、`lang`） |
 | データファイル | `_data/i18n/<lang>.yml` のキー、`_data/nav/<name>.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |
 
@@ -85,3 +86,28 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 
 - アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページは `lang` から `dir="rtl"` を受け取ります。front matter の `direction: rtl` または `ltr` (または `_data/i18n/<lang>.yml` の `direction:`) で上書きできます。コンポーネントは論理プロパティを使って左右が反転し、コードは左から右のままです。
 - テーマは数式や図のレンダラーを同梱しません。[数式と図](../math-diagrams/)を参照してください。
+
+## 記事とアーカイブ
+
+記事は `post` レイアウトを使います。日付・著者・タグの行、本文、そして各カテゴリーとタグをアーカイブの該当セクションにつなぐフッターが付きます。`_config.yml` でアーカイブページを指定します。
+
+```yaml
+modootoday:
+  archive: {tags: /tags/, categories: /categories/}
+```
+
+次に、分類の種類ごとにページを 1 つ作ります。たとえば `tags.md` は次のとおりです。
+
+```yaml
+---
+title: タグ
+layout: archive
+archive: tags        # または categories
+---
+```
+
+このページには本文、記事数付きの分類一覧、分類ごとのセクション（`id="tags-<slug>"`、新しい記事が先）が表示されます。別の場所にアーカイブを置くにはレイアウトやインクルードから `modootoday/archive.html` を呼び出し、`by` に `tags` または `categories` を、必要なら `lang` を指定します。
+
+- 記事の言語は `lang`（なければ `site.lang`）です。アーカイブはページと同じ言語の記事だけを表示し、`archive_lang: all`（インクルードでは `lang="all"`）ならすべての記事を表示します。`lang` が `site.lang` と異なる記事のフッターのリンクは `/<lang>/tags/` を指すので、言語ディレクトリごとにアーカイブページを置いてください。
+- ラベルは `_data/i18n/<lang>.yml` の `archive.tags`、`archive.categories`、`archive.posts`、`archive.empty` から取り、なければ英語を使います。
+- 制限：クラシックな GitHub Pages は独自プラグインを実行しないため、分類ごとのページは作らず、分類の種類ごとに 1 ページとし、分類ごとにアンカーを置きます。記事には Markdown のツインがなく、エージェントはアーカイブのリンクから記事を見つけます。Jekyll は `_posts/` より上のフォルダー名を `categories` に入れるため、記事は最上位の `_posts/` に置き、front matter で `lang:` を指定してください。

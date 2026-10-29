@@ -14,8 +14,9 @@ const BASE = "/jekyll-theme-modootoday";
 const WIDTHS = [360, 768, 1024, 1440];
 const SCHEMES = ["light", "dark"];
 const LANGS = ["", "ko/", "ja/"].filter((l) => fs.existsSync(path.join(site, l, "index.html")));
-const PAGES = ["", "install/", "first-page/", "components/", "components/kitchen-sink/", "configuration/", "customize/", "agents/", "changelog/"];
+const PAGES = ["", "install/", "first-page/", "components/", "components/kitchen-sink/", "configuration/", "customize/", "agents/", "changelog/", "tags/", "categories/"];
 const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only: dir="rtl" mirroring checks
+const EN_ONLY = ["guides/2026/10/28/archives/"]; // a sample post (post layout + footer term links); URLs differ per language
 const BUDGET = { css: 32 * 1024, js: 10 * 1024 }; // as built by the docs site (sass style: compressed, as README recommends); gzip is reported
 const fails = [];
 
@@ -81,7 +82,7 @@ for (const scheme of SCHEMES) {
     if (r < min) fails.push(`contrast ${scheme} ${rgb[f].used} on ${rgb[b].used} = ${r} < ${min}`);
   }
   // 3. screenshots + axe
-  for (const lang of LANGS) for (const p of [...PAGES, ...(lang ? [] : RTL_PAGES)]) {
+  for (const lang of LANGS) for (const p of [...PAGES, ...(lang ? [] : [...RTL_PAGES, ...EN_ONLY])]) {
     const url = origin + lang + p;
     const resp = await page.goto(url, { waitUntil: "networkidle" });
     if (!resp || resp.status() !== 200) { if (lang === "ja/" ) continue; fails.push(`HTTP ${resp && resp.status()} ${url}`); continue; }

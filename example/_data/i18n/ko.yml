@@ -12,3 +12,4 @@ badge: {since: 추가 버전}
 search: {label: 검색}
 post: {date_format: "%Y년 %m월 %d일"}
 page: {edit: 이 페이지 편집, updated: 최종 수정}
+archive: {tags: 태그, categories: 카테고리, posts: 개의 글, empty: 아직 글이 없습니다.}

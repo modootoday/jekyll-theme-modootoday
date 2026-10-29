@@ -41,6 +41,7 @@ modootoday:
 | `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
+| `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../api/#記事とアーカイブ)を参照） |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../api/)にあります。
 

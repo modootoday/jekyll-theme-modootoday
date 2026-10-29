@@ -1,13 +1,29 @@
 ---
 layout: doc
 ---
-{%- comment -%}md-components v1 — post layout: date/author/tags meta line, then the doc pipeline.{%- endcomment -%}
+{%- comment -%}md-components v1 — post layout: date/author/tags meta line, the doc pipeline, then a footer linking each tag and category to its archive section.
+  Links point at the archive pages set in _config.yml: modootoday.archive: {tags: /tags/, categories: /categories/}.
+  For a post whose lang is not site.lang the URL is prefixed with /<lang> (/ko/tags/). Without the setting there is no footer.{%- endcomment -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- assign _ui = site.data.i18n[_lang] -%}
 {%- assign _fmt = _ui.post.date_format | default: "%Y-%m-%d" -%}
+{%- assign _site_lang = site.lang | default: "en" -%}
+{%- assign _pre = "" -%}{%- if _lang != _site_lang -%}{%- assign _pre = _lang | prepend: "/" -%}{%- endif -%}
+{%- assign _tu = site.modootoday.archive.tags -%}{%- if _tu -%}{%- assign _tu = _tu | prepend: _pre | relative_url -%}{%- endif -%}
+{%- assign _cu = site.modootoday.archive.categories -%}{%- if _cu -%}{%- assign _cu = _cu | prepend: _pre | relative_url -%}{%- endif -%}
 <p class="mt-post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: _fmt }}</time>
 {%- if page.author %} · <span class="mt-post-author">{{ page.author }}</span>{% endif -%}
 {%- for t in page.tags %} <span class="mt-badge mt-badge-tag" data-variant="tag">{{ t }}</span>{% endfor -%}
 </p>
 
 {{ content }}
+{%- if _tu or _cu -%}{%- if page.tags.size > 0 or page.categories.size > 0 %}
+<footer class="mt-post-terms">
+{%- if _cu and page.categories.size > 0 %}
+<p><span class="mt-post-terms-label">{{ _ui.archive.categories | default: "Categories" }}</span>{% for c in page.categories %} <a href="{{ _cu }}#categories-{{ c | slugify }}">{{ c }}</a>{% endfor %}</p>
+{%- endif -%}
+{%- if _tu and page.tags.size > 0 %}
+<p><span class="mt-post-terms-label">{{ _ui.archive.tags | default: "Tags" }}</span>{% for t in page.tags %} <a class="mt-badge mt-badge-tag" data-variant="tag" href="{{ _tu }}#tags-{{ t | slugify }}">{{ t }}</a>{% endfor %}</p>
+{%- endif %}
+</footer>
+{%- endif -%}{%- endif -%}

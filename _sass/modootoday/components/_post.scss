@@ -1,4 +1,8 @@
-// Post layout meta line (date, author, tags).
+// Post meta line, post footer term links and the archive. Logical properties (RTL-safe); term links reuse .mt-badge-tag.
 @include mt-layer(components) {
-  .mt-post-meta { color: mt(muted-foreground); font-size: .9rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  .mt-post-meta, .mt-post-terms p, .mt-archive-index ul { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+  .mt-post-meta, .mt-post-terms span, .mt-archive-count, .mt-archive-list time { color: mt(muted-foreground); }
+  .mt-post-terms { margin-block-start: 2rem; border-block-start: 1px solid mt(border); }
+  .mt-badge[href] { min-block-size: 24px; }
+  .mt-archive-list { list-style: none; padding: 0; }
 }

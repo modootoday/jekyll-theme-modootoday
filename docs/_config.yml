@@ -19,7 +19,10 @@ modootoday:
   languages: [en, ko, ja]
   language_switcher: header
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
+  # Post footers link tags and categories here (/ko/tags/ for lang: ko posts).
+  archive: {tags: /tags/, categories: /categories/}
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "ko"}, values: {lang: ko}}
   - {scope: {path: "ja"}, values: {lang: ja}}
+  - {scope: {type: posts}, values: {layout: post}}

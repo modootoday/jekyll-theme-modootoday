@@ -38,6 +38,7 @@ modootoday:
 | `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
 | `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
+| `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../api/#posts-and-archives)) |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../api/).
 

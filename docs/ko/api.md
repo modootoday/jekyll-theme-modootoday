@@ -16,8 +16,9 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | 설정 | [설정](../configuration/)에 나온 `modootoday:` 아래 모든 키 |
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*` |
-| 레이아웃 | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
+| 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`을 인클루드할 수 있음 |
+| 호출해도 되는 인클루드 | `modootoday/archive.html`(`by`, `lang`) |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키, `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
 
@@ -85,3 +86,28 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 
 - 아랍어, 페르시아어, 히브리어, 우르두어 등 RTL 언어 페이지는 `lang`에 따라 `dir="rtl"`을 받습니다. front matter의 `direction: rtl` 또는 `ltr`(또는 `_data/i18n/<lang>.yml`의 `direction:`)로 바꿀 수 있습니다. 컴포넌트는 논리 속성을 써서 좌우가 뒤집히고, 코드는 왼쪽에서 오른쪽으로 유지됩니다.
 - 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. [수식과 다이어그램](../math-diagrams/)을 보세요.
+
+## 글과 아카이브
+
+글은 `post` 레이아웃을 씁니다. 날짜·작성자·태그 줄, 본문, 그리고 각 카테고리와 태그를 아카이브의 해당 구역으로 잇는 하단 영역이 붙습니다. `_config.yml`에 아카이브 페이지를 지정합니다.
+
+```yaml
+modootoday:
+  archive: {tags: /tags/, categories: /categories/}
+```
+
+그다음 분류 종류마다 페이지를 하나씩 만듭니다. 예를 들어 `tags.md`는 다음과 같습니다.
+
+```yaml
+---
+title: 태그
+layout: archive
+archive: tags        # 또는 categories
+---
+```
+
+이 페이지에는 본문, 글 개수가 붙은 분류 목록, 분류마다 하나의 구역(`id="tags-<slug>"`, 최신 글 먼저)이 표시됩니다. 다른 곳에 아카이브를 넣으려면 레이아웃이나 include에서 `modootoday/archive.html`을 호출하고 `by`에 `tags` 또는 `categories`를, 필요하면 `lang`을 지정합니다.
+
+- 글의 언어는 `lang`(없으면 `site.lang`)입니다. 아카이브는 페이지와 같은 언어의 글만 보여 주고, `archive_lang: all`(include에서는 `lang="all"`)이면 모든 글을 보여 줍니다. `lang`이 `site.lang`과 다른 글의 하단 링크는 `/<lang>/tags/`로 이어지므로 언어 디렉터리마다 아카이브 페이지를 두세요.
+- 라벨은 `_data/i18n/<lang>.yml`의 `archive.tags`, `archive.categories`, `archive.posts`, `archive.empty`에서 가져오고, 없으면 영어를 씁니다.
+- 한계: 클래식 GitHub Pages는 사용자 플러그인을 실행하지 않으므로 분류마다 페이지를 만들지 않고, 분류 종류마다 한 페이지에 분류별 앵커를 둡니다. 글에는 Markdown 쌍둥이가 없고, 에이전트는 아카이브 링크로 글을 찾습니다. Jekyll은 `_posts/` 위의 폴더 이름을 `categories`에 넣으므로 글은 최상위 `_posts/`에 두고 front matter에 `lang:`을 지정하세요.

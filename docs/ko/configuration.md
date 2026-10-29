@@ -41,6 +41,7 @@ modootoday:
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
+| `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../api/#글과-아카이브) 참고) |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../api/)에 있습니다.
 

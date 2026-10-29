@@ -362,7 +362,7 @@ css.each do |f|
 end
 
 # 5c. modootoday: settings in the site _config.yml
-COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search].freeze
+COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search post].freeze
 SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
               accent-foreground border ring note tip important warning caution status-available status-partial
               status-planned font-sans font-mono font-size line-height measure space radius].freeze
@@ -378,6 +378,14 @@ if mtc.is_a?(Hash)
   end
   if mtc.key?("languages") && !(mtc["languages"].is_a?(Array) && mtc["languages"].all? { |l| l.to_s =~ /\A[a-z]{2,3}(-[A-Za-z0-9]+)*\z/ })
     errs << "_config.yml: modootoday.languages must be a list of language codes such as [en, ko]"
+  end
+  if mtc.key?("archive")
+    a = mtc["archive"]
+    if !a.is_a?(Hash) || !(a.keys - %w[tags categories]).empty?
+      errs << "_config.yml: modootoday.archive must be a map with tags: and/or categories: (archive page URLs)"
+    else
+      a.each { |k, v| errs << "_config.yml: modootoday.archive.#{k} must be a site path like /#{k}/ (starts and ends with /)" unless v.to_s =~ %r{\A/(\S*/)?\z} }
+    end
   end
   if mtc.key?("edit_url") && mtc["edit_url"].to_s !~ %r{\Ahttps?://\S+/\z}
     errs << "_config.yml: modootoday.edit_url must be an http(s) URL ending in / (page.path is appended)"
@@ -439,6 +447,7 @@ if ARGV.include?("--twins")
       errs << "#{rel[stub]}: stub body must be empty" unless body(st).strip.empty?
     end
     next if File.basename(f) == "README.md" || (fm(File.read(f)) rescue {})["twin"] == false
+    next if rel[f].split("/").include?("_posts") # posts: dated URLs, listed by the archive; no twin (documented limit)
     r = rel[f].delete_suffix(".md")
     if SOURCE_MODE && File.read(f) !~ FM
       # front-matter-less mode: rendered page + raw copy of the whole source at its own path
