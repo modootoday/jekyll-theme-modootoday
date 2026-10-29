@@ -6,6 +6,7 @@ require "tmpdir"
 require "fileutils"
 require "open3"
 require "json"
+require "time"
 
 class JsonldTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -42,7 +43,7 @@ class JsonldTest < Minitest::Test
       job = graph("#{s}/job/index.html")
       assert_equal "https://example.org/docs/#website", job[0]["@id"]
       assert_equal "Organization", job[3]["hiringOrganization"]["@type"]
-      assert_equal "2026-11-02T19:00:00+09:00", graph("#{s}/event/index.html")[3]["startDate"]
+      assert_equal Time.utc(2026, 11, 2, 10), Time.iso8601(graph("#{s}/event/index.html")[3]["startDate"]).utc # same instant in any CI time zone
       assert_equal "https://example.com/", graph("#{s}/course/index.html")[3]["provider"]["sameAs"]
       assert_includes File.read("#{s}/job/index.html"), '"description":"a \u003c b"'
       out, st = Open3.capture2e(RbConfig.ruby, "#{ROOT}/exe/modootoday-check", src, s, chdir: ROOT)
