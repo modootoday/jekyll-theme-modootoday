@@ -1,27 +1,30 @@
 ---
 title: 로드맵
-description: 1.0에 들어가는 모든 것과 2.0에서 바뀌는 것.
+description: 테마가 지원하는 것, 동작하는 환경, 앞으로의 방향.
 ---
 # 로드맵
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../roadmap/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
-1.0은 아래 항목이 모두 끝나면 나옵니다. 따로 1.x 목록은 없고, 나중으로 계획했던 일도 1.0에 들어갑니다.
+## 1.0에서 지원하는 것
 
-## 1.0
+- 라이트·다크 모드의 컴포넌트: 알림, 섹션, 카드, 버튼, 탭, 배지, 표, 아코디언, 단계, 그림, 타임라인, 키보드 키, 브레드크럼, 목차, 테마 전환, 검색. [컴포넌트](../components/)를 보세요.
+- 확정된 콘텐츠 규칙(`md-components v1`)과 안정된 [공개 API](../api/).
+- 기본으로 켜지는 canonical, `hreflang`, Open Graph 태그. 사이트맵과 피드는 플러그인을 추가하면 쓸 수 있습니다.
+- 다국어 사이트용 언어 선택기와 오른쪽에서 왼쪽으로 쓰는 문자 지원([RTL 키친싱크](../components/kitchen-sink-rtl/)).
+- 직접 만드는 `_data/components.yml`용 슬롯 계약([API](../api/#slot-contract)).
+- AI 에이전트를 위한 Markdown 트윈과 `llms.txt`([에이전트](../agents/)).
+- `post` 레이아웃용 태그·카테고리 아카이브 페이지.
+- 엄격한 콘텐츠 보안 정책 지원([CSP](../csp/))과 [수식·다이어그램 가이드](../math-diagrams/).
+- 영어, 한국어, 일본어 문서.
 
-- 모든 컴포넌트의 라이트·다크 시각 완성도, 문서 사이트와 키친싱크 포함. `status:partial`
-- 확정된 규칙(`md-components v1`)과 동결된 [공개 API](../api/), 폐기 정책. `status:available`
-- canonical, hreflang, Open Graph 태그와 선택형 사이트맵·피드. `status:available`
-- 영어, 한국어, 일본어 문서. `status:available`
-- 예제 사이트의 모든 언어에 가이드 페이지. `status:available`
-- `_data/components.yml` 슬롯 계약([API](../api/#슬롯-계약)). `status:available`
-- 오른쪽에서 왼쪽으로 쓰는 문자: 논리 속성, 자동 `dir="rtl"`, [RTL 키친싱크](../../components/kitchen-sink-rtl/). `status:available`
-- 엄격한 CSP에서 KaTeX와 Mermaid를 쓰는 [수식·다이어그램 가이드](../math-diagrams/). 테마는 둘 다 포함하지 않음. `status:available`
-- CI에서 기준 스크린숏과 비교하는 시각 회귀 검사(풀 리퀘스트에서 차단)와 Lighthouse 예산. `status:available`
-- `post` 레이아웃용 태그·카테고리 아카이브 페이지. `status:planned`
+## 호환성
 
-## 2.0
+- `remote_theme`을 쓰는 GitHub Pages(`github-pages` 232, Jekyll 3.10)와 Ruby 3.2~3.4의 Jekyll 4.4. 지원하는 가장 오래된 버전은 Jekyll 3.9입니다.
+- 1.x 안에서는 공개 API를 없애거나 깨뜨리지 않습니다. [마이그레이션과 업그레이드](../upgrade/)를 보세요.
 
-- 폐기 예정인 `md-*` 클래스와 `--md-*` 속성을 제거합니다. [이전과 업그레이드](../upgrade/)를 보세요.
+## 다음
+
+- 1.x에서는 기존 사이트를 깨뜨리지 않고 컴포넌트와 옵션을 추가합니다.
+- 2.0에서는 폐기된 `md-*` 클래스와 `--md-*` 속성을 제거합니다. [업그레이드 가이드](../upgrade/#md--to-mt-)를 보고 지금 `mt-*`로 옮기세요.

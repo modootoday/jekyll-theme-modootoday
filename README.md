@@ -22,7 +22,7 @@ As a gem (`theme:`):
 
 ```ruby
 # Gemfile
-gem "jekyll-theme-modootoday", "~> 0.5"
+gem "jekyll-theme-modootoday", "~> 1.0"
 ```
 
 ```yaml
@@ -34,7 +34,7 @@ On GitHub Pages without a Gemfile (`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.0.0
 plugins:
   - jekyll-remote-theme
 ```
@@ -45,7 +45,7 @@ Pin a tag or a commit. More options: [Install guide](https://modootoday.github.i
 
 ```sh
 mkdir my-docs && cd my-docs
-printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.5"\n' > Gemfile
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 1.0"\n' > Gemfile
 printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {silence_deprecations: [import, global-builtin]}\n' > _config.yml
 printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
 bundle install && bundle exec jekyll build
@@ -100,7 +100,7 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 
 ## Contributing
 
-English is the canonical language: `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth. `README.ko.md` and the `ko/` and `ja/` pages are translations; when they differ, English wins. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Issues and pull requests are welcome. English is the canonical language; translations follow it. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

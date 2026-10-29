@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029204503
 title: "First public release is 0.5.0, with governance files"
-status: active
+status: superseded
 created: 2026-10-29T20:45:01Z
-updated: 2026-10-29T20:45:01Z
+updated: 2026-10-29T22:05:14Z
 rel:
   governs: [jekyll-theme-modootoday.gemspec]
 ---

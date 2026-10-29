@@ -6,31 +6,18 @@ description: Releases of jekyll-theme-modootoday.
 
 The full history is in [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md).
 
-## 0.5.0 (first release, not yet published)
+## 1.0.0 (first release)
 
-The first public version. It combines the internal milestones below, which were never published on RubyGems.
+The first public version on RubyGems.
 
-### Milestone 0.5
+- Components: alerts, sections, cards, buttons, tabs, badges, tables, accordion, steps, figures, timeline, keyboard keys, breadcrumb, table of contents, theme toggle, client search and the `post` layout.
+- Design tokens (`--mt-*`), one Sass partial per component and the `modootoday:` configuration block.
+- Final content rules (`md-components v1`), a stable [public API](../api/) and the `modootoday-check` checker.
+- SEO tags by default, a language switcher, right-to-left support, strict CSP support and a slot contract.
+- Markdown twins and `llms.txt` for AI agents.
+- Documentation in English, Korean and Japanese.
 
-- This documentation site, the kitchen sink and the QA job (screenshots, axe, contrast, budgets). `status:available`
-
-### Milestone 0.4
-
-- Timeline, keyboard keys, client search and the `post` layout. `since:0.4`
-- Read-only DTCG `tokens.json` built in CI.
-
-### Milestone 0.3
-
-- Theme toggle, breadcrumb, table of contents, accordion, steps, figures, tag and since badges. `since:0.3`
-
-### Milestone 0.2
-
-- Design tokens, Sass partials per component and the `modootoday:` configuration block. `since:0.2`
-- Navigation, previous/next links and the code copy button.
-
-### Milestone 0.1
-
-- First version: alerts, sections, cards, buttons, tabs, status badges, twins and the checker.
+Sites built from the repository before 1.0.0 should read [Migrate and upgrade](../upgrade/).
 
 > [!IMPORTANT]
 > The rules are final as `md-components v1`. From 1.0 on, a rule is only removed or made stricter in a major version.

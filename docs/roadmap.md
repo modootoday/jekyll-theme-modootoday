@@ -1,24 +1,27 @@
 ---
 title: Roadmap
-description: Everything 1.0 includes, and what changes in 2.0.
+description: What the theme supports, which stacks it runs on, and where it is heading.
 ---
 # Roadmap
 
-1.0 ships when every item below is done. There is no separate 1.x list: work that was planned for later is part of 1.0.
+## Supported in 1.0
 
-## 1.0
+- Components in light and dark: alerts, sections, cards, buttons, tabs, badges, tables, accordion, steps, figures, timeline, keyboard keys, breadcrumb, table of contents, theme toggle and search. See [Components](../components/).
+- Final content rules (`md-components v1`) and a stable [public API](../api/).
+- Canonical, `hreflang` and Open Graph tags by default; sitemap and feed when you add the plugins.
+- A language switcher for multilingual sites, and right-to-left scripts (see the [RTL kitchen sink](../components/kitchen-sink-rtl/)).
+- A slot contract for your own `_data/components.yml` ([API](../api/#slot-contract)).
+- Markdown twins and `llms.txt` for AI agents ([Agents](../agents/)).
+- Tag and category archive pages for the `post` layout.
+- Strict Content Security Policy support ([CSP](../csp/)) and a [math and diagrams guide](../math-diagrams/).
+- Documentation in English, Korean and Japanese.
 
-- Visual polish of every component in light and dark, on the docs site and the kitchen sink. `status:partial`
-- Final rules (`md-components v1`) and a frozen [public API](../api/) with a deprecation policy. `status:available`
-- Canonical, hreflang and Open Graph tags; opt-in sitemap and feed. `status:available`
-- English, Korean and Japanese documentation. `status:available`
-- Guide pages in every language of the example site. `status:available`
-- Slot contract for `_data/components.yml` ([API](../api/#slot-contract)). `status:available`
-- Right-to-left scripts: logical properties, automatic `dir="rtl"`, an [RTL kitchen sink](../components/kitchen-sink-rtl/). `status:available`
-- A [math and diagrams guide](../math-diagrams/) for KaTeX and Mermaid under a strict CSP; the theme bundles neither. `status:available`
-- Visual regression checks against reference screenshots in CI, blocking on pull requests, and a Lighthouse budget. `status:available`
-- Tag and category archive pages for the `post` layout. `status:planned`
+## Compatibility
 
-## 2.0
+- GitHub Pages (`github-pages` 232, Jekyll 3.10) with `remote_theme`, and Jekyll 4.4 on Ruby 3.2 to 3.4. Jekyll 3.9 is the oldest supported version.
+- Within 1.x, nothing in the public API is removed or broken. See [Migrate and upgrade](../upgrade/).
 
-- The deprecated `md-*` classes and `--md-*` properties are removed. See [Migrate and upgrade](../upgrade/).
+## Next
+
+- 1.x adds components and options without breaking existing sites.
+- 2.0 removes the deprecated `md-*` classes and `--md-*` properties. Move to `mt-*` now with the [upgrade guide](../upgrade/#md--to-mt-).

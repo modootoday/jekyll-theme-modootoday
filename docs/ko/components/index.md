@@ -24,14 +24,14 @@ sections:
 - **탭** — `###`과 코드 블록 쌍이 접근 가능한 탭이 됩니다. `status:available`
 - **상태 배지** — Status 코드 스팬이 배지가 됩니다. `status:available`
 - **표** — GFM 표는 작은 화면에서 가로로 스크롤됩니다. `status:available`
-- **아코디언과 단계** — `c: accordion`, `c: steps` 섹션. `status:available` `since:0.3`
-- **그림** — 이미지 다음에 강조만 있는 문단. `status:available` `since:0.3`
-- **브레드크럼, 목차, 테마 전환** — 레이아웃이 자동으로 붙입니다. `status:available` `since:0.3`
-- **tag·since 배지** — Tag, since 코드 스팬. `status:available` `since:0.3`
-- **타임라인** — `c: timeline` 섹션. `status:available` `since:0.4`
-- **키보드 키** — `kbd:Ctrl+K` 코드 스팬. `status:available` `since:0.4`
-- **검색** — `search.json` 파일로 클라이언트 검색. `status:available` `since:0.4`
-- **컴포넌트 슬롯** — `_data/components.yml` 슬롯 계약. `status:planned`
+- **아코디언과 단계** — `c: accordion`, `c: steps` 섹션. `status:available` `since:1.0`
+- **그림** — 이미지 다음에 강조만 있는 문단. `status:available` `since:1.0`
+- **브레드크럼, 목차, 테마 전환** — 레이아웃이 자동으로 붙입니다. `status:available` `since:1.0`
+- **tag·since 배지** — Tag, since 코드 스팬. `status:available` `since:1.0`
+- **타임라인** — `c: timeline` 섹션. `status:available` `since:1.0`
+- **키보드 키** — `kbd:Ctrl+K` 코드 스팬. `status:available` `since:1.0`
+- **검색** — `search.json` 파일로 클라이언트 검색. `status:available` `since:1.0`
+- **컴포넌트 슬롯** — `_data/components.yml` 슬롯 계약. `status:available` `since:1.0`
 
 ## 상태 범례
 

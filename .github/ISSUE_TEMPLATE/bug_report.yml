@@ -4,7 +4,7 @@ labels: [bug]
 body:
   - type: input
     id: version
-    attributes: {label: Theme version or commit, placeholder: "0.5.0 or a commit SHA"}
+    attributes: {label: Theme version or commit, placeholder: "1.0.0 or a commit SHA"}
     validations: {required: true}
   - type: dropdown
     id: stack

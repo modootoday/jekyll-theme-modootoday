@@ -21,14 +21,14 @@ Each component is ordinary Markdown. On github.com it falls back to the plain el
 - **Tabs** — `###` + code block pairs become accessible tabs. `status:available`
 - **Status badges** — Status code spans become badges. `status:available`
 - **Tables** — GFM tables scroll horizontally on small screens. `status:available`
-- **Accordion and steps** — `c: accordion` and `c: steps` sections. `status:available` `since:0.3`
-- **Figure** — An image followed by an emphasis-only paragraph. `status:available` `since:0.3`
-- **Breadcrumb, TOC, theme toggle** — Added automatically by the layout. `status:available` `since:0.3`
-- **Tag and since badges** — Tag and since code spans. `status:available` `since:0.3`
-- **Timeline** — `c: timeline` sections. `status:available` `since:0.4`
-- **Keyboard keys** — `kbd:Ctrl+K` code spans. `status:available` `since:0.4`
-- **Search** — Client search from a `search.json` file. `status:available` `since:0.4`
-- **Component slots** — `_data/components.yml` slot contract. `status:planned`
+- **Accordion and steps** — `c: accordion` and `c: steps` sections. `status:available` `since:1.0`
+- **Figure** — An image followed by an emphasis-only paragraph. `status:available` `since:1.0`
+- **Breadcrumb, TOC, theme toggle** — Added automatically by the layout. `status:available` `since:1.0`
+- **Tag and since badges** — Tag and since code spans. `status:available` `since:1.0`
+- **Timeline** — `c: timeline` sections. `status:available` `since:1.0`
+- **Keyboard keys** — `kbd:Ctrl+K` code spans. `status:available` `since:1.0`
+- **Search** — Client search from a `search.json` file. `status:available` `since:1.0`
+- **Component slots** — `_data/components.yml` slot contract. `status:available` `since:1.0`
 
 ## Status legend
 

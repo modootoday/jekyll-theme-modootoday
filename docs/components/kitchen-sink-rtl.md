@@ -87,7 +87,7 @@ winget install RubyInstallerTeam.Ruby
 
 ## السجل الزمني
 
-### 0.5.0
+### البداية
 
 أول إصدار عام.
 

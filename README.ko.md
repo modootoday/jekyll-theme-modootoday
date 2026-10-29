@@ -25,7 +25,7 @@ gem 방식(`theme:`):
 
 ```ruby
 # Gemfile
-gem "jekyll-theme-modootoday", "~> 0.5"
+gem "jekyll-theme-modootoday", "~> 1.0"
 ```
 
 ```yaml
@@ -37,7 +37,7 @@ Gemfile 없이 GitHub Pages에서(`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.0.0
 plugins:
   - jekyll-remote-theme
 ```
@@ -48,7 +48,7 @@ plugins:
 
 ```sh
 mkdir my-docs && cd my-docs
-printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.5"\n' > Gemfile
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 1.0"\n' > Gemfile
 printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {silence_deprecations: [import, global-builtin]}\n' > _config.yml
 printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
 bundle install && bundle exec jekyll build
@@ -103,7 +103,7 @@ bundle exec modootoday-check . _site
 
 ## 기여
 
-영어가 기준 언어입니다. `README.md`, `RULES.md`, `docs/`의 영어 페이지가 원본이고 `README.ko.md`와 `ko/`, `ja/` 페이지는 번역입니다. 내용이 다르면 영어가 우선합니다. [CONTRIBUTING.md](CONTRIBUTING.md)를 보세요.
+이슈와 풀 리퀘스트를 환영합니다. [CONTRIBUTING.md](CONTRIBUTING.md)를 보세요. 이 문서는 영어 [README.md](README.md)의 번역이며, 내용이 다르면 영어가 우선합니다.
 
 ## 라이선스
 

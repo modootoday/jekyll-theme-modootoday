@@ -4,7 +4,7 @@
 
 | Version | Supported |
 |---|---|
-| latest 0.x minor (currently 0.5) | yes |
+| latest 1.x minor | yes |
 | older | no |
 
 After 1.0, the latest minor of the current major receives fixes.

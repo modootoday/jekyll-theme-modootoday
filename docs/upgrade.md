@@ -30,18 +30,17 @@ Pick one of three ways to publish the agent-readable twin of each page:
 
 - **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page.
 - **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
-- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. On a classic Pages site checked on 2026-10-30, the raw copy was served as `text/markdown; charset=utf-8`, byte-identical to the source (one sample; see RULES.md §5a for the limits).
+- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source (see RULES.md §5a for the limits).
 
 Switching between them does not change page bodies. See [Agents](../agents/) and section 5a of `RULES.md`.
 
 ## Upgrading
 
-Read `CHANGELOG.md` for every version you skip. Until 1.0, minor versions may change rules; after 1.0, only major versions do (see [Public API](../api/)).
+Read `CHANGELOG.md` for every version you skip. From 1.0 on, rules and the public API change incompatibly only in a major version (see [Public API](../api/)).
 
 | From | To | What to do |
 |---|---|---|
-| any 0.x | 0.5 | first public release; pin `~> 0.5` or `@v0.5.0` |
-| 0.x | 1.0 | replace `md-*` classes and `--md-*` properties in your own CSS with `mt-*` and `--mt-*` (they still work in 1.x, with checker warnings); run `modootoday-check --strict` |
+| a build from the repository before 1.0.0 | 1.0 | pin `~> 1.0` or `@v1.0.0`; replace `md-*` classes and `--md-*` properties in your own CSS with `mt-*` and `--mt-*` (they still work in 1.x, with checker warnings); run `modootoday-check --strict` |
 | 1.x | 2.0 | `md-*` aliases are removed |
 
 ### `md-*` to `mt-*`

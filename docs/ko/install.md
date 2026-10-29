@@ -20,7 +20,7 @@ sections:
 
 ```yaml
 # _config.yml (기본 GitHub Pages 빌드, Gemfile 불필요)
-remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.0.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -30,7 +30,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 0.5"
+gem "jekyll-theme-modootoday", "~> 1.0"
 ```
 
 ### github-pages gem

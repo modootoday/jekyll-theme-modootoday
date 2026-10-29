@@ -25,14 +25,14 @@ jekyll-theme-modootoday は標準の GitHub Flavored Markdown をすっきりし
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.0.0
 plugins: [jekyll-remote-theme]
 ```
 
 ### Gemfile
 
 ```ruby
-gem "jekyll-theme-modootoday", "~> 0.5"
+gem "jekyll-theme-modootoday", "~> 1.0"
 ```
 
 ### _config.yml

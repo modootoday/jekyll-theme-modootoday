@@ -1,27 +1,30 @@
 ---
 title: ロードマップ
-description: 1.0 に含まれるすべてのものと、2.0 で変わるもの。
+description: テーマがサポートする機能、動作環境、今後の方向。
 ---
 # ロードマップ
 
 > [!NOTE]
 > このページは[英語の原文](../../roadmap/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
-1.0 は以下の項目がすべて終わった時点で出ます。別の 1.x リストはなく、後回しにしていた作業も 1.0 に含まれます。
+## 1.0 でサポートするもの
 
-## 1.0
+- ライト・ダークのコンポーネント: アラート、セクション、カード、ボタン、タブ、バッジ、表、アコーディオン、ステップ、図、タイムライン、キーボードのキー、パンくずリスト、目次、テーマ切り替え、検索。[コンポーネント](../components/)を参照してください。
+- 確定したコンテンツルール (`md-components v1`) と安定した[公開 API](../api/)。
+- 既定で有効な canonical、`hreflang`、Open Graph タグ。サイトマップとフィードはプラグインを追加すると使えます。
+- 多言語サイト向けの言語切り替えと、右から左に書く文字のサポート ([RTL キッチンシンク](../components/kitchen-sink-rtl/))。
+- 独自の `_data/components.yml` 向けのスロット契約 ([API](../api/#slot-contract))。
+- AI エージェント向けの Markdown ツインと `llms.txt` ([エージェント](../agents/))。
+- `post` レイアウト用のタグ・カテゴリーのアーカイブページ。
+- 厳格なコンテンツセキュリティポリシーのサポート ([CSP](../csp/)) と[数式と図のガイド](../math-diagrams/)。
+- 英語、韓国語、日本語のドキュメント。
 
-- すべてのコンポーネントのライト・ダークでの見た目の仕上げ (ドキュメントサイトとキッチンシンク)。 `status:partial`
-- 確定したルール (`md-components v1`) と凍結された[公開 API](../api/)、非推奨ポリシー。 `status:available`
-- canonical、hreflang、Open Graph タグと、任意のサイトマップ・フィード。 `status:available`
-- 英語、韓国語、日本語のドキュメント。 `status:available`
-- サンプルサイトのすべての言語にガイドページ。 `status:available`
-- `_data/components.yml` のスロット契約 ([API](../api/))。 `status:available`
-- 右から左に書く文字: 論理プロパティ、自動の `dir="rtl"`、[RTL キッチンシンク](../../components/kitchen-sink-rtl/)。 `status:available`
-- 厳格な CSP のもとで KaTeX と Mermaid を使う[数式と図のガイド](../math-diagrams/)。テーマはどちらも同梱しません。 `status:available`
-- CI で基準スクリーンショットと比較する見た目の回帰チェック (プルリクエストでブロック) と Lighthouse の予算。 `status:available`
-- `post` レイアウト用のタグ・カテゴリーのアーカイブページ。 `status:planned`
+## 互換性
 
-## 2.0
+- `remote_theme` を使う GitHub Pages (`github-pages` 232、Jekyll 3.10) と、Ruby 3.2〜3.4 の Jekyll 4.4。サポートする最も古いバージョンは Jekyll 3.9 です。
+- 1.x の間は公開 API を削除したり壊したりしません。[移行とアップグレード](../upgrade/)を参照してください。
 
-- 非推奨の `md-*` クラスと `--md-*` プロパティを削除します。[移行とアップグレード](../upgrade/)を参照してください。
+## 今後
+
+- 1.x では既存のサイトを壊さずにコンポーネントとオプションを追加します。
+- 2.0 では非推奨の `md-*` クラスと `--md-*` プロパティを削除します。[アップグレードガイド](../upgrade/#md--to-mt-)を見て、今のうちに `mt-*` へ移行してください。

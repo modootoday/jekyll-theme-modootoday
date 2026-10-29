@@ -33,18 +33,17 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 
 - **스텁 파일** (기본, 기본 GitHub Pages): 페이지마다 작은 `<page>.md.txt` 하나.
 - **플러그인** (Jekyll 4 또는 GitHub Actions): `plugins: [jekyll-theme-modootoday]`가 스텁 없이 쌍둥이와 `llms.txt`를 만듭니다.
-- **소스 모드** (기본 GitHub Pages, 스텁 없음): 머리말 없는 페이지와 `modootoday.twins: source`. 2026-10-30에 확인한 기본 Pages 사이트에서는 원본 사본이 `text/markdown; charset=utf-8`로, 원본과 바이트 단위로 같게 제공되었습니다(표본 하나; 한계는 RULES.md §5a).
+- **소스 모드** (기본 GitHub Pages, 스텁 없음): 머리말 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다(한계는 RULES.md §5a).
 
 방법을 바꿔도 페이지 본문은 바뀌지 않습니다. [에이전트](../agents/)와 `RULES.md` 5a절을 보세요.
 
 ## 업그레이드
 
-건너뛰는 모든 버전의 `CHANGELOG.md`를 읽으세요. 1.0 전에는 마이너 버전에서도 규칙이 바뀔 수 있고, 1.0 이후에는 메이저 버전에서만 바뀝니다([공개 API](../api/) 참고).
+건너뛰는 모든 버전의 `CHANGELOG.md`를 읽으세요. 1.0부터 규칙과 공개 API는 메이저 버전에서만 호환되지 않게 바뀝니다([공개 API](../api/) 참고).
 
 | 이전 | 이후 | 할 일 |
 |---|---|---|
-| 모든 0.x | 0.5 | 첫 공개 릴리스. `~> 0.5` 또는 `@v0.5.0`으로 고정 |
-| 0.x | 1.0 | 사이트 CSS의 `md-*` 클래스와 `--md-*` 속성을 `mt-*`, `--mt-*`로 교체 (1.x에서는 검사기 경고와 함께 계속 동작). `modootoday-check --strict` 실행 |
+| 1.0.0 이전에 저장소에서 빌드 | 1.0 | `~> 1.0` 또는 `@v1.0.0`으로 고정. 사이트 CSS의 `md-*` 클래스와 `--md-*` 속성을 `mt-*`, `--mt-*`로 교체 (1.x에서는 검사기 경고와 함께 계속 동작). `modootoday-check --strict` 실행 |
 | 1.x | 2.0 | `md-*` 별칭 제거 |
 
 ### `md-*`에서 `mt-*`로

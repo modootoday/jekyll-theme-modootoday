@@ -64,7 +64,7 @@ Every component the theme ships, in every variant. The same file is readable on 
 
 - **Alerts** — Five GitHub alert types. `status:available`
 - **Tabs** — Accessible install tabs. `status:partial`
-- **Search** — Planned for a later release. `status:planned`
+- **Search** — Example of a planned item. `status:planned`
 - **Tokens** — Colors, radius and fonts. `status:available`
 - **Sass** — One partial per component. `status:available`
 - **Twins** — Markdown for agents. `status:available`
@@ -121,7 +121,7 @@ greeting: Hello
 
 Inline badges: `status:available` `status:partial` `status:planned`
 
-Tag and version badges: `tag:beta` `tag:experimental` `since:0.3`
+Tag and version badges: `tag:beta` `tag:experimental` `since:1.0`
 
 | Feature | Status |
 |---|---|
@@ -174,27 +174,27 @@ Push to `main` and turn on GitHub Pages.
 
 ## Timeline
 
-### 0.1.0
+### Install
 
 Alerts, sections, cards, tabs, status badges and the checker.
 
-### 0.2.0
+### Write
 
 Design tokens, the `modootoday:` block, navigation and code copy.
 
-### 0.3.0
+### Check
 
 Theme toggle, breadcrumb, table of contents, accordion, steps and figures.
 
-### 0.4.0
+### Publish
 
 Timeline, keyboard keys, client search and the post layout.
 
 ## Timeline as a list
 
-1. 0.1.0: alerts, sections, cards and tabs.
-2. 0.2.0: design tokens and navigation.
-3. 0.3.0: theme toggle, table of contents and steps.
+1. Install: alerts, sections, cards and tabs.
+2. Write: design tokens and navigation.
+3. Check: theme toggle, table of contents and steps.
 
 ## Keyboard keys
 
