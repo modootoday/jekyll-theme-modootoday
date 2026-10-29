@@ -1,0 +1,5 @@
+> [!NOTE]
+> One.
+
+> [!TIP]
+> Two.

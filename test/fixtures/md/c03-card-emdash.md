@@ -1,0 +1,2 @@
+- **Fast** — Builds quickly
+- **Small**: Tiny output

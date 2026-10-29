@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.gem binary
+# audit fixtures are compared byte-for-byte (one uses CRLF)
+test/fixtures/** -text
