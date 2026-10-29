@@ -43,3 +43,60 @@ Read `CHANGELOG.md` for every version you skip. Until 1.0, minor versions may ch
 | any 0.x | 0.5 | first public release; pin `~> 0.5` or `@v0.5.0` |
 | 0.x | 1.0 | replace `md-*` classes and `--md-*` properties in your own CSS with `mt-*` and `--mt-*` (they still work in 1.x, with checker warnings); run `modootoday-check --strict` |
 | 1.x | 2.0 | `md-*` aliases are removed |
+
+### `md-*` to `mt-*`
+
+The `md-*` classes and `--md-*` custom properties are deprecated in 1.0 and removed in 2.0. `modootoday-check` warns where your own Sass, CSS, includes, layouts or pages use them (code blocks are ignored); `--strict` turns the warnings into errors. Replace each name with its `mt-*` equivalent. Only the names below exist; the theme never had other `md-*` names.
+
+Search your site with `grep -rnE '(\.|class=.*)md-[a-z]|--md-' _sass _includes _layouts assets`.
+
+Classes:
+
+| Old | New |
+|---|---|
+| `.md-body` | `.mt-body` |
+| `.md-header` | `.mt-header` |
+| `.md-site-title` | `.mt-site-title` |
+| `.md-skip` | `.mt-skip` |
+| `.md-main` | `.mt-main` |
+| `.md-doc` | `.mt-doc` |
+| `.md-hero` | `.mt-hero` |
+| `.md-section` | `.mt-section` |
+| `.md-c-<c>` | `.mt-c-<c>` |
+| `.md-cta` | `.mt-cta` |
+| `.md-prose` | `.mt-prose` |
+| `.md-callout` | `.mt-callout` |
+| `.md-callout-<type>` | `.mt-callout-<type>` |
+| `.md-callout-title` | `.mt-callout-title` |
+| `.md-badge` | `.mt-badge` |
+| `.md-badge-<value>` | `.mt-badge-<value>` |
+
+Custom properties:
+
+| Old | New |
+|---|---|
+| `--md-font-sans` | `--mt-font-sans` |
+| `--md-font-mono` | `--mt-font-mono` |
+| `--md-font-size` | `--mt-font-size` |
+| `--md-line-height` | `--mt-line-height` |
+| `--md-measure` | `--mt-measure` |
+| `--md-space` | `--mt-space` |
+| `--md-radius` | `--mt-radius` |
+| `--md-bg` | `--mt-background` |
+| `--md-bg-subtle` | `--mt-muted` |
+| `--md-fg` | `--mt-foreground` |
+| `--md-fg-muted` | `--mt-muted-foreground` |
+| `--md-border` | `--mt-border` |
+| `--md-accent` | `--mt-primary` |
+| `--md-accent-fg` | `--mt-primary-foreground` |
+| `--md-focus` | `--mt-ring` |
+| `--md-note` | `--mt-note` |
+| `--md-tip` | `--mt-tip` |
+| `--md-important` | `--mt-important` |
+| `--md-warning` | `--mt-warning` |
+| `--md-caution` | `--mt-caution` |
+| `--md-available` | `--mt-status-available` |
+| `--md-partial` | `--mt-status-partial` |
+| `--md-planned` | `--mt-status-planned` |
+
+Under `--md-*`, `bg-subtle`, `fg`, `accent` and similar names were renamed, not only re-prefixed. The `mt-` names in the right column are part of the [Public API](../api/).

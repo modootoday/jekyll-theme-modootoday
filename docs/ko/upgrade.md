@@ -46,3 +46,60 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 모든 0.x | 0.5 | 첫 공개 릴리스. `~> 0.5` 또는 `@v0.5.0`으로 고정 |
 | 0.x | 1.0 | 사이트 CSS의 `md-*` 클래스와 `--md-*` 속성을 `mt-*`, `--mt-*`로 교체 (1.x에서는 검사기 경고와 함께 계속 동작). `modootoday-check --strict` 실행 |
 | 1.x | 2.0 | `md-*` 별칭 제거 |
+
+### `md-*`에서 `mt-*`로
+
+`md-*` 클래스와 `--md-*` 사용자 정의 속성은 1.0에서 폐기 예정으로 표시되고 2.0에서 제거됩니다. 사이트의 Sass, CSS, include, 레이아웃, 페이지가 이를 쓰면 `modootoday-check`가 경고합니다(코드 블록은 제외). `--strict`를 주면 경고가 오류가 됩니다. 아래 표에 따라 `mt-*` 이름으로 바꾸세요. 테마에 다른 `md-*` 이름은 없습니다.
+
+사이트 검색: `grep -rnE '(\.|class=.*)md-[a-z]|--md-' _sass _includes _layouts assets`
+
+클래스:
+
+| 이전 | 새 이름 |
+|---|---|
+| `.md-body` | `.mt-body` |
+| `.md-header` | `.mt-header` |
+| `.md-site-title` | `.mt-site-title` |
+| `.md-skip` | `.mt-skip` |
+| `.md-main` | `.mt-main` |
+| `.md-doc` | `.mt-doc` |
+| `.md-hero` | `.mt-hero` |
+| `.md-section` | `.mt-section` |
+| `.md-c-<c>` | `.mt-c-<c>` |
+| `.md-cta` | `.mt-cta` |
+| `.md-prose` | `.mt-prose` |
+| `.md-callout` | `.mt-callout` |
+| `.md-callout-<type>` | `.mt-callout-<type>` |
+| `.md-callout-title` | `.mt-callout-title` |
+| `.md-badge` | `.mt-badge` |
+| `.md-badge-<value>` | `.mt-badge-<value>` |
+
+사용자 정의 속성:
+
+| 이전 | 새 이름 |
+|---|---|
+| `--md-font-sans` | `--mt-font-sans` |
+| `--md-font-mono` | `--mt-font-mono` |
+| `--md-font-size` | `--mt-font-size` |
+| `--md-line-height` | `--mt-line-height` |
+| `--md-measure` | `--mt-measure` |
+| `--md-space` | `--mt-space` |
+| `--md-radius` | `--mt-radius` |
+| `--md-bg` | `--mt-background` |
+| `--md-bg-subtle` | `--mt-muted` |
+| `--md-fg` | `--mt-foreground` |
+| `--md-fg-muted` | `--mt-muted-foreground` |
+| `--md-border` | `--mt-border` |
+| `--md-accent` | `--mt-primary` |
+| `--md-accent-fg` | `--mt-primary-foreground` |
+| `--md-focus` | `--mt-ring` |
+| `--md-note` | `--mt-note` |
+| `--md-tip` | `--mt-tip` |
+| `--md-important` | `--mt-important` |
+| `--md-warning` | `--mt-warning` |
+| `--md-caution` | `--mt-caution` |
+| `--md-available` | `--mt-status-available` |
+| `--md-partial` | `--mt-status-partial` |
+| `--md-planned` | `--mt-status-planned` |
+
+`--md-*`의 `bg-subtle`, `fg`, `accent` 등은 접두사만이 아니라 이름도 바뀌었습니다. 오른쪽 열의 `mt-` 이름은 [공개 API](../api/)에 속합니다.

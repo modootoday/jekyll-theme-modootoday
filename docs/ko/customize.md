@@ -34,7 +34,7 @@ Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. `assets/css
 ---
 @import "modootoday";
 
-.md-hero h1 { letter-spacing: -0.02em; }
+.mt-hero h1 { letter-spacing: -0.02em; }
 ```
 
 > [!WARNING]

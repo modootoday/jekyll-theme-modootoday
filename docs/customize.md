@@ -31,7 +31,7 @@ Jekyll reads `_sass/` from your site before the theme. Create `assets/css/modoot
 ---
 @import "modootoday";
 
-.md-hero h1 { letter-spacing: -0.02em; }
+.mt-hero h1 { letter-spacing: -0.02em; }
 ```
 
 > [!WARNING]

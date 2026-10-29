@@ -25,7 +25,7 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 3. It is removed only in the next major release.
 
 > [!IMPORTANT]
-> The old `md-*` classes and `--md-*` properties are aliases of `mt-*` and `--mt-*`. They stay through 1.x, are marked deprecated in 1.0, and are removed in 2.0. `modootoday-check` warns when your own Sass uses them.
+> The old `md-*` classes and `--md-*` properties are aliases of `mt-*` and `--mt-*`. They stay through 1.x, are marked deprecated in 1.0, and are removed in 2.0. `modootoday-check` warns when your own Sass, CSS, includes, layouts or pages use them. See the [mapping table](../upgrade/).
 
 ## Not in 1.0
 

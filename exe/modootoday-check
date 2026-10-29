@@ -224,6 +224,17 @@ Dir.glob(["#{src}/_sass/**/*.scss", "#{src}/assets/**/*.scss"]).reject { |f| f.d
     end
   end
 end
+# 5c. md-* aliases in the site's own markup and CSS (classes and var(--md-*)); code is ignored
+MD_ALIAS = /(class=["'][^"']*(?<![\w-])md-[a-z]|var\(\s*--md-[a-z])/
+md_alias_files = Dir.glob(["#{src}/_includes/**/*.html", "#{src}/_layouts/**/*.html", "#{src}/assets/**/*.css"]) +
+                 Dir.glob(["#{src}/**/*.md", "#{src}/**/*.html"]).reject { |f| f.delete_prefix(src) =~ skip }
+md_alias_files.uniq.reject { |f| f.delete_prefix(src) =~ %r{(^|/)(_site|vendor|node_modules)/} }.sort.each do |f|
+  t = File.read(f)
+  t = strip_comments(f.end_with?(".md") ? strip_code(t) : t)
+  t.each_line.with_index(1) do |l, n|
+    warns << "#{rel[f]}:#{n}: md-* alias is deprecated (removed in 2.0); use the --mt-*/mt-* name" if l =~ MD_ALIAS
+  end
+end
 css = Dir.glob("#{site}/**/*.css").sort
 defined = {}
 css.each do |f|

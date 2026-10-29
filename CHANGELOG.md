@@ -6,6 +6,12 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
+### Deprecated
+- **Notice:** the `md-*` classes and `--md-*` custom properties will be marked deprecated in 1.0 and removed in 2.0. They work unchanged until then. Move to the `mt-*` / `--mt-*` names now with the mapping table in the [upgrade guide](docs/upgrade.md).
+
+### Changed
+- `modootoday-check` also warns on `md-*` classes and `var(--md-*)` in the site's own includes, layouts, CSS and pages (code is ignored), not only in Sass.
+
 ## [0.5.0] - Unreleased
 
 First public release. It combines the internal milestones 0.1 to 0.4, which were never published, and the governance and SEO work for 0.5. Nothing below was available on RubyGems before 0.5.0.
