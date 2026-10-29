@@ -1,0 +1,53 @@
+# frozen_string_literal: true
+
+module Modootoday
+  module Check
+    # Rules 3-4: the sections: list matches the '## ' headings, and each section's component
+    # (from _data/components.yml) gets known, allowed and required params and its slot contract.
+    module PageSections
+      module_function
+
+      def call(ctx, f, text, b, code, h2)
+        errs, r = ctx.errs, ctx.rel(f)
+        meta = begin Markdown.fm(text) rescue (errs << "#{r}: front matter YAML error"; {}) end
+        secs = meta["sections"]
+        return unless secs
+        return errs << "#{r}: sections: must be a list" unless secs.is_a?(Array)
+        code.scan(/<!--.*?-->/m) { |c| errs << "#{r}: '##' inside an HTML comment is not a heading" if c =~ /^##/ }
+        errs << "#{r}: sections: has #{secs.size} item(s) but body has #{h2} top-level '## ' heading(s)" if secs.size != h2
+        components(ctx, r, secs, section_markdown(b, code)) if ctx.comps
+      end
+
+      # Markdown of each top-level ## section (index i = sections[i]): [code spans/fences blanked, raw]
+      def section_markdown(b, code)
+        bl = b.lines
+        cl = code.lines
+        starts = cl.each_index.select { |k| cl[k] =~ /^##(?: |$)/ }
+        starts.each_with_index.map do |st, k|
+          raw = bl[st + 1...(starts[k + 1] || bl.size)].to_a.join
+          [cl[st + 1...(starts[k + 1] || cl.size)].to_a.join, raw]
+        end
+      end
+
+      def components(ctx, r, secs, sec_md)
+        errs = ctx.errs
+        secs.each_with_index do |s, i|
+          next unless s.is_a?(Hash) && s["c"]
+          spec = ctx.comps[s["c"]]
+          next errs << "#{r}: sections[#{i}] unknown component '#{s['c']}' (not in _data/components.yml)" unless spec
+          params = spec["params"] || {}
+          Slots.check_section(errs, r, i, s["c"], spec["slots"], sec_md[i])
+          (ctx.part_uses[s["c"]] ||= []) << r if spec.is_a?(Hash) && spec["parts"].is_a?(Array)
+          (s.keys - %w[c name]).each do |k|
+            next errs << "#{r}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)
+            allowed = params[k].is_a?(Hash) && params[k]["allowed"]
+            errs << "#{r}: sections[#{i}] #{s['c']}.#{k}=#{s[k].inspect} not in #{allowed.inspect}" if allowed && !allowed.include?(s[k])
+          end
+          params.each do |k, p|
+            errs << "#{r}: sections[#{i}] #{s['c']}: missing required param '#{k}'" if p.is_a?(Hash) && p["required"] && !s.key?(k)
+          end
+        end
+      end
+    end
+  end
+end
