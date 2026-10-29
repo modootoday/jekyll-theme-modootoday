@@ -9,6 +9,7 @@
 
 {% for _p in _llms_pages -%}
 {%- assign _tw = _p.url | append: "index.md" -%}{%- if _p.url contains ".html" -%}{%- assign _tw = _p.url | replace: ".html", ".md" -%}{%- endif -%}
+{%- assign _sp = "/" | append: _p.path -%}{%- assign _sf = site.static_files | where: "path", _sp | first -%}{%- if _sf -%}{%- assign _tw = _sp -%}{%- endif -%}
 {%- if site.url -%}{%- assign _href = _tw | absolute_url -%}{%- else -%}{%- assign _href = _tw | relative_url -%}{%- endif -%}
 - [{{ _p.title | default: _p.name }}]({{ _href }}){% if _p.description %}: {{ _p.description | strip_newlines }}{% endif %}
 {% endfor -%}

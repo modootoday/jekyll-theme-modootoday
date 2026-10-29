@@ -20,6 +20,9 @@
 {%- comment -%}Markdown twin (llms.txt convention: /<page>/index.md) and the nearest llms.txt, when they exist.{%- endcomment -%}
 {%- assign _tw = page.url | append: "index.md" -%}{%- if page.url == "/" -%}{%- assign _tw = "/index.md" -%}{%- endif -%}
 {%- assign _twp = site.pages | where: "url", _tw | first -%}
+{%- comment -%}Front-matter-less mode (jekyll-optional-front-matter): the raw source is copied as a static file at its own path.{%- endcomment -%}
+{%- assign _sp = "/" | append: page.path -%}{%- assign _sf = site.static_files | where: "path", _sp | first -%}
+{%- if _sf -%}{%- assign _tw = _sp -%}{%- assign _twp = _sf -%}{%- endif -%}
 {%- if _twp %}
 <link rel="alternate" type="text/markdown" href="{{ _tw | relative_url }}">
 {%- endif -%}

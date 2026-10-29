@@ -1,0 +1,19 @@
+# Front-matter-less twin mode (modootoday.twins: source).
+# Pages have NO front matter: jekyll-optional-front-matter renders each .md to HTML AND copies the
+# raw file to the same path, so /guide/ is the page and /guide/index.md is its Markdown twin,
+# /other/ and /other.md likewise. No stubs. Settings come from path-based defaults, titles from the H1.
+title: Source Mode Example
+description: Twins without stubs on classic GitHub Pages.
+lang: en
+theme: jekyll-theme-modootoday
+markdown: kramdown
+kramdown: {input: GFM, syntax_highlighter: rouge}
+sass: {silence_deprecations: [import, global-builtin]}
+permalink: pretty
+# GitHub Pages enables these by default; list them so local `jekyll build` behaves the same.
+plugins: [jekyll-optional-front-matter, jekyll-titles-from-headings]
+exclude: [Gemfile, Gemfile.lock]
+modootoday:
+  twins: source
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}

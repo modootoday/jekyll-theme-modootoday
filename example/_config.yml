@@ -8,7 +8,7 @@ markdown: kramdown
 sass: {silence_deprecations: [import, global-builtin]}  # Dart Sass (Jekyll 4); ignored by GitHub Pages
 kramdown: {input: GFM, syntax_highlighter: rouge}
 permalink: pretty
-exclude: [Gemfile, Gemfile.lock, README.md]
+exclude: [Gemfile, Gemfile.lock, README.md, source-mode]
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "ko"}, values: {lang: ko}}

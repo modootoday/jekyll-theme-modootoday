@@ -65,4 +65,49 @@ class ConsumerTest < Minitest::Test
       end
     end
   end
+
+  # Front-matter-less mode (modootoday.twins: source): jekyll-optional-front-matter renders each
+  # front-matter-less page AND copies the raw source to its own path, which is the twin. Same on
+  # github-pages (Jekyll 3.10) and Jekyll 4 with the plugins listed explicitly.
+  SOURCE = File.join(EXAMPLE, "source-mode")
+
+  def test_source_mode_twins_without_stubs
+    Dir.mktmpdir do |d|
+      build(SOURCE, "#{d}/out")
+      out, st = check(SOURCE, "#{d}/out")
+      assert st.success?, out
+      { "index.md" => "index.html", "guide/index.md" => "guide/index.html", "other.md" => "other/index.html" }.each do |raw, html|
+        assert_equal File.binread("#{SOURCE}/#{raw}"), File.binread("#{d}/out/#{raw}"), raw
+        assert File.exist?("#{d}/out/#{html}"), html
+      end
+      page = File.read("#{d}/out/other/index.html")
+      assert_includes page, '<link rel="alternate" type="text/markdown" href="/other.md">'
+      assert_includes page, "<title>Other page"
+      refute File.exist?("#{d}/out/other/index.md"), "no second twin next to the raw copy"
+      assert_includes File.read("#{d}/out/llms.txt"), "(/other.md)"
+      assert_includes File.read("#{d}/out/llms-full.txt"), File.read("#{SOURCE}/other.md").strip
+    end
+  end
+
+  def test_source_mode_is_opt_in_and_guards_its_requirements
+    Dir.mktmpdir do |d|
+      src = "#{d}/src"
+      FileUtils.cp_r(SOURCE, src)
+      cfg = File.read("#{src}/_config.yml")
+      File.write("#{src}/_config.yml", cfg.sub("  twins: source\n", "  twins: true\n"))
+      build(src, "#{d}/a")
+      out, st = check(src, "#{d}/a")
+      refute st.success?
+      assert_match(/other.md: missing front matter/, out)
+      File.write("#{src}/_config.yml", cfg + "optional_front_matter: {remove_originals: true}\n")
+      build(src, "#{d}/b")
+      out, = check(src, "#{d}/b")
+      assert_match(/remove_originals/, out)
+      assert_match(/raw copy missing/, out)
+      File.write("#{src}/_config.yml", cfg)
+      File.write("#{src}/other.md.txt", "---\nlayout: twin\n---\n")
+      out, = check(src, "#{d}/a")
+      assert_match(/redundant stub/, out)
+    end
+  end
 end

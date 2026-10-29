@@ -34,9 +34,11 @@ module JekyllThemeModootoday
         site.pages << page
       end
       md = site.pages.select { |p| p.is_a?(Jekyll::Page) && !p.is_a?(Stub) && p.ext == ".md" && p.name != "README.md" }
+      raw = site.static_files.to_h { |f| [f.relative_path.sub(%r{\A/}, ""), true] }
       if cfg.fetch("twins", true)
         md.each do |p|
           next if p.data["twin"] == false
+          next if raw[p.relative_path.sub(%r{\A/}, "")] # front-matter-less mode: the source itself is the twin
 
           url = p.url.end_with?("/") ? "#{p.url}index.md" : p.url.sub(/\.html\z/, ".md")
           d = File.dirname(p.path)

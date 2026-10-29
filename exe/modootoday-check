@@ -72,12 +72,26 @@ comps = File.exist?(comps_file) ? (YAML.safe_load(File.read(comps_file)) || {}) 
 i18n = Dir.glob("#{src}/_data/i18n/*.yml").to_h { |f| [File.basename(f, ".yml"), YAML.safe_load(File.read(f)) || {}] }
 dig = ->(h, key) { key.split(".").reduce(h) { |a, k| a.is_a?(Hash) ? a[k] : nil } }
 
+cfg_file = "#{src}/_config.yml"
+site_cfg = (File.exist?(cfg_file) && ((YAML.safe_load(File.read(cfg_file), permitted_classes: [Date, Time]) rescue nil) || {})) || {}
+mtc = site_cfg["modootoday"] || {}
+# modootoday.twins: source = front-matter-less mode: a page without front matter is rendered by
+# jekyll-optional-front-matter AND copied raw to its own path, which then is its twin.
+# directories listed in the site's exclude: are not pages (e.g. a nested example site)
+excl = Array(site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }.select { |e| File.directory?("#{src}/#{e}") }
+mds.reject! { |f| excl.any? { |e| f.start_with?("#{src}/#{e}/") } }
+SOURCE_MODE = mtc.is_a?(Hash) && mtc["twins"] == "source"
+if SOURCE_MODE
+  of = site_cfg["optional_front_matter"] || {}
+  errs << "_config.yml: modootoday.twins: source needs the raw copies; remove optional_front_matter.remove_originals" if of.is_a?(Hash) && of["remove_originals"] == true
+  errs << "_config.yml: modootoday.twins: source conflicts with require_front_matter: true" if site_cfg["require_front_matter"] == true
+end
 mds.each do |f|
   text = File.read(f)
   b = body(text)
   # 0. every content page needs front matter (may be empty "---\n---"); without it,
   #    GitHub Pages (jekyll-optional-front-matter) renders the page AND copies the raw .md to _site.
-  errs << "#{rel[f]}: missing front matter (add an empty '---' / '---' block at the top)" unless text.start_with?("---\n") && text =~ FM
+  errs << "#{rel[f]}: missing front matter (add an empty '---' / '---' block at the top)" unless (text.start_with?("---\n") && text =~ FM) || SOURCE_MODE
   # 1a. code fence info string: one language word only (kramdown 2.4 turns "sh {x}" into inline code)
   strip_fences(b) do |n, info|
     next if info.empty? || info.match?(/\A[\w#+.-]+\z/)
@@ -227,9 +241,10 @@ COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-
 SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground accent
               accent-foreground border ring note tip important warning caution status-available status-partial
               status-planned font-sans font-mono font-size line-height measure space radius].freeze
-cfg_file = "#{src}/_config.yml"
-mtc = (File.exist?(cfg_file) && ((YAML.safe_load(File.read(cfg_file), permitted_classes: [Date, Time]) rescue nil) || {})["modootoday"]) || {}
 if mtc.is_a?(Hash)
+  if mtc.key?("twins") && ![true, false, "source"].include?(mtc["twins"])
+    errs << "_config.yml: modootoday.twins must be true, false or source (got #{mtc['twins'].inspect})"
+  end
   if mtc.key?("color_scheme") && !%w[auto light dark].include?(mtc["color_scheme"])
     errs << "_config.yml: modootoday.color_scheme must be auto, light or dark (got #{mtc['color_scheme'].inspect})"
   end
@@ -273,6 +288,7 @@ end
 # 7. twins: every Markdown page (except README.md and `twin: false`) has /<page>/index.md
 #    (/index.md for index.md), byte-identical to its source body. It comes from a stub <name>.md.txt
 #    (layout: twin; works on GitHub Pages) or from the opt-in plugin (plugins: [jekyll-theme-modootoday]).
+#    With modootoday.twins: source, a page without front matter is its own twin at /<path>.md.
 #    llms.txt / llms-full.txt exist at / and at each /<lang>/; llms-full.txt contains every page body.
 if ARGV.include?("--twins")
   hint = "add a stub #{"%s"} (front matter `layout: twin`, `twin_of`, `permalink`) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
@@ -287,6 +303,18 @@ if ARGV.include?("--twins")
     end
     next if File.basename(f) == "README.md" || (fm(File.read(f)) rescue {})["twin"] == false
     r = rel[f].delete_suffix(".md")
+    if SOURCE_MODE && File.read(f) !~ FM
+      # front-matter-less mode: rendered page + raw copy of the whole source at its own path
+      errs << "#{rel[f]}.txt: redundant stub in twins: source mode (the source is already the twin); delete it" if File.exist?(stub)
+      raw = "#{site}/#{rel[f]}"
+      html = ["#{site}/#{r}.html", "#{site}/#{r}/index.html"]
+      lang = r.split("/").first if r.include?("/") && i18n.key?(r.split("/").first)
+      bodies[lang.to_s] << [rel[f], File.read(f)]
+      errs << "#{rel[f]}: no rendered page (#{html.map { |h| h.delete_prefix("#{site}/") }.join(' or ')}); is jekyll-optional-front-matter enabled? (local builds: list it in plugins:)" unless html.any? { |h| File.exist?(h) }
+      next errs << "#{rel[f]}: raw copy missing at #{raw} (optional_front_matter.remove_originals must not be true)" unless File.exist?(raw)
+      next errs << "#{raw}: raw copy is not byte-identical to #{rel[f]}" unless File.binread(raw) == File.binread(f)
+      next
+    end
     out = File.basename(r) == "index" ? "#{site}/#{r}.md" : "#{site}/#{r}/index.md"
     b = body(File.read(f))
     lang = r.split("/").first if r.include?("/") && i18n.key?(r.split("/").first)
