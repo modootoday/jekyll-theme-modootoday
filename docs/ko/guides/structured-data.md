@@ -6,7 +6,7 @@ description: 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프�
 # 구조화 데이터
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../structured-data/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](../../../guides/structured-data/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 `_config.yml`에 `url:`이 있으면 모든 페이지에 schema.org `@graph`를 담은 `<script type="application/ld+json">` 블록이 하나 들어갑니다. 검색 엔진과 AI 도구는 이것으로 페이지가 무엇인지 파악합니다. schema.org URL은 절대 주소여야 하므로 `url:`이 없으면 아무것도 출력하지 않습니다.
 

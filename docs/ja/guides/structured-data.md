@@ -6,7 +6,7 @@ description: テーマが全ページに出力する schema.org JSON-LD グラ�
 # 構造化データ
 
 > [!NOTE]
-> このページは[英語の原文](../../structured-data/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](../../../guides/structured-data/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 `_config.yml` に `url:` があると、全ページに schema.org の `@graph` を収めた `<script type="application/ld+json">` ブロックが 1 つ入ります。検索エンジンや AI ツールはこれでページの内容を把握します。schema.org の URL は絶対 URL である必要があるため、`url:` がなければ何も出力しません。
 
