@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+# Generates a read-only DTCG (Design Tokens Community Group) tokens.json from the Sass token maps
+# (_sass/modootoday/tokens/_primitive.scss and _semantic.scss). The Sass maps stay the source of truth.
+# Usage: script/tokens-json [OUT]   (stdout when OUT is omitted)
+require "json"
+
+ROOT = File.expand_path("..", __dir__)
+
+def sass_map(src, name)
+  body = src[/\$#{Regexp.escape(name)}:\s*\((.*?)\n\)\s*!default;/m, 1] or abort "map $#{name} not found"
+  out = {}
+  depth = 0; cur = +""
+  body.gsub(%r{//[^\n]*}, "").each_char do |c|
+    depth += 1 if c == "("; depth -= 1 if c == ")"
+    if c == "," && depth.zero? then out.store(*pair(cur)) unless cur.strip.empty?; cur = +"" else cur << c end
+  end
+  out.store(*pair(cur)) unless cur.strip.empty?
+  out
+end
+
+def pair(s)
+  k, v = s.split(":", 2).map(&:strip)
+  [k.delete('"'), v]
+end
+
+def ref(v) = v.gsub(/var\(--mt-p-([\w-]+)\)/) { "{primitive.#{$1}}" }
+
+def type_of(k, v)
+  return "color" if v.start_with?("#") || v.include?("{primitive.") && !k.match?(/space|radius/)
+  return "fontFamily" if k.start_with?("font-") && k != "font-size"
+  return "dimension" if v.match?(/\A[\d.]+(rem|px|em)\z/) || k.match?(/space|radius/)
+  "number"
+end
+
+def tok(k, v)
+  v = ref(v)
+  t = type_of(k, v)
+  val = t == "fontFamily" ? v.delete("()").split(",").map { _1.strip.delete('"') } : v
+  { "$type" => t, "$value" => (t == "number" && v.match?(/\A[\d.]+\z/) ? v.to_f : val) }
+end
+
+def build
+  prim = File.read(File.join(ROOT, "_sass/modootoday/tokens/_primitive.scss"))
+  sem = File.read(File.join(ROOT, "_sass/modootoday/tokens/_semantic.scss"))
+  grp = ->(m) { m.to_h { |k, v| [k, tok(k, v)] } }
+  {
+    "$description" => "jekyll-theme-modootoday design tokens (generated from Sass; read-only). CSS: --mt-p-<primitive>, --mt-<semantic>.",
+    "primitive" => grp.(sass_map(prim, "mt-primitive")),
+    "base" => grp.(sass_map(sem, "mt-base")),
+    "light" => grp.(sass_map(sem, "mt-light")),
+    "dark" => grp.(sass_map(sem, "mt-dark"))
+  }
+end
+
+if $PROGRAM_NAME == __FILE__
+  json = JSON.pretty_generate(build) + "\n"
+  ARGV[0] ? File.write(ARGV[0], json) : print(json)
+end

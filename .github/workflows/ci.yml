@@ -94,3 +94,20 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+
+  tokens:
+    name: DTCG tokens.json (read-only artifact)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      - run: ruby script/tokens-json tokens.json && ruby -rjson -e 'JSON.parse(File.read("tokens.json"))'
+      - uses: actions/upload-artifact@v7
+        with:
+          name: tokens-json
+          path: tokens.json
+          if-no-files-found: error
