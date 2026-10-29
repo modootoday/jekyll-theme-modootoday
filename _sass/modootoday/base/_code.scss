@@ -7,11 +7,12 @@
   div.highlighter-rouge, figure.highlight { margin: 0 0 1.25rem; }
   div.highlighter-rouge pre, figure.highlight pre { margin: 0; }
   // Rouge token colors (kramdown syntax_highlighter: rouge), from --mt-code-* tokens.
-  .highlight { .c, .c1, .cm, .cs, .cp, .cd { color: mt(code-comment); font-style: italic; }
-    .k, .kd, .kn, .kp, .kr, .kt, .kc, .ow, .nt { color: mt(code-keyword); }
-    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss, .na + .s { color: mt(code-string); }
-    .m, .mi, .mf, .mh, .mo, .il, .no, .bp, .vc, .vg, .vi { color: mt(code-constant); }
-    .nf, .fm, .nc, .nn, .nb, .nd, .ne { color: mt(code-function); }
-    .na, .py { color: mt(code-constant); }
-    .gd { color: mt(caution); } .gi { color: mt(tip); } .err { color: mt(caution); } }
+  // :is() keeps each token list short; same specificity as .highlight .x.
+  .highlight :is(.c, .c1, .cm, .cs, .cp, .cd) { color: mt(code-comment); font-style: italic; }
+  .highlight :is(.k, .kd, .kn, .kp, .kr, .kt, .kc, .ow, .nt) { color: mt(code-keyword); }
+  .highlight :is(.s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss), .highlight .na + .s { color: mt(code-string); }
+  .highlight :is(.m, .mi, .mf, .mh, .mo, .il, .no, .bp, .vc, .vg, .vi, .na, .py) { color: mt(code-constant); }
+  .highlight :is(.nf, .fm, .nc, .nn, .nb, .nd, .ne) { color: mt(code-function); }
+  .highlight :is(.gd, .err) { color: mt(caution); }
+  .highlight .gi { color: mt(tip); }
 }
