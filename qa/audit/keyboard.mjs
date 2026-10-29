@@ -16,7 +16,8 @@ async function tabWalk(page, url, fails, max = 80) {
   for (let i = 0; i < max; i++) {
     const r = await page.evaluate(ring);
     if (!r) break;
-    if (!r.visible && !seen.has(r.tag)) { seen.add(r.tag); fails.push(`keyboard: no visible focus ring on ${r.tag} ${url}`); }
+    // Focus inside an embed frame belongs to the framed document (its own focus styles); the parent cannot style it.
+    if (!r.visible && !seen.has(r.tag) && !r.tag.startsWith("IFRAME")) { seen.add(r.tag); fails.push(`keyboard: no visible focus ring on ${r.tag} ${url}`); }
     await page.keyboard.press("Tab");
   }
 }

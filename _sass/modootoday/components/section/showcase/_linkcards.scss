@@ -8,6 +8,5 @@
   .mt-c-linkcards > ul > li > a:first-child::after { content: " →"; color: mt(primary); }
   [dir="rtl"] .mt-c-linkcards > ul > li > a:first-child::after { content: " ←"; }
   .mt-c-linkcards > ul > li:hover { border-color: mt(primary); box-shadow: mt(shadow); }
-  .mt-c-linkcards > ul > li:focus-within { outline: 2px solid mt(ring); outline-offset: 2px; }
-  .mt-c-linkcards > ul > li > a:first-child:focus-visible { outline: 0; }
+  .mt-c-linkcards > ul > li > a:first-child:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; border-radius: mt(radius); }
 }

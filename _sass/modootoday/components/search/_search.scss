@@ -29,3 +29,8 @@
   // 64–80rem: the one-line header is tight; let search shrink so it never overlaps the nav (WCAG 2.2 target-size).
   @media (min-width: 64rem) { .mt-search { flex: 0 1 15rem; min-width: 5rem; } .mt-search input { width: 100%; } }
 }
+// Coarse pointers and forced colors (here, not in core _access, because this sheet loads after core).
+@include mt-layer(components) {
+  @media (pointer: coarse) { .mt-search input { height: 2.75rem; font-size: 1rem; } }
+  @media (forced-colors: active) { .mt-search input { border: 1px solid ButtonText; } }
+}

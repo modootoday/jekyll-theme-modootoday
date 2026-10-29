@@ -6,6 +6,6 @@
     background: mt(background); color: mt(muted-foreground); font: .8125rem/1.5 mt(font-mono); }
   .mt-code-title + div.highlighter-rouge pre { border-start-start-radius: 0; border-start-end-radius: 0; }
   .language-diff .gi, .language-diff .gd { display: inline-block; min-width: 100%; }
-  .language-diff .gi { background: color-mix(in srgb, #{mt(tip)} 16%, transparent); }
-  .language-diff .gd { background: color-mix(in srgb, #{mt(caution)} 16%, transparent); }
+  .language-diff .gi { background: color-mix(in srgb, #{mt(tip)} 16%, transparent); color: mt(foreground); }
+  .language-diff .gd { background: color-mix(in srgb, #{mt(caution)} 16%, transparent); color: mt(foreground); }
 }
