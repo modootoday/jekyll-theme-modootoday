@@ -29,6 +29,16 @@ First public release. It combines the internal milestones 0.1 to 0.4, which were
 #### Added
 - Front-matter-less twin mode (`modootoday.twins: source`): on classic GitHub Pages, `jekyll-optional-front-matter` renders a page without front matter and copies the raw file to its own path, which becomes the twin without a stub. The `default` layout and `llms.txt` link to it; the generator skips such pages; the checker verifies the rendered page and the byte-identical raw copy and rejects `remove_originals`, `require_front_matter` and redundant stubs. Example site in `example/source-mode/`, built in CI on github-pages and Jekyll 4.
 - Checker: `modootoday.twins` value check; directories listed in `exclude:` are skipped.
+- Visual refresh: wide container (`container` 76rem) with a sticky, blurred header and a right-hand sticky table of contents from 64rem (a collapsible "On this page" below that); site footer; Rouge syntax-highlighting colors (`code-*` tokens); tinted, rounded alerts; white shadowed cards with hover; neutral secondary buttons; gradient CTA box; soft status badges; polished tabs, accordion, steps, timeline, pagination, kbd and tables.
+- Tokens: `line-height`, `container`, `header-height`, `space-section`, `radius-lg`, `shadow-sm`, `shadow`, `code-keyword|string|comment|function|constant`; primitives `radius-lg`, `orange-400/600`, `teal-400/600`, `space-10`, `space-16`.
+
+### Fixed
+- An alert (or any paragraph with text) inside a hero no longer turns into a CTA row with its text hidden; only paragraphs made of links alone become action rows (`modootoday/actions.html`).
+- Feature cards no longer show a stray "—" before the description.
+- Header nav no longer wraps into several lines on narrow screens; it scrolls horizontally instead.
+
+### Changed
+- QA CSS budget raised from 20 KB to 32 KB (uncompressed, as built); the built CSS is about 28 KB (5.7 KB gzip).
 
 ### Milestone 0.4
 
