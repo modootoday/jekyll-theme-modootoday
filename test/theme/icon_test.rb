@@ -42,7 +42,7 @@ class IconTest < Minitest::Test
       end
       assert_match(/<button class="mt-theme-toggle"[^>]*aria-label="[^"]+"/, html)
       refute_match(/https?:\/\/[^"]*\.svg/, html, "icons are inline, no external requests")
-      assert_match(/class="mt-site-title md-site-title mt-has-logo"[^>]*><svg class="mt-icon mt-icon-brand mt-logo"/, html)
+      assert_match(/class="mt-site-title mt-has-logo"[^>]*><svg class="mt-icon mt-icon-brand mt-logo"/, html)
     end
   end
 
