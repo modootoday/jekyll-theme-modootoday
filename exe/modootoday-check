@@ -19,15 +19,35 @@ abort USAGE unless src && site
 errs = []
 warns = []
 KNOWN = %w[NOTE TIP IMPORTANT WARNING CAUTION].freeze
-MARKS = /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/
+MARKS = /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i
 STATUS = %w[available partial planned].freeze
 skip = %r{(^|/)(_site|_includes|_layouts|_data|vendor|node_modules)/}
 mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ skip }.sort
-FM = /\A---\n(.*?\n)?---\n/m
-def fm(t) = (m = t[FM]) ? (YAML.safe_load(m.sub(/\A---\n/, "").sub(/---\n\z/, ""), permitted_classes: [Date, Time]) || {}) : {}
+FM = /\A---\r?\n(.*?\r?\n)?---\r?\n/m
+def fm(t) = (m = t[FM]) ? (YAML.safe_load(m.sub(/\A---\r?\n/, "").sub(/---\r?\n\z/, ""), permitted_classes: [Date, Time]) || {}) : {}
 def body(t) = t.sub(FM, "")
-def strip_fences(t) = t.gsub(/^(```|~~~).*?^\1\s*$/m) { |m| "\n" * m.count("\n") }
-def strip_code(t) = strip_fences(t).gsub(/`[^`\n]+`/, "``")
+FENCE_OPEN = /^( {0,3})(`{3,}|~{3,})(.*)$/
+# Blank out fenced code (CommonMark: closing fence = same char, length >= opener), keep line count.
+# Yields [line_no, info_string] for every opening fence.
+def strip_fences(t)
+  out = []
+  close = nil
+  t.each_line.with_index(1) do |l, n|
+    if close
+      close = nil if l =~ /^ {0,3}#{Regexp.escape(close[0])}{#{close.size},}\s*$/
+      out << "\n"
+    elsif (m = l.match(FENCE_OPEN)) && !(m[2].start_with?("`") && m[3].include?("`"))
+      close = m[2]
+      yield n, m[3].strip if block_given?
+      out << "\n"
+    else
+      out << l
+    end
+  end
+  out.join
+end
+def strip_code(t) = strip_fences(t).gsub(/(`+)(?!`).+?(?<!`)\1(?!`)/) { "``" }
+def strip_comments(t) = t.gsub(/<!--.*?-->/m) { |m| "\n" * m.count("\n") }
 rel = ->(f) { f.delete_prefix("#{src}/") }
 
 comps_file = "#{src}/_data/components.yml"
@@ -41,21 +61,72 @@ mds.each do |f|
   # 0. every content page needs front matter (may be empty "---\n---"); without it,
   #    GitHub Pages (jekyll-optional-front-matter) renders the page AND copies the raw .md to _site.
   errs << "#{rel[f]}: missing front matter (add an empty '---' / '---' block at the top)" unless text.start_with?("---\n") && text =~ FM
-  strip_code(b).scan(/^>\s*\[!([A-Za-z]+)\]/) do |(t)|
-    warns << "#{rel[f]}: unknown alert type [!#{t}] (known: #{KNOWN.join('/')}); it renders as a plain quote" unless KNOWN.include?(t)
+  # 1a. code fence info string: one language word only (kramdown 2.4 turns "sh {x}" into inline code)
+  strip_fences(b) do |n, info|
+    next if info.empty? || info.match?(/\A[\w#+.-]+\z/)
+    errs << "#{rel[f]}:#{n}: code fence info string must be a single language word (got #{info.inspect}); attributes like {title=…} break kramdown"
   end
-  # 1. forbidden syntax outside code
-  strip_code(b).each_line.with_index(1) do |l, n|
+  code = strip_code(b)
+  lines = code.lines
+  # 1b. alerts (GitHub extension): case-insensitive markers, registered types only
+  lines.each_with_index do |l, i|
+    n = i + 1
+    errs << "#{rel[f]}:#{n}: tab after '>' (kramdown reads it as an indented code block); use a space" if l =~ /^ {0,3}>\t/
+    if l =~ /^ {0,3}> ?\*{1,2}\[!\w+\]/
+      errs << "#{rel[f]}:#{n}: formatted alert marker (e.g. **[!NOTE]**) is not an alert anywhere; write > [!NOTE]"
+    end
+    if l =~ /^ {0,3}> ?\[! +\w+\]/
+      warns << "#{rel[f]}:#{n}: '[! TYPE]' with a space is not an alert (renders as a plain quote)"
+    end
+    next unless (m = l.match(/^ {0,3}> ?\[!(\w+)\](.*)$/))
+    t, after = m[1], m[2]
+    next errs << "#{rel[f]}:#{n}: unregistered alert type [!#{t}] (allowed: #{KNOWN.join('/')}; any case)" unless KNOWN.include?(t.upcase)
+    errs << "#{rel[f]}:#{n}: text after [!#{t}] (custom titles are not supported; GitHub shows a plain quote)" unless after.strip.empty?
+    nxt = lines[i + 1].to_s
+    rest = lines[(i + 1)..].to_a.take_while { |x| x.strip != "" }
+    if rest.all? { |x| x.sub(/^ {0,3}>/, "").strip.empty? }
+      errs << "#{rel[f]}:#{n}: empty alert [!#{t}] (GitHub shows a plain quote); add body text"
+    end
+  end
+  # 1c. forbidden syntax outside code
+  html_free = strip_comments(code)
+  errs << "#{rel[f]}: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it" if code.include?("<!--")
+  html_free.each_line.with_index(1) do |l, n|
+    linkless = l.gsub(/\]\([^)]*\)/, "]()").gsub(/<(https?:|mailto:)[^>]*>|<[^@\s>]+@[^>\s]+>/, "<>").sub(/^ {0,3}\[[^\]]+\]:\s*\S+/, "")
     why = case l
-          when /<\/?[a-zA-Z][\w-]*[\s>\/]/ then "raw HTML"
+          when /<\/?[a-zA-Z][\w-]*[\s>\/]/ then "raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)"
           when /\{%|\{\{/ then "Liquid"
           when /\{:/ then "kramdown IAL/ALD"
           when /\{#[\w-]+\}/ then "{#id} header id"
           when /^:\s/ then "definition list"
-          when /^\s*([-*+]|\d+\.|\|).*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/, /^\s*(>\s*){2,}\[!/
+          when /^\*\[[^\]]+\]:/ then "abbreviation definition *[X]: (kramdown-only)"
+          when /^\s*([-*+]|\d+\.|\|).*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i, /^\s*(>\s*){2,}\[!/
             "alert nested in list/table/quote"
           end
+    why ||= "bare URL/e-mail autolink (kramdown does not link it); write <https://…> or [text](url)" if linkless =~ %r{(?<![<\w/@.])(https?://|www\.)\S|(?<![<\w.+-])[\w.+-]+@[\w-]+\.[a-z]{2,}}i
     errs << "#{rel[f]}:#{n}: #{why}" if why
+  end
+  h2 = 0
+  prev = ""
+  list = false # inside a list item (last column-0 block started with a list marker)
+  html_free.each_line.with_index(1) do |l, n|
+    list = l =~ /^([-*+]|\d+[.)])\s/ ? true : false if l =~ /^\S/
+    msg = case l
+          when /^##( |$)/ then (h2 += 1; nil)
+          when /^\s+##( |$)/ then
+            if list then "'##' inside a list item is not a section; use ### or move it out"
+            elsif l =~ /^ {1,3}#/ then "indented '##' (kramdown: paragraph, GitHub: heading); start at column 0"
+            end
+          when /^\s+> ?\[!\w+\]/ then list ? "alert nested in list/table/quote" : nil
+          when /^\s*(>\s*)+##( |$)/ then "'##' inside a quote/alert is not a section; use ### or move it out"
+          when /^ {0,3}-+\s*$/
+            if prev =~ /\S/ && prev !~ /^\s*([-*+>|#]|\d+\.)/
+              n -= 1
+              "setext heading (text underlined with ---) is not allowed; use '## '"
+            end
+          end
+    errs << "#{rel[f]}:#{n}: #{msg}" if msg
+    prev = l
   end
   # 2. status badge vocabulary (code spans outside fences)
   strip_fences(b).scan(/`status:([^`\s]*)`/) do |(v)|
@@ -66,8 +137,8 @@ mds.each do |f|
   secs = meta["sections"]
   next unless secs
   next errs << "#{rel[f]}: sections: must be a list" unless secs.is_a?(Array)
-  h2 = strip_fences(b).scan(/^## /).size
-  errs << "#{rel[f]}: sections: has #{secs.size} item(s) but body has #{h2} '## ' heading(s)" if secs.size != h2
+  code.scan(/<!--.*?-->/m) { |c| errs << "#{rel[f]}: '##' inside an HTML comment is not a heading" if c =~ /^##/ }
+  errs << "#{rel[f]}: sections: has #{secs.size} item(s) but body has #{h2} top-level '## ' heading(s)" if secs.size != h2
   # 4. optional components registry
   next unless comps
   secs.each_with_index do |s, i|
@@ -96,6 +167,7 @@ end
 # 5. build residue
 Dir.glob("#{site}/**/*.html").each do |f|
   t = File.read(f)
+  t = t.gsub(%r{<pre\b.*?</pre>}m, "").gsub(%r{<code\b.*?</code>}m) { |c| c.include?("status:") ? c : "" }
   t.scan(MARKS) { errs << "#{f}: unconverted alert marker [!#{$1}]" }
   errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
 end
