@@ -1,0 +1,22 @@
+{%- comment -%}Breadcrumb from the page URL: each parent directory that is a page becomes a link.
+Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: false.{%- endcomment -%}
+{%- if mt_components contains "breadcrumb" and page.breadcrumb != false -%}
+{%- assign _segs = page.url | split: "/" -%}
+{%- assign _home = "/" -%}{%- assign _start = 0 -%}
+{%- if _segs[1] == _lang and _lang != site.lang -%}{%- assign _home = "/" | append: _lang | append: "/" -%}{%- assign _start = 1 -%}{%- endif -%}
+{%- if page.url != _home and page.url != "/" -%}
+{%- assign _hp = site.pages | where: "url", _home | first -%}
+<nav class="mt-breadcrumb" aria-label="{{ site.data.i18n[_lang].breadcrumb.label | default: 'Breadcrumb' }}"><ol>
+<li><a href="{{ _home | relative_url }}">{{ _hp.title | default: site.title | default: "Home" }}</a></li>
+{%- assign _acc = _home -%}
+{%- for _s in _segs offset: 1 -%}{%- if forloop.index > _start and _s != "" and _s != "index.html" -%}
+{%- assign _acc = _acc | append: _s | append: "/" -%}
+{%- if _acc == page.url or forloop.last -%}
+<li><span aria-current="page">{{ page.title | default: _s }}</span></li>
+{%- else -%}{%- assign _pp = site.pages | where: "url", _acc | first -%}{%- if _pp -%}
+<li><a href="{{ _acc | relative_url }}">{{ _pp.title | default: _s }}</a></li>
+{%- endif -%}{%- endif -%}
+{%- endif -%}{%- endfor %}
+</ol></nav>
+{%- endif -%}
+{%- endif -%}

@@ -3,8 +3,11 @@ layout: default
 ---
 {%- comment -%}md-components v1 (draft) — doc layout: alerts/badges, then optional sections.{%- endcomment -%}
 {%- include modootoday/config.html -%}
-{%- assign _badges = mt_badges -%}{%- if page.badges == false -%}{%- assign _badges = false -%}{%- endif -%}
-{%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges %}{% endcapture -%}
-<article class="md-doc">
+{%- assign _badges = mt_badges -%}{%- if page.badges == false -%}{%- assign _badges = false -%}{%- endif -%}{%- unless mt_components contains "badge" -%}{%- assign _badges = false -%}{%- endunless -%}
+{%- assign _fig = false -%}{%- if mt_components contains "figure" -%}{%- assign _fig = true -%}{%- endif -%}
+{%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges figure=_fig %}{% endcapture -%}
+{%- include modootoday/breadcrumb.html -%}
+{%- include modootoday/toc.html html=html %}
+<article class="mt-doc md-doc">
 {% include md-sections.html content=html sections=page.sections lang=page.lang %}
 </article>

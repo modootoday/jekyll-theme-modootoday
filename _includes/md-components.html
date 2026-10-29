@@ -7,6 +7,10 @@ Usage: {% include md-components.html content=content lang=page.lang badges=true 
    unknown types and nested/list/table alerts stay unconverted and fail modootoday-check.
 2) Optional (badges=true): code span `status:available|partial|planned` → span.md-badge.md-badge-<v>.
    Unregistered values are a modootoday-check error. Labels: i18n status.<v>.
+   Also `tag:<word>` → span.mt-badge.mt-badge-tag and `since:<version>` → span.mt-badge.mt-badge-since
+   (label i18n badge.since); values must be one token (checker: [A-Za-z0-9._-]+).
+3) figure=true: a paragraph that is only an image, followed by a paragraph that is only *emphasis*
+   → figure.mt-figure with figcaption. Images need alt text (checker).
 Titles/labels: site.data.i18n[lang], English fallback.
 {%- endcomment -%}
 {%- assign _c = include.content -%}
@@ -49,5 +53,44 @@ Titles/labels: site.data.i18n[lang], English fallback.
     {%- capture _from2 %}<code>status:{{ _kv[0] }}</code>{% endcapture -%}
     {%- assign _c = _c | replace: _from, _to | replace: _from2, _to -%}
   {%- endfor -%}
+{%- endif -%}
+{%- if include.badges -%}
+  {%- assign _since = _i.badge.since | default: "Since" -%}
+  {%- assign _opens = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
+  {%- for _o in _opens -%}{%- for _pf in (1..2) -%}
+    {%- if _pf == 1 -%}{%- assign _px = "tag:" -%}{%- else -%}{%- assign _px = "since:" -%}{%- endif -%}
+    {%- assign _key = _o | append: _px -%}
+    {%- if _c contains _key -%}
+      {%- assign _bits = _c | split: _key -%}
+      {%- capture _c -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+        {%- assign _v = _b | split: "</code>" | first -%}
+        {%- if _v contains "<" or _v contains " " or _v == "" or _v == _b -%}{{ _key }}{{ _b }}
+        {%- else -%}{%- assign _tail = _b | remove_first: _v | remove_first: "</code>" -%}
+          {%- if _pf == 1 -%}<span class="mt-badge mt-badge-tag" data-variant="tag">{{ _v }}</span>
+          {%- else -%}<span class="mt-badge mt-badge-since" data-variant="since">{{ _since }} {{ _v }}</span>{%- endif -%}{{ _tail }}
+        {%- endif -%}
+      {%- endfor -%}{%- endcapture -%}
+    {%- endif -%}
+  {%- endfor -%}{%- endfor -%}
+{%- endif -%}
+{%- if include.figure and _c contains "<p><img " -%}
+  {%- assign _bits = _c | split: "<p><img " -%}
+  {%- capture _c -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+    {%- assign _im = _b | split: "</p>" | first -%}
+    {%- assign _after = _b | remove_first: _im | remove_first: "</p>" -%}
+    {%- assign _gts = _im | split: ">" | size -%}
+    {%- assign _a2 = _after | lstrip -%}
+    {%- assign _cap = "" -%}
+    {%- if _gts == 1 and _a2 contains "<p><em>" -%}
+      {%- assign _head = _a2 | slice: 0, 7 -%}
+      {%- if _head == "<p><em>" -%}
+        {%- assign _cap = _a2 | remove_first: "<p><em>" | split: "</em></p>" | first -%}
+        {%- if _cap contains "<p" or _cap contains "</em>" -%}{%- assign _cap = "" -%}{%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if _cap != "" -%}{%- assign _rest = _a2 | remove_first: "<p><em>" | remove_first: _cap | remove_first: "</em></p>" -%}
+<figure class="mt-figure"><img {{ _im }}<figcaption>{{ _cap }}</figcaption></figure>{{ _rest }}
+    {%- else -%}<p><img {{ _b }}{%- endif -%}
+  {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
 {{ _c }}

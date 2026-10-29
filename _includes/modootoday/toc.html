@@ -1,0 +1,17 @@
+{%- comment -%}"On this page" from kramdown auto ids: <h2 id="..."> and <h3 id="...">. Shown with 2+ headings;
+front matter toc: false hides it. Usage: {% include modootoday/toc.html html=html %}{%- endcomment -%}
+{%- if mt_components contains "toc" and page.toc != false -%}
+{%- assign _parts = include.html | split: '<h' -%}
+{%- capture _items -%}{%- for _p in _parts offset: 1 -%}
+{%- assign _lv = _p | slice: 0, 1 -%}
+{%- assign _hd = _p | slice: 1, 5 -%}
+{%- if _hd == ' id="' -%}{%- if _lv == "2" or _lv == "3" -%}
+{%- assign _id = _p | slice: 6, 10000 | split: '"' | first -%}
+{%- assign _body = _p | split: '</h' | first -%}{%- assign _gt = _body | split: '>' | first | append: '>' -%}{%- assign _t = _body | remove_first: _gt | strip_html | strip -%}
+<li class="mt-toc-h{{ _lv }}"><a href="#{{ _id }}">{{ _t }}</a></li>
+{%- endif -%}{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- assign _n = _items | split: '<li ' | size | minus: 1 -%}
+{%- if _n >= 2 %}
+<nav class="mt-toc" aria-labelledby="mt-toc-title"><p class="mt-toc-title" id="mt-toc-title">{{ site.data.i18n[_lang].toc.label | default: "On this page" }}</p><ol>{{ _items }}</ol></nav>
+{%- endif -%}
+{%- endif -%}
