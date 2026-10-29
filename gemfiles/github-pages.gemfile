@@ -1,7 +1,13 @@
 # frozen_string_literal: true
+# Mirrors the GitHub Pages production build (pages.github.com/versions.json and
+# actions/jekyll-build-pages v1.0.13: ruby 3.3, github-pages 232, jekyll-include-cache 0.2.1,
+# jekyll-octicons ~> 14.2, nokogiri 1.16.7).
 source "https://rubygems.org"
 gemspec path: ".."
-gem "github-pages", "~> 232", group: :jekyll_plugins
+gem "github-pages", "232", group: :jekyll_plugins
+gem "jekyll-include-cache", "0.2.1", group: :jekyll_plugins
+gem "jekyll-octicons", "~> 14.2", group: :jekyll_plugins
+gem "nokogiri", "1.16.7"
 gem "webrick"
 gem "minitest", ">= 5"
 gem "rake"

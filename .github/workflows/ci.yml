@@ -10,17 +10,22 @@ permissions:
 
 jobs:
   ruby:
-    name: ${{ matrix.stack }}
+    name: ${{ matrix.stack }} (ruby ${{ matrix.ruby }})
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         include:
+          # GitHub Pages production (pages.github.com/versions.json): Ruby 3.3.4 + github-pages 232
           - stack: github-pages
-            ruby: "3.3"
+            ruby: "3.3.4"
             check_flags: --twins --github-pages
+          # Jekyll 4: oldest supported Ruby (gemspec required_ruby_version) and latest
           - stack: jekyll4
-            ruby: "3.3"
+            ruby: "3.2"
+            check_flags: --twins
+          - stack: jekyll4
+            ruby: "3.4"
             check_flags: --twins
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile
@@ -50,6 +55,32 @@ jobs:
           diff -r -x '*.css' example/_site "$RUNNER_TEMP/remote-site"
       - name: Build gem
         run: gem build jekyll-theme-modootoday.gemspec
+
+  # The real GitHub Pages builder (same image as Pages deployments) on a remote_theme: site
+  # pinned to this commit, then the checker on its output.
+  pages-action:
+    name: actions/jekyll-build-pages (remote_theme)
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Make remote_theme site from example
+        run: |
+          mkdir -p /tmp/rt && cp -r example/. /tmp/rt/ && rm -f /tmp/rt/Gemfile
+          sed -i '/^theme:/d;/^remote_theme:/d' /tmp/rt/_config.yml
+          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
+          rm -rf rt-src && mv /tmp/rt rt-src
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: rt-src
+          destination: rt-site
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      - name: Check output
+        run: ruby exe/modootoday-check rt-src rt-site --twins
 
   js:
     runs-on: ubuntu-24.04

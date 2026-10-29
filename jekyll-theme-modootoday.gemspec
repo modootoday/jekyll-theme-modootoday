@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.description   = "GitHub alerts, status badges, sectioned pages, install tabs and agent-readable Markdown twins for Jekyll and GitHub Pages, plus a checker (modootoday-check)."
   spec.homepage      = "https://github.com/modootoday/jekyll-theme-modootoday"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 3.0" # exe uses endless methods
+  spec.required_ruby_version = ">= 3.2" # oldest Ruby in CI; sass-embedded needs 3.2; exe uses endless methods
 
   spec.metadata = {
     "source_code_uri" => spec.homepage,
