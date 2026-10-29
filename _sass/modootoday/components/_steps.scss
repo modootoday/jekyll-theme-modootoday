@@ -1,0 +1,10 @@
+// Steps: sections with `c: steps`; the ordered list (or ### headings) get numbered markers.
+@include mt-layer(components) {
+  .mt-c-steps > ol { list-style: none; padding: 0; counter-reset: mt-step; }
+  .mt-c-steps > ol > li, .mt-c-steps > h3 { counter-increment: mt-step; position: relative; padding-left: 2.5rem; }
+  .mt-c-steps > ol > li { margin-bottom: mt(space); }
+  .mt-c-steps { counter-reset: mt-step; }
+  .mt-c-steps > ol > li::before, .mt-c-steps > h3::before { content: counter(mt-step); position: absolute; left: 0; top: 0;
+    width: 1.75rem; height: 1.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: mt(primary); color: mt(primary-foreground); font-size: .85rem; font-weight: 600; }
+}

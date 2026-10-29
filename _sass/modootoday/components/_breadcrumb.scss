@@ -1,0 +1,7 @@
+// Breadcrumb generated from the page URL (layout only, no Markdown).
+@include mt-layer(components) {
+  .mt-breadcrumb ol { list-style: none; margin: 0 0 mt(space); padding: 0; display: flex; flex-wrap: wrap; gap: .25rem; font-size: .9em; }
+  .mt-breadcrumb li + li::before { content: "/"; margin-right: .25rem; color: mt(muted-foreground); }
+  .mt-breadcrumb a { color: mt(muted-foreground); }
+  .mt-breadcrumb [aria-current="page"] { color: mt(foreground); }
+}

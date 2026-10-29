@@ -1,0 +1,7 @@
+// Light/dark toggle button (assets/js/modootoday/theme-toggle.js); hidden until the script runs.
+@include mt-layer(components) {
+  .mt-theme-toggle { margin-left: auto; font: inherit; font-size: .85rem; cursor: pointer; padding: .25rem .6rem;
+    border: 1px solid mt(border); border-radius: mt(radius); background: mt(background); color: mt(foreground); }
+  .mt-theme-toggle[hidden] { display: none; }
+  .mt-theme-toggle:hover { border-color: mt(primary); }
+}

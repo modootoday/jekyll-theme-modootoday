@@ -1,0 +1,6 @@
+// Figure: an image alone in a paragraph followed by a paragraph that is only *emphasis* → figure + figcaption.
+@include mt-layer(components) {
+  .mt-figure { margin: mt(space) 0; }
+  .mt-figure img { display: block; border-radius: mt(radius); }
+  .mt-figure figcaption { margin-top: .4rem; color: mt(muted-foreground); font-size: .9em; }
+}

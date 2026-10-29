@@ -1,0 +1,10 @@
+// "On this page" table of contents generated from h2/h3 ids.
+@include mt-layer(components) {
+  .mt-toc { --mt-toc-indent: 1rem; margin: 0 0 calc(#{mt(space)} * 1.5); padding: .5rem mt(space);
+    border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .9em; }
+  .mt-toc-title { margin: 0 0 .25rem; font-weight: 600; }
+  .mt-toc ol { list-style: none; margin: 0; padding: 0; }
+  .mt-toc .mt-toc-h3 { padding-left: var(--mt-toc-indent); }
+  .mt-toc a { color: mt(muted-foreground); text-decoration: none; }
+  .mt-toc a:hover { color: mt(primary); }
+}
