@@ -1,0 +1,19 @@
+title: modootoday
+description: A Jekyll theme for plain-Markdown docs that read well on GitHub, on GitHub Pages and for AI agents.
+lang: en
+url: https://modootoday.github.io
+baseurl: /jekyll-theme-modootoday
+# Dogfooding: GitHub Pages (classic, main /docs) builds this site with the theme from this repo.
+# Pinned to main until the first release; switch to @vX.Y.Z when a tag is published.
+remote_theme: modootoday/jekyll-theme-modootoday@main
+plugins: [jekyll-remote-theme]
+markdown: kramdown
+kramdown: {input: GFM, syntax_highlighter: rouge}
+sass: {silence_deprecations: [import]}
+permalink: pretty
+exclude: [Gemfile, Gemfile.lock, README.md, vendor]
+modootoday:
+  nav: main
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+  - {scope: {path: "ko"}, values: {lang: ko}}

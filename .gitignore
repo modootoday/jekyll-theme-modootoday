@@ -18,3 +18,6 @@ tmp/
 
 # spec CLI local-only development docs
 .spec.local/
+docs/_site/
+docs/.jekyll-cache/
+qa-out/

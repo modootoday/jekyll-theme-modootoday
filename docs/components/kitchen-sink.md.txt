@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: kitchen-sink.md
+permalink: /components/kitchen-sink/index.md
+---

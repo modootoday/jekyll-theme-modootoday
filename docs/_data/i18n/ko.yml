@@ -1,0 +1,8 @@
+language: 한국어
+title: modootoday 문서
+description: 평범한 Markdown 문서 테마 jekyll-theme-modootoday 문서 (한국어).
+callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
+tabs: {label: 설치 방법}
+status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
+skip: 본문으로 건너뛰기
+task: {done: 완료, open: 미완료}

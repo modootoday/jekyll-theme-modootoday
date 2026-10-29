@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: first-page.md
+permalink: /first-page/index.md
+---

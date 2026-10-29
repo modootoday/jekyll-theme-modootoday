@@ -111,3 +111,38 @@ jobs:
           name: tokens-json
           path: tokens.json
           if-no-files-found: error
+
+  docs-qa:
+    name: docs site QA
+    runs-on: ubuntu-24.04
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build docs/ with this checkout's theme (github-pages 232)
+        run: qa/build-docs.sh docs/_site
+      - name: Check docs/
+        run: bundle exec ruby exe/modootoday-check docs docs/_site --twins
+      - name: Kitchen-sink coverage
+        run: ruby qa/coverage.rb
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Screenshots, axe, contrast, budgets
+        run: npm run qa
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: docs-qa
+          path: qa-out
+          retention-days: 14

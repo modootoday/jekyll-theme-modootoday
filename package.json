@@ -2,6 +2,13 @@
   "name": "jekyll-theme-modootoday-tests",
   "private": true,
   "license": "MIT",
-  "scripts": { "test": "node --test test/tabs.test.js test/components.test.js" },
-  "devDependencies": { "jsdom": "^24.1.3" }
+  "scripts": {
+    "test": "node --test test/tabs.test.js test/components.test.js",
+    "qa": "node qa/qa.mjs docs/_site qa-out"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "jsdom": "^24.1.3",
+    "playwright": "^1.64.1"
+  }
 }
