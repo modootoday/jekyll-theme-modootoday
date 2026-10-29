@@ -1,0 +1,155 @@
+#!/usr/bin/env ruby
+# md-components v1 (draft) — jekyll-theme-modootoday checker (Ruby stdlib only)
+# Usage: modootoday-check SRC_DIR SITE_DIR [--twins] [--github-pages[=VERSION]] [--gh] [--strict]
+require "open3"
+require "yaml"
+require "date"
+USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict]"
+if ARGV.include?("-h") || ARGV.include?("--help")
+  puts USAGE
+  exit 0
+end
+if ARGV.include?("--version")
+  puts "modootoday-check (md-components v1 draft)"
+  exit 0
+end
+pos = ARGV.reject { |a| a.start_with?("--") }
+src, site = pos[0]&.chomp("/"), pos[1]&.chomp("/")
+abort USAGE unless src && site
+errs = []
+warns = []
+KNOWN = %w[NOTE TIP IMPORTANT WARNING CAUTION].freeze
+MARKS = /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/
+STATUS = %w[available partial planned].freeze
+skip = %r{(^|/)(_site|_includes|_layouts|_data|vendor|node_modules)/}
+mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ skip }.sort
+FM = /\A---\n(.*?\n)?---\n/m
+def fm(t) = (m = t[FM]) ? (YAML.safe_load(m.sub(/\A---\n/, "").sub(/---\n\z/, ""), permitted_classes: [Date, Time]) || {}) : {}
+def body(t) = t.sub(FM, "")
+def strip_fences(t) = t.gsub(/^(```|~~~).*?^\1\s*$/m) { |m| "\n" * m.count("\n") }
+def strip_code(t) = strip_fences(t).gsub(/`[^`\n]+`/, "``")
+rel = ->(f) { f.delete_prefix("#{src}/") }
+
+comps_file = "#{src}/_data/components.yml"
+comps = File.exist?(comps_file) ? (YAML.safe_load(File.read(comps_file)) || {}) : nil
+i18n = Dir.glob("#{src}/_data/i18n/*.yml").to_h { |f| [File.basename(f, ".yml"), YAML.safe_load(File.read(f)) || {}] }
+dig = ->(h, key) { key.split(".").reduce(h) { |a, k| a.is_a?(Hash) ? a[k] : nil } }
+
+mds.each do |f|
+  text = File.read(f)
+  b = body(text)
+  # 0. every content page needs front matter (may be empty "---\n---"); without it,
+  #    GitHub Pages (jekyll-optional-front-matter) renders the page AND copies the raw .md to _site.
+  errs << "#{rel[f]}: missing front matter (add an empty '---' / '---' block at the top)" unless text.start_with?("---\n") && text =~ FM
+  strip_code(b).scan(/^>\s*\[!([A-Za-z]+)\]/) do |(t)|
+    warns << "#{rel[f]}: unknown alert type [!#{t}] (known: #{KNOWN.join('/')}); it renders as a plain quote" unless KNOWN.include?(t)
+  end
+  # 1. forbidden syntax outside code
+  strip_code(b).each_line.with_index(1) do |l, n|
+    why = case l
+          when /<\/?[a-zA-Z][\w-]*[\s>\/]/ then "raw HTML"
+          when /\{%|\{\{/ then "Liquid"
+          when /\{:/ then "kramdown IAL/ALD"
+          when /\{#[\w-]+\}/ then "{#id} header id"
+          when /^:\s/ then "definition list"
+          when /^\s*([-*+]|\d+\.|\|).*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/, /^\s*(>\s*){2,}\[!/
+            "alert nested in list/table/quote"
+          end
+    errs << "#{rel[f]}:#{n}: #{why}" if why
+  end
+  # 2. status badge vocabulary (code spans outside fences)
+  strip_fences(b).scan(/`status:([^`\s]*)`/) do |(v)|
+    errs << "#{rel[f]}: unregistered status value `status:#{v}` (allowed: #{STATUS.join('/')})" unless STATUS.include?(v)
+  end
+  # 3. sections: count == number of ## headings
+  meta = begin fm(text) rescue (errs << "#{rel[f]}: front matter YAML error"; {}) end
+  secs = meta["sections"]
+  next unless secs
+  next errs << "#{rel[f]}: sections: must be a list" unless secs.is_a?(Array)
+  h2 = strip_fences(b).scan(/^## /).size
+  errs << "#{rel[f]}: sections: has #{secs.size} item(s) but body has #{h2} '## ' heading(s)" if secs.size != h2
+  # 4. optional components registry
+  next unless comps
+  secs.each_with_index do |s, i|
+    next unless s.is_a?(Hash) && s["c"]
+    spec = comps[s["c"]]
+    next errs << "#{rel[f]}: sections[#{i}] unknown component '#{s['c']}' (not in _data/components.yml)" unless spec
+    params = spec["params"] || {}
+    (s.keys - %w[c name]).each do |k|
+      next errs << "#{rel[f]}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)
+      allowed = params[k].is_a?(Hash) && params[k]["allowed"]
+      errs << "#{rel[f]}: sections[#{i}] #{s['c']}.#{k}=#{s[k].inspect} not in #{allowed.inspect}" if allowed && !allowed.include?(s[k])
+    end
+    params.each do |k, p|
+      errs << "#{rel[f]}: sections[#{i}] #{s['c']}: missing required param '#{k}'" if p.is_a?(Hash) && p["required"] && !s.key?(k)
+    end
+  end
+end
+if comps
+  comps.each do |name, spec|
+    Array(spec && spec["i18n"]).each do |key|
+      i18n.each { |lang, h| errs << "_data/i18n/#{lang}.yml: missing key '#{key}' (component #{name})" if dig[h, key].nil? }
+    end
+  end
+end
+
+# 5. build residue
+Dir.glob("#{site}/**/*.html").each do |f|
+  t = File.read(f)
+  t.scan(MARKS) { errs << "#{f}: unconverted alert marker [!#{$1}]" }
+  errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
+end
+
+# 6. optional: github-pages pin (--github-pages[=VERSION], default 232 or $MODOOTODAY_GITHUB_PAGES)
+if (gp = ARGV.find { |a| a == "--github-pages" || a.start_with?("--github-pages=") })
+  want = gp.include?("=") ? gp.split("=", 2)[1] : ENV.fetch("MODOOTODAY_GITHUB_PAGES", "232")
+  lock = "#{src}/Gemfile.lock" # the site's own lockfile wins; else the active bundle's lockfile
+  lock = "#{ENV['BUNDLE_GEMFILE']}.lock" if !File.exist?(lock) && ENV["BUNDLE_GEMFILE"] && File.exist?("#{ENV['BUNDLE_GEMFILE']}.lock")
+  if File.exist?(lock) && (v = File.read(lock)[/^    github-pages \((\d+)\)/, 1])
+    errs << "#{lock}: github-pages #{v} != #{want}" unless v == want
+  else
+    errs << "--github-pages: no Gemfile.lock with github-pages found (#{lock})"
+  end
+end
+
+# 7. twins: <name>.md + stub <name>.md.txt (layout twin, empty body)
+#    → /index.md for index.md, else /<dir>/<name>/index.md; byte-identical to the source body.
+#    llms.txt / llms-full.txt exist at / and at each /<lang>/.
+if ARGV.include?("--twins")
+  mds.each do |f|
+    stub = "#{f}.txt"
+    next unless File.exist?(stub)
+    st = File.read(stub)
+    meta = (fm(st) rescue {})
+    errs << "#{rel[stub]}: stub must set layout: twin" unless meta["layout"] == "twin"
+    errs << "#{rel[stub]}: stub body must be empty" unless body(st).strip.empty?
+    r = rel[f].delete_suffix(".md")
+    out = File.basename(r) == "index" ? "#{site}/#{r}.md" : "#{site}/#{r}/index.md"
+    next errs << "#{rel[f]}: twin missing at #{out}" unless File.exist?(out)
+    errs << "#{out}: twin is not byte-identical to the body of #{rel[f]}" unless File.binread(out) == body(File.read(f)).b
+  end
+  mds.each do |f|
+    next if File.exist?("#{f}.txt") || File.basename(f) == "README.md"
+    errs << "#{rel[f]}: no twin stub #{rel[f]}.txt"
+  end
+  langs = [""] + i18n.keys.select { |l| Dir.exist?("#{src}/#{l}") }
+  langs.each do |l|
+    %w[llms.txt llms-full.txt].each do |n|
+      p = [site, l, n].reject(&:empty?).join("/")
+      errs << "#{p}: missing (per-language llms file)" unless File.exist?(p)
+    end
+  end
+end
+
+if ARGV.include?("--gh") # optional: GitHub render, needs gh auth + network
+  mds.each do |f|
+    out, st = Open3.capture2("gh", "api", "markdown", "-f", "mode=gfm", "-f", "text=#{body(File.read(f))}")
+    next errs << "#{rel[f]}: gh api failed" unless st.success?
+    errs << "#{rel[f]}: GitHub shows ': ' definition marker" if out =~ /<p>: /
+  end
+end
+errs.concat(warns.map { |w| "#{w} [strict]" }) if ARGV.include?("--strict")
+warns.each { |w| warn "warning: #{w}" } unless ARGV.include?("--strict")
+puts errs
+puts errs.empty? ? "md-components check: OK (#{mds.size} pages)" : "md-components check: #{errs.size} problem(s)"
+exit(errs.empty? ? 0 : 1)
