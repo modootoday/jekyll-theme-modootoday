@@ -3,6 +3,9 @@
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/config.html -%}
 {%- assign _ui = site.data.i18n[_lang] -%}
+{%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
+{%- assign mt_home = "/" -%}{%- assign _def_lang = site.lang | default: "en" -%}
+{%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- assign _lhp = site.pages | where: "url", _lh | first -%}{%- if _lhp -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
 {%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}
 {%- assign _base = _lang | split: "-" | first -%}
 {%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
@@ -39,7 +42,7 @@
 <body class="mt-body md-body">
 <a class="mt-skip md-skip" href="#md-main">{{ site.data.i18n[_lang].skip | default: "Skip to content" }}</a>
 {%- if site.title %}
-<header class="mt-header md-header"><div class="mt-header-inner"><a class="mt-site-title md-site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>{% include modootoday/nav.html %}{%- assign _sidx = site.pages | where: "url", "/search.json" | first -%}{% if mt_components contains "search" and _sidx %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" hidden><input type="search" aria-label="{{ _ui.search.label | default: 'Search' }}" placeholder="{{ _ui.search.label | default: 'Search' }}"><ul class="mt-search-results"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_color_scheme == "auto" %}<button class="mt-theme-toggle" type="button" aria-pressed="false" hidden>{{ _ui.theme.toggle | default: "Dark mode" }}</button>{% endif %}</div></header>
+<header class="mt-header md-header"><div class="mt-header-inner"><a class="mt-site-title md-site-title" href="{{ mt_home | relative_url }}">{{ site.title }}</a>{% include modootoday/nav.html %}{%- assign _sidx = site.pages | where: "url", "/search.json" | first -%}{% if mt_components contains "search" and _sidx %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" hidden><input type="search" aria-label="{{ _ui.search.label | default: 'Search' }}" placeholder="{{ _ui.search.label | default: 'Search' }}"><ul class="mt-search-results"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_color_scheme == "auto" %}<button class="mt-theme-toggle" type="button" aria-pressed="false" hidden>{{ _ui.theme.toggle | default: "Dark mode" }}</button>{% endif %}</div></header>
 {%- endif %}
 <main id="md-main" class="mt-main md-main">
 {{ content }}

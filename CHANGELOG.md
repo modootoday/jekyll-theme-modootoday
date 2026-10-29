@@ -22,7 +22,11 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 - Japanese documentation on the docs site (`/ja/`), with hreflang, Markdown twins, `llms.txt` and a footer language switcher on the docs site.
 - Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries.
 
+### Fixed
+- The header site title links to the current language's home (`/<lang>/`, with `baseurl`) instead of the default-language root, for every language in `languages` including right-to-left ones; it falls back to the site root when that language has no home page.
+
 ### Changed
+- The docs site and the README quick start build CSS with `sass: {style: compressed}` (Ruby Sass 3.7 and Dart Sass): the stylesheet is about 10 % smaller with identical rendering. `qa/css-sizes.rb` reports the size of the core and each component.
 - Header, navigation, search, theme toggle and code copy use logical properties, so they mirror in right-to-left pages; the code Copy button sits at the inline end and never covers code. The docs navigation lists the math and diagrams guide.
 - `modootoday-check` validates `_data/components.yml` itself: unknown keys in a component entry (allowed: `params`, `i18n`, `slots`, `parts`) or a slot rule (allowed: `required`, `min`, `max`), non-integer or negative counts and `min` greater than `max` are errors, reported once per registry instead of once per section. Registries that use only these keys are unaffected.
 - `modootoday-check` also looks up each `parts:` selector in the built HTML of the pages that use the component (inside its `section[data-c]`), when Nokogiri is available as it is under `github-pages`; parts added by component scripts (`role=`, `aria-*`) are checked after the scripts run by the docs site QA. The kitchen sink now shows `timeline` in both forms.

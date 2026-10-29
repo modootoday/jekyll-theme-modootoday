@@ -9,7 +9,7 @@ remote_theme: modootoday/jekyll-theme-modootoday@main
 plugins: [jekyll-remote-theme, jekyll-optional-front-matter, jekyll-titles-from-headings, jekyll-sitemap]
 markdown: kramdown
 kramdown: {input: GFM, syntax_highlighter: rouge}
-sass: {silence_deprecations: [import]}
+sass: {style: compressed, silence_deprecations: [import]}
 permalink: pretty
 exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:

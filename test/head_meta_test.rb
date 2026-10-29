@@ -73,4 +73,14 @@ class HeadMetaTest < Minitest::Test
       refute_includes html, 'rel="canonical"'
     end
   end
+
+  def test_brand_link_points_to_the_language_home
+    Dir.mktmpdir do |d|
+      s = build(d, "baseurl: /docs\nmodootoday:\n  languages: [en, ko, ja]\n")
+      brand = ->(f) { File.read("#{s}/#{f}")[/class="mt-site-title[^"]*" href="([^"]*)"/, 1] }
+      assert_equal "/docs/", brand.("guide/index.html")
+      assert_equal "/docs/ko/", brand.("ko/guide/index.html")
+      assert_equal "/docs/ja/", brand.("ja/index.html")
+    end
+  end
 end

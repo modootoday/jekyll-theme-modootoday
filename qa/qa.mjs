@@ -16,7 +16,7 @@ const SCHEMES = ["light", "dark"];
 const LANGS = ["", "ko/", "ja/"].filter((l) => fs.existsSync(path.join(site, l, "index.html")));
 const PAGES = ["", "install/", "first-page/", "components/", "components/kitchen-sink/", "configuration/", "customize/", "agents/", "changelog/"];
 const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only: dir="rtl" mirroring checks
-const BUDGET = { css: 32 * 1024, js: 10 * 1024 }; // as built (Jekyll default Sass output, uncompressed); gzip is reported
+const BUDGET = { css: 32 * 1024, js: 10 * 1024 }; // as built by the docs site (sass style: compressed, as README recommends); gzip is reported
 const fails = [];
 
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".txt": "text/plain; charset=utf-8", ".md": "text/markdown; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png" };

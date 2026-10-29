@@ -27,6 +27,12 @@ end
 Dir.glob(File.join(site, "**/*.html")).sort.each do |file|
   rel = file.delete_prefix(site)
   doc = Nokogiri::HTML(File.read(file))
+  # The header brand link goes to this page's language home (/<lang>/ when it exists), not the English root.
+  if (brand = doc.at_css("a.mt-site-title"))
+    lang = doc.at_css("html")&.[]("lang").to_s
+    home = File.file?(File.join(site, lang, "index.html")) && lang != "en" ? "#{baseurl}/#{lang}/" : "#{baseurl}/"
+    errors << "#{rel}: brand link #{brand["href"]} is not the language home #{home}" unless brand["href"] == home
+  end
   doc.css("a[href], link[href], img[src], script[src], source[srcset]").each do |n|
     url = n["href"] || n["src"] || n["srcset"].split(/\s+/).first
     next if url.nil? || url.empty?
