@@ -42,6 +42,8 @@ modootoday:
 | `logo` | none | `brand` puts the modootoday mark before the site title in `currentColor` (the `brand` token, so it follows light and dark); a path shows your own image instead (decorative, `alt=""`). Override `modootoday/brand/logo.html` to draw something else |
 | `favicon` | none | `brand` links the modootoday mark as SVG, 32 px PNG and Apple touch icon; a path links your own icon |
 | `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
+| `viewport_fit` | `cover` | `auto` keeps the page inside the safe area instead of drawing under the notch (see [Accessibility](../accessibility/#settings)) |
+| `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../api/#posts-and-archives)) |
 

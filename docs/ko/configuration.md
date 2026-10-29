@@ -45,6 +45,8 @@ modootoday:
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 modootoday 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
 | `favicon` | 없음 | `brand`면 modootoday 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
+| `viewport_fit` | `cover` | `auto`면 노치 아래까지 그리지 않고 페이지를 안전 영역 안에 둠 ([접근성](../accessibility/#설정) 참고) |
+| `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../api/#글과-아카이브) 참고) |
 

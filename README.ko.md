@@ -17,6 +17,7 @@
 - **GitHub Pages에서 동작.** 레이아웃과 인클루드가 Liquid만 쓰므로 기본 빌드의 `remote_theme`도 되고, Jekyll 4도 됩니다.
 - **마크업 없는 컴포넌트.** 알림, 상태 배지, 카드, 탭, 버튼, 아코디언, 단계, 타임라인 등이 평범한 Markdown 패턴에서 나옵니다.
 - **에이전트가 읽기 쉬움.** 페이지마다 바이트 단위로 같은 Markdown 쌍둥이와 `llms.txt`, `llms-full.txt`를 둘 수 있습니다.
+- **접근성.** 키보드 단축키, 보이는 포커스, 휴대폰 안전 영역, 44 px 터치 대상, 고대비와 동작 줄이기가 기본으로 들어 있습니다.
 - **검사기.** `modootoday-check`가 원문과 빌드 결과를 검사합니다.
 
 ## 설치
@@ -92,7 +93,7 @@ bundle exec modootoday-check . _site
 ## 가이드
 
 - [문서 사이트](https://modootoday.github.io/jekyll-theme-modootoday/ko/) ([`docs/`](docs/)에서 이 테마로 빌드)
-- [설치](https://modootoday.github.io/jekyll-theme-modootoday/ko/install/) · [첫 페이지](https://modootoday.github.io/jekyll-theme-modootoday/ko/first-page/) · [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/) · [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/) · [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/) · [공개 API](https://modootoday.github.io/jekyll-theme-modootoday/ko/api/) · [이전과 업그레이드](https://modootoday.github.io/jekyll-theme-modootoday/ko/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/ko/csp/) · [로드맵](https://modootoday.github.io/jekyll-theme-modootoday/ko/roadmap/) · [변경 기록](CHANGELOG.md)
+- [설치](https://modootoday.github.io/jekyll-theme-modootoday/ko/install/) · [첫 페이지](https://modootoday.github.io/jekyll-theme-modootoday/ko/first-page/) · [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/) · [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/) · [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/) · [공개 API](https://modootoday.github.io/jekyll-theme-modootoday/ko/api/) · [이전과 업그레이드](https://modootoday.github.io/jekyll-theme-modootoday/ko/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/ko/csp/) · [접근성](https://modootoday.github.io/jekyll-theme-modootoday/ko/accessibility/) · [로드맵](https://modootoday.github.io/jekyll-theme-modootoday/ko/roadmap/) · [변경 기록](CHANGELOG.md)
 - 지원 스택: GitHub Pages(`github-pages` 232, Jekyll 3.10, Ruby 3.3.4)와 Jekyll 4.4(Ruby 3.2~3.4), 모두 CI에서 테스트합니다. Jekyll 3.9를 하한으로 테스트합니다.
 - [보안 정책](SECURITY.md) · [행동 강령](CODE_OF_CONDUCT.md)
 
