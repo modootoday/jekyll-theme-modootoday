@@ -9,6 +9,7 @@
     - {title: AI 向け, url: /ja/guides/agents/}
     - {title: 移行, url: /ja/guides/upgrade/}
     - {title: アクセシビリティ, url: /ja/guides/accessibility/}
+    - {title: 構造化データ, url: /ja/guides/structured-data/}
 - title: コンポーネント
   url: /ja/components/
   items:

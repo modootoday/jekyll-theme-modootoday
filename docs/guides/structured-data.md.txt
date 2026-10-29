@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: structured-data.md
+permalink: /guides/structured-data/index.md
+---

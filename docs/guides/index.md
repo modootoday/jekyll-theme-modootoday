@@ -15,4 +15,5 @@ Start here, in order.
 - [Agents](agents/) — Markdown twins, llms.txt and llms-full.txt for AI agents.
 - [Migrate](upgrade/) — Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
 - [Accessibility](accessibility/) — Keyboard use, screen readers, safe areas, touch targets, high contrast and reduced motion.
+- [Structured data](structured-data/) — The schema.org JSON-LD graph the theme prints on every page, and how to configure it.
 <!-- spec:docs-index:end -->

@@ -9,6 +9,7 @@
     - {title: 에이전트, url: /ko/guides/agents/}
     - {title: 이전, url: /ko/guides/upgrade/}
     - {title: 접근성, url: /ko/guides/accessibility/}
+    - {title: 구조화 데이터, url: /ko/guides/structured-data/}
 - title: 컴포넌트
   url: /ko/components/
   items:

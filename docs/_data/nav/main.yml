@@ -9,6 +9,7 @@
     - {title: Agents, url: /guides/agents/}
     - {title: Migrate, url: /guides/upgrade/}
     - {title: Accessibility, url: /guides/accessibility/}
+    - {title: Structured data, url: /guides/structured-data/}
 - title: Components
   url: /components/
   items:
