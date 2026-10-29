@@ -16,10 +16,11 @@ description: 1.0 に含まれるすべてのものと、2.0 で変わるもの�
 - canonical、hreflang、Open Graph タグと、任意のサイトマップ・フィード。 `status:available`
 - 英語、韓国語、日本語のドキュメント。 `status:available`
 - サンプルサイトのすべての言語にガイドページ。 `status:available`
-- パラメーター検査を超える `_data/components.yml` のスロット契約。 `status:partial`
-- 右から左に書く文字への対応と、数式・図の案内。 `status:partial`
+- `_data/components.yml` のスロット契約 ([API](../api/))。 `status:available`
+- 右から左に書く文字: 論理プロパティ、自動の `dir="rtl"`、[RTL キッチンシンク](../../components/kitchen-sink-rtl/)。 `status:available`
+- 厳格な CSP のもとで KaTeX と Mermaid を使う[数式と図のガイド](../math-diagrams/)。テーマはどちらも同梱しません。 `status:available`
+- CI で基準スクリーンショットと比較する見た目の回帰チェック (プルリクエストでブロック) と Lighthouse の予算。 `status:available`
 - `post` レイアウト用のタグ・カテゴリーのアーカイブページ。 `status:planned`
-- CI で基準スクリーンショットと比較する見た目の回帰チェック。 `status:partial`
 
 ## 2.0
 

@@ -21,3 +21,5 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 ```
 
 GitHub Pages はレスポンスヘッダーを送れません。これらのディレクティブなら、`_includes/head-custom.html` に置いた `<meta http-equiv="Content-Security-Policy">` タグで機能します。インラインスクリプトを残す場合は、代わりにハッシュで許可してください。ハッシュはスクリプトが変わったときだけ変わり、その際は `CHANGELOG.md` で告知します。
+
+このポリシーのもとで数式や図を追加するには、[数式と図](../math-diagrams/)を参照してください。

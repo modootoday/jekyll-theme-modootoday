@@ -12,7 +12,9 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Added
 - Slot contract: `slots:` in `_data/components.yml` declares the named parts of a section (`lead`, `items`, `panels`, `actions`, `code`, `figures`) with `required`/`min`/`max`; `modootoday-check` counts them per section. Markup is unchanged. See the [API page](docs/api.md#slot-contract).
 - **Right-to-left:** `dir="rtl"` from `lang` for RTL languages, `direction:` front matter override, logical properties in component CSS, LTR code inside RTL text, RTL-aware tab arrow keys, and an RTL kitchen sink checked in docs QA.
-- [Math and diagrams](docs/math-diagrams.md) guide (en, ko): KaTeX and Mermaid under a strict CSP, rendered at build time or self-hosted. The theme bundles neither.
+- [Math and diagrams](docs/math-diagrams.md) guide (en, ko, ja): KaTeX and Mermaid under a strict CSP, rendered at build time or self-hosted. The theme bundles neither.
+- Japanese documentation on the docs site (`/ja/`), with hreflang, Markdown twins, `llms.txt` and a footer language switcher on the docs site.
+- Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries.
 
 ### Changed
 - The `caution` token is now rose (`#b8174a` light, `#ff7b9c` dark) instead of red, so caution alerts no longer read as the orange-red brand link colour. New primitives `--mt-p-rose-400/600`.
