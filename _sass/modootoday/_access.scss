@@ -1,0 +1,13 @@
+// Touch targets (44px on coarse pointers, 16px inputs so iOS does not zoom) and forced colors (Windows
+// high contrast: visible borders on icon buttons and the search box). Imported after the components so these overrides win at equal specificity and in @layer mode.
+@include mt-layer(components) {
+  @media (pointer: coarse) {
+    .mt-site-title, nav.mt-lang a, .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary, [role="tab"], .mt-code-copy, .mt-pagination a, .mt-accordion-trigger { min-height: 2.75rem; }
+    .mt-theme-toggle, details.mt-lang > summary { width: 2.75rem; height: 2.75rem; }
+    .mt-search input { height: 2.75rem; font-size: 1rem; }
+    .mt-code pre, pre.mt-code { padding-top: 3.6rem; }
+  }
+  @media (forced-colors: active) {
+    .mt-theme-toggle, details.mt-lang > summary, .mt-code-copy, .mt-search input { border: 1px solid ButtonText; }
+  }
+}

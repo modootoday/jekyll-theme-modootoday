@@ -7,3 +7,4 @@ $mt-css-layers: {{ mt_css_layers }};
 @import "modootoday/core";
 {% for c in mt_all_components %}{% if mt_components contains c %}@import "modootoday/components/{{ c }}";
 {% endif %}{% endfor %}
+@import "modootoday/access";

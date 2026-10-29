@@ -5,6 +5,5 @@
   .mt-page-meta time { font-variant-numeric: tabular-nums; color: mt(foreground); }
   .mt-page-meta a { color: mt(muted-foreground); text-decoration: none; display: inline-flex; align-items: center; gap: .35rem; border-radius: mt(radius); }
   .mt-page-meta a:hover { color: mt(primary); text-decoration: underline; text-underline-offset: .2em; }
-  .mt-page-meta a:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
   .mt-page-meta + .mt-pagination { margin-top: 1.25rem; padding-top: 0; border-top: 0; }
 }

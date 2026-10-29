@@ -16,10 +16,10 @@
   .mt-menu summary::-webkit-details-marker { display: none; }
   .mt-nav summary > .mt-icon { margin-inline-start: .3em; }
   .mt-nav a > .mt-icon { margin-inline-start: .25em; opacity: .7; }
-  .mt-nav a:focus-visible, .mt-menu a:focus-visible, .mt-menu summary:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
+  .mt-nav a:focus-visible, .mt-menu a:focus-visible, .mt-menu summary:focus-visible { outline-offset: -2px; } // inside the box: the nav row scrolls
   .mt-menu > ul { list-style: none; margin: 0; position: absolute; top: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;
     background: mt(card); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow);
-    max-height: calc(100dvh - #{mt(header-height)} - var(--mt-safe-top, 0px) - 1rem); overflow-y: auto; overscroll-behavior: contain; }
+    max-height: calc(100dvh - #{mt(header-height)} - var(--mt-safe-top) - 1rem); overflow-y: auto; overscroll-behavior: contain; }
   .mt-menu a { color: mt(card-foreground); }
   details.mt-lang > ul { inset-inline: auto 0; min-width: 10rem; }
   @media (min-width: 64rem) {
@@ -32,7 +32,6 @@
     .mt-nav { order: 10; flex: 1 0 100%; min-width: 0; padding: 0 0 .4rem; overflow-x: auto; scrollbar-width: none; }
     .mt-nav::-webkit-scrollbar { display: none; }
     .mt-nav a { padding: .3rem .6rem; }
-    .mt-nav a:focus-visible { outline-offset: -2px; } // the row scrolls: keep the ring inside it
   }
 }
 @include mt-layer(components) {

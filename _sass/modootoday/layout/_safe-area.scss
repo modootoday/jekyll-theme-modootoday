@@ -1,18 +1,9 @@
 // Safe area (iOS notch, home indicator, rounded corners) with viewport-fit=cover. Insets flow through
-// --mt-safe-* so sites and tests can override them; --mt-gutter is the page side padding before the inset.
+// --mt-safe-* (used by the shell, reset and menus) so sites and tests can override them; --mt-gutter is
+// the page side padding before the inset (1rem below 48rem, in the shell).
 // env() is unquoted for Ruby Sass 3.7 (github-pages).
 @include mt-layer(layout) {
   :root { --mt-gutter: 1.5rem;
     --mt-safe-top: #{unquote("env(safe-area-inset-top, 0px)")}; --mt-safe-right: #{unquote("env(safe-area-inset-right, 0px)")};
     --mt-safe-bottom: #{unquote("env(safe-area-inset-bottom, 0px)")}; --mt-safe-left: #{unquote("env(safe-area-inset-left, 0px)")}; }
-  html { scroll-padding-top: calc(#{mt(header-height)} + var(--mt-safe-top) + 1rem); }
-  body.mt-body { min-height: 100vh; min-height: 100dvh; }
-  .mt-header { padding-top: var(--mt-safe-top); }
-  .mt-header-inner, .mt-main, .mt-footer-inner {
-    padding-left: calc(var(--mt-gutter) + var(--mt-safe-left)); padding-right: calc(var(--mt-gutter) + var(--mt-safe-right)); }
-  .mt-main.mt-main-full { padding-left: var(--mt-safe-left); padding-right: var(--mt-safe-right); }
-  .mt-footer { padding-bottom: var(--mt-safe-bottom); }
-  .mt-skip:focus { top: calc(var(--mt-safe-top) + #{mt(space)}); inset-inline-start: calc(#{mt(space)} + var(--mt-safe-left)); }
-  @media (max-width: 47.99rem) { :root { --mt-gutter: 1rem; } }
-  @media (min-width: 64rem) { .mt-doc-aside .mt-toc { max-height: calc(100dvh - #{mt(header-height)} - var(--mt-safe-top) - 4rem); overscroll-behavior: contain; } }
 }

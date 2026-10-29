@@ -1,22 +1,6 @@
-// Keyboard, touch and system-setting support shared by every component: focus rings, touch targets
-// (44px on coarse pointers), iOS input zoom, reduced motion, forced colors (Windows high contrast).
+// Keyboard and touch basics: the focused <main> after the skip link, rings inside scroll regions.
+// Overrides of component sizes (touch targets, forced colors) live in modootoday/_access.scss.
 @include mt-layer(base) {
-  :focus:not(:focus-visible) { outline: none; }
   .mt-main:focus { outline: none; }
-  a, button, summary, input, label, [role="tab"] { touch-action: manipulation; }
-  html { -webkit-tap-highlight-color: color-mix(in srgb, #{mt(primary)} 16%, transparent); }
-  [tabindex="0"]:focus-visible { outline-offset: -2px; }
-  @media (pointer: coarse) {
-    .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary, [role="tab"], .mt-code-copy, .mt-pagination a, .mt-accordion-trigger { min-height: 2.75rem; }
-    .mt-theme-toggle, details.mt-lang > summary { width: 2.75rem; height: 2.75rem; }
-    .mt-search input { height: 2.75rem; font-size: 1rem; }
-    .mt-code pre, pre.mt-code { padding-top: 3.6rem; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  @media (forced-colors: active) {
-    :focus-visible { outline: 2px solid Highlight; }
-    .mt-theme-toggle, details.mt-lang > summary, .mt-code-copy, .mt-search input { border: 1px solid ButtonText; }
-    [role="tab"][aria-selected="true"] { border-bottom-color: Highlight; }
-    .mt-site-title::before, .mt-logo { forced-color-adjust: none; }
-  }
+  [tabindex="0"]:focus-visible { outline-offset: -2px; } // tabs, panels, scroll regions: ring inside the box
 }

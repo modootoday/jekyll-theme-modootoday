@@ -1,4 +1,4 @@
-// Doc sidebar from grouped nav: a sticky column from 64rem (aside.mt-doc-nav), a collapsed <details> below it.
+// Doc sidebar from grouped nav: a sticky column from 64rem (aside.mt-doc-nav), a collapsed <details> below it. The sticky column rule is shared with the TOC in layout/_shell.scss.
 // With a sidebar the header drops the inline copies of group links (.mt-nav-flat), so narrow headers stay short.
 @include mt-layer(components) {
   .mt-sidebar { font-size: .9rem; }
@@ -16,7 +16,6 @@
     .mt-sidebar-mobile, .mt-has-sidebar .mt-doc-aside { display: none; }
     .mt-doc-layout.mt-has-sidebar { display: grid; grid-template-columns: 12rem minmax(0, #{mt(measure)}); gap: 3rem; max-width: none; }
     .mt-has-sidebar .mt-doc-nav { display: block; }
-    .mt-doc-nav .mt-sidebar { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }
     .mt-has-sidebar .mt-toc-mobile { display: block; }
     .mt-doc-layout.mt-has-sidebar ~ * { max-width: mt(measure); margin-inline-start: 15rem; }
   }

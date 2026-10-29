@@ -1,11 +1,11 @@
 @include mt-layer(base) {
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(#{mt(header-height)} + var(--mt-safe-top) + 1rem); }
   body.mt-body {
     margin: 0; background: mt(background); color: mt(foreground);
     font-family: mt(font-sans); font-size: mt(font-size); line-height: mt(line-height);
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-    display: flex; flex-direction: column;
+    min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column;
   }
   img { max-width: 100%; height: auto; }
   ::selection { background: color-mix(in srgb, #{mt(primary)} 22%, transparent); }
