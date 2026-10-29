@@ -297,4 +297,30 @@ class CheckTest < Minitest::Test
     refute_includes o, "`kbd:Ctrl+K` must"
   end
 
+  def test_head_option_validation
+    page "_config.yml", "modootoday:\n  csp: loose\n  languages: [en, Korean]\n  edit_url: github.com/x\n  seo: maybe\n  feed: true\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "csp must be strict or false"
+    assert_includes o, "languages must be a list"
+    assert_includes o, "edit_url must be an http(s) URL"
+    assert_includes o, "seo must be true or false"
+    assert_includes o, "add jekyll-feed to plugins"
+  end
+
+  def test_valid_head_options
+    page "_config.yml", "plugins: [jekyll-feed]\nmodootoday:\n  csp: strict\n  languages: [en, ko, zh-Hant]\n" \
+                        "  edit_url: https://github.com/o/r/edit/main/docs/\n  seo: false\n  feed: true\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+  end
+
+  def test_md_alias_in_site_sass_is_a_deprecation_warning
+    page "_sass/site.scss", ".md-callout { color: var(--md-primary); }\n"
+    page "_sass/modootoday/_x.scss", ".md-callout { color: red; }\n"
+    o, code = check
+    assert_equal 0, code, o
+    assert_match(/site\.scss:1: md-\* alias is deprecated \(removed in 2\.0\)/, o)
+    refute_includes o, "_x.scss"
+  end
 end

@@ -9,3 +9,4 @@ toc: {label: On this page}
 badge: {since: Since}
 search: {label: Search}
 post: {date_format: "%Y-%m-%d"}
+page: {edit: Edit this page, updated: Last updated}

@@ -11,3 +11,4 @@ toc: {label: 이 페이지의 내용}
 badge: {since: 추가 버전}
 search: {label: 검색}
 post: {date_format: "%Y년 %m월 %d일"}
+page: {edit: 이 페이지 편집, updated: 최종 수정}

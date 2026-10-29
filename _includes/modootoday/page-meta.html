@@ -1,0 +1,16 @@
+{%- comment -%}
+Optional page footer line (needs modootoday/config.html first).
+  site.modootoday.edit_url       prefix joined with page.path, e.g. https://github.com/OWNER/REPO/edit/main/docs/
+  page.last_modified_at          date shown as "Last updated" (front matter, or a plugin that sets it)
+  page.edit: false               hides the edit link on one page
+{%- endcomment -%}
+{%- assign _pm_ui = site.data.i18n[_lang].page -%}
+{%- assign _pm_edit = nil -%}
+{%- if site.modootoday.edit_url and page.edit != false and page.path -%}{%- assign _pm_edit = site.modootoday.edit_url | append: page.path -%}{%- endif -%}
+{%- if _pm_edit or page.last_modified_at %}
+<p class="mt-page-meta">
+{%- if page.last_modified_at -%}<span>{{ _pm_ui.updated | default: "Last updated" }} <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%Y-%m-%d" }}</time></span>{%- endif -%}
+{%- if _pm_edit and page.last_modified_at %} · {% endif -%}
+{%- if _pm_edit -%}<a href="{{ _pm_edit }}" rel="nofollow">{{ _pm_ui.edit | default: "Edit this page" }}</a>{%- endif -%}
+</p>
+{%- endif -%}

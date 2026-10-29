@@ -3,6 +3,7 @@ title: Configuration
 description: Site-wide settings under the modootoday key in _config.yml.
 sections:
   - keys
+  - head
   - i18n
   - registry
   - {c: cta, name: next}
@@ -15,21 +16,43 @@ Everything is optional. Settings live under one `modootoday:` key so they never 
 
 ```yaml
 modootoday:
-  badges: true        # status badges on code spans
   color_scheme: auto  # auto | light | dark
   components: [callout, badge, cta, card, tabs]
   tokens: {primary: "#4f46e5", radius: "0.5rem"}
+  nav: main
 ```
 
 | Key | Default | Effect |
 |---|---|---|
 | `badges` | `true` | turn status code spans into badges; `false` keeps code |
 | `color_scheme` | `auto` | follow the OS or force light or dark |
-| `components` | all core | limit the CSS and JS that are shipped |
-| `tokens` | theme values | override design tokens inline |
+| `components` | all | limit the CSS and JS that are shipped |
+| `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
+| `nav` | `main` | navigation file in `_data/nav/` |
+| `tokens`, `tokens_dark` | theme values | override semantic design tokens inline |
+| `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
+| `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
+| `languages` | none | language codes for `hreflang`, such as `[en, ko]` |
+| `og_image` | none | default Open Graph image; `image:` in front matter wins |
+| `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
+| `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
+| `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 
-> [!NOTE]
-> Keys other than `badges` arrive with v0.2. Until then they are ignored safely.
+`modootoday-check` validates every key. The full list of stable names is in [Public API](../api/).
+
+## Head and SEO
+
+With `url:` set, every page gets a canonical link and Open Graph tags; no plugin is needed. With `languages:` set, pages that exist in several languages link each other with `hreflang`. Sitemaps and feeds are opt-in plugins that GitHub Pages allows:
+
+```yaml
+url: https://example.github.io
+modootoday:
+  languages: [en, ko]
+  edit_url: https://github.com/OWNER/REPO/edit/main/docs/
+plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
+```
+
+To use `jekyll-seo-tag` instead, set `seo: false` and put the jekyll-seo-tag `seo` tag in `_includes/head-custom.html`. A page can show its date with `last_modified_at:` in front matter. Strict Content Security Policy: see [CSP](../csp/).
 
 ## Languages
 

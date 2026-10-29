@@ -12,9 +12,7 @@
 <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
 {%- endif %}
 <meta name="color-scheme" content="{% if mt_color_scheme == "auto" %}light dark{% else %}{{ mt_color_scheme }}{% endif %}">
-{%- if mt_components contains "theme-toggle" and mt_color_scheme == "auto" %}
-<script>try{var t=localStorage.getItem("mt-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-{%- endif %}
+{%- include modootoday/head-meta.html %}
 <link rel="stylesheet" href="{{ '/assets/css/modootoday.css' | relative_url }}">
 {%- include modootoday/tokens.html %}
 {%- comment -%}Markdown twin (llms.txt convention: /<page>/index.md) and the nearest llms.txt, when they exist.{%- endcomment -%}
@@ -41,6 +39,7 @@
 {%- endif %}
 <main id="md-main" class="mt-main md-main">
 {{ content }}
+{%- include modootoday/page-meta.html %}
 {%- include modootoday/pagination.html %}
 </main>
 {%- include footer-custom.html %}
