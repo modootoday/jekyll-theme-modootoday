@@ -1,0 +1,17 @@
+{%- comment -%}Marks top-level paragraphs that hold only links (and whitespace) as action rows:
+<p> → <p class="mt-actions">. Paragraphs with any other text, and paragraphs nested in alerts,
+lists or quotes (indented by kramdown), are left alone. Usage: include modootoday/actions.html with html=HTML{%- endcomment -%}
+{%- assign _anl = "
+" -%}
+{%- assign _ap = include.html | prepend: _anl | split: "
+<p>" -%}
+{%- capture _aout -%}{{ _ap[0] }}{%- for _x in _ap offset: 1 -%}
+{%- assign _body = _x | split: "</p>" | first -%}{%- assign _ok = false -%}
+{%- assign _b = _body | strip -%}
+{%- assign _b1 = _b | slice: 0, 3 -%}{%- assign _blen = _b | size | minus: 4 -%}{%- assign _b2 = _b | slice: _blen, 4 -%}
+{%- if _b1 == "<a " and _b2 == "</a>" -%}{%- assign _ok = true -%}
+{%- assign _segs = _b | split: "</a>" -%}
+{%- for _sg in _segs -%}{%- assign _pre = _sg | split: "<a " | first | strip -%}{%- if _pre != "" -%}{%- assign _ok = false -%}{%- endif -%}{%- endfor -%}
+{%- endif %}
+<p{% if _ok %} class="mt-actions"{% endif %}>{{ _x }}{%- endfor -%}{%- endcapture -%}
+{{- _aout | remove_first: _anl -}}

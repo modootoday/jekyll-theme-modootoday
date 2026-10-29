@@ -7,8 +7,17 @@ layout: default
 {%- assign _fig = false -%}{%- if mt_components contains "figure" -%}{%- assign _fig = true -%}{%- endif -%}
 {%- assign _kbd = false -%}{%- if mt_components contains "kbd" -%}{%- assign _kbd = true -%}{%- endif -%}
 {%- capture html %}{% include md-components.html content=content lang=page.lang badges=_badges figure=_fig kbd=_kbd %}{% endcapture -%}
+{%- capture _toc %}{% include modootoday/toc.html html=html %}{% endcapture -%}
+{%- assign _toc = _toc | strip -%}
+<div class="mt-doc-layout{% if _toc != "" %} mt-has-toc{% endif %}">
+<div class="mt-doc-main">
 {%- include modootoday/breadcrumb.html -%}
-{%- include modootoday/toc.html html=html %}
+{%- if _toc != "" %}{{ _toc | replace: '<nav class="mt-toc" aria-labelledby="mt-toc-title">', '<details class="mt-toc-mobile"><summary>' | replace: '<p class="mt-toc-title" id="mt-toc-title">', '' | replace: '</p><ol>', '</summary><ol>' | replace: '</nav>', '</details>' }}{% endif %}
 <article class="mt-doc md-doc">
 {% include md-sections.html content=html sections=page.sections lang=page.lang %}
 </article>
+</div>
+{%- if _toc != "" %}
+<aside class="mt-doc-aside">{{ _toc }}</aside>
+{%- endif %}
+</div>
