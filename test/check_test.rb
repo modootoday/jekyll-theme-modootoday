@@ -287,4 +287,14 @@ class CheckTest < Minitest::Test
     assert_equal 0, check[1]
   end
 
+
+  def test_kbd_value_format
+    page "a.md", "---\n---\n`kbd:Ctrl+K` `kbd:a b` `kbd:Ctrl++`\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "`kbd:a b` must be keys"
+    assert_includes o, "`kbd:Ctrl++` must be keys"
+    refute_includes o, "`kbd:Ctrl+K` must"
+  end
+
 end
