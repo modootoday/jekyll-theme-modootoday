@@ -17,7 +17,7 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 | デザイントークン | セマンティックおよびコンポーネントのカスタムプロパティ `--mt-*` (プリミティブ `--mt-p-*` を除く)。生成される `tokens.json` も同じ |
 | Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*` |
 | レイアウト | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
-| 上書きしてよいインクルード | `head-custom.html`, `footer-custom.html` |
+| 上書きしてよいインクルード | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` をインクルードできる |
 | データファイル | `_data/i18n/<lang>.yml` のキー、`_data/nav/<name>.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |
 
@@ -38,7 +38,7 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 
 | コンポーネント | ルート | スタイルを当ててよい部分 | 状態とバリエーション |
 |---|---|---|---|
-| ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (固定の配色、またはトグルが設定) |
+| ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `nav.mt-lang`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (固定の配色、またはトグルが設定) |
 | ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | ヒーロー | `section.mt-hero` | `h1`、リードの `p`、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | — |
 | セクション | `section.mt-section` | `h2` とその内容 | `[data-section]` = 名前、`[data-c]` と `.mt-c-<c>` = コンポーネント、`.mt-cols-<n>`、`.mt-cta` |

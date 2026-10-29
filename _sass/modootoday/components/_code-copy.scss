@@ -7,5 +7,4 @@
   .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); }
   // Narrow screens: start the code below the button so it never covers the first line of a scrolling block.
   @media (max-width: 47.99rem) { .mt-code pre, pre.mt-code { padding-top: 2.6rem; } }
-  .mt-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }

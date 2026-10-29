@@ -17,6 +17,7 @@ modootoday:
   # Front-matter-less pages are their own twins; other pages keep stubs.
   twins: source
   languages: [en, ko, ja]
+  language_switcher: header
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}

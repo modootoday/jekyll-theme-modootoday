@@ -36,6 +36,7 @@ modootoday:
 | `twins` | 스텁 | 머리말 없는 쌍둥이는 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` |
+| `language_switcher` | 없음 | `header`(짧은 코드) 또는 `footer`(언어 이름)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동 |
 | `og_image` | 없음 | 기본 Open Graph 이미지. 머리말의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |

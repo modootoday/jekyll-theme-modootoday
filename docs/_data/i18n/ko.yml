@@ -5,6 +5,7 @@ callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: �
 tabs: {label: 설치 방법}
 status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
+languages: {label: 언어}
 task: {done: 완료, open: 미완료}
 toc: {label: 이 페이지의 내용}
 theme: {toggle: 다크 모드}

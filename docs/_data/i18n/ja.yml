@@ -5,6 +5,7 @@ callout: {note: 注記, tip: ヒント, important: 重要, warning: 警告, caut
 tabs: {label: インストール方法}
 status: {available: 利用可能, partial: 一部実装, planned: 予定}
 skip: 本文へスキップ
+languages: {label: 言語}
 task: {done: 完了, open: 未完了}
 toc: {label: このページの内容}
 theme: {toggle: ダークモード}

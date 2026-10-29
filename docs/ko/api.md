@@ -17,7 +17,7 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*` |
 | 레이아웃 | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
-| 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html` |
+| 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`을 인클루드할 수 있음 |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키, `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
 
@@ -38,7 +38,7 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 
 | 컴포넌트 | 루트 | 스타일을 줄 수 있는 부분 | 상태와 변형 |
 |---|---|---|---|
-| 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (고정 색 구성 또는 토글이 설정) |
+| 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `nav.mt-lang`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (고정 색 구성 또는 토글이 설정) |
 | 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | 히어로 | `section.mt-hero` | `h1`, 리드 `p`, 링크만 있는 `p`(CTA 버튼, 첫 링크가 주 버튼) | — |
 | 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta` |

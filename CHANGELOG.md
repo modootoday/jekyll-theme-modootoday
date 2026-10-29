@@ -10,6 +10,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - **Notice:** the `md-*` classes and `--md-*` custom properties will be marked deprecated in 1.0 and removed in 2.0. They work unchanged until then. Move to the `mt-*` / `--mt-*` names now with the mapping table in the [upgrade guide](docs/upgrade.md).
 
 ### Added
+- **Language switcher:** `modootoday.language_switcher: header | footer` renders a theme-level switcher from `languages` (the same alternates as `hreflang`), linking to the translation of the current page or that language's home page. `modootoday/lang-switch.html` can be included from a custom footer. The docs site uses it in the header and footer.
 - Slot contract: `slots:` in `_data/components.yml` declares the named parts of a section (`lead`, `items`, `panels`, `actions`, `code`, `figures`) with `required`/`min`/`max`; `modootoday-check` counts them per section. Markup is unchanged. See the [API page](docs/api.md#slot-contract).
 - Slot contract: `slots:` can be a list of alternative forms (a section passes when it satisfies one; `steps` and `timeline` accept a list or `###` panels), and `parts:` declares the stable selectors of a component, checked against the component structure table of `api.md` when the site has one. See the [API page](docs/api.md#slot-contract).
 - **Right-to-left:** `dir="rtl"` from `lang` for RTL languages, `direction:` front matter override, logical properties in component CSS, LTR code inside RTL text, RTL-aware tab arrow keys, and an RTL kitchen sink checked in docs QA.
@@ -18,6 +19,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries.
 
 ### Changed
+- Header, navigation, search, theme toggle and code copy use logical properties, so they mirror in right-to-left pages; the code Copy button sits at the inline end and never covers code. The docs navigation lists the math and diagrams guide.
 - `modootoday-check` validates `_data/components.yml` itself: unknown keys in a component entry (allowed: `params`, `i18n`, `slots`, `parts`) or a slot rule (allowed: `required`, `min`, `max`), non-integer or negative counts and `min` greater than `max` are errors, reported once per registry instead of once per section. Registries that use only these keys are unaffected.
 - The `caution` token is now rose (`#b8174a` light, `#ff7b9c` dark) instead of red, so caution alerts no longer read as the orange-red brand link colour. New primitives `--mt-p-rose-400/600`.
 - Search results show the current language first, title matches before body matches, and a muted text snippet; on narrow screens the results panel spans the header width.

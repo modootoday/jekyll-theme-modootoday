@@ -11,7 +11,7 @@
   .mt-nav-group { display: none; position: relative; }
   .mt-nav summary { cursor: pointer; list-style: none; }
   .mt-nav summary::-webkit-details-marker { display: none; }
-  .mt-nav summary::after { content: ""; display: inline-block; width: .4em; height: .4em; margin: 0 0 .2em .45em;
+  .mt-nav summary::after { content: ""; display: inline-block; width: .4em; height: .4em; margin: 0 0 .2em; margin-inline-start: .45em;
     border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
   .mt-nav summary:focus-visible, .mt-nav a:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
   .mt-nav details > ul { position: absolute; top: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;

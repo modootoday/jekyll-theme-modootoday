@@ -14,7 +14,7 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Design tokens | semantic and component custom properties `--mt-*` (not the primitives `--mt-p-*`); the generated `tokens.json` mirrors them |
 | Markdown rules | the patterns in `RULES.md` and their output classes `mt-*` |
 | Layouts | `default`, `doc`, `post`, `twin`, `llms`, `llms-full` |
-| Includes you may override | `head-custom.html`, `footer-custom.html` |
+| Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` can be included from your footer |
 | Data files | `_data/i18n/<lang>.yml` keys, `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
 
@@ -35,7 +35,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 
 | Component | Root | Parts you may style | State and variants |
 |---|---|---|---|
-| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
+| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `nav.mt-lang`, `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
 | Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` |

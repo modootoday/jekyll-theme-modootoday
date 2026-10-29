@@ -33,6 +33,7 @@ modootoday:
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
 | `languages` | none | language codes for `hreflang`, such as `[en, ko]` |
+| `language_switcher` | none | `header` (short codes) or `footer` (language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page |
 | `og_image` | none | default Open Graph image; `image:` in front matter wins |
 | `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
 | `csp` | none | `strict` loads the pre-paint script from a file instead of inline |

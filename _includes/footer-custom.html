@@ -1,1 +1,5 @@
-{%- comment -%}Override this file in your site to add a footer before </body> (e.g. <footer class="mt-footer"><div class="mt-footer-inner">…</div></footer>).{%- endcomment -%}
+{%- comment -%}Override this file in your site to add a footer before </body> (e.g. <footer class="mt-footer"><div class="mt-footer-inner">…</div></footer>).
+With modootoday.language_switcher: footer and no override, the theme renders a small footer with the language switcher.{%- endcomment -%}
+{%- if site.modootoday.language_switcher == "footer" and site.modootoday.languages %}
+<footer class="mt-footer"><div class="mt-footer-inner">{% include modootoday/lang-switch.html %}</div></footer>
+{%- endif %}
