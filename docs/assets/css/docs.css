@@ -1,0 +1,3 @@
+/* Docs site only (not part of the theme bundle): labels for source/result example pairs. Logical properties for RTL. */
+.docs-ex-label{margin-block:1.25rem .375rem;font-size:.8125rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--mt-muted-foreground)}
+.docs-ex-result{padding-block-start:.75rem;border-block-start:1px dashed var(--mt-border)}
