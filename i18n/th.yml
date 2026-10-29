@@ -13,7 +13,8 @@ page_actions: {label: "การทำงานกับหน้า", copy: "�
 breadcrumb: {label: เส้นทางนำทาง}
 nav: {label: เมนูหลัก}
 pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}
-code: {copy: คัดลอก, copied: คัดลอกแล้ว}
+code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด}
+table: {label: ตาราง}
 search: {label: ค้นหา}
 page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
 languages: {label: ภาษา}

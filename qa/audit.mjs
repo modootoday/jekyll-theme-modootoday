@@ -1,6 +1,6 @@
 // Dev-only visual + accessibility audit of the docs/ site (not shipped in the gem).
 // Usage: node qa/audit.mjs SITE_DIR [OUT_DIR]   (SITE_DIR built by qa/site/build-docs.sh)
-// Assembles the checks in qa/audit/: budgets, contrast, pages (shots, overflow, RTL, axe), parts, first paint, report.
+// Assembles the checks in qa/audit/: budgets, contrast, pages (shots, overflow, RTL, axe), parts, first paint, keyboard, mobile, report.
 import { chromium } from "playwright";
 import path from "node:path";
 import { serveSite } from "./site/server.mjs";
@@ -11,6 +11,8 @@ import { checkPage } from "./audit/pages.mjs";
 import { checkParts } from "./audit/parts.mjs";
 import { checkFirstPaint } from "./audit/first-paint.mjs";
 import { writeReport } from "./audit/report.mjs";
+import { checkKeyboard } from "./audit/keyboard.mjs";
+import { checkMobile } from "./audit/mobile.mjs";
 
 const site = path.resolve(process.argv[2] || "docs/_site");
 const out = path.resolve(process.argv[3] || "qa-out");
@@ -40,5 +42,7 @@ await Promise.all(ctxs.flatMap((ctx) => Array.from({ length: JOBS }, async () =>
 for (const ctx of ctxs) await ctx.close();
 report.parts = await checkParts(browser, origin, langs, fails);
 await checkFirstPaint(browser, origin, fails);
+report.keyboard = await checkKeyboard(browser, origin, fails);
+report.mobile = (await checkMobile(browser, origin, out, fails)).length;
 await browser.close(); close();
 process.exit(writeReport(out, report, fails));

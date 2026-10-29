@@ -13,7 +13,8 @@ page_actions: {label: "페이지 도구", copy: "페이지 복사", copy_ai: "AI
 breadcrumb: {label: 이동 경로}
 nav: {label: 메인 메뉴}
 pagination: {label: 페이지 이동, prev: 이전, next: 다음}
-code: {copy: 복사, copied: 복사됨}
+code: {copy: 복사, copied: 복사됨, label: 코드}
+table: {label: 표}
 search: {label: 검색}
 page: {edit: 이 페이지 편집, updated: 최종 수정}
 languages: {label: 언어}

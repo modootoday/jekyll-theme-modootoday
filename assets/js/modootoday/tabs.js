@@ -1,8 +1,8 @@
 // md-components v1 — jekyll-theme-modootoday. Optional progressive enhancement:
 // inside section[data-tabs], consecutive h3 + code block pairs become ARIA tabs (WAI-ARIA APG Tabs).
 // Without JS every method stays visible in order.
-(function () {
-  document.querySelectorAll("section[data-tabs]").forEach(function (sec, g) {
+(() => {
+  document.querySelectorAll("section[data-tabs]").forEach((sec, g) => {
     const heads = [...sec.querySelectorAll(":scope > h3")].filter((h) =>
       h.nextElementSibling && h.nextElementSibling.matches(".highlighter-rouge, pre"));
     if (heads.length < 2) return;

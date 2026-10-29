@@ -14,7 +14,8 @@ page_actions: {label: "Page actions", copy: "Copy page", copy_ai: "Copy for AI",
 breadcrumb: {label: Breadcrumb}
 nav: {label: Main}
 pagination: {label: Pages, prev: Previous, next: Next}
-code: {copy: Copy, copied: Copied}
+code: {copy: Copy, copied: Copied, label: Code}
+table: {label: Table}
 search: {label: Search}
 page: {edit: Edit this page, updated: Last updated}
 languages: {label: Languages}

@@ -13,7 +13,8 @@ page_actions: {label: "Tindakan halaman", copy: "Salin halaman", copy_ai: "Salin
 breadcrumb: {label: Jejak navigasi}
 nav: {label: Menu utama}
 pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}
-code: {copy: Salin, copied: Tersalin}
+code: {copy: Salin, copied: Tersalin, label: Kode}
+table: {label: Tabel}
 search: {label: Cari}
 page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}
 languages: {label: Bahasa}

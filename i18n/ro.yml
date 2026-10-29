@@ -13,7 +13,8 @@ page_actions: {label: "Acțiuni pentru pagină", copy: "Copiază pagina", copy_a
 breadcrumb: {label: Traseu de navigare}
 nav: {label: Meniu principal}
 pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
-code: {copy: Copiază, copied: Copiat}
+code: {copy: Copiază, copied: Copiat, label: Cod}
+table: {label: Tabel}
 search: {label: Caută}
 page: {edit: Editează pagina, updated: Ultima actualizare}
 languages: {label: Limbi}

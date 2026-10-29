@@ -13,7 +13,8 @@ page_actions: {label: "Дії зі сторінкою", copy: "Копіюват�
 breadcrumb: {label: Навігаційний ланцюжок}
 nav: {label: Головне меню}
 pagination: {label: Сторінки, prev: Назад, next: Далі}
-code: {copy: Копіювати, copied: Скопійовано}
+code: {copy: Копіювати, copied: Скопійовано, label: Код}
+table: {label: Таблиця}
 search: {label: Пошук}
 page: {edit: Редагувати сторінку, updated: Оновлено}
 languages: {label: Мови}

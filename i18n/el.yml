@@ -13,7 +13,8 @@ page_actions: {label: "Ενέργειες σελίδας", copy: "Αντιγρα
 breadcrumb: {label: Διαδρομή πλοήγησης}
 nav: {label: Κύριο μενού}
 pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}
-code: {copy: Αντιγραφή, copied: Αντιγράφηκε}
+code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας}
+table: {label: Πίνακας}
 search: {label: Αναζήτηση}
 page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
 languages: {label: Γλώσσες}

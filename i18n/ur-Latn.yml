@@ -13,7 +13,8 @@ page_actions: {label: "Safhe ke iqdamat", copy: "Safha copy karein", copy_ai: "A
 breadcrumb: {label: Raasta}
 nav: {label: Main menu}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}
-code: {copy: Copy karein, copied: Copy ho gaya}
+code: {copy: Copy karein, copied: Copy ho gaya, label: Code}
+table: {label: Jadval}
 search: {label: Talaash}
 page: {edit: Yeh safha edit karein, updated: Aakhri update}
 languages: {label: Zabanein}

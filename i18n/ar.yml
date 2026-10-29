@@ -13,7 +13,8 @@ page_actions: {label: "إجراءات الصفحة", copy: "نسخ الصفحة"
 breadcrumb: {label: مسار التنقل}
 nav: {label: القائمة الرئيسية}
 pagination: {label: الصفحات, prev: السابق, next: التالي}
-code: {copy: نسخ, copied: تم النسخ}
+code: {copy: نسخ, copied: تم النسخ, label: شيفرة}
+table: {label: جدول}
 search: {label: بحث}
 page: {edit: تعديل هذه الصفحة, updated: آخر تحديث}
 languages: {label: اللغات}

@@ -13,7 +13,8 @@ page_actions: {label: "頁面操作", copy: "複製頁面", copy_ai: "複製給 
 breadcrumb: {label: 導覽路徑}
 nav: {label: 主選單}
 pagination: {label: 換頁, prev: 上一頁, next: 下一頁}
-code: {copy: 複製, copied: 已複製}
+code: {copy: 複製, copied: 已複製, label: 程式碼}
+table: {label: 表格}
 search: {label: 搜尋}
 page: {edit: 編輯此頁, updated: 最後更新}
 languages: {label: 語言}

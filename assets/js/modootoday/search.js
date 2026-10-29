@@ -1,40 +1,44 @@
-// jekyll-theme-modootoday — tiny client search over /search.json [{title,url,text}].
-(function () {
-  var box = document.querySelector(".mt-search"); if (!box) return;
-  var input = box.querySelector("input"), out = box.querySelector("ul"), data = null;
-  box.hidden = false;
-  function load() {
-    if (!data) data = fetch(box.getAttribute("data-index")).then(function (r) { return r.json(); }).catch(function () { return []; });
-    return data;
-  }
-  // The index text is HTML-escaped (strip_html keeps entities); decode the common ones for display.
-  function plain(t) { return t.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&"); }
-  function lg(l) { return l.toLowerCase().split("-")[0]; }
-  function render(q) {
+// jekyll-theme-modootoday — client search over /search.json [{title,url,text,lang}].
+// Keys: "/" or Ctrl/Cmd+K focus the box, Down/Up move through results, Esc clears (from a result: back to the box).
+(() => {
+  const box = document.querySelector(".mt-search"); if (!box) return;
+  const input = box.querySelector("input"), out = box.querySelector("ul"), el = (t, c) => Object.assign(document.createElement(t), { className: c || "" });
+  let data;
+  const load = () => data || (data = fetch(box.dataset.index).then((r) => r.json()).catch(() => []));
+  // The index text is HTML-escaped (strip_html keeps entities); a detached textarea decodes it.
+  const ta = el("textarea"), plain = (t) => (ta.innerHTML = t, ta.value), lg = (l) => l.toLowerCase().split("-")[0];
+  const render = (q) => {
     q = q.trim().toLowerCase(); out.textContent = "";
-    if (q.length < 2) return;
-    load().then(function (d) {
-      if (input.value.trim().toLowerCase() !== q) return;
+    if (q.length > 1) load().then((d) => {
+      if (input.value.trim().toLowerCase() != q) return;
       // This page's language, else the site default, else all; title hits first.
-      var hits = d.filter(function (p) { return (p.title + " " + p.text).toLowerCase().indexOf(q) > -1; });
-      [document.documentElement.lang, box.getAttribute("data-lang")].some(function (l) {
-        var same = hits.filter(function (p) { return !l || !p.lang || lg(p.lang) === lg(l); });
+      let hits = d.filter((p) => (p.title + " " + p.text).toLowerCase().includes(q));
+      [document.documentElement.lang, box.dataset.lang].some((l) => {
+        const same = hits.filter((p) => !l || !p.lang || lg(p.lang) == lg(l));
         if (same.length) return hits = same;
       });
-      hits.sort(function (a, b) { return (b.title.toLowerCase().indexOf(q) > -1) - (a.title.toLowerCase().indexOf(q) > -1); });
-      hits.slice(0, 8).forEach(function (p) {
-        var li = document.createElement("li"), a = document.createElement("a"), t = document.createElement("span");
-        a.href = p.url; t.className = "mt-search-title"; t.textContent = p.title; a.appendChild(t);
-        var txt = plain(p.text), i = txt.toLowerCase().indexOf(q);
-        if (i > -1) {
-          var s = document.createElement("span"); s.className = "mt-search-snippet";
-          s.textContent = (i > 30 ? "…" : "") + txt.slice(Math.max(0, i - 30), i + 70).trim() + "…"; a.appendChild(s);
-        }
-        li.appendChild(a); out.appendChild(li);
+      const inTitle = (p) => p.title.toLowerCase().includes(q);
+      hits.sort((a, b) => inTitle(b) - inTitle(a)).slice(0, 8).forEach((p) => {
+        const li = el("li"), a = el("a"), txt = plain(p.text), i = txt.toLowerCase().indexOf(q);
+        a.href = p.url; a.append(Object.assign(el("span", "mt-search-title"), { textContent: p.title }));
+        if (i > -1) a.append(Object.assign(el("span", "mt-search-snippet"), { textContent: (i > 30 ? "…" : "") + txt.slice(Math.max(0, i - 30), i + 70).trim() + "…" }));
+        li.append(a); out.append(li);
       });
     });
-  }
+  };
   input.addEventListener("focus", load);
-  input.addEventListener("input", function () { render(input.value); });
-  input.addEventListener("keydown", function (e) { if (e.key === "Escape") { input.value = ""; out.textContent = ""; } });
+  input.addEventListener("input", () => render(input.value));
+  box.addEventListener("keydown", (e) => {
+    const links = [...out.querySelectorAll("a")], i = links.indexOf(document.activeElement), k = e.key;
+    if (k == "Escape") { e.preventDefault(); if (i > -1) input.focus(); else render(input.value = ""); }
+    else if ((k == "ArrowDown" || k == "ArrowUp") && links.length) {
+      e.preventDefault();
+      const n = k == "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1;
+      (n < 0 ? input : links[n]).focus();
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    const t = e.target, typing = t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName), mod = e.ctrlKey || e.metaKey;
+    if ((e.key == "/" && !typing && !mod && !e.altKey) || (mod && e.key.toLowerCase() == "k")) { e.preventDefault(); input.focus(); input.select(); }
+  });
 })();

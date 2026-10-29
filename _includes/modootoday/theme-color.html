@@ -1,0 +1,19 @@
+{%- comment -%}
+Browser UI colour (iOS Safari, Android Chrome address bar) matching the page background tokens.
+  site.modootoday.theme_color  false drops the tags; {light: "#hex", dark: "#hex"} or one "#hex" replaces the defaults
+Defaults follow --mt-background: #ffffff light, #0d1117 dark. With color_scheme light/dark only that colour is emitted.
+{%- endcomment -%}
+{%- assign _tc = site.modootoday.theme_color -%}
+{%- unless _tc == false -%}
+{%- if _tc.light or _tc.dark -%}{%- assign _tcl = _tc.light | default: "#ffffff" -%}{%- assign _tcd = _tc.dark | default: "#0d1117" -%}
+{%- elsif _tc -%}{%- assign _tcl = _tc -%}{%- assign _tcd = _tc -%}
+{%- else -%}{%- assign _tcl = "#ffffff" -%}{%- assign _tcd = "#0d1117" -%}{%- endif -%}
+{%- if mt_color_scheme contains "auto" %}
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ _tcl }}">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ _tcd }}">
+{%- elsif mt_color_scheme == "dark" %}
+<meta name="theme-color" content="{{ _tcd }}">
+{%- else %}
+<meta name="theme-color" content="{{ _tcl }}">
+{%- endif -%}
+{%- endunless -%}

@@ -13,7 +13,8 @@ page_actions: {label: "Seitenaktionen", copy: "Seite kopieren", copy_ai: "Für K
 breadcrumb: {label: Brotkrümelnavigation}
 nav: {label: Hauptmenü}
 pagination: {label: Seiten, prev: Zurück, next: Weiter}
-code: {copy: Kopieren, copied: Kopiert}
+code: {copy: Kopieren, copied: Kopiert, label: Code}
+table: {label: Tabelle}
 search: {label: Suche}
 page: {edit: Diese Seite bearbeiten, updated: Zuletzt aktualisiert}
 languages: {label: Sprachen}

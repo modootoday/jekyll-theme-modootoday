@@ -13,7 +13,8 @@ page_actions: {label: "Действия со страницей", copy: "Коп�
 breadcrumb: {label: Навигационная цепочка}
 nav: {label: Главное меню}
 pagination: {label: Страницы, prev: Назад, next: Далее}
-code: {copy: Копировать, copied: Скопировано}
+code: {copy: Копировать, copied: Скопировано, label: Код}
+table: {label: Таблица}
 search: {label: Поиск}
 page: {edit: Редактировать страницу, updated: Обновлено}
 languages: {label: Языки}

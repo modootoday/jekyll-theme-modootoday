@@ -13,7 +13,8 @@ page_actions: {label: "Thao tác trang", copy: "Sao chép trang", copy_ai: "Sao 
 breadcrumb: {label: Đường dẫn}
 nav: {label: Menu chính}
 pagination: {label: Trang, prev: Trước, next: Tiếp}
-code: {copy: Sao chép, copied: Đã sao chép}
+code: {copy: Sao chép, copied: Đã sao chép, label: Mã}
+table: {label: Bảng}
 search: {label: Tìm kiếm}
 page: {edit: Sửa trang này, updated: Cập nhật lần cuối}
 languages: {label: Ngôn ngữ}

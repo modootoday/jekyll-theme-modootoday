@@ -13,7 +13,8 @@ page_actions: {label: "کارهای صفحه", copy: "کپی صفحه", copy_ai:
 breadcrumb: {label: مسیر راهنما}
 nav: {label: منوی اصلی}
 pagination: {label: صفحه‌ها, prev: قبلی, next: بعدی}
-code: {copy: کپی, copied: کپی شد}
+code: {copy: کپی, copied: کپی شد, label: کد}
+table: {label: جدول}
 search: {label: جستجو}
 page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی}
 languages: {label: زبان‌ها}

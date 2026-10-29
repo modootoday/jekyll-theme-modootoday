@@ -13,7 +13,8 @@ page_actions: {label: "Sayfa işlemleri", copy: "Sayfayı kopyala", copy_ai: "Ya
 breadcrumb: {label: Konum}
 nav: {label: Ana menü}
 pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}
-code: {copy: Kopyala, copied: Kopyalandı}
+code: {copy: Kopyala, copied: Kopyalandı, label: Kod}
+table: {label: Tablo}
 search: {label: Ara}
 page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}
 languages: {label: Diller}
