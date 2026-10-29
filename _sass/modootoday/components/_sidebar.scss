@@ -7,7 +7,10 @@
   .mt-sidebar a:hover, .mt-sidebar [aria-current] { color: mt(foreground); background: mt(accent); }
   .mt-sidebar [aria-current] { font-weight: 600; }
   .mt-sidebar-group { margin-top: 1rem; }
-  .mt-sidebar-title { display: block; padding: 0 .6rem .3rem; font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+  .mt-sidebar summary { cursor: pointer; }
+  .mt-sidebar summary > a { display: inline-block; }
+  .mt-sidebar ul ul { padding-inline-start: .75rem; }
+  .mt-sidebar-title { display: list-item; padding: 0 .6rem .3rem; font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
   .mt-doc-nav, .mt-body:has(.mt-doc-nav) .mt-nav-flat { display: none; }
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }

@@ -1,4 +1,5 @@
 ---
+nav_exclude: true
 title: Kitchen sink (RTL)
 description: A right-to-left sample in Arabic to check that every component mirrors with dir="rtl".
 lang: ar
@@ -20,7 +21,7 @@ sections:
 
 تعرض هذه الصفحة المكوّنات باتجاه من اليمين إلى اليسار. تضبط السمة `dir="rtl"` تلقائيًا للغات مثل العربية والعبرية والفارسية، أو عبر `direction: rtl` في رأس الصفحة.
 
-[ابدأ الآن](../../install/) [المكوّنات](../)
+[ابدأ الآن](../../guides/install/) [المكوّنات](../)
 
 ## التنبيهات
 
@@ -124,4 +125,4 @@ puts "Hello, #{name}"
 
 ## دعوة إلى العمل
 
-[ابدأ الآن](../../install/) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[ابدأ الآن](../../guides/install/) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)

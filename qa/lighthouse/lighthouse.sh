@@ -11,7 +11,7 @@ cp -r "$site/." "$root/jekyll-theme-modootoday/"
 trap 'kill $srv' EXIT
 sleep 1
 base="http://localhost:$port/jekyll-theme-modootoday"
-for p in "" components/ components/kitchen-sink/ install/ ko/ ko/components/kitchen-sink/ 404.html; do
+for p in "" components/ components/kitchen-sink/ guides/install/ ko/ ko/components/kitchen-sink/ 404.html; do
   for f in mobile desktop; do
     n="$(echo "${p:-home}" | tr / _)-$f"; extra=(); [ "$f" = desktop ] && extra=(--preset=desktop)
     for r in $(seq 1 "$runs"); do

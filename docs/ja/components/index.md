@@ -1,4 +1,6 @@
 ---
+nav_order: 0
+nav_title: 部品
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
@@ -35,7 +37,7 @@ sections:
 
 どのコンポーネントも普通の Markdown です。各例では Markdown のソースと、同じソースからテーマが描いた実際の表示結果を続けて示します。表示結果はいまお使いのライト／ダークモードのままです。ソースをコピーして貼り付ければ同じ結果になります。github.com では素の要素として表示されます。
 
-[キッチンシンクを開く](kitchen-sink/) [設定](../configuration/)
+[キッチンシンクを開く](kitchen-sink/) [設定](../guides/configuration/)
 
 > [!NOTE]
 > このページは[英語の原文](../../components/)の翻訳です。内容が異なる場合は英語版が優先されます。
@@ -88,7 +90,7 @@ sections:
 
 `status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
 
-[Get started](../install/) [Read the configuration](../configuration/)
+[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
 
 ## タブ
 
@@ -290,4 +292,4 @@ tags: [release]
 
 ## 次へ
 
-[キッチンシンク](kitchen-sink/) [設定](../configuration/)
+[キッチンシンク](kitchen-sink/) [設定](../guides/configuration/)

@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: install.md
+permalink: /ja/guides/install/index.md
+---

@@ -1,0 +1,74 @@
+---
+nav_order: 40
+title: Customize
+description: Change colors, radius and fonts with tokens, or override Sass partials.
+sections:
+  - tokens
+  - visuals
+  - sass
+  - shadow
+  - {c: cta, name: next}
+---
+# Customize
+
+Start with tokens. Reach for Sass partials only when tokens are not enough.
+
+## Design tokens
+
+The theme exposes CSS custom properties. Override them in your own stylesheet or with `modootoday.tokens`:
+
+```css
+:root {
+  --mt-primary: #0f766e;
+  --mt-radius: 0.75rem;
+}
+```
+
+Overrides in your own stylesheet need to beat the theme's dark-scheme selectors (`:root[data-theme]` and the `prefers-color-scheme` rule). Two supported ways:
+
+- Put the values in `modootoday.tokens` and `modootoday.tokens_dark`. The theme prints them with the same selectors as its own tokens.
+- Set `modootoday.css_layers: true`. The theme CSS then sits in `@layer mt.*`, and any rule outside a layer wins, so a plain `:root { … }` is enough.
+
+## Section visuals and full-width pages
+
+Add `visual: <name>` to a `sections:` item to render your own `_includes/sections/<name>.html` at the end of that section. The include gets the item as `include.section`, so extra keys such as `scene:` reach it. `hero: {visual: <name>}` in front matter does the same for the part before the first `##` (it needs `sections:`). `modootoday-check` fails when the include is missing.
+
+```yaml
+---
+full_width: true
+hero: {visual: player-mock}
+sections: [{c: features, name: why, visual: chart, scene: night}, faq]
+---
+```
+
+`full_width: true` removes the reading-column width and side padding of `main.mt-main` (adds `.mt-main-full`) for landing pages.
+
+## Sass partials
+
+Jekyll reads `_sass/` from your site before the theme. Create `assets/css/modootoday.scss` to add your own rules after the theme:
+
+```scss
+---
+---
+@import "modootoday";
+
+.mt-hero h1 { letter-spacing: -0.02em; }
+```
+
+> [!WARNING]
+> Use `@import`, not `@use`. GitHub Pages compiles Sass with Ruby Sass, which passes `@use` through unchanged.
+
+## Shadowing layouts and includes
+
+Any file in the theme's `_layouts/`, `_includes/` or `_sass/` can be replaced by a file with the same path in your site. Add tags to the page head with `_includes/head-custom.html`:
+
+```html
+<link rel="icon" href="/favicon.svg">
+```
+
+> [!CAUTION]
+> Shadowed files do not receive theme updates. Prefer tokens and `head-custom.html`.
+
+## Next
+
+[Agent-readable Markdown](../agents/) [Configuration](../configuration/)

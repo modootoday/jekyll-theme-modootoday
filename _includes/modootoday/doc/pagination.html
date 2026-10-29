@@ -1,9 +1,9 @@
-{%- comment -%}Previous / next in docs order: the nav flattened, a group's own page first, then its items (only for pages listed in the nav; front matter pagination: false hides it).{%- endcomment -%}
+{%- comment -%}Previous / next in docs order: the nav flattened, a group's own page first, then its items (and their sub-items) (only for pages listed in the nav; front matter pagination: false hides it).{%- endcomment -%}
 {%- if mt_nav and mt_components contains "pagination" and page.pagination != false -%}
 {%- assign _flat = "" | split: "" -%}
 {%- for it in mt_nav -%}
 {%- if it.url -%}{%- assign _one = mt_nav | where: "url", it.url -%}{%- assign _flat = _flat | concat: _one -%}{%- endif -%}
-{%- if it.items -%}{%- assign _flat = _flat | concat: it.items -%}{%- endif -%}
+{%- for sub in it.items -%}{%- assign _one = it.items | where: "url", sub.url -%}{%- assign _flat = _flat | concat: _one -%}{%- if sub.items -%}{%- assign _flat = _flat | concat: sub.items -%}{%- endif -%}{%- endfor -%}
 {%- endfor -%}
 {%- assign _ix = -1 -%}
 {%- for it in _flat -%}{%- if it.url == page.url and _ix < 0 -%}{%- assign _ix = forloop.index0 -%}{%- endif -%}{%- endfor -%}

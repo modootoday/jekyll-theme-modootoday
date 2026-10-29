@@ -40,8 +40,17 @@ class NavigationTest < Minitest::Test
     h = self.class.site.call("two")
     assert_includes h, "mt-has-sidebar"
     assert_includes h, '<aside class="mt-doc-nav"><nav class="mt-sidebar"'
-    assert_match(%r{<span class="mt-sidebar-title">Guides</span><ul><li><a href="/one/">One</a></li><li><a href="/two/" aria-current="page">Two</a>}, h)
+    assert_match(%r{<details open><summary class="mt-sidebar-title">Guides</summary><ul><li><a href="/one/">One</a></li><li><a href="/two/" aria-current="page">Two</a>}, h)
     assert_match(%r{<details class="mt-sidebar-mobile"><summary>Guides</summary>}, h)
+  end
+
+  def test_sidebar_collapses_other_groups_and_nests_sub_items
+    nested = "- {title: Start, url: /start/}\n- title: Guides\n  items:\n    - {title: One, url: /one/}\n- title: Ref\n  items:\n" \
+             "    - title: Two\n      url: /two/\n      items:\n        - {title: End, url: /end/}\n"
+    s = self.class.site("", nested)
+    assert_match(%r{<details><summary class="mt-sidebar-title">Guides</summary>}, s.call("end"))
+    assert_match(%r{<details open><summary><a href="/two/">Two</a></summary><ul><li><a href="/end/" aria-current="page">End</a>}, s.call("end"))
+    assert_match(%r{rel="prev" href="/two/"}, s.call("end"))
   end
 
   def test_sidebar_off_without_groups_or_when_disabled

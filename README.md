@@ -40,7 +40,7 @@ plugins:
   - jekyll-remote-theme
 ```
 
-Pin a tag or a commit. More options: [Install guide](https://modootoday.github.io/jekyll-theme-modootoday/install/).
+Pin a tag or a commit. More options: [Install guide](https://modootoday.github.io/jekyll-theme-modootoday/guides/install/).
 
 ## Quick start
 
@@ -53,14 +53,14 @@ bundle install && bundle exec jekyll build
 bundle exec modootoday-check . _site
 ```
 
-Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/).
+Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-modootoday/guides/first-page/).
 
 ## Concepts
 
 - **Plain body, rich layout.** The body is GFM; `sections:` front matter maps each `##` to a component. See [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) and the [kitchen sink](https://modootoday.github.io/jekyll-theme-modootoday/components/kitchen-sink/).
 - **Rules.** What may appear in a body, and what each pattern becomes, is defined in [RULES.md](RULES.md) (`md-components v1`).
-- **Settings and tokens.** One `modootoday:` block in `_config.yml`, CSS custom properties `--mt-*`, one Sass partial per component. See [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) and [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/).
-- **Blog and news.** `blog`, `news`, `news-article`, `author` and `feed` layouts: paginated card lists (list, grid, magazine), bylines from `_data/authors.yml`, series, related posts, share, JSON-LD, per-language Atom feeds; Liquid only, styles and script in an optional bundle. See [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/blog-news/).
+- **Settings and tokens.** One `modootoday:` block in `_config.yml`, CSS custom properties `--mt-*`, one Sass partial per component. See [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/guides/configuration/) and [Customize](https://modootoday.github.io/jekyll-theme-modootoday/guides/customize/).
+- **Blog and news.** `blog`, `news`, `news-article`, `author` and `feed` layouts: paginated card lists (list, grid, magazine), bylines from `_data/authors.yml`, series, related posts, share, JSON-LD, per-language Atom feeds; Liquid only, styles and script in an optional bundle. See [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/layouts/blog-news/).
 - **Twins: three ways** — stub files (default, classic Pages), the `jekyll-theme-modootoday` plugin (Jekyll 4 / Actions), or `modootoday.twins: source` with front-matter-less pages (classic Pages, no stubs). See [RULES.md §5a](RULES.md#5a-markdown-twins).
 
 ## Commands
@@ -86,12 +86,12 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 - Each page `guide.md` has a twin at `/guide/index.md` with the same bytes as its body, linked with `rel="alternate" type="text/markdown"`.
 - `llms.txt` and `llms-full.txt` exist at `/` and under each `/<lang>/`.
 - Jekyll 4: `plugins: [jekyll-theme-modootoday]` creates them; the classic GitHub Pages build uses one-file stubs.
-- Details: [Agents guide](https://modootoday.github.io/jekyll-theme-modootoday/agents/) and this repository's own [llms.txt](https://modootoday.github.io/jekyll-theme-modootoday/llms.txt).
+- Details: [Agents guide](https://modootoday.github.io/jekyll-theme-modootoday/guides/agents/) and this repository's own [llms.txt](https://modootoday.github.io/jekyll-theme-modootoday/llms.txt).
 
 ## Guides
 
 - [Documentation site](https://modootoday.github.io/jekyll-theme-modootoday/) (built with this theme from [`docs/`](docs/))
-- [Install](https://modootoday.github.io/jekyll-theme-modootoday/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/) · [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/blog-news/) · [Public API](https://modootoday.github.io/jekyll-theme-modootoday/api/) · [Migrate and upgrade](https://modootoday.github.io/jekyll-theme-modootoday/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/csp/) · [Accessibility](https://modootoday.github.io/jekyll-theme-modootoday/accessibility/) · [Roadmap](https://modootoday.github.io/jekyll-theme-modootoday/roadmap/) · [Changelog](CHANGELOG.md)
+- [Install](https://modootoday.github.io/jekyll-theme-modootoday/guides/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/guides/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/guides/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/guides/customize/) · [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/layouts/blog-news/) · [Public API](https://modootoday.github.io/jekyll-theme-modootoday/reference/api/) · [Migrate and upgrade](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/recipes/csp/) · [Accessibility](https://modootoday.github.io/jekyll-theme-modootoday/guides/accessibility/) · [Roadmap](https://modootoday.github.io/jekyll-theme-modootoday/reference/roadmap/) · [Changelog](CHANGELOG.md)
 - Supported stacks: GitHub Pages (`github-pages` 232, Jekyll 3.10, Ruby 3.3.4) and Jekyll 4.4 on Ruby 3.2 to 3.4, all tested in CI; Jekyll 3.9 is the tested floor.
 - [Security policy](SECURITY.md) · [Code of conduct](CODE_OF_CONDUCT.md)
 

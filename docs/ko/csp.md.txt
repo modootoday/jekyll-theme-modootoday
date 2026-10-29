@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: csp.md
-permalink: /ko/csp/index.md
----

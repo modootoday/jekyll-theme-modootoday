@@ -1,0 +1,8 @@
+# Docs information architecture: the only list of sections. A page belongs to the section named by its first
+# directory (docs/<section>/ or docs/<lang>/<section>/); `nav_order:` in its front matter places it.
+# script/docs-index builds _data/nav/main*.yml, section index lists and .md.txt twins from these and front matter.
+- {id: guides, title: {en: Guides, ko: 가이드, ja: ガイド}}
+- {id: components, title: {en: Components, ko: 컴포넌트, ja: コンポーネント}}
+- {id: layouts, title: {en: Layouts, ko: 레이아웃, ja: レイアウト}}
+- {id: recipes, title: {en: Recipes, ko: 레시피, ja: レシピ}}
+- {id: reference, title: {en: Reference, ko: 레퍼런스, ja: リファレンス}}

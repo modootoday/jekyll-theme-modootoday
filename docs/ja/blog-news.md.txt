@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: blog-news.md
-permalink: /ja/blog-news/index.md
----

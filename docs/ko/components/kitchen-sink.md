@@ -1,4 +1,5 @@
 ---
+nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
 sections:
@@ -24,7 +25,7 @@ sections:
 
 테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 폴백 모습을 볼 수 있습니다. 한국어 줄바꿈 확인용 긴문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
 
-[Primary action](../../install/) [Secondary](../) [Third link](https://github.com/modootoday/jekyll-theme-modootoday)
+[Primary action](../../guides/install/) [Secondary](../) [Third link](https://github.com/modootoday/jekyll-theme-modootoday)
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../components/kitchen-sink/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
@@ -61,7 +62,7 @@ sections:
 - **Short** — One line.
 - **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
 - **With a badge** — Cards can carry status. `status:available`
-- **With a link** — Read the [install guide](../../install/).
+- **With a link** — Read the [install guide](../../guides/install/).
 
 ## Cards in three columns
 
@@ -259,4 +260,4 @@ Text after a thematic break.
 
 ## Call to action
 
-[Get started](../../install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)

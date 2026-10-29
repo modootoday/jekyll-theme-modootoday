@@ -1,4 +1,5 @@
 ---
+nav_order: 0
 layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
@@ -35,7 +36,7 @@ sections:
 
 Each component is ordinary Markdown. Every example below shows the Markdown source and then the live result the theme renders from that same source, in the light or dark scheme you are using. Copy a source block into your page to get the same result. On github.com each one falls back to the plain element.
 
-[Open the kitchen sink](kitchen-sink/) [Configuration](../configuration/)
+[Open the kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)
 
 ## Alerts
 
@@ -85,7 +86,7 @@ The same list with `cols: 3`.
 
 `status:available` A paragraph that holds only links becomes buttons. The first link is the primary one. It works in the hero (before the first `##`) and in a `c: cta` section.
 
-[Get started](../install/) [Read the configuration](../configuration/)
+[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
 
 ## Tabs
 
@@ -287,4 +288,4 @@ tags: [release]
 
 ## Next
 
-[Kitchen sink](kitchen-sink/) [Configuration](../configuration/)
+[Kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)

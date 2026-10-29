@@ -1,4 +1,5 @@
 ---
+nav_order: 10
 title: Kitchen sink
 description: Every implemented component and variant on one page, for visual review.
 sections:
@@ -24,7 +25,7 @@ sections:
 
 Every component the theme ships, in every variant. The same file is readable on github.com, which shows the fallback.
 
-[Primary action](../../install/) [Secondary](../) [Third link](https://github.com/modootoday/jekyll-theme-modootoday)
+[Primary action](../../guides/install/) [Secondary](../) [Third link](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Alerts
 
@@ -58,7 +59,7 @@ Every component the theme ships, in every variant. The same file is readable on 
 - **Short** — One line.
 - **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
 - **With a badge** — Cards can carry status. `status:available`
-- **With a link** — Read the [install guide](../../install/).
+- **With a link** — Read the [install guide](../../guides/install/).
 
 ## Cards in three columns
 
@@ -256,4 +257,4 @@ Text after a thematic break.
 
 ## Call to action
 
-[Get started](../../install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)

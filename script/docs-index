@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Docs site generator: one source of truth (docs/_data/sections.yml + each page's front matter).
+# Writes docs/_data/nav/main*.yml, the page list in each section index and the .md.txt twin stubs.
+#   ruby script/docs-index          write
+#   ruby script/docs-index --check  fail if anything is out of date (CI)
+require_relative "docs/tree"
+require_relative "docs/outputs"
+
+tree = DocsIndex::Tree.new(File.expand_path("../docs", __dir__))
+out = DocsIndex::Outputs.new(tree)
+stale = out.files.reject { |path, body| File.exist?(path) && File.read(path) == body }.keys
+orphans = out.orphan_twins
+if ARGV.include?("--check")
+  (stale + orphans).each { |p| warn "docs-index: out of date: #{p.delete_prefix("#{tree.root}/")}" }
+  warn "docs-index: run ruby script/docs-index" unless (stale + orphans).empty?
+  exit((stale + orphans).empty? ? 0 : 1)
+end
+stale.each { |p| File.write(p, out.files[p]) }
+orphans.each { |p| File.delete(p) }
+puts "docs-index: #{stale.size} written, #{orphans.size} removed"

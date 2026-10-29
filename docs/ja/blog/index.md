@@ -6,4 +6,4 @@ variant: magazine
 ---
 # ブログ
 
-`layout: blog` と `variant: magazine` で作ったブログ一覧の例です。詳しくは[ブログとニュースのガイド](../../blog-news/)をご覧ください。
+`layout: blog` と `variant: magazine` で作ったブログ一覧の例です。詳しくは[ブログとニュースのガイド](../../layouts/blog-news/)をご覧ください。

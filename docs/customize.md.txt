@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: customize.md
-permalink: /customize/index.md
----

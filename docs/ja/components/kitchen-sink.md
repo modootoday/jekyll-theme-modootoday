@@ -1,4 +1,5 @@
 ---
+nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
 sections:
@@ -24,7 +25,7 @@ sections:
 
 テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
 
-[主なアクション](../../install/) [二番目](../) [三番目のリンク](https://github.com/modootoday/jekyll-theme-modootoday)
+[主なアクション](../../guides/install/) [二番目](../) [三番目のリンク](https://github.com/modootoday/jekyll-theme-modootoday)
 
 > [!NOTE]
 > このページは[英語の原文](../../components/kitchen-sink/)の翻訳です。内容が異なる場合は英語版が優先されます。
@@ -61,7 +62,7 @@ sections:
 - **短い** — 1 行。
 - **長めのカード** — 説明が長く数行に折り返すカードで、グリッド全体の余白、行の高さ、揃えを確認します。
 - **バッジ付き** — カードにステータスを付けられます。 `status:available`
-- **リンク付き** — [インストールガイド](../../install/)を読んでください。
+- **リンク付き** — [インストールガイド](../../guides/install/)を読んでください。
 
 ## 3 列のカード
 
@@ -259,4 +260,4 @@ end
 
 ## 行動を促す
 
-[はじめる](../../install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[はじめる](../../guides/install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)

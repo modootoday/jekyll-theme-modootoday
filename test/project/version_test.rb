@@ -15,7 +15,7 @@ class VersionTest < Minitest::Test
 
   def test_install_snippets_pin_the_current_version
     minor = version.split(".")[0, 2].join(".")
-    files = %w[README.md README.ko.md docs/install.md docs/ko/install.md docs/index.md docs/ko/index.md docs/ja/install.md docs/ja/index.md example/_config.yml]
+    files = %w[README.md README.ko.md docs/guides/install.md docs/ko/guides/install.md docs/index.md docs/ko/index.md docs/ja/guides/install.md docs/ja/index.md example/_config.yml]
     files.each do |f|
       t = read(f)
       t.scan(/jekyll-theme-modootoday", "~> ([\d.]+)"/).flatten.each { |v| assert_equal minor, v, "#{f}: gem constraint" }

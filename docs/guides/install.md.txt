@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: install.md
+permalink: /guides/install/index.md
+---

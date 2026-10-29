@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: math-diagrams.md
+permalink: /ja/recipes/math-diagrams/index.md
+---

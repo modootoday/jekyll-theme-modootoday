@@ -144,6 +144,8 @@ jobs:
         run: bundle exec ruby qa/docs/links.rb docs/_site /jekyll-theme-modootoday
       - name: Kitchen-sink coverage
         run: ruby qa/docs/coverage.rb
+      - name: Docs structure (sections, front matter, generated nav and twins, size limits)
+        run: ruby qa/docs/structure.rb
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Screenshots, axe, contrast, budgets

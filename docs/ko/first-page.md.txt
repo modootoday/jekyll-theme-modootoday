@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: first-page.md
-permalink: /ko/first-page/index.md
----

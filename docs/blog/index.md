@@ -6,4 +6,4 @@ variant: magazine
 ---
 # Blog
 
-A sample blog index (`layout: blog`, `variant: magazine`). See the [Blog and news guide](../blog-news/).
+A sample blog index (`layout: blog`, `variant: magazine`). See the [Blog and news guide](../layouts/blog-news/).

@@ -1,4 +1,5 @@
 ---
+nav_order: 0
 layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줘요.
@@ -35,7 +36,7 @@ sections:
 
 모든 컴포넌트는 평범한 Markdown이에요. 아래 예시마다 Markdown 소스와, 같은 소스로 테마가 그려 낸 실제 결과를 이어서 보여 줘요. 결과는 지금 쓰는 라이트·다크 모드 그대로예요. 소스 블록을 복사해 붙이면 같은 결과를 얻어요. github.com에서는 기본 요소로 보여요.
 
-[키친싱크 열기](kitchen-sink/) [설정](../configuration/)
+[키친싱크 열기](kitchen-sink/) [설정](../guides/configuration/)
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../components/)의 번역이에요. 내용이 다르면 영어 문서가 우선해요.
@@ -88,7 +89,7 @@ sections:
 
 `status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼이에요. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작해요.
 
-[Get started](../install/) [Read the configuration](../configuration/)
+[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
 
 ## 탭
 
@@ -290,4 +291,4 @@ tags: [release]
 
 ## 다음
 
-[키친싱크](kitchen-sink/) [설정](../configuration/)
+[키친싱크](kitchen-sink/) [설정](../guides/configuration/)

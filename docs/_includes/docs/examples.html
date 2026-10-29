@@ -1,0 +1,60 @@
+{%- comment -%}Docs site only (shared include for every `layout: examples` page: components, layouts, recipes). Pairs each example section with its own source, so the source is written once.
+Front matter `examples:` lists section names (from `sections:`). In each listed `##` section the first paragraph
+is the description; everything after it is the example. The layout reads the page's Markdown source, prints
+the example as a fenced block (highlighted, theme copy button) plus the section's `sections:` entry when it has
+`c:`, then labels the live output (a c: cta result gets its own [data-mt-result] box, so the CTA frame never wraps the whole example; other components style direct children, which stay in place) that kramdown already rendered from the same text. Pure Liquid (GitHub Pages
+Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -%}
+{%- assign _l = page.lang | default: site.lang | default: "en" -%}
+{%- case _l -%}
+{%- when "ko" -%}{%- assign _ls = "소스" -%}{%- assign _lr = "결과" -%}{%- assign _lf = "프런트 매터" -%}
+{%- when "ja" -%}{%- assign _ls = "ソース" -%}{%- assign _lr = "表示結果" -%}{%- assign _lf = "フロントマター" -%}
+{%- else -%}{%- assign _ls = "Source" -%}{%- assign _lr = "Result" -%}{%- assign _lf = "Front matter" -%}
+{%- endcase -%}
+{%- assign _nl = "
+" -%}
+{%- assign _fence = "~~~~~" -%}{%- assign _ob = "{" -%}{%- assign _cb = "}" -%}
+{%- capture _raw %}{% include modootoday/markdown/raw-body.html file=page.name %}{% endcapture -%}
+{%- assign _md = _raw | prepend: _nl | split: "
+## " -%}
+{%- assign _sep = _nl | append: "<h2 " -%}
+{%- assign _html = content | prepend: _nl | split: _sep -%}
+{{ _html[0] }}
+{%- for _h in _html offset:1 -%}
+{%- assign _s = page.sections[forloop.index0] -%}
+{%- if _s.name -%}{%- assign _n = _s.name -%}{%- else -%}{%- assign _n = _s -%}{%- endif -%}
+{%- assign _i = forloop.index -%}
+{%- if page.examples contains _n -%}
+{%- assign _sec = _md[_i] | split: _nl -%}
+{%- assign _ex = "" -%}{%- assign _st = 0 -%}
+{%- for _line in _sec offset:1 -%}
+{%- if _st == 0 and _line != "" -%}{%- assign _st = 1 -%}
+{%- elsif _st == 1 and _line == "" -%}{%- assign _st = 2 -%}
+{%- elsif _st == 2 -%}{%- assign _ex = _ex | append: _line | append: _nl -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _ex = _ex | strip -%}
+{%- assign _lead = _h | split: "</p>" | first | append: "</p>" -%}
+{%- assign _rest = _h | remove_first: _lead -%}
+{%- capture _fm -%}{%- if _s.c -%}sections:
+  - {{ _ob }}{% for _kv in _s %}{{ _kv[0] }}: {{ _kv[1] }}{% unless forloop.last %}, {% endunless %}{% endfor %}{{ _cb }}{%- endif -%}{%- endcapture -%}
+{%- capture _srcmd -%}
+{%- if _fm != "" %}
+<p class="docs-ex-label docs-ex-fm">{{ _lf }}</p>
+
+{{ _fence }}yaml
+{{ _fm }}
+{{ _fence }}
+{% endif %}
+<p class="docs-ex-label docs-ex-source">{{ _ls }}</p>
+
+{{ _fence }}markdown
+{{ _ex }}
+{{ _fence }}
+{%- endcapture %}
+<h2 {{ _lead }}
+<div class="docs-ex-code">{{ _srcmd | markdownify }}</div>
+<p class="docs-ex-label docs-ex-result">{{ _lr }}</p>
+{% if _s.c == 'cta' %}<div class="docs-ex-out mt-cta" data-mt-result>{{ _rest }}</div>{% else %}{{ _rest }}{% endif %}
+{%- else %}
+<h2 {{ _h }}
+{%- endif -%}
+{%- endfor -%}

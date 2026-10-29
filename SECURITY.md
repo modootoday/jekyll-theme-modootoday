@@ -20,4 +20,4 @@ Include the affected version, the configuration or Markdown that triggers the pr
 - Layouts, includes, Sass, JavaScript under `assets/`, the `jekyll-theme-modootoday` plugin and `modootoday-check`.
 - The release pipeline (RubyGems trusted publishing from tags).
 
-Sites built with the theme are out of scope unless the problem comes from the theme itself. For hardening a site's Content Security Policy, see the [CSP guide](https://modootoday.github.io/jekyll-theme-modootoday/csp/).
+Sites built with the theme are out of scope unless the problem comes from the theme itself. For hardening a site's Content Security Policy, see the [CSP guide](https://modootoday.github.io/jekyll-theme-modootoday/recipes/csp/).

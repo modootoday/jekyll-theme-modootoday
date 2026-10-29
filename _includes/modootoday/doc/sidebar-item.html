@@ -1,0 +1,10 @@
+{%- comment -%}One sidebar link; an item with `items:` becomes a nested <details> (open when it holds the current page).{%- endcomment -%}
+{%- assign _si = include.it -%}
+{%- if _si.items -%}
+{%- assign _sh = _si.items | where: "url", page.url | first -%}
+<details{% if _sh or _si.url == page.url %} open{% endif %}><summary><a href="{{ _si.url | relative_url }}"{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a></summary><ul>
+{%- for _ss in _si.items %}<li><a href="{{ _ss.url | relative_url }}"{% if _ss.url == page.url %} aria-current="page"{% endif %}>{{ _ss.title }}</a></li>{% endfor -%}
+</ul></details>
+{%- else -%}
+<a href="{{ _si.url | relative_url }}"{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a>
+{%- endif -%}

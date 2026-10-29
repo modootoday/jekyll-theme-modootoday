@@ -1,5 +1,5 @@
 {%- comment -%}Doc sidebar from the nav (needs modootoday/config.html; shown when mt_sidebar). Top-level items, then each
-group as a titled list. From 64rem a sticky column (aside.mt-doc-nav); below it a collapsed <details class="mt-sidebar-mobile">
+group as a <details> (open when it holds the current page; 3 levels: group > page > sub-page). From 64rem a sticky column (aside.mt-doc-nav); below it a collapsed <details class="mt-sidebar-mobile">
 whose summary is the current group (or the label). include part=aside | mobile. Label: i18n key sidebar.label.{%- endcomment -%}
 {%- if mt_sidebar -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
@@ -8,10 +8,13 @@ whose summary is the current group (or the label). include part=aside | mobile. 
 {%- capture _sb_list -%}<ul>
 {%- for it in mt_nav -%}
 {%- if it.items -%}
-{%- assign _hit = it.items | where: "url", page.url | first -%}{%- if _hit -%}{%- assign _sb_cur = it.title -%}{%- endif -%}
-<li class="mt-sidebar-group"><span class="mt-sidebar-title">{%- if it.url -%}<a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a>{%- else -%}{{ it.title }}{%- endif -%}</span><ul>
-{%- for sub in it.items %}<li><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
-</ul></li>
+{%- assign _open = false -%}{%- if it.url == page.url -%}{%- assign _open = true -%}{%- endif -%}
+{%- for sub in it.items -%}{%- if sub.url == page.url -%}{%- assign _open = true -%}{%- endif -%}{%- assign _hit = sub.items | where: "url", page.url | first -%}{%- if _hit -%}{%- assign _open = true -%}{%- endif -%}{%- endfor -%}
+{%- if _open -%}{%- assign _sb_cur = it.title -%}{%- endif -%}
+<li class="mt-sidebar-group"><details{% if _open %} open{% endif %}><summary class="mt-sidebar-title">{{ it.title }}</summary><ul>
+{%- if it.url %}<li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>{% endif -%}
+{%- for sub in it.items %}<li>{% include modootoday/doc/sidebar-item.html it=sub %}</li>{% endfor -%}
+</ul></details></li>
 {%- else -%}
 <li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
 {%- endif -%}

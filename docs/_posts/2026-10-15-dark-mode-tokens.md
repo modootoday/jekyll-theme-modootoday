@@ -8,4 +8,4 @@ description: "How the primitive, semantic and component token layers switch for 
 ---
 # Dark mode with three token layers
 
-Override a semantic token once and both colour schemes follow. See [Customize](../../../../../customize/).
+Override a semantic token once and both colour schemes follow. See [Customize](../../../../../guides/customize/).
