@@ -36,7 +36,7 @@ modootoday:
 | `twins` | スタブ | `source` で front matter のないツインを使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `languages` | なし | `hreflang` 用の言語コード。例: `[en, ko]` |
-| `language_switcher` | なし | `header`(短いコード)または `footer`(言語名)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ |
+| `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
 | `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
 | `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |

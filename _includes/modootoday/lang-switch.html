@@ -3,20 +3,28 @@
   Each language links to this page's translation when it exists, else to that language's home page.
   Opt in with modootoday.language_switcher: header | footer, or include it in your own footer-custom.html.
   Label text: language (the language's own name) and languages.label from _data/i18n/<lang>.yml.
-  include.style: "codes" shows short codes (EN, KO) with the full name as the accessible name.
+  include.style: "menu" renders a globe button with a <details> dropdown (fixed width however many languages); otherwise a list.
+  Renders nothing with fewer than two languages.
 {%- endcomment -%}
-{%- if site.modootoday.languages -%}
+{%- if site.modootoday.languages.size > 1 -%}
 {%- assign _ls_def = site.lang | default: "en" -%}
 {%- assign _ls_cur = page.lang | default: _ls_def -%}
 {%- assign _ls_base = page.url -%}
 {%- if _ls_cur != _ls_def -%}{%- assign _ls_pre = "/" | append: _ls_cur -%}{%- assign _ls_base = page.url | remove_first: _ls_pre -%}{%- endif -%}
-<nav class="mt-lang{% if include.style == 'codes' %} mt-lang-codes{% endif %}" aria-label="{{ site.data.i18n[_ls_cur].languages.label | default: 'Languages' }}"><ul>
+{%- assign _ls_label = site.data.i18n[_ls_cur].languages.label | default: "Languages" -%}
+{%- assign _ls_curname = site.data.i18n[_ls_cur].language | default: _ls_cur -%}
+{%- capture _ls_items -%}
 {%- for _l in site.modootoday.languages -%}
 {%- if _l == _ls_def -%}{%- assign _ls_alt = _ls_base -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: _ls_base -%}{%- endif -%}
 {%- assign _ls_p = site.pages | where: "url", _ls_alt | first -%}
 {%- unless _ls_p -%}{%- if _l == _ls_def -%}{%- assign _ls_alt = "/" -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: "/" -%}{%- endif -%}{%- endunless -%}
 {%- assign _ls_name = site.data.i18n[_l].language | default: _l -%}
-<li><a href="{{ _ls_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}"{% if _l == _ls_cur %} aria-current="true"{% endif %}{% if include.style == 'codes' %} title="{{ _ls_name }}"><span aria-hidden="true">{{ _l | upcase }}</span><span class="mt-sr-only">{{ _ls_name }}</span>{% else %}>{{ _ls_name }}{% endif %}</a></li>
+<li><a href="{{ _ls_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}"{% if _l == _ls_cur %} aria-current="true"{% endif %}>{{ _ls_name }}</a></li>
 {%- endfor -%}
-</ul></nav>
+{%- endcapture -%}
+{%- if include.style == "menu" -%}
+<details class="mt-lang mt-menu"><summary aria-label="{{ _ls_label }}: {{ _ls_curname }}" title="{{ _ls_label }}"><svg class="mt-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></summary><ul>{{ _ls_items }}</ul></details>
+{%- else -%}
+<nav class="mt-lang" aria-label="{{ _ls_label }}"><ul>{{ _ls_items }}</ul></nav>
+{%- endif -%}
 {%- endif -%}

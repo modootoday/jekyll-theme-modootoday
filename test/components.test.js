@@ -1,4 +1,4 @@
-// jsdom tests for assets/js/modootoday/{accordion,theme-toggle,code-copy}.js. Run: npm test
+// jsdom tests for assets/js/modootoday/{accordion,theme-toggle,code-copy,menu}.js. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const fs = require("node:fs");
@@ -52,4 +52,23 @@ test("code copy: adds one button per block with the label from <html>", () => {
   assert.strictEqual(b.length, 2);
   assert.strictEqual(b[0].textContent, "복사");
   assert.ok(w.document.querySelector("[aria-live]"));
+});
+
+test("menu: arrows move between items, Esc closes and returns focus, outside click and another menu close it", () => {
+  const w = dom('<details class="mt-menu" id="a"><summary>Lang</summary><ul><li><a href="#1">One</a></li><li><a href="#2">Two</a></li></ul></details><details class="mt-menu" id="b"><summary>More</summary><ul><li><a href="#3">Three</a></li></ul></details><p id="out">x</p>').window;
+  w.eval(js("menu.js"));
+  const d = w.document.getElementById("a"), s = d.querySelector("summary"), links = d.querySelectorAll("a");
+  const key = (el, k) => el.dispatchEvent(new w.KeyboardEvent("keydown", { key: k, bubbles: true }));
+  s.focus(); key(s, "ArrowDown");
+  assert.strictEqual(d.open, true);
+  assert.strictEqual(w.document.activeElement, links[0]);
+  key(links[0], "ArrowDown"); assert.strictEqual(w.document.activeElement, links[1]);
+  key(links[1], "ArrowDown"); assert.strictEqual(w.document.activeElement, links[0], "wraps");
+  key(links[0], "ArrowUp"); assert.strictEqual(w.document.activeElement, links[1]);
+  key(links[1], "Escape");
+  assert.strictEqual(d.open, false);
+  assert.strictEqual(w.document.activeElement, s);
+  d.open = true;
+  w.document.getElementById("out").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+  assert.strictEqual(d.open, false);
 });

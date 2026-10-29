@@ -18,6 +18,9 @@
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
   @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; padding: 0 .5rem; } .mt-search { position: static; }
     .mt-search-results { inset-inline: 1rem; top: 2.9rem; width: auto; max-width: none; } }
+  // Narrow phones: search takes its own row under the title so the input stays usable next to the header buttons.
+  @media (max-width: 29.99rem) { .mt-search { order: 9; flex: 1 0 100%; position: relative; }
+    .mt-search-results { inset-inline: 0; top: 100%; } }
 }
 @include mt-layer(components) {
   // 64–80rem: the one-line header is tight; let search shrink so it never overlaps the nav (WCAG 2.2 target-size).

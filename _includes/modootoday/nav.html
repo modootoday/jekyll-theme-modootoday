@@ -5,7 +5,7 @@ An item with `items:` (a list of {title, url}) is a group: a "More"-style <detai
 {%- for it in mt_nav %}
 {%- if it.items %}
 {%- assign _cur = it.items | where: "url", page.url | first %}
-<li class="mt-nav-group"><details><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}</summary><ul>
+<li class="mt-nav-group"><details class="mt-menu"><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}</summary><ul>
 {%- for sub in it.items %}<li><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
 </ul></details></li>
 {%- for sub in it.items %}
