@@ -27,6 +27,10 @@ jobs:
           - stack: jekyll4
             ruby: "3.4"
             check_flags: --twins
+          # gemspec floor: jekyll >= 3.9 without the github-pages gem
+          - stack: jekyll39
+            ruby: "3.2"
+            check_flags: --twins
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile
     steps:

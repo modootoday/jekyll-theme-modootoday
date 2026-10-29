@@ -1,0 +1,22 @@
+name: Bug report
+description: Something renders or checks wrongly.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes: {label: Theme version or commit, placeholder: "0.5.0 or a commit SHA"}
+    validations: {required: true}
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Build
+      options: [GitHub Pages (classic, remote_theme), github-pages gem, Jekyll 4, GitHub Actions, other]
+    validations: {required: true}
+  - type: textarea
+    id: markdown
+    attributes: {label: Markdown and _config.yml that reproduce it, render: markdown}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: Expected and actual result (screenshot or modootoday-check output)}
+    validations: {required: true}

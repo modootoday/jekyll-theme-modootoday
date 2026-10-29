@@ -1,0 +1,11 @@
+name: Feature request
+description: A component, option or rule you need.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: What do you want to write in Markdown, and what should it look like?}
+    validations: {required: true}
+  - type: textarea
+    id: alternatives
+    attributes: {label: What do you do today instead?}

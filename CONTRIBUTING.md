@@ -22,3 +22,9 @@ Changes to `docs/` or the theme's look: `qa/build-docs.sh docs/_site && npm run 
 
 1. Move the `Unreleased` notes in `CHANGELOG.md` under the new version and bump `spec.version` in the gemspec.
 2. Push a tag `vX.Y.Z`. `.github/workflows/release.yml` runs the tests and publishes to RubyGems through trusted publishing (OIDC, no API key) in the `rubygems` GitHub environment.
+
+## Conduct, security and releases
+
+- This project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+- Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md), not in public issues.
+- Releases follow [RELEASING.md](RELEASING.md).

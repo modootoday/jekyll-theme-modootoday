@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: {interval: weekly}
+    groups: {actions: {patterns: ["*"]}}
+  - package-ecosystem: bundler
+    directory: /
+    schedule: {interval: weekly}
+    # gemfiles/github-pages.gemfile pins the GitHub Pages production set on purpose
+    ignore:
+      - dependency-name: github-pages
+      - dependency-name: nokogiri
+  - package-ecosystem: npm
+    directory: /
+    schedule: {interval: weekly}
+    groups: {dev: {patterns: ["*"]}}

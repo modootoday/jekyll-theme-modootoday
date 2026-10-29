@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+# The gemspec floor: jekyll >= 3.9 (Ruby Sass via jekyll-sass-converter 1.x), without github-pages.
+source "https://rubygems.org"
+gemspec path: ".."
+gem "jekyll", "~> 3.9.0"
+gem "kramdown-parser-gfm", "~> 1.1"
+gem "jekyll-optional-front-matter", "~> 0.3.2", group: :jekyll_plugins
+gem "jekyll-titles-from-headings", "~> 0.5.3", group: :jekyll_plugins
+gem "webrick"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "minitest", ">= 5"
+gem "rake"
