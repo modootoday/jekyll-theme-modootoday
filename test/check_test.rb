@@ -271,4 +271,20 @@ class CheckTest < Minitest::Test
     end
   end
 
+
+  def test_tag_since_values_and_image_alt
+    page "a.md", "---\n---\n`tag:beta` `since:0.3.1` `tag:two words` `since:` `![](ok-in-code)`\n\n![](x.png)\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "`tag:two words` badge value"
+    assert_includes o, "`since:` badge value"
+    refute_includes o, "`tag:beta`"
+    assert_includes o, "image without alt text"
+  end
+
+  def test_v03_components_are_known
+    page "_config.yml", "modootoday:\n  components: [theme-toggle, breadcrumb, toc, accordion, steps, figure]\n"
+    assert_equal 0, check[1]
+  end
+
 end

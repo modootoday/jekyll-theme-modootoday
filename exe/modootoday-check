@@ -132,6 +132,10 @@ mds.each do |f|
   strip_fences(b).scan(/`status:([^`\s]*)`/) do |(v)|
     errs << "#{rel[f]}: unregistered status value `status:#{v}` (allowed: #{STATUS.join('/')})" unless STATUS.include?(v)
   end
+  strip_fences(b).scan(/`(tag|since):([^`]*)`/) do |(k, v)|
+    errs << "#{rel[f]}: `#{k}:#{v}` badge value must be one token [A-Za-z0-9._-]" unless v =~ /\A[A-Za-z0-9._-]+\z/
+  end
+  errs << "#{rel[f]}: image without alt text (![](...)); write ![description](...)" if strip_fences(b).gsub(/`[^`\n]*`/, "") =~ /!\[\s*\]\(/
   # 3. sections: count == number of ## headings
   meta = begin fm(text) rescue (errs << "#{rel[f]}: front matter YAML error"; {}) end
   secs = meta["sections"]
@@ -199,7 +203,7 @@ css.each do |f|
 end
 
 # 5c. modootoday: settings in the site _config.yml
-COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination].freeze
+COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-toggle breadcrumb toc accordion steps figure].freeze
 SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground accent
               accent-foreground border ring note tip important warning caution status-available status-partial
               status-planned font-sans font-mono font-size line-height measure space radius].freeze

@@ -2,6 +2,6 @@
   "name": "jekyll-theme-modootoday-tests",
   "private": true,
   "license": "MIT",
-  "scripts": { "test": "node --test test/tabs.test.js" },
+  "scripts": { "test": "node --test test/tabs.test.js test/components.test.js" },
   "devDependencies": { "jsdom": "^24.1.3" }
 }
