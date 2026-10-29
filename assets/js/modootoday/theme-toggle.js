@@ -1,4 +1,4 @@
-// jekyll-theme-modootoday — light/dark toggle (stored in localStorage "mt-theme").
+// Light/dark toggle (stored in localStorage "mt-theme").
 (() => {
   let root = document.documentElement, b = document.querySelector(".mt-theme-toggle");
   if (!b) return;

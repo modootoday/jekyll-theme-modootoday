@@ -1,23 +1,18 @@
-// Dropdown menus built on <details class="mt-menu"> (nav groups, language switcher). They open without JS;
-// this adds Esc (closes, focus back to the button), arrow keys between items, closing on outside click or
-// when another menu opens.
+// Menus: Esc, arrows, Home/End; one open.
 (() => {
-  let menus = [...document.querySelectorAll("details.mt-menu")];
-  if (!menus.length) return;
-  function close(d, focus) { if (d.open) { d.open = false; if (focus) d.querySelector("summary").focus(); } }
-  function items(d) { return [...d.querySelectorAll("ul a")]; }
+  const menus = [...document.querySelectorAll("details.mt-menu")];
+  const close = (d, focus) => { if (d.open) { d.open = false; if (focus) d.querySelector("summary").focus(); } };
   menus.forEach((d) => {
-    d.addEventListener("toggle", () => { if (d.open) menus.forEach((o) => { if (o !== d) close(o); }); });
+    d.addEventListener("toggle", () => d.open && menus.forEach((o) => o != d && close(o)));
     d.addEventListener("keydown", (e) => {
-      let list = items(d), i = list.indexOf(document.activeElement);
-      if (e.key === "Escape" && d.open) { e.preventDefault(); close(d, true); }
-      else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      const list = [...d.querySelectorAll("ul a")], i = list.indexOf(document.activeElement), k = e.key, L = list.length;
+      if (k == "Escape" && d.open) { e.preventDefault(); close(d, true); }
+      else if (k == "ArrowDown" || k == "ArrowUp") {
         e.preventDefault(); d.open = true;
-        let n = e.key === "ArrowDown" ? (i + 1) % list.length : (i <= 0 ? list.length - 1 : i - 1);
-        if (list[n]) list[n].focus();
-      } else if ((e.key === "Home" || e.key === "End") && i >= 0) { e.preventDefault(); list[e.key === "Home" ? 0 : list.length - 1].focus(); }
+        list[k == "ArrowDown" ? (i + 1) % L : (i <= 0 ? L - 1 : i - 1)]?.focus();
+      } else if ((k == "Home" || k == "End") && i >= 0) { e.preventDefault(); list[k == "Home" ? 0 : L - 1].focus(); }
     });
     d.addEventListener("focusout", (e) => { if (d.open && e.relatedTarget && !d.contains(e.relatedTarget)) close(d); });
   });
-  document.addEventListener("click", (e) => { menus.forEach((d) => { if (!d.contains(e.target)) close(d); }); });
+  document.addEventListener("click", (e) => menus.forEach((d) => d.contains(e.target) || close(d)));
 })();

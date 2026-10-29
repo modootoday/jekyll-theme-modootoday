@@ -1,22 +1,13 @@
-// jekyll-theme-modootoday — accordion (APG disclosure pattern) for sections with `c: accordion`.
-// Without JS the questions and answers stay plain headings and paragraphs.
+// Accordion (APG disclosure) for `c: accordion` sections; plain headings without JS.
 (() => {
   let n = 0;
-  document.querySelectorAll('[data-c="accordion"]').forEach((sec) => {
-    sec.querySelectorAll(":scope > h3").forEach((h) => {
-      let id = "mt-acc-" + (++n), panel = document.createElement("div");
-      panel.className = "mt-accordion-panel"; panel.id = id; panel.hidden = true;
-      while (h.nextSibling && !(h.nextSibling.nodeType === 1 && /^H[23]$/.test(h.nextSibling.tagName))) panel.append(h.nextSibling);
-      h.after(panel);
-      let b = document.createElement("button");
-      b.type = "button"; b.className = "mt-accordion-trigger";
-      b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", id);
-      while (h.firstChild) b.append(h.firstChild);
-      h.append(b);
-      b.addEventListener("click", () => {
-        let open = b.getAttribute("aria-expanded") !== "true";
-        b.setAttribute("aria-expanded", String(open)); panel.hidden = !open;
-      });
-    });
+  document.querySelectorAll('[data-c="accordion"] > h3').forEach((h) => {
+    const id = "mt-acc-" + ++n, panel = Object.assign(document.createElement("div"), { className: "mt-accordion-panel", id, hidden: true });
+    while (h.nextSibling && !/^H[23]$/.test(h.nextSibling.tagName)) panel.append(h.nextSibling);
+    h.after(panel);
+    const b = Object.assign(document.createElement("button"), { type: "button", className: "mt-accordion-trigger" });
+    b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", id);
+    b.append(...h.childNodes); h.append(b);
+    b.onclick = () => { const open = b.getAttribute("aria-expanded") != "true"; b.setAttribute("aria-expanded", open); panel.hidden = !open; };
   });
 })();

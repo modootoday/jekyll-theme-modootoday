@@ -1,39 +1,26 @@
-// md-components v1 — jekyll-theme-modootoday. Optional progressive enhancement:
-// inside section[data-tabs], consecutive h3 + code block pairs become ARIA tabs (WAI-ARIA APG Tabs).
-// Without JS every method stays visible in order.
+// section[data-tabs]: h3 + code pairs become APG tabs; all visible without JS.
 (() => {
   document.querySelectorAll("section[data-tabs]").forEach((sec, g) => {
-    const heads = [...sec.querySelectorAll(":scope > h3")].filter((h) =>
-      h.nextElementSibling && h.nextElementSibling.matches(".highlighter-rouge, pre"));
+    const heads = [...sec.querySelectorAll(":scope > h3")].filter((h) => h.nextElementSibling?.matches(".highlighter-rouge, pre"));
     if (heads.length < 2) return;
-    const list = document.createElement("div");
-    list.setAttribute("role", "tablist");
-    list.setAttribute("aria-label", sec.dataset.tabsLabel || "Options");
+    const list = Object.assign(document.createElement("div"), { role: "tablist", ariaLabel: sec.dataset.tabsLabel || "Options" }), tabs = [];
     heads[0].before(list);
-    const tabs = [];
-    const select = (n) => tabs.forEach((t) => {
-      const on = t === n;
-      t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; t._panel.hidden = !on;
-    });
+    const select = (n) => tabs.forEach((t) => { const on = t == n; t.ariaSelected = on; t.tabIndex = on ? 0 : -1; t._panel.hidden = !on; });
     heads.forEach((h, i) => {
       const panel = h.nextElementSibling, base = `mt-tabs-${g}-${h.id || i}`;
-      const b = document.createElement("button");
-      b.type = "button"; b.setAttribute("role", "tab"); b.id = `${base}-tab`; b.textContent = h.textContent;
-      if (!panel.id) panel.id = `${base}-panel`;
-      panel.setAttribute("role", "tabpanel"); panel.tabIndex = 0;
-      panel.setAttribute("aria-labelledby", b.id); b.setAttribute("aria-controls", panel.id);
-      b._panel = panel; b.addEventListener("click", () => select(b));
+      const b = Object.assign(document.createElement("button"), { type: "button", role: "tab", id: base + "-tab", textContent: h.textContent, _panel: panel });
+      panel.id ||= base + "-panel";
+      Object.assign(panel, { role: "tabpanel", tabIndex: 0 }).setAttribute("aria-labelledby", b.id);
+      b.setAttribute("aria-controls", panel.id); b.onclick = () => select(b);
       h.hidden = true; list.append(b); tabs.push(b);
     });
     select(tabs[0]);
     list.addEventListener("keydown", (e) => {
-      const i = tabs.indexOf(document.activeElement);
-      if (i < 0) return;
-      const r = list.closest("[dir]"), d = r && r.getAttribute("dir") === "rtl" ? -1 : 1; // arrows follow the visual order in RTL
-      const n = { ArrowRight: i + d, ArrowLeft: i - d, Home: 0, End: tabs.length - 1 }[e.key];
+      const i = tabs.indexOf(document.activeElement), d = list.closest("[dir]")?.dir == "rtl" ? -1 : 1, L = tabs.length;
+      const n = i < 0 ? undefined : { ArrowRight: i + d, ArrowLeft: i - d, Home: 0, End: L - 1 }[e.key];
       if (n === undefined) return;
       e.preventDefault();
-      const t = tabs[(n + tabs.length) % tabs.length]; select(t); t.focus();
+      const t = tabs[(n + L) % L]; select(t); t.focus();
     });
   });
 })();

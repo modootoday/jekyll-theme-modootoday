@@ -1,8 +1,8 @@
-// jekyll-theme-modootoday — copy buttons: code, page actions.
+// Copy buttons: code, page actions.
 (() => {
   if (!navigator.clipboard) return;
   const ds = document.documentElement.dataset, label = ds.mtCopy || "Copy", done = ds.mtCopied || "Copied";
-  // Icons match modootoday/brand/icon.html (copy, check): decorative, the button text is the name.
+  // Decorative icons from brand/icon.html; the text names the button.
   const icon = (d) => '<svg class="mt-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + d + "</svg>";
   const copy = icon('<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/>'), check = icon('<path d="m5 12 5 5 9-10"/>');
   const show = (b, ic, text) => { b.innerHTML = ic; b.append(text); };
