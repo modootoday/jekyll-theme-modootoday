@@ -46,7 +46,13 @@ Gemfile 없는 방식에서는 `modootoday-check`를 쓸 수 없고, 쌍둥이·
 
 ## 현지화와 커스터마이즈
 
-라벨은 `_data/i18n/<lang>.yml`의 `callout.*`, `tabs.label`, `status.*`, `skip`을 씁니다(없으면 영어). 디자인 토큰은 CSS 사용자 정의 속성(`--md-accent` 등)이라 사이트 CSS에서 덮어쓰면 되고, 라이트/다크는 `prefers-color-scheme`을 따릅니다. `<head>` 추가는 `_includes/head-custom.html`.
+라벨은 `_data/i18n/<lang>.yml`의 `callout.*`, `tabs.label`, `status.*`, `skip`을 씁니다(없으면 영어). `nav.label`, `pagination.*`, `code.copy`/`code.copied`도 있습니다.
+
+`_config.yml`의 `modootoday:` 블록(모두 선택): `color_scheme`(auto/light/dark), `css_layers`(true면 `@layer mt.*`), `components`(기본은 전부: callout, badge, hero, cta, card, tabs, code-copy, nav, pagination), `nav`(`_data/nav/<이름>.yml`), `tokens`/`tokens_dark`(시맨틱 토큰 덮어쓰기, 인라인 `<style id="mt-tokens">`로 출력). 기본값은 Liquid(`_includes/modootoday/config.html`)에 있습니다. Jekyll 3.10(GitHub Pages)은 테마의 `_config.yml`을 병합하지 않기 때문입니다.
+
+디자인 토큰은 3단계 CSS 사용자 정의 속성입니다. 기본 팔레트 `--mt-p-*`, shadcn식 이름의 시맨틱 토큰(`--mt-background`, `--mt-primary`, `--mt-muted-foreground` 등), 컴포넌트 토큰(`--mt-callout-accent` 등)이 있습니다. v0.1의 `--md-*`와 `md-*` 클래스는 별칭으로 남고 v0.3에서 없어집니다. Sass는 `@import`만 씁니다. `@use`/`@forward`는 GitHub Pages의 Ruby Sass에서 그대로 CSS에 남기 때문에 검사기가 오류로 잡습니다.
+
+지원 환경: GitHub Pages(Ruby 3.3.4, github-pages 232, Jekyll 3.10.0, `theme:`와 `remote_theme:` 모두 CI에서 `actions/jekyll-build-pages`로 확인)와 Jekyll 4.4(Ruby 3.2, 3.4). `required_ruby_version`은 `>= 3.2`입니다. `<head>` 추가는 `_includes/head-custom.html`.
 
 ## 검사기
 

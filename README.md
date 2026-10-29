@@ -52,9 +52,17 @@ permalink: pretty
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "ko"}, values: {lang: ko}}
-modootoday:
-  badges: true                # turn `status:*` code spans into badges (default true; per page: badges: false)
+modootoday:                   # every key is optional; defaults shown
+  badges: true                # turn `status:*` code spans into badges (per page: badges: false)
+  color_scheme: auto          # auto (prefers-color-scheme) | light | dark
+  css_layers: false           # true: wrap theme CSS in @layer mt.tokens, mt.base, mt.layout, mt.components
+  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination]   # narrow to ship less CSS/JS
+  nav: main                   # _data/nav/main.yml: [{title: Guide, url: /guide/}, ...]
+  tokens: {primary: "#c2410c", radius: 0.375rem}   # semantic token overrides, inlined as <style id="mt-tokens">
+  tokens_dark: {primary: "#fb923c"}
 ```
+
+Theme defaults live in Liquid (`_includes/modootoday/config.html`), not in a theme `_config.yml`: Jekyll 3.10 (GitHub Pages) does not merge a theme's `_config.yml`.
 
 Labels come from `_data/i18n/<lang>.yml` (English is the fallback):
 
@@ -63,6 +71,9 @@ callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution:
 tabs: {label: Install method}
 status: {available: Available, partial: Partial, planned: Planned}
 skip: Skip to content
+nav: {label: Site}
+pagination: {label: Pages, prev: Previous, next: Next}
+code: {copy: Copy, copied: Copied}
 ```
 
 ### Layouts
@@ -77,7 +88,10 @@ skip: Skip to content
 
 ### Customising
 
-- Override design tokens in your own CSS, e.g. `:root { --md-accent: #c2410c; --md-measure: 52rem; }`. Light and dark values follow `prefers-color-scheme`. All tokens: [`_sass/modootoday/_tokens.scss`](_sass/modootoday/_tokens.scss).
+- Design tokens are CSS custom properties in three layers: primitives `--mt-p-*` ([`tokens/_primitive.scss`](_sass/modootoday/tokens/_primitive.scss)), semantic tokens with shadcn-style names (`--mt-background`, `--mt-foreground`, `--mt-muted`, `--mt-muted-foreground`, `--mt-card`, `--mt-primary`, `--mt-primary-foreground`, `--mt-accent`, `--mt-border`, `--mt-ring`, `--mt-note` … `--mt-caution`, `--mt-status-*`, `--mt-font-*`, `--mt-space`, `--mt-radius`, `--mt-measure`; [`tokens/_semantic.scss`](_sass/modootoday/tokens/_semantic.scss)), and component tokens (`--mt-callout-accent`, `--mt-badge-color`, `--mt-badge-radius`, `--mt-card-padding`). Set them with `modootoday.tokens` or in your own CSS. The v0.1 `--md-*` properties and `md-*` classes still work as aliases and will be removed in v0.3.
+- Force a scheme per page with `<html data-theme="light|dark">` (set from `color_scheme`).
+- Sass: shadow `assets/css/modootoday.scss` and `@import "modootoday/core";` plus only the `modootoday/components/<name>` partials you want. Use `@import`, never `@use`/`@forward` (Ruby Sass on GitHub Pages copies them into the CSS); the checker rejects them. Dart Sass prints `@import`/global-function deprecation warnings; silence them with `sass: {silence_deprecations: [import, global-builtin]}` on Jekyll 4.
+- Add footer content with `_includes/footer-custom.html`.
 - Add tags to `<head>` with your own `_includes/head-custom.html`.
 - Replace the whole stylesheet by adding your own `assets/css/modootoday.scss`.
 
@@ -157,6 +171,15 @@ npm ci && npm test                                         # jsdom tests for md-
 ```
 
 Use `gemfiles/github-pages.gemfile` for the GitHub Pages stack. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Supported stacks
+
+| Stack | Ruby | Tested in CI |
+|---|---|---|
+| GitHub Pages (`github-pages` 232, Jekyll 3.10.0, Ruby Sass 3.7.4, kramdown 2.4.0) | 3.3.4 (as in production) | `theme:` gem build, plus `remote_theme:` built by `actions/jekyll-build-pages@v1` |
+| Jekyll 4.4 (Dart Sass via `sass-embedded`) | 3.2 – 3.4 | 3.2 and 3.4 |
+
+`required_ruby_version` is `>= 3.2` (the oldest Ruby tested, and the minimum of `sass-embedded`).
 
 ## Versioning
 

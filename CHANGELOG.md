@@ -6,6 +6,28 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
+## [0.2.0] - Unreleased
+
+### Added
+- Three-layer design tokens: primitives `--mt-p-*`, shadcn-style semantic tokens (`--mt-background`, `--mt-primary`, …), component tokens (`--mt-callout-accent`, `--mt-badge-*`, `--mt-card-padding`); `data-theme="light|dark"` forcing.
+- Sass split into `_sass/modootoday/{_settings,_core}.scss`, `tools/`, `tokens/`, `components/<name>.scss`; `@import` only, compiles on Ruby Sass 3.7 and Dart Sass.
+- `modootoday:` config: `color_scheme`, `css_layers` (`@layer mt.*`, off by default), `components` (all P0 components on by default), `nav`, `tokens`, `tokens_dark` (inlined `<style id="mt-tokens">`). Defaults in `_includes/modootoday/config.html`.
+- Components: navigation (`_data/nav/*.yml`, `aria-current`), prev/next pagination, code-copy button (`assets/js/modootoday/code-copy.js`); `mt-*` classes for callout, badge, hero, CTA, card (features), tabs.
+- `_includes/footer-custom.html` hook; i18n keys `nav.label`, `pagination.*`, `code.*`.
+- Checker: rejects `@use`/`@forward`/`@supports selector()` in Sass and built CSS, `--x: $var` literals, undefined `var(--mt-*)`, invalid `modootoday:` settings and token values.
+- Tests: theme CSS built with all/minimal/layers configs on both engines (`test/css_test.rb`).
+- CI: github-pages job on Ruby 3.3.4 with the production gem set (github-pages 232, jekyll-include-cache 0.2.1, jekyll-octicons 14.2, nokogiri 1.16.7); `remote_theme:` site built by `actions/jekyll-build-pages@v1` and checked; Jekyll 4 on Ruby 3.2 and 3.4.
+
+### Changed
+- `required_ruby_version` is now `>= 3.2`.
+- `badges: false` in `modootoday:` is honoured (it was swallowed by `default: true`).
+
+### Deprecated
+- `--md-*` custom properties and `md-*` classes (aliases of `--mt-*`/`mt-*`); removal planned for v0.3.
+
+### Removed
+- `_sass/modootoday/{_tokens,_base,_components}.scss` (replaced by the new partials; `_sass/modootoday.scss` still imports everything).
+
 ## [0.1.0] - Unreleased
 
 ### Added
