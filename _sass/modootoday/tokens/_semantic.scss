@@ -2,19 +2,22 @@
 $mt-base: (
   font-sans: (system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans KR", "Noto Sans JP", sans-serif),
   font-mono: (ui-monospace, SFMono-Regular, Menlo, Consolas, monospace),
-  font-size: 1rem, line-height: 1.65, measure: 46rem,
-  space: var(--mt-p-space-4), radius: var(--mt-p-radius-md)
+  font-size: 1rem, line-height: 1.7, measure: 46rem, container: 76rem, header-height: 3.75rem,
+  space: var(--mt-p-space-4), space-section: var(--mt-p-space-12), radius: var(--mt-p-radius-md), radius-lg: var(--mt-p-radius-lg)
 ) !default;
 $mt-light: (
   background: var(--mt-p-white), foreground: var(--mt-p-gray-850),
   muted: var(--mt-p-gray-50), muted-foreground: var(--mt-p-gray-500),
-  card: var(--mt-p-gray-50), card-foreground: var(--mt-p-gray-850),
+  card: var(--mt-p-white), card-foreground: var(--mt-p-gray-850),
   primary: var(--mt-p-blue-600), primary-foreground: var(--mt-p-white),
   accent: var(--mt-p-gray-100), accent-foreground: var(--mt-p-gray-850),
   border: var(--mt-p-gray-200), ring: var(--mt-p-blue-600),
   note: var(--mt-p-blue-600), tip: var(--mt-p-green-600), important: var(--mt-p-purple-600),
   warning: var(--mt-p-yellow-600), caution: var(--mt-p-red-600),
-  status-available: var(--mt-p-green-600), status-partial: var(--mt-p-yellow-600), status-planned: var(--mt-p-gray-500)
+  status-available: var(--mt-p-green-600), status-partial: var(--mt-p-yellow-600), status-planned: var(--mt-p-gray-500),
+  shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06), shadow: 0 6px 20px -6px rgba(31, 35, 40, 0.16),
+  code-keyword: var(--mt-p-red-600), code-string: var(--mt-p-teal-600), code-comment: var(--mt-p-gray-500),
+  code-function: var(--mt-p-purple-600), code-constant: var(--mt-p-orange-600)
 ) !default;
 $mt-dark: (
   background: var(--mt-p-gray-900), foreground: var(--mt-p-gray-100d),
@@ -25,7 +28,10 @@ $mt-dark: (
   border: var(--mt-p-gray-700), ring: var(--mt-p-blue-400),
   note: var(--mt-p-blue-400), tip: var(--mt-p-green-400), important: var(--mt-p-purple-400),
   warning: var(--mt-p-yellow-400), caution: var(--mt-p-red-400),
-  status-available: var(--mt-p-green-400), status-partial: var(--mt-p-yellow-400), status-planned: var(--mt-p-gray-400)
+  status-available: var(--mt-p-green-400), status-partial: var(--mt-p-yellow-400), status-planned: var(--mt-p-gray-400),
+  shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5),
+  code-keyword: var(--mt-p-red-400), code-string: var(--mt-p-teal-400), code-comment: var(--mt-p-gray-400),
+  code-function: var(--mt-p-purple-400), code-constant: var(--mt-p-orange-400)
 ) !default;
 $mt-light: map-merge($mt-light, $mt-overrides);
 $mt-dark: map-merge($mt-dark, $mt-overrides-dark);
