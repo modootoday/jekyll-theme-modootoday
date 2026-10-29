@@ -1,16 +1,21 @@
-{%- comment -%}Previous / next in nav order (only for pages listed in the nav; front matter pagination: false hides it).{%- endcomment -%}
+{%- comment -%}Previous / next in docs order: the nav flattened, a group's own page first, then its items (only for pages listed in the nav; front matter pagination: false hides it).{%- endcomment -%}
 {%- if mt_nav and mt_components contains "pagination" and page.pagination != false -%}
+{%- assign _flat = "" | split: "" -%}
+{%- for it in mt_nav -%}
+{%- if it.url -%}{%- assign _one = mt_nav | where: "url", it.url -%}{%- assign _flat = _flat | concat: _one -%}{%- endif -%}
+{%- if it.items -%}{%- assign _flat = _flat | concat: it.items -%}{%- endif -%}
+{%- endfor -%}
 {%- assign _ix = -1 -%}
-{%- for it in mt_nav -%}{%- if it.url == page.url -%}{%- assign _ix = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- for it in _flat -%}{%- if it.url == page.url and _ix < 0 -%}{%- assign _ix = forloop.index0 -%}{%- endif -%}{%- endfor -%}
 {%- if _ix >= 0 -%}
 {%- assign _pi = _ix | minus: 1 -%}{%- assign _ni = _ix | plus: 1 -%}
 {%- include modootoday/i18n.html lang=_lang -%}
-{%- if _pi >= 0 or _ni < mt_nav.size %}
+{%- if _pi >= 0 or _ni < _flat.size %}
 <nav class="mt-pagination" aria-label="{{ mt_t_pagination_label }}">
-{%- if _pi >= 0 %}{% assign _p = mt_nav[_pi] %}
+{%- if _pi >= 0 %}{% assign _p = _flat[_pi] %}
 <a rel="prev" href="{{ _p.url | relative_url }}"><small>{% include modootoday/brand/icon.html name="prev" size=14 %} {{ mt_t_pagination_prev }}</small> {{ _p.title }}</a>
 {%- endif -%}
-{%- if _ni < mt_nav.size %}{% assign _n = mt_nav[_ni] %}
+{%- if _ni < _flat.size %}{% assign _n = _flat[_ni] %}
 <a rel="next" href="{{ _n.url | relative_url }}"><small>{{ mt_t_pagination_next }} {% include modootoday/brand/icon.html name="next" size=14 %}</small> {{ _n.title }}</a>
 {%- endif %}
 </nav>
