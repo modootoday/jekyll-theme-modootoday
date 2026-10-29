@@ -1,0 +1,7 @@
+{
+  "_comment": "Median of RUNS Lighthouse runs per page and form factor. Accessibility, best practices and SEO are deterministic and pinned at 100; performance varies with runner load, so it has a stable floor.",
+  "accessibility": 100,
+  "best-practices": 100,
+  "seo": 100,
+  "performance": { "desktop": 90, "mobile": 80 }
+}

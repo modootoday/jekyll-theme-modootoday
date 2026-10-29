@@ -1,12 +1,15 @@
 name: Visual regression
 
-# Report-only: screenshots the docs/ site built from the base commit and from this commit on the
-# same runner, then compares them pixel by pixel. Both sides use the same OS image and fonts, so
-# platform font differences cannot cause false diffs. It never fails the build; differences are
-# listed in the job summary and the diff images are uploaded as the "visual" artifact.
+# Screenshots the docs/ site built from the base commit and from this commit on the same runner,
+# then compares them pixel by pixel. Both sides use the same OS image and fonts, so platform font
+# differences cannot cause false diffs, and no baseline images are committed.
+# Pull requests: blocking. An intended visual change is approved with the `visual-ok` label
+# (labelling re-runs the check). Pushes to main: report only. Differences are listed in the job
+# summary and the diff images are uploaded as the "visual" artifact.
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
   push:
     branches: [main]
 
@@ -54,11 +57,14 @@ jobs:
       - name: Build docs/ at this commit
         if: steps.base.outputs.skip != 'true'
         run: qa/build-docs.sh docs/_site
-      - name: Compare (report only)
+      - name: Compare
         if: steps.base.outputs.skip != 'true'
-        run: node qa/visual.mjs docs/_site --baseline qa-out/visual/baseline --out qa-out/visual/changed --report
+        env:
+          # Blocking on pull requests unless labelled visual-ok; report only on pushes.
+          REPORT: ${{ (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'visual-ok')) && '--report' || '' }}
+        run: node qa/visual.mjs docs/_site --baseline qa-out/visual/baseline --out qa-out/visual/changed $REPORT
       - uses: actions/upload-artifact@v7
-        if: steps.base.outputs.skip != 'true'
+        if: always() && steps.base.outputs.skip != 'true'
         with:
           name: visual
           path: qa-out/visual

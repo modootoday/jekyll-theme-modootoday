@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029210930
 title: "Docs site QA gate: deterministic checks in CI, Lighthouse local only"
-status: active
+status: superseded
 created: 2026-10-29T21:09:30Z
-updated: 2026-10-29T21:09:40Z
+updated: 2026-10-29T21:19:06Z
 rel:
   governs: [qa]
 ---
