@@ -27,7 +27,7 @@ class CheckTest < Minitest::Test
   end
 
   def check(*flags)
-    o, e, st = Open3.capture3({ "BUNDLE_GEMFILE" => nil }, RbConfig.ruby, CHECK, @src, @site, *flags)
+    o, e, st = Open3.capture3({ "BUNDLE_GEMFILE" => nil, "RUBYOPT" => nil, "BUNDLER_SETUP" => nil, "BUNDLER_VERSION" => nil }, RbConfig.ruby, CHECK, @src, @site, *flags)
     [o + e, st.exitstatus]
   end
 
