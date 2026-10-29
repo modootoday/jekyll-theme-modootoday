@@ -1,0 +1,12 @@
+// Search box (header) and results list; needs a site /search.json (include modootoday/search.json).
+@include mt-layer(components) {
+  .mt-search { position: relative; margin-left: auto; }
+  .mt-search input { font: inherit; font-size: .9rem; padding: .3rem .6rem; border: 1px solid mt(border); border-radius: mt(radius);
+    background: mt(background); color: mt(foreground); width: 12rem; }
+  .mt-search input:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
+  .mt-search-results { position: absolute; right: 0; z-index: 10; list-style: none; margin: .25rem 0 0; padding: .25rem; min-width: 16rem;
+    background: mt(card); color: mt(card-foreground); border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-search-results:empty { display: none; }
+  .mt-search-results a { display: block; padding: .3rem .5rem; border-radius: var(--mt-p-radius-sm); }
+  .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
+}

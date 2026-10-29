@@ -1,0 +1,4 @@
+// Post layout meta line (date, author, tags).
+@include mt-layer(components) {
+  .mt-post-meta { color: mt(muted-foreground); font-size: .9rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+}
