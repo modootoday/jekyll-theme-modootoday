@@ -1,0 +1,4 @@
+{%- comment -%}Copy-link (and native share where available) button; assets/js/modootoday/share.js wires it. Off with modootoday.blog.share: false.{%- endcomment -%}
+{%- if mt_blog_share %}
+<p class="mt-share" data-part="share"><button class="mt-share-button" type="button" data-mt-share data-url="{{ page.url | absolute_url }}" data-title="{{ page.title | escape }}" data-copied="{{ mt_t_blog_copied }}" hidden>{% include modootoday/brand/icon.html name="copy" size=16 %}<span>{{ mt_t_blog_share }}</span></button><span class="mt-sr-only" role="status" aria-live="polite"></span></p>
+{%- endif -%}

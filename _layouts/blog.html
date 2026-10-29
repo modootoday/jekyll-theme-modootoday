@@ -1,0 +1,28 @@
+---
+layout: default
+---
+{%- comment -%}mt blog index: page body (intro), then post cards and newer/older links. Liquid only (github-pages and Jekyll 4).
+  Front matter: variant (list | grid | magazine), featured (true: first card leads), category / tag (filter), lang ("all" mixes languages).
+  Pagination: with jekyll-paginate (paginate: N in _config.yml) on index.html the paginator's posts are used;
+  otherwise the newest modootoday.blog.per_page posts are shown and an older-posts link goes to archive_url (default the tag archive).{%- endcomment -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- include modootoday/i18n.html lang=_lang -%}
+{%- include modootoday/blog/config.html -%}
+<div class="mt-blog" data-variant="{{ mt_blog_variant }}">
+{%- if content != "" %}
+<header class="mt-blog-intro mt-doc">{{ content }}</header>
+{%- endif -%}
+{%- if paginator.posts -%}{%- assign _bp = paginator.posts -%}{%- assign _bmore = false -%}
+{%- else -%}
+{%- include modootoday/blog/select.html lang=page.posts_lang category=page.category tag=page.tag -%}
+{%- assign _bp = mt_posts -%}{%- assign _bmore = false -%}{%- if mt_posts.size > mt_blog_per_page -%}{%- assign _bmore = true -%}{%- endif -%}
+{%- endif -%}
+{%- assign _bf = page.featured | default: false -%}{%- if mt_blog_variant == "magazine" -%}{%- assign _bf = true -%}{%- endif -%}
+{%- if _bp.size == 0 %}
+<p class="mt-archive-empty">{{ mt_t_archive_empty }}</p>
+{%- else -%}
+{% include modootoday/blog/list.html posts=_bp limit=mt_blog_per_page featured=_bf %}
+{%- endif -%}
+{%- assign _bau = page.archive_url | default: site.modootoday.archive.tags -%}
+{% include modootoday/blog/pager.html more=_bmore url=_bau %}
+</div>

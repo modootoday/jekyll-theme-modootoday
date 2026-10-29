@@ -1,0 +1,35 @@
+{%- comment -%}mt Atom feed (Liquid only; use instead of jekyll-feed, or for per-language feeds). Create feed.xml:
+  ---
+  layout: feed
+  ---
+  Front matter: feed_lang (default page.lang or site.lang; "all" mixes), limit (default 20), category / tag (filtered feed).
+  Content is the post's excerpt unless feed_content: full.{%- endcomment -%}
+{%- assign _fl = page.feed_lang | default: page.lang | default: site.lang | default: "en" -%}
+{%- include modootoday/blog/select.html lang=_fl category=page.category tag=page.tag -%}
+{%- assign _flim = page.limit | default: 20 -%}
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"{% unless _fl == "all" %} xml:lang="{{ _fl }}"{% endunless %}>
+<title>{{ page.feed_title | default: site.title | xml_escape }}</title>
+{%- if site.description %}<subtitle>{{ site.description | xml_escape }}</subtitle>{% endif %}
+<link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml"/>
+<link href="{{ page.home | default: '/' | absolute_url }}" rel="alternate" type="text/html"/>
+<id>{{ page.url | absolute_url | xml_escape }}</id>
+<updated>{% if mt_posts.size > 0 %}{{ mt_posts.first.last_modified_at | default: mt_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+<generator uri="https://github.com/modootoday/jekyll-theme-modootoday">jekyll-theme-modootoday</generator>
+{%- for _p in mt_posts limit: _flim %}
+<entry>
+<title type="html">{{ _p.title | strip_html | xml_escape }}</title>
+<link href="{{ _p.url | absolute_url }}" rel="alternate" type="text/html"/>
+<id>{{ _p.url | absolute_url | xml_escape }}</id>
+<published>{{ _p.date | date_to_xmlschema }}</published>
+<updated>{{ _p.last_modified_at | default: _p.updated | default: _p.date | date_to_xmlschema }}</updated>
+{%- assign _fa = _p.authors | default: _p.author -%}{%- if _fa and _fa.first == nil -%}{%- assign _fa = _fa | split: "," -%}{%- endif -%}
+{%- for _id in _fa %}{% assign _id = _id | strip %}<author><name>{{ site.data.authors[_id].name | default: _id | xml_escape }}</name></author>{% endfor -%}
+{%- for _c in _p.categories %}<category term="{{ _c | xml_escape }}"/>{% endfor -%}{%- for _t in _p.tags %}<category term="{{ _t | xml_escape }}"/>{% endfor %}
+<summary type="html">{{ _p.description | default: _p.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
+{%- if page.feed_content == "full" %}
+<content type="html">{{ _p.content | xml_escape }}</content>
+{%- endif %}
+</entry>
+{%- endfor %}
+</feed>

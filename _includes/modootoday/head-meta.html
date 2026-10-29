@@ -3,7 +3,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.seo        false drops canonical, hreflang and Open Graph (use jekyll-seo-tag instead)
   site.modootoday.hreflang   true keeps the hreflang alternates when seo is false (default: follows seo)
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
-  site.modootoday.feed       true adds the Atom link to /feed.xml (add jekyll-feed to plugins)
+  site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
   site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
 {%- endcomment -%}
@@ -50,7 +50,18 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- endif %}
 {%- endif -%}
 {%- unless site.modootoday.seo == false -%}
-<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+{%- assign _mt_art = false -%}{%- if page.layout == "post" or page.layout == "news-article" -%}{%- assign _mt_art = true -%}{%- endif %}
+<meta property="og:type" content="{% if _mt_art %}article{% else %}website{% endif %}">
+{%- if _mt_art %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- assign _mt_mod = page.last_modified_at | default: page.updated -%}{%- if _mt_mod %}
+<meta property="article:modified_time" content="{{ _mt_mod | date_to_xmlschema }}">
+{%- endif -%}{%- if page.categories.size > 0 %}
+<meta property="article:section" content="{{ page.categories | first | escape }}">
+{%- endif -%}{%- for _mt_t in page.tags %}
+<meta property="article:tag" content="{{ _mt_t | escape }}">
+{%- endfor -%}
+{%- endif -%}
 <meta property="og:title" content="{{ page.title | default: site.title | strip_html | escape }}">
 {%- if page.description or site.description %}
 <meta property="og:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
@@ -62,7 +73,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <meta property="og:url" content="{{ _mt_url }}">
 {%- endif -%}
 <meta property="og:locale" content="{{ page.lang | default: site.lang | default: 'en' | replace: '-', '_' }}">
-{%- assign _mt_img = page.image | default: site.modootoday.og_image -%}
+{%- assign _mt_img = page.image.path | default: page.image | default: site.modootoday.og_image -%}
 {%- if _mt_img %}
 <meta property="og:image" content="{{ _mt_img | absolute_url }}">
 <meta name="twitter:card" content="summary_large_image">
@@ -70,6 +81,8 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <meta name="twitter:card" content="summary">
 {%- endif -%}
 {%- endunless -%}
-{%- if site.modootoday.feed == true %}
-<link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+{%- if site.modootoday.feed == true -%}
+{%- assign _mt_feed = "/feed.xml" -%}{%- assign _mt_fd = site.lang | default: "en" -%}{%- assign _mt_fl = page.lang | default: _mt_fd -%}
+{%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- assign _mt_lfp = site.pages | where: "url", _mt_lf | first -%}{%- if _mt_lfp -%}{%- assign _mt_feed = _mt_lf -%}{%- endif -%}{%- endif %}
+<link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ _mt_feed | relative_url }}">
 {%- endif -%}

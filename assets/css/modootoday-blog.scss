@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday blog and news stylesheet: loaded only by the post, blog, news, news-article and author layouts
+# (or front matter blog_css: true), so the core bundle stays small. Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/blog/index";

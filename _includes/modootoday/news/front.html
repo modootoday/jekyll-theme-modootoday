@@ -1,0 +1,30 @@
+{%- comment -%}News front page: lead story, secondary grid, latest list, then one section per category.
+  lead / secondary / latest: counts (defaults 1 / 4 / 6). sections: category names (default modootoday.news.sections, else none).
+  A post with featured: true leads; otherwise the newest does. posts: override the selection (default: this language's posts).{%- endcomment -%}
+{%- assign _fp = include.posts -%}{%- unless _fp -%}{%- include modootoday/blog/select.html -%}{%- assign _fp = mt_posts -%}{%- endunless -%}
+{%- assign _fs = include.secondary | default: 4 -%}{%- assign _fl = include.latest | default: 6 -%}
+{%- assign _flead = _fp | where: "featured", true | first | default: _fp.first -%}
+{%- assign _frest = "" | split: "" -%}{%- for _p in _fp -%}{%- if _p.url != _flead.url -%}{%- assign _frest = _frest | push: _p -%}{%- endif -%}{%- endfor -%}
+{%- if _flead %}
+<div class="mt-news-top" data-part="top">
+<div class="mt-news-lead" data-part="lead">{% include modootoday/blog/card.html post=_flead featured=true heading="h2" %}</div>
+<div class="mt-news-secondary" data-part="secondary">{% include modootoday/blog/list.html posts=_frest limit=_fs variant="grid" heading="h3" excerpt=false %}</div>
+</div>
+{%- assign _fo = _fs -%}
+{%- if _frest.size > _fo %}
+<section class="mt-news-latest" data-part="latest" aria-labelledby="mt-news-latest"><h2 id="mt-news-latest">{{ mt_t_blog_latest }}</h2>
+{% include modootoday/blog/list.html posts=_frest offset=_fo limit=_fl variant="list" heading="h3" excerpt=false %}
+</section>
+{%- endif -%}
+{%- assign _fsec = include.sections | default: site.modootoday.news.sections -%}
+{%- for _fc in _fsec -%}
+{%- include modootoday/blog/select.html category=_fc -%}
+{%- if mt_posts.size > 0 %}
+{%- assign _cid = _fc | slugify | prepend: "mt-news-" -%}
+<section class="mt-news-section" data-part="section" data-category="{{ _fc | slugify }}" aria-labelledby="{{ _cid }}"><h2 id="{{ _cid }}">{{ _fc }}</h2>
+{% include modootoday/blog/list.html posts=mt_posts limit=4 variant="grid" heading="h3" excerpt=false %}
+{%- if mt_posts.size > 4 and site.modootoday.archive.categories %}<p class="mt-news-more"><a href="{{ site.modootoday.archive.categories | relative_url }}#categories-{{ _fc | slugify }}">{{ mt_t_blog_more | replace: "[section]", _fc }}</a></p>{% endif %}
+</section>
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}

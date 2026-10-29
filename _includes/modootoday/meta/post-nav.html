@@ -1,0 +1,16 @@
+{%- comment -%}Previous / next post in the same language (newer = next). front matter post_nav: false hides it.{%- endcomment -%}
+{%- unless page.post_nav == false -%}
+{%- include modootoday/blog/select.html -%}
+{%- for _p in mt_posts -%}{%- if _p.url == page.url -%}{%- assign _mpi = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- if _mpi -%}
+{%- assign _mpn = _mpi | minus: 1 -%}{%- assign _mpv = _mpi | plus: 1 -%}
+{%- if _mpn >= 0 or _mpv < mt_posts.size %}
+<nav class="mt-pagination mt-post-nav" aria-label="{{ mt_t_pagination_label }}">
+{%- if _mpv < mt_posts.size %}{% assign _p = mt_posts[_mpv] %}
+<a rel="prev" href="{{ _p.url | relative_url }}"><small>{% include modootoday/brand/icon.html name="prev" size=14 %} {{ mt_t_pagination_prev }}</small> {{ _p.title | escape }}</a>
+{%- endif -%}
+{%- if _mpn >= 0 %}{% assign _p = mt_posts[_mpn] %}
+<a rel="next" href="{{ _p.url | relative_url }}"><small>{{ mt_t_pagination_next }} {% include modootoday/brand/icon.html name="next" size=14 %}</small> {{ _p.title | escape }}</a>
+{%- endif %}
+</nav>
+{%- endif -%}{%- endif -%}{%- endunless -%}

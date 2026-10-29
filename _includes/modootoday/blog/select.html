@@ -1,0 +1,18 @@
+{%- comment -%}Selects posts into mt_posts (newest first). Liquid only.
+  lang: language filter (default page.lang or site.lang; "all" keeps every post). A post's language is post.lang or site.lang.
+  category / tag / author / series: keep posts that have it. kind: news keeps posts with layout news-article or kind: news.
+  Drafts-like front matter hidden: true and list: false are skipped.{%- endcomment -%}
+{%- assign _sl = include.lang | default: page.lang | default: site.lang | default: "en" -%}
+{%- assign _sd = site.lang | default: "en" -%}
+{%- assign mt_posts = "" | split: "" -%}
+{%- for _p in site.posts -%}
+{%- if _p.hidden == true or _p.list == false -%}{%- continue -%}{%- endif -%}
+{%- assign _pl = _p.lang | default: _sd -%}
+{%- if _sl != "all" and _pl != _sl -%}{%- continue -%}{%- endif -%}
+{%- if include.category -%}{%- unless _p.categories contains include.category -%}{%- continue -%}{%- endunless -%}{%- endif -%}
+{%- if include.tag -%}{%- unless _p.tags contains include.tag -%}{%- continue -%}{%- endunless -%}{%- endif -%}
+{%- if include.series and _p.series != include.series -%}{%- continue -%}{%- endif -%}
+{%- if include.author -%}{%- assign _pa = _p.authors | default: _p.author -%}{%- unless _pa contains include.author -%}{%- continue -%}{%- endunless -%}{%- endif -%}
+{%- if include.kind == "news" -%}{%- unless _p.layout == "news-article" or _p.kind == "news" -%}{%- continue -%}{%- endunless -%}{%- endif -%}
+{%- assign mt_posts = mt_posts | push: _p -%}
+{%- endfor -%}

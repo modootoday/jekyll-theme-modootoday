@@ -1,0 +1,10 @@
+{%- comment -%}News article end notes from front matter: correction: "text" (with correction_date:), sources: [{title, url}] or strings, credits: "text".{%- endcomment -%}
+{%- if page.correction %}
+<aside class="mt-callout mt-news-correction" data-variant="warning" data-part="correction"><p class="mt-callout-title">{{ mt_t_blog_correction }}{% if page.correction_date %} · <time datetime="{{ page.correction_date | date_to_xmlschema }}">{{ page.correction_date | date: mt_t_post_date_format }}</time>{% endif %}</p><p>{{ page.correction }}</p></aside>
+{%- endif -%}
+{%- if page.sources.size > 0 %}
+<section class="mt-news-sources" data-part="sources"><h2>{{ mt_t_blog_sources }}</h2><ul>
+{%- for _s in page.sources %}<li>{% if _s.url %}<a href="{{ _s.url }}">{{ _s.title | default: _s.url }}</a>{% else %}{{ _s }}{% endif %}</li>{% endfor -%}
+</ul></section>
+{%- endif -%}
+{%- if page.credits %}<p class="mt-news-credits" data-part="credits">{{ page.credits }}</p>{% endif -%}

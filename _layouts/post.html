@@ -1,7 +1,8 @@
 ---
 layout: doc
 ---
-{%- comment -%}md-components v1 — post layout: date/author/tags meta line, the doc pipeline, then a footer linking each tag and category to its archive section.
+{%- comment -%}mt post layout: header (badges, deck, byline with authors, dates and reading time, cover with alt/caption), series box,
+  the doc pipeline, news notes (correction, sources, credits), tag/category footer, share, previous/next post, related posts, JSON-LD.
   Links point at the archive pages set in _config.yml: modootoday.archive: {tags: /tags/, categories: /categories/}.
   For a post whose lang is not site.lang the URL is prefixed with /<lang> (/ko/tags/). Without the setting there is no footer.{%- endcomment -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
@@ -11,12 +12,32 @@ layout: doc
 {%- assign _pre = "" -%}{%- if _lang != _site_lang -%}{%- assign _pre = _lang | prepend: "/" -%}{%- endif -%}
 {%- assign _tu = site.modootoday.archive.tags -%}{%- if _tu -%}{%- assign _tu = _tu | prepend: _pre | relative_url -%}{%- endif -%}
 {%- assign _cu = site.modootoday.archive.categories -%}{%- if _cu -%}{%- assign _cu = _cu | prepend: _pre | relative_url -%}{%- endif -%}
-<p class="mt-post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: _fmt }}</time>
-{%- if page.author %} · <span class="mt-post-author">{{ page.author }}</span>{% endif -%}
-{%- for t in page.tags %} <span class="mt-badge mt-badge-tag" data-variant="tag">{{ t }}</span>{% endfor -%}
-</p>
-
+{%- include modootoday/blog/config.html -%}
+{%- assign _news = false -%}{%- if page.layout == "news-article" or page.kind == "news" -%}{%- assign _news = true -%}{%- endif -%}
+{%- capture _hdr -%}<header class="mt-post-header" data-part="header"{% if _news %} data-kind="news"{% endif %}>
+{%- if page.breaking or page.live %}<p class="mt-post-flags">{% if page.breaking %}{% include modootoday/news/badge.html kind="breaking" %}{% else %}{% include modootoday/news/badge.html kind="live" %}{% endif %}</p>{% endif -%}
+{%- assign _deck = page.deck | default: page.subtitle -%}{%- if _news -%}{%- assign _deck = _deck | default: page.description -%}{%- endif -%}
+{%- if _deck %}<p class="mt-post-deck" data-part="deck">{{ _deck }}</p>{% endif %}
+{% include modootoday/meta/byline.html %}
+{%- unless _tu or _cu %}{% if page.tags.size > 0 %}<p class="mt-post-meta" data-part="terms">{% for t in page.tags %}<span class="mt-badge mt-badge-tag" data-variant="tag">{{ t }}</span>{% endfor %}</p>{% endif %}{% endunless %}
+{%- assign _cov = page.image.path | default: page.image -%}
+{%- if _cov and page.cover != false %}
+<figure class="mt-post-cover" data-part="cover"><img src="{{ _cov | relative_url }}" alt="{{ page.image.alt | default: page.image_alt | escape }}" decoding="async" fetchpriority="high">
+{%- assign _cap = page.image.caption | default: page.image_caption -%}{%- if _cap %}<figcaption>{{ _cap }}</figcaption>{% endif %}</figure>
+{%- endif %}
+</header>
+{% include modootoday/meta/series.html %}
+{%- endcapture -%}
+{%- if content contains "</h1>" -%}
+{%- assign _h1 = content | split: "</h1>" | first | append: "</h1>" -%}
+{{ _h1 }}
+{{ _hdr }}
+{{ content | remove_first: _h1 }}
+{%- else %}
+<h1 class="mt-post-title" data-part="title">{{ page.title | escape }}</h1>
+{{ _hdr }}
 {{ content }}
+{%- endif %}
 {%- if _tu or _cu -%}{%- if page.tags.size > 0 or page.categories.size > 0 %}
 <footer class="mt-post-terms">
 {%- if _cu and page.categories.size > 0 %}
@@ -27,3 +48,8 @@ layout: doc
 {%- endif %}
 </footer>
 {%- endif -%}{%- endif -%}
+{%- if _news %}{% include modootoday/news/notes.html %}{% endif %}
+{% include modootoday/meta/share.html %}
+{% include modootoday/meta/post-nav.html %}
+{%- if _news %}{% include modootoday/meta/related.html %}{% else %}{% include modootoday/meta/related.html %}{% endif %}
+{% include modootoday/meta/jsonld.html %}

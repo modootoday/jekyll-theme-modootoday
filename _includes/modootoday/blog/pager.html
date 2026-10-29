@@ -1,0 +1,15 @@
+{%- comment -%}Newer/older links for a blog index. Uses jekyll-paginate's paginator when the page is paginated
+  (GitHub Pages: paginate: N and paginate_path in _config.yml, index.html only); otherwise links the archive when posts were cut.{%- endcomment -%}
+{%- if paginator.total_pages > 1 %}
+<nav class="mt-pagination mt-pager" aria-label="{{ mt_t_pagination_label }}">
+{%- if paginator.previous_page %}
+<a rel="prev" href="{{ paginator.previous_page_path | relative_url }}"><small>{% include modootoday/brand/icon.html name="prev" size=14 %} {{ mt_t_blog_newer }}</small></a>
+{%- endif -%}
+<span class="mt-pager-count">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+{%- if paginator.next_page %}
+<a rel="next" href="{{ paginator.next_page_path | relative_url }}"><small>{{ mt_t_blog_older }} {% include modootoday/brand/icon.html name="next" size=14 %}</small></a>
+{%- endif %}
+</nav>
+{%- elsif include.more and include.url %}
+<nav class="mt-pagination mt-pager" aria-label="{{ mt_t_pagination_label }}"><a rel="next" href="{{ include.url | relative_url }}"><small>{{ mt_t_blog_older }} {% include modootoday/brand/icon.html name="next" size=14 %}</small></a></nav>
+{%- endif -%}

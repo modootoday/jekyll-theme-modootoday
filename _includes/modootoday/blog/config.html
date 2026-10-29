@@ -1,0 +1,17 @@
+{%- comment -%}Blog and news settings with defaults (Liquid only). Sets mt_blog_* variables.
+  site.modootoday.blog.per_page      posts per list page when jekyll-paginate is off (default 10)
+  site.modootoday.blog.variant       list | grid | magazine   (default list; front matter variant: wins)
+  site.modootoday.blog.excerpt       false hides card excerpts (default true)
+  site.modootoday.blog.reading_time  false hides reading time (default true)
+  site.modootoday.blog.related       number of related posts, 0 hides them (default 3)
+  site.modootoday.blog.share         false hides the copy-link button (default true)
+  site.modootoday.authors            false hides bylines; author data lives in _data/authors.yml
+  site.modootoday.news.sections      category names shown as sections on a news front page{%- endcomment -%}
+{%- assign _mb = site.modootoday.blog -%}
+{%- assign mt_blog_per_page = _mb.per_page | default: 10 -%}
+{%- assign mt_blog_variant = page.variant | default: _mb.variant | default: "list" -%}
+{%- unless "list grid magazine" contains mt_blog_variant -%}{%- assign mt_blog_variant = "list" -%}{%- endunless -%}
+{%- if _mb.excerpt == false -%}{%- assign mt_blog_excerpt = false -%}{%- else -%}{%- assign mt_blog_excerpt = true -%}{%- endif -%}
+{%- if _mb.reading_time == false -%}{%- assign mt_blog_rt = false -%}{%- else -%}{%- assign mt_blog_rt = true -%}{%- endif -%}
+{%- if _mb.share == false -%}{%- assign mt_blog_share = false -%}{%- else -%}{%- assign mt_blog_share = true -%}{%- endif -%}
+{%- assign mt_blog_related = 3 -%}{%- if _mb.related != nil -%}{%- assign mt_blog_related = _mb.related -%}{%- endif -%}

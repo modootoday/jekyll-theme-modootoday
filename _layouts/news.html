@@ -1,0 +1,22 @@
+---
+layout: default
+---
+{%- comment -%}mt news front page: page body (masthead or intro), then lead story, secondary grid, latest list and category sections.
+  Front matter: news_sections (category names; default modootoday.news.sections), secondary (default 4), latest (default 6),
+  category (a section page: only that category, as a blog-style list), lang ("all" mixes languages).{%- endcomment -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- include modootoday/i18n.html lang=_lang -%}
+{%- include modootoday/blog/config.html -%}
+<div class="mt-news">
+{%- if content != "" %}
+<header class="mt-news-masthead mt-doc">{{ content }}</header>
+{%- endif -%}
+{%- include modootoday/blog/select.html lang=page.posts_lang category=page.category -%}
+{%- if mt_posts.size == 0 %}
+<p class="mt-archive-empty">{{ mt_t_archive_empty }}</p>
+{%- elsif page.category %}
+{% include modootoday/blog/list.html posts=mt_posts limit=mt_blog_per_page variant="list" featured=true %}
+{%- else %}
+{% include modootoday/news/front.html posts=mt_posts sections=page.news_sections secondary=page.secondary latest=page.latest %}
+{%- endif %}
+</div>

@@ -1,0 +1,20 @@
+{%- comment -%}schema.org JSON-LD for a post: BlogPosting, or NewsArticle for news (layout news-article or kind: news).
+  Fields: headline, description, datePublished, dateModified, author(s), image, mainEntityOfPage, inLanguage, publisher, articleSection, keywords.
+  site.modootoday.seo: false or front matter jsonld: false drops it.{%- endcomment -%}
+{%- unless site.modootoday.seo == false or page.jsonld == false -%}
+{%- assign _jt = "BlogPosting" -%}{%- if page.layout == "news-article" or page.kind == "news" -%}{%- assign _jt = "NewsArticle" -%}{%- endif -%}
+{%- assign _ja = page.authors | default: page.author -%}{%- if _ja and _ja.first == nil -%}{%- assign _ja = _ja | split: "," -%}{%- endif -%}
+{%- assign _ji = page.image.path | default: page.image -%}
+{%- assign _jm = page.last_modified_at | default: page.updated | default: page.date -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":{{ _jt | jsonify }},"headline":{{ page.title | strip_html | truncate: 110 | jsonify }}
+{%- assign _jd = page.description | default: page.excerpt | strip_html | normalize_whitespace | truncate: 300 -%}
+{%- if _jd != "" %},"description":{{ _jd | jsonify }}{% endif -%}
+,"datePublished":{{ page.date | date_to_xmlschema | jsonify }},"dateModified":{{ _jm | date_to_xmlschema | jsonify }},"inLanguage":{{ page.lang | default: site.lang | default: "en" | jsonify }}
+{%- if site.url %},"mainEntityOfPage":{{ page.url | absolute_url | jsonify }},"url":{{ page.url | absolute_url | jsonify }}{% endif -%}
+{%- if _ji %},"image":[{{ _ji | absolute_url | jsonify }}]{% endif -%}
+{%- if _ja %},"author":[{% for _id in _ja %}{% assign _id = _id | strip %}{% assign _au = site.data.authors[_id] %}{"@type":"Person","name":{{ _au.name | default: _id | jsonify }}{% if _au.url %},"url":{{ _au.url | absolute_url | jsonify }}{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endif -%}
+{%- if site.title %},"publisher":{"@type":"Organization","name":{{ site.title | jsonify }}}{% endif -%}
+{%- if page.categories.size > 0 %},"articleSection":{{ page.categories | first | jsonify }}{% endif -%}
+{%- if page.tags.size > 0 %},"keywords":{{ page.tags | join: ", " | jsonify }}{% endif -%}
+}</script>
+{%- endunless -%}

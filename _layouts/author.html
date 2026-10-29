@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{%- comment -%}mt author page: front matter author: <id> (from _data/authors.yml: name, bio, avatar, url), then that author's posts.{%- endcomment -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- include modootoday/i18n.html lang=_lang -%}
+{%- include modootoday/blog/config.html -%}
+{%- assign _au = site.data.authors[page.author] -%}
+<div class="mt-blog mt-author">
+<header class="mt-author-card" data-part="author">
+{%- if _au.avatar %}<img class="mt-avatar" src="{{ _au.avatar | relative_url }}" alt="" width="72" height="72">{% endif %}
+<div><h1>{{ _au.name | default: page.title | default: page.author }}</h1>
+{%- if _au.bio %}<p>{{ _au.bio }}</p>{% endif -%}
+{%- if _au.url %}<p><a href="{{ _au.url }}" rel="me">{{ _au.url | remove: "https://" | remove: "http://" }}</a></p>{% endif %}</div>
+</header>
+{%- if content != "" %}<div class="mt-doc">{{ content }}</div>{% endif -%}
+{%- include modootoday/blog/select.html author=page.author lang=page.posts_lang -%}
+{% include modootoday/blog/list.html posts=mt_posts variant=page.variant %}
+</div>

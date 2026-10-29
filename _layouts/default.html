@@ -22,6 +22,11 @@
 {%- include modootoday/theme-color.html %}
 {%- include modootoday/head-meta.html %}
 <link rel="stylesheet" href="{{ '/assets/css/modootoday.css' | relative_url }}">
+{%- comment -%}Blog and news layouts add a separate stylesheet (outside the core budget); front matter blog_css: true opts any page in.{%- endcomment -%}
+{%- assign _mtb = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" -%}{%- assign _mtb = true -%}{%- endif %}
+{%- if _mtb %}
+<link rel="stylesheet" href="{{ '/assets/css/modootoday-blog.css' | relative_url }}">
+{%- endif %}
 {%- include modootoday/tokens.html %}
 {%- include modootoday/doc/twin.html -%}
 {%- if mt_twin %}
@@ -62,6 +67,9 @@
 {%- endif -%}
 {%- if mt_components contains "accordion" %}
 <script src="{{ '/assets/js/modootoday/accordion.js' | relative_url }}" defer></script>
+{%- endif %}
+{%- if _mtb and site.modootoday.blog.share != false %}
+<script src="{{ '/assets/js/modootoday/share.js' | relative_url }}" defer></script>
 {%- endif %}
 {%- if mt_components contains "search" and _sidx %}
 <script src="{{ '/assets/js/modootoday/search.js' | relative_url }}" defer></script>

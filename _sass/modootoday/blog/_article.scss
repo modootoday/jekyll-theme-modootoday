@@ -1,0 +1,27 @@
+// Post header (deck, byline, cover), series box, share, related posts.
+@include mt-layer(components) {
+  .mt-post-header { margin-block-end: 2rem; }
+  .mt-post-deck { margin: 0 0 1rem; font-size: 1.1875rem; line-height: 1.55; color: mt(muted-foreground); }
+  .mt-byline { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1rem; font-size: .875rem; color: mt(muted-foreground); }
+  .mt-byline p { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; margin: 0; }
+  .mt-byline a { color: mt(foreground); font-weight: 600; }
+  .mt-dateline { color: mt(foreground); font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+  .mt-post-cover { margin: 1.5rem 0 0; }
+  .mt-post-cover img { display: block; inline-size: 100%; block-size: auto; border-radius: mt(radius-lg); }
+  .mt-post-cover figcaption { margin-block-start: .5rem; font-size: .8125rem; color: mt(muted-foreground); }
+  .mt-post-flags { margin: 0 0 .75rem; }
+  .mt-series { margin-block: 1.5rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-inline-start: 3px solid mt(primary); border-radius: mt(radius); background: mt(muted); }
+  .mt-series-title { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin: 0 0 .5rem; }
+  .mt-series-title span { color: mt(muted-foreground); font-size: .875rem; }
+  .mt-series ol { margin: 0; padding-inline-start: 1.25rem; }
+  .mt-series [aria-current] { font-weight: 600; }
+  .mt-share { margin-block: 2rem 0; }
+  .mt-share-button { display: inline-flex; align-items: center; gap: .5rem; min-block-size: 44px; padding: .5rem 1rem; border: 1px solid mt(border); border-radius: 999px;
+    background: mt(background); color: mt(foreground); font: inherit; font-size: .875rem; cursor: pointer; }
+  .mt-share-button:hover { background: mt(accent); }
+  .mt-share-button:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-share-button[data-state="copied"] { border-color: mt(tip); color: mt(tip); }
+  .mt-related { margin-block-start: 3rem; padding-block-start: 1.5rem; border-block-start: 1px solid mt(border); }
+  .mt-related h2 { margin: 0; font-size: 1.25rem; }
+  .mt-post-nav { margin-block-start: 2rem; }
+}

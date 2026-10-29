@@ -1,0 +1,36 @@
+// Post cards and lists: list | grid | magazine. Logical properties (RTL-safe); the card is one link target (title).
+@include mt-layer(components) {
+  .mt-blog, .mt-news { max-inline-size: mt(container); margin-inline: auto; }
+  .mt-post-list { display: grid; gap: 1.25rem; margin-block: 1.5rem; }
+  .mt-post-list[data-variant="grid"], .mt-post-list[data-variant="magazine"] { grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
+  .mt-card-post { position: relative; display: flex; flex-direction: column; min-inline-size: 0; border: 1px solid mt(border); border-radius: mt(radius-lg);
+    background: mt(card); color: mt(card-foreground); overflow: hidden; transition: border-color .15s, box-shadow .15s; }
+  .mt-card-post:hover, .mt-card-post:focus-within { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); box-shadow: mt(shadow); }
+  .mt-card-post-body { display: flex; flex-direction: column; gap: .5rem; padding: 1rem 1.25rem 1.25rem; }
+  .mt-card-post-cover img { display: block; inline-size: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: mt(muted); }
+  .mt-card-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin: 0; font-size: .8125rem; color: mt(muted-foreground); }
+  .mt-card-post-kicker { color: mt(primary); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+  .mt-card-post-title { margin: 0; font-size: 1.125rem; line-height: 1.35; overflow-wrap: anywhere; }
+  .mt-card-post-title a { color: inherit; text-decoration: none; }
+  .mt-card-post-title a::after { content: ""; position: absolute; inset: 0; }
+  .mt-card-post-title a:focus-visible { outline: none; }
+  .mt-card-post:has(.mt-card-post-title a:focus-visible) { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-card-post-excerpt { margin: 0; color: mt(muted-foreground); font-size: .9375rem; line-height: 1.6; }
+  .mt-post-list[data-variant="list"] .mt-card-post-cover { display: none; }
+  .mt-card-post-featured .mt-card-post-title { font-size: 1.5rem; }
+  @media (min-width: 48rem) {
+    .mt-post-list[data-variant="list"] > .mt-card-post:has(.mt-card-post-cover) { flex-direction: row; }
+    .mt-post-list[data-variant="list"] .mt-card-post-cover { display: block; flex: 0 0 14rem; }
+    .mt-post-list[data-variant="list"] .mt-card-post-cover img { block-size: 100%; aspect-ratio: auto; }
+    .mt-post-list[data-variant="magazine"] > .mt-card-post-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 3fr 2fr; }
+    .mt-post-list[data-variant="magazine"] > .mt-card-post-featured .mt-card-post-body { justify-content: center; padding: 1.5rem 2rem; }
+    .mt-card-post-featured .mt-card-post-title { font-size: 1.875rem; }
+  }
+  .mt-badge[data-variant="featured"] { background: mt(primary); color: mt(primary-foreground); }
+  .mt-pager { justify-content: space-between; align-items: center; }
+  .mt-pager-count { color: mt(muted-foreground); font-size: .875rem; }
+  .mt-avatar { border-radius: 50%; vertical-align: middle; object-fit: cover; }
+  .mt-author-card { display: flex; gap: 1rem; align-items: center; margin-block: 1rem 2rem; }
+  .mt-author-card h1 { margin: 0; }
+  .mt-author-card p { margin: .25rem 0 0; color: mt(muted-foreground); }
+}

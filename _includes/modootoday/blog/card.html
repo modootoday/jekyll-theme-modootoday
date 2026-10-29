@@ -1,0 +1,23 @@
+{%- comment -%}One post card (shadow _includes/modootoday/blog/card.html to restyle). Parts: data-part="cover|meta|title|excerpt|terms".
+  post: the post. featured: true marks the lead card. heading: h2 (default) or h3. Needs modootoday/i18n.html and blog/config.html first.{%- endcomment -%}
+{%- assign _c = include.post -%}{%- assign _h = include.heading | default: "h2" -%}
+{%- assign _cimg = _c.image.path | default: _c.image -%}
+<article class="mt-card-post{% if include.featured %} mt-card-post-featured{% endif %}" data-part="card"{% if _c.kind == "news" or _c.layout == "news-article" %} data-kind="news"{% endif %}>
+{%- if _cimg %}
+<a class="mt-card-post-cover" data-part="cover" href="{{ _c.url | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ _cimg | relative_url }}" alt="" loading="lazy" decoding="async"></a>
+{%- endif %}
+<div class="mt-card-post-body">
+<p class="mt-card-post-meta" data-part="meta">
+{%- if include.featured %}<span class="mt-badge" data-variant="featured">{{ mt_t_blog_featured }}</span> {% endif -%}
+{%- if _c.breaking %}{% include modootoday/news/badge.html kind="breaking" %} {% elsif _c.live %}{% include modootoday/news/badge.html kind="live" %} {% endif -%}
+{%- if _c.categories.size > 0 %}<span class="mt-card-post-kicker">{{ _c.categories | first }}</span>{% endif -%}
+<time datetime="{{ _c.date | date_to_xmlschema }}">{{ _c.date | date: mt_t_post_date_format }}</time>
+{%- if mt_blog_rt %}{% include modootoday/blog/reading-time.html post=_c %}<span class="mt-card-post-rt">{{ mt_t_blog_reading_time | replace: "[n]", mt_rt }}</span>{% endif -%}
+</p>
+<{{ _h }} class="mt-card-post-title" data-part="title"><a href="{{ _c.url | relative_url }}">{{ _c.title | escape }}</a></{{ _h }}>
+{%- if mt_blog_excerpt and include.excerpt != false %}
+{%- assign _ce = _c.description | default: _c.excerpt | strip_html | normalize_whitespace | truncate: 180 -%}
+{%- if _ce != "" %}<p class="mt-card-post-excerpt" data-part="excerpt">{{ _ce }}</p>{% endif -%}
+{%- endif %}
+</div>
+</article>

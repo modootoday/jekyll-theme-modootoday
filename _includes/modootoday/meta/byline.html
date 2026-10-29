@@ -1,0 +1,24 @@
+{%- comment -%}Byline for a post: authors (front matter author: id or authors: [ids]; names, links and avatars from
+  _data/authors.yml: {id: {name, url, avatar, bio}}; unknown ids print as written), published and updated <time>, reading time.
+  dateline: a news place line ("SEOUL —"). Parts: data-part="byline|authors|dates".{%- endcomment -%}
+{%- assign _bp = include.post | default: page -%}
+{%- assign _ba = _bp.authors | default: _bp.author -%}
+{%- if _ba and _ba.first == nil -%}{%- assign _ba = _ba | split: "," -%}{%- endif -%}
+<div class="mt-byline" data-part="byline">
+{%- if _ba and site.modootoday.authors != false %}
+<p class="mt-byline-authors" data-part="authors"><span>{{ mt_t_blog_by }}</span>
+{%- for _id in _ba -%}{%- assign _id = _id | strip -%}{%- assign _au = site.data.authors[_id] -%}
+{%- if _au.avatar %} <img class="mt-avatar" src="{{ _au.avatar | relative_url }}" alt="" width="24" height="24" loading="lazy">{% endif %}
+{%- assign _aurl = _au.page | default: _au.url -%}
+{% if _aurl %}<a class="mt-post-author" rel="author" href="{{ _aurl | relative_url }}">{{ _au.name | default: _id }}</a>{% else %}<span class="mt-post-author">{{ _au.name | default: _id }}</span>{% endif %}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+</p>
+{%- endif %}
+<p class="mt-byline-dates" data-part="dates">
+{%- if _bp.dateline %}<span class="mt-dateline">{{ _bp.dateline }}</span> {% endif -%}
+<time datetime="{{ _bp.date | date_to_xmlschema }}">{{ _bp.date | date: mt_t_post_date_format }}</time>
+{%- assign _bu = _bp.last_modified_at | default: _bp.updated -%}
+{%- if _bu %} · <span class="mt-byline-updated">{{ mt_t_blog_updated }} <time datetime="{{ _bu | date_to_xmlschema }}">{{ _bu | date: mt_t_post_date_format }}</time></span>{% endif -%}
+{%- if mt_blog_rt %}{% include modootoday/blog/reading-time.html post=_bp %} · <span>{{ mt_t_blog_reading_time | replace: "[n]", mt_rt }}</span>{% endif -%}
+</p>
+</div>

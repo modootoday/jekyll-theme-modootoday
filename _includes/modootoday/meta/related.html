@@ -1,0 +1,20 @@
+{%- comment -%}Related posts: same language, most shared tags and categories first, then newest (Liquid only; no LSI).
+  Count from modootoday.blog.related (default 3; 0 hides). heading text: news uses "Related coverage" via include.label.{%- endcomment -%}
+{%- if mt_blog_related > 0 and page.related != false -%}
+{%- include modootoday/blog/select.html -%}
+{%- assign _rs = "" | split: "" -%}
+{%- for _score in (1..5) reversed -%}
+{%- for _p in mt_posts -%}{%- if _p.url == page.url -%}{%- continue -%}{%- endif -%}
+{%- assign _n = 0 -%}
+{%- for _t in _p.tags -%}{%- if page.tags contains _t -%}{%- assign _n = _n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- for _t in _p.categories -%}{%- if page.categories contains _t -%}{%- assign _n = _n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if _n > 5 -%}{%- assign _n = 5 -%}{%- endif -%}
+{%- if _n == _score -%}{%- assign _rs = _rs | push: _p -%}{%- endif -%}
+{%- endfor -%}{%- if _rs.size >= mt_blog_related -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- if _rs.size > 0 %}
+<section class="mt-related" data-part="related" aria-labelledby="mt-related-title">
+<h2 class="mt-related-title" id="mt-related-title">{{ include.label | default: mt_t_blog_related }}</h2>
+{% include modootoday/blog/list.html posts=_rs limit=mt_blog_related variant="grid" heading="h3" excerpt=false %}
+</section>
+{%- endif -%}{%- endif -%}

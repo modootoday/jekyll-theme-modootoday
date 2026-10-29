@@ -1,0 +1,10 @@
+{%- comment -%}Sets mt_rt to the minutes needed to read include.post (front matter reading_time: wins).
+  Spaced scripts count words (200 a minute); ja, zh and th count characters (500 a minute).{%- endcomment -%}
+{%- assign _rp = include.post -%}
+{%- if _rp.reading_time -%}{%- assign mt_rt = _rp.reading_time -%}{%- else -%}
+{%- assign _rtxt = _rp.content | strip_html -%}
+{%- assign _rl = _rp.lang | default: site.lang | default: "en" | split: "-" | first -%}
+{%- if _rl == "ja" or _rl == "zh" or _rl == "th" -%}{%- assign mt_rt = _rtxt | strip | size | divided_by: 500 -%}
+{%- else -%}{%- assign mt_rt = _rtxt | number_of_words | divided_by: 200 -%}{%- endif -%}
+{%- assign mt_rt = mt_rt | plus: 1 -%}
+{%- endif -%}

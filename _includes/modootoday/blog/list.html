@@ -1,0 +1,13 @@
+{%- comment -%}A list of post cards: {% include modootoday/blog/list.html posts=mt_posts variant="grid" limit=6 offset=0 featured=true %}
+  variant: list | grid | magazine (default mt_blog_variant). featured: the first card is the lead. heading: card heading level.
+  Shadow modootoday/blog/card.html to change every card.{%- endcomment -%}
+{%- assign _lv = include.variant | default: mt_blog_variant | default: "list" -%}
+{%- assign _ll = include.limit | default: include.posts.size -%}{%- assign _lo = include.offset | default: 0 -%}
+{%- if include.posts.size > _lo %}
+<div class="mt-post-list" data-variant="{{ _lv }}">
+{%- for _lp in include.posts limit: _ll offset: _lo -%}
+{%- assign _lf = false -%}{%- if include.featured and forloop.first -%}{%- assign _lf = true -%}{%- endif -%}
+{% include modootoday/blog/card.html post=_lp featured=_lf heading=include.heading excerpt=include.excerpt %}
+{%- endfor %}
+</div>
+{%- endif -%}

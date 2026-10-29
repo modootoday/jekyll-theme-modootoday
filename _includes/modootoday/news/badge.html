@@ -1,0 +1,4 @@
+{%- comment -%}Breaking / live badge: {% include modootoday/news/badge.html kind="breaking" %} (kind: breaking | live).
+  Front matter breaking: true or live: true on a post shows it on cards and the article.{%- endcomment -%}
+{%- if include.kind == "live" -%}<span class="mt-badge mt-badge-live" data-variant="live"><span class="mt-live-dot" aria-hidden="true"></span>{{ mt_t_blog_live }}</span>
+{%- else -%}<span class="mt-badge mt-badge-breaking" data-variant="breaking">{{ mt_t_blog_breaking }}</span>{%- endif -%}

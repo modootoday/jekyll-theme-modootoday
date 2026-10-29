@@ -1,0 +1,11 @@
+{%- comment -%}Series box: front matter series: "Name" groups posts (same language, oldest first); shows "Part n of total" and every part.{%- endcomment -%}
+{%- if page.series -%}
+{%- include modootoday/blog/select.html series=page.series -%}
+{%- assign _sp = mt_posts | reverse -%}
+{%- if _sp.size > 1 -%}
+{%- for _p in _sp -%}{%- if _p.url == page.url -%}{%- assign _sn = forloop.index -%}{%- endif -%}{%- endfor %}
+<nav class="mt-series" data-part="series" aria-label="{{ mt_t_blog_series }}: {{ page.series | escape }}">
+<p class="mt-series-title"><strong>{{ mt_t_blog_series }}: {{ page.series | escape }}</strong> <span>{{ mt_t_blog_series_part | replace: "[n]", _sn | replace: "[total]", _sp.size }}</span></p>
+<ol>{% for _p in _sp %}<li>{% if _p.url == page.url %}<span aria-current="page">{{ _p.title | escape }}</span>{% else %}<a href="{{ _p.url | relative_url }}">{{ _p.title | escape }}</a>{% endif %}</li>{% endfor %}</ol>
+</nav>
+{%- endif -%}{%- endif -%}
