@@ -66,7 +66,7 @@ Each `mt-*` class above also has a deprecated `md-*` twin on the shell, doc, her
 | `code` | Fenced code blocks | `pre` (tab content) |
 | `figures` | Lines that start with an image | `figure.mt-figure` |
 
-Each slot takes `required: true` (same as `min: 1`), `min` and `max` (whole numbers, `min` not greater than `max`). For a component that has two valid shapes, `slots:` can be a list of alternative forms; a section passes when it satisfies any one of them. `parts:` lists the selectors from the [component structure](#component-structure) table that the component promises to keep; when the site has an `api.md` with that table, every part must appear in it.
+Each slot takes `required: true` (same as `min: 1`), `min` and `max` (whole numbers, `min` not greater than `max`). For a component that has two valid shapes, `slots:` can be a list of alternative forms; a section passes when it satisfies any one of them. `parts:` lists the selectors from the [component structure](#component-structure) table that the component promises to keep; when the site has an `api.md` with that table, every part must appear in it. When Nokogiri is available (it is under `github-pages`), every part must also match inside a section of that component in the built HTML of the pages that use it; parts that component scripts add at runtime (`role=`, `aria-*`) are checked after the scripts run by the docs site QA.
 
 ```yaml
 features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}

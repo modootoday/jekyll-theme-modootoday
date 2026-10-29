@@ -6,6 +6,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
+import { execFileSync } from "node:child_process";
 
 const site = path.resolve(process.argv[2] || "docs/_site");
 const out = path.resolve(process.argv[3] || "qa-out");
@@ -108,6 +109,25 @@ for (const scheme of SCHEMES) {
     for (const v of axe.violations) {
       report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });
       fails.push(`axe ${v.id} (${v.impact}) ${scheme} ${url}`);
+    }
+  }
+  await ctx.close();
+}
+// 4. registry parts after scripts run (static parts are checked in the built HTML by modootoday-check)
+{
+  const comps = JSON.parse(execFileSync("ruby", ["-ryaml", "-rjson", "-e", "puts JSON.generate(YAML.safe_load(File.read(ARGV[0])) || {})", path.resolve("docs/_data/components.yml")]).toString());
+  const ctx = await browser.newContext();
+  const page = await ctx.newPage();
+  report.parts = [];
+  for (const l of LANGS) {
+    const url = `${origin}${l}components/kitchen-sink/`;
+    await page.goto(url, { waitUntil: "networkidle" });
+    for (const [c, spec] of Object.entries(comps)) {
+      for (const sel of (spec && spec.parts) || []) {
+        const n = await page.evaluate(({ c, sel }) => [...document.querySelectorAll(`section[data-c="${c}"]`)].filter((s) => s.matches(sel) || s.querySelector(sel)).length, { c, sel });
+        report.parts.push({ url, c, sel, sections: n });
+        if (!n) fails.push(`part ${c} '${sel}' not found after scripts ran on ${url}`);
+      }
     }
   }
   await ctx.close();

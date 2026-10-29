@@ -21,6 +21,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Changed
 - Header, navigation, search, theme toggle and code copy use logical properties, so they mirror in right-to-left pages; the code Copy button sits at the inline end and never covers code. The docs navigation lists the math and diagrams guide.
 - `modootoday-check` validates `_data/components.yml` itself: unknown keys in a component entry (allowed: `params`, `i18n`, `slots`, `parts`) or a slot rule (allowed: `required`, `min`, `max`), non-integer or negative counts and `min` greater than `max` are errors, reported once per registry instead of once per section. Registries that use only these keys are unaffected.
+- `modootoday-check` also looks up each `parts:` selector in the built HTML of the pages that use the component (inside its `section[data-c]`), when Nokogiri is available as it is under `github-pages`; parts added by component scripts (`role=`, `aria-*`) are checked after the scripts run by the docs site QA. The kitchen sink now shows `timeline` in both forms.
 - The `caution` token is now rose (`#b8174a` light, `#ff7b9c` dark) instead of red, so caution alerts no longer read as the orange-red brand link colour. New primitives `--mt-p-rose-400/600`.
 - Search results show the current language first, title matches before body matches, and a muted text snippet; on narrow screens the results panel spans the header width.
 - Footnotes are rendered after the last section instead of inside it (they no longer land in a call-to-action card).

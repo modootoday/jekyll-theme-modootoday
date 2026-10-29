@@ -13,6 +13,7 @@ sections:
   - {c: steps, name: steps-headings}
   - figure
   - {c: timeline, name: timeline}
+  - {c: timeline, name: timeline-list}
   - keyboard
   - tables
   - code
@@ -188,6 +189,12 @@ Theme toggle, breadcrumb, table of contents, accordion, steps and figures.
 ### 0.4.0
 
 Timeline, keyboard keys, client search and the post layout.
+
+## Timeline as a list
+
+1. 0.1.0: alerts, sections, cards and tabs.
+2. 0.2.0: design tokens and navigation.
+3. 0.3.0: theme toggle, table of contents and steps.
 
 ## Keyboard keys
 

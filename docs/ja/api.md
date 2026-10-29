@@ -69,16 +69,17 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 | `code` | フェンスコードブロック | `pre` (タブの内容) |
 | `figures` | 画像で始まる行 | `figure.mt-figure` |
 
-各スロットは `required: true` (`min: 1` と同じ)、`min`、`max` を取ります。未知のスロット名はエラーです。
+各スロットは `required: true` (`min: 1` と同じ)、`min`、`max` を取ります (整数で、`min` は `max` 以下)。正しい形が二つあるコンポーネントでは、`slots:` を代わりの形のリストにでき、セクションはそのどれか一つを満たせば通ります。`parts:` には、[コンポーネントの構造](#component-structure)の表のうち、そのコンポーネントが保つと約束するセレクターを並べます。サイトにその表を持つ `api.md` がある場合、すべてのパートが表に載っている必要があります。Nokogiri が使える場合 (`github-pages` には含まれます)、そのコンポーネントを使うページのビルド済み HTML で、そのコンポーネントのセクション内にすべてのパートが実際に存在する必要もあります。コンポーネントのスクリプトが実行時に付けるパート (`role=`、`aria-*`) は、ドキュメントサイトの QA がスクリプト実行後に確認します。
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}}
+features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
-cta: {slots: {actions: {required: true}}}
+cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}
+steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
 ```
 
-`slots:` のないコンポーネントは数えないので、既存のレジストリはそのまま動きます。
+コンポーネントの項目に書けるのは `params`、`i18n`、`slots`、`parts` だけで、スロットの規則に書けるのは `required`、`min`、`max` だけです。それ以外のキー、未知のスロット名、`max` より大きい `min`、二つ未満の形のリストはエラーで、レジストリごとに一度だけ報告されます。`slots:` のないコンポーネントは数えず、一つのマップで書いた `slots:` は以前とまったく同じに動きます。
 
 ## 右から左への表記と数式
 

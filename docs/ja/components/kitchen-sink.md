@@ -13,6 +13,7 @@ sections:
   - {c: steps, name: steps-headings}
   - figure
   - {c: timeline, name: timeline}
+  - {c: timeline, name: timeline-list}
   - keyboard
   - tables
   - code
@@ -191,6 +192,12 @@ front matter 付きのページを作ります。
 ### 0.4.0
 
 タイムライン、キーボードのキー、クライアント検索、post レイアウト。
+
+## リスト形式のタイムライン
+
+1. 0.1.0: アラート、セクション、カード、タブ。
+2. 0.2.0: デザイントークン、ナビゲーション。
+3. 0.3.0: テーマ切り替え、目次、ステップ。
 
 ## キーボードのキー
 

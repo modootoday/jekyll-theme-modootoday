@@ -144,6 +144,22 @@ class CheckTest < Minitest::Test
     refute_match(/'\[role=tab\]' is not/, o)
   end
 
+  def test_parts_exist_in_built_html
+    _, _, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, "-e", "require 'nokogiri'")
+    skip "nokogiri not installed for this Ruby" unless st.success?
+    write File.join(@src, "_data/components.yml"), "cta: {slots: {actions: {min: 1}}, parts: [.mt-cta, .mt-gone, '[role=button]']}\n"
+    page "p.md", "---\nsections: [{c: cta}]\n---\n# P\n\n## Go\n\n[Start](/)\n"
+    out "p/index.html", %(<section class="mt-section mt-cta" data-c="cta"><a href="/">Start</a></section><p class="mt-gone"></p>)
+    o, code = check
+    assert_equal 1, code
+    assert_match(/cta.parts: '.mt-gone' not found in the built HTML of p.md/, o)
+    refute_match(/'.mt-cta' not found/, o)
+    refute_match(/role=button/, o) # runtime attributes are left to docs QA
+    out "p/index.html", %(<section class="mt-section mt-cta" data-c="cta"><a class="mt-gone" href="/">Start</a></section>)
+    o, code = check
+    assert_equal 0, code, o
+  end
+
   def test_build_residue
     page "a.md", "---\n---\n# A\n"
     out "a/index.html", "<p>[!NOTE]</p><code>status:available</code>"
