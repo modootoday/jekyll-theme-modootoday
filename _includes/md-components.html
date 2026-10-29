@@ -1,0 +1,39 @@
+{%- comment -%}
+md-components v1 (draft) — jekyll-theme-modootoday
+Usage: {% include md-components.html content=content lang=page.lang badges=true %}
+1) GitHub alerts (> [!NOTE|TIP|IMPORTANT|WARNING|CAUTION]) → blockquote.md-callout.
+   Only top-level alerts convert; nested/list/table alerts stay and fail modootoday-check.
+2) Optional (badges=true): code span `status:available|partial|planned` → span.md-badge.md-badge-<v>.
+   Unregistered values are a modootoday-check error. Labels: i18n status.<v>.
+Titles/labels: site.data.i18n[lang], English fallback.
+{%- endcomment -%}
+{%- assign _c = include.content -%}
+{%- assign _lang = include.lang | default: site.lang | default: "en" -%}
+{%- assign _i = site.data.i18n[_lang] -%}
+{%- assign _types = "note:Note,tip:Tip,important:Important,warning:Warning,caution:Caution" | split: "," -%}
+{%- for _pair in _types -%}
+  {%- assign _kv = _pair | split: ":" -%}
+  {%- assign _key = _kv[0] -%}
+  {%- assign _title = _i.callout[_key] | default: _kv[1] -%}
+  {%- assign _mark = _key | upcase | prepend: "[!" | append: "]" -%}
+  {%- capture _from %}<blockquote>
+  <p>{{ _mark }}
+{% endcapture -%}
+  {%- capture _to %}<blockquote class="md-callout md-callout-{{ _key }}" role="note">
+  <p class="md-callout-title">{{ _title }}</p><p>
+{% endcapture -%}
+  {%- assign _c = _c | replace: _from, _to -%}
+{%- endfor -%}
+{%- if include.badges -%}
+  {%- assign _st = "available:●:Available,partial:◐:Partial,planned:○:Planned" | split: "," -%}
+  {%- for _pair in _st -%}
+    {%- assign _kv = _pair | split: ":" -%}
+    {%- assign _k = _kv[0] -%}
+    {%- assign _label = _i.status[_k] | default: _kv[2] -%}
+    {%- capture _to %}<span class="md-badge md-badge-{{ _kv[0] }}"><span aria-hidden="true">{{ _kv[1] }}</span> {{ _label }}</span>{% endcapture -%}
+    {%- capture _from %}<code class="language-plaintext highlighter-rouge">status:{{ _kv[0] }}</code>{% endcapture -%}
+    {%- capture _from2 %}<code>status:{{ _kv[0] }}</code>{% endcapture -%}
+    {%- assign _c = _c | replace: _from, _to | replace: _from2, _to -%}
+  {%- endfor -%}
+{%- endif -%}
+{{ _c }}

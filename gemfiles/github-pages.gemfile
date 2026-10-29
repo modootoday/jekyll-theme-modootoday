@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+gemspec path: ".."
+gem "github-pages", "~> 232", group: :jekyll_plugins
+gem "webrick"
+gem "minitest", ">= 5"
+gem "rake"
