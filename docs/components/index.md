@@ -231,7 +231,7 @@ modootoday:
 
 ## Icons and logo
 
-`status:available` `since:1.0` The theme draws its icons (globe, sun and moon, search, alert types, copy, edit, previous and next, external link, breadcrumb arrows) as inline SVG in `currentColor`, so they follow the light or dark scheme and need no extra requests. Icons are hidden from screen readers; each icon-only button has its own name. Arrows that point a direction flip in right-to-left pages. Set `logo` to put the modootoday mark (or your own image) before the site title, and `favicon` to add the matching browser icons. The result is the header and footer of this page.
+`status:available` The theme draws its icons (globe, sun and moon, search, alert types, copy, edit, previous and next, external link, breadcrumb arrows) as inline SVG in `currentColor`, so they follow the light or dark scheme and need no extra requests. Icons are hidden from screen readers; each icon-only button has its own name. Arrows that point a direction flip in right-to-left pages. Set `logo` to put the modootoday mark (or your own image) before the site title, and `favicon` to add the matching browser icons. The result is the header and footer of this page.
 
 ```yaml
 modootoday:
