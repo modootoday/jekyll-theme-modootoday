@@ -18,7 +18,7 @@
     background: mt(card); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow); }
   .mt-nav details a { color: mt(card-foreground); }
   @media (min-width: 64rem) {
-    .mt-nav { overflow: visible; }
+    .mt-nav { overflow: visible; flex: none; }
     .mt-nav-group { display: block; }
     .mt-nav-flat { display: none; }
   }
@@ -28,4 +28,7 @@
     .mt-nav::-webkit-scrollbar { display: none; }
     .mt-nav a { padding: .3rem .6rem; }
   }
+}
+@include mt-layer(components) {
+  @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-nav a, .mt-nav summary { padding-left: .45rem; padding-right: .45rem; font-size: .875rem; } }
 }

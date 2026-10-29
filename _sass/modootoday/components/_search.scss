@@ -14,3 +14,7 @@
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
   @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; padding: 0 .5rem; } .mt-search-results { left: 0; min-width: 0; } }
 }
+@include mt-layer(components) {
+  // 64–80rem: the one-line header is tight; let search shrink so it never overlaps the nav (WCAG 2.2 target-size).
+  @media (min-width: 64rem) { .mt-search { flex: 0 1 15rem; min-width: 6rem; } .mt-search input { width: 100%; } }
+}
