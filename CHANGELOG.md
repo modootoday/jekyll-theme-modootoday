@@ -6,36 +6,56 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
-### Added
+## [0.5.0] - Unreleased
+
+First public release. It combines the internal milestones 0.1 to 0.4, which were never published, and the governance and SEO work for 0.5. Nothing below was available on RubyGems before 0.5.0.
+
+### Release readiness
+
+#### Added
+- Head metadata on by default: canonical URL (when `url` is set), `hreflang` from `modootoday.languages`, Open Graph and Twitter card tags; `modootoday.seo: false` turns them off for sites that use jekyll-seo-tag. Sitemap and feed stay opt-in plugins (`modootoday.feed: true` adds the feed link).
+- `modootoday.csp: strict` loads the pre-paint script from `assets/js/modootoday/theme-init.js`, so no inline script is needed; CSP guide.
+- Optional "Last updated" (`last_modified_at`) and edit link (`modootoday.edit_url`, `edit: false` per page).
+- Checker validates `seo`, `feed`, `csp`, `languages` and `edit_url`, and warns on `md-*` names in site Sass.
+- Docs: public API and deprecation policy, migrate/upgrade guide, CSP guide, roadmap with non-goals (RTL, math, Mermaid), 404 page; the docs site uses sitemap, `hreflang` and edit links.
+- SECURITY.md (private vulnerability reporting), CODE_OF_CONDUCT.md (Contributor Covenant 2.1), issue and pull request templates, Dependabot for Actions, Bundler and npm, RELEASING.md.
+- CI job for the Jekyll 3.9 floor.
+
+#### Deprecated
+- `md-*` classes and `--md-*` properties: deprecated in 1.0, removed in 2.0. Use `mt-*` / `--mt-*`.
+
+### Milestone 0.5
+
+#### Added
 - Front-matter-less twin mode (`modootoday.twins: source`): on classic GitHub Pages, `jekyll-optional-front-matter` renders a page without front matter and copies the raw file to its own path, which becomes the twin without a stub. The `default` layout and `llms.txt` link to it; the generator skips such pages; the checker verifies the rendered page and the byte-identical raw copy and rejects `remove_originals`, `require_front_matter` and redundant stubs. Example site in `example/source-mode/`, built in CI on github-pages and Jekyll 4.
 - Checker: `modootoday.twins` value check; directories listed in `exclude:` are skipped.
 
-## [0.4.0] - Unreleased
+### Milestone 0.4
 
-### Added
+#### Added
 - P2 components: timeline (`c: timeline`), keyboard keys (`` `kbd:Ctrl+K` ``), client search (`modootoday/search.json` include + `search.js`, under 1 KB compressed), `post` layout.
 - Read-only DTCG `tokens.json` generated in CI from the Sass maps (`script/tokens-json`), with a consistency test against the built CSS.
 - Checker: `kbd:` value format.
 - Example site: i18n keys `theme.toggle`, `breadcrumb.label`, `toc.label`, `badge.since`, `search.label`, `post.date_format` (en/ko/ja).
 
-### Deferred
+#### Deferred
 - `_data/components.yml` slot contract.
 
-## [0.3.0] - Unreleased
+### Milestone 0.3
 
-### Added
+#### Added
 - P1 components: theme toggle (localStorage `mt-theme`, pre-paint script), breadcrumb, table of contents, accordion (`c: accordion`), steps (`c: steps`), figure/figcaption, `tag:`/`since:` badges. All on by default; `modootoday.components` narrows them.
 - Checker: `tag:`/`since:` value format, images without alt text.
 
-### Changed
+#### Changed
 - Status/tag/since badges are also turned off when `badge` is not in `modootoday.components`.
 
-### Deprecated
+#### Deprecated
 - `md-*` class aliases remain for now (removal moved to a later minor).
 
-## [0.2.0] - Unreleased
+### Milestone 0.2
 
-### Added
+#### Added
 - Three-layer design tokens: primitives `--mt-p-*`, shadcn-style semantic tokens (`--mt-background`, `--mt-primary`, …), component tokens (`--mt-callout-accent`, `--mt-badge-*`, `--mt-card-padding`); `data-theme="light|dark"` forcing.
 - Sass split into `_sass/modootoday/{_settings,_core}.scss`, `tools/`, `tokens/`, `components/<name>.scss`; `@import` only, compiles on Ruby Sass 3.7 and Dart Sass.
 - `modootoday:` config: `color_scheme`, `css_layers` (`@layer mt.*`, off by default), `components` (all P0 components on by default), `nav`, `tokens`, `tokens_dark` (inlined `<style id="mt-tokens">`). Defaults in `_includes/modootoday/config.html`.
@@ -45,19 +65,19 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 - Tests: theme CSS built with all/minimal/layers configs on both engines (`test/css_test.rb`).
 - CI: github-pages job on Ruby 3.3.4 with the production gem set (github-pages 232, jekyll-include-cache 0.2.1, jekyll-octicons 14.2, nokogiri 1.16.7); `remote_theme:` site built by `actions/jekyll-build-pages@v1` and checked; Jekyll 4 on Ruby 3.2 and 3.4.
 
-### Changed
+#### Changed
 - `required_ruby_version` is now `>= 3.2`.
 - `badges: false` in `modootoday:` is honoured (it was swallowed by `default: true`).
 
-### Deprecated
+#### Deprecated
 - `--md-*` custom properties and `md-*` classes (aliases of `--mt-*`/`mt-*`); removal planned for v0.3.
 
-### Removed
+#### Removed
 - `_sass/modootoday/{_tokens,_base,_components}.scss` (replaced by the new partials; `_sass/modootoday.scss` still imports everything).
 
-## [0.1.0] - Unreleased
+### Milestone 0.1
 
-### Added
+#### Added
 - Gem-based Jekyll theme layout: `_layouts/{default,doc,twin,llms,llms-full}.html`, `_includes/{md-components,md-sections,head-custom}.html`, `_sass/`, `assets/`.
 - Default stylesheet with CSS custom-property design tokens, light and dark (`prefers-color-scheme`) themes, callouts, status badges, sections, CTA buttons, tabs, focus-visible styles and a responsive doc layout.
 - `assets/js/md-tabs.js`: Home/End keys, focusable panels (`tabindex="0"`), ids unique across several tab groups.
@@ -74,7 +94,7 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 - Checker `--twins`: stubs no longer required when the twin exists (plugin); clearer missing-twin hint; `twin: false`; `llms.txt` must start with an H1; `llms-full.txt` must contain every page body.
 - `test/consumer_test.rb`: builds real consumer sites (theme gem with stubs, `--baseurl`, stub-less site with the plugin); CI builds the example with `remote_theme` pinned to the pushed commit.
 
-### Fixed
+#### Fixed
 - Sections split only on top-level `<h2>`; an `h2` inside a quote, list or alert no longer injects `</section><section>` into it.
 - Docs: alerts are a GitHub extension outside the GFM spec; the raw-HTML ban is about portability (GitHub renders `details`/`kbd`, strips others; kramdown passes all through), not "GitHub sanitising".
 - Checker messages for `##` and alerts nested in quotes/lists explain why and what to use instead.
@@ -83,4 +103,4 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
 [Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/main...HEAD
-[0.1.0]: https://github.com/modootoday/jekyll-theme-modootoday/tree/main
+[0.5.0]: https://github.com/modootoday/jekyll-theme-modootoday/tree/main

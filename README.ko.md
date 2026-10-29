@@ -25,7 +25,7 @@ gem 방식(`theme:`):
 
 ```ruby
 # Gemfile
-gem "jekyll-theme-modootoday", "~> 0.1"
+gem "jekyll-theme-modootoday", "~> 0.5"
 ```
 
 ```yaml
@@ -37,7 +37,7 @@ Gemfile 없이 GitHub Pages에서(`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v0.1.0
+remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
 plugins:
   - jekyll-remote-theme
 ```
@@ -48,7 +48,7 @@ plugins:
 
 ```sh
 mkdir my-docs && cd my-docs
-printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.1"\n' > Gemfile
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.5"\n' > Gemfile
 printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {silence_deprecations: [import, global-builtin]}\n' > _config.yml
 printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
 bundle install && bundle exec jekyll build
@@ -62,6 +62,7 @@ bundle exec modootoday-check . _site
 - **본문은 평범하게, 레이아웃은 풍부하게.** 본문은 GFM이고 `sections:` 머리말이 `##`마다 컴포넌트를 연결합니다. [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/)와 [키친싱크](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/kitchen-sink/)를 보세요.
 - **규칙.** 본문에 쓸 수 있는 것과 각 패턴의 변환 결과는 [RULES.md](RULES.md)(`md-components v1 (draft)`)가 정합니다.
 - **설정과 토큰.** `_config.yml`의 `modootoday:` 블록 하나, CSS 사용자 속성 `--mt-*`, 컴포넌트별 Sass 파셜. [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/)과 [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/)를 보세요.
+- **쌍둥이: 세 가지 방식** — 스텁 파일(기본, 기본 Pages), `jekyll-theme-modootoday` 플러그인(Jekyll 4 / Actions), 또는 머리말 없는 페이지와 `modootoday.twins: source`(기본 Pages, 스텁 없음). [RULES.md §5a](RULES.md#5a-markdown-twins)를 보세요.
 
 ## 명령
 
@@ -89,8 +90,9 @@ bundle exec modootoday-check . _site
 ## 가이드
 
 - [문서 사이트](https://modootoday.github.io/jekyll-theme-modootoday/ko/) ([`docs/`](docs/)에서 이 테마로 빌드)
-- [설치](https://modootoday.github.io/jekyll-theme-modootoday/ko/install/) · [첫 페이지](https://modootoday.github.io/jekyll-theme-modootoday/ko/first-page/) · [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/) · [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/) · [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/) · [변경 기록](CHANGELOG.md)
-- 지원 스택: GitHub Pages(`github-pages` 232, Jekyll 3.10, Ruby 3.3.4)와 Jekyll 4.4(Ruby 3.2~3.4), 모두 CI에서 테스트합니다.
+- [설치](https://modootoday.github.io/jekyll-theme-modootoday/ko/install/) · [첫 페이지](https://modootoday.github.io/jekyll-theme-modootoday/ko/first-page/) · [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/) · [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/configuration/) · [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/customize/) · [공개 API](https://modootoday.github.io/jekyll-theme-modootoday/ko/api/) · [이전과 업그레이드](https://modootoday.github.io/jekyll-theme-modootoday/ko/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/ko/csp/) · [로드맵](https://modootoday.github.io/jekyll-theme-modootoday/ko/roadmap/) · [변경 기록](CHANGELOG.md)
+- 지원 스택: GitHub Pages(`github-pages` 232, Jekyll 3.10, Ruby 3.3.4)와 Jekyll 4.4(Ruby 3.2~3.4), 모두 CI에서 테스트합니다. Jekyll 3.9를 하한으로 테스트합니다.
+- [보안 정책](SECURITY.md) · [행동 강령](CODE_OF_CONDUCT.md)
 
 ## 종료 코드
 

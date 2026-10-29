@@ -12,7 +12,7 @@ sections:
 이미 쓰는 빌드 방식을 고르세요. 세 방식 모두 같은 Markdown을 읽습니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../install/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](../../install/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 방식 고르기
 
@@ -20,7 +20,7 @@ sections:
 
 ```yaml
 # _config.yml (기본 GitHub Pages 빌드, Gemfile 불필요)
-remote_theme: modootoday/jekyll-theme-modootoday
+remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -30,7 +30,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday"
+gem "jekyll-theme-modootoday", "~> 0.5"
 ```
 
 ### github-pages gem

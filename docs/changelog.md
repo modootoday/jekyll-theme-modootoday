@@ -6,25 +6,29 @@ description: Releases of jekyll-theme-modootoday.
 
 The full history is in [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md).
 
-## Unreleased
+## 0.5.0 (first release, not yet published)
+
+The first public version. It combines the internal milestones below, which were never published on RubyGems.
+
+### Milestone 0.5
 
 - This documentation site, the kitchen sink and the QA job (screenshots, axe, contrast, budgets). `status:available`
 
-## 0.4.0
+### Milestone 0.4
 
 - Timeline, keyboard keys, client search and the `post` layout. `since:0.4`
 - Read-only DTCG `tokens.json` built in CI.
 
-## 0.3.0
+### Milestone 0.3
 
 - Theme toggle, breadcrumb, table of contents, accordion, steps, figures, tag and since badges. `since:0.3`
 
-## 0.2.0
+### Milestone 0.2
 
 - Design tokens, Sass partials per component and the `modootoday:` configuration block. `since:0.2`
 - Navigation, previous/next links and the code copy button.
 
-## 0.1.0
+### Milestone 0.1
 
 - First version: alerts, sections, cards, buttons, tabs, status badges, twins and the checker.
 

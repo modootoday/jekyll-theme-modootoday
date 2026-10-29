@@ -22,7 +22,7 @@ As a gem (`theme:`):
 
 ```ruby
 # Gemfile
-gem "jekyll-theme-modootoday", "~> 0.1"
+gem "jekyll-theme-modootoday", "~> 0.5"
 ```
 
 ```yaml
@@ -34,7 +34,7 @@ On GitHub Pages without a Gemfile (`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v0.1.0
+remote_theme: modootoday/jekyll-theme-modootoday@v0.5.0
 plugins:
   - jekyll-remote-theme
 ```
@@ -45,7 +45,7 @@ Pin a tag or a commit. More options: [Install guide](https://modootoday.github.i
 
 ```sh
 mkdir my-docs && cd my-docs
-printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.1"\n' > Gemfile
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 0.5"\n' > Gemfile
 printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {silence_deprecations: [import, global-builtin]}\n' > _config.yml
 printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
 bundle install && bundle exec jekyll build
@@ -59,6 +59,7 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 - **Plain body, rich layout.** The body is GFM; `sections:` front matter maps each `##` to a component. See [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) and the [kitchen sink](https://modootoday.github.io/jekyll-theme-modootoday/components/kitchen-sink/).
 - **Rules.** What may appear in a body, and what each pattern becomes, is defined in [RULES.md](RULES.md) (`md-components v1 (draft)`).
 - **Settings and tokens.** One `modootoday:` block in `_config.yml`, CSS custom properties `--mt-*`, one Sass partial per component. See [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) and [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/).
+- **Twins: three ways** — stub files (default, classic Pages), the `jekyll-theme-modootoday` plugin (Jekyll 4 / Actions), or `modootoday.twins: source` with front-matter-less pages (classic Pages, no stubs). See [RULES.md §5a](RULES.md#5a-markdown-twins).
 
 ## Commands
 
@@ -86,8 +87,9 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 ## Guides
 
 - [Documentation site](https://modootoday.github.io/jekyll-theme-modootoday/) (built with this theme from [`docs/`](docs/))
-- [Install](https://modootoday.github.io/jekyll-theme-modootoday/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/) · [Changelog](CHANGELOG.md)
-- Supported stacks: GitHub Pages (`github-pages` 232, Jekyll 3.10, Ruby 3.3.4) and Jekyll 4.4 on Ruby 3.2 to 3.4, all tested in CI.
+- [Install](https://modootoday.github.io/jekyll-theme-modootoday/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/customize/) · [Public API](https://modootoday.github.io/jekyll-theme-modootoday/api/) · [Migrate and upgrade](https://modootoday.github.io/jekyll-theme-modootoday/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/csp/) · [Roadmap](https://modootoday.github.io/jekyll-theme-modootoday/roadmap/) · [Changelog](CHANGELOG.md)
+- Supported stacks: GitHub Pages (`github-pages` 232, Jekyll 3.10, Ruby 3.3.4) and Jekyll 4.4 on Ruby 3.2 to 3.4, all tested in CI; Jekyll 3.9 is the tested floor.
+- [Security policy](SECURITY.md) · [Code of conduct](CODE_OF_CONDUCT.md)
 
 ## Exit codes
 
