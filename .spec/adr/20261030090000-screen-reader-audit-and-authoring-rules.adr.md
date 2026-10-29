@@ -11,7 +11,7 @@ live announcements and reflow. NVDA, JAWS and VoiceOver cannot run in CI or on t
 ## Decision
 
 1. `qa/a11y.mjs` audits **every** built page of the docs site, the example site and the blog/news sample:
-   axe-core (WCAG 2.0-2.2 A/AA tags) plus `qa/audit/sr-structure.mjs` (lang/dir, title, one `main`, labelled navs,
+   axe-core (WCAG 2.0-2.2 A/AA tags) plus `qa/audit/screen-reader/sr-structure.mjs` (lang/dir, title, one `main`, labelled navs,
    working skip link, one h1, heading skips in `main`, duplicate ids, SVG hidden or `role=img`, table headers,
    `img` alt, vague link text, unnamed controls, live regions next to search and copy), `sr-reflow.mjs`
    (1.4.10 at 320 px, 1.4.4 at 200 % text, 1.4.12 text spacing) with reduced motion on.

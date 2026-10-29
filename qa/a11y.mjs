@@ -5,9 +5,9 @@ import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
 import path from "node:path";
 import { serveSite } from "./site/server.mjs";
-import { checkStructure } from "./audit/sr-structure.mjs";
-import { checkReflow } from "./audit/sr-reflow.mjs";
-import { snapshotTree } from "./audit/sr-tree.mjs";
+import { checkStructure } from "./audit/screen-reader/sr-structure.mjs";
+import { checkReflow } from "./audit/screen-reader/sr-reflow.mjs";
+import { snapshotTree } from "./audit/screen-reader/sr-tree.mjs";
 
 const [out, ...sites] = process.argv.slice(2).map((p) => path.resolve(p));
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
