@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T22:22:51Z
 updated: 2026-10-29T22:23:31Z
 rel:
-  governs: [docs/_layouts/examples.html, docs/components/index.md, qa/coverage.rb]
+  governs: [docs/_layouts/examples.html, docs/components/index.md, qa/docs/coverage.rb]
 ---
 
 # Components docs pair each example's source with its live result

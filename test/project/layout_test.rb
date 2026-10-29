@@ -1,0 +1,57 @@
+# frozen_string_literal: true
+# Authoring conventions (CONTRIBUTING.md, "Project layout"; .spec ADR "authoring conventions"):
+# no flat directories (group files by context) and short, single-purpose code files.
+require "minitest/autorun"
+
+class LayoutTest < Minitest::Test
+  ROOT = File.expand_path("../..", __dir__)
+  MAX_FILES = 12 # tracked files directly in one directory
+
+  # Directories whose shape a standard fixes, or pending a regroup. Each needs a reason.
+  FLAT_OK = {
+    "." => "gem and repository standard files (README, gemspec, Gemfile, LICENSE, ...)",
+    "_sass/modootoday/components" => "pending regroup: one partial per component; regroup once the concurrent visual work in _sass lands",
+    "docs" => "Jekyll pages: file names are the site's URLs",
+    "docs/ko" => "Jekyll pages: URL mirror of docs/",
+    "docs/ja" => "Jekyll pages: URL mirror of docs/",
+    ".spec/adr" => "spec tool convention: one dated record per file",
+    "test/fixtures/md" => "fixture corpus: one source file per audit case, named by case",
+    "lib/modootoday/check" => "pending regroup: one file per rule group; regroup once the concurrent checker edits land",
+  }.freeze
+
+  MAX_LINES = 150 # code files under lib/, qa/, exe/, script/, assets/js/ and test helpers
+  MAX_TEST_LINES = 300 # *_test.rb and *.test.js
+  LONG_OK = {
+    "test/checker/check_test.rb" => "one case table per checker rule; split together with lib/modootoday/check",
+  }.freeze
+
+  def tracked = @tracked ||= Dir.chdir(ROOT) { `git ls-files -z`.split("\0") }.select { |f| File.file?(File.join(ROOT, f)) }
+
+  def test_no_flat_directories
+    flat = tracked.group_by { |f| File.dirname(f) }.select { |d, fs| fs.size > MAX_FILES && !FLAT_OK.key?(d) }
+    assert_empty flat.transform_values(&:size), "group these files by context (subdirectories), or add a reason to FLAT_OK"
+  end
+
+  def test_flat_allowlist_is_current
+    stale = FLAT_OK.keys.reject { |d| tracked.count { |f| File.dirname(f) == d } > MAX_FILES }
+    assert_empty stale, "no longer flat: remove from FLAT_OK"
+  end
+
+  def test_code_files_are_short
+    long = code_files.filter_map do |f|
+      n = File.foreach(File.join(ROOT, f)).count
+      "#{f}: #{n} > #{limit(f)}" if n > limit(f) && !LONG_OK.key?(f)
+    end
+    assert_empty long, "split by responsibility, or add a reason to LONG_OK"
+  end
+
+  def test_long_allowlist_is_current
+    stale = LONG_OK.keys.reject { |f| File.file?(File.join(ROOT, f)) && File.foreach(File.join(ROOT, f)).count > limit(f) }
+    assert_empty stale, "no longer long: remove from LONG_OK"
+  end
+
+  private
+
+  def code_files = tracked.select { |f| f.match?(%r{\A(lib|qa|exe|script|assets/js|test)/}) && !f.start_with?("test/fixtures/") && !f.end_with?(".json") }
+  def limit(f) = f.match?(/(_test\.rb|\.test\.js)\z/) ? MAX_TEST_LINES : MAX_LINES
+end

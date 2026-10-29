@@ -5,7 +5,7 @@ module Modootoday
     # Command line: usage, --help/--version, running the rule groups in order, reporting.
     module CLI
       USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict]"
-      # Single source for --help and the README "Commands" table (script/readme-commands, test/readme_test.rb).
+      # Single source for --help and the README "Commands" table (script/readme-commands, test/project/readme_test.rb).
       OPTIONS = [
         ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`kbd:` values (`since:` is rejected), `sections:` count, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md` and the built HTML), Sass/CSS rules, unconverted markers in the build"],
         ["--twins", "every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt`"],
