@@ -22,7 +22,7 @@ files = {}
 cats = langs.to_h do |l|
   h = leaves(YAML.safe_load(File.read("#{ROOT}/i18n/#{l}.yml"))).to_h
   abort "i18n/#{l}.yml: keys differ from en.yml: #{((reg.keys - h.keys) + (h.keys - reg.keys)).join(', ')}" unless h.keys.sort == reg.keys.sort
-  ph = ->(v) { v.scan(/%\{\w+\}/).sort }
+  ph = ->(v) { v.scan(/\[(?:n|total|section)\]/).sort } # placeholders: [n] [total] [section]
   h.each { |k, v| abort "i18n/#{l}.yml: #{k} placeholders differ from English" unless ph[v] == ph[reg[k]] }
   [l, h]
 end

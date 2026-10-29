@@ -5,7 +5,7 @@
 {%- assign _tl = include.lang | default: page.lang | default: site.lang | default: "en" -%}
 {%- unless mt_t_lang == _tl -%}
 {%- assign mt_t_lang = _tl -%}
-{%- capture _tc -%}Skip to contentNoteTipImportantWarningCautionAvailablePartialPlannedDoneOpenOptionsOn this pageDark modeDocsPage actionsCopy pageCopy for AIView as MarkdownSourceBreadcrumbMainPagesPreviousNextCopyCopiedCodeTableSearchEdit this pageLast updatedLanguages%Y-%m-%dThis page is not translated yet, so it is shown in English.TagsCategoriespostsNo posts yet.{%- endcapture -%}{%- assign _te = _tc | split: "" -%}
+{%- capture _tc -%}Skip to contentNoteTipImportantWarningCautionAvailablePartialPlannedDoneOpenOptionsOn this pageDark modeDocsPage actionsCopy pageCopy for AIView as MarkdownSourceBreadcrumbMainPagesPreviousNextCopyCopiedCodeTableSearchEdit this pageLast updatedLanguages%Y-%m-%dThis page is not translated yet, so it is shown in English.TagsCategoriespostsNo posts yet.FeaturedRead more[n] min readByUpdatedNewer postsOlder postsRelated postsSeriesPart [n] of [total]Copy linkLink copiedFeedLatestBreakingLiveCorrectionSourcesMore in [section]Authors{%- endcapture -%}{%- assign _te = _tc | split: "" -%}
 {%- assign _tx = nil -%}{%- assign _tdir = nil -%}{%- assign _tf = nil -%}
 {%- assign _tb = _tl | split: "-" | first -%}
 {%- assign _tk = " " | append: _tl | append: " " -%}{%- assign _tbk = " " | append: _tb | append: " " -%}
@@ -52,5 +52,25 @@
 {%- assign mt_t_archive_categories = _ts.archive.categories | default: _tx[36] | default: _te[36] -%}
 {%- assign mt_t_archive_posts = _ts.archive.posts | default: _tx[37] | default: _te[37] -%}
 {%- assign mt_t_archive_empty = _ts.archive.empty | default: _tx[38] | default: _te[38] -%}
+{%- assign mt_t_blog_featured = _ts.blog.featured | default: _tx[39] | default: _te[39] -%}
+{%- assign mt_t_blog_read_more = _ts.blog.read_more | default: _tx[40] | default: _te[40] -%}
+{%- assign mt_t_blog_reading_time = _ts.blog.reading_time | default: _tx[41] | default: _te[41] -%}
+{%- assign mt_t_blog_by = _ts.blog.by | default: _tx[42] | default: _te[42] -%}
+{%- assign mt_t_blog_updated = _ts.blog.updated | default: _tx[43] | default: _te[43] -%}
+{%- assign mt_t_blog_newer = _ts.blog.newer | default: _tx[44] | default: _te[44] -%}
+{%- assign mt_t_blog_older = _ts.blog.older | default: _tx[45] | default: _te[45] -%}
+{%- assign mt_t_blog_related = _ts.blog.related | default: _tx[46] | default: _te[46] -%}
+{%- assign mt_t_blog_series = _ts.blog.series | default: _tx[47] | default: _te[47] -%}
+{%- assign mt_t_blog_series_part = _ts.blog.series_part | default: _tx[48] | default: _te[48] -%}
+{%- assign mt_t_blog_share = _ts.blog.share | default: _tx[49] | default: _te[49] -%}
+{%- assign mt_t_blog_copied = _ts.blog.copied | default: _tx[50] | default: _te[50] -%}
+{%- assign mt_t_blog_feed = _ts.blog.feed | default: _tx[51] | default: _te[51] -%}
+{%- assign mt_t_blog_latest = _ts.blog.latest | default: _tx[52] | default: _te[52] -%}
+{%- assign mt_t_blog_breaking = _ts.blog.breaking | default: _tx[53] | default: _te[53] -%}
+{%- assign mt_t_blog_live = _ts.blog.live | default: _tx[54] | default: _te[54] -%}
+{%- assign mt_t_blog_correction = _ts.blog.correction | default: _tx[55] | default: _te[55] -%}
+{%- assign mt_t_blog_sources = _ts.blog.sources | default: _tx[56] | default: _te[56] -%}
+{%- assign mt_t_blog_more = _ts.blog.more | default: _tx[57] | default: _te[57] -%}
+{%- assign mt_t_blog_authors = _ts.blog.authors | default: _tx[58] | default: _te[58] -%}
 {%- assign mt_t_direction = _ts.direction | default: _tdir -%}
 {%- endunless -%}
