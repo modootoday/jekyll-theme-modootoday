@@ -1,0 +1,35 @@
+# Publishes the gem to RubyGems with trusted publishing (OIDC), no API key.
+# https://guides.rubygems.org/trusted-publishing/
+# Requires a (pending) trusted publisher on rubygems.org for this repository,
+# workflow "release.yml" and environment "rubygems".
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  push:
+    name: Push gem to RubyGems.org
+    runs-on: ubuntu-latest
+    environment: rubygems
+    permissions:
+      contents: write   # release-gem pushes the tag / creates the release metadata
+      id-token: write   # OIDC token for RubyGems trusted publishing
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Test and build example
+        run: bundle exec rake
+      - name: Check tag matches gem version
+        run: |
+          v=$(ruby -e 'puts Gem::Specification.load("jekyll-theme-modootoday.gemspec").version')
+          test "v$v" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != gem version $v"; exit 1; }
+      - uses: rubygems/release-gem@v1

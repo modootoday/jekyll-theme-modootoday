@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ruby:
+    name: ${{ matrix.stack }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - stack: github-pages
+            ruby: "3.3"
+            check_flags: --twins --github-pages
+          - stack: jekyll4
+            ruby: "3.3"
+            check_flags: --twins
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Ruby tests
+        run: bundle exec rake test
+      - name: Build example
+        run: bundle exec jekyll build -s example -d example/_site
+      - name: Check example
+        run: bundle exec ruby exe/modootoday-check example example/_site ${{ matrix.check_flags }}
+      - name: Build gem
+        run: gem build jekyll-theme-modootoday.gemspec
+
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
