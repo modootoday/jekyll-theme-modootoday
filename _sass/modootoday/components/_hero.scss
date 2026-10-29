@@ -1,6 +1,8 @@
 // Hero: everything before the first ## when sections: is set.
 @include mt-layer(components) {
-  .mt-hero { padding: calc(#{mt(space)} * 2) 0; }
-  .mt-hero > p:first-of-type { font-size: 1.2em; color: mt(muted-foreground); }
-  .mt-section { padding: mt(space) 0; }
+  .mt-hero { position: relative; padding: 2rem 0 1rem; }
+  .mt-hero h1 { font-size: unquote("clamp(2.25rem, 1.5rem + 3vw, 3.5rem)"); line-height: 1.08; letter-spacing: -.035em; font-weight: 750; margin-bottom: 1.25rem; }
+  .mt-hero > p:first-of-type { font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); max-width: 40rem; }
+  .mt-section { padding: mt(space-section) 0 0; }
+  .mt-section > h2:first-child { margin-top: 0; }
 }

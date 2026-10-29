@@ -1,11 +1,34 @@
-// Page shell: skip link, header, main, footer.
+// Page shell: skip link, sticky header, main (with optional sticky TOC column), footer.
 @include mt-layer(layout) {
   .mt-skip { position: absolute; left: -999px; top: 0; }
-  .mt-skip:focus { left: mt(space); top: mt(space); background: mt(background); padding: .5rem; z-index: 10; }
-  .mt-header, .mt-main, .mt-footer { max-width: mt(measure); margin: 0 auto; padding: 0 mt(space); }
-  .mt-header { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem;
-    padding-top: mt(space); padding-bottom: mt(space); border-bottom: 1px solid mt(border); }
-  .mt-site-title { font-weight: 600; text-decoration: none; color: mt(foreground); }
-  .mt-main { padding-top: calc(#{mt(space)} * 2); padding-bottom: calc(#{mt(space)} * 3); }
-  .mt-footer { padding-top: mt(space); padding-bottom: calc(#{mt(space)} * 2); color: mt(muted-foreground); font-size: .9em; }
+  .mt-skip:focus { left: mt(space); top: mt(space); background: mt(background); padding: .5rem; z-index: 30; }
+  .mt-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid mt(border);
+    background: mt(background); background: color-mix(in srgb, #{mt(background)} 86%, transparent);
+    -webkit-backdrop-filter: saturate(1.6) blur(10px); backdrop-filter: saturate(1.6) blur(10px); }
+  .mt-header-inner, .mt-main, .mt-footer-inner { width: 100%; max-width: mt(container); margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .mt-header-inner { display: flex; align-items: center; gap: .5rem 1.25rem; min-height: mt(header-height); }
+  .mt-site-title { flex: none; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.01em;
+    text-decoration: none; color: mt(foreground); white-space: nowrap; }
+  .mt-site-title::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
+    background: linear-gradient(135deg, #{mt(primary)}, #{mt(important)}); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
+  .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
+  .mt-doc-layout { max-width: 52rem; margin: 0 auto; }
+  .mt-doc-layout.mt-has-toc { max-width: none; }
+  .mt-doc-main { min-width: 0; }
+  .mt-doc-aside { display: none; }
+  .mt-footer { border-top: 1px solid mt(border); color: mt(muted-foreground); font-size: .875rem; background: mt(muted); }
+  .mt-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .mt-footer p { margin: 0; }
+  .mt-footer a { color: mt(foreground); }
+  @media (min-width: 64rem) {
+    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; gap: 4rem; }
+    .mt-has-toc .mt-doc-main { max-width: mt(measure); width: 100%; justify-self: center; }
+    .mt-doc-aside { display: block; }
+    .mt-doc-aside .mt-toc { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }
+  }
+  @media (max-width: 47.99rem) {
+    .mt-header-inner { flex-wrap: wrap; padding-top: .6rem; gap: .5rem .75rem; padding-left: 1rem; padding-right: 1rem; }
+    .mt-main, .mt-footer-inner { padding-left: 1rem; padding-right: 1rem; }
+    .mt-main { padding-top: 1.5rem; }
+  }
 }

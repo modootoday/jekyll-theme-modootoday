@@ -1,5 +1,17 @@
 @include mt-layer(base) {
-  code, pre { font-family: mt(font-mono); font-size: .9em; }
-  :not(pre) > code { background: mt(muted); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); }
-  pre { background: mt(muted); border: 1px solid mt(border); border-radius: mt(radius); padding: mt(space); overflow-x: auto; }
+  code, pre, kbd { font-family: mt(font-mono); }
+  :not(pre) > code { font-size: .875em; background: mt(muted); border: 1px solid mt(border); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); }
+  pre { font-size: .875rem; line-height: 1.6; background: mt(muted); border: 1px solid mt(border); border-radius: mt(radius-lg);
+    padding: 1rem 1.25rem; margin: 0 0 1.25rem; overflow-x: auto; tab-size: 2; }
+  pre code { font-size: inherit; }
+  div.highlighter-rouge, figure.highlight { margin: 0 0 1.25rem; }
+  div.highlighter-rouge pre, figure.highlight pre { margin: 0; }
+  // Rouge token colors (kramdown syntax_highlighter: rouge), from --mt-code-* tokens.
+  .highlight { .c, .c1, .cm, .cs, .cp, .cd { color: mt(code-comment); font-style: italic; }
+    .k, .kd, .kn, .kp, .kr, .kt, .kc, .ow, .nt { color: mt(code-keyword); }
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss, .na + .s { color: mt(code-string); }
+    .m, .mi, .mf, .mh, .mo, .il, .no, .bp, .vc, .vg, .vi { color: mt(code-constant); }
+    .nf, .fm, .nc, .nn, .nb, .nd, .ne { color: mt(code-function); }
+    .na, .py { color: mt(code-constant); }
+    .gd { color: mt(caution); } .gi { color: mt(tip); } .err { color: mt(caution); } }
 }

@@ -1,7 +1,16 @@
-// Header navigation from _data/nav/<modootoday.nav>.yml (or _data/nav.yml). Wraps on small screens.
+// Header navigation from _data/nav/<modootoday.nav>.yml (or _data/nav.yml). Scrolls sideways on small screens.
 @include mt-layer(components) {
-  .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
-  .mt-nav a { color: mt(muted-foreground); text-decoration: none; }
-  .mt-nav a:hover { color: mt(foreground); }
-  .mt-nav a[aria-current="page"] { color: mt(foreground); font-weight: 600; }
+  .mt-nav { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .25rem; }
+  .mt-nav li + li { margin-top: 0; }
+  .mt-nav a { display: block; padding: .35rem .65rem; border-radius: mt(radius); font-size: .9rem; font-weight: 500;
+    color: mt(muted-foreground); text-decoration: none; white-space: nowrap; transition: color .15s, background-color .15s; }
+  .mt-nav a:hover { color: mt(foreground); background: mt(accent); }
+  .mt-nav a[aria-current="page"] { color: mt(foreground); background: mt(accent); font-weight: 600; }
+  @media (max-width: 63.99rem) {
+    .mt-header-inner { flex-wrap: wrap; padding-top: .6rem; }
+    .mt-nav { order: 10; flex: 1 0 100%; min-width: 0; padding: 0 0 .4rem; overflow-x: auto; scrollbar-width: none; }
+    .mt-nav::-webkit-scrollbar { display: none; }
+    .mt-nav a { padding: .3rem .6rem; }
+  }
 }

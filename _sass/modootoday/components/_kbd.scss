@@ -2,5 +2,5 @@
 @include mt-layer(components) {
   .mt-kbd { white-space: nowrap; font: inherit; }
   .mt-kbd kbd { font-family: mt(font-mono); font-size: .8em; padding: .1em .45em; border: 1px solid mt(border);
-    border-bottom-width: 2px; border-radius: var(--mt-p-radius-sm); background: mt(muted); color: mt(foreground); }
+    border-bottom-width: 2px; border-radius: var(--mt-p-radius-sm); background: mt(muted); box-shadow: mt(shadow-sm); color: mt(foreground); }
 }

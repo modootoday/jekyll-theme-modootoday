@@ -1,8 +1,14 @@
-// Cards: c: features section, list items "- **Title** — description".
+// Cards: c: features section, list items "- **Title** — description" (the dash is dropped in Liquid).
 @include mt-layer(components) {
-  .mt-c-features > ul { --mt-card-padding: #{mt(space)};
-    list-style: none; padding: 0; display: grid; gap: mt(space); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-  .mt-c-features > ul > li { border: 1px solid mt(border); border-radius: mt(radius); padding: var(--mt-card-padding);
-    background: mt(card); color: mt(card-foreground); }
-  .mt-c-features > ul > li > strong:first-child { display: block; }
+  .mt-c-features > ul { --mt-card-padding: 1.25rem;
+    list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  .mt-c-features > ul > li { margin: 0; border: 1px solid mt(border); border-radius: mt(radius-lg); padding: var(--mt-card-padding);
+    background: mt(card); color: mt(muted-foreground); box-shadow: mt(shadow-sm); font-size: .9375rem; line-height: 1.6;
+    transition: border-color .15s, box-shadow .15s; }
+  .mt-c-features > ul > li:hover { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); box-shadow: mt(shadow); }
+  .mt-c-features > ul > li > strong:first-child { display: block; margin-bottom: .35rem; color: mt(card-foreground); font-size: 1rem; }
+  @media (min-width: 48rem) {
+    .mt-cols-2 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
 }

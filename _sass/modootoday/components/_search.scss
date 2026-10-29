@@ -1,12 +1,16 @@
 // Search box (header) and results list; needs a site /search.json (include modootoday/search.json).
 @include mt-layer(components) {
-  .mt-search { position: relative; margin-left: auto; }
-  .mt-search input { font: inherit; font-size: .9rem; padding: .3rem .6rem; border: 1px solid mt(border); border-radius: mt(radius);
-    background: mt(background); color: mt(foreground); width: 12rem; }
-  .mt-search input:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
-  .mt-search-results { position: absolute; right: 0; z-index: 10; list-style: none; margin: .25rem 0 0; padding: .25rem; min-width: 16rem;
-    background: mt(card); color: mt(card-foreground); border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-search { position: relative; margin-left: auto; flex: none; }
+  .mt-search input { font: inherit; font-size: .875rem; height: 2.25rem; padding: 0 .75rem; border: 1px solid mt(border); border-radius: mt(radius);
+    background: mt(muted); color: mt(foreground); width: 12rem; transition: border-color .15s, background-color .15s; }
+  .mt-search input::placeholder { color: mt(muted-foreground); }
+  .mt-search input:hover { border-color: mt(muted-foreground); }
+  .mt-search input:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; background: mt(background); }
+  .mt-search-results { position: absolute; right: 0; z-index: 30; list-style: none; margin: .4rem 0 0; padding: .35rem; min-width: 18rem;
+    background: mt(card); color: mt(card-foreground); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow); }
   .mt-search-results:empty { display: none; }
-  .mt-search-results a { display: block; padding: .3rem .5rem; border-radius: var(--mt-p-radius-sm); }
+  .mt-search-results li + li { margin-top: 0; }
+  .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; }
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
+  @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; } .mt-search-results { left: 0; min-width: 0; } }
 }

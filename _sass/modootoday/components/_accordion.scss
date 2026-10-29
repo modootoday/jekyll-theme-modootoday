@@ -1,11 +1,15 @@
 // Accordion: sections with `c: accordion`; each `###` becomes a disclosure (assets/js/modootoday/accordion.js).
 @include mt-layer(components) {
-  .mt-c-accordion h3 { margin: 0; border-top: 1px solid mt(border); }
-  .mt-accordion-trigger { all: unset; box-sizing: border-box; display: flex; justify-content: space-between; width: 100%;
-    padding: .75rem 0; cursor: pointer; font-weight: 600; }
+  .mt-c-accordion h3 { margin: 0; border-top: 1px solid mt(border); font-size: 1rem; }
+  .mt-c-accordion > h2 + h3 { margin-top: 1.25rem; }
+  .mt-accordion-trigger { all: unset; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%;
+    padding: 1rem 0; cursor: pointer; font-weight: 600; }
+  .mt-accordion-trigger:hover { color: mt(primary); }
   .mt-accordion-trigger:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
-  .mt-accordion-trigger::after { content: "+"; color: mt(muted-foreground); }
-  .mt-accordion-trigger[aria-expanded="true"]::after { content: "\2212"; }
-  .mt-accordion-panel { padding-bottom: .5rem; }
+  .mt-accordion-trigger::after { content: ""; flex: none; width: .5rem; height: .5rem; margin-right: .25rem; border: solid mt(muted-foreground);
+    border-width: 0 2px 2px 0; transform: translateY(-25%) rotate(45deg); transition: transform .2s; }
+  .mt-accordion-trigger[aria-expanded="true"]::after { transform: translateY(25%) rotate(-135deg); }
+  .mt-accordion-panel { padding-bottom: 1rem; color: mt(muted-foreground); }
   .mt-accordion-panel[hidden] { display: none; }
+  .mt-c-accordion { border-bottom: 1px solid mt(border); }
 }

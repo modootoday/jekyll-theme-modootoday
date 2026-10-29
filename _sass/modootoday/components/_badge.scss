@@ -2,8 +2,9 @@
 $mt-badge-variants: (available: status-available, partial: status-partial, planned: status-planned) !default;
 @include mt-layer(components) {
   .mt-badge { --mt-badge-color: #{mt(status-planned)}; --mt-badge-radius: var(--mt-p-radius-full);
-    display: inline-flex; gap: .3em; align-items: center; font-size: .8em; font-weight: 600; padding: .05em .55em;
-    border: 1px solid var(--mt-badge-color); border-radius: var(--mt-badge-radius); color: var(--mt-badge-color); white-space: nowrap; }
+    display: inline-flex; gap: .3em; align-items: center; vertical-align: .1em; font-size: .75rem; line-height: 1.5; font-weight: 600; padding: 0 .55em;
+    border: 1px solid color-mix(in srgb, var(--mt-badge-color) 35%, transparent); border-radius: var(--mt-badge-radius); color: color-mix(in srgb, var(--mt-badge-color) 78%, #{mt(foreground)});
+    background: color-mix(in srgb, var(--mt-badge-color) 9%, transparent); white-space: nowrap; }
   @each $name, $token in $mt-badge-variants {
     .mt-badge-#{$name} { --mt-badge-color: #{mt($token)}; }
   }

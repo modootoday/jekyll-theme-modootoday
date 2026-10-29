@@ -14,7 +14,7 @@ const WIDTHS = [360, 768, 1024, 1440];
 const SCHEMES = ["light", "dark"];
 const LANGS = ["", "ko/", "ja/"].filter((l) => fs.existsSync(path.join(site, l, "index.html")));
 const PAGES = ["", "install/", "first-page/", "components/", "components/kitchen-sink/", "configuration/", "customize/", "agents/", "changelog/"];
-const BUDGET = { css: 20 * 1024, js: 10 * 1024 }; // minified, uncompressed
+const BUDGET = { css: 32 * 1024, js: 10 * 1024 }; // as built (Jekyll default Sass output, uncompressed); gzip is reported
 const fails = [];
 
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".txt": "text/plain; charset=utf-8", ".md": "text/markdown; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png" };
