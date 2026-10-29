@@ -23,10 +23,11 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- assign _mt_plang = page.lang | default: _mt_def -%}
 {%- assign _mt_base = page.url -%}
 {%- if _mt_plang != _mt_def -%}{%- assign _mt_pre = "/" | append: _mt_plang -%}{%- assign _mt_base = page.url | remove_first: _mt_pre -%}{%- endif -%}
+{%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
 {%- for _l in _mt_langs -%}
 {%- if _l == _mt_def -%}{%- assign _mt_alt = _mt_base -%}{%- else -%}{%- assign _mt_alt = "/" | append: _l | append: _mt_base -%}{%- endif -%}
-{%- assign _mt_altp = site.pages | where: "url", _mt_alt | first -%}
-{%- if _mt_altp %}
+{%- assign _mt_key = "|" | append: _mt_alt | append: "|" -%}
+{%- if mt_page_urls contains _mt_key %}
 <link rel="alternate" hreflang="{{ _l }}" href="{{ _mt_alt | absolute_url }}">
 {%- if _l == _mt_def %}
 <link rel="alternate" hreflang="x-default" href="{{ _mt_alt | absolute_url }}">

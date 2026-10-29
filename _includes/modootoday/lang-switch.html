@@ -13,11 +13,12 @@
 {%- if _ls_cur != _ls_def -%}{%- assign _ls_pre = "/" | append: _ls_cur -%}{%- assign _ls_base = page.url | remove_first: _ls_pre -%}{%- endif -%}
 {%- assign _ls_label = site.data.i18n[_ls_cur].languages.label | default: "Languages" -%}
 {%- assign _ls_curname = site.data.i18n[_ls_cur].language | default: _ls_cur -%}
+{%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
 {%- capture _ls_items -%}
 {%- for _l in site.modootoday.languages -%}
 {%- if _l == _ls_def -%}{%- assign _ls_alt = _ls_base -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: _ls_base -%}{%- endif -%}
-{%- assign _ls_p = site.pages | where: "url", _ls_alt | first -%}
-{%- unless _ls_p -%}{%- if _l == _ls_def -%}{%- assign _ls_alt = "/" -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: "/" -%}{%- endif -%}{%- endunless -%}
+{%- assign _ls_key = "|" | append: _ls_alt | append: "|" -%}
+{%- unless mt_page_urls contains _ls_key -%}{%- if _l == _ls_def -%}{%- assign _ls_alt = "/" -%}{%- else -%}{%- assign _ls_alt = "/" | append: _l | append: "/" -%}{%- endif -%}{%- endunless -%}
 {%- assign _ls_name = site.data.i18n[_l].language | default: _l -%}
 <li><a href="{{ _ls_alt | relative_url }}" lang="{{ _l }}" hreflang="{{ _l }}"{% if _l == _ls_cur %} aria-current="true"{% endif %}>{{ _ls_name }}</a></li>
 {%- endfor -%}
