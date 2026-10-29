@@ -6,6 +6,17 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
+## [0.4.0] - Unreleased
+
+### Added
+- P2 components: timeline (`c: timeline`), keyboard keys (`` `kbd:Ctrl+K` ``), client search (`modootoday/search.json` include + `search.js`, under 1 KB compressed), `post` layout.
+- Read-only DTCG `tokens.json` generated in CI from the Sass maps (`script/tokens-json`), with a consistency test against the built CSS.
+- Checker: `kbd:` value format.
+- Example site: i18n keys `theme.toggle`, `breadcrumb.label`, `toc.label`, `badge.since`, `search.label`, `post.date_format` (en/ko/ja).
+
+### Deferred
+- `_data/components.yml` slot contract.
+
 ## [0.3.0] - Unreleased
 
 ### Added

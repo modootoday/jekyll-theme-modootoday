@@ -31,6 +31,10 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |
 | Figure | an image-only paragraph followed by an `*emphasis*`-only paragraph | `figure` + `figcaption` | images without alt (`![](...)`) are checker errors |
 | Breadcrumb / TOC / theme toggle | automatic (`breadcrumb: false`, `toc: false` per page; TOC shows with 2+ `##`/`###`; toggle only with `color_scheme: auto`) | `nav.mt-breadcrumb`, `nav.mt-toc`, header button (i18n `theme.toggle`, `breadcrumb.label`, `toc.label`) | — |
+| Timeline | `c: timeline` section; each `###` is a date or milestone, content follows | CSS line and dots | — |
+| Keyboard keys | `` `kbd:Ctrl+K` `` (keys joined by `+`, no spaces) | `kbd.mt-kbd > kbd` per key | bad values are checker errors |
+| Search | add `search.json` with `layout: null` and `{% include modootoday/search.json %}` | header `div.mt-search[role=search]` (i18n `search.label`) + `search.js` (under 1 KB compressed); pages with `search: false` are left out | rendered only when `/search.json` exists |
+| Post layout | `layout: post` (`date`, optional `author`, `tags`) | `p.mt-post-meta` (date with i18n `post.date_format`, author, tag badges), then the doc pipeline | — |
 | Component registry | optional `_data/components.yml`: `name: {params: {key: {allowed: [...], required: bool}}, i18n: [keys...]}` | when present the checker validates `c`, params and i18n keys | — |
 
 ## 3. Localisation
@@ -82,5 +86,8 @@ Allowed and portable: footnotes `[^1]` (markup differs slightly), task lists, st
 - kramdown differences that the checker does not flag: smart quotes and dashes (`"a" -- b` → “a” – b; GitHub leaves them), `#` headings indented one space are paragraphs, and `\|` inside a code span in a table cell keeps the backslash in kramdown (GitHub shows `|`). Avoid `|` in table code spans.
 - Liquid inside code (`{{ }}`) is still processed by Jekyll before kramdown; such pages need `{% raw %}` on the Jekyll side, which itself shows on GitHub.
 - The stylesheet uses Sass `@import` so it compiles with both Ruby Sass (GitHub Pages) and Dart Sass (Jekyll 4); Dart Sass prints deprecation warnings unless the site sets `sass: {silence_deprecations: [import, global-builtin]}` (jekyll-sass-converter ≥ 3.1). Custom properties holding Sass values must interpolate (`--x: #{$v}`); Ruby Sass prints `$v` literally.
-- Component classes are `mt-*` (with the deprecated `md-*` kept alongside until v0.3).
+- Component classes are `mt-*` (with the deprecated `md-*` kept alongside for now; removal is planned for a later minor, see CHANGELOG).
 - CTA buttons need `:has()`; without it they stay links.
+
+## 7. Design tokens artifact
+CI generates a DTCG `tokens.json` from the Sass token maps (`script/tokens-json`) and uploads it as a build artifact. It is read-only: edit the Sass maps, never the JSON. A test keeps it consistent with the built CSS.
