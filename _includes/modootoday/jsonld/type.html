@@ -1,0 +1,20 @@
+{%- comment -%}Resolves the page's schema.org type into _ld_type and its kind into _ld_kind (page | article | entity).
+Order: front matter schema.type, then site.modootoday.schema.layouts[<layout>], then the theme's layout map, then WebPage.{%- endcomment -%}
+{%- assign _ld_type = page.schema.type | default: site.modootoday.schema.layouts[page.layout] -%}
+{%- unless _ld_type -%}
+{%- case page.layout -%}
+{%- when "post" -%}{%- assign _ld_type = "BlogPosting" -%}
+{%- when "news-article" -%}{%- assign _ld_type = "NewsArticle" -%}
+{%- when "doc" -%}{%- assign _ld_type = "TechArticle" -%}
+{%- when "archive", "blog", "news" -%}{%- assign _ld_type = "CollectionPage" -%}
+{%- when "author", "profile", "resume" -%}{%- assign _ld_type = "ProfilePage" -%}
+{%- when "contact" -%}{%- assign _ld_type = "ContactPage" -%}
+{%- when "search" -%}{%- assign _ld_type = "SearchResultsPage" -%}
+{%- when "faq" -%}{%- assign _ld_type = "FAQPage" -%}
+{%- else -%}{%- assign _ld_type = "WebPage" -%}
+{%- endcase -%}
+{%- if page.kind == "news" -%}{%- assign _ld_type = "NewsArticle" -%}{%- endif -%}
+{%- endunless -%}
+{%- assign _ld_pages = "WebPage AboutPage CollectionPage ContactPage FAQPage ProfilePage SearchResultsPage ItemPage CheckoutPage MedicalWebPage QAPage RealEstateListing" | split: " " -%}
+{%- assign _ld_articles = "Article BlogPosting NewsArticle TechArticle Report ScholarlyArticle SocialMediaPosting AnalysisNewsArticle OpinionNewsArticle ReviewNewsArticle" | split: " " -%}
+{%- if _ld_pages contains _ld_type -%}{%- assign _ld_kind = "page" -%}{%- elsif _ld_articles contains _ld_type -%}{%- assign _ld_kind = "article" -%}{%- else -%}{%- assign _ld_kind = "entity" -%}{%- endif -%}

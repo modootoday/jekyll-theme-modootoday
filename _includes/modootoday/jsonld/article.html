@@ -1,0 +1,15 @@
+{%- comment -%}Article node (#main): Article, BlogPosting, NewsArticle, TechArticle (Google Article guidelines: headline,
+image, datePublished, dateModified, author with name and url). Authors: front matter authors/author, keys of _data/authors.yml.{%- endcomment -%}
+,{"@type":{{ _ld_type | jsonify }},"@id":{{ _ld_url | append: "#main" | jsonify }},"headline":{{ _ld_title | truncate: 110 | jsonify }}
+{%- if _ld_desc != "" %},"description":{{ _ld_desc | jsonify }}{% endif -%}
+,"url":{{ _ld_url | jsonify }},"mainEntityOfPage":{"@id":{{ _ld_url | append: "#webpage" | jsonify }}},"inLanguage":{{ _ld_lang | jsonify }}
+{%- assign _ld_m = page.last_modified_at | default: page.updated | default: page.date -%}
+{%- if page.date %},"datePublished":{{ page.date | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if _ld_m %},"dateModified":{{ _ld_m | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if _ld_img %},"image":[{{ _ld_img | absolute_url | jsonify }}]{% endif -%}
+{%- include modootoday/jsonld/author.html -%}
+,"publisher":{"@id":{{ _ld_root | append: "#publisher" | jsonify }}},"isPartOf":{"@id":{{ _ld_root | append: "#website" | jsonify }}}
+{%- if page.categories.size > 0 %},"articleSection":{{ page.categories | first | jsonify }}{% endif -%}
+{%- if page.tags.size > 0 %},"keywords":{{ page.tags | join: ", " | jsonify }}{% endif -%}
+{%- include modootoday/jsonld/props.html -%}
+}

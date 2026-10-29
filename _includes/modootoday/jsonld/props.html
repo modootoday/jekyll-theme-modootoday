@@ -1,0 +1,13 @@
+{%- comment -%}Front matter schema: map printed as properties (skips type, page_type). Keys are schema.org property names;
+values go through jsonify; nested type: keys print as @type; date keys with a time print as ISO 8601. Use absolute URLs or site paths starting with / (printed absolute) for url, image, logo, sameAs.{%- endcomment -%}
+{%- assign _ld_urlkeys = "url image logo sameAs item contentUrl embedUrl applicationUrl downloadUrl" | split: " " -%}
+{%- assign _ld_datekeys = "datePosted validThrough startDate endDate datePublished dateModified dateCreated uploadDate" | split: " " -%}
+{%- for _ld_kv in page.schema -%}{%- assign _ld_k = _ld_kv[0] -%}
+{%- unless _ld_k == "type" or _ld_k == "page_type" -%}
+{%- assign _ld_v = _ld_kv[1] -%}
+{%- assign _ld_s = _ld_v | append: "" -%}{%- assign _ld_c = _ld_s | slice: 0, 1 -%}{%- assign _ld_c2 = _ld_s | slice: 0, 2 -%}
+{%- if _ld_urlkeys contains _ld_k and _ld_c == "/" and _ld_c2 != "//" -%}{%- assign _ld_v = _ld_v | absolute_url -%}
+{%- elsif _ld_datekeys contains _ld_k and _ld_s.size > 10 -%}{%- assign _ld_v = _ld_v | date_to_xmlschema -%}{%- endif -%}
+,{{ _ld_k | jsonify }}:{{ _ld_v | jsonify | replace: '"type":', '"@type":' }}
+{%- endunless -%}
+{%- endfor -%}

@@ -4,12 +4,13 @@ module Modootoday
   module Check
     # Command line: usage, --help/--version, running the rule groups in order, reporting.
     module CLI
-      USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict] [--i18n] [--i18n-init=LANG,...]"
+      USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict] [--schema-recommended] [--i18n] [--i18n-init=LANG,...]"
       # Single source for --help and the README "Commands" table (script/readme-commands, test/project/readme_test.rb).
       OPTIONS = [
-        ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`kbd:` values (`since:` is rejected), `sections:` count, `_data/i18n/<lang>.yml` keys against the default language and translated pages against default-language pages, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md` and the built HTML), Sass/CSS rules, unconverted markers in the build"],
+        ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`kbd:` values (`since:` is rejected), `sections:` count, `_data/i18n/<lang>.yml` keys against the default language and translated pages against default-language pages, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md` and the built HTML), Sass/CSS rules, unconverted markers in the build, schema.org JSON-LD in the build (valid JSON, vocabulary, required properties per type, absolute URLs, ISO 8601 dates, one graph per page, agreement with Open Graph)"],
         ["--twins", "every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt`"],
         ["--github-pages[=VERSION]", "`Gemfile.lock` pins `github-pages` VERSION (default 232)"],
+        ["--schema-recommended", "also warn about schema.org properties Google Search recommends (author, image, dates, ...) that a JSON-LD node lacks"],
         ["--strict", "warnings fail the run"],
         ["--i18n", "`_data/i18n/<lang>.yml` against the theme registry (`i18n/en.yml` in the gem): unknown keys, `%{name}` placeholder mismatches, and pages marked `translation: pending`"],
         ["--i18n-init=LANG,...", "copy the theme's catalogs (`i18n/<lang>.yml`, 23 languages) into `SRC/_data/i18n/` as a starting point for overrides (optional; the theme already uses them), and list keys an existing catalog lacks"],
@@ -19,7 +20,7 @@ module Modootoday
       ].freeze
       # Rule groups in report order.
       RULES = [Registry, SiteConfig.method(:source_mode), Pages, I18n, Registry.method(:i18n_keys), BuiltParts,
-               BuildOutput.method(:residue), Stylesheets, BuildOutput.method(:css), SiteConfig, Blog, GithubPages, Twins, GhRender].freeze
+               BuildOutput.method(:residue), StructuredData, Stylesheets, BuildOutput.method(:css), SiteConfig, Blog, GithubPages, Twins, GhRender].freeze
 
       module_function
 

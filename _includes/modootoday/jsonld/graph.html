@@ -1,0 +1,24 @@
+{%- comment -%}schema.org JSON-LD: one <script type="application/ld+json"> with one @graph per page (needs modootoday/config.html).
+Nodes: WebSite (#website), the publisher (#publisher), the page (#webpage, typed by jsonld/type.html), the main entity (#main:
+an Article type or a front matter entity), BreadcrumbList (#breadcrumb). Absolute URLs only, so nothing is printed without site.url.
+  site.modootoday.schema: false        no JSON-LD (also when modootoday.seo is false)
+  front matter schema: false           no JSON-LD on that page
+  "<" is printed as \u003c, so the block never closes the script element early (CSP-safe: data, not script).{%- endcomment -%}
+{%- assign _ld = site.modootoday.schema -%}
+{%- unless site.modootoday.seo == false or _ld == false or _ld.enabled == false or page.schema == false or page.jsonld == false or site.url == nil -%}
+{%- include modootoday/jsonld/type.html -%}
+{%- assign _ld_root = "/" | absolute_url -%}
+{%- assign _ld_url = page.url | absolute_url -%}
+{%- assign _ld_lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign _ld_title = page.title | default: site.title | strip_html | normalize_whitespace -%}
+{%- assign _ld_desc = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 300 -%}
+{%- assign _ld_img = page.image.path | default: page.image | default: site.modootoday.og_image -%}
+{%- capture _ld_g -%}
+{%- include modootoday/jsonld/website.html -%}
+{%- include modootoday/jsonld/publisher.html -%}
+{%- include modootoday/jsonld/webpage.html -%}
+{%- if _ld_kind == "article" -%}{%- include modootoday/jsonld/article.html -%}{%- elsif _ld_kind == "entity" -%}{%- include modootoday/jsonld/entity.html -%}{%- endif -%}
+{%- include modootoday/jsonld/breadcrumb.html -%}
+{%- endcapture %}
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{{ _ld_g | strip | replace: "<", "\u003c" }}]}</script>
+{%- endunless -%}

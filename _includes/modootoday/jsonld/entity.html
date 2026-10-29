@@ -1,0 +1,13 @@
+{%- comment -%}Main entity node (#main) for every other type (JobPosting, Event, Course, PodcastEpisode, SoftwareApplication,
+DefinedTermSet, ItemList, Person, Organization, Product, ...). Prefills name (title for JobPosting), description, url, inLanguage;
+the front matter schema: map adds the rest (schema.org property names, nested maps with type: become typed nodes).{%- endcomment -%}
+,{"@type":{{ _ld_type | jsonify }},"@id":{{ _ld_url | append: "#main" | jsonify }}
+{%- unless page.schema.name or page.schema.title -%}
+{%- if _ld_type == "JobPosting" %},"title":{{ _ld_title | jsonify }}{% else %},"name":{{ _ld_title | jsonify }}{% endif -%}
+{%- endunless -%}
+{%- if _ld_desc != "" and page.schema.description == nil %},"description":{{ _ld_desc | jsonify }}{% endif -%}
+,"url":{{ _ld_url | jsonify }}
+{%- if _ld_type == "JobPosting" and page.schema.datePosted == nil and page.date %},"datePosted":{{ page.date | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if _ld_img and page.schema.image == nil %},"image":{{ _ld_img | absolute_url | jsonify }}{% endif -%}
+{%- include modootoday/jsonld/props.html -%}
+}

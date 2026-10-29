@@ -1,0 +1,11 @@
+{%- comment -%}The page node (#webpage): WebPage or the page type from jsonld/type.html (CollectionPage, ProfilePage, ...).
+name, url, description, image and inLanguage mirror the Open Graph tags; mainEntity points at #main for articles and entities.{%- endcomment -%}
+{%- if _ld_kind == "page" -%}{%- assign _ld_wt = _ld_type -%}{%- else -%}{%- assign _ld_wt = page.schema.page_type | default: "WebPage" -%}{%- endif -%}
+,{"@type":{{ _ld_wt | jsonify }},"@id":{{ _ld_url | append: "#webpage" | jsonify }},"url":{{ _ld_url | jsonify }},"name":{{ _ld_title | jsonify }}
+{%- if _ld_desc != "" %},"description":{{ _ld_desc | jsonify }}{% endif -%}
+,"inLanguage":{{ _ld_lang | jsonify }},"isPartOf":{"@id":{{ _ld_root | append: "#website" | jsonify }}}
+{%- if _ld_img %},"primaryImageOfPage":{"@type":"ImageObject","url":{{ _ld_img | absolute_url | jsonify }}}{% endif -%}
+{%- if page.url != "/" %},"breadcrumb":{"@id":{{ _ld_url | append: "#breadcrumb" | jsonify }}}{% endif -%}
+{%- if _ld_kind != "page" %},"mainEntity":{"@id":{{ _ld_url | append: "#main" | jsonify }}}{% endif -%}
+{%- if _ld_kind == "page" and page.schema -%}{%- include modootoday/jsonld/props.html -%}{%- endif -%}
+}

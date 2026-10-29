@@ -1,0 +1,8 @@
+{%- comment -%}"author" property: front matter authors (list) or author (name, key of _data/authors.yml, or comma list),
+else site.modootoday.schema.author, else nothing. Each becomes a Person with name and, when known, an absolute url.{%- endcomment -%}
+{%- assign _ld_as = page.authors | default: page.author | default: _ld.author -%}
+{%- if _ld_as and _ld_as.first == nil -%}{%- assign _ld_as = _ld_as | split: "," -%}{%- endif -%}
+{%- if _ld_as -%},"author":[
+{%- for _ld_a in _ld_as -%}{%- assign _ld_a = _ld_a | strip -%}{%- assign _ld_ad = site.data.authors[_ld_a] -%}
+{"@type":"Person","name":{{ _ld_ad.name | default: _ld_a | jsonify }}{% if _ld_ad.url %},"url":{{ _ld_ad.url | absolute_url | jsonify }}{% endif %}}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}]{%- endif -%}

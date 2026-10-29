@@ -6,6 +6,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
   site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
+  site.modootoday.schema     false drops the schema.org JSON-LD (modootoday/jsonld/graph.html)
 {%- endcomment -%}
 {%- assign _fav = site.modootoday.favicon -%}
 {%- if _fav == "brand" %}
@@ -86,3 +87,4 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- assign _mt_lfp = site.pages | where: "url", _mt_lf | first -%}{%- if _mt_lfp -%}{%- assign _mt_feed = _mt_lf -%}{%- endif -%}{%- endif %}
 <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ _mt_feed | relative_url }}">
 {%- endif -%}
+{%- include modootoday/jsonld/graph.html -%}
