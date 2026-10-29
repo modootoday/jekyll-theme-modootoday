@@ -4,6 +4,6 @@
 // env() is unquoted for Ruby Sass 3.7 (github-pages).
 @include mt-layer(layout) {
   :root { --mt-gutter: 1.5rem;
-    --mt-safe-top: #{unquote("env(safe-area-inset-top, 0px)")}; --mt-safe-right: #{unquote("env(safe-area-inset-right, 0px)")};
-    --mt-safe-bottom: #{unquote("env(safe-area-inset-bottom, 0px)")}; --mt-safe-left: #{unquote("env(safe-area-inset-left, 0px)")}; }
+    --mt-safe-top: #{unquote("env(safe-area-inset-top)")}; --mt-safe-right: #{unquote("env(safe-area-inset-right)")};
+    --mt-safe-bottom: #{unquote("env(safe-area-inset-bottom)")}; --mt-safe-left: #{unquote("env(safe-area-inset-left)")}; }
 }
