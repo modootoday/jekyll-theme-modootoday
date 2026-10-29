@@ -1,19 +1,26 @@
 {%- comment -%}
 jekyll-theme-modootoday settings with defaults. A gem theme's _config.yml is not merged on
 Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* variables only.
-  site.modootoday.color_scheme  auto | light | dark          (default auto)
+  site.modootoday.color_scheme  auto | light | dark | auto-dark | auto-light  (default auto)
+                                auto*: toggle shown; auto follows the system, auto-dark/auto-light start in that scheme
   site.modootoday.css_layers    true | false                 (default false)
   site.modootoday.components    list of component names      (default: all)
   site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang
   site.modootoday.tokens / tokens_dark  semantic token overrides, inline :root CSS
+  site.modootoday.sidebar       auto | true | false: doc-page sidebar from the nav (default auto: on when the nav has a group)
   site.modootoday.badges        false disables status badges (default true)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,post" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,post" | split: "," -%}
 {%- assign mt_components = mt_all_components -%}
 {%- if mt.components -%}{%- assign mt_components = mt.components -%}{%- endif -%}
 {%- assign mt_color_scheme = "auto" -%}
-{%- if mt.color_scheme == "light" or mt.color_scheme == "dark" -%}{%- assign mt_color_scheme = mt.color_scheme -%}{%- endif -%}
+{%- assign _mt_cs = "light dark auto-dark auto-light" | split: " " -%}
+{%- if _mt_cs contains mt.color_scheme -%}{%- assign mt_color_scheme = mt.color_scheme -%}{%- endif -%}
+{%- comment -%}mt_theme_toggle: the visitor can switch; mt_theme_start: data-theme printed on <html> (none for auto).{%- endcomment -%}
+{%- assign mt_theme_toggle = false -%}{%- assign mt_theme_start = mt_color_scheme | remove: "auto-" -%}
+{%- if mt_color_scheme contains "auto" -%}{%- assign mt_theme_toggle = true -%}{%- endif -%}
+{%- if mt_color_scheme == "auto" -%}{%- assign mt_theme_start = nil -%}{%- endif -%}
 {%- if mt.css_layers == true -%}{%- assign mt_css_layers = "true" -%}{%- else -%}{%- assign mt_css_layers = "false" -%}{%- endif -%}
 {%- if mt.badges == false -%}{%- assign mt_badges = false -%}{%- else -%}{%- assign mt_badges = true -%}{%- endif -%}
 {%- assign mt_nav_name = mt.nav | default: "main" -%}
@@ -21,3 +28,7 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- assign _mt_nav_l = mt_nav_name | append: "-" | append: page.lang -%}
 {%- if page.lang and site.data.nav[_mt_nav_l] -%}{%- assign mt_nav = site.data.nav[_mt_nav_l] -%}{%- endif -%}
 {%- if mt_nav == nil and site.data.nav.first.url -%}{%- assign mt_nav = site.data.nav -%}{%- endif -%}
+{%- assign mt_sidebar = false -%}
+{%- if mt_nav and mt_components contains "sidebar" and mt.sidebar != false and page.sidebar != false -%}
+{%- if mt.sidebar == true -%}{%- assign mt_sidebar = true -%}{%- else -%}{%- for _it in mt_nav -%}{%- if _it.items -%}{%- assign mt_sidebar = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- endif -%}

@@ -1,4 +1,4 @@
-// jekyll-theme-modootoday — copy button for code blocks (progressive enhancement).
+// jekyll-theme-modootoday — copy buttons: code, page actions.
 (function () {
   if (!navigator.clipboard) return;
   var root = document.documentElement;
@@ -23,5 +23,13 @@
       });
     });
     box.append(b);
+  });
+  document.querySelectorAll("[data-mt-act]").forEach(function (b) {
+    var d = b.closest("details").dataset; b.parentNode.hidden = 0;
+    b.onclick = function () {
+      fetch(d.mtTwin).then(function (r) { return r.text(); }).then(function (m) {
+        return navigator.clipboard.writeText((b.dataset.mtAct > "b" ? "" : d.mtSource + ": " + d.mtUrl + "\n\n") + m);
+      }).then(function () { b.textContent = live.textContent = done; });
+    };
   });
 })();

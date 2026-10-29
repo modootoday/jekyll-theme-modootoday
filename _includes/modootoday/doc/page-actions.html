@@ -1,0 +1,15 @@
+{%- comment -%}Page actions menu for pages with a Markdown twin (needs modootoday/config.html): view the twin, and with
+code-copy.js copy it ("Copy page") or copy it with its source URL ("Copy for AI"). Hidden with front matter
+page_actions: false. Labels: _data/i18n page_actions.*.{%- endcomment -%}
+{%- if mt_components contains "page-actions" and page.page_actions != false and site.modootoday.page_actions != false -%}
+{%- include modootoday/doc/twin.html -%}
+{%- if mt_twin -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign _pa = site.data.i18n[_lang].page_actions -%}
+<details class="mt-menu mt-page-actions" data-mt-twin="{{ mt_twin | relative_url }}" data-mt-source="{{ _pa.source | default: 'Source' }}" data-mt-url="{{ page.url | absolute_url }}"><summary>{{ _pa.label | default: "Page actions" }}</summary><ul>
+<li hidden><button type="button" data-mt-act="copy">{{ _pa.copy | default: "Copy page" }}</button></li>
+<li hidden><button type="button" data-mt-act="ai">{{ _pa.copy_ai | default: "Copy for AI" }}</button></li>
+<li><a href="{{ mt_twin | relative_url }}" type="text/markdown">{{ _pa.view | default: "View as Markdown" }}</a></li>
+</ul></details>
+{%- endif -%}
+{%- endif -%}

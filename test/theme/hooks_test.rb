@@ -9,7 +9,7 @@ require "rbconfig"
 require "jekyll"
 
 class ConsumerHooksTest < Minitest::Test
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
   CHECK = File.join(ROOT, "exe/modootoday-check")
   CLEAN_ENV = { "BUNDLE_GEMFILE" => nil, "RUBYOPT" => nil, "BUNDLER_SETUP" => nil, "BUNDLER_VERSION" => nil }.freeze
   PAGE = <<~MD

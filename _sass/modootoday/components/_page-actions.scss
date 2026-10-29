@@ -1,0 +1,8 @@
+// Page actions (details.mt-menu.mt-page-actions): a small menu at the inline end above the article.
+@include mt-layer(components) {
+  .mt-page-actions { position: relative; float: inline-end; margin-inline-start: 1rem; z-index: 5; }
+  .mt-page-actions > summary { border: 1px solid mt(border); }
+  .mt-page-actions > ul { inset-inline: auto 0; }
+  .mt-page-actions button { width: 100%; padding: .35rem .6rem; border: 0; border-radius: mt(radius); background: none; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+  .mt-page-actions button:hover { background: mt(accent); }
+}

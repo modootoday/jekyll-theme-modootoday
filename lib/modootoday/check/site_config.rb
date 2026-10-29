@@ -4,7 +4,7 @@ module Modootoday
   module Check
     # The modootoday: settings in the site's _config.yml.
     module SiteConfig
-      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search post].freeze
+      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search post].freeze
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border ring note tip important warning caution status-available status-partial
                     status-planned font-sans font-mono font-size line-height measure space radius].freeze
@@ -35,7 +35,8 @@ module Modootoday
         end
         errs << "_config.yml: modootoday.edit_url must be an http(s) URL ending in / (page.path is appended)" if mtc.key?("edit_url") && mtc["edit_url"].to_s !~ %r{\Ahttps?://\S+/\z}
         ctx.warns << "_config.yml: modootoday.feed: true links /feed.xml; add jekyll-feed to plugins" if mtc["feed"] == true && !Array(ctx.site_cfg["plugins"]).map(&:to_s).include?("jekyll-feed")
-        %w[css_layers badges seo hreflang feed].each { |k| errs << "_config.yml: modootoday.#{k} must be true or false" if mtc.key?(k) && ![true, false].include?(mtc[k]) }
+        %w[css_layers badges seo hreflang feed page_actions].each { |k| errs << "_config.yml: modootoday.#{k} must be true or false" if mtc.key?(k) && ![true, false].include?(mtc[k]) }
+        errs << "_config.yml: modootoday.sidebar must be auto, true or false" if mtc.key?("sidebar") && ![true, false, "auto"].include?(mtc["sidebar"])
         if mtc.key?("components")
           list = mtc["components"].is_a?(Array) ? mtc["components"] : (errs << "_config.yml: modootoday.components must be a list"; [])
           (list.map(&:to_s) - COMPONENTS).each { |c| errs << "_config.yml: modootoday.components: unknown component '#{c}' (known: #{COMPONENTS.join(', ')})" }
@@ -45,7 +46,7 @@ module Modootoday
 
       def enums(mtc, errs)
         errs << "_config.yml: modootoday.twins must be true, false or source (got #{mtc['twins'].inspect})" if mtc.key?("twins") && ![true, false, "source"].include?(mtc["twins"])
-        errs << "_config.yml: modootoday.color_scheme must be auto, light or dark (got #{mtc['color_scheme'].inspect})" if mtc.key?("color_scheme") && !%w[auto light dark].include?(mtc["color_scheme"])
+        errs << "_config.yml: modootoday.color_scheme must be auto, auto-dark, auto-light, light or dark (got #{mtc['color_scheme'].inspect})" if mtc.key?("color_scheme") && !%w[auto auto-dark auto-light light dark].include?(mtc["color_scheme"])
         errs << "_config.yml: modootoday.csp must be strict or false (got #{mtc['csp'].inspect})" if mtc.key?("csp") && mtc["csp"] != "strict" && mtc["csp"] != false
         errs << "_config.yml: modootoday.languages must be a list of language codes such as [en, ko]" if mtc.key?("languages") && !(mtc["languages"].is_a?(Array) && mtc["languages"].all? { |l| l.to_s =~ /\A[a-z]{2,3}(-[A-Za-z0-9]+)*\z/ })
       end

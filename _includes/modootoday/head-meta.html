@@ -15,7 +15,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- elsif _fav %}
 <link rel="icon" href="{{ _fav | relative_url }}">
 {%- endif -%}
-{%- if mt_components contains "theme-toggle" and mt_color_scheme == "auto" -%}
+{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}
 {%- if site.modootoday.csp == "strict" %}
 <script src="{{ '/assets/js/modootoday/theme-init.js' | relative_url }}"></script>
 {%- else %}

@@ -332,11 +332,13 @@ class CheckTest < Minitest::Test
   end
 
   def test_modootoday_config_validation
-    page "_config.yml", "modootoday:\n  color_scheme: blue\n  css_layers: yes please\n  components: [callout, carousel]\n" \
+    page "_config.yml", "modootoday:\n  color_scheme: blue\n  css_layers: yes please\n  sidebar: left\n  page_actions: maybe\n  components: [callout, carousel]\n" \
                         "  tokens: {primary: '#c2410c', accent: '#zz0000', foo: '1rem'}\n  tokens_dark: {primary: '#fb923c}x'}\n"
     o, code = check
     assert_equal 1, code
-    assert_includes o, "color_scheme must be auto, light or dark"
+    assert_includes o, "color_scheme must be auto, auto-dark, auto-light, light or dark"
+    assert_includes o, "sidebar must be auto, true or false"
+    assert_includes o, "page_actions must be true or false"
     assert_includes o, "css_layers must be true or false"
     assert_includes o, "unknown component 'carousel'"
     refute_includes o, "unknown component 'callout'"

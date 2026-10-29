@@ -1,0 +1,25 @@
+{%- comment -%}Doc sidebar from the nav (needs modootoday/config.html; shown when mt_sidebar). Top-level items, then each
+group as a titled list. From 64rem a sticky column (aside.mt-doc-nav); below it a collapsed <details class="mt-sidebar-mobile">
+whose summary is the current group (or the label). include part=aside | mobile. Label: _data/i18n sidebar.label.{%- endcomment -%}
+{%- if mt_sidebar -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign _sb_label = site.data.i18n[_lang].sidebar.label | default: site.data.i18n[_lang].nav.label | default: "Main" -%}
+{%- assign _sb_cur = nil -%}
+{%- capture _sb_list -%}<ul>
+{%- for it in mt_nav -%}
+{%- if it.items -%}
+{%- assign _hit = it.items | where: "url", page.url | first -%}{%- if _hit -%}{%- assign _sb_cur = it.title -%}{%- endif -%}
+<li class="mt-sidebar-group"><span class="mt-sidebar-title">{%- if it.url -%}<a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a>{%- else -%}{{ it.title }}{%- endif -%}</span><ul>
+{%- for sub in it.items %}<li><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
+</ul></li>
+{%- else -%}
+<li><a href="{{ it.url | relative_url }}"{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
+{%- endif -%}
+{%- endfor -%}
+</ul>{%- endcapture -%}
+{%- if include.part == "aside" %}
+<aside class="mt-doc-nav"><nav class="mt-sidebar" aria-label="{{ _sb_label }}">{{ _sb_list }}</nav></aside>
+{%- else %}
+<details class="mt-sidebar-mobile"><summary>{{ _sb_cur | default: _sb_label }}</summary><nav class="mt-sidebar" aria-label="{{ _sb_label }}">{{ _sb_list }}</nav></details>
+{%- endif -%}
+{%- endif -%}
