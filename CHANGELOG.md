@@ -13,6 +13,11 @@ First public release. Nothing was published on RubyGems before 1.0.0. The change
 
 ### Added
 - **Result container for CTA sections:** when a `c: cta` section holds an element with `data-mt-result`, the `.mt-cta` box (centering, gradient, border) goes on that element instead of the whole section. Sections without one render exactly as before. The docs Components page uses it, so the Buttons example card matches the other cards and only its result is framed.
+- `visual: <name>` on a `sections:` item and `hero: {visual: <name>}` render a site-provided `_includes/sections/<name>.html`; `modootoday-check` fails when it is missing.
+- `full_width: true` front matter removes the reading-column width of `main` (`.mt-main-full`).
+- Breadcrumb: the home crumb uses the home page `short_title:` when set.
+- `modootoday-check` accepts tool region markers alone on a line (`<!-- spec:toc:begin -->` / `<!-- spec:toc:end -->`); other HTML comments are still errors.
+- `modootoday.hreflang` keeps `hreflang` alternates when `seo: false`.
 - **Language switcher:** `modootoday.language_switcher: header | footer` renders a theme-level switcher from `languages` (the same alternates as `hreflang`), linking to the translation of the current page or that language's home page. In the header it is a globe button with a `<details>` dropdown (localized accessible name, `aria-current`, `lang`/`hreflang` on each link) that keeps the same width however many languages there are; in the footer, a list. Nothing renders with fewer than two languages. `modootoday/lang-switch.html` can be included from a custom footer. The docs site uses the header menu in place of its footer list.
 - `menu.js` (small, CSP-safe): Esc closes a `<details class="mt-menu">` and returns focus, arrow keys move between items, an outside click or opening another menu closes it. Used by the language menu and the nav "More" group.
 - On screens under 30rem, search takes its own row under the site title.
