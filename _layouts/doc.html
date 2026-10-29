@@ -14,7 +14,7 @@ layout: default
 {%- include modootoday/breadcrumb.html -%}
 {%- if _toc != "" %}{{ _toc | replace: '<nav class="mt-toc" aria-labelledby="mt-toc-title">', '<details class="mt-toc-mobile"><summary>' | replace: '<p class="mt-toc-title" id="mt-toc-title">', '' | replace: '</p><ol>', '</summary><ol>' | replace: '</nav>', '</details>' }}{% endif %}
 <article class="mt-doc md-doc">
-{% include md-sections.html content=html sections=page.sections lang=page.lang %}
+{% include md-sections.html content=html sections=page.sections hero=page.hero lang=page.lang %}
 </article>
 </div>
 {%- if _toc != "" %}

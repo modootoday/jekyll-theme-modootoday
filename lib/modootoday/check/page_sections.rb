@@ -16,6 +16,21 @@ module Modootoday
         code.scan(/<!--.*?-->/m) { |c| errs << "#{r}: '##' inside an HTML comment is not a heading" if c =~ /^##/ }
         errs << "#{r}: sections: has #{secs.size} item(s) but body has #{h2} top-level '## ' heading(s)" if secs.size != h2
         components(ctx, r, secs, section_markdown(b, code)) if ctx.comps
+        hero = meta["hero"]
+        errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
+        visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
+      end
+
+      # visual: <name> on a section item or on hero: needs the site's _includes/sections/<name>.html.
+      def visuals(ctx, r, secs, hero)
+        items = secs.each_with_index.map { |s, i| [s, "sections[#{i}]"] }
+        items << [hero, "hero"] if hero
+        items.each do |s, where|
+          next unless s.is_a?(Hash) && s.key?("visual")
+          v = s["visual"].to_s
+          next ctx.errs << "#{r}: #{where}.visual must be an include name [a-z0-9_-] (got #{s['visual'].inspect})" unless v =~ /\A[a-z0-9][a-z0-9_-]*\z/
+          ctx.errs << "#{r}: #{where}.visual: _includes/sections/#{v}.html not found" unless File.exist?(File.join(ctx.src, "_includes/sections/#{v}.html"))
+        end
       end
 
       # Markdown of each top-level ## section (index i = sections[i]): [code spans/fences blanked, raw]
@@ -38,7 +53,7 @@ module Modootoday
           params = spec["params"] || {}
           Slots.check_section(errs, r, i, s["c"], spec["slots"], sec_md[i])
           (ctx.part_uses[s["c"]] ||= []) << r if spec.is_a?(Hash) && spec["parts"].is_a?(Array)
-          (s.keys - %w[c name]).each do |k|
+          (s.keys - %w[c name visual]).each do |k|
             next errs << "#{r}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)
             allowed = params[k].is_a?(Hash) && params[k]["allowed"]
             errs << "#{r}: sections[#{i}] #{s['c']}.#{k}=#{s[k].inspect} not in #{allowed.inspect}" if allowed && !allowed.include?(s[k])

@@ -14,7 +14,8 @@ module Modootoday
         if File.exist?(lock) && (v = File.read(lock)[/^    github-pages \((\d+)\)/, 1])
           ctx.errs << "#{lock}: github-pages #{v} != #{want}" unless v == want
         else
-          ctx.errs << "--github-pages: no Gemfile.lock with github-pages found (#{lock})"
+          ctx.errs << "--github-pages: no Gemfile.lock with github-pages found (#{lock}); run `bundle lock` (the file may stay gitignored) " \
+                     "or point BUNDLE_GEMFILE at a Gemfile whose .lock pins github-pages, or drop --github-pages"
         end
       end
     end

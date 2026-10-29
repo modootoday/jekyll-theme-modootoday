@@ -1,6 +1,7 @@
 {%- comment -%}
 SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, no plugins.
   site.modootoday.seo        false drops canonical, hreflang and Open Graph (use jekyll-seo-tag instead)
+  site.modootoday.hreflang   true keeps the hreflang alternates when seo is false (default: follows seo)
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
   site.modootoday.feed       true adds the Atom link to /feed.xml (add jekyll-feed to plugins)
   site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
@@ -17,6 +18,9 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- if site.url %}
 <link rel="canonical" href="{{ _mt_url }}">
 {%- endif -%}
+{%- endunless -%}
+{%- assign _mt_hreflang = site.modootoday.hreflang -%}{%- if _mt_hreflang == nil -%}{%- if site.modootoday.seo == false -%}{%- assign _mt_hreflang = false -%}{%- else -%}{%- assign _mt_hreflang = true -%}{%- endif -%}{%- endif -%}
+{%- if _mt_hreflang -%}
 {%- assign _mt_langs = site.modootoday.languages -%}
 {%- if _mt_langs and site.url -%}
 {%- assign _mt_def = site.lang | default: "en" -%}
@@ -35,6 +39,8 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- endif -%}
 {%- endfor -%}
 {%- endif %}
+{%- endif -%}
+{%- unless site.modootoday.seo == false -%}
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
 <meta property="og:title" content="{{ page.title | default: site.title | strip_html | escape }}">
 {%- if page.description or site.description %}

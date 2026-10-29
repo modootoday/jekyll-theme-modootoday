@@ -12,6 +12,7 @@
   .mt-site-title::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
     background: mt(brand); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
   .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
+  .mt-main.mt-main-full { max-width: none; padding-inline: 0; }
   // One alignment system: header, main and footer share the container. Pages with a TOC put the text column on the
   // container's left edge (under the logo); pages without one (home, landing) centre a wider column.
   .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: 52rem; margin-inline: auto; }

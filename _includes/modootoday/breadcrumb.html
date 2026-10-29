@@ -1,5 +1,5 @@
 {%- comment -%}Breadcrumb from the page URL: each parent directory that is a page becomes a link.
-Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: false.{%- endcomment -%}
+The home crumb uses the home page short_title, then its title. Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: false.{%- endcomment -%}
 {%- if mt_components contains "breadcrumb" and page.breadcrumb != false -%}
 {%- assign _segs = page.url | split: "/" -%}
 {%- assign _home = "/" -%}{%- assign _start = 0 -%}
@@ -7,7 +7,7 @@ Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: f
 {%- if page.url != _home and page.url != "/" -%}
 {%- assign _hp = site.pages | where: "url", _home | first -%}
 <nav class="mt-breadcrumb" aria-label="{{ site.data.i18n[_lang].breadcrumb.label | default: 'Breadcrumb' }}"><ol>
-<li><a href="{{ _home | relative_url }}">{{ _hp.title | default: site.title | default: "Home" }}</a></li>
+<li><a href="{{ _home | relative_url }}">{{ _hp.short_title | default: _hp.title | default: site.title | default: "Home" }}</a></li>
 {%- assign _acc = _home -%}
 {%- for _s in _segs offset: 1 -%}{%- if forloop.index > _start and _s != "" and _s != "index.html" -%}
 {%- assign _acc = _acc | append: _s | append: "/" -%}

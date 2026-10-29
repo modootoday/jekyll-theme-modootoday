@@ -35,7 +35,7 @@ module Modootoday
         end
         errs << "_config.yml: modootoday.edit_url must be an http(s) URL ending in / (page.path is appended)" if mtc.key?("edit_url") && mtc["edit_url"].to_s !~ %r{\Ahttps?://\S+/\z}
         ctx.warns << "_config.yml: modootoday.feed: true links /feed.xml; add jekyll-feed to plugins" if mtc["feed"] == true && !Array(ctx.site_cfg["plugins"]).map(&:to_s).include?("jekyll-feed")
-        %w[css_layers badges seo feed].each { |k| errs << "_config.yml: modootoday.#{k} must be true or false" if mtc.key?(k) && ![true, false].include?(mtc[k]) }
+        %w[css_layers badges seo hreflang feed].each { |k| errs << "_config.yml: modootoday.#{k} must be true or false" if mtc.key?(k) && ![true, false].include?(mtc[k]) }
         if mtc.key?("components")
           list = mtc["components"].is_a?(Array) ? mtc["components"] : (errs << "_config.yml: modootoday.components must be a list"; [])
           (list.map(&:to_s) - COMPONENTS).each { |c| errs << "_config.yml: modootoday.components: unknown component '#{c}' (known: #{COMPONENTS.join(', ')})" }
