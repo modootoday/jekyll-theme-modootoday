@@ -6,6 +6,18 @@ The content rules have their own version header (`md-components v1 (draft)`) in 
 
 ## [Unreleased]
 
+## [0.3.0] - Unreleased
+
+### Added
+- P1 components: theme toggle (localStorage `mt-theme`, pre-paint script), breadcrumb, table of contents, accordion (`c: accordion`), steps (`c: steps`), figure/figcaption, `tag:`/`since:` badges. All on by default; `modootoday.components` narrows them.
+- Checker: `tag:`/`since:` value format, images without alt text.
+
+### Changed
+- Status/tag/since badges are also turned off when `badge` is not in `modootoday.components`.
+
+### Deprecated
+- `md-*` class aliases remain for now (removal moved to a later minor).
+
 ## [0.2.0] - Unreleased
 
 ### Added

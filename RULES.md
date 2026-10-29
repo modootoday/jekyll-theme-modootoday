@@ -26,6 +26,11 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Component | Markdown | Transformation | Notes |
 |---|---|---|---|
 | Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.md-badge.md-badge-<value>` = symbol (●◐○, `aria-hidden`) + i18n `status.<value>` | unknown values and leftover `<code>status:` in the build are checker errors |
+| Tag / since badge | `` `tag:beta` `` / `` `since:0.3` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` / `.mt-badge-since` (i18n `badge.since`) | needs the `badge` component; bad values are checker errors |
+| Accordion | `c: accordion` section, each `###` is a question | JS turns `###` into `button[aria-expanded]` + panel; content stays visible without JS | — |
+| Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |
+| Figure | an image-only paragraph followed by an `*emphasis*`-only paragraph | `figure` + `figcaption` | images without alt (`![](...)`) are checker errors |
+| Breadcrumb / TOC / theme toggle | automatic (`breadcrumb: false`, `toc: false` per page; TOC shows with 2+ `##`/`###`; toggle only with `color_scheme: auto`) | `nav.mt-breadcrumb`, `nav.mt-toc`, header button (i18n `theme.toggle`, `breadcrumb.label`, `toc.label`) | — |
 | Component registry | optional `_data/components.yml`: `name: {params: {key: {allowed: [...], required: bool}}, i18n: [keys...]}` | when present the checker validates `c`, params and i18n keys | — |
 
 ## 3. Localisation
