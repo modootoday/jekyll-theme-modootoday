@@ -3,6 +3,7 @@ title: カスタマイズ
 description: トークンで色、角丸、フォントを変えるか、Sass パーシャルを上書きします。
 sections:
   - tokens
+  - visuals
   - sass
   - shadow
   - {c: cta, name: next}
@@ -24,6 +25,25 @@ sections:
   --mt-radius: 0.75rem;
 }
 ```
+
+自分のスタイルシートで上書きするには、テーマのダークスキームのセレクター（`:root[data-theme]` と `prefers-color-scheme` のルール）に勝つ必要があります。サポートしている方法は二つです。
+
+- 値を `modootoday.tokens` と `modootoday.tokens_dark` に書きます。テーマ自身のトークンと同じセレクターで出力されます。
+- `modootoday.css_layers: true` にします。テーマの CSS が `@layer mt.*` に入り、レイヤー外のルールが勝つので、普通の `:root { … }` で足ります。
+
+## セクションのビジュアルと全幅ページ
+
+`sections:` の項目に `visual: <name>` を書くと、そのセクションの末尾にサイトの `_includes/sections/<name>.html` が描画されます。インクルードは項目を `include.section` として受け取るので、`scene:` のような追加キーも渡ります。フロントマターの `hero: {visual: <name>}` は最初の `##` より前の部分に同じことをします（`sections:` が必要です）。インクルードがないと `modootoday-check` が失敗します。
+
+```yaml
+---
+full_width: true
+hero: {visual: player-mock}
+sections: [{c: features, name: why, visual: chart, scene: night}, faq]
+---
+```
+
+`full_width: true` はランディングページ向けに、`main.mt-main` の本文幅の制限と左右の余白を外します（`.mt-main-full` を追加）。
 
 ## Sass パーシャル
 

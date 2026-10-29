@@ -15,6 +15,7 @@ From 1.0 on, the names below follow [Semantic Versioning](https://semver.org/): 
 | Markdown rules | the patterns in `RULES.md` and their output classes `mt-*` |
 | Layouts | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` can be included from your footer |
+| Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../customize/#section-visuals-and-full-width-pages)) |
 | Includes you may call | `modootoday/archive.html` with `by` and `lang` |
 | Data files | `_data/i18n/<lang>.yml` keys, `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |

@@ -35,6 +35,7 @@ modootoday:
 | `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする |
 | `twins` | スタブ | `source` で front matter のないツインを使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
+| `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |
 | `languages` | なし | `hreflang` 用の言語コード。例: `[en, ko]` ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。 |
 | `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
 | `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
@@ -57,7 +58,7 @@ modootoday:
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
 
-代わりに `jekyll-seo-tag` を使うなら、`seo: false` にして jekyll-seo-tag の `seo` タグを `_includes/head-custom.html` に入れます。front matter の `last_modified_at:` でページに日付を表示できます。厳格な Content Security Policy については [CSP](../csp/) を参照してください。
+代わりに `jekyll-seo-tag` を使うなら、`seo: false` にして jekyll-seo-tag の `seo` タグを `_includes/head-custom.html` に入れます。front matter の `last_modified_at:` でページに日付を表示できます。パンくずリストの最初の項目は、ホームページの front matter に `short_title:` があればそれを、なければ `title` を表示します。厳格な Content Security Policy については [CSP](../csp/) を参照してください。
 
 ## 言語
 

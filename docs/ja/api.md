@@ -18,6 +18,7 @@ description: このテーマが安定して保つ名前と、その非推奨化�
 | Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*` |
 | レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 上書きしてよいインクルード | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` をインクルードできる |
+| 自分で用意するインクルード | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../customize/#セクションのビジュアルと全幅ページ)を参照） |
 | 呼び出してよいインクルード | `modootoday/archive.html`（`by`、`lang`） |
 | データファイル | `_data/i18n/<lang>.yml` のキー、`_data/nav/<name>.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |

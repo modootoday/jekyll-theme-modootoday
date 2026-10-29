@@ -29,6 +29,8 @@ permalink: /guide/index.md
 ---
 ```
 
+`twin_of` is a path relative to the stub file (it is read with `include_relative`), so keep the stub in the same folder as its page or use `../` paths. It cannot point outside the site source or into `_` folders.
+
 Each HTML page links its twin with `rel="alternate" type="text/markdown"`.
 
 ## llms.txt

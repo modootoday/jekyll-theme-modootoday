@@ -18,6 +18,7 @@ description: 이 테마가 안정적으로 유지하는 이름과, 폐기·제�
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*` |
 | 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`을 인클루드할 수 있음 |
+| 직접 만드는 include | `_includes/sections/<name>.html`. `visual: <name>`을 쓴 섹션이나 히어로 끝에 렌더링됨 ([사용자 정의](../customize/#섹션-비주얼과-전체-폭-페이지) 참고) |
 | 호출해도 되는 인클루드 | `modootoday/archive.html`(`by`, `lang`) |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키, `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |

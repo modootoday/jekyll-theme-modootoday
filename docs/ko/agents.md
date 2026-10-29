@@ -32,6 +32,8 @@ permalink: /guide/index.md
 ---
 ```
 
+`twin_of`는 스텁 파일 기준의 상대 경로예요(`include_relative`로 읽어요). 스텁을 페이지와 같은 폴더에 두거나 `../` 경로를 쓰세요. 사이트 소스 밖이나 `_` 폴더는 가리킬 수 없어요.
+
 각 HTML 페이지는 `rel="alternate" type="text/markdown"`으로 쌍둥이를 연결합니다.
 
 ## llms.txt

@@ -3,6 +3,7 @@ title: 커스터마이즈
 description: 토큰으로 색·모서리·글꼴을 바꾸거나 Sass 파셜을 덮어씁니다.
 sections:
   - tokens
+  - visuals
   - sass
   - shadow
   - {c: cta, name: next}
@@ -24,6 +25,25 @@ sections:
   --mt-radius: 0.75rem;
 }
 ```
+
+직접 만든 스타일시트에서 덮어쓰려면 테마의 다크 스킴 선택자(`:root[data-theme]`, `prefers-color-scheme` 규칙)보다 우선해야 해요. 지원하는 방법은 두 가지예요.
+
+- 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적어요. 테마가 자기 토큰과 같은 선택자로 출력해요.
+- `modootoday.css_layers: true`로 설정해요. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분해요.
+
+## 섹션 비주얼과 전체 폭 페이지
+
+`sections:` 항목에 `visual: <name>`을 쓰면 그 섹션 끝에 사이트의 `_includes/sections/<name>.html`이 렌더링돼요. include는 항목을 `include.section`으로 받으므로 `scene:` 같은 추가 키도 전달돼요. 머리말의 `hero: {visual: <name>}`은 첫 `##` 앞부분에 같은 일을 해요(`sections:`가 있어야 해요). include가 없으면 `modootoday-check`가 실패해요.
+
+```yaml
+---
+full_width: true
+hero: {visual: player-mock}
+sections: [{c: features, name: why, visual: chart, scene: night}, faq]
+---
+```
+
+`full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없애요(`.mt-main-full` 추가).
 
 ## Sass 파셜
 

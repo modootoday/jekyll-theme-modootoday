@@ -32,6 +32,8 @@ permalink: /guide/index.md
 ---
 ```
 
+`twin_of` はスタブファイルからの相対パスです（`include_relative` で読み込みます）。スタブはページと同じフォルダーに置くか、`../` のパスを使ってください。サイトのソースの外や `_` フォルダーは指せません。
+
 各 HTML ページは `rel="alternate" type="text/markdown"` でツインにリンクします。
 
 ## llms.txt

@@ -43,6 +43,8 @@ Read `CHANGELOG.md` for every version you skip. From 1.0 on, rules and the publi
 | a build from the repository before 1.0.0 | 1.0 | pin `~> 1.0` or `@v1.0.0`; replace `md-*` classes and `--md-*` properties in your own CSS with `mt-*` and `--mt-*` (they still work in 1.x, with checker warnings); run `modootoday-check --strict` |
 | 1.x | 2.0 | `md-*` aliases are removed |
 
+If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
+
 ### `md-*` to `mt-*`
 
 The `md-*` classes and `--md-*` custom properties are deprecated in 1.0 and removed in 2.0. `modootoday-check` warns where your own Sass, CSS, includes, layouts or pages use them (code blocks are ignored); `--strict` turns the warnings into errors. Replace each name with its `mt-*` equivalent. Only the names below exist; the theme never had other `md-*` names.

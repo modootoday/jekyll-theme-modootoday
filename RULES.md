@@ -50,7 +50,7 @@ The bans are about **portability**: the same source must look the same on github
 | Forbidden | Why | Check |
 |---|---|---|
 | raw HTML (`<div>`, `<details>`, `<kbd>` …) | not portable: GitHub renders some tags (`details`, `kbd`) and strips or escapes others (`script`, `iframe`), kramdown passes everything through; keeps twins readable | checker |
-| HTML comments `<!-- -->` | hidden on GitHub but emitted by kramdown; a `##` inside one shifts section counts | checker |
+| HTML comments `<!-- -->` | hidden on GitHub but emitted by kramdown; a `##` inside one shifts section counts. Exception: a tool region marker alone on its line, `<!-- tool:name:begin -->` / `<!-- tool:name:end -->` (lowercase, ends in `:begin` or `:end`) | checker |
 | Liquid `{% %}` `{{ }}` | breaks on GitHub and in twins | checker |
 | kramdown IAL/ALD `{: .x}`, `{:toc}` | kramdown-only | checker |
 | header ids `{#id}` | kramdown-only (literal text on GitHub) | checker |

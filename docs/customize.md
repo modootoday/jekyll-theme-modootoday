@@ -3,6 +3,7 @@ title: Customize
 description: Change colors, radius and fonts with tokens, or override Sass partials.
 sections:
   - tokens
+  - visuals
   - sass
   - shadow
   - {c: cta, name: next}
@@ -21,6 +22,25 @@ The theme exposes CSS custom properties. Override them in your own stylesheet or
   --mt-radius: 0.75rem;
 }
 ```
+
+Overrides in your own stylesheet need to beat the theme's dark-scheme selectors (`:root[data-theme]` and the `prefers-color-scheme` rule). Two supported ways:
+
+- Put the values in `modootoday.tokens` and `modootoday.tokens_dark`. The theme prints them with the same selectors as its own tokens.
+- Set `modootoday.css_layers: true`. The theme CSS then sits in `@layer mt.*`, and any rule outside a layer wins, so a plain `:root { … }` is enough.
+
+## Section visuals and full-width pages
+
+Add `visual: <name>` to a `sections:` item to render your own `_includes/sections/<name>.html` at the end of that section. The include gets the item as `include.section`, so extra keys such as `scene:` reach it. `hero: {visual: <name>}` in front matter does the same for the part before the first `##` (it needs `sections:`). `modootoday-check` fails when the include is missing.
+
+```yaml
+---
+full_width: true
+hero: {visual: player-mock}
+sections: [{c: features, name: why, visual: chart, scene: night}, faq]
+---
+```
+
+`full_width: true` removes the reading-column width and side padding of `main.mt-main` (adds `.mt-main-full`) for landing pages.
 
 ## Sass partials
 
