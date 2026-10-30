@@ -6,7 +6,7 @@ export async function checkStructure(page) {
     const vis = (e) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== "hidden";
     const html = document.documentElement;
     if (!html.lang) out.push("html lang missing");
-    if (/^(ar|fa|he|ur)\b/.test(html.lang) && html.dir !== "rtl") out.push(`lang ${html.lang} without dir=rtl`);
+    if (/^(ar|fa|he|ur)\b(?!-Latn)/.test(html.lang) && html.dir !== "rtl") out.push(`lang ${html.lang} without dir=rtl`);
     if (!document.title.trim()) out.push("empty <title>");
     if ($$("main").length !== 1) out.push(`main landmarks: ${$$("main").length}`);
     const headerless = $$("main.mt-shell-minimal, main.mt-mk-links").length > 0; // minimal, error and links layouts omit the site header by design
