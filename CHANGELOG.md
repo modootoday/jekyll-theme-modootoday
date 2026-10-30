@@ -4,9 +4,9 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 The content rules have their own version header (`md-components v1`) in [RULES.md](RULES.md).
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-10-30
 
-First public release. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.
+First public release, published on RubyGems on 2026-10-30. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.
 
 ### Added
 - **Links that open a new window:** `new_window: true` or `target: _blank` on nav items, cards, buttons, link cards, directory items, pricing calls to action and footer links, `[text](url "new-window")` on Markdown links (portable; kramdown `{: .mt-new-window}` also works), and `modootoday.external_links.new_window: true` for every external link. Each gets `rel="noopener noreferrer"`, a translated hidden hint (`new_window.hint`, in all 23 catalogs) through `aria-describedby`, and a CSS-only arrow (`external_links.icon: false` hides it). No script, so a strict CSP keeps working. Bare `#` sample links now stay `#` instead of pointing at the site root.
