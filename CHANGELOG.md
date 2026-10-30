@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-31
+
 ### Added
 
 - Release workflow: after the gem is pushed to RubyGems, a GitHub Release is created for the tag with its `CHANGELOG.md` entry as the notes (`script/release-notes`); skipped when the Release already exists.
@@ -225,6 +227,7 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1
 [1.1.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0
 [1.0.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.0.0
