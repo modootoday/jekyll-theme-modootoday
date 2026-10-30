@@ -64,7 +64,7 @@ sections:
 > An alert with more content:
 >
 > - a list item with `inline code`
-> - a second item with a [link](../)
+> - a second item with a link to the [components index](../)
 >
 > ```sh
 > echo "code inside an alert"
@@ -249,7 +249,7 @@ end
 
 ## Typography
 
-Paragraph text with **bold**, *italic*, ~~strikethrough~~, `code` and a [link](../). Footnotes work too.[^1]
+Paragraph text with **bold**, *italic*, ~~strikethrough~~, `code` and a link to the [components index](../). Footnotes work too.[^1]
 
 ### Heading level 3
 
