@@ -1,0 +1,14 @@
+{%- comment -%}No-JavaScript search: GET form to an external engine restricted to this host. Configure
+  modootoday.search.fallback (url and query parameter); default DuckDuckGo with site:<host>.{%- endcomment -%}
+{%- include modootoday/i18n.html -%}
+{%- assign _f = site.modootoday.search.fallback -%}
+{%- if _f != false -%}
+{%- assign _host = "/" | absolute_url | split: "://" | last | split: "/" | first -%}
+<form class="mt-search-form" role="search" method="get" action="{{ _f.url | default: 'https://duckduckgo.com/' }}">
+<label for="mt-search-q">{{ mt_t_search_label }}</label>
+<input id="mt-search-q" type="search" name="{{ _f.param | default: 'q' }}" required minlength="2" autocomplete="off" aria-describedby="mt-search-hint">
+<input type="hidden" name="sites" value="{{ _host }}">
+<button class="mt-search-submit" type="submit">{% include modootoday/brand/icon.html name="search" size=16 %}{{ mt_t_search_label }}</button>
+<p id="mt-search-hint" class="mt-search-hint">{{ mt_t_pages_search_hint }}</p>
+</form>
+{%- endif -%}

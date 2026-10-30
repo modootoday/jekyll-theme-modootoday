@@ -1,0 +1,18 @@
+{%- comment -%}One directory card. include.it: title|name, url, text, image, alt, plus preset fields (role; location, type; date, end, location; tier; category). include.cls: filter classes.{%- endcomment -%}
+{%- assign _it = include.it -%}{%- assign _p = include.preset -%}{%- assign _name = _it.title | default: _it.name -%}
+<li class="mt-dir-item{{ include.cls }}">
+{%- if _p == "events" and _it.date %}{% include modootoday/directory/date-tile.html date=_it.date %}{% endif %}
+{%- if _it.image %}<img class="mt-dir-img" src="{% include modootoday/link.html url=_it.image %}" alt="{{ _it.alt | default: '' }}" loading="lazy" decoding="async">{% endif %}
+<div class="mt-dir-body">
+<h2 class="mt-dir-title">{% if _it.url %}<a href="{% include modootoday/link.html url=_it.url %}">{{ _name }}</a>{% else %}{{ _name }}{% endif %}</h2>
+{%- assign _meta = _it.role | default: _it.subtitle -%}
+{%- if _p == "jobs" %}{% assign _meta = _it.location %}{% if _it.type %}{% if _meta %}{% assign _meta = _meta | append: " · " | append: _it.type %}{% else %}{% assign _meta = _it.type %}{% endif %}{% endif %}{% endif %}
+{%- if _p == "events" %}{% assign _meta = _it.location %}{% endif %}
+{%- if _p == "sponsors" %}{% assign _meta = _it.tier %}{% endif %}
+{%- if _p == "integrations" %}{% assign _meta = _it.category %}{% endif %}
+{%- if _meta and _meta != "" %}<p class="mt-dir-meta">{{ _meta }}</p>{% endif %}
+{%- if _it.text %}<p class="mt-dir-text">{{ _it.text }}</p>{% endif %}
+{%- if _it.tags and _p != "sponsors" %}<p class="mt-dir-tags">{% for t in _it.tags %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}
+{%- if _p == "events" and _it.date %}{% include modootoday/directory/ics.html title=_name start=_it.date end=_it.end location=_it.location url=_it.url %}{% endif %}
+</div>
+</li>

@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
-import { BUDGET, BLOG_FILES, SHEETS, SECTION_SHEET, SHOWCASE } from "./config.mjs";
+import { BUDGET, BLOG_FILES, SHEETS, SECTION_SHEET, SHOWCASE, BUNDLE } from "./config.mjs";
 
 const sheetBudget = (f) => SHEETS[f] ?? (/^css\/modootoday\/(showcase|structure)\//.test(f) ? SECTION_SHEET : null);
 
@@ -13,7 +13,7 @@ export function checkBudgets(site, fails) {
   const size = (f) => fs.statSync(path.join(dir, f)).size;
   const sizes = {};
   for (const [kind, ext, blog] of [["css", ".css", false], ["js", ".js", false], ["blog-css", ".css", true], ["blog-js", ".js", true]]) {
-    const files = all.filter((f) => f.endsWith(ext) && f.includes("modootoday") && BLOG_FILES.includes(f) === blog);
+    const files = all.filter((f) => f.endsWith(ext) && f.includes("modootoday") && !BUNDLE.test(f) && BLOG_FILES.includes(f) === blog);
     const bytes = files.reduce((n, f) => n + size(f), 0);
     const gzip = files.reduce((n, f) => n + zlib.gzipSync(fs.readFileSync(path.join(dir, f))).length, 0);
     sizes[kind] = { files, bytes, gzip, budget: BUDGET[kind] };
@@ -27,12 +27,17 @@ export function checkBudgets(site, fails) {
   let worst = 0;
   for (const h of fs.readdirSync(site, { recursive: true }).filter((f) => f.endsWith(".html"))) {
     const html = fs.readFileSync(path.join(site, h), "utf8");
-    const links = [...html.matchAll(/<link rel="stylesheet" href="[^"]*\/assets\/(css\/modootoday[^"]*\.css)"/g)].map((m) => m[1]).filter((f) => !BLOG_FILES.includes(f));
+    const links = [...html.matchAll(/<link rel="stylesheet" href="[^"]*\/assets\/(css\/modootoday[^"]*\.css)"/g)].map((m) => m[1]).filter((f) => !BLOG_FILES.includes(f) && !BUNDLE.test(f));
     const t = links.reduce((n, f) => n + (fs.existsSync(path.join(dir, f)) ? size(f) : 0), 0);
     const cap = SHOWCASE.test(h) ? BUDGET.css_showcase : BUDGET.css;
     if (cap === BUDGET.css) worst = Math.max(worst, t);
     if (t > cap) fails.push(`css linked by ${h}: ${t} B > budget ${cap} B`);
   }
   sizes.css.page_max = worst;
+  for (const f of all.filter((x) => BUNDLE.test(x))) {
+    const k = `css:${f.match(BUNDLE)[1]}`;
+    sizes[k] = { files: [f], bytes: size(f), gzip: zlib.gzipSync(fs.readFileSync(path.join(dir, f))).length, budget: BUDGET.bundle };
+    if (size(f) > BUDGET.bundle) fails.push(`${k} ${size(f)} B > budget ${BUDGET.bundle} B`);
+  }
   return sizes;
 }

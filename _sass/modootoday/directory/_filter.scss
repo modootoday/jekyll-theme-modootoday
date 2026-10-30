@@ -1,0 +1,12 @@
+// CSS-only filter: radio i checked hides items without class mt-f<i>. Browsers without :has() show every item.
+@include mt-layer(components) {
+  .mt-dir-filter { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .mt-dir-filter > label { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1rem; border: 1px solid mt(border);
+    border-radius: 999px; font-size: .875rem; font-weight: 600; cursor: pointer; user-select: none; }
+  .mt-dir-filter > input:checked + label { background: mt(foreground); border-color: mt(foreground); color: mt(background); }
+  .mt-dir-filter > input:focus-visible + label { outline: 2px solid mt(ring); outline-offset: 2px; }
+  @for $i from 1 through 12 {
+    .mt-dir:has(.mt-f-r#{$i}:checked) .mt-dir-item:not(.mt-f#{$i}) { display: none; }
+  }
+  @media (forced-colors: active) { .mt-dir-filter > input:checked + label { forced-color-adjust: none; background: Highlight; color: HighlightText; } }
+}

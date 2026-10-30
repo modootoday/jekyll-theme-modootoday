@@ -1,0 +1,12 @@
+---
+layout: wide
+mt_bundle: directory
+mt_main: mt-shell-wide mt-dir-page
+---
+{%- comment -%}directory: the page body, then a card grid from items: (or data: <file in _data>), preset: and filter: <field>.
+  The portfolio, team, jobs, events, sponsors and integrations layouts set the preset and its default filter.{%- endcomment -%}
+{{ content }}
+{%- include modootoday/directory/items.html page=page -%}
+{%- assign _pre = page.preset | default: layout.mt_preset | default: "cards" -%}
+{%- assign _flt = page.filter | default: layout.mt_filter -%}{%- if page.filter == false -%}{%- assign _flt = nil -%}{%- endif -%}
+{%- include modootoday/directory/list.html items=mt_items preset=_pre filter=_flt -%}

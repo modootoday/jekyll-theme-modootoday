@@ -1,0 +1,6 @@
+{%- comment -%}Sets mt_fvals: the distinct values of field include.field over include.items (string or list values), first-seen order, at most 12.{%- endcomment -%}
+{%- assign mt_fvals = "" | split: "" -%}
+{%- for _it in include.items -%}{%- assign _v = _it[include.field] -%}
+{%- if _v -%}{%- assign _vs = _v | join: "|" | split: "|" -%}{%- for _x in _vs -%}{%- unless mt_fvals contains _x -%}{%- assign mt_fvals = mt_fvals | push: _x -%}{%- endunless -%}{%- endfor -%}{%- endif -%}
+{%- endfor -%}
+{%- assign mt_fvals = mt_fvals | slice: 0, 12 -%}

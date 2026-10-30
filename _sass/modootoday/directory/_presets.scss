@@ -1,0 +1,14 @@
+// Preset looks: team avatars, events with a date tile, sponsor and integration logos, jobs as rows.
+@include mt-layer(components) {
+  .mt-dir-team .mt-dir-item { align-items: center; text-align: center; }
+  .mt-dir-team .mt-dir-img { width: 6rem; height: 6rem; aspect-ratio: 1; border-radius: 50%; }
+  .mt-dir-events .mt-dir-item, .mt-dir-jobs .mt-dir-item { flex-direction: row; align-items: flex-start; }
+  .mt-dir-jobs .mt-dir-grid, .mt-dir-events .mt-dir-grid { grid-template-columns: 1fr; }
+  .mt-date-tile { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 4rem; height: 4rem;
+    border-radius: mt(radius); background: mt(muted); line-height: 1.1; text-transform: uppercase; font-size: .75rem; }
+  .mt-date-tile > b { font-size: 1.5rem; }
+  .mt-dir-sponsors .mt-dir-img, .mt-dir-integrations .mt-dir-img { width: auto; max-width: 100%; height: 3rem; aspect-ratio: auto;
+    object-fit: contain; background: none; }
+  .mt-dir-sponsors .mt-dir-item { align-items: center; text-align: center; }
+  @media print { .mt-dir-filter { display: none; } .mt-dir-item { break-inside: avoid; } }
+}

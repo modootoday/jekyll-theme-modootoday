@@ -1,0 +1,7 @@
+---
+layout: minimal
+mt_main: mt-shell-minimal mt-error
+---
+{%- comment -%}error: status page for 404, 410 or 500 (front matter status:, default 404). Title and text come from the
+  i18n catalog unless the page sets title or a body. Keep sitemap: false on these pages.{%- endcomment -%}
+{%- include modootoday/pages/error.html status=page.status -%}

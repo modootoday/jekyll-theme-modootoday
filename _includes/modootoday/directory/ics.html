@@ -1,0 +1,17 @@
+{%- comment -%}"Add to calendar" link: an iCalendar file as a data: URL (no script, no server). include.title, start, end, location, url.{%- endcomment -%}
+{%- assign _s = include.start | date: "%Y%m%dT%H%M%S" -%}{%- assign _e = include.end | default: include.start | date: "%Y%m%dT%H%M%S" -%}
+{%- assign _tz = "" -%}{%- if site.timezone -%}{%- assign _tz = ";TZID=" | append: site.timezone -%}{%- endif -%}
+{%- capture _ics %}BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//modootoday//layouts//EN
+BEGIN:VEVENT
+UID:{{ _s }}-{{ include.title | slugify }}@{{ site.url | default: "localhost" | remove: "https://" | remove: "http://" }}
+DTSTAMP:{{ _s }}
+DTSTART{{ _tz }}:{{ _s }}
+DTEND{{ _tz }}:{{ _e }}
+SUMMARY:{{ include.title | strip_html | replace: ",", "\," }}
+{% if include.location %}LOCATION:{{ include.location | replace: ",", "\," }}
+{% endif %}{% if include.url %}URL:{% include modootoday/link.html url=include.url absolute=true %}
+{% endif %}END:VEVENT
+END:VCALENDAR{% endcapture -%}
+<a class="mt-ics" download="{{ include.title | slugify | default: 'event' }}.ics" href="data:text/calendar;charset=utf-8,{{ _ics | strip | url_encode | replace: '+', '%20' | replace: '%0A', '%0D%0A' }}">{{ mt_t_layouts_calendar }}<span class="mt-sr-only">: {{ include.title }}</span></a>

@@ -11,6 +11,7 @@ Order: front matter schema.type, then site.modootoday.schema.layouts[<layout>], 
 {%- when "contact" -%}{%- assign _ld_type = "ContactPage" -%}
 {%- when "search" -%}{%- assign _ld_type = "SearchResultsPage" -%}
 {%- when "faq" -%}{%- assign _ld_type = "FAQPage" -%}
+{%- when "directory", "portfolio", "team", "jobs", "events", "sponsors", "integrations" -%}{%- assign _ld_type = "ItemList" -%}
 {%- else -%}{%- assign _ld_type = "WebPage" -%}
 {%- endcase -%}
 {%- if page.kind == "news" -%}{%- assign _ld_type = "NewsArticle" -%}{%- endif -%}

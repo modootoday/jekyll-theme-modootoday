@@ -1,0 +1,7 @@
+// error layout: large status code above the localized title.
+@include mt-layer(components) {
+  .mt-error { text-align: center; }
+  .mt-error .mt-actions { justify-content: center; }
+  .mt-error-code { margin: 0; font-size: unquote("clamp(4rem, 3rem + 6vw, 7rem)"); font-weight: 800; line-height: 1;
+    letter-spacing: -.04em; color: mt(primary); font-variant-numeric: tabular-nums; }
+}

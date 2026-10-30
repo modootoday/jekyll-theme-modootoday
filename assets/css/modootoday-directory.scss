@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday directory stylesheet (directory, portfolio, team, jobs, events, sponsors, integrations):
+# loaded only by those layouts (mt_bundle: directory). Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/directory/index";

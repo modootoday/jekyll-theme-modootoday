@@ -17,6 +17,16 @@
 - title: Layouts
   url: /layouts/
   items:
+    - {title: Page shells, url: /layouts/shells/}
+    - title: Directory layouts
+      url: /layouts/directory/
+      items:
+        - {title: Portfolio demo, url: /layouts/directory/portfolio/}
+        - {title: Team demo, url: /layouts/directory/team/}
+        - {title: Jobs demo, url: /layouts/directory/jobs/}
+        - {title: Events demo, url: /layouts/directory/events/}
+        - {title: Sponsors demo, url: /layouts/directory/sponsors/}
+        - {title: Integrations demo, url: /layouts/directory/integrations/}
     - {title: Blog and news, url: /layouts/blog-news/}
 - title: Recipes
   url: /recipes/

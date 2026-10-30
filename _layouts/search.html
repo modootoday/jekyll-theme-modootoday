@@ -1,0 +1,8 @@
+---
+layout: wide
+mt_main: mt-shell-wide mt-search-page
+---
+{%- comment -%}search: a full search page. The header search (search.js, already loaded) gives instant results;
+  the form below works without JavaScript through an external engine limited to this site (modootoday.search.fallback).{%- endcomment -%}
+{{ content }}
+{%- include modootoday/pages/search-form.html -%}

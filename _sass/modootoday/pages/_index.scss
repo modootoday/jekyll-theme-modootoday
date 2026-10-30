@@ -1,0 +1,8 @@
+// Page shell partials (separate bundle). Uses the core tokens (--mt-*) already on the page; emits no tokens.
+@import "../settings";
+@import "../tools/functions";
+@import "../tools/mixins";
+@import "shells";
+@import "actions";
+@import "error";
+@import "search";

@@ -1,6 +1,6 @@
 {%- comment -%}The page node (#webpage): WebPage or the page type from jsonld/type.html (CollectionPage, ProfilePage, ...).
 name, url, description, image and inLanguage mirror the Open Graph tags; mainEntity points at #main for articles and entities.{%- endcomment -%}
-{%- if _ld_kind == "page" -%}{%- assign _ld_wt = _ld_type -%}{%- else -%}{%- assign _ld_wt = page.schema.page_type | default: "WebPage" -%}{%- endif -%}
+{%- if _ld_kind == "page" -%}{%- assign _ld_wt = _ld_type -%}{%- else -%}{%- assign _ld_wt = page.schema.page_type | default: "WebPage" -%}{%- if _ld_type == "ItemList" and page.schema.page_type == nil -%}{%- assign _ld_wt = "CollectionPage" -%}{%- endif -%}{%- endif -%}
 ,{"@type":{{ _ld_wt | jsonify }},"@id":{{ _ld_url | append: "#webpage" | jsonify }},"url":{{ _ld_url | jsonify }},"name":{{ _ld_title | jsonify }}
 {%- if _ld_desc != "" %},"description":{{ _ld_desc | jsonify }}{% endif -%}
 ,"inLanguage":{{ _ld_lang | jsonify }},"isPartOf":{"@id":{{ _ld_root | append: "#website" | jsonify }}}

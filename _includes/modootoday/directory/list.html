@@ -1,0 +1,16 @@
+{%- comment -%}Directory engine: card grid for include.items with preset include.preset (cards, portfolio, team, jobs, events, sponsors,
+  integrations) and an optional CSS-only filter on include.filter (an item field). Order is the data order.{%- endcomment -%}
+{%- include modootoday/i18n.html -%}
+{%- assign _uid = "mt-f-" | append: page.url | slugify -%}
+{%- if include.filter -%}{%- include modootoday/directory/values.html items=include.items field=include.filter -%}{%- endif -%}
+<div class="mt-dir mt-dir-{{ include.preset }}">
+{%- if include.filter and mt_fvals.size > 1 %}{% include modootoday/directory/filter.html uid=_uid values=mt_fvals %}{% endif %}
+<ul class="mt-dir-grid" role="list">
+{%- for _it in include.items -%}
+{%- assign _cls = "" -%}
+{%- if include.filter and _it[include.filter] -%}{%- assign _vs = _it[include.filter] | join: "|" | split: "|" -%}
+{%- for _v in mt_fvals -%}{%- if _vs contains _v -%}{%- assign _cls = _cls | append: " mt-f" | append: forloop.index -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{% include modootoday/directory/item.html it=_it preset=include.preset cls=_cls %}
+{%- endfor %}
+</ul>
+</div>

@@ -1,0 +1,9 @@
+// search layout: no-JavaScript fallback form under the page body.
+@include mt-layer(components) {
+  .mt-search-form { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 2rem; max-width: 40rem; }
+  .mt-search-form > label { flex-basis: 100%; font-weight: 600; }
+  .mt-search-form > input { flex: 1 1 14rem; min-height: 2.75rem; padding: 0 .875rem; font-size: 1rem; color: mt(foreground);
+    background: mt(background); border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-search-form > input:focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
+  .mt-search-hint { flex-basis: 100%; margin: 0; font-size: .875rem; color: mt(muted-foreground); }
+}

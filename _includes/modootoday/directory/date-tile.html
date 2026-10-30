@@ -1,0 +1,2 @@
+{%- comment -%}Date tile for include.date: month abbreviation over the day number, with a machine-readable time.{%- endcomment -%}
+<time class="mt-date-tile" datetime="{{ include.date | date_to_xmlschema }}"><span>{{ include.date | date: "%b" }}</span><b>{{ include.date | date: "%-d" }}</b><span class="mt-sr-only"> {{ include.date | date: "%Y" }}</span></time>

@@ -19,7 +19,7 @@ module Modootoday
         ["--version", "print the rules version"],
       ].freeze
       # Rule groups in report order.
-      RULES = [Registry, SiteConfig.method(:source_mode), Pages, I18n, Registry.method(:i18n_keys), BuiltParts,
+      RULES = [Registry, SiteConfig.method(:source_mode), Pages, Layouts, I18n, Registry.method(:i18n_keys), BuiltParts,
                BuildOutput.method(:residue), StructuredData, Stylesheets, BuildOutput.method(:css), SiteConfig, Blog, GithubPages, Twins, GhRender].freeze
 
       module_function

@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: shells.md
+permalink: /layouts/shells/index.md
+---

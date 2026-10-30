@@ -40,22 +40,25 @@
 {%- assign _bn = site.modootoday.banner -%}{%- if mt_components contains "banner" and _bn.text %}
 <div class="mt-banner" role="region" aria-label="{{ mt_t_banner_label }}"><p>{{ _bn.text }}{% if _bn.url %} <a href="{{ _bn.url | relative_url }}">{{ _bn.link | default: _bn.url }}</a>{% endif %}</p></div>
 {%- endif %}
-{%- if site.title %}
+{%- assign _chrome = true -%}{%- if layout.mt_chrome == false or page.chrome == false -%}{%- assign _chrome = false -%}{%- endif -%}
+{%- if site.title and _chrome %}
 <header class="mt-header"><div class="mt-header-inner"><a class="mt-site-title{% if site.modootoday.logo %} mt-has-logo{% endif %}" href="{{ mt_home | relative_url }}">{% include modootoday/brand/logo.html %}{{ site.title }}</a>{% include modootoday/nav.html %}{% if mt_components contains "search" and mt_search_index %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" data-lang="{{ site.lang | default: 'en' }}" hidden>{% include modootoday/brand/icon.html name="search" size=16 %}<input type="search" aria-keyshortcuts="/ Control+K Meta+K" aria-controls="mt-search-results" aria-label="{{ mt_t_search_label }}" placeholder="{{ mt_t_search_label }}"><ul class="mt-search-results" id="mt-search-results" aria-live="polite"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_theme_toggle %}<button class="mt-theme-toggle" type="button" aria-pressed="false" aria-label="{{ mt_t_theme_toggle }}" title="{{ mt_t_theme_toggle }}" hidden>{% include modootoday/brand/icon.html name="moon" %}{% include modootoday/brand/icon.html name="sun" %}</button>{% endif %}</div></header>
 {%- endif %}
-<main id="mt-main" tabindex="-1" class="mt-main{% if page.full_width %} mt-main-full{% endif %}">
+<main id="mt-main" tabindex="-1" class="mt-main{% if page.full_width %} mt-main-full{% endif %}{% if layout.mt_main %} {{ layout.mt_main }}{% endif %}">
 {{ content }}
+{%- if _chrome %}
 {%- include modootoday/page-meta.html %}
 {%- include modootoday/doc/pagination.html %}
 {%- if mt_components contains "banner" and site.modootoday.back_to_top %}
 <p><a class="mt-back-to-top" href="#top">{{ mt_t_nav_back_to_top }}</a></p>
+{%- endif %}
 {%- endif %}
 </main>
 {%- include footer-custom.html %}
 {%- if mt_components contains "tabs" and mt_page_c contains "|tabs|" %}
 <script src="{{ '/assets/js/modootoday/tabs.js' | relative_url }}" defer></script>
 {%- endif -%}
-{%- if site.title %}
+{%- if site.title and _chrome %}
 <script src="{{ '/assets/js/modootoday/menu.js' | relative_url }}" defer></script>
 {%- endif %}
 <script src="{{ '/assets/js/modootoday/scroll-region.js' | relative_url }}" defer></script>

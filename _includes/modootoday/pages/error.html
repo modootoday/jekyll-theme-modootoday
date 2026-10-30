@@ -1,0 +1,13 @@
+{%- comment -%}Error body for include.status (404 default, 410, 500): localized title and text, then the page body and a home link.{%- endcomment -%}
+{%- include modootoday/i18n.html -%}{%- include modootoday/home-url.html -%}
+{%- assign _s = include.status | default: 404 | append: "" -%}
+{%- case _s -%}
+{%- when "410" -%}{%- assign _et = mt_t_pages_gone -%}{%- assign _ex = mt_t_pages_gone_text -%}
+{%- when "500" -%}{%- assign _et = mt_t_pages_error -%}{%- assign _ex = mt_t_pages_error_text -%}
+{%- else -%}{%- assign _et = mt_t_pages_not_found -%}{%- assign _ex = mt_t_pages_not_found_text -%}
+{%- endcase %}
+<p class="mt-error-code" aria-hidden="true">{{ _s }}</p>
+<h1>{{ page.heading | default: _et }}</h1>
+<p>{{ _ex }}</p>
+{{ content }}
+<p class="mt-actions"><a href="{{ mt_home | relative_url }}">{{ mt_t_pages_home }}</a></p>

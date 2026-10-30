@@ -1,0 +1,4 @@
+{%- comment -%}Sets mt_items for a directory page: front matter items:, else site.data[<data:>] (a list, or a map with an items list).{%- endcomment -%}
+{%- assign mt_items = include.page.items -%}
+{%- if mt_items == nil and include.page.data -%}{%- assign _d = site.data[include.page.data] -%}{%- assign mt_items = _d.items | default: _d -%}{%- endif -%}
+{%- assign mt_items = mt_items | default: "" -%}

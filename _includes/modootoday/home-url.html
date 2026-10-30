@@ -1,0 +1,4 @@
+{%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
+{%- assign _hl = include.lang | default: page.lang | default: site.lang | default: "en" -%}
+{%- assign mt_home = "/" -%}{%- assign _def_hl = site.lang | default: "en" -%}
+{%- if _hl != _def_hl -%}{%- assign _lh = "/" | append: _hl | append: "/" -%}{%- assign _lhp = site.pages | where: "url", _lh | first -%}{%- if _lhp -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}

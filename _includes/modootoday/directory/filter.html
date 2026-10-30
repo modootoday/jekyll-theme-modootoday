@@ -1,0 +1,7 @@
+{%- comment -%}CSS-only filter: radio i checks show only items with class mt-f<i> (directory bundle, :has()). Works with keyboard arrows; without :has() every item stays visible.{%- endcomment -%}
+<fieldset class="mt-dir-filter"><legend class="mt-sr-only">{{ mt_t_layouts_filter }}</legend>
+<input class="mt-sr-only mt-f-r0" type="radio" name="{{ include.uid }}" id="{{ include.uid }}-0" checked><label for="{{ include.uid }}-0">{{ mt_t_layouts_all }}</label>
+{%- for _v in include.values %}
+<input class="mt-sr-only mt-f-r{{ forloop.index }}" type="radio" name="{{ include.uid }}" id="{{ include.uid }}-{{ forloop.index }}"><label for="{{ include.uid }}-{{ forloop.index }}">{{ _v }}</label>
+{%- endfor %}
+</fieldset>

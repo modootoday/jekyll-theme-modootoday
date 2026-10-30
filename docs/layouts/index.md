@@ -15,5 +15,7 @@ Set a layout with `layout:` in front matter. Pages without one use `doc`.
 | `default` | A bare page: header, body and footer only |
 
 <!-- spec:docs-index:begin -->
+- [Page shells](shells/) — Page shells for every kind of page, each with its own optional stylesheet.
+- [Directory layouts](directory/) — Card lists for projects, people, jobs, events, sponsors and integrations, with a filter that needs no JavaScript.
 - [Blog and news](blog-news/) — Blog indexes, news front pages, article bylines, author pages and Atom feeds.
 <!-- spec:docs-index:end -->

@@ -4,13 +4,15 @@ import path from "node:path";
 
 export const WIDTHS = [360, 768, 1024, 1440];
 export const SCHEMES = ["light", "dark"];
-export const PAGES = ["", "guides/install/", "guides/first-page/", "components/", "components/kitchen-sink/", "guides/configuration/", "guides/customize/", "guides/agents/", "reference/changelog/", "tags/", "categories/", "blog/", "news/", "authors/modootoday/"];
+export const PAGES = ["", "guides/install/", "guides/first-page/", "components/", "components/kitchen-sink/", "guides/configuration/", "guides/customize/", "guides/agents/", "reference/changelog/", "tags/", "categories/", "blog/", "news/", "authors/modootoday/", "layouts/demo/minimal/", "layouts/demo/wide/", "layouts/demo/home/", "layouts/demo/error/", "layouts/demo/search/", "layouts/directory/", "layouts/directory/portfolio/", "layouts/directory/team/", "layouts/directory/jobs/", "layouts/directory/events/", "layouts/directory/sponsors/", "layouts/directory/integrations/"];
 export const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only: dir="rtl" mirroring checks
-export const EN_ONLY = ["guides/2026/10/28/archives/"]; // a sample post (post layout + footer term links); URLs differ per language
+export const EN_ONLY = ["guides/2026/10/28/archives/", "layouts/demo/error-rtl/"]; // a sample post (post layout + footer term links); URLs differ per language
 // Core (every page) and the optional blog/news bundle (post, blog, news, news-article, author and archive layouts only), budgeted apart.
 export const BLOG_FILES = ["css/modootoday-blog.css", "js/modootoday/share.js"];
 // css: core CSS one page links in total; js: all core scripts; blog-*: the blog bundle (docs site build, sass style: compressed)
-export const BUDGET = { css: 32 * 1024, css_showcase: 48 * 1024, js: 10 * 1024, "blog-css": 8 * 1024, "blog-js": 1024 };
+export const BUDGET = { css: 32 * 1024, css_showcase: 48 * 1024, js: 10 * 1024, "blog-css": 8 * 1024, "blog-js": 1024, bundle: 8 * 1024 };
+// Optional per-layout bundles css/modootoday-<name>.css (mt_bundle; not blog): each on BUDGET.bundle, never counted as core.
+export const BUNDLE = /^css\/modootoday-(?!blog\.)([a-z0-9-]+)\.css$/;
 // Per-sheet core CSS budgets (bytes). Section sheets under modootoday/showcase|structure/ share SECTION_SHEET.
 export const SHEETS = { "css/modootoday.css": 24 * 1024, "css/modootoday/doc.css": 4 * 1024, "css/modootoday/search.css": 3 * 1024, "css/modootoday/loading.css": 2 * 1024 };
 export const SECTION_SHEET = 2 * 1024;

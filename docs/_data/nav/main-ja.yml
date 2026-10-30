@@ -17,6 +17,16 @@
 - title: レイアウト
   url: /ja/layouts/
   items:
+    - {title: ページシェル, url: /ja/layouts/shells/}
+    - title: ディレクトリレイアウト
+      url: /ja/layouts/directory/
+      items:
+        - {title: ポートフォリオのデモ, url: /ja/layouts/directory/portfolio/}
+        - {title: チームのデモ, url: /ja/layouts/directory/team/}
+        - {title: 求人のデモ, url: /ja/layouts/directory/jobs/}
+        - {title: イベントのデモ, url: /ja/layouts/directory/events/}
+        - {title: スポンサーのデモ, url: /ja/layouts/directory/sponsors/}
+        - {title: 連携のデモ, url: /ja/layouts/directory/integrations/}
     - {title: ブログとニュース, url: /ja/layouts/blog-news/}
 - title: レシピ
   url: /ja/recipes/

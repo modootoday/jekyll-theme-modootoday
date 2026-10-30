@@ -17,6 +17,16 @@
 - title: 레이아웃
   url: /ko/layouts/
   items:
+    - {title: 페이지 셸, url: /ko/layouts/shells/}
+    - title: 디렉터리 레이아웃
+      url: /ko/layouts/directory/
+      items:
+        - {title: 포트폴리오 데모, url: /ko/layouts/directory/portfolio/}
+        - {title: 팀 데모, url: /ko/layouts/directory/team/}
+        - {title: 채용 데모, url: /ko/layouts/directory/jobs/}
+        - {title: 행사 데모, url: /ko/layouts/directory/events/}
+        - {title: 후원사 데모, url: /ko/layouts/directory/sponsors/}
+        - {title: 연동 데모, url: /ko/layouts/directory/integrations/}
     - {title: 블로그와 뉴스, url: /ko/layouts/blog-news/}
 - title: 레시피
   url: /ko/recipes/

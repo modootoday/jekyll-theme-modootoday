@@ -1,0 +1,18 @@
+// Card grid shared by every directory preset.
+@include mt-layer(components) {
+  .mt-dir-grid { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
+  .mt-dir-item { display: flex; flex-direction: column; gap: .75rem; margin: 0; padding: 1rem; border: 1px solid mt(border);
+    border-radius: mt(radius); background: mt(background); position: relative; }
+  .mt-dir-item:focus-within { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-dir-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: calc(#{mt(radius)} - 2px); background: mt(muted); }
+  .mt-dir-title { font-size: 1.05rem; margin: 0; line-height: 1.35; }
+  .mt-dir-title > a { color: inherit; text-decoration: none; }
+  .mt-dir-title > a::after { content: ""; position: absolute; inset: 0; }
+  .mt-dir-title > a:focus-visible { outline: none; }
+  .mt-dir-meta { margin: .25rem 0 0; font-size: .875rem; color: mt(muted-foreground); }
+  .mt-dir-text { margin: .5rem 0 0; font-size: .9375rem; }
+  .mt-dir-tags { display: flex; flex-wrap: wrap; gap: .375rem; margin: .75rem 0 0; }
+  .mt-dir-tags > span { font-size: .75rem; padding: .125rem .5rem; border-radius: 999px; background: mt(muted); color: mt(muted-foreground); }
+  .mt-ics { position: relative; z-index: 1; display: inline-block; margin-top: .75rem; font-size: .875rem; font-weight: 600; }
+}

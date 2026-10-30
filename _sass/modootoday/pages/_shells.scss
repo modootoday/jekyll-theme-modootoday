@@ -1,0 +1,10 @@
+// minimal (narrow centred column, no chrome) and wide (no reading-width cap); home hero.
+@include mt-layer(layout) {
+  .mt-main.mt-shell-minimal { max-width: 36rem; display: flex; flex-direction: column; justify-content: center;
+    min-height: 100vh; min-height: 100dvh; padding-block: unquote("max(2.5rem, env(safe-area-inset-top))") unquote("max(2.5rem, env(safe-area-inset-bottom))"); }
+  .mt-main.mt-shell-wide { max-width: mt(container); }
+  .mt-home > .mt-hero { padding: 3rem 0 2rem; text-align: center; }
+  .mt-home > .mt-hero > .mt-hero-text { margin-inline: auto; max-width: 40rem; font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); }
+  .mt-home > .mt-hero > .mt-actions { justify-content: center; }
+  .mt-hero-title { font-size: unquote("clamp(2.25rem, 1.5rem + 3vw, 3.5rem)"); line-height: 1.08; letter-spacing: -.035em; font-weight: 750; margin: 0 0 1.25rem; }
+}
