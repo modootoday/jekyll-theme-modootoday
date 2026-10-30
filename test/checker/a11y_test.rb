@@ -23,6 +23,7 @@ class A11yCheckTest < Minitest::Test
   def test_img_with_alt_ok = refute_match(/without alt/, run_on("<img src=\"a.png\" alt=\"\">\n"))
   def test_empty_link_is_error = assert_match(/empty link text/, run_on("See [](https://x.test).\n"))
   def test_vague_link_warns = assert_match(/vague link text "click here"/, run_on("[click here](https://x.test)\n"))
+  def test_lighthouse_vague_link_warns = assert_match(/vague link text "Start"/, run_on("[Start](https://x.test)\n"))
   def test_heading_skip_warns = assert_match(/jumps from h2 to h4/, run_on("## A\n\n#### B\n"))
   def test_heading_order_ok = refute_match(/jumps/, run_on("## A\n\n### B\n\n## C\n"))
   def test_duplicate_id_is_error = assert_match(/duplicate id="x"/, run_on("<span id=\"x\">a</span>\n\n<span id=\"x\">b</span>\n"))

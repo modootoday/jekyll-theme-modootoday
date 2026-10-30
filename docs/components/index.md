@@ -320,7 +320,7 @@ Yes, with the github-pages gem.
 
 - One site
 
-[Start](../guides/install/)
+[Start the Free plan](../guides/install/)
 
 ### Team
 

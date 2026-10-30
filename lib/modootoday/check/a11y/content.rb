@@ -6,7 +6,8 @@ module Modootoday
     # code already blanked. Errors: images with no alt, empty links, duplicate ids. Warnings: heading skips,
     # vague link text, empty Markdown alt (decorative is allowed but should be deliberate).
     module A11yContent
-      VAGUE = /\A(click here|here|more|read more|여기|여기를 클릭|더 보기|こちら|ここ|詳しくはこちら)\z/i
+      # English list mirrors Lighthouse SEO "link-text" (a hit there costs the SEO score).
+      VAGUE = /\A(click here|click this|here|right here|more|read more|learn more|see more|more info|more information|information|go|start|this|continue|link|여기|여기를 클릭|더 보기|こちら|ここ|詳しくはこちら)\z/i
 
       module_function
 
