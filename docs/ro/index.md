@@ -26,7 +26,7 @@ jekyll-theme-modootoday transformă GitHub Flavored Markdown standard într-un s
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.1.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.0
 plugins: [jekyll-remote-theme]
 ```
 

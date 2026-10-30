@@ -26,7 +26,7 @@ jekyll-theme-modootoday 把标准的 GitHub Flavored Markdown 变成简洁的文
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.1.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.0
 plugins: [jekyll-remote-theme]
 ```
 

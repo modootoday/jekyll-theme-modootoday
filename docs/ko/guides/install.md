@@ -21,7 +21,7 @@ sections:
 
 ```yaml
 # _config.yml (기본 GitHub Pages 빌드, Gemfile 불필요)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.1.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.0
 plugins: [jekyll-remote-theme]
 ```
 

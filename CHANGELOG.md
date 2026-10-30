@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-31
+
 ### Added
 
 - `bleed: true` / `bleed: wide` on `hero:` or a section item (`.mt-bleed`, `.mt-bleed-wide`): a full-width background band in `--mt-bleed-bg` with the content kept in its column (`wide` widens it up to the container); no wrapper, so existing markup and selectors are unchanged and the default is as before; its own optional `bleed` sheet. `modootoday-check` accepts only true, false or wide.
@@ -233,7 +235,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0
 [1.1.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1
 [1.1.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0
 [1.0.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.0.0
