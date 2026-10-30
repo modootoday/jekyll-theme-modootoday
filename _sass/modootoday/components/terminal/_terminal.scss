@@ -1,0 +1,9 @@
+// Terminal chrome: chrome: terminal on a split visual: code item. A bordered box with a decorative bar (aria-hidden,
+// dots in currentColor at reduced opacity); the code block inside drops its own margin, border and radius.
+@include mt-layer(components) {
+  .mt-split-terminal { border: 1px solid mt(border); border-radius: mt(radius-lg); overflow: hidden; }
+  .mt-split-terminal :is(pre, .mt-code, .mt-code-title) { margin: 0; border: 0; border-radius: 0; }
+  .mt-split-bar { display: flex; gap: .375rem; padding: .5rem .75rem; background: mt(muted); color: mt(muted-foreground); }
+  .mt-split-bar span { width: .625rem; height: .625rem; border-radius: 50%; background: currentColor; opacity: .5; }
+  @media (forced-colors: active) { .mt-split-bar span { background: CanvasText; } }
+}

@@ -36,6 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
+  - {c: split, name: split-code, visual: code}
   - lists
 ---
 # 키친싱크
@@ -428,6 +429,19 @@ theme: jekyll-theme-modootoday
 `status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다. 이 그림은 일러스트입니다. `class="mt-illustration"`, `role="img"`, `aria-label`이 있는 `figure`이고, `.mt-illustration-tag` 배지의 글자도 레이블에 들어 있습니다. `decor: decor-demo`는 위쪽 모서리의 점을 `aria-hidden` 장식으로 더합니다. 히어로도 같은 형태를 쓸 수 있습니다. `hero: {c: split, visual: <이름>, side: start, ratio: "5:7"}`는 제목, 리드 문단, 체크 행, 버튼을 텍스트 열에 두고 include를 그 옆에 놓습니다. 키친 싱크의 히어로가 이 형태입니다.
 
 한쪽에는 텍스트, 다른 쪽에는 그림이 옵니다.
+
+## 코드 분할
+
+`status:available` `c: split` 섹션이나 분할 히어로의 `visual: code`는 include가 필요 없습니다. 그 섹션의 첫 코드 블록(`file:` 제목이 있으면 제목 포함)이 그림 열로 옮겨지고, 코드 스타일과 복사 버튼은 그대로입니다. `chrome: terminal`(사용하는 페이지에만 연결되는 작은 시트)은 테두리와 장식용 막대를 더하며, 스크린 리더는 이 막대를 건너뜁니다. 다른 곳에서 `visual: code`는 계속 `_includes/sections/code.html`을 뜻합니다.
+
+키트를 설치한 뒤 빌드할 때마다 검사기를 실행합니다.
+
+`file:terminal`
+
+```sh
+bundle add jekyll-theme-modootoday
+bundle exec modootoday-check . _site
+```
 
 ## 목록
 

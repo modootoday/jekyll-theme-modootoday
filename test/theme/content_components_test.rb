@@ -12,7 +12,7 @@ class ContentComponentsTest < Minitest::Test
     ---
     title: Probe
     hero: {c: split, visual: pic, ratio: "5:7", scene: 9}
-    sections: [{c: filetree, name: ft}, {c: faq, name: faq}, {c: params, name: p}, {c: quote, name: q}, {c: gallery, name: g}, {c: pricing, name: pr, recommended: 2}, {c: subscribe, name: sub}, {c: split, name: sp, visual: pic, side: start, ratio: "5:7", scene: 3}]
+    sections: [{c: filetree, name: ft}, {c: faq, name: faq}, {c: params, name: p}, {c: quote, name: q}, {c: gallery, name: g}, {c: pricing, name: pr, recommended: 2}, {c: subscribe, name: sub}, {c: split, name: sp, visual: pic, side: start, ratio: "5:7", scene: 3}, {c: split, name: sc, visual: code, chrome: terminal}]
     ---
     # Probe
 
@@ -71,6 +71,18 @@ class ContentComponentsTest < Minitest::Test
     ## Split
 
     Text beside the picture.
+
+    ## Code
+
+    Install it.
+
+    `file:run.sh`
+
+    ```sh
+    npm i
+    ```
+
+    After.
   MD
 
   def self.build
@@ -121,7 +133,7 @@ class ContentComponentsTest < Minitest::Test
     sec = h[/<section class="mt-section mt-c-split[^"]*".*?<\/section>/m]
     assert_match(/mt-c-split mt-split-start mt-split-5-7/, sec)
     assert_match(%r{<div class="mt-section-in"><div class="mt-section-body"><h2 [^>]*>Split</h2>.*</div><div class="mt-section-visual"><p class="pic">scene 3</p></div></div>}m, sec)
-    assert_equal 2, h.scan("mt-section-in").size
+    assert_equal 3, h.scan("mt-section-in").size
     assert_includes h, "modootoday/structure/split.css"
   end
 
@@ -129,7 +141,17 @@ class ContentComponentsTest < Minitest::Test
     hero = h[/<section class="mt-hero[^"]*".*?<\/section>/m]
     assert_match(/<section class="mt-hero mt-c-split mt-split-5-7">/, hero)
     assert_match(%r{<div class="mt-section-in"><div class="mt-section-body">\s*<h1[^>]*>Probe</h1>.*</div><div class="mt-section-visual"><p class="pic">scene 9</p></div></div>\s*</section>}m, hero)
-    assert_equal 2, h.scan("mt-section-in").size
+    assert_equal 3, h.scan("mt-section-in").size
+  end
+
+  def test_split_code
+    sec = h[/<section[^>]*data-section="sc".*?<\/section>/m]
+    body, vis = sec.split('<div class="mt-section-visual')
+    assert_includes body, "Install it."
+    assert_includes body, "After."
+    refute_includes body, "<pre"
+    assert_match(/\A mt-split-code mt-split-terminal"><div class="mt-split-bar" aria-hidden="true"><span><\/span><span><\/span><span><\/span><\/div><div class="mt-code"><p class="mt-code-title">.*run\.sh<\/p><div class="language-sh highlighter-rouge">.*npm i/m, vis)
+    assert_equal 1, h.scan('<div class="mt-split-bar"').size
   end
 
   def test_sheets_per_page

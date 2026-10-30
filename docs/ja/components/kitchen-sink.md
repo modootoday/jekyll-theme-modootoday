@@ -36,6 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
+  - {c: split, name: split-code, visual: code}
   - lists
 ---
 # キッチンシンク
@@ -428,6 +429,19 @@ theme: jekyll-theme-modootoday
 `status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。 ヒーローも同じ形にできます。`hero: {c: split, visual: <名前>, side: start, ratio: "5:7"}` は、タイトル、リード文、チェック行、ボタンをテキストの列に置き、include をその横に置きます。キッチンシンクのヒーローがこの形です。
 
 片側にテキスト、もう片側に画像が来ます。
+
+## コード付きの分割
+
+`status:available` `c: split` セクションや分割ヒーローの `visual: code` には include が不要です。そのセクションの最初のコードブロック（`file:` のタイトルがある場合はタイトルも）が画像の列に移り、コードのスタイルとコピーボタンはそのまま使えます。`chrome: terminal`（使うページだけに読み込まれる小さなシート）は枠線と装飾用のバーを加え、スクリーンリーダーはこのバーを読み飛ばします。ほかの場所の `visual: code` は、これまでどおり `_includes/sections/code.html` を指します。
+
+キットをインストールし、ビルドのたびに検査ツールを実行します。
+
+`file:terminal`
+
+```sh
+bundle add jekyll-theme-modootoday
+bundle exec modootoday-check . _site
+```
 
 ## リスト
 

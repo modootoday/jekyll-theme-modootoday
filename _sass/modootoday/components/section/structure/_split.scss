@@ -6,6 +6,7 @@
   .mt-section-body > :last-child, .mt-section-visual > :last-child { margin-bottom: 0; }
   .mt-hero .mt-section-body > .mt-hero-lead { font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); max-width: 40rem; }
   .mt-section-visual img, .mt-section-visual svg { display: block; max-width: 100%; height: auto; }
+  .mt-split-code > * { margin: 0; }
   @media (min-width: 48rem) {
     .mt-c-split > .mt-section-in { grid-template-columns: var(--mt-split-body, 1fr) var(--mt-split-visual, 1fr); align-items: center; }
     .mt-split-5-7 { --mt-split-body: 5fr; --mt-split-visual: 7fr; }

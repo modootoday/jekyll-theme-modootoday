@@ -16,7 +16,7 @@ export const BUNDLE = /^css\/modootoday-(?!blog\.)([a-z0-9-]+)\.css$/;
 // Optional renderer bundles js/modootoday-<name>.js (mermaid, math): loaded only on pages that need them, each on BUDGET.bundle_js, never counted as core.
 export const BUNDLE_JS = /^js\/modootoday-([a-z0-9-]+)\.js$/;
 // Per-sheet core CSS budgets (bytes). Limits leave some headroom (raised about 10%); keep the built sizes minimal. Section sheets under modootoday/showcase|structure/ share SECTION_SHEET.
-export const SHEETS = { "css/modootoday.css": 27 * 1024, "css/modootoday/doc.css": 4 * 1024, "css/modootoday/search.css": 3 * 1024, "css/modootoday/loading.css": 2.5 * 1024, "css/modootoday/figure.css": 1.25 * 1024, "css/modootoday/lists.css": 1.25 * 1024, "css/modootoday/bleed.css": 1 * 1024 };
+export const SHEETS = { "css/modootoday.css": 27 * 1024, "css/modootoday/doc.css": 4 * 1024, "css/modootoday/search.css": 3 * 1024, "css/modootoday/loading.css": 2.5 * 1024, "css/modootoday/figure.css": 1.25 * 1024, "css/modootoday/lists.css": 1.25 * 1024, "css/modootoday/bleed.css": 1 * 1024 , "css/modootoday/terminal.css": 1024};
 export const SECTION_SHEET = 2 * 1024;
 // Showcase pages that use every component on purpose get a larger per-page CSS budget (BUDGET.css_showcase).
 export const SHOWCASE = /(^|\/)components\/(kitchen-sink(-rtl)?\/)?index\.html$/;

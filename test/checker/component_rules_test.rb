@@ -66,6 +66,15 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "hero.c must be split"
   end
 
+  def test_split_visual_code
+    out, = check("---\ntitle: A\nsections: [{c: split, name: a, visual: code, chrome: terminal}]\n---\n# A\n\n## A\n\nT\n\n```sh\nx\n```\n")
+    refute_includes out, "visual"
+    refute_includes out, "chrome"
+    out, = check("---\ntitle: A\nsections: [{c: split, name: a, visual: code, chrome: mac}]\n---\n# A\n\n## A\n\nT\n")
+    assert_includes out, "visual: code needs a fenced code block"
+    assert_includes out, "chrome=\"mac\""
+  end
+
   def test_bleed_values
     out, = check(page("[{name: a, bleed: true}, {name: b, bleed: full}, {c: features, name: c, bleed: wide}]",
                       "## A\n\nT\n\n## B\n\nT\n\n## C\n\n- x\n"))

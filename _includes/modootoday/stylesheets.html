@@ -5,9 +5,9 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
   modootoday.css: bundle — only the core sheet, which then holds everything.
 {%- endcomment -%}
 {%- assign mt_page_c = "|" -%}
-{%- for _s in page.sections -%}{%- if _s.c -%}{%- assign mt_page_c = mt_page_c | append: _s.c | append: "|" -%}{%- endif -%}{%- if _s.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- endfor -%}
+{%- for _s in page.sections -%}{%- if _s.c -%}{%- assign mt_page_c = mt_page_c | append: _s.c | append: "|" -%}{%- endif -%}{%- if _s.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- if _s.chrome == "terminal" -%}{%- assign mt_page_c = mt_page_c | append: "terminal|" -%}{%- endif -%}{%- endfor -%}
 {%- if page.hero.c -%}{%- assign mt_page_c = mt_page_c | append: page.hero.c | append: "|" -%}{%- endif -%}
-{%- if page.hero.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}
+{%- if page.hero.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- if page.hero.chrome == "terminal" -%}{%- assign mt_page_c = mt_page_c | append: "terminal|" -%}{%- endif -%}
 {%- assign mt_search_index = site.pages | where: "url", "/search.json" | first -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign mt_page_c = mt_page_c | append: "search|" -%}{%- endif -%}
 {%- if site.modootoday.loading or content contains 'class="mt-spinner' or content contains 'class="mt-skeleton' or content contains 'class="mt-topbar' -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}

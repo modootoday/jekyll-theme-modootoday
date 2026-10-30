@@ -24,7 +24,9 @@ module Modootoday
         errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
         errs << "#{r}: hero.checks must be true or false" if hero.is_a?(Hash) && hero.key?("checks") && ![true, false].include?(hero["checks"])
         split_hero(errs, r, hero) if hero.is_a?(Hash) && hero.key?("c")
-        visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
+        cl = code.lines
+        hero_md = b.lines[0...(cl.index { |l| l =~ /^##(?: |$)/ } || cl.size)].to_a.join
+        visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil, sec_md.map { |m| m && m[1] }, hero_md)
       end
 
       # hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}: split is the only hero component.
@@ -36,16 +38,23 @@ module Modootoday
       end
 
       # reveal: is a boolean, bleed: is true, false or wide. visual: <name> and decor: <name> on a section item or on hero: needs _includes/sections/<name>.html in the site or the theme (showcase).
-      def visuals(ctx, r, secs, hero)
-        items = secs.each_with_index.map { |s, i| [s, "sections[#{i}]"] }
-        items << [hero, "hero"] if hero
-        items.each do |s, where|
+      # visual: code under c: split is built in: it moves the item's first fenced block into the visual column,
+      # so it needs a fence in that item's markdown and no include; chrome: terminal is its only option.
+      def visuals(ctx, r, secs, hero, mds = [], hero_md = "")
+        items = secs.each_with_index.map { |s, i| [s, "sections[#{i}]", mds[i].to_s] }
+        items << [hero, "hero", hero_md] if hero
+        items.each do |s, where, md|
           next unless s.is_a?(Hash)
           ctx.errs << "#{r}: #{where}.reveal must be true or false" if s.key?("reveal") && ![true, false].include?(s["reveal"])
           ctx.errs << "#{r}: #{where}.bleed must be true, false or wide" if s.key?("bleed") && ![true, false, "wide"].include?(s["bleed"])
+          ctx.errs << "#{r}: #{where}.chrome=#{s['chrome'].inspect} not in [\"terminal\"] (chrome: needs c: split with visual: code)" if s.key?("chrome") && !(s["chrome"] == "terminal" && s["visual"] == "code" && s["c"] == "split")
           %w[visual decor].each do |key|
             next unless s.key?(key)
             v = s[key].to_s
+            if key == "visual" && v == "code" && s["c"] == "split"
+              ctx.errs << "#{r}: #{where} visual: code needs a fenced code block (``` or ~~~) in its markdown" unless md =~ /^ {0,3}(```|~~~)/
+              next
+            end
             next ctx.errs << "#{r}: #{where}.#{key} must be an include name [a-z0-9_-] (got #{s[key].inspect})" unless v =~ /\A[a-z0-9][a-z0-9_-]*\z/
             ctx.errs << "#{r}: #{where}.#{key}: _includes/sections/#{v}.html not found" unless [ctx.src, THEME].any? { |d| File.exist?(File.join(d, "_includes/sections/#{v}.html")) }
           end

@@ -36,6 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
+  - {c: split, name: split-code, visual: code}
   - lists
 ---
 # Kitchen sink
@@ -425,6 +426,19 @@ Get one email when a release ships.
 `status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament. The hero takes the same form: `hero: {c: split, visual: <name>, side: start, ratio: "5:7"}` puts the title, lead, check row and buttons in the text column and the include beside them; the kitchen sink's hero uses it.
 
 Text on one side, the picture on the other.
+
+## Split with code
+
+`status:available` `visual: code` on a `c: split` section or a split hero needs no include: the first fenced code block in that section, with its `file:` title if it has one, moves into the visual column and keeps the code styles and the copy button. `chrome: terminal` (its own small sheet, linked only where used) adds a border and a decorative bar that screen readers skip. Anywhere else, `visual: code` still means `_includes/sections/code.html`.
+
+Install the kit, then run the checker before each build.
+
+`file:terminal`
+
+```sh
+bundle add jekyll-theme-modootoday
+bundle exec modootoday-check . _site
+```
 
 ## Lists
 

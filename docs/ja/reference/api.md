@@ -59,7 +59,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | ギャラリー | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | 開いたライトボックスの `:target` |
 | 料金プラン | `.mt-plans` | `.mt-plan`、その `h3`、リンクだけの `p.mt-actions` | `.mt-plan-recommended` と `.mt-plan-flag` |
 | 購読 | `section.mt-c-subscribe` | `form.mt-subscribe`（action 設定時）、`label`, `input[type=email]`, `button` | — |
-| 分割 | `section.mt-c-split`（`.mt-split-start`, `.mt-split-5-7` を含む） | `.mt-section-in` > `.mt-section-body`（`h2` とテキスト）+ `.mt-section-visual`（`visual:` の include） `hero: {c: split}` は `section.mt-hero` を同じラッパーで包み、`h1`、リード文、チェック行、アクションは `.mt-section-body` に入ります。 | — |
+| 分割 | `section.mt-c-split`（`.mt-split-start`, `.mt-split-5-7` を含む） | `.mt-section-in` > `.mt-section-body`（`h2` とテキスト）+ `.mt-section-visual`（`visual:` の include） `hero: {c: split}` は `section.mt-hero` を同じラッパーで包み、`h1`、リード文、チェック行、アクションは `.mt-section-body` に入ります。 `visual: code` は最初のコードブロックを `div.mt-section-visual.mt-split-code` に入れ、`chrome: terminal` は `.mt-split-terminal` と `div.mt-split-bar`（`aria-hidden`）を加えます。 | — |
 | インライン追加要素 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 読み込み表示（任意シート） | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | バナー | `div.mt-banner` | その `p` とリンク、`a.mt-back-to-top` | — |

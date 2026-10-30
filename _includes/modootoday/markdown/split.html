@@ -1,4 +1,19 @@
 {%- comment -%}md-components v1 — split inner wrappers (called by sections.html for c: split on a section item or on hero:).
   body = the section's HTML (h2 or h1, text, actions), s = the item. Prints div.mt-section-in > div.mt-section-body (body)
-  + div.mt-section-visual (the visual: include, called with section=s).{%- endcomment -%}
-<div class="mt-section-in"><div class="mt-section-body">{{ include.body }}</div>{% if include.s.visual %}<div class="mt-section-visual">{% include sections/{{ include.s.visual }}.html section=include.s %}</div>{% endif %}</div>
+  + div.mt-section-visual (the visual: include, called with section=s).
+  visual: code is built in: the body's first code block (with its file: title, if any) moves into div.mt-section-visual.mt-split-code,
+  keeping the code styles and the copy button; chrome: terminal adds .mt-split-terminal and a decorative bar (aria-hidden).{%- endcomment -%}
+{%- assign _b = include.body -%}{%- assign _code = nil -%}
+{%- if include.s.visual == "code" -%}
+  {%- assign _pt = _b | split: '<div class="mt-code">' | first | default: "" -%}
+  {%- assign _pl = _b | split: '<div class="language-' | first | default: "" -%}
+  {%- if _pt.size < _pl.size -%}{%- assign _pre = _pt -%}{%- assign _end = '</code></pre></div></div></div>' -%}
+  {%- else -%}{%- assign _pre = _pl -%}{%- assign _end = '</code></pre></div></div>' -%}{%- endif -%}
+  {%- if _pre.size < _b.size -%}
+    {%- assign _rest = _b | slice: _pre.size, _b.size -%}
+    {%- assign _code = _rest | split: _end | first | append: _end -%}
+    {%- assign _after = _rest | slice: _code.size, _rest.size -%}
+    {%- assign _b = _pre | append: _after -%}
+  {%- endif -%}
+{%- endif -%}
+<div class="mt-section-in"><div class="mt-section-body">{{ _b }}</div>{% if _code %}<div class="mt-section-visual mt-split-code{% if include.s.chrome == 'terminal' %} mt-split-terminal{% endif %}">{% if include.s.chrome == 'terminal' %}<div class="mt-split-bar" aria-hidden="true"><span></span><span></span><span></span></div>{% endif %}{{ _code }}</div>{% elsif include.s.visual and include.s.visual != "code" %}<div class="mt-section-visual">{% include sections/{{ include.s.visual }}.html section=include.s %}</div>{% endif %}</div>

@@ -2,7 +2,7 @@
 require "minitest/autorun"
 require_relative "site"
 
-# Optional sheets: list styles (hero lead class, hero checks, link chips, titled items) and full-width bands (bleed:), each linked only where used.
+# Optional sheets: list styles (hero lead class, hero checks, link chips, titled items) full-width bands (bleed:) and terminal chrome (chrome: terminal), each linked only where used.
 class ListsTest < Minitest::Test
   include LayoutSite
 
@@ -62,6 +62,26 @@ class ListsTest < Minitest::Test
       refute_includes File.read("#{s}/assets/css/modootoday.css"), "mt-bleed"
       out, st = check(src, s)
       assert st.success?, out
+    end
+  end
+
+  TERM = {
+    "t.md" => ["title: T\nsections: [{c: split, name: one, visual: code, chrome: terminal}]\n", "# T\n\n## One\n\nRun it.\n\n```sh\nmake\n```\n"],
+    "u.md" => ["title: U\nsections: [{c: split, name: one, visual: code}]\n", "# U\n\n## One\n\nRun it.\n\n```sh\nmake\n```\n"],
+  }.freeze
+
+  def test_terminal_sheet
+    Dir.mktmpdir do |d|
+      src, s = build_site(d, TERM)
+      h = html(s, "t.md")
+      assert_includes h, '<div class="mt-section-visual mt-split-code mt-split-terminal"><div class="mt-split-bar" aria-hidden="true">'
+      assert_match %r{href="[^"]*/assets/css/modootoday/terminal\.css"}, h
+      u = html(s, "u.md")
+      refute_includes u, "terminal.css"
+      assert_includes u, '<div class="mt-section-visual mt-split-code"><div class="language-sh'
+      assert_includes File.read("#{s}/assets/css/modootoday/terminal.css"), "forced-colors"
+      out, = check(src, s)
+      refute_includes out, "terminal"
     end
   end
 end
