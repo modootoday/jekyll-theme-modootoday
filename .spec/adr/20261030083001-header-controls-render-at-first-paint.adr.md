@@ -1,11 +1,11 @@
 ---
-id: adr:modootoday/20261030083000
+id: adr:modootoday/20261030083001
 title: Header controls render at first paint (CSS scripting query, no new JS)
 status: active
 created: 2026-10-29T23:30:00Z
 updated: 2026-10-29T23:30:00Z
 rel:
-  governs: [_sass/modootoday/components/_theme-toggle.scss, _sass/modootoday/components/_search.scss, qa/audit/first-paint.mjs]
+  governs: [_sass/modootoday/components/core/chrome/_theme-toggle.scss, _sass/modootoday/components/search/_search.scss, qa/audit/first-paint.mjs]
 ---
 
 # Header controls render at first paint

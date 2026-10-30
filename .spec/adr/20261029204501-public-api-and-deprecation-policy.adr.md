@@ -5,7 +5,7 @@ status: superseded
 created: 2026-10-29T20:45:01Z
 updated: 2026-10-29T23:20:00Z
 rel:
-  governs: [docs/api.md]
+  governs: [docs/reference/api.md]
 ---
 
 # Public API and deprecation policy

@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T21:26:19Z
 updated: 2026-10-29T21:26:19Z
 rel:
-  governs: [docs/math-diagrams.md]
+  governs: [docs/recipes/math-diagrams.md]
 ---
 
 # Math and diagrams are a documented opt-in, not bundled

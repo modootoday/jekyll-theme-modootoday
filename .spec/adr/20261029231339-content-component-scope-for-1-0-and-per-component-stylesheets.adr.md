@@ -3,6 +3,7 @@ id: adr:modootoday/20261029231339
 title: Content component scope for 1.0 and per-component stylesheets
 status: active
 created: 2026-10-29T23:13:39Z
+updated: 2026-10-29T23:13:39Z
 ---
 
 # Content component scope for 1.0 and per-component stylesheets

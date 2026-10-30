@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T23:42:09Z
 updated: 2026-10-29T23:42:09Z
 rel:
-  governs: [_includes/modootoday/jsonld/, lib/modootoday/check/structured_data.rb, docs/structured-data.md]
+  governs: [_includes/modootoday/jsonld/, lib/modootoday/check/structured_data.rb, docs/guides/structured-data.md]
 ---
 
 # schema.org JSON-LD is one @graph per page, validated offline

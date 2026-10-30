@@ -6,7 +6,7 @@ created: 2026-10-29T23:20:00Z
 updated: 2026-10-29T23:20:00Z
 rel:
   supersedes: [adr:modootoday/20261029211900, adr:modootoday/20261029204501]
-  governs: [docs/api.md, RULES.md, CHANGELOG.md, docs/upgrade.md, docs/roadmap.md]
+  governs: [docs/reference/api.md, RULES.md, CHANGELOG.md, docs/guides/upgrade.md, docs/reference/roadmap.md]
 ---
 
 # No forward-looking API promises before the first release

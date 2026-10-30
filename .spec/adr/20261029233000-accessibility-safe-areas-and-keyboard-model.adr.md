@@ -5,7 +5,7 @@ status: active
 created: 2026-10-29T23:30:00Z
 updated: 2026-10-29T23:30:00Z
 rel:
-  governs: [_sass/modootoday/layout/_safe-area.scss, _sass/modootoday/_access.scss, _sass/modootoday/base/_interaction.scss, assets/js/modootoday/search-keys.js, assets/js/modootoday/scroll-region.js, _includes/modootoday/theme-color.html, docs/accessibility.md]
+  governs: [_sass/modootoday/layout/_safe-area.scss, _sass/modootoday/_access.scss, _sass/modootoday/base/_interaction.scss, assets/js/modootoday/search-keys.js, assets/js/modootoday/scroll-region.js, _includes/modootoday/theme-color.html, docs/guides/accessibility.md]
 ---
 
 # Accessibility baseline: safe areas, keyboard model, forced colors, per-bundle budgets
