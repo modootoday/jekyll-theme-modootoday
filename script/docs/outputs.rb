@@ -21,10 +21,14 @@ module DocsIndex
 
     def prefix(lang) = lang == @t.default_lang ? "" : "/#{lang}"
 
+    # One nav file per language whose menu differs from the default one; the others use main.yml
+    # (the theme falls back to it), so a language with only a localized home adds no nav file.
     def nav_files
-      @t.langs.to_h do |lang|
-        name = lang == @t.default_lang ? "main" : "main-#{lang}"
-        ["#{@t.root}/_data/nav/#{name}.yml", nav(lang)]
+      main = nav(@t.default_lang)
+      @t.langs.each_with_object({}) do |lang, h|
+        next h["#{@t.root}/_data/nav/main.yml"] = main if lang == @t.default_lang
+        body = nav(lang)
+        h["#{@t.root}/_data/nav/main-#{lang}.yml"] = body unless body == main
       end
     end
 
