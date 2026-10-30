@@ -269,7 +269,7 @@ Nothing but the browser.
 
 ## FAQ
 
-`status:available` A `c: faq` section works like details. For FAQPage structured data, add a `schema:` block (see [Structured data](../../guides/structured-data/)).
+`status:available` A `c: faq` section works like details. For FAQPage structured data, add a `schema:` block (see [Structured data](../guides/structured-data/)).
 
 ### Is the theme free?
 
