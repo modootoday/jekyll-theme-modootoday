@@ -1,0 +1,21 @@
+{%- comment -%}
+Sets mt_asset_tag to a <script defer> (include.kind script) or <link rel=stylesheet> (kind css) for include.src, or false:
+an https URL needs include.integrity (then integrity + crossorigin="anonymous"); a site path (/…) may add integrity.
+Anything else (http://, //host, a relative path) sets false, so nothing loads.
+{%- endcomment -%}
+{%- assign mt_asset_tag = false -%}
+{%- assign _au = include.src | append: "" | strip -%}{%- assign _as = include.integrity | append: "" | strip | escape -%}
+{%- assign _a8 = _au | slice: 0, 8 -%}{%- assign _a2 = _au | slice: 0, 2 -%}{%- assign _a1 = _au | slice: 0, 1 -%}
+{%- assign _ah = false -%}
+{%- if _a8 == "https://" and _as != "" -%}
+{%- assign _ah = _au | escape -%}{%- capture _aa %} integrity="{{ _as }}" crossorigin="anonymous"{% endcapture -%}
+{%- elsif _a1 == "/" and _a2 != "//" -%}
+{%- assign _ah = _au | relative_url | escape -%}{%- capture _aa %}{% if _as != "" %} integrity="{{ _as }}"{% endif %}{% endcapture -%}
+{%- endif -%}
+{%- if _ah -%}
+{%- if include.kind == "css" -%}
+{%- capture mt_asset_tag %}<link rel="stylesheet" href="{{ _ah }}"{{ _aa }}>{% endcapture -%}
+{%- else -%}
+{%- capture mt_asset_tag %}<script src="{{ _ah }}"{{ _aa }} defer></script>{% endcapture -%}
+{%- endif -%}
+{%- endif -%}

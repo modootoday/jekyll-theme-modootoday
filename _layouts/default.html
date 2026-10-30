@@ -10,7 +10,7 @@
 {%- assign _base = _lang | split: "-" | first -%}
 {%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
 {%- assign _dir = page.direction | default: mt_t_direction | default: _dir -%}
-<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_theme_start %} data-theme="{{ mt_theme_start }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}" data-mt-code="{{ mt_t_code_label }}" data-mt-table="{{ mt_t_table_label }}">
+<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_theme_start %} data-theme="{{ mt_theme_start }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}" data-mt-code="{{ mt_t_code_label }}" data-mt-table="{{ mt_t_table_label }}" data-mt-diagram="{{ mt_t_diagram_label }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1{% unless site.modootoday.viewport_fit == "auto" %}, viewport-fit=cover{% endunless %}">
@@ -83,5 +83,7 @@
 <script src="{{ '/assets/js/modootoday/search.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/modootoday/search-keys.js' | relative_url }}" defer></script>
 {%- endif %}
+{%- include modootoday/render/mermaid.html %}
+{%- include modootoday/render/math.html %}
 </body>
 </html>

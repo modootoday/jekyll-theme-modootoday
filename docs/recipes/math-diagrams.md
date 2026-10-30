@@ -1,18 +1,58 @@
 ---
 nav_order: 10
 title: Math and diagrams
-description: Add KaTeX math and Mermaid diagrams without bundling them in the theme and without breaking a strict CSP.
+description: Render Mermaid diagrams and KaTeX math with the built-in loaders, at build time, or with your own loader, and what each does to your CSP and privacy.
 ---
 # Math and diagrams
 
-The theme ships no math or diagram renderer. A ```` ```math ```` or ```` ```mermaid ```` fence renders as a code block on your site, and GitHub renders it on github.com. To render them on your site, pick one of the two options below. Both work with the [strict CSP](../csp/) `default-src 'self'; script-src 'self'; style-src 'self'`.
+A ```` ```math ```` or ```` ```mermaid ```` fence renders as a code block until you turn a renderer on, and GitHub renders it on github.com. There are three ways to render them on your site:
 
 | Option | Works on | CSP | JavaScript in the browser |
 |---|---|---|---|
-| Render at build time and commit the output | classic GitHub Pages, Jekyll 4, any host | strict, nothing to add | none |
-| Self-host the renderer and load it from `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
+| [Built-in loaders](#built-in-loaders): `modootoday.mermaid` and `modootoday.math` | classic GitHub Pages, Jekyll 3.10 and 4, any host | self-hosted: `'self'`; CDN: add the CDN origin (below) | yes, only on pages with a block |
+| [Render at build time](#render-at-build-time) and commit the output | classic GitHub Pages, Jekyll 4, any host | strict, nothing to add | none |
+| [Your own loader](#your-own-loader) in `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
 
-Do not load a renderer from a CDN: it adds a third-party origin to `script-src`, and the page depends on that origin being up.
+## Built-in loaders
+
+Both are off by default. Turn one on in `_config.yml` with a URL to a renderer **at an exact version** and its [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash, or with a path to a copy on your own site:
+
+```yaml
+modootoday:
+  mermaid:
+    enabled: true
+    src: https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js
+    integrity: sha384-…   # the hash of that exact file
+    theme: auto           # auto (follows the page's light or dark mode), default, dark, neutral, forest
+  math:
+    enabled: true
+    engine: katex
+    src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+    integrity: {js: sha384-…, css: sha384-…}
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+    auto_render_integrity: sha384-…
+    inline: false
+```
+
+- **Only where needed.** The tags load only on pages that contain a block: `language-mermaid` for Mermaid, a ```` ```math ```` fence or a `$$` block for math. Set `mermaid: false` or `math: false` in a page's front matter to skip one page.
+- **No hash, no load.** A CDN URL without `integrity` (or a non-https URL) loads nothing, and `modootoday-check` reports an error. The checker also requires an exact version in the URL (`@11.4.1`, not `@11` or `@latest`) and reports any other third-party script or stylesheet in the built pages.
+- **Self-hosted.** A path such as `/assets/vendor/mermaid.min.js` loads from your own site (`relative_url` is applied; `integrity` is optional). For KaTeX, copy `katex.min.js`, `katex.min.css`, the `fonts/` folder and `contrib/auto-render.min.js` from the `katex` package.
+- **Readable without JavaScript.** The source stays on the page as a code block until the renderer replaces it, and stays if a diagram or formula fails to parse.
+- **Light and dark.** With `theme: auto`, diagrams use Mermaid's `dark` theme when the page is dark (the theme toggle or the visitor's system setting) and redraw when it changes. With reduced motion requested, diagram animations are off. A diagram wider than the column scrolls inside its own keyboard-focusable region.
+- Each loader is a small separate script (`assets/js/modootoday-mermaid.js`, `assets/js/modootoday-math.js`) with its own size budget, not part of the core script.
+
+### Math notation
+
+Use a ```` ```math ```` fence or a `$$` block on its own lines; both are the standard notation and render on github.com too. A `$$` block needs `auto_render_src`; without it only fences render. Inline `$…$` renders only with `inline: true`, because a `$` in ordinary prose (prices, shell variables) would otherwise turn into math. With `inline: false`, `modootoday-check` warns about inline `$…$` in your pages. kramdown prints `$$…$$` written inside a sentence as inline math, which renders whenever `auto_render_src` is set.
+
+### CSP and privacy
+
+A CDN changes your Content Security Policy and your visitors' privacy:
+
+- **CSP.** Add the CDN origin to `script-src` (both), to `style-src` (KaTeX's stylesheet) and to `font-src` (KaTeX's fonts). Mermaid also writes `<style>` into each diagram, so it needs `style-src 'unsafe-inline'` wherever you host it. A self-hosted copy keeps `'self'` for scripts, styles and fonts. See [Content Security Policy](../csp/).
+- **Privacy.** Each visitor's browser requests the files from the CDN, so the CDN receives the visitor's IP address, the page address (as referrer) and the time. Self-hosting avoids this; mention the CDN in your privacy notice if you use one.
+- **Availability.** With a CDN, the blocks render only while that CDN is reachable; the source code block remains otherwise.
 
 ## Render at build time
 
@@ -50,9 +90,9 @@ mkdir -p assets/katex && cp -r node_modules/katex/dist/katex.min.css node_module
 
 KaTeX's static output is plain HTML and CSS classes, so `style-src 'self'` is enough.
 
-## Self-host a renderer
+## Your own loader
 
-Use this when you cannot add a build step. Copy the renderer's files into your site, then load them from `_includes/footer-custom.html`. Wrap the tags in a Liquid `if page.math` (or `if page.mermaid`) block so they load only on pages that set that key in front matter.
+Use this when you need control the built-in loaders do not give. Copy the renderer's files into your site, then load them from `_includes/footer-custom.html`. Wrap the tags in a Liquid `if page.math` (or `if page.mermaid`) block so they load only on pages that set that key in front matter.
 
 ### KaTeX in the browser
 
@@ -100,6 +140,6 @@ Keep `securityLevel: "strict"`: it disables click handlers and HTML labels insid
 ## Checklist
 
 - The source stays in the Markdown, so github.com and agents reading the [Markdown twin](../../guides/agents/) still see it.
-- No third-party origins in your CSP.
+- No third-party origins in your CSP, or the CDN origin listed and pinned with `integrity`.
 - Every diagram has alt text or a caption that states what it shows.
 - Load renderers only on pages that need them.

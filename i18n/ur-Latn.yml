@@ -16,6 +16,7 @@ nav: {label: Main menu, back_to_top: Upar jaayein}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}
 code: {copy: Copy karein, copied: Copy ho gaya, label: Code, file: File}
 table: {label: Jadval}
+diagram: {label: Khaka}
 search: {label: Talaash}
 page: {edit: Yeh safha edit karein, updated: Aakhri update}
 languages: {label: Zabanein}

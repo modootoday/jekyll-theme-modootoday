@@ -16,6 +16,7 @@ nav: {label: Ana menü, back_to_top: Başa dön}
 pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}
 code: {copy: Kopyala, copied: Kopyalandı, label: Kod, file: Dosya}
 table: {label: Tablo}
+diagram: {label: Diyagram}
 search: {label: Ara}
 page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}
 languages: {label: Diller}

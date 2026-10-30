@@ -16,6 +16,7 @@ nav: {label: القائمة الرئيسية, back_to_top: العودة إلى �
 pagination: {label: الصفحات, prev: السابق, next: التالي}
 code: {copy: نسخ, copied: تم النسخ, label: شيفرة, file: ملف}
 table: {label: جدول}
+diagram: {label: مخطط}
 search: {label: بحث}
 page: {edit: تعديل هذه الصفحة, updated: آخر تحديث}
 languages: {label: اللغات}

@@ -8,7 +8,7 @@ nav_order: 0
 각 레시피는 가이드를 바탕으로 작업 하나를 해결합니다.
 
 <!-- spec:docs-index:begin -->
-- [수식과 다이어그램](math-diagrams/) — 테마에 번들하지 않고, 엄격한 CSP를 깨지 않고 KaTeX 수식과 Mermaid 다이어그램을 넣는 방법.
+- [수식과 다이어그램](math-diagrams/) — 내장 로더, 빌드 시 렌더링, 직접 만든 로더로 Mermaid 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.
 - [CSP](csp/) — unsafe-inline 없이 엄격한 CSP에서 테마 쓰기.
 - [제품 사이트](marketing/) — 기능, 요금, 다운로드, 브랜드 키트 페이지를 한데 묶습니다.
 - [회사 페이지](company/) — 작은 조직을 위한 소개, 팀, 채용, 문의, 법적 고지 페이지입니다.

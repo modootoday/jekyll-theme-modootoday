@@ -16,6 +16,7 @@ nav: {label: منوی اصلی, back_to_top: بازگشت به بالا}
 pagination: {label: صفحه‌ها, prev: قبلی, next: بعدی}
 code: {copy: کپی, copied: کپی شد, label: کد, file: پرونده}
 table: {label: جدول}
+diagram: {label: نمودار}
 search: {label: جستجو}
 page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی}
 languages: {label: زبان‌ها}

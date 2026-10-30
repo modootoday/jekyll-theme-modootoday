@@ -16,6 +16,7 @@ nav: {label: Κύριο μενού, back_to_top: Επιστροφή στην κ�
 pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}
 code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας, file: Αρχείο}
 table: {label: Πίνακας}
+diagram: {label: Διάγραμμα}
 search: {label: Αναζήτηση}
 page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
 languages: {label: Γλώσσες}

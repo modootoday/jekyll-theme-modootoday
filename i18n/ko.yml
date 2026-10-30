@@ -16,6 +16,7 @@ nav: {label: 메인 메뉴, back_to_top: 맨 위로}
 pagination: {label: 페이지 이동, prev: 이전, next: 다음}
 code: {copy: 복사, copied: 복사됨, label: 코드, file: 파일}
 table: {label: 표}
+diagram: {label: 다이어그램}
 search: {label: 검색}
 page: {edit: 이 페이지 편집, updated: 최종 수정}
 languages: {label: 언어}

@@ -16,6 +16,7 @@ nav: {label: เมนูหลัก, back_to_top: กลับขึ้นด�
 pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}
 code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด, file: ไฟล์}
 table: {label: ตาราง}
+diagram: {label: แผนภาพ}
 search: {label: ค้นหา}
 page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
 languages: {label: ภาษา}

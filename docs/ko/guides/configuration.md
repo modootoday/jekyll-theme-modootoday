@@ -52,6 +52,8 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../../reference/api/#글과-아카이브) 참고) |
+| `mermaid` | 꺼짐 | `{enabled: true, src:, integrity:, theme: auto}`면 ```` ```mermaid ```` 펜스가 있는 페이지에서 렌더링합니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. CDN을 쓰면 `script-src`에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다. [수식과 다이어그램](../../recipes/math-diagrams/#내장-로더) 참고 |
+| `math` | 꺼짐 | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`면 ```` ```math ```` 펜스와 `$$` 블록이 있는 페이지에서 KaTeX로 렌더링합니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`, `style-src`, `font-src`에 그 출처가 추가됩니다. [수식과 다이어그램](../../recipes/math-diagrams/#csp와-개인정보) 참고 |
 | `external_links` | 없음 | `new_window: true`면 외부 링크(`url:`로 시작하지 않는 링크)를 모두 새 창에서 엽니다. `icon: false`면 화살표를 숨깁니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고 |
 | `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |

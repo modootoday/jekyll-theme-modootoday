@@ -8,7 +8,7 @@ nav_order: 0
 Each recipe solves one task on top of the guides.
 
 <!-- spec:docs-index:begin -->
-- [Math and diagrams](math-diagrams/) — Add KaTeX math and Mermaid diagrams without bundling them in the theme and without breaking a strict CSP.
+- [Math and diagrams](math-diagrams/) — Render Mermaid diagrams and KaTeX math with the built-in loaders, at build time, or with your own loader, and what each does to your CSP and privacy.
 - [CSP](csp/) — Run the theme under a strict CSP without unsafe-inline.
 - [Product site](marketing/) — Put a feature page, pricing, downloads and a brand kit together.
 - [Company pages](company/) — About, team, jobs, contact and legal pages for a small organization.

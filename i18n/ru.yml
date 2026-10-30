@@ -16,6 +16,7 @@ nav: {label: Главное меню, back_to_top: Наверх}
 pagination: {label: Страницы, prev: Назад, next: Далее}
 code: {copy: Копировать, copied: Скопировано, label: Код, file: Файл}
 table: {label: Таблица}
+diagram: {label: Диаграмма}
 search: {label: Поиск}
 page: {edit: Редактировать страницу, updated: Обновлено}
 languages: {label: Языки}

@@ -52,6 +52,8 @@ modootoday:
 | `theme_color` | ページ背景 | ブラウザーのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
 | `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照） |
+| `mermaid` | 無効 | `{enabled: true, src:, integrity:, theme: auto}` で、```` ```mermaid ```` フェンスのあるページで描画します。`src` はバージョンを固定した https の URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。CDN を使うと `script-src` にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。[数式と図](../../recipes/math-diagrams/#組み込みローダー)を参照 |
+| `math` | 無効 | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、```` ```math ```` フェンスと `$$` ブロックのあるページで KaTeX により描画します。`inline: true` で `$…$` も描画します。CDN を使うと `script-src`、`style-src`、`font-src` にそのオリジンが加わります。[数式と図](../../recipes/math-diagrams/#csp-とプライバシー)を参照 |
 | `external_links` | なし | `new_window: true` で外部リンク（`url:` で始まらないリンク）をすべて新しいウィンドウで開きます。`icon: false` で矢印を隠します。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照 |
 | `blog` | なし | ブログ設定（`per_page`、`variant`、`related`、`share`、`reading_time` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
 | `news` | なし | ニュース設定（トップページの `sections:` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |

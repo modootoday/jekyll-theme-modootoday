@@ -10,9 +10,14 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Checker: one-line specfold value markers `<!-- spec:name -->` and `<!-- /spec:name -->` are allowed in page bodies, on their own line or inline in a sentence (RULES.md, HTML comments row).
 - Cards: `cols: 4` for `c: features` sections (`.mt-cols-4`): four columns from 64rem, two from 48rem, one below.
+- Diagrams: `modootoday.mermaid` (off by default) renders ```` ```mermaid ```` fences on the pages that have one, from a version-pinned URL with SRI `integrity` or a self-hosted path, through the separate `assets/js/modootoday-mermaid.js` bundle. Light or dark Mermaid theme follows the page, reduced motion is honoured, a wide diagram scrolls in a labelled focusable region (`diagram.label`, all 23 catalogs), and the source stays readable without JavaScript. Front matter `mermaid: false` skips a page.
+- Math: `modootoday.math` (off by default) renders ```` ```math ```` fences and `$$` blocks with KaTeX (`inline: true` adds `$…$`) on the pages that have one, through `assets/js/modootoday-math.js`. Front matter `math: false` skips a page.
+- Checker: validates `modootoday.mermaid` and `modootoday.math` (https, exact version, SRI hashes), reports any third-party script or stylesheet in built pages unless it is a declared renderer URL with matching `integrity` and `crossorigin="anonymous"`, and warns about inline `$…$` when `math.inline` is false.
+- Budgets: each `assets/js/modootoday-<name>.js` bundle has its own 2 KB budget and does not count toward the core script.
 
 ### Documentation
 
+- Math and diagrams: the built-in loaders, math notation, and their CSP and privacy impact (CDN origin in `script-src`, `style-src`, `font-src`; visitors' IP addresses go to the CDN; self-hosting avoids both).
 - Install guide: running `modootoday-check` on a `remote_theme` site (gem install, CI step) and the harmless `github-pages` warnings (`faraday-retry`, Sass `@import` notices).
 - Page shells: `home` renders the body as written and does not read `sections:`; use `layout: doc` with `hero:` and `sections:` for a home page with sections.
 - Twins: `twin_of` examples, relative to the stub; a path from the site root fails the build (RULES.md, agents guide).

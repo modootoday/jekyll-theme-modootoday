@@ -49,6 +49,8 @@ modootoday:
 | `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../../reference/api/#posts-and-archives)) |
+| `mermaid` | off | `{enabled: true, src:, integrity:, theme: auto}` renders ```` ```mermaid ```` fences on the pages that have one; `src` is a version-pinned https URL with an SRI `integrity` hash, or a path on your site. A CDN adds its origin to `script-src` and sends visitors' IP addresses to it; see [Math and diagrams](../../recipes/math-diagrams/#built-in-loaders) |
+| `math` | off | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` renders ```` ```math ```` fences and `$$` blocks with KaTeX on the pages that have one; `inline: true` also renders `$…$`. A CDN adds its origin to `script-src`, `style-src` and `font-src`; see [Math and diagrams](../../recipes/math-diagrams/#csp-and-privacy) |
 | `external_links` | none | `new_window: true` opens every external link (not starting with `url:`) in a new window; `icon: false` hides the arrow; see [Links that open a new window](#links-that-open-a-new-window) |
 | `blog` | none | blog settings (`per_page`, `variant`, `related`, `share`, `reading_time`, ...); see [Blog and news](../../layouts/blog-news/#settings) |
 | `news` | none | news settings, such as `sections:` for the front page; see [Blog and news](../../layouts/blog-news/#settings) |

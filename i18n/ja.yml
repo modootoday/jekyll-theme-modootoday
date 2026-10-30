@@ -16,6 +16,7 @@ nav: {label: メインメニュー, back_to_top: ページの先頭へ}
 pagination: {label: ページ送り, prev: 前へ, next: 次へ}
 code: {copy: コピー, copied: コピーしました, label: コード, file: ファイル}
 table: {label: 表}
+diagram: {label: 図}
 search: {label: 検索}
 page: {edit: このページを編集, updated: 最終更新}
 languages: {label: 言語}

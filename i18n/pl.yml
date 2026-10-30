@@ -16,6 +16,7 @@ nav: {label: Menu główne, back_to_top: Do góry}
 pagination: {label: Strony, prev: Poprzednia, next: Następna}
 code: {copy: Kopiuj, copied: Skopiowano, label: Kod, file: Plik}
 table: {label: Tabela}
+diagram: {label: Diagram}
 search: {label: Szukaj}
 page: {edit: Edytuj tę stronę, updated: Ostatnia aktualizacja}
 languages: {label: Języki}

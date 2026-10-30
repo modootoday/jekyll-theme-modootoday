@@ -16,6 +16,7 @@ nav: {label: Головне меню, back_to_top: Угору}
 pagination: {label: Сторінки, prev: Назад, next: Далі}
 code: {copy: Копіювати, copied: Скопійовано, label: Код, file: Файл}
 table: {label: Таблиця}
+diagram: {label: Діаграма}
 search: {label: Пошук}
 page: {edit: Редагувати сторінку, updated: Оновлено}
 languages: {label: Мови}

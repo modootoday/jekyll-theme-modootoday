@@ -16,6 +16,7 @@ nav: {label: 主選單, back_to_top: 回到頂端}
 pagination: {label: 換頁, prev: 上一頁, next: 下一頁}
 code: {copy: 複製, copied: 已複製, label: 程式碼, file: 檔案}
 table: {label: 表格}
+diagram: {label: 圖表}
 search: {label: 搜尋}
 page: {edit: 編輯此頁, updated: 最後更新}
 languages: {label: 語言}

@@ -1,0 +1,34 @@
+{%- comment -%}
+Optional math renderer: site.modootoday.math (off by default). Needs the page body (content) first.
+  enabled                true turns it on;  engine: katex (the only engine)
+  src, css               katex.min.js and katex.min.css: pinned, versioned https URLs (with integrity), or site paths (/assets/…)
+  integrity              {js: sha384-…, css: sha384-…}; required for https URLs, optional for site paths
+  auto_render_src        KaTeX auto-render (contrib/auto-render.min.js) for $$ blocks; auto_render_integrity is its SRI hash
+  inline                 true also renders inline $…$ (default false: only ```math fences and $$ blocks)
+Loads only on pages whose body has a ```math fence, or (with auto_render_src) a $$ block, which kramdown prints as \[ … \]
+or \( … \); with inline: true also on pages with a $. Front matter math: false opts a page out.
+If any declared URL cannot load (an https URL without integrity), nothing loads. Without JavaScript the TeX source stays.
+{%- endcomment -%}
+{%- assign _mx = site.modootoday.math -%}
+{%- if _mx.enabled == true and page.math != false and _mx.src and _mx.css -%}
+{%- assign _mx_hit = false -%}
+{%- if content contains '<code class="language-math"' or content contains 'class="language-math highlighter-rouge"' -%}{%- assign _mx_hit = true -%}{%- endif -%}
+{%- if _mx.auto_render_src -%}
+{%- if content contains '\[' or content contains '\(' -%}{%- assign _mx_hit = true -%}{%- endif -%}
+{%- if _mx.inline == true and content contains '$' -%}{%- assign _mx_hit = true -%}{%- endif -%}
+{%- endif -%}
+{%- if _mx_hit -%}
+{%- include modootoday/render/asset.html kind="css" src=_mx.css integrity=_mx.integrity.css -%}{%- assign _mx_css = mt_asset_tag -%}
+{%- include modootoday/render/asset.html src=_mx.src integrity=_mx.integrity.js -%}{%- assign _mx_js = mt_asset_tag -%}
+{%- assign _mx_ar = "" -%}
+{%- if _mx.auto_render_src -%}{%- include modootoday/render/asset.html src=_mx.auto_render_src integrity=_mx.auto_render_integrity -%}{%- assign _mx_ar = mt_asset_tag -%}{%- endif -%}
+{%- if _mx_css and _mx_js and _mx_ar %}
+{{ _mx_css }}
+{{ _mx_js }}
+{%- if _mx_ar != "" %}
+{{ _mx_ar }}
+{%- endif %}
+<script src="{{ '/assets/js/modootoday-math.js' | relative_url }}" data-mt-inline="{% if _mx.inline == true %}true{% else %}false{% endif %}" defer></script>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}

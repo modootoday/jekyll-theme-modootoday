@@ -1,0 +1,19 @@
+{%- comment -%}
+Optional Mermaid renderer: site.modootoday.mermaid (off by default). Needs the page body (content) first.
+  enabled    true turns it on
+  src        a pinned, versioned https URL (with integrity), or a site path such as /assets/mermaid/mermaid.min.js
+  integrity  SRI hash (sha256-/sha384-/sha512-…); required for an https src, optional for a site path
+  theme      auto (follows prefers-color-scheme and the theme toggle) | default | dark | neutral | forest
+Loads only on pages whose body has a ```mermaid fence; front matter mermaid: false opts a page out.
+An https src without integrity loads nothing (modootoday-check reports it). Without JavaScript the fence stays a code block.
+{%- endcomment -%}
+{%- assign _mm = site.modootoday.mermaid -%}{%- assign _mm_tag = false -%}
+{%- if _mm.enabled == true and page.mermaid != false and _mm.src -%}
+{%- if content contains '<code class="language-mermaid"' or content contains 'class="language-mermaid highlighter-rouge"' -%}
+{%- include modootoday/render/asset.html src=_mm.src integrity=_mm.integrity -%}{%- assign _mm_tag = mt_asset_tag -%}
+{%- if _mm_tag %}
+{{ _mm_tag }}
+<script src="{{ '/assets/js/modootoday-mermaid.js' | relative_url }}" data-mt-theme="{{ _mm.theme | default: 'auto' | escape }}" defer></script>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
