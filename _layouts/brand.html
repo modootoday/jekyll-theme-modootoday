@@ -1,0 +1,20 @@
+---
+layout: default
+mt_bundle: marketing
+mt_main: mt-mk mt-mk-brand
+---
+{%- comment -%}brand: colors: [{name, hex}] as swatches (an SVG fill, so no inline style under a strict CSP; the hex is always printed as text), assets: [{label, url, format}] to download, then the body (usage rules).{%- endcomment -%}
+<article aria-labelledby="mt-mk-title">
+{%- include modootoday/marketing/head.html %}
+{%- if page.colors %}
+<section aria-labelledby="mt-brand-colors"><h2 id="mt-brand-colors">{{ mt_t_layouts_colors }}</h2>
+<ul class="mt-mk-swatches" role="list">{% for c in page.colors %}<li><svg class="mt-mk-chip" viewBox="0 0 1 1" aria-hidden="true" focusable="false"><rect width="1" height="1" fill="{{ c.hex }}"/></svg><strong>{{ c.name }}</strong> <code>{{ c.hex }}</code></li>{% endfor %}</ul></section>
+{%- endif %}
+{%- if page.assets %}
+<section aria-labelledby="mt-brand-assets"><h2 id="mt-brand-assets">{{ mt_t_layouts_assets }}</h2>
+<ul class="mt-mk-files" role="list">{% for a in page.assets %}<li><a href="{{ a.url | relative_url }}" download>{{ a.label }}</a>{% if a.format %} <span>{{ a.format }}</span>{% endif %}</li>{% endfor %}</ul></section>
+{%- endif %}
+<div class="mt-mk-body">
+{{ content }}
+</div>
+</article>

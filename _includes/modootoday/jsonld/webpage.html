@@ -7,5 +7,6 @@ name, url, description, image and inLanguage mirror the Open Graph tags; mainEnt
 {%- if _ld_img %},"primaryImageOfPage":{"@type":"ImageObject","url":{{ _ld_img | absolute_url | jsonify }}}{% endif -%}
 {%- if page.url != "/" %},"breadcrumb":{"@id":{{ _ld_url | append: "#breadcrumb" | jsonify }}}{% endif -%}
 {%- if _ld_kind != "page" %},"mainEntity":{"@id":{{ _ld_url | append: "#main" | jsonify }}}{% endif -%}
+{%- if _ld_type == "ProfilePage" and page.layout == "links" or _ld_type == "ProfilePage" and page.layout == "resume" -%}{%- include modootoday/jsonld/profile.html -%}{%- endif -%}
 {%- if _ld_kind == "page" and page.schema -%}{%- include modootoday/jsonld/props.html -%}{%- endif -%}
 }

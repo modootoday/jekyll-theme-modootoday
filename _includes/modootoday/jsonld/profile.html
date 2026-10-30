@@ -1,0 +1,14 @@
+{%- comment -%}mainEntity of a links or resume ProfilePage (inside jsonld/webpage.html), unless schema: sets mainEntity:
+a Person (or profile: organization) named page.name or the title, with image, jobTitle (page.headline), email and sameAs from
+page.links / page.profiles urls that are absolute.{%- endcomment -%}
+{%- unless page.schema.mainEntity -%}
+{%- assign _pf = page.links | default: page.profiles -%}
+{%- assign _pn = page.name | default: _ld_title -%}
+,"mainEntity":{"@type":{% if page.profile == "organization" %}"Organization"{% else %}"Person"{% endif %},"@id":{{ _ld_url | append: "#main" | jsonify }},"name":{{ _pn | jsonify }}
+{%- if page.image %},"image":{{ page.image | absolute_url | jsonify }}{% endif -%}
+{%- if page.headline %},"jobTitle":{{ page.headline | jsonify }}{% endif -%}
+{%- if page.email %},"email":{{ page.email | prepend: "mailto:" | replace: "mailto:mailto:", "mailto:" | jsonify }}{% endif -%}
+{%- assign _sa = "" -%}{%- for l in _pf -%}{%- if l.url contains "://" -%}{%- assign _sa = _sa | append: "|" | append: l.url -%}{%- endif -%}{%- endfor -%}
+{%- if _sa != "" %},"sameAs":{{ _sa | remove_first: "|" | split: "|" | jsonify }}{% endif -%}
+}
+{%- endunless -%}

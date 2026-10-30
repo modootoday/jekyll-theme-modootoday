@@ -35,6 +35,15 @@
         - {title: Job demo, url: /layouts/detail/job/}
         - {title: Event demo, url: /layouts/detail/event/}
         - {title: Episode demo, url: /layouts/detail/episode/}
+    - title: Marketing pages
+      url: /layouts/marketing/
+      items:
+        - {title: Feature demo, url: /layouts/marketing/feature/}
+        - {title: Pricing demo, url: /layouts/marketing/pricing/}
+        - {title: Download demo, url: /layouts/marketing/download/}
+        - {title: Brand demo, url: /layouts/marketing/brand/}
+        - {title: Links demo, url: /layouts/marketing/links/}
+        - {title: Contact demo, url: /layouts/marketing/contact/}
     - {title: Blog and news, url: /layouts/blog-news/}
 - title: Recipes
   url: /recipes/

@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday marketing stylesheet (feature, pricing, download, brand, links, contact): loaded only by those
+# layouts (mt_bundle: marketing), so the core bundle stays small. Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/marketing/index";

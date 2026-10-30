@@ -1,0 +1,20 @@
+---
+layout: default
+mt_bundle: marketing
+mt_main: mt-mk mt-mk-download
+---
+{%- comment -%}download: version and date, then downloads: [{label, url, size, checksum}] as a table, then the body (install notes).{%- endcomment -%}
+{%- assign _df = mt_t_post_date_format | default: "%Y-%m-%d" -%}
+<article aria-labelledby="mt-mk-title">
+{%- include modootoday/marketing/head.html %}
+{%- if page.version %}<p class="mt-mk-meta">{{ mt_t_layouts_version }} <strong>{{ page.version }}</strong>{% if page.date %} · <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: _df }}</time>{% endif %}</p>{% endif %}
+{%- if page.downloads %}
+<div class="mt-mk-table"><table>
+<caption class="mt-sr-only">{{ mt_t_layouts_download }}</caption>
+<tbody>{% for d in page.downloads %}<tr><th scope="row">{{ d.label }}</th><td>{{ d.size }}</td><td>{% if d.checksum %}<code>{{ d.checksum | truncate: 24 }}</code>{% endif %}</td><td><a class="mt-mk-btn" href="{{ d.url | relative_url }}" download>{{ mt_t_layouts_download }}<span class="mt-sr-only">: {{ d.label }}</span></a></td></tr>{% endfor %}</tbody>
+</table></div>
+{%- endif %}
+<div class="mt-mk-body">
+{{ content }}
+</div>
+</article>

@@ -35,6 +35,15 @@
         - {title: 채용 데모, url: /ko/layouts/detail/job/}
         - {title: 행사 데모, url: /ko/layouts/detail/event/}
         - {title: 에피소드 데모, url: /ko/layouts/detail/episode/}
+    - title: 마케팅 페이지
+      url: /ko/layouts/marketing/
+      items:
+        - {title: 기능 데모, url: /ko/layouts/marketing/feature/}
+        - {title: 요금 데모, url: /ko/layouts/marketing/pricing/}
+        - {title: 다운로드 데모, url: /ko/layouts/marketing/download/}
+        - {title: 브랜드 데모, url: /ko/layouts/marketing/brand/}
+        - {title: 링크 데모, url: /ko/layouts/marketing/links/}
+        - {title: 문의 데모, url: /ko/layouts/marketing/contact/}
     - {title: 블로그와 뉴스, url: /ko/layouts/blog-news/}
 - title: 레시피
   url: /ko/recipes/

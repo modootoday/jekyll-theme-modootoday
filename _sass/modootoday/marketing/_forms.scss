@@ -1,0 +1,11 @@
+// Contact list and form.
+@include mt-layer(components) {
+  .mt-mk-contacts { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); margin: 2rem 0; }
+  .mt-mk-contacts dt { color: mt(muted-foreground); font-size: .8125rem; font-weight: 600; }
+  .mt-mk-contacts dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
+  .mt-mk-form { display: grid; gap: .25rem; max-width: 36rem; margin-top: 2rem; }
+  .mt-mk-form label { display: block; margin-bottom: .375rem; font-weight: 600; }
+  .mt-mk-form input, .mt-mk-form textarea { box-sizing: border-box; width: 100%; min-height: 2.75rem; padding: .5rem .75rem;
+    border: 1px solid mt(border); border-radius: mt(radius); background: mt(background); color: mt(foreground); font: inherit; font-size: 1rem; }
+  .mt-mk-form :focus-visible { outline: 2px solid mt(ring); outline-offset: 1px; }
+}

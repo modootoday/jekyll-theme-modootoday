@@ -1,0 +1,26 @@
+---
+layout: default
+mt_bundle: marketing
+mt_main: mt-mk mt-mk-contact
+---
+{%- comment -%}contact: the body, contacts: [{label, value, url}] as a list, and a form that posts to form.action (an external form
+service; nothing is sent without it). form.fields: [name, email, message] by default. ContactPage structured data.{%- endcomment -%}
+<article aria-labelledby="mt-mk-title">
+{%- include modootoday/marketing/head.html %}
+<div class="mt-mk-body">
+{{ content }}
+</div>
+{%- if page.contacts %}
+<dl class="mt-mk-contacts">{% for c in page.contacts %}<div><dt>{{ c.label }}</dt><dd>{% if c.url %}<a href="{{ c.url }}">{{ c.value | default: c.url }}</a>{% else %}{{ c.value }}{% endif %}</dd></div>{% endfor %}</dl>
+{%- endif %}
+{%- if page.form.action %}
+{%- assign _fl = page.form.fields | default: "name,email,message" -%}{%- if _fl.first == nil -%}{%- assign _fl = _fl | split: "," -%}{%- endif -%}
+<form class="mt-mk-form" action="{{ page.form.action }}" method="post" aria-labelledby="mt-mk-title">
+{%- for f in _fl %}
+<p><label for="mt-f-{{ f }}">{% case f %}{% when "name" %}{{ mt_t_layouts_name }}{% when "email" %}{{ mt_t_layouts_email }}{% else %}{{ mt_t_layouts_message }}{% endcase %}</label>
+{%- if f == "message" %}<textarea id="mt-f-{{ f }}" name="{{ f }}" rows="6" required></textarea>{% else %}<input id="mt-f-{{ f }}" name="{{ f }}" type="{% if f == 'email' %}email{% else %}text{% endif %}" autocomplete="{{ f }}" required>{% endif %}</p>
+{%- endfor %}
+<p><button class="mt-mk-btn" type="submit">{{ mt_t_layouts_send }}</button></p>
+</form>
+{%- endif %}
+</article>

@@ -1,0 +1,31 @@
+---
+layout: default
+mt_bundle: marketing
+mt_css: [pricing]
+mt_main: mt-mk mt-mk-pricing
+---
+{%- comment -%}pricing: plans: [{name, monthly, yearly, text, features: [...], cta: {label, url}, recommended: true}] and currency.
+Plan cards reuse the pricing component sheet. With yearly prices a Monthly/Yearly radio pair switches them with CSS only
+(no JavaScript); both prices stay in the HTML, the hidden one with display:none.{%- endcomment -%}
+{%- assign _y = page.plans | where_exp: "p", "p.yearly" | size -%}
+{%- assign _cur = page.currency | default: "" -%}
+<article aria-labelledby="mt-mk-title">
+{%- include modootoday/marketing/head.html %}
+<div class="mt-mk-pricing-box">
+{%- if _y > 0 %}
+<input class="mt-sr-only mt-bill-m" type="radio" name="mt-billing" id="mt-bill-m" checked><input class="mt-sr-only mt-bill-y" type="radio" name="mt-billing" id="mt-bill-y">
+<div class="mt-mk-billing" role="group" aria-label="{{ mt_t_layouts_billing }}"><label for="mt-bill-m">{{ mt_t_layouts_monthly }}</label><label for="mt-bill-y">{{ mt_t_layouts_yearly }}</label></div>
+{%- endif %}
+<div class="mt-plans">{% for p in page.plans %}
+<div class="mt-plan{% if p.recommended %} mt-plan-recommended{% endif %}">{% if p.recommended %}<p class="mt-plan-flag">{{ mt_t_layouts_popular }}</p>{% endif %}<h2>{{ p.name }}</h2>
+<p class="mt-mk-price"><span class="mt-price-m"><strong>{{ _cur }}{{ p.monthly }}</strong>{% if p.yearly %} / {{ mt_t_layouts_monthly | downcase }}{% endif %}</span>{% if p.yearly %}<span class="mt-price-y"><strong>{{ _cur }}{{ p.yearly }}</strong> / {{ mt_t_layouts_yearly | downcase }}</span>{% endif %}</p>
+{%- if p.text %}<p>{{ p.text }}</p>{% endif %}
+{%- if p.features %}<ul>{% for f in p.features %}<li>{{ f }}</li>{% endfor %}</ul>{% endif %}
+{%- if p.cta.url %}<p class="mt-actions"><a href="{{ p.cta.url | relative_url }}">{{ p.cta.label }}<span class="mt-sr-only">: {{ p.name }}</span></a></p>{% endif %}
+</div>{% endfor %}
+</div>
+</div>
+<div class="mt-mk-body">
+{{ content }}
+</div>
+</article>

@@ -1,0 +1,18 @@
+---
+layout: default
+mt_bundle: marketing
+mt_main: mt-mk mt-mk-feature
+---
+{%- comment -%}feature: a product feature page. Header with actions, features: [{title, text}] as a grid, the body, then cta: {label, url}.{%- endcomment -%}
+<article aria-labelledby="mt-mk-title">
+{%- include modootoday/marketing/head.html %}
+{%- if page.features %}
+<ul class="mt-mk-grid" role="list">{% for f in page.features %}<li><h2>{{ f.title }}</h2>{% if f.text %}<p>{{ f.text }}</p>{% endif %}</li>{% endfor %}</ul>
+{%- endif %}
+<div class="mt-mk-body">
+{{ content }}
+</div>
+{%- if page.cta.url %}
+<p class="mt-mk-actions mt-mk-end"><a class="mt-mk-btn" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a></p>
+{%- endif %}
+</article>

@@ -5,6 +5,7 @@ require_relative "layouts/shape"
 require_relative "layouts/shells"
 require_relative "layouts/directory"
 require_relative "layouts/detail"
+require_relative "layouts/marketing"
 
 module Modootoday
   module Check
@@ -16,6 +17,7 @@ module Modootoday
           "error" => Shells.method(:error), "redirect" => Shells.method(:redirect), "home" => Shells.method(:home),
         }.merge(Directory::LAYOUTS.to_h { |l| [l, Directory.method(:call)] })
           .merge(Detail::LAYOUTS.to_h { |l| [l, Detail.method(:call)] })
+          .merge(Marketing::LAYOUTS.to_h { |l| [l, Marketing.method(:call)] })
       end
 
       def self.register(names, check) = names.each { |n| contracts[n] = check }

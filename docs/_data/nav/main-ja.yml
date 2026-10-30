@@ -35,6 +35,15 @@
         - {title: 求人のデモ, url: /ja/layouts/detail/job/}
         - {title: イベントのデモ, url: /ja/layouts/detail/event/}
         - {title: エピソードのデモ, url: /ja/layouts/detail/episode/}
+    - title: マーケティングページ
+      url: /ja/layouts/marketing/
+      items:
+        - {title: 機能のデモ, url: /ja/layouts/marketing/feature/}
+        - {title: 料金のデモ, url: /ja/layouts/marketing/pricing/}
+        - {title: ダウンロードのデモ, url: /ja/layouts/marketing/download/}
+        - {title: ブランドのデモ, url: /ja/layouts/marketing/brand/}
+        - {title: リンクのデモ, url: /ja/layouts/marketing/links/}
+        - {title: お問い合わせのデモ, url: /ja/layouts/marketing/contact/}
     - {title: ブログとニュース, url: /ja/layouts/blog-news/}
 - title: レシピ
   url: /ja/recipes/

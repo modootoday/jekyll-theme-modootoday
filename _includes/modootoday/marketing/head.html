@@ -1,0 +1,6 @@
+{%- comment -%}Marketing page header: title (h1, id mt-mk-title), description as the lead, page.actions [{label, url}] as buttons.{%- endcomment -%}
+<header class="mt-mk-head">
+<h1 id="mt-mk-title">{{ page.title }}</h1>
+{%- if page.description %}<p class="mt-mk-lead">{{ page.description }}</p>{% endif %}
+{%- if page.actions %}<p class="mt-mk-actions">{% for a in page.actions %}<a class="mt-mk-btn" href="{{ a.url | relative_url }}">{{ a.label }}</a>{% endfor %}</p>{% endif %}
+</header>

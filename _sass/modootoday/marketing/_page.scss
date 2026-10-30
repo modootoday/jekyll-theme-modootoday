@@ -1,0 +1,30 @@
+// Shared header, feature grid, download table, brand swatches and the link page.
+@include mt-layer(components) {
+  .mt-mk-head { margin: 1rem 0 2rem; }
+  .mt-mk-head h1 { margin: 0; font-size: unquote("clamp(2rem, 1.4rem + 2.4vw, 3rem)"); line-height: 1.1; letter-spacing: -.03em; }
+  .mt-mk-lead { margin: .75rem 0 0; max-width: 40rem; font-size: 1.15rem; color: mt(muted-foreground); }
+  .mt-mk-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0 0; }
+  .mt-mk-end { margin-top: 2.5rem; }
+  @include mt-kit-button(".mt-mk-btn");
+  .mt-mk-grid, .mt-mk-swatches, .mt-mk-files, .mt-mk-linklist { margin: 0 0 2rem; padding: 0; list-style: none; }
+  .mt-mk-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .mt-mk-grid li { padding: 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); }
+  .mt-mk-grid h2 { margin: 0 0 .375rem; font-size: 1.0625rem; }
+  .mt-mk-grid p { margin: 0; color: mt(muted-foreground); }
+  .mt-mk-meta { color: mt(muted-foreground); }
+  .mt-mk-table { overflow-x: auto; margin-bottom: 2rem; }
+  .mt-mk-table td, .mt-mk-table th { vertical-align: middle; }
+  .mt-mk-swatches { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+  .mt-mk-chip { display: block; width: 100%; height: 4rem; margin-bottom: .5rem; border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-mk-swatches code { display: block; font-size: .8125rem; }
+  .mt-mk-files li { padding: .5rem 0; border-bottom: 1px solid mt(border); }
+  .mt-mk-files span { color: mt(muted-foreground); font-size: .875rem; }
+  .mt-mk-links { max-width: 30rem; margin-inline: auto; text-align: center; }
+  .mt-mk-links .mt-mk-lead { margin-inline: auto; }
+  .mt-mk-avatar { display: block; margin: 2rem auto 0; border-radius: 50%; }
+  .mt-mk-linklist { display: grid; gap: .75rem; }
+  .mt-mk-linklist a { display: block; padding: .875rem 1rem; border: 1px solid mt(border); border-radius: mt(radius-lg);
+    background: mt(card); color: mt(card-foreground); font-weight: 600; text-decoration: none; }
+  .mt-mk-linklist a:hover { border-color: mt(primary); }
+  .mt-mk-linklist a:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+}

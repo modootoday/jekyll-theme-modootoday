@@ -1,0 +1,18 @@
+---
+layout: default
+mt_bundle: marketing
+mt_chrome: false
+mt_main: mt-mk mt-mk-links
+---
+{%- comment -%}links: a link page (no site header): image, title, description, links: [{label, url}] as large buttons, then the body.
+Structured data: ProfilePage with a Person or Organization (profile: person | organization) whose sameAs lists the links.{%- endcomment -%}
+<article aria-labelledby="mt-mk-title">
+{%- if page.image %}<img class="mt-mk-avatar" src="{{ page.image | relative_url }}" alt="" width="96" height="96">{% endif %}
+{%- include modootoday/marketing/head.html %}
+{%- if page.links %}
+<ul class="mt-mk-linklist" role="list">{% for l in page.links %}<li><a href="{{ l.url | relative_url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+{%- endif %}
+<div class="mt-mk-body">
+{{ content }}
+</div>
+</article>

@@ -1,0 +1,15 @@
+// Pricing layout on top of the pricing component sheet: h2 plan names and the CSS-only Monthly/Yearly switch.
+@include mt-layer(components) {
+  .mt-mk-pricing .mt-plan h2 { margin: 0 0 .5rem; font-size: 1.0625rem; }
+  .mt-mk-price { margin: 0 0 1rem; color: mt(muted-foreground); }
+  .mt-mk-price strong { color: mt(card-foreground); font-size: 1.875rem; font-weight: 750; letter-spacing: -.02em; }
+  .mt-price-y, .mt-bill-y:checked ~ .mt-plans .mt-price-m { display: none; }
+  .mt-bill-y:checked ~ .mt-plans .mt-price-y { display: inline; }
+  .mt-mk-billing { display: inline-flex; padding: .25rem; border: 1px solid mt(border); border-radius: 999px; }
+  .mt-mk-billing label { padding: .375rem 1rem; border-radius: 999px; cursor: pointer; font-size: .9375rem; font-weight: 600; }
+  .mt-bill-m:checked ~ .mt-mk-billing label[for="mt-bill-m"], .mt-bill-y:checked ~ .mt-mk-billing label[for="mt-bill-y"] {
+    background: mt(primary); color: mt(primary-foreground); }
+  .mt-bill-m:focus-visible ~ .mt-mk-billing label[for="mt-bill-m"], .mt-bill-y:focus-visible ~ .mt-mk-billing label[for="mt-bill-y"] {
+    outline: 2px solid mt(ring); outline-offset: 2px; }
+  @media (forced-colors: active) { .mt-bill-m:checked ~ .mt-mk-billing label[for="mt-bill-m"], .mt-bill-y:checked ~ .mt-mk-billing label[for="mt-bill-y"] { outline: 2px solid; } }
+}

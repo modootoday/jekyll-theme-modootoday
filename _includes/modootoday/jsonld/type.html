@@ -12,7 +12,7 @@ Order: front matter schema.type, then site.modootoday.schema.layouts[<layout>], 
 {%- when "episode" -%}{%- assign _ld_type = "PodcastEpisode" -%}
 {%- when "doc" -%}{%- assign _ld_type = "TechArticle" -%}
 {%- when "archive", "blog", "news" -%}{%- assign _ld_type = "CollectionPage" -%}
-{%- when "author", "profile", "resume" -%}{%- assign _ld_type = "ProfilePage" -%}
+{%- when "author", "profile", "resume", "links" -%}{%- assign _ld_type = "ProfilePage" -%}
 {%- when "contact" -%}{%- assign _ld_type = "ContactPage" -%}
 {%- when "search" -%}{%- assign _ld_type = "SearchResultsPage" -%}
 {%- when "faq" -%}{%- assign _ld_type = "FAQPage" -%}
