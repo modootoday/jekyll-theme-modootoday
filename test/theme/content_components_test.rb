@@ -102,7 +102,8 @@ class ContentComponentsTest < Minitest::Test
 
   def test_sections
     assert_match(/<ul aria-label="[^"]+"/, h)
-    assert_includes h, "FAQPage"
+    assert_includes h, "mt-c-faq"
+    refute_includes h, "\"@type\":\"FAQPage\""
     assert_includes h, "mt-param-required"
     assert_match(/<figure class="mt-quote">.*<figcaption>/m, h)
     assert_match(/class="mt-gallery-thumb".*class="mt-lightbox"/m, h)

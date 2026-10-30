@@ -47,7 +47,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
 | 파일 트리 | `section.mt-c-filetree` | `ul[aria-label]`, 중첩 `ul`(이를 가진 항목은 폴더) | — |
-| 세부 정보 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, 그 뒤의 내용(FAQ는 FAQPage JSON-LD 추가) | `[open]` |
+| 세부 정보 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, 그 뒤의 내용 | `[open]` |
 | 매개변수 표 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
 | 링크 카드 | `section.mt-c-linkcards` | `ul > li > a`(카드 전체가 링크 대상) | — |
 | 인용 | `figure.mt-quote` | `blockquote`, `figcaption` | — |

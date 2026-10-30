@@ -272,7 +272,7 @@ theme: jekyll-theme-modootoday
 
 ## 자주 묻는 질문
 
-`status:available` `c: faq` 섹션은 세부 정보처럼 동작하며 검색 엔진용 FAQPage 구조화 데이터도 추가합니다.
+`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. FAQPage 구조화 데이터가 필요하면 `schema:` 블록을 추가하세요([구조화 데이터](../../guides/structured-data/) 참고).
 
 ### 테마는 무료인가요?
 
@@ -295,8 +295,8 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: linkcards` 섹션에서는 링크로 시작하는 목록 항목이 카드가 됩니다. 카드 전체가 링크 대상입니다.
 
-- [설치](../install/) — 사이트에 테마를 추가합니다.
-- [설정](../configuration/) — 모든 설정을 한곳에서 봅니다.
+- [설치](../guides/install/) — 사이트에 테마를 추가합니다.
+- [설정](../guides/configuration/) — 모든 설정을 한곳에서 봅니다.
 
 ## 인용
 
@@ -323,7 +323,7 @@ theme: jekyll-theme-modootoday
 
 - 사이트 1개
 
-[시작하기](../install/)
+[시작하기](../guides/install/)
 
 ### 팀
 
@@ -332,7 +332,7 @@ theme: jekyll-theme-modootoday
 - 사이트 10개
 - 지원
 
-[팀 선택](../install/)
+[팀 선택](../guides/install/)
 
 ## 구독
 

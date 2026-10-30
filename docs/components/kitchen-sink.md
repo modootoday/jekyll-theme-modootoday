@@ -329,7 +329,7 @@ Nothing but the browser.
 
 ## FAQ
 
-`status:available` A `c: faq` section works like details and also adds FAQPage structured data for search engines.
+`status:available` A `c: faq` section works like details. For FAQPage structured data, add a `schema:` block (see [Structured data](../../guides/structured-data/)).
 
 ### Is the theme free?
 
@@ -352,8 +352,8 @@ Yes, with the github-pages gem.
 
 `status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.
 
-- [Install](../../install/) — Add the theme to a site.
-- [Configuration](../../configuration/) — Every setting in one place.
+- [Install](../../guides/install/) — Add the theme to a site.
+- [Configuration](../../guides/configuration/) — Every setting in one place.
 
 ## Quote
 
@@ -380,7 +380,7 @@ Yes, with the github-pages gem.
 
 - One site
 
-[Start](../../install/)
+[Start](../../guides/install/)
 
 ### Team
 
@@ -389,7 +389,7 @@ Yes, with the github-pages gem.
 - Ten sites
 - Support
 
-[Choose Team](../../install/)
+[Choose Team](../../guides/install/)
 
 ## Subscribe
 

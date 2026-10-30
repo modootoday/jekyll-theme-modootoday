@@ -332,7 +332,7 @@ theme: jekyll-theme-modootoday
 
 ## よくある質問
 
-`status:available` `c: faq` セクションは詳細と同じように動き、検索エンジン向けの FAQPage 構造化データも追加します。
+`status:available` `c: faq` セクションは詳細と同じように動きます。FAQPage 構造化データは `schema:` ブロックを追加してください（[構造化データ](../../guides/structured-data/) を参照）。
 
 ### テーマは無料ですか？
 
@@ -355,8 +355,8 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: linkcards` セクションでは、リンクで始まるリスト項目がカードになります。カード全体がリンク先です。
 
-- [インストール](../../install/) — サイトにテーマを追加します。
-- [設定](../../configuration/) — すべての設定を一か所で確認します。
+- [インストール](../../guides/install/) — サイトにテーマを追加します。
+- [設定](../../guides/configuration/) — すべての設定を一か所で確認します。
 
 ## 引用
 
@@ -383,7 +383,7 @@ theme: jekyll-theme-modootoday
 
 - サイト 1 つ
 
-[始める](../../install/)
+[始める](../../guides/install/)
 
 ### チーム
 
@@ -392,7 +392,7 @@ theme: jekyll-theme-modootoday
 - サイト 10 個
 - サポート
 
-[チームを選ぶ](../../install/)
+[チームを選ぶ](../../guides/install/)
 
 ## 購読
 

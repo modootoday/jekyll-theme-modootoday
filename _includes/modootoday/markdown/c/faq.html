@@ -1,7 +1,2 @@
-{%- comment -%}c: faq — the details transform plus FAQPage structured data (JSON-LD) built from the same questions.{%- endcomment -%}
+{%- comment -%}c: faq — the details transform. FAQPage structured data comes from the page's single JSON-LD graph (a schema: block in front matter).{%- endcomment -%}
 {%- include modootoday/markdown/c/details.html html=include.html -%}
-{%- assign _ds = "
-<h3 " -%}{%- assign _dp = include.html | split: _ds -%}
-{%- if _dp.size > 1 %}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for _q in _dp offset: 1 %}{% assign _qh = _q | split: "</h3>" | first %}{% assign _qi = _qh | split: ">" | first | append: ">" %}{% assign _qn = _qh | remove_first: _qi | strip_html | strip %}{% assign _qa = _q | remove_first: _qh | strip_html | strip_newlines | strip %}{% unless forloop.first %},{% endunless %}{"@type":"Question","name":{{ _qn | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ _qa | jsonify }}}}{% endfor %}]}</script>
-{%- endif -%}

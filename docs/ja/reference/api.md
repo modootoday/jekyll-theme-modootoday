@@ -47,7 +47,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | アコーディオン | `section.mt-c-accordion` | `h3 > button[aria-expanded]`、その後のパネル | `[aria-expanded=true\|false]` |
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
 | ファイルツリー | `section.mt-c-filetree` | `ul[aria-label]`、入れ子の `ul`（それを持つ項目はフォルダー） | — |
-| 詳細 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`、`summary > h3`、その後の内容（FAQ は FAQPage JSON-LD を追加） | `[open]` |
+| 詳細 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`、`summary > h3`、その後の内容 | `[open]` |
 | パラメーター表 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
 | リンクカード | `section.mt-c-linkcards` | `ul > li > a`（カード全体がリンク先） | — |
 | 引用 | `figure.mt-quote` | `blockquote`, `figcaption` | — |

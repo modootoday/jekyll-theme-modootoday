@@ -44,7 +44,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
 | File tree | `section.mt-c-filetree` | `ul[aria-label]`, nested `ul` (items holding one are folders) | — |
-| Details / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, the content after it (FAQ adds FAQPage JSON-LD) | `[open]` |
+| Details / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, the content after it | `[open]` |
 | Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
 | Link cards | `section.mt-c-linkcards` | `ul > li > a` (the whole card is the link target) | — |
 | Quote | `figure.mt-quote` | `blockquote`, `figcaption` | — |
