@@ -22,11 +22,11 @@ description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 �
 
 | 데모 | 레이아웃 | 새 창 |
 | --- | --- | --- |
-| [블로그 목록](blog/) | `blog` | [새 창에서 열기<span class="mt-sr-only">: 블로그 목록</span>](blog/){: .mt-new-window} |
-| [블로그 글](post/) | `post` | [새 창에서 열기<span class="mt-sr-only">: 블로그 글</span>](post/){: .mt-new-window} |
-| [뉴스 첫 화면](news/) | `news` | [새 창에서 열기<span class="mt-sr-only">: 뉴스 첫 화면</span>](news/){: .mt-new-window} |
-| [뉴스 기사](article/) | `news-article` | [새 창에서 열기<span class="mt-sr-only">: 뉴스 기사</span>](article/){: .mt-new-window} |
-| [연도별 아카이브](archive/) | `archive` | [새 창에서 열기<span class="mt-sr-only">: 연도별 아카이브</span>](archive/){: .mt-new-window} |
+| [블로그 목록](blog/) | `blog` | [새 창에서 열기](blog/ "new-window") |
+| [블로그 글](post/) | `post` | [새 창에서 열기](post/ "new-window") |
+| [뉴스 첫 화면](news/) | `news` | [새 창에서 열기](news/ "new-window") |
+| [뉴스 기사](article/) | `news-article` | [새 창에서 열기](article/ "new-window") |
+| [연도별 아카이브](archive/) | `archive` | [새 창에서 열기](archive/ "new-window") |
 
 한국어 글의 Atom 피드는 [feed.xml](../../feed.xml)에 있어요. [영어](../../../feed.xml)와 [일본어](../../../ja/feed.xml) 피드도 따로 있어요.
 

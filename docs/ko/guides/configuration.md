@@ -4,6 +4,7 @@ title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
 sections:
   - keys
+  - new-window
   - head
   - i18n
   - registry
@@ -81,7 +82,7 @@ modootoday:
 ```
 
 ```markdown
-[릴리스 노트](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+[릴리스 노트](https://github.com/modootoday/jekyll-theme-modootoday/releases "new-window")
 ```
 
 이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 화면 낭독기가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙어요. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작해요. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열려요.

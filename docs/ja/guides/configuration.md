@@ -4,6 +4,7 @@ title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
 sections:
   - keys
+  - new-window
   - head
   - i18n
   - registry
@@ -81,7 +82,7 @@ modootoday:
 ```
 
 ```markdown
-[リリースノート](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+[リリースノート](https://github.com/modootoday/jekyll-theme-modootoday/releases "new-window")
 ```
 
 こうしたリンクには `target="_blank"`、`rel="noopener noreferrer"`、CSS で描いた小さな矢印、そしてスクリーンリーダーが `aria-describedby` で読み上げる非表示の案内（「新しいウィンドウで開きます」、ページの言語に翻訳）が付きます。スクリプトは使わないので、厳しいコンテンツセキュリティポリシー（CSP）でもそのまま動きます。サイト設定を有効にしていても、リンクに `new_window: false` を書くとそのリンクは同じウィンドウで開きます。

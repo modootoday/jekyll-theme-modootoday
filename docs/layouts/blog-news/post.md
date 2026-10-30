@@ -8,11 +8,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-20 09:00:00 +0900"
 author: modootoday
 categories: [guides]
-tags: [design, dark-mode]
+tags: [tokens, dark-mode]
 deck: "How we picked one set of colour tokens that reads well on paper white and on OLED black."
 ---
 # Choosing colours that survive dark mode

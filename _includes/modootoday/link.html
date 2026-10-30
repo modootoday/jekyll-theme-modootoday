@@ -1,2 +1,3 @@
-{%- comment -%}URL for include.url: full URLs as they are, site paths through relative_url (absolute=true: absolute_url).{%- endcomment -%}
-{%- if include.url == "#" or include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}
+{%- comment -%}URL for include.url: full URLs as they are, site paths through relative_url (absolute=true: absolute_url).
+  A bare "#" sample link stays "#" (absolute=true: this page's absolute URL, for JSON-LD).{%- endcomment -%}
+{%- if include.url == "#" and include.absolute -%}{{ page.url | absolute_url }}{%- elsif include.url == "#" or include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}

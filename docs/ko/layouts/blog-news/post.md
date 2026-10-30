@@ -9,11 +9,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-20 09:00:00 +0900"
 author: modootoday
 categories: [guides]
-tags: [design, dark-mode]
+tags: [컴포넌트]
 deck: "흰 종이에서도, 새까만 OLED 화면에서도 잘 읽히는 색 토큰을 고른 과정이에요."
 ---
 # 다크 모드에서도 버티는 색 고르기

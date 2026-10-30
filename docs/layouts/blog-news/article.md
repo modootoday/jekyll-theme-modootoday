@@ -8,11 +8,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-29 14:30:00 +0900"
 author: modootoday
 categories: [releases]
-tags: [release, accessibility]
+tags: [release, components]
 deck: "The update fixes keyboard focus in the sidebar and adds a localized hint to links that open a new window."
 live: true
 correction: "An earlier version of this article gave the wrong release date. It was corrected on 29 October."

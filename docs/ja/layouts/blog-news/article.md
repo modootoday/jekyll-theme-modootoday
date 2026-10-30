@@ -9,11 +9,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-29 14:30:00 +0900"
 author: modootoday
 categories: [releases]
-tags: [release, accessibility]
+tags: [リリース, コンポーネント]
 deck: "サイドバーのキーボードフォーカスを修正し、新しいウィンドウで開くリンクに案内文を付けました。"
 live: true
 correction: "当初の記事ではリリース日に誤りがありました。10月29日に訂正しました。"

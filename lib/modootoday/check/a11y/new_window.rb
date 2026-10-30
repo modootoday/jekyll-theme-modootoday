@@ -20,13 +20,13 @@ module Modootoday
         r = ctx.rel(f)
         code.each_line.with_index(1) do |l, n|
           l.scan(BLANK) do |a|
-            next if a.include?("mt-new-window")
-            next ctx.errs << "#{r}:#{n}: target=\"_blank\" without rel=\"noopener\"; add it or use {: .mt-new-window}" unless a =~ /\brel=["'][^"']*noopener/
-            ctx.warns << "#{r}:#{n}: new-window link without the spoken hint; use {: .mt-new-window} or new_window: true"
+            next if a.include?("mt-new-window") || a.include?("data-mt-new-window")
+            next ctx.errs << "#{r}:#{n}: target=\"_blank\" without rel=\"noopener\"; add it or use [text](url \"new-window\")" unless a =~ /\brel=["'][^"']*noopener/
+            ctx.warns << "#{r}:#{n}: new-window link without the spoken hint; use [text](url \"new-window\") or new_window: true"
           end
         end
         fm = front(text)
-        text.scan(/\bnew_window:\s*([^,}\s]+)/) { ctx.errs << "#{r}: new_window: must be true or false (got #{$1})" unless %w[true false].include?($1) }
+        text[/\A---\s*\n.*?\n---/m].to_s.scan(/\bnew_window:\s*([^,}\s]+)/) { ctx.errs << "#{r}: new_window: must be true or false (got #{$1})" unless %w[true false].include?($1) }
         demo(ctx, r, text, code) if fm["noindex"] == true
       end
 

@@ -9,11 +9,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-29 14:30:00 +0900"
 author: modootoday
 categories: [releases]
-tags: [release, accessibility]
+tags: [릴리스, 컴포넌트]
 deck: "사이드바의 키보드 포커스를 고치고, 새 창으로 열리는 링크에 안내 문구를 붙였어요."
 live: true
 correction: "처음 기사에 릴리스 날짜가 잘못 적혀 있어 10월 29일에 바로잡았어요."

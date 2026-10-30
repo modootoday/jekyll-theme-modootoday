@@ -22,7 +22,7 @@ class NewWindowCheckTest < Minitest::Test
 
   def test_blank_without_noopener_is_error = assert_match(/without rel="noopener"/, run_on("<a href=\"https://x.test\" target=\"_blank\">X</a>\n"))
   def test_blank_without_hint_warns = assert_match(/without the spoken hint/, run_on("<a href=\"https://x.test\" target=\"_blank\" rel=\"noopener\">X</a>\n"))
-  def test_kramdown_class_ok = refute_match(/new-window|noopener/, run_on("[X](https://x.test){: .mt-new-window}\n"))
+  def test_title_marker_ok = refute_match(/new-window link|noopener/, run_on("[X](https://x.test \"new-window\")\n"))
   def test_new_window_value = assert_match(/new_window: must be true or false/, run_on("A\n", fm: "items:\n  - {title: A, url: \"#\", new_window: yes}\n"))
   def test_demo_external_link_warns = assert_match(/leaves the sample/, run_on("[Docs](https://x.test/)\n", fm: "noindex: true\n"))
   def test_demo_empty_link_warns = assert_match(/no target/, run_on("A\n", fm: "noindex: true\nitems:\n  - {\"title\": \"A\", \"url\": \"\"}\n"))

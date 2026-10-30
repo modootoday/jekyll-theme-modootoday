@@ -19,9 +19,9 @@ CreativeWork (project): keywords.{%- endcomment -%}
 {%- if page.ends and _sc.endDate == nil %},"endDate":{{ page.ends | date_to_xmlschema | jsonify }}{% endif -%}
 {%- unless _sc.location -%}
 {%- if page.venue and page.online %},"eventAttendanceMode":"https://schema.org/MixedEventAttendanceMode"{% elsif page.online %},"eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode"{% elsif page.venue %},"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode"{% endif -%}
-{%- if page.venue and page.online %},"location":[{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}},{"@type":"VirtualLocation","url":{{ page.online | jsonify }}}]
+{%- if page.venue and page.online %},"location":[{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}},{"@type":"VirtualLocation","url":"{% include modootoday/link.html url=page.online absolute=true %}"}]
 {%- elsif page.venue %},"location":{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}}
-{%- elsif page.online %},"location":{"@type":"VirtualLocation","url":{{ page.online | jsonify }}}{% endif -%}
+{%- elsif page.online %},"location":{"@type":"VirtualLocation","url":"{% include modootoday/link.html url=page.online absolute=true %}"}{% endif -%}
 {%- endunless -%}
 {%- if page.tickets and _sc.offers == nil %},"offers":{"@type":"Offer","url":{{ page.tickets | absolute_url | jsonify }}}{% endif -%}
 {%- when "PodcastEpisode" -%}

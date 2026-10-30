@@ -9,11 +9,10 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
-sections: []
 date: "2026-10-20 09:00:00 +0900"
 author: modootoday
 categories: [guides]
-tags: [design, dark-mode]
+tags: [コンポーネント]
 deck: "白い紙でも真っ黒な OLED 画面でも読みやすい色トークンを選んだ経緯です。"
 ---
 # ダークモードでも崩れない色の選び方

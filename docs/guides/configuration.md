@@ -4,6 +4,7 @@ title: Configuration
 description: Site-wide settings under the modootoday key in _config.yml.
 sections:
   - keys
+  - new-window
   - head
   - i18n
   - registry
@@ -78,7 +79,7 @@ modootoday:
 ```
 
 ```markdown
-[Release notes](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+[Release notes](https://github.com/modootoday/jekyll-theme-modootoday/releases "new-window")
 ```
 
 Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arrow drawn in CSS, and a hidden hint ("opens in a new window", translated into the page language) that screen readers read through `aria-describedby`. There is no script, so a strict Content Security Policy keeps working. `new_window: false` on a link turns it off even when the site setting is on.

@@ -22,11 +22,11 @@ description: ブログ一覧、ニュースのトップページ、署名、著�
 
 | デモ | レイアウト | 新しいウィンドウ |
 | --- | --- | --- |
-| [ブログ一覧](blog/) | `blog` | [新しいウィンドウで開く<span class="mt-sr-only">: ブログ一覧</span>](blog/){: .mt-new-window} |
-| [ブログ記事](post/) | `post` | [新しいウィンドウで開く<span class="mt-sr-only">: ブログ記事</span>](post/){: .mt-new-window} |
-| [ニューストップ](news/) | `news` | [新しいウィンドウで開く<span class="mt-sr-only">: ニューストップ</span>](news/){: .mt-new-window} |
-| [ニュース記事](article/) | `news-article` | [新しいウィンドウで開く<span class="mt-sr-only">: ニュース記事</span>](article/){: .mt-new-window} |
-| [年別アーカイブ](archive/) | `archive` | [新しいウィンドウで開く<span class="mt-sr-only">: 年別アーカイブ</span>](archive/){: .mt-new-window} |
+| [ブログ一覧](blog/) | `blog` | [新しいウィンドウで開く](blog/ "new-window") |
+| [ブログ記事](post/) | `post` | [新しいウィンドウで開く](post/ "new-window") |
+| [ニューストップ](news/) | `news` | [新しいウィンドウで開く](news/ "new-window") |
+| [ニュース記事](article/) | `news-article` | [新しいウィンドウで開く](article/ "new-window") |
+| [年別アーカイブ](archive/) | `archive` | [新しいウィンドウで開く](archive/ "new-window") |
 
 日本語の記事の Atom フィードは [feed.xml](../../feed.xml) にあります。[英語](../../../feed.xml)と[韓国語](../../../ko/feed.xml)のフィードも別にあります。
 
