@@ -48,6 +48,7 @@ modootoday:
 | `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
 | `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
 | `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../../reference/api/#posts-and-archives)) |
+| `external_links` | none | `new_window: true` opens every external link (not starting with `url:`) in a new window; `icon: false` hides the arrow; see [Links that open a new window](#links-that-open-a-new-window) |
 | `blog` | none | blog settings (`per_page`, `variant`, `related`, `share`, `reading_time`, ...); see [Blog and news](../../layouts/blog-news/#settings) |
 | `news` | none | news settings, such as `sections:` for the front page; see [Blog and news](../../layouts/blog-news/#settings) |
 | `css` | `split` | `split` links a small core sheet plus only the component sheets a page uses; `bundle` links one sheet with everything |
@@ -57,6 +58,30 @@ modootoday:
 | `subscribe` | none | `{action: https://…}` is where the `c: subscribe` email form posts |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
+
+## Links that open a new window
+
+Opening a new window is opt-in. Set it per link or for every external link.
+
+```yaml
+# _config.yml: every external link
+modootoday:
+  external_links:
+    new_window: true
+    icon: true        # false hides the arrow
+```
+
+```yaml
+# per link: nav items, cards, buttons, link cards, directory items, pricing cta, footer links
+- {title: "Status page", url: "https://status.example.com", new_window: true}
+- {title: "Forum", url: "https://forum.example.com", target: _blank}
+```
+
+```markdown
+[Release notes](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+```
+
+Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arrow drawn in CSS, and a hidden hint ("opens in a new window", translated into the page language) that screen readers read through `aria-describedby`. There is no script, so a strict Content Security Policy keeps working. `new_window: false` on a link turns it off even when the site setting is on.
 
 ## Head and SEO
 

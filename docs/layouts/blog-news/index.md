@@ -16,6 +16,20 @@ Five layouts turn the theme into a blog or a newsroom. They are Liquid only, so 
 | `author` | One author's bio and posts |
 | `feed` | An Atom feed for one language |
 
+## Demos
+
+Each demo below is a real page built with one layout, outside the docs. Open it here or in a new window. Links inside the demos that would leave the sample point to `#`.
+
+| Demo | Layout | New window |
+| --- | --- | --- |
+| [Blog index](blog/) | `blog` | [Open in new window<span class="mt-sr-only">: Blog index</span>](blog/){: .mt-new-window} |
+| [Blog post](post/) | `post` | [Open in new window<span class="mt-sr-only">: Blog post</span>](post/){: .mt-new-window} |
+| [News front page](news/) | `news` | [Open in new window<span class="mt-sr-only">: News front page</span>](news/){: .mt-new-window} |
+| [News article](article/) | `news-article` | [Open in new window<span class="mt-sr-only">: News article</span>](article/){: .mt-new-window} |
+| [Yearly archive](archive/) | `archive` | [Open in new window<span class="mt-sr-only">: Yearly archive</span>](archive/){: .mt-new-window} |
+
+The Atom feed for English posts is at [feed.xml](../../feed.xml); [Korean](../../ko/feed.xml) and [Japanese](../../ja/feed.xml) have their own.
+
 ## Blog index
 
 ```markdown

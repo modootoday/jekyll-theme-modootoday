@@ -5,6 +5,7 @@ require_relative "page_values"
 require_relative "component_rules"
 require_relative "page_sections"
 require_relative "a11y/content"
+require_relative "a11y/new_window"
 
 module Modootoday
   module Check
@@ -22,6 +23,7 @@ module Modootoday
           ComponentRules.inline(ctx, ctx.rel(f), b)
           PageSections.call(ctx, f, text, b, code, h2)
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
+          NewWindow.call(ctx, f, text, Markdown.strip_comments(code))
         end
       end
     end

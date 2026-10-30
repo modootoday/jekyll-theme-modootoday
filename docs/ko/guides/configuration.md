@@ -51,6 +51,7 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../../reference/api/#글과-아카이브) 참고) |
+| `external_links` | 없음 | `new_window: true`면 외부 링크(`url:`로 시작하지 않는 링크)를 모두 새 창에서 열어요. `icon: false`면 화살표를 숨겨요. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고 |
 | `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `css` | `split` | `split`는 작은 핵심 시트와 페이지가 쓰는 컴포넌트 시트만 연결합니다. `bundle`은 모든 것이 담긴 시트 하나를 연결합니다 |
@@ -60,6 +61,30 @@ modootoday:
 | `subscribe` | 없음 | `{action: https://…}`는 `c: subscribe` 이메일 양식이 전송되는 주소입니다 |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
+
+## 새 창으로 여는 링크
+
+새 창으로 여는 건 직접 켤 때만 동작해요. 링크마다 켜거나, 외부 링크 전체에 켤 수 있어요.
+
+```yaml
+# _config.yml: 외부 링크 전체
+modootoday:
+  external_links:
+    new_window: true
+    icon: true        # false면 화살표를 숨겨요
+```
+
+```yaml
+# 링크마다: 메뉴, 카드, 버튼, 링크 카드, 디렉터리 항목, 요금제 버튼, 푸터 링크
+- {title: "상태 페이지", url: "https://status.example.com", new_window: true}
+- {title: "포럼", url: "https://forum.example.com", target: _blank}
+```
+
+```markdown
+[릴리스 노트](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+```
+
+이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 화면 낭독기가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙어요. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작해요. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열려요.
 
 ## 헤드와 SEO
 

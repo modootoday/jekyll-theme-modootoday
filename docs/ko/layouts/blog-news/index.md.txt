@@ -1,5 +1,5 @@
 ---
 layout: twin
-twin_of: blog-news.md
+twin_of: index.md
 permalink: /ko/layouts/blog-news/index.md
 ---

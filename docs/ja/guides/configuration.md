@@ -51,6 +51,7 @@ modootoday:
 | `theme_color` | ページ背景 | ブラウザのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
 | `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照） |
+| `external_links` | なし | `new_window: true` で外部リンク（`url:` で始まらないリンク）をすべて新しいウィンドウで開きます。`icon: false` で矢印を隠します。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照 |
 | `blog` | なし | ブログ設定（`per_page`、`variant`、`related`、`share`、`reading_time` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
 | `news` | なし | ニュース設定（トップページの `sections:` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
 | `css` | `split` | `split` は小さなコアシートと、ページが使うコンポーネントのシートだけを読み込みます。`bundle` はすべてを含む 1 枚のシートを読み込みます |
@@ -60,6 +61,30 @@ modootoday:
 | `subscribe` | なし | `{action: https://…}` は `c: subscribe` のメールフォームの送信先です |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
+
+## 新しいウィンドウで開くリンク
+
+新しいウィンドウで開く動作は、明示的に有効にしたときだけ働きます。リンクごと、または外部リンク全体に設定できます。
+
+```yaml
+# _config.yml: 外部リンク全体
+modootoday:
+  external_links:
+    new_window: true
+    icon: true        # false で矢印を隠します
+```
+
+```yaml
+# リンクごと: ナビ、カード、ボタン、リンクカード、ディレクトリ項目、料金プランのボタン、フッターのリンク
+- {title: "ステータスページ", url: "https://status.example.com", new_window: true}
+- {title: "フォーラム", url: "https://forum.example.com", target: _blank}
+```
+
+```markdown
+[リリースノート](https://github.com/modootoday/jekyll-theme-modootoday/releases){: .mt-new-window}
+```
+
+こうしたリンクには `target="_blank"`、`rel="noopener noreferrer"`、CSS で描いた小さな矢印、そしてスクリーンリーダーが `aria-describedby` で読み上げる非表示の案内（「新しいウィンドウで開きます」、ページの言語に翻訳）が付きます。スクリプトは使わないので、厳しいコンテンツセキュリティポリシー（CSP）でもそのまま動きます。サイト設定を有効にしていても、リンクに `new_window: false` を書くとそのリンクは同じウィンドウで開きます。
 
 ## head と SEO
 
