@@ -15,7 +15,7 @@ jekyll-theme-modootoday, standart GitHub Flavored Markdown dosyalarını sade bi
 
 [Başlayın](../guides/install/) [Bileşenlere göz atın](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## Neden modootoday
+## Neden modoo.today teması
 
 - **Yalnızca standart Markdown** — Uyarılar, tablolar, listeler ve kod blokları. Sayfalarınızda HTML, Liquid ya da kramdown eklentisi yok.
 - **GitHub Pages'te çalışır** — Klasik `github-pages` derlemesi için yalnızca Liquid kullanan bir tema; diğer her şey için Jekyll 4.

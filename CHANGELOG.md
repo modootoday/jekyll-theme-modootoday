@@ -23,6 +23,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Changed
 
+- Brand: the visible site name is now **modoo.today theme** (Korean **모두의오늘 테마**, Japanese **modoo.today テーマ**, other languages localized) in the docs header, `<title>`, `og:site_name`, JSON-LD and breadcrumbs, so it is not confused with the modoo.today service. A new optional `site_title` in `_data/i18n/<lang>.yml` sets the header name per language and falls back to `site.title`. The gem name, repository paths, CSS classes, config keys and `modootoday-check` are unchanged.
 - Size budgets have a little more headroom (QA, `qa/audit/config.mjs`): core CSS sheet 24 → 27 KiB, core JS 10 → 11 KiB, CSS one page links 32 → 35 KiB, `loading.css` 2 → 2.5 KiB, `figure.css` 1 → 1.25 KiB, each renderer script 2 → 2.5 KiB. Section sheets stay at 2 KiB. The built sizes did not grow (core CSS 24531 B, core JS 10227 B).
 
 ### Fixed

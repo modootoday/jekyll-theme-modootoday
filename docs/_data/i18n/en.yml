@@ -1,5 +1,6 @@
 direction: ltr
-title: modootoday docs
+title: modoo.today theme docs
+site_title: modoo.today theme
 description: Docs for jekyll-theme-modootoday, a Jekyll theme for plain-Markdown docs.
 tabs:
   label: Install method

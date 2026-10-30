@@ -14,4 +14,4 @@ news_sections: [releases, guides]
 ---
 # Newsroom
 
-The latest releases and guides from the modootoday project.
+The latest releases and guides from the modoo.today theme project.

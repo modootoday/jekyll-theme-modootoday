@@ -1,5 +1,5 @@
 ---
-title: modootoday
+title: modoo.today テーマ チーム
 lang: ja
 layout: author
 author: modootoday

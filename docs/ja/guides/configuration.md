@@ -47,8 +47,8 @@ modootoday:
 | `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
 | `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
 | `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |
-| `logo` | なし | `brand` でサイト名の前に modootoday マークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/brand/logo.html` を上書き |
-| `favicon` | なし | `brand` で modootoday マークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
+| `logo` | なし | `brand` でサイト名の前にテーマのブランドマークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/brand/logo.html` を上書き |
+| `favicon` | なし | `brand` でテーマのブランドマークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
 | `viewport_fit` | `cover` | `auto` でノッチの下まで描かず、ページをセーフエリア内に収める ([アクセシビリティ](../accessibility/#設定)を参照) |
 | `theme_color` | ページ背景 | ブラウザーのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
@@ -111,6 +111,7 @@ UI の文字列は `_data/i18n/<lang>.yml` に、ページは `<lang>/` に置�
 
 ```yaml
 language: 한국어
+site_title: 모두의오늘 테마 # ヘッダー、<title>、og:site_name、JSON-LD の名前。ない場合は site.title
 callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
 tabs: {label: 설치 방법}
 status: {available: 사용 가능, partial: 일부 구현, planned: 계획}

@@ -9,11 +9,11 @@ tags: [release, blog, news]
 deck: "Five new layouts turn a docs site into a blog or a newsroom without a plugin."
 breaking: true
 description: "layout: blog, news, news-article, author and feed."
-sources: ["modootoday changelog"]
+sources: ["modoo.today theme changelog"]
 ---
 # Blog and news layouts arrive
 
-modootoday now ships `blog`, `news`, `news-article`, `author` and `feed` layouts. They load a separate stylesheet and share script, so docs pages stay as light as before.
+The modoo.today theme now ships `blog`, `news`, `news-article`, `author` and `feed` layouts. They load a separate stylesheet and share script, so docs pages stay as light as before.
 
 ## What changed
 

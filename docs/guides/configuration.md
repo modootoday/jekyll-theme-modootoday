@@ -44,8 +44,8 @@ modootoday:
 | `language_switcher` | none | `header` (a globe button with a dropdown menu; same width however many languages) or `footer` (a list of language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page. Nothing renders with fewer than two languages. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click |
 | `og_image` | none | default Open Graph image; `image:` in front matter wins |
 | `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
-| `logo` | none | `brand` puts the modootoday mark before the site title in `currentColor` (the `brand` token, so it follows light and dark); a path shows your own image instead (decorative, `alt=""`). Override `modootoday/brand/logo.html` to draw something else |
-| `favicon` | none | `brand` links the modootoday mark as SVG, 32 px PNG and Apple touch icon; a path links your own icon |
+| `logo` | none | `brand` puts the theme's brand mark before the site title in `currentColor` (the `brand` token, so it follows light and dark); a path shows your own image instead (decorative, `alt=""`). Override `modootoday/brand/logo.html` to draw something else |
+| `favicon` | none | `brand` links the theme's brand mark as SVG, 32 px PNG and Apple touch icon; a path links your own icon |
 | `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
 | `viewport_fit` | `cover` | `auto` keeps the page inside the safe area instead of drawing under the notch (see [Accessibility](../accessibility/#settings)) |
 | `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
@@ -108,6 +108,7 @@ Put interface strings in `_data/i18n/<lang>.yml` and pages in `<lang>/`:
 
 ```yaml
 language: 한국어
+site_title: 모두의오늘 테마   # header, <title>, og:site_name and JSON-LD name; falls back to site.title
 callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
 tabs: {label: 설치 방법}
 status: {available: 사용 가능, partial: 일부 구현, planned: 계획}

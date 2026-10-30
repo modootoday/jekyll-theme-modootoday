@@ -15,7 +15,7 @@ jekyll-theme-modootoday는 표준 GitHub Flavored Markdown을 깔끔한 문서 �
 
 [시작하기](guides/install/) [컴포넌트 보기](components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## 왜 modootoday인가
+## 왜 모두의오늘 테마인가
 
 - **표준 Markdown만** — 알림, 표, 목록, 코드 블록. 페이지에 HTML, Liquid, kramdown 전용 문법이 없습니다.
 - **GitHub Pages에서 동작** — 기본 `github-pages` 빌드용 Liquid 전용 테마이고, 그 밖에는 Jekyll 4를 지원합니다.

@@ -15,4 +15,4 @@ news_sections: [releases, guides]
 ---
 # 뉴스룸
 
-modootoday 프로젝트의 최신 릴리스와 안내예요.
+모두의오늘 테마 프로젝트의 최신 릴리스와 안내예요.

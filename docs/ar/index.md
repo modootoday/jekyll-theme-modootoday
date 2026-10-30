@@ -15,7 +15,7 @@ sections:
 
 [ابدأ الآن](../guides/install/) [تصفّح المكوّنات](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## لماذا modootoday
+## لماذا قالب modoo.today
 
 - **Markdown القياسية فقط** — تنبيهات وجداول وقوائم وكتل برمجية. لا HTML ولا Liquid ولا امتدادات kramdown في صفحاتك.
 - **يعمل على GitHub Pages** — قالب يعتمد على Liquid وحدها لبناء `github-pages` الكلاسيكي، وJekyll 4 لما سوى ذلك.

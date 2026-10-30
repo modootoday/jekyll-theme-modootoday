@@ -1,5 +1,5 @@
 {%- comment -%}WebSite node (#website). site.modootoday.schema.search_url (a URL with {search_term_string}) adds a SearchAction.{%- endcomment -%}
-{"@type":"WebSite","@id":{{ _ld_root | append: "#website" | jsonify }},"url":{{ _ld_root | jsonify }},"name":{{ site.title | default: _ld_title | jsonify }}
+{"@type":"WebSite","@id":{{ _ld_root | append: "#website" | jsonify }},"url":{{ _ld_root | jsonify }},"name":{{ mt_site_title | default: site.title | default: _ld_title | jsonify }}
 {%- if site.description %},"description":{{ site.description | strip_html | normalize_whitespace | jsonify }}{% endif -%}
 ,"inLanguage":{{ site.lang | default: "en" | jsonify }},"publisher":{"@id":{{ _ld_root | append: "#publisher" | jsonify }}}
 {%- if _ld.search_url -%}

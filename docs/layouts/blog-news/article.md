@@ -23,7 +23,7 @@ credits: "Reporting by the docs team."
 ---
 # Theme update improves keyboard access
 
-**Seoul, 29 October.** A maintenance release of modootoday is rolling out today. It changes no settings, so most sites only need to rebuild.
+**Seoul, 29 October.** A maintenance release of the modoo.today theme is rolling out today. It changes no settings, so most sites only need to rebuild.
 
 ## What is new
 

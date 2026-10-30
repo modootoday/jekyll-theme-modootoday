@@ -3,6 +3,8 @@
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/config.html -%}
 {%- include modootoday/i18n.html lang=_lang -%}
+{%- comment -%}mt_site_title: the brand name shown in the header, <title>, og:site_name and JSON-LD; site.data.i18n[lang].site_title localises it, else site.title.{%- endcomment -%}
+{%- assign mt_site_title = site.data.i18n[_lang].site_title | default: site.title -%}
 {%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
 {%- assign mt_home = "/" -%}{%- assign _def_lang = site.lang | default: "en" -%}
 {%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- assign _lhp = site.pages | where: "url", _lh | first -%}{%- if _lhp -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
@@ -14,7 +16,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1{% unless site.modootoday.viewport_fit == "auto" %}, viewport-fit=cover{% endunless %}">
-<title>{% if page.title %}{{ page.title }}{% if site.title %} · {{ site.title }}{% endif %}{% else %}{{ site.title }}{% endif %}</title>
+<title>{% if page.title %}{{ page.title }}{% if site.title %} · {{ mt_site_title }}{% endif %}{% else %}{{ mt_site_title }}{% endif %}</title>
 {%- if page.description or site.description %}
 <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
 {%- endif %}
@@ -45,7 +47,7 @@
 {%- endif %}
 {%- assign _chrome = true -%}{%- if layout.mt_chrome == false or page.chrome == false -%}{%- assign _chrome = false -%}{%- endif -%}
 {%- if site.title and _chrome %}
-<header class="mt-header"><div class="mt-header-inner"><a class="mt-site-title{% if site.modootoday.logo %} mt-has-logo{% endif %}" href="{{ mt_home | relative_url }}">{% include modootoday/brand/logo.html %}{{ site.title }}</a>{% include modootoday/nav.html %}{% if mt_components contains "search" and mt_search_index %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" data-lang="{{ site.lang | default: 'en' }}" hidden>{% include modootoday/brand/icon.html name="search" size=16 %}<input type="search" aria-keyshortcuts="/ Control+K Meta+K" aria-controls="mt-search-results" aria-label="{{ mt_t_search_label }}" placeholder="{{ mt_t_search_label }}"><ul class="mt-search-results" id="mt-search-results" aria-live="polite"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_theme_toggle %}<button class="mt-theme-toggle" type="button" aria-pressed="false" aria-label="{{ mt_t_theme_toggle }}" title="{{ mt_t_theme_toggle }}" hidden>{% include modootoday/brand/icon.html name="moon" %}{% include modootoday/brand/icon.html name="sun" %}</button>{% endif %}</div></header>
+<header class="mt-header"><div class="mt-header-inner"><a class="mt-site-title{% if site.modootoday.logo %} mt-has-logo{% endif %}" href="{{ mt_home | relative_url }}">{% include modootoday/brand/logo.html %}{{ mt_site_title }}</a>{% include modootoday/nav.html %}{% if mt_components contains "search" and mt_search_index %}<div class="mt-search" role="search" data-index="{{ '/search.json' | relative_url }}" data-lang="{{ site.lang | default: 'en' }}" hidden>{% include modootoday/brand/icon.html name="search" size=16 %}<input type="search" aria-keyshortcuts="/ Control+K Meta+K" aria-controls="mt-search-results" aria-label="{{ mt_t_search_label }}" placeholder="{{ mt_t_search_label }}"><ul class="mt-search-results" id="mt-search-results" aria-live="polite"></ul></div>{% endif %}{% if site.modootoday.language_switcher == "header" %}{% include modootoday/lang-switch.html style="menu" %}{% endif %}{% if mt_components contains "theme-toggle" and mt_theme_toggle %}<button class="mt-theme-toggle" type="button" aria-pressed="false" aria-label="{{ mt_t_theme_toggle }}" title="{{ mt_t_theme_toggle }}" hidden>{% include modootoday/brand/icon.html name="moon" %}{% include modootoday/brand/icon.html name="sun" %}</button>{% endif %}</div></header>
 {%- endif %}
 <main id="mt-main" tabindex="-1" class="mt-main{% if page.full_width %} mt-main-full{% endif %}{% if layout.mt_main %} {{ layout.mt_main }}{% endif %}">
 {% include modootoday/links/content.html html=content %}

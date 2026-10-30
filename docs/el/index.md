@@ -15,7 +15,7 @@ sections:
 
 [Ξεκινήστε](../guides/install/) [Δείτε τα στοιχεία](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## Γιατί modootoday
+## Γιατί το θέμα modoo.today
 
 - **Μόνο τυπικό Markdown** — Ειδοποιήσεις, πίνακες, λίστες και μπλοκ κώδικα. Χωρίς HTML, Liquid ή επεκτάσεις kramdown στις σελίδες σας.
 - **Λειτουργεί στο GitHub Pages** — Θέμα μόνο με Liquid για την κλασική δόμηση `github-pages`, και Jekyll 4 για όλα τα υπόλοιπα.

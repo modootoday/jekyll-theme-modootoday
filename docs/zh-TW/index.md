@@ -15,7 +15,7 @@ jekyll-theme-modootoday 將標準的 GitHub Flavored Markdown 轉成簡潔的文
 
 [開始使用](../guides/install/) [瀏覽元件](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## 為什麼選擇 modootoday
+## 為什麼選擇 modoo.today 主題
 
 - **只用標準 Markdown** — 提示、表格、清單與程式碼區塊。頁面中不需要 HTML、Liquid 或 kramdown 擴充語法。
 - **可在 GitHub Pages 上執行** — 僅用 Liquid 的佈景主題，支援經典的 `github-pages` 建置，其他情況則用 Jekyll 4。

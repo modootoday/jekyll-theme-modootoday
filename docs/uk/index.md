@@ -15,7 +15,7 @@ jekyll-theme-modootoday перетворює стандартний GitHub Flavo
 
 [Почати](../guides/install/) [Компоненти](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## Чому modootoday
+## Чому тема modoo.today
 
 - **Лише стандартний Markdown** — Сповіщення, таблиці, списки та блоки коду. Жодного HTML, Liquid чи розширень kramdown на сторінках.
 - **Працює в GitHub Pages** — Тема лише на Liquid для класичного збирання `github-pages`, а для решти — Jekyll 4.

@@ -6,7 +6,10 @@ register:
   ko: {docs: 합니다체, ui: 해요체, labels: noun phrase}
   ja: {docs: です・ます, ui: です・ます, labels: 体言止め, table_cells: 体言止め or 常体}
 # Pages whose front matter has `noindex: true` are sample content (demo posts) and keep their genre voice.
+# Brand: the theme's visible name always carries the word for theme (the plain name is a separate service).
+# Gem, repository and code names (jekyll-theme-modootoday, modootoday-check) are not translated.
 terms:
+  - {en: modoo.today theme (brand name), ko: 모두의오늘 테마, ja: modoo.today テーマ}
   - {en: Markdown twin, ko: Markdown 버전, ja: Markdown 版, avoid: {ko: [쌍둥이, 트윈], ja: [ツイン, 双子]}}
   - {en: front matter, ko: front matter, ja: front matter, avoid: {ko: [머리말, 프런트 매터, 프론트 매터], ja: [フロントマター]}}
   - {en: breadcrumb, ko: 이동 경로, ja: パンくずリスト, avoid: {ko: [브레드크럼, 빵 부스러기], ja: [ブレッドクラム]}}

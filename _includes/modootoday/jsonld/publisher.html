@@ -3,7 +3,7 @@ Defaults: Organization named site.title; logo from publisher.logo, or the brand 
 {%- assign _ld_p = _ld.publisher -%}
 {%- assign _ld_pt = _ld_p.type | default: "Organization" -%}
 {%- assign _ld_pl = _ld_p.logo -%}{%- if _ld_pl == nil and site.modootoday.logo == "brand" -%}{%- assign _ld_pl = "/assets/modootoday/apple-touch-icon.png" -%}{%- elsif _ld_pl == nil -%}{%- assign _ld_pl = site.modootoday.logo -%}{%- endif -%}
-,{"@type":{{ _ld_pt | jsonify }},"@id":{{ _ld_root | append: "#publisher" | jsonify }},"name":{{ _ld_p.name | default: site.title | default: _ld_title | jsonify }},"url":{{ _ld_p.url | default: "/" | absolute_url | jsonify }}
+,{"@type":{{ _ld_pt | jsonify }},"@id":{{ _ld_root | append: "#publisher" | jsonify }},"name":{{ _ld_p.name | default: mt_site_title | default: site.title | default: _ld_title | jsonify }},"url":{{ _ld_p.url | default: "/" | absolute_url | jsonify }}
 {%- if _ld_pl -%}{%- assign _ld_plu = _ld_pl | absolute_url -%}
 {%- if _ld_pt == "Person" %},"image":{{ _ld_plu | jsonify }}{% else %},"logo":{"@type":"ImageObject","url":{{ _ld_plu | jsonify }}}{% endif -%}
 {%- endif -%}

@@ -4,7 +4,7 @@ is a page, then the page. Not printed on the home page or a /<lang>/ home.{%- en
 {%- if _ld_segs[1] == _ld_lang and _ld_lang != site.lang -%}{%- assign _ld_home = "/" | append: _ld_lang | append: "/" -%}{%- assign _ld_start = 1 -%}{%- endif -%}
 {%- if page.url != _ld_home and page.url != "/" -%}
 {%- assign _ld_hp = site.pages | where: "url", _ld_home | first -%}{%- assign _ld_n = 1 -%}
-,{"@type":"BreadcrumbList","@id":{{ _ld_url | append: "#breadcrumb" | jsonify }},"itemListElement":[{"@type":"ListItem","position":1,"name":{{ _ld_hp.short_title | default: _ld_hp.title | default: site.title | default: "Home" | strip_html | jsonify }},"item":{{ _ld_home | absolute_url | jsonify }}}
+,{"@type":"BreadcrumbList","@id":{{ _ld_url | append: "#breadcrumb" | jsonify }},"itemListElement":[{"@type":"ListItem","position":1,"name":{{ _ld_hp.short_title | default: _ld_hp.title | default: mt_site_title | default: site.title | default: "Home" | strip_html | jsonify }},"item":{{ _ld_home | absolute_url | jsonify }}}
 {%- assign _ld_acc = _ld_home -%}
 {%- for _s in _ld_segs offset: 1 -%}{%- if forloop.index > _ld_start and _s != "" and _s != "index.html" -%}
 {%- assign _ld_acc = _ld_acc | append: _s | append: "/" -%}

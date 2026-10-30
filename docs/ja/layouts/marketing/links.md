@@ -6,7 +6,7 @@ nav_order: 5
 twin: false
 edit: false
 sections: []
-name: modootoday
+name: modoo.today テーマ
 profile: organization
 image: /assets/images/people/grace.webp
 links:

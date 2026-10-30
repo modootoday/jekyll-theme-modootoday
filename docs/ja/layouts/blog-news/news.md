@@ -15,4 +15,4 @@ news_sections: [releases, guides]
 ---
 # ニュースルーム
 
-modootoday プロジェクトの最新リリースとガイドです。
+modoo.today テーマ プロジェクトの最新リリースとガイドです。

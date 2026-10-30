@@ -10,6 +10,8 @@ description: 한국어·일본어 문서와 인터페이스 문구의 정본 스
 
 원문은 영어입니다. 한국어(`ko`)와 일본어(`ja`) 페이지, `README.ko.md`, 예제 사이트, `i18n/<code>.yml`의 인터페이스 카탈로그는 모두 영어를 현지화한 것입니다. 이 페이지가 유일한 규칙이고, `i18n/glossary.yml`은 기계가 읽는 용어집이며, `script/i18n-build --check`가 두 가지를 모두 검사합니다.
 
+브랜드 이름: 테마 이름은 영어로 **modoo.today theme**, 한국어로 **모두의오늘 테마**, 일본어로 **modoo.today テーマ**로 씁니다. 다른 언어는 `modoo.today`를 그대로 두고 *theme*에 해당하는 말을 번역합니다(예: *thème modoo.today*). modoo.today 서비스와 혼동되지 않도록 테마라는 말을 항상 붙입니다. gem 이름 `jekyll-theme-modootoday`, 저장소 경로, `modootoday-check` 같은 코드 이름은 바꾸지 않습니다. 언어마다 헤더에 보이는 이름은 `_data/i18n/<lang>.yml`의 `site_title`로 정합니다.
+
 ## 원칙
 
 - 영어 페이지의 내용을 더하거나 빼지 않고 그대로 전합니다. 내용이 다르면 영어가 우선하며 번역을 고칩니다.

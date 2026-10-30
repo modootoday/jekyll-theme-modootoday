@@ -15,7 +15,7 @@ jekyll-theme-modootoday biến GitHub Flavored Markdown chuẩn thành một tra
 
 [Bắt đầu](../guides/install/) [Xem các thành phần](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## Vì sao chọn modootoday
+## Vì sao chọn giao diện modoo.today
 
 - **Chỉ Markdown chuẩn** — Cảnh báo, bảng, danh sách và khối mã. Trang của bạn không cần HTML, Liquid hay cú pháp mở rộng của kramdown.
 - **Chạy trên GitHub Pages** — Giao diện chỉ dùng Liquid cho bản dựng `github-pages` cổ điển, và Jekyll 4 cho mọi trường hợp khác.

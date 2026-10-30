@@ -47,8 +47,8 @@ modootoday:
 | `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
 | `og_image` | 없음 | 기본 Open Graph 이미지. front matter의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
-| `logo` | 없음 | `brand`면 사이트 제목 앞에 modootoday 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
-| `favicon` | 없음 | `brand`면 modootoday 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
+| `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 브랜드 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
+| `favicon` | 없음 | `brand`면 테마 브랜드 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
 | `viewport_fit` | `cover` | `auto`면 노치 아래까지 그리지 않고 페이지를 안전 영역 안에 둠 ([접근성](../accessibility/#설정) 참고) |
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
@@ -111,6 +111,7 @@ plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 
 ```yaml
 language: 한국어
+site_title: 모두의오늘 테마   # 헤더, <title>, og:site_name, JSON-LD 이름. 없으면 site.title
 callout: {note: 참고, tip: 팁, important: 중요, warning: 경고, caution: 주의}
 tabs: {label: 설치 방법}
 status: {available: 사용 가능, partial: 일부 구현, planned: 계획}

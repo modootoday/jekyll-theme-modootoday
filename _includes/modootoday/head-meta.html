@@ -70,7 +70,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <meta property="og:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
 {%- endif -%}
 {%- if site.title %}
-<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:site_name" content="{{ mt_site_title | default: site.title | escape }}">
 {%- endif -%}
 {%- if site.url %}
 <meta property="og:url" content="{{ _mt_url }}">

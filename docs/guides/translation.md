@@ -49,6 +49,8 @@ ASCII digits with the language's grouping (1,000). Prose dates: 2026년 10월 30
 
 The full list, with the wordings to avoid, is in `i18n/glossary.yml`.
 
+Brand name: write the theme as **modoo.today theme** in English, **모두의오늘 테마** in Korean and **modoo.today テーマ** in Japanese; other languages keep `modoo.today` and translate the word *theme* (for example *thème modoo.today*). Always add the word for theme, so the name is not confused with the modoo.today service. The gem name `jekyll-theme-modootoday`, repository paths and code names such as `modootoday-check` stay as they are. Each language sets the header name in `site_title` of `_data/i18n/<lang>.yml`.
+
 | English | 한국어 | 日本語 | Avoid |
 |---|---|---|---|
 | Markdown twin | Markdown 버전 | Markdown 版 | 쌍둥이, 트윈, ツイン, 双子 |

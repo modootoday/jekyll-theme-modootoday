@@ -15,7 +15,7 @@ jekyll-theme-modootoday സാധാരണ GitHub Flavored Markdown-നെ വ�
 
 [തുടങ്ങാം](../guides/install/) [ഘടകങ്ങൾ കാണുക](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## എന്തുകൊണ്ട് modootoday
+## എന്തുകൊണ്ട് modoo.today തീം
 
 - **സാധാരണ Markdown മാത്രം** — അലേർട്ടുകൾ, പട്ടികകൾ, ലിസ്റ്റുകൾ, കോഡ് ബ്ലോക്കുകൾ. പേജുകളിൽ HTML, Liquid, kramdown വിപുലീകരണങ്ങൾ ഒന്നും വേണ്ട.
 - **GitHub Pages-ൽ പ്രവർത്തിക്കുന്നു** — ക്ലാസിക് `github-pages` ബിൽഡിനായി Liquid മാത്രം ഉപയോഗിക്കുന്ന തീം; മറ്റെല്ലാത്തിനും Jekyll 4.

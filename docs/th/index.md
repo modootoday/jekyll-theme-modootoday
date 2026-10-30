@@ -15,7 +15,7 @@ jekyll-theme-modootoday เปลี่ยน GitHub Flavored Markdown มาต
 
 [เริ่มต้นใช้งาน](../guides/install/) [ดูคอมโพเนนต์](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## ทำไมต้อง modootoday
+## ทำไมต้องธีม modoo.today
 
 - **ใช้แค่ Markdown มาตรฐาน** — การแจ้งเตือน ตาราง รายการ และบล็อกโค้ด ไม่ต้องใช้ HTML, Liquid หรือส่วนเสริมของ kramdown ในหน้าเอกสาร
 - **ใช้งานได้บน GitHub Pages** — ธีมที่ใช้เฉพาะ Liquid สำหรับการบิลด์ `github-pages` แบบดั้งเดิม และใช้ Jekyll 4 สำหรับกรณีอื่น

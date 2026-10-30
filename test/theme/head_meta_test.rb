@@ -3,6 +3,7 @@
 # optional page footer (edit link, last updated), built on the example site with an overlay config.
 require "minitest/autorun"
 require "tmpdir"
+require "fileutils"
 require "open3"
 
 class HeadMetaTest < Minitest::Test
@@ -81,6 +82,24 @@ class HeadMetaTest < Minitest::Test
       assert_equal "/docs/", brand.("guide/index.html")
       assert_equal "/docs/ko/", brand.("ko/guide/index.html")
       assert_equal "/docs/ja/", brand.("ja/index.html")
+    end
+  end
+
+  # _data/i18n/<lang>.yml site_title names the site per language; site.title is the fallback.
+  def test_localized_site_title
+    Dir.mktmpdir do |d|
+      src = "#{d}/src"
+      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.rm_rf("#{src}/_site")
+      File.write("#{src}/_data/i18n/ko.yml", "site_title: 모두의오늘 테마\n")
+      out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{d}/s", chdir: ROOT)
+      assert st.success?, out
+      ko = File.read("#{d}/s/ko/index.html")
+      assert_match(%r{<title>[^<]*모두의오늘 테마</title>}, ko)
+      assert_match(/class="mt-site-title[^"]*"[^>]*>(?:<svg.*?<\/svg>)?\s*모두의오늘 테마/m, ko)
+      assert_includes ko, '<meta property="og:site_name" content="모두의오늘 테마">'
+      title = File.read("#{src}/_config.yml")[/^title:\s*(.+)$/, 1].delete('"')
+      assert_includes File.read("#{d}/s/index.html"), "#{title}</title>"
     end
   end
 end

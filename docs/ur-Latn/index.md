@@ -15,7 +15,7 @@ jekyll-theme-modootoday standard GitHub Flavored Markdown ko ek saaf suthri docu
 
 [Shuru karein](../guides/install/) [Components dekhein](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## modootoday kyun
+## modoo.today theme kyun
 
 - **Sirf standard Markdown** — Alerts, tables, lists aur code blocks. Aap ke pages mein HTML, Liquid ya kramdown extras ki zaroorat nahin.
 - **GitHub Pages par chalta hai** — Classic `github-pages` build ke liye sirf Liquid wala theme, aur baaqi sab ke liye Jekyll 4.

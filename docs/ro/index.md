@@ -15,7 +15,7 @@ jekyll-theme-modootoday transformă GitHub Flavored Markdown standard într-un s
 
 [Începe](../guides/install/) [Vezi componentele](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## De ce modootoday
+## De ce tema modoo.today
 
 - **Doar Markdown standard** — Alerte, tabele, liste și blocuri de cod. Fără HTML, Liquid sau extensii kramdown în paginile tale.
 - **Funcționează pe GitHub Pages** — O temă doar cu Liquid pentru build-ul clasic `github-pages`, iar pentru restul, Jekyll 4.

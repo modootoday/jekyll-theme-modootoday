@@ -15,7 +15,7 @@ jekyll-theme-modootoday فایل‌های استاندارد GitHub Flavored Mar
 
 [شروع کنید](../guides/install/) [مرور مؤلفه‌ها](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## چرا modootoday
+## چرا پوستهٔ modoo.today
 
 - **فقط Markdown استاندارد** — هشدارها، جدول‌ها، فهرست‌ها و بلوک‌های کد. در صفحه‌های شما HTML، Liquid یا افزونه‌های kramdown لازم نیست.
 - **روی GitHub Pages کار می‌کند** — پوسته‌ای فقط با Liquid برای ساخت کلاسیک `github-pages`، و Jekyll 4 برای بقیهٔ موارد.

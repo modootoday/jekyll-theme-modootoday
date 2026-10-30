@@ -15,7 +15,7 @@ jekyll-theme-modootoday convierte GitHub Flavored Markdown estándar en un sitio
 
 [Empieza](../guides/install/) [Explora los componentes](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
-## Por qué modootoday
+## Por qué el tema modoo.today
 
 - **Solo Markdown estándar** — Alertas, tablas, listas y bloques de código. Sin HTML, sin Liquid y sin extensiones de kramdown en tus páginas.
 - **Funciona en GitHub Pages** — Un tema solo con Liquid para la compilación clásica `github-pages`, y Jekyll 4 para todo lo demás.
