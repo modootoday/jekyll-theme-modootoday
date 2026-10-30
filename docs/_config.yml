@@ -17,7 +17,8 @@ modootoday:
   nav: main
   # Front-matter-less pages are their own twins; other pages keep stubs.
   twins: source
-  languages: [en, ko, ja]
+  # Order and names: docs/_data/languages.yml. A language is listed once its home page is localized.
+  languages: [en, zh-CN, zh-TW, ja, ko, tr, ru, vi, th, de, es, fr, uk, pl, pt-BR, ar, fa, id, it, el, ml, ur-Latn, ro]
   language_switcher: header
   logo: brand
   favicon: brand
@@ -28,6 +29,26 @@ modootoday:
   subscribe: {action: https://modootoday.github.io/jekyll-theme-modootoday/components/, method: get}
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
-  - {scope: {path: "ko"}, values: {lang: ko}}
+  - {scope: {path: "zh-CN"}, values: {lang: zh-CN}}
+  - {scope: {path: "zh-TW"}, values: {lang: zh-TW}}
   - {scope: {path: "ja"}, values: {lang: ja}}
+  - {scope: {path: "ko"}, values: {lang: ko}}
+  - {scope: {path: "tr"}, values: {lang: tr}}
+  - {scope: {path: "ru"}, values: {lang: ru}}
+  - {scope: {path: "vi"}, values: {lang: vi}}
+  - {scope: {path: "th"}, values: {lang: th}}
+  - {scope: {path: "de"}, values: {lang: de}}
+  - {scope: {path: "es"}, values: {lang: es}}
+  - {scope: {path: "fr"}, values: {lang: fr}}
+  - {scope: {path: "uk"}, values: {lang: uk}}
+  - {scope: {path: "pl"}, values: {lang: pl}}
+  - {scope: {path: "pt-BR"}, values: {lang: pt-BR}}
+  - {scope: {path: "ar"}, values: {lang: ar}}
+  - {scope: {path: "fa"}, values: {lang: fa}}
+  - {scope: {path: "id"}, values: {lang: id}}
+  - {scope: {path: "it"}, values: {lang: it}}
+  - {scope: {path: "el"}, values: {lang: el}}
+  - {scope: {path: "ml"}, values: {lang: ml}}
+  - {scope: {path: "ur-Latn"}, values: {lang: ur-Latn}}
+  - {scope: {path: "ro"}, values: {lang: ro}}
   - {scope: {type: posts}, values: {layout: post}}
