@@ -7,7 +7,11 @@ Only top-level h2 split: kramdown prints them at column 0 ("\n<h2 "), nested one
 alert) are indented and stay inside their section. modootoday-check rejects nested/setext/indented ##.
 Item: "name" or {c: component, name: key, ...params}. c: tabs → data-tabs, c: cta → (on the section, or on its [data-mt-result] element when it holds one, so a showcase box only frames the result).
 visual: <name> on an item (or include.hero.visual for the hero) appends the site's
-_includes/sections/<name>.html at the end of that section, called with section=<item> (hero=<hero>).
+_includes/sections/<name>.html at the end of that section, called with section=<item> (hero=<hero>); every other key
+on the item (e.g. scene: 2) reaches the include as include.section.<key>.
+c: split wraps the section in div.mt-section-in > div.mt-section-body (h2 and text) + div.mt-section-visual (the visual
+include): two columns from 48rem (side: start|end puts the visual first or last, ratio: "1:1"|"5:7" text:visual), one below.
+Only split gets the wrappers, so child selectors of the other components keep working.
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
@@ -32,8 +36,12 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _cc == 'cta' -%}{%- capture _body %}{% include modootoday/actions.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'features' -%}{%- assign _body = _body | replace: "</strong> — ", "</strong> " | replace: "</strong> – ", "</strong> " | replace: "</strong> - ", "</strong> " -%}{%- endif -%}
 {%- if _cc and mt_c_transforms contains _cc -%}{%- capture _body %}{% include modootoday/markdown/c/{{ _cc }}.html html=_body s=_s i=forloop.index id=_n %}{% endcapture -%}{%- endif -%}
-<section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
+<section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}{% if _cc == 'split' %}{% if _s.side == 'start' %} mt-split-start{% endif %}{% if _s.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
+{%- if _cc == 'split' %}
+<div class="mt-section-in"><div class="mt-section-body"><h2 {{ _body }}</div>{% if _s.visual %}<div class="mt-section-visual">{% include sections/{{ _s.visual }}.html section=_s %}</div>{% endif %}</div></section>
+{%- else %}
 <h2 {{ _body }}{% if _s.visual %}{% include sections/{{ _s.visual }}.html section=_s %}{% endif %}</section>
+{%- endif -%}
 {%- endfor -%}
 {%- if _notes != "" %}
 <div class="mt-endnotes">{{ _notes }}</div>

@@ -54,6 +54,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 갤러리 | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | 열린 라이트박스의 `:target` |
 | 요금제 | `.mt-plans` | `.mt-plan`, 그 `h3`, 링크만 있는 `p.mt-actions` | `.mt-plan-recommended`와 `.mt-plan-flag` |
 | 구독 | `section.mt-c-subscribe` | `form.mt-subscribe`(action 설정 시), `label`, `input[type=email]`, `button` | — |
+| 분할 | `section.mt-c-split`(`.mt-split-start`, `.mt-split-5-7` 포함) | `.mt-section-in` > `.mt-section-body`(`h2`와 텍스트) + `.mt-section-visual`(`visual:` include) | — |
 | 인라인 추가 요소 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 로딩(선택 시트) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | 배너 | `div.mt-banner` | 그 `p`와 링크; `a.mt-back-to-top` | — |

@@ -1,0 +1,14 @@
+// Split: c: split; text (.mt-section-body) and the visual: include (.mt-section-visual) side by side from 48rem,
+// stacked below. Grid columns follow the writing direction, so start/end flip in RTL. DOM order stays text first.
+@include mt-layer(components) {
+  .mt-section-in { display: grid; gap: 2rem; }
+  .mt-section-in > * { min-width: 0; }
+  .mt-section-body > :last-child, .mt-section-visual > :last-child { margin-bottom: 0; }
+  .mt-section-visual img, .mt-section-visual svg { display: block; max-width: 100%; height: auto; }
+  @media (min-width: 48rem) {
+    .mt-c-split > .mt-section-in { grid-template-columns: var(--mt-split-body, 1fr) var(--mt-split-visual, 1fr); align-items: center; }
+    .mt-split-5-7 { --mt-split-body: 5fr; --mt-split-visual: 7fr; }
+    .mt-split-start > .mt-section-in { grid-template-columns: var(--mt-split-visual, 1fr) var(--mt-split-body, 1fr); }
+    .mt-split-start .mt-section-visual { grid-row: 1; grid-column: 1; }
+  }
+}

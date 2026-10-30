@@ -3,7 +3,7 @@ nav_order: 0
 layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -35,6 +35,7 @@ sections:
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
+  - {c: split, name: split, visual: split-demo, side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
   - navigation
   - language-switcher
   - theme-toggle
@@ -350,6 +351,13 @@ Yes, with the github-pages gem.
 `status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text.
 
 Get one email when a release ships.
+
+
+## Split
+
+`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`.
+
+Text on one side, the picture on the other.
 
 ## Navigation
 

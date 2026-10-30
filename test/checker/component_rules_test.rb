@@ -44,6 +44,19 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "blank lines"
   end
 
+  def test_split_needs_visual_and_passes_params
+    FileUtils.mkdir_p(File.join(@dir, "src/_data"))
+    FileUtils.cp(File.expand_path("../../docs/_data/components.yml", __dir__), File.join(@dir, "src/_data/components.yml"))
+    FileUtils.mkdir_p(File.join(@dir, "src/_includes/sections"))
+    File.write(File.join(@dir, "src/_includes/sections/v.html"), "<p>v</p>")
+    out, = check(page("[{c: split, name: a}, {c: split, name: b, visual: v, scene: 2, ratio: '5:7'}, {c: split, name: c, side: left, visual: v}, {c: features, name: d, scene: 1}]",
+                      "## A\n\nT\n\n## B\n\nT\n\n## C\n\nT\n\n## D\n\n- x\n"))
+    assert_includes out, "sections[0] split: needs visual:"
+    refute_match(/sections\[1\]/, out)
+    assert_includes out, "split.side=\"left\""
+    assert_includes out, "sections[3] features: unknown param 'scene'"
+  end
+
   def test_quote_pricing_subscribe
     out, = check(page("[{c: quote, name: q}, {c: pricing, name: p, recommended: 3}, {c: subscribe, name: s}]",
                       "## Q\n\n> no attribution\n\n## P\n\n### One\n\n### Two\n\n## S\n\nNews.\n"),

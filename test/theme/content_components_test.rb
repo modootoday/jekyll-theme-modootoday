@@ -11,7 +11,7 @@ class ContentComponentsTest < Minitest::Test
   PROBE = <<~MD
     ---
     title: Probe
-    sections: [{c: filetree, name: ft}, {c: faq, name: faq}, {c: params, name: p}, {c: quote, name: q}, {c: gallery, name: g}, {c: pricing, name: pr, recommended: 2}, {c: subscribe, name: sub}]
+    sections: [{c: filetree, name: ft}, {c: faq, name: faq}, {c: params, name: p}, {c: quote, name: q}, {c: gallery, name: g}, {c: pricing, name: pr, recommended: 2}, {c: subscribe, name: sub}, {c: split, name: sp, visual: pic, side: start, ratio: "5:7", scene: 3}]
     ---
     # Probe
 
@@ -66,6 +66,10 @@ class ContentComponentsTest < Minitest::Test
     ## Subscribe
 
     News.
+
+    ## Split
+
+    Text beside the picture.
   MD
 
   def self.build
@@ -78,6 +82,7 @@ class ContentComponentsTest < Minitest::Test
                  "defaults: [{scope: {path: ''}, values: {layout: doc}}]\nmodootoday: {subscribe: {action: 'https://x.example/s'}}\n")
       File.write(File.join(src, "index.md"), "---\ntitle: Home\n---\n# Home\n")
       File.write(File.join(src, "probe.md"), PROBE)
+      File.write(File.join(src, "_includes/sections/pic.html"), '<p class="pic">scene {{ include.section.scene }}</p>')
       cfg = Jekyll.configuration("source" => src, "destination" => File.join(dir, "_site"), "quiet" => true)
       Jekyll.logger.log_level = :error
       Dir.chdir(src) { Jekyll::Site.new(cfg).process }
@@ -109,6 +114,14 @@ class ContentComponentsTest < Minitest::Test
     assert_match(/class="mt-gallery-thumb".*class="mt-lightbox"/m, h)
     assert_match(/mt-plan mt-plan-recommended/, h)
     assert_match(%r{<form class="mt-subscribe"[^>]*action="https://x.example/s"}, h)
+  end
+
+  def test_split_wraps_only_split
+    sec = h[/<section class="mt-section mt-c-split[^"]*".*?<\/section>/m]
+    assert_match(/mt-c-split mt-split-start mt-split-5-7/, sec)
+    assert_match(%r{<div class="mt-section-in"><div class="mt-section-body"><h2 [^>]*>Split</h2>.*</div><div class="mt-section-visual"><p class="pic">scene 3</p></div></div>}m, sec)
+    assert_equal 1, h.scan("mt-section-in").size
+    assert_includes h, "modootoday/structure/split.css"
   end
 
   def test_sheets_per_page

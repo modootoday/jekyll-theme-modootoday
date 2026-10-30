@@ -58,6 +58,8 @@ module Modootoday
           Slots.check_section(errs, r, i, s["c"], spec["slots"], sec_md[i])
           (ctx.part_uses[s["c"]] ||= []) << r if spec.is_a?(Hash) && spec["parts"].is_a?(Array)
           (s.keys - %w[c name visual]).each do |k|
+            # with visual:, other keys are the visual include's own params (include.section.<key>)
+            next if !params.key?(k) && s.key?("visual")
             next errs << "#{r}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)
             allowed = params[k].is_a?(Hash) && params[k]["allowed"]
             errs << "#{r}: sections[#{i}] #{s['c']}.#{k}=#{s[k].inspect} not in #{allowed.inspect}" if allowed && !allowed.include?(s[k])

@@ -34,6 +34,7 @@ sections:
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
+  - {c: split, name: split, visual: split-demo, side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
 ---
 # 키친싱크
 
@@ -415,3 +416,9 @@ theme: jekyll-theme-modootoday
 `status:available` `c: subscribe` 섹션은 텍스트와 `modootoday.subscribe.action`의 주소로 전송하는 이메일 양식을 표시합니다. 이 설정이 없으면 텍스트만 표시합니다.
 
 릴리스가 나오면 이메일을 한 통 받으세요.
+
+## 분할
+
+`status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다.
+
+한쪽에는 텍스트, 다른 쪽에는 그림이 옵니다.

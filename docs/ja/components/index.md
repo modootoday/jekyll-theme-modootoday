@@ -4,7 +4,7 @@ nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -36,6 +36,7 @@ sections:
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
+  - {c: split, name: split, visual: split-demo, side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
   - navigation
   - language-switcher
   - theme-toggle
@@ -354,6 +355,13 @@ theme: jekyll-theme-modootoday
 `status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。
 
 リリースのたびにメールを 1 通受け取れます。
+
+
+## 分割
+
+`status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。
+
+片側にテキスト、もう片側に画像が来ます。
 
 ## ナビゲーション
 

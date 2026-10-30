@@ -4,7 +4,7 @@ module Modootoday
   module Check
     # The modootoday: settings in the site's _config.yml.
     module SiteConfig
-      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe loading].freeze
+      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe split loading].freeze
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border ring note tip important warning caution status-available status-partial
                     status-planned font-sans font-mono font-size line-height measure space radius].freeze

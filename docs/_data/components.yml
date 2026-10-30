@@ -15,4 +15,5 @@ linkcards: {slots: {items: {min: 1}}, parts: [section.mt-c-linkcards, ul > li > 
 quote: {slots: {quotes: {min: 1}}, parts: [figure.mt-quote, figcaption]}
 gallery: {i18n: [gallery.close], slots: {items: {min: 1}}, parts: [a.mt-gallery-thumb, a.mt-lightbox, .mt-lightbox-close]}
 pricing: {i18n: [pricing.recommended], params: {recommended: {required: false}}, slots: {panels: {min: 1}}, parts: [.mt-plans, .mt-plan, .mt-plan-recommended, .mt-plan-flag]}
+split: {params: {side: {allowed: [start, end], required: false}, ratio: {allowed: ["1:1", "5:7"], required: false}}, parts: [section.mt-c-split, .mt-section-in, .mt-section-body, .mt-section-visual, .mt-split-start, .mt-split-5-7]}
 subscribe: {i18n: [subscribe.email, subscribe.submit], slots: {lead: {min: 1}}, parts: [section.mt-c-subscribe]}
