@@ -27,6 +27,14 @@
         - {title: イベントのデモ, url: /ja/layouts/directory/events/}
         - {title: スポンサーのデモ, url: /ja/layouts/directory/sponsors/}
         - {title: 連携のデモ, url: /ja/layouts/directory/integrations/}
+    - title: 詳細ページ
+      url: /ja/layouts/detail/
+      items:
+        - {title: プロジェクトのデモ, url: /ja/layouts/detail/project/}
+        - {title: 事例のデモ, url: /ja/layouts/detail/case-study/}
+        - {title: 求人のデモ, url: /ja/layouts/detail/job/}
+        - {title: イベントのデモ, url: /ja/layouts/detail/event/}
+        - {title: エピソードのデモ, url: /ja/layouts/detail/episode/}
     - {title: ブログとニュース, url: /ja/layouts/blog-news/}
 - title: レシピ
   url: /ja/recipes/

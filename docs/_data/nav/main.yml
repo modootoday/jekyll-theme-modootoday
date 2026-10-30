@@ -27,6 +27,14 @@
         - {title: Events demo, url: /layouts/directory/events/}
         - {title: Sponsors demo, url: /layouts/directory/sponsors/}
         - {title: Integrations demo, url: /layouts/directory/integrations/}
+    - title: Detail pages
+      url: /layouts/detail/
+      items:
+        - {title: Project demo, url: /layouts/detail/project/}
+        - {title: Case study demo, url: /layouts/detail/case-study/}
+        - {title: Job demo, url: /layouts/detail/job/}
+        - {title: Event demo, url: /layouts/detail/event/}
+        - {title: Episode demo, url: /layouts/detail/episode/}
     - {title: Blog and news, url: /layouts/blog-news/}
 - title: Recipes
   url: /recipes/

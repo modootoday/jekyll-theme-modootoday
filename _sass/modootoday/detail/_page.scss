@@ -1,0 +1,21 @@
+// Detail pages: header, facts list, media and one call to action. Print drops the call to action.
+@include mt-layer(components) {
+  .mt-detail-head { margin-bottom: 1.5rem; }
+  .mt-detail-kicker { margin: 0 0 .5rem; color: mt(muted-foreground); font-size: .875rem; font-weight: 600; letter-spacing: .02em; }
+  .mt-detail-head h1 { margin: 0; }
+  .mt-detail-lead { margin: .75rem 0 0; font-size: 1.125rem; color: mt(muted-foreground); }
+  .mt-detail-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem 1.5rem; margin: 0 0 2rem;
+    padding: 1rem 1.25rem; border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-detail-facts dt { color: mt(muted-foreground); font-size: .8125rem; font-weight: 600; }
+  .mt-detail-facts dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
+  .mt-detail-tags, .mt-detail-links { display: flex; flex-wrap: wrap; gap: .375rem .75rem; margin: 0; padding: 0; list-style: none; }
+  .mt-detail-tags li { padding: 0 .5rem; border-radius: mt(radius); background: mt(muted); font-size: .8125rem; }
+  .mt-detail-media { margin: 0 0 2rem; }
+  .mt-detail-media audio { display: block; width: 100%; }
+  .mt-detail-media figcaption { margin-top: .5rem; font-size: .875rem; }
+  .mt-detail-cta { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin: 2.5rem 0 0; padding-top: 1.5rem;
+    border-top: 1px solid mt(border); }
+  @include mt-kit-button(".mt-detail-btn");
+  .mt-detail-cta .mt-ics { font-size: .875rem; font-weight: 600; }
+  @media print { .mt-detail-cta, .mt-detail-media audio { display: none; } }
+}

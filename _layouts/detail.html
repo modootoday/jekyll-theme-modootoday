@@ -1,0 +1,29 @@
+---
+layout: default
+mt_bundle: detail
+mt_main: mt-detail
+---
+{%- comment -%}detail: one item page (project, case study, job, event, episode). Header (kicker, title, lead), a facts list
+from front matter (modootoday/detail/facts.html, per layout.mt_kind), the body, then one call to action. No JavaScript.{%- endcomment -%}
+{%- assign _k = layout.mt_kind | default: "item" -%}
+<article class="mt-detail-page mt-detail-{{ _k }}" aria-labelledby="mt-detail-title">
+<header class="mt-detail-head">
+{%- assign _kick = page.kicker -%}
+{%- if _k == "episode" and page.episode -%}{%- assign _kick = mt_t_layouts_episode | replace: "[n]", page.episode -%}{%- if page.season %}{%- assign _kick = mt_t_layouts_season | append: " " | append: page.season | append: " · " | append: _kick -%}{%- endif -%}{%- endif -%}
+{%- if _kick %}
+<p class="mt-detail-kicker">{{ _kick }}</p>
+{%- endif %}
+<h1 id="mt-detail-title">{{ page.title }}</h1>
+{%- if page.description %}
+<p class="mt-detail-lead">{{ page.description }}</p>
+{%- endif %}
+</header>
+{%- include modootoday/detail/facts.html kind=_k %}
+{%- if _k == "episode" and page.audio %}
+<figure class="mt-detail-media"><audio controls preload="none" src="{{ page.audio | relative_url }}" aria-label="{{ mt_t_layouts_listen }}: {{ page.title | escape }}"></audio>{% if page.transcript %}<figcaption><a href="{{ page.transcript | relative_url }}">{{ mt_t_layouts_transcript }}</a></figcaption>{% endif %}</figure>
+{%- endif %}
+<div class="mt-detail-body">
+{{ content }}
+</div>
+{%- include modootoday/detail/cta.html kind=_k %}
+</article>

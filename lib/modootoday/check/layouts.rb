@@ -4,6 +4,7 @@ require "time"
 require_relative "layouts/shape"
 require_relative "layouts/shells"
 require_relative "layouts/directory"
+require_relative "layouts/detail"
 
 module Modootoday
   module Check
@@ -14,6 +15,7 @@ module Modootoday
         @contracts ||= {
           "error" => Shells.method(:error), "redirect" => Shells.method(:redirect), "home" => Shells.method(:home),
         }.merge(Directory::LAYOUTS.to_h { |l| [l, Directory.method(:call)] })
+          .merge(Detail::LAYOUTS.to_h { |l| [l, Detail.method(:call)] })
       end
 
       def self.register(names, check) = names.each { |n| contracts[n] = check }

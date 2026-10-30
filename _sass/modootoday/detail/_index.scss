@@ -1,0 +1,6 @@
+// Detail page partials (separate bundle). Uses the core tokens (--mt-*) already on the page; emits no tokens.
+@import "../settings";
+@import "../tools/functions";
+@import "../tools/mixins";
+@import "../kit/button";
+@import "page";

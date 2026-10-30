@@ -1,0 +1,31 @@
+{%- comment -%}Facts of a detail page as a description list. include.kind: project | case-study | job | event | episode.
+Dates use the language's post date format; times print when the value has one.{%- endcomment -%}
+{%- assign _df = mt_t_post_date_format | default: "%Y-%m-%d" -%}
+{%- capture _f -%}
+{%- case include.kind -%}
+{%- when "project", "case-study" -%}
+{%- if page.client %}<div><dt>{{ mt_t_layouts_client }}</dt><dd>{{ page.client }}</dd></div>{% endif -%}
+{%- if page.role %}<div><dt>{{ mt_t_layouts_role }}</dt><dd>{{ page.role }}</dd></div>{% endif -%}
+{%- if page.year %}<div><dt>{{ mt_t_layouts_year }}</dt><dd>{{ page.year }}</dd></div>{% endif -%}
+{%- if page.stack %}<div><dt>{{ mt_t_layouts_stack }}</dt><dd><ul class="mt-detail-tags">{% for _s in page.stack %}<li>{{ _s }}</li>{% endfor %}</ul></dd></div>{% endif -%}
+{%- if page.links %}<div><dt>{{ mt_t_layouts_links }}</dt><dd><ul class="mt-detail-links">{% for _l in page.links %}<li><a href="{{ _l.url | relative_url }}">{{ _l.label }}</a></li>{% endfor %}</ul></dd></div>{% endif -%}
+{%- when "job" -%}
+{%- if page.location %}<div><dt>{{ mt_t_layouts_location }}</dt><dd>{{ page.location }}</dd></div>{% endif -%}
+{%- if page.employment %}<div><dt>{{ mt_t_layouts_employment }}</dt><dd>{{ page.employment }}</dd></div>{% endif -%}
+{%- if page.salary %}<div><dt>{{ mt_t_layouts_salary }}</dt><dd>{% if page.salary.min %}{{ page.salary.min }}{% if page.salary.max %}–{{ page.salary.max }}{% endif %} {{ page.salary.currency }}{% if page.salary.unit %} / {{ page.salary.unit | downcase }}{% endif %}{% else %}{{ page.salary }}{% endif %}</dd></div>{% endif -%}
+{%- if page.date %}<div><dt>{{ mt_t_layouts_posted }}</dt><dd><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: _df }}</time></dd></div>{% endif -%}
+{%- if page.deadline %}<div><dt>{{ mt_t_layouts_deadline }}</dt><dd><time datetime="{{ page.deadline | date: '%Y-%m-%d' }}">{{ page.deadline | date: _df }}</time></dd></div>{% endif -%}
+{%- when "event" -%}
+{%- if page.starts %}<div><dt>{{ mt_t_layouts_starts }}</dt><dd><time datetime="{{ page.starts | date_to_xmlschema }}">{{ page.starts | date: _df }} {{ page.starts | date: "%H:%M" }}</time></dd></div>{% endif -%}
+{%- if page.ends %}<div><dt>{{ mt_t_layouts_ends }}</dt><dd><time datetime="{{ page.ends | date_to_xmlschema }}">{{ page.ends | date: _df }} {{ page.ends | date: "%H:%M" }}</time></dd></div>{% endif -%}
+{%- if page.venue %}<div><dt>{{ mt_t_layouts_venue }}</dt><dd>{{ page.venue }}{% if page.address %}<br>{{ page.address }}{% endif %}</dd></div>{% endif -%}
+{%- if page.online %}<div><dt>{{ mt_t_layouts_online }}</dt><dd><a href="{{ page.online }}">{{ page.online | remove: "https://" }}</a></dd></div>{% endif -%}
+{%- when "episode" -%}
+{%- if page.date %}<div><dt>{{ mt_t_layouts_posted }}</dt><dd><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: _df }}</time></dd></div>{% endif -%}
+{%- if page.duration %}<div><dt>{{ mt_t_layouts_duration }}</dt><dd>{{ mt_t_layouts_minutes | replace: "[n]", page.duration }}</dd></div>{% endif -%}
+{%- endcase -%}
+{%- endcapture -%}
+{%- assign _f = _f | strip -%}
+{%- if _f != "" %}
+<dl class="mt-detail-facts">{{ _f }}</dl>
+{%- endif -%}

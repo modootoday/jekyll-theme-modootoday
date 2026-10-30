@@ -27,6 +27,14 @@
         - {title: 행사 데모, url: /ko/layouts/directory/events/}
         - {title: 후원사 데모, url: /ko/layouts/directory/sponsors/}
         - {title: 연동 데모, url: /ko/layouts/directory/integrations/}
+    - title: 상세 페이지
+      url: /ko/layouts/detail/
+      items:
+        - {title: 프로젝트 데모, url: /ko/layouts/detail/project/}
+        - {title: 사례 연구 데모, url: /ko/layouts/detail/case-study/}
+        - {title: 채용 데모, url: /ko/layouts/detail/job/}
+        - {title: 행사 데모, url: /ko/layouts/detail/event/}
+        - {title: 에피소드 데모, url: /ko/layouts/detail/episode/}
     - {title: 블로그와 뉴스, url: /ko/layouts/blog-news/}
 - title: 레시피
   url: /ko/recipes/

@@ -1,0 +1,8 @@
+// Shared link-button look for the optional layout bundles (same as the core CTA): @include mt-kit-button(".sel").
+@mixin mt-kit-button($sel, $primary: true) {
+  #{$sel} { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; padding: 0 1.25rem; border-radius: mt(radius);
+    border: 1px solid mt(border); background: mt(background); color: mt(foreground); font: inherit; font-size: .9375rem;
+    font-weight: 600; text-decoration: none; cursor: pointer; }
+  @if $primary { #{$sel}:first-child { background: mt(primary); border-color: mt(primary); color: mt(primary-foreground); } }
+  #{$sel}:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+}

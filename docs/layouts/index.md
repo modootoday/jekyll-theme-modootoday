@@ -17,5 +17,6 @@ Set a layout with `layout:` in front matter. Pages without one use `doc`.
 <!-- spec:docs-index:begin -->
 - [Page shells](shells/) — Page shells for every kind of page, each with its own optional stylesheet.
 - [Directory layouts](directory/) — Card lists for projects, people, jobs, events, sponsors and integrations, with a filter that needs no JavaScript.
+- [Detail pages](detail/) — One page per project, case study, job, event or podcast episode, with a facts list, one call to action and structured data.
 - [Blog and news](blog-news/) — Blog indexes, news front pages, article bylines, author pages and Atom feeds.
 <!-- spec:docs-index:end -->

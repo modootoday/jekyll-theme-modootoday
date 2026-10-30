@@ -5,6 +5,11 @@ Order: front matter schema.type, then site.modootoday.schema.layouts[<layout>], 
 {%- case page.layout -%}
 {%- when "post" -%}{%- assign _ld_type = "BlogPosting" -%}
 {%- when "news-article" -%}{%- assign _ld_type = "NewsArticle" -%}
+{%- when "project" -%}{%- assign _ld_type = "CreativeWork" -%}
+{%- when "case-study" -%}{%- assign _ld_type = "Article" -%}
+{%- when "job" -%}{%- assign _ld_type = "JobPosting" -%}
+{%- when "event" -%}{%- assign _ld_type = "Event" -%}
+{%- when "episode" -%}{%- assign _ld_type = "PodcastEpisode" -%}
 {%- when "doc" -%}{%- assign _ld_type = "TechArticle" -%}
 {%- when "archive", "blog", "news" -%}{%- assign _ld_type = "CollectionPage" -%}
 {%- when "author", "profile", "resume" -%}{%- assign _ld_type = "ProfilePage" -%}

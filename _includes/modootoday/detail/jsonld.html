@@ -1,0 +1,34 @@
+{%- comment -%}Main-entity properties of the detail layouts from their front matter (inside jsonld/entity.html; _ld_type set).
+Each is skipped when the page's schema: map sets the same property. JobPosting: hiringOrganization (#publisher), employmentType,
+validThrough, jobLocation or remote (TELECOMMUTE + applicantLocationRequirements), baseSalary. Event: startDate, endDate,
+location (Place or VirtualLocation), offers. PodcastEpisode: episodeNumber, partOfSeason, datePublished, associatedMedia.
+CreativeWork (project): keywords.{%- endcomment -%}
+{%- assign _sc = page.schema -%}
+{%- case _ld_type -%}
+{%- when "JobPosting" -%}
+{%- unless _sc.hiringOrganization %},"hiringOrganization":{"@id":{{ _ld_root | append: "#publisher" | jsonify }}}{% endunless -%}
+{%- if page.employment and _sc.employmentType == nil %},"employmentType":{{ page.employment | upcase | replace: "-", "_" | replace: " ", "_" | jsonify }}{% endif -%}
+{%- if page.deadline and _sc.validThrough == nil %},"validThrough":{{ page.deadline | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if page.remote -%}
+{%- unless _sc.jobLocationType %},"jobLocationType":"TELECOMMUTE"{% endunless -%}
+{%- unless _sc.applicantLocationRequirements %},"applicantLocationRequirements":{"@type":"Country","name":{{ page.remote | jsonify }}}{% endunless -%}
+{%- elsif page.location and _sc.jobLocation == nil %},"jobLocation":{"@type":"Place","address":{{ page.address | default: page.location | jsonify }}}{% endif -%}
+{%- if page.salary.min and _sc.baseSalary == nil %},"baseSalary":{"@type":"MonetaryAmount","currency":{{ page.salary.currency | jsonify }},"value":{"@type":"QuantitativeValue","minValue":{{ page.salary.min | jsonify }}{% if page.salary.max %},"maxValue":{{ page.salary.max | jsonify }}{% endif %},"unitText":{{ page.salary.unit | default: "YEAR" | upcase | jsonify }}}}{% endif -%}
+{%- when "Event" -%}
+{%- if page.starts and _sc.startDate == nil %},"startDate":{{ page.starts | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if page.ends and _sc.endDate == nil %},"endDate":{{ page.ends | date_to_xmlschema | jsonify }}{% endif -%}
+{%- unless _sc.location -%}
+{%- if page.venue and page.online %},"eventAttendanceMode":"https://schema.org/MixedEventAttendanceMode"{% elsif page.online %},"eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode"{% elsif page.venue %},"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode"{% endif -%}
+{%- if page.venue and page.online %},"location":[{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}},{"@type":"VirtualLocation","url":{{ page.online | jsonify }}}]
+{%- elsif page.venue %},"location":{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}}
+{%- elsif page.online %},"location":{"@type":"VirtualLocation","url":{{ page.online | jsonify }}}{% endif -%}
+{%- endunless -%}
+{%- if page.tickets and _sc.offers == nil %},"offers":{"@type":"Offer","url":{{ page.tickets | absolute_url | jsonify }}}{% endif -%}
+{%- when "PodcastEpisode" -%}
+{%- if page.episode and _sc.episodeNumber == nil %},"episodeNumber":{{ page.episode | jsonify }}{% endif -%}
+{%- if page.season and _sc.partOfSeason == nil %},"partOfSeason":{"@type":"PodcastSeason","seasonNumber":{{ page.season | jsonify }}}{% endif -%}
+{%- if page.date and _sc.datePublished == nil %},"datePublished":{{ page.date | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if page.audio and _sc.associatedMedia == nil %},"associatedMedia":{"@type":"AudioObject","contentUrl":{{ page.audio | absolute_url | jsonify }}{% if page.duration %},"duration":"PT{{ page.duration }}M"{% endif %}}{% endif -%}
+{%- when "CreativeWork" -%}
+{%- if page.stack and _sc.keywords == nil %},"keywords":{{ page.stack | join: ", " | jsonify }}{% endif -%}
+{%- endcase -%}

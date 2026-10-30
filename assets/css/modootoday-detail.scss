@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday detail stylesheet (project, case-study, job, event, episode): loaded only by those layouts
+# (mt_bundle: detail), so the core bundle stays small. Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/detail/index";
