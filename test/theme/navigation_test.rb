@@ -49,7 +49,7 @@ class NavigationTest < Minitest::Test
              "    - title: Two\n      url: /two/\n      items:\n        - {title: End, url: /end/}\n"
     s = self.class.site("", nested)
     assert_match(%r{<details><summary class="mt-sidebar-title">Guides</summary>}, s.call("end"))
-    assert_match(%r{<details open><summary><a href="/two/">Two</a></summary><ul><li><a href="/end/" aria-current="page">End</a>}, s.call("end"))
+    assert_match(%r{<details open><summary>Two</summary><ul><li><a href="/two/">Two</a></li><li><a href="/end/" aria-current="page">End</a>}, s.call("end"))
     assert_match(%r{rel="prev" href="/two/"}, s.call("end"))
   end
 

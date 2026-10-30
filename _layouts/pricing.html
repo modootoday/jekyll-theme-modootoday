@@ -4,6 +4,7 @@ mt_bundle: marketing
 mt_css: [pricing]
 mt_main: mt-mk mt-mk-pricing
 ---
+{%- include modootoday/i18n.html -%}
 {%- comment -%}pricing: plans: [{name, monthly, yearly, text, features: [...], cta: {label, url}, recommended: true}] and currency.
 Plan cards reuse the pricing component sheet. With yearly prices a Monthly/Yearly radio pair switches them with CSS only
 (no JavaScript); both prices stay in the HTML, the hidden one with display:none.{%- endcomment -%}

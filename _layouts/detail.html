@@ -3,6 +3,7 @@ layout: default
 mt_bundle: detail
 mt_main: mt-detail
 ---
+{%- include modootoday/i18n.html -%}
 {%- comment -%}detail: one item page (project, case study, job, event, episode). Header (kicker, title, lead), a facts list
 from front matter (modootoday/detail/facts.html, per layout.mt_kind), the body, then one call to action. No JavaScript.{%- endcomment -%}
 {%- assign _k = layout.mt_kind | default: "item" -%}

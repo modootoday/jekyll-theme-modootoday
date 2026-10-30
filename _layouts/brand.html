@@ -3,6 +3,7 @@ layout: default
 mt_bundle: marketing
 mt_main: mt-mk mt-mk-brand
 ---
+{%- include modootoday/i18n.html -%}
 {%- comment -%}brand: colors: [{name, hex}] as swatches (an SVG fill, so no inline style under a strict CSP; the hex is always printed as text), assets: [{label, url, format}] to download, then the body (usage rules).{%- endcomment -%}
 <article aria-labelledby="mt-mk-title">
 {%- include modootoday/marketing/head.html %}

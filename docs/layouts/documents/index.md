@@ -9,7 +9,7 @@ Two layouts for pages people print or keep. Both hide the site header, footer an
 
 | Layout | Front matter | Bundle | Structured data | Demo |
 |---|---|---|---|---|
-| `legal` | `effective` (required), `updated`, `version`, `toc: [{title, id}]` | pages | WebPage with dates | [Terms](/jekyll-theme-modootoday/layouts/documents/legal/) |
+| `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Terms](/jekyll-theme-modootoday/layouts/documents/legal/) |
 | `resume` | `name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](/jekyll-theme-modootoday/layouts/documents/resume/) |
 
 ## Legal
@@ -19,11 +19,10 @@ Two layouts for pages people print or keep. Both hide the site header, footer an
 layout: legal
 effective: 2026-01-01
 updated: 2026-10-30
-toc: [{title: Use of the service, id: use}]
 ---
 ```
 
-Give each heading the same `id` as its `toc` entry (`## Use of the service {#use}`). The dates become `datePublished` and `dateModified`.
+The contents list is built from the `##` and `###` headings in the body; `toc: false` hides it. The dates become `datePublished` and `dateModified`.
 
 ## Resume
 

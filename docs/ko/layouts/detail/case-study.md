@@ -5,7 +5,6 @@ layout: case-study
 nav_order: 2
 twin: false
 edit: false
-sections: []
 date: 2026-09-01
 client: ACME
 role: 문서 플랫폼

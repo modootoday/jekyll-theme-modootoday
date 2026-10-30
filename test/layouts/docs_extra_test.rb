@@ -14,7 +14,7 @@ class DocsExtraLayoutsTest < Minitest::Test
     "h.md" => "title: H\nlayout: hub\ncards: [{title: Guides, text: Start., url: /guides/}]\n",
     "co.md" => "title: Co\ndescription: Learn it.\nlayout: course\nlevel: Beginner\nmodules: [{title: Basics, lessons: [{title: One, minutes: 10}, {title: Two, minutes: 15}]}]\n",
     "b.md" => "title: B\nlayout: book\nauthor: Ada\nisbn: 978-0-00-000000-2\npages: 120\nchapters: [{title: Start, url: /s/}]\n",
-    "l.md" => "title: Terms\nlayout: legal\neffective: 2026-01-01\nupdated: 2026-10-01\ntoc: [{title: Use}]\n",
+    "l.md" => ["title: Terms\nlayout: legal\neffective: 2026-01-01\nupdated: 2026-10-01\n", "## Use\n\nText.\n\n## Ending\n\nText.\n"],
     "cv.md" => "title: CV\nlayout: resume\nname: Ada\nheadline: Engineer\nemail: ada@example.com\nlinks: [{label: GitHub, url: 'https://github.com/ada'}]\n" \
                "experience: [{role: Lead, org: Acme, start: 2024-01-01}, {role: Dev, org: Old, start: 2020-01-01, end: 2023-12-01}]\n" \
                "education: [{degree: BSc, school: Uni}]\nskills: [{group: Lang, items: [Ruby, Go]}]\n",
@@ -25,6 +25,7 @@ class DocsExtraLayoutsTest < Minitest::Test
       src, s = build_site(d, PAGES)
       %w[r c m g h co b].each { |n| assert_includes html(s, "#{n}.md"), "modootoday-docs-extra.css", n }
       assert_includes html(s, "l.md"), "modootoday-pages.css"
+      assert_includes html(s, "l.md"), '<a href="#ending">Ending</a>'
       assert_includes html(s, "cv.md"), "modootoday-resume.css"
       assert_includes html(s, "r.md"), 'href="#serve"'
       assert_match(%r{<h3 class="mt-dx-cat mt-dx-cat-added">Added</h3>\s*<ul><li>A <code[^>]*>x</code></li>}, html(s, "c.md"))

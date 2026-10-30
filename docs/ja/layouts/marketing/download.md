@@ -5,7 +5,6 @@ layout: download
 nav_order: 3
 twin: false
 edit: false
-sections: []
 version: 1.0.0
 date: 2026-10-30
 downloads:

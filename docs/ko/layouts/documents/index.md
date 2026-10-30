@@ -9,7 +9,7 @@ nav_order: 60
 
 | 레이아웃 | 프런트 매터 | 번들 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `legal` | `effective`(필수), `updated`, `version`, `toc: [{title, id}]` | pages | 날짜가 있는 WebPage | [약관](/jekyll-theme-modootoday/ko/layouts/documents/legal/) |
+| `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](/jekyll-theme-modootoday/ko/layouts/documents/legal/) |
 | `resume` | `name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](/jekyll-theme-modootoday/ko/layouts/documents/resume/) |
 
 ## 법적 고지
@@ -19,11 +19,10 @@ nav_order: 60
 layout: legal
 effective: 2026-01-01
 updated: 2026-10-30
-toc: [{title: 서비스 이용, id: use}]
 ---
 ```
 
-각 제목에 `toc` 항목과 같은 `id`를 붙이세요(`## 서비스 이용 {#use}`). 날짜는 `datePublished`와 `dateModified`가 됩니다.
+목차는 본문의 `##`, `###` 제목으로 만들어지며 `toc: false`로 숨길 수 있습니다. 날짜는 `datePublished`와 `dateModified`가 됩니다.
 
 ## 이력서
 

@@ -66,7 +66,6 @@ module Modootoday
         def legal(errs, w, fm)
           Shape.need_date(errs, w, "effective", fm["effective"])
           Shape.need_date(errs, w, "updated", fm["updated"], optional: true)
-          Shape.list(errs, w, "toc", fm["toc"])
         end
 
         def resume(errs, w, fm)

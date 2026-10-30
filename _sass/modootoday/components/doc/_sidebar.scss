@@ -8,7 +8,7 @@
   .mt-sidebar [aria-current] { font-weight: 600; }
   .mt-sidebar-group { margin-top: 1rem; }
   .mt-sidebar summary { cursor: pointer; }
-  .mt-sidebar summary > a { display: inline-block; }
+  .mt-sidebar ul ul summary { padding: .3rem .6rem; color: mt(muted-foreground); }
   .mt-sidebar ul ul { padding-inline-start: .75rem; }
   .mt-sidebar-title { display: list-item; padding: 0 .6rem .3rem; font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
   .mt-doc-nav, .mt-body:has(.mt-doc-nav) .mt-nav-flat { display: none; }

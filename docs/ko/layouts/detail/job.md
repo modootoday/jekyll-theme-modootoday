@@ -5,7 +5,6 @@ layout: job
 nav_order: 3
 twin: false
 edit: false
-sections: []
 date: 2026-10-01
 deadline: 2026-12-01
 employment: full-time

@@ -4,12 +4,12 @@
   .mt-legal-head h1 { margin: 0; }
   .mt-legal-meta { margin: .5rem 0 0; color: mt(muted-foreground); font-size: .875rem; }
   .mt-legal-lead { font-size: 1.0625rem; }
-  .mt-legal-toc { margin-bottom: 2rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
-  .mt-legal-toc ol { margin: 0; }
+  .mt-legal .mt-toc { margin-bottom: 2rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
+  .mt-legal .mt-toc ol { margin: 0; }
   .mt-legal-body { max-width: 44rem; }
   .mt-legal-body :is(h2, h3) { scroll-margin-top: 4rem; }
   @media print {
-    .mt-legal .mt-legal-toc { display: none; }
+    .mt-legal .mt-toc { display: none; }
     .mt-legal-body { max-width: none; }
     .mt-legal-body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
   }

@@ -21,6 +21,7 @@ for (const site of sites) {
     const url = origin + "/" + f.replace(/index\.html$/, "");
     const r = await page.goto(url, { waitUntil: "load" });
     if (!r || r.status() !== 200) continue;
+    if (/http-equiv="refresh"/i.test(await r.text())) continue; // redirect pages navigate away mid-audit
     const tag = `${path.basename(site)}:${f}`;
     const axe = await new AxeBuilder({ page }).withTags(TAGS).analyze();
     for (const v of axe.violations) fails.push(`${tag} axe ${v.id} ${v.nodes.slice(0, 2).map((n) => n.target.join(" ")).join(" | ")}`);

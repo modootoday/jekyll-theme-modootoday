@@ -3,6 +3,7 @@ layout: default
 mt_bundle: marketing
 mt_main: mt-mk mt-mk-download
 ---
+{%- include modootoday/i18n.html -%}
 {%- comment -%}download: version and date, then downloads: [{label, url, size, checksum}] as a table, then the body (install notes).{%- endcomment -%}
 {%- assign _df = mt_t_post_date_format | default: "%Y-%m-%d" -%}
 <article aria-labelledby="mt-mk-title">

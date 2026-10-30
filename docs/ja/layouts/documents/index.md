@@ -9,7 +9,7 @@ nav_order: 60
 
 | レイアウト | フロントマター | バンドル | 構造化データ | デモ |
 |---|---|---|---|---|
-| `legal` | `effective`（必須）、`updated`、`version`、`toc: [{title, id}]` | pages | 日付付きの WebPage | [規約](/jekyll-theme-modootoday/ja/layouts/documents/legal/) |
+| `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](/jekyll-theme-modootoday/ja/layouts/documents/legal/) |
 | `resume` | `name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](/jekyll-theme-modootoday/ja/layouts/documents/resume/) |
 
 ## 法的ページ
@@ -19,11 +19,10 @@ nav_order: 60
 layout: legal
 effective: 2026-01-01
 updated: 2026-10-30
-toc: [{title: サービスの利用, id: use}]
 ---
 ```
 
-各見出しに `toc` の項目と同じ `id` を付けてください（`## サービスの利用 {#use}`）。日付は `datePublished` と `dateModified` になります。
+目次は本文の `##` と `###` の見出しから作られ、`toc: false` で隠せます。日付は `datePublished` と `dateModified` になります。
 
 ## 履歴書
 
