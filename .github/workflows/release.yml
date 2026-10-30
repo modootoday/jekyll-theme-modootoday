@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     environment: rubygems
     permissions:
-      contents: write   # release-gem pushes the tag / creates the release metadata
+      contents: write   # release-gem pushes the tag; the last step creates the GitHub Release
       id-token: write   # OIDC token for RubyGems trusted publishing
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
@@ -53,3 +53,15 @@ jobs:
       - uses: rubygems/release-gem@v1
         with:
           setup-trusted-publisher: "false"
+      # After the gem is on RubyGems: a GitHub Release for the tag, with its CHANGELOG entry as the notes.
+      # Skipped when the Release already exists, so a re-run does nothing.
+      - name: Create the GitHub Release from CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists; skipping"; exit 0
+          fi
+          ruby script/release-notes "$GITHUB_REF_NAME" > "$RUNNER_TEMP/notes.md"
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" \
+            --notes-file "$RUNNER_TEMP/notes.md" --verify-tag

@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Prints the CHANGELOG.md entry for one version (the body under `## [X.Y.Z]`, without the heading),
+# used as the GitHub Release notes. Usage: script/release-notes vX.Y.Z|X.Y.Z [CHANGELOG.md]
+# Exits 1 when the version has no entry or the entry is empty.
+version = ARGV.fetch(0) { abort "usage: script/release-notes vX.Y.Z [CHANGELOG.md]" }.delete_prefix("v")
+file = ARGV[1] || File.expand_path("../CHANGELOG.md", __dir__)
+lines = File.readlines(file, chomp: true)
+start = lines.index { |l| l.match?(/^## \[#{Regexp.escape(version)}\]/) } or abort "#{file}: no `## [#{version}]` entry"
+body = lines[(start + 1)..].take_while { |l| !l.start_with?("## ") && !l.match?(/^\[[^\]]+\]: /) }
+notes = body.join("\n").strip
+abort "#{file}: `## [#{version}]` entry is empty" if notes.empty?
+puts notes

@@ -13,4 +13,5 @@ Releases are published only from a `v*` tag by `.github/workflows/release.yml`, 
 5. **Trusted publisher.** On rubygems.org, the gem (or, before the first release, a *pending* trusted publisher) must point at this repository, workflow `release.yml` and environment `rubygems`. For 1.0.0 this is the pending publisher: open rubygems.org → Trusted publishers and check it is still listed and not expired (a pending publisher expires if no gem is pushed in time); register it again with the same values if it has.
 6. **Tag.** `git tag vX.Y.Z && git push origin vX.Y.Z` (first release: `git tag v1.0.0 && git push origin v1.0.0`). The workflow checks that the tag equals the gem version.
 7. **Approve** the `rubygems` environment deployment when the run asks for it.
+   After the gem is pushed, the same run creates the GitHub Release for the tag, with the `## [X.Y.Z]` entry of `CHANGELOG.md` as the notes (`ruby script/release-notes vX.Y.Z` prints them; run it before tagging to check). It skips the step when the Release already exists.
 8. **After release.** Check the gem page, and switch `docs/_config.yml` from `remote_theme: …@main` to `@vX.Y.Z`.

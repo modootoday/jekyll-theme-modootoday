@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- Release workflow: after the gem is pushed to RubyGems, a GitHub Release is created for the tag with its `CHANGELOG.md` entry as the notes (`script/release-notes`); skipped when the Release already exists.
+
 ## [1.1.0] - 2026-10-31
 
 ### Added
