@@ -81,6 +81,8 @@ ASCII 숫자와 언어별 자릿수 구분(1,000)을 씁니다. 본문 날짜는
 
 나머지 20개 카탈로그도 같은 원칙을 따릅니다. 원어민 검토자가 승인하면 해당 언어의 용어를 용어집에 추가합니다.
 
+문서 사이트의 언어 메뉴에는 23개 언어가 모두 나옵니다. 영어·한국어·일본어를 뺀 20개 언어는 홈 페이지만 현지화되어 있습니다. 홈 페이지는 영어 가이드로 연결되고 끝의 알림에서 이를 밝히며, 사이드바는 영어 메뉴를 보여 줍니다. 페이지는 통째로 번역하거나 아예 번역하지 않습니다.
+
 ## 참고 자료
 
 - [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides) (Korean and Japanese)

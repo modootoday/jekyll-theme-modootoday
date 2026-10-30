@@ -78,6 +78,8 @@ Style the lint cannot judge (word order, idiom, tone) is checked in review again
 
 The other 20 catalogs follow the same principles. A term joins the glossary for a language once a native reviewer approves it.
 
+The docs site lists all 23 languages in the language menu. For the 20 languages beyond English, Korean and Japanese, only the home page is localized. It links to the English guides and says so in a note at the end, and the sidebar shows the English menu. A page is translated whole or not at all.
+
 ## Sources
 
 - [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides) (Korean and Japanese)
