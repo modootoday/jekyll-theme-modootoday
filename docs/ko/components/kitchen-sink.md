@@ -185,7 +185,7 @@ front matter가 있는 페이지를 만듭니다.
 
 ## 그림
 
-![왼쪽의 Markdown 소스가 오른쪽의 꾸며진 페이지가 됩니다](../../../assets/images/sample.svg)
+![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../../../assets/images/sample.svg)
 
 *이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다.*
 

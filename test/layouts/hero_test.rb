@@ -9,7 +9,7 @@ class HeroShowcaseTest < Minitest::Test
   BODY = "# Title\n\nLead text.\n\n## One\n\nText.\n"
   PAGES = {
     "h.md" => ["title: H\nhero: {visual: showcase}\nsections: [one]\n", BODY],
-    "u.md" => ["title: U\nhero: {visual: showcase, image: /u.webp, width: 800, height: 600}\nsections: [one]\n", BODY],
+    "u.md" => ["title: U\nhero: {visual: showcase, image: {path: /u.webp, srcset: \"/u.webp 800w\", width: 800, height: 600}}\nsections: [one]\n", BODY],
     "p.md" => ["title: P\nsections: [one]\n", BODY],
   }.freeze
 
@@ -31,6 +31,7 @@ class HeroShowcaseTest < Minitest::Test
       assert_includes h, '<h1 id="title">Title</h1>'
       u = html(s, "u.md")
       assert_match(%r{src="[^"]*/u\.webp"[^>]*width="800" height="600"}, u)
+      assert_includes u, "/u.webp 800w"
       refute_includes u, "dawn-640"
       o, = check(src, s)
       refute_includes o, "visual: _includes/sections/showcase.html not found"

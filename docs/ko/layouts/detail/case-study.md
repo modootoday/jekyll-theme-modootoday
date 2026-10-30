@@ -1,6 +1,6 @@
 ---
 title: 사례 연구 데모
-image: {path: /assets/images/projects/data.webp, alt: "어두운 대시보드 위의 막대·선 차트 타일", width: 800, height: 600}
+image: {path: /assets/images/projects/data.webp, alt: "어두운 대시보드에 놓인 막대 차트와 선 차트 타일", width: 800, height: 600}
 description: 한 팀이 문서 빌드 시간을 절반으로 줄인 방법입니다.
 layout: case-study
 nav_order: 2

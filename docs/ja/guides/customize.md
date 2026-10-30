@@ -45,11 +45,11 @@ sections: [{c: features, name: why, visual: chart, scene: night}, faq]
 ---
 ```
 
-テーマにはヒーロー用ビジュアル `showcase` が 1 つ付属しています。やわらかな背景画像、トークンによるオーバーレイ、SVG で描いた UI シーンのアニメーションを重ねて表示します。スタイルシートはこのビジュアルを使うページにだけ読み込まれ、JavaScript を使わず 5 秒以内に動きが止まります。視差効果を減らす設定では最後の場面だけを表示します。ダークモードでは同じ画像を CSS filter で暗くし、`--mt-img-filter-dark` で調整できます。独自の画像を使うには `image:`、`srcset:`、`width:`、`height:` を渡してください。[ホーム](../../)で実際の表示を確認できます。
+テーマにはヒーロー用ビジュアル `showcase` が 1 つ付属しています。やわらかな背景画像、トークンによるオーバーレイ、SVG で描いた UI シーンのアニメーションを重ねて表示します。スタイルシートはこのビジュアルを使うページにだけ読み込まれ、JavaScript を使わず 5 秒以内に動きが止まります。視差効果を減らす設定では最後の場面だけを表示します。ダークモードでは同じ画像を CSS filter で暗くし、`--mt-img-filter-dark` で調整できます。独自の画像を使うには `hero.image` にパスか `{path, srcset, width, height}` を指定してください。ホームレイアウトのヒーローと同じ `hero.image` キーです。[ホーム](../../)で実際の表示を確認できます。
 
 ```yaml
 hero: {visual: showcase}
-# または: hero: {visual: showcase, image: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}
+# または: hero: {visual: showcase, image: {path: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}}
 ```
 
 `full_width: true` はランディングページ向けに、`main.mt-main` の本文幅の制限と左右の余白を外します（`.mt-main-full` を追加）。

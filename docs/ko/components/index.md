@@ -192,7 +192,7 @@ bundle exec jekyll serve
 
 `status:available` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 됩니다. 대체 텍스트는 필수입니다.
 
-![왼쪽의 Markdown 소스가 오른쪽의 꾸며진 페이지가 됩니다](../../assets/images/sample.svg)
+![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../../assets/images/sample.svg)
 
 *왼쪽은 Markdown, 오른쪽은 렌더링된 페이지입니다.*
 
