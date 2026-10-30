@@ -41,6 +41,8 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 페이지 도구 | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`(JS가 돌기 전엔 숨김)와 Markdown 보기 `a[type="text/markdown"]`가 든 `ul` | `[open]` |
 | 히어로 | `section.mt-hero` | `h1`, 리드 `p`, 링크만 있는 `p`(CTA 버튼, 첫 링크가 주 버튼) | — |
 | 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta`(섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에) |
+| 섹션 장식 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-has-decor`(front matter `decor: <include>`) | 마지막 자식 `.mt-section-decor[aria-hidden=true]`, 안에 `_includes/sections/<include>.html`. 위쪽 끝 모서리에 놓이고 포인터 이벤트를 받지 않습니다 | — |
+| 일러스트 | `figure.mt-illustration[role=img][aria-label]`(사이트 include) | 위쪽 시작 모서리의 `.mt-illustration-tag` 배지. `role=img`의 자식은 읽히지 않으므로 배지 글자도 `aria-label`에 넣습니다 | — |
 | 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |
 | 카드 그리드 | `section.mt-section` | `ul > li`, 맨 앞 `strong`이 제목 | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]`(JS가 만듦, JS 없으면 `h3`와 코드 블록 유지) | `[aria-selected]` |

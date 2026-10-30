@@ -34,7 +34,7 @@ sections:
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
-  - {c: split, name: split, visual: split-demo, side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
+  - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
 ---
 # Kitchen sink
 
@@ -416,6 +416,6 @@ Get one email when a release ships.
 
 ## Split
 
-`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`.
+`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament.
 
 Text on one side, the picture on the other.

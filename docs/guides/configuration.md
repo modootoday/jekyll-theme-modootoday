@@ -39,6 +39,7 @@ modootoday:
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |
 | `schema` | on when `url` is set | schema.org JSON-LD graph: `publisher`, `search_url`, `layouts`; `false` turns it off. See [Structured data](../structured-data/) |
 | `languages` | none | language codes for `hreflang`, such as `[en, ko]` The header site title links to the page language's home (`/<lang>/`) when it exists. |
+| `full_languages` | none | the codes from `languages` that translate every page, such as `[ko, ja]`; `modootoday-check --i18n-pages` warns about each default-language page without one |
 | `language_switcher` | none | `header` (a globe button with a dropdown menu; same width however many languages) or `footer` (a list of language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page. Nothing renders with fewer than two languages. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click |
 | `og_image` | none | default Open Graph image; `image:` in front matter wins |
 | `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
@@ -128,6 +129,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 For a language the theme does not ship, add `_data/i18n/<code>.yml` with the keys of the English catalog and list the code in `languages`. Pages get `dir="rtl"` for Arabic, Persian, Hebrew, Urdu and other right-to-left languages (`ur-Latn` stays left-to-right); `direction: rtl` or `ltr` in a catalog or in front matter overrides it. Page content is translated as Markdown in `<lang>/`, not in the catalogs.
+
+Pages that translate each other under different paths share a `ref:` in front matter, such as `ref: guide` on `guides/start.md` and `ko/guides/sijak.md`. `hreflang` links and the language switcher then use that page; a page with `ref:` and no translation is left out of `hreflang`, and the switcher sends that language to its home page. In includes and layouts, `modootoday/link.html` with `ref="guide"` gives the URL of the `ref: guide` page in the current language, or in the default language when there is none (add `exact=true` for no fallback, `absolute=true` for a full URL); `modootoday-check` reports a `ref=` that no page defines. With `full_languages` set, `modootoday-check . _site --i18n-pages` lists default-language pages that have no translation in those languages (same `ref:`, or the same path under `<lang>/`); they are warnings, and `--strict` makes them fail.
 
 Some labels are your site's, not the theme's: `tabs.label` names the tab list on pages that use tabs (for example `tabs: {label: Install method}`), so screen readers announce what the tabs choose between. Put it in each language's catalog.
 

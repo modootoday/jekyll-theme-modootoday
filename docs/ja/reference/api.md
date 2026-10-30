@@ -41,6 +41,8 @@ description: このテーマがサイト向けに文書化している名前、�
 | ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`(JS が動くまで非表示)と Markdown 表示の `a[type="text/markdown"]` を含む `ul` | `[open]` |
 | ヒーロー | `section.mt-hero` | `h1`、リードの `p`、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | — |
 | セクション | `section.mt-section` | `h2` とその内容 | `[data-section]` = 名前、`[data-c]` と `.mt-c-<c>` = コンポーネント、`.mt-cols-<n>`、`.mt-cta`(セクション内に `[data-mt-result]` 要素があればその要素に) |
+| セクションの装飾 | `section.mt-hero` または `section.mt-section` の `.mt-has-decor`(front matter `decor: <include>`) | 最後の子 `.mt-section-decor[aria-hidden=true]`。中身は `_includes/sections/<include>.html` で、上の終端の角に置かれ、ポインターイベントを受けません | — |
+| イラスト | `figure.mt-illustration[role=img][aria-label]`(サイトの include) | 上の開始側の角の `.mt-illustration-tag` バッジ。`role=img` の子は読み上げられないため、バッジの文字も `aria-label` に入れます | — |
 | 本文 (`sections:` なし) | `div.mt-prose` | レンダリングされた本文 | — |
 | カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (JS が生成。JS がなければ `h3` とコードブロックのまま) | `[aria-selected]` |

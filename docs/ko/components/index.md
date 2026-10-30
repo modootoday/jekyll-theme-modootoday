@@ -35,7 +35,7 @@ sections:
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
-  - {c: split, name: split, visual: split-demo, side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
+  - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
   - navigation
   - language-switcher
   - theme-toggle
@@ -358,7 +358,7 @@ theme: jekyll-theme-modootoday
 
 ## 분할
 
-`status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다.
+`status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다. 이 그림은 일러스트입니다. `class="mt-illustration"`, `role="img"`, `aria-label`이 있는 `figure`이고, `.mt-illustration-tag` 배지의 글자도 레이블에 들어 있습니다. `decor: decor-demo`는 위쪽 모서리의 점을 `aria-hidden` 장식으로 더합니다.
 
 한쪽에는 텍스트, 다른 쪽에는 그림이 옵니다.
 

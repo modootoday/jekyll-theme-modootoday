@@ -25,6 +25,7 @@ module Modootoday
         return errs << "_config.yml: modootoday: must be a map" if mtc && !mtc.is_a?(Hash)
         return unless mtc.is_a?(Hash)
         enums(mtc, errs)
+        full_languages(mtc, errs)
         if mtc.key?("archive")
           a = mtc["archive"]
           if !a.is_a?(Hash) || !(a.keys - %w[tags categories]).empty?
@@ -51,6 +52,14 @@ module Modootoday
         errs << "_config.yml: modootoday.color_scheme must be auto, auto-dark, auto-light, light or dark (got #{mtc['color_scheme'].inspect})" if mtc.key?("color_scheme") && !%w[auto auto-dark auto-light light dark].include?(mtc["color_scheme"])
         errs << "_config.yml: modootoday.csp must be strict or false (got #{mtc['csp'].inspect})" if mtc.key?("csp") && mtc["csp"] != "strict" && mtc["csp"] != false
         errs << "_config.yml: modootoday.languages must be a list of language codes such as [en, ko]" if mtc.key?("languages") && !(mtc["languages"].is_a?(Array) && mtc["languages"].all? { |l| l.to_s =~ /\A[a-z]{2,3}(-[A-Za-z0-9]+)*\z/ })
+      end
+
+      # full_languages: the languages that must translate every default-language page (modootoday-check --i18n-pages).
+      def full_languages(mtc, errs)
+        return unless mtc.key?("full_languages")
+        fl, langs = mtc["full_languages"], Array(mtc["languages"]).map(&:to_s)
+        return errs << "_config.yml: modootoday.full_languages must be a list of codes from modootoday.languages" unless fl.is_a?(Array)
+        (fl.map(&:to_s) - langs).each { |l| errs << "_config.yml: modootoday.full_languages: '#{l}' is not in modootoday.languages" }
       end
 
       def tokens(ctx)

@@ -25,15 +25,18 @@ module Modootoday
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
       end
 
-      # visual: <name> on a section item or on hero: needs _includes/sections/<name>.html in the site or the theme (showcase).
+      # visual: <name> and decor: <name> on a section item or on hero: needs _includes/sections/<name>.html in the site or the theme (showcase).
       def visuals(ctx, r, secs, hero)
         items = secs.each_with_index.map { |s, i| [s, "sections[#{i}]"] }
         items << [hero, "hero"] if hero
         items.each do |s, where|
-          next unless s.is_a?(Hash) && s.key?("visual")
-          v = s["visual"].to_s
-          next ctx.errs << "#{r}: #{where}.visual must be an include name [a-z0-9_-] (got #{s['visual'].inspect})" unless v =~ /\A[a-z0-9][a-z0-9_-]*\z/
-          ctx.errs << "#{r}: #{where}.visual: _includes/sections/#{v}.html not found" unless [ctx.src, THEME].any? { |d| File.exist?(File.join(d, "_includes/sections/#{v}.html")) }
+          next unless s.is_a?(Hash)
+          %w[visual decor].each do |key|
+            next unless s.key?(key)
+            v = s[key].to_s
+            next ctx.errs << "#{r}: #{where}.#{key} must be an include name [a-z0-9_-] (got #{s[key].inspect})" unless v =~ /\A[a-z0-9][a-z0-9_-]*\z/
+            ctx.errs << "#{r}: #{where}.#{key}: _includes/sections/#{v}.html not found" unless [ctx.src, THEME].any? { |d| File.exist?(File.join(d, "_includes/sections/#{v}.html")) }
+          end
         end
       end
 
@@ -57,7 +60,7 @@ module Modootoday
           params = spec["params"] || {}
           Slots.check_section(errs, r, i, s["c"], spec["slots"], sec_md[i])
           (ctx.part_uses[s["c"]] ||= []) << r if spec.is_a?(Hash) && spec["parts"].is_a?(Array)
-          (s.keys - %w[c name visual]).each do |k|
+          (s.keys - %w[c name visual decor]).each do |k|
             # with visual:, other keys are the visual include's own params (include.section.<key>)
             next if !params.key?(k) && s.key?("visual")
             next errs << "#{r}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)

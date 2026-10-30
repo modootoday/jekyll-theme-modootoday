@@ -38,6 +38,8 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Page actions | `details.mt-menu.mt-page-actions` | `summary`, the `ul` of `button[data-mt-act=copy\|ai]` (hidden until JS runs) and the View as Markdown `a[type="text/markdown"]` | `[open]` |
 | Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
+| Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` (front matter `decor: <include>`) | `.mt-section-decor[aria-hidden=true]`, the last child, holding `_includes/sections/<include>.html`; placed in the top end corner, no pointer events | — |
+| Illustration | `figure.mt-illustration[role=img][aria-label]` (your own include) | `.mt-illustration-tag` badge in the top start corner; its text belongs in the `aria-label` too, because the children of `role=img` are not read | — |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
 | Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |

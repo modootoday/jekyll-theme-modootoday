@@ -1,3 +1,6 @@
 {%- comment -%}URL for include.url: full URLs as they are, site paths through relative_url (absolute=true: absolute_url).
-  A bare "#" sample link stays "#" (absolute=true: this page's absolute URL, for JSON-LD).{%- endcomment -%}
-{%- if include.url == "#" and include.absolute -%}{{ page.url | absolute_url }}{%- elsif include.url == "#" or include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}
+  A bare "#" sample link stays "#" (absolute=true: this page's absolute URL, for JSON-LD).
+  include.ref instead of url: the page with that front matter ref: in this page's language (lang= to choose another),
+  else the default-language one (modootoday/ref-url.html); modootoday-check rejects a ref no page defines.{%- endcomment -%}
+{%- if include.ref -%}{%- include modootoday/ref-url.html ref=include.ref lang=include.lang -%}{%- if include.absolute -%}{{ mt_ref_url | absolute_url }}{%- else -%}{{ mt_ref_url | relative_url }}{%- endif -%}
+{%- elsif include.url == "#" and include.absolute -%}{{ page.url | absolute_url }}{%- elsif include.url == "#" or include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}

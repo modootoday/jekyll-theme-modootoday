@@ -10,6 +10,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Release workflow: after the gem is pushed to RubyGems, a GitHub Release is created for the tag with its `CHANGELOG.md` entry as the notes (`script/release-notes`); skipped when the Release already exists.
 - `mt-flat-list`: put it on an ancestor of an unclassed Markdown list that a layout makes a grid or flex row (`.c-body > ul`) to drop the gap between list items (RULES.md §6, Customize).
+- `decor: <include>` on `hero:` or a section item: an `aria-hidden` ornament in `.mt-section-decor`, placed in the top end corner. `modootoday-check` reports a missing include.
+- `.mt-illustration` convention: `figure[role=img]` with a non-empty `aria-label` and an optional `.mt-illustration-tag` badge; `modootoday-check` reports any other markup in the built site.
+- `ref:` in front matter links translations that live under different paths: `hreflang` and the language switcher use it, and `modootoday/link.html` with `ref=` gives that page's URL in the current language, or in the default language. `modootoday-check` reports a `ref=` that no page defines.
+- `modootoday.full_languages` and `modootoday-check --i18n-pages`: warnings for default-language pages with no translation in those languages; `--strict` makes them fail.
 - `c: split` section: text and its `visual:` include side by side from 48rem, stacked below; params `side: start|end` and `ratio: "1:1"|"5:7"`, inner wrappers `.mt-section-in`, `.mt-section-body`, `.mt-section-visual` (split only, so other sections keep their markup), its own section sheet. `modootoday-check` requires `visual:` on a split.
 - `visual:` include: any other key on the section item reaches the include as `include.section.<key>`, and `modootoday-check` accepts such keys on a section that has `visual:`.
 - Docs: moving from `jekyll-seo-tag` to the kit's SEO tags (Migrate), and what to run when `modootoday-check` is not on `PATH` after `gem install` (Install).

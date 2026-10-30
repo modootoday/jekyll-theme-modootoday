@@ -6,3 +6,4 @@
 [data-theme="dark"] .mt-gallery-thumb img,[data-theme="dark"] .mt-lightbox img{filter:var(--mt-img-filter-dark,brightness(.85))}
 .docs-flat-grid ul{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:0;list-style:none}.docs-flat-grid li{padding:.5rem;text-align:center;border:1px solid var(--mt-border);border-radius:.375rem}
 .docs-split-demo { margin: 0; color: var(--mt-primary); }
+.docs-decor-demo { display: block; margin: .75rem; color: var(--mt-primary); }

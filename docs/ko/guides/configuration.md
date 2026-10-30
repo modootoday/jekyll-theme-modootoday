@@ -42,6 +42,7 @@ modootoday:
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |
 | `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
 | `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다. |
+| `full_languages` | 없음 | 모든 페이지를 번역하는 `languages` 안의 코드, 예: `[ko, ja]` `modootoday-check --i18n-pages`는 이 언어의 번역이 없는 기본 언어 페이지마다 경고합니다. |
 | `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
 | `og_image` | 없음 | 기본 Open Graph 이미지. front matter의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
@@ -131,6 +132,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙습니다(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있습니다. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역합니다.
+
+경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다.
 
 테마가 아니라 사이트가 정하는 문구도 있습니다. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름입니다(예: `tabs: {label: 설치 방법}`). 스크린 리더가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
 

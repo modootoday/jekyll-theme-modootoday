@@ -3,6 +3,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.seo        false drops canonical, hreflang and Open Graph (use jekyll-seo-tag instead)
   site.modootoday.hreflang   true keeps the hreflang alternates when seo is false (default: follows seo)
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
+                             (a page with front matter ref: links the pages sharing that ref instead, whatever their paths)
   site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
   site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
@@ -39,7 +40,8 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- if _mt_plang != _mt_def -%}{%- assign _mt_pre = "/" | append: _mt_plang -%}{%- assign _mt_base = page.url | remove_first: _mt_pre -%}{%- endif -%}
 {%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
 {%- for _l in _mt_langs -%}
-{%- if _l == _mt_def -%}{%- assign _mt_alt = _mt_base -%}{%- else -%}{%- assign _mt_alt = "/" | append: _l | append: _mt_base -%}{%- endif -%}
+{%- if page.ref -%}{%- include modootoday/ref-url.html ref=page.ref lang=_l exact=true -%}{%- assign _mt_alt = mt_ref_url | default: "/-none-/" -%}
+{%- elsif _l == _mt_def -%}{%- assign _mt_alt = _mt_base -%}{%- else -%}{%- assign _mt_alt = "/" | append: _l | append: _mt_base -%}{%- endif -%}
 {%- assign _mt_key = "|" | append: _mt_alt | append: "|" -%}
 {%- if mt_page_urls contains _mt_key %}
 <link rel="alternate" hreflang="{{ _l }}" href="{{ _mt_alt | absolute_url }}">

@@ -1,0 +1,12 @@
+{%- comment -%}Sets mt_ref_url to the URL (site path, before relative_url) of the page whose front matter ref: is include.ref,
+in include.lang (default: this page's lang, then site.lang). Without one in that language it falls back to the
+default-language page, unless include.exact is true; mt_ref_url is nil when nothing matches.
+A page's language is its lang: (front matter or defaults), else site.lang.{%- endcomment -%}
+{%- assign mt_ref_url = nil -%}
+{%- assign _rf_def = site.lang | default: "en" -%}
+{%- assign _rf_lang = include.lang | default: page.lang | default: _rf_def -%}
+{%- assign _rf_pages = site.pages | where: "ref", include.ref -%}
+{%- for _rf_p in _rf_pages -%}{%- assign _rf_l = _rf_p.lang | default: _rf_def -%}{%- if _rf_l == _rf_lang -%}{%- assign mt_ref_url = _rf_p.url -%}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- unless mt_ref_url or include.exact -%}
+{%- for _rf_p in _rf_pages -%}{%- assign _rf_l = _rf_p.lang | default: _rf_def -%}{%- if _rf_l == _rf_def -%}{%- assign mt_ref_url = _rf_p.url -%}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- endunless -%}

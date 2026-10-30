@@ -5,4 +5,7 @@
   .mt-hero > p:first-of-type { font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); max-width: 40rem; }
   .mt-section { padding: mt(space-section) 0 0; }
   .mt-section > h2:first-child { margin-top: 0; }
+  // decor: an aria-hidden ornament in the top end corner; it never takes clicks.
+  .mt-has-decor { position: relative; }
+  .mt-section-decor { position: absolute; inset-block-start: 0; inset-inline-end: 0; pointer-events: none; }
 }

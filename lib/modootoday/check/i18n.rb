@@ -32,6 +32,49 @@ module Modootoday
         init(ctx) if ctx.argv.any? { |a| a.start_with?("--i18n-init") }
         follow_default(ctx)
         registry(ctx) if ctx.option?("--i18n") && File.exist?("#{THEME}/en.yml")
+        refs(ctx)
+        pages(ctx) if ctx.option?("--i18n-pages")
+      end
+
+      # Each page as [rel path, front matter, language]: lang: from front matter, else the /<lang>/ folder
+      # when that code is in modootoday.languages, else the default language (site lang).
+      def page_index(ctx)
+        langs = Array(ctx.mtc["languages"]).map(&:to_s)
+        default = ctx.site_cfg["lang"].to_s.empty? ? "en" : ctx.site_cfg["lang"].to_s
+        ctx.mds.map do |f|
+          r = ctx.rel(f)
+          fm = (Markdown.fm(File.read(f)) rescue {}) || {}
+          dir = r.split("/").first
+          [r, fm, (fm["lang"] || (langs.include?(dir) && r.include?("/") ? dir : default)).to_s]
+        end
+      end
+
+      # {% include modootoday/link.html ref="x" %} needs a page with front matter ref: x.
+      def refs(ctx)
+        files = (ctx.mds + Dir.glob("#{ctx.src}/{_includes,_layouts}/**/*.html")).reject { |f| f.include?("/_site/") }
+        uses = files.flat_map { |f| Markdown.strip_fences(File.read(f)).gsub(/`[^`\n]*`/, "").scan(/\{%-?\s*include\s+modootoday\/link\.html\b[^%]*\bref=["']([^"']+)["']/).flatten.map { |x| [ctx.rel(f), x] } }
+        return if uses.empty?
+        known = page_index(ctx).map { |_, fm, _| fm["ref"].to_s }.reject(&:empty?)
+        uses.each { |r, x| ctx.errs << "#{r}: link.html ref=\"#{x}\": no page has front matter ref: #{x}" unless known.include?(x) }
+      end
+
+      # --i18n-pages: every default-language page has a translation in each modootoday.full_languages language
+      # (the page with the same ref:, or without ref: the same path under <lang>/). Warnings; --strict fails.
+      def pages(ctx)
+        full = Array(ctx.mtc["full_languages"]).map(&:to_s)
+        default = ctx.site_cfg["lang"].to_s.empty? ? "en" : ctx.site_cfg["lang"].to_s
+        return ctx.warns << "--i18n-pages: set modootoday.full_languages to the languages that translate every page" if full.empty?
+        idx = page_index(ctx)
+        have = idx.to_h { |r, fm, l| [[l, fm["ref"] ? "ref:#{fm['ref']}" : r], true] }
+        idx.each do |r, fm, l|
+          next unless l == default && fm["layout"] != "twin"
+          full.each do |fl|
+            next if fl == default
+            key = fm["ref"] ? "ref:#{fm['ref']}" : "#{fl}/#{r}"
+            next if have[[fl, key]]
+            ctx.warns << "#{r}: no #{fl} page (#{fm['ref'] ? "ref: #{fm['ref']}" : "#{fl}/#{r}"}); #{fl} is in modootoday.full_languages"
+          end
+        end
       end
 
       def init(ctx)

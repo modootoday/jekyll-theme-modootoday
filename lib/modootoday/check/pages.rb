@@ -6,6 +6,7 @@ require_relative "component_rules"
 require_relative "page_sections"
 require_relative "a11y/content"
 require_relative "a11y/new_window"
+require_relative "a11y/illustration"
 
 module Modootoday
   module Check

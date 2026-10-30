@@ -6,4 +6,7 @@
   :root[data-theme="dark"] .mt-figure img { filter: brightness(.85); }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure img { filter: brightness(.85); } }
   .mt-figure figcaption { margin-top: .6rem; color: mt(muted-foreground); font-size: .875rem; text-align: center; }
+  // .mt-illustration: figure[role=img][aria-label] for drawn scenes; .mt-illustration-tag marks it (e.g. "Illustration").
+  .mt-illustration { position: relative; margin: 0 0 1.5rem; }
+  .mt-illustration-tag { position: absolute; inset-block-start: .5rem; inset-inline-start: .5rem; padding: .125rem .5rem; border: 1px solid mt(border); border-radius: 999px; background: mt(background); color: mt(foreground); font-size: .75rem; }
 }

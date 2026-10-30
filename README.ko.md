@@ -79,6 +79,7 @@ bundle exec modootoday-check . _site
 | `--schema-recommended` | also warn about schema.org properties Google Search recommends (author, image, dates, ...) that a JSON-LD node lacks |
 | `--strict` | warnings fail the run |
 | `--i18n` | `_data/i18n/<lang>.yml` against the theme registry (`i18n/en.yml` in the gem): unknown keys, `%{name}` placeholder mismatches, and pages marked `translation: pending` |
+| `--i18n-pages` | warn about default-language pages with no translation in a `modootoday.full_languages` language (the page with the same `ref:`, else the same path under `<lang>/`); with `--strict` they fail |
 | `--i18n-init=LANG,...` | copy the theme's catalogs (`i18n/<lang>.yml`, 23 languages) into `SRC/_data/i18n/` as a starting point for overrides (optional; the theme already uses them), and list keys an existing catalog lacks |
 | `--gh` | also render each page with `gh api markdown` (network, `gh` login) |
 | `--help, -h` | print usage and options (`--help=markdown` prints the README table) |

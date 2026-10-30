@@ -56,6 +56,7 @@ Your own CSS can read the insets as `--mt-safe-top`, `--mt-safe-right`, `--mt-sa
 The theme cannot fix the content itself. `modootoday-check` reports the common problems before you publish:
 
 - **Images:** give every image `alt` text that says what it shows (`![Sales doubled in May](chart.png)`). Use empty `alt` only when the image adds nothing; an HTML `<img>` without `alt` is an error.
+- **Illustrations and ornaments:** a drawn scene in an include is `<figure class="mt-illustration" role="img" aria-label="…">`; the label says what it shows and repeats any `.mt-illustration-tag` text, because screen readers skip the children of `role=img`. `modootoday-check` reports an `.mt-illustration` without them. Pure decoration goes in `decor:`, which the theme hides from assistive technology.
 - **Links:** the text must name the destination, so it makes sense when read alone. Empty links are an error; "click here" or "read more" is a warning. Mention the file type for downloads, for example `[Price list (PDF, 2 MB)](prices.pdf)`.
 - **Headings:** the page title is the only `#` heading; start content at `##` and do not skip a level (`##` then `####` is a warning). Screen-reader users jump between headings by level.
 - **Tables:** give every table a header row, and introduce it with a sentence or heading that says what it lists.
