@@ -18,7 +18,7 @@ Pick the build you already use. All three read the same Markdown.
 
 ```yaml
 # _config.yml (classic GitHub Pages build, no Gemfile needed)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.0.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.1.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -28,7 +28,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.0"
+gem "jekyll-theme-modootoday", "~> 1.1"
 ```
 
 ### github-pages gem

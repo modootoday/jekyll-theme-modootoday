@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-31
+
 ### Added
 
 - Checker: one-line specfold value markers `<!-- spec:name -->` and `<!-- /spec:name -->` are allowed in page bodies, on their own line or inline in a sentence (RULES.md, HTML comments row).
@@ -198,4 +200,6 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[1.0.0]: https://github.com/modootoday/jekyll-theme-modootoday/tree/main
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0
+[1.0.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.0.0
