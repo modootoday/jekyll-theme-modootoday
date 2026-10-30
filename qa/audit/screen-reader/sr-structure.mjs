@@ -9,7 +9,8 @@ export async function checkStructure(page) {
     if (/^(ar|fa|he|ur)\b/.test(html.lang) && html.dir !== "rtl") out.push(`lang ${html.lang} without dir=rtl`);
     if (!document.title.trim()) out.push("empty <title>");
     if ($$("main").length !== 1) out.push(`main landmarks: ${$$("main").length}`);
-    for (const n of ["header"]) if (!$$(`body > ${n}, body > * > ${n}`).length && !$$(`[role=${n === "header" ? "banner" : "contentinfo"}]`).length) out.push(`no ${n} landmark`);
+    const headerless = $$("main.mt-shell-minimal, main.mt-mk-links").length > 0; // minimal, error and links layouts omit the site header by design
+    for (const n of headerless ? [] : ["header"]) if (!$$(`body > ${n}, body > * > ${n}`).length && !$$(`[role=${n === "header" ? "banner" : "contentinfo"}]`).length) out.push(`no ${n} landmark`);
     const navs = $$("nav,[role=navigation]");
     if (navs.length > 1) for (const n of navs) if (!n.getAttribute("aria-label") && !n.getAttribute("aria-labelledby")) out.push("unlabelled nav among several");
     const skip = document.querySelector("body a[href^='#']");
