@@ -19,7 +19,9 @@ for (const site of sites) {
   const page = await (await browser.newContext({ reducedMotion: "reduce" })).newPage();
   for (const f of pagesOf(site)) {
     const url = origin + "/" + f.replace(/index\.html$/, "");
-    const r = await page.goto(url, { waitUntil: "load" });
+    // a meta-refresh page left behind can interrupt this navigation once: wait for it to settle and retry
+    const go = () => page.goto(url, { waitUntil: "load" });
+    const r = await go().catch(async (e) => { if (!/interrupted/.test(e.message)) throw e; await page.waitForLoadState("load"); return go(); });
     if (!r || r.status() !== 200) continue;
     const html = await r.text().catch(() => null); // null: a meta-refresh page already navigated away
     if (html == null || /http-equiv="refresh"/i.test(html)) continue; // redirect pages navigate away mid-audit
