@@ -6,13 +6,13 @@ An item with `items:` (a list of {title, url}) is a group: a "More"-style <detai
 {%- if it.items %}
 {%- assign _cur = it.items | where: "url", page.url | first %}
 <li class="mt-nav-group"><details class="mt-menu"><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}{% include modootoday/brand/icon.html name="chevron-down" size=14 %}</summary><ul>
-{%- for sub in it.items %}<li><a href="{{ sub.url | relative_url }}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
+{%- for sub in it.items %}<li><a href="{% include modootoday/link.html url=sub.url %}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
 </ul></details></li>
 {%- for sub in it.items %}
-<li class="mt-nav-flat"><a href="{{ sub.url | relative_url }}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+<li class="mt-nav-flat"><a href="{% include modootoday/link.html url=sub.url %}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>
 {%- endfor %}
 {%- else %}
-<li><a href="{{ it.url | relative_url }}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}{% if it.url contains "://" %}{% include modootoday/brand/icon.html name="external" size=12 %}{% endif %}</a></li>
+<li><a href="{% include modootoday/link.html url=it.url %}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}{% if it.url contains "://" %}{% include modootoday/brand/icon.html name="external" size=12 %}{% endif %}</a></li>
 {%- endif %}
 {%- endfor %}
 </ul></nav>

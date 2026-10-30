@@ -10,7 +10,7 @@ Structured data: ProfilePage with a Person or Organization (profile: person | or
 {%- if page.image %}<img class="mt-mk-avatar" src="{{ page.image | relative_url }}" alt="" width="96" height="96">{% endif %}
 {%- include modootoday/marketing/head.html %}
 {%- if page.links %}
-<ul class="mt-mk-linklist" role="list">{% for l in page.links %}<li><a href="{{ l.url | relative_url }}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.label }}</a></li>{% endfor %}</ul>
+<ul class="mt-mk-linklist" role="list">{% for l in page.links %}<li><a href="{% include modootoday/link.html url=l.url %}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.label }}</a></li>{% endfor %}</ul>
 {%- endif %}
 <div class="mt-mk-body">
 {{ content }}

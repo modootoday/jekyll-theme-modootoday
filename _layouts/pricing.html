@@ -22,7 +22,7 @@ Plan cards reuse the pricing component sheet. With yearly prices a Monthly/Yearl
 <p class="mt-mk-price"><span class="mt-price-m"><strong>{{ _cur }}{{ p.monthly }}</strong>{% if p.yearly %} / {{ mt_t_layouts_monthly | downcase }}{% endif %}</span>{% if p.yearly %}<span class="mt-price-y"><strong>{{ _cur }}{{ p.yearly }}</strong> / {{ mt_t_layouts_yearly | downcase }}</span>{% endif %}</p>
 {%- if p.text %}<p>{{ p.text }}</p>{% endif %}
 {%- if p.features %}<ul>{% for f in p.features %}<li>{{ f }}</li>{% endfor %}</ul>{% endif %}
-{%- if p.cta.url %}<p class="mt-actions"><a href="{{ p.cta.url | relative_url }}"{% include modootoday/links/attrs.html on=p.cta.new_window target=p.cta.target url=p.cta.url %}>{{ p.cta.label }}<span class="mt-sr-only">: {{ p.name }}</span></a></p>{% endif %}
+{%- if p.cta.url %}<p class="mt-actions"><a href="{% include modootoday/link.html url=p.cta.url %}"{% include modootoday/links/attrs.html on=p.cta.new_window target=p.cta.target url=p.cta.url %}>{{ p.cta.label }}<span class="mt-sr-only">: {{ p.name }}</span></a></p>{% endif %}
 </div>{% endfor %}
 </div>
 </div>

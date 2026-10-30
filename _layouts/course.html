@@ -15,7 +15,7 @@ mt_main: mt-dx mt-dx-course
 {%- if page.modules %}
 <section aria-labelledby="mt-dx-syllabus"><h2 id="mt-dx-syllabus">{{ mt_t_layouts_lessons }}</h2>
 <ol class="mt-dx-syllabus">{% for m in page.modules %}<li><h3><span class="mt-dx-kicker">{{ mt_t_layouts_module | replace: "[n]", forloop.index }}</span> {{ m.title }}</h3>
-<ol>{% for l in m.lessons %}<li>{% if l.url %}<a href="{{ l.url | relative_url }}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.title }}</a>{% else %}{{ l.title }}{% endif %}{% if l.minutes %} <span class="mt-dx-time">{{ mt_t_layouts_minutes | replace: "[n]", l.minutes }}</span>{% endif %}</li>{% endfor %}</ol></li>{% endfor %}</ol>
+<ol>{% for l in m.lessons %}<li>{% if l.url %}<a href="{% include modootoday/link.html url=l.url %}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.title }}</a>{% else %}{{ l.title }}{% endif %}{% if l.minutes %} <span class="mt-dx-time">{{ mt_t_layouts_minutes | replace: "[n]", l.minutes }}</span>{% endif %}</li>{% endfor %}</ol></li>{% endfor %}</ol>
 </section>
 {%- endif %}
 </article>

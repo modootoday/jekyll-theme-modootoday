@@ -12,11 +12,11 @@ whose summary is the current group (or the label). include part=aside | mobile. 
 {%- for sub in it.items -%}{%- if sub.url == page.url -%}{%- assign _open = true -%}{%- endif -%}{%- assign _hit = sub.items | where: "url", page.url | first -%}{%- if _hit -%}{%- assign _open = true -%}{%- endif -%}{%- endfor -%}
 {%- if _open -%}{%- assign _sb_cur = it.title -%}{%- endif -%}
 <li class="mt-sidebar-group"><details{% if _open %} open{% endif %}><summary class="mt-sidebar-title">{{ it.title }}</summary><ul>
-{%- if it.url %}<li><a href="{{ it.url | relative_url }}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>{% endif -%}
+{%- if it.url %}<li><a href="{% include modootoday/link.html url=it.url %}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>{% endif -%}
 {%- for sub in it.items %}<li>{% include modootoday/doc/sidebar-item.html it=sub %}</li>{% endfor -%}
 </ul></details></li>
 {%- else -%}
-<li><a href="{{ it.url | relative_url }}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
+<li><a href="{% include modootoday/link.html url=it.url %}"{% include modootoday/links/attrs.html on=it.new_window target=it.target url=it.url %}{% if it.url == page.url %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
 {%- endif -%}
 {%- endfor -%}
 </ul>{%- endcapture -%}

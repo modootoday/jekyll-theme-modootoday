@@ -2,5 +2,5 @@
 <header class="mt-mk-head">
 <h1 id="mt-mk-title">{{ page.title }}</h1>
 {%- if page.description %}<p class="mt-mk-lead">{{ page.description }}</p>{% endif %}
-{%- if page.actions %}<p class="mt-mk-actions">{% for a in page.actions %}<a class="mt-mk-btn" href="{{ a.url | relative_url }}"{% include modootoday/links/attrs.html on=a.new_window target=a.target url=a.url %}>{{ a.label }}</a>{% endfor %}</p>{% endif %}
+{%- if page.actions %}<p class="mt-mk-actions">{% for a in page.actions %}<a class="mt-mk-btn" href="{% include modootoday/link.html url=a.url %}"{% include modootoday/links/attrs.html on=a.new_window target=a.target url=a.url %}>{{ a.label }}</a>{% endfor %}</p>{% endif %}
 </header>

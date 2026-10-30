@@ -8,7 +8,7 @@ Dates use the language's post date format; times print when the value has one.{%
 {%- if page.role %}<div><dt>{{ mt_t_layouts_role }}</dt><dd>{{ page.role }}</dd></div>{% endif -%}
 {%- if page.year %}<div><dt>{{ mt_t_layouts_year }}</dt><dd>{{ page.year }}</dd></div>{% endif -%}
 {%- if page.stack %}<div><dt>{{ mt_t_layouts_stack }}</dt><dd><ul class="mt-detail-tags">{% for _s in page.stack %}<li>{{ _s }}</li>{% endfor %}</ul></dd></div>{% endif -%}
-{%- if page.links %}<div><dt>{{ mt_t_layouts_links }}</dt><dd><ul class="mt-detail-links">{% for _l in page.links %}<li><a href="{{ _l.url | relative_url }}"{% include modootoday/links/attrs.html on=_l.new_window target=_l.target url=_l.url %}>{{ _l.label }}</a></li>{% endfor %}</ul></dd></div>{% endif -%}
+{%- if page.links %}<div><dt>{{ mt_t_layouts_links }}</dt><dd><ul class="mt-detail-links">{% for _l in page.links %}<li><a href="{% include modootoday/link.html url=_l.url %}"{% include modootoday/links/attrs.html on=_l.new_window target=_l.target url=_l.url %}>{{ _l.label }}</a></li>{% endfor %}</ul></dd></div>{% endif -%}
 {%- when "job" -%}
 {%- if page.location %}<div><dt>{{ mt_t_layouts_location }}</dt><dd>{{ page.location }}</dd></div>{% endif -%}
 {%- if page.employment %}<div><dt>{{ mt_t_layouts_employment }}</dt><dd>{{ page.employment }}</dd></div>{% endif -%}

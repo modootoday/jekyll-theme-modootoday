@@ -8,7 +8,7 @@ Structured data: CollectionPage whose hasPart lists the linked pages.{%- endcomm
 <article aria-labelledby="mt-dx-title">
 {%- include modootoday/docs-extra/head.html %}
 {%- if page.cards %}
-<ul class="mt-dx-cards" role="list">{% for c in page.cards %}<li><h2><a href="{{ c.url | relative_url }}"{% include modootoday/links/attrs.html on=c.new_window target=c.target url=c.url %}>{{ c.title }}</a></h2>{% if c.text %}<p>{{ c.text }}</p>{% endif %}</li>{% endfor %}</ul>
+<ul class="mt-dx-cards" role="list">{% for c in page.cards %}<li><h2><a href="{% include modootoday/link.html url=c.url %}"{% include modootoday/links/attrs.html on=c.new_window target=c.target url=c.url %}>{{ c.title }}</a></h2>{% if c.text %}<p>{{ c.text }}</p>{% endif %}</li>{% endfor %}</ul>
 {%- endif %}
 <div class="mt-dx-body">
 {{ content }}

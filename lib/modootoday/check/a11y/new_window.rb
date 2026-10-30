@@ -54,7 +54,7 @@ module Modootoday
             ctx.warns << "#{f}: new-window link without aria-describedby hint" unless a.include?("aria-describedby")
           end
           next unless t.include?('name="robots" content="noindex"') && !t.include?('http-equiv="refresh"')
-          t.scan(/<main\b.*<\/main>/m).join.scan(/<a\b[^>]*\bhref="([^"]*)"/) do |(h)|
+          t.scan(/<main\b.*<\/main>/m).join.gsub(%r{<nav[^>]*breadcrumb.*?</nav>}m, "").scan(/<a\b[^>]*\bhref="([^"]*)"/) do |(h)|
             ctx.warns << "#{f}: demo link #{h} resolves to the site root; write \"#\" for a sample link" if h =~ %r{\A(/[\w.-]+)?/#?\z}
           end
         end

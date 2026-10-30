@@ -3,7 +3,7 @@
   site.modootoday.external_links.new_window, external links (not starting with site.url) open in a new window too.{%- endcomment -%}
 {%- assign _hash = "#" | relative_url | prepend: 'href="' | append: '"' -%}
 {%- assign _nwa = ' target="_blank" rel="noopener noreferrer" data-mt-new-window aria-describedby="mt-new-window-hint"' -%}
-{%- assign _h = include.html | replace: _hash, 'href="#"' -%}
+{%- assign _h = include.html -%}{%- if _hash contains "#" -%}{%- assign _h = _h | replace: _hash, 'href="#"' -%}{%- endif -%}
 {%- assign _nwc = _nwa | prepend: 'class="mt-new-window"' -%}{%- assign _nwt = _nwa | append: ">" -%}
 {%- if _h contains 'target="_blank">' -%}{%- assign _h = _h | replace: ' target="_blank">', _nwt -%}{%- endif -%}
 {%- if _h contains ' title="new-window"' -%}{%- assign _h = _h | replace: ' title="new-window"', _nwa -%}{%- endif -%}

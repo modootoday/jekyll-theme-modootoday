@@ -12,7 +12,7 @@ section with an h2 and a list; the body follows. Items in another status are lef
 {%- for s in _st %}{% assign _it = page.items | where: "status", s %}{% assign _l = "layouts." | append: s %}
 <section class="mt-dx-col mt-dx-col-{{ s }}" aria-labelledby="mt-dx-{{ s }}">
 <h2 id="mt-dx-{{ s }}">{% include modootoday/t.html key=_l %} <span class="mt-dx-count">{{ _it.size }}</span></h2>
-<ul role="list">{% for i in _it %}<li><h3>{% if i.url %}<a href="{{ i.url | relative_url }}"{% include modootoday/links/attrs.html on=i.new_window target=i.target url=i.url %}>{{ i.title }}</a>{% else %}{{ i.title }}{% endif %}</h3>{% if i.text %}<p>{{ i.text }}</p>{% endif %}</li>{% endfor %}</ul>
+<ul role="list">{% for i in _it %}<li><h3>{% if i.url %}<a href="{% include modootoday/link.html url=i.url %}"{% include modootoday/links/attrs.html on=i.new_window target=i.target url=i.url %}>{{ i.title }}</a>{% else %}{{ i.title }}{% endif %}</h3>{% if i.text %}<p>{{ i.text }}</p>{% endif %}</li>{% endfor %}</ul>
 </section>
 {%- endfor %}
 </div>

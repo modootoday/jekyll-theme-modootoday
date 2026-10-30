@@ -14,7 +14,7 @@ release (h2 with the version, its date) with a list per category (Keep a Changel
 </div>
 {%- for r in page.releases %}{% assign _id = r.version | prepend: "v" | slugify %}
 <section class="mt-dx-release" id="{{ _id }}" aria-labelledby="{{ _id }}-h">
-<h2 id="{{ _id }}-h">{% if r.url %}<a href="{{ r.url | relative_url }}"{% include modootoday/links/attrs.html on=r.new_window target=r.target url=r.url %}>{{ r.version }}</a>{% else %}{{ r.version }}{% endif %}{% if r.date %} <time datetime="{{ r.date | date: '%Y-%m-%d' }}">{{ r.date | date: _df }}</time>{% endif %}</h2>
+<h2 id="{{ _id }}-h">{% if r.url %}<a href="{% include modootoday/link.html url=r.url %}"{% include modootoday/links/attrs.html on=r.new_window target=r.target url=r.url %}>{{ r.version }}</a>{% else %}{{ r.version }}{% endif %}{% if r.date %} <time datetime="{{ r.date | date: '%Y-%m-%d' }}">{{ r.date | date: _df }}</time>{% endif %}</h2>
 {%- for c in _cats %}{% if r[c] %}{% assign _l = "layouts." | append: c %}{% capture _cl %}{% include modootoday/t.html key=_l %}{% endcapture %}
 <h3 class="mt-dx-cat mt-dx-cat-{{ c }}">{{ _cl | strip }}</h3>
 <ul>{% for i in r[c] %}<li>{{ i | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>{% endfor %}</ul>
