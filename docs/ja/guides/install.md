@@ -32,7 +32,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.1"
+gem "jekyll-theme-modootoday", "~> 1.2"
 ```
 
 ### github-pages gem

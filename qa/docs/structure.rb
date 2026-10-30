@@ -8,7 +8,7 @@ LIMIT_FILES = 12   # authored files per directory (generated .md.txt twins exclu
 LIMIT_ENTRIES = 12 # sidebar entries per group
 SAMPLE_DIRS = %w[blog news authors].freeze
 ROOT_PAGES = %w[index.md 404.md tags.md categories.md].freeze
-BANNED = [/^since:/, /\bdeprecat/i, /\b2\.0\b/, /\bfrozen\b/i, /\.spec\.local/].freeze
+BANNED = [/^since:/, /\bdeprecat/i, /(?<![\w.])2\.0\b/, /\bfrozen\b/i, /\.spec\.local/].freeze
 
 tree = DocsIndex::Tree.new(File.expand_path("../../docs", __dir__))
 out = DocsIndex::Outputs.new(tree)

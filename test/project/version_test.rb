@@ -32,4 +32,11 @@ class VersionTest < Minitest::Test
       refute_match(/v0\.\d\.\d|~> 0\.\d/, t, "#{f}: unreleased 0.x version")
     end
   end
+
+  # qa/docs/structure.rb bans "2.0" in user docs, but not inside a longer version or name such as v1.2.0 or v2.0+ (same word boundary as before).
+  def test_banned_two_point_oh_skips_version_numbers
+    re = eval(read("qa/docs/structure.rb")[/^BANNED = (\[.*\])\.freeze$/, 1]).find { |r| r.source.include?("2\\.0") }
+    %w[2.0 (2.0) 2.0.1].each { |t| assert_match re, "see #{t} here", t }
+    %w[@v1.2.0 1.2.0 12.0 v3.2.0 v2.0+].each { |t| refute_match re, "see #{t} here", t }
+  end
 end

@@ -33,7 +33,7 @@ plugins: [jekyll-remote-theme]
 ### Gemfile
 
 ```ruby
-gem "jekyll-theme-modootoday", "~> 1.1"
+gem "jekyll-theme-modootoday", "~> 1.2"
 ```
 
 ### _config.yml
