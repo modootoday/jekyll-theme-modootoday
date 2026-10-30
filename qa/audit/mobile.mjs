@@ -10,7 +10,7 @@ export const VIEWS = [
   ["390", devices["iPhone 14"]], ["390-landscape", devices["iPhone 14 landscape"]],
   ["768", devices["iPad Mini"]], ["768-landscape", devices["iPad Mini landscape"]],
 ];
-const MOBILE_PAGES = ["", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "ko/install/"];
+const MOBILE_PAGES = ["", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "ko/guides/install/"];
 const INSETS = { top: 47, right: 44, bottom: 34, left: 44 };
 const insetCss = `:root{--mt-safe-top:${INSETS.top}px;--mt-safe-right:${INSETS.right}px;--mt-safe-bottom:${INSETS.bottom}px;--mt-safe-left:${INSETS.left}px}`;
 

@@ -90,12 +90,12 @@ export async function checkKeyboard(browser, origin, fails) {
   const ctx = await browser.newContext({ viewport: { width: 1024, height: 900 } });
   const page = await ctx.newPage();
   const before = fails.length;
-  for (const p of ["", "components/kitchen-sink/", "ko/install/"]) await tabWalk(page, origin + p, fails);
-  await skipLink(page, origin + "install/", fails);
-  await langMenu(page, origin + "install/", fails);
-  await tabsKeys(page, origin + "install/", fails, false);
+  for (const p of ["", "components/kitchen-sink/", "ko/guides/install/"]) await tabWalk(page, origin + p, fails);
+  await skipLink(page, origin + "guides/install/", fails);
+  await langMenu(page, origin + "guides/install/", fails);
+  await tabsKeys(page, origin + "guides/install/", fails, false);
   await tabsKeys(page, origin + "components/kitchen-sink-rtl/", fails, true);
-  await search(page, origin + "install/", fails);
+  await search(page, origin + "guides/install/", fails);
   await scrollRegions(page, origin + "components/kitchen-sink/", fails);
   await ctx.close();
   return { flows: 9, fails: fails.length - before };

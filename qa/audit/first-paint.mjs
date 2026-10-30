@@ -24,7 +24,7 @@ async function run(browser, origin, scheme, stored, viewport, fails) {
   if (stored) await page.addInitScript((t) => { try { localStorage.setItem("mt-theme", t); } catch (e) {} }, stored);
   await page.addInitScript(probe);
   await cdp.send("Network.enable"); await cdp.send("Network.emulateNetworkConditions", NET);
-  await page.goto(origin + "install/", { waitUntil: "load" });
+  await page.goto(origin + "guides/install/", { waitUntil: "load" });
   const frames = [];
   cdp.on("Page.screencastFrame", (f) => { frames.push(f.data); cdp.send("Page.screencastFrameAck", { sessionId: f.sessionId }).catch(() => {}); });
   const before = (await page.screenshot()).toString("base64");
