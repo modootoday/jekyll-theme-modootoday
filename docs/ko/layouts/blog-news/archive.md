@@ -7,7 +7,8 @@ twin: false
 sitemap: false
 search: false
 noindex: true
-nav_exclude: true
+nav_title: "아카이브 데모"
+nav_order: 5
 edit: false
 sidebar: false
 sections: []

@@ -45,7 +45,14 @@
         - {title: Brand demo, url: /layouts/marketing/brand/}
         - {title: Links demo, url: /layouts/marketing/links/}
         - {title: Contact demo, url: /layouts/marketing/contact/}
-    - {title: Blog and news, url: /layouts/blog-news/}
+    - title: Blog and news
+      url: /layouts/blog-news/
+      items:
+        - {title: Blog demo, url: /layouts/blog-news/blog/}
+        - {title: Post demo, url: /layouts/blog-news/post/}
+        - {title: News demo, url: /layouts/blog-news/news/}
+        - {title: News article demo, url: /layouts/blog-news/article/}
+        - {title: Archive demo, url: /layouts/blog-news/archive/}
     - title: Docs extras
       url: /layouts/docs-extra/
       items:

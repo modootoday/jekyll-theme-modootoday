@@ -8,7 +8,8 @@ twin: false
 sitemap: false
 search: false
 noindex: true
-nav_exclude: true
+nav_title: "뉴스 기사 데모"
+nav_order: 4
 edit: false
 sidebar: false
 date: "2026-10-29 14:30:00 +0900"

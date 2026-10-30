@@ -45,7 +45,14 @@
         - {title: 브랜드 데모, url: /ko/layouts/marketing/brand/}
         - {title: 링크 데모, url: /ko/layouts/marketing/links/}
         - {title: 문의 데모, url: /ko/layouts/marketing/contact/}
-    - {title: 블로그와 뉴스, url: /ko/layouts/blog-news/}
+    - title: 블로그와 뉴스
+      url: /ko/layouts/blog-news/
+      items:
+        - {title: 블로그 데모, url: /ko/layouts/blog-news/blog/}
+        - {title: 블로그 글 데모, url: /ko/layouts/blog-news/post/}
+        - {title: 뉴스 데모, url: /ko/layouts/blog-news/news/}
+        - {title: 뉴스 기사 데모, url: /ko/layouts/blog-news/article/}
+        - {title: 아카이브 데모, url: /ko/layouts/blog-news/archive/}
     - title: 문서 확장
       url: /ko/layouts/docs-extra/
       items:

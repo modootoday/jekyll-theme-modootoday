@@ -6,7 +6,8 @@ twin: false
 sitemap: false
 search: false
 noindex: true
-nav_exclude: true
+nav_title: "Blog demo"
+nav_order: 1
 edit: false
 sections: []
 variant: magazine

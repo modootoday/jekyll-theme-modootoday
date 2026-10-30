@@ -6,7 +6,8 @@ twin: false
 sitemap: false
 search: false
 noindex: true
-nav_exclude: true
+nav_title: "News demo"
+nav_order: 3
 edit: false
 sections: []
 news_sections: [releases, guides]

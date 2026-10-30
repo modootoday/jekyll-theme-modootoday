@@ -8,7 +8,8 @@ twin: false
 sitemap: false
 search: false
 noindex: true
-nav_exclude: true
+nav_title: "ブログ記事デモ"
+nav_order: 2
 edit: false
 sidebar: false
 date: "2026-10-20 09:00:00 +0900"

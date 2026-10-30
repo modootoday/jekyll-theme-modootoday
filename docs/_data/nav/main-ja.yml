@@ -45,7 +45,14 @@
         - {title: ブランドのデモ, url: /ja/layouts/marketing/brand/}
         - {title: リンクのデモ, url: /ja/layouts/marketing/links/}
         - {title: お問い合わせのデモ, url: /ja/layouts/marketing/contact/}
-    - {title: ブログとニュース, url: /ja/layouts/blog-news/}
+    - title: ブログとニュース
+      url: /ja/layouts/blog-news/
+      items:
+        - {title: ブログデモ, url: /ja/layouts/blog-news/blog/}
+        - {title: ブログ記事デモ, url: /ja/layouts/blog-news/post/}
+        - {title: ニュースデモ, url: /ja/layouts/blog-news/news/}
+        - {title: ニュース記事デモ, url: /ja/layouts/blog-news/article/}
+        - {title: アーカイブデモ, url: /ja/layouts/blog-news/archive/}
     - title: ドキュメント拡張
       url: /ja/layouts/docs-extra/
       items:
