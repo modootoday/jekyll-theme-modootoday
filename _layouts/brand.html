@@ -13,7 +13,7 @@ mt_main: mt-mk mt-mk-brand
 {%- endif %}
 {%- if page.assets %}
 <section aria-labelledby="mt-brand-assets"><h2 id="mt-brand-assets">{{ mt_t_layouts_assets }}</h2>
-<ul class="mt-mk-files" role="list">{% for a in page.assets %}<li><a href="{{ a.url | relative_url }}" download>{{ a.label }}</a>{% if a.format %} <span>{{ a.format }}</span>{% endif %}</li>{% endfor %}</ul></section>
+<ul class="mt-mk-files" role="list">{% for a in page.assets %}<li><a href="{{ a.url | relative_url }}"{% include modootoday/links/attrs.html on=a.new_window target=a.target url=a.url %} download>{{ a.label }}</a>{% if a.format %} <span>{{ a.format }}</span>{% endif %}</li>{% endfor %}</ul></section>
 {%- endif %}
 <div class="mt-mk-body">
 {{ content }}

@@ -2,6 +2,7 @@
 language: 日本語
 direction: ltr
 skip: 本文へ移動
+new_window: {hint: "新しいウィンドウで開きます", open: "新しいウィンドウで開く"}
 callout: {note: メモ, tip: ヒント, important: 重要, warning: 警告, caution: 注意}
 status: {available: 利用可能, partial: 一部実装, planned: 予定}
 task: {done: 完了, open: 未着手}
@@ -21,6 +22,7 @@ languages: {label: 言語}
 post: {date_format: "%Y年%-m月%-d日", author: 著者について, related: 関連記事, share: 共有}
 fallback: {notice: このページはまだ翻訳されていないため、英語で表示しています。}
 archive:
+  years: "年別"
   tags: "タグ"
   categories: "カテゴリー"
   posts: "件の記事"

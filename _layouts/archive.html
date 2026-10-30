@@ -1,6 +1,6 @@
 ---
 layout: doc
 ---
-{%- comment -%}md-components v1 — archive layout: page body, then the tag or category archive (front matter archive: tags | categories; default tags).{%- endcomment -%}
+{%- comment -%}md-components v1 — archive layout: page body, then the tag or category archive (front matter archive: tags | categories | years; default tags).{%- endcomment -%}
 {{ content }}
-{% include modootoday/archive.html by=page.archive lang=page.archive_lang %}
+{% if page.archive == "years" %}{% include modootoday/archive-years.html lang=page.archive_lang %}{% else %}{% include modootoday/archive.html by=page.archive lang=page.archive_lang %}{% endif %}

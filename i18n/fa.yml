@@ -2,6 +2,7 @@
 language: فارسی
 direction: rtl
 skip: رفتن به محتوا
+new_window: {hint: "در پنجرهٔ جدید باز می‌شود", open: "باز کردن در پنجرهٔ جدید"}
 callout: {note: یادداشت, tip: نکته, important: مهم, warning: هشدار, caution: احتیاط}
 status: {available: در دسترس, partial: بخشی, planned: برنامه‌ریزی‌شده}
 task: {done: انجام‌شده, open: انجام‌نشده}
@@ -21,6 +22,7 @@ languages: {label: زبان‌ها}
 post: {date_format: "%Y-%m-%d", author: درباره نویسنده, related: نوشته‌های مرتبط, share: هم‌رسانی}
 fallback: {notice: این صفحه هنوز ترجمه نشده و به انگلیسی نمایش داده می‌شود.}
 archive:
+  years: "سال‌ها"
   tags: "برچسب‌ها"
   categories: "دسته‌ها"
   posts: "نوشته"

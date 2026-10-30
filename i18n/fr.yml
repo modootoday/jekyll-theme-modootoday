@@ -2,6 +2,7 @@
 language: Français
 direction: ltr
 skip: Aller au contenu
+new_window: {hint: "s’ouvre dans une nouvelle fenêtre", open: "Ouvrir dans une nouvelle fenêtre"}
 callout: {note: Remarque, tip: Astuce, important: Important, warning: Avertissement, caution: Attention}
 status: {available: Disponible, partial: Partiel, planned: Prévu}
 task: {done: Terminé, open: À faire}
@@ -21,6 +22,7 @@ languages: {label: Langues}
 post: {date_format: "%d/%m/%Y", author: À propos de l’auteur, related: Articles liés, share: Partager}
 fallback: {notice: Cette page n’est pas encore traduite ; elle s’affiche donc en anglais.}
 archive:
+  years: "Années"
   tags: "Étiquettes"
   categories: "Catégories"
   posts: "articles"

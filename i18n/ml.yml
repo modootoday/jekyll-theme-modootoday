@@ -2,6 +2,7 @@
 language: മലയാളം
 direction: ltr
 skip: ഉള്ളടക്കത്തിലേക്ക് പോകുക
+new_window: {hint: "പുതിയ വിൻഡോയിൽ തുറക്കുന്നു", open: "പുതിയ വിൻഡോയിൽ തുറക്കുക"}
 callout: {note: കുറിപ്പ്, tip: നുറുങ്ങ്, important: പ്രധാനം, warning: മുന്നറിയിപ്പ്, caution: ജാഗ്രത}
 status: {available: ലഭ്യമാണ്, partial: ഭാഗികം, planned: ആസൂത്രണത്തിൽ}
 task: {done: പൂർത്തിയായി, open: ബാക്കി}
@@ -21,6 +22,7 @@ languages: {label: ഭാഷകൾ}
 post: {date_format: "%d-%m-%Y", author: ലേഖകനെക്കുറിച്ച്, related: ബന്ധപ്പെട്ട പോസ്റ്റുകൾ, share: പങ്കിടുക}
 fallback: {notice: "ഈ പേജ് ഇതുവരെ വിവർത്തനം ചെയ്തിട്ടില്ല, അതിനാൽ ഇംഗ്ലീഷിൽ കാണിക്കുന്നു."}
 archive:
+  years: "വർഷങ്ങൾ"
   tags: "ടാഗുകൾ"
   categories: "വിഭാഗങ്ങൾ"
   posts: "പോസ്റ്റുകൾ"

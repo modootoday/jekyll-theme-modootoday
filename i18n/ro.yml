@@ -2,6 +2,7 @@
 language: Română
 direction: ltr
 skip: Salt la conținut
+new_window: {hint: "se deschide într-o fereastră nouă", open: "Deschide într-o fereastră nouă"}
 callout: {note: Notă, tip: Sfat, important: Important, warning: Avertisment, caution: Atenție}
 status: {available: Disponibil, partial: Parțial, planned: Planificat}
 task: {done: Gata, open: De făcut}
@@ -21,6 +22,7 @@ languages: {label: Limbi}
 post: {date_format: "%d.%m.%Y", author: Despre autor, related: Articole similare, share: Distribuie}
 fallback: {notice: "Această pagină nu a fost încă tradusă, așa că este afișată în engleză."}
 archive:
+  years: "Ani"
   tags: "Etichete"
   categories: "Categorii"
   posts: "articole"

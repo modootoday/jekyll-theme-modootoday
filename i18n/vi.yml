@@ -2,6 +2,7 @@
 language: Tiếng Việt
 direction: ltr
 skip: Chuyển đến nội dung
+new_window: {hint: "mở trong cửa sổ mới", open: "Mở trong cửa sổ mới"}
 callout: {note: Ghi chú, tip: Mẹo, important: Quan trọng, warning: Cảnh báo, caution: Thận trọng}
 status: {available: Đã có, partial: Một phần, planned: Dự kiến}
 task: {done: Xong, open: Chưa xong}
@@ -21,6 +22,7 @@ languages: {label: Ngôn ngữ}
 post: {date_format: "%d/%m/%Y", author: Về tác giả, related: Bài viết liên quan, share: Chia sẻ}
 fallback: {notice: Trang này chưa được dịch nên đang hiển thị bằng tiếng Anh.}
 archive:
+  years: "Năm"
   tags: "Thẻ"
   categories: "Chuyên mục"
   posts: "bài viết"

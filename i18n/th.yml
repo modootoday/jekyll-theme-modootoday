@@ -2,6 +2,7 @@
 language: ไทย
 direction: ltr
 skip: ข้ามไปยังเนื้อหา
+new_window: {hint: "เปิดในหน้าต่างใหม่", open: "เปิดในหน้าต่างใหม่"}
 callout: {note: หมายเหตุ, tip: เคล็ดลับ, important: สำคัญ, warning: คำเตือน, caution: ข้อควรระวัง}
 status: {available: ใช้งานได้, partial: รองรับบางส่วน, planned: วางแผนไว้}
 task: {done: เสร็จแล้ว, open: ยังไม่เสร็จ}
@@ -21,6 +22,7 @@ languages: {label: ภาษา}
 post: {date_format: "%d/%m/%Y", author: เกี่ยวกับผู้เขียน, related: บทความที่เกี่ยวข้อง, share: แชร์}
 fallback: {notice: หน้านี้ยังไม่ได้แปล จึงแสดงเป็นภาษาอังกฤษ}
 archive:
+  years: "ปี"
   tags: "แท็ก"
   categories: "หมวดหมู่"
   posts: "โพสต์"

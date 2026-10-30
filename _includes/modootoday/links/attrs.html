@@ -1,0 +1,9 @@
+{%- comment -%}Link attributes for opening in a new window. on=true (an item's new_window or target: _blank), or url= an external URL
+  while site.modootoday.external_links.new_window is true. Adds target, rel="noopener noreferrer", data-mt-new-window and
+  aria-describedby="mt-new-window-hint" (the localized hint printed once by the default layout).{%- endcomment -%}
+{%- assign _nwo = include.on -%}{%- if include.target == "_blank" -%}{%- assign _nwo = true -%}{%- endif -%}
+{%- if include.on == false -%}{%- assign _nwo = false -%}
+{%- elsif _nwo != true and site.modootoday.external_links.new_window and include.url contains "://" -%}
+{%- assign _nwh = site.url | default: "::none::" -%}{%- unless include.url contains _nwh -%}{%- assign _nwo = true -%}{%- endunless -%}
+{%- endif -%}
+{%- if _nwo == true %} target="_blank" rel="noopener noreferrer" data-mt-new-window aria-describedby="mt-new-window-hint"{% endif -%}

@@ -2,6 +2,7 @@
 language: Português (Brasil)
 direction: ltr
 skip: Pular para o conteúdo
+new_window: {hint: "abre em uma nova janela", open: "Abrir em uma nova janela"}
 callout: {note: Observação, tip: Dica, important: Importante, warning: Aviso, caution: Cuidado}
 status: {available: Disponível, partial: Parcial, planned: Planejado}
 task: {done: Concluído, open: Pendente}
@@ -21,6 +22,7 @@ languages: {label: Idiomas}
 post: {date_format: "%d/%m/%Y", author: Sobre o autor, related: Posts relacionados, share: Compartilhar}
 fallback: {notice: "Esta página ainda não foi traduzida, por isso aparece em inglês."}
 archive:
+  years: "Anos"
   tags: "Tags"
   categories: "Categorias"
   posts: "posts"

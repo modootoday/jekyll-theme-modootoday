@@ -1,2 +1,2 @@
 {%- comment -%}URL for include.url: full URLs as they are, site paths through relative_url (absolute=true: absolute_url).{%- endcomment -%}
-{%- if include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}
+{%- if include.url == "#" or include.url contains "://" or include.url contains "mailto:" or include.url contains "tel:" -%}{{ include.url }}{%- elsif include.absolute -%}{{ include.url | absolute_url }}{%- else -%}{{ include.url | relative_url }}{%- endif -%}

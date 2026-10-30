@@ -1,0 +1,15 @@
+{%- comment -%}Filters rendered page content (include.html): bare "#" sample links stay "#" instead of baseurl + "/#";
+  Markdown links with {: .mt-new-window} or target="_blank" get rel, the data hook and the hint; with
+  site.modootoday.external_links.new_window, external links (not starting with site.url) open in a new window too.{%- endcomment -%}
+{%- assign _hash = "#" | relative_url | prepend: 'href="' | append: '"' -%}
+{%- assign _nwa = ' target="_blank" rel="noopener noreferrer" data-mt-new-window aria-describedby="mt-new-window-hint"' -%}
+{%- assign _h = include.html | replace: _hash, 'href="#"' -%}
+{%- assign _nwc = _nwa | prepend: 'class="mt-new-window"' -%}{%- assign _nwt = _nwa | append: ">" -%}
+{%- if _h contains 'target="_blank">' -%}{%- assign _h = _h | replace: ' target="_blank">', _nwt -%}{%- endif -%}
+{%- if _h contains 'class="mt-new-window">' -%}{%- assign _h = _h | replace: 'class="mt-new-window">', _nwc | append: ">" -%}{%- endif -%}
+{%- if site.modootoday.external_links.new_window -%}
+{%- assign _ext = _nwa | prepend: "<a" | append: ' href="http' -%}
+{%- assign _h = _h | replace: '<a href="http', _ext -%}
+{%- if site.url -%}{%- assign _own = _nwa | prepend: "<a" | append: ' href="' | append: site.url -%}{%- assign _ownr = '<a href="' | append: site.url -%}{%- assign _h = _h | replace: _own, _ownr -%}{%- endif -%}
+{%- endif -%}
+{{ _h }}

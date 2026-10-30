@@ -2,6 +2,7 @@
 language: Türkçe
 direction: ltr
 skip: İçeriğe geç
+new_window: {hint: "yeni pencerede açılır", open: "Yeni pencerede aç"}
 callout: {note: Not, tip: İpucu, important: Önemli, warning: Uyarı, caution: Dikkat}
 status: {available: Kullanılabilir, partial: Kısmen, planned: Planlandı}
 task: {done: Tamamlandı, open: Açık}
@@ -21,6 +22,7 @@ languages: {label: Diller}
 post: {date_format: "%d.%m.%Y", author: Yazar hakkında, related: İlgili yazılar, share: Paylaş}
 fallback: {notice: Bu sayfa henüz çevrilmedi; İngilizce aslını görüyorsunuz.}
 archive:
+  years: "Yıllar"
   tags: "Etiketler"
   categories: "Kategoriler"
   posts: "yazı"

@@ -4,7 +4,7 @@
 {%- if _p == "events" and _it.date %}{% include modootoday/directory/date-tile.html date=_it.date %}{% endif %}
 {%- if _it.image %}<img class="mt-dir-img" src="{% include modootoday/link.html url=_it.image %}" alt="{{ _it.alt | default: '' }}" loading="lazy" decoding="async">{% endif %}
 <div class="mt-dir-body">
-<h2 class="mt-dir-title">{% if _it.url %}<a href="{% include modootoday/link.html url=_it.url %}">{{ _name }}</a>{% else %}{{ _name }}{% endif %}</h2>
+<h2 class="mt-dir-title">{% if _it.url %}<a href="{% include modootoday/link.html url=_it.url %}"{% include modootoday/links/attrs.html on=_it.new_window target=_it.target url=_it.url %}>{{ _name }}</a>{% else %}{{ _name }}{% endif %}</h2>
 {%- assign _meta = _it.role | default: _it.subtitle -%}
 {%- if _p == "jobs" %}{% assign _meta = _it.location %}{% if _it.type %}{% if _meta %}{% assign _meta = _meta | append: " · " | append: _it.type %}{% else %}{% assign _meta = _it.type %}{% endif %}{% endif %}{% endif %}
 {%- if _p == "events" %}{% assign _meta = _it.location %}{% endif %}

@@ -4,7 +4,7 @@
 {%- endif -%}
 {%- if page.sources.size > 0 %}
 <section class="mt-news-sources" data-part="sources"><h2>{{ mt_t_blog_sources }}</h2><ul>
-{%- for _s in page.sources %}<li>{% if _s.url %}<a href="{{ _s.url }}">{{ _s.title | default: _s.url }}</a>{% else %}{{ _s }}{% endif %}</li>{% endfor -%}
+{%- for _s in page.sources %}<li>{% if _s.url %}<a href="{{ _s.url }}"{% include modootoday/links/attrs.html on=_s.new_window target=_s.target url=_s.url %}>{{ _s.title | default: _s.url }}</a>{% else %}{{ _s }}{% endif %}</li>{% endfor -%}
 </ul></section>
 {%- endif -%}
 {%- if page.credits %}<p class="mt-news-credits" data-part="credits">{{ page.credits }}</p>{% endif -%}

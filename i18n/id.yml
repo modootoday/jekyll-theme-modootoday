@@ -2,6 +2,7 @@
 language: Bahasa Indonesia
 direction: ltr
 skip: Langsung ke konten
+new_window: {hint: "terbuka di jendela baru", open: "Buka di jendela baru"}
 callout: {note: Catatan, tip: Kiat, important: Penting, warning: Peringatan, caution: Perhatian}
 status: {available: Tersedia, partial: Sebagian, planned: Direncanakan}
 task: {done: Selesai, open: Belum selesai}
@@ -21,6 +22,7 @@ languages: {label: Bahasa}
 post: {date_format: "%d/%m/%Y", author: Tentang penulis, related: Tulisan terkait, share: Bagikan}
 fallback: {notice: "Halaman ini belum diterjemahkan, jadi ditampilkan dalam bahasa Inggris."}
 archive:
+  years: "Tahun"
   tags: "Tag"
   categories: "Kategori"
   posts: "tulisan"

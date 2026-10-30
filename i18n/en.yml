@@ -3,6 +3,7 @@
 language: English
 direction: ltr
 skip: Skip to content
+new_window: {hint: "opens in a new window", open: "Open in new window"}
 callout: {note: Note, tip: Tip, important: Important, warning: Warning, caution: Caution}
 status: {available: Available, partial: Partial, planned: Planned}
 task: {done: Done, open: Open}
@@ -22,6 +23,7 @@ languages: {label: Languages}
 post: {date_format: "%Y-%m-%d", author: About the author, related: Related posts, share: Share}
 fallback: {notice: "This page is not translated yet, so it is shown in English."}
 archive:
+  years: "Years"
   tags: "Tags"
   categories: "Categories"
   posts: "posts"

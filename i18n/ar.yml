@@ -2,6 +2,7 @@
 language: العربية
 direction: rtl
 skip: انتقل إلى المحتوى
+new_window: {hint: "يفتح في نافذة جديدة", open: "افتح في نافذة جديدة"}
 callout: {note: ملاحظة, tip: نصيحة, important: مهم, warning: تحذير, caution: تنبيه}
 status: {available: متاح, partial: جزئي, planned: مخطط له}
 task: {done: مكتمل, open: غير مكتمل}
@@ -21,6 +22,7 @@ languages: {label: اللغات}
 post: {date_format: "%Y-%m-%d", author: عن الكاتب, related: مقالات ذات صلة, share: مشاركة}
 fallback: {notice: لم تُترجم هذه الصفحة بعد، لذا تُعرض باللغة الإنجليزية.}
 archive:
+  years: "السنوات"
   tags: "الوسوم"
   categories: "التصنيفات"
   posts: "منشورات"

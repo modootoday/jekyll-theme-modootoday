@@ -2,6 +2,7 @@
 language: Roman Urdu
 direction: ltr
 skip: Mawaad par jayen
+new_window: {hint: "nayi window mein khulta hai", open: "Nayi window mein kholein"}
 callout: {note: Note, tip: Mashwara, important: Ahem, warning: Khabardar, caution: Ehtiyat}
 status: {available: Dastiyab, partial: Juzvi, planned: Mansooba}
 task: {done: Mukammal, open: Baqi}
@@ -21,6 +22,7 @@ languages: {label: Zabanein}
 post: {date_format: "%d-%m-%Y", author: Musannif ke baare mein, related: Mutaalliqa posts, share: Share karein}
 fallback: {notice: "Yeh safha abhi tarjuma nahin hua, is liye English mein dikhaya ja raha hai."}
 archive:
+  years: "Saal"
   tags: "Tags"
   categories: "Categories"
   posts: "posts"

@@ -3,9 +3,9 @@
 {%- if _si.items -%}
 {%- assign _sh = _si.items | where: "url", page.url | first -%}
 <details{% if _sh or _si.url == page.url %} open{% endif %}><summary>{{ _si.title }}</summary><ul>
-{%- if _si.url %}<li><a href="{{ _si.url | relative_url }}"{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a></li>{% endif -%}
-{%- for _ss in _si.items %}<li><a href="{{ _ss.url | relative_url }}"{% if _ss.url == page.url %} aria-current="page"{% endif %}>{{ _ss.title }}</a></li>{% endfor -%}
+{%- if _si.url %}<li><a href="{{ _si.url | relative_url }}"{% include modootoday/links/attrs.html on=_si.new_window target=_si.target url=_si.url %}{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a></li>{% endif -%}
+{%- for _ss in _si.items %}<li><a href="{{ _ss.url | relative_url }}"{% include modootoday/links/attrs.html on=_ss.new_window target=_ss.target url=_ss.url %}{% if _ss.url == page.url %} aria-current="page"{% endif %}>{{ _ss.title }}</a></li>{% endfor -%}
 </ul></details>
 {%- else -%}
-<a href="{{ _si.url | relative_url }}"{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a>
+<a href="{{ _si.url | relative_url }}"{% include modootoday/links/attrs.html on=_si.new_window target=_si.target url=_si.url %}{% if _si.url == page.url %} aria-current="page"{% endif %}>{{ _si.title }}</a>
 {%- endif -%}

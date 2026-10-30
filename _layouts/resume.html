@@ -16,7 +16,7 @@ skills: [{group, items}]. Structured data: ProfilePage whose Person has jobTitle
 {%- if page.email %}<li><a class="u-email" href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}
 {%- if page.phone %}<li><a class="p-tel" href="tel:{{ page.phone | remove: ' ' }}">{{ page.phone }}</a></li>{% endif %}
 {%- if page.location %}<li class="p-locality">{{ page.location }}</li>{% endif %}
-{%- for l in page.links %}<li><a class="u-url" href="{{ l.url | relative_url }}">{{ l.label }}</a></li>{% endfor %}
+{%- for l in page.links %}<li><a class="u-url" href="{{ l.url | relative_url }}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.label }}</a></li>{% endfor %}
 </ul>
 </header>
 <div class="mt-cv-summary p-note">

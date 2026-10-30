@@ -2,6 +2,7 @@
 language: Ελληνικά
 direction: ltr
 skip: Μετάβαση στο περιεχόμενο
+new_window: {hint: "ανοίγει σε νέο παράθυρο", open: "Άνοιγμα σε νέο παράθυρο"}
 callout: {note: Σημείωση, tip: Συμβουλή, important: Σημαντικό, warning: Προειδοποίηση, caution: Προσοχή}
 status: {available: Διαθέσιμο, partial: Μερικώς, planned: Προγραμματισμένο}
 task: {done: Ολοκληρώθηκε, open: Εκκρεμεί}
@@ -21,6 +22,7 @@ languages: {label: Γλώσσες}
 post: {date_format: "%d/%m/%Y", author: Σχετικά με τον συγγραφέα, related: Σχετικά άρθρα, share: Κοινοποίηση}
 fallback: {notice: "Αυτή η σελίδα δεν έχει μεταφραστεί ακόμη, γι’ αυτό εμφανίζεται στα αγγλικά."}
 archive:
+  years: "Έτη"
   tags: "Ετικέτες"
   categories: "Κατηγορίες"
   posts: "αναρτήσεις"

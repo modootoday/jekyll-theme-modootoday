@@ -2,6 +2,7 @@
 language: Українська
 direction: ltr
 skip: Перейти до вмісту
+new_window: {hint: "відкривається в новому вікні", open: "Відкрити в новому вікні"}
 callout: {note: Примітка, tip: Порада, important: Важливо, warning: Попередження, caution: Обережно}
 status: {available: Доступно, partial: Частково, planned: Заплановано}
 task: {done: Виконано, open: Не виконано}
@@ -21,6 +22,7 @@ languages: {label: Мови}
 post: {date_format: "%d.%m.%Y", author: Про автора, related: Схожі дописи, share: Поділитися}
 fallback: {notice: "Цю сторінку ще не перекладено, тому вона показана англійською."}
 archive:
+  years: "Роки"
   tags: "Теги"
   categories: "Категорії"
   posts: "дописів"
