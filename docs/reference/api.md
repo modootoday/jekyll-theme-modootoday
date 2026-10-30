@@ -39,7 +39,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
-| Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3` (`c: features`) |
+| Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
@@ -80,7 +80,7 @@ A slot is a named part of a section's Markdown. Slot names are stable under the 
 Each slot takes `required: true` (same as `min: 1`), `min` and `max` (whole numbers, `min` not greater than `max`). For a component that has two valid shapes, `slots:` can be a list of alternative forms; a section passes when it satisfies any one of them. `parts:` lists the selectors from the [component structure](#component-structure) table that the component promises to keep; when the site has an `api.md` with that table, every part must appear in it. When Nokogiri is available (it is under `github-pages`), every part must also match inside a section of that component in the built HTML of the pages that use it; parts that component scripts add at runtime (`role=`, `aria-*`) are checked after the scripts run by the docs site QA.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
+features: {params: {cols: {allowed: [2, 3, 4]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
 cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}

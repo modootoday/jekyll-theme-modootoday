@@ -11,5 +11,7 @@
   @media (min-width: 48rem) {
     .mt-cols-2 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mt-cols-4 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+  @media (min-width: 64rem) { .mt-cols-4 > ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 }

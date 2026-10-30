@@ -136,7 +136,7 @@ In your own includes, `modootoday/t.html` with `key="nav.label"` prints a label 
 An optional `_data/components.yml` lets the checker validate `sections:` parameters:
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3], required: false}}}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}}}
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```

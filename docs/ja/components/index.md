@@ -10,6 +10,7 @@ sections:
   - alerts-content
   - {c: features, name: cards, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
   - badges
@@ -86,7 +87,7 @@ sections:
 
 ## カード
 
-`status:available` `c: features` セクションでは、**太字**で始まるリスト項目がカードになります。`cols: 2` か `cols: 3` で列数を決め、狭い画面では 1 列になります。
+`status:available` `c: features` セクションでは、**太字**で始まるリスト項目がカードになります。`cols: 2`、`cols: 3`、`cols: 4` で列数を決め、狭い画面では 1 列になります。`cols: 4` は中くらいの幅の画面では 2 列になります。
 
 - **プレーンな Markdown** — github.com でも読みやすいページになります。
 - **バッジ付き** — カードにステータスを付けられます。 `status:available`
@@ -98,6 +99,15 @@ sections:
 - **アラート** — 5 種類のアラート。
 - **タブ** — アクセシブルなコードタブ。
 - **検索** — クライアントサイド検索。
+
+## 4 列のカード
+
+広い画面で `cols: 4` を使った例です。
+
+- **アラート** — 5 種類のアラート。
+- **タブ** — アクセシブルなコードタブ。
+- **検索** — クライアント側の検索。
+- **カード** — 2 列から 4 列のグリッド。
 
 ## ボタン
 

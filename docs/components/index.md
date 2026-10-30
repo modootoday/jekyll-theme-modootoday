@@ -9,6 +9,7 @@ sections:
   - alerts-content
   - {c: features, name: cards, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
   - badges
@@ -82,7 +83,7 @@ An alert can hold lists and code. Leave nothing after the marker on its line.
 
 ## Cards
 
-`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. `cols: 2` or `cols: 3` sets the grid; narrow screens show one column.
+`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. `cols: 2`, `cols: 3` or `cols: 4` sets the grid; narrow screens show one column, and `cols: 4` shows two columns on medium screens.
 
 - **Plain Markdown** — Pages read well on github.com too.
 - **With a badge** — Cards can carry status. `status:available`
@@ -94,6 +95,15 @@ The same list with `cols: 3`.
 - **Alerts** — Five alert types.
 - **Tabs** — Accessible code tabs.
 - **Search** — Client-side search.
+
+## Cards in four columns
+
+The same idea with `cols: 4` on wide screens.
+
+- **Alerts** — Five alert types.
+- **Tabs** — Accessible code tabs.
+- **Search** — Client-side search.
+- **Cards** — Grids of two to four columns.
 
 ## Buttons
 

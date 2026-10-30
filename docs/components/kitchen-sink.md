@@ -6,6 +6,7 @@ sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
   - badges
@@ -82,6 +83,17 @@ Every component the theme ships, in every variant. The same file is readable on 
 - **Tokens** — Colors, radius and fonts. `status:available`
 - **Sass** — One partial per component. `status:available`
 - **Twins** — Markdown for agents. `status:available`
+
+## Cards in four columns
+
+- **Alerts** — Five GitHub alert types. `status:available`
+- **Tabs** — Accessible install tabs. `status:partial`
+- **Search** — Example of a planned item. `status:planned`
+- **Tokens** — Colors, radius and fonts. `status:available`
+- **Sass** — One partial per component. `status:available`
+- **Twins** — Markdown for agents. `status:available`
+- **Grid** — Four across on wide screens.
+- **Rows** — Eight cards fill two rows.
 
 ## Tabs with two panels
 

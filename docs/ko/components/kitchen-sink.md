@@ -6,6 +6,7 @@ sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
   - badges
@@ -85,6 +86,17 @@ sections:
 - **토큰** — 색상, 모서리 반경, 글꼴. `status:available`
 - **Sass** — 컴포넌트마다 파셜 하나. `status:available`
 - **Markdown 버전** — 에이전트용 Markdown. `status:available`
+
+## 4열 카드
+
+- **알림** — GitHub 알림 다섯 종류. `status:available`
+- **탭** — 접근성을 갖춘 설치 탭. `status:partial`
+- **검색** — 계획된 항목의 예. `status:planned`
+- **토큰** — 색상, 모서리 반경, 글꼴. `status:available`
+- **Sass** — 컴포넌트마다 파셜 하나. `status:available`
+- **Markdown 버전** — 에이전트용 Markdown. `status:available`
+- **그리드** — 넓은 화면에서 네 열.
+- **줄** — 카드 여덟 장이 두 줄을 채웁니다.
 
 ## 패널이 두 개인 탭
 

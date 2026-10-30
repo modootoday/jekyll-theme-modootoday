@@ -4,6 +4,13 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 The content rules have their own version header (`md-components v1`) in [RULES.md](RULES.md).
 
+## [Unreleased]
+
+### Added
+
+- Checker: one-line specfold value markers `<!-- spec:name -->` and `<!-- /spec:name -->` are allowed in page bodies, on their own line or inline in a sentence (RULES.md, HTML comments row).
+- Cards: `cols: 4` for `c: features` sections (`.mt-cols-4`): four columns from 64rem, two from 48rem, one below.
+
 ## [1.0.0] - 2026-10-30
 
 First public release, published on RubyGems on 2026-10-30. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.

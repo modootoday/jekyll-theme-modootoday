@@ -9,6 +9,7 @@ sections:
   - alerts-content
   - {c: features, name: cards, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
   - badges
@@ -85,7 +86,7 @@ sections:
 
 ## 카드
 
-`status:available` `c: features` 섹션에서 **굵은 글씨**로 시작하는 목록 항목이 카드가 됩니다. `cols: 2`나 `cols: 3`으로 열 수를 정하고, 좁은 화면에서는 한 열로 보입니다.
+`status:available` `c: features` 섹션에서 **굵은 글씨**로 시작하는 목록 항목이 카드가 됩니다. `cols: 2`, `cols: 3`, `cols: 4`로 열 수를 정하고, 좁은 화면에서는 한 열로 보입니다. `cols: 4`는 중간 너비 화면에서 두 열로 보입니다.
 
 - **평범한 Markdown** — github.com에서도 잘 읽힙니다.
 - **배지 포함** — 카드에 상태를 표시할 수 있습니다. `status:available`
@@ -97,6 +98,15 @@ sections:
 - **알림** — 알림 다섯 종류.
 - **탭** — 접근성을 갖춘 코드 탭.
 - **검색** — 클라이언트 검색.
+
+## 4열 카드
+
+넓은 화면에서 `cols: 4`로 쓴 예입니다.
+
+- **알림** — 다섯 가지 알림 유형.
+- **탭** — 접근성을 갖춘 코드 탭.
+- **검색** — 클라이언트 쪽 검색.
+- **카드** — 두 열에서 네 열까지의 그리드.
 
 ## 버튼
 

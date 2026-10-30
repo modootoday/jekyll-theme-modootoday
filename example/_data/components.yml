@@ -1,5 +1,5 @@
 # Optional registry checked by modootoday-check: name -> params (allowed, required), i18n keys and slots.
 # slots: named parts of the section's Markdown (lead, items, panels, actions, code, figures) -> {required, min, max}
-features: {params: {cols: {allowed: [2, 3], required: false}}, slots: {items: {min: 2}}}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}}, slots: {items: {min: 2}}}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {required: true}}}
 cta: {slots: {actions: {required: true, max: 1}}}

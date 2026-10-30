@@ -52,11 +52,13 @@ module Modootoday
 
       # Tool-generated region markers on their own line, e.g. <!-- spec:toc:begin --> / <!-- spec:toc:end -->
       MARKER = /^[ \t]*<!--[ \t]*[a-z][a-z0-9-]*(?::[a-z0-9._-]+)*:(?:begin|end)[ \t]*-->[ \t]*$/
+      # specfold generated values, own-line or inline, one line each: <!-- spec:count -->12<!-- /spec:count -->
+      SPEC = %r{<!--[ \t]*/?spec:[a-z0-9._-]+(?::[a-z0-9._-]+)*[ \t]*-->}
 
       # 1c. forbidden syntax outside code
       def forbidden(ctx, f, code, html_free)
         r = ctx.rel(f)
-        ctx.errs << "#{r}: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it" if code.gsub(MARKER, "").include?("<!--")
+        ctx.errs << "#{r}: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it" if code.gsub(MARKER, "").gsub(SPEC, "").include?("<!--")
         html_free.each_line.with_index(1) do |l, n|
           linkless = l.gsub(/\]\([^)]*\)/, "]()").gsub(/<(https?:|mailto:)[^>]*>|<[^@\s>]+@[^>\s]+>/, "<>").sub(/^ {0,3}\[[^\]]+\]:\s*\S+/, "")
           why = case l

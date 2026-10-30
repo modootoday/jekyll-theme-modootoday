@@ -139,7 +139,7 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 선택 파일 `_data/components.yml`이 있으면 검사기가 `sections:` 매개변수를 검증합니다.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3], required: false}}}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}}}
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```

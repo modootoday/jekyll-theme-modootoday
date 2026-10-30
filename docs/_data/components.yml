@@ -1,7 +1,7 @@
 # Registry checked by modootoday-check and by qa/docs/coverage.rb (every section component must appear in components/kitchen-sink.md)
 # slots: the slot contract (see api.md#slot-contract); counts are checked per section. A list of maps = alternative forms.
 # parts: stable selectors you may style; each must appear in the Component structure table of api.md and in the built HTML.
-features: {params: {cols: {allowed: [2, 3], required: false}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}, parts: ['section.mt-c-tabs[data-tabs]', '[role=tablist]', '[role=tab]', '[role=tabpanel]']}
 cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}, parts: [section.mt-c-accordion, 'h3 > button[aria-expanded]']}

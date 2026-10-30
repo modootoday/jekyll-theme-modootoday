@@ -6,6 +6,7 @@ sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards-4, cols: 4}
   - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
   - badges
@@ -85,6 +86,17 @@ sections:
 - **トークン** — 色、角丸、フォント。 `status:available`
 - **Sass** — コンポーネントごとに一つのパーシャル。 `status:available`
 - **Markdown 版** — エージェント向けの Markdown。 `status:available`
+
+## 4 列のカード
+
+- **アラート** — 5 種類の GitHub アラート。 `status:available`
+- **タブ** — アクセシブルなインストールタブ。 `status:partial`
+- **検索** — 予定項目の例。 `status:planned`
+- **トークン** — 色、角丸、フォント。 `status:available`
+- **Sass** — コンポーネントごとに一つのパーシャル。 `status:available`
+- **Markdown 版** — エージェント向けの Markdown。 `status:available`
+- **グリッド** — 広い画面では 4 列。
+- **行** — 8 枚のカードで 2 行になります。
 
 ## パネルが二つのタブ
 
