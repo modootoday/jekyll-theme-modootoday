@@ -75,7 +75,7 @@ npx -y @mermaid-js/mermaid-cli -i assets/diagrams/flow.mmd -o assets/diagrams/fl
 *The build flow.*
 ```
 
-이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다. 대체 텍스트에는 "다이어그램"이 아니라 다이어그램의 의미를 쓰세요. 다크 모드에서는 `-t dark`로 SVG를 하나 더 만들어 `<picture>`와 `prefers-color-scheme`으로 고르거나, 투명 배경에 양쪽에서 읽히는 중간 톤 색을 쓰세요.
+이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다. 대체 텍스트에는 "다이어그램"이 아니라 다이어그램의 의미를 쓰세요. `.svg` 그림은 파일 하나로 두 색 구성표에서 모두 동작합니다. 다크 모드에서는 테마가 색상은 유지한 채 반전하고 `--mt-img-filter-dark`를 적용합니다(토큰 `--mt-diagram-filter-dark`). 어둡게만 하려면 `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`, 사이트 전체에서 끄려면 `none`으로 설정하세요. 이미지 하나만 그대로 두려면 경로 끝에 `#light`를 붙입니다(`flow.svg#light`). 래스터 이미지는 기존 사진 톤 그대로입니다. 좁은 화면에서는 넓은 다이어그램이 읽을 수 있는 너비(`--mt-figure-min-width`, 기본 `32rem`)를 유지하고 자체 영역 안에서 가로로 스크롤됩니다. 이 영역은 포커스할 수 있고 대체 텍스트가 이름이 됩니다.
 
 ### 수식
 

@@ -9,6 +9,7 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 {%- assign mt_search_index = site.pages | where: "url", "/search.json" | first -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign mt_page_c = mt_page_c | append: "search|" -%}{%- endif -%}
 {%- if site.modootoday.loading or content contains 'class="mt-spinner' or content contains 'class="mt-skeleton' or content contains 'class="mt-topbar' -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
+{%- if content contains 'class="mt-figure mt-figure-svg' -%}{%- assign mt_page_c = mt_page_c | append: "figure|" -%}{%- endif -%}
 {%- for _x in layout.mt_css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor -%}
 {%- for _x in page.css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor %}
 {%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}

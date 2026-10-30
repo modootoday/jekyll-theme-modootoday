@@ -32,6 +32,8 @@ sections:
 - 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적습니다. 테마가 자기 토큰과 같은 선택자로 출력합니다.
 - `modootoday.css_layers: true`로 설정합니다. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분합니다.
 
+다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/math-diagrams/#다이어그램)을 참고하세요.
+
 ## 섹션 비주얼과 전체 폭 페이지
 
 `sections:` 항목에 `visual: <name>`을 쓰면 그 섹션 끝에 사이트의 `_includes/sections/<name>.html`이 렌더링됩니다. include는 항목을 `include.section`으로 받으므로 `scene:` 같은 추가 키도 전달됩니다. front matter의 `hero: {visual: <name>}`은 첫 `##` 앞부분에 같은 일을 합니다(`sections:`가 있어야 합니다). include가 없으면 `modootoday-check`가 실패합니다.

@@ -1,0 +1,14 @@
+// SVG figures (diagrams): optional sheet, linked only by pages with figure.mt-figure-svg. Raster figures keep the core tone.
+// Dark mode: --mt-diagram-filter-dark (default: invert with hue kept, so a light diagram reads on a dark page, then
+// --mt-img-filter-dark tones it). Site: set --mt-diagram-filter-dark: var(--mt-img-filter-dark) (tone only) or none.
+// Image: a src ending in #light (or kramdown {: .mt-no-filter}) keeps the SVG as drawn.
+// Narrow screens: the image keeps --mt-figure-min-width and div.mt-figure-scroll (focusable, labelled) scrolls sideways.
+@include mt-layer(components) {
+  :where(:root) { --mt-img-filter-dark: brightness(.85) contrast(1.05) saturate(.9); --mt-diagram-filter-dark: invert(.9) hue-rotate(180deg) var(--mt-img-filter-dark); --mt-figure-min-width: 32rem; }
+  .mt-figure-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border-radius: mt(radius-lg); }
+  .mt-figure-svg img { width: 100%; max-width: none; min-width: var(--mt-figure-min-width); height: auto; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); } }
+  [data-theme="dark"] .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); }
+  :is([data-theme="dark"], :root) .mt-figure-svg img:is(.mt-no-filter, [src$="#light"]) { filter: none; }
+  @media print { .mt-figure-svg img { filter: none !important; min-width: 0; } .mt-figure-scroll { overflow: visible; } }
+}

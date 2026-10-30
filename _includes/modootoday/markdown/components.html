@@ -11,7 +11,8 @@ Usage: {% include modootoday/markdown/components.html content=content lang=page.
    Also `tag:<word>` → span.mt-badge.mt-badge-tag; values must be one token (checker: [A-Za-z0-9._-]+).
    `since:` is not rendered in 1.0 (checker error).
 3) figure=true: a paragraph that is only an image, followed by a paragraph that is only *emphasis*
-   → figure.mt-figure with figcaption. Images need alt text (checker).
+   → figure.mt-figure with figcaption. Images need alt text (checker). An .svg image (a diagram) becomes
+   figure.mt-figure-svg with a focusable, labelled div.mt-figure-scroll (figure sheet: dark tone, horizontal scroll).
 4) Always: `file:`, `progress:`, `embed:` and footnote labels (modootoday/markdown/inline.html).
 Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
 {%- endcomment -%}
@@ -100,7 +101,13 @@ Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
       {%- endif -%}
     {%- endif -%}
     {%- if _cap != "" -%}{%- assign _rest = _a2 | remove_first: "<p><em>" | remove_first: _cap | remove_first: "</em></p>" -%}
+{%- assign _src = _im | split: 'src="' | last | split: '"' | first | split: "?" | first | split: "#" | first | downcase -%}
+{%- assign _ext = _src | slice: -4, 4 -%}
+{%- if _ext == ".svg" -%}{%- assign _alt = _im | split: 'alt="' | last | split: '"' | first -%}{%- if _im contains 'alt="' -%}{%- else -%}{%- assign _alt = _cap | strip_html -%}{%- endif -%}
+<figure class="mt-figure mt-figure-svg"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="{{ _alt | default: mt_t_diagram_label }}"><img {{ _im }}</div><figcaption>{{ _cap }}</figcaption></figure>{{ _rest }}
+{%- else -%}
 <figure class="mt-figure"><img {{ _im }}<figcaption>{{ _cap }}</figcaption></figure>{{ _rest }}
+{%- endif -%}
     {%- else -%}<p><img {{ _b }}{%- endif -%}
   {%- endfor -%}{%- endcapture -%}
 {%- endif -%}

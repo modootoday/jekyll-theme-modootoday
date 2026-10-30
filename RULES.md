@@ -29,7 +29,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 | Tag badge | `` `tag:beta` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` | needs the `badge` component; bad values are checker errors. `since:` is not part of 1.0 and is a checker error |
 | Accordion | `c: accordion` section, each `###` is a question | JS turns `###` into `button[aria-expanded]` + panel; content stays visible without JS | — |
 | Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |
-| Figure | an image-only paragraph followed by an `*emphasis*`-only paragraph | `figure` + `figcaption` | images without alt (`![](...)`) are checker errors |
+| Figure | an image-only paragraph followed by an `*emphasis*`-only paragraph | `figure` + `figcaption`; an `.svg` image gets `figure.mt-figure-svg` with a focusable `div.mt-figure-scroll[role=region]` named by the alt text, and the optional `figure.css` sheet (dark tone `--mt-diagram-filter-dark`, `#light` keeps one image as drawn; `--mt-figure-min-width` then horizontal scroll) | images without alt (`![](...)`) are checker errors |
 | Breadcrumb / TOC / theme toggle | automatic (`breadcrumb: false`, `toc: false` per page; TOC shows with 2+ `##`/`###`; toggle only with `color_scheme: auto`) | `nav.mt-breadcrumb`, `nav.mt-toc`, header button (i18n `theme.toggle`, `breadcrumb.label`, `toc.label`) | — |
 | Timeline | `c: timeline` section; each `###` is a date or milestone, content follows | CSS line and dots | — |
 | Keyboard keys | `` `kbd:Ctrl+K` `` (keys joined by `+`, no spaces) | `kbd.mt-kbd > kbd` per key | bad values are checker errors |

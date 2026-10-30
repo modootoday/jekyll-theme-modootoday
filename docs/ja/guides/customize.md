@@ -33,6 +33,8 @@ sections:
 - 値を `modootoday.tokens` と `modootoday.tokens_dark` に書きます。テーマ自身のトークンと同じセレクターで出力されます。
 - `modootoday.css_layers: true` にします。テーマの CSS が `@layer mt.*` に入り、レイヤー外のルールが勝つので、普通の `:root { … }` で足ります。
 
+ダークモードの画像：写真は `--mt-img-filter-dark` を、`.svg` の図は色相を保って反転してから `--mt-img-filter-dark` を適用する `--mt-diagram-filter-dark` を使います。どちらもトークンで変更できます。たとえば `--mt-diagram-filter-dark: none` にすると、すべての図が描いたままになります。一つの画像のパスの末尾に `#light` を付けると（`flow.svg#light`）、その画像だけが描いたままになります。[数式と図](../../recipes/math-diagrams/#図)を参照してください。
+
 ## セクションのビジュアルと全幅ページ
 
 `sections:` の項目に `visual: <name>` を書くと、そのセクションの末尾にサイトの `_includes/sections/<name>.html` が描画されます。 include は項目を `include.section` として受け取るので、`scene:` のような追加キーも渡ります。front matter の `hero: {visual: <name>}` は最初の `##` より前の部分に同じことをします（`sections:` が必要です）。 include がないと `modootoday-check` が失敗します。
