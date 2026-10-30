@@ -4,7 +4,7 @@ module Modootoday
   module Check
     # The modootoday: settings in the site's _config.yml.
     module SiteConfig
-      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe split loading].freeze
+      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe split loading lists].freeze
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border ring note tip important warning caution status-available status-partial
                     status-planned font-sans font-mono font-size line-height measure space radius].freeze
@@ -26,6 +26,11 @@ module Modootoday
         return unless mtc.is_a?(Hash)
         enums(mtc, errs)
         full_languages(mtc, errs)
+        if mtc.key?("lists")
+          l = mtc["lists"]
+          ok = l.is_a?(Hash) && (l.keys - %w[link_chips titled_items]).empty? && l.values.all? { |v| [true, false].include?(v) }
+          errs << "_config.yml: modootoday.lists must be a map of link_chips and titled_items set to true or false" unless ok
+        end
         if mtc.key?("archive")
           a = mtc["archive"]
           if !a.is_a?(Hash) || !(a.keys - %w[tags categories]).empty?

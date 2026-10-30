@@ -14,6 +14,8 @@ include): two columns from 48rem (side: start|end puts the visual first or last,
 Only split gets the wrappers, so child selectors of the other components keep working.
 decor: <name> (item or hero) adds _includes/sections/<name>.html in div.mt-section-decor[aria-hidden=true], placed in
 the section's top end corner (section gets .mt-has-decor); for ornaments only, never content.
+The hero's first p after the h1 gets .mt-hero-lead; hero checks: true adds .mt-hero-checks (its first ul is a ✓ row, lists sheet).
+site.modootoday.lists (link_chips, titled_items) runs markdown/lists.html on the hero, plain sections and section-less pages.
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
@@ -29,12 +31,14 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _fparts.size > 1 -%}{%- assign _notes = include.content | remove_first: _main | strip -%}{%- endif -%}
 {%- assign _parts = _main | prepend: _nl | split: _sep -%}
 {%- assign mt_c_transforms = "|filetree|linkcards|details|faq|params|quote|gallery|pricing|subscribe|" -%}
-{%- assign _p0 = _parts[0] -%}{%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}
-<section class="mt-hero{% if include.hero.decor %} mt-has-decor{% endif %}">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}{% if include.hero.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ include.hero.decor }}.html section=include.hero %}</div>{% endif %}</section>
+{%- assign _p0 = _parts[0] -%}{%- if site.modootoday.lists -%}{%- capture _p0 %}{% include modootoday/markdown/lists.html html=_p0 %}{% endcapture -%}{%- endif -%}
+{%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}{%- assign _hl = "</h1>" | append: _nl | append: _nl -%}{%- assign _hlp = _hl | append: "<p>" -%}{%- assign _hlc = _hl | append: '<p class="mt-hero-lead">' -%}{%- assign _hero = _hero | replace_first: _hlp, _hlc -%}
+<section class="mt-hero{% if include.hero.checks == true %} mt-hero-checks{% endif %}{% if include.hero.decor %} mt-has-decor{% endif %}">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}{% if include.hero.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ include.hero.decor }}.html section=include.hero %}</div>{% endif %}</section>
 {%- for _p in _parts offset:1 -%}
 {%- assign _s = include.sections[forloop.index0] -%}
 {%- if _s.name or _s.c -%}{%- assign _n = _s.name -%}{%- assign _cc = _s.c -%}{%- else -%}{%- assign _n = _s -%}{%- assign _cc = nil -%}{%- endif -%}
 {%- assign _body = _p -%}
+{%- if site.modootoday.lists and _cc == nil -%}{%- capture _body %}{% include modootoday/markdown/lists.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'cta' -%}{%- capture _body %}{% include modootoday/actions.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'features' -%}{%- assign _body = _body | replace: "</strong> — ", "</strong> " | replace: "</strong> – ", "</strong> " | replace: "</strong> - ", "</strong> " -%}{%- endif -%}
 {%- if _cc and mt_c_transforms contains _cc -%}{%- capture _body %}{% include modootoday/markdown/c/{{ _cc }}.html html=_body s=_s i=forloop.index id=_n %}{% endcapture -%}{%- endif -%}
@@ -49,5 +53,5 @@ modootoday-check fails when the item count differs from the h2 count.
 <div class="mt-endnotes">{{ _notes }}</div>
 {%- endif -%}
 {%- else -%}
-<div class="mt-prose">{{ include.content }}</div>
+{%- if site.modootoday.lists -%}<div class="mt-prose">{% include modootoday/markdown/lists.html html=include.content %}</div>{%- else -%}<div class="mt-prose">{{ include.content }}</div>{%- endif -%}
 {%- endif -%}

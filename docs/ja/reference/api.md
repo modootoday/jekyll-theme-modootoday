@@ -39,10 +39,11 @@ description: このテーマがサイト向けに文書化している名前、�
 | ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | ドキュメントのサイドバー | `aside.mt-doc-nav` > `nav.mt-sidebar`(64rem 以上)、`details.mt-sidebar-mobile`(それより狭い画面) | `.mt-sidebar-group`、`.mt-sidebar-title`、リンクの `ul`。現在のリンクは `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`、モバイルメニューの `[open]` |
 | ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`(JS が動くまで非表示)と Markdown 表示の `a[type="text/markdown"]` を含む `ul` | `[open]` |
-| ヒーロー | `section.mt-hero` | `h1`、リードの `p`、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | — |
+| ヒーロー | `section.mt-hero` | `h1`、リードの `p.mt-hero-lead` (`h1` の直後の最初の `p`)、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | `.mt-hero-checks` (front matter `hero: {checks: true}`: 最初の `ul` が `--mt-ok` の ✓ の行) |
 | セクション | `section.mt-section` | `h2` とその内容 | `[data-section]` = 名前、`[data-c]` と `.mt-c-<c>` = コンポーネント、`.mt-cols-<n>`、`.mt-cta`(セクション内に `[data-mt-result]` 要素があればその要素に) |
 | セクションの装飾 | `section.mt-hero` または `section.mt-section` の `.mt-has-decor`(front matter `decor: <include>`) | 最後の子 `.mt-section-decor[aria-hidden=true]`。中身は `_includes/sections/<include>.html` で、上の終端の角に置かれ、ポインターイベントを受けません | — |
 | イラスト | `figure.mt-illustration[role=img][aria-label]`(サイトの include) | 上の開始側の角の `.mt-illustration-tag` バッジ。`role=img` の子は読み上げられないため、バッジの文字も `aria-label` に入れます | — |
+| リストスタイル | `ul.mt-chips`、`li > strong.mt-item-title + span.mt-item-sep` (`modootoday.lists` を使うとき) | `li > a` のチップ (高さ 44px、テキストの後に →)、タイトルと `: ` の区切り | — |
 | 本文 (`sections:` なし) | `div.mt-prose` | レンダリングされた本文 | — |
 | カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (JS が生成。JS がなければ `h3` とコードブロックのまま) | `[aria-selected]` |

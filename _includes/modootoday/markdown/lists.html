@@ -1,0 +1,26 @@
+{%- comment -%}
+md-components v1 — optional list styles (site.modootoday.lists; the lists sheet styles them). Prints include.html with:
+  link_chips: true    a list whose every item is one link and nothing else → ul.mt-chips (a row of chips)
+  titled_items: true  an item that starts with **Title**: → li > strong.mt-item-title + span.mt-item-sep, then the text
+Applied to the hero, to sections without c: and to pages without sections; component sections keep their own lists.
+{%- endcomment -%}
+{%- assign _lh = include.html -%}
+{%- if site.modootoday.lists.titled_items == true and _lh contains "<li><strong>" -%}
+{%- assign _lp = _lh | split: "<li><strong>" -%}
+{%- capture _lh -%}{{ _lp[0] }}{%- for _x in _lp offset:1 -%}
+{%- assign _t = _x | split: "</strong>: " -%}{%- assign _tt = _t[0] -%}
+{%- if _t.size > 1 -%}{%- unless _tt contains "</li>" or _tt contains "<li" -%}{%- assign _ok = true -%}{%- else -%}{%- assign _ok = false -%}{%- endunless -%}{%- else -%}{%- assign _ok = false -%}{%- endif -%}
+{%- if _ok -%}<li><strong class="mt-item-title">{{ _tt }}</strong><span class="mt-item-sep">: </span>{{ _x | remove_first: _tt | remove_first: "</strong>: " }}{%- else -%}<li><strong>{{ _x }}{%- endif -%}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{%- if site.modootoday.lists.link_chips == true and _lh contains "<ul>" -%}
+{%- assign _nl = "
+" -%}{%- assign _us = "<ul>" | append: _nl -%}
+{%- assign _lp = _lh | split: _us -%}
+{%- capture _lh -%}{{ _lp[0] }}{%- for _x in _lp offset:1 -%}
+{%- assign _in = _x | split: "</ul>" | first -%}
+{%- assign _n1 = _in | split: "<li>" | size -%}{%- assign _n2 = _in | split: "<li><a " | size -%}{%- assign _n3 = _in | split: "</a></li>" | size -%}{%- assign _n4 = _in | split: "<a " | size -%}
+{%- if _n1 > 1 and _n1 == _n2 and _n1 == _n3 and _n1 == _n4 -%}<ul class="mt-chips">{{ _nl }}{%- else -%}{{ _us }}{%- endif -%}{{ _x }}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{{- _lh -}}

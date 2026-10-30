@@ -36,6 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
+  - lists
   - navigation
   - language-switcher
   - theme-toggle
@@ -358,6 +359,19 @@ Get one email when a release ships.
 `status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament.
 
 Text on one side, the picture on the other.
+
+## Lists
+
+`status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
+
+- [Install](../../guides/install/)
+- [Configuration](../../guides/configuration/)
+- [Accessibility](../../guides/accessibility/)
+
+Items with a title:
+
+- **Chips**: a list of links only
+- **Titled items**: a bold title, a colon, then the text
 
 ## Navigation
 

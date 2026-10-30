@@ -43,6 +43,7 @@ modootoday:
 | `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
 | `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다. |
 | `full_languages` | 없음 | 모든 페이지를 번역하는 `languages` 안의 코드, 예: `[ko, ja]` `modootoday-check --i18n-pages`는 이 언어의 번역이 없는 기본 언어 페이지마다 경고합니다. |
+| `lists` | 없음 | `{link_chips: true, titled_items: true}` 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다. |
 | `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
 | `og_image` | 없음 | 기본 Open Graph 이미지. front matter의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |

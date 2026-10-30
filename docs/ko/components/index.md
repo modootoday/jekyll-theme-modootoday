@@ -36,6 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
+  - lists
   - navigation
   - language-switcher
   - theme-toggle
@@ -361,6 +362,19 @@ theme: jekyll-theme-modootoday
 `status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다. 이 그림은 일러스트입니다. `class="mt-illustration"`, `role="img"`, `aria-label`이 있는 `figure`이고, `.mt-illustration-tag` 배지의 글자도 레이블에 들어 있습니다. `decor: decor-demo`는 위쪽 모서리의 점을 `aria-hidden` 장식으로 더합니다.
 
 한쪽에는 텍스트, 다른 쪽에는 그림이 옵니다.
+
+## 목록
+
+`status:available` `_config.yml`에 `modootoday.lists`를 두면 일반 섹션과 페이지에 목록 스타일 두 가지가 적용됩니다. `link_chips: true`는 모든 항목이 링크 하나뿐인 목록을 칩 한 줄로 바꾸고, `titled_items: true`는 굵은 제목과 콜론으로 시작하는 항목에 제목과 구분자를 따로 줍니다. `hero: {checks: true}`는 위처럼 히어로의 첫 목록을 체크 표시 줄로 바꿉니다. 컴포넌트 섹션의 목록은 원래 스타일을 유지합니다.
+
+- [설치](../../guides/install/)
+- [설정](../../guides/configuration/)
+- [접근성](../../guides/accessibility/)
+
+제목이 있는 항목:
+
+- **칩**: 링크만 있는 목록
+- **제목 항목**: 굵은 제목, 콜론, 그다음 텍스트
 
 ## 내비게이션
 

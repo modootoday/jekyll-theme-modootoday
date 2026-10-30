@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday optional sheet (hero check row, link chips, titled items). Linked only by pages that use it.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% if mt_components contains "lists" %}@import "modootoday/components/lists/lists";
+{% endif %}

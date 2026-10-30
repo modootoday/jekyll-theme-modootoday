@@ -43,6 +43,7 @@ modootoday:
 | `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`。`false` で無効。[構造化データ](../structured-data/)を参照 |
 | `languages` | なし | `hreflang` 用の言語コード。例: `[en, ko]` ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。 |
 | `full_languages` | なし | すべてのページを翻訳する `languages` 内のコード。例: `[ko, ja]` `modootoday-check --i18n-pages` は、その言語の翻訳がない既定言語のページごとに警告します。 |
+| `lists` | なし | `{link_chips: true, titled_items: true}` 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれと `hero: {checks: true}` を整え、使うページにだけリンクされます。 |
 | `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
 | `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
 | `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |

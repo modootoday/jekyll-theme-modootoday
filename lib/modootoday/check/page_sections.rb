@@ -22,6 +22,7 @@ module Modootoday
         components(ctx, r, secs, sec_md) if ctx.comps
         hero = meta["hero"]
         errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
+        errs << "#{r}: hero.checks must be true or false" if hero.is_a?(Hash) && hero.key?("checks") && ![true, false].include?(hero["checks"])
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
       end
 

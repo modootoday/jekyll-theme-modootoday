@@ -1,0 +1,16 @@
+// Optional list styles (lists sheet): linked only by pages with .mt-hero-checks, ul.mt-chips or .mt-item-title.
+// .mt-hero-checks: the hero's first ul is a row of ✓ chips in --mt-ok (default: the status-available colour; a site may set its own). ul.mt-chips: link-only items as 44px chips with →.
+// .mt-item-title: **Title**: items get a bold title and a muted separator.
+@include mt-layer(components) {
+  :where(:root) { --mt-ok: #{mt(status-available)}; }
+  .mt-hero-checks > ul:first-of-type, ul.mt-chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+  .mt-hero-checks > ul:first-of-type > li { display: inline-flex; align-items: center; gap: .375rem; margin: 0; padding: .25rem .75rem; border: 1px solid mt(border); border-radius: 999px; }
+  .mt-hero-checks > ul:first-of-type > li::before { content: "✓" / ""; color: var(--mt-ok); font-weight: 700; }
+  ul.mt-chips > li { margin: 0; }
+  ul.mt-chips a { display: inline-flex; align-items: center; gap: .375rem; min-height: 44px; padding: 0 1rem; border: 1px solid mt(border); border-radius: 999px; color: mt(foreground); text-decoration: none; }
+  ul.mt-chips a::after { content: "→" / ""; color: mt(muted-foreground); }
+  :dir(rtl) ul.mt-chips a::after, [dir="rtl"] ul.mt-chips a::after { content: "←" / ""; }
+  ul.mt-chips a:hover { border-color: mt(primary); }
+  .mt-item-title { font-weight: 700; }
+  .mt-item-sep { color: mt(muted-foreground); }
+}

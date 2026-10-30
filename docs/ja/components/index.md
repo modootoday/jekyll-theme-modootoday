@@ -37,6 +37,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
+  - lists
   - navigation
   - language-switcher
   - theme-toggle
@@ -362,6 +363,19 @@ theme: jekyll-theme-modootoday
 `status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。
 
 片側にテキスト、もう片側に画像が来ます。
+
+## リスト
+
+`status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
+
+- [インストール](../../guides/install/)
+- [設定](../../guides/configuration/)
+- [アクセシビリティ](../../guides/accessibility/)
+
+タイトル付きの項目:
+
+- **チップ**: リンクだけのリスト
+- **タイトル付き項目**: 太字のタイトル、コロン、続いてテキスト
 
 ## ナビゲーション
 

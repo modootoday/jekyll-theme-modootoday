@@ -36,10 +36,11 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar` (from 64rem); `details.mt-sidebar-mobile` (below) | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links; the current link has `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
 | Page actions | `details.mt-menu.mt-page-actions` | `summary`, the `ul` of `button[data-mt-act=copy\|ai]` (hidden until JS runs) and the View as Markdown `a[type="text/markdown"]` | `[open]` |
-| Hero | `section.mt-hero` | the `h1`, lead `p`, link-only `p` (CTA buttons; first link is primary) | — |
+| Hero | `section.mt-hero` | the `h1`, lead `p.mt-hero-lead` (the first `p` right after the `h1`), link-only `p` (CTA buttons; first link is primary) | `.mt-hero-checks` (front matter `hero: {checks: true}`: the first `ul` is a row of ✓ marks in `--mt-ok`) |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
 | Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` (front matter `decor: <include>`) | `.mt-section-decor[aria-hidden=true]`, the last child, holding `_includes/sections/<include>.html`; placed in the top end corner, no pointer events | — |
 | Illustration | `figure.mt-illustration[role=img][aria-label]` (your own include) | `.mt-illustration-tag` badge in the top start corner; its text belongs in the `aria-label` too, because the children of `role=img` are not read | — |
+| List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` (with `modootoday.lists`) | the `li > a` chips (44px tall, → after the text); the title and the `: ` separator | — |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
 | Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
