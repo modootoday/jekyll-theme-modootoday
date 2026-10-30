@@ -1,10 +1,11 @@
 // Dark-mode image tone: one image serves both schemes. Pages may override the tokens.
 // --mt-img-filter-dark tones photos; --mt-logo-filter-dark lifts currentColor logos (black in <img>).
 @mixin mt-img-dark($photos, $logos: null) {
+  :where(:root) { --mt-img-filter-dark: brightness(.85) contrast(1.05) saturate(.9);@if $logos { --mt-logo-filter-dark: invert(1) brightness(.85); } }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) #{$photos} { filter: var(--mt-img-filter-dark, brightness(.85) contrast(1.05) saturate(.9)); }
-    @if $logos { :root:not([data-theme="light"]) #{$logos} { filter: var(--mt-logo-filter-dark, invert(1) brightness(.85)); } }
+    :root:not([data-theme="light"]) #{$photos} { filter: var(--mt-img-filter-dark); }
+    @if $logos { :root:not([data-theme="light"]) #{$logos} { filter: var(--mt-logo-filter-dark); } }
   }
-  [data-theme="dark"] #{$photos} { filter: var(--mt-img-filter-dark, brightness(.85) contrast(1.05) saturate(.9)); }
-  @if $logos { [data-theme="dark"] #{$logos} { filter: var(--mt-logo-filter-dark, invert(1) brightness(.85)); } }
+  [data-theme="dark"] #{$photos} { filter: var(--mt-img-filter-dark); }
+  @if $logos { [data-theme="dark"] #{$logos} { filter: var(--mt-logo-filter-dark); } }
 }

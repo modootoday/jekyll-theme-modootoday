@@ -4,6 +4,8 @@
   .mt-dir-team .mt-dir-img { width: 6rem; height: 6rem; aspect-ratio: 1; border-radius: 50%; }
   .mt-dir-events .mt-dir-item, .mt-dir-jobs .mt-dir-item { flex-direction: row; align-items: flex-start; }
   .mt-dir-jobs .mt-dir-grid, .mt-dir-events .mt-dir-grid { grid-template-columns: 1fr; }
+  .mt-dir-events .mt-dir-img { flex: none; width: 7rem; aspect-ratio: 4 / 3; }
+  @media (max-width: 30rem) { .mt-dir-events .mt-dir-img { width: 4.5rem; } }
   .mt-date-tile { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 4rem; height: 4rem;
     border-radius: mt(radius); background: mt(muted); line-height: 1.1; text-transform: uppercase; font-size: .75rem; }
   .mt-date-tile > b { font-size: 1.5rem; }

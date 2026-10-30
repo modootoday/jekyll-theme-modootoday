@@ -2,5 +2,6 @@
 .docs-ex-label{margin-block:1.25rem .375rem;font-size:.8125rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--mt-muted-foreground)}
 .docs-ex-result{padding-block-start:.75rem;border-block-start:1px dashed var(--mt-border)}
 .docs-ex-out.mt-cta{margin-top:0}.docs-ex-out.mt-cta>.mt-actions:first-child{margin-top:0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mt-gallery-thumb img,:root:not([data-theme="light"]) .mt-lightbox img{filter:var(--mt-img-filter-dark,brightness(.85) contrast(1.05) saturate(.9))}}
-[data-theme="dark"] .mt-gallery-thumb img,[data-theme="dark"] .mt-lightbox img{filter:var(--mt-img-filter-dark,brightness(.85) contrast(1.05) saturate(.9))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mt-gallery-thumb img,:root:not([data-theme="light"]) .mt-lightbox img{filter:var(--mt-img-filter-dark)}}
+[data-theme="dark"] .mt-gallery-thumb img,[data-theme="dark"] .mt-lightbox img{filter:var(--mt-img-filter-dark)}
+:where(:root){--mt-img-filter-dark:brightness(.85) contrast(1.05) saturate(.9)}
