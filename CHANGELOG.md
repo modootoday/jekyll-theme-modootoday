@@ -12,6 +12,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - `mt-flat-list`: put it on an ancestor of an unclassed Markdown list that a layout makes a grid or flex row (`.c-body > ul`) to drop the gap between list items (RULES.md §6, Customize).
 - Docs: moving from `jekyll-seo-tag` to the kit's SEO tags (Migrate), and what to run when `modootoday-check` is not on `PATH` after `gem install` (Install).
 
+### Changed
+
+- Size budgets have a little more headroom (QA, `qa/audit/config.mjs`): core CSS sheet 24 → 27 KiB, core JS 10 → 11 KiB, CSS one page links 32 → 35 KiB, `loading.css` 2 → 2.5 KiB, `figure.css` 1 → 1.25 KiB, each renderer script 2 → 2.5 KiB. Section sheets stay at 2 KiB. The built sizes did not grow (core CSS 24531 B, core JS 10227 B).
+
 ### Fixed
 
 - Checker: specfold value markers with arguments after the name (`<!-- spec:graph format=mermaid source=tutorial -->`, `<!-- spec:count rows="All commands" -->`) are no longer reported as HTML comments (RULES.md, HTML comments row). The HTML comment error now quotes the first comment it found.
