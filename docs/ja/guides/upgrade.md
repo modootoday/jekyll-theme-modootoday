@@ -39,6 +39,16 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 切り替えてもページ本文は変わりません。[エージェント](../agents/)と `RULES.md` の 5a 節を参照してください。
 
+## jekyll-seo-tag から移る
+
+`jekyll-seo-tag` の代わりにキットに SEO タグを書かせるには、次のようにします。
+
+1. `plugins:` と `Gemfile` から `jekyll-seo-tag` を削除し、`_includes/head-custom.html` から `seo` タグを削除します。
+2. `modootoday:` から `seo: false` と `hreflang: true` を削除します。キットが canonical リンク、`hreflang` の alternate リンク、Open Graph を再び書きます。手で追加した alternate リンクは削除し、同じリンクが二重に出ないようにします。
+3. ブラウザーのバーの色は `modootoday.theme_color` で指定します（[設定](../configuration/)を参照）。キットは既定でライト用とダーク用の `theme-color` タグを 2 つ書きます。独自の `theme-color` タグがあれば削除します。残すと 1 ページに 3 つになります。
+4. キットが書くのは `twitter:card` だけです（ページに画像があれば `summary_large_image`）。`twitter:` の設定は読まないため、`twitter:site` が必要なら `_includes/head-custom.html` に meta タグで追加します。
+5. 再ビルドして `modootoday-check SRC _site` を実行します。jekyll-seo-tag の JSON-LD に関する警告が消えているはずです。
+
 ## アップグレード
 
 飛ばすすべてのバージョンについて `CHANGELOG.md` を読んでください。文書化された名前は[公開 API](../../reference/api/)にあります。アップグレード後に `modootoday-check --strict` を実行してください。

@@ -19,7 +19,7 @@ sections:
   - keyboard
   - tables
   - code
-  - typography
+  - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
   - code-titles
   - progress

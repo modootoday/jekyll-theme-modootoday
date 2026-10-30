@@ -16,7 +16,7 @@ description: このテーマがサイト向けに文書化している名前、�
 |---|---|
 | 設定 | [設定](../../guides/configuration/)に載っている `modootoday:` 配下のすべてのキー |
 | デザイントークン | セマンティックおよびコンポーネントのカスタムプロパティ `--mt-*` (プリミティブ `--mt-p-*` を除く)。生成される `tokens.json` も同じ |
-| Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*` |
+| Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*`、解除用クラス `mt-flat-list`（その下のリスト項目の間隔をなくす） |
 | レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 上書きしてよい include | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` 指定可)を include できる。独自のロゴは `modootoday/brand/logo.html` を上書き |
 | 自分で用意する include | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照） |

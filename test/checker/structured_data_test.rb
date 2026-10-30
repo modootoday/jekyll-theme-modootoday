@@ -43,4 +43,20 @@ class StructuredDataTest < Minitest::Test
     assert_empty run_on(html).warns
     assert(run_on(html, "--schema-recommended").warns.any? { |w| w.include?("recommended author") })
   end
+
+  SEO = ->(body) { "<!-- Begin Jekyll SEO tag v2.8.0 -->\n#{body}\n<!-- End Jekyll SEO tag -->\n" }
+
+  def test_jekyll_seo_tag_block_is_a_warning_not_an_error
+    seo = { "@context" => "https://schema.org", "@type" => "WebPage", "headline" => "A", "url" => "https://e.org/a/" }
+    r = run_on(%(<html lang="en">) + SEO.(ld(seo)))
+    assert_empty r.errs
+    assert(r.warns.any? { |w| w.include?("jekyll-seo-tag") }, r.warns.inspect)
+    # The kit's own block next to it is still checked, and not counted as a second block.
+    r = run_on(SEO.(ld(seo)) + ld(g(WP.except("name"))))
+    assert_equal 1, r.errs.size, r.errs.inspect
+    assert_includes r.errs.first, "lacks required name"
+    assert(run_on(SEO.(ld("{bad"))).errs.any? { |e| e.include?("jekyll-seo-tag JSON-LD is not valid JSON") })
+    # Outside the seo-tag comments the same node is an error.
+    assert(run_on(ld(seo)).errs.any? { |e| e.include?("lacks required name") })
+  end
 end

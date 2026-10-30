@@ -55,6 +55,8 @@ modootoday:
 
 `modootoday.schema: false`(または `schema: {enabled: false}`)で無効にし、1 ページだけなら front matter に `schema: false` を書きます。`seo: false` でも無効になります。
 
+`seo: false` と `jekyll-seo-tag` を併用すると、プラグインが `<!-- Begin Jekyll SEO tag` と `<!-- End Jekyll SEO tag -->` のコメントの間に独自の JSON-LD を書きます。`modootoday-check` はこのブロックが正しい JSON かどうかだけを検査し、エラーではなく警告を出します。キットが書くマークアップではなく、このブロックの `WebPage` には `headline` があって `name` がないためです。schema.org はどのプロパティも必須としておらず、Google も `WebPage` に必須プロパティを定めていません。必須プロパティの一覧は、キットが書くマークアップに適用するキット独自の規則です。ページ全体を検査させるには、キットのタグに移ります（[移行とアップグレード](../upgrade/)）。
+
 ## ページごとのエンティティ
 
 front matter に `schema.type` と schema.org のプロパティを書きます。`type:` キーは `@type` になります。`name`、`description`、`url`、`image` はページから補われます。

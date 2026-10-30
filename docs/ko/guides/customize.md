@@ -81,6 +81,8 @@ Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. `assets/css
 > [!CAUTION]
 > 섀도잉한 파일은 테마 업데이트를 받지 못합니다. 토큰과 `head-custom.html`을 먼저 쓰세요.
 
+class가 없는 목록은 항목 사이에 작은 간격이 생깁니다. 레이아웃이나 include에서 class가 없는 Markdown 목록을 grid나 flex 행으로 바꾸면(예: `.c-body > ul`) `<div class="c-body mt-flat-list">`처럼 상위 요소에 `mt-flat-list`를 붙입니다. 그러면 첫 항목이 나머지 항목과 맞게 정렬됩니다. 자체 class가 있는 목록에는 간격이 생기지 않습니다.
+
 ## 다음
 
 [에이전트용 Markdown](../agents/) [설정](../configuration/)

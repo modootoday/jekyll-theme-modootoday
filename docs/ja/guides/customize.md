@@ -82,6 +82,8 @@ Jekyll はテーマより先にサイトの `_sass/` を読みます。テーマ
 > [!CAUTION]
 > 上書きしたファイルにはテーマの更新が反映されません。トークンと `head-custom.html` を優先してください。
 
+class のないリストには、項目の間に小さな間隔が入ります。レイアウトや include で class のない Markdown リストを grid や flex の行にする場合は（例: `.c-body > ul`）、`<div class="c-body mt-flat-list">` のように祖先要素に `mt-flat-list` を付けます。こうすると最初の項目が他の項目とそろいます。独自の class があるリストには間隔が入りません。
+
 ## 次へ
 
 [エージェントが読める Markdown](../agents/) [設定](../configuration/)

@@ -55,6 +55,8 @@ modootoday:
 
 `modootoday.schema: false`(또는 `schema: {enabled: false}`)로 끄고, 한 페이지만 끄려면 front matter에 `schema: false`를 씁니다. `seo: false`도 함께 끕니다.
 
+`seo: false`와 `jekyll-seo-tag`를 함께 쓰면 플러그인이 `<!-- Begin Jekyll SEO tag`와 `<!-- End Jekyll SEO tag -->` 주석 사이에 자체 JSON-LD를 씁니다. `modootoday-check`는 이 블록이 올바른 JSON인지만 검사하고 오류 대신 경고를 냅니다. 킷이 쓰는 마크업이 아니고, 이 블록의 `WebPage`에는 `headline`만 있고 `name`이 없기 때문입니다. schema.org는 어떤 속성도 필수로 정하지 않고, Google도 `WebPage`의 필수 속성을 두지 않습니다. 필수 속성 목록은 킷이 쓰는 마크업에 적용하는 킷 자체 규칙입니다. 페이지 전체를 검사하게 하려면 킷의 태그로 옮깁니다([이전과 업그레이드](../upgrade/)).
+
 ## 페이지별 엔터티
 
 front matter에 `schema.type`과 schema.org 속성을 적습니다. `type:` 키는 `@type`이 됩니다. `name`, `description`, `url`, `image`는 페이지에서 채웁니다.

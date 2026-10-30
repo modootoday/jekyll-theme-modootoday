@@ -78,6 +78,8 @@ Any file in the theme's `_layouts/`, `_includes/` or `_sass/` can be replaced by
 > [!CAUTION]
 > Shadowed files do not receive theme updates. Prefer tokens and `head-custom.html`.
 
+Lists without a class get a small gap between items. If your layout or include turns an unclassed Markdown list into a grid or flex row (for example `.c-body > ul`), add `mt-flat-list` to an ancestor, such as `<div class="c-body mt-flat-list">`, so the first item lines up with the rest. A list that has a class of its own gets no gap.
+
 ## Next
 
 [Agent-readable Markdown](../agents/) [Configuration](../configuration/)

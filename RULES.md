@@ -114,6 +114,7 @@ Stub and generator details:
 - Liquid inside code (`{{ }}`) is still processed by Jekyll before kramdown; such pages need `{% raw %}` on the Jekyll side, which itself shows on GitHub.
 - The stylesheet uses Sass `@import` so it compiles with both Ruby Sass (GitHub Pages) and Dart Sass (Jekyll 4); Dart Sass prints deprecation warnings unless the site sets `sass: {silence_deprecations: [import, global-builtin]}` (jekyll-sass-converter ≥ 3.1). Custom properties holding Sass values must interpolate (`--x: #{$v}`); Ruby Sass prints `$v` literally.
 - Component classes are `mt-*`.
+- Lists without a class get `margin-top: .3em` between items (`:where(:not([class])) > li + li`). A layout or include that turns an unclassed Markdown list into a grid or flex row (for example `.c-body > ul`) puts `mt-flat-list` on an ancestor to drop that gap; a list with any class of its own is already exempt.
 - CTA buttons need `:has()`; without it they stay links.
 
 ## 7. Design tokens artifact

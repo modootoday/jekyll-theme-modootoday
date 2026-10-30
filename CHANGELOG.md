@@ -9,10 +9,13 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Added
 
 - Release workflow: after the gem is pushed to RubyGems, a GitHub Release is created for the tag with its `CHANGELOG.md` entry as the notes (`script/release-notes`); skipped when the Release already exists.
+- `mt-flat-list`: put it on an ancestor of an unclassed Markdown list that a layout makes a grid or flex row (`.c-body > ul`) to drop the gap between list items (RULES.md §6, Customize).
+- Docs: moving from `jekyll-seo-tag` to the kit's SEO tags (Migrate), and what to run when `modootoday-check` is not on `PATH` after `gem install` (Install).
 
 ### Fixed
 
 - Checker: specfold value markers with arguments after the name (`<!-- spec:graph format=mermaid source=tutorial -->`, `<!-- spec:count rows="All commands" -->`) are no longer reported as HTML comments (RULES.md, HTML comments row). The HTML comment error now quotes the first comment it found.
+- Checker: JSON-LD between the `jekyll-seo-tag` comments (sites with `seo: false` that bring the plugin) is checked only for valid JSON and reported as a warning, so its `WebPage` without `name` is no longer an error; the kit's own block is still checked in full and not counted as a second block (Structured data).
 
 ## [1.1.0] - 2026-10-31
 

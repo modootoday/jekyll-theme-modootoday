@@ -39,6 +39,16 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 
 방법을 바꿔도 페이지 본문은 바뀌지 않습니다. [에이전트](../agents/)와 `RULES.md` 5a절을 보세요.
 
+## jekyll-seo-tag에서 옮기기
+
+`jekyll-seo-tag` 대신 킷이 SEO 태그를 쓰게 하려면 다음과 같이 합니다.
+
+1. `plugins:`와 `Gemfile`에서 `jekyll-seo-tag`를 지우고, `_includes/head-custom.html`에서 `seo` 태그를 지웁니다.
+2. `modootoday:`에서 `seo: false`와 `hreflang: true`를 지웁니다. 킷이 canonical 링크, `hreflang` alternate 링크, Open Graph를 다시 씁니다. 직접 넣은 alternate 링크는 지워서 같은 링크가 두 번 나오지 않게 합니다.
+3. 브라우저 막대 색은 `modootoday.theme_color`로 정합니다([설정](../configuration/) 참고). 킷은 기본으로 라이트용과 다크용 `theme-color` 태그 두 개를 씁니다. 직접 넣은 `theme-color` 태그가 있으면 지웁니다. 남겨 두면 한 페이지에 세 개가 됩니다.
+4. 킷은 `twitter:card`만 씁니다(페이지에 이미지가 있으면 `summary_large_image`). `twitter:` 설정은 읽지 않으므로 `twitter:site`가 필요하면 `_includes/head-custom.html`에 meta 태그로 넣습니다.
+5. 다시 빌드하고 `modootoday-check SRC _site`를 실행합니다. jekyll-seo-tag JSON-LD에 관한 경고가 없어야 합니다.
+
 ## 업그레이드
 
 건너뛰는 모든 버전의 `CHANGELOG.md`를 읽으세요. 문서화된 이름은 [공개 API](../../reference/api/)에 있습니다. 업그레이드한 뒤 `modootoday-check --strict`를 실행하세요.

@@ -13,7 +13,7 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 |---|---|
 | Settings | every key under `modootoday:` listed in [Configuration](../../guides/configuration/) |
 | Design tokens | semantic and component custom properties `--mt-*` (not the primitives `--mt-p-*`); the generated `tokens.json` mirrors them |
-| Markdown rules | the patterns in `RULES.md` and their output classes `mt-*` |
+| Markdown rules | the patterns in `RULES.md` and their output classes `mt-*`; the opt-out class `mt-flat-list` (no gap between list items below it) |
 | Layouts | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`) can be included from your footer; override `modootoday/brand/logo.html` to draw your own logo |
 | Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../../guides/customize/#section-visuals-and-full-width-pages)) |

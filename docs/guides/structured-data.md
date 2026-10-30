@@ -52,6 +52,8 @@ modootoday:
 
 Turn it off with `modootoday.schema: false` (or `schema: {enabled: false}`), or for one page with `schema: false` in front matter. `seo: false` also removes it.
 
+With `seo: false` and `jekyll-seo-tag`, the plugin writes its own JSON-LD between the `<!-- Begin Jekyll SEO tag` and `<!-- End Jekyll SEO tag -->` comments. `modootoday-check` checks that block only for valid JSON and reports a warning, not errors: the kit does not write it, and its `WebPage` has `headline` but no `name`. schema.org marks no property as required, and Google lists no required properties for `WebPage`; the required-property list is the kit's own rule for the markup it writes. To have the page checked in full, move to the kit's tags ([Migrate](../upgrade/#from-jekyll-seo-tag)).
+
 ## Per-page entities
 
 Set `schema.type` and any schema.org properties in front matter; `type:` keys become `@type`. The theme fills `name`, `description`, `url` and `image` from the page.

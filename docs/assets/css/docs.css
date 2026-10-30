@@ -4,3 +4,4 @@
 .docs-ex-out.mt-cta{margin-top:0}.docs-ex-out.mt-cta>.mt-actions:first-child{margin-top:0}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mt-gallery-thumb img,:root:not([data-theme="light"]) .mt-lightbox img{filter:var(--mt-img-filter-dark,brightness(.85))}}
 [data-theme="dark"] .mt-gallery-thumb img,[data-theme="dark"] .mt-lightbox img{filter:var(--mt-img-filter-dark,brightness(.85))}
+.docs-flat-grid ul{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:0;list-style:none}.docs-flat-grid li{padding:.5rem;text-align:center;border:1px solid var(--mt-border);border-radius:.375rem}

@@ -12,6 +12,10 @@ module Modootoday
     module StructuredData
       BLOCK = %r{<script type="application/ld\+json">(.*?)</script>}m
       CONTEXT = %r{\Ahttps?://schema\.org/?\z}
+      # jekyll-seo-tag output (sites with seo: false that bring the plugin). Its JSON-LD is third-party markup the kit
+      # does not write: it is checked only for valid JSON and noted as a warning, not held to the kit's rules
+      # (for example WebPage with headline but no name). schema.org itself marks no property as required.
+      SEO_TAG = /<!-- Begin Jekyll SEO tag.*?<!-- End Jekyll SEO tag -->/m
 
       module_function
 
@@ -20,6 +24,15 @@ module Modootoday
       end
 
       def page(ctx, f, html)
+        html.scan(SEO_TAG).each do |seo|
+          seo.scan(BLOCK).flatten.each do |b|
+            JSON.parse(b)
+            ctx.warns << "#{f}: JSON-LD from jekyll-seo-tag not checked against the kit's schema rules (third-party markup)"
+          rescue JSON::ParserError => e
+            ctx.errs << "#{f}: jekyll-seo-tag JSON-LD is not valid JSON (#{e.message[0, 80]})"
+          end
+        end
+        html = html.gsub(SEO_TAG, "")
         blocks = html.scan(BLOCK).flatten
         return if blocks.empty?
 

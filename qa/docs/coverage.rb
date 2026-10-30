@@ -13,6 +13,7 @@ Dir.glob("#{root}/docs/{,*/}components/kitchen-sink.md").each do |f|
   %w[NOTE TIP IMPORTANT WARNING CAUTION].each { |t| errs << "#{f}: alert #{t} missing" unless src.include?("> [!#{t}]") }
   %w[tag: kbd:].each { |p| errs << "#{f}: #{p} badge missing" unless src.match?(/`#{p}[A-Za-z0-9._+\/-]+`/) }
   errs << "#{f}: figure (image + *caption*) missing" unless src.match?(/^!\[[^\]]+\]\([^)]+\)\n\n\*[^*\n]+\*$/)
+  errs << "#{f}: .mt-flat-list demo (visual: flat-list) missing" unless src.include?("visual: flat-list")
   %w[available partial planned].each { |v| errs << "#{f}: status:#{v} missing" unless src.include?("`status:#{v}`") }
 end
 errs << "no kitchen-sink page" if Dir.glob("#{root}/docs/components/kitchen-sink.md").empty?

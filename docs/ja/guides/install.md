@@ -76,6 +76,8 @@ gem install jekyll-theme-modootoday
 modootoday-check . _site --twins
 ```
 
+`gem install` の後でシェルが `modootoday-check` を見つけられない場合は、gem の bin ディレクトリーが `PATH` にありません。`ruby -S modootoday-check . _site --twins` で実行するか、`"$(gem env gemdir)/bin/modootoday-check"` を呼び出します。スクリプトの場所は `gem contents jekyll-theme-modootoday | grep bin/` で確認します。
+
 GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`。
 
 `github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が警告を抑える設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。

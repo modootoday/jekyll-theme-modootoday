@@ -36,6 +36,16 @@ Pick one of three ways to publish the agent-readable twin of each page:
 
 Switching between them does not change page bodies. See [Agents](../agents/) and section 5a of `RULES.md`.
 
+## From jekyll-seo-tag
+
+To let the kit write the SEO tags instead of `jekyll-seo-tag`:
+
+1. Remove `jekyll-seo-tag` from `plugins:` and the `Gemfile`, and the `seo` tag from `_includes/head-custom.html`.
+2. Remove `seo: false` and `hreflang: true` from `modootoday:`. The kit writes the canonical link, the `hreflang` alternates and Open Graph again; delete any alternate links you added by hand, so no page lists them twice.
+3. Set the browser bar colour with `modootoday.theme_color` (see [Configuration](../configuration/)). The kit writes two `theme-color` tags by default, one for light and one for dark; remove any `theme-color` tag of your own, or the page has three.
+4. The kit writes only `twitter:card` (`summary_large_image` when the page has an image). It reads no `twitter:` setting; put a `twitter:site` meta tag in `_includes/head-custom.html` if you need one.
+5. Rebuild and run `modootoday-check SRC _site`: the warning about jekyll-seo-tag JSON-LD should be gone.
+
 ## Upgrading
 
 Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference/api/) page lists the documented names. After upgrading, run `modootoday-check --strict`.
