@@ -32,4 +32,24 @@ jobs:
         run: |
           v=$(ruby -e 'puts Gem::Specification.load("jekyll-theme-modootoday.gemspec").version')
           test "v$v" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != gem version $v"; exit 1; }
+      # A first push that creates the gem must name the RubyGems account that owns the
+      # pending trusted publisher. release-gem has no `owner` input, so exchange the
+      # OIDC token here and let release-gem skip its own exchange.
+      # 255203 is the account's immutable ID, shown on its Pending Trusted Publishers page.
+      - name: Exchange OIDC token for a RubyGems API key
+        env:
+          RUBYGEMS_OWNER: "255203"
+        run: |
+          jwt=$(curl -fsS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=rubygems.org" | ruby -rjson -e 'puts JSON.parse($stdin.read)["value"]')
+          echo "::add-mask::$jwt"
+          key=$(curl -fsS -X POST https://rubygems.org/api/v1/oidc/trusted_publisher/exchange_token \
+            -H "Content-Type: application/json" \
+            -d "{\"jwt\":\"$jwt\",\"owner\":\"$RUBYGEMS_OWNER\"}" | ruby -rjson -e 'puts JSON.parse($stdin.read)["rubygems_api_key"]')
+          echo "::add-mask::$key"
+          echo "RUBYGEMS_API_KEY=$key" >> "$GITHUB_ENV"
+          echo "GEM_HOST_API_KEY=$key" >> "$GITHUB_ENV"
+          echo "BUNDLE_GEM__PUSH_KEY=$key" >> "$GITHUB_ENV"
       - uses: rubygems/release-gem@v1
+        with:
+          setup-trusted-publisher: "false"
