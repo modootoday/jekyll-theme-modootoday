@@ -37,6 +37,25 @@ class SpecMarkerTest < Minitest::Test
     assert_equal 0, code, o
   end
 
+  def test_accepts_arguments_after_the_name
+    body "<!-- spec:graph format=mermaid source=tutorial -->\n\n<!-- /spec:graph -->\n\n" \
+         "| Types | <!-- spec:count rows=\"Types\" -->7<!-- /spec:count --> |\n|---|---|\n\n" \
+         "There are <!-- spec:count rows=\"All commands\" -->12<!-- /spec:count --> commands and " \
+         "<!-- spec:count find type=adr status=active -->3<!-- /spec:count --> active ADRs."
+    o, code = check
+    assert_equal 0, code, o
+  end
+
+  def test_rejects_bad_arguments
+    { "<!-- spec:count rows=\"a > b\" -->" => "> in quotes", "<!-- spec:count rows=a--b -->" => "-- in arguments",
+      "<!-- spec:countrows=x -->" => "no space before arguments", "<!-- spec:count ## B -->" => "## in arguments" }.each do |c, why|
+      body "Text #{c}1<!-- /spec:count --> end."
+      o, code = check
+      assert_equal 1, code, "#{why}: #{o}"
+      assert comment_error?(o), "#{why}: #{o}"
+    end
+  end
+
   def test_rejects_malformed_and_other_comments
     { "<!-- spec:Count -->" => "uppercase", "<!-- spec: -->" => "empty name", "<!-- spec:count\n-->" => "multi-line",
       "<!-- note -->" => "plain comment", "<!-- spec:count ## B -->" => "## inside" }.each do |c, why|

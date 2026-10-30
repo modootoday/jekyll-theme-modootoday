@@ -10,6 +10,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Release workflow: after the gem is pushed to RubyGems, a GitHub Release is created for the tag with its `CHANGELOG.md` entry as the notes (`script/release-notes`); skipped when the Release already exists.
 
+### Fixed
+
+- Checker: specfold value markers with arguments after the name (`<!-- spec:graph format=mermaid source=tutorial -->`, `<!-- spec:count rows="All commands" -->`) are no longer reported as HTML comments (RULES.md, HTML comments row). The HTML comment error now quotes the first comment it found.
+
 ## [1.1.0] - 2026-10-31
 
 ### Added
