@@ -7,3 +7,5 @@
 @import "grid";
 @import "filter";
 @import "presets";
+@import "../tools/img-dark";
+@include mt-img-dark('.mt-dir img:not([src$=".svg"])', '.mt-dir img[src$=".svg"]');

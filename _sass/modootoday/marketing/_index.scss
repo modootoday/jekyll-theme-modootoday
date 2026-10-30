@@ -6,3 +6,5 @@
 @import "page";
 @import "pricing";
 @import "forms";
+@import "../tools/img-dark";
+@include mt-img-dark('.mt-mk-avatar, .mt-main img:not([src$=".svg"])');

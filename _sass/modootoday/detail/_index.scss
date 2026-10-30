@@ -4,3 +4,5 @@
 @import "../tools/mixins";
 @import "../kit/button";
 @import "page";
+@import "../tools/img-dark";
+@include mt-img-dark(".mt-detail-cover img");

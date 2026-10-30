@@ -3,3 +3,5 @@
 @import "../tools/functions";
 @import "../tools/mixins";
 @import "page";
+@import "../tools/img-dark";
+@include mt-img-dark(".mt-dx-cover");

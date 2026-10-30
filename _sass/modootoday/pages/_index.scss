@@ -7,3 +7,5 @@
 @import "error";
 @import "search";
 @import "legal";
+@import "../tools/img-dark";
+@include mt-img-dark(".mt-hero-media");

@@ -6,3 +6,5 @@
 @import "cards";
 @import "article";
 @import "news";
+@import "../tools/img-dark";
+@include mt-img-dark('.mt-main img:not([src$=".svg"])');
