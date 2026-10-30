@@ -38,7 +38,7 @@
 {%- endif %}
 {%- include head-custom.html %}
 </head>
-<body class="mt-body"{% if site.modootoday.external_links.icon == false %} data-mt-new-window-icon="false"{% endif %}>
+<body class="mt-body"{% unless site.modootoday.external_links.icon == false %} data-mt-nw-icon{% endunless %}>
 <a class="mt-skip" href="#mt-main">{{ mt_t_skip }}</a>
 {%- assign _bn = site.modootoday.banner -%}{%- if mt_components contains "banner" and _bn.text %}
 <div class="mt-banner" role="region" aria-label="{{ mt_t_banner_label }}"><p>{{ _bn.text }}{% if _bn.url %} <a href="{% include modootoday/link.html url=_bn.url %}"{% include modootoday/links/attrs.html on=_bn.new_window target=_bn.target url=_bn.url %}>{{ _bn.link | default: _bn.url }}</a>{% endif %}</p></div>

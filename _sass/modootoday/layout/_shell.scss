@@ -51,7 +51,6 @@
     .mt-main { padding-top: 1.5rem; }
     :root { --mt-gutter: 1rem; }
   }
-  // New-window links (data-mt-new-window): a CSS-only arrow; the spoken hint is the aria-describedby text, so the arrow has empty alt text.
-  a[data-mt-new-window]::after { content: "\2197"; content: unquote('"\\2197" / ""'); display: inline-block; margin-inline-start: .2em; font-size: .8em; text-decoration: none; }
-  [data-mt-new-window-icon="false"] a[data-mt-new-window]::after { content: none; }
+  // New-window arrow (on unless external_links.icon: false); empty alt text, the hint is spoken via aria-describedby.
+  [data-mt-nw-icon] [data-mt-new-window]::after { content: unquote('"\\2197" / ""'); }
 }
