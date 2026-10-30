@@ -80,6 +80,7 @@ class ListsTest < Minitest::Test
       refute_includes u, "terminal.css"
       assert_includes u, '<div class="mt-section-visual mt-split-code"><div class="language-sh'
       assert_includes File.read("#{s}/assets/css/modootoday/terminal.css"), "forced-colors"
+      ["", "ko/", "ja/"].each { |l| assert_includes File.read(File.expand_path("../../docs/#{l}components/kitchen-sink.md", __dir__)), "visual: code, chrome: terminal}" }
       out, = check(src, s)
       refute_includes out, "terminal"
     end

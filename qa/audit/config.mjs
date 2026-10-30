@@ -10,7 +10,8 @@ export const EN_ONLY = ["guides/2026/10/28/archives/", "layouts/demo/error-rtl/"
 // Core (every page) and the optional blog/news bundle (post, blog, news, news-article, author and archive layouts only), budgeted apart.
 export const BLOG_FILES = ["css/modootoday-blog.css", "js/modootoday/share.js"];
 // css: core CSS one page links in total; js: all core scripts; blog-*: the blog bundle (docs site build, sass style: compressed)
-export const BUDGET = { css: 35 * 1024, css_showcase: 48 * 1024, js: 11 * 1024, "blog-css": 8 * 1024, "blog-js": 1024, bundle: 8 * 1024, bundle_js: 2.5 * 1024 };
+// css_showcase: 53 KiB (was 48, ~+10%): showcase pages (components index, kitchen-sink) link every optional sheet, and the kitchen sink also shows chrome: terminal.
+export const BUDGET = { css: 35 * 1024, css_showcase: 53 * 1024, js: 11 * 1024, "blog-css": 8 * 1024, "blog-js": 1024, bundle: 8 * 1024, bundle_js: 2.5 * 1024 };
 // Optional per-layout bundles css/modootoday-<name>.css (mt_bundle; not blog): each on BUDGET.bundle, never counted as core.
 export const BUNDLE = /^css\/modootoday-(?!blog\.)([a-z0-9-]+)\.css$/;
 // Optional renderer bundles js/modootoday-<name>.js (mermaid, math): loaded only on pages that need them, each on BUDGET.bundle_js, never counted as core.

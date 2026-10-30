@@ -36,7 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
-  - {c: split, name: split-code, visual: code}
+  - {c: split, name: split-code, visual: code, chrome: terminal}
   - lists
 ---
 # Kitchen sink

@@ -36,7 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
-  - {c: split, name: split-code, visual: code}
+  - {c: split, name: split-code, visual: code, chrome: terminal}
   - lists
 ---
 # 키친싱크

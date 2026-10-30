@@ -36,7 +36,7 @@ sections:
   - {c: pricing, name: pricing, recommended: 2}
   - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
-  - {c: split, name: split-code, visual: code}
+  - {c: split, name: split-code, visual: code, chrome: terminal}
   - lists
 ---
 # キッチンシンク
