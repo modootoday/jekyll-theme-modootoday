@@ -1,0 +1,24 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-glossary
+---
+{%- comment -%}glossary: terms: [{term, text, id}] sorted by term, grouped by first letter with a letter index; a dl with a dt
+(id) per term. Structured data: DefinedTermSet with one DefinedTerm per entry.{%- endcomment -%}
+{%- assign _terms = page.terms | sort_natural: "term" -%}
+{%- assign _letters = "" -%}{%- for t in _terms -%}{%- assign _c = t.term | slice: 0 | upcase -%}{%- unless _letters contains _c -%}{%- assign _letters = _letters | append: _c | append: " " -%}{%- endunless -%}{%- endfor -%}
+{%- assign _letters = _letters | split: " " -%}
+<article aria-labelledby="mt-dx-title">
+{%- include modootoday/docs-extra/head.html %}
+<div class="mt-dx-body">
+{{ content }}
+</div>
+{%- if _letters.size > 1 %}
+<nav class="mt-dx-letters" aria-label="{{ mt_t_layouts_letters }}"><ul>{% for l in _letters %}<li><a href="#mt-dx-l-{{ forloop.index }}">{{ l }}</a></li>{% endfor %}</ul></nav>
+{%- endif %}
+{%- for l in _letters %}
+<section aria-labelledby="mt-dx-l-{{ forloop.index }}"><h2 class="mt-dx-letter" id="mt-dx-l-{{ forloop.index }}">{{ l }}</h2>
+<dl class="mt-dx-terms">{% for t in _terms %}{% assign _c = t.term | slice: 0 | upcase %}{% if _c == l %}<dt id="{{ t.id | default: t.term | slugify }}">{{ t.term }}</dt><dd>{{ t.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</dd>{% endif %}{% endfor %}</dl>
+</section>
+{%- endfor %}
+</article>

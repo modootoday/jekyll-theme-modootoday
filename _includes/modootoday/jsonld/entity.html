@@ -11,5 +11,6 @@ the front matter schema: map adds the rest (schema.org property names, nested ma
 {%- if _ld_img and page.schema.image == nil %},"image":{{ _ld_img | absolute_url | jsonify }}{% endif -%}
 {%- if _ld_type == "ItemList" -%}{%- include modootoday/directory/jsonld.html preset=page.layout -%}{%- endif -%}
 {%- include modootoday/detail/jsonld.html -%}
+{%- include modootoday/docs-extra/jsonld.html -%}
 {%- include modootoday/jsonld/props.html -%}
 }

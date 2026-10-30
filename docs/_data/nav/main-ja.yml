@@ -45,11 +45,32 @@
         - {title: リンクのデモ, url: /ja/layouts/marketing/links/}
         - {title: お問い合わせのデモ, url: /ja/layouts/marketing/contact/}
     - {title: ブログとニュース, url: /ja/layouts/blog-news/}
+    - title: ドキュメント拡張
+      url: /ja/layouts/docs-extra/
+      items:
+        - {title: リファレンスのデモ, url: /ja/layouts/docs-extra/reference/}
+        - {title: 変更履歴のデモ, url: /ja/layouts/docs-extra/changelog/}
+        - {title: ロードマップのデモ, url: /ja/layouts/docs-extra/roadmap/}
+        - {title: 用語集のデモ, url: /ja/layouts/docs-extra/glossary/}
+        - {title: ハブのデモ, url: /ja/layouts/docs-extra/hub/}
+        - {title: コースのデモ, url: /ja/layouts/docs-extra/course/}
+        - {title: 書籍のデモ, url: /ja/layouts/docs-extra/book/}
+    - title: 文書
+      url: /ja/layouts/documents/
+      items:
+        - {title: 利用規約のデモ, url: /ja/layouts/documents/legal/}
+        - {title: 履歴書のデモ, url: /ja/layouts/documents/resume/}
 - title: レシピ
   url: /ja/recipes/
   items:
     - {title: 数式と図, url: /ja/recipes/math-diagrams/}
     - {title: CSP, url: /ja/recipes/csp/}
+    - {title: 製品サイト, url: /ja/recipes/marketing/}
+    - {title: 会社のページ, url: /ja/recipes/company/}
+    - {title: ドキュメントサイト, url: /ja/recipes/docs/}
+    - {title: 個人サイト, url: /ja/recipes/personal/}
+    - {title: コミュニティサイト, url: /ja/recipes/community/}
+    - {title: システムページ, url: /ja/recipes/system/}
 - title: リファレンス
   url: /ja/reference/
   items:

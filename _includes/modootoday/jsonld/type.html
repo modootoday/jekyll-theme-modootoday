@@ -10,8 +10,11 @@ Order: front matter schema.type, then site.modootoday.schema.layouts[<layout>], 
 {%- when "job" -%}{%- assign _ld_type = "JobPosting" -%}
 {%- when "event" -%}{%- assign _ld_type = "Event" -%}
 {%- when "episode" -%}{%- assign _ld_type = "PodcastEpisode" -%}
-{%- when "doc" -%}{%- assign _ld_type = "TechArticle" -%}
-{%- when "archive", "blog", "news" -%}{%- assign _ld_type = "CollectionPage" -%}
+{%- when "doc", "reference" -%}{%- assign _ld_type = "TechArticle" -%}
+{%- when "glossary" -%}{%- assign _ld_type = "DefinedTermSet" -%}
+{%- when "course" -%}{%- assign _ld_type = "Course" -%}
+{%- when "book" -%}{%- assign _ld_type = "Book" -%}
+{%- when "archive", "blog", "news", "hub" -%}{%- assign _ld_type = "CollectionPage" -%}
 {%- when "author", "profile", "resume", "links" -%}{%- assign _ld_type = "ProfilePage" -%}
 {%- when "contact" -%}{%- assign _ld_type = "ContactPage" -%}
 {%- when "search" -%}{%- assign _ld_type = "SearchResultsPage" -%}

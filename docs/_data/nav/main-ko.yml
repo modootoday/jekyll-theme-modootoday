@@ -45,11 +45,32 @@
         - {title: 링크 데모, url: /ko/layouts/marketing/links/}
         - {title: 문의 데모, url: /ko/layouts/marketing/contact/}
     - {title: 블로그와 뉴스, url: /ko/layouts/blog-news/}
+    - title: 문서 확장
+      url: /ko/layouts/docs-extra/
+      items:
+        - {title: 레퍼런스 데모, url: /ko/layouts/docs-extra/reference/}
+        - {title: 변경 이력 데모, url: /ko/layouts/docs-extra/changelog/}
+        - {title: 로드맵 데모, url: /ko/layouts/docs-extra/roadmap/}
+        - {title: 용어집 데모, url: /ko/layouts/docs-extra/glossary/}
+        - {title: 허브 데모, url: /ko/layouts/docs-extra/hub/}
+        - {title: 강좌 데모, url: /ko/layouts/docs-extra/course/}
+        - {title: 책 데모, url: /ko/layouts/docs-extra/book/}
+    - title: 문서
+      url: /ko/layouts/documents/
+      items:
+        - {title: 이용 약관 데모, url: /ko/layouts/documents/legal/}
+        - {title: 이력서 데모, url: /ko/layouts/documents/resume/}
 - title: 레시피
   url: /ko/recipes/
   items:
     - {title: 수식과 다이어그램, url: /ko/recipes/math-diagrams/}
     - {title: CSP, url: /ko/recipes/csp/}
+    - {title: 제품 사이트, url: /ko/recipes/marketing/}
+    - {title: 회사 페이지, url: /ko/recipes/company/}
+    - {title: 문서 사이트, url: /ko/recipes/docs/}
+    - {title: 개인 사이트, url: /ko/recipes/personal/}
+    - {title: 커뮤니티 사이트, url: /ko/recipes/community/}
+    - {title: 시스템 페이지, url: /ko/recipes/system/}
 - title: 레퍼런스
   url: /ko/reference/
   items:

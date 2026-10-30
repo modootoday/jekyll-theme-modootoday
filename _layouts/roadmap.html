@@ -1,0 +1,22 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-roadmap
+---
+{%- comment -%}roadmap: items: [{title, status (now | next | later), text, url}] in three columns (Now, Next, Later), each a
+section with an h2 and a list; the body follows. Items in another status are left out (modootoday-check reports them).{%- endcomment -%}
+<article aria-labelledby="mt-dx-title">
+{%- include modootoday/docs-extra/head.html %}
+<div class="mt-dx-cols">
+{%- assign _st = "now next later" | split: " " -%}
+{%- for s in _st %}{% assign _it = page.items | where: "status", s %}{% assign _l = "layouts." | append: s %}
+<section class="mt-dx-col mt-dx-col-{{ s }}" aria-labelledby="mt-dx-{{ s }}">
+<h2 id="mt-dx-{{ s }}">{% include modootoday/t.html key=_l %} <span class="mt-dx-count">{{ _it.size }}</span></h2>
+<ul role="list">{% for i in _it %}<li><h3>{% if i.url %}<a href="{{ i.url | relative_url }}">{{ i.title }}</a>{% else %}{{ i.title }}{% endif %}</h3>{% if i.text %}<p>{{ i.text }}</p>{% endif %}</li>{% endfor %}</ul>
+</section>
+{%- endfor %}
+</div>
+<div class="mt-dx-body">
+{{ content }}
+</div>
+</article>

@@ -1,0 +1,5 @@
+// Resume (separate bundle): print-first CV. Uses the core tokens already on the page; emits no tokens.
+@import "../settings";
+@import "../tools/functions";
+@import "../tools/mixins";
+@import "page";

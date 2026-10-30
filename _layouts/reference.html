@@ -1,0 +1,24 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-reference
+---
+{%- comment -%}reference: an API or option reference. members: [{name, signature, text, since, deprecated, id}] become a contents
+list and one section each (h2 with the name in code, the signature, the text, since / deprecated notes); the body comes first.{%- endcomment -%}
+<article aria-labelledby="mt-dx-title">
+{%- include modootoday/docs-extra/head.html %}
+{%- if page.members.size > 1 %}
+<nav class="mt-dx-toc" aria-label="{{ mt_t_layouts_contents }}"><ul>{% for m in page.members %}<li><a href="#{{ m.id | default: m.name | slugify }}"><code>{{ m.name }}</code></a></li>{% endfor %}</ul></nav>
+{%- endif %}
+<div class="mt-dx-body">
+{{ content }}
+</div>
+{%- for m in page.members %}{% assign _id = m.id | default: m.name | slugify %}
+<section class="mt-dx-member" id="{{ _id }}" aria-labelledby="{{ _id }}-h">
+<h2 id="{{ _id }}-h"><code>{{ m.name }}</code></h2>
+{%- if m.signature %}<pre class="mt-dx-sig"><code>{{ m.signature }}</code></pre>{% endif %}
+{%- if m.text %}{{ m.text | markdownify }}{% endif %}
+{%- if m.since or m.deprecated %}<p class="mt-dx-meta">{% if m.since %}{{ mt_t_layouts_version }} {{ m.since }}{% endif %}{% if m.deprecated %}{% if m.since %} · {% endif %}<strong class="mt-dx-warn">{{ m.deprecated }}</strong>{% endif %}</p>{% endif %}
+</section>
+{%- endfor %}
+</article>

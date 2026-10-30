@@ -20,4 +20,6 @@ Set a layout with `layout:` in front matter. Pages without one use `doc`.
 - [Detail pages](detail/) — One page per project, case study, job, event or podcast episode, with a facts list, one call to action and structured data.
 - [Marketing pages](marketing/) — Feature, pricing, download, brand, link and contact pages with a shared optional stylesheet.
 - [Blog and news](blog-news/) — Blog indexes, news front pages, article bylines, author pages and Atom feeds.
+- [Docs extras](docs-extra/) — Reference, changelog, roadmap, glossary, hub, course and book pages with one shared optional stylesheet.
+- [Documents](documents/) — Legal pages and a print-first resume.
 <!-- spec:docs-index:end -->

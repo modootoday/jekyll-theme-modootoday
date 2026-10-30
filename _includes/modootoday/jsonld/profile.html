@@ -8,6 +8,12 @@ page.links / page.profiles urls that are absolute.{%- endcomment -%}
 {%- if page.image %},"image":{{ page.image | absolute_url | jsonify }}{% endif -%}
 {%- if page.headline %},"jobTitle":{{ page.headline | jsonify }}{% endif -%}
 {%- if page.email %},"email":{{ page.email | prepend: "mailto:" | replace: "mailto:mailto:", "mailto:" | jsonify }}{% endif -%}
+{%- if page.phone %},"telephone":{{ page.phone | jsonify }}{% endif -%}
+{%- if page.location %},"address":{"@type":"PostalAddress","addressLocality":{{ page.location | jsonify }}}{% endif -%}
+{%- assign _now = page.experience | where_exp: "e", "e.end == nil" | first -%}
+{%- if _now.org %},"worksFor":{"@type":"Organization","name":{{ _now.org | jsonify }}}{% endif -%}
+{%- if page.education %},"alumniOf":[{% for e in page.education %}{% unless forloop.first %},{% endunless %}{"@type":"EducationalOrganization","name":{{ e.school | jsonify }}}{% endfor %}]{% endif -%}
+{%- if page.skills %}{% assign _ka = "" %}{% for s in page.skills %}{% for i in s.items %}{% assign _ka = _ka | append: "|" | append: i %}{% endfor %}{% endfor %},"knowsAbout":{{ _ka | remove_first: "|" | split: "|" | jsonify }}{% endif -%}
 {%- assign _sa = "" -%}{%- for l in _pf -%}{%- if l.url contains "://" -%}{%- assign _sa = _sa | append: "|" | append: l.url -%}{%- endif -%}{%- endfor -%}
 {%- if _sa != "" %},"sameAs":{{ _sa | remove_first: "|" | split: "|" | jsonify }}{% endif -%}
 }

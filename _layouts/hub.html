@@ -1,0 +1,16 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-hub
+---
+{%- comment -%}hub: a section landing page. cards: [{title, text, url}] as a grid of linked cards after the header, then the body.
+Structured data: CollectionPage whose hasPart lists the linked pages.{%- endcomment -%}
+<article aria-labelledby="mt-dx-title">
+{%- include modootoday/docs-extra/head.html %}
+{%- if page.cards %}
+<ul class="mt-dx-cards" role="list">{% for c in page.cards %}<li><h2><a href="{{ c.url | relative_url }}">{{ c.title }}</a></h2>{% if c.text %}<p>{{ c.text }}</p>{% endif %}</li>{% endfor %}</ul>
+{%- endif %}
+<div class="mt-dx-body">
+{{ content }}
+</div>
+</article>

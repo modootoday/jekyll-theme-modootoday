@@ -1,0 +1,26 @@
+// One column that reads like paper on screen and fits A4 / Letter in print. // Print: the page alone on paper (no header, skip link, banner, page meta, back-to-top or footer).
+@include mt-layer(components) {
+  .mt-cv { max-width: 46rem; margin-inline: auto; }
+  .mt-cv-head { margin: 1rem 0 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid mt(foreground); }
+  .mt-cv-head h1 { margin: 0; font-size: 2.25rem; letter-spacing: -.02em; }
+  .mt-cv-headline { margin: .25rem 0 0; font-size: 1.125rem; color: mt(muted-foreground); }
+  .mt-cv-contact { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: .75rem 0 0; padding: 0; list-style: none; font-size: .9375rem; }
+  .mt-cv h2 { margin: 2rem 0 .5rem; font-size: .875rem; text-transform: uppercase; letter-spacing: .08em; color: mt(muted-foreground); }
+  .mt-cv-item { margin-bottom: 1.25rem; break-inside: avoid; }
+  .mt-cv-item h3 { display: flex; flex-wrap: wrap; gap: 0 .5rem; margin: 0; font-size: 1.0625rem; }
+  .mt-cv-org { font-weight: 400; color: mt(muted-foreground); }
+  .mt-cv-org::before { content: "· "; }
+  .mt-cv-when { margin: 0 0 .25rem; color: mt(muted-foreground); font-size: .875rem; font-variant-numeric: tabular-nums; }
+  .mt-cv-item p, .mt-cv-item ul { margin-block: .25rem; }
+  .mt-cv-skills { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; margin: 0; }
+  .mt-cv-skills dt { font-weight: 600; }
+  .mt-cv-skills dd { margin: 0; }
+}
+@media print {
+  @page { margin: 14mm 16mm; }
+  body:has(.mt-cv) :is(.mt-header, .mt-skip, .mt-banner, .mt-page-meta, .mt-back-to-top, .mt-footer) { display: none; }
+  .mt-cv { max-width: none; font-size: 10.5pt; line-height: 1.4; color: #000; }
+  .mt-cv a { color: inherit; text-decoration: none; }
+  .mt-cv-head h1 { font-size: 22pt; }
+  .mt-cv h2 { margin-top: 1rem; }
+}

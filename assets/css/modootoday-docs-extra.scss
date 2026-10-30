@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday docs-extra stylesheet (reference, changelog, roadmap, glossary, hub, course, book): loaded only by
+# those layouts (mt_bundle: docs-extra), so the core bundle stays small. Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/docs-extra/index";

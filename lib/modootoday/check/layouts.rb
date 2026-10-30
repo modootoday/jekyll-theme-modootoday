@@ -6,6 +6,7 @@ require_relative "layouts/shells"
 require_relative "layouts/directory"
 require_relative "layouts/detail"
 require_relative "layouts/marketing"
+require_relative "layouts/docs_extra"
 
 module Modootoday
   module Check
@@ -18,6 +19,7 @@ module Modootoday
         }.merge(Directory::LAYOUTS.to_h { |l| [l, Directory.method(:call)] })
           .merge(Detail::LAYOUTS.to_h { |l| [l, Detail.method(:call)] })
           .merge(Marketing::LAYOUTS.to_h { |l| [l, Marketing.method(:call)] })
+          .merge(DocsExtra::LAYOUTS.to_h { |l| [l, DocsExtra.method(:call)] })
       end
 
       def self.register(names, check) = names.each { |n| contracts[n] = check }

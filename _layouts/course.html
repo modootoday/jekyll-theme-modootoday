@@ -1,0 +1,21 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-course
+---
+{%- comment -%}course: level, modules: [{title, lessons: [{title, url, minutes}]}]; facts (level, total time), a numbered syllabus
+(Module n: title, its lessons with times), then the body. Structured data: Course with provider = site publisher.{%- endcomment -%}
+{%- assign _min = 0 -%}{%- for m in page.modules -%}{%- for l in m.lessons -%}{%- assign _min = _min | plus: l.minutes -%}{%- endfor -%}{%- endfor -%}
+<article aria-labelledby="mt-dx-title">
+{%- include modootoday/docs-extra/head.html %}
+{%- if page.level or _min > 0 %}<p class="mt-dx-meta">{% if page.level %}{{ page.level }}{% endif %}{% if page.level and _min > 0 %} · {% endif %}{% if _min > 0 %}{{ mt_t_layouts_minutes | replace: "[n]", _min }}{% endif %}</p>{% endif %}
+<div class="mt-dx-body">
+{{ content }}
+</div>
+{%- if page.modules %}
+<section aria-labelledby="mt-dx-syllabus"><h2 id="mt-dx-syllabus">{{ mt_t_layouts_lessons }}</h2>
+<ol class="mt-dx-syllabus">{% for m in page.modules %}<li><h3><span class="mt-dx-kicker">{{ mt_t_layouts_module | replace: "[n]", forloop.index }}</span> {{ m.title }}</h3>
+<ol>{% for l in m.lessons %}<li>{% if l.url %}<a href="{{ l.url | relative_url }}">{{ l.title }}</a>{% else %}{{ l.title }}{% endif %}{% if l.minutes %} <span class="mt-dx-time">{{ mt_t_layouts_minutes | replace: "[n]", l.minutes }}</span>{% endif %}</li>{% endfor %}</ol></li>{% endfor %}</ol>
+</section>
+{%- endif %}
+</article>

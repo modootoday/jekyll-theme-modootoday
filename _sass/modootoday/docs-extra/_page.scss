@@ -1,0 +1,36 @@
+// Shared header and the lists of each docs-extra layout.
+@include mt-layer(components) {
+  .mt-dx-head { margin: 1rem 0 1.5rem; }
+  .mt-dx-head h1 { margin: 0; }
+  .mt-dx-lead { margin: .5rem 0 0; font-size: 1.125rem; color: mt(muted-foreground); }
+  .mt-dx-kicker, .mt-dx-meta, .mt-dx-time, .mt-dx-count { color: mt(muted-foreground); font-size: .875rem; }
+  .mt-dx-kicker { margin: 0 0 .25rem; font-weight: 600; }
+  .mt-dx-toc ul, .mt-dx-letters ul, .mt-dx-cards, .mt-dx-col ul { margin: 0; padding: 0; list-style: none; }
+  .mt-dx-toc ul, .mt-dx-letters ul { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin-bottom: 1.5rem; }
+  .mt-dx-letters a { display: inline-block; min-width: 2rem; padding: .25rem; text-align: center; }
+  .mt-dx-member, .mt-dx-release { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid mt(border); scroll-margin-top: 4rem; }
+  .mt-dx-member h2, .mt-dx-release h2 { margin-top: 0; }
+  .mt-dx-release time { margin-inline-start: .5rem; font-size: .875rem; font-weight: 400; color: mt(muted-foreground); }
+  .mt-dx-cat { font-size: .8125rem; text-transform: uppercase; letter-spacing: .04em; }
+  .mt-dx-warn { color: mt(caution); }
+  .mt-dx-cols, .mt-dx-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 2rem; }
+  .mt-dx-col { padding: 1rem; border-radius: mt(radius-lg); background: mt(muted); }
+  .mt-dx-col h2 { margin: 0 0 .75rem; font-size: 1rem; }
+  .mt-dx-col li, .mt-dx-cards li { margin-top: .5rem; padding: .75rem 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(card); }
+  .mt-dx-col h3, .mt-dx-cards h2 { margin: 0; font-size: 1rem; }
+  .mt-dx-col p, .mt-dx-cards p { margin: .25rem 0 0; color: mt(muted-foreground); font-size: .9375rem; }
+  .mt-dx-cards li { position: relative; margin: 0; }
+  .mt-dx-cards li:hover { border-color: mt(primary); }
+  .mt-dx-cards a::after { content: ""; position: absolute; inset: 0; }
+  .mt-dx-letter { scroll-margin-top: 4rem; }
+  .mt-dx-terms dt { margin-top: 1rem; font-weight: 600; scroll-margin-top: 4rem; }
+  .mt-dx-terms dd { margin: .25rem 0 0; }
+  .mt-dx-syllabus > li { margin-bottom: 1rem; }
+  .mt-dx-syllabus h3 { margin: 0 0 .25rem; font-size: 1.0625rem; }
+  .mt-dx-book { display: grid; gap: 0 2rem; }
+  .mt-dx-cover { border-radius: mt(radius); box-shadow: 0 4px 16px rgb(0 0 0 / .15); }
+  @media (min-width: 40rem) { .mt-dx-book { grid-template-columns: 200px 1fr; } .mt-dx-book > :not(.mt-dx-cover, div:first-of-type) { grid-column: 1 / -1; } }
+  .mt-dx-chapters ol { padding-inline-start: 0; list-style: none; }
+  .mt-dx-chapters li { padding: .5rem 0; border-bottom: 1px solid mt(border); }
+  @media print { .mt-dx-toc, .mt-dx-letters { display: none; } .mt-dx-col, .mt-dx-member, .mt-dx-release { break-inside: avoid; } }
+}

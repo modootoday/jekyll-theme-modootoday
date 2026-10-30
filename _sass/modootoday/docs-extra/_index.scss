@@ -1,0 +1,5 @@
+// Docs-extra partials (separate bundle: reference, changelog, roadmap, glossary, hub, course, book). Uses the core tokens.
+@import "../settings";
+@import "../tools/functions";
+@import "../tools/mixins";
+@import "page";

@@ -1,0 +1,23 @@
+---
+layout: default
+mt_bundle: pages
+mt_main: mt-legal
+---
+{%- include modootoday/i18n.html -%}
+{%- comment -%}legal: terms, privacy or other policy pages. effective (date, required), updated and version under the title, a
+contents list from toc: [{title, id}] if given, then the body; prints cleanly (the pages bundle hides chrome on paper).
+Structured data: WebPage with datePublished = effective and dateModified = updated.{%- endcomment -%}
+{%- assign _df = mt_t_post_date_format | default: "%Y-%m-%d" -%}
+<article aria-labelledby="mt-legal-title">
+<header class="mt-legal-head">
+<h1 id="mt-legal-title">{{ page.title }}</h1>
+<p class="mt-legal-meta">{% if page.effective %}{{ mt_t_layouts_effective }}: <time datetime="{{ page.effective | date: '%Y-%m-%d' }}">{{ page.effective | date: _df }}</time>{% endif %}{% if page.updated %} · {{ mt_t_page_updated }}: <time datetime="{{ page.updated | date: '%Y-%m-%d' }}">{{ page.updated | date: _df }}</time>{% endif %}{% if page.version %} · {{ mt_t_layouts_version }} {{ page.version }}{% endif %}</p>
+{%- if page.description %}<p class="mt-legal-lead">{{ page.description }}</p>{% endif %}
+</header>
+{%- if page.toc %}
+<nav class="mt-legal-toc" aria-label="{{ mt_t_layouts_contents }}"><ol>{% for t in page.toc %}<li><a href="#{{ t.id | default: t.title | slugify }}">{{ t.title }}</a></li>{% endfor %}</ol></nav>
+{%- endif %}
+<div class="mt-legal-body">
+{{ content }}
+</div>
+</article>

@@ -1,0 +1,19 @@
+{%- comment -%}Main-entity properties of the docs-extra layouts (inside jsonld/entity.html), each skipped when schema: sets it.
+DefinedTermSet (glossary): hasDefinedTerm. Course: provider (#publisher), educationalLevel, timeRequired, syllabusSections.
+Book: author, isbn, numberOfPages, hasPart (Chapter).{%- endcomment -%}
+{%- assign _sc = page.schema -%}
+{%- case _ld_type -%}
+{%- when "DefinedTermSet" -%}
+{%- if page.terms and _sc.hasDefinedTerm == nil %},"hasDefinedTerm":[{% for t in page.terms %}{% unless forloop.first %},{% endunless %}{"@type":"DefinedTerm","@id":{% assign _tid = t.id | default: t.term | slugify %}{{ _ld_url | append: "#" | append: _tid | jsonify }},"name":{{ t.term | jsonify }},"description":{{ t.text | markdownify | strip_html | strip | jsonify }},"inDefinedTermSet":{"@id":{{ _ld_url | append: "#main" | jsonify }}}}{% endfor %}]{% endif -%}
+{%- when "Course" -%}
+{%- unless _sc.provider %},"provider":{"@id":{{ _ld_root | append: "#publisher" | jsonify }}}{% endunless -%}
+{%- if page.level and _sc.educationalLevel == nil %},"educationalLevel":{{ page.level | jsonify }}{% endif -%}
+{%- assign _min = 0 -%}{%- for m in page.modules -%}{%- for l in m.lessons -%}{%- assign _min = _min | plus: l.minutes -%}{%- endfor -%}{%- endfor -%}
+{%- if _min > 0 and _sc.timeRequired == nil %},"timeRequired":"PT{{ _min }}M"{% endif -%}
+{%- if page.modules and _sc.syllabusSections == nil %},"syllabusSections":[{% for m in page.modules %}{% unless forloop.first %},{% endunless %}{"@type":"Syllabus","name":{{ m.title | jsonify }}}{% endfor %}]{% endif -%}
+{%- when "Book" -%}
+{%- if page.author and _sc.author == nil %},"author":{"@type":"Person","name":{{ page.author | jsonify }}}{% endif -%}
+{%- if page.isbn and _sc.isbn == nil %},"isbn":{{ page.isbn | jsonify }}{% endif -%}
+{%- if page.pages and _sc.numberOfPages == nil %},"numberOfPages":{{ page.pages | jsonify }}{% endif -%}
+{%- if page.chapters and _sc.hasPart == nil %},"hasPart":[{% for c in page.chapters %}{% unless forloop.first %},{% endunless %}{"@type":"Chapter","position":{{ forloop.index }},"name":{{ c.title | jsonify }}{% if c.url %},"url":{{ c.url | absolute_url | jsonify }}{% endif %}}{% endfor %}]{% endif -%}
+{%- endcase -%}

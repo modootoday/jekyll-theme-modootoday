@@ -45,11 +45,32 @@
         - {title: Links demo, url: /layouts/marketing/links/}
         - {title: Contact demo, url: /layouts/marketing/contact/}
     - {title: Blog and news, url: /layouts/blog-news/}
+    - title: Docs extras
+      url: /layouts/docs-extra/
+      items:
+        - {title: Reference demo, url: /layouts/docs-extra/reference/}
+        - {title: Changelog demo, url: /layouts/docs-extra/changelog/}
+        - {title: Roadmap demo, url: /layouts/docs-extra/roadmap/}
+        - {title: Glossary demo, url: /layouts/docs-extra/glossary/}
+        - {title: Hub demo, url: /layouts/docs-extra/hub/}
+        - {title: Course demo, url: /layouts/docs-extra/course/}
+        - {title: Book demo, url: /layouts/docs-extra/book/}
+    - title: Documents
+      url: /layouts/documents/
+      items:
+        - {title: Terms of use demo, url: /layouts/documents/legal/}
+        - {title: Resume demo, url: /layouts/documents/resume/}
 - title: Recipes
   url: /recipes/
   items:
     - {title: Math and diagrams, url: /recipes/math-diagrams/}
     - {title: CSP, url: /recipes/csp/}
+    - {title: Product site, url: /recipes/marketing/}
+    - {title: Company pages, url: /recipes/company/}
+    - {title: Documentation site, url: /recipes/docs/}
+    - {title: Personal site, url: /recipes/personal/}
+    - {title: Community site, url: /recipes/community/}
+    - {title: System pages, url: /recipes/system/}
 - title: Reference
   url: /reference/
   items:

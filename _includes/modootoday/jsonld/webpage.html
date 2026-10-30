@@ -8,5 +8,10 @@ name, url, description, image and inLanguage mirror the Open Graph tags; mainEnt
 {%- if page.url != "/" %},"breadcrumb":{"@id":{{ _ld_url | append: "#breadcrumb" | jsonify }}}{% endif -%}
 {%- if _ld_kind != "page" %},"mainEntity":{"@id":{{ _ld_url | append: "#main" | jsonify }}}{% endif -%}
 {%- if _ld_type == "ProfilePage" and page.layout == "links" or _ld_type == "ProfilePage" and page.layout == "resume" -%}{%- include modootoday/jsonld/profile.html -%}{%- endif -%}
+{%- if page.layout == "hub" and page.cards and page.schema.hasPart == nil %},"hasPart":[{% for c in page.cards %}{% unless forloop.first %},{% endunless %}{"@type":"WebPage","name":{{ c.title | jsonify }},"url":{{ c.url | absolute_url | jsonify }}}{% endfor %}]{% endif -%}
+{%- if page.layout == "legal" -%}
+{%- if page.effective and page.schema.datePublished == nil %},"datePublished":{{ page.effective | date_to_xmlschema | jsonify }}{% endif -%}
+{%- if page.updated and page.schema.dateModified == nil %},"dateModified":{{ page.updated | date_to_xmlschema | jsonify }}{% endif -%}
+{%- endif -%}
 {%- if _ld_kind == "page" and page.schema -%}{%- include modootoday/jsonld/props.html -%}{%- endif -%}
 }

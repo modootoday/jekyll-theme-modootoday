@@ -1,0 +1,21 @@
+---
+layout: default
+mt_bundle: docs-extra
+mt_main: mt-dx mt-dx-book
+---
+{%- comment -%}book: a book or long guide's cover page. image (cover), author, isbn, pages, chapters: [{title, url}] as a
+numbered contents list, then the body. Structured data: Book with author, isbn, numberOfPages and a Chapter per entry.{%- endcomment -%}
+<article aria-labelledby="mt-dx-title" class="mt-dx-book">
+{%- if page.image %}<img class="mt-dx-cover" src="{{ page.image | relative_url }}" alt="" width="200" height="280">{% endif %}
+<div>
+{%- include modootoday/docs-extra/head.html kicker=page.author %}
+{%- if page.isbn or page.pages %}<p class="mt-dx-meta">{% if page.isbn %}ISBN {{ page.isbn }}{% endif %}{% if page.isbn and page.pages %} · {% endif %}{% if page.pages %}{{ page.pages }} p.{% endif %}</p>{% endif %}
+</div>
+{%- if page.chapters %}
+<nav class="mt-dx-toc mt-dx-chapters" aria-labelledby="mt-dx-contents"><h2 id="mt-dx-contents">{{ mt_t_layouts_contents }}</h2>
+<ol>{% for c in page.chapters %}<li><span class="mt-dx-kicker">{{ mt_t_layouts_chapter | replace: "[n]", forloop.index }}</span> {% if c.url %}<a href="{{ c.url | relative_url }}">{{ c.title }}</a>{% else %}{{ c.title }}{% endif %}</li>{% endfor %}</ol></nav>
+{%- endif %}
+<div class="mt-dx-body">
+{{ content }}
+</div>
+</article>

@@ -1,0 +1,50 @@
+---
+layout: default
+mt_bundle: resume
+mt_main: mt-cv
+---
+{%- include modootoday/i18n.html -%}
+{%- comment -%}resume: a print-first CV. name (or title), headline, email, phone, location, links: [{label, url}], then the body
+(summary), experience: [{role, org, start, end, text, highlights}], education: [{degree, school, start, end}],
+skills: [{group, items}]. Structured data: ProfilePage whose Person has jobTitle, worksFor, alumniOf, knowsAbout, sameAs.{%- endcomment -%}
+{%- assign _yf = "%Y.%m" -%}
+<article aria-labelledby="mt-cv-name" class="h-card">
+<header class="mt-cv-head">
+<h1 id="mt-cv-name" class="p-name">{{ page.name | default: page.title }}</h1>
+{%- if page.headline %}<p class="mt-cv-headline p-job-title">{{ page.headline }}</p>{% endif %}
+<ul class="mt-cv-contact" role="list">
+{%- if page.email %}<li><a class="u-email" href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}
+{%- if page.phone %}<li><a class="p-tel" href="tel:{{ page.phone | remove: ' ' }}">{{ page.phone }}</a></li>{% endif %}
+{%- if page.location %}<li class="p-locality">{{ page.location }}</li>{% endif %}
+{%- for l in page.links %}<li><a class="u-url" href="{{ l.url | relative_url }}">{{ l.label }}</a></li>{% endfor %}
+</ul>
+</header>
+<div class="mt-cv-summary p-note">
+{{ content }}
+</div>
+{%- if page.experience %}
+<section aria-labelledby="mt-cv-exp"><h2 id="mt-cv-exp">{{ mt_t_layouts_experience }}</h2>
+{%- for e in page.experience %}
+<div class="mt-cv-item"><h3>{{ e.role }}<span class="mt-cv-org">{{ e.org }}</span></h3>
+<p class="mt-cv-when">{% if e.start %}<time datetime="{{ e.start | date: '%Y-%m' }}">{{ e.start | date: _yf }}</time> – {% if e.end %}<time datetime="{{ e.end | date: '%Y-%m' }}">{{ e.end | date: _yf }}</time>{% else %}{{ mt_t_layouts_present }}{% endif %}{% endif %}</p>
+{%- if e.text %}<p>{{ e.text }}</p>{% endif %}
+{%- if e.highlights %}<ul>{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
+</div>
+{%- endfor %}
+</section>
+{%- endif %}
+{%- if page.education %}
+<section aria-labelledby="mt-cv-edu"><h2 id="mt-cv-edu">{{ mt_t_layouts_education }}</h2>
+{%- for e in page.education %}
+<div class="mt-cv-item"><h3>{{ e.degree }}<span class="mt-cv-org">{{ e.school }}</span></h3>
+{%- if e.start or e.end %}<p class="mt-cv-when">{% if e.start %}{{ e.start | date: _yf }} – {% endif %}{% if e.end %}{{ e.end | date: _yf }}{% else %}{{ mt_t_layouts_present }}{% endif %}</p>{% endif %}
+</div>
+{%- endfor %}
+</section>
+{%- endif %}
+{%- if page.skills %}
+<section aria-labelledby="mt-cv-skills"><h2 id="mt-cv-skills">{{ mt_t_layouts_skills }}</h2>
+<dl class="mt-cv-skills">{% for s in page.skills %}<dt>{{ s.group }}</dt><dd>{{ s.items | join: ", " }}</dd>{% endfor %}</dl>
+</section>
+{%- endif %}
+</article>
