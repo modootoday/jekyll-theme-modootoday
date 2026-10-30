@@ -16,3 +16,4 @@
   });
   document.addEventListener("click", (e) => menus.forEach((d) => d.contains(e.target) || close(d)));
 })();
+addEventListener("click",e=>e.target.closest?.('a[href="#"]')&&e.preventDefault()); // "#" stays put

@@ -9,6 +9,7 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
+sidebar: false
 date: "2026-10-20 09:00:00 +0900"
 author: modootoday
 categories: [guides]

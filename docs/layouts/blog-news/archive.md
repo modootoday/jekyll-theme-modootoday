@@ -8,6 +8,7 @@ search: false
 noindex: true
 nav_exclude: true
 edit: false
+sidebar: false
 sections: []
 archive: years
 ---
