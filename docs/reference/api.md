@@ -56,7 +56,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Gallery | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | `:target` on the open lightbox |
 | Pricing | `.mt-plans` | `.mt-plan`, its `h3`, link-only `p.mt-actions` | `.mt-plan-recommended` with `.mt-plan-flag` |
 | Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe` (when an action is set), `label`, `input[type=email]`, `button` | — |
-| Split | `section.mt-c-split` (with `.mt-split-start`, `.mt-split-5-7`) | `.mt-section-in` > `.mt-section-body` (the `h2` and text) + `.mt-section-visual` (the `visual:` include) | — |
+| Split | `section.mt-c-split` (with `.mt-split-start`, `.mt-split-5-7`) | `.mt-section-in` > `.mt-section-body` (the `h2` and text) + `.mt-section-visual` (the `visual:` include). `hero: {c: split}` puts `section.mt-hero` in the same wrappers, with the `h1`, lead, check row and actions in `.mt-section-body`. | — |
 | Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |

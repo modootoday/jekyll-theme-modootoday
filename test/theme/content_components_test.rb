@@ -11,6 +11,7 @@ class ContentComponentsTest < Minitest::Test
   PROBE = <<~MD
     ---
     title: Probe
+    hero: {c: split, visual: pic, ratio: "5:7", scene: 9}
     sections: [{c: filetree, name: ft}, {c: faq, name: faq}, {c: params, name: p}, {c: quote, name: q}, {c: gallery, name: g}, {c: pricing, name: pr, recommended: 2}, {c: subscribe, name: sub}, {c: split, name: sp, visual: pic, side: start, ratio: "5:7", scene: 3}]
     ---
     # Probe
@@ -120,8 +121,15 @@ class ContentComponentsTest < Minitest::Test
     sec = h[/<section class="mt-section mt-c-split[^"]*".*?<\/section>/m]
     assert_match(/mt-c-split mt-split-start mt-split-5-7/, sec)
     assert_match(%r{<div class="mt-section-in"><div class="mt-section-body"><h2 [^>]*>Split</h2>.*</div><div class="mt-section-visual"><p class="pic">scene 3</p></div></div>}m, sec)
-    assert_equal 1, h.scan("mt-section-in").size
+    assert_equal 2, h.scan("mt-section-in").size
     assert_includes h, "modootoday/structure/split.css"
+  end
+
+  def test_split_hero
+    hero = h[/<section class="mt-hero[^"]*".*?<\/section>/m]
+    assert_match(/<section class="mt-hero mt-c-split mt-split-5-7">/, hero)
+    assert_match(%r{<div class="mt-section-in"><div class="mt-section-body">\s*<h1[^>]*>Probe</h1>.*</div><div class="mt-section-visual"><p class="pic">scene 9</p></div></div>\s*</section>}m, hero)
+    assert_equal 2, h.scan("mt-section-in").size
   end
 
   def test_sheets_per_page

@@ -23,7 +23,16 @@ module Modootoday
         hero = meta["hero"]
         errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
         errs << "#{r}: hero.checks must be true or false" if hero.is_a?(Hash) && hero.key?("checks") && ![true, false].include?(hero["checks"])
+        split_hero(errs, r, hero) if hero.is_a?(Hash) && hero.key?("c")
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
+      end
+
+      # hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}: split is the only hero component.
+      def split_hero(errs, r, hero)
+        return errs << "#{r}: hero.c must be split (got #{hero['c'].inspect})" unless hero["c"] == "split"
+        errs << "#{r}: hero split: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless hero["visual"].is_a?(String) && !hero["visual"].strip.empty?
+        errs << "#{r}: hero.side=#{hero['side'].inspect} not in [\"start\", \"end\"]" if hero.key?("side") && !%w[start end].include?(hero["side"])
+        errs << "#{r}: hero.ratio=#{hero['ratio'].inspect} not in [\"1:1\", \"5:7\"]" if hero.key?("ratio") && !%w[1:1 5:7].include?(hero["ratio"])
       end
 
       # reveal: is a boolean, bleed: is true, false or wide. visual: <name> and decor: <name> on a section item or on hero: needs _includes/sections/<name>.html in the site or the theme (showcase).

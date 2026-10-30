@@ -57,6 +57,15 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "sections[3] features: unknown param 'scene'"
   end
 
+  def test_split_hero_params
+    out, = check("---\ntitle: A\nhero: {c: split, side: left, ratio: '2:1'}\nsections: [a]\n---\n# A\n\n## A\n\nT\n")
+    assert_includes out, "hero split: needs visual:"
+    assert_includes out, "hero.side=\"left\""
+    assert_includes out, "hero.ratio=\"2:1\""
+    out, = check("---\ntitle: A\nhero: {c: tabs}\nsections: [a]\n---\n# A\n\n## A\n\nT\n")
+    assert_includes out, "hero.c must be split"
+  end
+
   def test_bleed_values
     out, = check(page("[{name: a, bleed: true}, {name: b, bleed: full}, {c: features, name: c, bleed: wide}]",
                       "## A\n\nT\n\n## B\n\nT\n\n## C\n\n- x\n"))

@@ -358,7 +358,7 @@ Get one email when a release ships.
 
 ## Split
 
-`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament.
+`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament. The hero takes the same form: `hero: {c: split, visual: <name>, side: start, ratio: "5:7"}` puts the title, lead, check row and buttons in the text column and the include beside them.
 
 Text on one side, the picture on the other.
 

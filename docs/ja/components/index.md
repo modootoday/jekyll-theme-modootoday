@@ -362,7 +362,7 @@ theme: jekyll-theme-modootoday
 
 ## 分割
 
-`status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。
+`status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。 ヒーローも同じ形にできます。`hero: {c: split, visual: <名前>, side: start, ratio: "5:7"}` は、タイトル、リード文、チェック行、ボタンをテキストの列に置き、include をその横に置きます。キッチンシンクのヒーローがこの形です。
 
 片側にテキスト、もう片側に画像が来ます。
 

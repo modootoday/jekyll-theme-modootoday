@@ -1,0 +1,4 @@
+{%- comment -%}md-components v1 — split inner wrappers (called by sections.html for c: split on a section item or on hero:).
+  body = the section's HTML (h2 or h1, text, actions), s = the item. Prints div.mt-section-in > div.mt-section-body (body)
+  + div.mt-section-visual (the visual: include, called with section=s).{%- endcomment -%}
+<div class="mt-section-in"><div class="mt-section-body">{{ include.body }}</div>{% if include.s.visual %}<div class="mt-section-visual">{% include sections/{{ include.s.visual }}.html section=include.s %}</div>{% endif %}</div>

@@ -9,6 +9,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Added
 
 - `bleed: true` / `bleed: wide` on `hero:` or a section item (`.mt-bleed`, `.mt-bleed-wide`): a full-width background band in `--mt-bleed-bg` with the content kept in its column (`wide` widens it up to the container); no wrapper, so existing markup and selectors are unchanged and the default is as before; its own optional `bleed` sheet. `modootoday-check` accepts only true, false or wide.
+- `hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}`: the hero in the split wrappers (`.mt-c-split`, `.mt-section-in`, `.mt-section-body`, `.mt-section-visual`), with the title, lead (`.mt-hero-lead`), check row and actions in the text column; heroes without `c:` render as before. Split sheet only; `modootoday-check` checks `c`, `visual:`, `side` and `ratio` on `hero:`.
 
 ## [1.1.1] - 2026-10-31
 

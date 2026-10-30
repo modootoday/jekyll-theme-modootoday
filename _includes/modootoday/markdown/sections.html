@@ -11,7 +11,8 @@ _includes/sections/<name>.html at the end of that section, called with section=<
 on the item (e.g. scene: 2) reaches the include as include.section.<key>.
 c: split wraps the section in div.mt-section-in > div.mt-section-body (h2 and text) + div.mt-section-visual (the visual
 include): two columns from 48rem (side: start|end puts the visual first or last, ratio: "1:1"|"5:7" text:visual), one below.
-Only split gets the wrappers, so child selectors of the other components keep working.
+Only split gets the wrappers, so child selectors of the other components keep working (markdown/split.html).
+hero: {c: split, visual: <name>, side, ratio} wraps the hero the same way: h1, lead, checks and actions stay in the text column.
 decor: <name> (item or hero) adds _includes/sections/<name>.html in div.mt-section-decor[aria-hidden=true], placed in
 the section's top end corner (section gets .mt-has-decor); for ornaments only, never content.
 bleed: true (item or hero) adds .mt-bleed: a full-width background band (--mt-bleed-bg) while the content keeps its column;
@@ -35,7 +36,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- assign mt_c_transforms = "|filetree|linkcards|details|faq|params|quote|gallery|pricing|subscribe|" -%}
 {%- assign _p0 = _parts[0] -%}{%- if site.modootoday.lists -%}{%- capture _p0 %}{% include modootoday/markdown/lists.html html=_p0 %}{% endcapture -%}{%- endif -%}
 {%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}{%- assign _hl = "</h1>" | append: _nl | append: _nl -%}{%- assign _hlp = _hl | append: "<p>" -%}{%- assign _hlc = _hl | append: '<p class="mt-hero-lead">' -%}{%- assign _hero = _hero | replace_first: _hlp, _hlc -%}
-<section class="mt-hero{% if include.hero.checks == true %} mt-hero-checks{% endif %}{% if include.hero.decor %} mt-has-decor{% endif %}{% if include.hero.reveal == true %} mt-reveal{% endif %}{% if include.hero.bleed %} mt-bleed{% if include.hero.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}">{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}{% if include.hero.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ include.hero.decor }}.html section=include.hero %}</div>{% endif %}</section>
+<section class="mt-hero{% if include.hero.checks == true %} mt-hero-checks{% endif %}{% if include.hero.decor %} mt-has-decor{% endif %}{% if include.hero.reveal == true %} mt-reveal{% endif %}{% if include.hero.c == 'split' %} mt-c-split{% if include.hero.side == 'start' %} mt-split-start{% endif %}{% if include.hero.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}{% if include.hero.bleed %} mt-bleed{% if include.hero.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}">{% if include.hero.c == 'split' %}{% include modootoday/markdown/split.html body=_hero s=include.hero %}{% else %}{{ _hero }}{% if include.hero.visual %}{% include sections/{{ include.hero.visual }}.html section=include.hero %}{% endif %}{% endif %}{% if include.hero.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ include.hero.decor }}.html section=include.hero %}</div>{% endif %}</section>
 {%- for _p in _parts offset:1 -%}
 {%- assign _s = include.sections[forloop.index0] -%}
 {%- if _s.name or _s.c -%}{%- assign _n = _s.name -%}{%- assign _cc = _s.c -%}{%- else -%}{%- assign _n = _s -%}{%- assign _cc = nil -%}{%- endif -%}
@@ -46,7 +47,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _cc and mt_c_transforms contains _cc -%}{%- capture _body %}{% include modootoday/markdown/c/{{ _cc }}.html html=_body s=_s i=forloop.index id=_n %}{% endcapture -%}{%- endif -%}
 <section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}{% if _s.decor %} mt-has-decor{% endif %}{% if _s.reveal == true %} mt-reveal{% endif %}{% if _s.bleed %} mt-bleed{% if _s.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}{% if _cc == 'features' and _s.badge == 'bottom' %} mt-badge-bottom{% endif %}{% if _cc == 'split' %}{% if _s.side == 'start' %} mt-split-start{% endif %}{% if _s.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
 {%- if _cc == 'split' %}
-<div class="mt-section-in"><div class="mt-section-body"><h2 {{ _body }}</div>{% if _s.visual %}<div class="mt-section-visual">{% include sections/{{ _s.visual }}.html section=_s %}</div>{% endif %}</div>{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
+{%- assign _sb = "<h2 " | append: _body -%}{% include modootoday/markdown/split.html body=_sb s=_s %}{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
 {%- else %}
 <h2 {{ _body }}{% if _s.visual %}{% include sections/{{ _s.visual }}.html section=_s %}{% endif %}{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
 {%- endif -%}

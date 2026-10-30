@@ -1,9 +1,10 @@
 // Split: c: split; text (.mt-section-body) and the visual: include (.mt-section-visual) side by side from 48rem,
-// stacked below. Grid columns follow the writing direction, so start/end flip in RTL. DOM order stays text first.
+// stacked below. hero: {c: split} uses the same wrappers; its lead keeps the core hero lead style. Grid columns follow the writing direction, so start/end flip in RTL. DOM order stays text first.
 @include mt-layer(components) {
   .mt-section-in { display: grid; gap: 2rem; }
   .mt-section-in > * { min-width: 0; }
   .mt-section-body > :last-child, .mt-section-visual > :last-child { margin-bottom: 0; }
+  .mt-hero .mt-section-body > .mt-hero-lead { font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); max-width: 40rem; }
   .mt-section-visual img, .mt-section-visual svg { display: block; max-width: 100%; height: auto; }
   @media (min-width: 48rem) {
     .mt-c-split > .mt-section-in { grid-template-columns: var(--mt-split-body, 1fr) var(--mt-split-visual, 1fr); align-items: center; }
