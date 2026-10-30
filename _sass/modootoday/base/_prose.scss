@@ -15,10 +15,9 @@
   hr { border: 0; border-top: 1px solid mt(border); margin: 2.5rem 0; }
   strong { font-weight: 650; }
   // Section rhythm in documents: a hairline above each h2 (except the first) separates dense pages like the kitchen sink.
-  .mt-doc h2 { margin-top: 3.25rem; padding-top: 2rem; border-top: 1px solid mt(border); }
+  .mt-doc h2, .mt-doc .mt-section + .mt-section:not(.mt-cta) { margin-top: 3.25rem; padding-top: 2rem; border-top: 1px solid mt(border); }
   .mt-doc > h1 + h2, .mt-doc > h2:first-child, .mt-hero + h2 { margin-top: 2.5rem; padding-top: 0; border-top: 0; }
   .mt-doc .mt-section > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
-  .mt-doc .mt-section + .mt-section:not(.mt-cta) { margin-top: 3.25rem; padding-top: 2rem; border-top: 1px solid mt(border); }
   .mt-doc h3 { margin-top: 2em; }
   li.task-list-item { list-style: none; }
   li.task-list-item > input { margin: 0 .5em 0 -1.4em; vertical-align: -.1em; accent-color: mt(primary); }

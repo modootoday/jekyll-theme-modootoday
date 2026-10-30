@@ -5,7 +5,7 @@
     const over = el.scrollWidth > el.clientWidth + 1, pre = el.tagName == "PRE", tp = el.closest("[role=tabpanel]");
     if (over && !el.hasAttribute("aria-label")) {
       el.tabIndex = 0; el.dataset.mtScroll = ""; el.role = "region";
-      el.ariaLabel = (pre ? ds.mtCode : ds.mtTable) || (pre ? "Code" : "Table");
+      el.ariaLabel = pre ? ds.mtCode || "Code" : ds.mtTable || "Table";
     } else if (!over && el.hasAttribute("data-mt-scroll")) A.forEach((a) => el.removeAttribute(a));
     if (tp) tp.tabIndex = over ? -1 : 0;
   };
