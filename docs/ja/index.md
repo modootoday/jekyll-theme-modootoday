@@ -1,5 +1,6 @@
 ---
 toc: false
+hero: {visual: showcase}
 title: ホーム
 description: プレーンな Markdown のまま、GitHub・GitHub Pages・AI エージェントのどこでも読みやすいドキュメントを作ります。
 sections:

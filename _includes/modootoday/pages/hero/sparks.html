@@ -1,0 +1,6 @@
+{%- comment -%}Showcase sparks: transparent drifting dots (SMIL, 2 runs of 2 s each, then rest). Motion copy only.{%- endcomment -%}
+<g class="mt-showcase-sparks">
+{%- assign ps = "40,200,3,0|90,150,2,.3|200,40,2.5,.6|240,230,2,.2|380,130,3,.5|150,20,2,.8|20,90,2.5,.4" | split: "|" -%}
+{%- for p in ps %}{%- assign a = p | split: "," %}
+<circle cx="{{ a[0] }}" cy="{{ a[1] }}" r="{{ a[2] }}" opacity="0"><animate attributeName="opacity" values="0;.7;0" begin="{{ a[3] }}s" dur="2s" repeatCount="2"/><animateTransform attributeName="transform" type="translate" values="0 0;0 -14" begin="{{ a[3] }}s" dur="2s" repeatCount="2"/></circle>
+{%- endfor %}</g>

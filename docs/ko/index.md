@@ -1,5 +1,6 @@
 ---
 toc: false
+hero: {visual: showcase}
 title: 홈
 description: 평범한 Markdown을 그대로 두고, GitHub·GitHub Pages·AI 에이전트 모두에서 잘 읽히는 문서를 만듭니다.
 sections:

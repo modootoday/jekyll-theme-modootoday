@@ -7,6 +7,8 @@ module Modootoday
     module PageSections
       module_function
 
+      THEME = File.expand_path("../../..", __dir__)
+
       def call(ctx, f, text, b, code, h2)
         errs, r = ctx.errs, ctx.rel(f)
         meta = begin Markdown.fm(text) rescue (errs << "#{r}: front matter YAML error"; {}) end
@@ -23,7 +25,7 @@ module Modootoday
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil)
       end
 
-      # visual: <name> on a section item or on hero: needs the site's _includes/sections/<name>.html.
+      # visual: <name> on a section item or on hero: needs _includes/sections/<name>.html in the site or the theme (showcase).
       def visuals(ctx, r, secs, hero)
         items = secs.each_with_index.map { |s, i| [s, "sections[#{i}]"] }
         items << [hero, "hero"] if hero
@@ -31,7 +33,7 @@ module Modootoday
           next unless s.is_a?(Hash) && s.key?("visual")
           v = s["visual"].to_s
           next ctx.errs << "#{r}: #{where}.visual must be an include name [a-z0-9_-] (got #{s['visual'].inspect})" unless v =~ /\A[a-z0-9][a-z0-9_-]*\z/
-          ctx.errs << "#{r}: #{where}.visual: _includes/sections/#{v}.html not found" unless File.exist?(File.join(ctx.src, "_includes/sections/#{v}.html"))
+          ctx.errs << "#{r}: #{where}.visual: _includes/sections/#{v}.html not found" unless [ctx.src, THEME].any? { |d| File.exist?(File.join(d, "_includes/sections/#{v}.html")) }
         end
       end
 

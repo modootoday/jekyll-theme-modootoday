@@ -41,6 +41,13 @@ sections: [{c: features, name: why, visual: chart, scene: night}, faq]
 ---
 ```
 
+The theme ships one hero visual, `showcase`: a soft background image, a token overlay and an animated UI scene drawn in SVG. It adds its own stylesheet only on that page, needs no JavaScript and settles within five seconds. With reduced motion it shows the final frame. In dark mode the same image is dimmed with a CSS filter; set `--mt-img-filter-dark` to change it. Pass `image:`, `srcset:`, `width:` and `height:` to use your own picture. The [home page](../../) uses it.
+
+```yaml
+hero: {visual: showcase}
+# or: hero: {visual: showcase, image: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}
+```
+
 `full_width: true` removes the reading-column width and side padding of `main.mt-main` (adds `.mt-main-full`) for landing pages.
 
 ## Sass partials

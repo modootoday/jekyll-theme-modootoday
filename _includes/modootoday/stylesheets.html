@@ -19,7 +19,7 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 {%- endif -%}
 {%- comment -%}Optional per-layout bundles: the layout chain and the page may set mt_bundle: "<name> [<name>…]" to add
   assets/css/modootoday-<name>.css (both modes), each on its own budget outside core.{%- endcomment -%}
-{%- assign _mtbn = layout.mt_bundle | append: " " | append: page.mt_bundle | split: " " | uniq -%}
+{%- assign _mtbn = layout.mt_bundle | append: " " | append: page.mt_bundle -%}{%- if page.hero.visual == "showcase" -%}{%- assign _mtbn = _mtbn | append: " hero" -%}{%- endif -%}{%- assign _mtbn = _mtbn | split: " " | uniq -%}
 {%- for _b in _mtbn -%}{%- if _b != "" and _b != "blog" %}
 <link rel="stylesheet" href="{{ '/assets/css/modootoday-' | append: _b | append: '.css' | relative_url }}">
 {%- endif -%}{%- endfor -%}

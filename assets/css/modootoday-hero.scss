@@ -1,0 +1,7 @@
+---
+# jekyll-theme-modootoday hero showcase stylesheet: loaded only on pages whose hero uses visual: showcase
+# (added automatically) or that set mt_bundle: hero, so the core bundle stays small. Shadow this file to customise.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/hero/index";

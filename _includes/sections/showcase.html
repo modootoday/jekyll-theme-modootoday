@@ -1,0 +1,16 @@
+{%- comment -%}Hero visual "showcase" (hero: {visual: showcase}): a background image, a soft token overlay and an
+animated SVG UI scene. Everything is decorative (aria-hidden); the headline, text and links stay in the page Markdown.
+Optional hero keys: image (url), srcset ("url 640w, …"), width, height. Default: the bundled dawn ridgeline.
+Motion is SMIL only (no JS) and settles within 5 s; prefers-reduced-motion shows the settled frame instead.{%- endcomment -%}
+{%- assign _v = include.section -%}
+{%- assign _d = '/assets/modootoday/hero/dawn-' | relative_url -%}
+{%- if _v.image -%}{%- assign _src = _v.image | relative_url -%}{%- assign _set = _v.srcset -%}
+{%- else -%}{%- assign _src = _d | append: '1280.webp' -%}
+{%- capture _set %}{{ _d }}640.webp 640w, {{ _d }}960.webp 960w, {{ _d }}1280.webp 1280w{% endcapture -%}{%- endif -%}
+<div class="mt-showcase" aria-hidden="true">
+<img class="mt-showcase-bg" src="{{ _src }}"{% if _set %} srcset="{{ _set }}" sizes="(min-width: 76rem) 76rem, 100vw"{% endif %} alt="" width="{{ _v.width | default: 1280 }}" height="{{ _v.height | default: 720 }}" fetchpriority="high" decoding="async">
+<div class="mt-showcase-art">
+<svg class="mt-showcase-motion" viewBox="0 0 400 300" focusable="false">{% include modootoday/pages/hero/scene.html k="m" motion=true %}</svg>
+<svg class="mt-showcase-still" viewBox="0 0 400 300" focusable="false">{% include modootoday/pages/hero/scene.html k="s" %}</svg>
+</div>
+</div>

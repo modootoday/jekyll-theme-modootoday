@@ -1,0 +1,27 @@
+// Showcase hero layout: copy on the left, scene on the right, one image behind both (dark mode via CSS filter only).
+@include mt-layer(components) {
+  .mt-hero:has(> .mt-showcase) {
+    display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: 1.5rem; align-content: center; clear: both;
+    position: relative; isolation: isolate; overflow: clip; border-radius: mt(radius-lg); padding: 3rem clamp(1.25rem, 4vw, 3rem); min-height: 28rem;
+  }
+  .mt-hero:has(> .mt-showcase) > :not(.mt-showcase) { grid-column: 1; }
+  .mt-hero:has(> .mt-showcase) :is(h1, p) { word-break: keep-all; }
+  .mt-hero:has(> .mt-showcase) h1 { font-size: unquote("clamp(2rem, 1.4rem + 1.6vw, 2.75rem)"); }
+  .mt-hero:has(> .mt-showcase) .mt-actions a { min-height: 44px; }
+  .mt-showcase { display: contents; }
+  .mt-showcase-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; filter: var(--mt-img-filter, none); }
+  .mt-showcase-art { grid-column: 2; grid-row: 1 / span 9; align-self: center; position: relative; aspect-ratio: 4 / 3; }
+  .mt-hero:has(> .mt-showcase)::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(100deg, unquote("color-mix(in srgb, var(--mt-background) 70%, transparent)") 0 35%, transparent 80%);
+  }
+  .mt-showcase-art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .mt-showcase-still { display: none; }
+  @media (prefers-reduced-motion: reduce) { .mt-showcase-motion { display: none; } .mt-showcase-still { display: block; } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-showcase-bg { filter: var(--mt-img-filter-dark, brightness(.42) saturate(.7) contrast(1.08)); } }
+  :root[data-theme="dark"] .mt-showcase-bg { filter: var(--mt-img-filter-dark, brightness(.42) saturate(.7) contrast(1.08)); }
+  @media (max-width: 48rem) {
+    .mt-hero:has(> .mt-showcase) { grid-template-columns: minmax(0, 1fr); padding: 2rem 1.25rem; min-height: 0; }
+    .mt-showcase-art { grid-column: 1; grid-row: auto; width: min(100%, 22rem); justify-self: center; margin-top: 1.5rem; }
+  }
+}

@@ -1,0 +1,20 @@
+// Showcase SVG scene colours: every fill and stroke is a --mt-* token, so light and dark follow the theme.
+@include mt-layer(components) {
+  .mt-showcase-card { filter: drop-shadow(0 6px 10px rgba(31, 35, 40, .18)); }
+  .mt-showcase { --mt-sc-win: var(--mt-foreground); --mt-sc-ink: var(--mt-background); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-showcase { --mt-sc-win: var(--mt-card); --mt-sc-ink: var(--mt-foreground); } }
+  :root[data-theme="dark"] .mt-showcase { --mt-sc-win: var(--mt-card); --mt-sc-ink: var(--mt-foreground); }
+  .mt-showcase-win { fill: var(--mt-sc-win); stroke: var(--mt-border); }
+  .mt-showcase-dot1 { fill: var(--mt-caution); } .mt-showcase-dot2 { fill: var(--mt-warning); } .mt-showcase-dot3 { fill: var(--mt-tip); }
+  .mt-showcase-c1 { stroke: var(--mt-code-keyword); } .mt-showcase-c2 { stroke: var(--mt-code-string); }
+  .mt-showcase-c3 { stroke: var(--mt-code-function); } .mt-showcase-c4 { stroke: var(--mt-code-comment); }
+  .mt-showcase-caret { fill: var(--mt-sc-ink); }
+  .mt-showcase-panel { fill: var(--mt-card); stroke: var(--mt-border); }
+  .mt-showcase-skel { fill: var(--mt-muted-foreground); opacity: .35; }
+  .mt-showcase-s1 { stop-color: var(--mt-primary); } .mt-showcase-s2 { stop-color: var(--mt-brand); stop-opacity: .6; }
+  .mt-showcase-trail { fill: none; stroke: var(--mt-brand); stroke-width: 1.5; stroke-dasharray: 4 6; opacity: .5; }
+  .mt-showcase-chip { fill: var(--mt-primary); }
+  .mt-showcase-chipt { fill: var(--mt-primary-foreground); font: 600 12px mt(font-mono); }
+  .mt-showcase-cursor { fill: var(--mt-foreground); stroke: var(--mt-background); stroke-width: 1.2; }
+  .mt-showcase-sparks { fill: var(--mt-brand); }
+}

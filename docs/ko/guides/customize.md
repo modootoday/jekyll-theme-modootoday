@@ -44,6 +44,13 @@ sections: [{c: features, name: why, visual: chart, scene: night}, faq]
 ---
 ```
 
+테마에는 히어로 비주얼 `showcase`가 하나 들어 있어요. 은은한 배경 이미지, 토큰 기반 오버레이, SVG로 그린 UI 장면 애니메이션을 겹쳐 보여 줘요. 스타일시트는 이 비주얼을 쓰는 페이지에만 붙고, JavaScript 없이 5초 안에 움직임이 멈춰요. 모션 줄이기 설정에서는 마지막 장면만 보여요. 다크 모드에서는 같은 이미지를 CSS filter로 어둡게 하며, `--mt-img-filter-dark`로 바꿀 수 있어요. 직접 만든 이미지를 쓰려면 `image:`, `srcset:`, `width:`, `height:`를 넘기세요. [홈 화면](../../)에서 실제 모습을 볼 수 있어요.
+
+```yaml
+hero: {visual: showcase}
+# 또는: hero: {visual: showcase, image: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}
+```
+
 `full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없애요(`.mt-main-full` 추가).
 
 ## Sass 파셜
