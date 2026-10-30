@@ -43,7 +43,7 @@ theme: jekyll-theme-modootoday
 permalink: pretty
 ```
 
-## ഡോക്യുമെന്റേഷനിലൂടെയുള്ള വഴി
+## വായനയുടെ വഴി
 
 1. GitHub Pages-ലോ Jekyll 4-ലോ തീം [ഇൻസ്റ്റാൾ ചെയ്യുക](../guides/install/).
 2. സാധാരണ Markdown-ൽ [ആദ്യ പേജ് എഴുതുക](../guides/first-page/).
