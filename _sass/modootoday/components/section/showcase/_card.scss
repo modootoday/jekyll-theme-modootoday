@@ -8,6 +8,9 @@
   .mt-c-features > ul > li code { white-space: nowrap; }
   .mt-c-features > ul > li:hover { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); box-shadow: mt(shadow); }
   .mt-c-features > ul > li > strong:first-child { display: block; margin-bottom: .35rem; color: mt(card-foreground); font-size: 1rem; }
+  // badge: bottom: a status badge (.mt-badge) written as a direct child of the item sits at the card's bottom edge.
+  .mt-badge-bottom > ul > li:has(> .mt-badge) { position: relative; padding-block-end: calc(var(--mt-card-padding) + 2rem); }
+  .mt-badge-bottom > ul > li > .mt-badge { position: absolute; inset-block-end: var(--mt-card-padding); inset-inline-start: var(--mt-card-padding); }
   @media (min-width: 48rem) {
     .mt-cols-2 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }

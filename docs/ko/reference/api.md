@@ -42,10 +42,11 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 히어로 | `section.mt-hero` | `h1`, 리드 `p.mt-hero-lead`(`h1` 바로 다음의 첫 `p`), 링크만 있는 `p`(CTA 버튼, 첫 링크가 주 버튼) | `.mt-hero-checks`(front matter `hero: {checks: true}`: 첫 `ul`이 `--mt-ok` 색 ✓ 표시 줄) |
 | 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta`(섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에) |
 | 섹션 장식 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-has-decor`(front matter `decor: <include>`) | 마지막 자식 `.mt-section-decor[aria-hidden=true]`, 안에 `_includes/sections/<include>.html`. 위쪽 끝 모서리에 놓이고 포인터 이벤트를 받지 않습니다 | — |
+| 스크롤 등장 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-reveal` (front matter `reveal: true`) | — | CSS만 사용: `@supports (animation-timeline: view())`와 `prefers-reduced-motion: no-preference`에서만 스크롤 시 서서히 나타나고, 그 밖에서는 그대로 보입니다 |
 | 일러스트 | `figure.mt-illustration[role=img][aria-label]`(사이트 include) | 위쪽 시작 모서리의 `.mt-illustration-tag` 배지. `role=img`의 자식은 읽히지 않으므로 배지 글자도 `aria-label`에 넣습니다 | — |
 | 목록 스타일 | `ul.mt-chips`, `li > strong.mt-item-title + span.mt-item-sep`(`modootoday.lists` 사용 시) | `li > a` 칩(높이 44px, 텍스트 뒤에 →), 제목과 `: ` 구분자 | — |
 | 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |
-| 카드 그리드 | `section.mt-section` | `ul > li`, 맨 앞 `strong`이 제목 | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
+| 카드 그리드 | `section.mt-section` | `ul > li`, 맨 앞 `strong`이 제목 | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]`(JS가 만듦, JS 없으면 `h3`와 코드 블록 유지) | `[aria-selected]` |
 | 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
@@ -87,7 +88,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 슬롯마다 `required: true`(`min: 1`과 같음), `min`, `max`를 쓸 수 있습니다(정수, `min`은 `max`보다 클 수 없음). 올바른 형태가 두 가지인 컴포넌트는 `slots:`를 대안 형태의 목록으로 쓸 수 있고, 섹션이 그중 하나를 만족하면 통과합니다. `parts:`에는 [컴포넌트 구조](#컴포넌트-구조) 표에서 그 컴포넌트가 유지하기로 약속한 셀렉터를 적습니다. 사이트에 그 표가 있는 `api.md`가 있으면 모든 파트가 표에 있어야 합니다. Nokogiri를 쓸 수 있으면(`github-pages`에는 포함) 그 컴포넌트를 쓰는 페이지의 빌드된 HTML에서 해당 컴포넌트 섹션 안에 모든 파트가 실제로 있어야 합니다. 컴포넌트 스크립트가 실행 중에 붙이는 파트(`role=`, `aria-*`)는 문서 사이트 QA가 스크립트 실행 후에 확인합니다.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3, 4]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4]}
+features: {params: {cols: {allowed: [2, 3, 4]}, badge: {allowed: [bottom]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
 cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}

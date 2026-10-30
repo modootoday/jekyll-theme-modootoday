@@ -6,8 +6,8 @@ hero: {checks: true}
 sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
-  - {c: features, name: cards-3, cols: 3}
-  - {c: features, name: cards-4, cols: 4}
+  - {c: features, name: cards-3, cols: 3, reveal: true}
+  - {c: features, name: cards-4, cols: 4, badge: bottom}
   - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
   - badges

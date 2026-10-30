@@ -7,8 +7,8 @@ examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboa
 sections:
   - alerts
   - alerts-content
-  - {c: features, name: cards, cols: 2}
-  - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards, cols: 2, badge: bottom}
+  - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
@@ -90,9 +90,11 @@ An alert can hold lists and code. Leave nothing after the marker on its line.
 - **Plain Markdown** — Pages read well on github.com too.
 - **With a badge** — Cards can carry status. `status:available`
 
+With `badge: bottom`, a status badge at the end of an item sits at the card's bottom edge, so badges line up across a row.
+
 ## Cards in three columns
 
-The same list with `cols: 3`.
+The same list with `cols: 3`. With `reveal: true`, the section fades in as it scrolls into view, only in browsers with scroll-driven animations and when the reader allows motion; elsewhere it is shown as is, with no script.
 
 - **Alerts** — Five alert types.
 - **Tabs** — Accessible code tabs.

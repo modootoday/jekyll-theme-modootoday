@@ -8,8 +8,8 @@ examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboa
 sections:
   - alerts
   - alerts-content
-  - {c: features, name: cards, cols: 2}
-  - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards, cols: 2, badge: bottom}
+  - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
@@ -94,9 +94,11 @@ sections:
 - **プレーンな Markdown** — github.com でも読みやすいページになります。
 - **バッジ付き** — カードにステータスを付けられます。 `status:available`
 
+`badge: bottom` を付けると、項目の末尾にあるステータスバッジがカードの下端に置かれ、同じ行のバッジがそろいます。
+
 ## 3 列のカード
 
-同じリストを `cols: 3` で書いた例です。
+同じリストを `cols: 3` で書いた例です。`reveal: true` を付けると、セクションが画面に入るときにゆっくり表示されます。スクロール連動アニメーションに対応したブラウザーで、読者が動きを許可している場合にだけ動作し、それ以外の環境ではそのまま表示されます。スクリプトは使いません。
 
 - **アラート** — 5 種類のアラート。
 - **タブ** — アクセシブルなコードタブ。

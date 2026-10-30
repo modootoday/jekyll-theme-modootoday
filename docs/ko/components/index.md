@@ -7,8 +7,8 @@ examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboa
 sections:
   - alerts
   - alerts-content
-  - {c: features, name: cards, cols: 2}
-  - {c: features, name: cards-3, cols: 3}
+  - {c: features, name: cards, cols: 2, badge: bottom}
+  - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
   - {c: tabs, name: tabs}
@@ -93,9 +93,11 @@ sections:
 - **평범한 Markdown** — github.com에서도 잘 읽힙니다.
 - **배지 포함** — 카드에 상태를 표시할 수 있습니다. `status:available`
 
+`badge: bottom`을 쓰면 항목 끝의 상태 배지가 카드 아래쪽에 놓여, 한 줄의 배지가 가지런히 정렬됩니다.
+
 ## 3열 카드
 
-같은 목록을 `cols: 3`으로 쓴 예입니다.
+같은 목록을 `cols: 3`으로 쓴 예입니다. `reveal: true`를 쓰면 섹션이 화면에 들어올 때 서서히 나타납니다. 스크롤 기반 애니메이션을 지원하는 브라우저에서 사용자가 움직임을 허용한 경우에만 동작하며, 그 밖의 환경에서는 그대로 보입니다. 스크립트는 쓰지 않습니다.
 
 - **알림** — 알림 다섯 종류.
 - **탭** — 접근성을 갖춘 코드 탭.

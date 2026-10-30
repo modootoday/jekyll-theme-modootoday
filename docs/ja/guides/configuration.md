@@ -145,7 +145,7 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 任意の `_data/components.yml` を置くと、チェッカーが `sections:` のパラメーターを検証します。
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3, 4], required: false}}}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed: [bottom], required: false}}}
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```

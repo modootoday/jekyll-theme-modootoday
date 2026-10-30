@@ -13,11 +13,11 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.lists         {link_chips: true, titled_items: true}: optional list markup (markdown/lists.html, lists sheet)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,lists" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,lists,reveal" | split: "," -%}
 {%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
   Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (c:sheet).
   Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}
-{%- assign mt_core_partials = "core/inline/callout,core/inline/badge,core/inline/kbd,core/inline/figure,core/inline/code-copy,core/inline/hero,core/inline/cta,core/inline/code,core/inline/footnotes,core/inline/progress,core/inline/embed,core/chrome/nav,core/chrome/theme-toggle,core/chrome/breadcrumb,core/chrome/pagination,core/chrome/banner" | split: "," -%}
+{%- assign mt_core_partials = "core/inline/callout,core/inline/badge,core/inline/kbd,core/inline/figure,core/inline/code-copy,core/inline/hero,core/inline/reveal,core/inline/cta,core/inline/code,core/inline/footnotes,core/inline/progress,core/inline/embed,core/chrome/nav,core/chrome/theme-toggle,core/chrome/breadcrumb,core/chrome/pagination,core/chrome/banner" | split: "," -%}
 {%- assign mt_section_sheets = "cta:showcase/cta,features:showcase/card,linkcards:showcase/linkcards,quote:showcase/quote,gallery:showcase/gallery,pricing:showcase/pricing,subscribe:showcase/subscribe,tabs:structure/tabs,accordion:structure/accordion,steps:structure/steps,timeline:structure/timeline,filetree:structure/filetree,details:structure/details,faq:structure/faq,params:structure/params,split:structure/split" | split: "," -%}
 {%- assign mt_context_sheets = "doc:sidebar|toc|page-actions,search:search,loading:loading,figure:figure-svg,lists:lists" | split: "," -%}
 {%- assign mt_components = mt_all_components -%}

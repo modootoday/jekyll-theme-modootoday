@@ -42,10 +42,11 @@ description: このテーマがサイト向けに文書化している名前、�
 | ヒーロー | `section.mt-hero` | `h1`、リードの `p.mt-hero-lead` (`h1` の直後の最初の `p`)、リンクだけの `p` (CTA ボタン。最初のリンクが主ボタン) | `.mt-hero-checks` (front matter `hero: {checks: true}`: 最初の `ul` が `--mt-ok` の ✓ の行) |
 | セクション | `section.mt-section` | `h2` とその内容 | `[data-section]` = 名前、`[data-c]` と `.mt-c-<c>` = コンポーネント、`.mt-cols-<n>`、`.mt-cta`(セクション内に `[data-mt-result]` 要素があればその要素に) |
 | セクションの装飾 | `section.mt-hero` または `section.mt-section` の `.mt-has-decor`(front matter `decor: <include>`) | 最後の子 `.mt-section-decor[aria-hidden=true]`。中身は `_includes/sections/<include>.html` で、上の終端の角に置かれ、ポインターイベントを受けません | — |
+| スクロール表示 | `section.mt-hero` または `section.mt-section` の `.mt-reveal`（front matter `reveal: true`） | — | CSS のみ: `@supports (animation-timeline: view())` と `prefers-reduced-motion: no-preference` の場合だけスクロール時にゆっくり表示され、それ以外ではそのまま表示されます |
 | イラスト | `figure.mt-illustration[role=img][aria-label]`(サイトの include) | 上の開始側の角の `.mt-illustration-tag` バッジ。`role=img` の子は読み上げられないため、バッジの文字も `aria-label` に入れます | — |
 | リストスタイル | `ul.mt-chips`、`li > strong.mt-item-title + span.mt-item-sep` (`modootoday.lists` を使うとき) | `li > a` のチップ (高さ 44px、テキストの後に →)、タイトルと `: ` の区切り | — |
 | 本文 (`sections:` なし) | `div.mt-prose` | レンダリングされた本文 | — |
-| カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
+| カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (JS が生成。JS がなければ `h3` とコードブロックのまま) | `[aria-selected]` |
 | アコーディオン | `section.mt-c-accordion` | `h3 > button[aria-expanded]`、その後のパネル | `[aria-expanded=true\|false]` |
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
@@ -87,7 +88,7 @@ description: このテーマがサイト向けに文書化している名前、�
 各スロットは `required: true` (`min: 1` と同じ)、`min`、`max` を取ります (整数で、`min` は `max` 以下)。正しい形が二つあるコンポーネントでは、`slots:` を代わりの形のリストにでき、セクションはそのどれか一つを満たせば通ります。`parts:` には、[コンポーネントの構造](#コンポーネントの構造)の表のうち、そのコンポーネントが保つと約束するセレクターを並べます。サイトにその表がある `api.md` を置いている場合、すべてのパートが表に載っている必要があります。Nokogiri が使える場合 (`github-pages` には含まれます)、そのコンポーネントを使うページのビルド済み HTML で、そのコンポーネントのセクション内にすべてのパートが実際に存在する必要もあります。コンポーネントのスクリプトが実行時に付けるパート (`role=`、`aria-*`) は、ドキュメントサイトの QA がスクリプト実行後に確認します。
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3, 4]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4]}
+features: {params: {cols: {allowed: [2, 3, 4]}, badge: {allowed: [bottom]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
 cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}

@@ -39,10 +39,11 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Hero | `section.mt-hero` | the `h1`, lead `p.mt-hero-lead` (the first `p` right after the `h1`), link-only `p` (CTA buttons; first link is primary) | `.mt-hero-checks` (front matter `hero: {checks: true}`: the first `ul` is a row of ✓ marks in `--mt-ok`) |
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
 | Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` (front matter `decor: <include>`) | `.mt-section-decor[aria-hidden=true]`, the last child, holding `_includes/sections/<include>.html`; placed in the top end corner, no pointer events | — |
+| Scroll reveal | `.mt-reveal` on `section.mt-hero` or `section.mt-section` (front matter `reveal: true`) | — | CSS only: fades in on scroll inside `@supports (animation-timeline: view())` and `prefers-reduced-motion: no-preference`; shown as is otherwise |
 | Illustration | `figure.mt-illustration[role=img][aria-label]` (your own include) | `.mt-illustration-tag` badge in the top start corner; its text belongs in the `aria-label` too, because the children of `role=img` are not read | — |
 | List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` (with `modootoday.lists`) | the `li > a` chips (44px tall, → after the text); the title and the `: ` separator | — |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
-| Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4` (`c: features`) |
+| Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
@@ -84,7 +85,7 @@ A slot is a named part of a section's Markdown. Slot names are stable under the 
 Each slot takes `required: true` (same as `min: 1`), `min` and `max` (whole numbers, `min` not greater than `max`). For a component that has two valid shapes, `slots:` can be a list of alternative forms; a section passes when it satisfies any one of them. `parts:` lists the selectors from the [component structure](#component-structure) table that the component promises to keep; when the site has an `api.md` with that table, every part must appear in it. When Nokogiri is available (it is under `github-pages`), every part must also match inside a section of that component in the built HTML of the pages that use it; parts that component scripts add at runtime (`role=`, `aria-*`) are checked after the scripts run by the docs site QA.
 
 ```yaml
-features: {params: {cols: {allowed: [2, 3, 4]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4]}
+features: {params: {cols: {allowed: [2, 3, 4]}, badge: {allowed: [bottom]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
 tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}}
 cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}}
