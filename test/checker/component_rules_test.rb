@@ -57,6 +57,14 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "sections[3] features: unknown param 'scene'"
   end
 
+  def test_bleed_values
+    out, = check(page("[{name: a, bleed: true}, {name: b, bleed: full}, {c: features, name: c, bleed: wide}]",
+                      "## A\n\nT\n\n## B\n\nT\n\n## C\n\n- x\n"))
+    refute_match(/sections\[0\]/, out)
+    assert_includes out, "sections[1].bleed must be true, false or wide"
+    refute_match(/sections\[2\]/, out)
+  end
+
   def test_quote_pricing_subscribe
     out, = check(page("[{c: quote, name: q}, {c: pricing, name: p, recommended: 3}, {c: subscribe, name: s}]",
                       "## Q\n\n> no attribution\n\n## P\n\n### One\n\n### Two\n\n## S\n\nNews.\n"),

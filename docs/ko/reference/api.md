@@ -43,6 +43,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 섹션 | `section.mt-section` | `h2`와 그 내용 | `[data-section]` = 이름, `[data-c]`와 `.mt-c-<c>` = 컴포넌트, `.mt-cols-<n>`, `.mt-cta`(섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에) |
 | 섹션 장식 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-has-decor`(front matter `decor: <include>`) | 마지막 자식 `.mt-section-decor[aria-hidden=true]`, 안에 `_includes/sections/<include>.html`. 위쪽 끝 모서리에 놓이고 포인터 이벤트를 받지 않습니다 | — |
 | 스크롤 등장 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-reveal` (front matter `reveal: true`) | — | CSS만 사용: `@supports (animation-timeline: view())`와 `prefers-reduced-motion: no-preference`에서만 스크롤 시 서서히 나타나고, 그 밖에서는 그대로 보입니다 |
+| 전체 폭 띠 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-bleed` (front matter `bleed: true`), `.mt-bleed-wide` (`bleed: wide`) | — | `--mt-bleed-bg`로 띠 색을 정합니다. 사이드바나 목차가 있는 레이아웃에서는 띠가 본문 열 안에 머뭅니다. `bleed` 시트 |
 | 일러스트 | `figure.mt-illustration[role=img][aria-label]`(사이트 include) | 위쪽 시작 모서리의 `.mt-illustration-tag` 배지. `role=img`의 자식은 읽히지 않으므로 배지 글자도 `aria-label`에 넣습니다 | — |
 | 목록 스타일 | `ul.mt-chips`, `li > strong.mt-item-title + span.mt-item-sep`(`modootoday.lists` 사용 시) | `li > a` 칩(높이 44px, 텍스트 뒤에 →), 제목과 `: ` 구분자 | — |
 | 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |

@@ -2,7 +2,7 @@
 require "minitest/autorun"
 require_relative "site"
 
-# Optional list styles: hero lead class, hero checks, link chips and titled items, and the lists sheet only where used.
+# Optional sheets: list styles (hero lead class, hero checks, link chips, titled items) and full-width bands (bleed:), each linked only where used.
 class ListsTest < Minitest::Test
   include LayoutSite
 
@@ -39,6 +39,29 @@ class ListsTest < Minitest::Test
       refute_includes h, "mt-chips"
       refute_includes h, "mt-item-title"
       assert_includes h, '<p class="mt-hero-lead">'
+    end
+  end
+
+  BLEED = {
+    "b.md" => ["title: B\nlayout: doc\nhero: {bleed: wide}\nsections: [{name: one, bleed: true}, two]\n", "# B\n\nLead.\n\n## One\n\nBand.\n\n## Two\n\nPlain.\n"],
+    "p.md" => ["title: P\nlayout: doc\n", "# P\n\nPlain page.\n"],
+  }.freeze
+
+  def test_bleed_classes_and_sheet
+    Dir.mktmpdir do |d|
+      src, s = build_site(d, BLEED)
+      h = html(s, "b.md")
+      assert_includes h, '<section class="mt-hero mt-bleed mt-bleed-wide">'
+      assert_match(/<section class="mt-section mt-bleed" data-section="one">\s*<h2/, h)
+      assert_match(/<section class="mt-section" data-section="two">/, h)
+      assert_match %r{href="[^"]*/assets/css/modootoday/bleed\.css"}, h
+      refute_includes html(s, "p.md"), "bleed.css"
+      css = File.read("#{s}/assets/css/modootoday/bleed.css")
+      assert_includes css, "--mt-bleed-bg"
+      assert_includes css, "forced-colors"
+      refute_includes File.read("#{s}/assets/css/modootoday.css"), "mt-bleed"
+      out, st = check(src, s)
+      assert st.success?, out
     end
   end
 end

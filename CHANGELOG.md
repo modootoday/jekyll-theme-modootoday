@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- `bleed: true` / `bleed: wide` on `hero:` or a section item (`.mt-bleed`, `.mt-bleed-wide`): a full-width background band in `--mt-bleed-bg` with the content kept in its column (`wide` widens it up to the container); no wrapper, so existing markup and selectors are unchanged and the default is as before; its own optional `bleed` sheet. `modootoday-check` accepts only true, false or wide.
+
 ## [1.1.1] - 2026-10-31
 
 ### Added

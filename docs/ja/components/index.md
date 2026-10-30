@@ -35,7 +35,7 @@ sections:
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
-  - {c: subscribe, name: subscribe}
+  - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
   - lists
   - navigation
@@ -355,7 +355,7 @@ theme: jekyll-theme-modootoday
 
 ## 購読
 
-`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。
+`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。 ここでは項目に `bleed: true` もあります。どのセクション項目と `hero:` にも指定でき、内容は読みやすい幅のまま、`--mt-bleed-bg`(既定は muted のサーフェス色)の背景帯が画面の全幅に広がります。`bleed: wide` は内容の幅もコンテナ幅まで広げます。サイドバーや目次があるページでは、帯は本文の列の中に収まります。
 
 リリースのたびにメールを 1 通受け取れます。
 

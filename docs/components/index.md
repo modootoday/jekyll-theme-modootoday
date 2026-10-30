@@ -34,7 +34,7 @@ sections:
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
-  - {c: subscribe, name: subscribe}
+  - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
   - lists
   - navigation
@@ -351,7 +351,7 @@ Yes, with the github-pages gem.
 
 ## Subscribe
 
-`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text.
+`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text. Here the item also has `bleed: true`: any section item or `hero:` can take it to get a full-width background band in `--mt-bleed-bg` (default the muted surface) while its content keeps the reading column, and `bleed: wide` also widens the content up to the container width. With a sidebar or table of contents the band stays inside the main column.
 
 Get one email when a release ships.
 

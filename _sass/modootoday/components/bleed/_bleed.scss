@@ -1,0 +1,19 @@
+// Full-width sections (bleed sheet): bleed: true on a section item or hero: adds .mt-bleed, a background band
+// (--mt-bleed-bg, default the muted surface) painted out to the viewport edges with border-image, which does not
+// add scrollable overflow; the content keeps its column and no wrapper is added. bleed: wide (.mt-bleed-wide) also
+// widens the content box symmetrically up to the container width, minus the safe areas. Logical properties, so RTL
+// needs nothing. With a sidebar or table of contents the band stays inside the main column.
+@include mt-layer(components) {
+  :where(:root) { --mt-bleed-bg: #{mt(muted)}; }
+  .mt-bleed {
+    --mt-bleed-pad: 3rem;
+    padding-block: var(--mt-bleed-pad);
+    border-image: conic-gradient(var(--mt-bleed-bg) 0 0) fill 0 / / 0 100vw;
+  }
+  .mt-section.mt-bleed { margin-block-start: mt(space-section); }
+  .mt-bleed + .mt-section.mt-bleed { margin-block-start: 0; }
+  .mt-bleed-wide { margin-inline: unquote("min(0px, calc((100% - min(100vw - 2rem - var(--mt-safe-left, 0px) - var(--mt-safe-right, 0px), #{mt(container)})) / 2))"); }
+  :is(.mt-has-sidebar, .mt-has-toc) .mt-bleed { border-image-outset: 0; padding-inline: 1.25rem; }
+  :is(.mt-has-sidebar, .mt-has-toc) .mt-bleed-wide { margin-inline: 0; }
+  @media (forced-colors: active) { .mt-bleed { border-image: none; border-block: 1px solid CanvasText; } }
+}

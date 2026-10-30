@@ -34,7 +34,7 @@ sections:
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
-  - {c: subscribe, name: subscribe}
+  - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
   - lists
 ---
@@ -419,7 +419,7 @@ theme: jekyll-theme-modootoday
 
 ## 구독
 
-`status:available` `c: subscribe` 섹션은 텍스트와 `modootoday.subscribe.action`의 주소로 전송하는 이메일 양식을 표시합니다. 이 설정이 없으면 텍스트만 표시합니다.
+`status:available` `c: subscribe` 섹션은 텍스트와 `modootoday.subscribe.action`의 주소로 전송하는 이메일 양식을 표시합니다. 이 설정이 없으면 텍스트만 표시합니다. 여기서는 항목에 `bleed: true`도 있습니다. 모든 섹션 항목과 `hero:`에 쓸 수 있으며, 내용은 읽기 폭을 유지한 채 `--mt-bleed-bg`(기본값은 muted 표면색) 배경 띠가 화면 전체 폭으로 깔립니다. `bleed: wide`는 내용 폭도 컨테이너 폭까지 넓힙니다. 사이드바나 목차가 있는 페이지에서는 띠가 본문 열 안에 머뭅니다.
 
 릴리스가 나오면 이메일을 한 통 받으세요.
 
