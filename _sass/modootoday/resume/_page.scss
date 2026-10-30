@@ -5,6 +5,7 @@
   .mt-cv-head h1 { margin: 0; font-size: 2.25rem; letter-spacing: -.02em; }
   .mt-cv-headline { margin: .25rem 0 0; font-size: 1.125rem; color: mt(muted-foreground); }
   .mt-cv-contact { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: .75rem 0 0; padding: 0; list-style: none; font-size: .9375rem; }
+  .mt-cv-contact > li { margin: 0; }
   .mt-cv h2 { margin: 2rem 0 .5rem; font-size: .875rem; text-transform: uppercase; letter-spacing: .08em; color: mt(muted-foreground); }
   .mt-cv-item { margin-bottom: 1.25rem; break-inside: avoid; }
   .mt-cv-item h3 { display: flex; flex-wrap: wrap; gap: 0 .5rem; margin: 0; font-size: 1.0625rem; }

@@ -7,6 +7,7 @@
   .mt-mk-end { margin-top: 2.5rem; }
   @include mt-kit-button(".mt-mk-btn");
   .mt-mk-grid, .mt-mk-swatches, .mt-mk-files, .mt-mk-linklist { margin: 0 0 2rem; padding: 0; list-style: none; }
+  :is(.mt-mk-grid, .mt-mk-swatches, .mt-mk-files, .mt-mk-linklist) > li { margin: 0; }
   .mt-mk-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
   .mt-mk-grid li { padding: 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); }
   .mt-mk-grid h2 { margin: 0 0 .375rem; font-size: 1.0625rem; }

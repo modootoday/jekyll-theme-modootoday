@@ -9,6 +9,7 @@
   .mt-detail-facts dt { color: mt(muted-foreground); font-size: .8125rem; font-weight: 600; }
   .mt-detail-facts dd { margin: .25rem 0 0; overflow-wrap: anywhere; }
   .mt-detail-tags, .mt-detail-links { display: flex; flex-wrap: wrap; gap: .375rem .75rem; margin: 0; padding: 0; list-style: none; }
+  :is(.mt-detail-tags, .mt-detail-links) > li { margin: 0; }
   .mt-detail-tags li { padding: 0 .5rem; border-radius: mt(radius); background: mt(muted); font-size: .8125rem; }
   .mt-detail-media { margin: 0 0 2rem; }
   .mt-detail-media audio { display: block; width: 100%; }

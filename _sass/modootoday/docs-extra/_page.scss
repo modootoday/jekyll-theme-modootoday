@@ -7,6 +7,7 @@
   .mt-dx-kicker { margin: 0 0 .25rem; font-weight: 600; }
   .mt-dx-toc ul, .mt-dx-letters ul, .mt-dx-cards, .mt-dx-col ul { margin: 0; padding: 0; list-style: none; }
   .mt-dx-toc ul, .mt-dx-letters ul { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin-bottom: 1.5rem; }
+  .mt-dx-toc li, .mt-dx-letters li { margin: 0; }
   .mt-dx-letters a { display: inline-block; min-width: 2rem; padding: .25rem; text-align: center; }
   .mt-dx-member, .mt-dx-release { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid mt(border); scroll-margin-top: 4rem; }
   .mt-dx-member h2, .mt-dx-release h2 { margin-top: 0; }
