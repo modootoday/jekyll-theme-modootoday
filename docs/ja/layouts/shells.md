@@ -32,7 +32,7 @@ hero:
 ---
 ```
 
-最初のアクションが主ボタンになります。`hero.title` がない場合は本文だけを表示します。 任意の `hero.image`(パス、または `{path, alt, width, height, srcset}`)を指定すると、アクションの下に横長の画像を表示します。装飾目的なら `alt` は空にします。ヒーロー用ビジュアル `showcase` も同じ `hero.image` キーを読み込みます([カスタマイズ](../../guides/customize/)を参照)。
+最初のアクションが主ボタンになります。`hero.title` がない場合は本文だけを表示します。`home` は本文を書いたとおりに表示し、`sections:` は読まないため、カード、タブ、ボタンのセクションは適用されません。こうしたセクションを使うホームページには、このサイトのホームと同じく `layout: doc` に `hero:` と `sections:` を組み合わせます。 任意の `hero.image`(パス、または `{path, alt, width, height, srcset}`)を指定すると、アクションの下に横長の画像を表示します。装飾目的なら `alt` は空にします。ヒーロー用ビジュアル `showcase` も同じ `hero.image` キーを読み込みます([カスタマイズ](../../guides/customize/)を参照)。
 
 ## エラー
 

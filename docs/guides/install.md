@@ -65,6 +65,17 @@ bundle exec modootoday-check . _site --twins
 
 The checker reports any syntax that would not render the same on github.com.
 
+A `remote_theme` site has no Gemfile entry for the theme. Install the gem once to get the checker, then run it on the built site:
+
+```sh
+gem install jekyll-theme-modootoday
+modootoday-check . _site --twins
+```
+
+In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`.
+
+Two warnings from the Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the Sass silencing option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
+
 ## Next
 
 [Write your first page](../first-page/) [Back to home](../../)

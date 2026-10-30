@@ -36,6 +36,12 @@ permalink: /guide/index.md
 
 `twin_of` はスタブファイルからの相対パスです（`include_relative` で読み込みます）。スタブはページと同じフォルダーに置くか、`../` のパスを使ってください。サイトのソースの外や `_` フォルダーは指せません。
 
+```yaml
+# guides/install.md の隣のスタブ guides/install.md.txt
+twin_of: install.md          # 正しい: スタブからの相対パス
+twin_of: guides/install.md   # 誤り: サイトのルートからのパスは "Could not locate the included file" のエラーになります
+```
+
 各 HTML ページは `rel="alternate" type="text/markdown"` で Markdown 版にリンクします。
 
 ## llms.txt

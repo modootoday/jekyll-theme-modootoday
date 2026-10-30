@@ -68,6 +68,17 @@ bundle exec modootoday-check . _site --twins
 
 검사기는 github.com에서 똑같이 보이지 않을 문법을 알려 줍니다.
 
+`remote_theme` 사이트는 Gemfile에 테마가 없습니다. 검사기를 쓰려면 gem을 한 번 설치한 뒤 빌드한 사이트에 실행합니다.
+
+```sh
+gem install jekyll-theme-modootoday
+modootoday-check . _site --twins
+```
+
+GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`.
+
+`github-pages` gem이 내는 경고 두 가지는 무시해도 됩니다. `To use retry middleware with Faraday v2.0+, install faraday-retry gem`이 나와도 원격 테마는 정상으로 내려받습니다. `@import`에 관한 Sass 안내는 GitHub Pages의 Sass가 경고 숨김 옵션을 읽지 않는 이전 버전이라서 `_config.yml`에 설정해도 계속 나옵니다. 어느 쪽이든 빌드 결과는 정상입니다.
+
 ## 다음
 
 [첫 페이지 쓰기](../first-page/) [홈으로](../../)

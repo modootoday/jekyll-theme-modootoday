@@ -11,6 +11,12 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - Checker: one-line specfold value markers `<!-- spec:name -->` and `<!-- /spec:name -->` are allowed in page bodies, on their own line or inline in a sentence (RULES.md, HTML comments row).
 - Cards: `cols: 4` for `c: features` sections (`.mt-cols-4`): four columns from 64rem, two from 48rem, one below.
 
+### Documentation
+
+- Install guide: running `modootoday-check` on a `remote_theme` site (gem install, CI step) and the harmless `github-pages` warnings (`faraday-retry`, Sass `@import` notices).
+- Page shells: `home` renders the body as written and does not read `sections:`; use `layout: doc` with `hero:` and `sections:` for a home page with sections.
+- Twins: `twin_of` examples, relative to the stub; a path from the site root fails the build (RULES.md, agents guide).
+
 ## [1.0.0] - 2026-10-30
 
 First public release, published on RubyGems on 2026-10-30. Nothing was published on RubyGems before 1.0.0. The changes directly below were made last; [Pre-release history](#pre-release-history) lists the earlier development milestones (0.1 to 0.5), which were internal and never released.

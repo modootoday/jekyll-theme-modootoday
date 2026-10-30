@@ -69,6 +69,17 @@ bundle exec modootoday-check . _site --twins
 
 チェッカーは、github.com で同じように表示されない記法をすべて報告します。
 
+`remote_theme` のサイトでは Gemfile にテーマがありません。チェッカーを使うには gem を一度インストールし、ビルドしたサイトに対して実行します。
+
+```sh
+gem install jekyll-theme-modootoday
+modootoday-check . _site --twins
+```
+
+GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`。
+
+`github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が警告を抑える設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
+
 ## 次へ
 
 [最初のページを書く](../first-page/) [ホームに戻る](../../)

@@ -32,7 +32,7 @@ hero:
 ---
 ```
 
-The first action is the primary button. Without `hero.title` the layout shows only the body. An optional `hero.image` (a path, or `{path, alt, width, height, srcset}`) shows a wide picture under the actions; leave `alt` empty when it is decorative. The `showcase` hero visual reads the same `hero.image` key (see [Customize](../../guides/customize/)).
+The first action is the primary button. Without `hero.title` the layout shows only the body. `home` renders the body as written and does not read `sections:`, so cards, tabs and buttons sections do not apply. For a rich home page with those, use `layout: doc` with `hero:` and `sections:`, as this site's home page does. An optional `hero.image` (a path, or `{path, alt, width, height, srcset}`) shows a wide picture under the actions; leave `alt` empty when it is decorative. The `showcase` hero visual reads the same `hero.image` key (see [Customize](../../guides/customize/)).
 
 ## Error
 

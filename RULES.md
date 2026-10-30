@@ -96,7 +96,7 @@ Source mode relies on `jekyll-optional-front-matter`, a GitHub Pages default plu
 Stub and generator details:
 - Source `<name>.md`. The twin comes from either
   - the opt-in generator `plugins: [jekyll-theme-modootoday]` (Jekyll 4 or an Actions build; not run by the classic GitHub Pages build, which allows only whitelisted plugins), or
-  - a stub `<name>.md.txt` next to it with only `layout: twin`, `twin_of`, `permalink` and no body (works everywhere). Liquid cannot create output files, so on classic GitHub Pages a stub per page is unavoidable.
+  - a stub `<name>.md.txt` next to it with only `layout: twin`, `twin_of`, `permalink` and no body (works everywhere). `twin_of` is relative to the stub: `twin_of: install.md` in `guides/install.md.txt`; a path from the site root such as `guides/install.md` fails with "Could not locate the included file". Liquid cannot create output files, so on classic GitHub Pages a stub per page is unavoidable.
   Both produce the same page; a stub wins over the generator. `twin: false` opts a page out.
 - Output: `index.md` → `/index.md`, others → `/<dir>/<name>/index.md`; other languages under `/<lang>/`.
 - Twin body is **byte-identical** to the source minus front matter (no added headers; put extra information in `llms.txt`).

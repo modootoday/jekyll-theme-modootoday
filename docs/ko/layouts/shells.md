@@ -32,7 +32,7 @@ hero:
 ---
 ```
 
-첫 번째 액션이 주 버튼이 됩니다. `hero.title`이 없으면 본문만 보여 줍니다. 선택 항목인 `hero.image`(경로 또는 `{path, alt, width, height, srcset}`)를 주면 액션 아래에 넓은 그림을 보여 줍니다. 장식용이면 `alt`를 비워 두세요. 히어로 비주얼 `showcase`도 같은 `hero.image` 키를 읽습니다([커스터마이즈](../../guides/customize/) 참고).
+첫 번째 액션이 주 버튼이 됩니다. `hero.title`이 없으면 본문만 보여 줍니다. `home`은 본문을 쓴 그대로 보여 주고 `sections:`를 읽지 않으므로 카드, 탭, 버튼 섹션은 적용되지 않습니다. 이런 섹션이 있는 홈 페이지는 이 사이트의 홈처럼 `layout: doc`에 `hero:`와 `sections:`를 함께 씁니다. 선택 항목인 `hero.image`(경로 또는 `{path, alt, width, height, srcset}`)를 주면 액션 아래에 넓은 그림을 보여 줍니다. 장식용이면 `alt`를 비워 두세요. 히어로 비주얼 `showcase`도 같은 `hero.image` 키를 읽습니다([커스터마이즈](../../guides/customize/) 참고).
 
 ## 오류
 

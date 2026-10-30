@@ -33,6 +33,12 @@ permalink: /guide/index.md
 
 `twin_of` is a path relative to the stub file (it is read with `include_relative`), so keep the stub in the same folder as its page or use `../` paths. It cannot point outside the site source or into `_` folders.
 
+```yaml
+# guides/install.md.txt, next to guides/install.md
+twin_of: install.md          # correct: relative to the stub
+twin_of: guides/install.md   # wrong: a path from the site root fails with "Could not locate the included file"
+```
+
 Each HTML page links its twin with `rel="alternate" type="text/markdown"`.
 
 ## llms.txt

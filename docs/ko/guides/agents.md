@@ -36,6 +36,12 @@ permalink: /guide/index.md
 
 `twin_of`는 스텁 파일 기준의 상대 경로입니다(`include_relative`로 읽습니다). 스텁을 페이지와 같은 폴더에 두거나 `../` 경로를 쓰세요. 사이트 소스 밖이나 `_` 폴더는 가리킬 수 없습니다.
 
+```yaml
+# guides/install.md 옆의 스텁 guides/install.md.txt
+twin_of: install.md          # 올바름: 스텁 기준 상대 경로
+twin_of: guides/install.md   # 틀림: 사이트 루트 기준 경로는 "Could not locate the included file" 오류가 납니다
+```
+
 각 HTML 페이지는 `rel="alternate" type="text/markdown"`으로 Markdown 버전을 연결합니다.
 
 ## llms.txt
