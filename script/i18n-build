@@ -6,7 +6,8 @@
 #   _includes/modootoday/i18n.html         loader: one assign per key resolving site _data/i18n/<lang>.yml, then the
 #                                          theme catalog for the page language, then English
 #   _includes/modootoday/i18n/name.html    endonym of include.code (for language menus)
-# Usage: script/i18n-build [--check]   (--check exits 1 when the generated files are out of date)
+# Usage: script/i18n-build [--check]   (--check exits 1 when the generated files are out of date or the
+#                                      translation lint in script/i18n/lint.rb finds an issue)
 require "yaml"
 ROOT = File.expand_path("..", __dir__)
 OUT = "#{ROOT}/_includes/modootoday/i18n"
@@ -80,6 +81,10 @@ if ARGV.include?("--check")
   stale += Dir.glob("#{OUT}/*.html").reject { |f| files.key?(f) }
   abort "out of date (run script/i18n-build): #{stale.map { |f| f.delete_prefix("#{ROOT}/") }.join(', ')}" unless stale.empty?
   puts "i18n catalogs up to date (#{langs.size} languages, #{reg.size} keys)"
+  require_relative "i18n/lint" # style rules: docs/guides/translation.md, i18n/glossary.yml
+  issues = I18nLint.run(ROOT)
+  abort issues.join("\n") + "\ni18n lint: #{issues.size} issue(s)" unless issues.empty?
+  puts "i18n lint clean"
 else
   Dir.mkdir(OUT) unless Dir.exist?(OUT)
   files.each { |f, c| File.write(f, c) }

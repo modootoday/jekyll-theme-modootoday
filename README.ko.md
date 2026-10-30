@@ -1,6 +1,6 @@
 # jekyll-theme-modootoday
 
-페이지 본문은 평범한 GitHub Markdown으로 두고, 레이아웃·인클루드·CSS로 꾸미는 Jekyll 테마입니다.
+페이지 본문은 평범한 GitHub Markdown으로 두고, 레이아웃·include·CSS로 꾸미는 Jekyll 테마입니다.
 
 [![CI](https://github.com/modootoday/jekyll-theme-modootoday/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/modootoday/jekyll-theme-modootoday/actions/workflows/ci.yml)
 [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-modootoday)](https://rubygems.org/gems/jekyll-theme-modootoday)
@@ -14,9 +14,9 @@
 ## 왜
 
 - **페이지에는 표준 Markdown만.** GFM과 GitHub 알림만 쓰므로 같은 파일이 github.com에서도 잘 읽힙니다.
-- **GitHub Pages에서 동작.** 레이아웃과 인클루드가 Liquid만 쓰므로 기본 빌드의 `remote_theme`도 되고, Jekyll 4도 됩니다.
+- **GitHub Pages에서 동작.** 레이아웃과 include가 Liquid만 쓰므로 기본 빌드의 `remote_theme`도 되고, Jekyll 4도 됩니다.
 - **마크업 없는 컴포넌트.** 알림, 상태 배지, 카드, 탭, 버튼, 아코디언, 단계, 타임라인 등이 평범한 Markdown 패턴에서 나옵니다.
-- **에이전트가 읽기 쉬움.** 페이지마다 바이트 단위로 같은 Markdown 쌍둥이와 `llms.txt`, `llms-full.txt`를 둘 수 있습니다.
+- **에이전트가 읽기 쉬움.** 페이지마다 바이트 단위로 같은 Markdown 버전과 `llms.txt`, `llms-full.txt`를 둘 수 있습니다.
 - **접근성.** 키보드 단축키, 보이는 포커스, 휴대폰 안전 영역, 44 px 터치 대상, 고대비와 동작 줄이기가 기본으로 들어 있습니다.
 - **검사기.** `modootoday-check`가 원문과 빌드 결과를 검사합니다.
 
@@ -60,11 +60,11 @@ bundle exec modootoday-check . _site
 
 ## 개념
 
-- **본문은 평범하게, 레이아웃은 풍부하게.** 본문은 GFM이고 `sections:` 머리말이 `##`마다 컴포넌트를 연결합니다. [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/)와 [키친싱크](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/kitchen-sink/)를 보세요.
+- **본문은 평범하게, 레이아웃은 풍부하게.** 본문은 GFM이고 front matter의 `sections:`가 `##`마다 컴포넌트를 연결합니다. [컴포넌트](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/)와 [키친싱크](https://modootoday.github.io/jekyll-theme-modootoday/ko/components/kitchen-sink/)를 보세요.
 - **규칙.** 본문에 쓸 수 있는 것과 각 패턴의 변환 결과는 [RULES.md](RULES.md)(`md-components v1`)가 정합니다.
 - **설정과 토큰.** `_config.yml`의 `modootoday:` 블록 하나, CSS 사용자 속성 `--mt-*`, 컴포넌트별 Sass 파셜. [설정](https://modootoday.github.io/jekyll-theme-modootoday/ko/guides/configuration/)과 [커스터마이즈](https://modootoday.github.io/jekyll-theme-modootoday/ko/guides/customize/)를 보세요.
 - **블로그와 뉴스.** `blog`, `news`, `news-article`, `author`, `feed` 레이아웃: 페이지네이션 카드 목록(list, grid, magazine), `_data/authors.yml` 바이라인, 시리즈, 관련 글, 공유, JSON-LD, 언어별 Atom 피드. Liquid만 쓰고 스타일과 스크립트는 선택 번들입니다. [블로그와 뉴스](https://modootoday.github.io/jekyll-theme-modootoday/ko/layouts/blog-news/)를 보세요.
-- **쌍둥이: 세 가지 방식** — 스텁 파일(기본, 기본 Pages), `jekyll-theme-modootoday` 플러그인(Jekyll 4 / Actions), 또는 머리말 없는 페이지와 `modootoday.twins: source`(기본 Pages, 스텁 없음). [RULES.md §5a](RULES.md#5a-markdown-twins)를 보세요.
+- **Markdown 버전: 세 가지 방식** — 스텁 파일(기본, 기본 Pages), `jekyll-theme-modootoday` 플러그인(Jekyll 4 / Actions), 또는 front matter 없는 페이지와 `modootoday.twins: source`(기본 Pages, 스텁 없음). [RULES.md §5a](RULES.md#5a-markdown-twins)를 보세요.
 
 ## 명령
 
@@ -87,7 +87,7 @@ bundle exec modootoday-check . _site
 
 ## AI 에이전트
 
-- `guide.md`의 쌍둥이는 `/guide/index.md`이며 본문과 바이트 단위로 같고, `rel="alternate" type="text/markdown"`으로 연결됩니다.
+- `guide.md`의 Markdown 버전은 `/guide/index.md`이며 본문과 바이트 단위로 같고, `rel="alternate" type="text/markdown"`으로 연결됩니다.
 - `llms.txt`와 `llms-full.txt`는 `/`와 각 `/<lang>/` 아래에 있습니다.
 - Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`가 만들고, 기본 GitHub Pages 빌드는 파일 하나짜리 스텁을 씁니다.
 - 자세히: [에이전트 가이드](https://modootoday.github.io/jekyll-theme-modootoday/ko/guides/agents/), 이 저장소의 [llms.txt](https://modootoday.github.io/jekyll-theme-modootoday/llms.txt).

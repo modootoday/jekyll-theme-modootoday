@@ -2,7 +2,7 @@
 nav_order: 0
 layout: examples
 title: 컴포넌트
-description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줘요.
+description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줍니다.
 examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe]
 sections:
   - alerts
@@ -47,66 +47,66 @@ sections:
 ---
 # 컴포넌트
 
-모든 컴포넌트는 평범한 Markdown이에요. 아래 예시마다 Markdown 소스와, 같은 소스로 테마가 그려 낸 실제 결과를 이어서 보여 줘요. 결과는 지금 쓰는 라이트·다크 모드 그대로예요. 소스 블록을 복사해 붙이면 같은 결과를 얻어요. github.com에서는 기본 요소로 보여요.
+모든 컴포넌트는 평범한 Markdown입니다. 아래 예시마다 Markdown 소스와, 같은 소스로 테마가 그려 낸 실제 결과를 이어서 보여 줍니다. 결과는 지금 쓰는 라이트·다크 모드 그대로입니다. 소스 블록을 복사해 붙이면 같은 결과를 얻습니다. github.com에서는 기본 요소로 보입니다.
 
 [키친싱크 열기](kitchen-sink/) [설정](../guides/configuration/)
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../components/)의 번역이에요. 내용이 다르면 영어 문서가 우선해요.
+> 이 페이지는 [영어 원문](../../components/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 알림
 
-`status:available` GitHub 알림이 언어에 맞는 제목이 붙은 콜아웃이 돼요. 종류는 note, tip, important, warning, caution 다섯 가지예요. 스크린 리더는 각각을 노트(`role="note"`)로 읽어요.
+`status:available` GitHub 알림이 언어에 맞는 제목이 붙은 콜아웃이 됩니다. 종류는 note, tip, important, warning, caution 다섯 가지입니다. 스크린 리더는 각각을 노트(`role="note"`)로 읽습니다.
 
 > [!NOTE]
-> Useful information that users should know, even when skimming.
+> 훑어보더라도 꼭 알아야 할 유용한 정보입니다.
 
 > [!TIP]
-> Helpful advice for doing things better or more easily.
+> 더 쉽고 낫게 하는 데 도움이 되는 조언입니다.
 
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+> 목표를 이루려면 반드시 알아야 할 핵심 정보입니다.
 
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+> 문제를 막으려면 바로 확인해야 하는 긴급한 정보입니다.
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+> 특정 동작의 위험이나 나쁜 결과를 경고합니다.
 
 ## 내용이 있는 알림
 
-알림 안에 목록과 코드를 넣을 수 있어요. 표시가 있는 줄에는 다른 글자를 쓰지 마세요.
+알림 안에 목록과 코드를 넣을 수 있습니다. 표시가 있는 줄에는 다른 글자를 쓰지 마세요.
 
 > [!TIP]
-> Before you publish:
+> 게시하기 전에:
 >
-> - run `modootoday-check`
-> - preview with `bundle exec jekyll serve`
+> - `modootoday-check` 실행
+> - `bundle exec jekyll serve`로 미리 보기
 
 ## 카드
 
-`status:available` `c: features` 섹션에서 **굵은 글씨**로 시작하는 목록 항목이 카드가 돼요. `cols: 2`나 `cols: 3`으로 열 수를 정하고, 좁은 화면에서는 한 열로 보여요.
+`status:available` `c: features` 섹션에서 **굵은 글씨**로 시작하는 목록 항목이 카드가 됩니다. `cols: 2`나 `cols: 3`으로 열 수를 정하고, 좁은 화면에서는 한 열로 보입니다.
 
-- **Plain Markdown** — Pages read well on github.com too.
-- **With a badge** — Cards can carry status. `status:available`
+- **평범한 Markdown** — github.com에서도 잘 읽힙니다.
+- **배지 포함** — 카드에 상태를 표시할 수 있습니다. `status:available`
 
 ## 3열 카드
 
-같은 목록을 `cols: 3`으로 쓴 예예요.
+같은 목록을 `cols: 3`으로 쓴 예입니다.
 
-- **Alerts** — Five alert types.
-- **Tabs** — Accessible code tabs.
-- **Search** — Client-side search.
+- **알림** — 알림 다섯 종류.
+- **탭** — 접근성을 갖춘 코드 탭.
+- **검색** — 클라이언트 검색.
 
 ## 버튼
 
-`status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼이에요. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작해요.
+`status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼입니다. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작합니다.
 
-[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
+[시작하기](../guides/install/) [설정 읽기](../guides/configuration/)
 
 ## 탭
 
-`status:available` `c: tabs` 섹션에서 `###` 제목과 바로 뒤 코드 블록이 탭 하나가 돼요. 두 개 이상 쓰세요. 방향키로 탭을 옮기고 Home·End로 처음과 끝으로 가요. JavaScript가 없으면 모든 블록이 제목 아래에 그대로 보여요.
+`status:available` `c: tabs` 섹션에서 `###` 제목과 바로 뒤 코드 블록이 탭 하나가 됩니다. 두 개 이상 쓰세요. 방향키로 탭을 옮기고 Home·End로 처음과 끝으로 갑니다. JavaScript가 없으면 모든 블록이 제목 아래에 그대로 보입니다.
 
 ### macOS
 
@@ -122,7 +122,7 @@ sudo apt install ruby-full
 
 ## 배지
 
-`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 돼요. status(available, partial, planned)와 tag가 있어요. 상태 기호는 스크린 리더에서 숨기고 이름을 읽어요.
+`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 됩니다. status(available, partial, planned)와 tag가 있습니다. 상태 기호는 스크린 리더에서 숨기고 이름을 읽습니다.
 
 `status:available` `status:partial` `status:planned`
 
@@ -130,19 +130,19 @@ sudo apt install ruby-full
 
 ## 키보드 키
 
-`status:available` kbd와 콜론으로 시작하는 코드 스팬이 키보드 키가 돼요. 키는 공백 없이 `+`로 이어요.
+`status:available` kbd와 콜론으로 시작하는 코드 스팬이 키보드 키가 됩니다. 키는 공백 없이 `+`로 잇습니다.
 
-Open search with `kbd:Ctrl+K`, or press `kbd:/`.
+`kbd:Ctrl+K`를 누르거나 `kbd:/`를 누르면 검색이 열립니다.
 
 ## 아코디언
 
-`status:available` `c: accordion` 섹션에서 `###` 제목이 아래 내용을 펼치고 접는 버튼(`aria-expanded`)이 돼요. Enter나 Space로 전환해요. JavaScript가 없으면 모든 답이 보여요.
+`status:available` `c: accordion` 섹션에서 `###` 제목이 아래 내용을 펼치고 접는 버튼(`aria-expanded`)이 됩니다. Enter나 Space로 전환합니다. JavaScript가 없으면 모든 답이 보입니다.
 
-### Does it work without JavaScript?
+### JavaScript 없이도 동작하나요?
 
-Yes. Every answer stays visible under its question.
+네. 모든 답이 질문 아래에 펼쳐진 채로 보입니다.
 
-### Can an answer hold code?
+### 답에 코드를 넣을 수 있나요?
 
 ```sh
 bundle exec jekyll serve
@@ -150,64 +150,64 @@ bundle exec jekyll serve
 
 ## 단계
 
-`status:available` `c: steps` 섹션에서 번호 목록이 번호 붙은 단계가 돼요.
+`status:available` `c: steps` 섹션에서 번호 목록이 번호 붙은 단계가 됩니다.
 
-1. Add the theme to `_config.yml`.
-2. Write `index.md` in plain Markdown.
-3. Run `bundle exec jekyll build`.
+1. `_config.yml`에 테마를 추가합니다.
+2. 평범한 Markdown으로 `index.md`를 씁니다.
+3. `bundle exec jekyll build`를 실행합니다.
 
 ## 제목으로 쓰는 단계
 
 단계 하나에 여러 줄이 필요하면 목록 대신 `###` 제목을 쓰세요.
 
-### Install
+### 설치
 
-Add `remote_theme` and the plugin.
+`remote_theme`과 플러그인을 추가합니다.
 
-### Publish
+### 배포
 
-Push to `main` and turn on GitHub Pages.
+`main`에 푸시하고 GitHub Pages를 켭니다.
 
 ## 타임라인
 
-`status:available` `c: timeline` 섹션에서 `###` 제목이 선 위의 지점이 돼요.
+`status:available` `c: timeline` 섹션에서 `###` 제목이 선 위의 지점이 됩니다.
 
-### Install
+### 설치
 
-Alerts, sections, cards and tabs.
+알림, 섹션, 카드, 탭.
 
-### Check
+### 확인
 
-Theme toggle, breadcrumb and table of contents.
+테마 전환, 이동 경로, 목차.
 
 ## 목록으로 쓰는 타임라인
 
-번호 목록으로도 쓸 수 있어요.
+번호 목록으로도 쓸 수 있습니다.
 
-1. Install: alerts, sections and cards.
-2. Write: design tokens and navigation.
-3. Check: theme toggle and steps.
+1. 설치: 알림, 섹션, 카드.
+2. 작성: 디자인 토큰, 내비게이션.
+3. 확인: 테마 전환, 단계.
 
 ## 그림
 
-`status:available` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 돼요. 대체 텍스트는 필수예요.
+`status:available` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 됩니다. 대체 텍스트는 필수입니다.
 
-![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
+![왼쪽의 Markdown 소스가 오른쪽의 꾸며진 페이지가 됩니다](../../assets/images/sample.svg)
 
-*Markdown on the left, the rendered page on the right.*
+*왼쪽은 Markdown, 오른쪽은 렌더링된 페이지입니다.*
 
 ## 표
 
-`status:available` GFM 표는 작은 화면에서 페이지를 넘치지 않고 가로로 스크롤돼요.
+`status:available` GFM 표는 작은 화면에서 페이지를 넘치지 않고 가로로 스크롤됩니다.
 
-| Key | Default | Description |
+| 키 | 기본값 | 설명 |
 |---|---|---|
-| `color_scheme` | `auto` | follow the OS or force light or dark |
-| `badges` | `true` | turn status code spans into badges |
+| `color_scheme` | `auto` | 운영체제 설정을 따르거나 라이트·다크 중 하나로 고정 |
+| `badges` | `true` | 상태 코드 스팬을 배지로 바꿈 |
 
 ## 코드 블록
 
-`status:available` 펜스 코드 블록은 구문 강조가 되고 첫 줄 끝에 복사 버튼이 붙어요. 긴 줄은 스크롤되고 키보드로도 블록에 갈 수 있어요.
+`status:available` 펜스 코드 블록은 구문 강조가 되고 첫 줄 끝에 복사 버튼이 붙습니다. 긴 줄은 스크롤되고 키보드로도 블록에 갈 수 있습니다.
 
 ```ruby
 Jekyll::Hooks.register :site, :post_write do |site|
@@ -244,7 +244,7 @@ theme: jekyll-theme-modootoday
 
 ## 로딩과 스켈레톤
 
-`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 각각 `role="status"`와 화면 낭독기용 로딩 레이블을 가지며, 사용자가 동작 줄이기를 요청하면 움직임이 멈춥니다. 스타일은 이를 쓰는 페이지만 불러오는 선택 시트에 있습니다.
+`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 모두 `role="status"`와 스크린 리더용 로딩 레이블이 붙고, 사용자가 동작 줄이기를 켜면 움직이지 않습니다. 스타일은 별도 스타일시트에 있어 이 요소를 쓰는 페이지만 불러옵니다.
 
 `loading:spinner`
 
@@ -254,7 +254,7 @@ theme: jekyll-theme-modootoday
 
 ## 파일 트리
 
-`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 중첩 목록을 가진 항목은 폴더입니다.
+`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 하위 목록이 있는 항목은 폴더입니다.
 
 - docs
   - _config.yml
@@ -319,7 +319,7 @@ theme: jekyll-theme-modootoday
 
 ## 요금제
 
-`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크를 가진 요금제가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
+`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크로 이루어진 요금제 카드가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
 
 ### 무료
 
@@ -346,7 +346,7 @@ theme: jekyll-theme-modootoday
 
 ## 내비게이션
 
-`status:available` 헤더 메뉴는 `_data/nav/main.yml`에서 와요. `items:`가 있는 항목은 넓은 화면에서 드롭다운 묶음이 되고, 좁은 화면에서는 메뉴 버튼이 생겨요. 열린 메뉴는 Esc로 닫아요. 이 페이지의 헤더가 그 결과예요.
+`status:available` 헤더 메뉴는 `_data/nav/main.yml`에서 옵니다. `items:`가 있는 항목은 넓은 화면에서 드롭다운 묶음이 되고, 좁은 화면에서는 메뉴 버튼이 생깁니다. 열린 메뉴는 Esc로 닫습니다. 이 페이지의 헤더가 그 결과입니다.
 
 ```yaml
 - {title: Install, url: /install/}
@@ -358,7 +358,7 @@ theme: jekyll-theme-modootoday
 
 ## 언어 선택기
 
-`status:available` `languages:`와 `language_switcher: header`를 설정하면 헤더에 언어 목록을 여는 지구본 버튼이 생겨요. 언어가 늘어도 폭은 그대로예요. 언어 이름은 각 언어로 적고, 현재 언어에는 `aria-current`가 붙어요. 목록은 Esc로 닫아요. 이 페이지 헤더의 지구본이 그 결과예요.
+`status:available` `languages:`와 `language_switcher: header`를 설정하면 헤더에 언어 목록을 여는 지구본 버튼이 생깁니다. 언어가 늘어도 폭은 그대로입니다. 언어 이름은 각 언어로 적고, 현재 언어에는 `aria-current`가 붙습니다. 목록은 Esc로 닫습니다. 이 페이지 헤더의 지구본이 그 결과입니다.
 
 ```yaml
 modootoday:
@@ -368,7 +368,7 @@ modootoday:
 
 ## 테마 전환
 
-`status:available` 헤더 버튼으로 라이트와 다크를 바꾸고, 고른 값을 기억해요. 한 모드로 고정하려면 `color_scheme`을 쓰세요. 이 페이지 헤더의 버튼이 그 결과예요.
+`status:available` 헤더 버튼으로 라이트와 다크를 바꾸고, 고른 값을 기억합니다. 한 모드로 고정하려면 `color_scheme`을 쓰세요. 이 페이지 헤더의 버튼이 그 결과입니다.
 
 ```yaml
 modootoday:
@@ -377,7 +377,7 @@ modootoday:
 
 ## 아이콘과 로고
 
-`status:available` 테마의 아이콘(지구본, 해와 달, 검색, 알림 종류, 복사, 편집, 이전·다음, 외부 링크, 브레드크럼 화살표)은 `currentColor`를 쓰는 인라인 SVG라서 라이트·다크 모드를 따르고 추가 요청이 없어요. 아이콘은 스크린 리더에서 숨기고, 아이콘만 있는 버튼에는 따로 이름을 붙여요. 방향을 가리키는 화살표는 오른쪽에서 왼쪽으로 쓰는 페이지에서 뒤집혀요. `logo`를 정하면 사이트 제목 앞에 modootoday 마크(또는 직접 만든 이미지)가 나오고, `favicon`을 정하면 같은 모양의 브라우저 아이콘이 붙어요. 이 페이지의 헤더와 푸터가 그 결과예요.
+`status:available` 테마의 아이콘(지구본, 해와 달, 검색, 알림 종류, 복사, 편집, 이전·다음, 외부 링크, 이동 경로 화살표)은 `currentColor`를 쓰는 인라인 SVG라서 라이트·다크 모드를 따르고 추가 요청이 없습니다. 아이콘은 스크린 리더에서 숨기고, 아이콘만 있는 버튼에는 따로 이름을 붙입니다. 방향을 가리키는 화살표는 오른쪽에서 왼쪽으로 쓰는 페이지에서 뒤집힙니다. `logo`를 정하면 사이트 제목 앞에 modootoday 마크(또는 직접 만든 이미지)가 나오고, `favicon`을 정하면 같은 모양의 브라우저 아이콘이 붙습니다. 이 페이지의 헤더와 푸터가 그 결과입니다.
 
 ```yaml
 modootoday:
@@ -387,11 +387,11 @@ modootoday:
 
 ## 검색
 
-`status:available` `search.json` 파일로 동작하는 클라이언트 검색이 헤더에 들어가요(`role="search"`). `kbd:Ctrl+K`나 `kbd:/`로 검색창에 갈 수 있어요. 사이트 루트에 `search.json`을 두면 켜져요. [이 사이트가 쓰는 파일](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)을 복사해 쓰세요. 이 페이지 헤더의 검색창이 그 결과예요.
+`status:available` `search.json` 파일로 동작하는 클라이언트 검색이 헤더에 들어갑니다(`role="search"`). `kbd:Ctrl+K`나 `kbd:/`로 검색창에 갈 수 있습니다. 사이트 루트에 `search.json`을 두면 켜집니다. [이 사이트가 쓰는 파일](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)을 복사해 쓰세요. 이 페이지 헤더의 검색창이 그 결과입니다.
 
-## 브레드크럼과 목차
+## 이동 경로와 목차
 
-`status:available` 문서 페이지에는 URL로 만든 브레드크럼과, `##`·`###` 제목으로 만든 목차가 붙어요. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보여요. 레이아웃이 붙이므로 따로 쓸 소스는 없어요. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼세요. 이 페이지 위쪽과 옆이 그 결과예요.
+`status:available` 문서 페이지에는 URL로 만든 이동 경로와, `##`·`###` 제목으로 만든 목차가 붙습니다. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보입니다. 레이아웃이 붙이므로 따로 쓸 소스는 없습니다. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼세요. 이 페이지 위쪽과 옆이 그 결과입니다.
 
 ```yaml
 modootoday:
@@ -400,7 +400,7 @@ modootoday:
 
 ## 이전·다음
 
-`status:available` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙어요. 숨기려면 프런트 매터에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과예요.
+`status:available` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙습니다. 숨기려면 front matter에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과입니다.
 
 ```yaml
 ---
@@ -411,7 +411,7 @@ pagination: false
 
 ## 글과 아카이브
 
-`status:available` `layout: post`는 날짜, 글쓴이, 태그를 보여 줘요(`p.mt-post-meta`).
+`status:available` `layout: post`는 날짜, 글쓴이, 태그를 보여 줍니다(`p.mt-post-meta`).
 
 ```yaml
 ---

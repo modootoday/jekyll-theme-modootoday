@@ -36,57 +36,57 @@ sections:
 ---
 # 키친싱크
 
-테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 폴백 모습을 볼 수 있습니다. 한국어 줄바꿈 확인용 긴문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
+테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 기본 렌더링 모습을 볼 수 있습니다. 한국어 줄바꿈 확인용 긴 문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
 
-[Primary action](#) [Secondary](#) [Third link](#)
+[주요 동작](#) [보조](#) [세 번째 링크](#)
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../components/kitchen-sink/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
-## Alerts
+## 알림
 
 > [!NOTE]
-> Useful information that users should know, even when skimming.
+> 훑어보더라도 꼭 알아야 할 유용한 정보입니다.
 
 > [!TIP]
-> Helpful advice for doing things better or more easily.
+> 더 쉽고 낫게 하는 데 도움이 되는 조언입니다.
 
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+> 목표를 이루려면 반드시 알아야 할 핵심 정보입니다.
 
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+> 문제를 막으려면 바로 확인해야 하는 긴급한 정보입니다.
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+> 특정 동작의 위험이나 나쁜 결과를 경고합니다.
 
 > [!NOTE]
-> An alert with more content:
+> 내용이 많은 알림:
 >
-> - a list item with `inline code`
-> - a second item with a link to the [components index](../)
+> - `inline code`가 들어간 목록 항목
+> - [컴포넌트 목록](../) 링크가 있는 두 번째 항목
 >
 > ```sh
 > echo "code inside an alert"
 > ```
 
-## Cards in two columns
+## 2열 카드
 
-- **Short** — One line.
-- **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
-- **With a badge** — Cards can carry status. `status:available`
-- **With a link** — Read the [install guide](../../guides/install/).
+- **짧은 카드** — 한 줄.
+- **긴 카드** — 설명이 길어 여러 줄로 넘어가는 카드로, 그리드 전체의 간격, 줄 높이, 정렬을 확인합니다.
+- **배지 포함** — 카드에 상태를 표시할 수 있습니다. `status:available`
+- **링크 포함** — [설치 안내](../../guides/install/)를 읽어 보세요.
 
-## Cards in three columns
+## 3열 카드
 
-- **Alerts** — Five GitHub alert types. `status:available`
-- **Tabs** — Accessible install tabs. `status:partial`
-- **Search** — Example of a planned item. `status:planned`
-- **Tokens** — Colors, radius and fonts. `status:available`
-- **Sass** — One partial per component. `status:available`
-- **Twins** — Markdown for agents. `status:available`
+- **알림** — GitHub 알림 다섯 종류. `status:available`
+- **탭** — 접근성을 갖춘 설치 탭. `status:partial`
+- **검색** — 계획된 항목의 예. `status:planned`
+- **토큰** — 색상, 모서리 반경, 글꼴. `status:available`
+- **Sass** — 컴포넌트마다 파셜 하나. `status:available`
+- **Markdown 버전** — 에이전트용 Markdown. `status:available`
 
-## Tabs with two panels
+## 패널이 두 개인 탭
 
 ### macOS
 
@@ -102,7 +102,7 @@ sudo apt install ruby-full
 gem install jekyll bundler
 ```
 
-## Tabs with many panels
+## 패널이 많은 탭
 
 ### Ruby
 
@@ -128,112 +128,112 @@ print("Hello")
 echo Hello
 ```
 
-### A tab with a much longer name
+### 이름이 훨씬 긴 탭
 
 ```yaml
 greeting: Hello
 ```
 
-## Status badges
+## 상태 배지
 
-Inline badges: `status:available` `status:partial` `status:planned`
+인라인 배지: `status:available` `status:partial` `status:planned`
 
-Tag badges: `tag:beta` `tag:experimental`
+태그 배지: `tag:beta` `tag:experimental`
 
-| Feature | Status |
+| 기능 | 상태 |
 |---|---|
-| Alerts | `status:available` |
-| Tabs | `status:partial` |
-| Search | `status:planned` |
+| 알림 | `status:available` |
+| 탭 | `status:partial` |
+| 검색 | `status:planned` |
 
-## Accordion
+## 아코디언
 
-### What is the kitchen sink for?
+### 키친싱크는 어디에 쓰나요?
 
-It shows every component in one place, so visual regressions are easy to spot.
+모든 컴포넌트를 한곳에 모아 보여 주므로 화면이 깨진 곳을 쉽게 찾을 수 있습니다.
 
-### Does it work without JavaScript?
+### JavaScript 없이도 동작하나요?
 
-Yes. Without JavaScript every answer stays visible under its question.
+네. JavaScript가 없으면 모든 답이 질문 아래에 펼쳐진 채로 보입니다.
 
-### Can an answer hold code?
+### 답에 코드를 넣을 수 있나요?
 
 ```sh
 bundle exec jekyll serve
 ```
 
-## Steps as a list
+## 목록으로 쓴 단계
 
-1. Add the theme to `_config.yml`.
-2. Write `index.md` in plain Markdown.
-3. Run `bundle exec jekyll build`.
-4. Check the result with `modootoday-check`.
+1. `_config.yml`에 테마를 추가합니다.
+2. 평범한 Markdown으로 `index.md`를 씁니다.
+3. `bundle exec jekyll build`를 실행합니다.
+4. `modootoday-check`로 결과를 확인합니다.
 
-## Steps as headings
+## 제목으로 쓴 단계
 
-### Install
+### 설치
 
-Add `remote_theme` and the plugin.
+`remote_theme`과 플러그인을 추가합니다.
 
-### Write
+### 작성
 
-Create a page with front matter.
+front matter가 있는 페이지를 만듭니다.
 
-### Publish
+### 배포
 
-Push to `main` and turn on GitHub Pages.
+`main`에 푸시하고 GitHub Pages를 켭니다.
 
-## Figure
+## 그림
 
-![A Markdown source on the left becomes a styled page on the right](../../../assets/images/sample.svg)
+![왼쪽의 Markdown 소스가 오른쪽의 꾸며진 페이지가 됩니다](../../../assets/images/sample.svg)
 
-*An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption.*
+*이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다.*
 
-## Timeline
+## 타임라인
 
-### Install
+### 설치
 
-Alerts, sections, cards, tabs, status badges and the checker.
+알림, 섹션, 카드, 탭, 상태 배지, 검사기.
 
-### Write
+### 작성
 
-Design tokens, the `modootoday:` block, navigation and code copy.
+디자인 토큰, `modootoday:` 블록, 내비게이션, 코드 복사.
 
-### Check
+### 확인
 
-Theme toggle, breadcrumb, table of contents, accordion, steps and figures.
+테마 전환, 이동 경로, 목차, 아코디언, 단계, 그림.
 
-### Publish
+### 배포
 
-Timeline, keyboard keys, client search and the post layout.
+타임라인, 키보드 키, 클라이언트 검색, post 레이아웃.
 
-## Timeline as a list
+## 목록으로 쓴 타임라인
 
-1. Install: alerts, sections, cards and tabs.
-2. Write: design tokens and navigation.
-3. Check: theme toggle, table of contents and steps.
+1. 설치: 알림, 섹션, 카드, 탭.
+2. 작성: 디자인 토큰, 내비게이션.
+3. 확인: 테마 전환, 목차, 단계.
 
-## Keyboard keys
+## 키보드 키
 
-Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
+`kbd:Ctrl+K`나 `kbd:/`만 눌러도 검색이 열립니다. 복사는 `kbd:Cmd+C`입니다.
 
-## Tables
+## 표
 
-| Key | Type | Default | Description |
+| 키 | 유형 | 기본값 | 설명 |
 |---|---|---|---|
-| `badges` | boolean | `true` | Convert status code spans into badges |
-| `color_scheme` | string | `auto` | Follow the operating system or force a scheme |
-| `components` | list | all core components | Limit the CSS and JavaScript that are shipped to the browser |
-| `tokens` | map | theme defaults | Override design tokens such as primary color, radius and font stacks |
+| `badges` | boolean | `true` | 상태 코드 스팬을 배지로 바꿈 |
+| `color_scheme` | string | `auto` | 운영체제 설정을 따르거나 색 구성을 고정 |
+| `components` | list | 모든 핵심 컴포넌트 | 브라우저로 보내는 CSS와 JavaScript를 줄임 |
+| `tokens` | map | 테마 기본값 | 주 색상, 모서리 반경, 글꼴 스택 같은 디자인 토큰을 덮어씀 |
 
-| Left | Center | Right |
+| 왼쪽 | 가운데 | 오른쪽 |
 |:---|:---:|---:|
 | a | b | 1 |
-| longer cell | centered | 1,000 |
+| 긴 셀 | 가운데 정렬 | 1,000 |
 
-## Code
+## 코드
 
-Inline `code`, a fenced block and a long line that scrolls:
+인라인 `code`, 펜스 코드 블록, 가로로 스크롤되는 긴 줄:
 
 ```ruby
 # frozen_string_literal: true
@@ -247,33 +247,33 @@ end
 + theme: jekyll-theme-modootoday
 ```
 
-## Typography
+## 타이포그래피
 
-Paragraph text with **bold**, *italic*, ~~strikethrough~~, `code` and a link to the [components index](../). Footnotes work too.[^1]
+**굵게**, *기울임*, ~~취소선~~, `code`, [컴포넌트 목록](../) 링크가 있는 문단입니다. 각주도 쓸 수 있습니다.[^1]
 
-### Heading level 3
+### 3단계 제목
 
-#### Heading level 4
+#### 4단계 제목
 
-1. Ordered item
-2. Ordered item
-   - nested bullet
-   - nested bullet
+1. 번호 항목
+2. 번호 항목
+   - 중첩 항목
+   - 중첩 항목
 
-- [x] task done
-- [ ] task open
+- [x] 완료한 작업
+- [ ] 남은 작업
 
-> A plain quote that is not an alert.
+> 알림이 아닌 일반 인용문입니다.
 
 ---
 
-Text after a thematic break.
+구분선 다음의 글입니다.
 
-[^1]: A footnote.
+[^1]: 각주입니다.
 
-## Call to action
+## 행동 유도
 
-[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[시작하기](../../guides/install/) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## 코드 제목과 diff
 
@@ -304,7 +304,7 @@ theme: jekyll-theme-modootoday
 
 ## 로딩과 스켈레톤
 
-`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 각각 `role="status"`와 화면 낭독기용 로딩 레이블을 가지며, 사용자가 동작 줄이기를 요청하면 움직임이 멈춥니다. 스타일은 이를 쓰는 페이지만 불러오는 선택 시트에 있습니다.
+`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 모두 `role="status"`와 스크린 리더용 로딩 레이블이 붙고, 사용자가 동작 줄이기를 켜면 움직이지 않습니다. 스타일은 별도 스타일시트에 있어 이 요소를 쓰는 페이지만 불러옵니다.
 
 `loading:spinner`
 
@@ -314,7 +314,7 @@ theme: jekyll-theme-modootoday
 
 ## 파일 트리
 
-`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 중첩 목록을 가진 항목은 폴더입니다.
+`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 하위 목록이 있는 항목은 폴더입니다.
 
 - docs
   - _config.yml
@@ -379,7 +379,7 @@ theme: jekyll-theme-modootoday
 
 ## 요금제
 
-`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크를 가진 요금제가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
+`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크로 이루어진 요금제 카드가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
 
 ### 무료
 

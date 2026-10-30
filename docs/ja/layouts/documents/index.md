@@ -7,7 +7,7 @@ nav_order: 60
 
 印刷したり保管したりするページ向けの 2 つのレイアウトです。どちらも紙ではサイトのヘッダー、フッター、バナーを隠します。
 
-| レイアウト | フロントマター | バンドル | 構造化データ | デモ |
+| レイアウト | front matter | バンドル | 構造化データ | デモ |
 |---|---|---|---|---|
 | `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](/jekyll-theme-modootoday/ja/layouts/documents/legal/) |
 | `resume` | `name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](/jekyll-theme-modootoday/ja/layouts/documents/resume/) |

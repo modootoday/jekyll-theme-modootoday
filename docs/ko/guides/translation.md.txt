@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: translation.md
+permalink: /ko/guides/translation/index.md
+---

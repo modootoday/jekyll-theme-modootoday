@@ -8,7 +8,7 @@ description: このテーマがサイト向けに文書化している名前、�
 > [!NOTE]
 > このページは[英語の原文](../../../reference/api/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
-公開 API はこのページにまとめてあり、変更は `CHANGELOG.md` に記録されます。一覧にないもの (内部のインクルード、Sass パーシャルのパス、非公開の `--mt-p-*` プリミティブ、どのルールにも書かれていない HTML の細部) は、どのリリースでも変わることがあります。
+公開 API はこのページにまとめてあり、変更は `CHANGELOG.md` に記録されます。一覧にないもの (内部の include、Sass パーシャルのパス、非公開の `--mt-p-*` プリミティブ、どのルールにも書かれていない HTML の細部) は、どのリリースでも変わることがあります。
 
 ## 安定した名前
 
@@ -18,9 +18,9 @@ description: このテーマがサイト向けに文書化している名前、�
 | デザイントークン | セマンティックおよびコンポーネントのカスタムプロパティ `--mt-*` (プリミティブ `--mt-p-*` を除く)。生成される `tokens.json` も同じ |
 | Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*` |
 | レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
-| 上書きしてよいインクルード | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` 指定可)をインクルードできる。独自のロゴは `modootoday/brand/logo.html` を上書き |
-| 自分で用意するインクルード | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照） |
-| 呼び出してよいインクルード | `modootoday/archive.html`（`by`、`lang`）。`modootoday/brand/icon.html`（`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand。任意で `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class`）。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、向きのあるアイコンは `.mt-icon-flip` が付き RTL で反転 |
+| 上書きしてよい include | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` 指定可)を include できる。独自のロゴは `modootoday/brand/logo.html` を上書き |
+| 自分で用意する include | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照） |
+| 呼び出してよい include | `modootoday/archive.html`（`by`、`lang`）。`modootoday/brand/icon.html`（`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand。任意で `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class`）。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、向きのあるアイコンは `.mt-icon-flip` が付き RTL で反転 |
 | include | `modootoday/t.html`（`key=`、任意の `n=` / `name=`）はページの言語でテーマの文言を出力します |
 | データファイル | `_data/i18n/<lang>.yml` のキー（組み込みカタログを上書きする場合のみ）、`_data/nav/<name>.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |
@@ -46,7 +46,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (JS が生成。JS がなければ `h3` とコードブロックのまま) | `[aria-selected]` |
 | アコーディオン | `section.mt-c-accordion` | `h3 > button[aria-expanded]`、その後のパネル | `[aria-expanded=true\|false]` |
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
-| ファイルツリー | `section.mt-c-filetree` | `ul[aria-label]`、入れ子の `ul`（それを持つ項目はフォルダー） | — |
+| ファイルツリー | `section.mt-c-filetree` | `ul[aria-label]`、入れ子の `ul`（それがある項目はフォルダー） | — |
 | 詳細 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`、`summary > h3`、その後の内容 | `[open]` |
 | パラメーター表 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
 | リンクカード | `section.mt-c-linkcards` | `ul > li > a`（カード全体がリンク先） | — |
@@ -69,7 +69,7 @@ description: このテーマがサイト向けに文書化している名前、�
 
 ## スロット契約
 
-スロットはセクションの Markdown の中の名前付きの部分です。スロット名は上のポリシーのもとで安定しており、宣言しても生成されるマークアップは変わりません。`_data/components.yml` で `slots:` を持つ `c:` を使うセクションごとに `modootoday-check` がスロットの数を数え、宣言した範囲を外れると失敗します。
+スロットはセクションの Markdown の中の名前付きの部分です。スロット名は上のポリシーのもとで安定しており、宣言しても生成されるマークアップは変わりません。`_data/components.yml` で `slots:` が定義された `c:` を使うセクションごとに `modootoday-check` がスロットの数を数え、宣言した範囲を外れると失敗します。
 
 | スロット | セクション内 (`##` 見出しの後) で数えるもの | 表示 |
 |---|---|---|
@@ -80,7 +80,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | `code` | フェンスコードブロック | `pre` (タブの内容) |
 | `figures` | 画像で始まる行 | `figure.mt-figure` |
 
-各スロットは `required: true` (`min: 1` と同じ)、`min`、`max` を取ります (整数で、`min` は `max` 以下)。正しい形が二つあるコンポーネントでは、`slots:` を代わりの形のリストにでき、セクションはそのどれか一つを満たせば通ります。`parts:` には、[コンポーネントの構造](#コンポーネントの構造)の表のうち、そのコンポーネントが保つと約束するセレクターを並べます。サイトにその表を持つ `api.md` がある場合、すべてのパートが表に載っている必要があります。Nokogiri が使える場合 (`github-pages` には含まれます)、そのコンポーネントを使うページのビルド済み HTML で、そのコンポーネントのセクション内にすべてのパートが実際に存在する必要もあります。コンポーネントのスクリプトが実行時に付けるパート (`role=`、`aria-*`) は、ドキュメントサイトの QA がスクリプト実行後に確認します。
+各スロットは `required: true` (`min: 1` と同じ)、`min`、`max` を取ります (整数で、`min` は `max` 以下)。正しい形が二つあるコンポーネントでは、`slots:` を代わりの形のリストにでき、セクションはそのどれか一つを満たせば通ります。`parts:` には、[コンポーネントの構造](#コンポーネントの構造)の表のうち、そのコンポーネントが保つと約束するセレクターを並べます。サイトにその表がある `api.md` を置いている場合、すべてのパートが表に載っている必要があります。Nokogiri が使える場合 (`github-pages` には含まれます)、そのコンポーネントを使うページのビルド済み HTML で、そのコンポーネントのセクション内にすべてのパートが実際に存在する必要もあります。コンポーネントのスクリプトが実行時に付けるパート (`role=`、`aria-*`) は、ドキュメントサイトの QA がスクリプト実行後に確認します。
 
 ```yaml
 features: {params: {cols: {allowed: [2, 3]}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3]}
@@ -116,8 +116,8 @@ archive: tags        # または categories
 ---
 ```
 
-このページには本文、記事数付きの分類一覧、分類ごとのセクション（`id="tags-<slug>"`、新しい記事が先）が表示されます。別の場所にアーカイブを置くにはレイアウトやインクルードから `modootoday/archive.html` を呼び出し、`by` に `tags` または `categories` を、必要なら `lang` を指定します。アーカイブのスタイルは `modootoday-blog.css` にあります。`archive` と `post` レイアウトはこのファイルを読み込みます。ほかのページでインクルードを呼び出すときは、front matter に `blog_css: true` を指定します。
+このページには本文、記事数付きの分類一覧、分類ごとのセクション（`id="tags-<slug>"`、新しい記事が先）が表示されます。別の場所にアーカイブを置くにはレイアウトや include から `modootoday/archive.html` を呼び出し、`by` に `tags` または `categories` を、必要なら `lang` を指定します。アーカイブのスタイルは `modootoday-blog.css` にあります。`archive` と `post` レイアウトはこのファイルを読み込みます。ほかのページで include を呼び出すときは、front matter に `blog_css: true` を指定します。
 
-- 記事の言語は `lang`（なければ `site.lang`）です。アーカイブはページと同じ言語の記事だけを表示し、`archive_lang: all`（インクルードでは `lang="all"`）ならすべての記事を表示します。`lang` が `site.lang` と異なる記事のフッターのリンクは `/<lang>/tags/` を指すので、言語ディレクトリごとにアーカイブページを置いてください。
+- 記事の言語は `lang`（なければ `site.lang`）です。アーカイブはページと同じ言語の記事だけを表示し、`archive_lang: all`（include では `lang="all"`）ならすべての記事を表示します。`lang` が `site.lang` と異なる記事のフッターのリンクは `/<lang>/tags/` を指すので、言語ディレクトリごとにアーカイブページを置いてください。
 - ラベルは `_data/i18n/<lang>.yml` の `archive.tags`、`archive.categories`、`archive.posts`、`archive.empty` から取り、なければ英語を使います。
-- 制限：クラシックな GitHub Pages は独自プラグインを実行しないため、分類ごとのページは作らず、分類の種類ごとに 1 ページとし、分類ごとにアンカーを置きます。記事には Markdown のツインがなく、エージェントはアーカイブのリンクから記事を見つけます。Jekyll は `_posts/` より上のフォルダー名を `categories` に入れるため、記事は最上位の `_posts/` に置き、front matter で `lang:` を指定してください。
+- 制限：クラシックな GitHub Pages は独自プラグインを実行しないため、分類ごとのページは作らず、分類の種類ごとに 1 ページとし、分類ごとにアンカーを置きます。記事には Markdown 版がなく、エージェントはアーカイブのリンクから記事を見つけます。Jekyll は `_posts/` より上のフォルダー名を `categories` に入れるため、記事は最上位の `_posts/` に置き、front matter で `lang:` を指定してください。

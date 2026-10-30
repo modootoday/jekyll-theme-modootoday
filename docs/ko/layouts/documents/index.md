@@ -7,7 +7,7 @@ nav_order: 60
 
 인쇄하거나 보관하는 페이지를 위한 레이아웃 두 가지입니다. 둘 다 종이에서는 사이트 머리글, 바닥글, 배너를 숨깁니다.
 
-| 레이아웃 | 프런트 매터 | 번들 | 구조화 데이터 | 데모 |
+| 레이아웃 | front matter | 번들 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
 | `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](/jekyll-theme-modootoday/ko/layouts/documents/legal/) |
 | `resume` | `name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](/jekyll-theme-modootoday/ko/layouts/documents/resume/) |

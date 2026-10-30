@@ -79,4 +79,4 @@ modootoday:
     share: true
 ```
 
-フロントマターの一覧は[英語のガイド](../../../layouts/blog-news/#settings)の表をご覧ください。
+front matter の一覧は[英語のガイド](../../../layouts/blog-news/#settings)の表をご覧ください。

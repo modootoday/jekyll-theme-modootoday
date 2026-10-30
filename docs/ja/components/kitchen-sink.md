@@ -84,7 +84,7 @@ sections:
 - **検索** — 予定項目の例。 `status:planned`
 - **トークン** — 色、角丸、フォント。 `status:available`
 - **Sass** — コンポーネントごとに一つのパーシャル。 `status:available`
-- **ツイン** — エージェント向けの Markdown。 `status:available`
+- **Markdown 版** — エージェント向けの Markdown。 `status:available`
 
 ## パネルが二つのタブ
 
@@ -128,7 +128,7 @@ print("Hello")
 echo Hello
 ```
 
-### ずっと長い名前を持つタブ
+### 名前がずっと長いタブ
 
 ```yaml
 greeting: Hello
@@ -304,7 +304,7 @@ theme: jekyll-theme-modootoday
 
 ## 読み込み表示とスケルトン
 
-`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルを持ち、利用者が視差効果を減らす設定にすると動きが止まります。スタイルは、使うページだけが読み込む任意のシートにあります。
+`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルが付き、利用者が視差効果を減らす設定にしていると動きません。スタイルは別のスタイルシートにあり、使うページだけが読み込みます。
 
 `loading:spinner`
 
@@ -314,7 +314,7 @@ theme: jekyll-theme-modootoday
 
 ## ファイルツリー
 
-`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストを持つ項目はフォルダーです。
+`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストがある項目はフォルダーです。
 
 - docs
   - _config.yml
@@ -379,7 +379,7 @@ theme: jekyll-theme-modootoday
 
 ## 料金プラン
 
-`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクを持つプランになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
+`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクからなるプランカードになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
 
 ### 無料
 

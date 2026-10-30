@@ -8,7 +8,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../reference/api/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
-공개 API는 이 페이지에 정리되어 있고, 변경 사항은 `CHANGELOG.md`에 기록됩니다. 목록에 없는 것(내부 인클루드, Sass 파셜 경로, 비공개 `--mt-p-*` 기본 토큰, 규칙에 없는 HTML 세부)은 어느 릴리스에서든 바뀔 수 있습니다.
+공개 API는 이 페이지에 정리되어 있고, 변경 사항은 `CHANGELOG.md`에 기록됩니다. 목록에 없는 것(내부 include, Sass 파셜 경로, 비공개 `--mt-p-*` 기본 토큰, 규칙에 없는 HTML 세부)은 어느 릴리스에서든 바뀔 수 있습니다.
 
 ## 안정 이름
 
@@ -18,9 +18,9 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*` |
 | 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
-| 덮어써도 되는 인클루드 | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 인클루드할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
+| 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
 | 직접 만드는 include | `_includes/sections/<name>.html`. `visual: <name>`을 쓴 섹션이나 히어로 끝에 렌더링됨 ([사용자 정의](../../guides/customize/#섹션-비주얼과-전체-폭-페이지) 참고) |
-| 호출해도 되는 인클루드 | `modootoday/archive.html`(`by`, `lang`); `modootoday/brand/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
+| 호출해도 되는 include | `modootoday/archive.html`(`by`, `lang`); `modootoday/brand/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
 | include | `modootoday/t.html`(`key=`, 선택 `n=` / `name=`)은 페이지 언어의 테마 문구를 출력합니다 |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키(내장 카탈로그를 덮어쓸 때만), `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
@@ -46,7 +46,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]`(JS가 만듦, JS 없으면 `h3`와 코드 블록 유지) | `[aria-selected]` |
 | 아코디언 | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, 그 뒤 패널 | `[aria-expanded=true\|false]` |
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
-| 파일 트리 | `section.mt-c-filetree` | `ul[aria-label]`, 중첩 `ul`(이를 가진 항목은 폴더) | — |
+| 파일 트리 | `section.mt-c-filetree` | `ul[aria-label]`, 중첩 `ul`(하위 목록이 있는 항목은 폴더) | — |
 | 세부 정보 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, 그 뒤의 내용 | `[open]` |
 | 매개변수 표 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
 | 링크 카드 | `section.mt-c-linkcards` | `ul > li > a`(카드 전체가 링크 대상) | — |
@@ -119,5 +119,5 @@ archive: tags        # 또는 categories
 이 페이지에는 본문, 글 개수가 붙은 분류 목록, 분류마다 하나의 구역(`id="tags-<slug>"`, 최신 글 먼저)이 표시됩니다. 다른 곳에 아카이브를 넣으려면 레이아웃이나 include에서 `modootoday/archive.html`을 호출하고 `by`에 `tags` 또는 `categories`를, 필요하면 `lang`을 지정합니다. 아카이브 스타일은 `modootoday-blog.css`에 있습니다. `archive`와 `post` 레이아웃은 이 파일을 불러오고, 다른 페이지에서 include를 호출할 때는 front matter에 `blog_css: true`를 넣습니다.
 
 - 글의 언어는 `lang`(없으면 `site.lang`)입니다. 아카이브는 페이지와 같은 언어의 글만 보여 주고, `archive_lang: all`(include에서는 `lang="all"`)이면 모든 글을 보여 줍니다. `lang`이 `site.lang`과 다른 글의 하단 링크는 `/<lang>/tags/`로 이어지므로 언어 디렉터리마다 아카이브 페이지를 두세요.
-- 라벨은 `_data/i18n/<lang>.yml`의 `archive.tags`, `archive.categories`, `archive.posts`, `archive.empty`에서 가져오고, 없으면 영어를 씁니다.
-- 한계: 클래식 GitHub Pages는 사용자 플러그인을 실행하지 않으므로 분류마다 페이지를 만들지 않고, 분류 종류마다 한 페이지에 분류별 앵커를 둡니다. 글에는 Markdown 쌍둥이가 없고, 에이전트는 아카이브 링크로 글을 찾습니다. Jekyll은 `_posts/` 위의 폴더 이름을 `categories`에 넣으므로 글은 최상위 `_posts/`에 두고 front matter에 `lang:`을 지정하세요.
+- 레이블은 `_data/i18n/<lang>.yml`의 `archive.tags`, `archive.categories`, `archive.posts`, `archive.empty`에서 가져오고, 없으면 영어를 씁니다.
+- 한계: 클래식 GitHub Pages는 사용자 플러그인을 실행하지 않으므로 분류마다 페이지를 만들지 않고, 분류 종류마다 한 페이지에 분류별 앵커를 둡니다. 글에는 Markdown 버전이 없고, 에이전트는 아카이브 링크로 글을 찾습니다. Jekyll은 `_posts/` 위의 폴더 이름을 `categories`에 넣으므로 글은 최상위 `_posts/`에 두고 front matter에 `lang:`을 지정하세요.

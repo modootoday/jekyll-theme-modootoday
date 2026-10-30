@@ -7,7 +7,7 @@ nav_order: 50
 
 설명서 주변 페이지를 만드는 레이아웃입니다. 자기 페이지에서만 `modootoday-docs-extra.css`를 불러오고 JavaScript는 추가하지 않습니다. 모든 레이아웃은 제목과 소개 문장인 `description:`을 읽으며, 본문은 생성된 부분 뒤에 옵니다.
 
-| 레이아웃 | 프런트 매터 | 구조화 데이터 | 데모 |
+| 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
 | `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](/jekyll-theme-modootoday/ko/layouts/docs-extra/reference/) |
 | `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](/jekyll-theme-modootoday/ko/layouts/docs-extra/changelog/) |

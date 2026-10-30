@@ -15,7 +15,7 @@ description: テーマがサポートする機能、動作環境、今後の方�
 - 既定で有効な canonical、`hreflang`、Open Graph タグ。サイトマップとフィードはプラグインを追加すると使えます。
 - 多言語サイト向けの言語切り替えと、右から左に書く文字のサポート ([RTL キッチンシンク](../../../components/kitchen-sink-rtl/))。
 - 独自の `_data/components.yml` 向けのスロット契約 ([API](../api/#スロット契約))。
-- AI エージェント向けの Markdown ツインと `llms.txt` ([エージェント](../../guides/agents/))。
+- AI エージェント向けの Markdown 版と `llms.txt` ([エージェント](../../guides/agents/))。
 - `post` レイアウト用のタグ・カテゴリーのアーカイブページ。
 - 厳格なコンテンツセキュリティポリシーのサポート ([CSP](../../recipes/csp/)) と[数式と図のガイド](../../recipes/math-diagrams/)。
 - 英語、韓国語、日本語のドキュメント。

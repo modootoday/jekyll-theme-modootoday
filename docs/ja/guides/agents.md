@@ -2,7 +2,7 @@
 nav_order: 50
 nav_title: AI 向け
 title: エージェント向け
-description: AI エージェントのための Markdown ツイン、llms.txt、llms-full.txt。
+description: AI エージェントのための Markdown 版、llms.txt、llms-full.txt。
 sections:
   - twins
   - llms
@@ -15,9 +15,9 @@ sections:
 > [!NOTE]
 > このページは[英語の原文](../../../guides/agents/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
-## Markdown ツイン
+## Markdown 版
 
-`guide.md` というページは `/guide/index.md` でも配信され、その内容は本文とバイト単位で同一です。Jekyll 4 ではテーマのプラグインがツインを自動で作ります。
+`guide.md` というページは `/guide/index.md` でも配信され、その内容は本文とバイト単位で同一です。Jekyll 4 ではテーマのプラグインが Markdown 版を自動で作ります。
 
 ```yaml
 plugins: [jekyll-theme-modootoday]
@@ -36,7 +36,7 @@ permalink: /guide/index.md
 
 `twin_of` はスタブファイルからの相対パスです（`include_relative` で読み込みます）。スタブはページと同じフォルダーに置くか、`../` のパスを使ってください。サイトのソースの外や `_` フォルダーは指せません。
 
-各 HTML ページは `rel="alternate" type="text/markdown"` でツインにリンクします。
+各 HTML ページは `rel="alternate" type="text/markdown"` で Markdown 版にリンクします。
 
 ## llms.txt
 

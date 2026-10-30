@@ -13,7 +13,7 @@ module Modootoday
 
       def leaves(h, pre = nil) = h.is_a?(Hash) ? h.flat_map { |k, v| leaves(v, [pre, k].compact.join(".")) } : [[pre, h]]
       def keys(h) = leaves(h).map(&:first)
-      def theme_codes = Dir.glob("#{THEME}/*.yml").map { |f| File.basename(f, ".yml") } - ["languages"]
+      def theme_codes = Dir.glob("#{THEME}/*.yml").map { |f| File.basename(f, ".yml") } - %w[languages glossary]
 
       # Keys the theme ships for a language (exact code, else its base subtag; never ur -> ur-Latn).
       def theme_keys(lang)

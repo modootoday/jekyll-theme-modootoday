@@ -33,11 +33,11 @@ modootoday:
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
 | `components` | すべて | 配信する CSS と JS を絞る |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
-| `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` を持つ項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
-| `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。フロントマターの `sidebar: false` でそのページだけ隠す |
-| `page_actions` | `true` | Markdown の双子があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューを出す。ここかフロントマターで `false` にすると消える。完全に外すなら `components` から `page-actions` を除く |
+| `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
+| `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |
+| `page_actions` | `true` | Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューを出す。ここか front matter で `false` にすると消える。完全に外すなら `components` から `page-actions` を除く |
 | `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする |
-| `twins` | スタブ | `source` で front matter のないツインを使う ([エージェント](../agents/)を参照) |
+| `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |
 | `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`。`false` で無効。[構造化データ](../structured-data/)を参照 |
@@ -49,7 +49,7 @@ modootoday:
 | `favicon` | なし | `brand` で modootoday マークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
 | `viewport_fit` | `cover` | `auto` でノッチの下まで描かず、ページをセーフエリア内に収める ([アクセシビリティ](../accessibility/#設定)を参照) |
-| `theme_color` | ページ背景 | ブラウザのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
+| `theme_color` | ページ背景 | ブラウザーのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
 | `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照） |
 | `external_links` | なし | `new_window: true` で外部リンク（`url:` で始まらないリンク）をすべて新しいウィンドウで開きます。`icon: false` で矢印を隠します。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照 |

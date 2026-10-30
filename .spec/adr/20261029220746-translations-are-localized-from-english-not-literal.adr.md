@@ -3,7 +3,7 @@ id: adr:modootoday/20261029220746
 title: "Translations are localized from English, not literal"
 status: active
 created: 2026-10-29T22:07:46Z
-updated: 2026-10-29T22:08:09Z
+updated: 2026-10-30T04:37:45Z
 rel:
   governs: [docs]
 ---
@@ -18,8 +18,8 @@ The theme ships English, Korean and Japanese docs, README.ko.md, example guides 
 
 1. English stays canonical. A translation says the same thing as the English page: no added or dropped facts, options, steps or caveats. When they disagree, English wins and the translation is fixed.
 2. Translations are localized, not literal. Each sentence is rewritten the way a native technical writer would say it: natural word order and idiom, the language's own sentence length, no calques ("~를 가진", "〜を持つ" for "has"), no stacked nouns copied from English. Headings may be rephrased to read naturally as long as they keep the same section and anchor role.
-3. Tone. Korean docs use 해요체; 합니다체 only where a formal register is expected (legal notices, security policy). Japanese uses です・ます体; headings, table cells and list fragments are plain noun phrases. Interface strings are short labels in both languages, not sentences.
-4. Terminology follows the glossary in TRANSLATING.md. The same English term always gets the same translation within a language.
+3. Tone (replaced by adr:modootoday/20261030043745: Korean docs use 합니다체). Korean docs use 해요체; 합니다체 only where a formal register is expected (legal notices, security policy). Japanese uses です・ます体; headings, table cells and list fragments are plain noun phrases. Interface strings are short labels in both languages, not sentences.
+4. Terminology follows the glossary (now i18n/glossary.yml, per adr:modootoday/20261030043745). The same English term always gets the same translation within a language.
 5. Never translated: code blocks, inline code, file names and paths, Liquid, front matter keys and values the theme reads, component and section names, `status:`/`tag:`/`since:`/`kbd:` values, CSS classes and `--mt-*` tokens, configuration keys, command names and options, URLs, product names (Jekyll, GitHub Pages, RubyGems, modootoday) and the alert markers `[!NOTE]` and friends. Interface labels in `_data/i18n/<lang>.yml` are translated; their keys are not.
 6. Numbers, dates and plurals. Numbers use ASCII digits with the language's grouping (1,000). Dates in prose follow the language (2026년 10월 30일, 2026年10月30日); machine dates stay ISO 8601. Korean and Japanese have no grammatical plural: drop English plural markers, and do not add 들 or たち to technical nouns. Units and versions keep the English form (`1.0.0`, 360 px).
 7. Spacing and punctuation. Korean follows standard 띄어쓰기, uses ASCII punctuation and puts no space between a word and its particle, including after code (`theme`를). Japanese uses full-width 、。（）「」 in prose, no space between Japanese characters, and one half-width space between Japanese text and Latin words or inline code. Quotation marks: Korean uses “ ” or ‘ ’, Japanese uses 「」 and 『』. Code and keys keep ASCII punctuation.

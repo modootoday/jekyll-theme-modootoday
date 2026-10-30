@@ -7,7 +7,7 @@ nav_order: 50
 
 マニュアルの周辺ページを作るレイアウトです。自分のページでだけ `modootoday-docs-extra.css` を読み込み、JavaScript は追加しません。どのレイアウトもタイトルとリード文の `description:` を読み、本文は生成部分の後に置かれます。
 
-| レイアウト | フロントマター | 構造化データ | デモ |
+| レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
 | `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](/jekyll-theme-modootoday/ja/layouts/docs-extra/reference/) |
 | `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](/jekyll-theme-modootoday/ja/layouts/docs-extra/changelog/) |

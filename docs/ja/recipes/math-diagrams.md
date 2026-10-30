@@ -102,7 +102,7 @@ mermaid.run();
 
 ## チェックリスト
 
-- ソースは Markdown に残るので、github.com と [Markdown ツイン](../../guides/agents/)を読むエージェントには引き続き見えます。
+- ソースは Markdown に残るので、github.com と [Markdown 版](../../guides/agents/)を読むエージェントには引き続き見えます。
 - CSP に第三者のオリジンがないこと。
 - すべての図に、何を示すかを述べる代替テキストかキャプションがあること。
 - レンダラーは必要なページだけで読み込むこと。

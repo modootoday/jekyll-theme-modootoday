@@ -35,7 +35,7 @@ sections:
 
 ## セクションのビジュアルと全幅ページ
 
-`sections:` の項目に `visual: <name>` を書くと、そのセクションの末尾にサイトの `_includes/sections/<name>.html` が描画されます。インクルードは項目を `include.section` として受け取るので、`scene:` のような追加キーも渡ります。フロントマターの `hero: {visual: <name>}` は最初の `##` より前の部分に同じことをします（`sections:` が必要です）。インクルードがないと `modootoday-check` が失敗します。
+`sections:` の項目に `visual: <name>` を書くと、そのセクションの末尾にサイトの `_includes/sections/<name>.html` が描画されます。 include は項目を `include.section` として受け取るので、`scene:` のような追加キーも渡ります。front matter の `hero: {visual: <name>}` は最初の `##` より前の部分に同じことをします（`sections:` が必要です）。 include がないと `modootoday-check` が失敗します。
 
 ```yaml
 ---
@@ -69,7 +69,7 @@ Jekyll はテーマより先にサイトの `_sass/` を読みます。テーマ
 > [!WARNING]
 > `@use` ではなく `@import` を使ってください。GitHub Pages は Ruby Sass で Sass をコンパイルし、`@use` をそのまま出力します。
 
-## レイアウトとインクルードの上書き
+## レイアウトと include の上書き
 
 テーマの `_layouts/`、`_includes/`、`_sass/` にあるファイルは、サイトの同じパスにファイルを置けば置き換えられます。ページの head にタグを足すには `_includes/head-custom.html` を使います。
 

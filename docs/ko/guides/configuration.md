@@ -34,16 +34,16 @@ modootoday:
 | `components` | 전체 | 내보낼 CSS와 JS를 제한 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
 | `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름 |
-| `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. 머리말의 `sidebar: false`로 한 페이지에서만 숨김 |
-| `page_actions` | `true` | Markdown 쌍둥이가 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 머리말에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
+| `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
+| `page_actions` | `true` | Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 front matter에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
 | `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀 |
-| `twins` | 스텁 | 머리말 없는 쌍둥이는 `source` ([에이전트](../agents/) 참고) |
+| `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |
 | `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
 | `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다. |
 | `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
-| `og_image` | 없음 | 기본 Open Graph 이미지. 머리말의 `image:`가 우선 |
+| `og_image` | 없음 | 기본 Open Graph 이미지. front matter의 `image:`가 우선 |
 | `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 modootoday 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
 | `favicon` | 없음 | `brand`면 modootoday 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
@@ -52,7 +52,7 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
 | `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../../reference/api/#글과-아카이브) 참고) |
-| `external_links` | 없음 | `new_window: true`면 외부 링크(`url:`로 시작하지 않는 링크)를 모두 새 창에서 열어요. `icon: false`면 화살표를 숨겨요. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고 |
+| `external_links` | 없음 | `new_window: true`면 외부 링크(`url:`로 시작하지 않는 링크)를 모두 새 창에서 엽니다. `icon: false`면 화살표를 숨깁니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고 |
 | `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
 | `css` | `split` | `split`는 작은 핵심 시트와 페이지가 쓰는 컴포넌트 시트만 연결합니다. `bundle`은 모든 것이 담긴 시트 하나를 연결합니다 |
@@ -65,14 +65,14 @@ modootoday:
 
 ## 새 창으로 여는 링크
 
-새 창으로 여는 건 직접 켤 때만 동작해요. 링크마다 켜거나, 외부 링크 전체에 켤 수 있어요.
+새 창으로 여는 건 직접 켤 때만 동작합니다. 링크마다 켜거나, 외부 링크 전체에 켤 수 있습니다.
 
 ```yaml
 # _config.yml: 외부 링크 전체
 modootoday:
   external_links:
     new_window: true
-    icon: true        # false면 화살표를 숨겨요
+    icon: true        # false면 화살표를 숨깁니다
 ```
 
 ```yaml
@@ -85,7 +85,7 @@ modootoday:
 [릴리스 노트](https://github.com/modootoday/jekyll-theme-modootoday/releases "new-window")
 ```
 
-이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 화면 낭독기가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙어요. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작해요. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열려요.
+이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 스크린 리더가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙습니다. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작합니다. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열립니다.
 
 ## 헤드와 SEO
 
@@ -99,7 +99,7 @@ modootoday:
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
 
-`jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. 머리말의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 브레드크럼의 첫 항목은 홈 페이지 머리말에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줘요. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
+`jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. front matter의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 이동 경로의 첫 항목은 홈 페이지 front matter에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줍니다. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
 
 ## 언어
 
@@ -113,26 +113,26 @@ status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 skip: 본문으로 건너뛰기
 ```
 
-`lang:`만 지정하면 테마가 표시하는 문구(본문 바로가기, 내비게이션, 알림 상자, 상태 배지, 목차, 이전/다음 페이지, 코드 복사, 검색, 언어 메뉴)가 23개 언어로 바로 현지화돼요. 지원 언어는 en, zh-CN, zh-TW, ja, ko, tr, ru, vi, th, de, es, fr, uk, pl, pt-BR, ar, fa, id, it, el, ml, ur-Latn, ro예요. GitHub Pages에서도, Jekyll 4에서도 아무것도 복사할 필요가 없어요. 테마에 없는 지역 코드는 기본 언어를 따르고(`pt` → pt-BR, `zh` → zh-CN), 그 밖의 언어는 영어로 표시돼요.
+`lang:`만 지정하면 테마가 표시하는 문구(본문 바로가기, 내비게이션, 알림 상자, 상태 배지, 목차, 이전/다음 페이지, 코드 복사, 검색, 언어 메뉴)가 23개 언어로 바로 현지화됩니다. 지원 언어는 en, zh-CN, zh-TW, ja, ko, tr, ru, vi, th, de, es, fr, uk, pl, pt-BR, ar, fa, id, it, el, ml, ur-Latn, ro입니다. GitHub Pages에서도, Jekyll 4에서도 아무것도 복사할 필요가 없습니다. 테마에 없는 지역 코드는 기본 언어를 따르고(`pt` → pt-BR, `zh` → zh-CN), 그 밖의 언어는 영어로 표시됩니다.
 
-각 문구는 다음 순서로 정해져요.
+각 문구는 다음 순서로 정해집니다.
 
 1. 사이트의 `_data/i18n/<lang>.yml` (키 단위)
 2. 테마에 들어 있는 해당 언어 카탈로그
 3. 영어
 
-그래서 사이트 카탈로그에는 바꾸고 싶은 키와 직접 만든 컴포넌트가 쓰는 키만 넣으면 돼요. 확장자는 `.yml`을 쓰세요. 검사기는 `.yaml`을 오류로 처리해요. 테마 문구에서 시작하고 싶다면 카탈로그를 복사한 뒤 검사하세요.
+그래서 사이트 카탈로그에는 바꾸고 싶은 키와 직접 만든 컴포넌트가 쓰는 키만 넣으면 됩니다. 확장자는 `.yml`을 쓰세요. 검사기는 `.yaml`을 오류로 처리합니다. 테마 문구에서 시작하고 싶다면 카탈로그를 복사한 뒤 검사하세요.
 
 ```sh
 modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to edit
 modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
 ```
 
-테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙어요(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있어요. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역해요.
+테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙습니다(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있습니다. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역합니다.
 
-테마가 아니라 사이트가 정하는 문구도 있어요. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름이에요(예: `tabs: {label: 설치 방법}`). 화면 낭독기가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
+테마가 아니라 사이트가 정하는 문구도 있습니다. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름입니다(예: `tabs: {label: 설치 방법}`). 스크린 리더가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
 
-직접 만든 include에서는 `modootoday/t.html`에 `key="nav.label"`을 넘기면 같은 순서를 따르는 문구를 출력할 수 있어요.
+직접 만든 include에서는 `modootoday/t.html`에 `key="nav.label"`을 넘기면 같은 순서를 따르는 문구를 출력할 수 있습니다.
 
 ## 컴포넌트 레지스트리
 

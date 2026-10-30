@@ -1,6 +1,6 @@
 ---
 nav_order: 0
-nav_title: 部品
+nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
@@ -60,50 +60,50 @@ sections:
 `status:available` GitHub のアラートが、言語に合った見出し付きのコールアウトになります。種類は note、tip、important、warning、caution の 5 つです。スクリーンリーダーはノート（`role="note"`）として読み上げます。
 
 > [!NOTE]
-> Useful information that users should know, even when skimming.
+> 流し読みでも知っておくべき有用な情報です。
 
 > [!TIP]
-> Helpful advice for doing things better or more easily.
+> より良く、より簡単に進めるための助言です。
 
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+> 目的を達成するために知っておくべき重要な情報です。
 
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+> 問題を避けるためにすぐ注意が必要な緊急の情報です。
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+> 特定の操作のリスクや悪い結果について注意を促します。
 
 ## 内容のあるアラート
 
 アラートにはリストやコードも入れられます。マーカーの行にはほかの文字を書かないでください。
 
 > [!TIP]
-> Before you publish:
+> 公開する前に:
 >
-> - run `modootoday-check`
-> - preview with `bundle exec jekyll serve`
+> - `modootoday-check` を実行する
+> - `bundle exec jekyll serve` でプレビューする
 
 ## カード
 
 `status:available` `c: features` セクションでは、**太字**で始まるリスト項目がカードになります。`cols: 2` か `cols: 3` で列数を決め、狭い画面では 1 列になります。
 
-- **Plain Markdown** — Pages read well on github.com too.
-- **With a badge** — Cards can carry status. `status:available`
+- **プレーンな Markdown** — github.com でも読みやすいページになります。
+- **バッジ付き** — カードにステータスを付けられます。 `status:available`
 
 ## 3 列のカード
 
 同じリストを `cols: 3` で書いた例です。
 
-- **Alerts** — Five alert types.
-- **Tabs** — Accessible code tabs.
-- **Search** — Client-side search.
+- **アラート** — 5 種類のアラート。
+- **タブ** — アクセシブルなコードタブ。
+- **検索** — クライアントサイド検索。
 
 ## ボタン
 
 `status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
 
-[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
+[はじめる](../guides/install/) [設定を読む](../guides/configuration/)
 
 ## タブ
 
@@ -133,17 +133,17 @@ sudo apt install ruby-full
 
 `status:available` kbd とコロンで始まるコードスパンがキーボードキーになります。キーは空白なしの `+` でつなぎます。
 
-Open search with `kbd:Ctrl+K`, or press `kbd:/`.
+`kbd:Ctrl+K` か `kbd:/` で検索を開きます。
 
 ## アコーディオン
 
 `status:available` `c: accordion` セクションでは、`###` 見出しが下の内容を開閉するボタン（`aria-expanded`）になります。Enter か Space で切り替えます。JavaScript がなければすべての答えが表示されます。
 
-### Does it work without JavaScript?
+### JavaScript なしでも動きますか?
 
-Yes. Every answer stays visible under its question.
+はい。すべての答えが質問の下に表示されたままになります。
 
-### Can an answer hold code?
+### 答えにコードを入れられますか?
 
 ```sh
 bundle exec jekyll serve
@@ -153,58 +153,58 @@ bundle exec jekyll serve
 
 `status:available` `c: steps` セクションでは、番号付きリストが番号付きのステップになります。
 
-1. Add the theme to `_config.yml`.
-2. Write `index.md` in plain Markdown.
-3. Run `bundle exec jekyll build`.
+1. `_config.yml` にテーマを追加します。
+2. プレーンな Markdown で `index.md` を書きます。
+3. `bundle exec jekyll build` を実行します。
 
 ## 見出しで書くステップ
 
 1 つのステップに複数行が必要なら、リストの代わりに `###` 見出しを使います。
 
-### Install
+### インストール
 
-Add `remote_theme` and the plugin.
+`remote_theme` とプラグインを追加します。
 
-### Publish
+### 公開
 
-Push to `main` and turn on GitHub Pages.
+`main` にプッシュして GitHub Pages を有効にします。
 
 ## タイムライン
 
 `status:available` `c: timeline` セクションでは、`###` 見出しが線上の点になります。
 
-### Install
+### インストール
 
-Alerts, sections, cards and tabs.
+アラート、セクション、カード、タブ。
 
-### Check
+### 確認
 
-Theme toggle, breadcrumb and table of contents.
+テーマ切り替え、パンくずリスト、目次。
 
 ## リストで書くタイムライン
 
 番号付きリストでも書けます。
 
-1. Install: alerts, sections and cards.
-2. Write: design tokens and navigation.
-3. Check: theme toggle and steps.
+1. インストール: アラート、セクション、カード。
+2. 執筆: デザイントークン、ナビゲーション。
+3. 確認: テーマ切り替え、ステップ。
 
 ## 図
 
 `status:available` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
 
-![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
+![左の Markdown ソースが右のスタイル付きページになる](../../assets/images/sample.svg)
 
-*Markdown on the left, the rendered page on the right.*
+*左が Markdown、右が表示結果です。*
 
 ## 表
 
 `status:available` GFM の表は、狭い画面ではページからはみ出さず横にスクロールします。
 
-| Key | Default | Description |
+| キー | 既定値 | 説明 |
 |---|---|---|
-| `color_scheme` | `auto` | follow the OS or force light or dark |
-| `badges` | `true` | turn status code spans into badges |
+| `color_scheme` | `auto` | OS に合わせるか、ライトかダークに固定する |
+| `badges` | `true` | ステータスのコードスパンをバッジに変換する |
 
 ## コードブロック
 
@@ -245,7 +245,7 @@ theme: jekyll-theme-modootoday
 
 ## 読み込み表示とスケルトン
 
-`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルを持ち、利用者が視差効果を減らす設定にすると動きが止まります。スタイルは、使うページだけが読み込む任意のシートにあります。
+`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルが付き、利用者が視差効果を減らす設定にしていると動きません。スタイルは別のスタイルシートにあり、使うページだけが読み込みます。
 
 `loading:spinner`
 
@@ -255,7 +255,7 @@ theme: jekyll-theme-modootoday
 
 ## ファイルツリー
 
-`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストを持つ項目はフォルダーです。
+`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストがある項目はフォルダーです。
 
 - docs
   - _config.yml
@@ -320,7 +320,7 @@ theme: jekyll-theme-modootoday
 
 ## 料金プラン
 
-`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクを持つプランになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
+`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクからなるプランカードになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
 
 ### 無料
 
@@ -347,7 +347,7 @@ theme: jekyll-theme-modootoday
 
 ## ナビゲーション
 
-`status:available` ヘッダーのメニューは `_data/nav/main.yml` から作られます。`items:` を持つ項目は広い画面でドロップダウンのグループになり、狭い画面ではメニューボタンが出ます。開いたメニューは Esc で閉じます。このページのヘッダーがその表示結果です。
+`status:available` ヘッダーのメニューは `_data/nav/main.yml` から作られます。`items:` がある項目は広い画面でドロップダウンのグループになり、狭い画面ではメニューボタンが出ます。開いたメニューは Esc で閉じます。このページのヘッダーがその表示結果です。
 
 ```yaml
 - {title: Install, url: /install/}
@@ -378,7 +378,7 @@ modootoday:
 
 ## アイコンとロゴ
 
-`status:available` テーマのアイコン(地球儀、太陽と月、検索、アラートの種類、コピー、編集、前後、外部リンク、パンくずの矢印)は `currentColor` のインライン SVG なので、ライト・ダークに追従し、追加のリクエストもありません。アイコンはスクリーンリーダーから隠し、アイコンだけのボタンには個別の名前を付けます。向きを持つ矢印は右から左へ書くページで反転します。`logo` を設定するとサイト名の前に modootoday マーク(または独自の画像)が表示され、`favicon` を設定すると同じ形のブラウザーアイコンが付きます。このページのヘッダーとフッターがその結果です。
+`status:available` テーマのアイコン(地球儀、太陽と月、検索、アラートの種類、コピー、編集、前後、外部リンク、パンくずの矢印)は `currentColor` のインライン SVG なので、ライト・ダークに追従し、追加のリクエストもありません。アイコンはスクリーンリーダーから隠し、アイコンだけのボタンには個別の名前を付けます。向きのある矢印は右から左へ書くページで反転します。`logo` を設定するとサイト名の前に modootoday マーク(または独自の画像)が表示され、`favicon` を設定すると同じ形のブラウザーアイコンが付きます。このページのヘッダーとフッターがその結果です。
 
 ```yaml
 modootoday:
@@ -401,7 +401,7 @@ modootoday:
 
 ## 前後のページ
 
-`status:available` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すにはフロントマターに `pagination: false` と書きます。このページの下部がその表示結果です。
+`status:available` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すには front matter に `pagination: false` と書きます。このページの下部がその表示結果です。
 
 ```yaml
 ---

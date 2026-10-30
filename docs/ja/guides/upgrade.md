@@ -12,7 +12,7 @@ description: 別の Jekyll テーマからの移行、既存プロジェクト�
 ## 別のテーマから
 
 1. `theme:` または `remote_theme:` をこのテーマに置き換え ([インストール](../install/)を参照)、バージョンを固定します。
-2. `_config.yml` で `layout: doc` を既定にするか、独自のレイアウトを残して必要な部分だけをインクルードします。
+2. `_config.yml` で `layout: doc` を既定にするか、独自のレイアウトを残して必要な部分だけを include します。
 3. ページ本文はそのままにします。GitHub アラート、表、フェンスコードはすでに動きます。できるところでは本文から生の HTML と Liquid を取り除きます。移植できないものは `modootoday-check` が一覧にします。
 4. 色とフォントは CSS セレクターを上書きせず `modootoday.tokens` に移します。
 5. `jekyll build` と `modootoday-check SRC _site` を実行し、報告された内容を直します。
@@ -29,12 +29,12 @@ description: 別の Jekyll テーマからの移行、既存プロジェクト�
 
 gem か、タグに固定した `remote_theme:` を推奨します。コピーで取り込むと、変更したファイルについてはアップグレードとチェッカーの保証を失います。
 
-## Markdown ツイン
+## Markdown 版
 
-各ページのエージェント向けツインを公開する方法を三つから選びます。
+各ページのエージェント向け Markdown 版を公開する方法を三つから選びます。
 
 - **スタブファイル** (既定、クラシックな GitHub Pages): ページごとに小さな `<page>.md.txt` を一つ。
-- **プラグイン** (Jekyll 4 または GitHub Actions): `plugins: [jekyll-theme-modootoday]` がスタブなしでツインと `llms.txt` を作ります。
+- **プラグイン** (Jekyll 4 または GitHub Actions): `plugins: [jekyll-theme-modootoday]` がスタブなしで Markdown 版と `llms.txt` を作ります。
 - **ソースモード** (クラシックな GitHub Pages、スタブなし): front matter のないページで `modootoday.twins: source` を使います。クラシックな GitHub Pages は生のコピーをソースと同一のまま `text/markdown; charset=utf-8` として配信します (制限は RULES.md §5a を参照)。
 
 切り替えてもページ本文は変わりません。[エージェント](../agents/)と `RULES.md` の 5a 節を参照してください。

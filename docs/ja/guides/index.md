@@ -12,8 +12,9 @@ nav_order: 0
 - [最初の一歩](first-page/) — front matter、セクション、アラートを使ってページを書きます。
 - [設定](configuration/) — _config.yml の modootoday キーで指定するサイト全体の設定。
 - [カスタム](customize/) — トークンで色、角丸、フォントを変えるか、Sass パーシャルを上書きします。
-- [AI 向け](agents/) — AI エージェントのための Markdown ツイン、llms.txt、llms-full.txt。
+- [AI 向け](agents/) — AI エージェントのための Markdown 版、llms.txt、llms-full.txt。
 - [移行](upgrade/) — 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
 - [アクセシビリティ](accessibility/) — キーボード、スクリーンリーダー、セーフエリア、タッチターゲット、ハイコントラスト、視差効果を減らす設定。
 - [構造化データ](structured-data/) — テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。
+- [翻訳ルール](translation/) — 韓国語・日本語のドキュメントと UI 文言の正式なスタイルルール、用語集、チェック。
 <!-- spec:docs-index:end -->

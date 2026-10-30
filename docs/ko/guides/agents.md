@@ -2,7 +2,7 @@
 nav_order: 50
 nav_title: 에이전트
 title: 에이전트용
-description: AI 에이전트를 위한 Markdown 쌍둥이, llms.txt, llms-full.txt.
+description: AI 에이전트가 읽는 Markdown 버전, llms.txt, llms-full.txt.
 sections:
   - twins
   - llms
@@ -15,9 +15,9 @@ sections:
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../guides/agents/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
-## Markdown 쌍둥이
+## Markdown 버전
 
-`guide.md` 페이지는 `/guide/index.md`에서도 본문과 바이트 단위로 똑같이 제공됩니다. Jekyll 4에서는 테마 플러그인이 쌍둥이를 자동으로 만듭니다.
+`guide.md` 페이지는 `/guide/index.md`에서도 본문과 바이트 단위로 똑같이 제공됩니다. Jekyll 4에서는 테마 플러그인이 Markdown 버전을 자동으로 만듭니다.
 
 ```yaml
 plugins: [jekyll-theme-modootoday]
@@ -34,9 +34,9 @@ permalink: /guide/index.md
 ---
 ```
 
-`twin_of`는 스텁 파일 기준의 상대 경로예요(`include_relative`로 읽어요). 스텁을 페이지와 같은 폴더에 두거나 `../` 경로를 쓰세요. 사이트 소스 밖이나 `_` 폴더는 가리킬 수 없어요.
+`twin_of`는 스텁 파일 기준의 상대 경로입니다(`include_relative`로 읽습니다). 스텁을 페이지와 같은 폴더에 두거나 `../` 경로를 쓰세요. 사이트 소스 밖이나 `_` 폴더는 가리킬 수 없습니다.
 
-각 HTML 페이지는 `rel="alternate" type="text/markdown"`으로 쌍둥이를 연결합니다.
+각 HTML 페이지는 `rel="alternate" type="text/markdown"`으로 Markdown 버전을 연결합니다.
 
 ## llms.txt
 

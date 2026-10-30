@@ -1,0 +1,61 @@
+# Translation glossary and register rules (canonical: docs/guides/translation.md). Checked by
+# script/i18n-build --check (script/i18n/lint.rb). Keys: en = English term; ko/ja = the one approved
+# translation; avoid.<lang> = wordings that fail the lint outside code. Other languages: add a column
+# here when a native reviewer signs off a term.
+register:
+  ko: {docs: 합니다체, ui: 해요체, labels: noun phrase}
+  ja: {docs: です・ます, ui: です・ます, labels: 体言止め, table_cells: 体言止め or 常体}
+# Pages whose front matter has `noindex: true` are sample content (demo posts) and keep their genre voice.
+terms:
+  - {en: Markdown twin, ko: Markdown 버전, ja: Markdown 版, avoid: {ko: [쌍둥이, 트윈], ja: [ツイン, 双子]}}
+  - {en: front matter, ko: front matter, ja: front matter, avoid: {ko: [머리말, 프런트 매터, 프론트 매터], ja: [フロントマター]}}
+  - {en: breadcrumb, ko: 이동 경로, ja: パンくずリスト, avoid: {ko: [브레드크럼, 빵 부스러기], ja: [ブレッドクラム]}}
+  - {en: alert (GitHub), ko: 알림, ja: アラート, note: "[!NOTE] markers stay in English"}
+  - {en: callout (component), ko: 콜아웃, ja: コールアウト}
+  - {en: component, ko: 컴포넌트, ja: コンポーネント, avoid: {ko: [콤포넌트], ja: [部品]}}
+  - {en: layout, ko: 레이아웃, ja: レイアウト}
+  - {en: section (page section), ko: 섹션, ja: セクション}
+  - {en: slot, ko: 슬롯, ja: スロット}
+  - {en: token (design token), ko: 토큰, ja: トークン}
+  - {en: bundle (CSS bundle), ko: 번들, ja: バンドル}
+  - {en: include (Jekyll include), ko: include, ja: include, avoid: {ko: [인클루드], ja: [インクルード]}}
+  - {en: checker (modootoday-check), ko: 검사기, ja: チェッカー, avoid: {ko: [체커]}}
+  - {en: badge, ko: 배지, ja: バッジ, avoid: {ko: [뱃지]}}
+  - {en: skeleton, ko: 스켈레톤, ja: スケルトン}
+  - {en: spinner, ko: 스피너, ja: スピナー}
+  - {en: safe area, ko: 안전 영역, ja: セーフエリア, avoid: {ja: [安全領域]}}
+  - {en: table of contents, ko: 목차, ja: 目次}
+  - {en: navigation, ko: 내비게이션, ja: ナビゲーション, avoid: {ko: [네비게이션]}}
+  - {en: fallback, ko: 대체, ja: フォールバック, note: "ko: 영어로 대체 표시; 폴백 only in code comments"}
+  - {en: alt text, ko: 대체 텍스트, ja: 代替テキスト}
+  - {en: dark mode, ko: 다크 모드, ja: ダークモード}
+  - {en: accessibility, ko: 접근성, ja: アクセシビリティ}
+  - {en: keyboard shortcut, ko: 단축키, ja: ショートカットキー}
+  - {en: screen reader, ko: 스크린 리더, ja: スクリーンリーダー, avoid: {ko: [화면 낭독기, 화면 읽기 프로그램]}}
+  - {en: label, ko: 레이블, ja: ラベル, avoid: {ko: [라벨]}}
+  - {en: type (table column), ko: 유형, ja: 型}
+  - {en: repository, ko: 저장소, ja: リポジトリ, avoid: {ko: [레포지토리, 리포지토리, 레포]}}
+  - {en: build, ko: 빌드, ja: ビルド}
+  - {en: deploy, ko: 배포, ja: デプロイ}
+  - {en: theme, ko: 테마, ja: テーマ}
+  - {en: user, ko: 사용자, ja: ユーザー, avoid: {ko: [유저], ja: [ユーザ]}}
+  - {en: server, ko: 서버, ja: サーバー, avoid: {ja: [サーバ]}}
+  - {en: browser, ko: 브라우저, ja: ブラウザー, avoid: {ja: [ブラウザ]}}
+  - {en: folder / directory, ko: 폴더, ja: フォルダー, avoid: {ja: [フォルダ]}}
+  - {en: parameter, ko: 매개변수, ja: パラメーター, avoid: {ja: [パラメタ, パラメータ]}}
+  - {en: header, ko: 헤더, ja: ヘッダー, avoid: {ja: [ヘッダ]}}
+  - {en: footer, ko: 푸터, ja: フッター, avoid: {ko: [풋터], ja: [フッタ]}}
+  - {en: contributor, ko: 기여자, ja: コントリビューター}
+# Calques: literal English patterns that read as machine translation. Flagged in docs prose.
+calques:
+  ko:
+    - {re: "[을를] 가(?:진|지며|지고|집니다)", use: "~가 있는 / ~의", why: "has → 가지다 is a calque"}
+    - {re: "에 의해(?:서)? ", use: "능동문으로", why: "by-passive"}
+    - {re: "되어지|되어져", use: "되다", why: "double passive"}
+    - {re: "하는 것이 가능합니다", use: "할 수 있습니다", why: "it is possible to"}
+    - {re: "에 대해서 ", use: "에 대해 / 을", why: "about → 에 대해서 overuse"}
+    - {re: "것이 필요합니다", use: "해야 합니다", why: "it is necessary to"}
+  ja:
+    - {re: "を持(?:つ|ち|っています)", use: "がある / の", why: "has → 持つ is a calque"}
+    - {re: "することが可能です", use: "できます", why: "it is possible to"}
+    - {re: "によって行われ", use: "能動文で", why: "by-passive"}

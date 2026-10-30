@@ -11,7 +11,7 @@ sections:
 ---
 # ドキュメントはプレーンな Markdown のままで
 
-jekyll-theme-modootoday は標準の GitHub Flavored Markdown をすっきりしたドキュメントサイトに変えます。同じファイルが github.com でも、GitHub Pages でも、AI エージェント向けの Markdown ツインとしても読みやすく表示されます。
+jekyll-theme-modootoday は標準の GitHub Flavored Markdown をすっきりしたドキュメントサイトに変えます。同じファイルが github.com でも、GitHub Pages でも、AI エージェント向けの Markdown 版としても読みやすく表示されます。
 
 [はじめる](guides/install/) [コンポーネントを見る](components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
@@ -19,7 +19,7 @@ jekyll-theme-modootoday は標準の GitHub Flavored Markdown をすっきりし
 
 - **標準の Markdown だけ** — アラート、表、リスト、コードブロック。ページに HTML、Liquid、kramdown 独自の記法は入りません。
 - **GitHub Pages で動く** — クラシックな `github-pages` ビルド向けの Liquid だけのテーマで、それ以外では Jekyll 4 に対応します。
-- **エージェントが読みやすい** — すべてのページにバイト単位で同一の Markdown ツインと `llms.txt`、`llms-full.txt` があります。
+- **エージェントが読みやすい** — すべてのページにバイト単位で同一の Markdown 版と `llms.txt`、`llms-full.txt` があります。
 
 ## クイックスタート
 
@@ -49,7 +49,7 @@ permalink: pretty
 2. プレーンな Markdown で[最初のページを書きます](guides/first-page/)。
 3. [コンポーネント](components/)と[キッチンシンク](components/kitchen-sink/)から選びます。
 4. [設定](guides/configuration/)で調整し、トークンと `_sass` で見た目を[カスタマイズ](guides/customize/)します。
-5. ツインと `llms.txt` で[エージェントが読める](guides/agents/)ようにします。
+5. Markdown 版と `llms.txt` で[エージェントが読める](guides/agents/)ようにします。
 
 > [!NOTE]
 > このページは[英語の原文](../)の翻訳です。内容が異なる場合は英語版が優先されます。

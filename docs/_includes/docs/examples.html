@@ -6,8 +6,8 @@ the example as a fenced block (highlighted, theme copy button) plus the section'
 Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -%}
 {%- assign _l = page.lang | default: site.lang | default: "en" -%}
 {%- case _l -%}
-{%- when "ko" -%}{%- assign _ls = "소스" -%}{%- assign _lr = "결과" -%}{%- assign _lf = "프런트 매터" -%}
-{%- when "ja" -%}{%- assign _ls = "ソース" -%}{%- assign _lr = "表示結果" -%}{%- assign _lf = "フロントマター" -%}
+{%- when "ko" -%}{%- assign _ls = "소스" -%}{%- assign _lr = "결과" -%}{%- assign _lf = "front matter" -%}
+{%- when "ja" -%}{%- assign _ls = "ソース" -%}{%- assign _lr = "表示結果" -%}{%- assign _lf = "front matter" -%}
 {%- else -%}{%- assign _ls = "Source" -%}{%- assign _lr = "Result" -%}{%- assign _lf = "Front matter" -%}
 {%- endcase -%}
 {%- assign _nl = "

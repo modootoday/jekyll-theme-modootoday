@@ -10,6 +10,7 @@
     - {title: 移行, url: /ja/guides/upgrade/}
     - {title: アクセシビリティ, url: /ja/guides/accessibility/}
     - {title: 構造化データ, url: /ja/guides/structured-data/}
+    - {title: 翻訳ルール, url: /ja/guides/translation/}
 - title: コンポーネント
   url: /ja/components/
   items:

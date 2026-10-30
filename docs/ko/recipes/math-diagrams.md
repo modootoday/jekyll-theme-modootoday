@@ -25,23 +25,6 @@ description: 테마에 번들하지 않고, 엄격한 CSP를 깨지 않고 KaTeX
 
 Mermaid 원본을 Mermaid CLI로 SVG로 렌더링해 커밋하고, 그림(figure)으로 참조합니다. 다시 생성할 수 있도록 원본을 옆에 둡니다.
 
-```` ```math ```` or ```` ```mermaid ```` fence renders as a code block on your site, and GitHub renders it on github.com. To render them on your site, pick one of the two options below. Both work with the [strict CSP](../csp/) `default-src 'self'; script-src 'self'; style-src 'self'`.
-
-| Option | Works on | CSP | JavaScript in the browser |
-|---|---|---|---|
-| Render at build time and commit the output | classic GitHub Pages, Jekyll 4, any host | strict, nothing to add | none |
-| Self-host the renderer and load it from `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
-
-Do not load a renderer from a CDN: it adds a third-party origin to `script-src`, and the page depends on that origin being up.
-
-## Render at build time
-
-This is the recommended option. The page ships static SVG, so it works without JavaScript, prints well and passes a strict CSP.
-
-### Diagrams
-
-Render each Mermaid source to SVG with the Mermaid CLI, commit the SVG, and reference it as a figure. Keep the source next to it so the diagram can be regenerated.
-
 ```sh
 npx -y @mermaid-js/mermaid-cli -i assets/diagrams/flow.mmd -o assets/diagrams/flow.svg -b transparent
 ```
@@ -119,7 +102,7 @@ mermaid.run();
 
 ## 점검 목록
 
-- 원본이 Markdown에 남아 있어 github.com과 [Markdown 쌍둥이](../../guides/agents/)를 읽는 에이전트도 볼 수 있다.
-- CSP에 제3자 출처가 없다.
-- 모든 다이어그램에 무엇을 보여 주는지 밝히는 대체 텍스트나 캡션이 있다.
-- 렌더러는 필요한 페이지에서만 로드한다.
+- 원본이 Markdown에 남아 있어 github.com과 [Markdown 버전](../../guides/agents/)을 읽는 에이전트도 볼 수 있습니다.
+- CSP에 제3자 출처가 없습니다.
+- 모든 다이어그램에 무엇을 보여 주는지 밝히는 대체 텍스트나 캡션이 있습니다.
+- 렌더러는 필요한 페이지에서만 불러옵니다.

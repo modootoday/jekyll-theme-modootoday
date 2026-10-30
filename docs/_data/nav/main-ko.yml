@@ -10,6 +10,7 @@
     - {title: 이전, url: /ko/guides/upgrade/}
     - {title: 접근성, url: /ko/guides/accessibility/}
     - {title: 구조화 데이터, url: /ko/guides/structured-data/}
+    - {title: 번역 규칙, url: /ko/guides/translation/}
 - title: 컴포넌트
   url: /ko/components/
   items:
