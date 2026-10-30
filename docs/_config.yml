@@ -23,6 +23,8 @@ modootoday:
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
   # Post footers link tags and categories here (/ko/tags/ for lang: ko posts).
   archive: {tags: /tags/, categories: /categories/}
+  # demo only: the subscribe form on the components pages submits back to the components page instead of a mail service
+  subscribe: {action: https://modootoday.github.io/jekyll-theme-modootoday/components/, method: get}
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "ko"}, values: {lang: ko}}
