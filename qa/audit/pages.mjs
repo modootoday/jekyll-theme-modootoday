@@ -3,10 +3,10 @@ import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
 import path from "node:path";
 import { WIDTHS, RTL_PAGES } from "./config.mjs";
-import { checkExampleCards } from "./example-cards.mjs";
-import { checkTabsScroll } from "./tabs-scroll.mjs";
-import { checkChipRows } from "./chip-rows.mjs";
-import { checkListRows } from "./list-rows.mjs";
+import { checkExampleCards } from "./layout/example-cards.mjs";
+import { checkTabsScroll } from "./layout/tabs-scroll.mjs";
+import { checkChipRows } from "./layout/chip-rows.mjs";
+import { checkListRows } from "./layout/list-rows.mjs";
 
 async function checkRtl(page, scheme, url, fails) {
   // logical properties must mirror: callout accent bar and steps rail on the right, code left-to-right
