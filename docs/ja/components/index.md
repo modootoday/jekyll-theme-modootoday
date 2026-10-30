@@ -370,9 +370,9 @@ theme: jekyll-theme-modootoday
 
 `status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
 
-- [インストール](../../guides/install/)
-- [設定](../../guides/configuration/)
-- [アクセシビリティ](../../guides/accessibility/)
+- [インストール](../guides/install/)
+- [設定](../guides/configuration/)
+- [アクセシビリティ](../guides/accessibility/)
 
 タイトル付きの項目:
 

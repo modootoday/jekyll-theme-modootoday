@@ -366,9 +366,9 @@ Text on one side, the picture on the other.
 
 `status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
 
-- [Install](../../guides/install/)
-- [Configuration](../../guides/configuration/)
-- [Accessibility](../../guides/accessibility/)
+- [Install](../guides/install/)
+- [Configuration](../guides/configuration/)
+- [Accessibility](../guides/accessibility/)
 
 Items with a title:
 

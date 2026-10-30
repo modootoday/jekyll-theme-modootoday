@@ -369,9 +369,9 @@ theme: jekyll-theme-modootoday
 
 `status:available` `_config.yml`에 `modootoday.lists`를 두면 일반 섹션과 페이지에 목록 스타일 두 가지가 적용됩니다. `link_chips: true`는 모든 항목이 링크 하나뿐인 목록을 칩 한 줄로 바꾸고, `titled_items: true`는 굵은 제목과 콜론으로 시작하는 항목에 제목과 구분자를 따로 줍니다. `hero: {checks: true}`는 위처럼 히어로의 첫 목록을 체크 표시 줄로 바꿉니다. 컴포넌트 섹션의 목록은 원래 스타일을 유지합니다.
 
-- [설치](../../guides/install/)
-- [설정](../../guides/configuration/)
-- [접근성](../../guides/accessibility/)
+- [설치](../guides/install/)
+- [설정](../guides/configuration/)
+- [접근성](../guides/accessibility/)
 
 제목이 있는 항목:
 
