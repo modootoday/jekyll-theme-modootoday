@@ -29,7 +29,7 @@ items:
 ---
 ```
 
-Each item needs `title` or `name`. All items take `url`, `text`, `image` and `alt`; give `alt: ""` when the photo only repeats the name. Preset fields:
+Each item needs `title` or `name`. All items take `url`, `text`, `image`, `alt`, `width` and `height`; give `alt: ""` when the photo only repeats the name. Preset fields:
 
 - `team`: `role`, `group`
 - `jobs`: `department`, `location`, `type`

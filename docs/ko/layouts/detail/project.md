@@ -1,5 +1,6 @@
 ---
 title: 프로젝트 데모
+image: {path: /assets/images/projects/network.webp, alt: "연결된 점들의 네트워크로 감싸인 빛나는 지구본", width: 800, height: 600}
 description: 고객, 기술, 링크가 있는 완료된 프로젝트입니다.
 layout: project
 nav_order: 1

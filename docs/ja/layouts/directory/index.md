@@ -29,7 +29,7 @@ items:
 ---
 ```
 
-各項目に `title` か `name` が必要です。すべての項目で `url`、`text`、`image`、`alt` を使えます。写真が名前を繰り返すだけなら `alt: ""` にしてください。プリセットごとのフィールド:
+各項目に `title` か `name` が必要です。すべての項目で `url`、`text`、`image`、`alt`、`width`、`height` を使えます。写真が名前を繰り返すだけなら `alt: ""` にしてください。プリセットごとのフィールド:
 
 - `team`: `role`、`group`
 - `jobs`: `department`、`location`、`type`

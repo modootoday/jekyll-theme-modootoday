@@ -1,5 +1,6 @@
 ---
 title: プロジェクトのデモ
+image: {path: /assets/images/projects/network.webp, alt: "つながった点のネットワークに包まれた光る地球儀", width: 800, height: 600}
 description: クライアント、技術、リンクのある完了したプロジェクトです。
 layout: project
 nav_order: 1

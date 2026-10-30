@@ -7,9 +7,12 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "Ada Kim", "role": "創業者", "group": "経営", "image": "/assets/images/demo/avatar.svg", "alt": ""}
-  - {"name": "Ben Ito", "role": "デザイナー", "group": "デザイン", "image": "/assets/images/demo/avatar.svg", "alt": ""}
-  - {"name": "Chloé Martin", "role": "エンジニア", "group": "開発", "image": "/assets/images/demo/avatar.svg", "alt": ""}
+  - {"name": "Ada Kim", "role": "創業者", "group": "経営", "image": "/assets/images/people/ada.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Ben Ito", "role": "デザイナー", "group": "デザイン", "image": "/assets/images/people/ben.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Chloé Martin", "role": "エンジニア", "group": "開発", "image": "/assets/images/people/chloe.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Eun Park", "role": "アドバイザー", "group": "経営", "image": "/assets/images/people/eun.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Farid Haddad", "role": "エンジニア", "group": "開発", "image": "/assets/images/people/farid.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Hana Sato", "role": "イラストレーター", "group": "デザイン", "image": "/assets/images/people/hana.webp", "width": 256, "height": 256, "alt": ""}
 nav_order: 2
 ---
 # チームのデモ

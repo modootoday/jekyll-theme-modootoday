@@ -4,7 +4,7 @@ mt_bundle: detail
 mt_main: mt-detail
 ---
 {%- include modootoday/i18n.html -%}
-{%- comment -%}detail: one item page (project, case study, job, event, episode). Header (kicker, title, lead), a facts list
+{%- comment -%}detail: one item page (project, case study, job, event, episode). Header (kicker, title, lead), an optional cover image (detail/cover.html), a facts list
 from front matter (modootoday/detail/facts.html, per layout.mt_kind), the body, then one call to action. No JavaScript.{%- endcomment -%}
 {%- assign _k = layout.mt_kind | default: "item" -%}
 <article class="mt-detail-page mt-detail-{{ _k }}" aria-labelledby="mt-detail-title">
@@ -19,6 +19,7 @@ from front matter (modootoday/detail/facts.html, per layout.mt_kind), the body, 
 <p class="mt-detail-lead">{{ page.description }}</p>
 {%- endif %}
 </header>
+{%- include modootoday/detail/cover.html %}
 {%- include modootoday/detail/facts.html kind=_k %}
 {%- if _k == "episode" and page.audio %}
 <figure class="mt-detail-media"><audio controls preload="none" src="{{ page.audio | relative_url }}" aria-label="{{ mt_t_layouts_listen }}: {{ page.title | escape }}"></audio>{% if page.transcript %}<figcaption><a href="{{ page.transcript | relative_url }}">{{ mt_t_layouts_transcript }}</a></figcaption>{% endif %}</figure>

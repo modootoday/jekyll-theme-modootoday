@@ -8,7 +8,7 @@ edit: false
 sections: []
 name: modootoday
 profile: organization
-image: /assets/images/demo/avatar.svg
+image: /assets/images/people/grace.webp
 links:
   - {label: ドキュメント, url: /ja/}
   - {label: GitHub, url: "https://github.com/modootoday/jekyll-theme-modootoday"}

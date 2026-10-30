@@ -1,5 +1,6 @@
 ---
 title: 태그·카테고리 아카이브
+image: {path: /assets/images/blog/archive.webp, alt: "타임라인을 따라 쌓인 보관 상자와 그 위로 떠오른 카드", width: 1024, height: 576}
 lang: ko
 author: modootoday
 categories: [guides]

@@ -1,5 +1,6 @@
 ---
 title: Storm warning for the weekend
+image: {path: /assets/images/storm.webp, alt: "A city skyline at dusk under gathering clouds", width: 1024, height: 576}
 layout: news-article
 author: alex
 categories: [notes]

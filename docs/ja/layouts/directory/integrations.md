@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "GitHub", "category": "コード", "text": "リポジトリから公開します。", "url": "#"}
-  - {"name": "Netlify", "category": "ホスティング", "text": "プッシュのたびにデプロイします。", "url": "#"}
-  - {"name": "Plausible", "category": "分析", "text": "プライバシーに配慮した統計。", "url": "#"}
+  - {"name": "Tessera", "image": "/assets/images/logos/tessera.svg", "width": 96, "height": 96, "alt": "", "category": "コード", "text": "リポジトリから公開します。", "url": "#"}
+  - {"name": "Driftwood", "image": "/assets/images/logos/driftwood.svg", "width": 96, "height": 96, "alt": "", "category": "ホスティング", "text": "プッシュのたびにデプロイします。", "url": "#"}
+  - {"name": "Orbit", "image": "/assets/images/logos/orbit.svg", "width": 96, "height": 96, "alt": "", "category": "分析", "text": "プライバシーに配慮した統計。", "url": "#"}
 nav_order: 6
 ---
 # 連携のデモ

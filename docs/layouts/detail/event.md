@@ -1,5 +1,6 @@
 ---
 title: Event demo
+image: {path: /assets/images/events/stage.webp, alt: "An empty stage under spotlights facing rows of seats", width: 800, height: 600}
 description: An evening meetup about building sites with the theme.
 layout: event
 nav_order: 4

@@ -6,5 +6,6 @@
   .mt-home > .mt-hero { padding: 3rem 0 2rem; text-align: center; }
   .mt-home > .mt-hero > .mt-hero-text { margin-inline: auto; max-width: 40rem; font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); }
   .mt-home > .mt-hero > .mt-actions { justify-content: center; }
+  .mt-home > .mt-hero > .mt-hero-media { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; object-fit: cover; margin-block-start: 2rem; border-radius: mt(radius-lg); background: mt(muted); }
   .mt-hero-title { font-size: unquote("clamp(2.25rem, 1.5rem + 3vw, 3.5rem)"); line-height: 1.08; letter-spacing: -.035em; font-weight: 750; margin: 0 0 1.25rem; }
 }

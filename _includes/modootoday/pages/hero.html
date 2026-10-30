@@ -1,9 +1,11 @@
-{%- comment -%}Home hero: include.hero = {title, text, actions: [{label, url}]}; renders nothing without a title.{%- endcomment -%}
+{%- comment -%}Home hero: include.hero = {title, text, actions: [{label, url}], image: path or {path, alt, width, height}}; renders nothing without a title.{%- endcomment -%}
 {%- assign _h = include.hero -%}
 {%- if _h.title %}
 <header class="mt-hero">
 <h1 class="mt-hero-title">{{ _h.title }}</h1>
 {%- if _h.text %}<p class="mt-hero-text">{{ _h.text }}</p>{% endif %}
 {%- if _h.actions %}<p class="mt-actions">{% for a in _h.actions %}<a href="{% if a.url contains '://' %}{{ a.url }}{% else %}{{ a.url | relative_url }}{% endif %}">{{ a.label }}</a>{% endfor %}</p>{% endif %}
+{%- assign _hi = _h.image -%}{%- if _hi %}{% assign _hp = _hi.path | default: _hi %}
+<img class="mt-hero-media" src="{{ _hp | relative_url }}" alt="{{ _hi.alt | default: '' | escape }}" width="{{ _hi.width | default: 1024 }}" height="{{ _hi.height | default: 576 }}" decoding="async" fetchpriority="high">{% endif %}
 </header>
 {%- endif %}

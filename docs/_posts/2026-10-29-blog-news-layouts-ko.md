@@ -1,5 +1,6 @@
 ---
 title: 블로그와 뉴스 레이아웃 추가
+image: {path: /assets/images/news/city.webp, alt: "불 켜진 창문이 보이는 해 질 녘 도시 스카이라인", width: 1024, height: 576}
 lang: ko
 layout: news-article
 author: modootoday

@@ -1,5 +1,6 @@
 ---
 title: Hello, blog
+image: {path: /assets/images/hello.webp, alt: "Rounded page tiles arranged like a magazine grid", width: 1024, height: 576}
 author: alex
 categories: [notes]
 tags: [blog]

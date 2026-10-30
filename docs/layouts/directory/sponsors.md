@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "Acme", "tier": "Gold", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Acme"}
-  - {"name": "Globex", "tier": "Gold", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Globex"}
-  - {"name": "Initech", "tier": "Silver", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Initech"}
+  - {"name": "Northpine", "tier": "Gold", "url": "#", "image": "/assets/images/logos/northwind.svg", "width": 96, "height": 96, "alt": ""}
+  - {"name": "Lumen", "tier": "Gold", "url": "#", "image": "/assets/images/logos/lumen.svg", "width": 96, "height": 96, "alt": ""}
+  - {"name": "Quill", "tier": "Silver", "url": "#", "image": "/assets/images/logos/quill.svg", "width": 96, "height": 96, "alt": ""}
 nav_order: 5
 ---
 # Sponsors demo

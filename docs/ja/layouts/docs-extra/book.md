@@ -2,6 +2,7 @@
 title: "書籍のデモ"
 description: "最後まで読まれるドキュメントを書くための短いガイドです。"
 layout: book
+image: /assets/images/site/book.webp
 nav_order: 7
 twin: false
 edit: false

@@ -2,6 +2,7 @@
 title: "책 데모"
 description: "끝까지 읽히는 문서를 쓰는 짧은 안내서입니다."
 layout: book
+image: /assets/images/site/book.webp
 nav_order: 7
 twin: false
 edit: false

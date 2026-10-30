@@ -6,7 +6,7 @@ mt_main: mt-dx mt-dx-book
 {%- comment -%}book: a book or long guide's cover page. image (cover), author, isbn, pages, chapters: [{title, url}] as a
 numbered contents list, then the body. Structured data: Book with author, isbn, numberOfPages and a Chapter per entry.{%- endcomment -%}
 <article aria-labelledby="mt-dx-title" class="mt-dx-book">
-{%- if page.image %}<img class="mt-dx-cover" src="{{ page.image | relative_url }}" alt="" width="200" height="280">{% endif %}
+{%- if page.image %}<img class="mt-dx-cover" src="{{ page.image | relative_url }}" alt="" width="200" height="280" decoding="async">{% endif %}
 <div>
 {%- include modootoday/docs-extra/head.html kicker=page.author %}
 {%- if page.isbn or page.pages %}<p class="mt-dx-meta">{% if page.isbn %}ISBN {{ page.isbn }}{% endif %}{% if page.isbn and page.pages %} · {% endif %}{% if page.pages %}{{ page.pages }} p.{% endif %}</p>{% endif %}

@@ -1,5 +1,6 @@
 ---
 title: "뉴스 기사"
+image: {path: /assets/images/news/tech.webp, alt: "떠 있는 차트와 구체에 둘러싸인 노트북", width: 1024, height: 576}
 description: "부제, 라이브 배지, 정정, 출처가 붙은 뉴스 기사예요."
 layout: news-article
 lang: ko

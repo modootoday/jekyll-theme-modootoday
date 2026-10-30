@@ -311,8 +311,12 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
 
-- ![サンプルページの図](../../assets/images/sample.svg)
-- ![テーマのマーク](../../assets/modootoday/favicon.svg)
+- ![植物とアームチェアのある日当たりのよい部屋](../../assets/images/gallery/room.webp)
+- ![低い太陽の下のピンク色の砂丘](../../assets/images/gallery/dunes.webp)
+- ![静かな池を囲む熱帯の葉](../../assets/images/gallery/leaves.webp)
+- ![山の湖に延びる木の桟橋](../../assets/images/news/travel-sm.webp)
+- ![緑の丘に並ぶ風力発電機と太陽光パネル](../../assets/images/news/energy-sm.webp)
+- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../../assets/images/projects/brand.webp)
 
 ## 料金プラン
 

@@ -6,6 +6,7 @@ twin: false
 sitemap: false
 edit: false
 hero:
+  image: {path: /assets/images/site/hero.webp, alt: "", width: 1024, height: 576}
   title: Markdown でサイトを作る
   text: このキットのレイアウトはすべて Liquid だけで書かれ、GitHub Pages でそのまま動きます。
   actions:

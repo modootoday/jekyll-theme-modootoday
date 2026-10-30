@@ -7,9 +7,12 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "Ada Kim", "role": "창업자", "group": "경영", "image": "/assets/images/demo/avatar.svg", "alt": ""}
-  - {"name": "Ben Ito", "role": "디자이너", "group": "디자인", "image": "/assets/images/demo/avatar.svg", "alt": ""}
-  - {"name": "Chloé Martin", "role": "엔지니어", "group": "개발", "image": "/assets/images/demo/avatar.svg", "alt": ""}
+  - {"name": "Ada Kim", "role": "창업자", "group": "경영", "image": "/assets/images/people/ada.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Ben Ito", "role": "디자이너", "group": "디자인", "image": "/assets/images/people/ben.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Chloé Martin", "role": "엔지니어", "group": "개발", "image": "/assets/images/people/chloe.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Eun Park", "role": "자문", "group": "경영", "image": "/assets/images/people/eun.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Farid Haddad", "role": "엔지니어", "group": "개발", "image": "/assets/images/people/farid.webp", "width": 256, "height": 256, "alt": ""}
+  - {"name": "Hana Sato", "role": "일러스트레이터", "group": "디자인", "image": "/assets/images/people/hana.webp", "width": 256, "height": 256, "alt": ""}
 nav_order: 2
 ---
 # 팀 데모

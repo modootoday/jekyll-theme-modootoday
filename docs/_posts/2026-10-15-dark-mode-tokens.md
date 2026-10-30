@@ -1,5 +1,6 @@
 ---
 title: Dark mode with three token layers
+image: {path: /assets/images/blog/dark.webp, alt: "A crescent moon beside a glowing sun, split between night and day", width: 1024, height: 576}
 lang: en
 author: modootoday
 categories: [guides]

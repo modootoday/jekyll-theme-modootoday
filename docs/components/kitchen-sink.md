@@ -367,8 +367,12 @@ Yes, with the github-pages gem.
 
 `status:available` In a `c: gallery` section, a list of images becomes a thumbnail grid. Each thumbnail opens a full-size view without JavaScript. Every image needs alt text.
 
-- ![Theme logo](../../assets/images/sample.svg)
-- ![Theme mark](../../assets/modootoday/favicon.svg)
+- ![A sunlit room with a plant and an armchair](../../assets/images/gallery/room.webp)
+- ![Pink sand dunes under a low sun](../../assets/images/gallery/dunes.webp)
+- ![Tropical leaves around a still pond](../../assets/images/gallery/leaves.webp)
+- ![A wooden pier on a mountain lake](../../assets/images/news/travel-sm.webp)
+- ![Wind turbines and solar panels on green hills](../../assets/images/news/energy-sm.webp)
+- ![Fanned swatches in cream, violet and coral](../../assets/images/projects/brand.webp)
 
 ## Pricing
 

@@ -2,6 +2,7 @@
 title: "Book demo"
 description: "A short guide to writing documentation people finish."
 layout: book
+image: /assets/images/site/book.webp
 nav_order: 7
 twin: false
 edit: false

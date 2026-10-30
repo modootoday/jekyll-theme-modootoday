@@ -1,5 +1,6 @@
 ---
 title: "ブログ記事"
+image: {path: /assets/images/blog/layouts.webp, alt: "雑誌のグリッドのように並ぶ角の丸いページタイル", width: 1024, height: 576}
 description: "著者、読了時間、タグ、共有リンクが付いた長めの記事です。"
 layout: post
 lang: ja

@@ -1,5 +1,6 @@
 ---
 title: "블로그 글"
+image: {path: /assets/images/blog/layouts.webp, alt: "잡지 격자처럼 배치된 둥근 페이지 타일", width: 1024, height: 576}
 description: "작성자, 읽는 시간, 태그, 공유 링크가 붙은 긴 글이에요."
 layout: post
 lang: ko

@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "GitHub", "category": "Code", "text": "Publish from a repository.", "url": "#"}
-  - {"name": "Netlify", "category": "Hosting", "text": "Deploy on every push.", "url": "#"}
-  - {"name": "Plausible", "category": "Analytics", "text": "Privacy-friendly stats.", "url": "#"}
+  - {"name": "Tessera", "image": "/assets/images/logos/tessera.svg", "width": 96, "height": 96, "alt": "", "category": "Code", "text": "Publish from a repository.", "url": "#"}
+  - {"name": "Driftwood", "image": "/assets/images/logos/driftwood.svg", "width": 96, "height": 96, "alt": "", "category": "Hosting", "text": "Deploy on every push.", "url": "#"}
+  - {"name": "Orbit", "image": "/assets/images/logos/orbit.svg", "width": 96, "height": 96, "alt": "", "category": "Analytics", "text": "Privacy-friendly stats.", "url": "#"}
 nav_order: 6
 ---
 # Integrations demo

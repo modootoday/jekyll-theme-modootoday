@@ -1,5 +1,6 @@
 ---
 title: Blog and news layouts arrive
+image: {path: /assets/images/news/city.webp, alt: "A city skyline at dusk with lit windows", width: 1024, height: 576}
 lang: en
 layout: news-article
 author: modootoday

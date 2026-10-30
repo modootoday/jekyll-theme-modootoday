@@ -22,7 +22,7 @@ layout: doc
 {%- unless _tu or _cu %}{% if page.tags.size > 0 %}<p class="mt-post-meta" data-part="terms">{% for t in page.tags %}<span class="mt-badge mt-badge-tag" data-variant="tag">{{ t }}</span>{% endfor %}</p>{% endif %}{% endunless %}
 {%- assign _cov = page.image.path | default: page.image -%}
 {%- if _cov and page.cover != false %}
-<figure class="mt-post-cover" data-part="cover"><img src="{{ _cov | relative_url }}" alt="{{ page.image.alt | default: page.image_alt | escape }}" decoding="async" fetchpriority="high">
+<figure class="mt-post-cover" data-part="cover"><img src="{{ _cov | relative_url }}" alt="{{ page.image.alt | default: page.image_alt | escape }}"{% if page.image.width %} width="{{ page.image.width }}" height="{{ page.image.height }}"{% endif %} decoding="async" fetchpriority="high">
 {%- assign _cap = page.image.caption | default: page.image_caption -%}{%- if _cap %}<figcaption>{{ _cap }}</figcaption>{% endif %}</figure>
 {%- endif %}
 </header>

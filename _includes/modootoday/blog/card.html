@@ -4,7 +4,7 @@
 {%- assign _cimg = _c.image.path | default: _c.image -%}
 <article class="mt-card-post{% if include.featured %} mt-card-post-featured{% endif %}" data-part="card"{% if _c.kind == "news" or _c.layout == "news-article" %} data-kind="news"{% endif %}>
 {%- if _cimg %}
-<a class="mt-card-post-cover" data-part="cover" href="{{ _c.url | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ _cimg | relative_url }}" alt="" loading="lazy" decoding="async"></a>
+<a class="mt-card-post-cover" data-part="cover" href="{{ _c.url | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ _cimg | relative_url }}" alt=""{% if _c.image.width %} width="{{ _c.image.width }}" height="{{ _c.image.height }}"{% endif %} loading="lazy" decoding="async"></a>
 {%- endif %}
 <div class="mt-card-post-body">
 <p class="mt-card-post-meta" data-part="meta">

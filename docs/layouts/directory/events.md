@@ -7,8 +7,8 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"title": "Theme meetup", "date": "2026-11-20 19:00", "end": "2026-11-20 21:00", "location": "Seoul", "text": "Talks and a show-and-tell.", "url": "#"}
-  - {"title": "Docs sprint", "date": "2026-12-05 10:00", "end": "2026-12-05 17:00", "location": "Online", "online": true, "url": "#"}
+  - {"title": "Theme meetup", "image": "/assets/images/events/stage.webp", "width": 800, "height": 600, "alt": "", "date": "2026-11-20 19:00", "end": "2026-11-20 21:00", "location": "Seoul", "text": "Talks and a show-and-tell.", "url": "#"}
+  - {"title": "Docs sprint", "image": "/assets/images/events/workshop.webp", "width": 800, "height": 600, "alt": "", "date": "2026-12-05 10:00", "end": "2026-12-05 17:00", "location": "Online", "online": true, "url": "#"}
 nav_order: 4
 ---
 # Events demo

@@ -7,8 +7,8 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"title": "テーマミートアップ", "date": "2026-11-20 19:00", "end": "2026-11-20 21:00", "location": "ソウル", "text": "トークと事例紹介。", "url": "#"}
-  - {"title": "ドキュメントスプリント", "date": "2026-12-05 10:00", "end": "2026-12-05 17:00", "location": "オンライン", "online": true, "url": "#"}
+  - {"title": "テーマミートアップ", "image": "/assets/images/events/stage.webp", "width": 800, "height": 600, "alt": "", "date": "2026-11-20 19:00", "end": "2026-11-20 21:00", "location": "ソウル", "text": "トークと事例紹介。", "url": "#"}
+  - {"title": "ドキュメントスプリント", "image": "/assets/images/events/workshop.webp", "width": 800, "height": 600, "alt": "", "date": "2026-12-05 10:00", "end": "2026-12-05 17:00", "location": "オンライン", "online": true, "url": "#"}
 nav_order: 4
 ---
 # イベントのデモ

@@ -29,7 +29,7 @@ items:
 ---
 ```
 
-항목마다 `title`이나 `name`이 필요합니다. 모든 항목에 `url`, `text`, `image`, `alt`를 쓸 수 있으며, 사진이 이름을 반복할 뿐이면 `alt: ""`로 두세요. 프리셋별 필드:
+항목마다 `title`이나 `name`이 필요합니다. 모든 항목에 `url`, `text`, `image`, `alt`, `width`, `height`를 쓸 수 있으며, 사진이 이름을 반복할 뿐이면 `alt: ""`로 두세요. 프리셋별 필드:
 
 - `team`: `role`, `group`
 - `jobs`: `department`, `location`, `type`

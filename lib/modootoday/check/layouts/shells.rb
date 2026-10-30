@@ -22,8 +22,8 @@ module Modootoday
         def home(errs, where, fm, _ctx)
           hero = fm["hero"]
           return if hero.nil?
-          return errs << "#{where}: hero must be a map of title, text, actions" unless hero.is_a?(Hash)
-          (hero.keys - %w[title text actions]).each { |k| errs << "#{where}: hero has unknown key '#{k}' (known: title, text, actions)" }
+          return errs << "#{where}: hero must be a map of title, text, actions, image" unless hero.is_a?(Hash)
+          (hero.keys - %w[title text actions image]).each { |k| errs << "#{where}: hero has unknown key '#{k}' (known: title, text, actions, image)" }
           errs << "#{where}: hero.title is required when hero is set" unless Shape.text?(hero["title"])
           actions(errs, where, "hero.actions", hero["actions"])
         end

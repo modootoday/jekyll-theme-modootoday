@@ -1,5 +1,6 @@
 ---
 title: ブログとニュースのレイアウトを追加
+image: {path: /assets/images/news/city.webp, alt: "窓に明かりがともる夕暮れの街並み", width: 1024, height: 576}
 lang: ja
 layout: news-article
 author: modootoday

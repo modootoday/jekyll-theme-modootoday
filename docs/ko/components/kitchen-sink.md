@@ -370,8 +370,12 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: gallery` 섹션에서는 이미지 목록이 썸네일 격자가 됩니다. 각 썸네일은 JavaScript 없이 원본 크기 보기를 엽니다. 모든 이미지에 대체 텍스트가 필요합니다.
 
-- ![샘플 페이지 그림](../../../assets/images/sample.svg)
-- ![테마 마크](../../../assets/modootoday/favicon.svg)
+- ![화분과 안락의자가 있는 햇살 드는 방](../../../assets/images/gallery/room.webp)
+- ![낮은 해 아래 분홍빛 모래 언덕](../../../assets/images/gallery/dunes.webp)
+- ![잔잔한 연못을 둘러싼 열대 잎](../../../assets/images/gallery/leaves.webp)
+- ![산속 호수의 나무 선착장](../../../assets/images/news/travel-sm.webp)
+- ![초록 언덕 위의 풍력 발전기와 태양광 패널](../../../assets/images/news/energy-sm.webp)
+- ![크림, 보라, 코랄 색 견본을 부채꼴로 펼친 모습](../../../assets/images/projects/brand.webp)
 
 ## 요금제
 

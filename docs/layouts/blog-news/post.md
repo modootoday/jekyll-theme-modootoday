@@ -1,5 +1,6 @@
 ---
 title: "Blog post"
+image: {path: /assets/images/blog/layouts.webp, alt: "Rounded page tiles arranged like a magazine grid", width: 1024, height: 576}
 description: "A long-form post with byline, reading time, tags and share links."
 layout: post
 twin: false

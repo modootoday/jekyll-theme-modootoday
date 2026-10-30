@@ -13,6 +13,7 @@ sass: {style: compressed, silence_deprecations: [import]}
 permalink: pretty
 exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
+  og_image: /assets/images/site/og.jpg
   nav: main
   # Front-matter-less pages are their own twins; other pages keep stubs.
   twins: source

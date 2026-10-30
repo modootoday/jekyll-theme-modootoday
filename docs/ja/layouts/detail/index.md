@@ -5,7 +5,7 @@ nav_order: 30
 ---
 # 詳細ページ
 
-詳細ページは1件の項目を表示します。見出し、front matter から読む概要リスト、本文、行動喚起のリンク1つで構成されます。これらのレイアウトは自分のページでだけ `modootoday-detail.css` を読み込み、JavaScript は追加しません。同じ front matter から schema.org のメインエンティティを出力し、`schema:` マップに書いたプロパティが優先されます。
+詳細ページは1件の項目を表示します。見出し、front matter から読む概要リスト、本文、行動喚起のリンク1つで構成されます。これらのレイアウトは自分のページでだけ `modootoday-detail.css` を読み込み、JavaScript は追加しません。同じ front matter から schema.org のメインエンティティを出力し、`schema:` マップに書いたプロパティが優先されます。 任意の `image: {path, alt, width, height}` を指定すると、ヘッダーの下にカバー画像を表示します。
 
 | レイアウト | 概要 | 行動喚起 | 構造化データ | デモ |
 |---|---|---|---|---|

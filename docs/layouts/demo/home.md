@@ -6,6 +6,7 @@ twin: false
 sitemap: false
 edit: false
 hero:
+  image: {path: /assets/images/site/hero.webp, alt: "", width: 1024, height: 576}
   title: Build a site from Markdown
   text: Every layout in this kit is plain Liquid and works on GitHub Pages.
   actions:

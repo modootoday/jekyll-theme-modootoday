@@ -5,7 +5,7 @@ nav_order: 30
 ---
 # 상세 페이지
 
-상세 페이지는 항목 하나를 보여 줍니다. 머리말, front matter에서 읽은 정보 목록, 본문, 행동 유도 링크 하나로 구성됩니다. 이 레이아웃들은 자기 페이지에서만 `modootoday-detail.css`를 불러오고 JavaScript는 추가하지 않습니다. 같은 front matter로 schema.org 주요 개체를 출력하며, `schema:` 맵에 적은 속성이 우선합니다.
+상세 페이지는 항목 하나를 보여 줍니다. 머리말, front matter에서 읽은 정보 목록, 본문, 행동 유도 링크 하나로 구성됩니다. 이 레이아웃들은 자기 페이지에서만 `modootoday-detail.css`를 불러오고 JavaScript는 추가하지 않습니다. 같은 front matter로 schema.org 주요 개체를 출력하며, `schema:` 맵에 적은 속성이 우선합니다. 선택 항목인 `image: {path, alt, width, height}`를 주면 머리글 아래에 표지 이미지를 보여 줍니다.
 
 | 레이아웃 | 정보 | 행동 유도 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|

@@ -1,5 +1,6 @@
 ---
 title: "ニュース記事"
+image: {path: /assets/images/news/tech.webp, alt: "浮かぶグラフと球体に囲まれたノートパソコン", width: 1024, height: 576}
 description: "リード文、ライブバッジ、訂正、出典が付いたニュース記事です。"
 layout: news-article
 lang: ja

@@ -6,6 +6,7 @@ twin: false
 sitemap: false
 edit: false
 hero:
+  image: {path: /assets/images/site/hero.webp, alt: "", width: 1024, height: 576}
   title: Markdown으로 사이트 만들기
   text: 이 킷의 모든 레이아웃은 Liquid만 쓰므로 GitHub Pages에서 그대로 동작합니다.
   actions:

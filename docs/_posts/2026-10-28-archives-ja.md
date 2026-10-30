@@ -1,5 +1,6 @@
 ---
 title: タグとカテゴリーのアーカイブ
+image: {path: /assets/images/blog/archive.webp, alt: "タイムラインに沿って積まれた保管箱と浮かぶカード", width: 1024, height: 576}
 lang: ja
 author: modootoday
 categories: [guides]

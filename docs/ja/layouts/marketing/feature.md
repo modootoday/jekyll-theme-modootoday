@@ -14,3 +14,5 @@ features:
 cta: {label: はじめる, url: /ja/guides/first-page/}
 ---
 すべての機能が JavaScript なしで動きます。
+
+![チャートのダッシュボードを表示する3台のスマートフォン](../../../../assets/images/projects/app.webp)

@@ -1,5 +1,6 @@
 ---
 title: 행사 데모
+image: {path: /assets/images/events/stage.webp, alt: "객석을 마주한 조명 아래의 빈 무대", width: 800, height: 600}
 description: 이 테마로 사이트를 만드는 방법을 다루는 저녁 밋업입니다.
 layout: event
 nav_order: 4

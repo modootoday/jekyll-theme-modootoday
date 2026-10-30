@@ -1,5 +1,6 @@
 ---
 title: エピソードのデモ
+image: {path: /assets/images/episodes/mic.webp, alt: "柔らかな光の中のスタジオマイク", width: 512, height: 512}
 description: このテーマが JavaScript フレームワークなしで提供される理由を話します。
 layout: episode
 nav_order: 5

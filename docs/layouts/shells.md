@@ -32,7 +32,7 @@ hero:
 ---
 ```
 
-The first action is the primary button. Without `hero.title` the layout shows only the body.
+The first action is the primary button. Without `hero.title` the layout shows only the body. An optional `hero.image` (a path, or `{path, alt, width, height}`) shows a wide picture under the actions; leave `alt` empty when it is decorative.
 
 ## Error
 

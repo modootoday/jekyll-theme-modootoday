@@ -1,0 +1,5 @@
+{%- comment -%}detail cover: front matter image: <path> or {path, alt, width, height}. Above the fold, so no lazy loading.{%- endcomment -%}
+{%- assign _ci = page.image.path | default: page.image -%}
+{%- if _ci %}
+<figure class="mt-detail-cover"><img src="{{ _ci | relative_url }}" alt="{{ page.image.alt | default: '' | escape }}"{% if page.image.width %} width="{{ page.image.width }}" height="{{ page.image.height }}"{% endif %} decoding="async" fetchpriority="high"></figure>
+{%- endif %}

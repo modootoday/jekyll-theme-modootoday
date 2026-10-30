@@ -5,7 +5,7 @@ nav_order: 30
 ---
 # Detail pages
 
-A detail page shows one item: a header, a list of facts read from front matter, the body and one call to action. These layouts load `modootoday-detail.css` only on their own pages and add no JavaScript. Each one prints a schema.org main entity built from the same front matter; a `schema:` map overrides any property.
+A detail page shows one item: a header, a list of facts read from front matter, the body and one call to action. These layouts load `modootoday-detail.css` only on their own pages and add no JavaScript. Each one prints a schema.org main entity built from the same front matter; a `schema:` map overrides any property. An optional `image: {path, alt, width, height}` shows a cover under the header.
 
 | Layout | Facts | Call to action | Structured data | Demo |
 |---|---|---|---|---|

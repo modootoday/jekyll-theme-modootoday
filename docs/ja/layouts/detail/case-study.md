@@ -1,5 +1,6 @@
 ---
 title: 事例のデモ
+image: {path: /assets/images/projects/data.webp, alt: "暗いダッシュボード上の棒グラフと折れ線グラフのタイル", width: 800, height: 600}
 description: あるチームがドキュメントのビルド時間を半分にした方法です。
 layout: case-study
 nav_order: 2
