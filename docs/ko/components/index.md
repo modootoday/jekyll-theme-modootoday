@@ -323,7 +323,7 @@ theme: jekyll-theme-modootoday
 
 - 사이트 1개
 
-[시작하기](../guides/install/)
+[시작하기](#)
 
 ### 팀
 
@@ -332,7 +332,7 @@ theme: jekyll-theme-modootoday
 - 사이트 10개
 - 지원
 
-[팀 선택](../guides/install/)
+[팀 선택](#)
 
 ## 구독
 

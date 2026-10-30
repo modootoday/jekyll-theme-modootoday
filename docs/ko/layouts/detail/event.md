@@ -10,7 +10,7 @@ starts: "2026-11-20 19:00:00 +0900"
 ends: "2026-11-20 21:00:00 +0900"
 venue: A홀
 address: 서울시 중구 세종대로 1
-online: "https://example.com/live"
-tickets: "https://example.com/tickets"
+online: "#"
+tickets: "#"
 ---
 짧은 발표 두 개와 질의응답이 이어집니다.

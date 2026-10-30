@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "GitHub", "category": "コード", "text": "リポジトリから公開します。", "url": "https://github.com/"}
-  - {"name": "Netlify", "category": "ホスティング", "text": "プッシュのたびにデプロイします。", "url": "https://www.netlify.com/"}
-  - {"name": "Plausible", "category": "分析", "text": "プライバシーに配慮した統計。", "url": "https://plausible.io/"}
+  - {"name": "GitHub", "category": "コード", "text": "リポジトリから公開します。", "url": "#"}
+  - {"name": "Netlify", "category": "ホスティング", "text": "プッシュのたびにデプロイします。", "url": "#"}
+  - {"name": "Plausible", "category": "分析", "text": "プライバシーに配慮した統計。", "url": "#"}
 nav_order: 6
 ---
 # 連携のデモ

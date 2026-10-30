@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"title": "Frontend engineer", "department": "Engineering", "location": "Seoul", "type": "Full-time", "url": "/layouts/"}
-  - {"title": "Product designer", "department": "Design", "location": "Remote", "type": "Full-time", "url": "/layouts/"}
-  - {"title": "Support lead", "department": "Support", "location": "Tokyo", "type": "Contract", "url": "/layouts/"}
+  - {"title": "Frontend engineer", "department": "Engineering", "location": "Seoul", "type": "Full-time", "url": "#"}
+  - {"title": "Product designer", "department": "Design", "location": "Remote", "type": "Full-time", "url": "#"}
+  - {"title": "Support lead", "department": "Support", "location": "Tokyo", "type": "Contract", "url": "#"}
 nav_order: 3
 ---
 # Jobs demo

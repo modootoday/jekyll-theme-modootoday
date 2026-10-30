@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "GitHub", "category": "코드", "text": "저장소에서 게시합니다.", "url": "https://github.com/"}
-  - {"name": "Netlify", "category": "호스팅", "text": "푸시할 때마다 배포합니다.", "url": "https://www.netlify.com/"}
-  - {"name": "Plausible", "category": "분석", "text": "개인정보 친화적 통계.", "url": "https://plausible.io/"}
+  - {"name": "GitHub", "category": "코드", "text": "저장소에서 게시합니다.", "url": "#"}
+  - {"name": "Netlify", "category": "호스팅", "text": "푸시할 때마다 배포합니다.", "url": "#"}
+  - {"name": "Plausible", "category": "분석", "text": "개인정보 친화적 통계.", "url": "#"}
 nav_order: 6
 ---
 # 연동 데모

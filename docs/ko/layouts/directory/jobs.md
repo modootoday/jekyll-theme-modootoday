@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"title": "프런트엔드 엔지니어", "department": "개발", "location": "서울", "type": "정규직", "url": "/layouts/"}
-  - {"title": "프로덕트 디자이너", "department": "디자인", "location": "원격", "type": "정규직", "url": "/layouts/"}
-  - {"title": "고객지원 리드", "department": "고객지원", "location": "도쿄", "type": "계약직", "url": "/layouts/"}
+  - {"title": "프런트엔드 엔지니어", "department": "개발", "location": "서울", "type": "정규직", "url": "#"}
+  - {"title": "프로덕트 디자이너", "department": "디자인", "location": "원격", "type": "정규직", "url": "#"}
+  - {"title": "고객지원 리드", "department": "고객지원", "location": "도쿄", "type": "계약직", "url": "#"}
 nav_order: 3
 ---
 # 채용 데모

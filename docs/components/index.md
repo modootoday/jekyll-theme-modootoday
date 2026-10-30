@@ -320,7 +320,7 @@ Yes, with the github-pages gem.
 
 - One site
 
-[Start the Free plan](../guides/install/)
+[Start the Free plan](#)
 
 ### Team
 
@@ -329,7 +329,7 @@ Yes, with the github-pages gem.
 - Ten sites
 - Support
 
-[Choose Team](../guides/install/)
+[Choose Team](#)
 
 ## Subscribe
 

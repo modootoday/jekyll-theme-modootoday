@@ -38,7 +38,7 @@ sections:
 
 테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 폴백 모습을 볼 수 있습니다. 한국어 줄바꿈 확인용 긴문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
 
-[Primary action](../../guides/install/) [Secondary](../) [Third link](https://github.com/modootoday/jekyll-theme-modootoday)
+[Primary action](#) [Secondary](#) [Third link](#)
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../components/kitchen-sink/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
@@ -383,7 +383,7 @@ theme: jekyll-theme-modootoday
 
 - 사이트 1개
 
-[시작하기](../../guides/install/)
+[시작하기](#)
 
 ### 팀
 
@@ -392,7 +392,7 @@ theme: jekyll-theme-modootoday
 - 사이트 10개
 - 지원
 
-[팀 선택](../../guides/install/)
+[팀 선택](#)
 
 ## 구독
 

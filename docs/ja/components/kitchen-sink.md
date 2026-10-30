@@ -38,7 +38,7 @@ sections:
 
 テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
 
-[主なアクション](../../guides/install/) [二番目](../) [三番目のリンク](https://github.com/modootoday/jekyll-theme-modootoday)
+[主なアクション](#) [二番目](#) [三番目のリンク](#)
 
 > [!NOTE]
 > このページは[英語の原文](../../components/kitchen-sink/)の翻訳です。内容が異なる場合は英語版が優先されます。
@@ -383,7 +383,7 @@ theme: jekyll-theme-modootoday
 
 - サイト 1 つ
 
-[始める](../../guides/install/)
+[始める](#)
 
 ### チーム
 
@@ -392,7 +392,7 @@ theme: jekyll-theme-modootoday
 - サイト 10 個
 - サポート
 
-[チームを選ぶ](../../guides/install/)
+[チームを選ぶ](#)
 
 ## 購読
 

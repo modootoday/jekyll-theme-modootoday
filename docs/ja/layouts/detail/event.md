@@ -10,7 +10,7 @@ starts: "2026-11-20 19:00:00 +0900"
 ends: "2026-11-20 21:00:00 +0900"
 venue: Aホール
 address: 東京都千代田区丸の内1-1
-online: "https://example.com/live"
-tickets: "https://example.com/tickets"
+online: "#"
+tickets: "#"
 ---
 短い発表が2本と質疑応答です。

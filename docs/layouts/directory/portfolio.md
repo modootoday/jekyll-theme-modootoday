@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"title": "Harbor app", "text": "A ferry timetable for phones.", "tags": ["Mobile", "Design"], "url": "/layouts/", "image": "/assets/images/demo/card.svg", "alt": ""}
-  - {"title": "Open data portal", "text": "Search and download city datasets.", "tags": ["Web", "Data"], "url": "/layouts/", "image": "/assets/images/demo/card.svg", "alt": ""}
-  - {"title": "Brand refresh", "text": "Logo, colors and type for a bakery.", "tags": ["Design"], "url": "/layouts/", "image": "/assets/images/demo/card.svg", "alt": ""}
+  - {"title": "Harbor app", "text": "A ferry timetable for phones.", "tags": ["Mobile", "Design"], "url": "#", "image": "/assets/images/demo/card.svg", "alt": ""}
+  - {"title": "Open data portal", "text": "Search and download city datasets.", "tags": ["Web", "Data"], "url": "#", "image": "/assets/images/demo/card.svg", "alt": ""}
+  - {"title": "Brand refresh", "text": "Logo, colors and type for a bakery.", "tags": ["Design"], "url": "#", "image": "/assets/images/demo/card.svg", "alt": ""}
 nav_order: 1
 ---
 # Portfolio demo

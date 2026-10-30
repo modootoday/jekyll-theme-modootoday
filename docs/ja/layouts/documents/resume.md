@@ -11,7 +11,7 @@ headline: "ドキュメントエンジニア"
 email: ada@example.com
 location: Seoul
 links:
-  - {label: GitHub, url: "https://github.com/example"}
+  - {label: GitHub, url: "#"}
 experience:
   - {role: "リードエンジニア", org: Example Docs, start: 2024-03-01}
   - {role: "エンジニア", org: Old Press, start: 2020-01-01, end: 2024-02-01}

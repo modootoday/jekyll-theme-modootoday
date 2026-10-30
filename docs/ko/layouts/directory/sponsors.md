@@ -7,9 +7,9 @@ sitemap: false
 edit: false
 sections: []
 items:
-  - {"name": "Acme", "tier": "Gold", "url": "https://example.com/", "image": "/assets/images/demo/logo.svg", "alt": "Acme"}
-  - {"name": "Globex", "tier": "Gold", "url": "https://example.com/", "image": "/assets/images/demo/logo.svg", "alt": "Globex"}
-  - {"name": "Initech", "tier": "Silver", "url": "https://example.com/", "image": "/assets/images/demo/logo.svg", "alt": "Initech"}
+  - {"name": "Acme", "tier": "Gold", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Acme"}
+  - {"name": "Globex", "tier": "Gold", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Globex"}
+  - {"name": "Initech", "tier": "Silver", "url": "#", "image": "/assets/images/demo/logo.svg", "alt": "Initech"}
 nav_order: 5
 ---
 # 후원사 데모

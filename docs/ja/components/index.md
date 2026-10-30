@@ -324,7 +324,7 @@ theme: jekyll-theme-modootoday
 
 - サイト 1 つ
 
-[始める](../guides/install/)
+[始める](#)
 
 ### チーム
 
@@ -333,7 +333,7 @@ theme: jekyll-theme-modootoday
 - サイト 10 個
 - サポート
 
-[チームを選ぶ](../guides/install/)
+[チームを選ぶ](#)
 
 ## 購読
 
