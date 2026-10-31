@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.2.3] - 2026-10-31
+
 ### Changed
 
 - In a `c: features` card, the separator after a bold title written as `**Title**: text` or `**Title**：text` is not shown, the same as ` — ` already was. Only the one separator right after an item's opening title goes; `**Title**::`, `**Title**:text` with no space, colons later in the text and bold text mid-item are unchanged.
@@ -264,7 +266,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.3
 [1.2.2]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.2
 [1.2.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.1
 [1.2.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0

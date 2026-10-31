@@ -21,7 +21,7 @@ sections:
 
 ```yaml
 # _config.yml (기본 GitHub Pages 빌드, Gemfile 불필요)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.2
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.3
 plugins: [jekyll-remote-theme]
 ```
 
@@ -84,8 +84,8 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 gem을 설치하지 않으려면 릴리스 소스에서 검사기를 실행합니다. Ruby만 있으면 됩니다.
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.2.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.2.2/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.3.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.2.3/exe/modootoday-check . _site --twins
 ```
 
 `remote_theme` 줄에 적은 태그를 씁니다.

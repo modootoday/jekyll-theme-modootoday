@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-modootoday"
-  spec.version       = "1.2.2"
+  spec.version       = "1.2.3"
   spec.authors       = ["modootoday"]
   spec.summary       = "A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them with layouts, includes and CSS."
   spec.description   = "GitHub alerts, status badges, sectioned pages, install tabs, about 40 page layouts (blog, news, directory, marketing, documents), labels in 23 languages with RTL, and agent-readable Markdown twins for Jekyll and GitHub Pages, plus a checker (modootoday-check)."

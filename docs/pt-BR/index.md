@@ -26,7 +26,7 @@ O jekyll-theme-modootoday transforma GitHub Flavored Markdown padrão em um site
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.2
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.3
 plugins: [jekyll-remote-theme]
 ```
 
