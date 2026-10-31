@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-10-31
+
 ### Added
 
 - `reference` layout: `packages_compact: true` leaves out the `text` under each package name, for pages whose body already describes the packages, and `packages_position: after` puts the package table below the body (default `before`). The include takes `compact=true` as well.
@@ -285,7 +287,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0
 [1.3.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.3.0
 [1.2.3]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.3
 [1.2.2]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.2

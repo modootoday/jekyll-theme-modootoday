@@ -58,5 +58,6 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 | 1.0.0 より前のリポジトリからのビルド | 1.0 | `~> 1.0` または `@v1.0.0` に固定し、`modootoday-check --strict` を実行する |
 | 1.0 または 1.1 | 1.2 | `~> 1.2`（`remote_theme` では最新の `v1.2.x` タグ）に固定する。新しいセクションとヒーローのオプション（`bleed:`、`reveal:`、`visual:` と組み合わせる `c: split`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
 | 1.2 | 1.3 | `~> 1.3`（`remote_theme` では `@v1.3.0`）に固定する。`reference` のサイドバー（`sidebar: true`）とパッケージ表（`packages:`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
+| 1.3 | 1.4 | `~> 1.4`（`remote_theme` では `@v1.4.0`）に固定する。`packages_compact` と `packages_position` は任意で、`reference` ページも `doc` と同じくアラートを変換するようになったため、ページの修正は不要。`modootoday-check --strict` を実行する |
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。

@@ -26,14 +26,14 @@ jekyll-theme-modootoday 將標準的 GitHub Flavored Markdown 轉成簡潔的文
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.3.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.4.0
 plugins: [jekyll-remote-theme]
 ```
 
 ### Gemfile
 
 ```ruby
-gem "jekyll-theme-modootoday", "~> 1.3"
+gem "jekyll-theme-modootoday", "~> 1.4"
 ```
 
 ### _config.yml

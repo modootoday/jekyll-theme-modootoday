@@ -3,7 +3,7 @@ description: A neutral example site for jekyll-theme-modootoday.
 lang: en
 theme: jekyll-theme-modootoday
 # GitHub Pages without a Gemfile: replace the line above with
-# remote_theme: modootoday/jekyll-theme-modootoday@v1.3.0   (and add jekyll-remote-theme to plugins)
+# remote_theme: modootoday/jekyll-theme-modootoday@v1.4.0   (and add jekyll-remote-theme to plugins)
 markdown: kramdown
 sass: {silence_deprecations: [import, global-builtin]}  # Dart Sass (Jekyll 4); ignored by GitHub Pages
 kramdown: {input: GFM, syntax_highlighter: rouge}

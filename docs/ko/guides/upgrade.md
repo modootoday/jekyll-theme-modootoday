@@ -58,5 +58,6 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 1.0.0 이전에 저장소에서 빌드 | 1.0 | `~> 1.0` 또는 `@v1.0.0`으로 고정하고 `modootoday-check --strict` 실행 |
 | 1.0 또는 1.1 | 1.2 | `~> 1.2`(또는 `remote_theme`에서는 최신 `v1.2.x` 태그)로 고정합니다. 새 섹션·히어로 옵션(`bleed:`, `reveal:`, `visual:`과 함께 쓰는 `c: split`)은 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 | 1.2 | 1.3 | `~> 1.3`(또는 `remote_theme`에서는 `@v1.3.0`)으로 고정합니다. `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`)는 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
+| 1.3 | 1.4 | `~> 1.4`(또는 `remote_theme`에서는 `@v1.4.0`)으로 고정합니다. `packages_compact`와 `packages_position`은 선택 사항이고, `reference` 페이지도 이제 `doc`처럼 알림을 변환하므로 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
