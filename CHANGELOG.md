@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-10-31
+
 ### Fixed
 
 - Long inline code (`:not(pre) > code`) wraps inside the column with `overflow-wrap: anywhere` in paragraphs, lists, links, headings, callouts, quotes and table cells, so narrow screens such as 390px no longer scroll sideways; fenced code blocks keep their own horizontal scroll. The docs audit adds a 360px inline-code wrap check.
@@ -246,7 +248,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.2
 [1.2.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.1
 [1.2.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0
 [1.1.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1
