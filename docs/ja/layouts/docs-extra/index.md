@@ -34,7 +34,7 @@ nav_order: 50
 
 どちらも `reference` レイアウトで必要なときだけ有効にするもので、使わないページの表示は変わりません。`sidebar: true` にするとメンバー一覧が横の列に移り、広い画面（64rem 以上）ではスクロールしても表示されたままになります。`group:` が同じメンバーはその名前の下にまとまり、グループは最初に現れた順に並びます。狭い画面では同じ一覧が本文の上に置かれます。`packages:` は本文の前に、パッケージごとに 1 行で名前・バージョン・リンクを示す表を加え、`text` は名前の下に表示されます。小さな画面では行ごとに小さなカードのように積み重なります。`packages:` があるリファレンスページでは `members:` を省略できます。どちらも CSS だけで動きます。
 
-本文ですでに各パッケージを説明している場合は、`packages_compact: true` で名前の下の `text` を省き、`packages_position: after` で表を本文の後ろに移せます（既定は `before`）。Markdown ページでは表を front matter でだけ指定します。GitHub では Liquid がそのまま文字として表示されるため、`modootoday-check` は本文中の Liquid をエラーにします。独自のレイアウトや HTML ページでは、表を置きたい位置で `modootoday/docs-extra/packages.html` を include します（`items=page.packages`、必要に応じて `caption=` と `compact=true`）。リファレンスページの本文にある GitHub アラート（`> [!TIP]` など）は、`doc` レイアウトと同じくコールアウトに変換されます。
+本文ですでに各パッケージを説明している場合は、`packages_compact: true` で名前の下の `text` を省き、`packages_position: after` で表を本文の後ろに移せます（既定は `before`）。Markdown ページでは表を front matter でだけ指定します。GitHub では Liquid がそのまま文字として表示されるため、`modootoday-check` は本文中の Liquid をエラーにします。独自のレイアウトや HTML ページでは、表を置きたい位置で `modootoday/docs-extra/packages.html` を include します（`items=page.packages`、必要に応じて `caption=` と `compact=true`）。リファレンスページの本文にある GitHub アラート（`> [!TIP]` など）は、`doc` レイアウトと同じくコールアウトに変換されます。ページの Markdown 版と `llms-full.txt` にも、パッケージ表が同じ位置に Markdown の表として入ります。
 
 ## 検査
 

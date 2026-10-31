@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Fixed
+
+- Markdown twins and `llms-full.txt` now include a `reference` page's `packages:` table as a Markdown table (with `packages_title`, before or after the body as `packages_position` sets, without the text when `packages_compact: true`); pipes in cells are escaped. `modootoday-check --twins` accepts that table around the byte-identical body. Pages without `packages:` are unchanged.
+
 ## [1.4.0] - 2026-10-31
 
 ### Added

@@ -6,6 +6,8 @@ module Modootoday
     #    (/index.md for index.md), byte-identical to its source body. It comes from a stub <name>.md.txt
     #    (layout: twin; works on GitHub Pages) or from the opt-in plugin (plugins: [jekyll-theme-modootoday]).
     #    With modootoday.twins: source, a page without front matter is its own twin at /<path>.md.
+    #    A reference page's packages: table is added to its twin as Markdown, before the body (or after it with
+    #    packages_position: after); the body itself must still be there byte-for-byte.
     #    llms.txt / llms-full.txt exist at / and at each /<lang>/; llms-full.txt contains every page body.
     module Twins
       HINT = "add a stub %s (front matter `layout: twin`, `twin_of`, `permalink`) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
@@ -43,10 +45,20 @@ module Modootoday
           return
         end
         out = File.basename(r) == "index" ? "#{site}/#{r}.md" : "#{site}/#{r}/index.md"
-        b = Markdown.body(File.read(f))
+        src = File.read(f)
+        b = Markdown.body(src)
         bodies[ctx.lang_of(r).to_s] << [rf, b]
         return errs << "#{rf}: twin missing at #{out}: #{format(HINT, "#{rf}.txt")}" unless File.exist?(out)
-        errs << "#{out}: twin is not byte-identical to the body of #{rf}" unless File.binread(out) == b.b
+        tw = File.binread(out)
+        fm = (Markdown.fm(src) rescue {})
+        pk = fm["layout"] == "reference" && fm["packages"].is_a?(Array) && !fm["packages"].empty? ? fm["packages"] : nil
+        return errs << "#{out}: twin is not byte-identical to the body of #{rf}" unless pk || tw == b.b
+        return unless pk
+        after = fm["packages_position"] == "after"
+        ok = after ? tw.start_with?(b.b) : tw.end_with?(b.b)
+        names = pk.map { |x| x.is_a?(Hash) ? x["name"].to_s : "" }
+        ok &&= names.all? { |n| tw.include?("`#{n}`".b) }
+        errs << "#{out}: twin must be the body of #{rf} with its packages: table #{after ? 'after' : 'before'} it" unless ok
       end
 
       def llms(ctx, bodies)

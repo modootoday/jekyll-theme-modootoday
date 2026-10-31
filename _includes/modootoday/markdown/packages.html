@@ -1,0 +1,22 @@
+{%- comment -%}md-components v1: the package table of include.page (reference layout, packages:) as Markdown, for the twin and
+llms-full layouts. Optional bold packages_title line, then | Name | Version | Links |; the name links to url, its text follows
+after ": " unless packages_compact; pipes are escaped and newlines become spaces. Ends with a newline. Empty without packages.{%- endcomment -%}
+{%- assign _pp = include.page -%}
+{%- if _pp.layout == "reference" and _pp.packages.size > 0 -%}
+{%- include modootoday/i18n.html -%}
+{%- assign _nl = "
+" -%}
+{%- if _pp.packages_title %}**{{ _pp.packages_title | replace: _nl, " " | replace: "|", "\|" }}**
+
+{% endif -%}
+| {{ mt_t_layouts_name }} | {{ mt_t_layouts_version }} | {{ mt_t_layouts_links }} |
+| --- | --- | --- |
+{% for p in _pp.packages -%}
+{%- capture _n %}`{{ p.name }}`{% endcapture -%}
+{%- if p.url %}{% capture _u %}{% include modootoday/link.html url=p.url %}{% endcapture %}{% assign _n = "[" | append: _n | append: "](" | append: _u | append: ")" %}{% endif -%}
+{%- if p.text and _pp.packages_compact != true %}{% assign _n = _n | append: ": " | append: p.text %}{% endif -%}
+{%- capture _ls %}{% for l in p.links %}{% unless forloop.first %}, {% endunless %}[{{ l.label }}]({% include modootoday/link.html url=l.url %}){% endfor %}{% endcapture -%}
+{%- capture _v %}{% if p.version %}`{{ p.version }}`{% endif %}{% endcapture -%}
+| {{ _n | replace: _nl, " " | replace: "|", "\|" }} | {{ _v | replace: "|", "\|" }} | {{ _ls | replace: _nl, " " | replace: "|", "\|" }} |
+{% endfor -%}
+{%- endif -%}

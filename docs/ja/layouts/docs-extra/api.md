@@ -3,7 +3,6 @@ title: "API リファレンスのデモ"
 description: "グループ分けしたサイドバーとパッケージ表を備えたライブラリのリファレンスです。"
 layout: reference
 nav_order: 8
-twin: false
 edit: false
 sections: []
 sidebar: true

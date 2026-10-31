@@ -1,2 +1,5 @@
-{%- comment -%}md-components v1 twin: outputs the source body of page.twin_of byte-for-byte.{%- endcomment -%}
-{%- include modootoday/markdown/raw-body.html file=page.twin_of -%}
+{%- comment -%}md-components v1 twin: outputs the source body of page.twin_of byte-for-byte (a reference page's packages: table is added as Markdown).{%- endcomment -%}
+{%- assign _tdir = page.path | split: "/" | pop | join: "/" -%}{%- if _tdir != "" -%}{%- assign _tdir = _tdir | append: "/" -%}{%- endif -%}
+{%- assign _tpath = _tdir | append: page.twin_of -%}
+{%- assign _tpage = site.pages | where: "path", _tpath | first -%}
+{%- include modootoday/markdown/raw-body.html file=page.twin_of page=_tpage -%}

@@ -1,6 +1,14 @@
-{%- comment -%}md-components v1: the source body of include.file (path relative to the current page), front matter removed. Used by the twin and llms-full layouts.{%- endcomment -%}
+{%- comment -%}md-components v1: the source body of include.file (path relative to the current page), front matter removed. Used by the twin and llms-full layouts.
+With include.page (the source page), a reference page's packages: table is added before the body, or after it with packages_position: after.{%- endcomment -%}
 {%- capture _raw -%}{% include_relative {{ include.file }} %}{%- endcapture -%}
 {%- assign _fm = _raw | split: "---" -%}
 {%- assign _front = "---" | append: _fm[1] | append: "---
 " -%}
-{{- _raw | remove_first: _front -}}
+{%- assign _body = _raw | remove_first: _front -%}
+{%- capture _pkmd %}{% if include.page %}{% include modootoday/markdown/packages.html page=include.page %}{% endif %}{% endcapture -%}
+{%- if _pkmd == "" -%}{{- _body -}}
+{%- elsif include.page.packages_position == "after" -%}{{- _body }}
+{{ _pkmd -}}
+{%- else -%}{{- _pkmd }}
+{{ _body -}}
+{%- endif -%}

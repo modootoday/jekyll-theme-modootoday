@@ -294,6 +294,16 @@ class CheckTest < Minitest::Test
     assert_match(/not byte-identical/, check("--twins")[0])
   end
 
+  def test_twin_with_package_table
+    page "p.md", "---\nlayout: reference\npackages_position: after\npackages: [{name: core}]\n---\n# P\n"
+    out "p/index.md", "# P\n"
+    out "llms.txt", "# Site\n"
+    out "llms-full.txt", "# P\n"
+    assert_match(/p\/index\.md: twin must be the body of p\.md with its packages: table after it/, check("--twins")[0])
+    out "p/index.md", "# P\n\n| Name | Version | Links |\n| --- | --- | --- |\n| `core` |  |  |\n"
+    refute_match(/p\/index\.md/, check("--twins")[0])
+  end
+
   def test_stub_must_use_twin_layout
     page "a.md", "---\n---\n# A\n"
     page "a.md.txt", "---\nlayout: doc\n---\n"

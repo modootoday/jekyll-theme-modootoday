@@ -3,7 +3,6 @@ title: "API 레퍼런스 데모"
 description: "그룹으로 묶은 사이드바와 패키지 표가 있는 라이브러리 레퍼런스입니다."
 layout: reference
 nav_order: 8
-twin: false
 edit: false
 sections: []
 sidebar: true

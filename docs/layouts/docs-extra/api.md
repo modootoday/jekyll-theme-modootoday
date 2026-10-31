@@ -3,7 +3,6 @@ title: "API reference demo"
 description: "A library reference with a grouped sidebar and a package table."
 layout: reference
 nav_order: 8
-twin: false
 edit: false
 sections: []
 sidebar: true
