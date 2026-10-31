@@ -26,7 +26,7 @@ jekyll-theme-modootoday standard GitHub Flavored Markdown ko ek saaf suthri docu
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.1
 plugins: [jekyll-remote-theme]
 ```
 

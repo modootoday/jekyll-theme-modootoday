@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-31
+
 ### Fixed
 
 - `hero.c` with a site's own component name (such as `c: cta` or `c: prose`) passes `modootoday-check` and renders the plain hero with no extra sheet, as in 1.1.1; the split checks (`visual:`, `side`, `ratio`) and the split sheet apply only to `hero: {c: split}`, whose wrong values are still errors.
@@ -240,7 +242,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.1
 [1.2.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0
 [1.1.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1
 [1.1.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0

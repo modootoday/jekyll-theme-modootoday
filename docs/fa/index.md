@@ -26,7 +26,7 @@ jekyll-theme-modootoday فایل‌های استاندارد GitHub Flavored Mar
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.2.1
 plugins: [jekyll-remote-theme]
 ```
 
