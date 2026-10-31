@@ -1,6 +1,6 @@
 @include mt-layer(base) {
   code, pre, kbd { font-family: mt(font-mono); }
-  :not(pre) > code { font-size: .875em; background: mt(muted); border: 1px solid mt(border); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); }
+  :not(pre) > code { font-size: .875em; background: mt(muted); border: 1px solid mt(border); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); overflow-wrap: anywhere; }
   pre { font-size: .875rem; line-height: 1.6; background: mt(muted); border: 1px solid mt(border); border-radius: mt(radius-lg);
     padding: 1rem 1.25rem; margin: 0 0 1.25rem; overflow-x: auto; tab-size: 2; }
   pre code { font-size: inherit; }

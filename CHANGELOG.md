@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Fixed
+
+- Long inline code (`:not(pre) > code`) wraps inside the column with `overflow-wrap: anywhere` in paragraphs, lists, links, headings, callouts, quotes and table cells, so narrow screens such as 390px no longer scroll sideways; fenced code blocks keep their own horizontal scroll. The docs audit adds a 360px inline-code wrap check.
+
 ## [1.2.1] - 2026-10-31
 
 ### Fixed
