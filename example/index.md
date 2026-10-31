@@ -15,7 +15,7 @@ Plain Markdown pages, styled by the theme.
 
 ## Features
 
-- **Alerts**: GitHub alert syntax becomes styled callouts. `status:available`
+- **Alerts** — GitHub alert syntax becomes styled callouts. `status:available`
 - **Tabs**: install snippets turn into tabs. `status:partial`
 - **Style guide**: a dev-only component gallery. `status:planned`
 
