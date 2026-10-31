@@ -69,16 +69,29 @@ bundle exec modootoday-check . _site --twins
 
 チェッカーは、github.com で同じように表示されない記法をすべて報告します。
 
-`remote_theme` のサイトでは Gemfile にテーマがありません。チェッカーを使うには gem を一度インストールし、ビルドしたサイトに対して実行します。
+`remote_theme` のサイトは Gemfile にテーマがないため、`bundle exec modootoday-check` は使えません。テーマのタグと同じマイナーバージョンで gem を一度インストールし、ビルドしたサイトにチェッカーを実行します。
 
 ```sh
-gem install jekyll-theme-modootoday
+gem install jekyll-theme-modootoday -v '~> 1.2'
 modootoday-check . _site --twins
 ```
 
-`gem install` の後でシェルが `modootoday-check` を見つけられない場合は、gem の bin ディレクトリーが `PATH` にありません。`ruby -S modootoday-check . _site --twins` で実行するか、`"$(gem env gemdir)/bin/modootoday-check"` を呼び出します。スクリプトの場所は `gem contents jekyll-theme-modootoday | grep bin/` で確認します。
+シェルが `modootoday-check` を見つけられない場合は、gem の bin ディレクトリーが `PATH` にありません。`ruby -S modootoday-check . _site --twins` で実行します。`can't find gem jekyll-theme-modootoday (Gem::GemNotFoundException)` で止まる場合は、`PATH` 上のスクリプトが別の gem の場所（別の Ruby、またはバージョン管理ツールが設定した `GEM_HOME`/`GEM_PATH`）のものです。`gem install` が使った場所を Ruby に伝えます。
 
-GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`。
+```sh
+GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
+```
+
+gem をインストールしない場合は、リリースのソースからチェッカーを実行します。必要なのは Ruby だけです。
+
+```sh
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.2.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.2.2/exe/modootoday-check . _site --twins
+```
+
+`remote_theme` の行に書いたタグを使います。
+
+GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.2' && modootoday-check docs docs/_site --twins`。
 
 `github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が警告を抑える設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
 

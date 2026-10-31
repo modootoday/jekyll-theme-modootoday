@@ -65,16 +65,29 @@ bundle exec modootoday-check . _site --twins
 
 The checker reports any syntax that would not render the same on github.com.
 
-A `remote_theme` site has no Gemfile entry for the theme. Install the gem once to get the checker, then run it on the built site:
+A `remote_theme` site has no Gemfile entry for the theme, so `bundle exec modootoday-check` is not available. Install the gem once, at the same minor version as the theme tag, and run the checker on the built site:
 
 ```sh
-gem install jekyll-theme-modootoday
+gem install jekyll-theme-modootoday -v '~> 1.2'
 modootoday-check . _site --twins
 ```
 
-If the shell cannot find `modootoday-check` after `gem install`, the gem's bin directory is not on `PATH`: run `ruby -S modootoday-check . _site --twins`, or call `"$(gem env gemdir)/bin/modootoday-check"`; `gem contents jekyll-theme-modootoday | grep bin/` shows where the script is.
+If the shell cannot find `modootoday-check`, the gem's bin directory is not on `PATH`: run `ruby -S modootoday-check . _site --twins`. If it stops with `can't find gem jekyll-theme-modootoday (Gem::GemNotFoundException)`, the script on `PATH` belongs to another gem location (another Ruby, or `GEM_HOME`/`GEM_PATH` set by a version manager). Point Ruby at the place `gem install` used:
 
-In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`.
+```sh
+GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
+```
+
+Without installing a gem, run the checker from the release source. It needs only Ruby:
+
+```sh
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.2.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.2.2/exe/modootoday-check . _site --twins
+```
+
+Use the tag your `remote_theme` line names.
+
+In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday -v '~> 1.2' && modootoday-check docs docs/_site --twins`.
 
 Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the Sass silencing option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
 

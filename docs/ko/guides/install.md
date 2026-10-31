@@ -68,16 +68,29 @@ bundle exec modootoday-check . _site --twins
 
 검사기는 github.com에서 똑같이 보이지 않을 문법을 알려 줍니다.
 
-`remote_theme` 사이트는 Gemfile에 테마가 없습니다. 검사기를 쓰려면 gem을 한 번 설치한 뒤 빌드한 사이트에 실행합니다.
+`remote_theme` 사이트는 Gemfile에 테마가 없으므로 `bundle exec modootoday-check`를 쓸 수 없습니다. 테마 태그와 같은 마이너 버전으로 gem을 한 번 설치하고, 빌드한 사이트에 검사기를 실행합니다.
 
 ```sh
-gem install jekyll-theme-modootoday
+gem install jekyll-theme-modootoday -v '~> 1.2'
 modootoday-check . _site --twins
 ```
 
-`gem install` 뒤에 셸이 `modootoday-check`를 찾지 못하면 gem의 bin 디렉터리가 `PATH`에 없는 것입니다. `ruby -S modootoday-check . _site --twins`로 실행하거나 `"$(gem env gemdir)/bin/modootoday-check"`를 호출합니다. 스크립트 위치는 `gem contents jekyll-theme-modootoday | grep bin/`로 확인합니다.
+셸이 `modootoday-check`를 찾지 못하면 gem의 bin 디렉터리가 `PATH`에 없는 것입니다. `ruby -S modootoday-check . _site --twins`로 실행합니다. `can't find gem jekyll-theme-modootoday (Gem::GemNotFoundException)`으로 멈추면 `PATH`에 있는 스크립트가 다른 gem 위치(다른 Ruby, 또는 버전 관리자가 설정한 `GEM_HOME`/`GEM_PATH`)의 것입니다. `gem install`이 쓴 위치를 Ruby에 알려 줍니다.
 
-GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday && modootoday-check docs docs/_site --twins`.
+```sh
+GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
+```
+
+gem을 설치하지 않으려면 릴리스 소스에서 검사기를 실행합니다. Ruby만 있으면 됩니다.
+
+```sh
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.2.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.2.2/exe/modootoday-check . _site --twins
+```
+
+`remote_theme` 줄에 적은 태그를 씁니다.
+
+GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday -v '~> 1.2' && modootoday-check docs docs/_site --twins`.
 
 `github-pages` gem이 내는 경고 두 가지는 무시해도 됩니다. `To use retry middleware with Faraday v2.0+, install faraday-retry gem`이 나와도 원격 테마는 정상으로 내려받습니다. `@import`에 관한 Sass 안내는 GitHub Pages의 Sass가 경고 숨김 옵션을 읽지 않는 이전 버전이라서 `_config.yml`에 설정해도 계속 나옵니다. 어느 쪽이든 빌드 결과는 정상입니다.
 

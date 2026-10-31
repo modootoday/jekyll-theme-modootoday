@@ -20,6 +20,8 @@ class VersionTest < Minitest::Test
       t = read(f)
       t.scan(/jekyll-theme-modootoday", "~> ([\d.]+)"/).flatten.each { |v| assert_equal minor, v, "#{f}: gem constraint" }
       t.scan(/jekyll-theme-modootoday@v([\d.]+)/).flatten.each { |v| assert_equal version, v, "#{f}: remote_theme tag" }
+      t.scan(/jekyll-theme-modootoday -v '~> ([\d.]+)'/).flatten.each { |v| assert_equal minor, v, "#{f}: gem install constraint" }
+      t.scan(%r{tags/v([\d.]+)\.tar\.gz|jekyll-theme-modootoday-([\d.]+)/exe}).flatten.compact.each { |v| assert_equal version, v, "#{f}: source tarball" }
     end
     assert_includes read("README.md"), %("~> #{minor}")
     assert_includes read("README.md"), "@v#{version}"

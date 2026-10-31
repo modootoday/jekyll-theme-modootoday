@@ -16,6 +16,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - README (English and Korean): the page layout families, section options (`c: split`, `bleed:`, `reveal:`), the 23 label languages with RTL, and the optional extras (search, light/dark toggle, Mermaid, KaTeX, JSON-LD); the guide list links Layouts, Recipes, Math and diagrams, Translation rules and Structured data. The gem description names the layouts and languages.
 - Migrate and upgrade: a 1.0/1.1 → 1.2 row (en, ko, ja). The example home page shows a `bleed:` band.
+- Install (en, ko, ja): running the checker on a `remote_theme` site, where `bundle exec modootoday-check` is not available: `gem install jekyll-theme-modootoday -v '~> 1.2'`, `ruby -S` when the script is not on `PATH`, `GEM_PATH="$(gem env gemdir)"` for `Gem::GemNotFoundException`, and running `exe/modootoday-check` from the release source without installing a gem.
 
 ## [1.2.2] - 2026-10-31
 
