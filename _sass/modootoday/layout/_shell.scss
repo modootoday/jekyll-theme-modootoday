@@ -8,6 +8,8 @@
   .mt-header-inner, .mt-main, .mt-footer-inner { width: 100%; max-width: mt(container); margin: 0 auto;
     padding-left: calc(var(--mt-gutter) + var(--mt-safe-left)); padding-right: calc(var(--mt-gutter) + var(--mt-safe-right)); }
   .mt-header-inner { display: flex; align-items: center; gap: .5rem 1.25rem; min-height: mt(header-height); }
+  // The first trailing control (search, language menu or theme toggle) pushes the group to the inline end, with or without search.
+  .mt-header-inner > :is(.mt-search, details.mt-lang, .mt-theme-toggle):not(:is(.mt-search, details.mt-lang, .mt-theme-toggle) ~ *) { margin-inline-start: auto; }
   .mt-site-title { flex: none; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.01em;
     text-decoration: none; color: mt(foreground); white-space: nowrap; }
   .mt-site-title:not(.mt-has-logo)::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;

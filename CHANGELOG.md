@@ -6,6 +6,11 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Fixed
+
+- The `redirect` layout reads the target from `page.redirect.to`, where jekyll-redirect-from 0.16 puts it, as well as from `redirect_to`; redirect stubs had an empty refresh `url=`, an empty canonical and an empty "Continue to the new page" link. The refresh, canonical and link use the same target, and the docs audit flags empty ones.
+- On a site without search the header's language menu and theme toggle sit at the inline end of the row (the first trailing control takes `margin-inline-start: auto`), in LTR and RTL; headers with search are unchanged. The docs audit checks the gap at 1440px and 390px.
+
 ## [1.2.2] - 2026-10-31
 
 ### Fixed

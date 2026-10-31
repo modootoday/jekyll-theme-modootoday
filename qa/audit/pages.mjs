@@ -8,6 +8,7 @@ import { checkTabsScroll } from "./layout/tabs-scroll.mjs";
 import { checkChipRows } from "./layout/chip-rows.mjs";
 import { checkListRows } from "./layout/list-rows.mjs";
 import { checkInlineCodeWrap } from "./layout/inline-code-wrap.mjs";
+import { checkHeaderEnd } from "./layout/header-end.mjs";
 
 async function checkRtl(page, scheme, url, fails) {
   // logical properties must mirror: callout accent bar and steps rail on the right, code left-to-right
@@ -40,6 +41,7 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   await checkListRows(page, scheme, url, fails);
   if (await page.$('[role="tablist"]')) await checkTabsScroll(page, scheme, url, fails);
   if (p === "guides/agents/" || p === "layouts/blog-news/post/") await checkInlineCodeWrap(page, scheme, url, fails);
+  if ((p === "guides/agents/" && !lang) || RTL_PAGES.includes(p)) await checkHeaderEnd(page, scheme, url, fails);
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   for (const v of axe.violations) {
     report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });
