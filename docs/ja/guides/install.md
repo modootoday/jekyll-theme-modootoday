@@ -22,7 +22,7 @@ sections:
 
 ```yaml
 # _config.yml (classic GitHub Pages build, no Gemfile needed)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.3
+remote_theme: modootoday/jekyll-theme-modootoday@v1.3.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -32,7 +32,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.2"
+gem "jekyll-theme-modootoday", "~> 1.3"
 ```
 
 ### github-pages gem
@@ -72,7 +72,7 @@ bundle exec modootoday-check . _site --twins
 `remote_theme` のサイトは Gemfile にテーマがないため、`bundle exec modootoday-check` は使えません。テーマのタグと同じマイナーバージョンで gem を一度インストールし、ビルドしたサイトにチェッカーを実行します。
 
 ```sh
-gem install jekyll-theme-modootoday -v '~> 1.2'
+gem install jekyll-theme-modootoday -v '~> 1.3'
 modootoday-check . _site --twins
 ```
 
@@ -85,13 +85,13 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 gem をインストールしない場合は、リリースのソースからチェッカーを実行します。必要なのは Ruby だけです。
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.2.3.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.2.3/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.3.0.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.3.0/exe/modootoday-check . _site --twins
 ```
 
 `remote_theme` の行に書いたタグを使います。
 
-GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.2' && modootoday-check docs docs/_site --twins`。
+GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.3' && modootoday-check docs docs/_site --twins`。
 
 `github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が警告を抑える設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
 

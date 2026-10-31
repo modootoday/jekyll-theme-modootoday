@@ -9,7 +9,7 @@ class ReleaseNotesTest < Minitest::Test
   def run_script(*args) = Open3.capture3(RbConfig.ruby, File.join(ROOT, "script/release-notes"), *args)
 
   def test_released_versions_have_notes
-    %w[v1.0.0 v1.1.0 v1.1.1 v1.2.0 v1.2.1 v1.2.2 v1.2.3].each do |tag|
+    %w[v1.0.0 v1.1.0 v1.1.1 v1.2.0 v1.2.1 v1.2.2 v1.2.3 v1.3.0].each do |tag|
       out, err, st = run_script(tag)
       assert st.success?, "#{tag}: #{err}"
       refute_match(/^## /, out, "#{tag}: notes stop before the next version heading")

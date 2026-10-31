@@ -26,14 +26,14 @@ jekyll-theme-modootoday, standart GitHub Flavored Markdown dosyalarını sade bi
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.2.3
+remote_theme: modootoday/jekyll-theme-modootoday@v1.3.0
 plugins: [jekyll-remote-theme]
 ```
 
 ### Gemfile
 
 ```ruby
-gem "jekyll-theme-modootoday", "~> 1.2"
+gem "jekyll-theme-modootoday", "~> 1.3"
 ```
 
 ### _config.yml

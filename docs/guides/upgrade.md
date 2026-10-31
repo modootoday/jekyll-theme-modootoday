@@ -54,5 +54,6 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 |---|---|---|
 | a build from the repository before 1.0.0 | 1.0 | pin `~> 1.0` or `@v1.0.0`; run `modootoday-check --strict` |
 | 1.0 or 1.1 | 1.2 | pin `~> 1.2` (or the newest `v1.2.x` tag with `remote_theme`); the new section and hero options (`bleed:`, `reveal:`, `c: split` with `visual:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
+| 1.2 | 1.3 | pin `~> 1.3` (or `@v1.3.0` with `remote_theme`); the `reference` sidebar (`sidebar: true`) and package table (`packages:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
