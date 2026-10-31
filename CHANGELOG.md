@@ -11,6 +11,11 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - The `redirect` layout reads the target from `page.redirect.to`, where jekyll-redirect-from 0.16 puts it, as well as from `redirect_to`; redirect stubs had an empty refresh `url=`, an empty canonical and an empty "Continue to the new page" link. The refresh, canonical and link use the same target, and the docs audit flags empty ones.
 - On a site without search the header's language menu and theme toggle sit at the inline end of the row (the first trailing control takes `margin-inline-start: auto`), in LTR and RTL; headers with search are unchanged. The docs audit checks the gap at 1440px and 390px.
 
+### Documentation
+
+- README (English and Korean): the page layout families, section options (`c: split`, `bleed:`, `reveal:`), the 23 label languages with RTL, and the optional extras (search, light/dark toggle, Mermaid, KaTeX, JSON-LD); the guide list links Layouts, Recipes, Math and diagrams, Translation rules and Structured data. The gem description names the layouts and languages.
+- Migrate and upgrade: a 1.0/1.1 → 1.2 row (en, ko, ja). The example home page shows a `bleed:` band.
+
 ## [1.2.2] - 2026-10-31
 
 ### Fixed
