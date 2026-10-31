@@ -31,7 +31,7 @@ modootoday:
 |---|---|---|
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
-| `components` | すべて | 配信する CSS と JS を絞る |
+| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal` で有効にしたページにだけ読み込まれます |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
 | `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
 | `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |

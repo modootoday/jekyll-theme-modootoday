@@ -6,6 +6,11 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Fixed
+
+- `hero.c` with a site's own component name (such as `c: cta` or `c: prose`) passes `modootoday-check` and renders the plain hero with no extra sheet, as in 1.1.1; the split checks (`visual:`, `side`, `ratio`) and the split sheet apply only to `hero: {c: split}`, whose wrong values are still errors.
+- With a `modootoday.components` list, the `lists`, `bleed` and `terminal` sheets were empty unless the list named them, so `chrome: terminal`, `bleed:` and `modootoday.lists` lost their styles. These three names are now always included; their sheets are linked only by pages that use them, so other pages are unchanged.
+
 ## [1.2.0] - 2026-10-31
 
 ### Added

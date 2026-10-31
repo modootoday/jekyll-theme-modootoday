@@ -160,3 +160,50 @@ class ContentComponentsTest < Minitest::Test
     %w[loading.css gallery.css tabs.js].each { |c| refute_includes home, c }
   end
 end
+
+# A site with its own modootoday.components list: lists, bleed and terminal still style the pages that
+# turn them on, and a hero with a site component name (c: cta, prose) renders the plain hero with no
+# split or section sheet, as in 1.1.1. Built with the active bundle's Jekyll.
+
+class OptinSheetsTest < Minitest::Test
+  ROOT = File.expand_path("../..", __dir__)
+
+  def self.build
+    @b ||= begin
+      dir = Dir.mktmpdir
+      src = File.join(dir, "src")
+      FileUtils.mkdir_p(src)
+      FileUtils.cp_r(%w[_layouts _includes _sass assets].map { |d| File.join(ROOT, d) }, src)
+      File.write(File.join(src, "_config.yml"), "title: S\nmarkdown: kramdown\nkramdown: {input: GFM}\npermalink: pretty\n" \
+                 "defaults: [{scope: {path: ''}, values: {layout: doc}}]\n" \
+                 "modootoday: {components: [callout, hero, cta, split], lists: {link_chips: true}}\n")
+      File.write(File.join(src, "index.md"), "---\ntitle: Home\n---\n# Home\n")
+      File.write(File.join(src, "ext.md"), "---\ntitle: Ext\nhero: {c: cta, checks: true}\nsections: [{c: prose}]\n---\n# Ext\n\n- one\n- two\n\n## A\n\nT\n")
+      File.write(File.join(src, "term.md"), "---\ntitle: Term\nhero: {bleed: true}\nsections: [{c: split, visual: code, chrome: terminal}]\n---\n# Term\n\n## Code\n\nRun.\n\n```sh\nnpm i\n```\n")
+      cfg = Jekyll.configuration("source" => src, "destination" => File.join(dir, "_site"), "quiet" => true)
+      Jekyll.logger.log_level = :error
+      Dir.chdir(src) { Jekyll::Site.new(cfg).process }
+      at_exit { FileUtils.rm_rf(dir) }
+      File.join(dir, "_site")
+    end
+  end
+
+  def read(rel) = File.read(File.join(self.class.build, rel))
+
+  def test_extension_hero_is_plain
+    h = read("ext/index.html")
+    assert_match(/<section class="mt-hero mt-hero-checks">/, h)
+    refute_includes h, "mt-c-split"
+    refute_includes h, "structure/split.css"
+    refute_includes h, "showcase/cta.css"
+    assert_includes h, "modootoday/lists.css"
+  end
+
+  def test_optin_sheets_have_rules_with_a_components_list
+    h = read("term/index.html")
+    %w[terminal bleed].each { |s| assert_includes h, "modootoday/#{s}.css" }
+    assert_includes read("assets/css/modootoday/terminal.css"), ".mt-split-terminal"
+    assert_includes read("assets/css/modootoday/bleed.css"), ".mt-bleed"
+    assert_includes read("assets/css/modootoday/lists.css"), ".mt-hero-checks"
+  end
+end

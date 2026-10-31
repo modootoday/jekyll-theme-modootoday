@@ -4,7 +4,8 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.color_scheme  auto | light | dark | auto-dark | auto-light  (default auto)
                                 auto*: toggle shown; auto follows the system, auto-dark/auto-light start in that scheme
   site.modootoday.css_layers    true | false                 (default false)
-  site.modootoday.components    list of component names      (default: all)
+  site.modootoday.components    list of component names      (default: all); lists, bleed and terminal are always added:
+                                their CSS only reaches pages that turn them on (modootoday.lists / hero.checks, bleed:, chrome: terminal)
   site.modootoday.css           split | bundle: split (default) links the core sheet plus only the sheets a page uses; bundle links one file with everything
   site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang
   site.modootoday.tokens / tokens_dark  semantic token overrides, inline :root CSS
@@ -21,7 +22,7 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- assign mt_section_sheets = "cta:showcase/cta,features:showcase/card,linkcards:showcase/linkcards,quote:showcase/quote,gallery:showcase/gallery,pricing:showcase/pricing,subscribe:showcase/subscribe,tabs:structure/tabs,accordion:structure/accordion,steps:structure/steps,timeline:structure/timeline,filetree:structure/filetree,details:structure/details,faq:structure/faq,params:structure/params,split:structure/split" | split: "," -%}
 {%- assign mt_context_sheets = "doc:sidebar|toc|page-actions,search:search,loading:loading,figure:figure-svg,lists:lists,bleed:bleed,terminal:terminal" | split: "," -%}
 {%- assign mt_components = mt_all_components -%}
-{%- if mt.components -%}{%- assign mt_components = mt.components -%}{%- endif -%}
+{%- if mt.components -%}{%- assign _mt_optin = "lists,bleed,terminal" | split: "," -%}{%- assign mt_components = mt.components | concat: _mt_optin | uniq -%}{%- endif -%}
 {%- assign mt_color_scheme = "auto" -%}
 {%- assign _mt_cs = "light dark auto-dark auto-light" | split: " " -%}
 {%- if _mt_cs contains mt.color_scheme -%}{%- assign mt_color_scheme = mt.color_scheme -%}{%- endif -%}

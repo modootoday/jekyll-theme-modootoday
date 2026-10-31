@@ -28,7 +28,7 @@ modootoday:
 |---|---|---|
 | `badges` | `true` | turn status code spans into badges; `false` keeps code |
 | `color_scheme` | `auto` | `auto` follows the OS; `auto-dark` or `auto-light` starts dark or light and keeps the toggle (the reader's choice is remembered); `light` or `dark` forces one scheme without a toggle. The starting scheme is printed in the HTML, so nothing flashes |
-| `components` | all | limit the CSS and JS that are shipped |
+| `components` | all | limit the CSS and JS that are shipped. `lists`, `bleed` and `terminal` are always included: their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:` and `chrome: terminal` |
 | `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
 | `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a group. Previous/next links walk the file in order: a group's own page, then its items |
 | `sidebar` | `auto` | `auto` adds a sidebar to `doc` pages when the nav has groups; `true` always, `false` never. Below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page |

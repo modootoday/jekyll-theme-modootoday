@@ -31,7 +31,7 @@ modootoday:
 |---|---|---|
 | `badges` | `true` | 상태 코드 스팬을 배지로 바꿈. `false`면 코드 그대로 |
 | `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
-| `components` | 전체 | 내보낼 CSS와 JS를 제한 |
+| `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`로 켠 페이지에만 연결됩니다 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
 | `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름 |
 | `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
