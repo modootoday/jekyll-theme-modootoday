@@ -6,6 +6,11 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Documentation
+
+- README (English and Korean): the page layout families, section options (`c: split`, `bleed:`, `reveal:`), the 23 label languages with RTL, and the optional extras (search, light/dark toggle, Mermaid, KaTeX, JSON-LD); the guide list links Layouts, Recipes, Math and diagrams, Translation rules and Structured data. The gem description names the layouts and languages.
+- Migrate and upgrade: a 1.0/1.1 → 1.2 row (en, ko, ja). The example home page shows a `bleed:` band.
+
 ## [1.2.2] - 2026-10-31
 
 ### Fixed

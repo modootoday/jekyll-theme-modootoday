@@ -13,9 +13,13 @@ A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them w
 - **Only standard Markdown in your pages.** GFM plus GitHub alerts; the same file reads well on github.com.
 - **Works on GitHub Pages.** Layouts and includes are Liquid only, so `remote_theme` works on the classic build; Jekyll 4 works too.
 - **Components without markup.** Alerts, status badges, card grids, tabs, buttons, accordion, steps, timeline and more come from plain Markdown patterns.
+- **Page families.** About 40 layouts beyond docs: home, blog and news, directory (team, jobs, events, sponsors, portfolio), detail pages, marketing (pricing, feature, contact, links), documents (legal, resume) and docs extras (reference, changelog, roadmap, glossary, course, book).
+- **Sections that look designed.** `sections:` items take options such as `c: split` with a `visual:` include or code, full-width `bleed:` bands, `reveal:` fade-ins and four-column cards; a split hero works the same way.
+- **23 languages, LTR and RTL.** Theme labels ship localized for 23 languages, with a language menu, `hreflang` and right-to-left layouts.
 - **Readable by agents.** Every page can have a byte-identical Markdown twin, plus `llms.txt` and `llms-full.txt`.
 - **Accessible.** Keyboard shortcuts, visible focus, safe areas on phones, 44 px touch targets, high contrast and reduced motion are built in.
 - **Checked.** `modootoday-check` validates the sources and the built site.
+- **Optional extras.** Search, a light/dark toggle, Mermaid diagrams and KaTeX math (off by default, loaded only on pages that use them) and schema.org JSON-LD.
 
 ## Install
 
@@ -93,7 +97,7 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 ## Guides
 
 - [Documentation site](https://modootoday.github.io/jekyll-theme-modootoday/) (built with this theme from [`docs/`](docs/))
-- [Install](https://modootoday.github.io/jekyll-theme-modootoday/guides/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/guides/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/guides/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/guides/customize/) · [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/layouts/blog-news/) · [Public API](https://modootoday.github.io/jekyll-theme-modootoday/reference/api/) · [Migrate and upgrade](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/recipes/csp/) · [Accessibility](https://modootoday.github.io/jekyll-theme-modootoday/guides/accessibility/) · [Roadmap](https://modootoday.github.io/jekyll-theme-modootoday/reference/roadmap/) · [Changelog](CHANGELOG.md)
+- [Install](https://modootoday.github.io/jekyll-theme-modootoday/guides/install/) · [First page](https://modootoday.github.io/jekyll-theme-modootoday/guides/first-page/) · [Components](https://modootoday.github.io/jekyll-theme-modootoday/components/) · [Configuration](https://modootoday.github.io/jekyll-theme-modootoday/guides/configuration/) · [Customize](https://modootoday.github.io/jekyll-theme-modootoday/guides/customize/) · [Layouts](https://modootoday.github.io/jekyll-theme-modootoday/layouts/) · [Blog and news](https://modootoday.github.io/jekyll-theme-modootoday/layouts/blog-news/) · [Recipes](https://modootoday.github.io/jekyll-theme-modootoday/recipes/) · [Math and diagrams](https://modootoday.github.io/jekyll-theme-modootoday/recipes/math-diagrams/) · [Translation rules](https://modootoday.github.io/jekyll-theme-modootoday/guides/translation/) · [Structured data](https://modootoday.github.io/jekyll-theme-modootoday/guides/structured-data/) · [Public API](https://modootoday.github.io/jekyll-theme-modootoday/reference/api/) · [Migrate and upgrade](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/) · [CSP](https://modootoday.github.io/jekyll-theme-modootoday/recipes/csp/) · [Accessibility](https://modootoday.github.io/jekyll-theme-modootoday/guides/accessibility/) · [Roadmap](https://modootoday.github.io/jekyll-theme-modootoday/reference/roadmap/) · [Changelog](CHANGELOG.md)
 - Supported stacks: GitHub Pages (`github-pages` 232, Jekyll 3.10, Ruby 3.3.4) and Jekyll 4.4 on Ruby 3.2 to 3.4, all tested in CI; Jekyll 3.9 is the tested floor.
 - [Security policy](SECURITY.md) · [Code of conduct](CODE_OF_CONDUCT.md)
 
