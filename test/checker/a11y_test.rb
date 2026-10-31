@@ -22,6 +22,8 @@ class A11yCheckTest < Minitest::Test
   def test_img_without_alt_is_error = assert_match(/<img> without alt/, run_on("<img src=\"a.png\">\n"))
   def test_img_with_alt_ok = refute_match(/without alt/, run_on("<img src=\"a.png\" alt=\"\">\n"))
   def test_empty_link_is_error = assert_match(/empty link text/, run_on("See [](https://x.test).\n"))
+  def test_code_span_link_text_is_a_name = refute_match(/empty link text/, run_on("See [`file.tsx`](https://x.test) and [**`a.rb`**](https://x.test).\n"))
+  def test_empty_emphasis_link_is_still_error = assert_match(/empty link text/, run_on("See [** **](https://x.test).\n"))
   def test_vague_link_warns = assert_match(/vague link text "click here"/, run_on("[click here](https://x.test)\n"))
   def test_lighthouse_vague_link_warns = assert_match(/vague link text "Start"/, run_on("[Start](https://x.test)\n"))
   def test_heading_skip_warns = assert_match(/jumps from h2 to h4/, run_on("## A\n\n#### B\n"))

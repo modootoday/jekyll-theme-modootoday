@@ -10,6 +10,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - The `redirect` layout reads the target from `page.redirect.to`, where jekyll-redirect-from 0.16 puts it, as well as from `redirect_to`; redirect stubs had an empty refresh `url=`, an empty canonical and an empty "Continue to the new page" link. The refresh, canonical and link use the same target, and the docs audit flags empty ones.
 - On a site without search the header's language menu and theme toggle sit at the inline end of the row (the first trailing control takes `margin-inline-start: auto`), in LTR and RTL; headers with search are unchanged. The docs audit checks the gap at 1440px and 390px.
+- `modootoday-check` accepts a link whose text is a code span, such as [`file.tsx`](…); the code text is its accessible name. Links with no text, or only emphasis marks, are still an "empty link text" error.
 
 ### Documentation
 

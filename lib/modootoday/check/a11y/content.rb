@@ -30,6 +30,8 @@ module Modootoday
 
       def links(ctx, r, code)
         each_line(code, /(?<!!)\[([^\]]*)\]\([^)]*\)/) do |n, m|
+          # Inline code arrives as a `` placeholder: [`file.tsx`](…) has a name (the code text), so it is not empty.
+          next if m[1].include?("``")
           t = m[1].gsub(/[*_`]/, "").strip
           next ctx.errs << "#{r}:#{n}: empty link text [](…) (announced as just \"link\"); write what it opens" if t.empty?
           ctx.warns << "#{r}:#{n}: vague link text \"#{t}\"; name the destination so it makes sense out of context" if t.match?(VAGUE)
