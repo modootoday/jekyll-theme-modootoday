@@ -16,6 +16,7 @@ nav_order: 50
 | `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](/jekyll-theme-modootoday/ja/layouts/docs-extra/hub/) |
 | `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](/jekyll-theme-modootoday/ja/layouts/docs-extra/course/) |
 | `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](/jekyll-theme-modootoday/ja/layouts/docs-extra/book/) |
+| `reference` に `sidebar: true`、`packages:` | メンバーの `group`、`packages: [{name, version, text, url, links: [{label, url}]}]`、`packages_title` | TechArticle | [API リファレンス](/jekyll-theme-modootoday/ja/layouts/docs-extra/api/) |
 
 ## 変更履歴
 
@@ -28,6 +29,10 @@ nav_order: 50
 ## コース
 
 レッスンの `minutes` の合計が、タイトル下の合計時間と `timeRequired` になります。コースの提供者はサイトの発行者で、`description:` は必須です。
+
+## API サイドバーとパッケージ表
+
+どちらも `reference` レイアウトで必要なときだけ有効にするもので、使わないページの表示は変わりません。`sidebar: true` にするとメンバー一覧が横の列に移り、広い画面（64rem 以上）ではスクロールしても表示されたままになります。`group:` が同じメンバーはその名前の下にまとまり、グループは最初に現れた順に並びます。狭い画面では同じ一覧が本文の上に置かれます。`packages:` は本文の前に、パッケージごとに 1 行で名前・バージョン・リンクを示す表を加え、`text` は名前の下に表示されます。小さな画面では行ごとに小さなカードのように積み重なります。`packages:` があるリファレンスページでは `members:` を省略できます。どちらも CSS だけで動きます。
 
 ## 検査
 

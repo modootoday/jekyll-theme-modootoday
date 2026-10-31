@@ -3,13 +3,22 @@ layout: default
 mt_bundle: docs-extra
 mt_main: mt-dx mt-dx-reference
 ---
-{%- comment -%}reference: an API or option reference. members: [{name, signature, text, since, deprecated, id}] become a contents
-list and one section each (h2 with the name in code, the signature, the text, since / deprecated notes); the body comes first.{%- endcomment -%}
-<article aria-labelledby="mt-dx-title">
+{%- comment -%}reference: an API or option reference. members: [{name, signature, text, since, deprecated, id, group}] become a contents
+list and one section each (h2 with the name in code, the signature, the text, since / deprecated notes); the body comes first.
+Opt-in: sidebar: true puts the contents in a sticky side column (members grouped by group, in order of first use; CSS only, a plain
+list on narrow screens). packages: [{name, version, text, url, links: [{label, url}]}] adds a package table (packages.html) before the body.{%- endcomment -%}
+<article aria-labelledby="mt-dx-title"{% if page.sidebar %} class="mt-dx-api"{% endif %}>
 {%- include modootoday/docs-extra/head.html %}
-{%- if page.members.size > 1 %}
+{%- if page.sidebar and page.members.size > 0 %}
+<nav class="mt-dx-side" aria-label="{{ mt_t_layouts_contents }}"><ul>
+{%- assign _groups = page.members | group_by: "group" %}{% for g in _groups %}
+{%- capture _links %}{% for m in g.items %}<li><a href="#{{ m.id | default: m.name | slugify }}"><code>{{ m.name }}</code></a></li>{% endfor %}{% endcapture %}
+{%- if g.name != "" %}<li><span class="mt-dx-side-h">{{ g.name }}</span><ul>{{ _links }}</ul></li>{% else %}{{ _links }}{% endif %}
+{%- endfor %}</ul></nav>
+{%- elsif page.members.size > 1 %}
 <nav class="mt-dx-toc" aria-label="{{ mt_t_layouts_contents }}"><ul>{% for m in page.members %}<li><a href="#{{ m.id | default: m.name | slugify }}"><code>{{ m.name }}</code></a></li>{% endfor %}</ul></nav>
 {%- endif %}
+{%- if page.packages %}{% include modootoday/docs-extra/packages.html items=page.packages caption=page.packages_title %}{% endif %}
 <div class="mt-dx-body">
 {{ content }}
 </div>

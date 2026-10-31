@@ -16,6 +16,7 @@ These layouts cover the pages around a manual. They load `modootoday-docs-extra.
 | `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](/jekyll-theme-modootoday/layouts/docs-extra/hub/) |
 | `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](/jekyll-theme-modootoday/layouts/docs-extra/course/) |
 | `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](/jekyll-theme-modootoday/layouts/docs-extra/book/) |
+| `reference` with `sidebar: true` and `packages:` | `group` on members; `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title` | TechArticle | [API reference](/jekyll-theme-modootoday/layouts/docs-extra/api/) |
 
 ## Changelog
 
@@ -28,6 +29,10 @@ Terms are sorted for you and grouped by first letter, with a letter bar that lin
 ## Course
 
 Lesson `minutes` add up to the total shown under the title and to `timeRequired`. The course provider is the site publisher; a `description:` is required.
+
+## API sidebar and package table
+
+Both are opt-in on the `reference` layout; a page without them renders as before. `sidebar: true` moves the member list into a side column that stays in view on wide screens (64rem and up). Members that share a `group:` are listed under that label, in the order the groups first appear; on narrow screens the same list sits above the page. `packages:` adds a table with one row per package (name, version and links, with the `text` under the name), before the body; on small screens each row stacks into a short card. A reference page with `packages:` may leave out `members:`. Both use CSS only.
 
 ## Checks
 

@@ -17,7 +17,16 @@ module Modootoday
           send(fm["layout"], errs, w, fm)
         end
 
-        def reference(errs, w, fm) = Shape.list(errs, w, "members", fm["members"], any: %w[name], optional: false)
+        # members is required unless the page lists packages; sidebar: is true or false; packages need a name, links a label and url.
+        def reference(errs, w, fm)
+          Shape.list(errs, w, "members", fm["members"], any: %w[name], optional: fm.key?("packages"))
+          errs << "#{w}: sidebar must be true or false" unless [nil, true, false].include?(fm["sidebar"])
+          Shape.list(errs, w, "packages", fm["packages"], any: %w[name]) do |p, i|
+            Shape.list(errs, w, "packages[#{i}].links", p["links"], any: %w[label]) do |l, j|
+              errs << "#{w}: packages[#{i}].links[#{j}].url is required" unless Shape.url?(l["url"])
+            end
+          end
+        end
 
         def changelog(errs, w, fm)
           Shape.list(errs, w, "releases", fm["releases"], any: %w[version], optional: false) do |r, i|

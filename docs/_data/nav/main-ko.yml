@@ -63,6 +63,7 @@
         - {title: 허브 데모, url: /ko/layouts/docs-extra/hub/}
         - {title: 강좌 데모, url: /ko/layouts/docs-extra/course/}
         - {title: 책 데모, url: /ko/layouts/docs-extra/book/}
+        - {title: API 레퍼런스 데모, url: /ko/layouts/docs-extra/api/}
     - title: 문서
       url: /ko/layouts/documents/
       items:

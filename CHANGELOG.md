@@ -6,6 +6,13 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- `reference` layout, opt-in API sidebar: `sidebar: true` puts the member list in a side column that stays in view from 64rem up, with members grouped under their `group:` label (in order of first use); narrower screens show the same list above the page. CSS only, in the docs-extra bundle.
+- `reference` layout, opt-in package table: `packages: [{name, version, text, url, links: [{label, url}]}]` (and an optional `packages_title:` caption) lists packages or crates with name, version, description and links before the body; rows stack into cards on small screens. The table is also available as `{% include modootoday/docs-extra/packages.html items=… %}`. A page with `packages:` may leave out `members:`.
+- `modootoday-check` reports a `sidebar:` that is not true or false, a package with no `name`, and a package link with no `url`.
+- API reference demo (en, ko, ja) and docs for both parts; the docs audit covers the new demo page.
+
 ## [1.2.3] - 2026-10-31
 
 ### Changed

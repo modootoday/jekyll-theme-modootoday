@@ -62,4 +62,43 @@ class DocsExtraLayoutsTest < Minitest::Test
       ["items[0].status must be one of", "listed 2 times", "terms[2].text is required", "unknown keys notes", "effective must be a date", "isbn must be"].each { |m| assert_includes out, m }
     end
   end
+
+  API = {
+    "a.md" => "title: A\nlayout: reference\nsidebar: true\npackages_title: Crates\n" \
+              "members: [{name: build, group: CLI}, {name: serve, group: CLI}, {name: Config, group: Library}]\n" \
+              "packages: [{name: core, version: 1.4.0, text: The `core` crate., url: '#', links: [{label: Docs, url: '#'}]}, {name: cli}]\n",
+    "p.md" => "title: P\nlayout: reference\npackages: [{name: core}]\n",
+  }.freeze
+
+  def test_api_sidebar_and_package_table
+    Dir.mktmpdir do |d|
+      src, s = build_site(d, PAGES.merge(API))
+      a = html(s, "a.md")
+      assert_includes a, '<article aria-labelledby="mt-dx-title" class="mt-dx-api">'
+      assert_match(%r{<nav class="mt-dx-side" aria-label="Contents"><ul><li><span class="mt-dx-side-h">CLI</span><ul><li><a href="#build">.*<li><span class="mt-dx-side-h">Library</span><ul><li><a href="#config">}m, a)
+      refute_includes a, "mt-dx-toc"
+      assert_includes a, "<caption>Crates</caption>"
+      assert_includes a, '<th scope="col">Name</th><th scope="col">Version</th><th scope="col">Links</th>'
+      assert_match(%r{<tr id="core"><th scope="row"><code><a href="#">core</a></code><span>The <code[^>]*>core</code> crate.</span></th>}, a)
+      assert_includes a, '<td data-label="Version"><code>1.4.0</code></td>'
+      assert_includes a, '<td data-label="Links"></td>'
+      r = html(s, "r.md")
+      refute_includes r, "mt-dx-api"
+      refute_includes r, "mt-dx-pkgs"
+      assert_includes r, '<nav class="mt-dx-toc"'
+      refute_includes html(s, "p.md"), "mt-dx-member"
+      out, st = check(src, s)
+      assert st.success?, out
+    end
+  end
+
+  def test_api_checker_contracts
+    Dir.mktmpdir do |d|
+      bad = { "a.md" => "title: A\nlayout: reference\nsidebar: yes please\nmembers: [{name: x}]\npackages: [{version: 1}, {name: b, links: [{label: L}]}]\n" }
+      src, s = build_site(d, bad)
+      out, st = check(src, s)
+      refute st.success?
+      ["sidebar must be true or false", "packages[0] needs name", "packages[1].links[0].url is required"].each { |m| assert_includes out, m }
+    end
+  end
 end

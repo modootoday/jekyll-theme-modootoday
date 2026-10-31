@@ -63,6 +63,7 @@
         - {title: ハブのデモ, url: /ja/layouts/docs-extra/hub/}
         - {title: コースのデモ, url: /ja/layouts/docs-extra/course/}
         - {title: 書籍のデモ, url: /ja/layouts/docs-extra/book/}
+        - {title: API リファレンスのデモ, url: /ja/layouts/docs-extra/api/}
     - title: 文書
       url: /ja/layouts/documents/
       items:

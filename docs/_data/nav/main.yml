@@ -63,6 +63,7 @@
         - {title: Hub demo, url: /layouts/docs-extra/hub/}
         - {title: Course demo, url: /layouts/docs-extra/course/}
         - {title: Book demo, url: /layouts/docs-extra/book/}
+        - {title: API reference demo, url: /layouts/docs-extra/api/}
     - title: Documents
       url: /layouts/documents/
       items:
