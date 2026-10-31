@@ -17,10 +17,11 @@ module Modootoday
           send(fm["layout"], errs, w, fm)
         end
 
-        # members is required unless the page lists packages; sidebar: is true or false; packages need a name, links a label and url.
+        # members is required unless the page lists packages; sidebar: and packages_compact: are true or false, packages_position: before or after; packages need a name, links a label and url.
         def reference(errs, w, fm)
           Shape.list(errs, w, "members", fm["members"], any: %w[name], optional: fm.key?("packages"))
-          errs << "#{w}: sidebar must be true or false" unless [nil, true, false].include?(fm["sidebar"])
+          %w[sidebar packages_compact].each { |k| errs << "#{w}: #{k} must be true or false" unless [nil, true, false].include?(fm[k]) }
+          Shape.one_of(errs, w, "packages_position", fm["packages_position"], %w[before after]) if fm.key?("packages_position")
           Shape.list(errs, w, "packages", fm["packages"], any: %w[name]) do |p, i|
             Shape.list(errs, w, "packages[#{i}].links", p["links"], any: %w[label]) do |l, j|
               errs << "#{w}: packages[#{i}].links[#{j}].url is required" unless Shape.url?(l["url"])

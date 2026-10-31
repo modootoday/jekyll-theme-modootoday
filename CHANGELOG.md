@@ -6,6 +6,16 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- `reference` layout: `packages_compact: true` leaves out the `text` under each package name, for pages whose body already describes the packages, and `packages_position: after` puts the package table below the body (default `before`). The include takes `compact=true` as well.
+
+### Fixed
+
+- `reference` layout: GitHub alerts (`> [!TIP]` and the rest), badges, `kbd:` and figures in the body are converted as in the `doc` layout; before, they stayed as plain quotes and `modootoday-check` reported unconverted alert markers.
+- Package table: the caption now sits inside the table border on wide screens (the border moved to a wrapper `div.mt-dx-pkgs`).
+- Docs: the package table include is for your own layouts and HTML pages; Markdown pages set `packages:` in front matter, since `modootoday-check` rejects Liquid in page bodies.
+
 ## [1.3.0] - 2026-10-31
 
 ### Added

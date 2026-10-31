@@ -68,6 +68,8 @@ class DocsExtraLayoutsTest < Minitest::Test
               "members: [{name: build, group: CLI}, {name: serve, group: CLI}, {name: Config, group: Library}]\n" \
               "packages: [{name: core, version: 1.4.0, text: The `core` crate., url: '#', links: [{label: Docs, url: '#'}]}, {name: cli}]\n",
     "p.md" => "title: P\nlayout: reference\npackages: [{name: core}]\n",
+    "k.md" => ["title: K\nlayout: reference\npackages_compact: true\npackages_position: after\npackages: [{name: core, text: Hidden words.}]\n",
+               "Intro.\n\n> [!TIP]\n> Pin the version.\n"],
   }.freeze
 
   def test_api_sidebar_and_package_table
@@ -87,6 +89,12 @@ class DocsExtraLayoutsTest < Minitest::Test
       refute_includes r, "mt-dx-pkgs"
       assert_includes r, '<nav class="mt-dx-toc"'
       refute_includes html(s, "p.md"), "mt-dx-member"
+      assert_operator a.index('<div class="mt-dx-pkgs"><table>'), :<, a.index('<div class="mt-dx-body">')
+      k = html(s, "k.md")
+      refute_includes k, "Hidden words."
+      assert_operator k.index("Intro."), :<, k.index('<div class="mt-dx-pkgs">')
+      assert_match(/<blockquote class="mt-callout mt-callout-tip"/, k)
+      refute_includes k, "[!TIP]"
       out, st = check(src, s)
       assert st.success?, out
     end
@@ -94,11 +102,11 @@ class DocsExtraLayoutsTest < Minitest::Test
 
   def test_api_checker_contracts
     Dir.mktmpdir do |d|
-      bad = { "a.md" => "title: A\nlayout: reference\nsidebar: yes please\nmembers: [{name: x}]\npackages: [{version: 1}, {name: b, links: [{label: L}]}]\n" }
+      bad = { "a.md" => "title: A\nlayout: reference\nsidebar: yes please\npackages_compact: 1\npackages_position: top\nmembers: [{name: x}]\npackages: [{version: 1}, {name: b, links: [{label: L}]}]\n" }
       src, s = build_site(d, bad)
       out, st = check(src, s)
       refute st.success?
-      ["sidebar must be true or false", "packages[0] needs name", "packages[1].links[0].url is required"].each { |m| assert_includes out, m }
+      ["sidebar must be true or false", "packages_compact must be true or false", "packages_position must be one of", "packages[0] needs name", "packages[1].links[0].url is required"].each { |m| assert_includes out, m }
     end
   end
 end

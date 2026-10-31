@@ -20,3 +20,6 @@ packages:
   - {name: "modootoday-lint", version: "0.9.2", text: "Checks pages against the layout contracts.", url: "#", links: [{label: "Docs", url: "#"}, {label: "Source", url: "#"}]}
 ---
 The sidebar groups members by `group:`; the table lists the packages that make up the library.
+
+> [!TIP]
+> Pin the packages to one minor version so the table and the members stay in step.

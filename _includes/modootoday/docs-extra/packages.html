@@ -1,14 +1,15 @@
 {%- include modootoday/i18n.html -%}
-{%- comment -%}Package table: include.items is [{name, version, text, url, links: [{label, url}]}]; include.caption is optional.
-One row per package (the name is the row header, the text under it); rows stack into cards on narrow screens. CSS in docs-extra.{%- endcomment -%}
-<table class="mt-dx-pkgs">
+{%- comment -%}Package table: include.items is [{name, version, text, url, links: [{label, url}]}]; include.caption is optional;
+compact=true leaves out each package's text (for pages whose body already describes the packages).
+One row per package (the name is the row header, the text under it); rows stack into cards on narrow screens. CSS in docs-extra; the wrapper draws the border so the caption sits inside it.{%- endcomment -%}
+<div class="mt-dx-pkgs"><table>
 {%- if include.caption %}<caption>{{ include.caption }}</caption>{% endif %}
 <thead><tr><th scope="col">{{ mt_t_layouts_name }}</th><th scope="col">{{ mt_t_layouts_version }}</th><th scope="col">{{ mt_t_layouts_links }}</th></tr></thead>
 <tbody>
 {%- for p in include.items %}
-<tr id="{{ p.id | default: p.name | slugify }}"><th scope="row"><code>{% if p.url %}<a href="{% include modootoday/link.html url=p.url %}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</code>{% if p.text %}<span>{{ p.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</span>{% endif %}</th>
+<tr id="{{ p.id | default: p.name | slugify }}"><th scope="row"><code>{% if p.url %}<a href="{% include modootoday/link.html url=p.url %}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</code>{% if p.text and include.compact != true %}<span>{{ p.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</span>{% endif %}</th>
 <td data-label="{{ mt_t_layouts_version }}">{% if p.version %}<code>{{ p.version }}</code>{% endif %}</td>
 <td data-label="{{ mt_t_layouts_links }}">{% if p.links.size > 0 %}<ul>{% for l in p.links %}<li><a href="{% include modootoday/link.html url=l.url %}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.label }}</a></li>{% endfor %}</ul>{% endif %}</td></tr>
 {%- endfor %}
 </tbody>
-</table>
+</table></div>
