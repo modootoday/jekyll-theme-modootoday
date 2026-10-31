@@ -62,8 +62,19 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "hero split: needs visual:"
     assert_includes out, "hero.side=\"left\""
     assert_includes out, "hero.ratio=\"2:1\""
-    out, = check("---\ntitle: A\nhero: {c: tabs}\nsections: [a]\n---\n# A\n\n## A\n\nT\n")
-    assert_includes out, "hero.c must be split"
+  end
+
+  # A site registry or extension component name on hero.c (c: hero|prose|cta) passes as in 1.1.1;
+  # only c: split gets the split checks (visual, side, ratio).
+  def test_hero_extension_component_names_pass
+    %w[hero prose cta tabs].each do |c|
+      out, = check("---\ntitle: A\nhero: {c: #{c}, side: left, ratio: \"2:1\"}\nsections: [a]\n---\n# A\n\n## A\n\nT\n")
+      refute_match(/hero\.c must|hero split:|hero\.side|hero\.ratio/, out, c)
+    end
+    out, = check("---\ntitle: A\nhero: {c: split, side: left, ratio: \"2:1\"}\nsections: [a]\n---\n# A\n\n## A\n\nT\n")
+    assert_includes out, "hero split: needs visual:"
+    assert_includes out, "hero.side=\"left\""
+    assert_includes out, "hero.ratio=\"2:1\""
   end
 
   def test_split_visual_code

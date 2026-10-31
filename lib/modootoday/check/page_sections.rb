@@ -23,15 +23,14 @@ module Modootoday
         hero = meta["hero"]
         errs << "#{r}: hero: must be a map such as {visual: name}" if hero && !hero.is_a?(Hash)
         errs << "#{r}: hero.checks must be true or false" if hero.is_a?(Hash) && hero.key?("checks") && ![true, false].include?(hero["checks"])
-        split_hero(errs, r, hero) if hero.is_a?(Hash) && hero.key?("c")
+        split_hero(errs, r, hero) if hero.is_a?(Hash) && hero["c"] == "split"
         cl = code.lines
         hero_md = b.lines[0...(cl.index { |l| l =~ /^##(?: |$)/ } || cl.size)].to_a.join
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil, sec_md.map { |m| m && m[1] }, hero_md)
       end
 
-      # hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}: split is the only hero component.
+      # hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"} is the theme's split hero; any other hero.c (a site registry or extension component name) passes through unchecked, as in 1.1.1.
       def split_hero(errs, r, hero)
-        return errs << "#{r}: hero.c must be split (got #{hero['c'].inspect})" unless hero["c"] == "split"
         errs << "#{r}: hero split: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless hero["visual"].is_a?(String) && !hero["visual"].strip.empty?
         errs << "#{r}: hero.side=#{hero['side'].inspect} not in [\"start\", \"end\"]" if hero.key?("side") && !%w[start end].include?(hero["side"])
         errs << "#{r}: hero.ratio=#{hero['ratio'].inspect} not in [\"1:1\", \"5:7\"]" if hero.key?("ratio") && !%w[1:1 5:7].include?(hero["ratio"])
