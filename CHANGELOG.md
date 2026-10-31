@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-10-31
+
 ### Fixed
 
 - Markdown twins and `llms-full.txt` now include a `reference` page's `packages:` table as a Markdown table (with `packages_title`, before or after the body as `packages_position` sets, without the text when `packages_compact: true`); pipes in cells are escaped. `modootoday-check --twins` accepts that table around the byte-identical body. Pages without `packages:` are unchanged.
@@ -291,7 +293,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.1
 [1.4.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0
 [1.3.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.3.0
 [1.2.3]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.3

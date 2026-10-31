@@ -42,7 +42,7 @@ Gemfile 없이 GitHub Pages에서(`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.4.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins:
   - jekyll-remote-theme
 ```
