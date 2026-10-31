@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Changed
+
+- In a `c: features` card, the separator after a bold title written as `**Title**: text` or `**Title**：text` is not shown, the same as ` — ` already was. Only the one separator right after an item's opening title goes; `**Title**::`, `**Title**:text` with no space, colons later in the text and bold text mid-item are unchanged.
+
 ### Fixed
 
 - The `redirect` layout reads the target from `page.redirect.to`, where jekyll-redirect-from 0.16 puts it, as well as from `redirect_to`; redirect stubs had an empty refresh `url=`, an empty canonical and an empty "Continue to the new page" link. The refresh, canonical and link use the same target, and the docs audit flags empty ones.

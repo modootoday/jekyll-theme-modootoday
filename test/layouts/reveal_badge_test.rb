@@ -27,6 +27,19 @@ class RevealBadgeTest < Minitest::Test
     end
   end
 
+  # **Title**: and **Title**： lose one separator in a card; "::", a colon with no space and bold text mid-item stay.
+  def test_features_colon_separator
+    pages = { "c.md" => ["title: C\nlayout: doc\nsections: [{c: features, name: f}, f2]\n",
+                         "# C\n\n## F\n\n- **A**: one: x\n- **B**：둘\n- **C**:: three\n- **D**:four\n- **E** — five, see **F**: six\n- plain **G**: seven\n\n## F2\n\n- **H**: eight\n"] }
+    Dir.mktmpdir do |d|
+      _, s = build_site(d, pages)
+      h = html(s, "c.md")
+      f, rest = h.split('data-section="f2"')
+      ["<strong>A</strong> one: x", "<strong>B</strong> 둘", "<strong>C</strong>:: three", "<strong>D</strong>:four", "<strong>E</strong> five, see <strong>F</strong>: six", "plain <strong>G</strong>: seven"].each { |t| assert_includes f, t }
+      assert_includes rest, "<strong>H</strong>: eight"
+    end
+  end
+
   def test_checker_rejects_bad_values
     bad = { "b.md" => ["title: B\nlayout: doc\nsections: [{c: features, name: f, badge: top, reveal: yes please}]\n", "# B\n\n## F\n\n- **A** — a\n- **B** — b\n"] }
     Dir.mktmpdir do |d|
