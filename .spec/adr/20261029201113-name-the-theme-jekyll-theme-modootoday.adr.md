@@ -3,7 +3,9 @@ id: adr:modootoday/20261029201113
 title: Name the theme jekyll-theme-modootoday
 status: active
 created: 2026-10-29T20:11:13Z
-updated: 2026-10-29T20:11:20Z
+updated: 2026-11-01T03:56:51Z
+rel:
+  governs: [jekyll-theme-modootoday.gemspec]
 ---
 
 # Name the theme jekyll-theme-modootoday

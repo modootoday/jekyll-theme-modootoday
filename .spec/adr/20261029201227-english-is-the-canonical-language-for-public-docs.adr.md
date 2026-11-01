@@ -3,7 +3,9 @@ id: adr:modootoday/20261029201227
 title: English is the canonical language for public docs
 status: active
 created: 2026-10-29T20:12:27Z
-updated: 2026-10-29T20:12:27Z
+updated: 2026-11-01T03:56:52Z
+rel:
+  governs: [TRANSLATING.md]
 ---
 
 # English is the canonical language for public docs

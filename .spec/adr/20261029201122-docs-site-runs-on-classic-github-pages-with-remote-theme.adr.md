@@ -3,7 +3,9 @@ id: adr:modootoday/20261029201122
 title: Docs site runs on classic GitHub Pages with remote_theme
 status: active
 created: 2026-10-29T20:11:13Z
-updated: 2026-10-29T20:11:20Z
+updated: 2026-11-01T03:56:51Z
+rel:
+  governs: [docs/_config.yml]
 ---
 
 # Docs site runs on classic GitHub Pages with remote_theme

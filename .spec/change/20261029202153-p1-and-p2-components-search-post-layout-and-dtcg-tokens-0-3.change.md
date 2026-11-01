@@ -1,9 +1,9 @@
 ---
 id: change:modootoday/20261029202153
 title: "P1 and P2 components, search, post layout and DTCG tokens (0.3.0, 0.4.0)"
-status: active
+status: archived
 created: 2026-10-29T20:21:53Z
-updated: 2026-10-29T20:21:53Z
+updated: 2026-11-01T03:56:44Z
 ---
 
 # P1 and P2 components, search, post layout and DTCG tokens (0.3.0, 0.4.0)

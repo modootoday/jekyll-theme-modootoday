@@ -3,7 +3,9 @@ id: adr:modootoday/20261030090000
 title: Screen-reader audit and authoring rules
 status: active
 created: 2026-10-30T09:00:00Z
-updated: 2026-10-30T09:00:00Z
+updated: 2026-11-01T03:56:52Z
+rel:
+  governs: [RULES.md]
 ---
 
 # Screen-reader audit and authoring rules
