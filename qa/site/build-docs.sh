@@ -3,6 +3,6 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 out="${1:-docs/_site}"
-tmp="$(mktemp -d)"
+tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
 sed -e 's/^remote_theme:.*/theme: jekyll-theme-modootoday/' -e 's/^plugins: \[jekyll-remote-theme, */plugins: [/' docs/_config.yml > "$tmp/_config.yml"
 bundle exec jekyll build -q -s docs -d "$out" --config "$tmp/_config.yml"
