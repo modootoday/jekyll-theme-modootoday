@@ -22,7 +22,7 @@ description: 테마가 지원하는 것, 동작하는 환경, 앞으로의 방�
 
 ## 호환성
 
-- `remote_theme`을 쓰는 GitHub Pages(`github-pages` 232, Jekyll 3.10)와 Ruby 3.2~3.4의 Jekyll 4.4. 지원하는 가장 오래된 버전은 Jekyll 3.9입니다.
+- `remote_theme`을 쓰는 GitHub Pages(`github-pages` 232, Jekyll 3.10)와 Ruby 3.3~3.4의 Jekyll 4.4. 지원하는 가장 오래된 버전은 Jekyll 3.9입니다.
 - 공개 API는 [공개 API](../api/)에 정리되어 있고, 변경 사항은 CHANGELOG에 기록됩니다. [마이그레이션과 업그레이드](../../guides/upgrade/)를 보세요.
 
 ## 다음

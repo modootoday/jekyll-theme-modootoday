@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Changed
+
+- Ruby 3.3 is now the oldest supported Ruby (`required_ruby_version >= 3.3`); Ruby 3.2 has reached end of life. CI tests Jekyll 4 on Ruby 3.3 and 3.4, and also runs Ruby 4.0 as an allowed-failure entry.
+
 ## [1.4.1] - 2026-10-31
 
 ### Fixed

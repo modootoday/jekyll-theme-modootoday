@@ -12,6 +12,8 @@ jobs:
   ruby:
     name: ${{ matrix.stack }} (ruby ${{ matrix.ruby }})
     runs-on: ubuntu-24.04
+    # Ruby 4.0 runs as an allowed-failure entry (not yet verified outside CI)
+    continue-on-error: ${{ matrix.experimental == true }}
     strategy:
       fail-fast: false
       matrix:
@@ -22,14 +24,18 @@ jobs:
             check_flags: --twins --github-pages
           # Jekyll 4: oldest supported Ruby (gemspec required_ruby_version) and latest
           - stack: jekyll4
-            ruby: "3.2"
+            ruby: "3.3"
             check_flags: --twins
           - stack: jekyll4
             ruby: "3.4"
             check_flags: --twins
+          - stack: jekyll4
+            ruby: "4.0"
+            check_flags: --twins
+            experimental: true
           # gemspec floor: jekyll >= 3.9 without the github-pages gem
           - stack: jekyll39
-            ruby: "3.2"
+            ruby: "3.3"
             check_flags: --twins
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile

@@ -22,7 +22,7 @@ description: テーマがサポートする機能、動作環境、今後の方�
 
 ## 互換性
 
-- `remote_theme` を使う GitHub Pages (`github-pages` 232、Jekyll 3.10) と、Ruby 3.2〜3.4 の Jekyll 4.4。サポートする最も古いバージョンは Jekyll 3.9 です。
+- `remote_theme` を使う GitHub Pages (`github-pages` 232、Jekyll 3.10) と、Ruby 3.3〜3.4 の Jekyll 4.4。サポートする最も古いバージョンは Jekyll 3.9 です。
 - 公開 API は[公開 API](../api/)にまとめてあり、変更は CHANGELOG に記録されます。[移行とアップグレード](../../guides/upgrade/)を参照してください。
 
 ## 今後
