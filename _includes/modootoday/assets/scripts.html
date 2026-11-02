@@ -1,0 +1,17 @@
+{%- comment -%}Theme scripts: the js rows of assets/registry.html whose name the conditions below put in _mta_on, then the
+  renderers. Needs config.html, stylesheets.html (mt_page_c, mt_blog_css, mt_search_index), doc/twin.html and _chrome.{%- endcomment -%}
+{%- assign _mta_on = "|scroll-region|" -%}
+{%- if mt_components contains "tabs" and mt_page_c contains "|tabs|" -%}{%- assign _mta_on = _mta_on | append: "tabs|" -%}{%- endif -%}
+{%- if site.title and _chrome -%}{%- assign _mta_on = _mta_on | append: "menu|" -%}{%- endif -%}
+{%- if mt_components contains "code-copy" -%}{%- assign _mta_on = _mta_on | append: "code-copy|" -%}
+{%- elsif mt_components contains "page-actions" and mt_twin -%}{%- assign _mta_on = _mta_on | append: "code-copy|" -%}{%- endif -%}
+{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}{%- assign _mta_on = _mta_on | append: "theme-toggle|" -%}{%- endif -%}
+{%- if mt_components contains "accordion" and mt_page_c contains "|accordion|" -%}{%- assign _mta_on = _mta_on | append: "accordion|" -%}{%- endif -%}
+{%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
+{%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search|search-keys|" -%}{%- endif -%}
+{%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
+{%- if _mta_c[1] == "js" and _mta_on contains _mta_k -%}{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p %}
+<script src="{{ mt_asset_url }}" defer></script>
+{%- endif -%}{%- endfor -%}
+{%- include modootoday/render/mermaid.html -%}
+{%- include modootoday/render/math.html -%}

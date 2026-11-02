@@ -1,0 +1,101 @@
+# frozen_string_literal: true
+# Pins the stylesheet and script tags each page gets: context-sheet probes on the rendered body, section sheets,
+# page css:, bundles and the script conditions, under the default settings and two modootoday: variants.
+require "minitest/autorun"
+require_relative "../../layouts/site"
+
+class StylesheetProbeTest < Minitest::Test
+  include LayoutSite
+
+  SPLIT = "# S\n\nLead.\n\n```sh\nrun\n```\n\n## Plain\n\nText.\n"
+  SECTIONS = "# T\n\nLead.\n\n## Install\n\n### npm\n\n```sh\nnpm i\n```\n\n### gem\n\n```sh\ngem i\n```\n\n" \
+             "## Questions\n\n### One\n\nA.\n\n## FAQ\n\n### Why\n\nBecause.\n"
+  PAGES = {
+    "pr/plain.md" => ["title: P\n", "# P\n\nText.\n"],
+    "pr/spinner.md" => ["title: L\n", "# L\n\n`loading:spinner`\n"],
+    "pr/skeleton.md" => ["title: K\n", "# K\n\n`skeleton:card`\n"],
+    "pr/topbar.md" => ["title: B\n", "# B\n\n`loading:bar`\n"],
+    "pr/svg.md" => ["title: S\n", "# S\n\n![Flow](/assets/flow.svg)\n\n*The flow.*\n"],
+    "pr/checks.md" => ["title: C\nhero: {checks: true}\nsections: [plain]\n", "# C\n\nLead.\n\n- Fast\n- Small\n\n## Plain\n\nText.\n"],
+    "pr/titled.md" => ["title: I\n", "# I\n\n- **Speed**: very fast\n- **Size**: small\n"],
+    "pr/sections.md" => ["title: T\nsections: [{c: tabs, name: t}, {c: accordion, name: a, bleed: true}, {c: faq, name: f}]\n", SECTIONS],
+    "pr/split.md" => ["title: S\nhero: {c: split, visual: code, chrome: terminal}\nsections: [plain]\n", SPLIT],
+    "pr/css.md" => ["title: X\ncss: [figure, bleed, lists]\nmt_bundle: hero\n", "# X\n\nText.\n"],
+    "pr/bare.md" => ["title: N\nchrome: false\n", "# N\n\nText.\n"],
+    "pr/blog.md" => ["title: G\nblog_css: true\n", "# G\n\nText.\n"],
+  }.freeze
+
+  CONFIGS = {
+    "default" => "",
+    "subset" => "modootoday: {components: [callout, tabs, page-actions, faq], color_scheme: light, loading: true, " \
+                "lists: {link_chips: true, titled_items: true}, blog: {share: false}}\n",
+    "bundle" => "modootoday: {css: bundle}\n",
+  }.freeze
+
+  # "doc.css tabs.js" short names expand to css/modootoday/doc.css and js/modootoday/tabs.js.
+  def self.list(s) = s.split.map { |w| w.start_with?("css/", "js/") ? w : "#{w[/\w+\z/]}/modootoday/#{w}" }
+
+  CHROME = "menu.js scroll-region.js code-copy.js theme-toggle.js"
+  SEARCH = "search.js search-keys.js"
+  DEFAULT = {
+    "pr/plain" => "css/modootoday.css doc.css search.css #{CHROME} #{SEARCH}",
+    "pr/spinner" => "css/modootoday.css doc.css search.css loading.css #{CHROME} #{SEARCH}",
+    "pr/skeleton" => "css/modootoday.css doc.css search.css loading.css #{CHROME} #{SEARCH}",
+    "pr/topbar" => "css/modootoday.css doc.css search.css loading.css #{CHROME} #{SEARCH}",
+    "pr/svg" => "css/modootoday.css doc.css search.css figure.css #{CHROME} #{SEARCH}",
+    "pr/checks" => "css/modootoday.css doc.css search.css lists.css #{CHROME} #{SEARCH}",
+    "pr/titled" => "css/modootoday.css doc.css search.css #{CHROME} #{SEARCH}",
+    "pr/sections" => "css/modootoday.css doc.css search.css bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
+                     "tabs.js #{CHROME} accordion.js #{SEARCH}",
+    "pr/split" => "css/modootoday.css doc.css search.css terminal.css structure/split.css #{CHROME} #{SEARCH}",
+    "pr/css" => "css/modootoday.css css/modootoday-hero.css doc.css search.css figure.css lists.css bleed.css #{CHROME} #{SEARCH}",
+    "pr/bare" => "css/modootoday.css doc.css search.css scroll-region.js code-copy.js theme-toggle.js #{SEARCH}",
+    "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css search.css #{CHROME} share.js #{SEARCH}",
+    "." => "css/modootoday.css css/modootoday-hero.css doc.css search.css bleed.css showcase/cta.css showcase/card.css " \
+           "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
+    "guide" => "css/modootoday.css doc.css search.css #{CHROME} #{SEARCH}",
+    "blog" => "css/modootoday.css css/modootoday-blog.css search.css #{CHROME} share.js #{SEARCH}",
+  }.freeze
+  # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
+  SUBSET = {
+    "pr/plain" => "css/modootoday.css doc.css loading.css menu.js scroll-region.js",
+    "pr/svg" => "css/modootoday.css doc.css loading.css menu.js scroll-region.js",
+    "pr/titled" => "css/modootoday.css doc.css loading.css lists.css menu.js scroll-region.js",
+    "pr/sections" => "css/modootoday.css doc.css loading.css bleed.css structure/tabs.css structure/faq.css tabs.js menu.js scroll-region.js",
+    "pr/split" => "css/modootoday.css doc.css loading.css terminal.css menu.js scroll-region.js",
+    "pr/bare" => "css/modootoday.css doc.css loading.css scroll-region.js",
+    "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css loading.css menu.js scroll-region.js",
+    "guide" => "css/modootoday.css doc.css loading.css menu.js scroll-region.js code-copy.js",
+    "blog" => "css/modootoday.css css/modootoday-blog.css loading.css menu.js scroll-region.js code-copy.js",
+  }.freeze
+  BUNDLE = {
+    "pr/svg" => "css/modootoday.css #{CHROME} #{SEARCH}",
+    "pr/sections" => "css/modootoday.css tabs.js #{CHROME} accordion.js #{SEARCH}",
+    "pr/css" => "css/modootoday.css css/modootoday-hero.css #{CHROME} #{SEARCH}",
+    "pr/bare" => "css/modootoday.css scroll-region.js code-copy.js theme-toggle.js #{SEARCH}",
+    "blog" => "css/modootoday.css css/modootoday-blog.css #{CHROME} share.js #{SEARCH}",
+  }.freeze
+
+  { "default" => DEFAULT, "subset" => SUBSET, "bundle" => BUNDLE }.each do |config, pages|
+    define_method("test_#{config}_tags") { pages.each { |page, want| assert_tags(self.class.list(want), config, page) } }
+  end
+
+  def self.sites = @sites ||= {}
+
+  # One build per config, shared by the tests; returns the built site directory.
+  def site(name)
+    self.class.sites[name] ||= begin
+      dir = Dir.mktmpdir
+      Minitest.after_run { FileUtils.rm_rf(dir) }
+      build_site(dir, PAGES, config: CONFIGS[name])[1]
+    end
+  end
+
+  # Stylesheet and script URLs of one built page, in document order, without the /assets/ prefix.
+  def tags(name, page)
+    h = File.read(File.join(site(name), page, "index.html"))
+    h.scan(%r{<link rel="stylesheet" href="/assets/([^"]+)"|<script src="/assets/([^"]+)"}).map { |a, b| a || b }
+  end
+
+  def assert_tags(expected, name, page) = assert_equal(expected, tags(name, page), "#{name}: #{page}")
+end

@@ -1,0 +1,31 @@
+{%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. probe: text in the rendered
+  body that turns a css row on (repeat a row for another probe); parts: the Sass partials modootoday.css: bundle folds in.
+  Sets mt_asset_rows and mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss).{%- endcomment -%}
+{%- capture _mta_rows -%}
+doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions
+search|css|/assets/css/modootoday/search.css||search
+loading|css|/assets/css/modootoday/loading.css|class="mt-spinner|loading
+loading|css|/assets/css/modootoday/loading.css|class="mt-skeleton
+loading|css|/assets/css/modootoday/loading.css|class="mt-topbar
+figure|css|/assets/css/modootoday/figure.css|class="mt-figure mt-figure-svg|figure-svg
+lists|css|/assets/css/modootoday/lists.css|class="mt-hero mt-hero-checks|lists
+lists|css|/assets/css/modootoday/lists.css|class="mt-chips"
+lists|css|/assets/css/modootoday/lists.css|class="mt-item-title"
+bleed|css|/assets/css/modootoday/bleed.css||bleed
+terminal|css|/assets/css/modootoday/terminal.css||terminal
+tabs|js|/assets/js/modootoday/tabs.js
+menu|js|/assets/js/modootoday/menu.js
+scroll-region|js|/assets/js/modootoday/scroll-region.js
+code-copy|js|/assets/js/modootoday/code-copy.js
+theme-toggle|js|/assets/js/modootoday/theme-toggle.js
+accordion|js|/assets/js/modootoday/accordion.js
+share|js|/assets/js/modootoday/share.js
+search|js|/assets/js/modootoday/search.js
+search-keys|js|/assets/js/modootoday/search-keys.js
+{%- endcapture -%}
+{%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
+{%- assign _mta_cs = "" -%}
+{%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
+{%- if _mta_c[4] -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}{%- endif -%}
+{%- endfor -%}
+{%- assign mt_context_sheets = _mta_cs | remove_first: "," | split: "," -%}

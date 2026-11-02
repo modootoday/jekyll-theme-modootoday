@@ -1,0 +1,3 @@
+{%- comment -%}Sets mt_asset_url for include.path (a site path such as /assets/js/modootoday/tabs.js). Every registry tag
+  takes its URL from here so a versioned query can be added in one place.{%- endcomment -%}
+{%- assign mt_asset_url = include.path | relative_url -%}
