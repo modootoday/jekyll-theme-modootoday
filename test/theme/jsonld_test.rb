@@ -16,7 +16,7 @@ class JsonldTest < Minitest::Test
     "course.md" => "description: Learn the kit.\nschema:\n  type: Course\n  provider: {type: Organization, name: Example, sameAs: 'https://example.com/'}\n",
     "app.md" => "schema:\n  type: SoftwareApplication\n  applicationCategory: DeveloperApplication\n  offers: {type: Offer, price: 0, priceCurrency: USD}\n",
     "terms.md" => "schema: {type: DefinedTermSet, hasDefinedTerm: [{type: DefinedTerm, name: Token}]}\n",
-    "faq.md" => "schema:\n  type: FAQPage\n  mainEntity: [{type: Question, name: Why?, acceptedAnswer: {type: Answer, text: Because.}}]\n",
+    "faq.md" => "schema:\n  type: FAQPage\n  mainEntity: [{type: Question, name: \"Why?\", acceptedAnswer: {type: Answer, text: Because.}}]\n",
     "off.md" => "schema: false\n",
   }.freeze
 

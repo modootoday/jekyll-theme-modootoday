@@ -4,8 +4,8 @@ labels: [enhancement]
 body:
   - type: textarea
     id: problem
-    attributes: {label: What do you want to write in Markdown, and what should it look like?}
+    attributes: {label: "What do you want to write in Markdown, and what should it look like?"}
     validations: {required: true}
   - type: textarea
     id: alternatives
-    attributes: {label: What do you do today instead?}
+    attributes: {label: "What do you do today instead?"}
