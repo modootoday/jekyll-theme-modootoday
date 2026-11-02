@@ -38,7 +38,7 @@ Fonts and anti-aliasing differ between operating systems, so a baseline is only 
 
 ### Lighthouse budget
 
-`qa/lighthouse/lighthouse.sh` runs Lighthouse on seven docs pages, mobile and desktop, and `qa/lighthouse/budget.mjs` checks the median of the runs against `qa/lighthouse/budget.json`: accessibility, best practices and SEO must be 100, performance at least 90 (desktop) and 80 (mobile). The `lighthouse.yml` workflow runs it three times per page and blocks on a miss.
+`qa/lighthouse/lighthouse.sh` runs Lighthouse on seven docs pages, mobile and desktop, and `qa/lighthouse/budget.mjs` checks the median of the runs against `qa/lighthouse/budget.json`: accessibility, best practices and SEO must be 100, performance at least 90 (desktop) and 80 (mobile). The `lighthouse.yml` workflow runs it three times per page and blocks on a miss; it runs on pull requests and in the release check (`gh workflow run lighthouse.yml`), not on pushes to `main`.
 
 ```sh
 qa/site/build-docs.sh docs/_site

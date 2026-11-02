@@ -10,6 +10,11 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Ruby 3.3 is now the oldest supported Ruby (`required_ruby_version >= 3.3`); Ruby 3.2 has reached end of life. CI tests Jekyll 4 on Ruby 3.3 and 3.4, and also runs Ruby 4.0 as an allowed-failure entry.
 - Faster builds on large sites: the layouts and includes no longer scan `site.pages` once per lookup on every page. Each layout builds one list of page URLs per page (`modootoday/lookup/urls.html`); existence checks (twin, language home, `llms.txt`, feed, `search.json`) read it, the breadcrumb and its JSON-LD take the home and parent pages by their position in it (`lookup/page.html`, `lookup/crumbs.html`), and `ref-url.html` searches only the pages that have a `ref`. On a synthetic 1,000-page site the GitHub Pages build took less than half the time. The built output is unchanged.
+- CI: pushes to `main` run only the fast jobs (the Ruby and Jekyll matrix, the classic Pages builder, JS and tokens), and a newer push cancels the older run. Docs QA, Lighthouse and visual regression run on pull requests and in the release check; the visual run compares with the latest release tag (`RELEASING.md` step 3).
+
+### Fixed
+
+- The feature request form and a JSON-LD test fixture quote flow-mapping values that hold `, ` or end in `?`, so they also parse with older libyaml (0.2.2, the system copy on Ubuntu 22.04).
 
 ## [1.4.1] - 2026-10-31
 
