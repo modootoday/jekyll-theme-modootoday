@@ -10,7 +10,7 @@ require "date"
 module LayoutSite
   ROOT = File.expand_path("../..", __dir__)
 
-  def build_site(dir, pages, config: "")
+  def build_site(dir, pages, config: "", env: {})
     src = "#{dir}/src"
     FileUtils.cp_r("#{ROOT}/example", src)
     pages.each do |n, (fm, body)|
@@ -19,7 +19,7 @@ module LayoutSite
     end
     merge_config("#{src}/_config.yml", config) unless config.empty?
     File.write("#{dir}/o.yml", "url: https://example.org\n")
-    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",
+    out, st = Open3.capture2e(env, "bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",
                               "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: ROOT)
     assert st.success?, out
     [src, "#{dir}/s"]

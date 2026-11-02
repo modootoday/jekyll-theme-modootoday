@@ -165,9 +165,17 @@ class MessagesSnapshotTest < Minitest::Test
     end
   end
 
+  # Built-part checks run only with Nokogiri; where they add output, <name>.nokogiri.txt is that variant.
+  NOKOGIRI = Open3.capture3(CLEAN_ENV, RbConfig.ruby, "-e", "require 'nokogiri'")[2].success?
+
+  def snapshot_path(name)
+    variant = File.join(SNAPSHOTS, "#{name}.nokogiri.txt")
+    NOKOGIRI && File.file?(variant) ? variant : File.join(SNAPSHOTS, "#{name}.txt")
+  end
+
   def assert_snapshot(name, spec)
     got = run_site(name, spec)
-    path = File.join(SNAPSHOTS, "#{name}.txt")
+    path = snapshot_path(name)
     File.write(path, got) if ENV["SNAPSHOT_UPDATE"] == "1"
     assert File.file?(path), "no snapshot #{path}; run with SNAPSHOT_UPDATE=1"
     assert_equal File.read(path), got, "checker output changed for #{name}"

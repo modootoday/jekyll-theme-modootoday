@@ -1,0 +1,39 @@
+_data/components.yml: features: unknown key 'colour' (known: params, i18n, slots, parts)
+_data/components.yml: features.slots.items: min 3 is greater than max 2
+_data/components.yml: cta.slots: unknown slot 'bogus' (known: lead, items, panels, actions, code, rows, quotes, figures)
+a.md: sections[0] features: slot 'items' has 1 item(s), needs at least 3
+a.md: sections[0] features.cols=4 not in [2, 3]
+a.md: sections[1] unknown component 'nope' (not in _data/components.yml)
+a.md: sections[2] tabs: slot 'panels' has 1 item(s), needs at least 2
+a.md: sections[3] cta: slot 'actions' has 0 item(s), needs at least 1
+b.md: unregistered status value `status:done` (allowed: available/partial/planned)
+b.md: `tag:two words` badge value must be one token [A-Za-z0-9._-]
+b.md: `since:1.0` is not supported before 1.1 (the API is not released yet); remove it
+b.md: `kbd:a b` must be keys joined by '+' without spaces (e.g. `kbd:Ctrl+K`)
+b.md: image without alt text (![](...)); write ![description](...)
+b.md: `progress:120` must be a whole number from 0 to 100
+e.md: layout error: status must be one of 404, 410, 500 (got 403)
+h.md: layout home: hero.title is required when hero is set
+h.md: layout home: hero.actions[0] needs label and url
+r.md: layout redirect: redirect_to is required (a site path starting with / or a full URL)
+_data/i18n/ko.yml: key 'toc.lable' is not in _data/i18n/en.yml (en is canonical; add it there first)
+_data/i18n/ko.yml: missing key 'hero.cta' (component tabs)
+_data/components.yml: cta.parts: '.mt-gone' not found in the built HTML of a.md
+_config.yml: modootoday.blog: unknown key 'colour'
+_config.yml: modootoday.blog.variant must be one of list, grid, magazine
+_config.yml: modootoday.blog.per_page must be a whole number
+_config.yml: modootoday.blog.share must be true or false
+_config.yml: modootoday.news must be a map with sections: [category names]
+_data/authors.yml: kim must be a map with name:
+_posts/2026-10-01-a.md: breaking must be true or false
+_posts/2026-10-01-a.md: sources must be a list
+authors/x.md: layout: author needs author: <id from _data/authors.yml>
+blog.md: variant must be one of list, grid, magazine
+md-components check: 31 problem(s)
+warning: b.md:7: '[! TYPE]' with a space is not an alert (renders as a plain quote)
+warning: b.md:3: image with empty alt ![](…) is treated as decorative; describe it unless it adds no information
+warning: b.md:5: vague link text "here"; name the destination so it makes sense out of context
+warning: _data/i18n/ko.yml: missing key 'hero.cta' (falls back to en)
+warning: ko/c.md: no en page at c.md (translations follow the canonical page)
+warning: _posts/2026-10-01-a.md: author 'lee' is not in _data/authors.yml (shown as plain text)
+exit 1

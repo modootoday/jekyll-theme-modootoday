@@ -32,8 +32,11 @@ class AssetUrlTest < Minitest::Test
     assert_versions("modootoday: {asset_version: false}\n", "")
   end
 
+  # jekyll-github-metadata (GitHub Pages stack) reads JEKYLL_BUILD_REVISION, else git rev-parse in the theme
+  # checkout; an empty value stands for a build with no revision.
   def test_build_falls_back_to_the_build_time
-    assert_versions("modootoday: {asset_version: build}\n", "?v=#{version}-#{Time.utc(2026).to_i}")
+    assert_versions("modootoday: {asset_version: build}\n", "?v=#{version}-#{Time.utc(2026).to_i}",
+                    env: { "JEKYLL_BUILD_REVISION" => "" })
   end
 
   # The Pages builder passes the commit as site.github.build_revision (jekyll-github-metadata); a config value stands in.
@@ -44,9 +47,9 @@ class AssetUrlTest < Minitest::Test
   private
 
   # Every theme stylesheet and script on a page with code, a table and the full chrome ends in the expected query.
-  def assert_versions(config, query, also = nil)
+  def assert_versions(config, query, also = nil, env: {})
     Dir.mktmpdir do |d|
-      _, s = build_site(d, PAGES, config: TIME + config)
+      _, s = build_site(d, PAGES, config: TIME + config, env: env)
       h = html(s, "v/code.md")
       tags = h.scan(THEME_TAG)
       assert_operator tags.size, :>=, 6, h
