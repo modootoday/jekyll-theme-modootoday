@@ -7,7 +7,7 @@ require_relative "../../lib/modootoday/check"
 class ComponentNamesTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
   # Sheet parts the theme turns on by name that modootoday.components does not accept yet. Each needs a reason.
-  LIQUID_ONLY = { "figure-svg" => "figure sheet part; the checker does not list it as a component name" }.freeze
+  LIQUID_ONLY = {}.freeze
 
   def liquid
     src = File.read(File.join(ROOT, "_includes/modootoday/config.html"))

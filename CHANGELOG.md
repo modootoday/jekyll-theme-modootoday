@@ -16,6 +16,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- `modootoday-check` accepts `figure-svg` in `modootoday.components`. The theme already ships it as the SVG figure sheet part, but a site with a shorter component list could not turn it on because the checker rejected the name.
 - The feature request form and a JSON-LD test fixture quote flow-mapping values that hold `, ` or end in `?`, so they also parse with older libyaml (0.2.2, the system copy on Ubuntu 22.04).
 
 ## [1.4.1] - 2026-10-31
