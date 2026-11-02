@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261102183359
 title: Output-changing work merges through a pull request; other changes push to main
-status: active
+status: superseded
 created: 2026-11-02T18:33:59Z
-updated: 2026-11-02T18:34:31Z
+updated: 2026-11-02T20:33:26Z
 rel:
   governs: [CONTRIBUTING.md]
 ---

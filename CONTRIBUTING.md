@@ -34,7 +34,7 @@ node qa/visual/visual.mjs docs/_site --baseline DIR --out DIR --threshold 0.1 --
 Fonts and anti-aliasing differ between operating systems, so a baseline is only comparable on the machine image that made it. Make and compare baselines on one machine; to compare two versions, run `--update` on the old build and compare the new build in the same place. The CI workflow `visual.yml` does exactly that: it builds `docs/` at the base commit and at the head commit on the same runner and compares them, listing differences in the job summary with the images in the `visual` artifact.
 
 - **Pull requests:** blocking. If the change is intended, review the diff images and add the `visual-ok` label; the check re-runs and passes in report mode.
-- **Pushes to `main`:** report only.
+- **Release check:** a manual run (`gh workflow run visual.yml`) compares `main` with the latest release tag and reports the differences. Pushes to `main` do not run it.
 
 ### Lighthouse budget
 

@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+# A newer push to the same ref makes the older run moot.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -131,6 +137,8 @@ jobs:
 
   docs-qa:
     name: docs site QA
+    # About ten minutes of browser checks: pull requests and the manual release check only.
+    if: github.event_name != 'push'
     runs-on: ubuntu-24.04
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile

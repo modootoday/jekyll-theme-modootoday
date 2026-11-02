@@ -3,15 +3,18 @@ name: Visual regression
 # Screenshots the docs/ site built from the base commit and from this commit on the same runner,
 # then compares them pixel by pixel. Both sides use the same OS image and fonts, so platform font
 # differences cannot cause false diffs, and no baseline images are committed.
-# Pull requests: blocking. An intended visual change is approved with the `visual-ok` label
-# (labelling re-runs the check). Pushes to main: report only. Differences are listed in the job
-# summary and the diff images are uploaded as the "visual" artifact.
+# Pull requests: blocking unless labelled `visual-ok`. Manual runs (the release check) report the
+# difference from the last release tag. Differences are listed in the job summary and the diff
+# images are uploaded as the "visual" artifact.
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Commit or tag to compare against (default the latest release tag)
+        required: false
 
 permissions:
   contents: read
@@ -23,12 +26,15 @@ jobs:
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
       BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
-      BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+      BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base }}
     steps:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Default base is the latest release tag
+        if: env.BASE_SHA == ''
+        run: echo "BASE_SHA=$(git describe --tags --abbrev=0 --match 'v*')" >> "$GITHUB_ENV"
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.4"
@@ -62,7 +68,7 @@ jobs:
       - name: Compare
         if: steps.base.outputs.skip != 'true'
         env:
-          # Blocking on pull requests unless labelled visual-ok; report only on pushes.
+          # Blocking on pull requests unless labelled visual-ok; report only on manual runs.
           REPORT: ${{ (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'visual-ok')) && '--report' || '' }}
         run: node qa/visual/visual.mjs docs/_site --baseline qa-out/visual/baseline --out qa-out/visual/changed $REPORT
       - uses: actions/upload-artifact@v7

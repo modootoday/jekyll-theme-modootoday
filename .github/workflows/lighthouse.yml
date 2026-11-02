@@ -4,10 +4,10 @@ name: Lighthouse
 # score is checked against qa/lighthouse/budget.json. Accessibility, best practices and SEO are
 # pinned at 100; performance has a stable floor (runner load moves it by a few points).
 
+# Pull requests and manual runs only (the release check); pushes to main skip it to keep CI short.
 on:
   pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
