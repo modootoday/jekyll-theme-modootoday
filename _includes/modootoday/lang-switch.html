@@ -14,7 +14,7 @@
 {%- if _ls_cur != _ls_def -%}{%- assign _ls_pre = "/" | append: _ls_cur -%}{%- assign _ls_base = page.url | remove_first: _ls_pre -%}{%- endif -%}
 {%- include modootoday/i18n.html lang=_ls_cur -%}{%- assign _ls_label = mt_t_languages_label -%}
 {%- capture _ls_curname -%}{%- include modootoday/i18n/name.html code=_ls_cur -%}{%- endcapture -%}{%- assign _ls_curname = site.data.i18n[_ls_cur].language | default: _ls_curname -%}
-{%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
+{%- include modootoday/lookup/urls.html -%}
 {%- capture _ls_items -%}
 {%- for _l in site.modootoday.languages -%}
 {%- if page.ref -%}{%- include modootoday/ref-url.html ref=page.ref lang=_l exact=true -%}{%- assign _ls_alt = mt_ref_url | default: "/-none-/" -%}

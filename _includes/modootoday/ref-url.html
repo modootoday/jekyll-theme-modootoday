@@ -5,7 +5,13 @@ A page's language is its lang: (front matter or defaults), else site.lang.{%- en
 {%- assign mt_ref_url = nil -%}
 {%- assign _rf_def = site.lang | default: "en" -%}
 {%- assign _rf_lang = include.lang | default: page.lang | default: _rf_def -%}
-{%- assign _rf_pages = site.pages | where: "ref", include.ref -%}
+{%- comment -%}hreflang and the switcher call this once per language, so a string ref searches the pages that have a ref,
+collected in one pass; other values keep the full where, whose nil, array and hash rules differ between Jekyll versions.{%- endcomment -%}
+{%- assign _rf_k = include.ref | append: "" -%}
+{%- if _rf_k == include.ref -%}
+{%- unless mt_ref_pages -%}{%- assign mt_ref_pages = site.pages | where_exp: "_rf_p", "_rf_p.ref != nil" -%}{%- endunless -%}
+{%- assign _rf_pages = mt_ref_pages | where: "ref", include.ref -%}
+{%- else -%}{%- assign _rf_pages = site.pages | where: "ref", include.ref -%}{%- endif -%}
 {%- for _rf_p in _rf_pages -%}{%- assign _rf_l = _rf_p.lang | default: _rf_def -%}{%- if _rf_l == _rf_lang -%}{%- assign mt_ref_url = _rf_p.url -%}{%- break -%}{%- endif -%}{%- endfor -%}
 {%- unless mt_ref_url or include.exact -%}
 {%- for _rf_p in _rf_pages -%}{%- assign _rf_l = _rf_p.lang | default: _rf_def -%}{%- if _rf_l == _rf_def -%}{%- assign mt_ref_url = _rf_p.url -%}{%- break -%}{%- endif -%}{%- endfor -%}

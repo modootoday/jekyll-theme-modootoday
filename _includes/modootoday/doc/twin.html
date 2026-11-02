@@ -2,7 +2,8 @@
 Front-matter-less mode (jekyll-optional-front-matter): the raw source is copied as a static file at its own path.{%- endcomment -%}
 {%- assign mt_twin = nil -%}
 {%- assign _tw = page.url | append: "index.md" -%}{%- if page.url == "/" -%}{%- assign _tw = "/index.md" -%}{%- endif -%}
-{%- assign _twp = site.pages | where: "url", _tw | first -%}
-{%- assign _sp = "/" | append: page.path -%}{%- assign _sf = site.static_files | where: "path", _sp | first -%}
-{%- if _sf -%}{%- assign _tw = _sp -%}{%- assign _twp = _sf -%}{%- endif -%}
-{%- if _twp -%}{%- assign mt_twin = _tw -%}{%- endif -%}
+{%- include modootoday/lookup/urls.html -%}
+{%- unless mt_static_paths -%}{%- assign mt_static_paths = site.static_files | map: "path" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
+{%- assign _sp = "/" | append: page.path -%}{%- assign _twk = "|" | append: _sp | append: "|" -%}
+{%- if mt_static_paths contains _twk -%}{%- assign mt_twin = _sp -%}
+{%- else -%}{%- assign _twk = "|" | append: _tw | append: "|" -%}{%- if mt_page_urls contains _twk -%}{%- assign mt_twin = _tw -%}{%- endif -%}{%- endif -%}

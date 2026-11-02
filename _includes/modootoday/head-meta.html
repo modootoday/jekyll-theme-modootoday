@@ -38,7 +38,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- assign _mt_plang = page.lang | default: _mt_def -%}
 {%- assign _mt_base = page.url -%}
 {%- if _mt_plang != _mt_def -%}{%- assign _mt_pre = "/" | append: _mt_plang -%}{%- assign _mt_base = page.url | remove_first: _mt_pre -%}{%- endif -%}
-{%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
+{%- include modootoday/lookup/urls.html -%}
 {%- for _l in _mt_langs -%}
 {%- if page.ref -%}{%- include modootoday/ref-url.html ref=page.ref lang=_l exact=true -%}{%- assign _mt_alt = mt_ref_url | default: "/-none-/" -%}
 {%- elsif _l == _mt_def -%}{%- assign _mt_alt = _mt_base -%}{%- else -%}{%- assign _mt_alt = "/" | append: _l | append: _mt_base -%}{%- endif -%}
@@ -86,7 +86,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- endunless -%}
 {%- if site.modootoday.feed == true -%}
 {%- assign _mt_feed = "/feed.xml" -%}{%- assign _mt_fd = site.lang | default: "en" -%}{%- assign _mt_fl = page.lang | default: _mt_fd -%}
-{%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- assign _mt_lfp = site.pages | where: "url", _mt_lf | first -%}{%- if _mt_lfp -%}{%- assign _mt_feed = _mt_lf -%}{%- endif -%}{%- endif %}
+{%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- include modootoday/lookup/urls.html -%}{%- assign _mt_lfk = "|" | append: _mt_lf | append: "|" -%}{%- if mt_page_urls contains _mt_lfk -%}{%- assign _mt_feed = _mt_lf -%}{%- endif -%}{%- endif %}
 <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ _mt_feed | relative_url }}">
 {%- endif -%}
 {%- include modootoday/jsonld/graph.html -%}

@@ -1,0 +1,13 @@
+{%- comment -%}Sets mt_crumb_home, mt_crumb_start and mt_crumb_pages (the home and parent pages that exist) for the breadcrumb
+nav and its JSON-LD; include.lang is the page language. Callers pick each page with where: "url" on this short list.{%- endcomment -%}
+{%- assign _cr_segs = page.url | split: "/" -%}
+{%- assign mt_crumb_home = "/" -%}{%- assign mt_crumb_start = 0 -%}{%- assign mt_crumb_pages = "" | split: "" -%}
+{%- if _cr_segs[1] == include.lang and include.lang != site.lang -%}{%- assign mt_crumb_home = "/" | append: include.lang | append: "/" -%}{%- assign mt_crumb_start = 1 -%}{%- endif -%}
+{%- if page.url != mt_crumb_home and page.url != "/" -%}
+{%- include modootoday/lookup/page.html url=mt_crumb_home -%}{%- if mt_lookup_page -%}{%- assign mt_crumb_pages = mt_crumb_pages | push: mt_lookup_page -%}{%- endif -%}
+{%- assign _cr_acc = mt_crumb_home -%}
+{%- for _s in _cr_segs offset: 1 -%}{%- if forloop.index > mt_crumb_start and _s != "" and _s != "index.html" -%}
+{%- assign _cr_acc = _cr_acc | append: _s | append: "/" -%}
+{%- unless _cr_acc == page.url or forloop.last -%}{%- include modootoday/lookup/page.html url=_cr_acc -%}{%- if mt_lookup_page -%}{%- assign mt_crumb_pages = mt_crumb_pages | push: mt_lookup_page -%}{%- endif -%}{%- endunless -%}
+{%- endif -%}{%- endfor -%}
+{%- endif -%}

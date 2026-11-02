@@ -7,7 +7,7 @@
 {%- assign mt_site_title = site.data.i18n[_lang].site_title | default: site.title -%}
 {%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
 {%- assign mt_home = "/" -%}{%- assign _def_lang = site.lang | default: "en" -%}
-{%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- assign _lhp = site.pages | where: "url", _lh | first -%}{%- if _lhp -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
+{%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- include modootoday/lookup/urls.html -%}{%- assign _lhk = "|" | append: _lh | append: "|" -%}{%- if mt_page_urls contains _lhk -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
 {%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}
 {%- assign _base = _lang | split: "-" | first -%}
 {%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
@@ -33,8 +33,8 @@
 <link rel="alternate" type="text/markdown" href="{{ mt_twin | relative_url }}">
 {%- endif -%}
 {%- assign _ll = "/" | append: _lang | append: "/llms.txt" -%}
-{%- assign _llp = site.pages | where: "url", _ll | first -%}
-{%- unless _llp -%}{%- assign _ll = "/llms.txt" -%}{%- assign _llp = site.pages | where: "url", _ll | first -%}{%- endunless -%}
+{%- include modootoday/lookup/urls.html -%}{%- assign _llp = false -%}{%- assign _llk = "|" | append: _ll | append: "|" -%}
+{%- if mt_page_urls contains _llk -%}{%- assign _llp = true -%}{%- elsif mt_page_urls contains "|/llms.txt|" -%}{%- assign _ll = "/llms.txt" -%}{%- assign _llp = true -%}{%- endif -%}
 {%- if _llp %}
 <link rel="describedby" type="text/plain" href="{{ _ll | relative_url }}">
 {%- endif %}
