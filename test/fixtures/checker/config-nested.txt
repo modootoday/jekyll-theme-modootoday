@@ -1,0 +1,16 @@
+_config.yml: modootoday.full_languages: 'ja' is not in modootoday.languages
+_config.yml: modootoday.lists must be a map of link_chips and titled_items set to true or false
+_config.yml: modootoday.archive.tags must be a site path like /tags/ (starts and ends with /)
+_config.yml: modootoday.components: unknown component 'carousel' (known: callout, badge, hero, cta, card, tabs, code-copy, nav, sidebar, page-actions, pagination, theme-toggle, breadcrumb, toc, accordion, steps, figure, timeline, kbd, search, code, footnotes, progress, embed, banner, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split, loading, lists, reveal, bleed, terminal)
+_config.yml: modootoday.components: unknown component 'slider' (known: callout, badge, hero, cta, card, tabs, code-copy, nav, sidebar, page-actions, pagination, theme-toggle, breadcrumb, toc, accordion, steps, figure, timeline, kbd, search, code, footnotes, progress, embed, banner, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split, loading, lists, reveal, bleed, terminal)
+_config.yml: modootoday.tokens.accent: invalid hex color "#zz0000"
+_config.yml: modootoday.tokens.ring: invalid CSS value "a;b"
+_config.yml: modootoday.tokens_dark.primary: invalid CSS value "#fb923c}x"
+_config.yml: modootoday.tokens_dark.bogus: invalid CSS value ""
+_config.yml: modootoday.mermaid must be a map (enabled:, src:, integrity:, theme:)
+md-components check: 10 problem(s)
+warning: _config.yml: modootoday.feed: true links /feed.xml; add jekyll-feed to plugins
+warning: _config.yml: modootoday.tokens.foo: not a semantic token (background, foreground, muted, muted-foreground, card, card-foreground, primary, primary-foreground, brand, accent, accent-foreground, border, ring, note, tip, important, warning, caution, status-available, status-partial, status-planned, font-sans, font-mono, font-size, line-height, measure, space, radius)
+warning: _config.yml: modootoday.tokens_dark.bogus: not a semantic token (background, foreground, muted, muted-foreground, card, card-foreground, primary, primary-foreground, brand, accent, accent-foreground, border, ring, note, tip, important, warning, caution, status-available, status-partial, status-planned, font-sans, font-mono, font-size, line-height, measure, space, radius)
+warning: index.md:5: inline $…$ stays plain text on this site (modootoday.math.inline is false); use a ```math fence or a $$ block, or set inline: true
+exit 1

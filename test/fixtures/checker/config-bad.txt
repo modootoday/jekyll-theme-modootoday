@@ -1,0 +1,35 @@
+_config.yml: modootoday.twins must be true, false or source (got "maybe")
+_config.yml: modootoday.color_scheme must be auto, auto-dark, auto-light, light or dark (got "blue")
+_config.yml: modootoday.csp must be strict or false (got "loose")
+_config.yml: modootoday.languages must be a list of language codes such as [en, ko]
+_config.yml: modootoday.full_languages must be a list of codes from modootoday.languages
+_config.yml: modootoday.lists must be a map of link_chips and titled_items set to true or false
+_config.yml: modootoday.archive must be a map with tags: and/or categories: (archive page URLs)
+_config.yml: modootoday.edit_url must be an http(s) URL ending in / (page.path is appended)
+_config.yml: modootoday.css_layers must be true or false
+_config.yml: modootoday.badges must be true or false
+_config.yml: modootoday.seo must be true or false
+_config.yml: modootoday.hreflang must be true or false
+_config.yml: modootoday.feed must be true or false
+_config.yml: modootoday.page_actions must be true or false
+_config.yml: modootoday.back_to_top must be true or false
+_config.yml: modootoday.loading must be true or false
+_config.yml: modootoday.css must be split or bundle
+_config.yml: modootoday.banner must be a map with text: (and optional url:, link:)
+_config.yml: modootoday.sidebar must be auto, true or false
+_config.yml: modootoday.components must be a list
+_config.yml: modootoday.tokens must be a map
+_config.yml: modootoday.tokens_dark must be a map
+_config.yml: modootoday.mermaid: unknown key 'colour' (known: enabled, src, integrity, theme)
+_config.yml: modootoday.mermaid.enabled must be true or false
+_config.yml: modootoday.mermaid.theme must be auto, default, dark, neutral, forest
+_config.yml: modootoday.math: unknown key 'colour' (known: enabled, engine, src, css, integrity, auto_render_src, auto_render_integrity, inline)
+_config.yml: modootoday.math.inline must be true or false
+_config.yml: modootoday.math.engine must be katex
+_config.yml: modootoday.math.integrity must be a map {js: sha384-…, css: sha384-…}
+_config.yml: modootoday.math.src: use https:// (got http://cdn.example/katex.js)
+_config.yml: modootoday.math.css: pin an exact version in the URL (e.g. …@11.4.1/…), not a range or latest (got https://cdn.example/katex@latest/katex.css)
+_config.yml: modootoday.math: css is an https URL, so integrity.css (an SRI hash such as sha384-…) is required; nothing loads without it
+md-components check: 32 problem(s)
+warning: _config.yml: modootoday.math: without auto_render_src only ```math fences render; $$ blocks stay TeX source
+exit 1

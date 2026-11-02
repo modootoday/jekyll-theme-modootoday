@@ -1,0 +1,22 @@
+$TMP/_site/p/index.html: unconverted alert marker [!NOTE]
+$TMP/_site/p/index.html: unconverted status badge (<code>status:)
+$TMP/_site/p/index.html: target="_blank" without rel="noopener"
+$TMP/_site/p/index.html: .mt-illustration must be <figure role="img" aria-label="…"> with a non-empty label (got <div class="mt-illustration">)
+$TMP/_site/p/index.html: JSON-LD @graph.@id is not an absolute URL (#a)
+$TMP/_site/p/index.html: JSON-LD @graph.url is not an absolute URL (/a/)
+$TMP/_site/p/index.html: JSON-LD @graph.colour is not a schema.org property
+$TMP/_site/p/index.html: JSON-LD @type Webpage is not in the schema.org vocabulary
+_sass/x.scss:2: @use/@forward (Ruby Sass on GitHub Pages copies it into the CSS untouched); use @import
+_sass/x.scss:3: @use/@forward (Ruby Sass on GitHub Pages copies it into the CSS untouched); use @import
+_sass/x.scss:4: @supports selector() (Ruby Sass syntax error on GitHub Pages)
+$TMP/_site/a.css: @use/@forward left in built CSS (Ruby Sass passes them through); use @import
+$TMP/_site/a.css: custom property with a literal Sass variable (write --x: #{$var})
+$TMP/_site/a.css: var(--mt-missing) is never defined
+$TMP/src/Gemfile.lock: github-pages 231 != 232
+g.md: twin missing at $TMP/_site/g/index.md: add a stub g.md.txt (front matter `layout: twin`, `twin_of`, `permalink`) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)
+index.md.txt: stub must set layout: twin
+$TMP/_site/index.md: twin is not byte-identical to the body of index.md
+$TMP/_site/llms.txt: must start with an H1 (llmstxt.org)
+$TMP/_site/llms-full.txt: does not contain the body of g.md
+md-components check: 20 problem(s)
+exit 1

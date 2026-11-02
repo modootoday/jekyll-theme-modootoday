@@ -1,0 +1,41 @@
+a08-unknown-type.md:1: unregistered alert type [!FOO] (allowed: NOTE/TIP/IMPORTANT/WARNING/CAUTION; any case)
+a10-trailing-text.md:1: text after [!NOTE] (custom titles are not supported; GitHub shows a plain quote)
+a11-nested.md:3: alert nested in list/table/quote (GitHub renders only top-level alerts; this shows as a plain quote); start '> [!TYPE]' at column 0
+a12-in-list.md:3: alert nested in list/table/quote (GitHub renders only top-level alerts; this shows as a plain quote); start '> [!TYPE]' at column 0
+a13-in-table.md:3: alert nested in list/table/quote (GitHub renders only top-level alerts; this shows as a plain quote); start '> [!TYPE]' at column 0
+a15-tab-after-gt.md:1: tab after '>' (kramdown reads it as an indented code block); use a space
+a15-tab-after-gt.md:2: tab after '>' (kramdown reads it as an indented code block); use a space
+a18-empty.md:1: empty alert [!NOTE] (GitHub shows a plain quote); add body text
+a20-bold-title-line.md:1: formatted alert marker (e.g. **[!NOTE]**) is not an alert anywhere; write > [!NOTE]
+a27-heading-first.md:2: '##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text
+a29-h2-in-alert-sections.md:4: '##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text
+f02-html-comment.md: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it (first: `<!-- hidden note -->`)
+f04-ial.md:2: kramdown IAL/ALD
+f05-header-id.md:1: {#id} header id
+f06-deflist.md:2: definition list
+f07-raw-details.md:1: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
+f07-raw-details.md:5: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
+f08-autolink-email.md:1: bare URL/e-mail autolink (kramdown does not link it); write <https://…> or [text](url)
+f12-liquid-in-text.md:1: Liquid
+f13-kramdown-toc.md:2: kramdown IAL/ALD
+f14-abbr.md:1: abbreviation definition *[X]: (kramdown-only)
+f16-tagfilter.md:1: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
+f16-tagfilter.md:3: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
+f19-html-inline-kbd.md:1: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
+nofm.md: missing front matter (add an empty '---' / '---' block at the top)
+s01-setext.md:3: setext heading (text underlined with ---) is not allowed; use '## '
+s03-hash-in-quote.md:3: '##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text
+s05-indented-hash.md:3: indented '##' (kramdown: paragraph, GitHub: heading); start at column 0
+s06-hash-in-html-comment.md: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it (first: `<!--`)
+s09-h2-in-list.md:5: '##' inside a list item is not a section (sections split only on column-0 '## '); use '###' or move it out of the list
+t04-info-attrs.md:1: code fence info string must be a single language word (got "sh {title=install.sh}"); attributes like {title=…} break kramdown
+t05-info-space-attr.md:1: code fence info string must be a single language word (got "sh title=install.sh"); attributes like {title=…} break kramdown
+t06-info-lang-only-tilde-attr.md:1: code fence info string must be a single language word (got "sh {.x}"); attributes like {title=…} break kramdown
+md-components check: 33 problem(s)
+warning: a26-space-inside.md:1: '[! TYPE]' with a space is not an alert (renders as a plain quote)
+warning: c01-cta.md:5: vague link text "Start"; name the destination so it makes sense out of context
+warning: c02-cta-separator.md:1: vague link text "Start"; name the destination so it makes sense out of context
+warning: t01-tabs-backtick.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip
+warning: t02-tabs-tilde.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip
+warning: t03-tabs-indented.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip
+exit 1

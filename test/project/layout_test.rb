@@ -17,13 +17,11 @@ class LayoutTest < Minitest::Test
     "docs/_data/i18n" => "Jekyll data: one interface catalog per language code",
     "_layouts" => "theme layout API: file names are the documented layout: values",
     "_includes/modootoday" => "theme include API: paths are documented include names",
-    "lib/modootoday/check" => "pending regroup: one file per rule group; regroup once the concurrent checker edits land",
   }.freeze
 
   MAX_LINES = 150 # code files under lib/, qa/, exe/, script/, assets/js/ and test helpers
   MAX_TEST_LINES = 300 # *_test.rb and *.test.js
   LONG_OK = {
-    "test/checker/check_test.rb" => "one case table per checker rule; split together with lib/modootoday/check",
     "lib/modootoday/schema/vocab.txt" => "generated data (script/schema-vocab), one schema.org term per line",
   }.freeze
 

@@ -29,9 +29,9 @@ live announcements and reflow. NVDA, JAWS and VoiceOver cannot run in CI or on t
    for reading order and names. This is documented as a limit: real AT announcements are not verified.
 3. Search results get `aria-live="polite"` in the layout (no JS bytes). A spoken result count would need JS and waits
    for the core JS budget split.
-4. `lib/modootoday/check/a11y/content.rb` adds authoring rules: errors for `<img>` without alt, empty links and
+4. `lib/modootoday/check/page/a11y/content.rb` adds authoring rules: errors for `<img>` without alt, empty links and
    duplicate ids; warnings for empty Markdown alt, vague link text and heading skips. It lives in a context
-   subdirectory because `check/` is over the 12-file limit.
+   subdirectory of the page rules (`check/page/`).
 5. Table captions are not required: GFM tables cannot carry one; authors introduce tables with a heading or sentence.
 
 ## Consequences

@@ -1,0 +1,2 @@
+md-components check: OK (1 pages)
+exit 0

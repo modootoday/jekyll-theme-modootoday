@@ -27,5 +27,5 @@ Applied now: `test/` grouped into `checker/`, `theme/`, `consumer/`, `project/`,
 ## Consequences
 
 - Paths in workflows, `package.json`, `.gitignore` and `CONTRIBUTING.md` moved with the files. The visual workflow builds an older base commit with whichever `build-docs.sh` path it has.
-- Still listed as exceptions, to be resolved: `lib/modootoday/check/` (16 files) and `test/checker/check_test.rb` (414 lines) are regrouped together once concurrent checker edits land. `_sass/modootoday/components` is pending a regroup after the concurrent visual work. `docs/`, `docs/ko`, `docs/ja`, `.spec/adr`, `test/fixtures/md` and the repository root stay flat by convention. The public API is not frozen before the first release, so no path is exempt for being public.
+- `lib/modootoday/check/` and the checker tests are grouped by context (`config/`, `page/`, `build/`, `registry/`, `source/`, `layouts/`; `test/checker/` mirrors them), so neither is an exception any more. `_sass/modootoday/components` is pending a regroup after the concurrent visual work. `docs/`, `docs/ko`, `docs/ja`, `.spec/adr`, `test/fixtures/md` and the repository root stay flat by convention. The public API is not frozen before the first release, so no path is exempt for being public.
 - The docs site, `example/` and the i18n generator follow the same rules when they are next restructured.

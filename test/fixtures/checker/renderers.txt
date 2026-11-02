@@ -1,0 +1,11 @@
+_config.yml: modootoday.math.integrity.js: not an SRI hash (sha256-, sha384- or sha512- followed by base64)
+a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js: integrity differs from _config.yml
+a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without crossorigin="anonymous"
+a/index.html: external script https://evil.example/x.js is not a declared renderer URL (modootoday.mermaid, modootoday.math); self-host it or declare it
+a/index.html: external stylesheet //fonts.example/f.css is not a declared renderer URL (modootoday.mermaid, modootoday.math); self-host it or declare it
+a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without integrity="…" (SRI)
+a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without crossorigin="anonymous"
+md-components check: 7 problem(s)
+warning: _config.yml: modootoday.math: without auto_render_src only ```math fences render; $$ blocks stay TeX source
+warning: a.md:5: inline $…$ stays plain text on this site (modootoday.math.inline is false); use a ```math fence or a $$ block, or set inline: true
+exit 1

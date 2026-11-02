@@ -7,6 +7,7 @@ require_relative "layouts/directory"
 require_relative "layouts/detail"
 require_relative "layouts/marketing"
 require_relative "layouts/docs_extra"
+require_relative "layouts/blog"
 
 module Modootoday
   module Check

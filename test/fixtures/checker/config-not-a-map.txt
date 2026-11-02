@@ -1,0 +1,3 @@
+_config.yml: modootoday: must be a map
+md-components check: 1 problem(s)
+exit 1

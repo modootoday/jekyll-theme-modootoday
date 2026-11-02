@@ -26,4 +26,4 @@ Docs pages download nothing extra. Blog pages make one extra CSS request and one
 
 ## Note: component registry
 
-`_data/components.yml` registers section components selected with `c:` and its `parts:` are tied to kitchen-sink sections. The blog and news parts are layout-level, not sections, so they are not registered there. Their stable selectors and `[data-part]` names are listed in the Component structure table of `api.md` (Post header, Post footer, Post card, News front), and `modootoday-check` (`check/blog.rb`) validates the settings and front matter instead.
+`_data/components.yml` registers section components selected with `c:` and its `parts:` are tied to kitchen-sink sections. The blog and news parts are layout-level, not sections, so they are not registered there. Their stable selectors and `[data-part]` names are listed in the Component structure table of `api.md` (Post header, Post footer, Post card, News front), and `modootoday-check` (`check/layouts/blog.rb`) validates the settings and front matter instead.

@@ -60,7 +60,8 @@ Where things live:
 
 | Path | Context |
 | --- | --- |
-| `test/checker/` | `modootoday-check` rules |
+| `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb`, `context.rb` and `markdown.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
+| `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |
 | `test/theme/` | layouts, includes, Sass and tokens built with Jekyll |
 | `test/consumer/` | a site that uses the gem, and the example guides |
 | `test/project/` | README, version, community files and this layout |
