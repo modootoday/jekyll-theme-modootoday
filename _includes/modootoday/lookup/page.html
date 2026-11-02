@@ -1,0 +1,9 @@
+{%- comment -%}Sets mt_lookup_page to the first page whose url is include.url, or nil. The position of "|url|" in mt_page_urls
+is its index in site.pages, so no pass over the pages is needed; the where fallback only runs if a URL holds a "|".{%- endcomment -%}
+{%- include modootoday/lookup/urls.html -%}{%- assign mt_lookup_page = nil -%}
+{%- assign _lk_k = "|" | append: include.url | append: "|" -%}
+{%- if mt_page_urls contains _lk_k -%}
+{%- assign _lk_i = mt_page_urls | split: _lk_k | first | prepend: "x" | split: "|" | size | minus: 1 -%}
+{%- assign mt_lookup_page = site.pages[_lk_i] -%}
+{%- if mt_lookup_page.url != include.url -%}{%- assign mt_lookup_page = site.pages | where: "url", include.url | first -%}{%- endif -%}
+{%- endif -%}

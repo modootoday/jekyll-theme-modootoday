@@ -8,7 +8,7 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 {%- for _s in page.sections -%}{%- if _s.c -%}{%- assign mt_page_c = mt_page_c | append: _s.c | append: "|" -%}{%- endif -%}{%- if _s.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- if _s.chrome == "terminal" -%}{%- assign mt_page_c = mt_page_c | append: "terminal|" -%}{%- endif -%}{%- endfor -%}
 {%- if page.hero.c == "split" -%}{%- assign mt_page_c = mt_page_c | append: "split|" -%}{%- endif -%}
 {%- if page.hero.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- if page.hero.chrome == "terminal" -%}{%- assign mt_page_c = mt_page_c | append: "terminal|" -%}{%- endif -%}
-{%- assign mt_search_index = site.pages | where: "url", "/search.json" | first -%}
+{%- include modootoday/lookup/urls.html -%}{%- assign mt_search_index = nil -%}{%- if mt_page_urls contains "|/search.json|" -%}{%- assign mt_search_index = "/search.json" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign mt_page_c = mt_page_c | append: "search|" -%}{%- endif -%}
 {%- if site.modootoday.loading or content contains 'class="mt-spinner' or content contains 'class="mt-skeleton' or content contains 'class="mt-topbar' -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
 {%- if content contains 'class="mt-figure mt-figure-svg' -%}{%- assign mt_page_c = mt_page_c | append: "figure|" -%}{%- endif -%}

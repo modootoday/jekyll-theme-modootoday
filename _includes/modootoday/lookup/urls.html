@@ -1,0 +1,3 @@
+{%- comment -%}Sets mt_page_urls ("|/|/a/|": every page URL) once per render, so "does this page exist" checks are a string
+contains on "|url|" instead of a pass over site.pages; each pass costs one to_liquid per page.{%- endcomment -%}
+{%- unless mt_page_urls -%}{%- assign mt_page_urls = site.pages | map: "url" | join: "|" | prepend: "|" | append: "|" -%}{%- endunless -%}
