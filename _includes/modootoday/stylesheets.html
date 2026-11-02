@@ -13,21 +13,21 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 {%- for _x in layout.mt_css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor -%}
 {%- for _x in page.css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor %}
 {%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}
-{%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif %}
-<link rel="stylesheet" href="{{ '/assets/css/modootoday.css' | relative_url }}">
-{%- if mt_blog_css %}
-<link rel="stylesheet" href="{{ '/assets/css/modootoday-blog.css' | relative_url }}">
+{%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday.css" %}
+<link rel="stylesheet" href="{{ mt_asset_url }}">
+{%- if mt_blog_css -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday-blog.css" %}
+<link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}
 {%- comment -%}Optional per-layout bundles: the layout chain and the page may set mt_bundle: "<name> [<name>…]" to add
   assets/css/modootoday-<name>.css (both modes), each on its own budget outside core.{%- endcomment -%}
 {%- assign _mtbn = layout.mt_bundle | append: " " | append: page.mt_bundle -%}{%- if page.hero.visual == "showcase" -%}{%- assign _mtbn = _mtbn | append: " hero" -%}{%- endif -%}{%- assign _mtbn = _mtbn | split: " " | uniq -%}
-{%- for _b in _mtbn -%}{%- if _b != "" and _b != "blog" %}
-<link rel="stylesheet" href="{{ '/assets/css/modootoday-' | append: _b | append: '.css' | relative_url }}">
+{%- for _b in _mtbn -%}{%- if _b != "" and _b != "blog" -%}{%- assign _mtbp = '/assets/css/modootoday-' | append: _b | append: '.css' -%}{%- include modootoday/assets/url.html path=_mtbp %}
+<link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}{%- endfor -%}
 {%- unless mt.css == "bundle" -%}
 {%- include modootoday/assets/sheets.html -%}
 {%- for _s in mt_section_sheets -%}{%- assign _kv = _s | split: ":" -%}{%- assign _k = "|" | append: _kv[0] | append: "|" -%}{%- assign _n = _kv[1] | split: "/" | last -%}
-{%- if mt_page_c contains _k and mt_components contains _n %}
-<link rel="stylesheet" href="{{ '/assets/css/modootoday/' | append: _kv[1] | append: '.css' | relative_url }}">
+{%- if mt_page_c contains _k and mt_components contains _n -%}{%- assign _mtsp = '/assets/css/modootoday/' | append: _kv[1] | append: '.css' -%}{%- include modootoday/assets/url.html path=_mtsp %}
+<link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}{%- endfor -%}
 {%- endunless -%}

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# One version everywhere: gemspec, CHANGELOG, README (en/ko), docs install pages and the example config.
+# One version everywhere: gemspec, CHANGELOG, README (en/ko), docs install pages, the example config and the version include.
 require "minitest/autorun"
 
 class VersionTest < Minitest::Test
@@ -11,6 +11,11 @@ class VersionTest < Minitest::Test
     assert_match(/^\d+\.\d+\.\d+\z/, version)
     assert_match(/^## \[#{Regexp.escape(version)}\]/, read("CHANGELOG.md"))
     assert_match(/^\[#{Regexp.escape(version)}\]: /, read("CHANGELOG.md"))
+  end
+
+  def test_version_include_matches_the_gemspec
+    assert_includes read("_includes/modootoday/version.html"), %({%- assign mt_version = "#{version}" -%}), "run script/version-include"
+    assert system("ruby", File.join(ROOT, "script/version-include"), "--check", err: File::NULL), "run script/version-include"
   end
 
   def test_install_snippets_pin_the_current_version

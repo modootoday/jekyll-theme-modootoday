@@ -1,5 +1,5 @@
 {%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. probe: text in the rendered
-  body that turns a css row on (repeat a row for another probe); parts: the Sass partials modootoday.css: bundle folds in.
+  body that turns the row on (repeat a row for another probe); parts: the Sass partials modootoday.css: bundle folds in.
   Sets mt_asset_rows and mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss).{%- endcomment -%}
 {%- capture _mta_rows -%}
 doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions
@@ -15,8 +15,9 @@ bleed|css|/assets/css/modootoday/bleed.css||bleed
 terminal|css|/assets/css/modootoday/terminal.css||terminal
 tabs|js|/assets/js/modootoday/tabs.js
 menu|js|/assets/js/modootoday/menu.js
-scroll-region|js|/assets/js/modootoday/scroll-region.js
-code-copy|js|/assets/js/modootoday/code-copy.js
+scroll-region|js|/assets/js/modootoday/scroll-region.js|<pre
+scroll-region|js|/assets/js/modootoday/scroll-region.js|<table
+code-copy|js|/assets/js/modootoday/code-copy.js|<pre
 theme-toggle|js|/assets/js/modootoday/theme-toggle.js
 accordion|js|/assets/js/modootoday/accordion.js
 share|js|/assets/js/modootoday/share.js
@@ -29,3 +30,12 @@ search-keys|js|/assets/js/modootoday/search-keys.js
 {%- if _mta_c[4] -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}{%- endif -%}
 {%- endfor -%}
 {%- assign mt_context_sheets = _mta_cs | remove_first: "," | split: "," -%}
+{%- comment -%}mt_asset_v: the ?v= query of every theme CSS and JS URL (assets/url.html), from modootoday.asset_version:
+  theme (default) the theme version, build adds the commit (or the build time), false none.{%- endcomment -%}
+{%- include modootoday/version.html -%}
+{%- assign _mta_av = site.modootoday.asset_version -%}{%- assign mt_asset_v = mt_version -%}
+{%- if _mta_av == false -%}{%- assign mt_asset_v = "" -%}
+{%- elsif _mta_av == "build" -%}{%- assign _mta_rev = site.github.build_revision | slice: 0, 7 -%}
+{%- if _mta_rev == "" -%}{%- assign _mta_rev = site.time | date: "%s" -%}{%- endif -%}
+{%- assign mt_asset_v = mt_version | append: "-" | append: _mta_rev -%}
+{%- endif -%}

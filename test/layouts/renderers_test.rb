@@ -22,7 +22,7 @@ class RenderersBuildTest < Minitest::Test
       src, s = build_site(d, PAGES, config: cfg(%({enabled: true, src: "#{MM}", integrity: "#{SRI}", theme: auto})))
       h = html(s, "d.md")
       assert_includes h, %(<script src="#{MM}" integrity="#{SRI}" crossorigin="anonymous" defer></script>)
-      assert_match(%r{<script src="[^"]*/assets/js/modootoday-mermaid\.js" data-mt-theme="auto" defer></script>}, h)
+      assert_match(%r{<script src="[^"]*/assets/js/modootoday-mermaid\.js(\?v=[^"]*)?" data-mt-theme="auto" defer></script>}, h)
       assert_includes h, '<code class="language-mermaid">', "the fence stays as the no-JS fallback"
       refute_includes html(s, "off.md"), "modootoday-mermaid.js"
       refute_includes html(s, "p.md"), "modootoday-mermaid.js"
@@ -75,7 +75,7 @@ class RenderersBuildTest < Minitest::Test
         assert_includes h, %(<link rel="stylesheet" href="#{K}katex.min.css" integrity="#{SRI}" crossorigin="anonymous">), n
         assert_includes h, %(<script src="#{K}katex.min.js" integrity="#{SRI}" crossorigin="anonymous" defer></script>), n
         assert_includes h, %(<script src="#{K}contrib/auto-render.min.js" integrity="#{SRI}" crossorigin="anonymous" defer></script>), n
-        assert_match(%r{modootoday-math\.js" data-mt-inline="false" defer}, h)
+        assert_match(%r{modootoday-math\.js(\?v=[^"]*)?" data-mt-inline="false" defer}, h)
       end
       assert_includes html(s, "block.md"), "\\[E=mc^2\\]", "kramdown (math_engine mathjax, the default) prints $$ blocks as \\[ … \\]"
       %w[none.md off.md inl.md].each { |n| refute_includes html(s, n), "katex", n }
@@ -88,7 +88,7 @@ class RenderersBuildTest < Minitest::Test
   def test_math_inline_opt_in_and_missing_integrity
     Dir.mktmpdir do |d|
       _, s = build_site(d, MATH_PAGES, config: "modootoday:\n  math: #{MATH.delete_suffix("}")}, inline: true}\n")
-      assert_match(%r{modootoday-math\.js" data-mt-inline="true" defer}, html(s, "inl.md"))
+      assert_match(%r{modootoday-math\.js(\?v=[^"]*)?" data-mt-inline="true" defer}, html(s, "inl.md"))
     end
     Dir.mktmpdir do |d|
       src, s = build_site(d, MATH_PAGES, config: "modootoday:\n  math: #{MATH.sub(%(css: "#{SRI}"), "css: null")}\n")

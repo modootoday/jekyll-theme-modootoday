@@ -6,15 +6,17 @@ import path from "node:path";
 export const BASE = "/jekyll-theme-modootoday";
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".txt": "text/plain; charset=utf-8", ".md": "text/markdown; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json" };
 
-// Returns { origin, close } where origin ends with BASE + "/".
-export async function serveSite(site) {
+// Returns { origin, close } where origin ends with BASE + "/". csp: a Content-Security-Policy header for HTML responses.
+export async function serveSite(site, { csp } = {}) {
   const server = http.createServer((req, res) => {
     const u = decodeURIComponent(req.url.split("?")[0]);
     if (!u.startsWith(BASE)) { res.writeHead(404); return res.end(); }
     let f = path.join(site, u.slice(BASE.length));
     if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, "index.html");
     if (!fs.existsSync(f)) { res.writeHead(404); return res.end("404"); }
-    res.writeHead(200, { "content-type": TYPES[path.extname(f)] || "application/octet-stream" });
+    const headers = { "content-type": TYPES[path.extname(f)] || "application/octet-stream" };
+    if (csp && path.extname(f) === ".html") headers["content-security-policy"] = csp;
+    res.writeHead(200, headers);
     fs.createReadStream(f).pipe(res);
   });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));

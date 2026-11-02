@@ -1,3 +1,5 @@
-{%- comment -%}Sets mt_asset_url for include.path (a site path such as /assets/js/modootoday/tabs.js). Every registry tag
-  takes its URL from here so a versioned query can be added in one place.{%- endcomment -%}
+{%- comment -%}Sets mt_asset_url for include.path (a site path such as /assets/js/modootoday/tabs.js). Every theme CSS and JS
+  tag takes its URL from here. The ?v= query (mt_asset_v, assets/registry.html) lets a CDN cache theme files for long;
+  GitHub Pages ignores it and serves the same file.{%- endcomment -%}
 {%- assign mt_asset_url = include.path | relative_url -%}
+{%- if mt_asset_v and mt_asset_v != "" -%}{%- assign mt_asset_url = mt_asset_url | append: "?v=" | append: mt_asset_v -%}{%- endif -%}

@@ -21,7 +21,7 @@ class ListsTest < Minitest::Test
       assert_equal 1, h.scan('<ul class="mt-chips">').size
       assert_includes h, '<li><strong class="mt-item-title">Speed</strong><span class="mt-item-sep">: </span>very fast</li>'
       assert_includes h, "<li><strong>Size</strong> small</li>"
-      assert_match %r{href="[^"]*/assets/css/modootoday/lists\.css"}, h
+      assert_match %r{href="[^"]*/assets/css/modootoday/lists\.css(\?v=[^"]*)?"}, h
       refute_includes html(s, "p.md"), "lists.css"
       css = File.read("#{s}/assets/css/modootoday/lists.css")
       assert_includes css, "mt-chips"
@@ -54,7 +54,7 @@ class ListsTest < Minitest::Test
       assert_includes h, '<section class="mt-hero mt-bleed mt-bleed-wide">'
       assert_match(/<section class="mt-section mt-bleed" data-section="one">\s*<h2/, h)
       assert_match(/<section class="mt-section" data-section="two">/, h)
-      assert_match %r{href="[^"]*/assets/css/modootoday/bleed\.css"}, h
+      assert_match %r{href="[^"]*/assets/css/modootoday/bleed\.css(\?v=[^"]*)?"}, h
       refute_includes html(s, "p.md"), "bleed.css"
       css = File.read("#{s}/assets/css/modootoday/bleed.css")
       assert_includes css, "--mt-bleed-bg"
@@ -75,7 +75,7 @@ class ListsTest < Minitest::Test
       src, s = build_site(d, TERM)
       h = html(s, "t.md")
       assert_includes h, '<div class="mt-section-visual mt-split-code mt-split-terminal"><div class="mt-split-bar" aria-hidden="true">'
-      assert_match %r{href="[^"]*/assets/css/modootoday/terminal\.css"}, h
+      assert_match %r{href="[^"]*/assets/css/modootoday/terminal\.css(\?v=[^"]*)?"}, h
       u = html(s, "u.md")
       refute_includes u, "terminal.css"
       assert_includes u, '<div class="mt-section-visual mt-split-code"><div class="language-sh'

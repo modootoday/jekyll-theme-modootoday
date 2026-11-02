@@ -19,6 +19,10 @@ With both handled, this policy works:
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:
 ```
 
+Table columns aligned with `:---`, `:---:` or `---:` are the exception: kramdown writes the alignment as a `style` attribute, which this policy blocks, so those columns fall back to the default alignment and the browser reports a violation. Leave column alignment out on pages served with this policy.
+
 GitHub Pages cannot send response headers. A `<meta http-equiv="Content-Security-Policy">` tag in `_includes/head-custom.html` works for these directives. If you keep the inline script, allow it by hash instead; the hash changes only when the script changes, which `CHANGELOG.md` announces.
+
+The theme's docs QA serves sample pages, among them the [strict CSP demo](../../layouts/demo/csp/), with this policy as a response header and fails on any violation.
 
 To add math or diagrams under this policy, see [Math and diagrams](../math-diagrams/).

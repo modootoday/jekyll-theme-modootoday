@@ -50,6 +50,7 @@ modootoday:
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 브랜드 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
 | `favicon` | 없음 | `brand`면 테마 브랜드 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
 | `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
+| `asset_version` | `theme` | 테마 CSS와 JavaScript URL에 붙는 `?v=` 쿼리: `theme`은 테마 버전, `build`는 커밋(또는 빌드 시각)까지 붙이고, `false`면 붙이지 않음. [성능](../performance/#버전-붙은-자산-url) 참고 |
 | `viewport_fit` | `cover` | `auto`면 노치 아래까지 그리지 않고 페이지를 안전 영역 안에 둠 ([접근성](../accessibility/#설정) 참고) |
 | `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
 | `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |

@@ -35,7 +35,7 @@ class ConsumerTest < Minitest::Test
       assert st.success?, out
       build(EXAMPLE, "#{d}/b", "--baseurl", "/docs")
       html = File.read("#{d}/b/guide/index.html")
-      assert_includes html, 'href="/docs/assets/css/modootoday.css"'
+      assert_match %r{href="/docs/assets/css/modootoday\.css\?v=[^"]+"}, html
       assert_includes html, 'href="/docs/guide/index.md"'
       assert_includes File.read("#{d}/b/llms.txt"), "(/docs/guide/index.md)"
       assert_equal File.binread("#{d}/a/guide/index.md"), File.binread("#{d}/b/guide/index.md")

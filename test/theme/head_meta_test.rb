@@ -52,7 +52,7 @@ class HeadMetaTest < Minitest::Test
         assert_includes h, '<link rel="alternate" hreflang="x-default" href="https://example.org/docs/">'
         assert_includes h, 'href="/docs/feed.xml"'
         assert_includes h, '<meta property="og:image" content="https://example.org/docs/assets/og.png">'
-        assert_includes h, '<script src="/docs/assets/js/modootoday/theme-init.js"></script>'
+        assert_match %r{<script src="/docs/assets/js/modootoday/theme-init\.js\?v=[^"]+"></script>}, h
         refute_includes h, INLINE
         refute_match(/<script>(?!<\/script>)/, h, "no inline script with csp: strict")
       end

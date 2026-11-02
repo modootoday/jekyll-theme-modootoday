@@ -22,7 +22,7 @@ class MarketingLayoutsTest < Minitest::Test
       src, s = build_site(d, PAGES)
       PAGES.each_key { |n| assert_includes html(s, n), "modootoday-marketing.css", n }
       p = html(s, "pr.md")
-      assert_match(%r{href="[^"]*/pricing\.css"}, p)
+      assert_match(%r{href="[^"]*/pricing\.css(\?v=[^"]*)?"}, p)
       assert_includes p, 'id="mt-bill-y"'
       assert_includes p, '<label for="mt-bill-m">'
       refute_match(/style="/, html(s, "b.md"))

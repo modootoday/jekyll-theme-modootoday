@@ -22,6 +22,10 @@ description: unsafe-inline 없이 엄격한 CSP에서 테마 쓰기.
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:
 ```
 
+`:---`, `:---:`, `---:`로 정렬한 표 열은 예외입니다. kramdown은 정렬을 `style` 속성으로 쓰는데, 이 정책은 그 속성을 막습니다. 그래서 그 열은 기본 정렬로 돌아가고 브라우저는 위반을 보고합니다. 이 정책으로 보내는 페이지에서는 열 정렬을 쓰지 마세요.
+
 GitHub Pages는 응답 헤더를 보낼 수 없습니다. 이 지시어들은 `_includes/head-custom.html`의 `<meta http-equiv="Content-Security-Policy">` 태그로 쓸 수 있습니다. 인라인 스크립트를 유지하려면 해시로 허용하세요. 해시는 스크립트가 바뀔 때만 바뀌며 `CHANGELOG.md`에 공지합니다.
+
+테마의 문서 QA는 [엄격한 CSP 데모](../../layouts/demo/csp/)를 비롯한 예시 페이지를 이 정책을 응답 헤더로 붙여 보내고, 위반이 하나라도 있으면 실패합니다.
 
 이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../math-diagrams/)을 보세요.

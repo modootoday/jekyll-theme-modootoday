@@ -16,7 +16,7 @@ class FigureSvgTest < Minitest::Test
       _, s = build_site(d, PAGES)
       h = html(s, "svg.md")
       assert_includes h, %(<figure class="mt-figure mt-figure-svg"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="Request flow from browser to server"><img src="/assets/flow.svg")
-      assert_match %r{href="[^"]*/assets/css/modootoday/figure\.css"}, h
+      assert_match %r{href="[^"]*/assets/css/modootoday/figure\.css(\?v=[^"]*)?"}, h
       p = html(s, "png.md")
       assert_includes p, %(<figure class="mt-figure"><img src="/assets/photo.png")
       refute_includes p, "figure.css"

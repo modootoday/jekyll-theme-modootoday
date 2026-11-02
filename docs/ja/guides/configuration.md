@@ -50,6 +50,7 @@ modootoday:
 | `logo` | なし | `brand` でサイト名の前にテーマのブランドマークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/brand/logo.html` を上書き |
 | `favicon` | なし | `brand` でテーマのブランドマークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
 | `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
+| `asset_version` | `theme` | テーマの CSS と JavaScript の URL に付く `?v=` クエリ。`theme` はテーマのバージョン、`build` はさらにコミット (またはビルド時刻) を付け、`false` は付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照 |
 | `viewport_fit` | `cover` | `auto` でノッチの下まで描かず、ページをセーフエリア内に収める ([アクセシビリティ](../accessibility/#設定)を参照) |
 | `theme_color` | ページ背景 | ブラウザーのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
 | `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |

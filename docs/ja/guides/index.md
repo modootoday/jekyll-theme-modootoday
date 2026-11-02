@@ -15,6 +15,7 @@ nav_order: 0
 - [AI 向け](agents/) — AI エージェントのための Markdown 版、llms.txt、llms-full.txt。
 - [移行](upgrade/) — 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
 - [アクセシビリティ](accessibility/) — キーボード、スクリーンリーダー、セーフエリア、タッチターゲット、ハイコントラスト、視差効果を減らす設定。
+- [パフォーマンス](performance/) — ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
 - [構造化データ](structured-data/) — テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。
 - [翻訳ルール](translation/) — 韓国語・日本語のドキュメントと UI 文言の正式なスタイルルール、用語集、チェック。
 <!-- spec:docs-index:end -->

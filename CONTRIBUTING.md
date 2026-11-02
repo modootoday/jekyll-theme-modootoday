@@ -18,7 +18,7 @@ npm ci && npm test
 gem build jekyll-theme-modootoday.gemspec
 ```
 
-Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast and size budgets; CI runs the same job and uploads `qa-out/`.
+Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. The budgets in `qa/audit/config.mjs` cover each file, the core CSS one page links, all core scripts (gzip) and, per page type (`PAGE_TYPES`), the gzip bytes one page loads; limits are the measured value plus about 10 %. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there.
 
 ### Visual regression
 
@@ -68,7 +68,7 @@ Where things live:
 | `test/js/` | browser scripts (`node --test`) |
 | `test/fixtures/` | inputs shared by the tests |
 | `qa/site/` | building and serving the docs site |
-| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets, registry parts (`npm run qa`) |
+| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: per file, per page, per page type in gzip), registry parts, strict CSP (`npm run qa`) |
 | `qa/visual/` | visual regression (`npm run qa:visual`) |
 | `qa/lighthouse/` | Lighthouse runs and budget |
 | `qa/docs/` | link check and kitchen-sink coverage |

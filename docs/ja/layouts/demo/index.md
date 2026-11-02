@@ -14,3 +14,4 @@ twin: false
 - [Error](error/)
 - [Redirect](redirect/)
 - [Search](search/)
+- [Strict CSP](csp/)

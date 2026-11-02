@@ -15,6 +15,7 @@ nav_order: 0
 - [에이전트](agents/) — AI 에이전트가 읽는 Markdown 버전, llms.txt, llms-full.txt.
 - [이전](upgrade/) — 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
 - [접근성](accessibility/) — 키보드, 스크린 리더, 안전 영역, 터치 대상, 고대비, 동작 줄이기.
+- [성능](performance/) — 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
 - [구조화 데이터](structured-data/) — 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프와 설정 방법.
 - [번역 규칙](translation/) — 한국어·일본어 문서와 인터페이스 문구의 정본 스타일 규칙, 용어집, 검사.
 <!-- spec:docs-index:end -->

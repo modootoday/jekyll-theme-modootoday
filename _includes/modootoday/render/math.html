@@ -22,13 +22,13 @@ If any declared URL cannot load (an https URL without integrity), nothing loads.
 {%- include modootoday/render/asset.html src=_mx.src integrity=_mx.integrity.js -%}{%- assign _mx_js = mt_asset_tag -%}
 {%- assign _mx_ar = "" -%}
 {%- if _mx.auto_render_src -%}{%- include modootoday/render/asset.html src=_mx.auto_render_src integrity=_mx.auto_render_integrity -%}{%- assign _mx_ar = mt_asset_tag -%}{%- endif -%}
-{%- if _mx_css and _mx_js and _mx_ar %}
+{%- if _mx_css and _mx_js and _mx_ar -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday-math.js" %}
 {{ _mx_css }}
 {{ _mx_js }}
 {%- if _mx_ar != "" %}
 {{ _mx_ar }}
 {%- endif %}
-<script src="{{ '/assets/js/modootoday-math.js' | relative_url }}" data-mt-inline="{% if _mx.inline == true %}true{% else %}false{% endif %}" defer></script>
+<script src="{{ mt_asset_url }}" data-mt-inline="{% if _mx.inline == true %}true{% else %}false{% endif %}" defer></script>
 {%- endif -%}
 {%- endif -%}
 {%- endif -%}

@@ -23,6 +23,8 @@ modootoday:
   language_switcher: header
   logo: brand
   favicon: brand
+  # No inline script, so the docs QA can serve every page under a strict CSP header (qa/audit/csp.mjs).
+  csp: strict
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
   # Post footers link tags and categories here (/ko/tags/ for lang: ko posts).
   archive: {tags: /tags/, categories: /categories/}

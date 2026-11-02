@@ -22,6 +22,10 @@ description: unsafe-inline なしの厳格な CSP でテーマを動かします
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:
 ```
 
+`:---`、`:---:`、`---:` で揃えた表の列は例外です。kramdown は揃え方を `style` 属性として書き出し、このポリシーはそれをブロックします。そのため、その列は既定の揃え方に戻り、ブラウザーは違反を報告します。このポリシーで配信するページでは、列の揃えを使わないでください。
+
 GitHub Pages はレスポンスヘッダーを送れません。これらのディレクティブなら、`_includes/head-custom.html` に置いた `<meta http-equiv="Content-Security-Policy">` タグで機能します。インラインスクリプトを残す場合は、代わりにハッシュで許可してください。ハッシュはスクリプトが変わったときだけ変わり、その際は `CHANGELOG.md` で告知します。
+
+テーマのドキュメント QA は、[厳格な CSP のデモ](../../layouts/demo/csp/)をはじめとするサンプルページをこのポリシーをレスポンスヘッダーに付けて返し、違反が 1 件でもあれば失敗します。
 
 このポリシーのもとで数式や図を追加するには、[数式と図](../math-diagrams/)を参照してください。

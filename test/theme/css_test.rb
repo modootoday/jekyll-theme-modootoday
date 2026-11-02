@@ -51,7 +51,7 @@ class CssTest < Minitest::Test
     [".mt-callout", ".mt-badge", ".mt-hero", ".mt-cta", ".mt-c-features", ".mt-skeleton", ".mt-plan", ".mt-search", ".mt-code-copy", ".mt-nav", ".mt-pagination"].each { |c| assert_includes css, c, c }
     assert_match(/\[role="?tablist"?\]/, css)
     refute_includes css, "@layer"
-    assert_includes html, "code-copy.js"
+    refute_includes html, "code-copy.js", "code-copy.js loads only on pages with a code block"
   end
 
   def test_split_sheets

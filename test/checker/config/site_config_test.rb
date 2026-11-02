@@ -49,4 +49,16 @@ class CheckSiteConfigTest < CheckerCase
     o, code = check("--strict")
     assert_equal 0, code, o
   end
+
+  def test_asset_version_validation
+    %w[theme build false].each do |v|
+      page "_config.yml", "modootoday:\n  asset_version: #{v}\n"
+      o, code = check("--strict")
+      assert_equal 0, code, "#{v}: #{o}"
+    end
+    page "_config.yml", "modootoday:\n  asset_version: true\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "asset_version must be theme, build or false (got true)"
+  end
 end

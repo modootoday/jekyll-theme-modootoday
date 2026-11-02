@@ -11,9 +11,9 @@ An https src without integrity loads nothing (modootoday-check reports it). With
 {%- if _mm.enabled == true and page.mermaid != false and _mm.src -%}
 {%- if content contains '<code class="language-mermaid"' or content contains 'class="language-mermaid highlighter-rouge"' -%}
 {%- include modootoday/render/asset.html src=_mm.src integrity=_mm.integrity -%}{%- assign _mm_tag = mt_asset_tag -%}
-{%- if _mm_tag %}
+{%- if _mm_tag -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday-mermaid.js" %}
 {{ _mm_tag }}
-<script src="{{ '/assets/js/modootoday-mermaid.js' | relative_url }}" data-mt-theme="{{ _mm.theme | default: 'auto' | escape }}" defer></script>
+<script src="{{ mt_asset_url }}" data-mt-theme="{{ _mm.theme | default: 'auto' | escape }}" defer></script>
 {%- endif -%}
 {%- endif -%}
 {%- endif -%}

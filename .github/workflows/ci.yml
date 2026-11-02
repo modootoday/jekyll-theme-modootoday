@@ -167,7 +167,7 @@ jobs:
         run: ruby qa/docs/structure.rb
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Screenshots, axe, contrast, budgets
+      - name: Screenshots, axe, contrast, budgets, CSP
         run: npm run qa
       - uses: actions/upload-artifact@v7
         if: always()

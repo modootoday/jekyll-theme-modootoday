@@ -6,8 +6,16 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- `modootoday.asset_version` (`theme`, `build` or `false`) sets the `?v=` query on the theme's CSS and JavaScript URLs, so a CDN can cache them for long and still pick up a new release; `build` adds the commit (`site.github.build_revision`, or the build time where the Pages builder does not pass one). `modootoday-check` validates the value. New guide: Performance (what each page loads, versioned URLs, a CDN cache rule, the size budgets).
+- Docs QA: a CSP audit opens sample pages, among them a new strict CSP demo page, with a strict `Content-Security-Policy` response header and fails on any violation or console error. Size budgets now also cover, per page type (docs, landing, blog, component showcase), the gzip bytes of the CSS and JavaScript one page loads; the total of the core scripts is budgeted in gzip bytes instead of raw bytes.
+
 ### Changed
 
+- Theme stylesheet and script URLs now end in `?v=<theme version>` by default (`asset_version: theme`), which changes the built HTML of every page. GitHub Pages ignores the query. Set `modootoday.asset_version: false` to keep the previous URLs.
+- `code-copy.js` loads only on pages with a code block (or with the page actions menu), and `scroll-region.js` only on pages with a code block or a table; before, both loaded on every page. What they do is unchanged.
+- The docs site sets `modootoday.csp: strict`, so its pre-paint theme script comes from `theme-init.js` instead of an inline script.
 - Ruby 3.3 is now the oldest supported Ruby (`required_ruby_version >= 3.3`); Ruby 3.2 has reached end of life. CI tests Jekyll 4 on Ruby 3.3 and 3.4, and also runs Ruby 4.0 as an allowed-failure entry.
 - Faster builds on large sites: the layouts and includes no longer scan `site.pages` once per lookup on every page. Each layout builds one list of page URLs per page (`modootoday/lookup/urls.html`); existence checks (twin, language home, `llms.txt`, feed, `search.json`) read it, the breadcrumb and its JSON-LD take the home and parent pages by their position in it (`lookup/page.html`, `lookup/crumbs.html`), and `ref-url.html` searches only the pages that have a `ref`. On a synthetic 1,000-page site the GitHub Pages build took less than half the time. The built output is unchanged.
 - CI: pushes to `main` run only the fast jobs (the Ruby and Jekyll matrix, the classic Pages builder, JS and tokens), and a newer push cancels the older run. Docs QA, Lighthouse and visual regression run on pull requests and in the release check; the visual run compares with the latest release tag (`RELEASING.md` step 3).

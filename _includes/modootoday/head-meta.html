@@ -18,8 +18,8 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <link rel="icon" href="{{ _fav | relative_url }}">
 {%- endif -%}
 {%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}
-{%- if site.modootoday.csp == "strict" %}
-<script src="{{ '/assets/js/modootoday/theme-init.js' | relative_url }}"></script>
+{%- if site.modootoday.csp == "strict" -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday/theme-init.js" %}
+<script src="{{ mt_asset_url }}"></script>
 {%- else %}
 <script>try{var t=localStorage.getItem("mt-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 {%- endif -%}
