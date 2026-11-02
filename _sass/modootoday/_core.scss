@@ -1,10 +1,13 @@
-// Core: settings → tools → tokens → base → layout. Components are imported separately
+// Core: site hook → settings → tools → tokens → base → layout. Components are imported separately
 // (assets/css/modootoday.scss picks them from modootoday.components; _sass/modootoday.scss imports all).
+// The hook goes through the load path, not relative to this file, so the site's copy shadows the theme's.
+@import "modootoday/site";
 @import "settings";
 @import "tools/functions";
 @import "tools/mixins";
 @import "tokens/primitive";
 @import "tokens/semantic";
+@import "tokens/merge";
 @if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }
 @import "tokens/emit";
 @import "base/reset";

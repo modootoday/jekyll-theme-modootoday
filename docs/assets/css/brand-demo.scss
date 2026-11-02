@@ -1,0 +1,31 @@
+---
+# Docs demo for the brand tokens recipe (front matter site_css on that page only). A site puts the same three maps in
+# _sass/modootoday/_site.scss; here they are emitted for one page, so the rest of the docs keep the default look.
+---
+@import "modootoday/tools/mixins";
+
+$mt-overrides-base: (
+  font-heading: ("Fraunces", var(--mt-font-sans)), heading-weight: 600
+);
+$mt-overrides: (
+  background: #fbfdfc, foreground: #10302c, muted: #eef6f4, muted-foreground: #4b635f,
+  card: #ffffff, card-foreground: #10302c, primary: #0f766e, primary-foreground: #ffffff, brand: #14b8a6,
+  link: #0f766e, link-hover: #115e59, accent: #ddf1ed, accent-foreground: #10302c, border: #cfe3df, ring: #0f766e
+);
+$mt-overrides-dark: (
+  background: #0b1615, foreground: #e3f2ef, muted: #13211f, muted-foreground: #9db5b0,
+  card: #13211f, card-foreground: #e3f2ef, primary: #2dd4bf, primary-foreground: #042f2b, brand: #14b8a6,
+  link: #5eead4, link-hover: #99f6e4, accent: #1a2e2b, accent-foreground: #e3f2ef, border: #24403b, ring: #2dd4bf
+);
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("{{ '/assets/fonts/fraunces/fraunces-600-latin.woff2' | relative_url }}") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+:root { @include mt-emit($mt-overrides-base); @include mt-emit($mt-overrides); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include mt-emit($mt-overrides-dark); }
+}
+:root[data-theme="dark"] { @include mt-emit($mt-overrides-dark); }

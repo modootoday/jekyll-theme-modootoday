@@ -19,6 +19,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `scroll-region.js` | pages with a code block or a table |
 | `tabs.js`, `accordion.js`, `share.js` | pages that use tabs, an accordion, or a blog layout |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
+| Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 
 Scripts load with `defer` and do not block the first paint; the one exception is the small pre-paint theme script that `csp: strict` loads from a file. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
 
@@ -32,7 +33,7 @@ Every theme stylesheet and script URL ends in `?v=` and the theme version, such 
 | `build` | `?v=X.Y.Z-a1b2c3d` | you also override theme files (Sass partials, scripts) in your site; the commit comes from `site.github.build_revision` on GitHub Pages, and the build time elsewhere |
 | `false` | none | you version or fingerprint assets yourself |
 
-Only the theme's own CSS and JavaScript get the query. Your images, fonts and stylesheets keep their URLs.
+The theme's own CSS and JavaScript get the query, and so do the sheets you list in `site_css`. Your other stylesheets, images and fonts keep their URLs, and so do `preload` hints: a hint has to match the URL the page or stylesheet requests, or the browser downloads the file twice.
 
 ## Long caching on a CDN
 

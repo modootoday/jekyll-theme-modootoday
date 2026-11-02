@@ -1,7 +1,8 @@
 @include mt-layer(base) {
-  a { color: mt(primary); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+  a { color: mt(link); text-decoration-thickness: 1px; text-underline-offset: .2em; }
   a:hover { text-decoration-thickness: 2px; }
-  h1, h2, h3, h4 { line-height: 1.25; margin: 2.2em 0 .6em; font-weight: 650; letter-spacing: -.015em; scroll-margin-top: calc(#{mt(header-height)} + 1rem); }
+  a:where(:hover) { color: mt(link-hover); } // element weight only: links coloured by a component keep their hover colour
+  h1, h2, h3, h4 { line-height: 1.25; margin: 2.2em 0 .6em; font-family: mt(font-heading); font-weight: mt(heading-weight); letter-spacing: -.015em; scroll-margin-top: calc(#{mt(header-height)} + 1rem); }
   h1 { font-size: 2.25rem; line-height: 1.15; letter-spacing: -.025em; margin-top: 0; }
   h2 { font-size: 1.5rem; letter-spacing: -.02em; }
   h3 { font-size: 1.15rem; }

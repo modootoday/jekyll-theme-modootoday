@@ -74,6 +74,7 @@
   url: /recipes/
   items:
     - {title: Math and diagrams, url: /recipes/math-diagrams/}
+    - {title: Brand tokens, url: /recipes/brand-tokens/}
     - {title: CSP, url: /recipes/csp/}
     - {title: Product site, url: /recipes/marketing/}
     - {title: Company pages, url: /recipes/company/}

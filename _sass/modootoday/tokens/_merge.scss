@@ -1,0 +1,4 @@
+// Merges the site's partial overrides (_settings.scss, set by the site hook _site.scss) into the semantic maps.
+$mt-base: map-merge($mt-base, $mt-overrides-base);
+$mt-light: map-merge($mt-light, $mt-overrides);
+$mt-dark: map-merge($mt-dark, $mt-overrides-dark);

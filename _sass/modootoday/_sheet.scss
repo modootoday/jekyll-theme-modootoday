@@ -1,5 +1,7 @@
 // Head of every optional sheet (assets/css/modootoday/**): settings and tools only, no output
 // except the layer order, so a sheet adds just its component rules on top of the core sheet.
+// The site hook comes first, as in _core.scss, so every sheet sees the same settings.
+@import "modootoday/site";
 @import "settings";
 @import "tools/functions";
 @import "tools/mixins";

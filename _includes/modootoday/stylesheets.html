@@ -3,6 +3,7 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
   split (default): the core sheet, the context sheets of assets/sheets.html (front matter mt_sheets, body probes),
                    and one sheet per section component the page's sections: use. Page front matter css: [c, ...] adds more.
   modootoday.css: bundle — only the core sheet, which then holds everything.
+Both modes: preload hints first (assets/preload.html), the site's own sheets last (assets/site-sheets.html, site_css).
 {%- endcomment -%}
 {%- assign mt_page_c = "|" -%}
 {%- for _s in page.sections -%}{%- if _s.c -%}{%- assign mt_page_c = mt_page_c | append: _s.c | append: "|" -%}{%- endif -%}{%- if _s.bleed -%}{%- assign mt_page_c = mt_page_c | append: "bleed|" -%}{%- endif -%}{%- if _s.chrome == "terminal" -%}{%- assign mt_page_c = mt_page_c | append: "terminal|" -%}{%- endif -%}{%- endfor -%}
@@ -12,6 +13,7 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign mt_page_c = mt_page_c | append: "search|" -%}{%- endif -%}
 {%- for _x in layout.mt_css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor -%}
 {%- for _x in page.css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor %}
+{%- include modootoday/assets/preload.html -%}
 {%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}
 {%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday.css" %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
@@ -31,3 +33,4 @@ Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|fa
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}{%- endfor -%}
 {%- endunless -%}
+{%- include modootoday/assets/site-sheets.html -%}

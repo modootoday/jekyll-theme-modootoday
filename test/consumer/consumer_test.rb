@@ -66,6 +66,35 @@ class ConsumerTest < Minitest::Test
     end
   end
 
+  # A site from before the token bridge shadows the entry sheet to set $mt-overrides; the bridge hook, site_css and
+  # preload come from the gem and work next to it.
+  def test_token_bridge_with_a_shadowed_entry_sheet
+    Dir.mktmpdir do |d|
+      src = "#{d}/src"
+      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
+      FileUtils.mkdir_p(["#{src}/assets/css", "#{src}/assets/fonts"])
+      File.write("#{src}/assets/css/modootoday.scss", "---\n---\n$mt-overrides: (primary: #b45309);\n@import \"modootoday/core\";\n.site-rule { color: red; }\n")
+      File.write("#{src}/_sass/modootoday/_site.scss", "$mt-overrides-base: (font-heading: (Georgia, serif));\n$mt-overrides-dark: (primary: #fbbf24);\n")
+      File.write("#{src}/assets/css/site.css", ".site-sheet { color: blue; }\n")
+      File.write("#{src}/assets/fonts/x.woff2", "")
+      File.write("#{src}/_config.yml", File.read("#{src}/_config.yml") +
+                 "modootoday: {site_css: [/assets/css/site.css], preload: [{href: /assets/fonts/x.woff2, as: font, type: font/woff2}]}\n")
+      build(src, "#{d}/out")
+      out, st = check(src, "#{d}/out")
+      assert st.success?, out
+      css = File.read("#{d}/out/assets/css/modootoday.css")
+      assert_match(/--mt-primary:\s*#b45309/, css[/:root\s*\{(.*?)\}/m, 1])
+      assert_match(/--mt-font-heading:\s*Georgia, serif/, css)
+      assert_match(/--mt-primary:\s*#fbbf24/, css[/:root\[data-theme="?dark"?\]\s*\{(.*?)\}/m, 1])
+      assert_includes css, ".site-rule"
+      html = File.read("#{d}/out/guide/index.html")
+      assert_match %r{<link rel="preload" href="/assets/fonts/x\.woff2" as="font" type="font/woff2" crossorigin>}, html
+      assert_match %r{<link rel="stylesheet" href="/assets/css/site\.css\?v=[^"]+">}, html
+      assert_operator html.index("modootoday.css"), :<, html.index("/assets/css/site.css")
+    end
+  end
+
   # Front-matter-less mode (modootoday.twins: source): jekyll-optional-front-matter renders each
   # front-matter-less page AND copies the raw source to its own path, which is the twin. Same on
   # github-pages (Jekyll 3.10) and Jekyll 4 with the plugins listed explicitly.

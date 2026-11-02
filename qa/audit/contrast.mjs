@@ -2,20 +2,20 @@
 // logical name -> candidate token names (v0.2 semantic names first, v0.1 names as fallback)
 const T = {
   fg: ["foreground", "fg"], "fg-muted": ["muted-foreground", "fg-muted"], bg: ["background", "bg"], "bg-subtle": ["muted", "bg-subtle"],
-  accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"],
+  accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], link: ["link"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"],
   ...Object.fromEntries(["note", "tip", "important", "warning", "caution"].map((t) => [t, [t]])),
   ...Object.fromEntries(["available", "partial", "planned"].map((t) => [t, ["status-" + t, t]])),
 };
 const PAIRS = [
   ["fg", "bg", 4.5], ["fg-muted", "bg", 4.5], ["fg", "bg-subtle", 4.5], ["fg-muted", "bg-subtle", 4.5], ["card-fg", "card", 4.5],
-  ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["border", "bg", 1.2],
+  ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["link", "bg", 4.5], ["border", "bg", 1.2],
   ...["note", "tip", "important", "warning", "caution", "available", "partial", "planned"].map((t) => [t, "bg", 4.5]),
   ...["note", "tip", "important", "warning", "caution"].map((t) => [t, "bg-subtle", 3]),
 ];
 const lum = (c) => { const [r, g, b] = c.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
 const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
 
-// page: already on the site's home page in the given scheme. Appends to rows and fails.
+// page: already on a page of the site (CONTRAST_PAGES) in the given scheme; scheme labels the rows. Appends to rows and fails.
 export async function checkContrast(page, scheme, rows, fails) {
   const pre = "--mt-";
   const rgb = await page.evaluate(({ pre, T }) => Object.fromEntries(Object.entries(T).map(([n, cands]) => {

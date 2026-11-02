@@ -36,7 +36,9 @@ modootoday:
 | `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
 | `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |
 | `page_actions` | `true` | Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューを出す。ここか front matter で `false` にすると消える。完全に外すなら `components` から `page-actions` を除く |
-| `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする |
+| `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする (インラインの `<style>`。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う) |
+| `site_css` | なし | サイト独自のスタイルシート。`[/assets/css/site.css]` のようなサイトパスのリストで、テーマのシートの後に同じ `?v=` クエリを付けて読み込む。front matter の `site_css:` はそのページだけにシートを追加する。[ブランドトークン](../../recipes/brand-tokens/)を参照 |
+| `preload` | なし | スタイルシートより前の `<link rel="preload">`。`{href, as, type}` のリストで、`href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれか (フォントと fetch には `crossorigin` が付き、`?v=` クエリは付かない)。front matter の `preload:` はそのページだけに追加する |
 | `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |

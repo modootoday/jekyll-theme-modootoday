@@ -33,7 +33,9 @@ modootoday:
 | `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a group. Previous/next links walk the file in order: a group's own page, then its items |
 | `sidebar` | `auto` | `auto` adds a sidebar to `doc` pages when the nav has groups; `true` always, `false` never. Below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page |
 | `page_actions` | `true` | on pages with a Markdown twin, a menu with View as Markdown, Copy page and Copy for AI (copies the source URL, then the Markdown). `false` here or in front matter turns it off; leave `page-actions` out of `components` to drop it entirely |
-| `tokens`, `tokens_dark` | theme values | override semantic design tokens inline |
+| `tokens`, `tokens_dark` | theme values | override semantic design tokens inline (an inline `<style>`; on a strict CSP site use the [token bridge](../customize/#token-bridge)) |
+| `site_css` | none | your own stylesheets, a list of site paths such as `[/assets/css/site.css]`, linked after the theme sheets with the same `?v=` query; front matter `site_css:` adds sheets on one page. See [Brand tokens](../../recipes/brand-tokens/) |
+| `preload` | none | `<link rel="preload">` before the stylesheets: a list of `{href, as, type}` with a site path `href` and `as` one of `font`, `image`, `style`, `script`, `fetch` (fonts and fetches add `crossorigin`; no `?v=` query); front matter `preload:` adds hints on one page |
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |

@@ -22,6 +22,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `scroll-region.js` | 코드 블록이나 표가 있는 페이지 |
 | `tabs.js`, `accordion.js`, `share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
+| 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 
 스크립트는 `defer`로 불러오므로 첫 화면 표시를 막지 않습니다. 예외는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트 하나입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요.
 
@@ -35,7 +36,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `build` | `?v=X.Y.Z-a1b2c3d` | 사이트에서 테마 파일(Sass partial, 스크립트)도 덮어쓸 때. GitHub Pages에서는 `site.github.build_revision`의 커밋을, 다른 곳에서는 빌드 시각을 씁니다 |
 | `false` | 없음 | 자산 버전을 직접 관리할 때 |
 
-쿼리는 테마 자체의 CSS와 JavaScript에만 붙습니다. 사이트의 이미지, 글꼴, 스타일시트 URL은 그대로입니다.
+쿼리는 테마 자체의 CSS와 JavaScript, 그리고 `site_css`에 올린 시트에 붙습니다. 그 밖의 스타일시트, 이미지, 글꼴 URL은 그대로이고 `preload` 힌트도 그렇습니다. 힌트는 페이지나 스타일시트가 요청하는 URL과 같아야 하며, 다르면 브라우저가 파일을 두 번 내려받습니다.
 
 ## CDN에서 오래 캐시하기
 

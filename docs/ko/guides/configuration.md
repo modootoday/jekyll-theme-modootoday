@@ -36,7 +36,9 @@ modootoday:
 | `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름 |
 | `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
 | `page_actions` | `true` | Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 front matter에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
-| `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀 |
+| `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀(인라인 `<style>`. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씀) |
+| `site_css` | 없음 | 사이트의 스타일시트. `[/assets/css/site.css]`처럼 사이트 경로 목록으로 적고, 테마 시트 뒤에 같은 `?v=` 쿼리를 붙여 연결함. front matter `site_css:`는 그 페이지에만 시트를 더함. [브랜드 토큰](../../recipes/brand-tokens/) 참고 |
+| `preload` | 없음 | 스타일시트 앞에 내는 `<link rel="preload">`. `{href, as, type}` 목록이며 `href`는 사이트 경로, `as`는 `font`, `image`, `style`, `script`, `fetch` 중 하나(글꼴과 fetch에는 `crossorigin`이 붙고 `?v=` 쿼리는 붙지 않음). front matter `preload:`는 그 페이지에만 더함 |
 | `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |

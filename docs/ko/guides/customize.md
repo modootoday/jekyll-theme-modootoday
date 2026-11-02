@@ -1,9 +1,10 @@
 ---
 nav_order: 40
 title: 커스터마이즈
-description: 토큰으로 색·모서리·글꼴을 바꾸거나 Sass 파셜을 덮어씁니다.
+description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
 sections:
   - tokens
+  - bridge
   - visuals
   - sass
   - shadow
@@ -27,12 +28,37 @@ sections:
 }
 ```
 
-직접 만든 스타일시트에서 덮어쓰려면 테마의 다크 스킴 선택자(`:root[data-theme]`, `prefers-color-scheme` 규칙)보다 우선해야 합니다. 지원하는 방법은 두 가지입니다.
+직접 만든 스타일시트에서 덮어쓰려면 테마의 다크 스킴 선택자(`:root[data-theme]`, `prefers-color-scheme` 규칙)보다 우선해야 합니다. 지원하는 방법은 세 가지입니다.
 
-- 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적습니다. 테마가 자기 토큰과 같은 선택자로 출력합니다.
+- [토큰 브리지](#토큰-브리지)에 값을 둡니다(권장). 테마가 자기 토큰 규칙에 넣어 컴파일하므로 인라인으로 나가는 것이 없습니다.
+- 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적습니다. 테마가 자기 토큰과 같은 선택자로 인라인 `<style>`에 출력하므로, 엄격한 CSP에서는 막힙니다.
 - `modootoday.css_layers: true`로 설정합니다. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분합니다.
 
 다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/math-diagrams/#다이어그램)을 참고하세요.
+
+## 토큰 브리지
+
+사이트에 `_sass/modootoday/_site.scss`를 만들고 맵을 최대 세 개까지 설정합니다. 테마가 이 파일을 설정보다 먼저 가져오므로, core 시트와 모든 선택 시트가 라이트와 다크 모드에서 이 값을 씁니다.
+
+```scss
+// _sass/modootoday/_site.scss
+$mt-overrides-base: (font-sans: (Inter, system-ui, sans-serif), font-heading: (Fraunces, Georgia, serif));
+$mt-overrides: (primary: #0f766e, link: #0f766e);
+$mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
+```
+
+`$mt-overrides-base`는 색 구성표와 무관한 토큰(글꼴, 크기, 모서리)을, 나머지 둘은 라이트와 다크 모드의 색을 받습니다. 기존 토큰 외에 `h1`~`h4`용 `font-heading`과 `heading-weight`, 본문 링크용 `link`와 `link-hover`가 있습니다. 기본값은 각각 `font-sans`, 650, `primary`를 따릅니다. 이 파일에는 이 세 맵만, 테마가 정의한 토큰 이름으로만 쓸 수 있습니다. 그 밖의 내용은 `modootoday-check`가 알려 줍니다.
+
+설정 두 개로 사이트의 파일을 테마 파일 옆에 붙입니다.
+
+```yaml
+modootoday:
+  site_css: [/assets/css/site.css]   # 테마 시트 뒤에 연결. front matter site_css:는 그 페이지에만 시트를 더함
+  preload:                           # 스타일시트 앞의 <link rel="preload">. front matter preload:는 페이지별
+    - {href: /assets/fonts/inter.woff2, as: font, type: font/woff2}
+```
+
+색 팔레트, 자체 호스팅 글꼴, 대비 검사를 갖춘 예제는 [브랜드 토큰](../../recipes/brand-tokens/)에 있습니다.
 
 ## 섹션 비주얼과 전체 폭 페이지
 
@@ -57,15 +83,15 @@ hero: {visual: showcase}
 
 ## Sass 파셜
 
-Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. `assets/css/modootoday.scss`를 만들어 테마 뒤에 규칙을 추가하세요.
+직접 쓸 규칙은 사이트의 스타일시트에 적고 `site_css`에 올리세요. 테마 시트 뒤에 불러오므로 같은 선택자라면 이 규칙이 이깁니다.
 
 ```scss
 ---
 ---
-@import "modootoday";
-
 .mt-hero h1 { letter-spacing: -0.02em; }
 ```
+
+Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. 이미 `assets/css/modootoday.scss`를 섀도잉한 사이트도 그대로 동작하고, 토큰 훅도 그대로 적용됩니다. 테마가 훅을 core 파셜에서 가져오기 때문입니다.
 
 > [!WARNING]
 > `@use`가 아니라 `@import`를 쓰세요. GitHub Pages는 Ruby Sass로 컴파일하며 `@use`를 그대로 출력합니다.

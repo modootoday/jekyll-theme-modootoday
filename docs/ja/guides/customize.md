@@ -2,9 +2,10 @@
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
-description: トークンで色、角丸、フォントを変えるか、Sass パーシャルを上書きします。
+description: トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足すか、Sass パーシャルを上書きします。
 sections:
   - tokens
+  - bridge
   - visuals
   - sass
   - shadow
@@ -28,12 +29,37 @@ sections:
 }
 ```
 
-自分のスタイルシートで上書きするには、テーマのダークスキームのセレクター（`:root[data-theme]` と `prefers-color-scheme` のルール）に勝つ必要があります。サポートしている方法は二つです。
+自分のスタイルシートで上書きするには、テーマのダークスキームのセレクター（`:root[data-theme]` と `prefers-color-scheme` のルール）に勝つ必要があります。サポートしている方法は三つです。
 
-- 値を `modootoday.tokens` と `modootoday.tokens_dark` に書きます。テーマ自身のトークンと同じセレクターで出力されます。
+- [トークンブリッジ](#トークンブリッジ)に値を置きます（推奨）。テーマ自身のトークンのルールにコンパイルされ、インラインになるものはありません。
+- 値を `modootoday.tokens` と `modootoday.tokens_dark` に書きます。テーマ自身のトークンと同じセレクターでインラインの `<style>` に出力されるため、厳格な CSP ではブロックされます。
 - `modootoday.css_layers: true` にします。テーマの CSS が `@layer mt.*` に入り、レイヤー外のルールが勝つので、普通の `:root { … }` で足ります。
 
 ダークモードの画像：写真は `--mt-img-filter-dark` を、`.svg` の図は色相を保って反転してから `--mt-img-filter-dark` を適用する `--mt-diagram-filter-dark` を使います。どちらもトークンで変更できます。たとえば `--mt-diagram-filter-dark: none` にすると、すべての図が描いたままになります。一つの画像のパスの末尾に `#light` を付けると（`flow.svg#light`）、その画像だけが描いたままになります。[数式と図](../../recipes/math-diagrams/#図)を参照してください。
+
+## トークンブリッジ
+
+サイトに `_sass/modootoday/_site.scss` を作り、最大三つのマップを設定します。テーマはこのファイルを設定より先に読み込むので、コアシートとすべての任意シートが、ライトとダークの両モードでこの値を使います。
+
+```scss
+// _sass/modootoday/_site.scss
+$mt-overrides-base: (font-sans: (Inter, system-ui, sans-serif), font-heading: (Fraunces, Georgia, serif));
+$mt-overrides: (primary: #0f766e, link: #0f766e);
+$mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
+```
+
+`$mt-overrides-base` はカラースキームに依存しないトークン（フォント、サイズ、角丸）を、残りの二つはライトとダークの色を受け取ります。既存のトークンに加えて、`h1`〜`h4` 用の `font-heading` と `heading-weight`、本文のリンク用の `link` と `link-hover` があります。既定値はそれぞれ `font-sans`、650、`primary` に従います。このファイルに書けるのはこの三つのマップだけで、トークン名はテーマが定義したものに限られます。それ以外は `modootoday-check` が報告します。
+
+二つの設定で、サイトのファイルをテーマのファイルと並べて読み込みます。
+
+```yaml
+modootoday:
+  site_css: [/assets/css/site.css]   # テーマのシートの後に読み込む。front matter の site_css: はそのページだけに追加
+  preload:                           # スタイルシートより前の <link rel="preload">。front matter の preload: はページ単位
+    - {href: /assets/fonts/inter.woff2, as: font, type: font/woff2}
+```
+
+配色、セルフホストのフォント、コントラストの確認までそろった例は[ブランドトークン](../../recipes/brand-tokens/)にあります。
 
 ## セクションのビジュアルと全幅ページ
 
@@ -58,15 +84,15 @@ hero: {visual: showcase}
 
 ## Sass パーシャル
 
-Jekyll はテーマより先にサイトの `_sass/` を読みます。テーマの後に独自のルールを足すには `assets/css/modootoday.scss` を作ります。
+独自のルールはサイトのスタイルシートに書き、`site_css` に登録します。テーマのシートの後に読み込まれるので、同じセレクターならこちらが勝ちます。
 
 ```scss
 ---
 ---
-@import "modootoday";
-
 .mt-hero h1 { letter-spacing: -0.02em; }
 ```
+
+Jekyll はテーマより先にサイトの `_sass/` を読みます。`assets/css/modootoday.scss` をすでに上書きしているサイトもそのまま動き、トークンフックも適用されます。テーマはフックをコアのパーシャルから読み込むためです。
 
 > [!WARNING]
 > `@use` ではなく `@import` を使ってください。GitHub Pages は Ruby Sass で Sass をコンパイルし、`@use` をそのまま出力します。

@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: brand-tokens.md
+permalink: /ko/recipes/brand-tokens/index.md
+---

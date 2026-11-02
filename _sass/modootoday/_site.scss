@@ -1,0 +1,3 @@
+// Site hook: a site shadows this file (_sass/modootoday/_site.scss) to set $mt-overrides-base,
+// $mt-overrides and $mt-overrides-dark. It is imported through the load path before the settings,
+// so the site's maps win over their !default values. The theme copy stays empty.

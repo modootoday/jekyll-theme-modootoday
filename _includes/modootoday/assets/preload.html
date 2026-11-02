@@ -1,0 +1,11 @@
+{%- comment -%}<link rel="preload"> for modootoday.preload, then front matter preload: (lists of {href, as, type}; href a site path,
+  as one of font, image, style, script, fetch). No ?v= query: the URL must match the one the stylesheet or page requests,
+  or the browser fetches the file twice. Fonts and fetches are requested in CORS mode, so they add crossorigin.{%- endcomment -%}
+{%- assign _mtpe = "" | split: "," -%}{%- assign _mtpas = "font image style script fetch" | split: " " -%}
+{%- assign _mtpl = site.modootoday.preload | default: _mtpe -%}{%- unless _mtpl.first.href -%}{%- assign _mtpl = _mtpe -%}{%- endunless -%}
+{%- assign _mtpp = page.preload | default: _mtpe -%}{%- unless _mtpp.first.href -%}{%- assign _mtpp = _mtpe -%}{%- endunless -%}
+{%- assign _mtpl = _mtpl | concat: _mtpp -%}
+{%- for _mtp in _mtpl -%}{%- assign _mtph = _mtp.href | append: "" -%}{%- assign _mtp1 = _mtph | slice: 0, 1 -%}{%- assign _mtp2 = _mtph | slice: 0, 2 -%}
+{%- if _mtp1 == "/" and _mtp2 != "//" and _mtpas contains _mtp.as %}
+<link rel="preload" href="{{ _mtph | relative_url | escape }}" as="{{ _mtp.as }}"{% if _mtp.type %} type="{{ _mtp.type | escape }}"{% endif %}{% if _mtp.as == "font" or _mtp.as == "fetch" %} crossorigin{% endif %}>
+{%- endif -%}{%- endfor -%}

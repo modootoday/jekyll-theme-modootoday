@@ -1,0 +1,10 @@
+{%- comment -%}The site's own stylesheets after the theme's: modootoday.site_css, then front matter site_css (lists of site paths,
+  /assets/css/site.css). Each is linked once, with the theme's ?v= query (assets/url.html); anything that is not a site path is skipped.{%- endcomment -%}
+{%- assign _mtse = "" | split: "," -%}
+{%- assign _mtsc = site.modootoday.site_css | default: _mtse -%}{%- unless _mtsc.first -%}{%- assign _mtsc = _mtse -%}{%- endunless -%}
+{%- assign _mtsp = page.site_css | default: _mtse -%}{%- unless _mtsp.first -%}{%- assign _mtsp = _mtse -%}{%- endunless -%}
+{%- assign _mtsc = _mtsc | concat: _mtsp | uniq -%}
+{%- for _mts in _mtsc -%}{%- assign _mts1 = _mts | slice: 0, 1 -%}{%- assign _mts2 = _mts | slice: 0, 2 -%}
+{%- if _mts1 == "/" and _mts2 != "//" -%}{%- include modootoday/assets/url.html path=_mts %}
+<link rel="stylesheet" href="{{ mt_asset_url | escape }}">
+{%- endif -%}{%- endfor -%}

@@ -14,7 +14,7 @@ description: unsafe-inline 없이 엄격한 CSP에서 테마 쓰기.
 | 인라인 항목 | 조건 | 엄격 옵션 |
 |---|---|---|
 | 사전 페인트 테마 스크립트 (잘못된 색 모드가 깜빡이는 것을 막음) | `theme-toggle`이 켜져 있고 `color_scheme: auto` | `modootoday.csp: strict`면 `assets/js/modootoday/theme-init.js`를 차단형 스크립트로 불러옴 |
-| `<style id="mt-tokens">` | `modootoday.tokens` 또는 `tokens_dark` 설정 시 | 덮어쓸 값을 사이트 Sass(`:root`의 `--mt-primary: …`)로 옮기고 키를 제거 |
+| `<style id="mt-tokens">` | `modootoday.tokens` 또는 `tokens_dark` 설정 시 | 값을 토큰 브리지(`_sass/modootoday/_site.scss`, [브랜드 토큰](../brand-tokens/) 참고)로 옮기고 키를 제거 |
 
 둘 다 처리하면 다음 정책으로 동작합니다.
 

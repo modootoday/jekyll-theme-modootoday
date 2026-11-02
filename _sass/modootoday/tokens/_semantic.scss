@@ -2,6 +2,7 @@
 $mt-base: (
   font-sans: (system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans KR", "Noto Sans JP", sans-serif),
   font-mono: (ui-monospace, SFMono-Regular, Menlo, Consolas, monospace),
+  font-heading: var(--mt-font-sans), heading-weight: 650,
   font-size: 1rem, line-height: 1.7, measure: 46rem, container: 76rem, header-height: 3.75rem,
   space: var(--mt-p-space-4), space-section: var(--mt-p-space-12), radius: var(--mt-p-radius-md), radius-lg: var(--mt-p-radius-lg)
 ) !default;
@@ -10,6 +11,7 @@ $mt-light: (
   muted: var(--mt-p-gray-50), muted-foreground: var(--mt-p-gray-500),
   card: var(--mt-p-white), card-foreground: var(--mt-p-gray-850),
   primary: var(--mt-p-brand-600), primary-foreground: var(--mt-p-white), brand: var(--mt-p-brand-500),
+  link: var(--mt-primary), link-hover: var(--mt-link),
   accent: var(--mt-p-gray-100), accent-foreground: var(--mt-p-gray-850),
   border: var(--mt-p-gray-200), ring: var(--mt-p-brand-600),
   note: var(--mt-p-blue-600), tip: var(--mt-p-green-600), important: var(--mt-p-purple-600),
@@ -24,6 +26,7 @@ $mt-dark: (
   muted: var(--mt-p-gray-750), muted-foreground: var(--mt-p-gray-400),
   card: var(--mt-p-gray-750), card-foreground: var(--mt-p-gray-100d),
   primary: var(--mt-p-brand-400), primary-foreground: var(--mt-p-gray-900), brand: var(--mt-p-brand-500),
+  link: var(--mt-primary), link-hover: var(--mt-link),
   accent: var(--mt-p-gray-800), accent-foreground: var(--mt-p-gray-100d),
   border: var(--mt-p-gray-700), ring: var(--mt-p-brand-400),
   note: var(--mt-p-blue-400), tip: var(--mt-p-green-400), important: var(--mt-p-purple-400),
@@ -33,5 +36,3 @@ $mt-dark: (
   code-keyword: var(--mt-p-red-400), code-string: var(--mt-p-teal-400), code-comment: var(--mt-p-gray-400),
   code-function: var(--mt-p-purple-400), code-constant: var(--mt-p-orange-400)
 ) !default;
-$mt-light: map-merge($mt-light, $mt-overrides);
-$mt-dark: map-merge($mt-dark, $mt-overrides-dark);

@@ -4,7 +4,7 @@
 import { chromium } from "playwright";
 import path from "node:path";
 import { serveSite } from "./site/server.mjs";
-import { SCHEMES, PAGES, RTL_PAGES, EN_ONLY, JOBS, langsOf } from "./audit/config.mjs";
+import { SCHEMES, PAGES, RTL_PAGES, EN_ONLY, JOBS, CONTRAST_PAGES, langsOf } from "./audit/config.mjs";
 import { checkBudgets } from "./audit/budgets.mjs";
 import { checkContrast } from "./audit/contrast.mjs";
 import { checkPage } from "./audit/pages.mjs";
@@ -29,8 +29,10 @@ for (const scheme of SCHEMES) {
   const ctx = await browser.newContext({ colorScheme: scheme });
   ctxs.push(ctx);
   const page = await ctx.newPage();
-  await page.goto(origin);
-  await checkContrast(page, scheme, report.contrast, fails);
+  for (const p of CONTRAST_PAGES) {
+    await page.goto(origin + p);
+    await checkContrast(page, `${scheme} /${p}`, report.contrast, fails);
+  }
   await page.close();
   for (const lang of langs) for (const p of [...PAGES, ...(lang ? [] : [...RTL_PAGES, ...EN_ONLY])]) tasks.push({ ctx, scheme, lang, p });
 }

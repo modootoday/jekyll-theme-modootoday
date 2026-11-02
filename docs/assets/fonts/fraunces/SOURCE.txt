@@ -1,0 +1,15 @@
+Fraunces, demo heading font of the docs page recipes/brand-tokens/ (not part of the theme gem).
+
+Licence: SIL Open Font License 1.1, see OFL.txt in this directory.
+Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)
+
+Source: google/fonts, commit 4024282d9b0cffcdb8e3024560862746178d741f
+  https://github.com/google/fonts/blob/4024282d9b0cffcdb8e3024560862746178d741f/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf
+  sha256 177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb
+  OFL.txt is the same commit's ofl/fraunces/OFL.txt.
+
+fraunces-600-latin.woff2 is a modified version made with fontTools 4.29.1:
+  varLib.instancer: wght=600, opsz=72, SOFT=50, WONK=0 (static instance)
+  subset: U+0020-007E, U+00A0-00FF, U+2013, U+2014, U+2018, U+2019, U+201C, U+201D, U+2026, U+20AC;
+          layout features kern, liga, calt; all name records kept; WOFF2
+  sha256 1fd6b55235e76e97b04caf73c51bbc21048148be6261550f7340648d0c0035d7

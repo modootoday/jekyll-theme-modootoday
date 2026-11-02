@@ -1,5 +1,5 @@
-// jekyll-theme-modootoday — everything (core + all components) in one file. For a site entry that
-// shadows assets/css/modootoday.scss: declare $mt-overrides etc., then @import "modootoday";
+// jekyll-theme-modootoday — everything (core + all components) in one file. Sites set token overrides in
+// _sass/modootoday/_site.scss (the token bridge), which _core.scss imports first.
 @import "modootoday/core";
 @import "modootoday/components/core/inline/callout";
 @import "modootoday/components/core/inline/badge";

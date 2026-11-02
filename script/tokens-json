@@ -33,7 +33,15 @@ def type_of(k, v)
   "number"
 end
 
-def tok(k, v)
+SEMANTIC_REF = /\Avar\(--mt-(?!p-)([\w-]+)\)\z/
+
+# A semantic token that points at another one (link: var(--mt-primary)) becomes a DTCG alias in its own group,
+# or in base when the target is a base token.
+def tok(k, v, group = nil, base = {})
+  if (m = v.match(SEMANTIC_REF))
+    return { "$type" => k.start_with?("font-") ? "fontFamily" : "color", "$value" => "{#{base.key?(m[1]) ? 'base' : group}.#{m[1]}}" }
+  end
+  return { "$type" => "fontWeight", "$value" => v.to_i } if k.end_with?("weight")
   v = ref(v)
   t = type_of(k, v)
   val = t == "fontFamily" ? v.delete("()").split(",").map { _1.strip.delete('"') } : v
@@ -43,13 +51,14 @@ end
 def build
   prim = File.read(File.join(ROOT, "_sass/modootoday/tokens/_primitive.scss"))
   sem = File.read(File.join(ROOT, "_sass/modootoday/tokens/_semantic.scss"))
-  grp = ->(m) { m.to_h { |k, v| [k, tok(k, v)] } }
+  base = sass_map(sem, "mt-base")
+  grp = ->(m, g = nil) { m.to_h { |k, v| [k, tok(k, v, g, base)] } }
   {
     "$description" => "jekyll-theme-modootoday design tokens (generated from Sass; read-only). CSS: --mt-p-<primitive>, --mt-<semantic>.",
     "primitive" => grp.(sass_map(prim, "mt-primitive")),
-    "base" => grp.(sass_map(sem, "mt-base")),
-    "light" => grp.(sass_map(sem, "mt-light")),
-    "dark" => grp.(sass_map(sem, "mt-dark"))
+    "base" => grp.(base, "base"),
+    "light" => grp.(sass_map(sem, "mt-light"), "light"),
+    "dark" => grp.(sass_map(sem, "mt-dark"), "dark")
   }
 end
 

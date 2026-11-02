@@ -1,5 +1,6 @@
 // Settings (all !default). Sass syntax limited to the Ruby Sass 3.7 ∩ Dart Sass subset:
 // @import, maps, map-get/map-merge, @each, @mixin/@include, @function, !default, #{} — never @use/@forward.
 $mt-css-layers: false !default;      // true: wrap output in @layer mt.* (site CSS outside layers always wins)
+$mt-overrides-base: () !default;     // partial overrides of $mt-base (fonts, sizes): (font-sans: (Inter, sans-serif))
 $mt-overrides: () !default;          // partial semantic overrides, light: (primary: #c2410c)
 $mt-overrides-dark: () !default;     // partial semantic overrides, dark

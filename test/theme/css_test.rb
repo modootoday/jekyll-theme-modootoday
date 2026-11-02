@@ -13,7 +13,15 @@ class CssTest < Minitest::Test
     "bundle" => "modootoday: {css: bundle}\n",
     "minimal" => "modootoday: {components: [callout]}\n",
     "layers" => "modootoday: {css_layers: true, color_scheme: dark, components: [callout, tabs], " \
-                "tokens: {primary: '#c2410c'}, tokens_dark: {primary: '#fb923c'}}\n"
+                "tokens: {primary: '#c2410c'}, tokens_dark: {primary: '#fb923c'}}\n",
+    "empty" => "",
+    "bridge" => ""
+  }.freeze
+  # The site's _sass/modootoday/_site.scss (token bridge) per config; without one the theme's empty copy is used.
+  HOOKS = {
+    "empty" => "// nothing here yet\n",
+    "bridge" => "$mt-overrides-base: (font-heading: (Georgia, serif), heading-weight: 700);\n" \
+                "$mt-overrides: (primary: #0f766e, link: #115e59);\n$mt-overrides-dark: (primary: #2dd4bf, link-hover: #99f6e4);\n"
   }.freeze
 
   def self.build(name)
@@ -23,6 +31,7 @@ class CssTest < Minitest::Test
       FileUtils.mkdir_p(src)
       FileUtils.cp_r(%w[_layouts _includes _sass assets].map { |d| File.join(ROOT, d) }, src)
       File.write(File.join(src, "_config.yml"), "markdown: kramdown\nkramdown: {input: GFM}\n#{CONFIGS[name]}")
+      File.write(File.join(src, "_sass/modootoday/_site.scss"), HOOKS[name]) if HOOKS[name]
       File.write(File.join(src, "index.md"), "---\nlayout: doc\ntitle: T\n---\n# T\n\n> [!NOTE]\n> n\n")
       cfg = Jekyll.configuration("source" => src, "destination" => File.join(dir, "_site"), "quiet" => true)
       Jekyll.logger.log_level = :error
@@ -86,5 +95,37 @@ class CssTest < Minitest::Test
     assert_includes html, 'data-theme="dark"'
     assert_match(/<style id="mt-tokens">[^<]*--mt-primary: ?#c2410c/, html)
     assert_includes html, "#fb923c"
+  end
+
+  def test_empty_site_hook_changes_nothing
+    assert_equal self.class.build("all"), self.class.build("empty")
+  end
+
+  def test_site_hook_sets_base_light_and_dark_tokens
+    css, html, sheets = self.class.build("bridge")
+    root = css[/:root\s*\{(.*?)\}/m, 1]
+    dark = css[/:root\[data-theme="?dark"?\]\s*\{(.*?)\}/m, 1]
+    media = css[/:root:not\(\[data-theme="?light"?\]\)\s*\{(.*?)\}/m, 1]
+    assert_match(/--mt-font-heading:\s*Georgia, serif;/, root)
+    assert_match(/--mt-heading-weight:\s*700;/, root)
+    assert_match(/--mt-primary:\s*#0f766e;/, root)
+    assert_match(/--mt-link:\s*#115e59;/, root)
+    assert_equal 1, root.scan("--mt-primary:").size, "merged in place, not appended"
+    [dark, media].each do |d|
+      assert_match(/--mt-primary:\s*#2dd4bf;/, d)
+      assert_match(/--mt-link-hover:\s*#99f6e4;/, d)
+      assert_match(/--mt-link:\s*var\(--mt-primary\);/, d, "untouched tokens keep the theme value")
+    end
+    refute_includes html, "mt-tokens", "the bridge needs no inline style"
+    sheets.each { |name, s| refute_includes s, "--mt-primary:", "#{name} emits no tokens" }
+  end
+
+  def test_new_semantic_tokens_default_to_the_old_values
+    css, = self.class.build("all")
+    root = css[/:root\s*\{(.*?)\}/m, 1]
+    assert_match(/--mt-font-heading:\s*var\(--mt-font-sans\);/, root)
+    assert_match(/--mt-heading-weight:\s*650;/, root)
+    assert_match(/--mt-link:\s*var\(--mt-primary\);/, root)
+    assert_match(/--mt-link-hover:\s*var\(--mt-link\);/, root)
   end
 end

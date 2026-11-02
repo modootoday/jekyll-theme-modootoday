@@ -95,7 +95,7 @@ class V04Test < Minitest::Test
     end
     %w[base light].each { |g| tokens[g].each_key { |k| assert_match(/--mt-#{Regexp.escape(k)}:/, root, "--mt-#{k}") } }
     tokens["dark"].each do |k, t|
-      exp = t["$value"].sub(/\A\{primitive\.(.+)\}\z/, 'var(--mt-p-\1)')
+      exp = t["$value"].to_s.sub(/\A\{primitive\.(.+)\}\z/, 'var(--mt-p-\1)').sub(/\A\{(?:base|light|dark)\.(.+)\}\z/, 'var(--mt-\1)')
       assert_match(/--mt-#{Regexp.escape(k)}:\s*#{Regexp.escape(exp)}/, dark, "dark #{k}")
     end
   end

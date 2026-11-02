@@ -16,6 +16,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 |---|---|
 | 설정 | [설정](../../guides/configuration/)에 나온 `modootoday:` 아래 모든 키 |
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
+| Sass | 토큰 훅 `_sass/modootoday/_site.scss`와 그 맵 `$mt-overrides-base`, `$mt-overrides`, `$mt-overrides-dark`([커스터마이즈](../../guides/customize/#토큰-브리지) 참고). 나머지 Sass 파셜과 변수는 내부용 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*`, 해제용 클래스 `mt-flat-list`(그 아래 목록 항목 사이 간격 없음) |
 | 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
