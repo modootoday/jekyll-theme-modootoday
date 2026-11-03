@@ -49,8 +49,7 @@ jobs:
       - name: Build docs/ at the base commit
         id: base
         run: |
-          build=qa/site/build-docs.sh  # qa/build-docs.sh before the qa/ regrouping
-          git cat-file -e "$BASE_SHA:$build" 2>/dev/null || build=qa/build-docs.sh
+          build=qa/site/build-docs.sh
           if ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || ! git cat-file -e "$BASE_SHA:$build" 2>/dev/null; then
             echo "No usable base commit; skipping the comparison." >> "$GITHUB_STEP_SUMMARY"
             echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
