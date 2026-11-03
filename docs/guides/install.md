@@ -6,6 +6,7 @@ sections:
   - {c: tabs, name: methods}
   - minimal
   - check
+  - starters
   - {c: cta, name: next}
 ---
 # Install
@@ -90,6 +91,10 @@ Use the tag your `remote_theme` line names.
 In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`.
 
 Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the Sass silencing option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
+
+## Starter sites
+
+The theme repository has three starter sites in [`example/`](https://github.com/modootoday/jekyll-theme-modootoday/tree/main/example): `docs` (a guide, pages from data, Korean and Japanese in `ko/` and `ja/`), `blog` (posts, a news article, an author page and a feed) and `landing` (a hero, pricing and a legal page). Each one builds on its own. To start from one, run `bundle exec rake starters:render` in a clone of the repository and copy `pkg/starters/github-pages/<name>/` (`remote_theme`) or `pkg/starters/jekyll4/<name>/` (the gem) into a new repository. Each copy has a `Gemfile`, a `README.md`, the stubs, and a Pages workflow that builds the site, runs `modootoday-check` and deploys it.
 
 ## Next
 

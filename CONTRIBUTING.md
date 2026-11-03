@@ -46,6 +46,16 @@ RUNS=3 CHROME_PATH=$(command -v google-chrome) qa/lighthouse/lighthouse.sh   # n
 node qa/lighthouse/budget.mjs qa-out/lighthouse
 ```
 
+### Starter sites
+
+`example/` is the source of three starter sites: `docs` (a guide, records with a byte-exact API folder, Korean and Japanese pages in `ko/` and `ja/`), `blog` (posts, a news article, an author page and the feed) and `landing` (a home hero, pricing and a legal page). `example/starters.yml` lists them with the repository each one is published to, its languages, its stacks and its `modootoday-check` flags. Each folder is a Jekyll site that holds only what a person writes. `bundle exec rake starters:render` writes each starter for each of its stacks to `pkg/starters/<stack>/<name>/` and adds what the theme owns:
+
+- `_config.yml`: on the `github-pages` stack, the `theme:` line becomes `remote_theme:` pinned to the gemspec version.
+- `Gemfile` from the gem lines of `gemfiles/<stack>.gemfile`; `README.md` and `.github/workflows/pages.yml` from `script/starters/templates/`, shared by every starter.
+- `_data/i18n/<lang>.yml` for each listed language the source lacks, copied from `i18n/`; the twin, record and alias stubs `modootoday-stubs` writes.
+
+Do not commit those files in a starter folder; the tests fail on a committed stub. `rake starters:check` fails when `pkg/starters/` differs from a fresh render, and `rake starters:build[NAME]` builds the starters with the current bundle and runs the checker with their manifest flags (plain `rake` runs it after the tests). The `starters.yml` workflow renders, builds and checks every starter on github-pages 232, Jekyll 4 and the GitHub Pages builder image. Publishing a rendered starter to its repository comes after 1.5.0; until then it is uploaded by hand. Sites that only tests use, such as the front-matter-less one, live in `test/fixtures/sites/`.
+
 ## Project layout
 
 These rules apply to everything in the repository: theme files, tools, tests, QA and new code. `test/project/layout_test.rb` enforces the measurable parts.
@@ -66,9 +76,12 @@ Where things live:
 | `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |
 | `test/theme/` | layouts, includes, Sass and tokens built with Jekyll |
-| `test/layouts/` | layout families (`families/`) and page features (`features/`), built from the example site plus extra pages |
-| `test/support/` | helpers several test directories share (`layout_site.rb` builds the example site with extra pages) |
-| `test/consumer/` | a site that uses the gem, and the example guides |
+| `test/layouts/` | layout families (`families/`) and page features (`features/`), built from a starter site plus extra pages |
+| `test/support/` | helpers several test directories share (`starters.rb` renders each starter once per run; `layout_site.rb` builds one with extra pages) |
+| `test/consumer/` | sites that use the gem: the starters with stubs or with the plugin, the docs starter's guides, the front-matter-less site |
+| `test/starters/` | the starter manifest, the sources, rendering, drift and the generated workflow |
+| `example/` | the starter sources (`starters.yml` and one folder per starter); see Starter sites above |
+| `script/starters/` | the starter renderer: `manifest.rb`, `theme.rb` (what it reads from the gemspec, `gemfiles/`, `i18n/` and the executables), `site.rb`, `render.rb` and `templates/` |
 | `test/project/` | README, version, community files, this layout and the docs generator (`script/docs-index`) |
 | `test/js/` | browser scripts (`node --test`) |
 | `test/fixtures/` | inputs shared by the tests |
