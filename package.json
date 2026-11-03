@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "test": "node --test test/js/*.test.js",
+    "test": "node --test test/js/*.test.js test/js/*/*.test.js",
     "qa": "node qa/audit.mjs docs/_site qa-out",
     "qa:visual": "node qa/visual/visual.mjs docs/_site",
     "qa:visual:update": "node qa/visual/visual.mjs docs/_site --update"

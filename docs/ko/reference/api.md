@@ -21,6 +21,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
 | 직접 만드는 include | `_includes/sections/<name>.html`. `visual: <name>`을 쓴 섹션이나 히어로 끝에 렌더링됨 ([사용자 정의](../../guides/customize/#섹션-비주얼과-전체-폭-페이지) 참고) |
+| 모듈 도우미와 이벤트 | 사이트의 `scripts` 모듈이 쓰는 ES 모듈 `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`). `mt:themechange` 이벤트([이벤트](#이벤트) 참고). `script:` 비주얼 계약(`data-mt-script`, `.mt-visual-stage`, `data-mt-ready`, [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고) |
 | 호출해도 되는 include | `modootoday/archive.html`(`by`, `lang`); `modootoday/brand/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
 | include | `modootoday/t.html`(`key=`, 선택 `n=` / `name=`)은 페이지 언어의 테마 문구를 출력합니다 |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키(내장 카탈로그를 덮어쓸 때만), `_data/nav/<name>.yml`, `_data/components.yml` |
@@ -98,6 +99,14 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ```
 
 컴포넌트 항목에는 `params`, `i18n`, `slots`, `parts`만, 슬롯 규칙에는 `required`, `min`, `max`만 쓸 수 있습니다. 그 밖의 키, 알 수 없는 슬롯 이름, `max`보다 큰 `min`, 형태가 두 개 미만인 목록은 오류이며 레지스트리 기준으로 한 번만 보고합니다. `slots:`가 없는 컴포넌트는 세지 않고, 맵 하나로 쓴 `slots:`는 이전과 똑같이 동작합니다.
+
+## 이벤트
+
+| 이벤트 | 보내는 때 | `detail` |
+|---|---|---|
+| `mt:themechange` | 테마 전환 버튼(`theme-toggle.js`)이 `document`에 보냄. 버튼을 누른 뒤, 그리고 독자가 색 구성을 고르지 않은 상태에서 시스템 색 구성이 바뀐 뒤. 같은 문서 안에서만 보내고, 첫 페인트 때나 전환 버튼이 없는 사이트(`color_scheme: light` 또는 `dark`)에서는 보내지 않음 | `{theme: "light" 또는 "dark", source: "toggle" 또는 "system"}` |
+
+전환 버튼이 없어도 동작하고 실제로 바뀔 때마다 한 번만 부르려면 `assets/js/modootoday/theme/current.js`의 `onThemeChange`를 쓰세요. 이벤트와 시스템 설정을 함께 듣고, 듣기를 멈추는 함수를 돌려줍니다.
 
 ## 오른쪽에서 왼쪽 쓰기와 수식
 

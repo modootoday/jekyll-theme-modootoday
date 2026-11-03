@@ -44,7 +44,7 @@ module Modootoday
           rec = s["recommended"]
           errs << "#{w}: recommended: must be a plan number from 1 to #{n}" if s.key?("recommended") && !(rec.is_a?(Integer) && rec.between?(1, n))
         when "split"
-          errs << "#{w}: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless s["visual"].is_a?(String) && !s["visual"].strip.empty?
+          errs << "#{w}: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless (s["visual"].is_a?(String) && !s["visual"].strip.empty?) || s["script"] || s["poster"]
         when "subscribe"
           act = ctx.mtc.is_a?(Hash) && ctx.mtc.dig("subscribe", "action")
           ctx.warns << "#{w}: no form is shown until _config.yml sets modootoday.subscribe.action" unless act

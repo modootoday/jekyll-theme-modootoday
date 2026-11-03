@@ -1,0 +1,3 @@
+{%- comment -%} Docs demo for script: and poster: (layouts/demo/orbit). The element the orbit module draws into: .mt-visual-stage
+covers the poster, and data-turn (seconds per turn, from the hero's turn: key) is read with readConfig. Empty without the module. {%- endcomment -%}
+<div class="mt-visual-stage orbit-stage" data-turn="{{ include.section.turn | default: 12 | escape }}"></div>

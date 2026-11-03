@@ -1,0 +1,10 @@
+{%- comment -%}Poster of a script visual: include.p is poster: (a site path, or {path, srcset, sizes, width, height}, the hero.image shape).
+  Decorative (alt=""): the module's drawing replaces it and the text stays in the page. include.hero: fetched first, as the likely
+  LCP image; a section poster loads lazily. include.split: default sizes is half the width from 48rem. srcset URLs get the baseurl.{%- endcomment -%}
+{%- assign _mtvp = include.p -%}{%- assign _mtvpp = _mtvp.path | default: _mtvp -%}
+{%- if include.split -%}{%- assign _mtvps = "(min-width: 48rem) 50vw, 100vw" -%}{%- else -%}{%- assign _mtvps = "100vw" -%}{%- endif -%}
+{%- assign _mtvss = "" -%}{%- assign _mtvsl = _mtvp.srcset | split: "," -%}
+{%- for _mtvsi in _mtvsl -%}{%- assign _mtvsu = _mtvsi | strip | split: " " | first -%}{%- assign _mtvsd = _mtvsi | strip | remove_first: _mtvsu | strip -%}
+{%- assign _mtvsr = _mtvsu | relative_url -%}{%- assign _mtvss = _mtvss | append: ", " | append: _mtvsr -%}{%- if _mtvsd != "" -%}{%- assign _mtvss = _mtvss | append: " " | append: _mtvsd -%}{%- endif -%}
+{%- endfor -%}{%- assign _mtvss = _mtvss | remove_first: ", " -%}
+{%- if _mtvpp -%}<img class="mt-visual-poster" src="{{ _mtvpp | relative_url | escape }}"{% if _mtvss != "" %} srcset="{{ _mtvss | escape }}" sizes="{{ _mtvp.sizes | default: _mtvps | escape }}"{% endif %}{% if _mtvp.width %} width="{{ _mtvp.width }}"{% endif %}{% if _mtvp.height %} height="{{ _mtvp.height }}"{% endif %} alt=""{% if include.hero %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">{%- endif -%}

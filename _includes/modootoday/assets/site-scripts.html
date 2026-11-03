@@ -1,0 +1,20 @@
+{%- comment -%}The site's module scripts named on this page by script: on hero: or a section item, from modootoday.scripts
+  (name: {src, css, preload}; site paths only). Once per name: the css sheet, modulepreload for each preload path (no ?v= query,
+  so the URL matches the module's import), then <script type="module">, which runs deferred under script-src 'self'.{%- endcomment -%}
+{%- assign _mtsn = "|" -%}{%- if page.hero.script -%}{%- assign _mtsn = _mtsn | append: page.hero.script | append: "|" -%}{%- endif -%}
+{%- for _mtsi in page.sections -%}{%- if _mtsi.script -%}{%- assign _mtsn = _mtsn | append: _mtsi.script | append: "|" -%}{%- endif -%}{%- endfor -%}
+{%- if _mtsn != "|" -%}{%- assign _mtsn = _mtsn | split: "|" | uniq -%}
+{%- for _mtsk in _mtsn -%}{%- assign _mtse = site.modootoday.scripts[_mtsk] -%}{%- assign _mtsp = _mtse.src | append: "" -%}
+{%- assign _mtsp1 = _mtsp | slice: 0, 1 -%}{%- assign _mtsp2 = _mtsp | slice: 0, 2 -%}
+{%- if _mtsk != "" and _mtsp1 == "/" and _mtsp2 != "//" -%}
+{%- assign _mtsc = _mtse.css | append: "" -%}{%- assign _mtsc1 = _mtsc | slice: 0, 1 -%}{%- assign _mtsc2 = _mtsc | slice: 0, 2 -%}
+{%- if _mtsc1 == "/" and _mtsc2 != "//" -%}{%- include modootoday/assets/url.html path=_mtsc %}
+<link rel="stylesheet" href="{{ mt_asset_url | escape }}">
+{%- endif -%}
+{%- for _mtsm in _mtse.preload -%}{%- assign _mtsm1 = _mtsm | slice: 0, 1 -%}{%- assign _mtsm2 = _mtsm | slice: 0, 2 -%}
+{%- if _mtsm1 == "/" and _mtsm2 != "//" %}
+<link rel="modulepreload" href="{{ _mtsm | relative_url | escape }}">
+{%- endif -%}{%- endfor -%}
+{%- include modootoday/assets/url.html path=_mtsp %}
+<script type="module" src="{{ mt_asset_url | escape }}"></script>
+{%- endif -%}{%- endfor -%}{%- endif -%}

@@ -27,11 +27,13 @@ module Modootoday
         cl = code.lines
         hero_md = b.lines[0...(cl.index { |l| l =~ /^##(?: |$)/ } || cl.size)].to_a.join
         visuals(ctx, r, secs, hero.is_a?(Hash) ? hero : nil, sec_md.map { |m| m && m[1] }, hero_md)
+        HeroScript.call(ctx, r, secs, hero)
       end
 
       # hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"} is the theme's split hero; any other hero.c (a site registry or extension component name) passes through unchecked, as in 1.1.1.
+      # script: or poster: fills the visual column too.
       def split_hero(errs, r, hero)
-        errs << "#{r}: hero split: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless hero["visual"].is_a?(String) && !hero["visual"].strip.empty?
+        errs << "#{r}: hero split: needs visual: <name> (the _includes/sections/<name>.html shown beside the text)" unless (hero["visual"].is_a?(String) && !hero["visual"].strip.empty?) || hero["script"] || hero["poster"]
         errs << "#{r}: hero.side=#{hero['side'].inspect} not in [\"start\", \"end\"]" if hero.key?("side") && !%w[start end].include?(hero["side"])
         errs << "#{r}: hero.ratio=#{hero['ratio'].inspect} not in [\"1:1\", \"5:7\"]" if hero.key?("ratio") && !%w[1:1 5:7].include?(hero["ratio"])
       end
@@ -80,7 +82,7 @@ module Modootoday
           params = spec["params"] || {}
           Slots.check_section(errs, r, i, s["c"], spec["slots"], sec_md[i])
           (ctx.part_uses[s["c"]] ||= []) << r if spec.is_a?(Hash) && spec["parts"].is_a?(Array)
-          (s.keys - %w[c name visual decor reveal bleed]).each do |k|
+          (s.keys - %w[c name visual decor reveal bleed script poster]).each do |k|
             # with visual:, other keys are the visual include's own params (include.section.<key>)
             next if !params.key?(k) && s.key?("visual")
             next errs << "#{r}: sections[#{i}] #{s['c']}: unknown param '#{k}'" unless params.key?(k)

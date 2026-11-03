@@ -12,7 +12,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | Asset | Loaded on |
 |---|---|
 | `assets/css/modootoday.css` (core sheet) | every page |
-| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`) | pages whose layout or body uses them |
+| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
 | `menu.js`, `theme-toggle.js`, `search.js` | pages with the header, the toggle, or a search index |
 | `code-copy.js` | pages with a code block, and pages with the page actions menu |
@@ -20,6 +20,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `tabs.js`, `accordion.js`, `share.js` | pages that use tabs, an accordion, or a blog layout |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
+| Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
 
 Scripts load with `defer` and do not block the first paint; the one exception is the small pre-paint theme script that `csp: strict` loads from a file. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
 
@@ -53,5 +54,5 @@ Keep the HTML on a short TTL, so visitors pick up the new `?v=` soon after you d
 The theme's CI fails a change that makes pages heavier than its budgets:
 
 - each stylesheet, the core CSS one page links, and all core scripts together (gzip);
-- the gzip bytes of the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase), modules they import included;
+- the gzip bytes of the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase, page with a module script visual), modules they import included;
 - a [strict Content Security Policy](../../recipes/csp/) on sample pages, with zero violations ([demo](../../layouts/demo/csp/)).

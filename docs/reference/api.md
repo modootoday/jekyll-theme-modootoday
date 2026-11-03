@@ -18,6 +18,7 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Layouts | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`) can be included from your footer; override `modootoday/brand/logo.html` to draw your own logo |
 | Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../../guides/customize/#section-visuals-and-full-width-pages)) |
+| Module helpers and events | the ES modules `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`) for your `scripts` modules; the `mt:themechange` event (see [Events](#events)); the `script:` visual contract (`data-mt-script`, `.mt-visual-stage`, `data-mt-ready`, see [Customize](../../guides/customize/#module-scripts-and-posters)) |
 | Includes you may call | `modootoday/archive.html` with `by` and `lang`; `modootoday/brand/icon.html` with `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL) |
 | Includes | `modootoday/t.html` (`key=`, optional `n=` / `name=`) prints a theme label for the page language |
 | Data files | `_data/i18n/<lang>.yml` keys (optional overrides of the built-in catalogs), `_data/nav/<name>.yml`, `_data/components.yml` |
@@ -95,6 +96,14 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ```
 
 A component entry takes only `params`, `i18n`, `slots` and `parts`, and a slot rule only `required`, `min` and `max`. Any other key, an unknown slot name, a `min` above `max` or a list of fewer than two forms is an error, reported once per registry. Components without `slots:` are not counted, and a single-map `slots:` behaves exactly as before.
+
+## Events
+
+| Event | Sent | `detail` |
+|---|---|---|
+| `mt:themechange` | on `document` by the theme toggle (`theme-toggle.js`): after a click, and after a change of the system colour scheme while the reader has not chosen one. Same document only; never on the first paint, and not on sites without the toggle (`color_scheme: light` or `dark`) | `{theme: "light" or "dark", source: "toggle" or "system"}` |
+
+For one callback per real change that also works without the toggle, use `onThemeChange` from `assets/js/modootoday/theme/current.js`: it listens to the event and to the system setting, and returns a function that stops listening.
 
 ## Right-to-left and math
 

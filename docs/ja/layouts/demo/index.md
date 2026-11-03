@@ -16,3 +16,4 @@ twin: false
 - [Search](search/)
 - [Strict CSP](csp/)
 - [GitHub code colours](code-github/)
+- [Hero module](orbit/)

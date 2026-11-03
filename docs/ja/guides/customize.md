@@ -92,6 +92,32 @@ hero: {visual: showcase}
 # または: hero: {visual: showcase, image: {path: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}}
 ```
 
+### モジュールスクリプトとポスター
+
+canvas や動く SVG のように JavaScript が必要なビジュアルは、ES モジュールを `modootoday.scripts` に一度登録し、ヒーローかセクションの項目で `script:` に名前を指定します。名前を指定したページだけがモジュールを読み込みます。テーマは項目の `css` シート、`preload` のパスごとの `<link rel="modulepreload">`、`<script type="module">` を `<head>` にページごとに一度ずつ追加します。パスはすべてサイトパスです。モジュールスクリプトは遅延実行され、`script-src 'self'` で許可されるので、厳格な CSP を変える必要はありません。`preload` には、モジュールが読み込むモジュールがさらに読み込むモジュール（2 段下）だけを書いてください。直接読み込むモジュールにはヒントは要りません。
+
+```yaml
+# _config.yml
+modootoday:
+  scripts:
+    orbit: {src: /assets/js/hero/orbit.js, css: /assets/css/orbit.css, preload: [/assets/js/hero/scene.js]}
+```
+
+```yaml
+hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero/orbit-960.webp, srcset: "/assets/hero/orbit-640.webp 640w, /assets/hero/orbit-960.webp 960w", width: 960, height: 960}}
+```
+
+`poster:` は `hero.image` と同じ形です。パスか `{path, srcset, sizes, width, height}` を書きます。画像が届く前に場所を確保するため、`width` と `height` は必須です。テーマはポスターをビジュアルの列の先頭に `img.mt-visual-poster` として出力します。ヒーローでは高い優先度で取得されるので、たいていページの Largest Contentful Paint (LCP) になります。セクションでは遅延読み込みされます。分割の項目に `script:` か `poster:` があれば `visual:` は不要です。分割でなければ、ポスターと include は `div.mt-visual` に入ります。ビジュアルの列には `data-mt-script="<name>"` が付きます。
+
+モジュールが守る契約:
+
+- `prefers-reduced-motion: reduce` のときは何もしません。ポスターが残ります。JavaScript がオフのときやモジュールが失敗したときもポスターが残ります。
+- ポスターの後ろにある `mt-visual-stage` クラスの要素に描きます。この要素は `visual:` の include から出力でき、ポスターの領域を覆います。
+- 最初の場面を描いたら `[data-mt-script]` の列に `data-mt-ready` を付けます。するとテーマがポスターを隠します。
+- 設定は `readConfig`（`/assets/js/modootoday/dom/config.js`）で `data-*` 属性から読み、ライトとダークの切り替えには `onThemeChange`（`/assets/js/modootoday/theme/current.js`、[イベント](../../reference/api/#イベント)を参照）で追従します。`../modootoday/dom/config.js` のように相対パスで読み込んでください。
+
+[ヒーローモジュールのデモ](../../layouts/demo/orbit/)は、この契約に従う 40 行のモジュールです。
+
 `full_width: true` はランディングページ向けに、`main.mt-main` の本文幅の制限と左右の余白を外します（`.mt-main-full` を追加）。
 
 ## Sass パーシャル

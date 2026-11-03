@@ -21,6 +21,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 上書きしてよい include | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` 指定可)を include できる。独自のロゴは `modootoday/brand/logo.html` を上書き |
 | 自分で用意する include | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照） |
+| モジュールのヘルパーとイベント | サイトの `scripts` のモジュールが使う ES モジュール `assets/js/modootoday/theme/current.js`（`currentTheme()`、待ち受けを止める関数を返す `onThemeChange(callback)`）と `assets/js/modootoday/dom/config.js`（`readConfig(element, defaults)`）。`mt:themechange` イベント（[イベント](#イベント)を参照）。`script:` のビジュアルの契約（`data-mt-script`、`.mt-visual-stage`、`data-mt-ready`、[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照） |
 | 呼び出してよい include | `modootoday/archive.html`（`by`、`lang`）。`modootoday/brand/icon.html`（`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand。任意で `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class`）。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、向きのあるアイコンは `.mt-icon-flip` が付き RTL で反転 |
 | include | `modootoday/t.html`（`key=`、任意の `n=` / `name=`）はページの言語でテーマの文言を出力します |
 | データファイル | `_data/i18n/<lang>.yml` のキー（組み込みカタログを上書きする場合のみ）、`_data/nav/<name>.yml`、`_data/components.yml` |
@@ -98,6 +99,14 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ```
 
 コンポーネントの項目に書けるのは `params`、`i18n`、`slots`、`parts` だけで、スロットの規則に書けるのは `required`、`min`、`max` だけです。それ以外のキー、未知のスロット名、`max` より大きい `min`、二つ未満の形のリストはエラーで、レジストリごとに一度だけ報告されます。`slots:` のないコンポーネントは数えず、一つのマップで書いた `slots:` は以前とまったく同じに動きます。
+
+## イベント
+
+| イベント | 送られるとき | `detail` |
+|---|---|---|
+| `mt:themechange` | テーマ切り替えボタン（`theme-toggle.js`）が `document` に送る。ボタンを押した後と、読者が配色を選んでいない状態でシステムの配色が変わった後。同じ文書の中だけで送られ、最初の描画のときや、切り替えボタンがないサイト（`color_scheme: light` または `dark`）では送られない | `{theme: "light" または "dark", source: "toggle" または "system"}` |
+
+切り替えボタンがなくても動き、実際に変わったときに一度だけ呼ばれるようにするには、`assets/js/modootoday/theme/current.js` の `onThemeChange` を使ってください。イベントとシステムの設定を両方待ち受け、待ち受けを止める関数を返します。
 
 ## 右から左への表記と数式
 

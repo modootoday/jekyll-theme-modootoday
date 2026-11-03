@@ -1,0 +1,9 @@
+// Script visuals (script: on hero: or a section item) and posters (poster:). The poster fills the visual box and is the
+// first paint; a .mt-visual-stage after it covers the same box. The module sets data-mt-ready on the root once it has drawn,
+// which hides the poster; without the module, or under reduced motion, the poster stays.
+@include mt-layer(components) {
+  .mt-visual, [data-mt-script] { position: relative; }
+  .mt-visual-poster { display: block; width: 100%; height: auto; }
+  .mt-visual-poster ~ .mt-visual-stage { position: absolute; inset: 0; }
+  [data-mt-ready] > .mt-visual-poster { opacity: 0; }
+}

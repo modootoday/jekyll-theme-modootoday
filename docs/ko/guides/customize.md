@@ -91,6 +91,32 @@ hero: {visual: showcase}
 # 또는: hero: {visual: showcase, image: {path: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}}
 ```
 
+### 모듈 스크립트와 포스터
+
+캔버스나 움직이는 SVG처럼 JavaScript가 필요한 비주얼은 ES 모듈을 `modootoday.scripts`에 한 번 등록하고, 히어로나 섹션 항목에서 `script:`로 이름을 적습니다. 그 이름을 적은 페이지만 모듈을 불러옵니다. 테마는 항목의 `css` 시트, `preload` 경로마다 `<link rel="modulepreload">`, `<script type="module">`을 `<head>`에 페이지당 한 번씩 넣습니다. 경로는 모두 사이트 경로입니다. 모듈 스크립트는 지연 실행되고 `script-src 'self'`로 허용되므로 엄격한 CSP를 바꿀 필요가 없습니다. `preload`에는 모듈이 가져오는 모듈이 다시 가져오는 모듈(두 단계 아래)만 적으세요. 직접 가져오는 모듈에는 힌트가 필요 없습니다.
+
+```yaml
+# _config.yml
+modootoday:
+  scripts:
+    orbit: {src: /assets/js/hero/orbit.js, css: /assets/css/orbit.css, preload: [/assets/js/hero/scene.js]}
+```
+
+```yaml
+hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero/orbit-960.webp, srcset: "/assets/hero/orbit-640.webp 640w, /assets/hero/orbit-960.webp 960w", width: 960, height: 960}}
+```
+
+`poster:`는 `hero.image`와 같은 꼴입니다. 경로를 쓰거나 `{path, srcset, sizes, width, height}`를 씁니다. 이미지가 오기 전에 자리를 잡아 두도록 `width`와 `height`는 꼭 적어야 합니다. 테마는 포스터를 비주얼 열 맨 앞에 `img.mt-visual-poster`로 넣습니다. 히어로에서는 높은 우선순위로 받으므로 대개 페이지의 최대 콘텐츠 페인트(LCP)가 되고, 섹션에서는 지연 로딩됩니다. 분할 항목에 `script:`나 `poster:`가 있으면 `visual:`이 없어도 됩니다. 분할이 아니면 포스터와 include가 `div.mt-visual` 안에 들어갑니다. 비주얼 열에는 `data-mt-script="<name>"`이 붙습니다.
+
+모듈이 지켜야 할 계약:
+
+- `prefers-reduced-motion: reduce`이면 아무것도 하지 않습니다. 포스터가 남습니다. JavaScript가 꺼져 있거나 모듈이 실패해도 포스터가 남습니다.
+- 포스터 뒤에 있는 `mt-visual-stage` 클래스 요소에 그립니다. 이 요소는 `visual:` include에서 낼 수 있고, 포스터 자리를 덮습니다.
+- 첫 장면을 그린 뒤 `[data-mt-script]` 열에 `data-mt-ready`를 붙입니다. 그러면 테마가 포스터를 숨깁니다.
+- 설정은 `readConfig`(`/assets/js/modootoday/dom/config.js`)로 `data-*` 속성에서 읽고, 라이트와 다크 전환은 `onThemeChange`(`/assets/js/modootoday/theme/current.js`, [이벤트](../../reference/api/#이벤트) 참고)로 따라갑니다. `../modootoday/dom/config.js`처럼 상대 경로로 가져오세요.
+
+[히어로 모듈 데모](../../layouts/demo/orbit/)는 이 계약을 따르는 40줄짜리 모듈입니다.
+
 `full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없앱니다(`.mt-main-full` 추가).
 
 ## Sass 파셜

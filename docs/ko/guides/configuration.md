@@ -32,7 +32,7 @@ modootoday:
 | `badges` | `true` | 상태 코드 스팬을 배지로 바꿈. `false`면 코드 그대로 |
 | `code_theme` | `theme` | 코드 블록 색. `theme`은 테마 팔레트를 유지하고 `github`는 GitHub의 라이트·다크 팔레트를 씀. [커스터마이즈](../customize/) 참고 |
 | `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
-| `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`로 켠 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요 |
+| `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`, `visual`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`로 켠 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
 | `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름 |
 | `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
@@ -40,6 +40,7 @@ modootoday:
 | `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀(인라인 `<style>`. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씀) |
 | `site_css` | 없음 | 사이트의 스타일시트. `[/assets/css/site.css]`처럼 사이트 경로 목록으로 적고, 테마 시트 뒤에 같은 `?v=` 쿼리를 붙여 연결함. front matter `site_css:`는 그 페이지에만 시트를 더함. [브랜드 토큰](../../recipes/brand-tokens/) 참고 |
 | `preload` | 없음 | 스타일시트 앞에 내는 `<link rel="preload">`. `{href, as, type}` 목록이며 `href`는 사이트 경로, `as`는 `font`, `image`, `style`, `script`, `fetch` 중 하나(글꼴과 fetch에는 `crossorigin`이 붙고 `?v=` 쿼리는 붙지 않음). front matter `preload:`는 그 페이지에만 더함 |
+| `scripts` | 없음 | 사이트의 ES 모듈을 이름별로 적음. 값은 사이트 경로로 쓴 `{src, css, preload, element}`(`src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소). 히어로나 섹션 항목의 `script:`가 그 이름을 적은 페이지만 불러옴. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터) 참고 |
 | `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |

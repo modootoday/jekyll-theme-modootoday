@@ -88,6 +88,32 @@ hero: {visual: showcase}
 # or: hero: {visual: showcase, image: {path: /assets/hero.webp, srcset: "/assets/hero-800.webp 800w, /assets/hero.webp 1600w", width: 1600, height: 900}}
 ```
 
+### Module scripts and posters
+
+For a visual that needs JavaScript, such as a canvas or an animated SVG, register an ES module once in `modootoday.scripts` and name it with `script:` on the hero or a section item. Only the pages that name it load it: the theme adds the entry's `css` sheet, a `<link rel="modulepreload">` for each `preload` path and a `<script type="module">` to `<head>`, once per page. All paths are site paths. Module scripts run deferred and are allowed by `script-src 'self'`, so a strict CSP needs no change. List in `preload` only the modules your module's own imports load (two levels down); a direct import needs no hint.
+
+```yaml
+# _config.yml
+modootoday:
+  scripts:
+    orbit: {src: /assets/js/hero/orbit.js, css: /assets/css/orbit.css, preload: [/assets/js/hero/scene.js]}
+```
+
+```yaml
+hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero/orbit-960.webp, srcset: "/assets/hero/orbit-640.webp 640w, /assets/hero/orbit-960.webp 960w", width: 960, height: 960}}
+```
+
+`poster:` takes the `hero.image` shape: a path, or `{path, srcset, sizes, width, height}`. `width` and `height` are required, so the box is kept before the image arrives. The theme puts it first in the visual column as `img.mt-visual-poster`. On the hero it is fetched with high priority and is usually the page's largest contentful paint; in a section it loads lazily. A split item with `script:` or `poster:` needs no `visual:`; outside split, the poster and the include sit in `div.mt-visual`. The column carries `data-mt-script="<name>"`.
+
+Your module's side of the contract:
+
+- When `prefers-reduced-motion: reduce` matches, do nothing; the poster stays. It also stays when JavaScript is off or the module fails.
+- Draw into an element with the class `mt-visual-stage` after the poster, for example from the `visual:` include; it covers the poster's box.
+- After the first frame, set `data-mt-ready` on the `[data-mt-script]` column; the theme then hides the poster.
+- Read settings from `data-*` attributes with `readConfig` (`/assets/js/modootoday/dom/config.js`) and follow light and dark with `onThemeChange` (`/assets/js/modootoday/theme/current.js`, see [Events](../../reference/api/#events)). Import them by relative path, such as `../modootoday/dom/config.js`.
+
+The [hero module demo](../../layouts/demo/orbit/) is a 40-line module that follows this contract.
+
 `full_width: true` removes the reading-column width and side padding of `main.mt-main` (adds `.mt-main-full`) for landing pages.
 
 ## Sass partials

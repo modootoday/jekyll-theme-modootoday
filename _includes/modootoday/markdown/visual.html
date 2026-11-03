@@ -1,0 +1,6 @@
+{%- comment -%}md-components v1 — a section's or the hero's visual outside c: split (called by sections.html; split.html has its own column).
+  include.s = the item, include.hero = true for the hero. Without script: or poster: it prints the visual: include unchanged;
+  with them, div.mt-visual (data-mt-script = the script name) holding the poster first, then the include.{%- endcomment -%}
+{%- assign _mtvs = include.s -%}
+{%- if _mtvs.script or _mtvs.poster -%}<div class="mt-visual"{% if _mtvs.script %} data-mt-script="{{ _mtvs.script | escape }}"{% endif %}>{% if _mtvs.poster %}{% include modootoday/pages/hero/poster.html p=_mtvs.poster hero=include.hero %}{% endif %}{% if _mtvs.visual %}{% include sections/{{ _mtvs.visual }}.html section=_mtvs %}{% endif %}</div>
+{%- elsif _mtvs.visual -%}{% include sections/{{ _mtvs.visual }}.html section=_mtvs %}{%- endif -%}

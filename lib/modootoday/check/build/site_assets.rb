@@ -2,14 +2,15 @@
 
 module Modootoday
   module Check
-    # The site's own files the theme links (site_css, preload) from _config.yml and front matter: front matter takes the
-    # same shapes as the settings, and each file must be in the build, because a missing sheet or font fails silently.
+    # The site's own files the theme links (site_css, preload, the scripts entries) from _config.yml and front matter: front
+    # matter takes the same shapes as the settings, and each file must be in the build, because a missing file fails silently.
     module SiteAssets
       module_function
 
       def call(ctx)
         mtc = ctx.mtc.is_a?(Hash) ? ctx.mtc : {}
         present_all(ctx, "_config.yml", "modootoday.", mtc)
+        scripts_present(ctx, mtc["scripts"])
         ctx.mds.each do |f|
           fm = (Markdown.fm(File.read(f)) rescue {})
           next unless fm.is_a?(Hash) && (fm.key?("site_css") || fm.key?("preload"))
@@ -37,6 +38,15 @@ module Modootoday
         return unless ctx.site && File.directory?(ctx.site)
         Array(data["site_css"]).grep(String).each { |p| present(ctx, where, "#{prefix}site_css", p) }
         Array(data["preload"]).grep(Hash).each { |h| present(ctx, where, "#{prefix}preload", h["href"]) if h["href"].is_a?(String) }
+      end
+
+      def scripts_present(ctx, scripts)
+        return unless scripts.is_a?(Hash) && ctx.site && File.directory?(ctx.site)
+        scripts.each do |name, e|
+          next unless e.is_a?(Hash)
+          files = [["src", e["src"]], ["css", e["css"]]] + (e["preload"].is_a?(Array) ? e["preload"] : []).map { |p| ["preload", p] }
+          files.each { |k, p| present(ctx, "_config.yml", "modootoday.scripts[#{name}].#{k}", p) if p.is_a?(String) }
+        end
       end
 
       def present(ctx, where, key, path)

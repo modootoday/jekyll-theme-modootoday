@@ -1,0 +1,7 @@
+/* Docs demo for script: and poster: (modootoday.scripts.orbit.css): the hero picture's frame and the module's SVG. */
+[data-mt-script="orbit"] { border-radius: var(--mt-radius-lg); overflow: hidden; }
+.orbit-stage svg { display: block; width: 100%; height: 100%; }
+.orbit-ring { fill: none; stroke: #fff; stroke-opacity: .35; stroke-width: 2; }
+.orbit-core { fill: #fbbf24; }
+.orbit-dots { fill: #e0e7ff; transform-box: view-box; transform-origin: 50% 50%; }
+.orbit-stage [data-scheme="dark"] .orbit-ring { stroke-opacity: .5; }

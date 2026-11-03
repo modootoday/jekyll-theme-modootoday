@@ -15,7 +15,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 자산 | 불러오는 페이지 |
 |---|---|
 | `assets/css/modootoday.css` (핵심 시트) | 모든 페이지 |
-| 맥락 시트 (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
+| 맥락 시트 (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
 | `menu.js`, `theme-toggle.js`, `search.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
 | `code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |
@@ -23,6 +23,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `tabs.js`, `accordion.js`, `share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
+| 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
 
 스크립트는 `defer`로 불러오므로 첫 화면 표시를 막지 않습니다. 예외는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트 하나입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요.
 
@@ -56,5 +57,5 @@ HTML은 TTL을 짧게 두어야 배포 뒤 새 `?v=`가 빨리 퍼집니다.
 테마의 CI는 페이지를 예산보다 무겁게 만드는 변경을 실패로 처리합니다.
 
 - 스타일시트 하나하나, 한 페이지가 연결하는 핵심 CSS, 핵심 스크립트 전체(gzip)
-- 페이지 유형(문서, 랜딩, 블로그, 컴포넌트 쇼케이스)마다 한 페이지가 불러오는 CSS와 JavaScript의 gzip 바이트(가져오는 모듈 포함)
+- 페이지 유형(문서, 랜딩, 블로그, 컴포넌트 쇼케이스, 모듈 스크립트 비주얼이 있는 페이지)마다 한 페이지가 불러오는 CSS와 JavaScript의 gzip 바이트(가져오는 모듈 포함)
 - 예시 페이지에 [엄격한 콘텐츠 보안 정책](../../recipes/csp/)을 걸었을 때 위반 0건([데모](../../layouts/demo/csp/))

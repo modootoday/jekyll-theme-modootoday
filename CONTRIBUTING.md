@@ -22,7 +22,7 @@ Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm
 
 ### Visual regression
 
-`npm run qa:visual` screenshots four pages (home, kitchen sink, configuration, Korean home) at 360, 1024 and 1440 px in light and dark mode and compares each shot with a PNG in `qa/visual/baseline/` (git-ignored; baselines are never committed) using [pixelmatch](https://github.com/mapbox/pixelmatch). A shot fails when more than 0.1 % of its pixels differ by more than the colour threshold 0.1, or when its size changed; the failing shot and a diff image go to `qa-out/visual/`. Animations, the caret and the "Last updated" date are frozen.
+`npm run qa:visual` screenshots five pages (home, kitchen sink, configuration, Korean home, the hero module demo) at 360, 1024 and 1440 px in light and dark mode, with reduced motion (so a script visual shows its poster) and compares each shot with a PNG in `qa/visual/baseline/` (git-ignored; baselines are never committed) using [pixelmatch](https://github.com/mapbox/pixelmatch). A shot fails when more than 0.1 % of its pixels differ by more than the colour threshold 0.1, or when its size changed; the failing shot and a diff image go to `qa-out/visual/`. Animations, the caret and the "Last updated" date are frozen.
 
 ```sh
 qa/site/build-docs.sh docs/_site
@@ -38,7 +38,7 @@ Fonts and anti-aliasing differ between operating systems, so a baseline is only 
 
 ### Lighthouse budget
 
-`qa/lighthouse/lighthouse.sh` runs Lighthouse on seven docs pages, mobile and desktop, and `qa/lighthouse/budget.mjs` checks the median of the runs against `qa/lighthouse/budget.json`: accessibility, best practices and SEO must be 100, performance at least 90 (desktop) and 80 (mobile). The `lighthouse.yml` workflow runs it three times per page and blocks on a miss; it runs on pull requests and in the release check (`gh workflow run lighthouse.yml`), not on pushes to `main`.
+`qa/lighthouse/lighthouse.sh` runs Lighthouse on eight docs pages (among them the hero module demo, whose largest contentful paint is its poster), mobile and desktop, and `qa/lighthouse/budget.mjs` checks the median of the runs against `qa/lighthouse/budget.json`: accessibility, best practices and SEO must be 100, performance at least 90 (desktop) and 80 (mobile). The `lighthouse.yml` workflow runs it three times per page and blocks on a miss; it runs on pull requests and in the release check (`gh workflow run lighthouse.yml`), not on pushes to `main`.
 
 ```sh
 qa/site/build-docs.sh docs/_site

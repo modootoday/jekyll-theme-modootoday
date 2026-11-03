@@ -32,7 +32,7 @@ modootoday:
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
 | `code_theme` | `theme` | コードブロックの色。`theme` はテーマのパレットのまま、`github` は GitHub のライトとダークのパレットを使う。[カスタマイズ](../customize/)を参照 |
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
-| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
+| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
 | `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
 | `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |
@@ -40,6 +40,7 @@ modootoday:
 | `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする (インラインの `<style>`。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う) |
 | `site_css` | なし | サイト独自のスタイルシート。`[/assets/css/site.css]` のようなサイトパスのリストで、テーマのシートの後に同じ `?v=` クエリを付けて読み込む。front matter の `site_css:` はそのページだけにシートを追加する。[ブランドトークン](../../recipes/brand-tokens/)を参照 |
 | `preload` | なし | スタイルシートより前の `<link rel="preload">`。`{href, as, type}` のリストで、`href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれか (フォントと fetch には `crossorigin` が付き、`?v=` クエリは付かない)。front matter の `preload:` はそのページだけに追加する |
+| `scripts` | なし | サイトの ES モジュールを名前ごとに書く。値はサイトパスで書いた `{src, css, preload, element}`（`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素）。ヒーローかセクションの項目の `script:` がその名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照 |
 | `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |

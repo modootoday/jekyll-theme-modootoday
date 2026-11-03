@@ -1,6 +1,7 @@
 {%- comment -%}md-components v1 — split inner wrappers (called by sections.html for c: split on a section item or on hero:).
   body = the section's HTML (h2 or h1, text, actions), s = the item. Prints div.mt-section-in > div.mt-section-body (body)
-  + div.mt-section-visual (the visual: include, called with section=s).
+  + div.mt-section-visual (the poster: image, then the visual: include, called with section=s; script: adds data-mt-script).
+  include.hero: true for the hero, whose poster is fetched first.
   visual: code is built in: the body's first code block (with its file: title, if any) moves into div.mt-section-visual.mt-split-code,
   keeping the code styles and the copy button; chrome: terminal adds .mt-split-terminal and a decorative bar (aria-hidden).{%- endcomment -%}
 {%- assign _b = include.body -%}{%- assign _code = nil -%}
@@ -16,4 +17,4 @@
     {%- assign _b = _pre | append: _after -%}
   {%- endif -%}
 {%- endif -%}
-<div class="mt-section-in"><div class="mt-section-body">{{ _b }}</div>{% if _code %}<div class="mt-section-visual mt-split-code{% if include.s.chrome == 'terminal' %} mt-split-terminal{% endif %}">{% if include.s.chrome == 'terminal' %}<div class="mt-split-bar" aria-hidden="true"><span></span><span></span><span></span></div>{% endif %}{{ _code }}</div>{% elsif include.s.visual and include.s.visual != "code" %}<div class="mt-section-visual">{% include sections/{{ include.s.visual }}.html section=include.s %}</div>{% endif %}</div>
+<div class="mt-section-in"><div class="mt-section-body">{{ _b }}</div>{% if _code %}<div class="mt-section-visual mt-split-code{% if include.s.chrome == 'terminal' %} mt-split-terminal{% endif %}">{% if include.s.chrome == 'terminal' %}<div class="mt-split-bar" aria-hidden="true"><span></span><span></span><span></span></div>{% endif %}{{ _code }}</div>{% elsif include.s.visual != "code" %}{% if include.s.visual or include.s.script or include.s.poster %}<div class="mt-section-visual"{% if include.s.script %} data-mt-script="{{ include.s.script | escape }}"{% endif %}>{% if include.s.poster %}{% include modootoday/pages/hero/poster.html p=include.s.poster hero=include.hero split=true %}{% endif %}{% if include.s.visual %}{% include sections/{{ include.s.visual }}.html section=include.s %}{% endif %}</div>{% endif %}{% endif %}</div>

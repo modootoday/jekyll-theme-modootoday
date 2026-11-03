@@ -29,7 +29,7 @@ modootoday:
 | `badges` | `true` | turn status code spans into badges; `false` keeps code |
 | `code_theme` | `theme` | code block colours: `theme` keeps the theme palette, `github` uses GitHub's light and dark palettes; see [Code colours](../customize/#code-colours) |
 | `color_scheme` | `auto` | `auto` follows the OS; `auto-dark` or `auto-light` starts dark or light and keeps the toggle (the reader's choice is remembered); `light` or `dark` forces one scheme without a toggle. The starting scheme is printed in the HTML, so nothing flashes |
-| `components` | all | limit the CSS and JS that are shipped. `lists`, `bleed` and `terminal` are always included: their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:` and `chrome: terminal`. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll) |
+| `components` | all | limit the CSS and JS that are shipped. `lists`, `bleed`, `terminal` and `visual` are always included: their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:`, `chrome: terminal`, and `script:` or `poster:`. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll) |
 | `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
 | `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a group. Previous/next links walk the file in order: a group's own page, then its items |
 | `sidebar` | `auto` | `auto` adds a sidebar to `doc` pages when the nav has groups; `true` always, `false` never. Below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page |
@@ -37,6 +37,7 @@ modootoday:
 | `tokens`, `tokens_dark` | theme values | override semantic design tokens inline (an inline `<style>`; on a strict CSP site use the [token bridge](../customize/#token-bridge)) |
 | `site_css` | none | your own stylesheets, a list of site paths such as `[/assets/css/site.css]`, linked after the theme sheets with the same `?v=` query; front matter `site_css:` adds sheets on one page. See [Brand tokens](../../recipes/brand-tokens/) |
 | `preload` | none | `<link rel="preload">` before the stylesheets: a list of `{href, as, type}` with a site path `href` and `as` one of `font`, `image`, `style`, `script`, `fetch` (fonts and fetches add `crossorigin`; no `?v=` query); front matter `preload:` adds hints on one page |
+| `scripts` | none | the site's ES modules, by name: `{src, css, preload, element}` with site paths (`src` a `.js` file, `css` a sheet, `preload` the modules to `modulepreload`, `element` the custom element it defines). A page loads one only when `script:` on its hero or a section item names it; see [Module scripts and posters](../customize/#module-scripts-and-posters) |
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |
