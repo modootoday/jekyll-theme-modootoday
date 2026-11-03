@@ -9,7 +9,7 @@ sass: {silence_deprecations: [import, global-builtin]}  # Dart Sass (Jekyll 4); 
 kramdown: {input: GFM, syntax_highlighter: rouge}
 permalink: pretty
 # Logo and favicon from the modootoday mark (or a path to your own image): modootoday: {logo: brand, favicon: brand}
-exclude: [Gemfile, Gemfile.lock, README.md, source-mode]
+exclude: [Gemfile, Gemfile.lock, README.md]
 modootoday:
   # One page per record of _data/plugins.json, written by: modootoday-stubs . --records --write
   records:

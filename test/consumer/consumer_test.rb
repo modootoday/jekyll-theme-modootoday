@@ -122,7 +122,7 @@ class ConsumerTest < Minitest::Test
   # Front-matter-less mode (modootoday.twins: source): jekyll-optional-front-matter renders each
   # front-matter-less page AND copies the raw source to its own path, which is the twin. Same on
   # github-pages (Jekyll 3.10) and Jekyll 4 with the plugins listed explicitly.
-  SOURCE = File.join(EXAMPLE, "source-mode")
+  SOURCE = File.join(ROOT, "test/fixtures/sites/source-mode")
 
   def test_source_mode_twins_without_stubs
     Dir.mktmpdir do |d|
