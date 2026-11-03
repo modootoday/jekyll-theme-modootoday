@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/brand-tokens/
-source_rev: sha256:4052c8745fff
+source_rev: sha256:7e228dbb5e53
 nav_order: 15
 nav_title: ブランドトークン
 title: ブランドトークン
@@ -36,7 +36,7 @@ $mt-overrides-dark: (
 
 | マップ | トークン | 出力先 |
 |---|---|---|
-| `$mt-overrides-base` | `font-sans`、`font-mono`、`font-heading`、`heading-weight`、`font-size`、`line-height`、`measure`、`radius` などカラースキームに依存しないトークン | `:root` |
+| `$mt-overrides-base` | `font-sans`、`font-mono`、`font-heading`、`heading-weight`、`font-size`、`line-height`、`measure`、`narrow`、`radius` などカラースキームに依存しないトークン | `:root` |
 | `$mt-overrides` | `primary`、`link`、`link-hover`、`background`、`foreground`、`border` などの色トークン | `:root` (ライト) |
 | `$mt-overrides-dark` | ダークモードの同じ色トークン | ダークスキームのセレクター |
 
@@ -45,7 +45,7 @@ $mt-overrides-dark: (
 このファイルに置けるのはこの三つのマップだけです。ほかの文やテーマにないトークン名があると `modootoday-check` が失敗するので、タイプミスが見過ごされることはありません。
 
 > [!TIP]
-> `font-heading` と `heading-weight` は `h1`〜`h4` に、`link` と `link-hover` は本文のリンクに適用されます。既定値はそれぞれ `font-sans`、650、`primary` に従うため、`primary` だけを変えたサイトでは何も変わりません。
+> `font-heading` と `heading-weight` は `h1`〜`h4` に、`link` と `link-hover` は本文のリンクに適用されます。既定値はそれぞれ `font-sans`、600、`primary` に従うため、`primary` だけを変えたサイトでは何も変わりません。例の `heading-weight: 600` は書く場所を示すためのもので、既定値と同じです。
 
 ## サイトのスタイルシートとフォント
 
@@ -72,7 +72,7 @@ modootoday:
 
 ## コントラスト
 
-公開する前に両方の配色を確認してください。背景と `muted` の上の本文、背景の上の `primary` と `link`、`primary` の上の `primary-foreground` は 4.5:1 以上が必要です。テーマのドキュメント QA が同じ基準で、このページをライトとダークの両モードで測ります。
+公開する前に両方の配色を確認してください。背景と `muted` の上の本文、背景の上の `primary` と `link`、`primary` の上の `primary-foreground`、そしてホバー時の塗りである `accent` の上の `muted-foreground` は 4.5:1 以上が必要です。入力欄の枠線 `border-input` は背景に対して 3:1、細い区切り線の `border` は背景と `card` の上で 1.2:1 あれば足ります。テーマのドキュメント QA が同じ基準で、このページをライトとダークの両モードで測ります。
 
 ## 厳格な CSP で
 

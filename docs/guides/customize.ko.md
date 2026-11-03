@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:d58fc67998eb
+source_rev: sha256:af2f994e7693
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -51,7 +51,7 @@ $mt-overrides: (primary: #0f766e, link: #0f766e);
 $mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
 ```
 
-`$mt-overrides-base`는 색 구성표와 무관한 토큰(글꼴, 크기, 모서리)을, 나머지 둘은 라이트와 다크 모드의 색을 받습니다. 기존 토큰 외에 `h1`~`h4`용 `font-heading`과 `heading-weight`, 본문 링크용 `link`와 `link-hover`가 있습니다. 기본값은 각각 `font-sans`, 650, `primary`를 따릅니다. 이 파일에는 이 세 맵만, 테마가 정의한 토큰 이름으로만 쓸 수 있습니다. 그 밖의 내용은 `modootoday-check`가 알려 줍니다.
+`$mt-overrides-base`는 색 구성표와 무관한 토큰(글꼴, 크기, 모서리)을, 나머지 둘은 라이트와 다크 모드의 색을 받습니다. 기존 토큰 외에 `h1`~`h4`용 `font-heading`과 `heading-weight`, 본문 링크용 `link`와 `link-hover`가 있습니다. 기본값은 각각 `font-sans`, 600, `primary`를 따릅니다. 이 파일에는 이 세 맵만, 테마가 정의한 토큰 이름으로만 쓸 수 있습니다. 그 밖의 내용은 `modootoday-check`가 알려 줍니다.
 
 설정 두 개로 사이트의 파일을 테마 파일 옆에 붙입니다.
 

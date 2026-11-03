@@ -41,7 +41,7 @@ Landmarks (header, navigation, main, footer), the current page in navigation, br
 ```yaml
 modootoday:
   viewport_fit: auto           # default: cover (draw under the notch with safe-area padding)
-  theme_color: {light: "#ffffff", dark: "#0d1117"}  # or one "#hex", or false
+  theme_color: {light: "#ffffff", dark: "#0a0a0a"}  # or one "#hex", or false
 ```
 
 | Key | Default | Effect |

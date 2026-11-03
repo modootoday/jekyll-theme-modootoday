@@ -4,14 +4,14 @@ const CODE = ["foreground", "keyword", "string", "comment", "function", "constan
 // logical name -> candidate token names (v0.2 semantic names first, v0.1 names as fallback)
 const T = {
   fg: ["foreground", "fg"], "fg-muted": ["muted-foreground", "fg-muted"], bg: ["background", "bg"], "bg-subtle": ["muted", "bg-subtle"],
-  accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], link: ["link"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"],
+  accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], link: ["link"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"], "border-input": ["border-input"], hover: ["accent"],
   ...Object.fromEntries(["note", "tip", "important", "warning", "caution"].map((t) => [t, [t]])),
   ...Object.fromEntries(["available", "partial", "planned"].map((t) => [t, ["status-" + t, t]])),
   ...Object.fromEntries(["background", ...CODE].map((t) => ["code-" + t, ["code-" + t]])),
 };
 const PAIRS = [
   ["fg", "bg", 4.5], ["fg-muted", "bg", 4.5], ["fg", "bg-subtle", 4.5], ["fg-muted", "bg-subtle", 4.5], ["card-fg", "card", 4.5],
-  ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["link", "bg", 4.5], ["border", "bg", 1.2],
+  ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["link", "bg", 4.5], ["border", "bg", 1.2], ["border", "card", 1.2], ["border-input", "bg", 3], ["fg-muted", "hover", 4.5],
   ...["note", "tip", "important", "warning", "caution", "available", "partial", "planned"].map((t) => [t, "bg", 4.5]),
   ...["note", "tip", "important", "warning", "caution"].map((t) => [t, "bg-subtle", 3]),
   ...CODE.map((t) => ["code-" + t, "code-background", 4.5]),

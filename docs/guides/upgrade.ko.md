@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:94fdd8e1d2de
+source_rev: sha256:a7e25c22cdc2
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -62,7 +62,31 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 1.0 또는 1.1 | 1.2 | `~> 1.2`(또는 `remote_theme`에서는 최신 `v1.2.x` 태그)로 고정합니다. 새 섹션·히어로 옵션(`bleed:`, `reveal:`, `visual:`과 함께 쓰는 `c: split`)은 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 | 1.2 | 1.3 | `~> 1.3`(또는 `remote_theme`에서는 `@v1.3.0`)으로 고정합니다. `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`)는 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 | 1.3 | 1.4 | `~> 1.4`(또는 `remote_theme`에서는 `@v1.4.1`)으로 고정합니다. `packages_compact`와 `packages_position`은 선택 사항이고, `reference` 페이지도 이제 `doc`처럼 알림을 변환하므로 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
+| 1.4 | 1.5 | `~> 1.5`(또는 `remote_theme`에서는 `@v1.5.0`)으로 고정합니다. 기본 모습이 바뀌지만(아래 참고) 페이지를 고칠 필요는 없습니다. `modootoday-check --strict` 실행 |
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 
 `name:`을 쓴 `resume`이나 `links` 페이지는 사람 이름 대신 파일 이름(`resume.md`)을 보여 주었습니다. Jekyll이 페이지의 `name:`을 파일 이름으로 바꾸기 때문입니다. 키 이름을 `display_name:`으로 바꾸세요. 바꾸기 전에는 페이지 제목이 보이고 `modootoday-check`가 경고합니다.
+
+### 1.5의 모습
+
+1.5는 기본 스타일을 평면적이고 중립적으로 바꿉니다. 중립 회색 단계, 불투명한 4rem 헤더, 메뉴와 검색 결과 말고는 그림자 없음, 테두리만 있는 알림, 떠오르지 않는 버튼과 카드, 굵기 600의 제목, 줄 높이 1.75의 본문입니다. 토큰 이름은 그대로이고 값만 바뀝니다. `modootoday.theme_color`의 다크 모드 기본값도 새 페이지 배경인 `#0a0a0a`가 됩니다. 1.4의 색, 크기, 그림자를 유지하려면 토큰 브리지에 이전 값을 넣으세요.
+
+```scss
+// _sass/modootoday/_site.scss
+$mt-overrides-base: (heading-weight: 650, line-height: 1.7, measure: 46rem, container: 76rem, header-height: 3.75rem,
+  space-section: 3rem);
+$mt-overrides: (
+  foreground: #1f2328, card-foreground: #1f2328, accent-foreground: #1f2328, muted: #f6f8fa, accent: #eff2f5,
+  muted-foreground: #59636e, status-planned: #59636e, code-comment: #59636e, border: #d1d9e0,
+  shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06), shadow: 0 6px 20px -6px rgba(31, 35, 40, 0.16)
+);
+$mt-overrides-dark: (
+  background: #0d1117, primary-foreground: #0d1117, foreground: #e6edf3, card-foreground: #e6edf3,
+  accent-foreground: #e6edf3, muted: #1a212b, card: #1a212b, accent: #151b23, muted-foreground: #9198a1,
+  status-planned: #9198a1, code-comment: #9198a1, border: #3d444d,
+  shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5)
+);
+```
+
+`modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}`도 함께 설정하세요. 헤더의 흐림 효과, 알림의 줄무늬와 배경색, 버튼이 떠오르는 효과는 없어졌으며, 직접 만든 `site_css`로만 되살릴 수 있습니다.

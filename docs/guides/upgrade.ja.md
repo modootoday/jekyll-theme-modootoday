@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:94fdd8e1d2de
+source_rev: sha256:a7e25c22cdc2
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -62,7 +62,31 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 | 1.0 または 1.1 | 1.2 | `~> 1.2`（`remote_theme` では最新の `v1.2.x` タグ）に固定する。新しいセクションとヒーローのオプション（`bleed:`、`reveal:`、`visual:` と組み合わせる `c: split`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
 | 1.2 | 1.3 | `~> 1.3`（`remote_theme` では `@v1.3.0`）に固定する。`reference` のサイドバー（`sidebar: true`）とパッケージ表（`packages:`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
 | 1.3 | 1.4 | `~> 1.4`（`remote_theme` では `@v1.4.1`）に固定する。`packages_compact` と `packages_position` は任意で、`reference` ページも `doc` と同じくアラートを変換するようになったため、ページの修正は不要。`modootoday-check --strict` を実行する |
+| 1.4 | 1.5 | `~> 1.5`（`remote_theme` では `@v1.5.0`）に固定する。既定の見た目が変わるが（下記参照）、ページの修正は不要。`modootoday-check --strict` を実行する |
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
 
 `name:` を書いた `resume` や `links` のページは、人の名前ではなくファイル名（`resume.md`）を表示していました。Jekyll がページの `name:` をファイル名に置き換えるためです。キーを `display_name:` に変えてください。変えるまではページのタイトルが表示され、`modootoday-check` が警告します。
+
+### 1.5 の見た目
+
+1.5 は既定のスタイルをフラットでニュートラルにします。ニュートラルなグレーの段階、不透明な 4rem のヘッダー、メニューと検索結果以外は影なし、枠線だけのアラート、浮き上がらないボタンとカード、ウェイト 600 の見出し、行の高さ 1.75 の本文です。トークン名はそのままで、値だけが変わります。`modootoday.theme_color` のダークモードの既定値も新しいページ背景の `#0a0a0a` になります。1.4 の色、サイズ、影を残すには、トークンブリッジに以前の値を書いてください。
+
+```scss
+// _sass/modootoday/_site.scss
+$mt-overrides-base: (heading-weight: 650, line-height: 1.7, measure: 46rem, container: 76rem, header-height: 3.75rem,
+  space-section: 3rem);
+$mt-overrides: (
+  foreground: #1f2328, card-foreground: #1f2328, accent-foreground: #1f2328, muted: #f6f8fa, accent: #eff2f5,
+  muted-foreground: #59636e, status-planned: #59636e, code-comment: #59636e, border: #d1d9e0,
+  shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06), shadow: 0 6px 20px -6px rgba(31, 35, 40, 0.16)
+);
+$mt-overrides-dark: (
+  background: #0d1117, primary-foreground: #0d1117, foreground: #e6edf3, card-foreground: #e6edf3,
+  accent-foreground: #e6edf3, muted: #1a212b, card: #1a212b, accent: #151b23, muted-foreground: #9198a1,
+  status-planned: #9198a1, code-comment: #9198a1, border: #3d444d,
+  shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5)
+);
+```
+
+`modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}` もあわせて設定してください。ヘッダーのぼかし、アラートの帯と背景色、ボタンの浮き上がりはなくなり、自分の `site_css` でのみ戻せます。

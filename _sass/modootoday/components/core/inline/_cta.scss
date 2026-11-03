@@ -2,10 +2,9 @@
 @include mt-layer(components) {
   .mt-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0 0; }
   .mt-actions > a { display: inline-flex; align-items: center; height: 2.75rem; padding: 0 1.25rem; border-radius: mt(radius);
-    border: 1px solid mt(border); background: mt(background); color: mt(foreground); box-shadow: mt(shadow-sm);
-    font-size: .9375rem; font-weight: 600; text-decoration: none; transition: background-color .15s, border-color .15s, transform .15s; }
+    border: 1px solid mt(border); background: mt(background); color: mt(foreground);
+    font-size: .9375rem; font-weight: 600; text-decoration: none; transition: background-color .15s, border-color .15s; }
   .mt-actions > a:hover { background: mt(accent); }
   .mt-actions > a:first-child { background: mt(primary); border-color: mt(primary); color: mt(primary-foreground); }
   .mt-actions > a:first-child:hover { background: color-mix(in srgb, #{mt(primary)} 88%, #{mt(foreground)}); }
-  .mt-actions > a:active { transform: translateY(1px); }
 }

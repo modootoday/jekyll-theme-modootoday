@@ -45,7 +45,7 @@ $mt-overrides: (primary: #0f766e, link: #0f766e);
 $mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
 ```
 
-`$mt-overrides-base` takes the scheme-free tokens (fonts, sizes, radius); the other two take colours for light and dark mode. Besides the existing tokens there are `font-heading` and `heading-weight` for `h1` to `h4`, and `link` and `link-hover` for links in running text; by default they follow `font-sans`, 650 and `primary`. The file may hold only these three maps, with token names the theme defines; `modootoday-check` reports anything else.
+`$mt-overrides-base` takes the scheme-free tokens (fonts, sizes, radius); the other two take colours for light and dark mode. Besides the existing tokens there are `font-heading` and `heading-weight` for `h1` to `h4`, and `link` and `link-hover` for links in running text; by default they follow `font-sans`, 600 and `primary`. The file may hold only these three maps, with token names the theme defines; `modootoday-check` reports anything else.
 
 Two settings bring your own files next to the theme's:
 

@@ -29,6 +29,7 @@ class HeadMetaTest < Minitest::Test
       refute_includes html, 'rel="canonical"'
       refute_includes html, "hreflang"
       refute_includes html, "mt-page-meta"
+      assert_includes html, '<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0a">'
     end
   end
 

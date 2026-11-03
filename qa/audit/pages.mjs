@@ -11,11 +11,13 @@ import { checkInlineCodeWrap } from "./layout/inline-code-wrap.mjs";
 import { checkHeaderEnd } from "./layout/header-end.mjs";
 
 async function checkRtl(page, scheme, url, fails) {
-  // logical properties must mirror: callout accent bar and steps rail on the right, code left-to-right
+  // logical properties must mirror: callout icon and steps rail on the right, code left-to-right
   const r = await page.evaluate(() => {
     const cs = (s) => { const e = document.querySelector(s); return e && getComputedStyle(e); };
-    const c = cs(".mt-callout"), st = cs(".mt-c-steps > ol > li"), pre = cs("pre");
-    return { dir: document.documentElement.dir, callout: c && parseFloat(c.borderRightWidth) > parseFloat(c.borderLeftWidth),
+    const t = document.querySelector(".mt-callout-title"), i = t && t.querySelector("svg");
+    const st = cs(".mt-c-steps > ol > li"), pre = cs("pre");
+    const box = (e) => e.getBoundingClientRect();
+    return { dir: document.documentElement.dir, callout: i && box(i).left > box(t).left + box(t).width / 2,
       steps: st && parseFloat(st.paddingRight) > parseFloat(st.paddingLeft), pre: pre && pre.direction === "ltr" };
   });
   for (const [k, ok] of Object.entries(r)) if (k === "dir" ? ok !== "rtl" : !ok) fails.push(`rtl ${k} not mirrored ${scheme} ${url}`);

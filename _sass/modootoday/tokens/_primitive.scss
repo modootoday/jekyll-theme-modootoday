@@ -1,8 +1,9 @@
 // Layer 1 — primitive tokens (--mt-p-*). Raw palette and scales; components never use them directly.
 $mt-primitive: (
   "white": #ffffff, "black": #000000,
-  gray-50: #f6f8fa, gray-100: #eff2f5, gray-200: #d1d9e0, gray-400: #9198a1, gray-500: #59636e,
-  gray-700: #3d444d, gray-750: #1a212b, gray-800: #151b23, gray-850: #1f2328, gray-900: #0d1117, gray-100d: #e6edf3,
+  // Neutral ramp. Dark layers: 900 page, 750 cards and muted, 800 hover fill, 700 hairline.
+  gray-50: #fafafa, gray-100: #f5f5f5, gray-200: #e5e5e5, gray-400: #a1a1a1, gray-500: #6b6b6b,
+  gray-700: #2e2e2e, gray-750: #171717, gray-800: #262626, gray-850: #171717, gray-900: #0a0a0a, gray-100d: #fafafa,
   // modootoday brand (모두의오늘): 500 is the logo mark, 600 the light action colour, 400 the dark action colour.
   brand-300: #ef8d78, brand-400: #e96346, brand-500: #d94925, brand-600: #b94022, brand-700: #a8321b,
   blue-400: #4493f8, blue-600: #0969da,
@@ -13,6 +14,7 @@ $mt-primitive: (
   // caution uses rose (hue ~345deg) so it never reads as the orange-red brand link colour.
   rose-400: #ff7b9c, rose-600: #b8174a,
   orange-400: #ffa657, orange-600: #953800, teal-400: #79c0ff, teal-600: #0550ae,
+  // space-3 is unused by the theme and kept until 2.0 for sites that read it.
   space-1: 0.25rem, space-2: 0.5rem, space-3: 0.75rem, space-4: 1rem, space-6: 1.5rem, space-8: 2rem, space-10: 2.5rem, space-12: 3rem, space-16: 4rem,
   radius-sm: 0.25rem, radius-md: 0.5rem, radius-lg: 0.75rem, radius-full: 999px
 ) !default;

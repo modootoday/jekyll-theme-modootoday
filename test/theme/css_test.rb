@@ -122,13 +122,24 @@ class CssTest < Minitest::Test
     sheets.each { |name, s| refute_includes s, "--mt-primary:", "#{name} emits no tokens" }
   end
 
-  def test_new_semantic_tokens_default_to_the_old_values
+  def test_semantic_defaults
     css, = self.class.build("all")
     root = css[/:root\s*\{(.*?)\}/m, 1]
+    dark = css[/:root\[data-theme="?dark"?\]\s*\{(.*?)\}/m, 1]
     assert_match(/--mt-font-heading:\s*var\(--mt-font-sans\);/, root)
-    assert_match(/--mt-heading-weight:\s*650;/, root)
+    assert_match(/--mt-heading-weight:\s*600;/, root)
     assert_match(/--mt-link:\s*var\(--mt-primary\);/, root)
     assert_match(/--mt-link-hover:\s*var\(--mt-link\);/, root)
+    assert_match(/--mt-narrow:\s*40rem;/, root)
+    assert_match(/--mt-border-input:\s*#8a8a8a;/, root)
+    assert_match(/--mt-border-input:\s*#737373;/, dark)
+    [root, dark].each { |m| assert_match(/--mt-shadow-sm:\s*none;/, m) }
+  end
+
+  def test_flat_surfaces
+    core, _, sheets = self.class.build("all")
+    [core, *sheets.values].each { |s| refute_includes s, "backdrop-filter" }
+    refute_match(/\.mt-callout\s*\{[^}]*color-mix/, core, "callouts are plain bordered boxes")
   end
 
   def test_code_theme_github_merges_the_preset_under_the_bridge

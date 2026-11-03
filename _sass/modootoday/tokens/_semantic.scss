@@ -2,9 +2,9 @@
 $mt-base: (
   font-sans: (system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans KR", "Noto Sans JP", sans-serif),
   font-mono: (ui-monospace, SFMono-Regular, Menlo, Consolas, monospace),
-  font-heading: var(--mt-font-sans), heading-weight: 650,
-  font-size: 1rem, line-height: 1.7, measure: 46rem, container: 76rem, header-height: 3.75rem,
-  space: var(--mt-p-space-4), space-section: var(--mt-p-space-12), radius: var(--mt-p-radius-md), radius-lg: var(--mt-p-radius-lg)
+  font-heading: var(--mt-font-sans), heading-weight: 600,
+  font-size: 1rem, line-height: 1.75, measure: 45rem, narrow: 40rem, container: 75rem, header-height: 4rem,
+  space: var(--mt-p-space-4), space-section: var(--mt-p-space-16), radius: var(--mt-p-radius-md), radius-lg: var(--mt-p-radius-lg)
 ) !default;
 $mt-light: (
   background: var(--mt-p-white), foreground: var(--mt-p-gray-850),
@@ -13,11 +13,11 @@ $mt-light: (
   primary: var(--mt-p-brand-600), primary-foreground: var(--mt-p-white), brand: var(--mt-p-brand-500),
   link: var(--mt-primary), link-hover: var(--mt-link),
   accent: var(--mt-p-gray-100), accent-foreground: var(--mt-p-gray-850),
-  border: var(--mt-p-gray-200), ring: var(--mt-p-brand-600),
+  border: var(--mt-p-gray-200), border-input: #8a8a8a, ring: var(--mt-p-brand-600),
   note: var(--mt-p-blue-600), tip: var(--mt-p-green-600), important: var(--mt-p-purple-600),
   warning: var(--mt-p-yellow-600), caution: var(--mt-p-rose-600),
   status-available: var(--mt-p-green-600), status-partial: var(--mt-p-yellow-600), status-planned: var(--mt-p-gray-500),
-  shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06), shadow: 0 6px 20px -6px rgba(31, 35, 40, 0.16),
+  shadow-sm: none, shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
   code-keyword: var(--mt-p-red-600), code-string: var(--mt-p-teal-600), code-comment: var(--mt-p-gray-500),
   code-function: var(--mt-p-purple-600), code-constant: var(--mt-p-orange-600),
   code-background: var(--mt-muted), code-foreground: currentColor, code-variable: var(--mt-code-constant),
@@ -31,11 +31,11 @@ $mt-dark: (
   primary: var(--mt-p-brand-400), primary-foreground: var(--mt-p-gray-900), brand: var(--mt-p-brand-500),
   link: var(--mt-primary), link-hover: var(--mt-link),
   accent: var(--mt-p-gray-800), accent-foreground: var(--mt-p-gray-100d),
-  border: var(--mt-p-gray-700), ring: var(--mt-p-brand-400),
+  border: var(--mt-p-gray-700), border-input: #737373, ring: var(--mt-p-brand-400),
   note: var(--mt-p-blue-400), tip: var(--mt-p-green-400), important: var(--mt-p-purple-400),
   warning: var(--mt-p-yellow-400), caution: var(--mt-p-rose-400),
   status-available: var(--mt-p-green-400), status-partial: var(--mt-p-yellow-400), status-planned: var(--mt-p-gray-400),
-  shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5),
+  shadow-sm: none, shadow: 0 4px 12px rgba(0, 0, 0, 0.5),
   code-keyword: var(--mt-p-red-400), code-string: var(--mt-p-teal-400), code-comment: var(--mt-p-gray-400),
   code-function: var(--mt-p-purple-400), code-constant: var(--mt-p-orange-400),
   code-background: var(--mt-muted), code-foreground: currentColor, code-variable: var(--mt-code-constant),

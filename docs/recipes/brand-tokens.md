@@ -30,7 +30,7 @@ $mt-overrides-dark: (
 
 | Map | Tokens | Printed on |
 |---|---|---|
-| `$mt-overrides-base` | `font-sans`, `font-mono`, `font-heading`, `heading-weight`, `font-size`, `line-height`, `measure`, `radius` and the other scheme-free tokens | `:root` |
+| `$mt-overrides-base` | `font-sans`, `font-mono`, `font-heading`, `heading-weight`, `font-size`, `line-height`, `measure`, `narrow`, `radius` and the other scheme-free tokens | `:root` |
 | `$mt-overrides` | colour tokens such as `primary`, `link`, `link-hover`, `background`, `foreground`, `border` | `:root` (light) |
 | `$mt-overrides-dark` | the same colour tokens for dark mode | the dark-scheme selectors |
 
@@ -39,7 +39,7 @@ Set each colour in both maps. The dark selectors print every colour token again,
 The file holds only these three maps. `modootoday-check` fails on any other statement and on a token name the theme does not define, so a typo cannot pass unnoticed.
 
 > [!TIP]
-> `font-heading` and `heading-weight` style `h1` to `h4`; `link` and `link-hover` colour links in running text. By default they follow `font-sans`, 650 and `primary`, so a site that sets only `primary` sees no change.
+> `font-heading` and `heading-weight` style `h1` to `h4`; `link` and `link-hover` colour links in running text. By default they follow `font-sans`, 600 and `primary`, so a site that sets only `primary` sees no change. The recipe sets `heading-weight: 600` only to show where it goes; it is the default.
 
 ## Your own stylesheet and font
 
@@ -66,7 +66,7 @@ Both keys take site paths only. Load third-party sheets from `head-custom.html` 
 
 ## Contrast
 
-Check both palettes before you ship them: body text on the background and on `muted`, `primary` and `link` on the background, and `primary-foreground` on `primary` need at least 4.5:1. The theme's docs QA measures this page in light and dark mode with the same rules.
+Check both palettes before you ship them: body text on the background and on `muted`, `primary` and `link` on the background, and `primary-foreground` on `primary` need at least 4.5:1, as does `muted-foreground` on `accent`, the hover fill. `border-input`, the border of form fields, needs 3:1 on the background; `border` is a hairline and needs only 1.2:1, on the background and on `card`. The theme's docs QA measures this page in light and dark mode with the same rules.
 
 ## Under a strict CSP
 

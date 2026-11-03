@@ -4,8 +4,8 @@
   .mt-post-list { display: grid; gap: 1.25rem; margin-block: 1.5rem; }
   .mt-post-list[data-variant="grid"], .mt-post-list[data-variant="magazine"] { grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
   .mt-card-post { position: relative; display: flex; flex-direction: column; min-inline-size: 0; border: 1px solid mt(border); border-radius: mt(radius-lg);
-    background: mt(card); color: mt(card-foreground); overflow: hidden; transition: border-color .15s, box-shadow .15s; }
-  .mt-card-post:hover, .mt-card-post:focus-within { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); box-shadow: mt(shadow); }
+    background: mt(card); color: mt(card-foreground); overflow: hidden; transition: border-color .15s; }
+  .mt-card-post:hover, .mt-card-post:focus-within { border-color: color-mix(in srgb, #{mt(primary)} 40%, #{mt(border)}); }
   .mt-card-post-body { display: flex; flex-direction: column; gap: .5rem; padding: 1rem 1.25rem 1.25rem; }
   .mt-card-post-cover img { display: block; inline-size: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: mt(muted); }
   .mt-card-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin: 0; font-size: .8125rem; color: mt(muted-foreground); }

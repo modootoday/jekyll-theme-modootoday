@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:d58fc67998eb
+source_rev: sha256:af2f994e7693
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -52,7 +52,7 @@ $mt-overrides: (primary: #0f766e, link: #0f766e);
 $mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
 ```
 
-`$mt-overrides-base` はカラースキームに依存しないトークン（フォント、サイズ、角丸）を、残りの二つはライトとダークの色を受け取ります。既存のトークンに加えて、`h1`〜`h4` 用の `font-heading` と `heading-weight`、本文のリンク用の `link` と `link-hover` があります。既定値はそれぞれ `font-sans`、650、`primary` に従います。このファイルに書けるのはこの三つのマップだけで、トークン名はテーマが定義したものに限られます。それ以外は `modootoday-check` が報告します。
+`$mt-overrides-base` はカラースキームに依存しないトークン（フォント、サイズ、角丸）を、残りの二つはライトとダークの色を受け取ります。既存のトークンに加えて、`h1`〜`h4` 用の `font-heading` と `heading-weight`、本文のリンク用の `link` と `link-hover` があります。既定値はそれぞれ `font-sans`、600、`primary` に従います。このファイルに書けるのはこの三つのマップだけで、トークン名はテーマが定義したものに限られます。それ以外は `modootoday-check` が報告します。
 
 二つの設定で、サイトのファイルをテーマのファイルと並べて読み込みます。
 

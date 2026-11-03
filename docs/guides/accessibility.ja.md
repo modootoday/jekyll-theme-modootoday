@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/accessibility/
-source_rev: sha256:a78328841947
+source_rev: sha256:7d987a297023
 title: アクセシビリティ
 nav_order: 70
 description: キーボード、スクリーンリーダー、セーフエリア、タッチターゲット、ハイコントラスト、視差効果を減らす設定。
@@ -47,7 +47,7 @@ description: キーボード、スクリーンリーダー、セーフエリア�
 ```yaml
 modootoday:
   viewport_fit: auto           # default: cover (draw under the notch with safe-area padding)
-  theme_color: {light: "#ffffff", dark: "#0d1117"}  # or one "#hex", or false
+  theme_color: {light: "#ffffff", dark: "#0a0a0a"}  # or one "#hex", or false
 ```
 
 | キー | 既定値 | 効果 |

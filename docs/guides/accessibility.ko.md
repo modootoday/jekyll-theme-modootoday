@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/accessibility/
-source_rev: sha256:a78328841947
+source_rev: sha256:7d987a297023
 title: 접근성
 nav_order: 70
 description: 키보드, 스크린 리더, 안전 영역, 터치 대상, 고대비, 동작 줄이기.
@@ -47,7 +47,7 @@ description: 키보드, 스크린 리더, 안전 영역, 터치 대상, 고대�
 ```yaml
 modootoday:
   viewport_fit: auto           # default: cover (draw under the notch with safe-area padding)
-  theme_color: {light: "#ffffff", dark: "#0d1117"}  # or one "#hex", or false
+  theme_color: {light: "#ffffff", dark: "#0a0a0a"}  # or one "#hex", or false
 ```
 
 | 키 | 기본값 | 효과 |
