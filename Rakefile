@@ -8,6 +8,6 @@ task :example do
   sh "ruby exe/modootoday-check example example/_site --twins"
 end
 task default: %i[test example]
-desc "Regenerate _includes/modootoday/i18n* and t.html from i18n/*.yml"
+desc "Regenerate _includes/modootoday/i18n*, t.html and docs/_data/languages.yml from i18n/*.yml"
 task(:i18n) { ruby "script/i18n-build" }
 namespace(:i18n) { desc "Fail when generated i18n includes are stale"; task(:check) { ruby "script/i18n-build", "--check" } }

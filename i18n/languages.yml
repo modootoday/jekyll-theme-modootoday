@@ -1,5 +1,6 @@
 # Single source of the docs languages (order = menu order). code: folder and hreflang; name: endonym;
-# en: English name; dir: ltr | rtl. Interface strings live in i18n/<code>.yml.
+# en: English name; dir: ltr | rtl. Interface strings live in i18n/<code>.yml. script/i18n-build copies this file
+# to docs/_data/languages.yml.
 - {code: en, name: English, en: English, dir: ltr}
 - {code: zh-CN, name: 简体中文, en: Simplified Chinese, dir: ltr}
 - {code: zh-TW, name: 繁體中文, en: Traditional Chinese, dir: ltr}

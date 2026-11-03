@@ -15,7 +15,7 @@ English is canonical; every other language is localized from it. The rules, regi
 
 The theme's labels live in `i18n/<code>.yml`; `i18n/en.yml` is the registry of every key. A translation has the same keys and placeholders (`%{n}`) and only changes the values. Labels are short: 이 페이지 편집 / このページを編集, not full sentences. Use `.yml`, never `.yaml`.
 
-After editing `i18n/*.yml`, run `rake i18n` (or `script/i18n-build`). It regenerates `_includes/modootoday/i18n/<code>.html`, the loader `_includes/modootoday/i18n.html` and `_includes/modootoday/t.html`; never edit those by hand. CI runs `script/i18n-build --check` and fails when they are stale or a catalog has missing keys or mismatched placeholders. Layouts and includes read labels only through these generated files, with no inline English.
+After editing `i18n/*.yml`, run `rake i18n` (or `script/i18n-build`). It regenerates `_includes/modootoday/i18n/<code>.html`, the loader `_includes/modootoday/i18n.html`, `_includes/modootoday/t.html` and the docs copy of the language list, `docs/_data/languages.yml`; never edit those by hand. CI runs `script/i18n-build --check` and fails when they are stale or a catalog has missing keys or mismatched placeholders. Layouts and includes read labels only through these generated files, with no inline English.
 
 ## Adding a language
 
@@ -27,4 +27,4 @@ After editing `i18n/*.yml`, run `rake i18n` (or `script/i18n-build`). It regener
 
 ## Languages
 
-The docs target the 23 languages in `i18n/languages.yml` (mirrored in `docs/_data/languages.yml`), and all 23 are listed in `modootoday.languages`. Interface labels come from the theme catalogs; `docs/_data/i18n/<code>.yml` holds only docs-specific strings and deliberate overrides; a language is listed in `modootoday.languages` only when its home page is localized. Per-language tone notes are in the ADR. Never leave a page half-translated: until a page is fully localized, the language uses the labeled English fallback: a localized home links to the English guides and says so in a closing `[!NOTE]`, and the sidebar falls back to the English menu (`script/docs-index` writes `_data/nav/main-<code>.yml` only for a language whose menu differs).
+The docs target the 23 languages in `i18n/languages.yml` (copied to `docs/_data/languages.yml` by `script/i18n-build`), and all 23 are listed in `modootoday.languages`. Interface labels come from the theme catalogs; `docs/_data/i18n/<code>.yml` holds only docs-specific strings and deliberate overrides; a language is listed in `modootoday.languages` only when its home page is localized. Per-language tone notes are in the ADR. Never leave a page half-translated: until a page is fully localized, the language uses the labeled English fallback: a localized home links to the English guides and says so in a closing `[!NOTE]`, and the sidebar falls back to the English menu (`script/docs-index` writes `_data/nav/main-<code>.yml` only for a language whose menu differs).
