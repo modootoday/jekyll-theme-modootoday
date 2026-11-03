@@ -18,6 +18,7 @@ code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: 
 table: {label: ตาราง}
 diagram: {label: แผนภาพ}
 search: {label: ค้นหา}
+filter: {label: "กรอง", count: "แสดง [n] รายการ"}
 page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
 languages: {label: ภาษา}
 post: {date_format: "%d/%m/%Y", author: เกี่ยวกับผู้เขียน, related: บทความที่เกี่ยวข้อง, share: แชร์}

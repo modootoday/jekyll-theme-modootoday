@@ -42,6 +42,7 @@ sections:
   - theme-toggle
   - icons
   - search
+  - filter
   - breadcrumb-toc
   - pagination
   - posts
@@ -424,6 +425,10 @@ modootoday:
 ## 검색
 
 `status:available` `search.json` 파일로 동작하는 클라이언트 검색이 헤더에 들어갑니다(`role="search"`). `kbd:Ctrl+K`나 `kbd:/`로 검색창에 갈 수 있습니다. 사이트 루트에 `search.json`을 두면 켜집니다. [이 사이트가 쓰는 파일](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)을 복사해 쓰세요. 이 페이지 헤더의 검색창이 그 결과입니다.
+
+## 필터
+
+`status:available` `sections:` 항목에 `filter: true`를 쓰면 그 섹션의 첫 목록이나 표 위에 검색 필드가 생깁니다. 입력한 단어가 모두 들어 있는 항목만 남고, 몇 개가 보이는지 알려 줍니다. `filter: {facet: 2}`는 표의 두 번째 열 값마다 버튼도 추가합니다. `sections:`가 없는 페이지는 front matter에 `filter:`를, 디렉터리 페이지는 `filter_text: true`를 쓰세요. JavaScript가 없으면 모든 항목이 보입니다. [필터 데모](../layouts/demo/filter/)와 [검색 레시피](../recipes/search/)를 보세요.
 
 ## 이동 경로와 목차
 

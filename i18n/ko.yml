@@ -18,6 +18,7 @@ code: {copy: 복사, copied: 복사됨, label: 코드, file: 파일}
 table: {label: 표}
 diagram: {label: 다이어그램}
 search: {label: 검색}
+filter: {label: "필터", count: "[n]개 표시"}
 page: {edit: 이 페이지 편집, updated: 최종 수정}
 languages: {label: 언어}
 post: {date_format: "%Y년 %-m월 %-d일", author: 글쓴이 소개, related: 관련 글, share: 공유}

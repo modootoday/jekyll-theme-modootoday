@@ -19,6 +19,7 @@ code: {copy: Copy, copied: Copied, label: Code, file: File}
 table: {label: Table}
 diagram: {label: Diagram}
 search: {label: Search}
+filter: {label: "Filter", count: "[n] shown"}
 page: {edit: Edit this page, updated: Last updated}
 languages: {label: Languages}
 post: {date_format: "%Y-%m-%d", author: About the author, related: Related posts, share: Share}

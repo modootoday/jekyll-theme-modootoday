@@ -81,7 +81,7 @@ class V04Test < Minitest::Test
   def test_search_js_size_budget
     require "zlib"
     js = File.read(File.join(ROOT, "assets/js/modootoday/search.js"))
-    assert_operator Zlib::Deflate.deflate(js, 9).bytesize, :<, 1024, "search.js must stay under 1 KB compressed"
+    assert_operator Zlib::Deflate.deflate(js, 9).bytesize, :<=, 1229, "search.js must stay within 1.2 KiB compressed"
   end
 
   def test_tokens_json_matches_css

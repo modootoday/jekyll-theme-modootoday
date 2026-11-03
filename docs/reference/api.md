@@ -70,7 +70,8 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Post footer | `article.mt-doc` | `.mt-share` button, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | Post card | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
 | News front | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
-| Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | — |
+| Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` from `modootoday.search` |
+| Filter | `[data-mt-filter]` on `section.mt-section`, `div.mt-prose` or `div.mt-dir` (front matter `filter:`, `filter_text:`) | `div.mt-filter` (`input[type=search]`, `output[aria-live]`), hidden until the script moves it before the first list or table; `.mt-filter-chips[role=group]` > `button[aria-pressed]` with a facet | `[data-facet]` = column; items left out get `[hidden]`; `filter` sheet |
 
 ## Slot contract
 

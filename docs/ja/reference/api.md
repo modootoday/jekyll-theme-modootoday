@@ -73,7 +73,8 @@ description: このテーマがサイト向けに文書化している名前、�
 | 記事フッター | `article.mt-doc` | `.mt-share` ボタン、`nav.mt-post-nav`、`section.mt-related`、`.mt-news-correction`、`.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | 記事カード | `article.mt-card-post` | `.mt-card-post-cover`、`.mt-card-post-meta`、`.mt-card-post-title`、`.mt-card-post-excerpt` | `.mt-card-post-featured`、`[data-kind=news]`、`.mt-post-list[data-variant=list\|grid\|magazine]` |
 | ニューストップ | `div.mt-news-top` | `.mt-news-lead`、`.mt-news-secondary`、`section.mt-news-latest`、`section.mt-news-section` | `[data-category]`、`.mt-badge[data-variant=breaking\|live]` |
-| 検索 | `div.mt-search[role=search]` | 入力欄、`.mt-search-results` | — |
+| 検索 | `div.mt-search[role=search]` | 入力欄、`.mt-search-results` | `modootoday.search` から付く `[data-match=terms]`、`[data-compact]`、`[data-results]` |
+| 絞り込み | `section.mt-section`・`div.mt-prose`・`div.mt-dir` の `[data-mt-filter]`（front matter の `filter:`、`filter_text:`） | `div.mt-filter`（`input[type=search]`、`output[aria-live]`）。スクリプトが最初のリストか表の前に移すまで非表示。facet があれば `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]` = 列番号。外れた項目には `[hidden]`。`filter` シート |
 
 ## スロット契約
 

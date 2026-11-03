@@ -1,0 +1,4 @@
+{%- comment -%}Controls of a [data-mt-filter] root (needs modootoday/i18n.html): a search field and the shown count, written hidden.
+  assets/js/modootoday/filter/filter.js moves them before the root's first list or table and reveals them; data-count holds
+  the filter.count label, where [n] is the number of items shown.{%- endcomment -%}
+<div class="mt-filter" hidden><input type="search" aria-label="{{ mt_t_filter_label }}" placeholder="{{ mt_t_filter_label }}"><output aria-live="polite" data-count="{{ mt_t_filter_count }}"></output></div>

@@ -18,6 +18,7 @@ code: {copy: Sao chép, copied: Đã sao chép, label: Mã, file: Tệp}
 table: {label: Bảng}
 diagram: {label: Sơ đồ}
 search: {label: Tìm kiếm}
+filter: {label: "Lọc", count: "Đang hiển thị [n]"}
 page: {edit: Sửa trang này, updated: Cập nhật lần cuối}
 languages: {label: Ngôn ngữ}
 post: {date_format: "%d/%m/%Y", author: Về tác giả, related: Bài viết liên quan, share: Chia sẻ}

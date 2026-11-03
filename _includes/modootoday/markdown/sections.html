@@ -21,6 +21,8 @@ bleed: true (item or hero) adds .mt-bleed: a full-width background band (--mt-bl
 bleed: wide also adds .mt-bleed-wide, which widens the content box up to the container. No wrappers; bleed sheet.
 The hero's first p after the h1 gets .mt-hero-lead; hero checks: true adds .mt-hero-checks (its first ul is a ✓ row, lists sheet).
 site.modootoday.lists (link_chips, titled_items) runs markdown/lists.html on the hero, plain sections and section-less pages.
+filter: true | {facet: <column>} on an item (or include.filter, the page's filter:, on a page without sections) adds
+data-mt-filter (data-facet) and the hidden controls of filter/controls.html; filter/filter.js filters the first list or table.
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
@@ -52,16 +54,18 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _tt contains "<li" or _tt contains "</li>" -%}<li><strong>{{ _x }}{%- elsif _ra == "</strong>: " -%}<li><strong>{{ _tt }}</strong> {{ _x | remove_first: _tt | remove_first: "</strong>: " }}{%- elsif _rb == "</strong>：" -%}<li><strong>{{ _tt }}</strong> {{ _x | remove_first: _tt | remove_first: "</strong>：" | lstrip }}{%- else -%}<li><strong>{{ _x }}{%- endif -%}
 {%- endfor -%}{%- endcapture -%}{%- endif -%}
 {%- if _cc and mt_c_transforms contains _cc -%}{%- capture _body %}{% include modootoday/markdown/c/{{ _cc }}.html html=_body s=_s i=forloop.index id=_n %}{% endcapture -%}{%- endif -%}
-<section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}{% if _s.decor %} mt-has-decor{% endif %}{% if _s.reveal == true %} mt-reveal{% endif %}{% if _s.bleed %} mt-bleed{% if _s.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}{% if _cc == 'features' and _s.badge == 'bottom' %} mt-badge-bottom{% endif %}{% if _cc == 'split' %}{% if _s.side == 'start' %} mt-split-start{% endif %}{% if _s.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}>
+<section class="mt-section{% if _cc %} mt-c-{{ _cc }}{% endif %}{% if _cc == 'cta' %}{% unless _body contains 'data-mt-result' %} mt-cta{% endunless %}{% endif %}{% if _s.cols %} mt-cols-{{ _s.cols }}{% endif %}{% if _s.decor %} mt-has-decor{% endif %}{% if _s.reveal == true %} mt-reveal{% endif %}{% if _s.bleed %} mt-bleed{% if _s.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}{% if _cc == 'features' and _s.badge == 'bottom' %} mt-badge-bottom{% endif %}{% if _cc == 'split' %}{% if _s.side == 'start' %} mt-split-start{% endif %}{% if _s.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}" data-section="{{ _n | default: forloop.index0 }}"{% if _cc %} data-c="{{ _cc }}"{% endif %}{% if _cc == 'tabs' %} data-tabs data-tabs-label="{{ _tl }}"{% endif %}{% if _s.filter %} data-mt-filter{% if _s.filter.facet %} data-facet="{{ _s.filter.facet }}"{% endif %}{% endif %}>
 {%- if _cc == 'split' %}
 {%- assign _sb = "<h2 " | append: _body -%}{% include modootoday/markdown/split.html body=_sb s=_s %}{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
 {%- else %}
-<h2 {{ _body }}{% include modootoday/markdown/visual.html s=_s %}{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
+<h2 {{ _body }}{% if _s.filter %}{% include modootoday/filter/controls.html %}{% endif %}{% include modootoday/markdown/visual.html s=_s %}{% if _s.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ _s.decor }}.html section=_s %}</div>{% endif %}</section>
 {%- endif -%}
 {%- endfor -%}
 {%- if _notes != "" %}
 <div class="mt-endnotes">{{ _notes }}</div>
 {%- endif -%}
 {%- else -%}
-{%- if site.modootoday.lists -%}<div class="mt-prose">{% include modootoday/markdown/lists.html html=include.content %}</div>{%- else -%}<div class="mt-prose">{{ include.content }}</div>{%- endif -%}
+{%- capture _fa %}{% if include.filter %} data-mt-filter{% if include.filter.facet %} data-facet="{{ include.filter.facet }}"{% endif %}{% endif %}{% endcapture -%}
+{%- capture _fc %}{% if include.filter %}{% include modootoday/filter/controls.html %}{% endif %}{% endcapture -%}
+{%- if site.modootoday.lists -%}<div class="mt-prose"{{ _fa }}>{% include modootoday/markdown/lists.html html=include.content %}{{ _fc }}</div>{%- else -%}<div class="mt-prose"{{ _fa }}>{{ include.content }}{{ _fc }}</div>{%- endif -%}
 {%- endif -%}

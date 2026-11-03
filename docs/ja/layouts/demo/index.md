@@ -17,3 +17,4 @@ twin: false
 - [Strict CSP](csp/)
 - [GitHub code colours](code-github/)
 - [Hero module](orbit/)
+- [Filter](filter/)

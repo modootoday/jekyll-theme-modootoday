@@ -18,6 +18,7 @@ code: {copy: Salin, copied: Tersalin, label: Kode, file: Berkas}
 table: {label: Tabel}
 diagram: {label: Diagram}
 search: {label: Cari}
+filter: {label: "Saring", count: "[n] ditampilkan"}
 page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}
 languages: {label: Bahasa}
 post: {date_format: "%d/%m/%Y", author: Tentang penulis, related: Tulisan terkait, share: Bagikan}

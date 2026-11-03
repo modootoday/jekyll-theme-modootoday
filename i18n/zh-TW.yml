@@ -18,6 +18,7 @@ code: {copy: 複製, copied: 已複製, label: 程式碼, file: 檔案}
 table: {label: 表格}
 diagram: {label: 圖表}
 search: {label: 搜尋}
+filter: {label: "篩選", count: "顯示 [n] 項"}
 page: {edit: 編輯此頁, updated: 最後更新}
 languages: {label: 語言}
 post: {date_format: "%Y年%-m月%-d日", author: 關於作者, related: 相關文章, share: 分享}

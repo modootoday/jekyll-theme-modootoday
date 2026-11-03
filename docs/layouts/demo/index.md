@@ -17,3 +17,4 @@ Each page below uses one layout so you can see it as a visitor would. See [Page 
 - [Strict CSP](csp/)
 - [GitHub code colours](code-github/)
 - [Hero module](orbit/)
+- [Filter](filter/)

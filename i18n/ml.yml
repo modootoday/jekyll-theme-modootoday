@@ -18,6 +18,7 @@ code: {copy: പകർത്തുക, copied: പകർത്തി, label: ക
 table: {label: പട്ടിക}
 diagram: {label: ഡയഗ്രം}
 search: {label: തിരയുക}
+filter: {label: "ഫിൽട്ടർ", count: "[n] എണ്ണം കാണിക്കുന്നു"}
 page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്}
 languages: {label: ഭാഷകൾ}
 post: {date_format: "%d-%m-%Y", author: ലേഖകനെക്കുറിച്ച്, related: ബന്ധപ്പെട്ട പോസ്റ്റുകൾ, share: പങ്കിടുക}

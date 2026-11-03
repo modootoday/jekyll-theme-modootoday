@@ -18,6 +18,7 @@ code: {copy: Копіювати, copied: Скопійовано, label: Код, 
 table: {label: Таблиця}
 diagram: {label: Діаграма}
 search: {label: Пошук}
+filter: {label: "Фільтр", count: "Показано: [n]"}
 page: {edit: Редагувати сторінку, updated: Оновлено}
 languages: {label: Мови}
 post: {date_format: "%d.%m.%Y", author: Про автора, related: Схожі дописи, share: Поділитися}

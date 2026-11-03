@@ -1,5 +1,6 @@
-{%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. probe: text in the rendered
-  body that turns the row on (repeat a row for another probe); parts: the Sass partials modootoday.css: bundle folds in.
+{%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. kind: css, js (a classic
+  deferred script) or module (an ES module script). probe: text in the rendered body that turns the row on (repeat a row for
+  another probe); parts: the Sass partials modootoday.css: bundle folds in.
   Sets mt_asset_rows and mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss).{%- endcomment -%}
 {%- capture _mta_rows -%}
 doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions
@@ -15,6 +16,7 @@ bleed|css|/assets/css/modootoday/bleed.css||bleed
 terminal|css|/assets/css/modootoday/terminal.css||terminal
 visual|css|/assets/css/modootoday/visual.css|class="mt-visual-poster|visual
 visual|css|/assets/css/modootoday/visual.css|data-mt-script="
+filter|css|/assets/css/modootoday/filter.css|<div class="mt-filter"|filter
 tabs|js|/assets/js/modootoday/tabs.js
 menu|js|/assets/js/modootoday/menu.js
 scroll-region|js|/assets/js/modootoday/scroll-region.js|<pre
@@ -25,6 +27,7 @@ accordion|js|/assets/js/modootoday/accordion.js
 share|js|/assets/js/modootoday/share.js
 search|js|/assets/js/modootoday/search.js
 search-keys|js|/assets/js/modootoday/search-keys.js
+filter|module|/assets/js/modootoday/filter/filter.js|<div class="mt-filter"
 {%- endcapture -%}
 {%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
 {%- assign _mta_cs = "" -%}

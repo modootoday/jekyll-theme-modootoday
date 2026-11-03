@@ -1,0 +1,14 @@
+// List and table filter (filter: on a section or page, filter_text: on a directory). filter.js reveals .mt-filter and sets
+// hidden on the items it leaves out; the rule below keeps them hidden where a layout gives items their own display.
+@include mt-layer(components) {
+  .mt-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 1rem 0; }
+  .mt-filter > input { font: inherit; font-size: .9375rem; min-height: 2.75rem; padding: 0 .75rem; flex: 1 1 14rem; max-width: 24rem;
+    border: 1px solid mt(border); border-radius: mt(radius); background: mt(background); color: mt(foreground); }
+  .mt-filter > output { font-size: .875rem; color: mt(muted-foreground); }
+  .mt-filter-chips { display: flex; flex-wrap: wrap; gap: .5rem; flex-basis: 100%; }
+  .mt-filter-chips > button { font: inherit; font-size: .875rem; font-weight: 600; min-height: 2.75rem; padding: 0 1rem; cursor: pointer;
+    border: 1px solid mt(border); border-radius: 999px; background: mt(background); color: mt(foreground); }
+  .mt-filter-chips > [aria-pressed="true"] { background: mt(foreground); border-color: mt(foreground); color: mt(background); }
+  [data-mt-filter] li[hidden], [data-mt-filter] tr[hidden] { display: none; }
+  @media (forced-colors: active) { .mt-filter-chips > [aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; } }
+}

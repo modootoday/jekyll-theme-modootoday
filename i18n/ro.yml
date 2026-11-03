@@ -18,6 +18,7 @@ code: {copy: Copiază, copied: Copiat, label: Cod, file: Fișier}
 table: {label: Tabel}
 diagram: {label: Diagramă}
 search: {label: Caută}
+filter: {label: "Filtrează", count: "[n] afișate"}
 page: {edit: Editează pagina, updated: Ultima actualizare}
 languages: {label: Limbi}
 post: {date_format: "%d.%m.%Y", author: Despre autor, related: Articole similare, share: Distribuie}

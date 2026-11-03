@@ -1,11 +1,16 @@
 {%- comment -%}Search index. In your site add search.json:  ---\nlayout: null\n---\n{% include modootoday/search.json %}
-Pages with `search: false` or no title are skipped. Text is truncated to 300 words.{%- endcomment -%}
+Pages with `search: false` or no title are skipped. modootoday.search: words (default 300, 0 = whole text), collections
+(collection names with output: true, indexed after posts), fields (front matter keys put before the text), exclude (URL
+prefixes left out). Each entry: modootoday/search/record.html.{%- endcomment -%}
+{%- assign _ms = site.modootoday.search -%}{%- assign _ms_words = _ms.words | default: 300 -%}{%- assign _ms_fields = _ms.fields -%}{%- assign _ms_exclude = _ms.exclude -%}
 [{%- assign _first = true -%}
 {%- for p in site.pages -%}{%- if p.title and p.search != false and p.layout != nil -%}{%- unless p.url contains ".json" or p.url contains ".txt" or p.url contains ".md" -%}
-{%- unless _first %},{% endunless -%}{%- assign _first = false -%}
-{"title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }},"lang":{{ p.lang | default: site.lang | default: "en" | jsonify }},"text":{{ p.content | markdownify | strip_html | normalize_whitespace | truncatewords: 300, "" | jsonify }}}
+{%- assign _mstx = p.content | markdownify | strip_html | normalize_whitespace -%}{%- include modootoday/search/record.html p=p text=_mstx -%}
 {%- endunless -%}{%- endif -%}{%- endfor -%}
 {%- for p in site.posts -%}{%- if p.search != false -%}
-{%- unless _first %},{% endunless -%}{%- assign _first = false -%}
-{"title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }},"lang":{{ p.lang | default: site.lang | default: "en" | jsonify }},"text":{{ p.content | strip_html | normalize_whitespace | truncatewords: 300, "" | jsonify }}}
-{%- endif -%}{%- endfor -%}]
+{%- assign _mstx = p.content | strip_html | normalize_whitespace -%}{%- include modootoday/search/record.html p=p text=_mstx -%}
+{%- endif -%}{%- endfor -%}
+{%- for _msc in _ms.collections -%}{%- assign _mscol = site.collections | where: "label", _msc | first -%}{%- if _mscol.output -%}
+{%- for p in _mscol.docs -%}{%- if p.title and p.search != false -%}
+{%- assign _mstx = p.content | strip_html | normalize_whitespace -%}{%- include modootoday/search/record.html p=p text=_mstx -%}
+{%- endif -%}{%- endfor -%}{%- endif -%}{%- endfor -%}]

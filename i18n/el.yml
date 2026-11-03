@@ -18,6 +18,7 @@ code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδι
 table: {label: Πίνακας}
 diagram: {label: Διάγραμμα}
 search: {label: Αναζήτηση}
+filter: {label: "Φιλτράρισμα", count: "Εμφανίζονται: [n]"}
 page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
 languages: {label: Γλώσσες}
 post: {date_format: "%d/%m/%Y", author: Σχετικά με τον συγγραφέα, related: Σχετικά άρθρα, share: Κοινοποίηση}

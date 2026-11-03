@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261029202148
 title: Client search is an opt-in Liquid index with a small script
-status: active
+status: superseded
 created: 2026-10-29T20:21:48Z
-updated: 2026-10-29T20:21:50Z
+updated: 2026-11-03T03:30:53Z
 rel:
   governs: [_includes/modootoday/search.json]
 ---

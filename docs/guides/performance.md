@@ -12,12 +12,13 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | Asset | Loaded on |
 |---|---|
 | `assets/css/modootoday.css` (core sheet) | every page |
-| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`) | pages whose layout or body uses them |
+| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
 | `menu.js`, `theme-toggle.js`, `search.js` | pages with the header, the toggle, or a search index |
 | `code-copy.js` | pages with a code block, and pages with the page actions menu |
 | `scroll-region.js` | pages with a code block or a table |
 | `tabs.js`, `accordion.js`, `share.js` | pages that use tabs, an accordion, or a blog layout |
+| `filter/filter.js` (an ES module, with `chips.js`, `text/normalize.js` and `dom/config.js`) | pages with `filter:` or `filter_text:` |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |

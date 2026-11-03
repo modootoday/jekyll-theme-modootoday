@@ -18,6 +18,7 @@ code: {copy: 复制, copied: 已复制, label: 代码, file: 文件}
 table: {label: 表格}
 diagram: {label: 图表}
 search: {label: 搜索}
+filter: {label: "筛选", count: "显示 [n] 项"}
 page: {edit: 编辑此页, updated: 最后更新}
 languages: {label: 语言}
 post: {date_format: "%Y年%-m月%-d日", author: 关于作者, related: 相关文章, share: 分享}

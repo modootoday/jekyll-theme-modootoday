@@ -73,7 +73,8 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 글 끝 | `article.mt-doc` | `.mt-share` 버튼, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | 글 카드 | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
 | 뉴스 첫 화면 | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
-| 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | — |
+| 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | `modootoday.search`에서 오는 `[data-match=terms]`, `[data-compact]`, `[data-results]` |
+| 필터 | `section.mt-section`, `div.mt-prose`, `div.mt-dir`의 `[data-mt-filter]`(front matter `filter:`, `filter_text:`) | `div.mt-filter`(`input[type=search]`, `output[aria-live]`). 스크립트가 첫 목록이나 표 앞으로 옮기기 전까지 숨겨져 있음. facet이 있으면 `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]` = 열 번호. 빠진 항목에는 `[hidden]`. `filter` 시트 |
 
 ## 슬롯 계약
 

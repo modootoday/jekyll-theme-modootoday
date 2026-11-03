@@ -18,6 +18,7 @@ code: {copy: Копировать, copied: Скопировано, label: Код
 table: {label: Таблица}
 diagram: {label: Диаграмма}
 search: {label: Поиск}
+filter: {label: "Фильтр", count: "Показано: [n]"}
 page: {edit: Редактировать страницу, updated: Обновлено}
 languages: {label: Языки}
 post: {date_format: "%d.%m.%Y", author: Об авторе, related: Похожие записи, share: Поделиться}

@@ -18,6 +18,7 @@ code: {copy: Kopyala, copied: Kopyalandı, label: Kod, file: Dosya}
 table: {label: Tablo}
 diagram: {label: Diyagram}
 search: {label: Ara}
+filter: {label: "Filtrele", count: "[n] gösteriliyor"}
 page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}
 languages: {label: Diller}
 post: {date_format: "%d.%m.%Y", author: Yazar hakkında, related: İlgili yazılar, share: Paylaş}

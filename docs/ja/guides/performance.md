@@ -15,12 +15,13 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | アセット | 読み込むページ |
 |---|---|
 | `assets/css/modootoday.css` (コアシート) | すべてのページ |
-| コンテキストシート (`doc`、`search`、`loading`、`figure`、`lists`、`bleed`、`terminal`、`visual`) | レイアウトか本文がそのシートを使うページ |
+| コンテキストシート (`doc`、`search`、`loading`、`figure`、`lists`、`bleed`、`terminal`、`visual`、`filter`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
 | `menu.js`、`theme-toggle.js`、`search.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
 | `code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
 | `scroll-region.js` | コードブロックか表があるページ |
 | `tabs.js`、`accordion.js`、`share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
+| `filter/filter.js`（ES モジュール。`chips.js`、`text/normalize.js`、`dom/config.js` を含む） | `filter:` か `filter_text:` を使うページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |

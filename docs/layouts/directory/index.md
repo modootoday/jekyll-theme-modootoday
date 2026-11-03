@@ -5,7 +5,7 @@ nav_order: 20
 ---
 # Directory layouts
 
-A directory page is your text followed by a list of cards. The cards come from `items:` in front matter or from a file in `_data`. These layouts load `modootoday-directory.css` only on their own pages and add no JavaScript.
+A directory page is your text followed by a list of cards. The cards come from `items:` in front matter or from a file in `_data`. These layouts load `modootoday-directory.css` only on their own pages and add no JavaScript unless you turn on the text filter.
 
 | Layout | Cards show | Filter by | Structured data | Demo |
 |---|---|---|---|---|
@@ -43,6 +43,8 @@ To share a list between pages, put it in `_data/team.yml` and write `data: team`
 ## Filter
 
 When the filter field has two or more values, a row of buttons appears above the cards. It is a group of radio buttons, so it works with the keyboard and screen readers announce the choice. Up to 12 values are shown. Set `filter: false` to hide it, or `filter: <field>` to filter by another field. In browsers without `:has()` every card stays visible.
+
+Set `filter_text: true` to add a search field above the cards as well. It shows only the cards that contain every word typed and counts them, next to the field filter; it needs JavaScript, and without it every card stays visible.
 
 ## Events
 

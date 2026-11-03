@@ -15,12 +15,13 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 자산 | 불러오는 페이지 |
 |---|---|
 | `assets/css/modootoday.css` (핵심 시트) | 모든 페이지 |
-| 맥락 시트 (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
+| 맥락 시트 (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
 | `menu.js`, `theme-toggle.js`, `search.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
 | `code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |
 | `scroll-region.js` | 코드 블록이나 표가 있는 페이지 |
 | `tabs.js`, `accordion.js`, `share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
+| `filter/filter.js`(ES 모듈. `chips.js`, `text/normalize.js`, `dom/config.js` 포함) | `filter:`나 `filter_text:`를 쓰는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |

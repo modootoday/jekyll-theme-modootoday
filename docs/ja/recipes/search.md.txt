@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: search.md
+permalink: /ja/recipes/search/index.md
+---

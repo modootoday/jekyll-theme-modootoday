@@ -2,8 +2,8 @@
 
 module Modootoday
   module Check
-    # 5. Built site: unconverted Markdown markers in HTML, and CSS that GitHub Pages' Ruby Sass
-    #    passes through or leaves undefined.
+    # 5. Built site: unconverted Markdown markers in HTML, CSS that GitHub Pages' Ruby Sass passes through or leaves
+    #    undefined, and the size of search.json.
     module BuildOutput
       MARKS = /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i
 
@@ -16,6 +16,15 @@ module Modootoday
           t.scan(MARKS) { ctx.errs << "#{f}: unconverted alert marker [!#{$1}]" }
           ctx.errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
         end
+      end
+
+      SEARCH_WARN = 1_500_000
+
+      # Every visitor downloads the whole index on the first search, so a large one slows the first result.
+      def search_index(ctx)
+        f = File.join(ctx.site.to_s, "search.json")
+        return unless File.file?(f) && File.size(f) > SEARCH_WARN
+        ctx.warns << "#{f}: #{(File.size(f) / 1e6).round(1)} MB is over 1.5 MB; lower modootoday.search.words or exclude old pages"
       end
 
       def css(ctx)

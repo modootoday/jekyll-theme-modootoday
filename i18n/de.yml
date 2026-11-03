@@ -18,6 +18,7 @@ code: {copy: Kopieren, copied: Kopiert, label: Code, file: Datei}
 table: {label: Tabelle}
 diagram: {label: Diagramm}
 search: {label: Suche}
+filter: {label: "Filtern", count: "[n] angezeigt"}
 page: {edit: Diese Seite bearbeiten, updated: Zuletzt aktualisiert}
 languages: {label: Sprachen}
 post: {date_format: "%d.%m.%Y", author: Über den Autor, related: Ähnliche Beiträge, share: Teilen}

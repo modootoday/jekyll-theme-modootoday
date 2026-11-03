@@ -18,6 +18,7 @@ code: {copy: کپی, copied: کپی شد, label: کد, file: پرونده}
 table: {label: جدول}
 diagram: {label: نمودار}
 search: {label: جستجو}
+filter: {label: "فیلتر", count: "نمایش [n] مورد"}
 page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی}
 languages: {label: زبان‌ها}
 post: {date_format: "%Y-%m-%d", author: درباره نویسنده, related: نوشته‌های مرتبط, share: هم‌رسانی}

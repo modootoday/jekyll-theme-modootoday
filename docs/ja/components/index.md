@@ -43,6 +43,7 @@ sections:
   - theme-toggle
   - icons
   - search
+  - filter
   - breadcrumb-toc
   - pagination
   - posts
@@ -425,6 +426,10 @@ modootoday:
 ## 検索
 
 `status:available` `search.json` ファイルを使うクライアント検索がヘッダーに入ります（`role="search"`）。`kbd:Ctrl+K` か `kbd:/` で検索欄に移動します。サイトのルートに `search.json` を置くと有効になります。[このサイトのファイル](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)をコピーしてください。このページのヘッダーの検索欄がその表示結果です。
+
+## 絞り込み
+
+`status:available` `sections:` の項目に `filter: true` と書くと、そのセクションの最初のリストか表の上に検索欄ができます。入力した語をすべて含む項目だけが残り、表示中の件数を知らせます。`filter: {facet: 2}` は表の 2 列目の値ごとにボタンも追加します。`sections:` のないページでは front matter に `filter:` を、ディレクトリページでは `filter_text: true` を書きます。JavaScript がなければすべての項目が表示されます。[絞り込みデモ](../layouts/demo/filter/)と[検索のレシピ](../recipes/search/)を参照してください。
 
 ## パンくずリストと目次
 

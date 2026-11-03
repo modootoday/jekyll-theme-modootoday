@@ -32,7 +32,7 @@ modootoday:
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
 | `code_theme` | `theme` | コードブロックの色。`theme` はテーマのパレットのまま、`github` は GitHub のライトとダークのパレットを使う。[カスタマイズ](../customize/)を参照 |
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
-| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
+| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual`・`filter` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
 | `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
 | `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |
@@ -41,6 +41,7 @@ modootoday:
 | `site_css` | なし | サイト独自のスタイルシート。`[/assets/css/site.css]` のようなサイトパスのリストで、テーマのシートの後に同じ `?v=` クエリを付けて読み込む。front matter の `site_css:` はそのページだけにシートを追加する。[ブランドトークン](../../recipes/brand-tokens/)を参照 |
 | `preload` | なし | スタイルシートより前の `<link rel="preload">`。`{href, as, type}` のリストで、`href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれか (フォントと fetch には `crossorigin` が付き、`?v=` クエリは付かない)。front matter の `preload:` はそのページだけに追加する |
 | `scripts` | なし | サイトの ES モジュールを名前ごとに書く。値はサイトパスで書いた `{src, css, preload, element}`（`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素）。ヒーローかセクションの項目の `script:` がその名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照 |
+| `search` | なし | サイトに `search.json` があるときのヘッダー検索の設定。`words`（各ページ本文から索引する語数。既定は 300、`0` で全文）、`collections`（一緒に索引するコレクション。`output: true` のものだけ）、`fields`（本文と一緒に検索する front matter のキー。例: `[description, tags]`）、`exclude`（除外する URL の接頭辞。例: `[/v1/]`）、`match`（既定の `substring` は入力どおりに探し、`terms` はすべての語を順不同で探す）、`compact: true`（空白を除いた比較もする。韓国語の分かち書き向け）、`results`（結果数。既定は 8）。[検索](../../recipes/search/)を参照 |
 | `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |

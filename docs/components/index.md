@@ -42,6 +42,7 @@ sections:
   - theme-toggle
   - icons
   - search
+  - filter
   - breadcrumb-toc
   - pagination
   - posts
@@ -421,6 +422,10 @@ modootoday:
 ## Search
 
 `status:available` Client-side search over a `search.json` file, in the header (`role="search"`). Press `kbd:Ctrl+K` or `kbd:/` to focus it. Add a `search.json` file at the site root to turn it on: copy [the one this site uses](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json). The result is the search box in the header of this page.
+
+## Filter
+
+`status:available` `filter: true` on a `sections:` item puts a search field above the first list or table of that section: only the items that contain every word typed stay, and a count says how many are shown. `filter: {facet: 2}` also adds a button for each value in the table's second column. On a page without `sections:`, set `filter:` in its front matter; on a directory page, `filter_text: true`. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter/) and the [Search recipe](../recipes/search/).
 
 ## Breadcrumb and table of contents
 

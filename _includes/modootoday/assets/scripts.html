@@ -1,9 +1,9 @@
-{%- comment -%}Theme scripts: the js rows of assets/registry.html whose name the conditions below put in _mta_on (_mta_hit: rows
+{%- comment -%}Theme scripts: the js and module rows of assets/registry.html whose name the conditions below put in _mta_on (_mta_hit: rows
   whose probe is in the rendered body), then the renderers. Needs config.html, stylesheets.html (mt_page_c, mt_blog_css,
   mt_search_index), doc/twin.html and _chrome.{%- endcomment -%}
 {%- assign _mta_hit = "|" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
-{%- if _mta_c[1] == "js" and _mta_c[3] and _mta_c[3] != "" and content contains _mta_c[3] -%}{%- assign _mta_hit = _mta_hit | append: _mta_c[0] | append: "|" -%}{%- endif -%}
+{%- if _mta_c[1] != "css" and _mta_c[3] and _mta_c[3] != "" and content contains _mta_c[3] -%}{%- assign _mta_hit = _mta_hit | append: _mta_c[0] | append: "|" -%}{%- endif -%}
 {%- endfor -%}
 {%- assign _mta_on = "|" -%}
 {%- if _mta_hit contains "|scroll-region|" -%}{%- assign _mta_on = "|scroll-region|" -%}{%- endif -%}
@@ -15,11 +15,16 @@
 {%- if mt_components contains "accordion" and mt_page_c contains "|accordion|" -%}{%- assign _mta_on = _mta_on | append: "accordion|" -%}{%- endif -%}
 {%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search|search-keys|" -%}{%- endif -%}
+{%- if mt_components contains "filter" and _mta_hit contains "|filter|" -%}{%- assign _mta_on = _mta_on | append: "filter|" -%}{%- endif -%}
 {%- assign _mta_done = "|" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
-{%- if _mta_c[1] == "js" and _mta_on contains _mta_k -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}
-{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p %}
+{%- if _mta_c[1] != "css" and _mta_on contains _mta_k -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}
+{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p -%}
+{%- if _mta_c[1] == "module" %}
+<script type="module" src="{{ mt_asset_url }}"></script>
+{%- else %}
 <script src="{{ mt_asset_url }}" defer></script>
+{%- endif -%}
 {%- endunless -%}{%- endif -%}{%- endfor -%}
 {%- include modootoday/render/mermaid.html -%}
 {%- include modootoday/render/math.html -%}

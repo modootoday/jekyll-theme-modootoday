@@ -1,0 +1,13 @@
+{%- comment -%}One search.json entry for include.p with its plain text include.text, after a comma unless it is the first (_first).
+  Reads the settings modootoday/search.json sets: _ms_words (0 = no limit), _ms_fields (front matter keys whose values go
+  before the text) and _ms_exclude (URL prefixes left out).{%- endcomment -%}
+{%- assign _msk = false -%}
+{%- for _msx in _ms_exclude -%}{%- assign _msn = _msx | size -%}{%- assign _msu = include.p.url | slice: 0, _msn -%}{%- if _msu == _msx -%}{%- assign _msk = true -%}{%- endif -%}{%- endfor -%}
+{%- unless _msk -%}
+{%- assign _mst = include.text -%}{%- if _ms_words != 0 -%}{%- assign _mst = _mst | truncatewords: _ms_words, "" -%}{%- endif -%}
+{%- assign _msf = "" -%}
+{%- for _msk2 in _ms_fields -%}{%- assign _msv = include.p[_msk2] -%}{%- if _msv -%}{%- assign _msv = _msv | join: " " -%}{%- assign _msf = _msf | append: _msv | append: " " -%}{%- endif -%}{%- endfor -%}
+{%- assign _mst = _msf | append: _mst -%}
+{%- unless _first %},{% endunless -%}{%- assign _first = false -%}
+{"title":{{ include.p.title | jsonify }},"url":{{ include.p.url | relative_url | jsonify }},"lang":{{ include.p.lang | default: site.lang | default: "en" | jsonify }},"text":{{ _mst | jsonify }}}
+{%- endunless -%}
