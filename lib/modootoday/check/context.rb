@@ -20,10 +20,10 @@ module Modootoday
         cfg_file = "#{src}/_config.yml"
         @site_cfg = (File.exist?(cfg_file) && ((YAML.safe_load(File.read(cfg_file), permitted_classes: [Date, Time]) rescue nil) || {})) || {}
         @mtc = @site_cfg["modootoday"] || {}
-        # directories listed in the site's exclude: are not pages (e.g. a nested example site)
-        excl = Array(@site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }.select { |e| File.directory?("#{src}/#{e}") }
+        # files and folders listed in the site's exclude: are not pages (a repository README.md, a nested site)
+        excl = Array(@site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }
         @mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ SKIP }.sort
-        @mds.reject! { |f| excl.any? { |e| f.start_with?("#{src}/#{e}/") } }
+        @mds.reject! { |f| excl.any? { |e| rel(f) == e || rel(f).start_with?("#{e}/") } }
       end
 
       def option?(name) = argv.include?(name)

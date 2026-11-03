@@ -10,6 +10,16 @@ class CheckPageRulesTest < CheckerCase
     assert_match(/a\.md: missing front matter/, o)
   end
 
+  def test_files_and_folders_named_in_exclude_are_not_pages
+    page "_config.yml", "exclude: [README.md, drafts/]\n"
+    page "README.md", "# Repo readme with `status:done`\n"
+    page "drafts/a.md", "# A\n"
+    page "docs/README.md", "# Not excluded\n"
+    o, code = check
+    assert_equal 1, code
+    assert_equal ["docs/README.md: missing front matter"], o.lines.grep(/\.md:/).map { |l| l.strip[/\A\S+\.md: missing front matter/] }
+  end
+
   def test_empty_front_matter_is_fine
     page "a.md", "---\n---\n# A\n"
     assert_equal 0, check[1]
