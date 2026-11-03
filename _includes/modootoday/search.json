@@ -1,10 +1,12 @@
 {%- comment -%}Search index. In your site add search.json:  ---\nlayout: null\n---\n{% include modootoday/search.json %}
 Pages with `search: false` or no title are skipped. modootoday.search: words (default 300, 0 = whole text), collections
 (collection names with output: true, indexed after posts), fields (front matter keys put before the text), exclude (URL
-prefixes left out). Each entry: modootoday/search/record.html.{%- endcomment -%}
+prefixes left out). Each entry: modootoday/search/record.html. Pages are in URL order, so renaming a source file never
+reorders the index.{%- endcomment -%}
 {%- assign _ms = site.modootoday.search -%}{%- assign _ms_words = _ms.words | default: 300 -%}{%- assign _ms_fields = _ms.fields -%}{%- assign _ms_exclude = _ms.exclude -%}
+{%- assign _ms_pages = site.pages | sort: "url" -%}
 [{%- assign _first = true -%}
-{%- for p in site.pages -%}{%- if p.title and p.search != false and p.layout != nil -%}{%- unless p.url contains ".json" or p.url contains ".txt" or p.url contains ".md" -%}
+{%- for p in _ms_pages -%}{%- if p.title and p.search != false and p.layout != nil -%}{%- unless p.url contains ".json" or p.url contains ".txt" or p.url contains ".md" -%}
 {%- assign _mstx = p.content | markdownify | strip_html | normalize_whitespace -%}{%- include modootoday/search/record.html p=p text=_mstx -%}
 {%- endunless -%}{%- endif -%}{%- endfor -%}
 {%- for p in site.posts -%}{%- if p.search != false -%}

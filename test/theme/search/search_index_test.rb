@@ -23,6 +23,8 @@ class SearchIndexTest < Minitest::Test
                                                 "defaults: [{scope: {path: ''}, values: {layout: doc}}]\n#{extra}")
       write(src, "index.md", "---\ntitle: Home\ndescription: Start here\ntags: [intro, guide]\n---\n# Home\n\n#{LONG}\n")
       write(src, "v1/old.md", "---\ntitle: Old\n---\n# Old\n\nLegacy text.\n")
+      write(src, "a.md", "---\ntitle: Last by URL\npermalink: /z/\n---\nA.\n")
+      write(src, "z.md", "---\ntitle: First by URL\npermalink: /a/\n---\nZ.\n")
       write(src, "_skills/rank.md", "---\ntitle: Rank tracker\n---\nTracks ranks.\n")
       write(src, "_notes/n.md", "---\ntitle: Note\n---\nHidden note.\n")
       write(src, "search.json", "---\nlayout: null\n---\n{% include modootoday/search.json %}\n")
@@ -74,6 +76,12 @@ class SearchIndexTest < Minitest::Test
     assert_equal "/skills/rank/", rank["url"]
     assert_includes rank["text"], "Tracks ranks."
     refute(idx.any? { _1["title"] == "Note" }, "a collection without output has no page to link to")
+  end
+
+  def test_pages_are_in_url_order_not_file_order
+    urls = index.map { _1["url"] }
+    assert_equal urls.sort, urls
+    assert_operator urls.index("/a/"), :<, urls.index("/z/")
   end
 
   def test_header_box_carries_the_match_options_only_when_set
