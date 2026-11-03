@@ -16,7 +16,8 @@
   li > ul, li > ol { margin: .3em 0 0; }
   blockquote { margin: 1.25rem 0; padding: .25rem 1rem; color: mt(muted-foreground); border-inline-start: 3px solid mt(border); }
   blockquote > :last-child { margin-bottom: 0; }
-  :lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
+  // On the lang element only, so cells and code can override by inheritance; break-word keeps min-content widths.
+  [lang|="ko"] { word-break: keep-all; overflow-wrap: break-word; }
   :lang(ja) { line-break: strict; }
   @supports (word-break: auto-phrase) { :lang(ja) { word-break: auto-phrase; } }
   hr { border: 0; border-top: 1px solid mt(border); margin: 2.5rem 0; }
