@@ -54,7 +54,7 @@ These rules apply to everything in the repository: theme files, tools, tests, QA
 2. **One responsibility per file.** A file does one job. When it grows a second one, split it; do not append unrelated code.
 3. **Assembling file next to its parts.** A file that only wires parts together sits beside a directory of the same name holding the parts: `lib/modootoday/check.rb` with `lib/modootoday/check/`, `qa/audit.mjs` with `qa/audit/`.
 4. **Group by context, not flat.** A directory holds at most 12 tracked files; beyond that, group them in subdirectories named after what they are about (`test/checker/`, `test/theme/`, `qa/lighthouse/`). Directories whose shape a standard fixes (Jekyll pages, the repository root), or that are pending a regroup, are listed with a reason in `FLAT_OK`.
-5. **Short code files.** Code under `lib/`, `qa/`, `exe/`, `script/`, `assets/js/` and test helpers stays at 150 lines or fewer; a test file at 300 or fewer. Exceptions are listed with a reason in `LONG_OK`, and the test fails when an exception no longer applies.
+5. **Short code files.** Code under `lib/`, `qa/`, `exe/`, `script/`, `assets/js/` and test helpers stays at 150 lines or fewer; a test file at 300 or fewer. Data files there (`.json`, `.txt`) are not code and have no limit. Exceptions are listed with a reason in `LONG_OK`, and the test fails when an exception no longer applies.
 
 Where things live:
 

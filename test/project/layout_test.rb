@@ -21,9 +21,8 @@ class LayoutTest < Minitest::Test
 
   MAX_LINES = 150 # code files under lib/, qa/, exe/, script/, assets/js/ and test helpers
   MAX_TEST_LINES = 300 # *_test.rb and *.test.js
-  LONG_OK = {
-    "lib/modootoday/schema/vocab.txt" => "generated data (script/schema-vocab), one schema.org term per line",
-  }.freeze
+  DATA_EXT = %w[.json .txt].freeze # data, not code: lib/modootoday/schema/vocab.txt is one schema.org term per line
+  LONG_OK = {}.freeze
 
   def tracked = @tracked ||= Dir.chdir(ROOT) { `git ls-files -z`.split("\0") }.select { |f| File.file?(File.join(ROOT, f)) }
 
@@ -55,6 +54,6 @@ class LayoutTest < Minitest::Test
 
   private
 
-  def code_files = tracked.select { |f| f.match?(%r{\A(lib|qa|exe|script|assets/js|test)/}) && !f.start_with?("test/fixtures/") && !f.end_with?(".json") }
+  def code_files = tracked.select { |f| f.match?(%r{\A(lib|qa|exe|script|assets/js|test)/}) && !f.start_with?("test/fixtures/") && !f.end_with?(*DATA_EXT) }
   def limit(f) = f.match?(/(_test\.rb|\.test\.js)\z/) ? MAX_TEST_LINES : MAX_LINES
 end
