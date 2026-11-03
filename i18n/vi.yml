@@ -12,7 +12,7 @@ theme: {toggle: Chế độ tối}
 sidebar: {label: "Tài liệu"}
 page_actions: {label: "Thao tác trang", copy: "Sao chép trang", copy_ai: "Sao chép cho AI", view: "Xem dạng Markdown", source: "Nguồn"}
 breadcrumb: {label: Đường dẫn}
-nav: {label: Menu chính, back_to_top: Lên đầu trang}
+nav: {label: Menu chính, back_to_top: Lên đầu trang, menu: Menu}
 pagination: {label: Trang, prev: Trước, next: Tiếp}
 code: {copy: Sao chép, copied: Đã sao chép, label: Mã, file: Tệp}
 table: {label: Bảng}

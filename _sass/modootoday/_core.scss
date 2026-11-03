@@ -1,4 +1,4 @@
-// Core: site hook → settings → tools → tokens → base → layout. Components are imported separately
+// Core: site hook → settings → tools → tokens → base → layout → header. Other components are imported separately
 // (assets/css/modootoday.scss picks them from modootoday.components; _sass/modootoday.scss imports all).
 // The hook goes through the load path, not relative to this file, so the site's copy shadows the theme's.
 @import "modootoday/site";
@@ -20,5 +20,6 @@
 @import "base/bidi";
 @import "base/interaction";
 @import "layout/shell";
+@import "modootoday/components/core/chrome/header";
 @import "layout/safe-area";
 @import "layout/page-meta";

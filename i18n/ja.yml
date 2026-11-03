@@ -12,7 +12,7 @@ theme: {toggle: ダークモード}
 sidebar: {label: "ドキュメント"}
 page_actions: {label: "ページの操作", copy: "ページをコピー", copy_ai: "AI 向けにコピー", view: "Markdown で表示", source: "出典"}
 breadcrumb: {label: パンくずリスト}
-nav: {label: メインメニュー, back_to_top: ページの先頭へ}
+nav: {label: メインメニュー, back_to_top: ページの先頭へ, menu: メニュー}
 pagination: {label: ページ送り, prev: 前へ, next: 次へ}
 code: {copy: コピー, copied: コピーしました, label: コード, file: ファイル}
 table: {label: 表}

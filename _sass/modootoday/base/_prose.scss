@@ -3,7 +3,7 @@
   a:hover { text-decoration-thickness: 2px; }
   a:where(:hover) { color: mt(link-hover); } // element weight only: links coloured by a component keep their hover colour
   h1, h2, h3, h4 { line-height: calc(1em + .5rem); margin: 2em 0 .5em; font-family: mt(font-heading); font-weight: mt(heading-weight);
-    letter-spacing: map-get($mt-tracking, heading); text-wrap: balance; scroll-margin-top: calc(#{mt(header-height)} + 1rem); }
+    letter-spacing: map-get($mt-tracking, heading); text-wrap: balance; }
   h1 { font-size: mt-size(3xl); margin-top: 0; }
   h2 { font-size: mt-size(2xl); margin: 3rem 0 1rem; }
   h3 { font-size: mt-size(xl); margin-top: 2rem; }

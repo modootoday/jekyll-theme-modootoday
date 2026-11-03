@@ -12,7 +12,7 @@ theme: {toggle: Dark mode}
 sidebar: {label: "Dastavezat"}
 page_actions: {label: "Safhe ke iqdamat", copy: "Safha copy karein", copy_ai: "AI ke liye copy karein", view: "Markdown mein dekhein", source: "Maakhaz"}
 breadcrumb: {label: Raasta}
-nav: {label: Main menu, back_to_top: Upar jaayein}
+nav: {label: Main menu, back_to_top: Upar jaayein, menu: Menu}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}
 code: {copy: Copy karein, copied: Copy ho gaya, label: Code, file: File}
 table: {label: Jadval}

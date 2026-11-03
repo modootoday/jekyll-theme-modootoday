@@ -12,7 +12,7 @@ theme: {toggle: Темний режим}
 sidebar: {label: "Документація"}
 page_actions: {label: "Дії зі сторінкою", copy: "Копіювати сторінку", copy_ai: "Копіювати для ШІ", view: "Переглянути як Markdown", source: "Джерело"}
 breadcrumb: {label: Навігаційний ланцюжок}
-nav: {label: Головне меню, back_to_top: Угору}
+nav: {label: Головне меню, back_to_top: Угору, menu: Меню}
 pagination: {label: Сторінки, prev: Назад, next: Далі}
 code: {copy: Копіювати, copied: Скопійовано, label: Код, file: Файл}
 table: {label: Таблиця}

@@ -12,7 +12,7 @@ theme: {toggle: الوضع الداكن}
 sidebar: {label: "المستندات"}
 page_actions: {label: "إجراءات الصفحة", copy: "نسخ الصفحة", copy_ai: "نسخ للذكاء الاصطناعي", view: "عرض بصيغة Markdown", source: "المصدر"}
 breadcrumb: {label: مسار التنقل}
-nav: {label: القائمة الرئيسية, back_to_top: العودة إلى الأعلى}
+nav: {label: القائمة الرئيسية, back_to_top: العودة إلى الأعلى, menu: القائمة}
 pagination: {label: الصفحات, prev: السابق, next: التالي}
 code: {copy: نسخ, copied: تم النسخ, label: شيفرة, file: ملف}
 table: {label: جدول}

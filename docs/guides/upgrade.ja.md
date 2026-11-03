@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:903d977ac664
+source_rev: sha256:6c1fd2dbf48f
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -90,3 +90,5 @@ $mt-overrides-dark: (
 ```
 
 `modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}` もあわせて設定してください。ヘッダーのぼかし、アラートの帯と背景色、ボタンの浮き上がりはなくなり、自分の `site_css` でのみ戻せます。
+
+ヘッダーはどの幅でも高さ 4rem の 1 行のままです。64rem より狭いとリンクはメニューボタン（`.mt-nav-sheet`）の中に移り、グループのリンクを行内に並べ直していた `.mt-nav-flat` はなくなりました。`.mt-nav-flat` に書いたルールは `.mt-nav-sheet` を対象にしてください。見出しには `scroll-margin-top` がなくなり、アンカーへ移動するとページの `scroll-padding-top` によってヘッダーの下に収まります。

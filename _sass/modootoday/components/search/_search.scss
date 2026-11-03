@@ -1,36 +1,39 @@
 // Search box (header) and results list; needs a site /search.json (include modootoday/search.json).
+// The box is always positioned, so the icon and the results stay anchored to the field at every width.
 @include mt-layer(components) {
   .mt-search { position: relative; margin-inline-start: auto; flex: none; }
   // Reserve the box from the first paint when scripting is on (search.js only wires it up), so the header does not jump.
   @media (scripting: enabled) { .mt-search[hidden] { display: block; } }
-  .mt-search > .mt-icon { position: absolute; inset-inline-start: .65rem; top: 1.125rem; translate: 0 -50%; color: mt(muted-foreground); pointer-events: none; }
-  .mt-search input { font: inherit; font-size: .875rem; height: 2.25rem; padding: 0 .75rem; padding-inline-start: 2.1rem; border: 1px solid mt(border); border-radius: mt(radius);
-    background: mt(muted); color: mt(foreground); width: 12rem; transition: border-color .15s, background-color .15s; }
+  .mt-search > .mt-icon { position: absolute; inset-inline-start: .75rem; top: 50%; translate: 0 -50%; color: mt(muted-foreground); pointer-events: none; }
+  .mt-search input { display: block; font: inherit; font-size: .875rem; height: 2.5rem; padding: 0 .75rem; padding-inline-start: 2.25rem; border: 1px solid mt(border); border-radius: mt(radius);
+    background: mt(muted); color: mt(foreground); width: 2.5rem; transition: border-color .15s, background-color .15s; }
   .mt-search input::placeholder { color: mt(muted-foreground); }
   .mt-search input:hover { border-color: mt(muted-foreground); }
   .mt-search input:focus-visible { outline-offset: 1px; background: mt(background); }
-  .mt-search-results { position: absolute; inset-inline-end: 0; z-index: 30; list-style: none; margin: .4rem 0 0; padding: .35rem; width: 22rem; max-width: calc(100vw - 2rem);
+  .mt-search-results { position: absolute; inset-inline-end: 0; top: 100%; z-index: 30; list-style: none; margin: .4rem 0 0; padding: .35rem; width: 22rem; max-width: calc(100vw - 2rem);
     background: mt(card); color: mt(card-foreground); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow); }
   .mt-search-results:empty { display: none; }
   .mt-search-results li + li { margin-top: 0; }
-  .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; }
-  .mt-search-results a { color: mt(foreground); }
+  .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; color: mt(foreground); }
   .mt-search-title { display: block; font-weight: 600; }
   .mt-search-snippet { display: block; margin-top: .1rem; font-size: .8rem; line-height: 1.45; color: mt(muted-foreground);
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }
-  @media (max-width: 47.99rem) { .mt-search { flex: 1 1 0; min-width: 0; } .mt-search input { width: 100%; padding-inline-end: .5rem; } .mt-search { position: static; }
-    .mt-search-results { inset-inline: 1rem; top: 2.9rem; width: auto; max-width: none; } }
-  // Narrow phones: search takes its own row under the title so the input stays usable next to the header buttons.
-  @media (max-width: 29.99rem) { .mt-search { order: 9; flex: 1 0 100%; position: relative; }
-    .mt-search-results { inset-inline: 0; top: 100%; } }
+  // Below 48rem a 2.5rem icon field; while it has focus it covers the header row, and the results hang from it.
+  @media (max-width: 47.99rem) {
+    .mt-search:not(:focus-within) ::placeholder { color: transparent; }
+    .mt-search:focus-within { position: absolute; z-index: 1; inset-inline: calc(var(--mt-gutter) + var(--mt-safe-left)); top: calc(var(--mt-safe-top) + (#{mt(header-height)} - 2.5rem) / 2); }
+    .mt-search:focus-within input { width: 100%; }
+    .mt-search-results { inset-inline: 0; width: auto; max-width: none; }
+  }
+  @media (min-width: 48rem) { .mt-search input { height: 2rem; width: 15rem; } }
 }
 @include mt-layer(components) {
-  // 64–80rem: the one-line header is tight; let search shrink so it never overlaps the nav (WCAG 2.2 target-size).
+  // From 64rem the nav shares the row: let search shrink so it never overlaps the nav (WCAG 2.2 target-size).
   @media (min-width: 64rem) { .mt-search { flex: 0 1 15rem; min-width: 5rem; } .mt-search input { width: 100%; } }
 }
 // Coarse pointers and forced colors (here, not in core _access, because this sheet loads after core).
 @include mt-layer(components) {
-  @media (pointer: coarse) { .mt-search input { height: 2.75rem; font-size: 1rem; } }
+  @media (pointer: coarse) { .mt-search input { height: 2.75rem; min-width: 2.75rem; font-size: 1rem; } }
   @media (forced-colors: active) { .mt-search input { border: 1px solid ButtonText; } }
 }

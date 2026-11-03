@@ -20,3 +20,21 @@ export async function checkHeaderEnd(page, scheme, url, fails) {
   await page.setViewportSize({ width: 1024, height: 900 });
   await page.goto(url);
 }
+// Header height: one row of --mt-header-height (plus the top safe area and the 1px rule) at every width and layout.
+export const HEIGHT_WIDTHS = [360, 768, 1024, 1440];
+export function headerHeightOff() {
+  const h = document.querySelector(".mt-header");
+  if (!h) return 0;
+  const cs = getComputedStyle(h);
+  const row = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4;
+  const want = row + parseFloat(cs.paddingTop) + parseFloat(cs.borderBottomWidth);
+  return h.getBoundingClientRect().height - want;
+}
+export async function checkHeaderHeight(page, scheme, url, fails) {
+  for (const w of HEIGHT_WIDTHS) {
+    await page.setViewportSize({ width: w, height: 900 });
+    const off = await page.evaluate(`(${headerHeightOff})()`);
+    if (Math.abs(off) > 1) fails.push(`header height: ${Math.round(off)}px off one 4rem row at ${w}px ${scheme} ${url}`);
+  }
+  await page.setViewportSize({ width: 1024, height: 900 });
+}

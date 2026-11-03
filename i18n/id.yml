@@ -12,7 +12,7 @@ theme: {toggle: Mode gelap}
 sidebar: {label: "Dokumentasi"}
 page_actions: {label: "Tindakan halaman", copy: "Salin halaman", copy_ai: "Salin untuk AI", view: "Lihat sebagai Markdown", source: "Sumber"}
 breadcrumb: {label: Jejak navigasi}
-nav: {label: Menu utama, back_to_top: Kembali ke atas}
+nav: {label: Menu utama, back_to_top: Kembali ke atas, menu: Menu}
 pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}
 code: {copy: Salin, copied: Tersalin, label: Kode, file: Berkas}
 table: {label: Tabel}

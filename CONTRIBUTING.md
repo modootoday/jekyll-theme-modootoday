@@ -22,7 +22,7 @@ Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm
 
 ### Visual regression
 
-`npm run qa:visual` screenshots five pages (home, kitchen sink, configuration, Korean home, the hero module demo) at 360, 1024 and 1440 px in light and dark mode, with reduced motion (so a script visual shows its poster) and compares each shot with a PNG in `qa/visual/baseline/` (git-ignored; baselines are never committed) using [pixelmatch](https://github.com/mapbox/pixelmatch). A shot fails when more than 0.1 % of its pixels differ by more than the colour threshold 0.1, or when its size changed; the failing shot and a diff image go to `qa-out/visual/`. Animations, the caret and the "Last updated" date are frozen.
+`npm run qa:visual` screenshots five pages (home, kitchen sink, configuration, Korean home, the hero module demo) at 360, 600, 720, 1024 and 1440 px in light and dark mode, with reduced motion (so a script visual shows its poster) and compares each shot with a PNG in `qa/visual/baseline/` (git-ignored; baselines are never committed) using [pixelmatch](https://github.com/mapbox/pixelmatch). A shot fails when more than 0.1 % of its pixels differ by more than the colour threshold 0.1, or when its size changed; the failing shot and a diff image go to `qa-out/visual/`. Animations, the caret and the "Last updated" date are frozen.
 
 ```sh
 qa/site/build-docs.sh docs/_site

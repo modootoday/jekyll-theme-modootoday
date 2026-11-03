@@ -1,0 +1,17 @@
+// Site header: one row of header-height at every width (title, nav or its menu sheet, search, language menu, toggle).
+// Always in the core sheet (imported by _core.scss), so modootoday.components cannot drop it.
+@include mt-layer(layout) {
+  .mt-header { padding-top: var(--mt-safe-top); position: sticky; top: 0; z-index: 20; border-bottom: 1px solid mt(border);
+    background: mt(background); }
+  .mt-header-inner { display: flex; align-items: center; gap: 1.25rem; min-height: mt(header-height); }
+  // The first trailing control (search, language menu or theme toggle) pushes the group to the inline end, with or without search.
+  .mt-header-inner > :is(.mt-search,details.mt-lang,.mt-theme-toggle):not(:is(.mt-search,details.mt-lang,.mt-theme-toggle) ~ *) { margin-inline-start: auto; }
+  .mt-site-title { flex: 0 1 auto; min-width: 0; overflow: hidden; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700;
+    letter-spacing: -.01em; text-decoration: none; color: mt(foreground); white-space: nowrap; }
+  .mt-site-title:not(.mt-has-logo)::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
+    background: mt(brand); }
+  details.mt-lang { position: relative; flex: none; }
+  @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-header-inner { column-gap: .75rem; } }
+  // Below 64rem the nav is a menu button at the end of the row; the title takes the free space.
+  @media (max-width: 63.99rem) { .mt-header-inner { column-gap: .5rem; } .mt-site-title { margin-inline-end: auto; } }
+}

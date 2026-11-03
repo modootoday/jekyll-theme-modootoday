@@ -1,38 +1,33 @@
-// Header navigation from _data/nav/<modootoday.nav>.yml (or _data/nav.yml). Scrolls sideways on small screens.
-// Groups (items with `items:`) open as a <details> menu from 64rem; below that their links are listed inline.
+// Header navigation from _data/nav/<modootoday.nav>.yml (or _data/nav.yml). From 64rem one row of links, with groups
+// (items with `items:`) as <details> menus; below that the row gives way to a menu sheet (.mt-nav-sheet, nav-sheet.html).
 @include mt-layer(components) {
-  .mt-nav { min-width: 0; overflow-x: auto; scrollbar-width: none; }
-  // Below 64rem the row scrolls sideways: fade the inline end so cut-off items read as "more".
-  .mt-nav { mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent); }
-  [dir="rtl"] .mt-nav { mask-image: linear-gradient(to left, #000 calc(100% - 2rem), transparent); }
+  .mt-nav { flex: none; }
   .mt-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .125rem; }
   .mt-nav li + li { margin-top: 0; }
   .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary { display: flex; align-items: center; min-height: 2rem; padding: .35rem .6rem; border-radius: mt(radius); font-size: .9rem; font-weight: 500;
     color: mt(muted-foreground); text-decoration: none; white-space: nowrap; transition: color .15s, background-color .15s; }
   .mt-nav a:hover, .mt-nav summary:hover, .mt-menu a:hover, .mt-menu[open] > summary { color: mt(foreground); background: mt(accent); }
   .mt-nav a[aria-current="page"], .mt-nav .mt-nav-current, .mt-menu a[aria-current] { color: mt(foreground); background: mt(accent); font-weight: 600; }
-  .mt-nav-group { display: none; position: relative; }
+  .mt-nav-group { position: relative; }
   .mt-menu summary { cursor: pointer; list-style: none; }
   .mt-menu summary::-webkit-details-marker { display: none; }
-  .mt-nav summary > .mt-icon { margin-inline-start: .3em; }
+  .mt-nav-group summary > .mt-icon { margin-inline-start: .3em; }
   .mt-nav a > .mt-icon { margin-inline-start: .25em; opacity: .7; }
-  .mt-nav a:focus-visible, .mt-menu a:focus-visible, .mt-menu summary:focus-visible { outline-offset: -2px; } // inside the box: the nav row scrolls
+  .mt-nav a:focus-visible, .mt-menu a:focus-visible, .mt-menu summary:focus-visible { outline-offset: -2px; } // inside the box: menus scroll
   .mt-menu > ul { list-style: none; margin: 0; position: absolute; top: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; display: block; min-width: 12rem; padding: .35rem;
     background: mt(card); border: 1px solid mt(border); border-radius: mt(radius-lg); box-shadow: mt(shadow);
     max-height: calc(100dvh - #{mt(header-height)} - var(--mt-safe-top) - 1rem); overflow-y: auto; overscroll-behavior: contain; }
   .mt-menu a { color: mt(card-foreground); }
   details.mt-lang > ul { inset-inline: auto 0; min-width: 10rem; }
-  @media (min-width: 64rem) {
-    .mt-nav, [dir="rtl"] .mt-nav { overflow: visible; flex: none; mask-image: none; }
-    .mt-nav-group { display: block; }
-    .mt-nav-flat { display: none; }
-  }
-  @media (max-width: 63.99rem) {
-    .mt-header-inner { flex-wrap: wrap; padding-top: .6rem; }
-    .mt-nav { order: 10; flex: 1 0 100%; min-width: 0; padding: 0 0 .4rem; overflow-x: auto; scrollbar-width: none; }
-    .mt-nav::-webkit-scrollbar { display: none; }
-    .mt-nav a { padding: .3rem .6rem; }
-  }
+  // Header icon menus (language, nav sheet): here, after .mt-menu summary, so they win in @layer mode too.
+  :is(details.mt-lang,.mt-nav-sheet) > summary { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 1px solid mt(border); color: mt(foreground); }
+  // The sheet hangs from the header (its containing block): full width, under the row.
+  .mt-nav-sheet > ul { inset-inline: 0; top: 100%; border-radius: 0; border-width: 0 0 1px; padding: .5rem var(--mt-gutter) 1rem; }
+  .mt-nav-sheet ul { display: block; }
+  .mt-nav-sheet a { min-height: 3rem; }
+  .mt-nav-sheet-label { display: block; padding: 1rem .6rem .25rem; font-size: .75rem; font-weight: 500; color: mt(muted-foreground); }
+  @media (min-width: 64rem) { .mt-nav-sheet { display: none; } }
+  @media (max-width: 63.99rem) { .mt-nav { order: 10; } .mt-nav > ul { display: none; } }
 }
 @include mt-layer(components) {
   @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-nav a, .mt-nav summary { padding-inline: .45rem; font-size: .875rem; } }

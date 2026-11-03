@@ -36,7 +36,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 
 | Component | Root | Parts you may style | State and variants |
 |---|---|---|---|
-| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
+| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav` (from 64rem its `ul` row of links; below 64rem `details.mt-menu.mt-nav-sheet`: `summary` menu button, `ul` sheet with `.mt-nav-sheet-label` group titles), `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
 | Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar` (from 64rem); `details.mt-sidebar-mobile` (below) | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links; the current link has `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
 | Page actions | `details.mt-menu.mt-page-actions` | `summary`, the `ul` of `button[data-mt-act=copy\|ai]` (hidden until JS runs) and the View as Markdown `a[type="text/markdown"]` | `[open]` |

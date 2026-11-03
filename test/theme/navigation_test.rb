@@ -85,6 +85,18 @@ class NavigationTest < Minitest::Test
     refute_match(/Page actions|Copy for AI|View as Markdown/, ko)
   end
 
+  def test_header_nav_is_one_landmark_with_a_menu_sheet
+    h = self.class.site.call("one")
+    assert_equal 1, h.scan('<nav class="mt-nav"').size
+    refute_includes h, "mt-nav-flat"
+    sheet = h[%r{<details class="mt-menu mt-nav-sheet">.*?</details>}m]
+    assert sheet, "menu sheet"
+    assert_match(%r{<summary aria-label="Menu" title="Menu"><svg}, sheet)
+    assert_match(%r{<li><a href="/start/">Start</a></li>\s*<li><span class="mt-nav-sheet-label">Guides</span><ul><li><a href="/one/" aria-current="page">One</a>}, sheet)
+    assert_match(%r{<nav class="mt-nav"[^>]*><ul>.*</ul><details class="mt-menu mt-nav-sheet">.*</details>\s*</nav>}m, h)
+    assert_includes self.class.site("lang: ko\n").call("one"), '<summary aria-label="메뉴" title="메뉴">'
+  end
+
   def test_color_scheme_auto_dark_keeps_toggle_without_fouc
     h = self.class.site("modootoday: {color_scheme: auto-dark}\n").call("one")
     assert_match(/<html [^>]*data-theme="dark"/, h)

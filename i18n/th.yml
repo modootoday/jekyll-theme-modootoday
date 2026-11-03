@@ -12,7 +12,7 @@ theme: {toggle: โหมดมืด}
 sidebar: {label: "เอกสาร"}
 page_actions: {label: "การทำงานกับหน้า", copy: "คัดลอกหน้า", copy_ai: "คัดลอกสำหรับ AI", view: "ดูเป็น Markdown", source: "ที่มา"}
 breadcrumb: {label: เส้นทางนำทาง}
-nav: {label: เมนูหลัก, back_to_top: กลับขึ้นด้านบน}
+nav: {label: เมนูหลัก, back_to_top: กลับขึ้นด้านบน, menu: เมนู}
 pagination: {label: หน้า, prev: ก่อนหน้า, next: ถัดไป}
 code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด, file: ไฟล์}
 table: {label: ตาราง}

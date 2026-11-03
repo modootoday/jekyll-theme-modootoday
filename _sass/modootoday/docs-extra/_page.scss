@@ -9,7 +9,7 @@
   .mt-dx-toc ul, .mt-dx-letters ul { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin-bottom: 1.5rem; }
   .mt-dx-toc li, .mt-dx-letters li { margin: 0; }
   .mt-dx-letters a { display: inline-block; min-width: 2rem; padding: .25rem; text-align: center; }
-  .mt-dx-member, .mt-dx-release { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid mt(border); scroll-margin-top: 4rem; }
+  .mt-dx-member, .mt-dx-release { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid mt(border); }
   .mt-dx-member h2, .mt-dx-release h2 { margin-top: 0; }
   .mt-dx-release time { margin-inline-start: .5rem; font-size: .875rem; font-weight: 400; color: mt(muted-foreground); }
   .mt-dx-cat { font-size: .8125rem; text-transform: uppercase; letter-spacing: .04em; }
@@ -23,8 +23,7 @@
   .mt-dx-cards li { position: relative; margin: 0; }
   .mt-dx-cards li:hover { border-color: mt(primary); }
   .mt-dx-cards a::after { content: ""; position: absolute; inset: 0; }
-  .mt-dx-letter { scroll-margin-top: 4rem; }
-  .mt-dx-terms dt { margin-top: 1rem; font-weight: 600; scroll-margin-top: 4rem; }
+  .mt-dx-terms dt { margin-top: 1rem; font-weight: 600; }
   .mt-dx-terms dd { margin: .25rem 0 0; }
   .mt-dx-syllabus > li { margin-bottom: 1rem; }
   .mt-dx-syllabus h3 { margin: 0 0 .25rem; font-size: 1.0625rem; }

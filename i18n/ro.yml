@@ -12,7 +12,7 @@ theme: {toggle: Mod întunecat}
 sidebar: {label: "Documentație"}
 page_actions: {label: "Acțiuni pentru pagină", copy: "Copiază pagina", copy_ai: "Copiază pentru AI", view: "Vezi ca Markdown", source: "Sursă"}
 breadcrumb: {label: Traseu de navigare}
-nav: {label: Meniu principal, back_to_top: Înapoi sus}
+nav: {label: Meniu principal, back_to_top: Înapoi sus, menu: Meniu}
 pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
 code: {copy: Copiază, copied: Copiat, label: Cod, file: Fișier}
 table: {label: Tabel}

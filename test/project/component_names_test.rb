@@ -19,10 +19,14 @@ class ComponentNamesTest < Minitest::Test
   def section_sheets = config_list("mt_section_sheets").to_h { |s| s.split(":", 2) }
   def name_of(partial) = partial.split("/").last
 
-  # Partial paths under components/, without the underscore and extension ("core/inline/callout").
+  # Partial paths under components/, without the underscore and extension ("core/inline/callout"). Partials that
+  # _core.scss imports itself (the header) are always on, so they name no component.
   def partials
-    Dir.glob("**/_*.scss", base: File.join(ROOT, PARTIALS)).map { |f| f.sub(%r{_([^/]+)\.scss\z}, '\1') }.sort
+    all = Dir.glob("**/_*.scss", base: File.join(ROOT, PARTIALS)).map { |f| f.sub(%r{_([^/]+)\.scss\z}, '\1') }
+    (all - shell_partials).sort
   end
+
+  def shell_partials = File.read(File.join(ROOT, "_sass/modootoday/_core.scss")).scan(%r{@import "modootoday/components/([^"]+)"}).flatten
 
   def bundle_imports = File.read(File.join(ROOT, "_sass/modootoday.scss")).scan(%r{@import "modootoday/components/([^"]+)"}).flatten
 
@@ -54,6 +58,13 @@ class ComponentNamesTest < Minitest::Test
 
   def test_every_component_has_a_partial_and_every_partial_names_a_component
     assert_equal liquid.sort, partials.map { |p| name_of(p) }.uniq.sort
+  end
+
+  def test_shell_partials_exist_and_are_not_components
+    refute_empty shell_partials
+    shell_partials.each { |p| assert File.exist?(File.join(ROOT, PARTIALS, p.sub(%r{([^/]+)\z}, '_\1.scss'))), p }
+    assert_empty shell_partials & core_partials, "a partial _core.scss imports is also listed in mt_core_partials"
+    assert_empty shell_partials.map { |p| name_of(p) } & liquid, "an always-on partial must not be a component name"
   end
 
   def test_core_partials_exist

@@ -1,4 +1,4 @@
-// Keyboard flows: skip link, a visible focus ring on every Tab stop, the language menu, tabs (LTR and RTL),
+// Keyboard flows: skip link, a visible focus ring on every Tab stop, the language menu, the header menu sheet, tabs (LTR and RTL),
 // search shortcuts and result arrows, focusable scrolling code blocks. Chromium, desktop and 360px.
 const ring = () => {
   const e = document.activeElement; if (!e || e === document.body) return null;
@@ -42,6 +42,26 @@ async function langMenu(page, url, fails) {
   const back = await page.evaluate(() => { const d = document.querySelector("details.mt-lang"); return !d.open && document.activeElement === d.querySelector("summary"); });
   if (!inMenu) fails.push(`keyboard: ArrowDown does not enter the language menu ${url}`);
   if (!back) fails.push(`keyboard: Esc does not close the language menu and return focus ${url}`);
+}
+
+async function navSheet(page, url, fails) {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto(url, { waitUntil: "networkidle" });
+  const s = page.locator("details.mt-nav-sheet > summary");
+  if (!(await s.count())) {
+    fails.push(`keyboard: no menu sheet button in the header at 360px ${url}`);
+    await page.setViewportSize({ width: 1024, height: 900 });
+    return;
+  }
+  await s.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("ArrowDown");
+  const inSheet = await page.evaluate(() => !!document.activeElement.closest("details.mt-nav-sheet ul") && document.activeElement.getBoundingClientRect().height > 0);
+  await page.keyboard.press("Escape");
+  const back = await page.evaluate(() => !document.querySelector("details.mt-nav-sheet").open && document.activeElement.matches("details.mt-nav-sheet > summary"));
+  if (!inSheet) fails.push(`keyboard: ArrowDown does not reach a visible link in the menu sheet at 360px ${url}`);
+  if (!back) fails.push(`keyboard: Esc does not close the menu sheet and return focus ${url}`);
+  await page.setViewportSize({ width: 1024, height: 900 });
 }
 
 async function tabsKeys(page, url, fails, rtl) {
@@ -94,10 +114,11 @@ export async function checkKeyboard(browser, origin, fails) {
   for (const p of ["", "components/kitchen-sink/", "ko/guides/install/"]) await tabWalk(page, origin + p, fails);
   await skipLink(page, origin + "guides/install/", fails);
   await langMenu(page, origin + "guides/install/", fails);
+  await navSheet(page, origin + "guides/install/", fails);
   await tabsKeys(page, origin + "guides/install/", fails, false);
   await tabsKeys(page, origin + "components/kitchen-sink-rtl/", fails, true);
   await search(page, origin + "guides/install/", fails);
   await scrollRegions(page, origin + "components/kitchen-sink/", fails);
   await ctx.close();
-  return { flows: 9, fails: fails.length - before };
+  return { flows: 10, fails: fails.length - before };
 }

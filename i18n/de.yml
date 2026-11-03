@@ -12,7 +12,7 @@ theme: {toggle: Dunkelmodus}
 sidebar: {label: "Dokumentation"}
 page_actions: {label: "Seitenaktionen", copy: "Seite kopieren", copy_ai: "Für KI kopieren", view: "Als Markdown anzeigen", source: "Quelle"}
 breadcrumb: {label: Brotkrümelnavigation}
-nav: {label: Hauptmenü, back_to_top: Nach oben}
+nav: {label: Hauptmenü, back_to_top: Nach oben, menu: Menü}
 pagination: {label: Seiten, prev: Zurück, next: Weiter}
 code: {copy: Kopieren, copied: Kopiert, label: Code, file: Datei}
 table: {label: Tabelle}

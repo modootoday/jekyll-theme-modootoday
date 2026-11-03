@@ -84,3 +84,5 @@ $mt-overrides-dark: (
 ```
 
 Set `modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}` as well. The header blur, the callout stripe and tint and the button lift are gone and come back only with your own `site_css`.
+
+The header stays one 4rem row at every width. Below 64rem its links move into a menu button (`.mt-nav-sheet`), and the inline copies of group links (`.mt-nav-flat`) are gone, so rules a site wrote for `.mt-nav-flat` now target `.mt-nav-sheet`. Headings no longer set `scroll-margin-top`; anchors land below the header through `scroll-padding-top` on the page.

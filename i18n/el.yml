@@ -12,7 +12,7 @@ theme: {toggle: Σκούρο θέμα}
 sidebar: {label: "Τεκμηρίωση"}
 page_actions: {label: "Ενέργειες σελίδας", copy: "Αντιγραφή σελίδας", copy_ai: "Αντιγραφή για ΤΝ", view: "Προβολή ως Markdown", source: "Πηγή"}
 breadcrumb: {label: Διαδρομή πλοήγησης}
-nav: {label: Κύριο μενού, back_to_top: Επιστροφή στην κορυφή}
+nav: {label: Κύριο μενού, back_to_top: Επιστροφή στην κορυφή, menu: Μενού}
 pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμενη}
 code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας, file: Αρχείο}
 table: {label: Πίνακας}

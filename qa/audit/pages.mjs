@@ -8,8 +8,13 @@ import { checkTabsScroll } from "./layout/tabs-scroll.mjs";
 import { checkChipRows } from "./layout/chip-rows.mjs";
 import { checkListRows } from "./layout/list-rows.mjs";
 import { checkInlineCodeWrap } from "./layout/inline-code-wrap.mjs";
-import { checkHeaderEnd } from "./layout/header-end.mjs";
+import { checkHeaderEnd, checkHeaderHeight } from "./layout/header-end.mjs";
 import { checkCjkClip } from "./layout/cjk-clip.mjs";
+import { checkAnchorOffset } from "./layout/anchor-offset.mjs";
+
+// Header height: a doc page, pricing, the blog list and the home page; anchor jumps: two long pages.
+const HEADER_PAGES = ["guides/configuration/", "layouts/marketing/pricing/", "blog/", ""];
+const ANCHOR_PAGES = ["guides/configuration/", "layouts/documents/legal/"];
 
 async function checkRtl(page, scheme, url, fails) {
   // logical properties must mirror: callout icon and steps rail on the right, code left-to-right
@@ -46,6 +51,8 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   if (p === "guides/agents/" || p === "layouts/blog-news/post/") await checkInlineCodeWrap(page, scheme, url, fails);
   if ((p === "guides/agents/" && !lang) || RTL_PAGES.includes(p)) await checkHeaderEnd(page, scheme, url, fails);
   if (p === "" && (lang === "ko/" || lang === "ja/")) await checkCjkClip(page, scheme, url, fails);
+  if (!lang && HEADER_PAGES.includes(p)) await checkHeaderHeight(page, scheme, url, fails);
+  if (!lang && ANCHOR_PAGES.includes(p)) await checkAnchorOffset(page, scheme, url, fails);
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   for (const v of axe.violations) {
     report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });

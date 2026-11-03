@@ -7,7 +7,6 @@
   .mt-legal .mt-toc { margin-bottom: 2rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
   .mt-legal .mt-toc ol { margin: 0; }
   .mt-legal-body { max-width: 44rem; }
-  .mt-legal-body :is(h2, h3) { scroll-margin-top: 4rem; }
   @media print {
     .mt-legal .mt-toc { display: none; }
     .mt-legal-body { max-width: none; }

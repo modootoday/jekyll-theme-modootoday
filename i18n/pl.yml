@@ -12,7 +12,7 @@ theme: {toggle: Tryb ciemny}
 sidebar: {label: "Dokumentacja"}
 page_actions: {label: "Działania na stronie", copy: "Kopiuj stronę", copy_ai: "Kopiuj dla AI", view: "Pokaż jako Markdown", source: "Źródło"}
 breadcrumb: {label: Ścieżka nawigacji}
-nav: {label: Menu główne, back_to_top: Do góry}
+nav: {label: Menu główne, back_to_top: Do góry, menu: Menu}
 pagination: {label: Strony, prev: Poprzednia, next: Następna}
 code: {copy: Kopiuj, copied: Skopiowano, label: Kod, file: Plik}
 table: {label: Tabela}

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:903d977ac664
+source_rev: sha256:6c1fd2dbf48f
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -90,3 +90,5 @@ $mt-overrides-dark: (
 ```
 
 `modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}`도 함께 설정하세요. 헤더의 흐림 효과, 알림의 줄무늬와 배경색, 버튼이 떠오르는 효과는 없어졌으며, 직접 만든 `site_css`로만 되살릴 수 있습니다.
+
+헤더는 모든 너비에서 4rem 높이의 한 줄로 유지됩니다. 64rem보다 좁으면 헤더 링크가 메뉴 버튼(`.mt-nav-sheet`) 안으로 들어가고, 그룹 링크를 줄 안에 다시 늘어놓던 `.mt-nav-flat`은 없어졌습니다. `.mt-nav-flat`에 쓴 규칙은 이제 `.mt-nav-sheet`를 대상으로 바꾸세요. 제목에는 더 이상 `scroll-margin-top`이 없고, 앵커로 이동하면 페이지의 `scroll-padding-top` 덕분에 헤더 아래에 자리 잡습니다.
