@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: changelog.ja.md
+lang: ja
+path: reference/changelog.ja.md.txt
+permalink: /ja/reference/changelog/index.md
+---

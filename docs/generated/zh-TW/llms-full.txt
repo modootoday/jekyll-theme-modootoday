@@ -1,6 +1,6 @@
 ---
 layout: llms-full
 lang: zh-TW
-path: zh-TW/llms-full.txt
+path: llms-full.txt
 permalink: /zh-TW/llms-full.txt
 ---

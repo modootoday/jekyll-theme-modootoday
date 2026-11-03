@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.uk.md
+lang: uk
+path: home/index.uk.md.txt
+permalink: /uk/index.md
+---

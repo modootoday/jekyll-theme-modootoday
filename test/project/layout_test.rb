@@ -2,6 +2,8 @@
 # Authoring conventions (CONTRIBUTING.md, "Project layout"; .spec ADR "authoring conventions"):
 # no flat directories (group files by context) and short, single-purpose code files.
 require "minitest/autorun"
+require "yaml"
+require_relative "../../lib/modootoday/i18n"
 
 class LayoutTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -26,8 +28,16 @@ class LayoutTest < Minitest::Test
 
   def tracked = @tracked ||= Dir.chdir(ROOT) { `git ls-files -z`.split("\0") }.select { |f| File.file?(File.join(ROOT, f)) }
 
-  # docs/generated/ is written by script/docs-index and is not counted
-  def authored = tracked.reject { |f| f.start_with?("docs/generated/") }
+  # docs/generated/ is written by script/docs-index and is not counted; a docs translation (install.ko.md) counts
+  # as its source (install.md), so a directory holds as many files as it has English pages.
+  def authored = tracked.reject { |f| f.start_with?("docs/generated/") }.map { |f| f.start_with?("docs/") ? "docs/#{docs_lang.source(f.delete_prefix("docs/"))}" : f }.uniq
+
+  def docs_lang
+    @docs_lang ||= begin
+      langs = YAML.safe_load(File.read(File.join(ROOT, "docs/_config.yml"))).dig("modootoday", "languages")
+      Modootoday::I18n::PageLang.new(langs, langs.first)
+    end
+  end
 
   def test_no_flat_directories
     flat = authored.group_by { |f| File.dirname(f) }.select { |d, fs| fs.size > MAX_FILES && !FLAT_OK.key?(d) }

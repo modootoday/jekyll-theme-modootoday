@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: first-page.md
-lang: ko
-path: ko/guides/first-page.md.txt
-permalink: /ko/guides/first-page/index.md
----

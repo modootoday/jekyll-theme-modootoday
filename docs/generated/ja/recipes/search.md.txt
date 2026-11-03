@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: search.md
-lang: ja
-path: ja/recipes/search.md.txt
-permalink: /ja/recipes/search/index.md
----

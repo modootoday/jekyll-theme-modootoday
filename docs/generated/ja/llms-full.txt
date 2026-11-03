@@ -1,6 +1,6 @@
 ---
 layout: llms-full
 lang: ja
-path: ja/llms-full.txt
+path: llms-full.txt
 permalink: /ja/llms-full.txt
 ---

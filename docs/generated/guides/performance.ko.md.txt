@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: performance.ko.md
+lang: ko
+path: guides/performance.ko.md.txt
+permalink: /ko/guides/performance/index.md
+---

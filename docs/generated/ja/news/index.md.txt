@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: index.md
-lang: ja
-path: ja/news/index.md.txt
-permalink: /ja/news/index.md
----

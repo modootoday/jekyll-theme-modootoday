@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: customize.ja.md
+lang: ja
+path: guides/customize.ja.md.txt
+permalink: /ja/guides/customize/index.md
+---

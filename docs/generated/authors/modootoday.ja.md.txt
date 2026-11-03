@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: modootoday.ja.md
+lang: ja
+path: authors/modootoday.ja.md.txt
+permalink: /ja/authors/modootoday/index.md
+---

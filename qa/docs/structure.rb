@@ -41,7 +41,8 @@ tree.pages.each do |p|
 end
 
 Dir.glob("#{tree.root}/**/").reject { |d| rel[d].start_with?("_", "assets", "vendor", "generated/") }.each do |d|
-  n = Dir.children(d).count { |c| File.file?("#{d}#{c}") }
+  # A translation (install.ko.md, home/index.vi.md) counts as its English page.
+  n = Dir.children(d).select { |c| File.file?("#{d}#{c}") }.map { |c| tree.page_lang.source(c) }.uniq.size
   errs << "#{rel[d]}: #{n} authored files (limit #{LIMIT_FILES}); split into groups" if n > LIMIT_FILES
 end
 

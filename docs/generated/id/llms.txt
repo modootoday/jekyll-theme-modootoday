@@ -1,6 +1,6 @@
 ---
 layout: llms
 lang: id
-path: id/llms.txt
+path: llms.txt
 permalink: /id/llms.txt
 ---

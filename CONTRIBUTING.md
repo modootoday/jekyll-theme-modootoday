@@ -1,6 +1,6 @@
 # Contributing
 
-English is the canonical language. `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth; `README.ko.md` and the `docs/ko/` (and `docs/ja/`) pages are translations and start with a note saying so. Change the English text first, then update the translations in the same pull request when you can. When they differ, English wins.
+English is the canonical language. `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth; `README.ko.md` and the pages beside each English page in `docs/` (`install.ko.md`, `install.ja.md`, and the home pages in `docs/home/`) are translations and start with a note saying so. Change the English text first, then update the translations in the same pull request when you can. When they differ, English wins.
 
 Translations are localized, not literal: follow the tone, glossary and spacing rules in [TRANSLATING.md](TRANSLATING.md).
 

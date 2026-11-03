@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: tags.ko.md
+lang: ko
+path: tags.ko.md.txt
+permalink: /ko/tags/index.md
+---

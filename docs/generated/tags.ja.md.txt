@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: tags.ja.md
+lang: ja
+path: tags.ja.md.txt
+permalink: /ja/tags/index.md
+---

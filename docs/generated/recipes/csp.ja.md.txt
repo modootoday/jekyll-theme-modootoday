@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: csp.ja.md
+lang: ja
+path: recipes/csp.ja.md.txt
+permalink: /ja/recipes/csp/index.md
+---

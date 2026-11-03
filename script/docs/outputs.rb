@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../lib/modootoday/stubs"
+require_relative "translations"
 
 module DocsIndex
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
@@ -14,8 +15,10 @@ module DocsIndex
     end
 
     def files
-      @files ||= nav_files.merge(index_lists).merge(twins).merge(llms_files)
+      @files ||= fields.merge(nav_files).merge(index_lists).merge(twins).merge(llms_files)
     end
+
+    def translations = @translations ||= Translations.new(@t)
 
     # Files under GENERATED that no output wants any more.
     def orphans
@@ -24,6 +27,10 @@ module DocsIndex
     end
 
     private
+
+    # lang: and permalink: of each translation, as later outputs read them.
+    def fields = @fields ||= translations.files
+    def text(path) = fields.fetch(path) { File.read(path) }
 
     def prefix(lang) = lang == @t.default_lang ? "" : "/#{lang}"
 
@@ -62,7 +69,7 @@ module DocsIndex
     # Section index pages carry a generated list of their section between spec:docs-index markers.
     def index_lists
       @t.pages.select { |p| p.index? && p.section && p.dir != "." }.each_with_object({}) do |idx, h|
-        src = File.read(idx.path)
+        src = text(idx.path)
         b, e = Modootoday::Markdown::INDEX_MARK % "begin", Modootoday::Markdown::INDEX_MARK % "end"
         next unless src.include?(b) && src.include?(e)
         list = @t.entries(idx.dir, idx.lang).map { |p| "- [#{p.title}](#{rel(idx, p)}) — #{p.fm["description"]}" }
@@ -79,19 +86,21 @@ module DocsIndex
     # Twin stubs come from the same code as the modootoday-stubs command.
     def twins = stub_twins.wanted.transform_keys { |r| "#{@t.root}/#{r}" }
     def stub_twins = @stub_twins ||= Modootoday::Stubs::Twins.new(source, dir: GENERATED)
-    def source = @source ||= Modootoday::Stubs::Source.new(@t.root)
+    def source
+      @source ||= Modootoday::Stubs::Source.new(@t.root).tap do |s|
+        s.overlay(fields.transform_keys { |p| p.delete_prefix("#{@t.root}/") }.select { |r, _| r.end_with?(".md") }, [])
+      end
+    end
 
     # llms.txt and llms-full.txt for each language with a home page, at /llms.txt and /<lang>/llms.txt.
-    # path: is where the stub would sit, so the llms layouts list that language's directory; lang: is what the
-    # defaults gave it there.
+    # Translations sit beside their sources, so every stub's path: is the root and its lang: picks the pages.
     def llms_files
       homes = @t.pages.select { |p| p.key == "index.md" }.map(&:lang)
       (@t.langs & homes).each_with_object({}) do |lang, h|
         dir = lang == @t.default_lang ? "" : "#{lang}/"
         LLMS.each do |layout|
-          rel = "#{dir}#{layout}.txt"
-          fm = source.default(rel, "lang") ? "lang: #{source.default(rel, "lang")}\n" : ""
-          body = "---\nlayout: #{layout}\n#{fm}path: #{rel}\npermalink: /#{rel}\n---\n"
+          fm = lang == @t.default_lang ? "" : "lang: #{lang}\n"
+          body = "---\nlayout: #{layout}\n#{fm}path: #{layout}.txt\npermalink: /#{dir}#{layout}.txt\n---\n"
           h["#{@t.root}/#{GENERATED}/#{dir}#{layout}.txt"] = body
         end
       end

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: first-page.ja.md
+lang: ja
+path: guides/first-page.ja.md.txt
+permalink: /ja/guides/first-page/index.md
+---

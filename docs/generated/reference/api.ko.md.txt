@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: api.ko.md
+lang: ko
+path: reference/api.ko.md.txt
+permalink: /ko/reference/api/index.md
+---

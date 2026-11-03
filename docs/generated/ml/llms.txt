@@ -1,6 +1,6 @@
 ---
 layout: llms
 lang: ml
-path: ml/llms.txt
+path: llms.txt
 permalink: /ml/llms.txt
 ---

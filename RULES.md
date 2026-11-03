@@ -2,7 +2,7 @@ md-components v1
 
 # md-components rules
 
-Goal: page bodies (`*.md`, `<lang>/*.md`) use only standard GitHub Flavored Markdown (plus GitHub's alert extension) that renders unchanged on github.com. Design comes from layouts, includes, CSS and optional JS. Targets: the GitHub Pages build (`github-pages` gem 232, Jekyll 3.10, kramdown GFM, allowed plugins only, no build scripts) and Jekyll 4.
+Goal: page bodies (`*.md`, and translations such as `*.ko.md` or `<lang>/*.md`) use only standard GitHub Flavored Markdown (plus GitHub's alert extension) that renders unchanged on github.com. Design comes from layouts, includes, CSS and optional JS. Targets: the GitHub Pages build (`github-pages` gem 232, Jekyll 3.10, kramdown GFM, allowed plugins only, no build scripts) and Jekyll 4.
 
 Status: **final** (v1, approved 2026-10-30). `md-components v1` is the name of this Markdown rules standard; changes are listed in `CHANGELOG.md`.
 
@@ -53,7 +53,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 
 ## 3. Localisation
 - Chrome strings use `_data/i18n/<lang>.yml`: `callout.<type>`, `tabs.label`, `status.<value>`, `skip`. Missing keys fall back to English.
-- The same rules apply to `<lang>/*.md`.
+- The same rules apply to translated pages, whether they sit beside their source (`<name>.<lang>.md`) or under `<lang>/`.
 
 ## 3a. Writing direction
 RTL languages (`ar fa he ur yi ps sd ug dv ckb`, by the first subtag of `lang`) get `<html dir="rtl">`; front matter `direction: rtl|ltr` or i18n `direction:` overrides. Theme CSS uses logical properties for inline-start/end; code blocks, inline code and `kbd` stay LTR/isolated. Write the Markdown in logical order; never use bidi control characters to fake layout.
@@ -118,9 +118,9 @@ Stub and generator details:
   - a stub `<name>.md.txt` next to it with only `layout: twin`, `twin_of`, `permalink` and no body (works everywhere). `twin_of` is relative to the stub: `twin_of: install.md` in `guides/install.md.txt`; a path from the site root such as `guides/install.md` fails with "Could not locate the included file". Liquid cannot create output files, so on classic GitHub Pages a stub per page is unavoidable.
     The stub may instead sit at the same relative path under `generated/` when it also sets `path:` to its place beside the page (`path: guides/install.md.txt` in `generated/guides/install.md.txt`); `twin_of` then resolves from that path. This theme's docs site keeps its stubs there, and `--twins` looks in both places.
   Both produce the same page; a stub wins over the generator. `twin: false` opts a page out.
-- Output: `index.md` → `/index.md`, others → `/<dir>/<name>/index.md`; other languages under `/<lang>/`.
+- Output: `index.md` → `/index.md`, others → `/<dir>/<name>/index.md`; other languages under `/<lang>/`. A translation beside its source sets that URL as its `permalink` (`permalink: /ko/guides/install/` in `guides/install.ko.md`), and its twin follows it (`/ko/guides/install/index.md`).
 - Twin body is **byte-identical** to the source minus front matter (no added headers; put extra information in `llms.txt`).
-- `llms.txt` and `llms-full.txt` exist at `/` and under each `/<lang>/`. `llms.txt` follows llmstxt.org: `# Title`, a `>` summary, then `## Section` lists of `- [Name](url): note`. `llms-full.txt` is a common convention, not part of llmstxt.org. Layouts `llms` and `llms-full` generate both from a front-matter-only stub (or the generator adds them); `llms-full.txt` is every page body of that language, byte-identical, separated by a blank line.
+- `llms.txt` and `llms-full.txt` exist at `/` and at `/<lang>/` for each language with pages. `llms.txt` follows llmstxt.org: `# Title`, a `>` summary, then `## Section` lists of `- [Name](url): note`. `llms-full.txt` is a common convention, not part of llmstxt.org. Layouts `llms` and `llms-full` generate both from a front-matter-only stub (or the generator adds them); `llms-full.txt` is every page body of that language, byte-identical, separated by a blank line.
 - The `default` layout adds `<link rel="alternate" type="text/markdown" href=".../index.md">` when the twin exists and `<link rel="describedby" type="text/plain">` to the nearest `/<lang>/llms.txt` or `/llms.txt`.
 - With `--twins` and `modootoday.twins: source`: a front-matter-less page needs a rendered page (`<name>.html` or `<name>/index.html`) and a byte-identical raw copy at its source path.
 - With `--twins`: a missing or non-identical twin is an error (`README.md` and `twin: false` excepted), a stub must use `layout: twin` with an empty body, `llms.txt` must start with `# `, and `llms-full.txt` must contain every page body of its language.

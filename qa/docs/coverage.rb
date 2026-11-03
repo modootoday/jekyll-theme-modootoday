@@ -6,7 +6,7 @@ require_relative "../../lib/modootoday/markdown"
 root = File.expand_path("../..", __dir__)
 reg = YAML.safe_load(File.read("#{root}/docs/_data/components.yml")) || {}
 errs = []
-Dir.glob("#{root}/docs/{,*/}components/kitchen-sink.md").each do |f|
+Dir.glob("#{root}/docs/components/kitchen-sink{,.*}.md").each do |f|
   src = File.read(f)
   fm = Modootoday::Markdown.fm(src)
   used = Array(fm["sections"]).map { |s| s.is_a?(Hash) ? s["c"] : nil }.compact
@@ -23,7 +23,7 @@ errs << "no kitchen-sink page" if Dir.glob("#{root}/docs/components/kitchen-sink
 INLINE = { "alert" => /^> \[!NOTE\]/, "badge" => /`status:available`/, "kbd" => /`kbd:[^`]+`/,
            "figure" => /^!\[[^\]]+\]\([^)]+\)\n\n\*[^*\n]+\*$/, "table" => /^\|.*\|\n\|[-:| ]+\|$/, "code" => /^```\w+$/ }.freeze
 site = ARGV[0] || "#{root}/docs/_site"
-Dir.glob("#{root}/docs/{,*/}components/index.md").reject { |f| f.include?("/_site/") }.each do |f|
+Dir.glob("#{root}/docs/components/index{,.*}.md").each do |f|
   src = File.read(f)
   fm = Modootoday::Markdown.fm(src)
   next errs << "#{f}: must use layout: examples" unless fm["layout"] == "examples"
@@ -40,8 +40,8 @@ Dir.glob("#{root}/docs/{,*/}components/index.md").reject { |f| f.include?("/_sit
     parts = bodies[i].to_s.split(/\n\n/, 3)
     errs << "#{f}: example `#{s["name"]}` needs a one-paragraph description and then the example" if parts.size < 3 || parts[2].strip.empty?
   end
-  rel = f.delete_prefix("#{root}/docs/").delete_suffix("index.md")
-  html = "#{site}/#{rel}index.html"
+  url = fm["permalink"] || "/#{f.delete_prefix("#{root}/docs/").delete_suffix("index.md")}"
+  html = "#{site}#{url}index.html"
   next unless File.exist?(html)
   h = File.read(html)
   ex.each do |n|

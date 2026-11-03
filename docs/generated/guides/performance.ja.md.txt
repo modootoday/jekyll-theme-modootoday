@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: performance.ja.md
+lang: ja
+path: guides/performance.ja.md.txt
+permalink: /ja/guides/performance/index.md
+---

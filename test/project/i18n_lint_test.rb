@@ -72,6 +72,17 @@ class I18nLintTest < Minitest::Test
     assert(errs.any? { |e| e.include?("trailing whitespace") })
   end
 
+  def test_translations_beside_their_source_are_linted
+    FileUtils.mkdir_p("#{@dir}/docs/guides")
+    w("docs/guides/a.ko.md", "테마를 설치해요.\n")
+    w("docs/guides/a.ja.md", "テーマを追加する。\n")
+    w("docs/guides/translation.ko.md", "테마를 설치해요.\n")
+    errs = run_lint
+    assert(errs.any? { |e| e.start_with?("docs/guides/a.ko.md:1: 해요체") }, errs.inspect)
+    assert(errs.any? { |e| e.start_with?("docs/guides/a.ja.md:1: 常体") }, errs.inspect)
+    refute(errs.any? { |e| e.include?("translation.ko.md") }, "the rules page quotes the bad forms")
+  end
+
   def test_sample_pages_keep_their_voice
     w("docs/ko/a.md", "---\nnoindex: true\n---\n오늘 새 기능을 소개해요.\n")
     assert_empty run_lint

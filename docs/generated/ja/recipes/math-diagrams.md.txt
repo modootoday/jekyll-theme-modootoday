@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: math-diagrams.md
-lang: ja
-path: ja/recipes/math-diagrams.md.txt
-permalink: /ja/recipes/math-diagrams/index.md
----

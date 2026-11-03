@@ -1,0 +1,83 @@
+---
+lang: ja
+permalink: /ja/recipes/brand-tokens/
+source_rev: sha256:4052c8745fff
+nav_order: 15
+nav_title: ブランドトークン
+title: ブランドトークン
+description: トークンブリッジでブランドの色とフォントをテーマに反映し、サイトのスタイルシートと先読みするフォントまで厳格な CSP で使います。
+site_css: [/assets/css/brand-demo.css]
+preload:
+  - {href: /assets/fonts/fraunces/fraunces-600-latin.woff2, as: font, type: font/woff2}
+---
+# ブランドトークン
+
+> [!NOTE]
+> このページは[英語の原文](../../../recipes/brand-tokens/)の翻訳です。内容が異なる場合は英語版が優先されます。
+
+このページには、架空のティール色のブランドと、セルフホストした見出しフォントを適用しています。ライトとダークを切り替えて、二つの配色を確認してください。ほかのドキュメントは既定の見た目のままです。
+
+## トークンブリッジ
+
+サイトに `_sass/modootoday/_site.scss` を作ります。テーマはこのファイルを自身の設定より先に読み込むので、ここで設定したマップがコアシートとすべての任意シートのトークンを変えます。インラインになるものはなく、`assets/css/modootoday.scss` を上書きする必要もありません。
+
+```scss
+// _sass/modootoday/_site.scss
+$mt-overrides-base: (font-heading: ("Fraunces", var(--mt-font-sans)), heading-weight: 600);
+$mt-overrides: (
+  primary: #0f766e, primary-foreground: #ffffff, link: #0f766e, link-hover: #115e59,
+  background: #fbfdfc, foreground: #10302c, muted: #eef6f4, muted-foreground: #4b635f, border: #cfe3df
+);
+$mt-overrides-dark: (
+  primary: #2dd4bf, primary-foreground: #042f2b, link: #5eead4, link-hover: #99f6e4,
+  background: #0b1615, foreground: #e3f2ef, muted: #13211f, muted-foreground: #9db5b0, border: #24403b
+);
+```
+
+| マップ | トークン | 出力先 |
+|---|---|---|
+| `$mt-overrides-base` | `font-sans`、`font-mono`、`font-heading`、`heading-weight`、`font-size`、`line-height`、`measure`、`radius` などカラースキームに依存しないトークン | `:root` |
+| `$mt-overrides` | `primary`、`link`、`link-hover`、`background`、`foreground`、`border` などの色トークン | `:root` (ライト) |
+| `$mt-overrides-dark` | ダークモードの同じ色トークン | ダークスキームのセレクター |
+
+色は両方のマップに指定してください。ダークのセレクターはすべての色トークンを出力し直すため、`$mt-overrides` にだけ置いた値はダークモードに反映されません。
+
+このファイルに置けるのはこの三つのマップだけです。ほかの文やテーマにないトークン名があると `modootoday-check` が失敗するので、タイプミスが見過ごされることはありません。
+
+> [!TIP]
+> `font-heading` と `heading-weight` は `h1`〜`h4` に、`link` と `link-hover` は本文のリンクに適用されます。既定値はそれぞれ `font-sans`、650、`primary` に従うため、`primary` だけを変えたサイトでは何も変わりません。
+
+## サイトのスタイルシートとフォント
+
+```yaml
+modootoday:
+  site_css: [/assets/css/site.css]
+  preload:
+    - {href: /assets/fonts/fraunces-600-latin.woff2, as: font, type: font/woff2}
+```
+
+- `site_css` はサイトのシートを、テーマのシートの後、`modootoday.tokens` と `head-custom.html` の前に読み込みます。テーマのファイルと同じ `?v=` クエリが付きます。ページの front matter に `site_css:` を書くと、そのページだけにシートを読み込みます。このページがその例です。`css_layers: true` と組み合わせると、サイトのルールが常にテーマのルールに勝ちます。
+- `preload` はスタイルシートの前に `<link rel="preload">` を出力し、ブラウザーが CSS を読んでいる間にフォントの取得を始めさせます。フォントには `crossorigin` が付きます。URL には `?v=` クエリが付きません。`@font-face` の `url()` と一致している必要があり、違うとブラウザーがフォントを二度ダウンロードします。front matter の `preload:` もページ単位で使えます。
+
+```scss
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/fraunces-600-latin.woff2") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+```
+
+どちらのキーもサイトパスだけを受け付けます。外部のシートは `head-custom.html` から読み込んでください。
+
+## コントラスト
+
+公開する前に両方の配色を確認してください。背景と `muted` の上の本文、背景の上の `primary` と `link`、`primary` の上の `primary-foreground` は 4.5:1 以上が必要です。テーマのドキュメント QA が同じ基準で、このページをライトとダークの両モードで測ります。
+
+## 厳格な CSP で
+
+ブリッジ、`site_css`、`preload` はどれもファイルなので、`default-src 'self'; style-src 'self'` で足ります ([CSP](../csp/) を参照)。`modootoday.tokens` はインラインの `<style>` を出力するため、厳格な CSP のサイトでは値をブリッジに移してください。
+
+## デモのフォント
+
+このページの見出しフォントは [Fraunces](https://github.com/undercasetype/Fraunces) で、SIL Open Font License 1.1 で提供されています。ドキュメントには、ウェイト 600 のインスタンスを一つ、ラテン文字に絞って収録しています。ライセンスと入手元はファイルと同じ `docs/assets/fonts/fraunces/` フォルダーにあります。ほかの文字の見出しは `font-sans` で表示されます。

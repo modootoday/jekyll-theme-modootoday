@@ -88,8 +88,8 @@ module I18nLint
   end
 
   def targets(root, lang)
-    globs = ["docs/#{lang}/**/*.md", "example/#{lang}/**/*.md", "docs/_posts/*-#{lang}.md", "README.#{lang}.md"]
-    globs.flat_map { |g| Dir.glob(g, base: root) }.uniq.sort.reject { |r| r.end_with?("guides/translation.md") } # the rules page quotes the bad forms
+    globs = ["docs/**/*.#{lang}.md", "docs/#{lang}/**/*.md", "example/#{lang}/**/*.md", "docs/_posts/*-#{lang}.md", "README.#{lang}.md"]
+    globs.flat_map { |g| Dir.glob(g, base: root) }.uniq.sort.reject { |r| r.match?(%r{guides/translation(\.[a-z]{2})?\.md\z}) } # the rules page quotes the bad forms
   end
 
   def run(root)

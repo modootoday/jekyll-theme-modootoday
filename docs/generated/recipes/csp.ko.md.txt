@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: csp.ko.md
+lang: ko
+path: recipes/csp.ko.md.txt
+permalink: /ko/recipes/csp/index.md
+---

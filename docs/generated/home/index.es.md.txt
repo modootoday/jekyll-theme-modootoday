@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.es.md
+lang: es
+path: home/index.es.md.txt
+permalink: /es/index.md
+---

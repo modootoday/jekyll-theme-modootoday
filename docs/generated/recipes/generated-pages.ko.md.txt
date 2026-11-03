@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: generated-pages.ko.md
+lang: ko
+path: recipes/generated-pages.ko.md.txt
+permalink: /ko/recipes/generated-pages/index.md
+---

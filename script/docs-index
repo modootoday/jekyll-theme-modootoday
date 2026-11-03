@@ -2,16 +2,29 @@
 # frozen_string_literal: true
 
 # Docs site generator: one source of truth (docs/_data/sections.yml + each page's front matter).
-# Writes docs/_data/nav/main*.yml, the page list in each section index, and under docs/generated/ the .md.txt
-# twin stubs and the llms.txt / llms-full.txt stubs.
-#   ruby script/docs-index          write
-#   ruby script/docs-index --check  fail if anything is out of date (CI)
+# Writes docs/_data/nav/main*.yml, the page list in each section index, lang: and permalink: in each translation
+# (guides/install.ko.md), and under docs/generated/ the .md.txt twin stubs and the llms.txt / llms-full.txt stubs.
+#   ruby script/docs-index                 write
+#   ruby script/docs-index --check         fail if anything is out of date (CI)
+#   ruby script/docs-index --stamp PATH... record that each translation now follows its source (source_rev:)
 require "fileutils"
 require_relative "docs/tree"
 require_relative "docs/outputs"
 
 tree = DocsIndex::Tree.new(File.expand_path("../docs", __dir__))
 out = DocsIndex::Outputs.new(tree)
+if ARGV.first == "--stamp"
+  paths = ARGV.drop(1).map { |p| File.expand_path(p) }
+  abort "usage: ruby script/docs-index --stamp docs/guides/install.ko.md ..." if paths.empty?
+  begin
+    stamped = out.translations.stamp(paths)
+  rescue ArgumentError => e
+    abort "docs-index: #{e.message}"
+  end
+  stamped.each { |p, body| File.write(p, body) }
+  puts "docs-index: #{stamped.size} stamped; run ruby script/docs-index to update the generated files"
+  exit 0
+end
 stale = out.files.reject { |path, body| File.exist?(path) && File.read(path) == body }.keys
 orphans = out.orphans
 if ARGV.include?("--check")

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.ja.md
+lang: ja
+path: layouts/docs-extra/index.ja.md.txt
+permalink: /ja/layouts/docs-extra/index.md
+---

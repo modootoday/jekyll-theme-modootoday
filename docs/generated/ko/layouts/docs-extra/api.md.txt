@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: api.md
-lang: ko
-path: ko/layouts/docs-extra/api.md.txt
-permalink: /ko/layouts/docs-extra/api/index.md
----

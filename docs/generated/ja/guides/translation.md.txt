@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: translation.md
-lang: ja
-path: ja/guides/translation.md.txt
-permalink: /ja/guides/translation/index.md
----

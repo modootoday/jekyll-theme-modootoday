@@ -1,6 +1,6 @@
 ---
 layout: llms
 lang: vi
-path: vi/llms.txt
+path: llms.txt
 permalink: /vi/llms.txt
 ---

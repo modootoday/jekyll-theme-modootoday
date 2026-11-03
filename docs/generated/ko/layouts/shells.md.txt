@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: shells.md
-lang: ko
-path: ko/layouts/shells.md.txt
-permalink: /ko/layouts/shells/index.md
----

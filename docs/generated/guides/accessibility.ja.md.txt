@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: accessibility.ja.md
+lang: ja
+path: guides/accessibility.ja.md.txt
+permalink: /ja/guides/accessibility/index.md
+---

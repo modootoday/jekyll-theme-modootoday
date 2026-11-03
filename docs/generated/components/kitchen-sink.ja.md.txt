@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: kitchen-sink.ja.md
+lang: ja
+path: components/kitchen-sink.ja.md.txt
+permalink: /ja/components/kitchen-sink/index.md
+---

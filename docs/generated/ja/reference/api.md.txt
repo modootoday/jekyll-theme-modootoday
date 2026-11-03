@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: api.md
-lang: ja
-path: ja/reference/api.md.txt
-permalink: /ja/reference/api/index.md
----

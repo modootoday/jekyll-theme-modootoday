@@ -1,6 +1,6 @@
 ---
 layout: llms
 lang: ko
-path: ko/llms.txt
+path: llms.txt
 permalink: /ko/llms.txt
 ---

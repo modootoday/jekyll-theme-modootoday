@@ -1,6 +1,6 @@
 ---
 layout: llms
 lang: fa
-path: fa/llms.txt
+path: llms.txt
 permalink: /fa/llms.txt
 ---

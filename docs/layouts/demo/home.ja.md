@@ -1,0 +1,22 @@
+---
+lang: ja
+permalink: /ja/layouts/demo/home/
+source_rev: sha256:ef4d9f016f6d
+title: ホームレイアウトのデモ
+description: front matter のヒーローの後に本文が続きます。
+layout: home
+twin: false
+sitemap: false
+edit: false
+hero:
+  image: {path: /assets/images/site/hero.webp, alt: "", width: 1024, height: 576}
+  title: Markdown でサイトを作る
+  text: このキットのレイアウトはすべて Liquid だけで書かれ、GitHub Pages でそのまま動きます。
+  actions:
+    - {label: レイアウト, url: /ja/layouts/}
+    - {label: インストール, url: /ja/guides/install/}
+nav_exclude: true
+---
+## 構成
+
+ヒーローは front matter の `hero:` から作られます。その後に本文が続き、レイアウトが WebSite の構造化データを追加します。

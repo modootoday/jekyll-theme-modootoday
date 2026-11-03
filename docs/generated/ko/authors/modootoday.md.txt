@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: modootoday.md
-lang: ko
-path: ko/authors/modootoday.md.txt
-permalink: /ko/authors/modootoday/index.md
----

@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: roadmap.md
-lang: ko
-path: ko/reference/roadmap.md.txt
-permalink: /ko/reference/roadmap/index.md
----

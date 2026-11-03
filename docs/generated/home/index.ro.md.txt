@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.ro.md
+lang: ro
+path: home/index.ro.md.txt
+permalink: /ro/index.md
+---

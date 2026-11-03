@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.pt-BR.md
+lang: pt-BR
+path: home/index.pt-BR.md.txt
+permalink: /pt-BR/index.md
+---

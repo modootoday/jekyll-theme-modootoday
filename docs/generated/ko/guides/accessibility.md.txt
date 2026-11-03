@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: accessibility.md
-lang: ko
-path: ko/guides/accessibility.md.txt
-permalink: /ko/guides/accessibility/index.md
----

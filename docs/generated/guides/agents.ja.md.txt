@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: agents.ja.md
+lang: ja
+path: guides/agents.ja.md.txt
+permalink: /ja/guides/agents/index.md
+---

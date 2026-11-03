@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.ko.md
+lang: ko
+path: news/index.ko.md.txt
+permalink: /ko/news/index.md
+---

@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: structured-data.md
-lang: ja
-path: ja/guides/structured-data.md.txt
-permalink: /ja/guides/structured-data/index.md
----

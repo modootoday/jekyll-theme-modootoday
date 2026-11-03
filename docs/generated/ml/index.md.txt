@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: index.md
-lang: ml
-path: ml/index.md.txt
-permalink: /ml/index.md
----

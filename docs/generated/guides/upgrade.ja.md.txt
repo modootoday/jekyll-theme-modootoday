@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: upgrade.ja.md
+lang: ja
+path: guides/upgrade.ja.md.txt
+permalink: /ja/guides/upgrade/index.md
+---

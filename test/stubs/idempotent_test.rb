@@ -19,4 +19,13 @@ class StubsIdempotentTest < StubsCase
     assert_equal Time.at(0), File.mtime(stamp)
     assert_equal [0], stubs("--twins", "--aliases", "--check").values_at(2)
   end
+
+  def test_sibling_translation_twin_follows_its_permalink
+    file "guide.md", "---\n---\n# Guide\n"
+    file "guide.ja.md", "---\nlang: ja\npermalink: /ja/guide/\n---\n# ガイド\n"
+    o, _, code = stubs("--twins", "--write")
+    assert_equal [0, "modootoday-stubs: 2 written, 0 removed"], [code, o.lines.last.chomp]
+    assert_equal "---\nlayout: twin\ntwin_of: guide.ja.md\npermalink: /ja/guide/index.md\n---\n", read("guide.ja.md.txt")
+    assert_equal ["modootoday-stubs: up to date\n", 0], stubs("--twins", "--write").values_at(0, 2)
+  end
 end

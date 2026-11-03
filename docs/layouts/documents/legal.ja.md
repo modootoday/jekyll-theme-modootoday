@@ -1,0 +1,27 @@
+---
+lang: ja
+permalink: /ja/layouts/documents/legal/
+source_rev: sha256:71e40e33a6c9
+title: "利用規約のデモ"
+description: "サンプルサービスの利用ルールです。"
+layout: legal
+nav_order: 1
+twin: false
+edit: false
+effective: 2026-01-01
+updated: 2026-10-30
+version: "3"
+---
+サービスを利用すると、この規約に同意したことになります。
+
+## サービスの利用
+
+サンプルサービスの利用ルールです。
+
+## あなたのコンテンツ
+
+サービスを利用すると、この規約に同意したことになります。
+
+## 規約の終了
+
+サンプルサービスの利用ルールです。

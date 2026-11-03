@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: brand-tokens.ko.md
+lang: ko
+path: recipes/brand-tokens.ko.md.txt
+permalink: /ko/recipes/brand-tokens/index.md
+---
