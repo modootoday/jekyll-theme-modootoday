@@ -5,6 +5,7 @@ require "tmpdir"
 require "fileutils"
 require "open3"
 require "rbconfig"
+require_relative "../../../lib/modootoday/i18n"
 
 class I18nPagesTest < Minitest::Test
   CHECK = File.expand_path("../../../exe/modootoday-check", __dir__)
@@ -45,6 +46,54 @@ class I18nPagesTest < Minitest::Test
     assert_equal 1, st, out
     out, = run_check
     refute_includes out, "no ko page"
+  end
+
+  def test_directory_translations_report_source_rev
+    site
+    rev = Modootoday::I18n::SourceRev.of(File.read(File.join(@dir, "src/c.md")))
+    out, = run_check("--i18n-pages")
+    assert_includes out, "ko/c.md: no source_rev; once it matches c.md, set source_rev: #{rev}"
+    assert_includes out, "ko/anything.md: no source_rev; once it matches a.md"
+    refute_includes out, "permalink"
+  end
+
+  def sibling_site
+    put("src/_config.yml", "lang: en\nmodootoday:\n  languages: [en, ko]\n  full_languages: [ko]\n")
+    FileUtils.rm_rf(File.join(@dir, "src/ko"))
+    FileUtils.mkdir_p(File.join(@dir, "src/guides"))
+    put("src/index.md", "---\ntitle: Home\n---\n# Home\n")
+    put("src/guides/a.md", "---\ntitle: A\n---\n# A\n\n<!-- spec:docs-index:begin -->\n- x\n<!-- spec:docs-index:end -->\n")
+    put("src/guides/b.md", "---\ntitle: B\npermalink: /bee/\n---\n# B\n")
+    put("src/guides/c.md", "---\ntitle: C\n---\n# C\n")
+    put("src/404.md", "---\ntitle: Not found\npermalink: /404.html\n---\n# Not found\n")
+    put("src/guides/r.md", "---\ntitle: R\nrecord: plugins/r\n---\n")
+    put("src/guides/rs.md", "---\ntitle: Rs\nrecords: plugins\n---\n# Rs\n")
+    FileUtils.mkdir_p(File.join(@dir, "src/_posts"))
+    put("src/_posts/2026-01-01-p.md", "---\ntitle: P\n---\nP\n")
+    rev = ->(f) { Modootoday::I18n::SourceRev.of(File.read(File.join(@dir, "src", f))) }
+    put("src/index.ko.md", "---\nlang: ko\npermalink: /ko/\nsource_rev: #{rev["index.md"]}\ntitle: 홈\n---\n# 홈\n")
+    put("src/guides/a.ko.md", "---\nlang: ko\npermalink: /ko/guides/a/\nsource_rev: sha256:000000000000\ntitle: 가\n---\n# 가\n")
+    put("src/guides/b.ko.md", "---\nlang: ko\npermalink: /ko/guides/b/\nsource_rev: #{rev["guides/b.md"]}\ntitle: 나\n---\n# 나\n")
+  end
+
+  def test_sibling_translations
+    sibling_site
+    out, st = run_check("--i18n-pages")
+    assert_equal 1, st, out
+    assert_includes out, "guides/c.md: no ko page (guides/c.ko.md); ko is in modootoday.full_languages"
+    assert_includes out, "guides/a.ko.md: stale: source guides/a.md changed since sha256:000000000000 (now "
+    assert_includes out, "guides/b.ko.md: permalink /ko/guides/b/ must be /ko/bee/, the URL of guides/b.md under /ko"
+    refute_match(/index\.(ko\.)?md:/, out)
+    refute_match(/404\.md|r\.md|rs\.md|_posts/, out, "posts, records and file URLs are not translated page by page")
+  end
+
+  def test_source_rev_ignores_line_endings_index_lists_and_other_front_matter
+    sibling_site
+    a = File.read(File.join(@dir, "src/guides/a.md"))
+    same = a.gsub("\n", "\r\n").sub("- x", "- y\n- z").sub("title: A", "title: A\nnav_order: 3")
+    assert_equal Modootoday::I18n::SourceRev.of(a), Modootoday::I18n::SourceRev.of(same)
+    refute_equal Modootoday::I18n::SourceRev.of(a), Modootoday::I18n::SourceRev.of(a.sub("title: A", "title: Ay"))
+    assert_match Modootoday::I18n::SourceRev::PATTERN, Modootoday::I18n::SourceRev.of(a)
   end
 
   def test_unknown_ref_and_full_languages_fail

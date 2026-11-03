@@ -81,6 +81,26 @@ class CheckBuildTest < CheckerCase
     refute_match(/p\/index\.md/, check("--twins")[0])
   end
 
+  def test_twins_of_sibling_and_directory_translations
+    write File.join(@src, "_data/i18n/ko.yml"), "skip: 건너뛰기\n"
+    write File.join(@src, "_data/i18n/ja.yml"), "skip: スキップ\n"
+    page "g.md", "---\n---\n# G\n"
+    page "g.ko.md", "---\nlang: ko\npermalink: /ko/g/\n---\n# 지\n"
+    page "ja/g.md", "---\nlang: ja\n---\n# ジ\n"
+    { "" => "# G\n", "ko/" => "# 지\n", "ja/" => "# ジ\n" }.each do |l, body|
+      out "#{l}g/index.md", body
+      out "#{l}llms.txt", "# Site\n"
+      out "#{l}llms-full.txt", body
+    end
+    o, code = check("--twins")
+    assert_equal 0, code, o
+    File.delete(File.join(@site, "ko/llms-full.txt"))
+    File.delete(File.join(@site, "ko/g/index.md"))
+    o, = check("--twins")
+    assert_match(%r{g\.ko\.md: twin missing at .*/ko/g/index\.md}, o)
+    assert_match(%r{ko/llms-full\.txt: missing}, o)
+  end
+
   def test_stub_must_use_twin_layout
     page "a.md", "---\n---\n# A\n"
     page "a.md.txt", "---\nlayout: doc\n---\n"

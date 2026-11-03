@@ -3,8 +3,6 @@
 require_relative "../../lib/modootoday/stubs"
 
 module DocsIndex
-  MARK = "<!-- spec:docs-index:%s -->"
-
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
   # Tool output (twin stubs, llms files) lives under GENERATED, which only this class writes.
   class Outputs
@@ -65,7 +63,7 @@ module DocsIndex
     def index_lists
       @t.pages.select { |p| p.index? && p.section && p.dir != "." }.each_with_object({}) do |idx, h|
         src = File.read(idx.path)
-        b, e = MARK % "begin", MARK % "end"
+        b, e = Modootoday::Markdown::INDEX_MARK % "begin", Modootoday::Markdown::INDEX_MARK % "end"
         next unless src.include?(b) && src.include?(e)
         list = @t.entries(idx.dir, idx.lang).map { |p| "- [#{p.title}](#{rel(idx, p)}) — #{p.fm["description"]}" }
         h[idx.path] = src.sub(/#{Regexp.escape(b)}.*?#{Regexp.escape(e)}/m, "#{b}\n#{list.join("\n")}\n#{e}")

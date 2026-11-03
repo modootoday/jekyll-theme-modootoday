@@ -115,7 +115,7 @@ plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 
 ## 언어
 
-인터페이스 문자열은 `_data/i18n/<lang>.yml`에, 페이지는 `<lang>/`에 둡니다.
+인터페이스 문자열은 `_data/i18n/<lang>.yml`에 둡니다. 번역 페이지는 원문 옆이나 `<lang>/`에 둡니다(아래 참고).
 
 ```yaml
 language: 한국어
@@ -141,9 +141,9 @@ modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to
 modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
 ```
 
-테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙습니다(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있습니다. 페이지 본문은 카탈로그가 아니라 `<lang>/` 아래 Markdown으로 번역합니다.
+테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙습니다(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있습니다. 페이지 본문은 카탈로그가 아니라 Markdown으로 번역하며, 배치는 두 가지입니다. 원문 옆에 두려면 `guides/start.md` 옆에 `guides/start.ko.md`를 만들고 front matter에 `lang: ko`와 `permalink: /ko/guides/start/`를 씁니다. Jekyll은 이 파일 이름에서 그 URL을 만들 수 없기 때문입니다. 폴더에 두려면 `ko/guides/start.md`를 만들고 `defaults` 범위(`path: ko`, `lang: ko`)를 둡니다. 홈 페이지만 번역하는 언어는 `home/index.<lang>.md`(`permalink: /<lang>/`)로 둘 수 있습니다.
 
-경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다.
+경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 페이지 옆의 `<name>.<lang>.md`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다. 글, 레코드 페이지, 레코드 목록, `/404.html`처럼 파일 URL에 있는 페이지는 페이지마다 번역하지 않으므로 빠집니다. 같은 옵션은 각 번역의 `source_rev:`도 읽습니다. 이 값은 번역의 바탕이 된 원문 리비전입니다(원문의 `title`, `description`, `nav_title`과 본문으로 만든 `sha256:`와 16진수 12자리). 이 값이 없거나 그 뒤로 원문이 바뀐 번역은 경고로 알리며, 경고에 현재 값이 함께 나옵니다. 원문 옆에 둔 번역의 `permalink`가 원문 URL 앞에 `/<lang>`을 붙인 값과 다르면 오류입니다.
 
 테마가 아니라 사이트가 정하는 문구도 있습니다. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름입니다(예: `tabs: {label: 설치 방법}`). 스크린 리더가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
 

@@ -34,8 +34,14 @@ module Modootoday
       # jekyll-optional-front-matter AND copied raw to its own path, which then is its twin.
       def source_mode? = mtc.is_a?(Hash) && mtc["twins"] == "source"
 
-      # The language of a page path ("ko/guide" -> "ko") when that language has an i18n file.
-      def lang_of(r) = (r.split("/").first if r.include?("/") && i18n.key?(r.split("/").first))
+      def default_lang = site_cfg["lang"].to_s.empty? ? "en" : site_cfg["lang"].to_s
+      def page_lang = @page_lang ||= Modootoday::I18n::PageLang.new(Array(mtc["languages"]) | i18n.keys, default_lang)
+
+      # A page's language, "" for the default one: front matter, the .<lang>.md suffix or the <lang>/ folder.
+      def lang_of(rel, fm = {})
+        lang = page_lang.of(rel, fm)
+        lang == default_lang ? "" : lang
+      end
     end
   end
 end

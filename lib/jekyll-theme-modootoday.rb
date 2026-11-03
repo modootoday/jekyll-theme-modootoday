@@ -5,7 +5,7 @@
 # Enable with `plugins: [jekyll-theme-modootoday]`. For every Markdown page without a stub it adds the
 # same virtual page a hand-written stub would be:
 #   <name>.md.txt  {layout: twin, twin_of: <name>.md, permalink: /<name>/index.md}
-#   llms.txt / llms-full.txt at the root and in each /<lang>/ directory (layouts llms / llms-full)
+#   llms.txt / llms-full.txt at / and at /<lang>/ for each language with pages (layouts llms / llms-full)
 # so output is identical to the stub-based (GitHub Pages) setup. Existing pages/stubs always win.
 require "jekyll"
 
@@ -47,13 +47,20 @@ module JekyllThemeModootoday
       end
       return unless cfg.fetch("llms", true)
 
-      langs = (site.data["i18n"] || {}).keys.select { |l| Dir.exist?(File.join(site.source, l)) }
-      ([""] + langs).each do |l|
+      ([""] + llms_langs(site, md)).each do |l|
         url = l.empty? ? "/" : "/#{l}/"
         extra = l.empty? ? {} : { "lang" => l }
-        add.call(l, "llms.txt", { "layout" => "llms", "permalink" => "#{url}llms.txt" }.merge(extra))
-        add.call(l, "llms-full.txt", { "layout" => "llms-full", "permalink" => "#{url}llms-full.txt" }.merge(extra))
+        dir = l.empty? || md.none? { |p| p.data["lang"] == l && p.relative_path.start_with?("#{l}/") } ? "" : l
+        add.call(dir, "llms.txt", { "layout" => "llms", "permalink" => "#{url}llms.txt" }.merge(extra))
+        add.call(dir, "llms-full.txt", { "layout" => "llms-full", "permalink" => "#{url}llms-full.txt" }.merge(extra))
       end
+    end
+
+    # Languages with a catalog and at least one page. Pages under <lang>/ keep their llms files there; sibling
+    # translations (install.ko.md) get theirs at the root, where the llms layouts list the whole tree.
+    def llms_langs(site, md)
+      used = md.map { |p| p.data["lang"].to_s }.uniq
+      (site.data["i18n"] || {}).keys.select { |l| used.include?(l) && l != site.config["lang"].to_s }
     end
   end
 end

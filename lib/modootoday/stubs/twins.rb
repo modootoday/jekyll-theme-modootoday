@@ -17,7 +17,7 @@ module Modootoday
       def wanted
         pages.to_h do |p|
           rel = "#{p.rel}.txt"
-          path = @dir ? "#{lang(rel)}path: #{rel}\n" : ""
+          path = @dir ? "#{lang(p)}path: #{rel}\n" : ""
           [File.join(*[@dir, rel].compact), "---\nlayout: twin\ntwin_of: #{p.name}\n#{path}permalink: #{@s.url!(p, p.url)}index.md\n---\n"]
         end
       end
@@ -30,9 +30,9 @@ module Modootoday
 
       private
 
-      # A defaults scope matches the stub's real path, so a moved stub carries the lang its old place gave it.
-      def lang(rel)
-        value = @s.default(rel, "lang")
+      # A defaults scope matches the stub's real path, so a moved stub carries the lang its page has.
+      def lang(page)
+        value = page.fm["lang"] || @s.default(page.rel, "lang")
         value ? "lang: #{value}\n" : ""
       end
     end

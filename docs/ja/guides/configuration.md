@@ -115,7 +115,7 @@ plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 
 ## 言語
 
-UI の文字列は `_data/i18n/<lang>.yml` に、ページは `<lang>/` に置きます。
+UI の文字列は `_data/i18n/<lang>.yml` に置きます。翻訳ページは原文の隣か `<lang>/` に置きます(後述)。
 
 ```yaml
 language: 한국어
@@ -141,9 +141,9 @@ modootoday-check . _site --i18n-init=ko   # optional: copy the theme's ko.yml to
 modootoday-check . _site --i18n           # unknown keys and placeholder mismatches
 ```
 
-テーマにない言語を追加するには、英語のカタログと同じキーで `_data/i18n/<code>.yml` を作り、`languages` にコードを加えます。アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページには `dir="rtl"` が付きます（`ur-Latn` は左から右）。カタログか front matter の `direction: rtl` または `ltr` で上書きできます。ページ本文はカタログではなく、`<lang>/` の Markdown で翻訳します。
+テーマにない言語を追加するには、英語のカタログと同じキーで `_data/i18n/<code>.yml` を作り、`languages` にコードを加えます。アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページには `dir="rtl"` が付きます（`ur-Latn` は左から右）。カタログか front matter の `direction: rtl` または `ltr` で上書きできます。ページ本文はカタログではなく Markdown で翻訳し、置き方は二通りです。原文の隣に置くなら、`guides/start.md` の隣に `guides/start.ko.md` を作り、front matter に `lang: ko` と `permalink: /ko/guides/start/` を書きます。Jekyll はこのファイル名からその URL を作れないためです。フォルダーに置くなら `ko/guides/start.md` を作り、`defaults` のスコープ(`path: ko`、`lang: ko`)を設定します。ホームページだけを翻訳する言語は `home/index.<lang>.md`(`permalink: /<lang>/`)に置けます。
 
-パスが異なる翻訳ページどうしは、front matter に同じ `ref:` を書きます。たとえば `guides/start.md` と `ko/guides/sijak.md` の両方に `ref: guide` を書きます。すると `hreflang` リンクと言語スイッチャーがそのページを使います。`ref:` があって翻訳がないページは `hreflang` から外れ、言語スイッチャーはその言語のホームへ案内します。include とレイアウトでは、`modootoday/link.html` に `ref="guide"` を渡すと、現在の言語の `ref: guide` ページの URL を、なければ既定言語のページの URL を返します(代替しない場合は `exact=true`、完全な URL は `absolute=true`)。どのページにもない `ref=` は `modootoday-check` がエラーにします。`full_languages` を設定すると、`modootoday-check . _site --i18n-pages` がその言語の翻訳(同じ `ref:`、または `<lang>/` 以下の同じパス)がない既定言語のページを警告として表示します。`--strict` と併用すると失敗します。
+パスが異なる翻訳ページどうしは、front matter に同じ `ref:` を書きます。たとえば `guides/start.md` と `ko/guides/sijak.md` の両方に `ref: guide` を書きます。すると `hreflang` リンクと言語スイッチャーがそのページを使います。`ref:` があって翻訳がないページは `hreflang` から外れ、言語スイッチャーはその言語のホームへ案内します。include とレイアウトでは、`modootoday/link.html` に `ref="guide"` を渡すと、現在の言語の `ref: guide` ページの URL を、なければ既定言語のページの URL を返します(代替しない場合は `exact=true`、完全な URL は `absolute=true`)。どのページにもない `ref=` は `modootoday-check` がエラーにします。`full_languages` を設定すると、`modootoday-check . _site --i18n-pages` がその言語の翻訳(同じ `ref:`、ページの隣の `<name>.<lang>.md`、または `<lang>/` 以下の同じパス)がない既定言語のページを警告として表示します。`--strict` と併用すると失敗します。投稿、レコードページ、レコードの一覧、`/404.html` のようにファイルの URL にあるページは、ページごとに翻訳しないので対象外です。同じオプションは各翻訳の `source_rev:` も読みます。これは翻訳のもとになった原文のリビジョンです(原文の `title`、`description`、`nav_title` と本文から作る `sha256:` と 16 進数 12 桁)。この値がない翻訳や、その後に原文が変わった翻訳は警告になり、警告には現在の値が表示されます。原文の隣に置いた翻訳の `permalink` が、原文の URL の前に `/<lang>` を付けた値と違う場合はエラーです。
 
 テーマではなくサイト側で決める文言もあります。`tabs.label` はタブを使うページでタブ一覧に付ける名前です(例: `tabs: {label: インストール方法}`)。スクリーンリーダーが何を切り替えるタブかを読み上げるので、言語ごとのカタログに入れてください。
 

@@ -33,19 +33,16 @@ module Modootoday
         follow_default(ctx)
         registry(ctx) if ctx.option?("--i18n") && File.exist?("#{THEME}/en.yml")
         refs(ctx)
-        pages(ctx) if ctx.option?("--i18n-pages")
+        I18nPages.call(ctx) if ctx.option?("--i18n-pages")
       end
 
-      # Each page as [rel path, front matter, language]: lang: from front matter, else the /<lang>/ folder
-      # when that code is in modootoday.languages, else the default language (site lang).
+      # Each page as [rel path, front matter, language] (Context#page_lang decides the language).
       def page_index(ctx)
-        langs = Array(ctx.mtc["languages"]).map(&:to_s)
-        default = ctx.site_cfg["lang"].to_s.empty? ? "en" : ctx.site_cfg["lang"].to_s
         ctx.mds.map do |f|
           r = ctx.rel(f)
           fm = (Markdown.fm(File.read(f)) rescue {}) || {}
-          dir = r.split("/").first
-          [r, fm, (fm["lang"] || (langs.include?(dir) && r.include?("/") ? dir : default)).to_s]
+          fm = {} unless fm.is_a?(Hash)
+          [r, fm, ctx.page_lang.of(r, fm)]
         end
       end
 
@@ -56,25 +53,6 @@ module Modootoday
         return if uses.empty?
         known = page_index(ctx).map { |_, fm, _| fm["ref"].to_s }.reject(&:empty?)
         uses.each { |r, x| ctx.errs << "#{r}: link.html ref=\"#{x}\": no page has front matter ref: #{x}" unless known.include?(x) }
-      end
-
-      # --i18n-pages: every default-language page has a translation in each modootoday.full_languages language
-      # (the page with the same ref:, or without ref: the same path under <lang>/). Warnings; --strict fails.
-      def pages(ctx)
-        full = Array(ctx.mtc["full_languages"]).map(&:to_s)
-        default = ctx.site_cfg["lang"].to_s.empty? ? "en" : ctx.site_cfg["lang"].to_s
-        return ctx.warns << "--i18n-pages: set modootoday.full_languages to the languages that translate every page" if full.empty?
-        idx = page_index(ctx)
-        have = idx.to_h { |r, fm, l| [[l, fm["ref"] ? "ref:#{fm['ref']}" : r], true] }
-        idx.each do |r, fm, l|
-          next unless l == default && fm["layout"] != "twin"
-          full.each do |fl|
-            next if fl == default
-            key = fm["ref"] ? "ref:#{fm['ref']}" : "#{fl}/#{r}"
-            next if have[[fl, key]]
-            ctx.warns << "#{r}: no #{fl} page (#{fm['ref'] ? "ref: #{fm['ref']}" : "#{fl}/#{r}"}); #{fl} is in modootoday.full_languages"
-          end
-        end
       end
 
       def init(ctx)
@@ -93,7 +71,7 @@ module Modootoday
 
       # Translations follow the default language: a translated key must exist in the default file or the
       # theme registry; a key the default file has that a translation lacks (and the theme does not ship
-      # for that language) is a warning; a page under <lang>/ needs a default-language page.
+      # for that language) is a warning; a page under <lang>/ or named x.<lang>.md needs a default-language page.
       def follow_default(ctx)
         bl = base_lang(ctx)
         return unless (base = ctx.i18n[bl])
@@ -106,9 +84,9 @@ module Modootoday
           (keys(base) - keys(h) - theme_keys(lang)).each { |k| ctx.warns << "_data/i18n/#{lang}.yml: missing key '#{k}' (falls back to #{bl})" }
           ctx.mds.each do |f|
             r = ctx.rel(f)
-            next unless r.start_with?("#{lang}/")
+            next unless r.start_with?("#{lang}/") || ctx.page_lang.suffix(r) == lang
 
-            en = r.delete_prefix("#{lang}/")
+            en = ctx.page_lang.source(r)
             ctx.warns << "#{r}: no #{bl} page at #{en} (translations follow the canonical page)" unless File.exist?("#{ctx.src}/#{en}")
           end
         end

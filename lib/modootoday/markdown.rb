@@ -9,12 +9,16 @@ module Modootoday
   module Markdown
     FM = /\A---\r?\n(.*?\r?\n)?---\r?\n/m
     FENCE_OPEN = /^( {0,3})(`{3,}|~{3,})(.*)$/
+    # The page list script/docs-index writes into a section index page.
+    INDEX_MARK = "<!-- spec:docs-index:%s -->"
+    INDEX_LIST = /#{Regexp.escape(INDEX_MARK % "begin")}.*?#{Regexp.escape(INDEX_MARK % "end")}/m
 
     module_function
 
     def front_matter?(t) = t.match?(FM)
     def fm(t) = (m = t[FM]) ? (YAML.safe_load(m.sub(/\A---\r?\n/, "").sub(/---\r?\n\z/, ""), permitted_classes: [Date, Time]) || {}) : {}
     def body(t) = t.sub(FM, "")
+    def strip_index_lists(t) = t.gsub(INDEX_LIST, "")
 
     # Blank out fenced code (CommonMark: closing fence = same char, length >= opener), keep line count.
     # Yields [line_no, info_string] for every opening fence.

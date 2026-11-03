@@ -18,6 +18,19 @@ class CheckRegistryTest < CheckerCase
     refute_includes o, "ko/a.md: no en page"
   end
 
+  def test_sibling_translation_needs_its_source
+    page "guides/a.md", "---\ntitle: A\n---\n# A\n"
+    page "guides/a.ko.md", "---\ntitle: A\n---\n# A\n"
+    page "guides/b.ko.md", "---\ntitle: B\n---\n# B\n"
+    page "home/index.ko.md", "---\ntitle: H\n---\n# H\n"
+    write File.join(@src, "_data/i18n/en.yml"), "skip: Skip\n"
+    write File.join(@src, "_data/i18n/ko.yml"), "skip: 건너뛰기\n"
+    o, = check
+    assert_includes o, "guides/b.ko.md: no en page at guides/b.md"
+    assert_includes o, "home/index.ko.md: no en page at index.md"
+    refute_includes o, "guides/a.ko.md: no en page"
+  end
+
   def test_components_registry
     write File.join(@src, "_data/components.yml"), "features: {params: {cols: {allowed: [2, 3], required: true}}}\ntabs: {i18n: [tabs.label, hero.cta]}\n"
     write File.join(@src, "_data/i18n/en.yml"), "callout: {}\n"
