@@ -37,7 +37,7 @@ module LayoutSite
 
   def main_node(site, name) = graph(site, name).find { |n| n["@id"].to_s.end_with?("#main") }
 
-  def check(src, site)
-    Open3.capture2e(RbConfig.ruby, "#{ROOT}/exe/modootoday-check", src, site, chdir: ROOT)
+  def check(src, site, *flags)
+    Open3.capture2e(RbConfig.ruby, "#{ROOT}/exe/modootoday-check", src, site, *flags, chdir: ROOT)
   end
 end

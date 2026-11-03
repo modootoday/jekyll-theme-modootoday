@@ -55,5 +55,5 @@ Keep the HTML on a short TTL, so visitors pick up the new `?v=` soon after you d
 The theme's CI fails a change that makes pages heavier than its budgets:
 
 - each stylesheet, the core CSS one page links, and all core scripts together (gzip);
-- the gzip bytes of the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase, page with a module script visual), modules they import included;
+- the gzip bytes of the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase, page with a module script visual, page with a list filter, record page), modules they import included;
 - a [strict Content Security Policy](../../recipes/csp/) on sample pages, with zero violations ([demo](../../layouts/demo/csp/)).

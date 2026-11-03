@@ -60,7 +60,7 @@ jobs:
       - name: Build example
         run: bundle exec jekyll build -s example -d example/_site
       - name: Check example
-        run: bundle exec ruby exe/modootoday-check example example/_site ${{ matrix.check_flags }}
+        run: bundle exec ruby exe/modootoday-check example example/_site --byte-exact=api ${{ matrix.check_flags }}
       - name: Structured data on the example (url overlay)
         run: |
           printf 'url: https://example.com\n' > "$RUNNER_TEMP/url.yml"
@@ -92,21 +92,37 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.4"
-      # The example with both URL aliases on: stubs written by modootoday-stubs, built by the real Pages builder.
+      # The example with both URL aliases on: stubs (twins, aliases, record pages) written by modootoday-stubs, built by the real Pages builder.
       - name: Make remote_theme site from example
         run: |
           mkdir -p /tmp/rt && cp -r example/. /tmp/rt/ && rm -f /tmp/rt/Gemfile
-          sed -i '/^theme:/d;/^remote_theme:/d' /tmp/rt/_config.yml
-          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\nmodootoday: {aliases: {md: true, html: true}}\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
+          sed -i '/^theme:/d;/^remote_theme:/d;s/^modootoday:$/modootoday:\n  aliases: {md: true, html: true}/' /tmp/rt/_config.yml
+          grep -q '^  aliases: {md: true, html: true}$' /tmp/rt/_config.yml
+          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
           rm -rf rt-src && mv /tmp/rt rt-src
-          ruby exe/modootoday-stubs rt-src --twins --aliases --write
-          ruby exe/modootoday-stubs rt-src --twins --aliases --check
+          ruby exe/modootoday-stubs rt-src --twins --aliases --records --write
+          ruby exe/modootoday-stubs rt-src --twins --aliases --records --check
       - uses: actions/jekyll-build-pages@v1
         with:
           source: rt-src
           destination: rt-site
       - name: Check output
-        run: ruby exe/modootoday-check rt-src rt-site --twins --aliases
+        run: ruby exe/modootoday-check rt-src rt-site --twins --aliases --byte-exact=api
+
+  # 250 and 1,000 record pages (qa/bench/records.rb) built by the Pages builder image; fails over 300 s, half the Pages limit.
+  records-bench:
+    name: records benchmark (github-pages 232)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      - name: Build 250 and 1,000 records (times in the job summary)
+        run: ruby qa/bench/records.rb --records 250,1000 --limit 300 --work "$RUNNER_TEMP/bench"
 
   js:
     runs-on: ubuntu-24.04

@@ -9,7 +9,9 @@ module Modootoday
       def apply(source, changes)
         changes.each do |c|
           file = source.path(c.path)
-          c.content.nil? ? File.delete(file) : File.binwrite(file, c.content)
+          next File.delete(file) if c.content.nil?
+          FileUtils.mkdir_p(File.dirname(file))
+          File.binwrite(file, c.content)
         end
       end
     end

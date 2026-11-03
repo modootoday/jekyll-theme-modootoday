@@ -78,8 +78,8 @@ class ConsumerTest < Minitest::Test
       File.write("#{src}/_sass/modootoday/_site.scss", "$mt-overrides-base: (font-heading: (Georgia, serif));\n$mt-overrides-dark: (primary: #fbbf24);\n")
       File.write("#{src}/assets/css/site.css", ".site-sheet { color: blue; }\n")
       File.write("#{src}/assets/fonts/x.woff2", "")
-      File.write("#{src}/_config.yml", File.read("#{src}/_config.yml") +
-                 "modootoday: {site_css: [/assets/css/site.css], preload: [{href: /assets/fonts/x.woff2, as: font, type: font/woff2}]}\n")
+      File.write("#{src}/_config.yml", File.read("#{src}/_config.yml").sub("modootoday:\n",
+                 "modootoday:\n  site_css: [/assets/css/site.css]\n  preload: [{href: /assets/fonts/x.woff2, as: font, type: font/woff2}]\n"))
       build(src, "#{d}/out")
       out, st = check(src, "#{d}/out")
       assert st.success?, out

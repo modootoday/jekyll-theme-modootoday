@@ -38,7 +38,7 @@ items:
 - `integrations`: `category`
 - `portfolio`: `tags`(リスト)
 
-複数のページで同じ一覧を使うには `_data/team.yml` に置き、`items:` の代わりに `data: team` と書きます。
+複数のページで同じ一覧を使うには `_data/team.yml` に置き、`items:` の代わりに `data: team` と書きます。項目ごとにページも用意するには、レコードセットを宣言して `records: <set>` と書きます。各カードがレコードのページにリンクします ([生成ページ](../../recipes/generated-pages/)を参照)。
 
 ## 絞り込み
 

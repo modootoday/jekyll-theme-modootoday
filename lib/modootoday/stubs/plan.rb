@@ -11,13 +11,15 @@ module Modootoday
     class Plan
       attr_reader :kinds
 
-      def initialize(source, kinds, prune: true)
-        @s, @kinds, @prune = source, kinds, prune
+      def initialize(source, kinds, prune: true, args: {})
+        @s, @kinds, @prune, @args = source, kinds, prune, args
       end
 
       def changes
         @changes ||= begin
-          gens = kinds.map { |k| GENERATORS.fetch(k).new(@s) }
+          gens = kinds.map { |k| GENERATORS.fetch(k).new(@s, **@args.fetch(k, {})) }
+          rec = gens.find { |g| g.is_a?(Records) }
+          @s.overlay(rec.wanted, rec.orphans) if rec && gens.size > 1
           wanted = gens.map(&:wanted)
           clash = wanted.flat_map(&:keys).tally.select { |_, n| n > 1 }.keys
           raise DataError, "#{clash.first}: wanted by two stub kinds (rename the page)" unless clash.empty?

@@ -8,7 +8,8 @@ list and one section each (h2 with the name in code, the signature, the text, si
 Opt-in: sidebar: true puts the contents in a sticky side column (members grouped by group, in order of first use; CSS only, a plain
 list on narrow screens). packages: [{name, version, text, url, links: [{label, url}]}] adds a package table (packages.html) before the body;
 packages_position: after puts it after the body, packages_compact: true leaves out each package's text. The body converts GitHub alerts,
-badges, kbd and figures like the doc layout (modootoday/markdown/components.html).{%- endcomment -%}
+badges, kbd and figures like the doc layout (modootoday/markdown/components.html). A record page (record: set/key) adds the
+record's facts after the head and its Markdown body before the page body (modootoday/records/).{%- endcomment -%}
 {%- include modootoday/config.html -%}
 {%- assign _badges = mt_badges -%}{%- if page.badges == false -%}{%- assign _badges = false -%}{%- endif -%}{%- unless mt_components contains "badge" -%}{%- assign _badges = false -%}{%- endunless -%}
 {%- assign _fig = false -%}{%- if mt_components contains "figure" -%}{%- assign _fig = true -%}{%- endif -%}
@@ -16,6 +17,7 @@ badges, kbd and figures like the doc layout (modootoday/markdown/components.html
 {%- capture _pkgs %}{% if page.packages %}{% include modootoday/docs-extra/packages.html items=page.packages caption=page.packages_title compact=page.packages_compact %}{% endif %}{% endcapture -%}
 <article aria-labelledby="mt-dx-title"{% if page.sidebar %} class="mt-dx-api"{% endif %}>
 {%- include modootoday/docs-extra/head.html %}
+{%- if page.record %}{% include modootoday/records/lookup.html %}{% include modootoday/records/facts.html %}{% endif %}
 {%- if page.sidebar and page.members.size > 0 %}
 <nav class="mt-dx-side" aria-label="{{ mt_t_layouts_contents }}"><ul>
 {%- assign _groups = page.members | group_by: "group" %}{% for g in _groups %}
@@ -26,7 +28,7 @@ badges, kbd and figures like the doc layout (modootoday/markdown/components.html
 <nav class="mt-dx-toc" aria-label="{{ mt_t_layouts_contents }}"><ul>{% for m in page.members %}<li><a href="#{{ m.id | default: m.name | slugify }}"><code>{{ m.name }}</code></a></li>{% endfor %}</ul></nav>
 {%- endif %}
 {%- unless page.packages_position == "after" %}{{ _pkgs }}{% endunless %}
-<div class="mt-dx-body">
+<div class="mt-dx-body">{%- if page.record %}{% include modootoday/records/body.html %}{% endif %}
 {% include modootoday/markdown/components.html content=content lang=page.lang badges=_badges figure=_fig kbd=_kbd %}
 </div>
 {%- if page.packages_position == "after" %}{{ _pkgs }}{% endif %}

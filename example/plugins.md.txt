@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: plugins.md
+permalink: /plugins/index.md
+---

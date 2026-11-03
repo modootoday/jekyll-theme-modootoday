@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "lantern",
+    "name": "Lantern",
+    "summary": "Highlights the section a reader came to from a search result.",
+    "category": "Reading",
+    "version": "2.1.0",
+    "tags": ["search", "navigation"],
+    "readme": "Lantern reads the words a reader searched for and marks the first section that contains them.\n\n## Use\n\nAdd the plugin and build the site again. Nothing else changes.\n\n- Works without JavaScript turned on: the page stays as it is.\n- Respects `prefers-reduced-motion`."
+  },
+  {
+    "slug": "ledger",
+    "name": "Ledger",
+    "summary": "Keeps a changelog page from the release notes in your repository.",
+    "category": "Publishing",
+    "version": "1.4.2",
+    "tags": ["changelog", "releases"],
+    "readme": "Ledger turns `CHANGELOG.md` sections into one page per release.\n\n## Use\n\nKeep your changelog in the [Keep a Changelog](https://keepachangelog.com/) shape. Ledger does the rest."
+  },
+  {
+    "slug": "compass",
+    "name": "Compass",
+    "summary": "Adds a page map to long guides.",
+    "category": "Reading",
+    "version": "0.9.0",
+    "tags": ["navigation"],
+    "readme": "Compass lists the headings of a long guide in a side column.\n\n> Compass is a sample record: the theme ships no such plugin."
+  },
+  {
+    "slug": "stamp",
+    "name": "Stamp",
+    "summary": "Prints the last-updated date from the commit history.",
+    "category": "Publishing",
+    "version": "3.0.1",
+    "tags": ["dates"],
+    "readme": "Stamp reads the last commit that touched each page and prints its date under the title."
+  },
+  {
+    "slug": "relay",
+    "name": "Relay",
+    "summary": "Sends new posts to a feed reader service.",
+    "category": "Feeds",
+    "version": "1.0.0",
+    "tags": ["feeds", "posts"],
+    "readme": "Relay pings your feed reader service after each build so new posts show up sooner."
+  }
+]

@@ -26,7 +26,8 @@ description: このテーマがサイト向けに文書化している名前、�
 | include | `modootoday/t.html`（`key=`、任意の `n=` / `name=`）はページの言語でテーマの文言を出力します |
 | データファイル | `_data/i18n/<lang>.yml` のキー（組み込みカタログを上書きする場合のみ）、`_data/nav/<name>.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |
-| スタブ作成 | `modootoday-stubs` のオプション、スタブのファイル名 (`<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`) とその front matter、終了コード 0 (することなし、プレビューまたは書き込み済み)、1 (`--check` が差分を検出)、2 (使い方または `_config.yml`)、3 (データ) |
+| レコードのページ | `modootoday.records` ([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリーページの `records: <set>`、情報の一覧 `dl.mt-detail-facts.mt-record-facts` |
+| スタブ作成 | `modootoday-stubs` のオプション、スタブのファイル名 (`<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md`) とその front matter、終了コード 0 (することなし、プレビューまたは書き込み済み)、1 (`--check` が差分を検出)、2 (使い方または `_config.yml`)、3 (データ) |
 
 ## Markdown のルール
 

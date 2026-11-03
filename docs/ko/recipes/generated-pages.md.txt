@@ -1,0 +1,5 @@
+---
+layout: twin
+twin_of: generated-pages.md
+permalink: /ko/recipes/generated-pages/index.md
+---

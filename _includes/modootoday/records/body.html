@@ -1,0 +1,3 @@
+{%- comment -%}Body of a record page (after records/lookup.html): the Markdown field the set's body: names, converted.{%- endcomment -%}
+{%- assign _rb = mt_rec_set.body -%}
+{%- if _rb and mt_rec[_rb] -%}{{ mt_rec[_rb] | markdownify }}{%- endif -%}

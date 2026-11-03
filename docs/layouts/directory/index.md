@@ -38,7 +38,7 @@ Each item needs `title` or `name`. All items take `url`, `text`, `image`, `alt`,
 - `integrations`: `category`
 - `portfolio`: `tags` (a list)
 
-To share a list between pages, put it in `_data/team.yml` and write `data: team` instead of `items:`.
+To share a list between pages, put it in `_data/team.yml` and write `data: team` instead of `items:`. To give each item its own page as well, declare a record set and write `records: <set>`: every card then links to its record page (see [Generated pages](../../recipes/generated-pages/)).
 
 ## Filter
 

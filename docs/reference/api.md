@@ -23,7 +23,8 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Includes | `modootoday/t.html` (`key=`, optional `n=` / `name=`) prints a theme label for the page language |
 | Data files | `_data/i18n/<lang>.yml` keys (optional overrides of the built-in catalogs), `_data/nav/<name>.yml`, `_data/components.yml` |
 | Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
-| Stub writer | the `modootoday-stubs` options, the stub file names (`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`) and their front matter, exit codes 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data) |
+| Record pages | `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts` |
+| Stub writer | the `modootoday-stubs` options, the stub file names (`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, record pages `<dir>/<key>.md`) and their front matter, exit codes 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data) |
 
 ## Markdown rules
 

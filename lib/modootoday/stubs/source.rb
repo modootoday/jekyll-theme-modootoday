@@ -47,6 +47,19 @@ module Modootoday
         end
       end
 
+      # Pages as they will be once planned record pages are written and orphan ones deleted, so other kinds plan
+      # for them in the same run.
+      def overlay(planned, gone)
+        drop = planned.keys + gone
+        @pages = (pages.reject { |p| drop.include?(p.rel) } + planned.map { |r, text| Page.new(r, front_matter(r, text)) }).sort_by(&:rel)
+      end
+
+      # The front matter of a file in SRC, or nil when it has none.
+      def front_matter_of(rel)
+        text = File.read(path(rel))
+        front_matter(rel, text) if text.match?(FM)
+      end
+
       def url!(page, url)
         return url if url.match?(SAFE_URL) && !url.split("/").include?("..")
         raise DataError, "#{page.rel}: unsafe permalink #{url.inspect}"

@@ -48,4 +48,25 @@ class DetailLayoutsTest < Minitest::Test
       ["employment must be one of", "set location:", "starts must be a date", "set venue:", "episode must be a number"].each { |m| assert_includes out, m }
     end
   end
+
+  # The example's records (_data/plugins.json, plugins/*.md): facts, Markdown body, directory cards and a stale record_index.
+  def test_record_pages
+    Dir.mktmpdir do |d|
+      stale = "title: Ledger\nlayout: reference\npermalink: /refs/ledger/\nrecord: plugins/ledger\nrecord_index: 0\ntwin: false\n"
+      src, s = build_site(d, { "refs/ledger.md" => [stale, ""] })
+      h = html(s, "plugins/lantern.md")
+      assert_match(%r{<dl class="mt-detail-facts mt-record-facts"><div><dt>Category</dt><dd>Reading</dd></div><div><dt>Version</dt><dd>2\.1\.0</dd></div>}, h)
+      assert_includes h, '<dt>Tags</dt><dd><ul class="mt-detail-tags"><li>search</li><li>navigation</li></ul></dd>'
+      assert_match(%r{<div class="mt-detail-body"><p>Lantern reads .*<h2 id="use">Use</h2>}m, h)
+      assert_includes h, '<p class="mt-detail-lead">Highlights the section a reader came to from a search result.</p>'
+      assert_match(%r{<div class="mt-dx-body"><p>Ledger turns}, html(s, "refs/ledger.md"), "where finds the record when the index is stale")
+      list = html(s, "plugins.md")
+      assert_includes list, '<a href="/plugins/lantern/">Lantern</a>'
+      assert_includes list, '<p class="mt-dir-text">Sends new posts to a feed reader service.</p>'
+      assert_includes list, '<p class="mt-dir-meta">Publishing</p>'
+      assert_equal File.read("#{ROOT}/example/_data/plugins.json"), File.read("#{ROOT}/docs/_data/plugins.json"), "the docs demo uses the example records"
+      out, st = check(src, s, "--byte-exact=api")
+      assert st.success?, out
+    end
+  end
 end

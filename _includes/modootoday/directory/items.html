@@ -1,4 +1,9 @@
-{%- comment -%}Sets mt_items for a directory page: front matter items:, else site.data[<data:>] (a list, or a map with an items list).{%- endcomment -%}
-{%- assign mt_items = include.page.items -%}
+{%- comment -%}Sets mt_items for a directory page: front matter items:, else site.data[<data:>] (a list, or a map with an items list),
+else the data of the modootoday.records set records: names; then mt_dir_rset is that set, which links each card to its record page.{%- endcomment -%}
+{%- assign mt_items = include.page.items -%}{%- assign mt_dir_rset = nil -%}
 {%- if mt_items == nil and include.page.data -%}{%- assign _d = site.data[include.page.data] -%}{%- assign mt_items = _d.items | default: _d -%}{%- endif -%}
+{%- if mt_items == nil and include.page.records -%}{%- assign mt_dir_rset = site.modootoday.records[include.page.records] -%}
+{%- assign _dn = mt_dir_rset.data | default: include.page.records -%}{%- assign _d = site.data[_dn] -%}{%- assign mt_items = _d.items | default: _d -%}
+{%- assign mt_dir_rkey = mt_dir_rset.key | default: "slug" -%}{%- assign mt_dir_rurl = mt_dir_rset.dir | default: include.page.records | prepend: "/" | append: "/:key/" -%}
+{%- if mt_dir_rset.permalink -%}{%- assign mt_dir_rurl = mt_dir_rset.permalink -%}{%- endif -%}{%- endif -%}
 {%- assign mt_items = mt_items | default: "" -%}

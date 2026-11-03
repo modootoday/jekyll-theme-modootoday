@@ -1,0 +1,14 @@
+{%- comment -%}Facts of a record page (after records/lookup.html): each field in the set's facts: list that the record has, labelled
+from labels: or the field name. A list value prints as tags. Data can come from anywhere, so values are escaped.{%- endcomment -%}
+{%- capture _rf -%}
+{%- for _f in mt_rec_set.facts -%}{%- assign _v = mt_rec[_f] -%}
+{%- if _v != nil and _v != "" -%}
+{%- assign _lb = _f | replace: "_", " " | capitalize -%}{%- if mt_rec_set.labels[_f] -%}{%- assign _lb = mt_rec_set.labels[_f] -%}{%- endif -%}
+<div><dt>{{ _lb | escape }}</dt><dd>{% if _v.first %}<ul class="mt-detail-tags">{% for _s in _v %}<li>{{ _s | escape }}</li>{% endfor %}</ul>{% else %}{{ _v | escape }}{% endif %}</dd></div>
+{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign _rf = _rf | strip -%}
+{%- if _rf != "" %}
+<dl class="mt-detail-facts mt-record-facts">{{ _rf }}</dl>
+{%- endif -%}

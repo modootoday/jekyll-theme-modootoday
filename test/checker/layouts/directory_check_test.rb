@@ -47,7 +47,16 @@ class DirectoryCheckTest < Minitest::Test
     assert_fails "layout: jobs\ndata: nope\n", "data: nope has no file in _data"
   end
 
-  def test_items_or_data_required = assert_fails("layout: portfolio\n", "set items: (a list) or data:")
+  def test_items_or_data_required = assert_fails("layout: portfolio\n", "set items: (a list), data: (a file in _data) or records:")
+
+  def test_records_names_a_declared_set
+    File.write(File.join(@src, "_config.yml"), "modootoday: {records: {tools: {title: name}}}\n")
+    File.write(File.join(@src, "_data", "tools.json"), "[]\n")
+    page "layout: integrations\nrecords: tools\n"
+    o, code = check
+    assert_equal 0, code, o
+    assert_fails "layout: integrations\nrecords: nope\n", "records: nope is not a set in modootoday.records"
+  end
   def test_item_needs_name = assert_fails("layout: team\nitems:\n  - {role: X}\n", "items[0] needs title or name")
   def test_event_needs_date = assert_fails("layout: events\nitems:\n  - {title: A}\n", "items[0].date must be a date")
   def test_bad_url = assert_fails("layout: sponsors\nitems:\n  - {name: A, url: example.com}\n", "items[0].url must be")

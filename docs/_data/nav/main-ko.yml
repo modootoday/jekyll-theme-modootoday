@@ -77,6 +77,7 @@
     - {title: 브랜드 토큰, url: /ko/recipes/brand-tokens/}
     - {title: CSP, url: /ko/recipes/csp/}
     - {title: 검색, url: /ko/recipes/search/}
+    - {title: 생성 페이지, url: /ko/recipes/generated-pages/}
     - {title: 제품 사이트, url: /ko/recipes/marketing/}
     - {title: 회사 페이지, url: /ko/recipes/company/}
     - {title: 문서 사이트, url: /ko/recipes/docs/}

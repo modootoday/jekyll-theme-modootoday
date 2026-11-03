@@ -33,6 +33,9 @@ modootoday:
   # demo only: the hero module of the script visual demo page (layouts/demo/orbit)
   scripts:
     orbit: {src: /assets/js/hero/orbit.js, css: /assets/css/orbit.css}
+  # demo only: one page per record of _data/plugins.json (recipes/records), written by modootoday-stubs docs --records --write
+  records:
+    plugins: {dir: recipes/records, title: name, description: summary, facts: [category, version, tags], body: readme}
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {path: "zh-CN"}, values: {lang: zh-CN}}

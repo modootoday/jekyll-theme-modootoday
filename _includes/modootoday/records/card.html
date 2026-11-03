@@ -1,0 +1,5 @@
+{%- comment -%}A directory card for a record (directory/items.html with records:): links to the record page, and takes the title
+and text from the fields the set names when the record has no title, name, url or text of its own.{%- endcomment -%}
+{%- unless _iurl -%}{%- assign _iurl = mt_dir_rurl | replace: ":key", include.it[mt_dir_rkey] -%}{%- endunless -%}
+{%- assign _rt = mt_dir_rset.title | default: "title" -%}{%- assign _name = _name | default: include.it[_rt] -%}
+{%- assign _rs = mt_dir_rset.description | default: "description" -%}{%- assign _itext = _itext | default: include.it[_rs] -%}

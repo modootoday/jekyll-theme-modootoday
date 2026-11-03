@@ -6,7 +6,7 @@ export const WIDTHS = [360, 768, 1024, 1440];
 export const SCHEMES = ["light", "dark"];
 export const PAGES = ["", "guides/install/", "guides/first-page/", "components/", "components/kitchen-sink/", "guides/configuration/", "guides/customize/", "guides/agents/", "reference/changelog/", "tags/", "categories/", "blog/", "news/", "authors/modootoday/", "layouts/demo/minimal/", "layouts/demo/wide/", "layouts/demo/home/", "layouts/demo/error/", "layouts/demo/search/", "layouts/directory/", "layouts/directory/portfolio/", "layouts/directory/team/", "layouts/directory/jobs/", "layouts/directory/events/", "layouts/directory/sponsors/", "layouts/directory/integrations/", "layouts/detail/", "layouts/detail/project/", "layouts/detail/job/", "layouts/detail/event/", "layouts/detail/episode/", "layouts/marketing/", "layouts/marketing/feature/", "layouts/marketing/pricing/", "layouts/marketing/brand/", "layouts/marketing/links/", "layouts/marketing/contact/", "layouts/docs-extra/", "layouts/docs-extra/reference/", "layouts/docs-extra/changelog/", "layouts/docs-extra/roadmap/", "layouts/docs-extra/glossary/", "layouts/docs-extra/hub/", "layouts/docs-extra/course/", "layouts/docs-extra/book/", "layouts/docs-extra/api/", "layouts/documents/", "layouts/documents/legal/", "layouts/documents/resume/", "layouts/blog-news/", "layouts/blog-news/blog/", "layouts/blog-news/post/", "layouts/blog-news/news/", "layouts/blog-news/article/", "layouts/blog-news/archive/", "recipes/docs/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/"];
 export const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only: dir="rtl" mirroring checks
-export const EN_ONLY = ["guides/2026/10/28/archives/", "layouts/demo/error-rtl/"]; // a sample post (post layout + footer term links); URLs differ per language
+export const EN_ONLY = ["guides/2026/10/28/archives/", "layouts/demo/error-rtl/", "recipes/records/", "recipes/records/lantern/"]; // a sample post (post layout + footer term links), URLs differ per language; the records demo is English only
 // Core (every page) and the optional blog/news bundle (post, blog, news, news-article, author and archive layouts only), budgeted apart.
 export const BLOG_FILES = ["css/modootoday-blog.css", "js/modootoday/share.js"];
 // css: core CSS one page links in total; js_total: all core scripts, gzip bytes; blog-*: the blog bundle (docs site build, sass style: compressed)
@@ -22,11 +22,14 @@ export const PAGE_TYPES = {
   // A doc page with a script: visual: its site module and the theme helpers it imports (measured 9444 / 6120 B).
   visual: { pages: ["layouts/demo/orbit/"], css: 10.25 * 1024, js: 6.75 * 1024 },
   // A doc page with filter: on a list and a table: filter.js and the modules it imports (measured 9482 / 6784 B).
-  filter: { pages: ["layouts/demo/filter/"], css: 10.25 * 1024, js: 7.5 * 1024 },
+  // The records demo list (a directory with filter_text: true) loads the same filter modules (measured 9637 / 5376 B).
+  filter: { pages: ["layouts/demo/filter/", "recipes/records/"], css: 10.25 * 1024, js: 7.5 * 1024 },
+  // A record page (modootoday-stubs --records, layout: detail): the detail bundle and the core scripts (measured 8425 / 3076 B).
+  record: { pages: ["recipes/records/lantern/"], css: 9.25 * 1024, js: 3.5 * 1024 },
 };
 // Pages the CSP audit (csp.mjs) opens under a strict Content-Security-Policy header; a feature with a demo page adds it here.
 // The kitchen sink stays out: it embeds a third-party frame and aligned table columns (kramdown writes style attributes).
-export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blog/", "layouts/demo/search/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/"];
+export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blog/", "layouts/demo/search/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/", "recipes/records/", "recipes/records/lantern/"];
 // Pages whose token palette the contrast check (contrast.mjs) measures in each scheme: the theme default, the brand tokens recipe
 // and the GitHub code colours (code_theme: github).
 export const CONTRAST_PAGES = ["", "recipes/brand-tokens/", "layouts/demo/code-github/"];

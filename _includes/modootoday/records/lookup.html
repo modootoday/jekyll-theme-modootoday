@@ -1,0 +1,8 @@
+{%- comment -%}Sets mt_rec (the record page.record "set/key" names) and mt_rec_set (its modootoday.records entry). The stub's
+record_index points into the data list, so no pass over the records is needed; where runs only when that index is stale.{%- endcomment -%}
+{%- assign mt_rec = nil -%}{%- assign _rp = page.record | split: "/" -%}{%- assign _rsn = _rp | first -%}{%- assign _rkv = _rp | last -%}
+{%- assign mt_rec_set = site.modootoday.records[_rsn] -%}
+{%- assign _rk = mt_rec_set.key | default: "slug" -%}{%- assign _rn = mt_rec_set.data | default: _rsn -%}
+{%- assign _rd = site.data[_rn] -%}{%- assign _rl = _rd.items | default: _rd -%}
+{%- if page.record_index != nil -%}{%- assign mt_rec = _rl[page.record_index] -%}{%- endif -%}
+{%- if mt_rec[_rk] != _rkv -%}{%- assign mt_rec = _rl | where: _rk, _rkv | first -%}{%- endif -%}

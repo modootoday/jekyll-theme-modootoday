@@ -61,7 +61,7 @@ Where things live:
 | Path | Context |
 | --- | --- |
 | `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb`, `context.rb` and `markdown.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
-| `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` for the docs site |
+| `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`, `records.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` for the docs site, and `modootoday-check` uses the records plan for its verdict |
 | `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |
 | `test/theme/` | layouts, includes, Sass and tokens built with Jekyll |
@@ -75,6 +75,7 @@ Where things live:
 | `qa/lighthouse/` | Lighthouse runs and budget |
 | `qa/docs/` | link check and kitchen-sink coverage |
 | `qa/css/` | per-partial CSS sizes |
+| `qa/bench/` | the records benchmark: a synthetic site of N records (`fixture.rb`) built with the GitHub Pages builder image (`records.rb`, Docker); CI fails over 300 s for 1,000 records |
 
 ## Conduct, security and releases
 

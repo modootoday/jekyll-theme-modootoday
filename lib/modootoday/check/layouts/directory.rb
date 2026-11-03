@@ -3,7 +3,7 @@
 module Modootoday
   module Check
     module Layouts
-      # directory and its presets: items: (or data: <file in _data>), preset:, filter: <item field> or false.
+      # directory and its presets: items: (or data: <file in _data>, or records: <record set>), preset:, filter: <item field> or false.
       module Directory
         PRESETS = %w[cards portfolio team jobs events sponsors integrations].freeze
         LAYOUTS = %w[directory portfolio team jobs events sponsors integrations].freeze
@@ -24,11 +24,19 @@ module Modootoday
 
         def items(errs, where, fm, ctx)
           return fm["items"] if fm.key?("items")
-          return errs << "#{where}: set items: (a list) or data: (a file in _data)" && nil unless fm["data"]
+          return records(errs, where, fm, ctx) if fm["records"] && !fm["data"]
+          return errs << "#{where}: set items: (a list), data: (a file in _data) or records: (a record set)" && nil unless fm["data"]
           f = Dir.glob("#{ctx.src}/_data/#{fm['data']}.{yml,yaml,json}").first
           return errs << "#{where}: data: #{fm['data']} has no file in _data" && nil unless f
           d = YAML.safe_load(File.read(f), permitted_classes: [Date, Time])
           d.is_a?(Hash) ? d["items"] : d
+        end
+
+        # The records themselves are judged with modootoday.records (build/records.rb); here only the set name.
+        def records(errs, where, fm, ctx)
+          sets = ctx.mtc.is_a?(Hash) && ctx.mtc["records"].is_a?(Hash) ? ctx.mtc["records"] : {}
+          errs << "#{where}: records: #{fm['records']} is not a set in modootoday.records" unless sets.key?(fm["records"].to_s)
+          nil
         end
       end
     end

@@ -26,7 +26,8 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | include | `modootoday/t.html`(`key=`, 선택 `n=` / `name=`)은 페이지 언어의 테마 문구를 출력합니다 |
 | 데이터 파일 | `_data/i18n/<lang>.yml` 키(내장 카탈로그를 덮어쓸 때만), `_data/nav/<name>.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
-| 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름(`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`)과 그 front matter, 종료 코드 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터) |
+| 레코드 페이지 | `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts` |
+| 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름(`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`)과 그 front matter, 종료 코드 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터) |
 
 ## Markdown 규칙
 

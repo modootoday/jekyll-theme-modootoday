@@ -38,7 +38,7 @@ items:
 - `integrations`: `category`
 - `portfolio`: `tags`(목록)
 
-여러 페이지에서 같은 목록을 쓰려면 `_data/team.yml`에 두고 `items:` 대신 `data: team`이라고 쓰세요.
+여러 페이지에서 같은 목록을 쓰려면 `_data/team.yml`에 두고 `items:` 대신 `data: team`이라고 쓰세요. 항목마다 페이지도 따로 두려면 레코드 세트를 선언하고 `records: <set>`이라고 쓰세요. 그러면 카드마다 레코드 페이지로 연결됩니다([생성 페이지](../../recipes/generated-pages/) 참고).
 
 ## 필터
 
