@@ -7,6 +7,7 @@ require "tmpdir"
 require "open3"
 require "rbconfig"
 require "fileutils"
+require_relative "../support/starters"
 
 class I18nRegistryTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -20,11 +21,11 @@ class I18nRegistryTest < Minitest::Test
     assert st.success?, o
   end
 
-  # Zero copy: the example without _data/i18n renders theme UI in every shipped language;
+  # Zero copy: the docs starter without _data/i18n renders theme UI in every shipped language;
   # a site catalog overrides key by key; unknown languages fall back to English; pt -> pt-BR.
   def test_every_language_renders_without_site_catalogs_and_overrides_win
     Dir.mktmpdir do |d|
-      FileUtils.cp_r("#{ROOT}/example/.", "#{d}/s")
+      FileUtils.cp_r("#{Starters::Sources.path("docs")}/.", "#{d}/s")
       FileUtils.rm_rf(["#{d}/s/_data/i18n", "#{d}/s/_site"])
       FileUtils.mkdir_p(["#{d}/s/_data/i18n", "#{d}/s/zz"])
       File.write("#{d}/s/_data/i18n/de.yml", "nav:\n  label: Site-Navigation\n")

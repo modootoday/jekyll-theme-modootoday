@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 # Builds real consumer sites with `jekyll build` in a subprocess, using the active bundle
 # (gemfiles/github-pages.gemfile or gemfiles/jekyll4.gemfile, which both load this gem via gemspec):
-#   - theme: jekyll-theme-modootoday with hand-written stubs (the example site), with and without baseurl
-#   - the same site without any stub files and `plugins: [jekyll-theme-modootoday]`
+#   - theme: jekyll-theme-modootoday with the stubs modootoday-stubs writes (the docs starter), with and without baseurl
+#   - the docs and blog starters without any stub files and `plugins: [jekyll-theme-modootoday]`
 #     (Jekyll 4: output must equal the stub build; github-pages: the plugin is not whitelisted, so the
 #      checker must report the missing twins instead of passing silently)
-# remote_theme is exercised in CI (test/remote-site) because it needs the pushed repository.
+# remote_theme is exercised in CI (.github/workflows/starters.yml) because it needs the pushed repository.
 require "minitest/autorun"
 require "tmpdir"
 require "fileutils"
 require "open3"
 require "jekyll"
+require_relative "../support/starters"
 
 class ConsumerTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
-  EXAMPLE = File.join(ROOT, "example")
+  DOCS = Starters::Sources.path("docs")
   GH_PAGES = Gem.loaded_specs.key?("github-pages")
 
   def build(src, dest, *args)
@@ -30,10 +31,10 @@ class ConsumerTest < Minitest::Test
 
   def test_theme_gem_with_stubs_and_baseurl
     Dir.mktmpdir do |d|
-      build(EXAMPLE, "#{d}/a")
-      out, st = check(EXAMPLE, "#{d}/a")
+      build(DOCS, "#{d}/a")
+      out, st = check(DOCS, "#{d}/a")
       assert st.success?, out
-      build(EXAMPLE, "#{d}/b", "--baseurl", "/docs")
+      build(DOCS, "#{d}/b", "--baseurl", "/docs")
       html = File.read("#{d}/b/guide/index.html")
       assert_match %r{href="/docs/assets/css/modootoday\.css\?v=[^"]+"}, html
       assert_includes html, 'href="/docs/guide/index.md"'
@@ -43,25 +44,28 @@ class ConsumerTest < Minitest::Test
   end
 
   def test_plugin_generates_twins_and_llms_without_stubs
-    Dir.mktmpdir do |d|
-      src = "#{d}/src"
-      FileUtils.cp_r(EXAMPLE, src)
-      FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
-      Dir.glob("#{src}/**/*.txt").each { |f| File.delete(f) }
-      File.write("#{src}/_config.yml", File.read("#{src}/_config.yml") + "plugins: [jekyll-theme-modootoday]\n")
-      build(src, "#{d}/out")
-      out, st = check(src, "#{d}/out")
-      if GH_PAGES
-        refute st.success?, "github-pages safe mode must not run the plugin"
-        assert_match(/twin missing at .*add a stub/, out)
-      else
-        assert st.success?, out
-        build(EXAMPLE, "#{d}/ref")
-        assert_equal files("#{d}/ref"), files("#{d}/out")
-        files("#{d}/ref").grep(/\.(md|txt)\z/).each do |f|
-          assert_equal File.binread("#{d}/ref/#{f}"), File.binread("#{d}/out/#{f}"), f
+    %w[docs blog].each do |name|
+      ref_src = Starters::Sources.path(name)
+      Dir.mktmpdir do |d|
+        src = "#{d}/src"
+        FileUtils.cp_r(ref_src, src)
+        FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
+        Dir.glob("#{src}/**/*.txt").each { |f| File.delete(f) }
+        File.write("#{src}/_config.yml", File.read("#{src}/_config.yml") + "plugins: [jekyll-theme-modootoday]\n")
+        build(src, "#{d}/out")
+        out, st = check(src, "#{d}/out")
+        if GH_PAGES
+          refute st.success?, "#{name}: github-pages safe mode must not run the plugin"
+          assert_match(/twin missing at .*add a stub/, out)
+        else
+          assert st.success?, out
+          build(ref_src, "#{d}/ref")
+          assert_equal files("#{d}/ref"), files("#{d}/out"), name
+          files("#{d}/ref").grep(/\.(md|txt)\z/).each do |f|
+            assert_equal File.binread("#{d}/ref/#{f}"), File.binread("#{d}/out/#{f}"), "#{name}: #{f}"
+          end
+          assert_includes File.read("#{d}/out/index.html"), 'rel="alternate" type="text/markdown"'
         end
-        assert_includes File.read("#{d}/out/index.html"), 'rel="alternate" type="text/markdown"'
       end
     end
   end
@@ -71,7 +75,7 @@ class ConsumerTest < Minitest::Test
   def test_token_bridge_with_a_shadowed_entry_sheet
     Dir.mktmpdir do |d|
       src = "#{d}/src"
-      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.cp_r(DOCS, src)
       FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
       FileUtils.mkdir_p(["#{src}/assets/css", "#{src}/assets/fonts"])
       File.write("#{src}/assets/css/modootoday.scss", "---\n---\n$mt-overrides: (primary: #b45309);\n@import \"modootoday/core\";\n.site-rule { color: red; }\n")
@@ -100,7 +104,7 @@ class ConsumerTest < Minitest::Test
   def test_only_load_path_sass_partials_can_be_shadowed
     Dir.mktmpdir do |d|
       src = "#{d}/src"
-      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.cp_r(DOCS, src)
       FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
       parts = { "_access" => true, "components/core/inline/_callout" => true, "components/section/structure/_tabs" => true,
                 "_settings" => false, "tools/_mixins" => false, "tokens/_semantic" => false, "base/_prose" => false,

@@ -1,0 +1,102 @@
+name: Starters
+
+# Renders every starter of example/starters.yml (rake starters:render), fails on drift, then builds and checks each
+# one on both stacks: the github-pages 232 bundle and Jekyll 4, and the real GitHub Pages builder on remote_theme.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: ${{ matrix.starter }} (${{ matrix.stack }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [docs, blog, landing]
+        stack: [github-pages, jekyll4]
+        include:
+          # GitHub Pages production (pages.github.com/versions.json): Ruby 3.3.4 + github-pages 232
+          - stack: github-pages
+            ruby: "3.3.4"
+          - stack: jekyll4
+            ruby: "3.3"
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile
+      GEM_TREE: pkg/starters/jekyll4/${{ matrix.starter }}
+      CLASSIC_TREE: pkg/starters/github-pages/${{ matrix.starter }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Render, then check for drift
+        run: bundle exec rake starters:render starters:check
+      - name: Build and check with the manifest flags
+        run: bundle exec rake "starters:build[${{ matrix.starter }}]"
+      - name: Structured data (url overlay)
+        run: |
+          printf 'url: https://example.com\n' > "$RUNNER_TEMP/url.yml"
+          bundle exec jekyll build -s "$GEM_TREE" -d "$RUNNER_TEMP/ld-site" --config "$GEM_TREE/_config.yml,$RUNNER_TEMP/url.yml"
+          bundle exec ruby exe/modootoday-check "$GEM_TREE" "$RUNNER_TEMP/ld-site"
+      # The classic tree as rendered, its remote_theme pointed at this commit: same output as the gem build but CSS.
+      - name: remote_theme at this commit
+        if: matrix.stack == 'github-pages'
+        env:
+          PAGES_REPO_NWO: ${{ github.repository }}
+          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          flags=$(sed -n 's/^ *modootoday-check \. _site //p' "$CLASSIC_TREE/.github/workflows/pages.yml")
+          printf 'remote_theme: %s@%s\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$RUNNER_TEMP/remote.yml"
+          bundle exec jekyll build -s "$GEM_TREE" -d "$RUNNER_TEMP/gem-site"
+          bundle exec jekyll build -s "$CLASSIC_TREE" -d "$RUNNER_TEMP/remote-site" --config "$CLASSIC_TREE/_config.yml,$RUNNER_TEMP/remote.yml"
+          bundle exec ruby exe/modootoday-check "$CLASSIC_TREE" "$RUNNER_TEMP/remote-site" $flags --github-pages
+          diff -r -x '*.css' "$RUNNER_TEMP/gem-site" "$RUNNER_TEMP/remote-site"
+
+  # The real GitHub Pages builder (the image Pages deployments use) on each classic tree, remote_theme pinned to this
+  # commit and both URL aliases on, with the stubs modootoday-stubs writes; then the checker on its output.
+  pages-action:
+    name: ${{ matrix.starter }} (actions/jekyll-build-pages)
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [docs, blog, landing]
+    env:
+      CLASSIC_TREE: pkg/starters/github-pages/${{ matrix.starter }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      - name: Classic tree at this commit, URL aliases on
+        run: |
+          rake starters:render
+          ruby -ryaml -e 'f = ARGV[0]; c = YAML.load_file(f); c["remote_theme"] = ARGV[1]; (c["modootoday"] ||= {})["aliases"] = {"md" => true, "html" => true}; File.write(f, YAML.dump(c))' \
+            "$CLASSIC_TREE/_config.yml" "$GITHUB_REPOSITORY@$GITHUB_SHA"
+          kinds="$(sed -n 's/^bundle exec modootoday-stubs \. \(.*\) --write$/\1/p' "$CLASSIC_TREE/README.md") --aliases"
+          ruby exe/modootoday-stubs "$CLASSIC_TREE" $kinds --write
+          ruby exe/modootoday-stubs "$CLASSIC_TREE" $kinds --check
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ${{ env.CLASSIC_TREE }}
+          destination: rt-site
+      - name: Check output
+        run: |
+          flags=$(sed -n 's/^ *modootoday-check \. _site //p' "$CLASSIC_TREE/.github/workflows/pages.yml")
+          ruby exe/modootoday-check "$CLASSIC_TREE" rt-site $flags --aliases

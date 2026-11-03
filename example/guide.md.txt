@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: guide.md
-permalink: /guide/index.md
----

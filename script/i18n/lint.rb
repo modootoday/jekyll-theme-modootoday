@@ -88,7 +88,7 @@ module I18nLint
   end
 
   def targets(root, lang)
-    globs = ["docs/**/*.#{lang}.md", "docs/#{lang}/**/*.md", "example/#{lang}/**/*.md", "docs/_posts/*-#{lang}.md", "README.#{lang}.md"]
+    globs = ["docs/**/*.#{lang}.md", "docs/#{lang}/**/*.md", "example/*/#{lang}/**/*.md", "docs/_posts/*-#{lang}.md", "README.#{lang}.md"]
     globs.flat_map { |g| Dir.glob(g, base: root) }.uniq.sort.reject { |r| r.match?(%r{guides/translation(\.[a-z]{2})?\.md\z}) } # the rules page quotes the bad forms
   end
 
@@ -97,7 +97,7 @@ module I18nLint
     errs = catalogs(root)
     %w[ko ja].each do |lang|
       targets(root, lang).each { |r| errs.concat(file("#{root}/#{r}", r, lang, gl)) }
-      ["i18n/#{lang}.yml", "docs/_data/i18n/#{lang}.yml", "example/_data/i18n/#{lang}.yml"].each do |r|
+      ["i18n/#{lang}.yml", "docs/_data/i18n/#{lang}.yml", *Dir.glob("example/*/_data/i18n/#{lang}.yml", base: root).sort].each do |r|
         errs.concat(file("#{root}/#{r}", r, lang, gl, ui: true)) if File.file?("#{root}/#{r}")
       end
     end

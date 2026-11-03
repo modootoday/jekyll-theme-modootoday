@@ -49,7 +49,7 @@ class DetailLayoutsTest < Minitest::Test
     end
   end
 
-  # The example's records (_data/plugins.json, plugins/*.md): facts, Markdown body, directory cards and a stale record_index.
+  # The docs starter's records (_data/plugins.json, plugins/*.md): facts, Markdown body, directory cards and a stale record_index.
   def test_record_pages
     Dir.mktmpdir do |d|
       stale = "title: Ledger\nlayout: reference\npermalink: /refs/ledger/\nrecord: plugins/ledger\nrecord_index: 0\ntwin: false\n"
@@ -64,7 +64,7 @@ class DetailLayoutsTest < Minitest::Test
       assert_includes list, '<a href="/plugins/lantern/">Lantern</a>'
       assert_includes list, '<p class="mt-dir-text">Sends new posts to a feed reader service.</p>'
       assert_includes list, '<p class="mt-dir-meta">Publishing</p>'
-      assert_equal File.read("#{ROOT}/example/_data/plugins.json"), File.read("#{ROOT}/docs/_data/plugins.json"), "the docs demo uses the example records"
+      assert_equal File.read("#{ROOT}/example/docs/_data/plugins.json"), File.read("#{ROOT}/docs/_data/plugins.json"), "the docs demo uses the docs starter's records"
       out, st = check(src, s, "--byte-exact=api")
       assert st.success?, out
     end

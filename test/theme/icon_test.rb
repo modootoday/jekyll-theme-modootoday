@@ -4,17 +4,18 @@ require "minitest/autorun"
 require "tmpdir"
 require "open3"
 require "fileutils"
+require_relative "../support/starters"
 
 class IconTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
-  EXAMPLE = File.join(ROOT, "example")
+  DOCS = Starters::Sources.path("docs")
   ICON = File.read(File.join(ROOT, "_includes/modootoday/brand/icon.html"))
   DEFINED = ICON.scan(/\{%-? when (.+?) -?%\}/).flatten.flat_map { |w| w.scan(/"([a-z-]+)"/).flatten }
 
   def build(dir, overlay)
     File.write("#{dir}/o.yml", overlay)
-    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", EXAMPLE, "-d", "#{dir}/s",
-                              "--config", "#{EXAMPLE}/_config.yml,#{dir}/o.yml", chdir: ROOT)
+    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", DOCS, "-d", "#{dir}/s",
+                              "--config", "#{DOCS}/_config.yml,#{dir}/o.yml", chdir: ROOT)
     assert st.success?, out
     "#{dir}/s"
   end
@@ -48,7 +49,7 @@ class IconTest < Minitest::Test
 
   def test_icon_label_and_unknown_name
     Dir.mktmpdir do |d|
-      FileUtils.cp_r("#{EXAMPLE}/.", "#{d}/src")
+      FileUtils.cp_r("#{DOCS}/.", "#{d}/src")
       File.write("#{d}/src/icons.md", "---\nlayout: null\n---\n{% include modootoday/brand/icon.html name=\"rss\" label=\"Feed\" %}|" \
                                       "{% include modootoday/brand/icon.html name=\"nope\" %}|{% include modootoday/brand/icon.html name=\"next\" size=12 %}")
       out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", "#{d}/src", "-d", "#{d}/s", chdir: ROOT)

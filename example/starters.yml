@@ -1,0 +1,21 @@
+# The starter sites. Each one is the folder of the same name beside this file and builds on its own.
+# `rake starters:render` writes each starter for each stack to pkg/starters/<stack>/<name>/, adding what the theme
+# owns: the remote_theme pin (github-pages stack), Gemfile, README.md, the Pages workflow, catalogs and stubs.
+#   repo: where the rendered starter is published   languages: first = default, the others in <lang>/ folders
+#   stacks: github-pages (remote_theme, classic builder) and/or jekyll4 (theme gem)   check: modootoday-check flags
+starters:
+  - name: docs
+    repo: modootoday/docs-starter
+    languages: [en, ko, ja]
+    stacks: [github-pages, jekyll4]
+    check: [--twins, --byte-exact=api]
+  - name: blog
+    repo: modootoday/blog-starter
+    languages: [en]
+    stacks: [github-pages, jekyll4]
+    check: [--twins]
+  - name: landing
+    repo: modootoday/landing-starter
+    languages: [en]
+    stacks: [github-pages, jekyll4]
+    check: [--twins]

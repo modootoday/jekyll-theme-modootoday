@@ -26,7 +26,7 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - name: Test and build example
+      - name: Test, then build and check the starter sites
         run: bundle exec rake
       - name: Check tag matches gem version
         run: |

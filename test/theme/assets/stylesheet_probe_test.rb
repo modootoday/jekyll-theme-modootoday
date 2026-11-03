@@ -58,7 +58,7 @@ class StylesheetProbeTest < Minitest::Test
     "." => "css/modootoday.css css/modootoday-hero.css doc.css search.css bleed.css showcase/cta.css showcase/card.css " \
            "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
     "guide" => "css/modootoday.css doc.css search.css #{CHROME} #{SEARCH}",
-    "blog" => "css/modootoday.css css/modootoday-blog.css search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
+    "blog:." => "css/modootoday.css css/modootoday-blog.css search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
   SUBSET = {
@@ -70,14 +70,14 @@ class StylesheetProbeTest < Minitest::Test
     "pr/bare" => "css/modootoday.css doc.css loading.css",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css loading.css menu.js",
     "guide" => "css/modootoday.css doc.css loading.css menu.js scroll-region.js code-copy.js",
-    "blog" => "css/modootoday.css css/modootoday-blog.css loading.css menu.js code-copy.js",
+    "blog:." => "css/modootoday.css css/modootoday-blog.css loading.css menu.js code-copy.js",
   }.freeze
   BUNDLE = {
     "pr/svg" => "css/modootoday.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css tabs.js #{CHROME} accordion.js #{SEARCH}",
     "pr/css" => "css/modootoday.css css/modootoday-hero.css #{PLAIN} #{SEARCH}",
     "pr/bare" => "css/modootoday.css theme-toggle.js #{SEARCH}",
-    "blog" => "css/modootoday.css css/modootoday-blog.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
+    "blog:." => "css/modootoday.css css/modootoday-blog.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
   }.freeze
 
   { "default" => DEFAULT, "subset" => SUBSET, "bundle" => BUNDLE }.each do |config, pages|
@@ -86,18 +86,20 @@ class StylesheetProbeTest < Minitest::Test
 
   def self.sites = @sites ||= {}
 
-  # One build per config, shared by the tests; returns the built site directory.
-  def site(name)
-    self.class.sites[name] ||= begin
+  # One build per config and starter, shared by the tests; returns the built site directory. The docs starter
+  # gets PAGES; "blog:<page>" keys name a page of the blog starter.
+  def site(name, starter)
+    self.class.sites[[name, starter]] ||= begin
       dir = Dir.mktmpdir
       Minitest.after_run { FileUtils.rm_rf(dir) }
-      build_site(dir, PAGES, config: CONFIGS[name])[1]
+      build_site(dir, starter == "docs" ? PAGES : {}, config: CONFIGS[name], starter: starter)[1]
     end
   end
 
   # Stylesheet and script URLs of one built page, in document order, without the /assets/ prefix.
-  def tags(name, page)
-    h = File.read(File.join(site(name), page, "index.html"))
+  def tags(name, key)
+    starter, page = key.include?(":") ? key.split(":", 2) : ["docs", key]
+    h = File.read(File.join(site(name, starter), page, "index.html"))
     h.scan(%r{<link rel="stylesheet" href="/assets/([^"?]+)[^"]*"|<script src="/assets/([^"?]+)[^"]*"}).map { |a, b| a || b }
   end
 

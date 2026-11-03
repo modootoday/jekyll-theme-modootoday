@@ -25,24 +25,23 @@ jobs:
       matrix:
         include:
           # GitHub Pages production (pages.github.com/versions.json): Ruby 3.3.4 + github-pages 232
+          # starters: build the starter sites here too; starters.yml covers github-pages 232 and Jekyll 4 on Ruby 3.3.
           - stack: github-pages
             ruby: "3.3.4"
-            check_flags: --twins --github-pages
           # Jekyll 4: oldest supported Ruby (gemspec required_ruby_version) and latest
           - stack: jekyll4
             ruby: "3.3"
-            check_flags: --twins
           - stack: jekyll4
             ruby: "3.4"
-            check_flags: --twins
+            starters: true
           - stack: jekyll4
             ruby: "4.0"
-            check_flags: --twins
+            starters: true
             experimental: true
           # gemspec floor: jekyll >= 3.9 without the github-pages gem
           - stack: jekyll39
             ruby: "3.3"
-            check_flags: --twins
+            starters: true
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.stack }}.gemfile
     steps:
@@ -57,57 +56,11 @@ jobs:
         run: ruby script/i18n-build --check
       - name: Ruby tests
         run: bundle exec rake test
-      - name: Build example
-        run: bundle exec jekyll build -s example -d example/_site
-      - name: Check example
-        run: bundle exec ruby exe/modootoday-check example example/_site --byte-exact=api ${{ matrix.check_flags }}
-      - name: Structured data on the example (url overlay)
-        run: |
-          printf 'url: https://example.com\n' > "$RUNNER_TEMP/url.yml"
-          bundle exec jekyll build -s example -d "$RUNNER_TEMP/ld-site" --config "example/_config.yml,$RUNNER_TEMP/url.yml"
-          bundle exec ruby exe/modootoday-check example "$RUNNER_TEMP/ld-site"
-      - name: Build example with remote_theme (this commit)
-        if: matrix.stack == 'github-pages'
-        env:
-          PAGES_REPO_NWO: ${{ github.repository }}
-          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          printf 'theme: null\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$RUNNER_TEMP/remote.yml"
-          bundle exec jekyll build -s example -d "$RUNNER_TEMP/remote-site" --config "example/_config.yml,$RUNNER_TEMP/remote.yml"
-          bundle exec ruby exe/modootoday-check example "$RUNNER_TEMP/remote-site" --twins --github-pages
-          diff -r -x '*.css' example/_site "$RUNNER_TEMP/remote-site"
+      - name: Build and check the starter sites
+        if: matrix.starters == true
+        run: bundle exec rake starters:build
       - name: Build gem
         run: gem build jekyll-theme-modootoday.gemspec
-
-  # The real GitHub Pages builder (same image as Pages deployments) on a remote_theme: site
-  # pinned to this commit, then the checker on its output.
-  pages-action:
-    name: actions/jekyll-build-pages (remote_theme)
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3.4"
-      # The example with both URL aliases on: stubs (twins, aliases, record pages) written by modootoday-stubs, built by the real Pages builder.
-      - name: Make remote_theme site from example
-        run: |
-          mkdir -p /tmp/rt && cp -r example/. /tmp/rt/ && rm -f /tmp/rt/Gemfile
-          sed -i '/^theme:/d;/^remote_theme:/d;s/^modootoday:$/modootoday:\n  aliases: {md: true, html: true}/' /tmp/rt/_config.yml
-          grep -q '^  aliases: {md: true, html: true}$' /tmp/rt/_config.yml
-          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
-          rm -rf rt-src && mv /tmp/rt rt-src
-          ruby exe/modootoday-stubs rt-src --twins --aliases --records --write
-          ruby exe/modootoday-stubs rt-src --twins --aliases --records --check
-      - uses: actions/jekyll-build-pages@v1
-        with:
-          source: rt-src
-          destination: rt-site
-      - name: Check output
-        run: ruby exe/modootoday-check rt-src rt-site --twins --aliases --byte-exact=api
 
   # 250 and 1,000 record pages (qa/bench/records.rb) built by the Pages builder image; fails over 300 s, half the Pages limit.
   records-bench:

@@ -1,18 +1,21 @@
 # frozen_string_literal: true
-# Builds the example site plus extra pages (name => front matter + body) with a url, for layout build tests.
+# Builds a starter site (the docs starter unless named) plus extra pages (name => front matter + body) with a url,
+# for layout build tests.
 require "tmpdir"
 require "fileutils"
 require "open3"
 require "json"
 require "yaml"
 require "date"
+require_relative "starters"
 
 module LayoutSite
   ROOT = File.expand_path("../..", __dir__)
 
-  def build_site(dir, pages, config: "", env: {})
+  def build_site(dir, pages, config: "", env: {}, starter: "docs")
     src = "#{dir}/src"
-    FileUtils.cp_r("#{ROOT}/example", src)
+    FileUtils.cp_r(Starters::Sources.path(starter), src)
+    FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
     pages.each do |n, (fm, body)|
       FileUtils.mkdir_p(File.dirname("#{src}/#{n}"))
       File.write("#{src}/#{n}", "---\n#{fm}---\n#{body || "Body text.\n"}")

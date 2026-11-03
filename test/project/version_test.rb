@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-# One version everywhere: gemspec, CHANGELOG, README (en/ko), docs install pages, the example config and the version include.
+# One version everywhere: gemspec, CHANGELOG, README (en/ko), docs install pages and the version include.
+# The starters take it from the gemspec when they are rendered (test/starters/render_test.rb).
 require "minitest/autorun"
 
 class VersionTest < Minitest::Test
@@ -20,7 +21,7 @@ class VersionTest < Minitest::Test
 
   def test_install_snippets_pin_the_current_version
     minor = version.split(".")[0, 2].join(".")
-    files = %w[README.md README.ko.md docs/guides/install.md docs/guides/install.ko.md docs/index.md docs/index.ko.md docs/guides/install.ja.md docs/index.ja.md example/_config.yml]
+    files = %w[README.md README.ko.md docs/guides/install.md docs/guides/install.ko.md docs/index.md docs/index.ko.md docs/guides/install.ja.md docs/index.ja.md]
     files.each do |f|
       t = read(f)
       t.scan(/jekyll-theme-modootoday", "~> ([\d.]+)"/).flatten.each { |v| assert_equal minor, v, "#{f}: gem constraint" }

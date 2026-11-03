@@ -1,0 +1,12 @@
+title: Example Blog
+description: A neutral example blog for jekyll-theme-modootoday.
+lang: en
+theme: jekyll-theme-modootoday
+markdown: kramdown
+sass: {silence_deprecations: [import, global-builtin]}  # Dart Sass (Jekyll 4); ignored by GitHub Pages
+kramdown: {input: GFM, syntax_highlighter: rouge}
+permalink: pretty
+exclude: [Gemfile, Gemfile.lock, README.md]
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+  - {scope: {path: "", type: posts}, values: {layout: post}}

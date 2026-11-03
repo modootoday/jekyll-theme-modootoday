@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# schema.org JSON-LD (modootoday/jsonld/*): the example site plus one page per entity type, built with a url,
+# schema.org JSON-LD (modootoday/jsonld/*): the docs starter plus one page per entity type, built with a url,
 # then parsed and run through modootoday-check (which validates every block).
 require "minitest/autorun"
 require "tmpdir"
@@ -7,6 +7,7 @@ require "fileutils"
 require "open3"
 require "json"
 require "time"
+require_relative "../../support/starters"
 
 class JsonldTest < Minitest::Test
   ROOT = File.expand_path("../../..", __dir__)
@@ -22,7 +23,8 @@ class JsonldTest < Minitest::Test
 
   def build(dir, overlay)
     src = "#{dir}/src"
-    FileUtils.cp_r("#{ROOT}/example", src)
+    FileUtils.cp_r(Starters::Sources.path("docs"), src)
+    FileUtils.rm_rf("#{src}/.jekyll-cache")
     PAGES.each { |n, fm| File.write("#{src}/#{n}", "---\ntitle: T #{n} </script>\n#{fm}---\n# T\n") }
     File.write("#{dir}/o.yml", overlay)
     out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",

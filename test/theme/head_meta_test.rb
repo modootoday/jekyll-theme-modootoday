@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 # SEO/head options (canonical, hreflang, Open Graph, feed link), modootoday.csp: strict and the
-# optional page footer (edit link, last updated), built on the example site with an overlay config.
+# optional page footer (edit link, last updated), built on the docs starter with an overlay config.
 require "minitest/autorun"
 require "tmpdir"
 require "fileutils"
 require "open3"
+require_relative "../support/starters"
 
 class HeadMetaTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
-  EXAMPLE = File.join(ROOT, "example")
+  DOCS = Starters::Sources.path("docs")
   INLINE = "<script>try{var t=localStorage"
 
   def build(dir, overlay)
     File.write("#{dir}/o.yml", overlay)
-    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", EXAMPLE, "-d", "#{dir}/s",
-                              "--config", "#{EXAMPLE}/_config.yml,#{dir}/o.yml", chdir: ROOT)
+    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", DOCS, "-d", "#{dir}/s",
+                              "--config", "#{DOCS}/_config.yml,#{dir}/o.yml", chdir: ROOT)
     assert st.success?, out
     "#{dir}/s"
   end
@@ -41,7 +42,7 @@ class HeadMetaTest < Minitest::Test
           csp: strict
           feed: true
           og_image: /assets/og.png
-          edit_url: https://github.com/o/r/edit/main/example/
+          edit_url: https://github.com/o/r/edit/main/site/
       YML
       en = File.read("#{s}/index.html")
       ko = File.read("#{s}/ko/index.html")
@@ -62,7 +63,7 @@ class HeadMetaTest < Minitest::Test
         assert_includes guide, %(<link rel="alternate" hreflang="#{l}" href="https://example.org/docs/#{l}/guide/">)
         assert_includes File.read("#{s}/#{l}/guide/index.html"), %(<link rel="alternate" hreflang="en" href="https://example.org/docs/guide/">)
       end
-      assert_includes en, 'href="https://github.com/o/r/edit/main/example/index.md"'
+      assert_includes en, 'href="https://github.com/o/r/edit/main/site/index.md"'
       assert File.exist?("#{s}/assets/js/modootoday/theme-init.js")
     end
   end
@@ -89,7 +90,7 @@ class HeadMetaTest < Minitest::Test
   def test_localized_site_title
     Dir.mktmpdir do |d|
       src = "#{d}/src"
-      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.cp_r(DOCS, src)
       FileUtils.rm_rf("#{src}/_site")
       File.write("#{src}/_data/i18n/ko.yml", "site_title: 모두의오늘 테마\n")
       out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{d}/s", chdir: ROOT)
