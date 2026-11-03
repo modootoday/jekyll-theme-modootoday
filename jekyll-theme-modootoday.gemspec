@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version       = "1.4.1"
   spec.authors       = ["modootoday"]
   spec.summary       = "A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them with layouts, includes and CSS."
-  spec.description   = "GitHub alerts, status badges, sectioned pages, install tabs, about 40 page layouts (blog, news, directory, marketing, documents), labels in 23 languages with RTL, and agent-readable Markdown twins for Jekyll and GitHub Pages, plus a checker (modootoday-check)."
+  spec.description   = "GitHub alerts, status badges, sectioned pages, install tabs, about 40 page layouts (blog, news, directory, marketing, documents), labels in 23 languages with RTL, and agent-readable Markdown twins for Jekyll and GitHub Pages, plus a checker (modootoday-check) and a stub writer (modootoday-stubs)."
   spec.homepage      = "https://github.com/modootoday/jekyll-theme-modootoday"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 3.3" # oldest Ruby in CI (3.2 is end-of-life); sass-embedded needs 3.2; exe uses endless methods
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   tracked = Dir.glob("**/*", File::FNM_DOTMATCH, base: __dir__) if tracked.empty?
   spec.files = tracked.grep(runtime).select { |f| File.file?(File.join(__dir__, f)) }.sort
   spec.bindir        = "exe"
-  spec.executables   = ["modootoday-check"]
+  spec.executables   = ["modootoday-check", "modootoday-stubs"]
 
   spec.add_runtime_dependency "jekyll", ">= 3.9", "< 5.0"
 end

@@ -43,6 +43,7 @@ modootoday:
 | `scripts` | 없음 | 사이트의 ES 모듈을 이름별로 적음. 값은 사이트 경로로 쓴 `{src, css, preload, element}`(`src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소). 히어로나 섹션 항목의 `script:`가 그 이름을 적은 페이지만 불러옴. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터) 참고 |
 | `search` | 없음 | 사이트에 `search.json`이 있을 때 헤더 검색을 설정함. `words`(각 페이지 본문에서 색인할 단어 수, 기본 300, `0`이면 전부), `collections`(함께 색인할 컬렉션, `output: true`인 것만), `fields`(본문과 함께 검색할 front matter 키, 예: `[description, tags]`), `exclude`(뺄 URL 접두사, 예: `[/v1/]`), `match`(기본값 `substring`은 입력한 그대로 찾고, `terms`는 모든 단어를 순서와 상관없이 찾음), `compact: true`(공백을 뺀 비교도 함, 한국어 띄어쓰기용), `results`(결과 수, 기본 8). [검색](../../recipes/search/) 참고 |
 | `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
+| `aliases` | 없음 | 에이전트용 URL 별칭. `md: true`는 각 Markdown 버전을 `/<page>.md`에서도 제공하고, `html: true`는 `/<page>.html`을 페이지로 리다이렉트함. 스텁 파일은 `modootoday-stubs --aliases`가 쓰고 `modootoday-check --aliases`가 확인함. `twins: source`와는 `md`를 함께 쓸 수 없음 ([URL 별칭](../agents/#url-별칭) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |
 | `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`, `faq`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |

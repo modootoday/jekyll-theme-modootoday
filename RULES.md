@@ -93,6 +93,16 @@ Three ways to publish a page's raw Markdown next to its HTML. Pick one per site 
 | Generator | `plugins: [jekyll-theme-modootoday]` | `/<name>/index.md` | Jekyll 4 or a GitHub Actions build | not run by classic GitHub Pages |
 | Source (front-matter-less) | `modootoday.twins: source`; pages have **no** front matter | the source path: `/<name>.md`, `/<dir>/index.md` | classic GitHub Pages without stubs; simple doc trees | see below |
 
+Optional URL aliases, declared with `modootoday.aliases: {md: true, html: true}` (either may be left out). They exist for every page with a directory URL other than `/` (`README.md` excepted; a page with `twin: false` has no flat alias) and are stub files that `modootoday-stubs SRC --aliases --write` writes; the generator does not add them.
+
+| Alias | Stub | URL | Content |
+|---|---|---|---|
+| Flat alias | `<name>.flat.md.txt`: `layout: twin`, `twin_of: <name>.md`, `permalink: /<name>.md` | `/<name>.md` (`/<dir>.md` for `<dir>/index.md`) | the twin, byte-identical |
+| HTML alias | `<name>.html.md.txt`: `layout: redirect`, `redirect_to: /<name>/`, `permalink: /<name>.html`, `sitemap: false` | `/<name>.html` | a meta refresh redirect to the page, with the page as canonical and `noindex` |
+
+- Two pages with the same alias, or an alias at the path of another source file, are errors (`modootoday-stubs` exits 3; `modootoday-check --aliases` reports it). The flat alias is not available with `twins: source`, where a page without front matter is already copied to `/<name>.md`.
+- The HTML alias is a redirect, not a copy of the page, so search engines index one URL.
+
 Source mode relies on `jekyll-optional-front-matter`, a GitHub Pages default plugin: a `.md` file without front matter is rendered to HTML **and** copied verbatim to its own path, so the twin is the whole source file (byte-identical, no front matter to strip). Limits:
 - No per-page front matter: layout, `lang`, `permalink` and other settings come from path-based `defaults:` in `_config.yml`; the title comes from the first `# ` heading (`jekyll-titles-from-headings`). Per-page `sections:` is not available (use a `defaults:` scope for a single file if needed).
 - Links to `other.md` in bodies are not rewritten to the HTML page in this mode; they reach the raw twin. Link to `other/` instead.
@@ -113,6 +123,8 @@ Stub and generator details:
 - The `default` layout adds `<link rel="alternate" type="text/markdown" href=".../index.md">` when the twin exists and `<link rel="describedby" type="text/plain">` to the nearest `/<lang>/llms.txt` or `/llms.txt`.
 - With `--twins` and `modootoday.twins: source`: a front-matter-less page needs a rendered page (`<name>.html` or `<name>/index.html`) and a byte-identical raw copy at its source path.
 - With `--twins`: a missing or non-identical twin is an error (`README.md` and `twin: false` excepted), a stub must use `layout: twin` with an empty body, `llms.txt` must start with `# `, and `llms-full.txt` must contain every page body of its language.
+- With `--aliases`: every declared alias exists, a flat alias is byte-identical to the twin, and an HTML alias's refresh target and canonical are the page URL.
+- `modootoday-stubs SRC --twins --write` writes the missing stubs and deletes stubs whose page is gone; without `--write` it only lists them, and `--check` exits 1 when anything would change.
 - Twins and the checker assume directory URLs (`permalink: pretty` or `/<name>/`); with `.html` permalinks the generator writes `/<name>.md` but the checker still expects `/<name>/index.md`.
 - Twin bodies go through Liquid (`include_relative`); bodies must not contain Liquid (already forbidden in §4).
 

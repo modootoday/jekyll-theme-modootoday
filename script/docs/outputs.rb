@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../../lib/modootoday/stubs"
+
 module DocsIndex
   MARK = "<!-- spec:docs-index:%s -->"
 
@@ -13,9 +15,7 @@ module DocsIndex
       @files ||= nav_files.merge(index_lists).merge(twins)
     end
 
-    def orphan_twins
-      Dir.glob("#{@t.root}/**/*.md.txt").reject { |f| f.include?("/_site/") || File.exist?(f.delete_suffix(".txt")) }
-    end
+    def orphan_twins = stub_twins.orphans.map { |r| "#{@t.root}/#{r}" }
 
     private
 
@@ -70,11 +70,9 @@ module DocsIndex
       ("../" * (from.url.count("/") - 1)) + to.url.delete_prefix("/")
     end
 
-    def twins
-      @t.pages.reject { |p| p.fm.empty? || p.fm["twin"] == false || p.rel.include?("_posts/") }.to_h do |p|
-        ["#{p.path}.txt", "---\nlayout: twin\ntwin_of: #{File.basename(p.rel)}\npermalink: #{p.url}index.md\n---\n"]
-      end
-    end
+    # Twin stubs come from the same code as the modootoday-stubs command.
+    def twins = stub_twins.wanted.transform_keys { |r| "#{@t.root}/#{r}" }
+    def stub_twins = @stub_twins ||= Modootoday::Stubs::Twins.new(Modootoday::Stubs::Source.new(@t.root))
 
     def q(s) = s.to_s.match?(/[:#{}\[\],&*?|<>=!%@`'"]/) ? s.to_s.inspect : s.to_s
   end

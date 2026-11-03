@@ -12,7 +12,7 @@ Start here, in order.
 - [First page](first-page/) — Write a page with front matter, sections and alerts.
 - [Configuration](configuration/) — Site-wide settings under the modootoday key in _config.yml.
 - [Customize](customize/) — Change colors, radius and fonts with tokens and the token bridge, add your own stylesheets, or override Sass partials.
-- [Agents](agents/) — Markdown twins, llms.txt and llms-full.txt for AI agents.
+- [Agents](agents/) — Markdown twins, URL aliases, llms.txt and llms-full.txt for AI agents.
 - [Migrate](upgrade/) — Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
 - [Accessibility](accessibility/) — Keyboard use, screen readers, safe areas, touch targets, high contrast and reduced motion.
 - [Performance](performance/) — What each page loads, versioned asset URLs for long CDN caching, and the size budgets CI keeps.

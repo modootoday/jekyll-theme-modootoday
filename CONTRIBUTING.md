@@ -7,7 +7,7 @@ Translations are localized, not literal: follow the tone, glossary and spacing r
 
 1. Fork and branch from `main`. Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:` …).
 2. Keep layouts and includes **Liquid only** — no custom Ruby plugins — so the theme keeps working with `remote_theme` on GitHub Pages.
-3. `README.md` and `README.ko.md` keep the same sections (checked by `test/project/readme_test.rb`). The Commands table is generated from `exe/modootoday-check`: run `script/readme-commands` after changing an option.
+3. `README.md` and `README.ko.md` keep the same sections (checked by `test/project/readme_test.rb`). The Commands tables are generated from `exe/modootoday-check` and `exe/modootoday-stubs`: run `script/readme-commands` after changing an option.
 4. Rule changes (`RULES.md`) need a matching change in the includes, the checker and the tests, plus a CHANGELOG entry.
 5. Run the checks for both stacks before opening a PR:
 
@@ -61,6 +61,8 @@ Where things live:
 | Path | Context |
 | --- | --- |
 | `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb`, `context.rb` and `markdown.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
+| `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` for the docs site |
+| `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |
 | `test/theme/` | layouts, includes, Sass and tokens built with Jekyll |
 | `test/consumer/` | a site that uses the gem, and the example guides |

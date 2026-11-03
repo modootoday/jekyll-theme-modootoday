@@ -43,6 +43,7 @@ modootoday:
 | `scripts` | なし | サイトの ES モジュールを名前ごとに書く。値はサイトパスで書いた `{src, css, preload, element}`（`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素）。ヒーローかセクションの項目の `script:` がその名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照 |
 | `search` | なし | サイトに `search.json` があるときのヘッダー検索の設定。`words`（各ページ本文から索引する語数。既定は 300、`0` で全文）、`collections`（一緒に索引するコレクション。`output: true` のものだけ）、`fields`（本文と一緒に検索する front matter のキー。例: `[description, tags]`）、`exclude`（除外する URL の接頭辞。例: `[/v1/]`）、`match`（既定の `substring` は入力どおりに探し、`terms` はすべての語を順不同で探す）、`compact: true`（空白を除いた比較もする。韓国語の分かち書き向け）、`results`（結果数。既定は 8）。[検索](../../recipes/search/)を参照 |
 | `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
+| `aliases` | なし | エージェント向けの URL エイリアス。`md: true` は各 Markdown 版を `/<page>.md` でも配信し、`html: true` は `/<page>.html` をそのページにリダイレクトする。スタブは `modootoday-stubs --aliases` が書き、`modootoday-check --aliases` が確認する。`twins: source` とは `md` を併用できない ([URL エイリアス](../agents/#url-エイリアス)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |
 | `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`、`faq`。`false` で無効。[構造化データ](../structured-data/)を参照 |

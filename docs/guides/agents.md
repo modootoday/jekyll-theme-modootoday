@@ -2,9 +2,10 @@
 nav_order: 50
 nav_title: Agents
 title: For agents
-description: Markdown twins, llms.txt and llms-full.txt for AI agents.
+description: Markdown twins, URL aliases, llms.txt and llms-full.txt for AI agents.
 sections:
   - twins
+  - aliases
   - llms
   - {c: cta, name: next}
 ---
@@ -40,6 +41,30 @@ twin_of: guides/install.md   # wrong: a path from the site root fails with "Coul
 ```
 
 Each HTML page links its twin with `rel="alternate" type="text/markdown"`.
+
+`modootoday-stubs` writes the stubs for you. Without `--write` it only lists what it would create, update or delete; in CI, `--check` fails when a stub is missing, out of date or left over after its page was removed.
+
+```sh
+modootoday-stubs . --twins           # list missing, stale and orphan stubs
+modootoday-stubs . --twins --write   # write them
+modootoday-stubs . --twins --check   # CI: exit 1 when anything would change
+```
+
+## URL aliases
+
+Some agents ask for `/guide.md` or `/guide.html` instead of `/guide/`. Declare the aliases you want in `_config.yml`:
+
+```yaml
+modootoday:
+  aliases: {md: true, html: true}
+```
+
+Then `modootoday-stubs . --aliases --write` adds up to two stubs for each page with a directory URL (the home page has none):
+
+- `guide.flat.md.txt` serves the twin again at `/guide.md`, with the same bytes.
+- `guide.html.md.txt` uses the `redirect` layout: `/guide.html` sends readers to `/guide/` with a meta refresh, names `/guide/` as canonical and is `noindex`, so search engines keep one URL. It needs no plugin and no script, so it works on classic GitHub Pages and under a strict CSP.
+
+`modootoday-check . _site --aliases` checks that every alias is in the build and points at its page. Two pages with the same alias, or an alias at the path of another file, are errors. The flat alias cannot be combined with `twins: source`, where a page without front matter is already served at `/guide.md`.
 
 ## llms.txt
 

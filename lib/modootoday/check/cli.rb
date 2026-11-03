@@ -4,11 +4,12 @@ module Modootoday
   module Check
     # Command line: usage, --help/--version, running the rule groups in order, reporting.
     module CLI
-      USAGE = "usage: modootoday-check SRC SITE [--twins] [--github-pages[=VERSION]] [--gh] [--strict] [--schema-recommended] [--i18n] [--i18n-pages] [--i18n-init=LANG,...]"
+      USAGE = "usage: modootoday-check SRC SITE [--twins] [--aliases] [--github-pages[=VERSION]] [--gh] [--strict] [--schema-recommended] [--i18n] [--i18n-pages] [--i18n-init=LANG,...]"
       # Single source for --help and the README "Commands" table (script/readme-commands, test/project/readme_test.rb).
       OPTIONS = [
         ["SRC SITE", "always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`kbd:` values (`since:` is rejected), `sections:` count, `_data/i18n/<lang>.yml` keys against the default language and translated pages against default-language pages, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md` and the built HTML), Sass/CSS rules, the token hook `_sass/modootoday/_site.scss` (only the three override maps, known token names), `site_css`, `preload` and `scripts` files present in the build, `script:` and `poster:` on hero and section items (a registered script, a sized poster that exists), `filter:` on section items and pages (a list or table to filter, a `facet` column the table has), `modootoday.search` keys and collections, `search.json` over 1.5 MB (warning), unconverted markers in the build, schema.org JSON-LD in the build (valid JSON, vocabulary, required properties per type, absolute URLs, ISO 8601 dates, one graph per page, agreement with Open Graph, a `DefinedTerm` page's `term_set` glossary), `modootoday.schema.faq`"],
         ["--twins", "every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt`"],
+        ["--aliases", "the URL aliases `modootoday.aliases` declares: `/<page>.md` byte-identical to the twin (`md`), `/<page>.html` redirecting to the page with the page URL as canonical (`html`); two pages with one alias, or an alias over another source file, fail"],
         ["--github-pages[=VERSION]", "`Gemfile.lock` pins `github-pages` VERSION (default 232)"],
         ["--schema-recommended", "also warn about schema.org properties Google Search recommends (author, image, dates, ...) that a JSON-LD node lacks"],
         ["--strict", "warnings fail the run"],
@@ -21,7 +22,7 @@ module Modootoday
       ].freeze
       # Rule groups in report order.
       RULES = [Registry, SiteConfig.method(:source_mode), Pages, Layouts, I18n, Registry.method(:i18n_keys), BuiltParts,
-               BuildOutput.method(:residue), NewWindow.method(:built), Illustration, StructuredData, TermSets, Stylesheets, SiteHook, BuildOutput.method(:css), BuildOutput.method(:search_index), SiteConfig, SiteAssets, Renderers, Blog, GithubPages, Twins, GhRender].freeze
+               BuildOutput.method(:residue), NewWindow.method(:built), Illustration, StructuredData, TermSets, Stylesheets, SiteHook, BuildOutput.method(:css), BuildOutput.method(:search_index), SiteConfig, SiteAssets, Renderers, Blog, GithubPages, Twins, Aliases, GhRender].freeze
 
       module_function
 

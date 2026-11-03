@@ -89,21 +89,24 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      # The example with both URL aliases on: stubs written by modootoday-stubs, built by the real Pages builder.
       - name: Make remote_theme site from example
         run: |
           mkdir -p /tmp/rt && cp -r example/. /tmp/rt/ && rm -f /tmp/rt/Gemfile
           sed -i '/^theme:/d;/^remote_theme:/d' /tmp/rt/_config.yml
-          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
+          printf '\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme]\nmodootoday: {aliases: {md: true, html: true}}\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" >> /tmp/rt/_config.yml
           rm -rf rt-src && mv /tmp/rt rt-src
+          ruby exe/modootoday-stubs rt-src --twins --aliases --write
+          ruby exe/modootoday-stubs rt-src --twins --aliases --check
       - uses: actions/jekyll-build-pages@v1
         with:
           source: rt-src
           destination: rt-site
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3.4"
       - name: Check output
-        run: ruby exe/modootoday-check rt-src rt-site --twins
+        run: ruby exe/modootoday-check rt-src rt-site --twins --aliases
 
   js:
     runs-on: ubuntu-24.04

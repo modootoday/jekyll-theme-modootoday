@@ -2,9 +2,10 @@
 nav_order: 50
 nav_title: AI 向け
 title: エージェント向け
-description: AI エージェントのための Markdown 版、llms.txt、llms-full.txt。
+description: AI エージェントのための Markdown 版、URL エイリアス、llms.txt、llms-full.txt。
 sections:
   - twins
+  - aliases
   - llms
   - {c: cta, name: next}
 ---
@@ -43,6 +44,30 @@ twin_of: guides/install.md   # 誤り: サイトのルートからのパスは "
 ```
 
 各 HTML ページは `rel="alternate" type="text/markdown"` で Markdown 版にリンクします。
+
+スタブは `modootoday-stubs` が書きます。`--write` を付けなければ、作成、更新、削除するファイルを表示するだけです。CI では、スタブがない、内容が古い、ページを消した後に残っている、のいずれかで `--check` が失敗します。
+
+```sh
+modootoday-stubs . --twins           # list missing, stale and orphan stubs
+modootoday-stubs . --twins --write   # write them
+modootoday-stubs . --twins --check   # CI: exit 1 when anything would change
+```
+
+## URL エイリアス
+
+エージェントによっては `/guide/` ではなく `/guide.md` や `/guide.html` を求めます。使うエイリアスを `_config.yml` で宣言します。
+
+```yaml
+modootoday:
+  aliases: {md: true, html: true}
+```
+
+次に `modootoday-stubs . --aliases --write` が、URL がディレクトリのページごとに最大 2 つのスタブを作ります（ホームページにはありません）。
+
+- `guide.flat.md.txt` は同じ Markdown 版を `/guide.md` でも同じバイトで配信します。
+- `guide.html.md.txt` は `redirect` レイアウトを使います。`/guide.html` は meta refresh で `/guide/` に移動させ、`/guide/` を canonical とし、`noindex` なので検索エンジンに残る URL は 1 つです。プラグインもスクリプトも不要なので、クラシックな GitHub Pages や厳格な CSP でも動きます。
+
+`modootoday-check . _site --aliases` は、すべてのエイリアスがビルドにあり、そのページを指しているかを確認します。2 つのページが同じエイリアスを使う場合や、エイリアスが別のファイルのパスと重なる場合はエラーです。front matter のないページがすでに `/guide.md` で配信される `twins: source` とは、`.md` エイリアスを併用できません。
 
 ## llms.txt
 

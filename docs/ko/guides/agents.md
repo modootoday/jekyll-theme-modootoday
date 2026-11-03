@@ -2,9 +2,10 @@
 nav_order: 50
 nav_title: 에이전트
 title: 에이전트용
-description: AI 에이전트가 읽는 Markdown 버전, llms.txt, llms-full.txt.
+description: AI 에이전트가 읽는 Markdown 버전, URL 별칭, llms.txt, llms-full.txt.
 sections:
   - twins
+  - aliases
   - llms
   - {c: cta, name: next}
 ---
@@ -43,6 +44,30 @@ twin_of: guides/install.md   # 틀림: 사이트 루트 기준 경로는 "Could 
 ```
 
 각 HTML 페이지는 `rel="alternate" type="text/markdown"`으로 Markdown 버전을 연결합니다.
+
+스텁은 `modootoday-stubs`가 대신 씁니다. `--write`가 없으면 만들거나 고치거나 지울 파일을 보여 주기만 합니다. CI에서는 스텁이 없거나, 내용이 낡았거나, 페이지를 지운 뒤에도 남아 있으면 `--check`가 실패합니다.
+
+```sh
+modootoday-stubs . --twins           # list missing, stale and orphan stubs
+modootoday-stubs . --twins --write   # write them
+modootoday-stubs . --twins --check   # CI: exit 1 when anything would change
+```
+
+## URL 별칭
+
+어떤 에이전트는 `/guide/` 대신 `/guide.md`나 `/guide.html`을 요청합니다. 원하는 별칭을 `_config.yml`에 적으세요.
+
+```yaml
+modootoday:
+  aliases: {md: true, html: true}
+```
+
+그다음 `modootoday-stubs . --aliases --write`가 URL이 디렉터리인 페이지마다 스텁을 두 개까지 만듭니다(홈 페이지는 없음).
+
+- `guide.flat.md.txt`는 같은 Markdown 버전을 `/guide.md`에서도 같은 바이트로 제공합니다.
+- `guide.html.md.txt`는 `redirect` 레이아웃을 씁니다. `/guide.html`은 meta refresh로 `/guide/`에 보내고, `/guide/`를 canonical로 밝히며 `noindex`이므로 검색 엔진에는 URL 하나만 남습니다. 플러그인도 스크립트도 필요 없어 기본 GitHub Pages와 엄격한 CSP에서도 동작합니다.
+
+`modootoday-check . _site --aliases`는 모든 별칭이 빌드에 있고 제 페이지를 가리키는지 확인합니다. 두 페이지가 같은 별칭을 쓰거나 별칭이 다른 파일의 경로와 겹치면 오류입니다. front matter 없는 페이지가 이미 `/guide.md`에 나오는 `twins: source`와는 `.md` 별칭을 함께 쓸 수 없습니다.
 
 ## llms.txt
 

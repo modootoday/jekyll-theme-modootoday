@@ -21,7 +21,7 @@ RULES.md (header `md-components v1`, final) is the user-facing text; this sot is
 - §3 chrome strings in `_data/i18n/<lang>.yml`, English fallback.
 - §4 forbidden outside code: raw HTML, Liquid, bare autolinks, abbreviations, HTML comments, setext/nested/indented/commented `##`, multi-word fence info strings; footnotes allowed.
 - §5 checker `modootoday-check SRC SITE [--twins] [--github-pages[=VER]] [--strict] [--gh]`.
-- §5a twins `/<name>/index.md` byte-identical to the body; per-language `llms.txt`/`llms-full.txt`.
+- §5a twins `/<name>/index.md` byte-identical to the body; per-language `llms.txt`/`llms-full.txt`; optional URL aliases `/<name>.md` (the twin) and `/<name>.html` (a redirect) from `modootoday.aliases`, checked with `--aliases`; stubs written by `modootoday-stubs` ([[adr:modootoday/20261103053013]], [[adr:modootoday/20261103053014]]).
 - §6 known limits (`##` inside alerts/quotes/lists stays an error).
 
 ## Why

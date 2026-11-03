@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Stub pages for twins and URL aliases. Usage: modootoday-stubs SRC [--twins] [--aliases] [--write | --check]
+# Previews by default; only --write changes files. The parts live in lib/modootoday/stubs/.
+require_relative "../lib/modootoday/stubs"
+exit Modootoday::Stubs::CLI.run(ARGV)
