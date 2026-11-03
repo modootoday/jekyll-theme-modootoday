@@ -3,9 +3,9 @@ id: adr:modootoday/20261102232226
 title: "Site stylesheets and preload hints take site paths only; sheets carry the asset query, hints do not"
 status: active
 created: 2026-11-02T23:22:26Z
-updated: 2026-11-02T23:23:08Z
+updated: 2026-11-03T09:26:19Z
 rel:
-  governs: [_includes/modootoday/assets/site-sheets.html, _includes/modootoday/assets/preload.html, lib/modootoday/check/build/site_assets.rb, lib/modootoday/check/config/keys/delivery.rb]
+  governs: [_includes/modootoday/assets/site-sheets.html, _includes/modootoday/assets/preload.html, lib/modootoday/check/build/site_assets.rb, lib/modootoday/check/config/keys/serving/delivery.rb]
 ---
 
 # Site stylesheets and preload hints take site paths only; sheets carry the asset query, hints do not

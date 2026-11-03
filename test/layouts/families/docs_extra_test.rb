@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Docs-extra layouts (own bundle), legal (pages bundle) and resume (own print-first bundle): markup, structured data, checker.
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 require "tmpdir"
 require "fileutils"
 require "jekyll"
@@ -116,7 +116,7 @@ end
 
 
 class TwinPackagesTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   PKGS = <<~YML
     packages:
       - {name: "core", version: "1.0", text: "Parse | render\\nthe model.", url: "https://example.org/core", links: [{label: "Docs", url: "/docs/"}, {label: "Src", url: "#"}]}

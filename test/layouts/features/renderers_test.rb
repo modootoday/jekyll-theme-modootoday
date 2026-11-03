@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Optional renderers (modootoday.mermaid): script tags only on pages with a fence, SRI + crossorigin, opt-out, checker.
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 class RenderersBuildTest < Minitest::Test
   include LayoutSite

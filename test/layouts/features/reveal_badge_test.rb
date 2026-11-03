@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 # badge: bottom on c: features, and reveal: true on hero: or a section (CSS-only scroll reveal).
 class RevealBadgeTest < Minitest::Test

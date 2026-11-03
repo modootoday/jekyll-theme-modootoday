@@ -2,7 +2,7 @@
 # filter: on a sections: item or a page without sections, and filter_text: on a directory: the data-mt-filter root, the
 # hidden controls, the filter sheet and the module script, and that pages without them get none of it.
 require "minitest/autorun"
-require_relative "../../layouts/site"
+require_relative "../../support/layout_site"
 
 class FilterTest < Minitest::Test
   include LayoutSite

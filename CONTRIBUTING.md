@@ -60,12 +60,14 @@ Where things live:
 
 | Path | Context |
 | --- | --- |
-| `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb` and `context.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
+| `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb` and `context.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, in `appearance/`, `pages/` and `serving/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
 | `lib/modootoday/markdown.rb` | Markdown source text (front matter, fences, code spans, comments): the one front matter parser for both executables, `script/` and `qa/docs/` |
 | `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `page.rb` (a page and its URL, also used by `modootoday-check --aliases` and `script/docs`), `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`, `records.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` for the docs site, and `modootoday-check` uses the records plan for its verdict |
 | `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |
 | `test/theme/` | layouts, includes, Sass and tokens built with Jekyll |
+| `test/layouts/` | layout families (`families/`) and page features (`features/`), built from the example site plus extra pages |
+| `test/support/` | helpers several test directories share (`layout_site.rb` builds the example site with extra pages) |
 | `test/consumer/` | a site that uses the gem, and the example guides |
 | `test/project/` | README, version, community files and this layout |
 | `test/js/` | browser scripts (`node --test`) |

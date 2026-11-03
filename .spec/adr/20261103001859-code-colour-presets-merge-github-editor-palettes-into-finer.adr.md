@@ -3,9 +3,9 @@ id: adr:modootoday/20261103001859
 title: Code colour presets merge GitHub editor palettes into finer code tokens that default to the old colours
 status: active
 created: 2026-11-03T00:18:59Z
-updated: 2026-11-03T00:20:49Z
+updated: 2026-11-03T09:26:19Z
 rel:
-  governs: [_sass/modootoday/tokens/_code-presets.scss, _sass/modootoday/base/_code.scss, lib/modootoday/check/config/keys/tokens.rb]
+  governs: [_sass/modootoday/tokens/_code-presets.scss, _sass/modootoday/base/_code.scss, lib/modootoday/check/config/keys/appearance/tokens.rb]
 ---
 
 # Code colour presets merge GitHub editor palettes into finer code tokens that default to the old colours

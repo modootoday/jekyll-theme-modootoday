@@ -6,7 +6,7 @@ require "fileutils"
 require "jekyll"
 
 class PagesLayoutsTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   LAYOUTS = %w[minimal wide home error redirect search].freeze
 
   def read(f) = File.read(File.join(ROOT, f))

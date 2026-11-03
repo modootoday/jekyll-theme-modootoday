@@ -2,7 +2,7 @@
 # Pins the stylesheet and script tags each page gets: context-sheet probes on the rendered body, section sheets,
 # page css:, bundles and the script conditions, under the default settings and two modootoday: variants.
 require "minitest/autorun"
-require_relative "../../layouts/site"
+require_relative "../../support/layout_site"
 
 class StylesheetProbeTest < Minitest::Test
   include LayoutSite

@@ -6,7 +6,7 @@ require "fileutils"
 require "jekyll"
 
 class RefLinksTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
 
   def self.build
     @b ||= begin

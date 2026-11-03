@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 # Optional sheets: list styles (hero lead class, hero checks, link chips, titled items) full-width bands (bleed:) and terminal chrome (chrome: terminal), each linked only where used.
 class ListsTest < Minitest::Test
@@ -80,7 +80,7 @@ class ListsTest < Minitest::Test
       refute_includes u, "terminal.css"
       assert_includes u, '<div class="mt-section-visual mt-split-code"><div class="language-sh'
       assert_includes File.read("#{s}/assets/css/modootoday/terminal.css"), "forced-colors"
-      ["", "ko/", "ja/"].each { |l| assert_includes File.read(File.expand_path("../../docs/#{l}components/kitchen-sink.md", __dir__)), "visual: code, chrome: terminal}" }
+      ["", "ko/", "ja/"].each { |l| assert_includes File.read(File.expand_path("../../../docs/#{l}components/kitchen-sink.md", __dir__)), "visual: code, chrome: terminal}" }
       out, = check(src, s)
       refute_includes out, "terminal"
     end

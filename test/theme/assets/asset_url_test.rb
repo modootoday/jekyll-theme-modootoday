@@ -2,7 +2,7 @@
 # Versioned theme asset URLs (modootoday.asset_version): every theme CSS and JS tag takes its URL from
 # modootoday/assets/url.html, so the ?v= query is on all of them or on none.
 require "minitest/autorun"
-require_relative "../../layouts/site"
+require_relative "../../support/layout_site"
 
 class AssetUrlTest < Minitest::Test
   include LayoutSite

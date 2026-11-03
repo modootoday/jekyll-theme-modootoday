@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 # SVG figures: labelled focusable scroll region and the optional figure sheet, only where an SVG figure is.
 class FigureSvgTest < Minitest::Test

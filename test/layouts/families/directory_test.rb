@@ -3,7 +3,7 @@
 require "minitest/autorun"
 
 class DirectoryLayoutsTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   PRESETS = { "portfolio" => "tags", "team" => "group", "jobs" => "department", "events" => nil, "sponsors" => "tier", "integrations" => "category" }.freeze
 
   def read(f) = File.read(File.join(ROOT, f))

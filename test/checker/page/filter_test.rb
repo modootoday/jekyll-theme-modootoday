@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# filter: on sections: items and pages (page/filter.rb), modootoday.search (config/keys/search.rb) and the search.json
+# filter: on sections: items and pages (page/filter.rb), modootoday.search (config/keys/pages/search.rb) and the search.json
 # size warning (build/build_output.rb). Run: bundle exec rake test
 require_relative "../checker_case"
 

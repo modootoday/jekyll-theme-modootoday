@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# modootoday.records (lib/modootoday/check/build/records.rb and config/keys/twins.rb): the same verdict as
+# modootoday.records (lib/modootoday/check/build/records.rb and config/keys/pages/twins.rb): the same verdict as
 # modootoday-stubs --records --check, record: naming an unknown set, and the shape of each set.
 require_relative "../checker_case"
 

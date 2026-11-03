@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Detail layouts: facts, one call to action, own bundle, JSON-LD main entity from front matter, checker contract.
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 class DetailLayoutsTest < Minitest::Test
   include LayoutSite

@@ -2,7 +2,7 @@
 # Marketing layouts: own bundle, pricing reuses the component sheet with a CSS-only switch, CSP-safe swatches,
 # ProfilePage / ContactPage structured data, checker contract.
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 class MarketingLayoutsTest < Minitest::Test
   include LayoutSite

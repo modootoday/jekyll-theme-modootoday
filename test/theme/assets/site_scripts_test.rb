@@ -2,7 +2,7 @@
 # The site's module scripts (modootoday.scripts) named by script: on hero: or a section item, and poster: images:
 # the head tags, the visual markup, the visual sheet, and that pages without them get none of it. The site has a baseurl.
 require "minitest/autorun"
-require_relative "../../layouts/site"
+require_relative "../../support/layout_site"
 
 class SiteScriptsTest < Minitest::Test
   include LayoutSite

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Hero visual "showcase": own bundle only where used, responsive LCP image, decorative SVG pair, user image, checker.
 require "minitest/autorun"
-require_relative "site"
+require_relative "../../support/layout_site"
 
 class HeroShowcaseTest < Minitest::Test
   include LayoutSite

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # script: and poster: on hero: and sections: items (page/hero_script.rb), and the modootoday.scripts entries they name
-# (config/keys/delivery.rb, build/site_assets.rb). Run: bundle exec rake test
+# (config/keys/serving/delivery.rb, build/site_assets.rb). Run: bundle exec rake test
 require_relative "../checker_case"
 
 class CheckHeroScriptTest < CheckerCase

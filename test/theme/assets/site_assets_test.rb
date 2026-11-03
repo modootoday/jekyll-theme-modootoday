@@ -2,7 +2,7 @@
 # The site's own sheets and preload hints (modootoday.site_css, modootoday.preload and the same front matter keys):
 # where the tags go, which values are skipped, and that a site without them gets no new tags.
 require "minitest/autorun"
-require_relative "../../layouts/site"
+require_relative "../../support/layout_site"
 
 class SiteAssetsTest < Minitest::Test
   include LayoutSite

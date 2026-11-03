@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # The site's own sheets and preload hints: modootoday.site_css and modootoday.preload in _config.yml, the same front
-# matter keys, and their files in the build (config/keys/delivery.rb, build/site_assets.rb). Run: bundle exec rake test
+# matter keys, and their files in the build (config/keys/serving/delivery.rb, build/site_assets.rb). Run: bundle exec rake test
 require_relative "../checker_case"
 
 class CheckSiteAssetsTest < CheckerCase
