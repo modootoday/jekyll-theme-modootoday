@@ -2,12 +2,13 @@
 # Kitchen-sink coverage (dev-only): every component registered in docs/_data/components.yml and every
 # alert type and status value must appear in docs/components/kitchen-sink.md (and each translation).
 require "yaml"
+require_relative "../../lib/modootoday/markdown"
 root = File.expand_path("../..", __dir__)
 reg = YAML.safe_load(File.read("#{root}/docs/_data/components.yml")) || {}
 errs = []
 Dir.glob("#{root}/docs/{,*/}components/kitchen-sink.md").each do |f|
   src = File.read(f)
-  fm = YAML.safe_load(src[/\A---\n(.*?)\n---\n/m, 1].to_s) || {}
+  fm = Modootoday::Markdown.fm(src)
   used = Array(fm["sections"]).map { |s| s.is_a?(Hash) ? s["c"] : nil }.compact
   reg.each_key { |c| errs << "#{f}: component `#{c}` not shown" unless used.include?(c) }
   %w[NOTE TIP IMPORTANT WARNING CAUTION].each { |t| errs << "#{f}: alert #{t} missing" unless src.include?("> [!#{t}]") }
@@ -24,7 +25,7 @@ INLINE = { "alert" => /^> \[!NOTE\]/, "badge" => /`status:available`/, "kbd" => 
 site = ARGV[0] || "#{root}/docs/_site"
 Dir.glob("#{root}/docs/{,*/}components/index.md").reject { |f| f.include?("/_site/") }.each do |f|
   src = File.read(f)
-  fm = YAML.safe_load(src[/\A---\n(.*?)\n---\n/m, 1].to_s) || {}
+  fm = Modootoday::Markdown.fm(src)
   next errs << "#{f}: must use layout: examples" unless fm["layout"] == "examples"
   ex = Array(fm["examples"])
   secs = Array(fm["sections"]).map { |s| s.is_a?(Hash) ? s : { "name" => s } }

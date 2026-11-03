@@ -4,7 +4,7 @@
 # rule groups live in check/<context>/ (config, page, build, registry, source, layouts) and report into one shared Context.
 require "yaml"
 require "date"
-require_relative "check/markdown"
+require_relative "markdown"
 require_relative "check/context"
 require_relative "check/registry/registry"
 require_relative "check/page/pages"

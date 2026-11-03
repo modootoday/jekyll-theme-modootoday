@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../../stubs/page"
+
 module Modootoday
   module Check
     # --aliases: the URL aliases modootoday.aliases declares exist for every page with a directory URL other than /.
@@ -40,9 +42,8 @@ module Modootoday
 
       # Directory URLs only, as in modootoday-stubs: a permalink such as /404.html has no alias.
       def page_url(rf, fm)
-        pl = fm["permalink"]
-        return pl.to_s.end_with?("/") ? pl.to_s : nil if pl
-        "/#{rf.delete_suffix(".md").delete_suffix("index")}".sub(%r{([^/])\z}, '\1/')
+        page = Stubs::Page.new(rf, fm)
+        page.directory_url? ? page.url : nil
       end
 
       def md(ctx, rf, url, src, a)

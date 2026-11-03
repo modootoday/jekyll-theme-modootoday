@@ -6,6 +6,7 @@
 #             glossary `avoid` terms, calques, register (ko docs 합니다체 and ko UI 해요체; ja です・ます),
 #             and untranslated English sentences. Pages with `noindex: true` are samples and skip register.
 require "yaml"
+require_relative "../../lib/modootoday/markdown"
 
 module I18nLint
   HAEYO = /[가-힣](?<![세시])요[.!](?=\s|$|["”)*_])/ # 해요체 statement (하세요/하시요 imperatives are fine)
@@ -61,7 +62,7 @@ module I18nLint
     out
   end
 
-  def sample?(src) = src[/\A---\n.*?\n---/m].to_s.match?(/^noindex: true$/)
+  def sample?(src) = (Modootoday::Markdown.fm(src)["noindex"] == true rescue false)
 
   def file(path, rel, lang, gl, ui: false)
     errs = []

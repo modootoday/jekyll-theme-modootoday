@@ -26,13 +26,12 @@ module Modootoday
           end
         end
         fm = front(text)
-        text[/\A---\s*\n.*?\n---/m].to_s.scan(/\bnew_window:\s*([^,}\s]+)/) { ctx.errs << "#{r}: new_window: must be true or false (got #{$1})" unless %w[true false].include?($1) }
+        text[Markdown::FM].to_s.scan(/\bnew_window:\s*([^,}\s]+)/) { ctx.errs << "#{r}: new_window: must be true or false (got #{$1})" unless %w[true false].include?($1) }
         demo(ctx, r, text, code) if fm["noindex"] == true
       end
 
       def front(text)
-        m = text.match(/\A---\s*\n(.*?)\n---/m)
-        m ? (YAML.safe_load(m[1], permitted_classes: [Date, Time]) || {}) : {}
+        Markdown.fm(text)
       rescue Psych::Exception
         {}
       end

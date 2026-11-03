@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 require "yaml"
-require "date"
+require_relative "../../lib/modootoday/markdown"
+require_relative "../../lib/modootoday/stubs/page"
 
 module DocsIndex
-  FM = /\A---\n(.*?)\n---\n/m
-
   # One docs page: path, language, section and the front matter keys the index reads.
   Page = Struct.new(:path, :rel, :lang, :section, :group, :key, :fm, keyword_init: true) do
-    def url
-      return fm["permalink"] if fm["permalink"].to_s.end_with?("/")
-      "/#{rel.delete_suffix(".md").delete_suffix("index")}".sub(%r{([^/])\z}, '\1/')
-    end
+    def url = Modootoday::Stubs::Page.new(rel, fm).url
     def index? = File.basename(rel) == "index.md"
     def title = fm["nav_title"] || fm["title"]
     def order = fm["nav_order"]
@@ -38,7 +34,7 @@ module DocsIndex
       rel = path.delete_prefix("#{root}/")
       parts = rel.split("/")
       lang = langs.include?(parts.first) && parts.first != default_lang ? parts.shift : default_lang
-      fm = YAML.safe_load(File.read(path)[FM, 1].to_s, permitted_classes: [Date]) || {}
+      fm = Modootoday::Markdown.fm(File.read(path))
       section = parts.size > 1 ? parts.first : fm["nav_section"]
       group = parts[1] if parts.size > 2
       Page.new(path: path, rel: rel, lang: lang, section: section, group: group, key: parts.join("/"), fm: fm)

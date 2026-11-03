@@ -5,20 +5,8 @@ module Modootoday
     ConfigError = Class.new(StandardError)
     DataError = Class.new(StandardError)
 
-    # One Markdown page with front matter: its path relative to SRC, its front matter and its directory URL.
-    Page = Struct.new(:rel, :fm) do
-      def url
-        return fm["permalink"] if fm["permalink"].to_s.end_with?("/")
-        "/#{rel.delete_suffix(".md").delete_suffix("index")}".sub(%r{([^/])\z}, '\1/')
-      end
-
-      def name = File.basename(rel)
-      def directory_url? = fm["permalink"].nil? || fm["permalink"].to_s.end_with?("/")
-    end
-
     # The site source: _config.yml and the Markdown pages Jekyll renders (not under _ or . folders, not excluded).
     class Source
-      FM = /\A---\r?\n(.*?\r?\n)?---\r?\n/m
       SKIP_DIRS = %w[vendor node_modules].freeze
       # Written into stub front matter as a plain YAML scalar: no space (": " and " #" end it), quote, query or fragment.
       SAFE_URL = %r{\A/[^\s"'\\#?]*\z}
@@ -43,7 +31,7 @@ module Modootoday
       def pages
         @pages ||= files("**/*.md").filter_map do |r|
           text = File.read(path(r))
-          Page.new(r, front_matter(r, text)) if text.match?(FM)
+          Page.new(r, front_matter(r, text)) if Markdown.front_matter?(text)
         end
       end
 
@@ -57,7 +45,7 @@ module Modootoday
       # The front matter of a file in SRC, or nil when it has none.
       def front_matter_of(rel)
         text = File.read(path(rel))
-        front_matter(rel, text) if text.match?(FM)
+        front_matter(rel, text) if Markdown.front_matter?(text)
       end
 
       def url!(page, url)
@@ -76,8 +64,7 @@ module Modootoday
       def excluded = @excluded ||= Array(config["exclude"]).map { |e| e.to_s.chomp("/") }
 
       def front_matter(rel, text)
-        yaml = text[FM].sub(/\A---\r?\n/, "").sub(/---\r?\n\z/, "")
-        fm = YAML.safe_load(yaml, permitted_classes: [Date, Time]) || {}
+        fm = Markdown.fm(text)
         fm.is_a?(Hash) ? fm : raise(DataError, "#{rel}: front matter is not a map")
       rescue Psych::Exception => e
         raise DataError, "#{rel}: front matter: #{e.message}"
