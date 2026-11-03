@@ -24,6 +24,10 @@ class StarterGuidesTest < Minitest::Test
         assert_includes html, %(href="/#{pre}guide/") if pre != ""
         assert_equal 5, html.scan(/class="mt-callout /).size, "#{pre}guide alerts"
       end
+      # The site catalogs leave language: to the theme, which still names each translation.
+      llms = File.read("#{d}/s/llms.txt")
+      assert_includes llms, "- [日本語](/ja/llms.txt): ja pages"
+      assert_includes llms, "- [한국어](/ko/llms.txt): ko pages"
     end
   end
 end

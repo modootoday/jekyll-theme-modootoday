@@ -25,6 +25,18 @@ class StarterSourcesTest < Minitest::Test
     end
   end
 
+  # A site catalog that repeats a theme string would freeze it; a starter keeps only what it changes.
+  def test_site_catalogs_hold_only_what_the_theme_lacks
+    leaves = ->(h, pre = nil) { h.is_a?(Hash) ? h.flat_map { |k, v| leaves.(v, [pre, k].compact.join(".")) } : [[pre, h]] }
+    manifest.starters.each do |s|
+      Dir.glob("#{s.dir}/_data/i18n/*.yml").each do |f|
+        theme = leaves.(YAML.safe_load(File.read("#{Starters::Sources::ROOT}/i18n/#{File.basename(f)}"))).to_h
+        same = leaves.(YAML.safe_load(File.read(f))).select { |k, v| theme[k] == v }.map(&:first)
+        assert_empty same, "#{s.name}/_data/i18n/#{File.basename(f)} repeats theme strings"
+      end
+    end
+  end
+
   def test_languages_are_the_config_default_and_language_folders
     manifest.starters.each do |s|
       cfg = YAML.safe_load(File.read("#{s.dir}/_config.yml"))

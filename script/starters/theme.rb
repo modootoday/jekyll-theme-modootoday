@@ -7,7 +7,7 @@ require "rubygems"
 
 module Starters
   # What a starter takes from the theme, each read from its one owner: the gemspec (version, repository),
-  # gemfiles/<stack>.gemfile (gem lines), i18n/ (languages, catalogs) and the executables (command tables).
+  # gemfiles/<stack>.gemfile (gem lines), i18n/languages.yml (languages) and the executables (command tables).
   class Theme
     # remote: the stack loads the theme with remote_theme (classic GitHub Pages) instead of the gem.
     STACKS = { "github-pages" => { remote: true }, "jekyll4" => { remote: false } }.freeze
@@ -28,7 +28,6 @@ module Starters
     def stacks = STACKS.keys.select { |s| File.file?(gemfile(s)) }
     def remote?(stack) = STACKS.fetch(stack)[:remote]
     def languages = @languages ||= YAML.safe_load(File.read(File.join(root, "i18n/languages.yml"))).map { |l| l["code"] }
-    def catalog(lang) = File.join(root, "i18n", "#{lang}.yml")
     def gemfile(stack) = File.join(root, "gemfiles", "#{stack}.gemfile")
 
     # The gem lines of a stack's bundle, minus the theme's own test tools.

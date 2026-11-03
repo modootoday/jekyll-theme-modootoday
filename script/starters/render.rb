@@ -10,7 +10,8 @@ require_relative "site"
 
 module Starters
   # Renders each starter for each of its stacks into OUT/<stack>/<name>/: the source folder, then the files the
-  # theme owns (Gemfile, README.md, the Pages workflow, catalogs, stubs). The same inputs give the same bytes.
+  # theme owns (Gemfile, README.md, the Pages workflow, stubs). The same inputs give the same bytes. Interface
+  # catalogs are never copied: the theme ships every manifest language, and a copy would freeze its strings.
   class Render
     # Build output and lock files are never part of a starter, in the source or in a rendered tree.
     SKIP = %w[_site .jekyll-cache .sass-cache .jekyll-metadata Gemfile.lock].freeze
@@ -39,10 +40,6 @@ module Starters
       write(dir, "_config.yml", site.config)
       { "Gemfile" => "Gemfile", "README.md" => "README.md", ".github/workflows/pages.yml" => "pages.yml" }.each do |path, t|
         write(dir, path, ERB.new(File.read(File.join(TEMPLATES, "#{t}.erb")), trim_mode: "-").result(site.instance_eval { binding }))
-      end
-      starter.languages.each do |l|
-        to = File.join(dir, "_data/i18n/#{l}.yml")
-        copy(theme.catalog(l), to) unless File.exist?(to)
       end
       source = Modootoday::Stubs::Source.new(dir)
       Modootoday::Stubs::Writer.apply(source, Modootoday::Stubs::Plan.new(source, site.stub_kinds).changes)

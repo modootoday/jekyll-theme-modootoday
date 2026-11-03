@@ -52,7 +52,7 @@ node qa/lighthouse/budget.mjs qa-out/lighthouse
 
 - `_config.yml`: on the `github-pages` stack, the `theme:` line becomes `remote_theme:` pinned to the gemspec version.
 - `Gemfile` from the gem lines of `gemfiles/<stack>.gemfile`; `README.md` and `.github/workflows/pages.yml` from `script/starters/templates/`, shared by every starter.
-- `_data/i18n/<lang>.yml` for each listed language the source lacks, copied from `i18n/`; the twin, record and alias stubs `modootoday-stubs` writes.
+- The twin, record and alias stubs `modootoday-stubs` writes. No interface catalog is copied: the theme ships every language a starter may list, and a starter's `_data/i18n/<lang>.yml` holds only the strings that site changes (a test fails on one that repeats the theme's).
 
 Do not commit those files in a starter folder; the tests fail on a committed stub. `rake starters:check` fails when `pkg/starters/` differs from a fresh render, and `rake starters:build[NAME]` builds the starters with the current bundle and runs the checker with their manifest flags (plain `rake` runs it after the tests). The `starters.yml` workflow renders, builds and checks every starter on github-pages 232, Jekyll 4 and the GitHub Pages builder image. Publishing a rendered starter to its repository comes after 1.5.0; until then it is uploaded by hand. Sites that only tests use, such as the front-matter-less one, live in `test/fixtures/sites/`.
 

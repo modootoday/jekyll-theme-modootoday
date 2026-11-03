@@ -47,12 +47,11 @@ class StarterRenderTest < Minitest::Test
     end
   end
 
-  def test_stubs_catalogs_and_readme_tables
+  def test_stubs_readme_tables_and_no_copied_catalogs
     Dir.mktmpdir do |d|
       render.all(d)
       assert_equal "---\nlayout: twin\ntwin_of: index.md\npermalink: /ko/index.md\n---\n", read(d, "jekyll4", "ko/index.md.txt")
-      %w[en ko].each { |l| assert_equal File.read(THEME.catalog(l)), read(d, "jekyll4", "_data/i18n/#{l}.yml") }
-      refute File.exist?(File.join(d, "jekyll4/tiny/_data/i18n/ja.yml"))
+      assert_empty Dir.glob("*/tiny/_data/**/*", base: d), "the theme ships en and ko; the render copies no catalog"
       readme = read(d, "github-pages", "README.md")
       THEME.commands.each_value { |table| assert_includes readme, table }
       assert_includes readme, "modootoday-stubs . --twins --write"

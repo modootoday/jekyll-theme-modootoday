@@ -22,7 +22,9 @@
   {%- assign _lp = site.pages | where: "url", _lurl | first -%}
   {%- if _lp and _code != _llms_lang -%}
     {%- if site.url -%}{%- assign _href = _lurl | absolute_url -%}{%- else -%}{%- assign _href = _lurl | relative_url -%}{%- endif -%}
-    {%- capture _tr %}{{ _tr }}- [{{ _l[1].language | default: _code }}]({{ _href }}): {{ _code }} pages
+    {%- capture _lname -%}{%- include modootoday/i18n/name.html code=_code -%}{%- endcapture -%}
+    {%- assign _lname = _l[1].language | default: _lname -%}
+    {%- capture _tr %}{{ _tr }}- [{{ _lname }}]({{ _href }}): {{ _code }} pages
 {% endcapture -%}
   {%- endif -%}
 {%- endfor -%}
