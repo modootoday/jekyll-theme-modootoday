@@ -16,8 +16,9 @@ tmp/
 .idea/
 .vscode/
 
-# spec CLI local-only development docs
+# spec CLI local-only development docs, and its cache and trash
 .spec.local/
+.specfold/
 docs/_site/
 docs/.jekyll-cache/
 qa-out/
