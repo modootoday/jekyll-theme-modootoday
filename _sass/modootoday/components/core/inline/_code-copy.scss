@@ -1,11 +1,14 @@
-// Copy button on code blocks (assets/js/modootoday/code-copy.js).
+// Copy button on code blocks (assets/js/modootoday/code-copy.js): a 32px icon button at the top end, named by its
+// aria-label. A titled block puts it in the title bar; an untitled one keeps a 40px strip above the code for it.
 @include mt-layer(components) {
   .mt-code { position: relative; }
-  .mt-code-copy { position: absolute; top: .5rem; inset-inline-end: .5rem; font: inherit; font-size: .75rem; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem; min-height: 1.75rem;
-    padding: .2rem .55rem; border-radius: var(--mt-p-radius-sm); border: 1px solid mt(border);
-    background: mt(background); color: mt(muted-foreground); transition: color .15s; }
-  .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); }
-  // Narrow screens: start the code below the button so it never covers the first line of a scrolling block.
+  .mt-code-copy { position: absolute; top: .25rem; inset-inline-end: .25rem; display: grid; place-items: center; width: 2rem; height: 2rem; padding: 0;
+    border: 0; border-radius: mt(radius); background: transparent; color: mt(muted-foreground); cursor: pointer; transition: .15s; }
+  .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); background: mt(accent); }
+  .mt-code-title + .mt-code .mt-code-copy { top: -2.25rem; }
   // Reserved whenever scripting is on, before code-copy.js adds the button, so nothing moves after load.
-  @media (max-width: 47.99rem) and (scripting: enabled) { .mt-main pre { padding-top: 2.6rem; } }
+  @media (scripting: enabled) {
+    .mt-main pre { padding-top: 2.5rem; }
+    .mt-main .mt-code-title + div pre { padding-top: 1rem; }
+  }
 }

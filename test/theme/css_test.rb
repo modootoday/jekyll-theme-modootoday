@@ -62,18 +62,19 @@ class CssTest < Minitest::Test
 
   # Hooks (registry/_hooks.scss) are read with their default as the var() fallback and never declared by the theme.
   def test_hooks_are_fallbacks_only
-    hooks = File.read(File.join(ROOT, "_sass/modootoday/registry/_hooks.scss")).scan(/^  "([\w-]+)": ([^,\n]+)/)
+    hooks = File.read(File.join(ROOT, "_sass/modootoday/registry/_hooks.scss")).scan(/^  "([\w-]+)": ([^\n]+?),?$/)
+                .map { |n, d| [n, d.strip.sub(/\Aunquote\("(.*)"\)\z/, '\1')] }
     refute_empty hooks
     core, _, sheets = self.class.build("all")
     css = core + sheets.values.join
     hooks.each do |name, default|
       refute_match(/--mt-#{name}\s*:/, css, "the theme declares the hook --mt-#{name}")
-      uses = css.scan(/var\(--mt-#{name}\s*,\s*([^)]+)\)/).flatten.map(&:strip).uniq
-      assert_equal [default.strip], uses, "--mt-#{name} fallbacks"
+      uses = css.scan(/var\(--mt-#{name}\s*,\s*(var\([^)]*\)|[^)]+)\)/).flatten.map(&:strip).uniq
+      assert_equal [default], uses, "--mt-#{name} fallbacks"
     end
     %w[customize customize.ko customize.ja].each do |doc|
       rows = File.read(File.join(ROOT, "docs/guides/#{doc}.md")).scan(/^\| `--mt-([\w-]+)` \| `([^`]+)` \|/)
-      assert_equal hooks.map { |n, d| [n, d.strip] }, rows, "layout hooks table in #{doc}.md"
+      assert_equal hooks, rows, "layout hooks table in #{doc}.md"
     end
   end
 

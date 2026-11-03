@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:a6c08d8211ae
+source_rev: sha256:7d20ea0137bc
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -226,7 +226,7 @@ bundle exec jekyll serve
 
 ## 코드 블록
 
-`status:available` 펜스 코드 블록은 구문 강조가 되고 첫 줄 끝에 복사 버튼이 붙습니다. 긴 줄은 스크롤되고 키보드로도 블록에 갈 수 있습니다.
+`status:available` 펜스 코드 블록은 구문 강조가 되고, 블록 위쪽 끝(`file:` 제목이 있으면 제목 줄)에 아이콘 복사 버튼이 붙습니다. 코드가 클립보드에 복사되면 스크린 리더에 "복사됨"을 알립니다. 긴 줄은 스크롤되고 키보드로도 블록에 갈 수 있습니다.
 
 ```ruby
 Jekyll::Hooks.register :site, :post_write do |site|

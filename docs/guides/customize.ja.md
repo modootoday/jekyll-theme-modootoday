@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:2625d31ee8bc
+source_rev: sha256:2a0207a60d27
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -51,6 +51,7 @@ sections:
 | `--mt-toc-width` | `15rem` | 「このページの内容」の列 |
 | `--mt-doc-gap` | `2rem` | ドキュメントの列の間隔 |
 | `--mt-doc-container` | `90rem` | ドキュメントのサイドバーがあるページのヘッダー、本文、フッターの幅 |
+| `--mt-code-radius` | `var(--mt-radius)` | コードブロックとタイトルの行の角 |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

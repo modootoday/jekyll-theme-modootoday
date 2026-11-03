@@ -5,5 +5,6 @@ $mt-hooks: (
   "sidebar-width": 18rem,
   "toc-width": 15rem,
   "doc-gap": 2rem,
-  "doc-container": 90rem
+  "doc-container": 90rem,
+  "code-radius": unquote("var(--mt-radius)")
 ) !default;

@@ -220,7 +220,7 @@ An ordered list works too.
 
 ## Code blocks
 
-`status:available` Fenced code blocks are highlighted and get a copy button at the end of the first line. A long line scrolls, and the block can be reached with the keyboard.
+`status:available` Fenced code blocks are highlighted and get a copy button, an icon at the top end of the block (in the title bar when the block has a `file:` title), which says "Copied" to screen readers once the code is on the clipboard. A long line scrolls, and the block can be reached with the keyboard.
 
 ```ruby
 Jekyll::Hooks.register :site, :post_write do |site|

@@ -44,6 +44,7 @@ Some sizes are hooks: the theme reads them as `var(--mt-<name>, <default>)` and 
 | `--mt-toc-width` | `15rem` | the "On this page" column |
 | `--mt-doc-gap` | `2rem` | the gap between the doc columns |
 | `--mt-doc-container` | `90rem` | the width of the header, main and footer on pages with a doc sidebar |
+| `--mt-code-radius` | `var(--mt-radius)` | the corners of code blocks and their title bar |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

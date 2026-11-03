@@ -54,6 +54,9 @@
   .mt-dx-pkgs tbody th { white-space: normal; background: none; font-size: inherit; font-weight: 400; }
   .mt-dx-pkgs tr:last-child > th { border-bottom: 0; }
   .mt-dx-pkgs tbody th > code { font-weight: 600; }
+  // Package names are links: plain foreground code, underlined on hover only.
+  .mt-dx-pkgs code a { color: mt(foreground); text-decoration: none; }
+  .mt-dx-pkgs code a:hover { text-decoration: underline; }
   .mt-dx-pkgs tbody th > span { display: block; margin-top: .25rem; color: mt(muted-foreground); }
   .mt-dx-pkgs ul { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin: 0; padding: 0; list-style: none; }
   .mt-dx-pkgs li { margin: 0; }

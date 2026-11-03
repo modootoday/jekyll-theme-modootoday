@@ -43,15 +43,30 @@ test("theme toggle: shows, flips data-theme, stores it, aria-pressed follows", (
   assert.strictEqual(w.document.documentElement.dataset.theme, "light");
 });
 
-test("code copy: adds one button per block with the label from <html>", () => {
+test("code copy: adds one icon button per block named by the label from <html>", () => {
   const w = dom('<main class="mt-main"><div class="highlighter-rouge"><pre>a</pre></div><pre>b</pre></main>').window;
   w.document.documentElement.dataset.mtCopy = "복사";
   Object.defineProperty(w.navigator, "clipboard", { value: { writeText: () => Promise.resolve() } });
   w.eval(js("code-copy.js"));
   const b = w.document.querySelectorAll(".mt-code-copy");
   assert.strictEqual(b.length, 2);
-  assert.strictEqual(b[0].textContent, "복사");
-  assert.ok(w.document.querySelector("[aria-live]"));
+  assert.strictEqual(b[0].getAttribute("aria-label"), "복사");
+  assert.strictEqual(b[0].textContent, "", "icon only");
+  assert.ok(b[0].querySelector("svg[aria-hidden=true]"));
+  assert.ok(w.document.querySelector('[role="status"][aria-live="polite"]'));
+});
+
+test("code copy: a click announces the copied label once in the live region", async () => {
+  const w = dom('<main class="mt-main"><pre>a</pre></main>').window;
+  w.document.documentElement.dataset.mtCopied = "복사됨";
+  Object.defineProperty(w.navigator, "clipboard", { value: { writeText: () => Promise.resolve() } });
+  Object.defineProperty(w.HTMLElement.prototype, "innerText", { get() { return this.textContent; } }); // not in jsdom
+  w.eval(js("code-copy.js"));
+  const b = w.document.querySelector(".mt-code-copy");
+  b.click();
+  await new Promise((r) => setTimeout(r, 0));
+  assert.strictEqual(w.document.querySelector('[role="status"]').textContent, "복사됨");
+  assert.strictEqual(b.getAttribute("aria-label"), "Copy", "the name does not change");
 });
 
 test("menu: arrows move between items, Esc closes and returns focus, outside click and another menu close it", () => {

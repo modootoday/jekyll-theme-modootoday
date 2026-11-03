@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:2625d31ee8bc
+source_rev: sha256:2a0207a60d27
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -50,6 +50,7 @@ sections:
 | `--mt-toc-width` | `15rem` | "이 페이지의 내용" 열 |
 | `--mt-doc-gap` | `2rem` | 문서 열 사이의 간격 |
 | `--mt-doc-container` | `90rem` | 문서 사이드바가 있는 페이지의 헤더, 본문, 푸터 너비 |
+| `--mt-code-radius` | `var(--mt-radius)` | 코드 블록과 제목 줄의 모서리 |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

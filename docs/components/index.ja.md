@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:a6c08d8211ae
+source_rev: sha256:7d20ea0137bc
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -227,7 +227,7 @@ bundle exec jekyll serve
 
 ## コードブロック
 
-`status:available` フェンスのコードブロックは構文が色分けされ、1 行目の末尾にコピーボタンが付きます。長い行はスクロールし、キーボードでもブロックに移動できます。
+`status:available` フェンスのコードブロックは構文が色分けされ、ブロックの上端（`file:` のタイトルがある場合はタイトルの行）にアイコンのコピーボタンが付きます。コードがクリップボードにコピーされると、スクリーンリーダーに「コピーしました」と伝えます。長い行はスクロールし、キーボードでもブロックに移動できます。
 
 ```ruby
 Jekyll::Hooks.register :site, :post_write do |site|
