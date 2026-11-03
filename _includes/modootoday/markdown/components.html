@@ -112,7 +112,7 @@ Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
   {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
 {%- capture _c %}{% include modootoday/markdown/inline.html html=_c %}{% endcapture -%}
-{%- comment -%}3) Accessibility fix-ups of kramdown output (found by qa/qa.mjs + axe): focusable scrolling code
+{%- comment -%}3) Accessibility fix-ups of kramdown output (found by qa/audit.mjs + axe): focusable scrolling code
    blocks, labelled task-list checkboxes, and no deprecated role="doc-endnote" on footnote items.{%- endcomment -%}
 {%- assign _td = mt_t_task_done -%}{%- assign _topen = mt_t_task_open -%}
 {%- capture _cbd %}class="task-list-item-checkbox" disabled="disabled" checked="checked" aria-label="{{ _td }}" />{% endcapture -%}
