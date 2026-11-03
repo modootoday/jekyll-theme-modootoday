@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:1a9e445b1ae8
+source_rev: sha256:94fdd8e1d2de
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -64,3 +64,5 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 1.3 | 1.4 | `~> 1.4`(또는 `remote_theme`에서는 `@v1.4.1`)으로 고정합니다. `packages_compact`와 `packages_position`은 선택 사항이고, `reference` 페이지도 이제 `doc`처럼 알림을 변환하므로 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
+
+`name:`을 쓴 `resume`이나 `links` 페이지는 사람 이름 대신 파일 이름(`resume.md`)을 보여 주었습니다. Jekyll이 페이지의 `name:`을 파일 이름으로 바꾸기 때문입니다. 키 이름을 `display_name:`으로 바꾸세요. 바꾸기 전에는 페이지 제목이 보이고 `modootoday-check`가 경고합니다.

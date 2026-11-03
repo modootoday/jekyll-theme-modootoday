@@ -13,7 +13,7 @@ These layouts build the pages around a product: what it does, what it costs, whe
 | `pricing` | `plans`, `currency` | WebPage | [Pricing](/jekyll-theme-modootoday/layouts/marketing/pricing/) |
 | `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](/jekyll-theme-modootoday/layouts/marketing/download/) |
 | `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](/jekyll-theme-modootoday/layouts/marketing/brand/) |
-| `links` | `image`, `name`, `links: [{label, url}]` | ProfilePage | [Links](/jekyll-theme-modootoday/layouts/marketing/links/) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](/jekyll-theme-modootoday/layouts/marketing/links/) |
 | `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [Contact](/jekyll-theme-modootoday/layouts/marketing/contact/) |
 
 For product data, add a `schema:` map (for example `type: SoftwareApplication` with `offers`) and the page prints it as the main entity.
@@ -34,7 +34,7 @@ Plan cards use the pricing component styles. When plans have `yearly`, a Monthly
 
 ## Links
 
-A link page has no site header. `links:` become large buttons; their full URLs become `sameAs` of the Person (or `profile: organization`) in the ProfilePage data.
+A link page has no site header. `links:` become large buttons; their full URLs become `sameAs` of the Person (or `profile: organization`) in the ProfilePage data, named by `display_name` (the title when it is missing).
 
 ## Contact
 

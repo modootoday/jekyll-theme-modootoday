@@ -6,7 +6,7 @@ nav_order: 2
 twin: false
 edit: false
 sections: []
-name: Ada Example
+display_name: Ada Example
 headline: "Documentation engineer"
 email: ada@example.com
 location: Seoul

@@ -8,6 +8,7 @@ require_relative "layouts/detail"
 require_relative "layouts/marketing"
 require_relative "layouts/docs_extra"
 require_relative "layouts/blog"
+require_relative "layouts/profile"
 
 module Modootoday
   module Check
@@ -29,7 +30,9 @@ module Modootoday
         ctx.mds.each do |f|
           fm = Markdown.fm(File.read(f))
           check = contracts[fm["layout"]]
-          check&.call(ctx.errs, "#{ctx.rel(f)}: layout #{fm['layout']}", fm, ctx)
+          where = "#{ctx.rel(f)}: layout #{fm['layout']}"
+          check&.call(ctx.errs, where, fm, ctx)
+          Profile.call(ctx, where, fm) if Profile::LAYOUTS.include?(fm["layout"])
         end
         Shells.fallback(ctx.errs, ctx.mtc.is_a?(Hash) && ctx.mtc["search"].is_a?(Hash) ? ctx.mtc["search"]["fallback"] : nil)
       end

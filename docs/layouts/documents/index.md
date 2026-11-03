@@ -10,7 +10,7 @@ Two layouts for pages people print or keep. Both hide the site header, footer an
 | Layout | Front matter | Bundle | Structured data | Demo |
 |---|---|---|---|---|
 | `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Terms](/jekyll-theme-modootoday/layouts/documents/legal/) |
-| `resume` | `name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](/jekyll-theme-modootoday/layouts/documents/resume/) |
+| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](/jekyll-theme-modootoday/layouts/documents/resume/) |
 
 ## Legal
 
@@ -27,6 +27,7 @@ The contents list is built from the `##` and `###` headings in the body; `toc: f
 ## Resume
 
 ```yaml
+display_name: Ada Example
 experience:
   - {role: Lead engineer, org: Example Docs, start: 2024-03-01}
 education:
@@ -34,5 +35,7 @@ education:
 skills:
   - {group: Languages, items: [Ruby, JavaScript]}
 ```
+
+`display_name` is the heading and the Person's `name`; without it the title is used. Do not use `name:`: Jekyll replaces it with the page's file name, and `modootoday-check` warns about it.
 
 An entry with no `end` shows "Present" and becomes the Person's `worksFor`. Schools become `alumniOf` and skills `knowsAbout`. The markup also carries h-card classes. The page is laid out for A4 and Letter paper first and reflows on screens.

@@ -79,7 +79,7 @@ module Modootoday
         end
 
         def resume(errs, w, fm)
-          errs << "#{w}: set name: (or a title)" unless Shape.text?(fm["name"]) || Shape.text?(fm["title"])
+          errs << "#{w}: set display_name: (or a title)" unless Shape.text?(fm["display_name"]) || Shape.text?(fm["title"])
           Shape.list(errs, w, "experience", fm["experience"], any: %w[role]) do |e, i|
             Shape.need_date(errs, w, "experience[#{i}].start", e["start"], optional: true)
             Shape.need_date(errs, w, "experience[#{i}].end", e["end"], optional: true)

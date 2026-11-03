@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/
-source_rev: sha256:8ed57dd53e7b
+source_rev: sha256:7d8bd197e10f
 title: マーケティングページ
 description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作ります。
 nav_order: 40
@@ -16,7 +16,7 @@ nav_order: 40
 | `pricing` | `plans`、`currency` | WebPage | [料金](/jekyll-theme-modootoday/ja/layouts/marketing/pricing/) |
 | `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](/jekyll-theme-modootoday/ja/layouts/marketing/download/) |
 | `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](/jekyll-theme-modootoday/ja/layouts/marketing/brand/) |
-| `links` | `image`、`name`、`links: [{label, url}]` | ProfilePage | [リンク](/jekyll-theme-modootoday/ja/layouts/marketing/links/) |
+| `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](/jekyll-theme-modootoday/ja/layouts/marketing/links/) |
 | `contact` | `contacts: [{label, value, url}]`、`form: {action, fields}` | ContactPage | [お問い合わせ](/jekyll-theme-modootoday/ja/layouts/marketing/contact/) |
 
 製品情報を構造化データにするには `schema:` マップ（例: `type: SoftwareApplication` と `offers`）を追加します。メインエンティティとして出力されます。
@@ -37,7 +37,7 @@ plans:
 
 ## リンク
 
-リンクページにはサイトのヘッダーがありません。`links:` は大きなボタンになり、完全な URL は ProfilePage データの Person（または `profile: organization`）の `sameAs` に入ります。
+リンクページにはサイトのヘッダーがありません。`links:` は大きなボタンになり、完全な URL は ProfilePage データの Person（または `profile: organization`）の `sameAs` に入り、その名前は `display_name`（ない場合はページのタイトル）です。
 
 ## お問い合わせ
 

@@ -4,13 +4,14 @@ mt_bundle: resume
 mt_main: mt-cv
 ---
 {%- include modootoday/i18n.html -%}
-{%- comment -%}resume: a print-first CV. name (or title), headline, email, phone, location, links: [{label, url}], then the body
+{%- comment -%}resume: a print-first CV. display_name (or title), headline, email, phone, location, links: [{label, url}], then the body
 (summary), experience: [{role, org, start, end, text, highlights}], education: [{degree, school, start, end}],
 skills: [{group, items}]. Structured data: ProfilePage whose Person has jobTitle, worksFor, alumniOf, knowsAbout, sameAs.{%- endcomment -%}
 {%- assign _yf = "%Y.%m" -%}
+{%- include modootoday/profile/name.html -%}
 <article aria-labelledby="mt-cv-name" class="h-card">
 <header class="mt-cv-head">
-<h1 id="mt-cv-name" class="p-name">{{ page.name | default: page.title }}</h1>
+<h1 id="mt-cv-name" class="p-name">{{ mt_profile_name }}</h1>
 {%- if page.headline %}<p class="mt-cv-headline p-job-title">{{ page.headline }}</p>{% endif %}
 <ul class="mt-cv-contact" role="list">
 {%- if page.email %}<li><a class="u-email" href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}

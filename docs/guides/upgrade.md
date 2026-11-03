@@ -58,3 +58,5 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 | 1.3 | 1.4 | pin `~> 1.4` (or `@v1.4.1` with `remote_theme`); `packages_compact` and `packages_position` are opt-in, and `reference` pages now convert alerts like `doc`, so pages need no edits; run `modootoday-check --strict` |
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
+
+A `resume` or `links` page that sets `name:` showed its file name (`resume.md`) as the person's name, because Jekyll replaces `name:` on a page with the file name. Rename the key to `display_name:`; until you do, the title is shown and `modootoday-check` warns.

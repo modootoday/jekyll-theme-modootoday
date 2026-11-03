@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/documents/
-source_rev: sha256:54968d4810af
+source_rev: sha256:f8255e834611
 title: 文書
 description: 法的なページと印刷優先の履歴書です。
 nav_order: 60
@@ -13,7 +13,7 @@ nav_order: 60
 | レイアウト | front matter | バンドル | 構造化データ | デモ |
 |---|---|---|---|---|
 | `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](/jekyll-theme-modootoday/ja/layouts/documents/legal/) |
-| `resume` | `name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](/jekyll-theme-modootoday/ja/layouts/documents/resume/) |
+| `resume` | `display_name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](/jekyll-theme-modootoday/ja/layouts/documents/resume/) |
 
 ## 法的ページ
 
@@ -30,6 +30,7 @@ updated: 2026-10-30
 ## 履歴書
 
 ```yaml
+display_name: Ada Example
 experience:
   - {role: リードエンジニア, org: Example Docs, start: 2024-03-01}
 education:
@@ -37,5 +38,7 @@ education:
 skills:
   - {group: 言語, items: [Ruby, JavaScript]}
 ```
+
+`display_name` は見出しと Person の `name` になり、ない場合はページのタイトルを使います。`name:` は使わないでください。Jekyll がページのファイル名に置き換えるため、`modootoday-check` が警告します。
 
 `end` のない項目は「現在」と表示され、Person の `worksFor` になります。学校は `alumniOf`、スキルは `knowsAbout` になります。マークアップには h-card クラスも付きます。まず A4 と Letter の用紙に合わせて配置し、画面ではリフローします。

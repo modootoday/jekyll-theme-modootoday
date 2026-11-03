@@ -9,7 +9,7 @@ nav_order: 5
 twin: false
 edit: false
 sections: []
-name: 모두의오늘 테마
+display_name: 모두의오늘 테마
 profile: organization
 image: /assets/images/people/grace.webp
 links:

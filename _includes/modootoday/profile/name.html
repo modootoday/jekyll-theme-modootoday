@@ -1,0 +1,8 @@
+{%- comment -%}Display name of a resume or links page: display_name, else a name: that Jekyll kept (collection documents),
+else the title. A page's name is always its file name in Liquid, so it counts only when it differs from the path.{%- endcomment -%}
+{%- assign mt_profile_name = page.display_name -%}
+{%- unless mt_profile_name -%}
+{%- assign _pnf = page.path | split: "/" | last -%}
+{%- if _pnf and page.name != _pnf %}{% assign mt_profile_name = page.name %}{% endif -%}
+{%- endunless -%}
+{%- assign mt_profile_name = mt_profile_name | default: page.title -%}

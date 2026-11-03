@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/
-source_rev: sha256:8ed57dd53e7b
+source_rev: sha256:7d8bd197e10f
 title: 마케팅 페이지
 description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지를 공유 선택 스타일시트 하나로 만듭니다.
 nav_order: 40
@@ -16,7 +16,7 @@ nav_order: 40
 | `pricing` | `plans`, `currency` | WebPage | [요금](/jekyll-theme-modootoday/ko/layouts/marketing/pricing/) |
 | `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](/jekyll-theme-modootoday/ko/layouts/marketing/download/) |
 | `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](/jekyll-theme-modootoday/ko/layouts/marketing/brand/) |
-| `links` | `image`, `name`, `links: [{label, url}]` | ProfilePage | [링크](/jekyll-theme-modootoday/ko/layouts/marketing/links/) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](/jekyll-theme-modootoday/ko/layouts/marketing/links/) |
 | `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [문의](/jekyll-theme-modootoday/ko/layouts/marketing/contact/) |
 
 제품 정보를 구조화 데이터로 내보내려면 `schema:` 맵(예: `type: SoftwareApplication`과 `offers`)을 추가하세요. 주요 개체로 출력됩니다.
@@ -37,7 +37,7 @@ plans:
 
 ## 링크
 
-링크 페이지에는 사이트 머리글이 없습니다. `links:`는 큰 버튼이 되고, 전체 URL은 ProfilePage 데이터의 Person(또는 `profile: organization`)에 `sameAs`로 들어갑니다.
+링크 페이지에는 사이트 머리글이 없습니다. `links:`는 큰 버튼이 되고, 전체 URL은 ProfilePage 데이터의 Person(또는 `profile: organization`)에 `sameAs`로 들어가고, 그 이름은 `display_name`(없으면 페이지 제목)입니다.
 
 ## 문의
 

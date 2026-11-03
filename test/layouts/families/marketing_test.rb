@@ -13,7 +13,7 @@ class MarketingLayoutsTest < Minitest::Test
     "pr.md" => "title: P\nlayout: pricing\ncurrency: $\n#{PLANS}",
     "d.md" => "title: D\nlayout: download\nversion: 1.0.0\ndownloads: [{label: macOS, url: /m.dmg, size: 9 MB}]\n",
     "b.md" => "title: B\nlayout: brand\ncolors: [{name: Ink, hex: '#111111'}]\nassets: [{label: Logo, url: /l.svg, format: SVG}]\n",
-    "l.md" => "title: L\nlayout: links\nname: Ada\nlinks: [{label: GitHub, url: 'https://github.com/ada'}, {label: Blog, url: /blog/}]\n",
+    "l.md" => "title: L\nlayout: links\ndisplay_name: Ada\nlinks: [{label: GitHub, url: 'https://github.com/ada'}, {label: Blog, url: /blog/}]\n",
     "c.md" => "title: C\nlayout: contact\ncontacts: [{label: Email, value: a@example.com, url: 'mailto:a@example.com'}]\nform: {action: 'https://forms.example.com/x'}\n",
   }.freeze
 

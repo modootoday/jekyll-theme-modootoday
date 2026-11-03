@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:1a9e445b1ae8
+source_rev: sha256:94fdd8e1d2de
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -64,3 +64,5 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 | 1.3 | 1.4 | `~> 1.4`（`remote_theme` では `@v1.4.1`）に固定する。`packages_compact` と `packages_position` は任意で、`reference` ページも `doc` と同じくアラートを変換するようになったため、ページの修正は不要。`modootoday-check --strict` を実行する |
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
+
+`name:` を書いた `resume` や `links` のページは、人の名前ではなくファイル名（`resume.md`）を表示していました。Jekyll がページの `name:` をファイル名に置き換えるためです。キーを `display_name:` に変えてください。変えるまではページのタイトルが表示され、`modootoday-check` が警告します。
