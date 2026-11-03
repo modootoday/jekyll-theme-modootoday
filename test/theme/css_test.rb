@@ -56,7 +56,24 @@ class CssTest < Minitest::Test
       assert_includes css, "--mt-primary:"
       refute_match(/--md-|\.md-[a-z]/, css, "md-* aliases never shipped")
       defined = css.scan(/(--mt-[\w-]+)\s*:/).flatten
-      (css.scan(/var\((--mt-[\w-]+)/).flatten.uniq - defined).each { |v| flunk "undefined #{v}" }
+      (css.scan(/var\((--mt-[\w-]+)\s*\)/).flatten.uniq - defined).each { |v| flunk "undefined #{v}" }
+    end
+  end
+
+  # Hooks (registry/_hooks.scss) are read with their default as the var() fallback and never declared by the theme.
+  def test_hooks_are_fallbacks_only
+    hooks = File.read(File.join(ROOT, "_sass/modootoday/registry/_hooks.scss")).scan(/^  "([\w-]+)": ([^,\n]+)/)
+    refute_empty hooks
+    core, _, sheets = self.class.build("all")
+    css = core + sheets.values.join
+    hooks.each do |name, default|
+      refute_match(/--mt-#{name}\s*:/, css, "the theme declares the hook --mt-#{name}")
+      uses = css.scan(/var\(--mt-#{name}\s*,\s*([^)]+)\)/).flatten.map(&:strip).uniq
+      assert_equal [default.strip], uses, "--mt-#{name} fallbacks"
+    end
+    %w[customize customize.ko customize.ja].each do |doc|
+      rows = File.read(File.join(ROOT, "docs/guides/#{doc}.md")).scan(/^\| `--mt-([\w-]+)` \| `([^`]+)` \|/)
+      assert_equal hooks.map { |n, d| [n, d.strip] }, rows, "layout hooks table in #{doc}.md"
     end
   end
 

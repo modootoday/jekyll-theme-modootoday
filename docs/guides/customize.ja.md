@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:308b03f8a9c4
+source_rev: sha256:2625d31ee8bc
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -40,6 +40,23 @@ sections:
 - `modootoday.css_layers: true` にします。テーマの CSS が `@layer mt.*` に入り、レイヤー外のルールが勝つので、普通の `:root { … }` で足ります。
 
 ダークモードの画像：写真は `--mt-img-filter-dark` を、`.svg` の図は色相を保って反転してから `--mt-img-filter-dark` を適用する `--mt-diagram-filter-dark` を使います。どちらもトークンで変更できます。たとえば `--mt-diagram-filter-dark: none` にすると、すべての図が描いたままになります。一つの画像のパスの末尾に `#light` を付けると（`flow.svg#light`）、その画像だけが描いたままになります。[数式と図](../../recipes/math-diagrams/#図)を参照してください。
+
+### レイアウトのフック
+
+一部のサイズはフックです。テーマはこれを `var(--mt-<name>, <既定値>)` として読むだけで自分では設定しないため、自分のスタイルシート（たとえば `site_css` で読み込むファイル）の普通のルールで、テーマのセレクターより優先させる工夫なしに変更できます。
+
+| フック | 既定値 | 決めるもの |
+|---|---|---|
+| `--mt-sidebar-width` | `18rem` | 64rem から表示されるドキュメントのサイドバーの列 |
+| `--mt-toc-width` | `15rem` | 「このページの内容」の列 |
+| `--mt-doc-gap` | `2rem` | ドキュメントの列の間隔 |
+| `--mt-doc-container` | `90rem` | ドキュメントのサイドバーがあるページのヘッダー、本文、フッターの幅 |
+
+```css
+:root { --mt-sidebar-width: 16rem; }
+```
+
+既定値は `_sass/modootoday/registry/_hooks.scss` にあります。
 
 ## トークンブリッジ
 

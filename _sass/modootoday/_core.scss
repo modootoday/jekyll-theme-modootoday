@@ -8,6 +8,7 @@
 @import "tokens/primitive";
 @import "tokens/semantic";
 @import "tokens/scale";
+@import "registry/hooks";
 @import "tokens/code-presets";
 @import "tokens/merge";
 @if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }

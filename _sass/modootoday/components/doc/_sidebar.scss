@@ -1,30 +1,33 @@
 // Doc sidebar from grouped nav: a sticky column from 64rem (aside.mt-doc-nav), a collapsed <details> below it. The sticky column rule is shared with the TOC in layout/_shell.scss.
+// Columns come from hooks (registry/_hooks.scss): sidebar-width, the text measure, toc-width from 80rem, doc-gap between.
 @include mt-layer(components) {
-  .mt-sidebar { font-size: .9rem; }
+  .mt-sidebar { font-size: mt-size(sm); line-height: mt-leading(sm); }
   .mt-sidebar ul { list-style: none; margin: 0; padding: 0; }
-  .mt-sidebar a { display: block; padding: .3rem .6rem; border-radius: mt(radius); color: mt(muted-foreground); text-decoration: none; }
+  .mt-sidebar a { display: flex; align-items: center; min-height: 2rem; padding: 0 .5rem; border-radius: mt(radius); color: mt(muted-foreground); text-decoration: none; }
   .mt-sidebar a:hover, .mt-sidebar [aria-current] { color: mt(foreground); background: mt(accent); }
-  .mt-sidebar [aria-current] { font-weight: 600; }
-  .mt-sidebar-group { margin-top: 1rem; }
+  .mt-sidebar [aria-current] { font-weight: 500; }
+  .mt-sidebar-group { margin-top: 1.5rem; }
   .mt-sidebar summary { cursor: pointer; }
-  .mt-sidebar ul ul summary { padding: .3rem .6rem; color: mt(muted-foreground); }
+  .mt-sidebar ul ul summary { padding: .375rem .5rem; color: mt(muted-foreground); }
   .mt-sidebar ul ul { padding-inline-start: .75rem; }
-  .mt-sidebar-title { display: list-item; padding: 0 .6rem .3rem; font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+  .mt-sidebar-title { display: list-item; padding: 0 .5rem .25rem; font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; color: mt(muted-foreground); }
   .mt-doc-nav { display: none; }
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
   .mt-sidebar-mobile > .mt-sidebar { padding: 0 .5rem .6rem; max-height: 60vh; overflow-y: auto; }
+  // A page with a sidebar widens header, main and footer to doc-container.
+  .mt-body:has(.mt-has-sidebar) :is(.mt-header-inner,.mt-main,.mt-footer-inner) { max-width: mt-hook(doc-container); }
   @media (min-width: 64rem) {
     .mt-sidebar-mobile, .mt-has-sidebar .mt-doc-aside { display: none; }
-    .mt-doc-layout.mt-has-sidebar { display: grid; grid-template-columns: 12rem minmax(0, #{mt(measure)}); gap: 3rem; max-width: none; }
+    // The TOC (grid-column 3 from 80rem) gets an implicit column of toc-width.
+    .mt-doc-layout.mt-has-sidebar { display: grid; grid-template-columns: #{mt-hook(sidebar-width)} minmax(0, #{mt(measure)}); grid-auto-columns: mt-hook(toc-width); gap: mt-hook(doc-gap); max-width: none; }
     .mt-has-sidebar .mt-doc-nav { display: block; }
     .mt-has-sidebar .mt-toc-mobile { display: block; }
-    .mt-doc-layout.mt-has-sidebar ~ * { max-width: mt(measure); margin-inline-start: 15rem; }
+    // Page meta, pager and back-to-top start on the text column, by the same formula at both breakpoints.
+    .mt-doc-layout.mt-has-sidebar ~ * { max-width: mt(measure); margin-inline-start: calc(#{mt-hook(sidebar-width)} + #{mt-hook(doc-gap)}); }
   }
   @media (min-width: 80rem) {
-    .mt-has-sidebar.mt-has-toc { grid-template-columns: 12rem minmax(0, 1fr) 12rem; gap: 2.5rem; }
     .mt-has-sidebar .mt-doc-aside { display: block; grid-column: 3; grid-row: 1; }
     .mt-has-sidebar .mt-toc-mobile { display: none; }
-    .mt-doc-layout.mt-has-sidebar ~ * { margin-inline-start: 14.5rem; }
   }
 }

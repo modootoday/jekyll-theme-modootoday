@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:308b03f8a9c4
+source_rev: sha256:2625d31ee8bc
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -39,6 +39,23 @@ sections:
 - `modootoday.css_layers: true`로 설정합니다. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분합니다.
 
 다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/math-diagrams/#다이어그램)을 참고하세요.
+
+### 레이아웃 훅
+
+일부 크기는 훅입니다. 테마는 이 값을 `var(--mt-<name>, <기본값>)`으로 읽기만 하고 직접 설정하지 않으므로, 직접 만든 스타일시트(예: `site_css`로 연결한 파일)의 평범한 규칙으로 테마 선택자보다 우선하려고 애쓰지 않고 바꿀 수 있습니다.
+
+| 훅 | 기본값 | 정하는 것 |
+|---|---|---|
+| `--mt-sidebar-width` | `18rem` | 64rem부터 보이는 문서 사이드바 열 |
+| `--mt-toc-width` | `15rem` | "이 페이지의 내용" 열 |
+| `--mt-doc-gap` | `2rem` | 문서 열 사이의 간격 |
+| `--mt-doc-container` | `90rem` | 문서 사이드바가 있는 페이지의 헤더, 본문, 푸터 너비 |
+
+```css
+:root { --mt-sidebar-width: 16rem; }
+```
+
+기본값은 `_sass/modootoday/registry/_hooks.scss`에 있습니다.
 
 ## 토큰 브리지
 

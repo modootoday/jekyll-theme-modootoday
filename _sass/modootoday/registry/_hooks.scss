@@ -1,0 +1,9 @@
+// Hook defaults: a component reads var(--mt-<name>, <default>) through mt-hook(<name>) and the theme never declares
+// the property, so a site sets it in its own CSS and the core sheet pays only for the fallback. Build-time only (no
+// output); the component registry will write this map.
+$mt-hooks: (
+  "sidebar-width": 18rem,
+  "toc-width": 15rem,
+  "doc-gap": 2rem,
+  "doc-container": 90rem
+) !default;

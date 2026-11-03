@@ -34,6 +34,23 @@ Overrides in your own stylesheet need to beat the theme's dark-scheme selectors 
 
 Images in dark mode: photos use `--mt-img-filter-dark`; `.svg` figures (diagrams) use `--mt-diagram-filter-dark`, which inverts them with the hues kept and then applies `--mt-img-filter-dark`. Override either in your tokens, for example `--mt-diagram-filter-dark: none` to keep every diagram as drawn; a `#light` ending on one image's path (`flow.svg#light`) does the same for that image. See [Math and diagrams](../../recipes/math-diagrams/#diagrams).
 
+### Layout hooks
+
+Some sizes are hooks: the theme reads them as `var(--mt-<name>, <default>)` and never sets them, so a plain rule in your own stylesheet (for example one linked with `site_css`) changes them without having to beat the theme's selectors.
+
+| Hook | Default | What it sets |
+|---|---|---|
+| `--mt-sidebar-width` | `18rem` | the doc sidebar column, from 64rem |
+| `--mt-toc-width` | `15rem` | the "On this page" column |
+| `--mt-doc-gap` | `2rem` | the gap between the doc columns |
+| `--mt-doc-container` | `90rem` | the width of the header, main and footer on pages with a doc sidebar |
+
+```css
+:root { --mt-sidebar-width: 16rem; }
+```
+
+The defaults are in `_sass/modootoday/registry/_hooks.scss`.
+
 ## Token bridge
 
 Create `_sass/modootoday/_site.scss` in your site and set up to three maps. The theme imports this file before its settings, so the core sheet and every optional sheet use your values in light and dark mode:

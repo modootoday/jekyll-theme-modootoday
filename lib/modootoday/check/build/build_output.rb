@@ -39,8 +39,9 @@ module Modootoday
           t.scan(/(--mt-[\w-]+)\s*:/) { defined[$1] = true }
         end
         Dir.glob("#{ctx.site}/**/*.html").each { |f| File.read(f).scan(%r{<style[^>]*>(.*?)</style>}m) { $1.scan(/(--mt-[\w-]+)\s*:/) { defined[$1] = true } } }
+        # A var() with a fallback is a hook (registry/_hooks.scss): never declared on purpose.
         files.each do |f|
-          File.read(f).scan(/var\((--mt-[\w-]+)/).flatten.uniq.each { |v| errs << "#{f}: var(#{v}) is never defined" unless defined[v] }
+          File.read(f).scan(/var\((--mt-[\w-]+)\s*\)/).flatten.uniq.each { |v| errs << "#{f}: var(#{v}) is never defined" unless defined[v] }
         end
       end
     end

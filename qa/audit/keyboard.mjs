@@ -64,6 +64,29 @@ async function navSheet(page, url, fails) {
   await page.setViewportSize({ width: 1024, height: 900 });
 }
 
+// The sticky TOC scrolls, so a focus ring drawn outside a link would be clipped by the column.
+async function tocRing(page, url, fails) {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(url, { waitUntil: "networkidle" });
+  const link = page.locator(".mt-doc-aside .mt-toc a").first();
+  if (!(await link.count())) {
+    fails.push(`keyboard: no TOC column at 1440px ${url}`);
+    await page.setViewportSize({ width: 1024, height: 900 });
+    return;
+  }
+  await page.keyboard.press("Tab");
+  await link.focus();
+  const out = await link.evaluate((a) => {
+    const s = getComputedStyle(a);
+    const grow = parseFloat(s.outlineWidth) + parseFloat(s.outlineOffset);
+    const r = a.getBoundingClientRect();
+    const c = a.closest(".mt-toc").getBoundingClientRect();
+    return Math.max(c.left - (r.left - grow), r.right + grow - c.right);
+  });
+  if (out > 0.5) fails.push(`keyboard: the TOC focus ring reaches ${out}px outside the column ${url}`);
+  await page.setViewportSize({ width: 1024, height: 900 });
+}
+
 async function tabsKeys(page, url, fails, rtl) {
   await page.goto(url, { waitUntil: "networkidle" });
   const tabs = page.locator('[role="tablist"]').first().locator('[role="tab"]');
@@ -115,10 +138,11 @@ export async function checkKeyboard(browser, origin, fails) {
   await skipLink(page, origin + "guides/install/", fails);
   await langMenu(page, origin + "guides/install/", fails);
   await navSheet(page, origin + "guides/install/", fails);
+  await tocRing(page, origin + "guides/configuration/", fails);
   await tabsKeys(page, origin + "guides/install/", fails, false);
   await tabsKeys(page, origin + "components/kitchen-sink-rtl/", fails, true);
   await search(page, origin + "guides/install/", fails);
   await scrollRegions(page, origin + "components/kitchen-sink/", fails);
   await ctx.close();
-  return { flows: 10, fails: fails.length - before };
+  return { flows: 11, fails: fails.length - before };
 }

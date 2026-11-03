@@ -3,3 +3,9 @@
 // mt-size(2xl) -> 1.5rem, mt-leading(2xl) -> 2rem (tokens/_scale.scss)
 @function mt-size($step) { @return nth(map-get($mt-type, "#{$step}"), 1); }
 @function mt-leading($step) { @return nth(map-get($mt-type, "#{$step}"), 2); }
+// mt-hook(sidebar-width) -> var(--mt-sidebar-width, 18rem) (registry/_hooks.scss)
+@function mt-hook($name) {
+  $d: map-get($mt-hooks, "#{$name}");
+  @if $d == null { @error "mt-hook: no default for #{$name} in registry/_hooks.scss"; }
+  @return unquote("var(--mt-#{$name}, #{$d})");
+}

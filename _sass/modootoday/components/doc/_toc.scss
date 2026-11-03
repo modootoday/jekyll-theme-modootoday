@@ -1,19 +1,20 @@
 // "On this page": a sticky right column from 64rem (aside > nav.mt-toc), a collapsed <details> below it.
 @include mt-layer(components) {
-  .mt-toc { --mt-toc-indent: .85rem; font-size: .875rem; }
-  .mt-toc-title { margin: 0 0 .6rem; font-size: .75rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: mt(foreground); }
+  .mt-toc { --mt-toc-indent: .85rem; font-size: mt-size(sm); line-height: mt-leading(sm); }
+  .mt-toc-title { margin: 0 0 .5rem; font-weight: 500; color: mt(foreground); }
   .mt-toc ol, .mt-toc-mobile ol { list-style: none; margin: 0; padding: 0; }
   .mt-toc ol { border-inline-start: 1px solid mt(border); }
   .mt-toc li, .mt-toc-mobile li { margin: 0; }
   .mt-toc .mt-toc-h3, .mt-toc-mobile .mt-toc-h3 { padding-inline-start: var(--mt-toc-indent); }
-  .mt-toc a, .mt-toc-mobile a { display: block; min-height: 24px; padding: .2rem 0 .2rem .85rem; line-height: 1.45; color: mt(muted-foreground); text-decoration: none; }
+  .mt-toc a, .mt-toc-mobile a { display: block; padding: .25rem 0 .25rem .85rem; line-height: mt-leading(sm); color: mt(muted-foreground); text-decoration: none; }
   .mt-toc a { margin-inline-start: -1px; border-inline-start: 1px solid transparent; }
   .mt-toc a:hover, .mt-toc-mobile a:hover { color: mt(foreground); border-inline-start-color: mt(muted-foreground); }
+  // The column scrolls (overflow-y: auto), which would clip an outer ring.
+  .mt-toc a:focus-visible { outline-offset: -2px; }
   .mt-toc-mobile { margin: 0 0 1.5rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-toc-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
   .mt-toc-mobile > ol { padding: 0 .5rem .6rem 0; max-height: 50vh; overflow-y: auto; }
   // The sticky column lists h2 only, so long pages stay scannable; the collapsed mobile list keeps h3 too.
   .mt-doc-aside .mt-toc .mt-toc-h3 { display: none; }
-  .mt-doc-aside .mt-toc a { padding-top: .3rem; padding-bottom: .3rem; }
   @media (min-width: 64rem) { .mt-toc-mobile { display: none; } }
 }

@@ -39,7 +39,7 @@ class CheckBuildTest < CheckerCase
   def test_built_css_portability_and_undefined_tokens
     out "a.css", "@use \"x\";\n:root { --mt-a: 1px; --mt-b: $v; }\na { margin: var(--mt-a); color: var(--mt-missing); }\n"
     out "i.html", "<style id=\"mt-tokens\">:root{--mt-inline:red}</style><style>a{}</style>"
-    out "b.css", "b { color: var(--mt-inline); }"
+    out "b.css", "b { color: var(--mt-inline); width: var(--mt-hook, 2rem); }"
     o, code = check
     assert_equal 1, code
     assert_includes o, "@use/@forward left in built CSS"
@@ -47,6 +47,7 @@ class CheckBuildTest < CheckerCase
     assert_includes o, "var(--mt-missing) is never defined"
     refute_includes o, "--mt-inline) is never"
     refute_includes o, "var(--mt-a) is never"
+    refute_includes o, "var(--mt-hook) is never", "a var() with a fallback is a hook"
   end
 
   def test_twins

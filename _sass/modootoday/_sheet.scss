@@ -6,4 +6,5 @@
 @import "tools/functions";
 @import "tools/mixins";
 @import "tokens/scale";
+@import "registry/hooks";
 @if $mt-css-layers { @layer mt.tokens, mt.base, mt.layout, mt.components; }

@@ -8,8 +8,8 @@
   .mt-main { flex: 1 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
   .mt-main.mt-main-full { max-width: none; padding-left: var(--mt-safe-left); padding-right: var(--mt-safe-right); }
   // One alignment system: header, main and footer share the container. Pages with a TOC put the text column on the
-  // container's left edge (under the logo); pages without one (home, landing) centre a wider column.
-  .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: 52rem; margin-inline: auto; }
+  // container's left edge (under the logo); pages without one centre the measure.
+  .mt-doc-layout, .mt-doc-layout ~ .mt-page-meta, .mt-doc-layout ~ .mt-pagination { max-width: mt(measure); margin-inline: auto; }
   .mt-doc-layout.mt-has-toc { max-width: none; }
   .mt-doc-main { min-width: 0; }
   .mt-doc-aside { display: none; }
@@ -30,7 +30,7 @@
   .mt-footer .mt-logo { vertical-align: middle; margin-inline-end: .4rem; }
   .mt-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   @media (min-width: 64rem) {
-    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) 14rem; gap: 3.5rem; }
+    .mt-doc-layout.mt-has-toc { display: grid; grid-template-columns: minmax(0, #{mt(measure)}) #{mt-hook(toc-width)}; gap: mt-hook(doc-gap); }
     .mt-has-toc ~ .mt-page-meta, .mt-has-toc ~ .mt-pagination { max-width: mt(measure); margin-inline-start: 0; }
     .mt-doc-aside { display: block; }
     .mt-doc-aside .mt-toc, .mt-doc-nav .mt-sidebar { position: sticky; top: calc(#{mt(header-height)} + 2rem); max-height: calc(100vh - #{mt(header-height)} - 4rem); overflow-y: auto; }
