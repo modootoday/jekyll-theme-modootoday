@@ -1,6 +1,6 @@
 // Layer 2 — semantic tokens (--mt-*), shadcn/ui-style surface/foreground pairs. Main override target.
 $mt-base: (
-  font-sans: (system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans KR", "Noto Sans JP", sans-serif),
+  font-sans: (system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif),
   font-mono: (ui-monospace, SFMono-Regular, Menlo, Consolas, monospace),
   font-heading: var(--mt-font-sans), heading-weight: 600,
   font-size: 1rem, line-height: 1.75, measure: 45rem, narrow: 40rem, container: 75rem, header-height: 4rem,

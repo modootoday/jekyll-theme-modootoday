@@ -7,7 +7,6 @@
     position: relative; isolation: isolate; overflow: clip; border-radius: mt(radius-lg); padding: 3rem clamp(1.25rem, 4vw, 3rem); min-height: 28rem;
   }
   .mt-hero:has(> .mt-showcase) > :not(.mt-showcase) { grid-column: 1; }
-  .mt-hero:has(> .mt-showcase) :is(h1, p) { word-break: keep-all; }
   .mt-hero:has(> .mt-showcase) h1 { font-size: unquote("clamp(2rem, 1.4rem + 1.6vw, 2.75rem)"); }
   .mt-hero:has(> .mt-showcase) .mt-actions a { min-height: 44px; }
   .mt-showcase { display: contents; }

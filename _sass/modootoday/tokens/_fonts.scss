@@ -1,0 +1,17 @@
+// Per-language font-sans stacks, printed only for the languages the site declares ($mt-font-langs, set from
+// site.lang and modootoday.languages), so an English-only site pays nothing. A site that sets font-sans keeps it.
+// Keys are codes from i18n/languages.yml.
+// Pretendard is only named: the theme never ships it (its licence allows the author's own unmodified subset).
+$mt-font-lang: (
+  ko: (Pretendard Variable, Pretendard, system-ui, -apple-system, Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif),
+  ja: (system-ui, -apple-system, Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, BIZ UDPGothic, Meiryo, sans-serif),
+  zh-CN: (system-ui, -apple-system, PingFang SC, Microsoft YaHei, Noto Sans SC, sans-serif),
+  zh-TW: (system-ui, -apple-system, PingFang TC, Microsoft JhengHei, Noto Sans TC, sans-serif)
+) !default;
+@if not map-has-key($mt-overrides-base, font-sans) {
+  @include mt-layer(tokens) {
+    @each $lang in $mt-font-langs {
+      @if map-has-key($mt-font-lang, $lang) { :root:lang(#{$lang}) { --mt-font-sans: #{map-get($mt-font-lang, $lang)}; } }
+    }
+  }
+}

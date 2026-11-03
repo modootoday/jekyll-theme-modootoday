@@ -1,2 +1,5 @@
 // mt(primary) → var(--mt-primary)
 @function mt($key) { @return var(--mt-#{$key}); }
+// mt-size(2xl) -> 1.5rem, mt-leading(2xl) -> 2rem (tokens/_scale.scss)
+@function mt-size($step) { @return nth(map-get($mt-type, "#{$step}"), 1); }
+@function mt-leading($step) { @return nth(map-get($mt-type, "#{$step}"), 2); }

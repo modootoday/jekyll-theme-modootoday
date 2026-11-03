@@ -16,14 +16,18 @@ class CssTest < Minitest::Test
                 "tokens: {primary: '#c2410c'}, tokens_dark: {primary: '#fb923c'}}\n",
     "empty" => "",
     "bridge" => "",
-    "code-github" => "modootoday: {code_theme: github}\n"
+    "code-github" => "modootoday: {code_theme: github}\n",
+    "langs" => "lang: en\nmodootoday: {languages: [en, ko]}\n",
+    "langs-own-font" => "modootoday: {languages: [en, ko, ja]}\n",
+    "langs-inline-font" => "modootoday: {languages: [en, ko], tokens: {font-sans: 'Inter, sans-serif'}}\n"
   }.freeze
   # The site's _sass/modootoday/_site.scss (token bridge) per config; without one the theme's empty copy is used.
   HOOKS = {
     "empty" => "// nothing here yet\n",
     "bridge" => "$mt-overrides-base: (font-heading: (Georgia, serif), heading-weight: 700);\n" \
                 "$mt-overrides: (primary: #0f766e, link: #115e59);\n$mt-overrides-dark: (primary: #2dd4bf, link-hover: #99f6e4);\n",
-    "code-github" => "$mt-overrides: (code-comment: #57606a);\n"
+    "code-github" => "$mt-overrides: (code-comment: #57606a);\n",
+    "langs-own-font" => "$mt-overrides-base: (font-sans: (Inter, sans-serif));\n"
   }.freeze
 
   def self.build(name)
@@ -140,6 +144,22 @@ class CssTest < Minitest::Test
     core, _, sheets = self.class.build("all")
     [core, *sheets.values].each { |s| refute_includes s, "backdrop-filter" }
     refute_match(/\.mt-callout\s*\{[^}]*color-mix/, core, "callouts are plain bordered boxes")
+  end
+
+  def test_font_stacks_only_for_declared_languages
+    langs, = self.class.build("langs")
+    assert_match(/:root:lang\(ko\)\s*\{\s*--mt-font-sans:\s*Pretendard Variable,\s*Pretendard,/, langs)
+    refute_includes langs, ":root:lang(ja)"
+    refute_includes langs, ":root:lang(en)"
+    %w[all langs-own-font langs-inline-font].each { |n| refute_includes self.class.build(n).first, ":root:lang(", n }
+    refute_match(/Noto Sans (KR|JP)/, self.class.build("all").first[/:root\s*\{(.*?)\}/m, 1])
+  end
+
+  def test_font_stack_keys_are_theme_languages
+    codes = File.read(File.join(ROOT, "i18n/languages.yml")).scan(/code: ([\w-]+)/).flatten
+    keys = File.read(File.join(ROOT, "_sass/modootoday/tokens/_fonts.scss")).scan(/^  ([\w-]+): \(/).flatten
+    assert_equal %w[ko ja zh-CN zh-TW], keys
+    assert_empty keys - codes
   end
 
   def test_code_theme_github_merges_the_preset_under_the_bridge

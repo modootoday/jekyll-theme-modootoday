@@ -5,3 +5,4 @@ $mt-overrides-base: () !default;     // partial overrides of $mt-base (fonts, si
 $mt-overrides: () !default;          // partial semantic overrides, light: (primary: #c2410c)
 $mt-overrides-dark: () !default;     // partial semantic overrides, dark
 $mt-code-theme: theme !default;      // code colours: theme | github (tokens/_code-presets.scss)
+$mt-font-langs: () !default;        // languages that get their own font-sans stack (tokens/_fonts.scss): (ko, ja)

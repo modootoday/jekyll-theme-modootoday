@@ -33,6 +33,9 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- if mt_color_scheme contains "auto" -%}{%- assign mt_theme_toggle = true -%}{%- endif -%}
 {%- if mt_color_scheme == "auto" -%}{%- assign mt_theme_start = nil -%}{%- endif -%}
 {%- if mt.css_layers == true -%}{%- assign mt_css_layers = "true" -%}{%- else -%}{%- assign mt_css_layers = "false" -%}{%- endif -%}
+{%- comment -%}mt_langs: the site's languages (site.lang, then modootoday.languages); none when modootoday.tokens sets font-sans.{%- endcomment -%}
+{%- assign mt_langs = site.lang | default: "en" | split: "," -%}{%- if mt.languages -%}{%- assign mt_langs = mt_langs | concat: mt.languages | uniq -%}{%- endif -%}
+{%- if mt.tokens["font-sans"] -%}{%- assign mt_langs = "" | split: "," -%}{%- endif -%}
 {%- if mt.code_theme == "github" -%}{%- assign mt_code_theme = "github" -%}{%- else -%}{%- assign mt_code_theme = "theme" -%}{%- endif -%}
 {%- if mt.badges == false -%}{%- assign mt_badges = false -%}{%- else -%}{%- assign mt_badges = true -%}{%- endif -%}
 {%- assign mt_nav_name = mt.nav | default: "main" -%}

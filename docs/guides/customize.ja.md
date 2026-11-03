@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:af2f994e7693
+source_rev: sha256:308b03f8a9c4
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -53,6 +53,8 @@ $mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
 ```
 
 `$mt-overrides-base` はカラースキームに依存しないトークン（フォント、サイズ、角丸）を、残りの二つはライトとダークの色を受け取ります。既存のトークンに加えて、`h1`〜`h4` 用の `font-heading` と `heading-weight`、本文のリンク用の `link` と `link-hover` があります。既定値はそれぞれ `font-sans`、600、`primary` に従います。このファイルに書けるのはこの三つのマップだけで、トークン名はテーマが定義したものに限られます。それ以外は `modootoday-check` が報告します。
+
+サイトが `lang` または `modootoday.languages` で宣言した韓国語、日本語、中国語のページには、言語ごとに専用の `font-sans` が付きます。その文字のシステムフォントで、韓国語はサイトが Pretendard を読み込んでいればそれを優先します（テーマは Pretendard を同梱しません）。英語だけのサイトには何も出力されません。ブリッジまたは `modootoday.tokens` で `font-sans` を指定するとこれらは無効になり、指定したフォントがすべての言語に使われます。
 
 二つの設定で、サイトのファイルをテーマのファイルと並べて読み込みます。
 

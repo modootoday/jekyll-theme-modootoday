@@ -64,7 +64,7 @@ A `resume` or `links` page that sets `name:` showed its file name (`resume.md`) 
 
 ### The 1.5 look
 
-1.5 makes the default style flat and neutral: a neutral gray ramp, an opaque 4rem header, no shadows except on menus and search results, plain bordered callouts, buttons and cards without lift, headings at weight 600 and body text at 1.75 line height. The token names are the same; only their values change. `modootoday.theme_color` now defaults to `#0a0a0a` in dark mode, the new page background. To keep the 1.4 colours, sizes and shadows, put the old values in the token bridge:
+1.5 makes the default style flat and neutral: a neutral gray ramp, an opaque 4rem header, no shadows except on menus and search results, plain bordered callouts, buttons and cards without lift, headings at weight 600 and body text at 1.75 line height. Headings are smaller and balanced (h1 2rem, h2 1.5rem, h3 1.25rem, at every width), Korean, Japanese and Chinese pages use a font stack of their own, and Japanese text breaks between phrases where the browser supports it. The token names are the same; only their values change. `modootoday.theme_color` now defaults to `#0a0a0a` in dark mode, the new page background. To keep the 1.4 colours, sizes and shadows, put the old values in the token bridge:
 
 ```scss
 // _sass/modootoday/_site.scss

@@ -1,0 +1,9 @@
+// Type scale on a 4px baseline (size, line height), tracking and motion. Build-time defaults only: read through
+// mt-size() and mt-leading() as literals, so the core sheet prints no custom property for them. Keys are quoted:
+// Ruby Sass 3.7 fails on a map whose keys are numbers with units (2xl).
+$mt-type: (
+  "xs": (0.75rem, 1rem), "sm": (0.875rem, 1.25rem), "base": (1rem, 1.75rem), "lg": (1.125rem, 1.75rem), "xl": (1.25rem, 1.75rem),
+  "2xl": (1.5rem, 2rem), "3xl": (2rem, 2.5rem), "4xl": (2.5rem, 3rem), "5xl": (3rem, 3.5rem), "6xl": (3.5rem, 4rem)
+) !default;
+$mt-tracking: (heading: -0.02em, display: -0.04em) !default;
+$mt-motion: (duration: 150ms, ease: cubic-bezier(0.4, 0, 0.2, 1)) !default;

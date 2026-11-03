@@ -2,11 +2,14 @@
   a { color: mt(link); text-decoration-thickness: 1px; text-underline-offset: .2em; }
   a:hover { text-decoration-thickness: 2px; }
   a:where(:hover) { color: mt(link-hover); } // element weight only: links coloured by a component keep their hover colour
-  h1, h2, h3, h4 { line-height: 1.25; margin: 2.2em 0 .6em; font-family: mt(font-heading); font-weight: mt(heading-weight); letter-spacing: -.015em; scroll-margin-top: calc(#{mt(header-height)} + 1rem); }
-  h1 { font-size: 2.25rem; line-height: 1.15; letter-spacing: -.025em; margin-top: 0; }
-  h2 { font-size: 1.5rem; letter-spacing: -.02em; }
-  h3 { font-size: 1.15rem; }
-  h4 { font-size: 1rem; }
+  h1, h2, h3, h4 { line-height: calc(1em + .5rem); margin: 2em 0 .5em; font-family: mt(font-heading); font-weight: mt(heading-weight);
+    letter-spacing: map-get($mt-tracking, heading); text-wrap: balance; scroll-margin-top: calc(#{mt(header-height)} + 1rem); }
+  h1 { font-size: mt-size(3xl); margin-top: 0; }
+  h2 { font-size: mt-size(2xl); margin: 3rem 0 1rem; }
+  h3 { font-size: mt-size(xl); margin-top: 2rem; }
+  h4 { font-size: mt-size(base); }
+  // CJK: no negative tracking, and a taller line for the denser glyphs (h1 32/44, h2 24/36, h3 20/32).
+  :is(h1, h2, h3):is(:lang(ko), :lang(ja), :lang(zh)) { letter-spacing: 0; line-height: calc(1em + .75rem); }
   p, ul, ol, dl { margin: 0 0 1em; }
   :where(:not([class])) > li + li { margin-top: .3em; } // flow lists only: classed grid/flex lists keep item 1 aligned
   .mt-flat-list li + li { margin-top: 0; } // opt-out on an ancestor, for unclassed Markdown lists made grid/flex (.c-body > ul)
@@ -14,6 +17,8 @@
   blockquote { margin: 1.25rem 0; padding: .25rem 1rem; color: mt(muted-foreground); border-inline-start: 3px solid mt(border); }
   blockquote > :last-child { margin-bottom: 0; }
   :lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
+  :lang(ja) { line-break: strict; }
+  @supports (word-break: auto-phrase) { :lang(ja) { word-break: auto-phrase; } }
   hr { border: 0; border-top: 1px solid mt(border); margin: 2.5rem 0; }
   strong { font-weight: 600; }
   // Section rhythm in documents: a hairline above each h2 (except the first) separates dense pages like the kitchen sink.
@@ -23,7 +28,6 @@
   .mt-doc h3 { margin-top: 2em; }
   li.task-list-item { list-style: none; }
   li.task-list-item > input { margin: 0 .5em 0 -1.4em; vertical-align: -.1em; accent-color: mt(primary); }
-  @media (max-width: 40rem) { h1 { font-size: 1.85rem; } h2 { font-size: 1.3rem; } }
 }
 @include mt-layer(base) {
   // Footnotes (kramdown div.footnotes): small, start-aligned, set off by a hairline; modootoday/markdown/sections.html moves them after the last section.
