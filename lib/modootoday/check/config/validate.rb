@@ -9,7 +9,7 @@ module Modootoday
         BOOL = [true, false].freeze
         SITE_PATH = %r{\A/(\S*/)?\z}
         URL = %r{\Ahttps?://\S+\z}
-        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list" }.freeze
+        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list", off_or_map: "must be false or a map" }.freeze
 
         module_function
 
@@ -26,6 +26,7 @@ module Modootoday
           when :site_path then v.to_s.match?(SITE_PATH)
           when :list then v.is_a?(Array) && (key.pattern.nil? || v.all? { |x| x.to_s.match?(key.pattern) })
           when :map then map?(key, v)
+          when :off_or_map then v == false || map?(key, v)
           else raise ArgumentError, "unknown config type #{key.type.inspect} for #{key.name}"
           end
         end

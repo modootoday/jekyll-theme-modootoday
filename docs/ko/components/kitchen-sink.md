@@ -352,7 +352,7 @@ theme: jekyll-theme-modootoday
 
 ## 자주 묻는 질문
 
-`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. FAQPage 구조화 데이터가 필요하면 `schema:` 블록을 추가하세요([구조화 데이터](../../guides/structured-data/) 참고).
+`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. `schema: {faq: auto}`를 켜면 질문과 답이 페이지의 FAQPage 구조화 데이터도 됩니다([구조화 데이터](../../guides/structured-data/) 참고).
 
 ### 테마는 무료인가요?
 

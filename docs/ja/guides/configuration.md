@@ -45,7 +45,7 @@ modootoday:
 | `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
 | `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |
-| `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`。`false` で無効。[構造化データ](../structured-data/)を参照 |
+| `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`、`faq`。`false` で無効。[構造化データ](../structured-data/)を参照 |
 | `languages` | なし | `hreflang` 用の言語コード。例: `[en, ko]` ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。 |
 | `full_languages` | なし | すべてのページを翻訳する `languages` 内のコード。例: `[ko, ja]` `modootoday-check --i18n-pages` は、その言語の翻訳がない既定言語のページごとに警告します。 |
 | `lists` | なし | `{link_chips: true, titled_items: true}` 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれと `hero: {checks: true}` を整え、使うページにだけリンクされます。 |

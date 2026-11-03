@@ -20,6 +20,7 @@ module Modootoday
       "JobPosting" => [%w[title description datePosted hiringOrganization jobLocation|applicantLocationRequirements], %w[employmentType validThrough baseSalary]],
       "Event" => [%w[name startDate location], %w[endDate eventStatus image description organizer offers]],
       "Course" => [%w[name description], %w[provider offers hasCourseInstance]],
+      "LearningResource" => [%w[name], %w[educationalLevel learningResourceType timeRequired]],
       "PodcastEpisode" => [%w[name], %w[partOfSeries datePublished associatedMedia|audio]],
       "SoftwareApplication" => [%w[name], %w[offers applicationCategory operatingSystem]],
       "Offer" => [%w[price|priceSpecification priceCurrency|priceSpecification], %w[availability url]],

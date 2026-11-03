@@ -1,0 +1,11 @@
+{%- comment -%}Learning properties of a Course or LearningResource node (#main), each skipped when schema: sets it: provider
+(#publisher), educationalLevel (level), timeRequired (the lesson minutes of modules, else minutes), teaches,
+learningResourceType (resource_type).{%- endcomment -%}
+{%- assign _sc = page.schema -%}
+{%- unless _sc.provider %},"provider":{"@id":{{ _ld_root | append: "#publisher" | jsonify }}}{% endunless -%}
+{%- if page.level and _sc.educationalLevel == nil %},"educationalLevel":{{ page.level | jsonify }}{% endif -%}
+{%- assign _min = 0 -%}{%- for m in page.modules -%}{%- for l in m.lessons -%}{%- assign _min = _min | plus: l.minutes -%}{%- endfor -%}{%- endfor -%}
+{%- if _min == 0 and page.minutes -%}{%- assign _min = page.minutes | plus: 0 -%}{%- endif -%}
+{%- if _min > 0 and _sc.timeRequired == nil %},"timeRequired":"PT{{ _min }}M"{% endif -%}
+{%- if page.teaches and _sc.teaches == nil %},"teaches":{{ page.teaches | jsonify }}{% endif -%}
+{%- if page.resource_type and _sc.learningResourceType == nil %},"learningResourceType":{{ page.resource_type | jsonify }}{% endif -%}

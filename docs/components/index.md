@@ -3,6 +3,7 @@ nav_order: 0
 layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
+schema: {faq: auto}
 examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
@@ -284,7 +285,7 @@ Nothing but the browser.
 
 ## FAQ
 
-`status:available` A `c: faq` section works like details. For FAQPage structured data, add a `schema:` block (see [Structured data](../guides/structured-data/)).
+`status:available` A `c: faq` section works like details. With `schema: {faq: auto}`, which this page sets, its questions and answers also become the page's FAQPage structured data (see [Structured data](../guides/structured-data/)).
 
 ### Is the theme free?
 

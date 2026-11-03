@@ -9,7 +9,7 @@ require "json"
 require "time"
 
 class JsonldTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   PAGES = {
     "job.md" => "description: a < b\nschema:\n  type: JobPosting\n  description: \"<p>Build docs.</p>\"\n  datePosted: 2026-10-01\n  hiringOrganization: {type: Organization, name: Example}\n  jobLocation: {type: Place, address: {type: PostalAddress, addressCountry: KR}}\n",
     "event.md" => "schema:\n  type: Event\n  startDate: 2026-11-02 19:00:00 +0900\n  location: {type: Place, name: Hall, address: Seoul}\n",

@@ -62,6 +62,7 @@ module Modootoday
         end
         types.each { |t| ctx.errs << "#{f}: JSON-LD @type #{t} is not in the schema.org vocabulary" unless Schema.type?(t) }
         types.each { |t| required(ctx, f, n, t, path) }
+        answer(ctx, f, n, path) if types.include?("Question")
         n.each do |k, v|
           next if %w[@context @type @graph].include?(k)
 
@@ -89,6 +90,14 @@ module Modootoday
         return unless ctx.option?("--schema-recommended")
 
         rec.each { |p| ctx.warns << "#{f}: JSON-LD #{type} (#{path}) lacks recommended #{p.tr('|', '/')}" unless has.(p) }
+      end
+
+      # A single nested node is not walked by values, so the answer of a Question is judged here.
+      def answer(ctx, f, n, path)
+        a = n["acceptedAnswer"]
+        return unless a.is_a?(Hash) && a["text"].to_s.strip.empty?
+
+        ctx.errs << "#{f}: JSON-LD Question #{n['name'].to_s[0, 60].inspect} (#{path}) has an empty answer"
       end
 
       # The page node (#webpage) against Open Graph and <html lang>: one source of truth for title, URL and image.

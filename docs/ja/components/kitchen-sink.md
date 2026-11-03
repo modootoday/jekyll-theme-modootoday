@@ -352,7 +352,7 @@ theme: jekyll-theme-modootoday
 
 ## よくある質問
 
-`status:available` `c: faq` セクションは詳細と同じように動きます。FAQPage 構造化データは `schema:` ブロックを追加してください（[構造化データ](../../guides/structured-data/) を参照）。
+`status:available` `c: faq` セクションは詳細と同じように動きます。`schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../../guides/structured-data/) を参照）。
 
 ### テーマは無料ですか？
 

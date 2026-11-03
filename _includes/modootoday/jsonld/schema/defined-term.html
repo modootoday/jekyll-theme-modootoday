@@ -1,0 +1,8 @@
+{%- comment -%}A DefinedTerm page (#main), each property skipped when schema: sets it: inDefinedTermSet from term_set (a site path
+points at that glossary page's #main DefinedTermSet node; an absolute URL is printed as it is) and termCode from term_code.{%- endcomment -%}
+{%- assign _ts = page.term_set -%}
+{%- if _ts and page.schema.inDefinedTermSet == nil -%}
+{%- assign _tsc = _ts | slice: 0, 1 -%}
+{%- if _tsc == "/" %},"inDefinedTermSet":{"@id":{{ _ts | absolute_url | append: "#main" | jsonify }}}{% else %},"inDefinedTermSet":{{ _ts | jsonify }}{% endif -%}
+{%- endif -%}
+{%- if page.term_code and page.schema.termCode == nil %},"termCode":{{ page.term_code | append: "" | jsonify }}{% endif -%}

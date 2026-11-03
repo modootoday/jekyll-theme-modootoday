@@ -1,0 +1,19 @@
+{%- comment -%}mainEntity of an FAQPage from its c: faq sections (schema.faq: auto, inside jsonld/webpage.html): each details summary is
+a Question name and the rest of that details, without pre blocks, its Answer text. The visible text is the only source,
+so the structured data cannot drift from it. No question prints an empty list, which modootoday-check rejects.{%- endcomment -%}
+{%- assign _fq_n = 0 -%}
+,"mainEntity":[
+{%- assign _fq_secs = content | split: '<section class="mt-section mt-c-faq' -%}
+{%- for _fs in _fq_secs offset: 1 -%}
+{%- assign _fq_qs = _fs | split: "</section>" | first | split: '<details class="mt-details"><summary>' -%}
+{%- for _q in _fq_qs offset: 1 -%}
+{%- assign _fq_h = _q | split: "</summary>" | first -%}
+{%- assign _fq_a = _q | remove_first: _fq_h | remove_first: "</summary>" | split: "</details>" | first -%}
+{%- assign _fq_ps = _fq_a | split: "<pre" -%}{%- assign _fq_a = _fq_ps[0] -%}
+{%- for _p in _fq_ps offset: 1 -%}{%- assign _fq_c = _p | split: "</pre>" | first -%}{%- assign _fq_r = _p | remove_first: _fq_c | remove_first: "</pre>" -%}{%- assign _fq_a = _fq_a | append: " " | append: _fq_r -%}{%- endfor -%}
+{%- assign _fq_h = _fq_h | strip_html | normalize_whitespace | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+{%- assign _fq_a = _fq_a | strip_html | normalize_whitespace | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+{%- if _fq_n > 0 %},{% endif -%}{%- assign _fq_n = _fq_n | plus: 1 -%}
+{"@type":"Question","name":{{ _fq_h | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ _fq_a | jsonify }}}}
+{%- endfor -%}
+{%- endfor -%}]

@@ -42,7 +42,7 @@ modootoday:
 | `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
 | `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |
-| `schema` | on when `url` is set | schema.org JSON-LD graph: `publisher`, `search_url`, `layouts`; `false` turns it off. See [Structured data](../structured-data/) |
+| `schema` | on when `url` is set | schema.org JSON-LD graph: `publisher`, `search_url`, `layouts`, `faq`; `false` turns it off. See [Structured data](../structured-data/) |
 | `languages` | none | language codes for `hreflang`, such as `[en, ko]` The header site title links to the page language's home (`/<lang>/`) when it exists. |
 | `full_languages` | none | the codes from `languages` that translate every page, such as `[ko, ja]`; `modootoday-check --i18n-pages` warns about each default-language page without one |
 | `lists` | none | `{link_chips: true, titled_items: true}`: on plain sections and pages, a list of links only becomes `ul.mt-chips` and an item starting with `**Title**:` gets `strong.mt-item-title`; the optional `lists` sheet styles them (and `hero: {checks: true}`) and is linked only where used |

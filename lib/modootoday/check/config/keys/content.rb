@@ -13,6 +13,13 @@ module Modootoday
       end
       Schema.register(Key.new(name: "archive", type: :map, keys: %w[tags categories],
                               message: "must be a map with tags: and/or categories: (archive page URLs)", check: site_paths))
+
+      # Only the keys the checker reads are judged; the JSON-LD includes ignore the rest.
+      faq = lambda do |ctx, path, v|
+        next unless v.is_a?(Hash) && v.key?("faq") && !["auto", false].include?(v["faq"])
+        ctx.errs << "_config.yml: #{path}.faq must be auto or false (got #{v['faq'].inspect})"
+      end
+      Schema.register(Key.new(name: "schema", type: :off_or_map, check: faq))
     end
   end
 end

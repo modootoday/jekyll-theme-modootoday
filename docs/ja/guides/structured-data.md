@@ -33,6 +33,9 @@ description: テーマが全ページに出力する schema.org JSON-LD グラ�
 | `contact` | `ContactPage` |
 | `search` | `SearchResultsPage` |
 | `faq` | `FAQPage` |
+| `c: faq` セクションがあり `schema.faq: auto` のすべてのページ | `FAQPage` |
+| `glossary` | `DefinedTermSet`。`schema: {type: DefinedTerm}` のページは `DefinedTerm` 1 つ |
+| `course` | `Course`。`schema.type` か `schema.layouts` で `LearningResource` |
 | その他 | `WebPage` |
 
 著者は front matter の `author`/`authors` を `_data/authors.yml` から引きます。
@@ -49,6 +52,7 @@ modootoday:
       logo: /assets/logo.png
       same_as: [https://github.com/example]
     search_url: /search/?q={search_term_string}   # 任意: SearchAction
+    faq: auto                                    # c: faq セクションから FAQPage を作る(既定は無効)
     layouts:
       landing: SoftwareApplication               # レイアウトの型を変更
 ```
@@ -71,6 +75,21 @@ schema:
 
 `SoftwareApplication`(`offers: {type: Offer, price: 0, priceCurrency: USD}`)、`Event`、`Course`、`PodcastEpisode`、`DefinedTermSet`、`ItemList`、`FAQPage`(`mainEntity:` に `Question` のリスト)も使えます。最上位の `/` で始まる URL は絶対 URL に変換されますが、入れ子の値の中の URL は最初から絶対 URL で書いてください。
 
+## FAQ、用語、学習リソース
+
+**ページから作る FAQPage。** 全ページに適用するには `modootoday.schema` の下に `faq: auto` を、1 ページだけなら front matter に `schema: {faq: auto}` を書きます。すると `c: faq` セクションのあるページが `FAQPage` になります。そのセクションの `###` の質問がそれぞれ `Question` になり、その下の文章が `Answer` になります。画面に見える文章が唯一の元なので、構造化データは読者が見る内容と常に一致します。回答からコードブロックは除かれ、`c: details` セクションは読みません。front matter の `schema.type` と `schema.mainEntity` があればそちらが優先され、1 ページだけ無効にするには `schema: {faq: false}` を書きます。[コンポーネント](../../components/)のページがこの設定を使っています。
+
+**用語ごとに 1 ページ。** `schema: {type: DefinedTerm}` にすると、ページはタイトルを名前とする `DefinedTerm` になります。`term_set:` に用語集ページのパスを書くとそのページの `DefinedTermSet` につながり(絶対 URL はそのまま出力)、`term_code:` は `termCode` を加えます。用語集の `terms:` の項目に `url:` があると、その `DefinedTerm` に用語ページの URL が付きます。
+
+```yaml
+title: Token
+description: A named value for one design decision.
+schema: {type: DefinedTerm}
+term_set: /glossary/
+```
+
+**LearningResource。** 1 ページなら `schema: {type: LearningResource}`、レイアウト全体なら `schema.layouts: {doc: LearningResource}` で指定します。course レイアウトと同じ front matter を読みます。`level`(`educationalLevel`)、`minutes`(`timeRequired`)、`teaches`、`resource_type`(`learningResourceType`)で、`provider` はサイトの発行者です。
+
 ## 検査
 
-`modootoday-check` はビルド済みサイトの全ブロックをオフラインで検査します。ページあたり 1 ブロック、正しい JSON、schema.org にある型とプロパティ、必須プロパティ(Google 基準)、重複のない `@id`、絶対 URL、ISO 8601 の日付、`og:url`・`og:title`・`og:image`・`<html lang>` との一致を確認します。推奨プロパティの欠落も見るには `--schema-recommended` を付けます。
+`modootoday-check` はビルド済みサイトの全ブロックをオフラインで検査します。ページあたり 1 ブロック、正しい JSON、schema.org にある型とプロパティ、必須プロパティ(Google 基準)、重複のない `@id`、絶対 URL、ISO 8601 の日付、`og:url`・`og:title`・`og:image`・`<html lang>` との一致を確認します。質問のない `FAQPage`、回答が空の質問、`term_set` が `DefinedTermSet` のあるビルド済みページではない `DefinedTerm` はエラーで、`auto` か `false` 以外の `modootoday.schema.faq` もエラーです。推奨プロパティの欠落も見るには `--schema-recommended` を付けます。

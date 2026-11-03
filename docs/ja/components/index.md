@@ -4,6 +4,7 @@ nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
+schema: {faq: auto}
 examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
@@ -288,7 +289,7 @@ theme: jekyll-theme-modootoday
 
 ## よくある質問
 
-`status:available` `c: faq` セクションは詳細と同じように動きます。FAQPage 構造化データは `schema:` ブロックを追加してください（[構造化データ](../guides/structured-data/) を参照）。
+`status:available` `c: faq` セクションは詳細と同じように動きます。このページのように `schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../guides/structured-data/) を参照）。
 
 ### テーマは無料ですか？
 

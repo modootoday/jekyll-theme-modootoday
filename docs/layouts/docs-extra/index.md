@@ -12,7 +12,7 @@ These layouts cover the pages around a manual. They load `modootoday-docs-extra.
 | `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [Reference](/jekyll-theme-modootoday/layouts/docs-extra/reference/) |
 | `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [Changelog](/jekyll-theme-modootoday/layouts/docs-extra/changelog/) |
 | `roadmap` | `items: [{title, status, text, url}]`, status `now`, `next` or `later` | WebPage | [Roadmap](/jekyll-theme-modootoday/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id}]` | DefinedTermSet | [Glossary](/jekyll-theme-modootoday/layouts/docs-extra/glossary/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [Glossary](/jekyll-theme-modootoday/layouts/docs-extra/glossary/) |
 | `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](/jekyll-theme-modootoday/layouts/docs-extra/hub/) |
 | `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](/jekyll-theme-modootoday/layouts/docs-extra/course/) |
 | `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](/jekyll-theme-modootoday/layouts/docs-extra/book/) |

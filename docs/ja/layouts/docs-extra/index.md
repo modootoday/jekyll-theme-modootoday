@@ -12,7 +12,7 @@ nav_order: 50
 | `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](/jekyll-theme-modootoday/ja/layouts/docs-extra/reference/) |
 | `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](/jekyll-theme-modootoday/ja/layouts/docs-extra/changelog/) |
 | `roadmap` | `items: [{title, status, text, url}]`、status は `now`、`next`、`later` | WebPage | [ロードマップ](/jekyll-theme-modootoday/ja/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id}]` | DefinedTermSet | [用語集](/jekyll-theme-modootoday/ja/layouts/docs-extra/glossary/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [用語集](/jekyll-theme-modootoday/ja/layouts/docs-extra/glossary/) |
 | `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](/jekyll-theme-modootoday/ja/layouts/docs-extra/hub/) |
 | `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](/jekyll-theme-modootoday/ja/layouts/docs-extra/course/) |
 | `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](/jekyll-theme-modootoday/ja/layouts/docs-extra/book/) |

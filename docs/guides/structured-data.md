@@ -30,6 +30,9 @@ Dates are ISO 8601 with the site time zone; text is escaped so the block is safe
 | `contact` | `ContactPage` |
 | `search` | `SearchResultsPage` |
 | `faq` | `FAQPage` |
+| any page with a `c: faq` section and `schema.faq: auto` | `FAQPage` |
+| `glossary` | `DefinedTermSet`; a page with `schema: {type: DefinedTerm}` is one `DefinedTerm` |
+| `course` | `Course`; `LearningResource` through `schema.type` or `schema.layouts` |
 | others | `WebPage` |
 
 Authors come from `author`/`authors` in front matter, looked up in `_data/authors.yml`.
@@ -46,6 +49,7 @@ modootoday:
       logo: /assets/logo.png
       same_as: [https://github.com/example]
     search_url: /search/?q={search_term_string}   # optional SearchAction
+    faq: auto                                    # FAQPage from c: faq sections (default off)
     layouts:
       landing: SoftwareApplication               # override the type for a layout
 ```
@@ -68,6 +72,21 @@ schema:
 
 Other supported types include `SoftwareApplication` with `offers: {type: Offer, price: 0, priceCurrency: USD}`, `Event`, `Course`, `PodcastEpisode`, `DefinedTermSet`, `ItemList` and `FAQPage` (`mainEntity:` list of `Question`). Top-level URLs starting with `/` are made absolute; URLs inside nested values must already be absolute.
 
+## FAQ, terms and learning resources
+
+**FAQPage from the page.** Set `faq: auto` under `modootoday.schema` for every page, or `schema: {faq: auto}` in one page's front matter. A page with a `c: faq` section then becomes an `FAQPage`: each `###` question of that section is a `Question`, and the text under it is the `Answer`. The visible text is the only source, so the structured data always matches what readers see; code blocks are left out of the answer, and `c: details` sections are not read. `schema.type` and `schema.mainEntity` in front matter still win, and `schema: {faq: false}` turns it off for one page. The [Components](../../components/) page uses it.
+
+**A page per term.** `schema: {type: DefinedTerm}` makes the page a `DefinedTerm` named by its title. `term_set:` with the glossary page's path links it to that page's `DefinedTermSet` (an absolute URL is printed as it is), and `term_code:` adds `termCode`. On the glossary, `url:` on an entry of `terms:` adds the term page's URL to that `DefinedTerm`.
+
+```yaml
+title: Token
+description: A named value for one design decision.
+schema: {type: DefinedTerm}
+term_set: /glossary/
+```
+
+**LearningResource.** Set it for one page with `schema: {type: LearningResource}`, or for a layout with `schema.layouts: {doc: LearningResource}`. It reads the same front matter as the course layout: `level` (`educationalLevel`), `minutes` (`timeRequired`), `teaches` and `resource_type` (`learningResourceType`), with the site publisher as `provider`.
+
 ## Checking
 
-`modootoday-check` validates every block in the built site offline: one block per page, valid JSON, known schema.org types and properties, required properties (Google's list), unique `@id`s, absolute URLs, ISO 8601 dates, and agreement with `og:url`, `og:title`, `og:image` and `<html lang>`. Add `--schema-recommended` to also list missing recommended properties.
+`modootoday-check` validates every block in the built site offline: one block per page, valid JSON, known schema.org types and properties, required properties (Google's list), unique `@id`s, absolute URLs, ISO 8601 dates, and agreement with `og:url`, `og:title`, `og:image` and `<html lang>`. An `FAQPage` without questions, a question with an empty answer, and a `DefinedTerm` whose `term_set` is not a built page holding a `DefinedTermSet` are errors, and so is a `modootoday.schema.faq` other than `auto` or `false`. Add `--schema-recommended` to also list missing recommended properties.

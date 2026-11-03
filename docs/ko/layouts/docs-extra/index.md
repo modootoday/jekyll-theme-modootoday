@@ -12,7 +12,7 @@ nav_order: 50
 | `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](/jekyll-theme-modootoday/ko/layouts/docs-extra/reference/) |
 | `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](/jekyll-theme-modootoday/ko/layouts/docs-extra/changelog/) |
 | `roadmap` | `items: [{title, status, text, url}]`, status는 `now`, `next`, `later` | WebPage | [로드맵](/jekyll-theme-modootoday/ko/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id}]` | DefinedTermSet | [용어집](/jekyll-theme-modootoday/ko/layouts/docs-extra/glossary/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [용어집](/jekyll-theme-modootoday/ko/layouts/docs-extra/glossary/) |
 | `hub` | `cards: [{title, text, url}]` | CollectionPage | [허브](/jekyll-theme-modootoday/ko/layouts/docs-extra/hub/) |
 | `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [강좌](/jekyll-theme-modootoday/ko/layouts/docs-extra/course/) |
 | `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [책](/jekyll-theme-modootoday/ko/layouts/docs-extra/book/) |

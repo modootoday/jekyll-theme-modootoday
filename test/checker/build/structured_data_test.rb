@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 # Check::StructuredData on hand-written built pages: each broken block yields its error.
 require "minitest/autorun"
+require "tmpdir"
+require "fileutils"
 require_relative "../../../lib/modootoday/check"
 
 class StructuredDataTest < Minitest::Test
@@ -35,6 +37,9 @@ class StructuredDataTest < Minitest::Test
       ld(g({ "@type" => "JobPosting", "title" => "t", "description" => "d", "datePosted" => "2026-10-01", "hiringOrganization" => { "@type" => "Organization", "name" => "o" } })) => "jobLocation/applicantLocationRequirements",
       %(<meta property="og:title" content="B">) + ld(g(WP)) => "differs from og:title",
       %(<html lang="ko">) + ld(g(WP.merge("inLanguage" => "en"))) => "differs from <html lang",
+      ld(g({ "@type" => "LearningResource", "url" => "https://e.org/a/" })) => "LearningResource (@graph) lacks required name",
+      ld(g(WP.merge("@type" => "FAQPage", "mainEntity" => []))) => "FAQPage (@graph) lacks required mainEntity",
+      ld(g(WP.merge("@type" => "FAQPage", "mainEntity" => [{ "@type" => "Question", "name" => "Q?", "acceptedAnswer" => { "@type" => "Answer", "text" => "" } }]))) => "Question \"Q?\" (@graph.mainEntity[0]) has an empty answer",
     }.each { |html, msg| assert(run_on(html).errs.any? { |e| e.include?(msg) }, "#{msg}: #{run_on(html).errs}") }
   end
 
@@ -58,5 +63,26 @@ class StructuredDataTest < Minitest::Test
     assert(run_on(SEO.(ld("{bad"))).errs.any? { |e| e.include?("jekyll-seo-tag JSON-LD is not valid JSON") })
     # Outside the seo-tag comments the same node is an error.
     assert(run_on(ld(seo)).errs.any? { |e| e.include?("lacks required name") })
+  end
+
+  SITE = { "@type" => "WebSite", "@id" => "https://e.org/d/#website", "url" => "https://e.org/d/", "name" => "S" }.freeze
+
+  def term_set_errs(set, glossary_type)
+    Dir.mktmpdir do |d|
+      FileUtils.mkdir_p(["#{d}/t", "#{d}/g"])
+      File.write("#{d}/t/index.html", ld(g(SITE, { "@type" => "DefinedTerm", "@id" => "https://e.org/d/t/#main", "name" => "T", "inDefinedTermSet" => set })))
+      File.write("#{d}/g/index.html", ld(g(SITE, { "@type" => glossary_type, "@id" => "https://e.org/d/g/#main", "name" => "G" })))
+      ctx = Ctx.new([], [], [])
+      ctx.define_singleton_method(:site) { d }
+      Modootoday::Check::TermSets.call(ctx)
+      ctx.errs
+    end
+  end
+
+  def test_term_set_names_a_glossary_page_of_the_site
+    assert_empty term_set_errs({ "@id" => "https://e.org/d/g/#main" }, "DefinedTermSet")
+    assert_empty term_set_errs("https://other.example/glossary/", "WebPage")
+    assert_includes term_set_errs({ "@id" => "https://e.org/d/gone/#main" }, "DefinedTermSet").first, "is not a page of this site"
+    assert_includes term_set_errs({ "@id" => "https://e.org/d/g/#main" }, "WebPage").first, "has no DefinedTermSet node"
   end
 end

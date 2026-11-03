@@ -62,6 +62,18 @@ class CheckSiteConfigTest < CheckerCase
     assert_includes o, "asset_version must be theme, build or false (got true)"
   end
 
+  def test_schema_faq_validation
+    ["schema: false", "schema: {faq: auto}", "schema: {faq: false, layouts: {doc: LearningResource}}"].each do |v|
+      page "_config.yml", "modootoday:\n  #{v}\n"
+      o, code = check("--strict")
+      assert_equal 0, code, "#{v}: #{o}"
+    end
+    page "_config.yml", "modootoday:\n  schema: {faq: true}\n"
+    assert_includes check[0], "schema.faq must be auto or false (got true)"
+    page "_config.yml", "modootoday:\n  schema: true\n"
+    assert_includes check[0], "schema must be false or a map"
+  end
+
   def test_code_theme_validation
     page "_config.yml", "modootoday:\n  code_theme: github\n  tokens: {code-keyword: '#cf222e'}\n"
     o, code = check("--strict")

@@ -45,7 +45,7 @@ modootoday:
 | `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
 | `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |
-| `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
+| `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`, `faq`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
 | `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다. |
 | `full_languages` | 없음 | 모든 페이지를 번역하는 `languages` 안의 코드, 예: `[ko, ja]` `modootoday-check --i18n-pages`는 이 언어의 번역이 없는 기본 언어 페이지마다 경고합니다. |
 | `lists` | 없음 | `{link_chips: true, titled_items: true}` 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다. |
