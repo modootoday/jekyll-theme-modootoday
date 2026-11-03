@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: brand-tokens.md
+lang: ja
+path: ja/recipes/brand-tokens.md.txt
+permalink: /ja/recipes/brand-tokens/index.md
+---

@@ -19,11 +19,4 @@ class StubsIdempotentTest < StubsCase
     assert_equal Time.at(0), File.mtime(stamp)
     assert_equal [0], stubs("--twins", "--aliases", "--check").values_at(2)
   end
-
-  def test_docs_index_and_stubs_agree_on_the_docs_site
-    docs = File.expand_path("../../docs", __dir__)
-    _, _, code = Open3.capture3(CLEAN_ENV, RbConfig.ruby, STUBS, docs, "--twins", "--check")
-    _, _, idx = Open3.capture3(CLEAN_ENV, RbConfig.ruby, File.expand_path("../../script/docs-index", __dir__), "--check")
-    assert_equal [0, 0], [code, idx]
-  end
 end

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: index.md
+path: recipes/marketing/index.md.txt
+permalink: /recipes/marketing/index.md
+---

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: categories.md
+lang: ja
+path: ja/categories.md.txt
+permalink: /ja/categories/index.md
+---

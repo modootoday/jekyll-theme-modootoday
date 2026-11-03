@@ -53,7 +53,20 @@ module Modootoday
         raise DataError, "#{page.rel}: unsafe permalink #{url.inspect}"
       end
 
+      # The front matter default _config.yml gives a page at rel for key (the longest matching scope path wins).
+      def default(rel, key)
+        found = Array(config["defaults"]).select { |d| d.is_a?(Hash) && d["values"].is_a?(Hash) && d["values"].key?(key) && scope?(d["scope"], rel) }
+        found.max_by { |d| d.dig("scope", "path").to_s.size }&.dig("values", key)
+      end
+
       private
+
+      def scope?(scope, rel)
+        scope = {} unless scope.is_a?(Hash)
+        return false unless [nil, "pages"].include?(scope["type"])
+        path = scope["path"].to_s.chomp("/")
+        path.empty? || rel == path || rel.start_with?("#{path}/")
+      end
 
       def skip?(rel)
         dirs = rel.split("/")[0..-2]

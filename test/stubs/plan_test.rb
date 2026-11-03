@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # modootoday-stubs plans: twin stubs, alias stubs, conflicts and pruning. Run: bundle exec rake test
 require_relative "stubs_case"
+require_relative "../../lib/modootoday/stubs"
 
 class StubsPlanTest < StubsCase
   def test_twin_stubs_for_pages_with_front_matter
@@ -26,6 +27,26 @@ class StubsPlanTest < StubsCase
     assert_includes read("a.md.txt"), "permalink: /start/index.md\n"
     refute exist?("drafts/x.md.txt")
     refute exist?("b.tmp.md.txt")
+  end
+
+  def test_twin_stubs_under_a_dir_carry_their_page_path
+    file "guides/install.md", "---\n---\n# Install\n"
+    file "out/gone.md.txt", "---\nlayout: twin\n---\n"
+    file "out/guides/install.md.txt", "---\nlayout: twin\n---\n"
+    file "kept.md.txt", "---\nlayout: twin\n---\n"
+    twins = Modootoday::Stubs::Twins.new(Modootoday::Stubs::Source.new(@src), dir: "out")
+    body = "---\nlayout: twin\ntwin_of: install.md\npath: guides/install.md.txt\npermalink: /guides/install/index.md\n---\n"
+    assert_equal({ "out/guides/install.md.txt" => body }, twins.wanted)
+    assert_equal ["out/gone.md.txt"], twins.orphans
+  end
+
+  def test_twin_stubs_under_a_dir_keep_the_lang_their_place_gets_from_defaults
+    config "defaults:\n  - {scope: {path: \"\"}, values: {layout: doc}}\n  - {scope: {path: ko}, values: {lang: ko}}\n"
+    file "ko/a.md", "---\n---\n# A\n"
+    file "kofi.md", "---\n---\n# K\n"
+    wanted = Modootoday::Stubs::Twins.new(Modootoday::Stubs::Source.new(@src), dir: "out").wanted
+    assert_includes wanted["out/ko/a.md.txt"], "lang: ko\npath: ko/a.md.txt\n"
+    refute_includes wanted["out/kofi.md.txt"], "lang:"
   end
 
   def test_alias_stubs

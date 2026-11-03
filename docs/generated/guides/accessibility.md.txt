@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: accessibility.md
+path: guides/accessibility.md.txt
+permalink: /guides/accessibility/index.md
+---

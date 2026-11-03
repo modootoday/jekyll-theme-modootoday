@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: search.md
+path: recipes/search.md.txt
+permalink: /recipes/search/index.md
+---

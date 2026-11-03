@@ -1,5 +1,0 @@
----
-layout: twin
-twin_of: tags.md
-permalink: /ja/tags/index.md
----

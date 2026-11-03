@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.md
+lang: ko
+path: ko/guides/index.md.txt
+permalink: /ko/guides/index.md
+---

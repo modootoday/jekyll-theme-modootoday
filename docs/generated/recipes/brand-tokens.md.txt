@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: brand-tokens.md
+path: recipes/brand-tokens.md.txt
+permalink: /recipes/brand-tokens/index.md
+---

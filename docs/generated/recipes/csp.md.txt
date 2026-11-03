@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: csp.md
+path: recipes/csp.md.txt
+permalink: /recipes/csp/index.md
+---

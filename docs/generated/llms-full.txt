@@ -1,0 +1,5 @@
+---
+layout: llms-full
+path: llms-full.txt
+permalink: /llms-full.txt
+---

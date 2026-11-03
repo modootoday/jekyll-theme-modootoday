@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: translation.md
+path: guides/translation.md.txt
+permalink: /guides/translation/index.md
+---

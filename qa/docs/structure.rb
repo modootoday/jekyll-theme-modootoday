@@ -4,7 +4,7 @@
 require_relative "../../script/docs/tree"
 require_relative "../../script/docs/outputs"
 
-LIMIT_FILES = 12   # authored files per directory (generated .md.txt twins excluded)
+LIMIT_FILES = 12   # authored files per directory (generated/ excluded)
 LIMIT_ENTRIES = 12 # sidebar entries per group
 SAMPLE_DIRS = %w[blog news authors].freeze
 ROOT_PAGES = %w[index.md 404.md tags.md categories.md].freeze
@@ -16,7 +16,7 @@ ids = tree.sections.map { |s| s["id"] }
 errs = []
 rel = ->(p) { p.delete_prefix("#{tree.root}/") }
 
-stale = out.files.reject { |path, body| File.exist?(path) && File.read(path) == body }.keys + out.orphan_twins
+stale = out.files.reject { |path, body| File.exist?(path) && File.read(path) == body }.keys + out.orphans
 stale.each { |p| errs << "#{rel[p]}: out of date; run ruby script/docs-index" }
 
 tree.pages.each do |p|
@@ -40,8 +40,8 @@ tree.pages.each do |p|
   end
 end
 
-Dir.glob("#{tree.root}/**/").reject { |d| rel[d].start_with?("_", "assets", "vendor") }.each do |d|
-  n = Dir.children(d).count { |c| File.file?("#{d}#{c}") && !c.end_with?(".md.txt") }
+Dir.glob("#{tree.root}/**/").reject { |d| rel[d].start_with?("_", "assets", "vendor", "generated/") }.each do |d|
+  n = Dir.children(d).count { |c| File.file?("#{d}#{c}") }
   errs << "#{rel[d]}: #{n} authored files (limit #{LIMIT_FILES}); split into groups" if n > LIMIT_FILES
 end
 

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: configuration.md
+path: guides/configuration.md.txt
+permalink: /guides/configuration/index.md
+---

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: index.md
+path: layouts/documents/index.md.txt
+permalink: /layouts/documents/index.md
+---

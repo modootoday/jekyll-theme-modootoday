@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: install.md
+lang: ko
+path: ko/guides/install.md.txt
+permalink: /ko/guides/install/index.md
+---

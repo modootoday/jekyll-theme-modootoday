@@ -3,9 +3,9 @@ id: adr:modootoday/20261103071902
 title: Docs keep authored pages and translations side by side; tool output lives under generated/
 status: active
 created: 2026-11-03T07:19:02Z
-updated: 2026-11-03T07:19:22Z
+updated: 2026-11-03T10:10:40Z
 rel:
-  governs: [docs/_config.yml]
+  governs: [docs/_config.yml, script/docs/outputs.rb, lib/modootoday/stubs/twins.rb]
 ---
 
 # Docs keep authored pages and translations side by side; tool output lives under generated/
@@ -35,3 +35,12 @@ The classic GitHub Pages build has no plugins, so it cannot derive a URL from a 
 The top level drops from 35 directories to about nine, and content directories hold only authored pages. The cost is a one-time move of about 350 files and updates to the generator, the `--i18n-pages` check, TRANSLATING.md and CONTRIBUTING.md.
 
 A translated page's URL now lives in its front matter, not in its path, so the generator owns that field. A hand-written permalink that disagrees with it is reported.
+
+Step 1 is done:
+
+- `script/docs-index` owns `docs/generated/`. It writes the twin stubs through `Stubs::Twins` with `dir: "generated"`, and an `llms.txt` and `llms-full.txt` stub for each language with a home page. Under `--check`, a file there that no output wants is out of date.
+- Each stub sets `path:` to the path it would have beside its page (`guides/install.md.txt`, `ko/llms.txt`), plus its `permalink:`. The twin layout resolves `include_relative` from that path, and the llms layouts take their directory from it. This works on the classic builder and on Jekyll 4; without `path:`, the build fails.
+- A `defaults` scope matches the real path, not `path:`. So a stub copies the `lang:` that `_config.yml` defaults give its old place (`Stubs::Source#default`). The llms layouts filter pages by it, and a reference page's twin labels its packages table in it.
+- The classic builder's relative-links plugin matches a link against each page's real path, not `path:`. A Markdown link to a stub's old place therefore no longer turns into its URL. The ko and ja Agents guides link `../../llms.txt`. The classic build used to turn that into the root `/llms.txt`. It now keeps the link relative, so it reaches `/<lang>/llms.txt`, the same target the Jekyll 4 build always had.
+- The directory is `generated`, not `_generated`, because Jekyll does not read underscore directories. It is not in `exclude`.
+- User sites keep their stubs next to their pages: `modootoday-stubs` does not set `dir:`. `modootoday-check --twins` accepts a stub in either place.

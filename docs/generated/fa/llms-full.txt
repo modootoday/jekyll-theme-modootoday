@@ -1,0 +1,6 @@
+---
+layout: llms-full
+lang: fa
+path: fa/llms-full.txt
+permalink: /fa/llms-full.txt
+---

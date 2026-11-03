@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: structured-data.md
+lang: ko
+path: ko/guides/structured-data.md.txt
+permalink: /ko/guides/structured-data/index.md
+---

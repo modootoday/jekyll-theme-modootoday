@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: modootoday.md
+path: authors/modootoday.md.txt
+permalink: /authors/modootoday/index.md
+---

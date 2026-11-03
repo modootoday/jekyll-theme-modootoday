@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: tags.md
+path: tags.md.txt
+permalink: /tags/index.md
+---

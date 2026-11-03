@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: changelog.md
+lang: ko
+path: ko/reference/changelog.md.txt
+permalink: /ko/reference/changelog/index.md
+---

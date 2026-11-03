@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: generated-pages.md
+lang: ja
+path: ja/recipes/generated-pages.md.txt
+permalink: /ja/recipes/generated-pages/index.md
+---

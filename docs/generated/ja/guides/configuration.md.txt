@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: configuration.md
+lang: ja
+path: ja/guides/configuration.md.txt
+permalink: /ja/guides/configuration/index.md
+---

@@ -23,7 +23,7 @@ After editing `i18n/*.yml`, run `rake i18n` (or `script/i18n-build`). It regener
 2. Copy `i18n/en.yml` to `i18n/<code>.yml`, set `language:` and `direction:` and localize the values.
 3. Run `rake i18n` and `rake test`; the build test renders a page in every language.
 4. Add a column to `i18n/glossary.yml` once a native reviewer approves the terms.
-5. For the docs site, also add `docs/_data/i18n/<code>.yml` with the docs-only keys (`title`, `description`, `tabs.label`) and localize at least `docs/<code>/index.md`, with `llms.txt` and `llms-full.txt` stubs beside it (`layout: llms` / `layout: llms-full`). Then add the code to `modootoday.languages` and a `defaults` scope (`path: "<code>"`, `lang: <code>`) in `docs/_config.yml`, and run `ruby script/docs-index`. Check that the font covers the script.
+5. For the docs site, also add `docs/_data/i18n/<code>.yml` with the docs-only keys (`title`, `description`, `tabs.label`) and localize at least `docs/<code>/index.md`. Then add the code to `modootoday.languages` and a `defaults` scope (`path: "<code>"`, `lang: <code>`) in `docs/_config.yml`, and run `ruby script/docs-index`, which writes the language's `llms.txt` and `llms-full.txt` stubs under `docs/generated/<code>/`. Check that the font covers the script.
 
 ## Languages
 

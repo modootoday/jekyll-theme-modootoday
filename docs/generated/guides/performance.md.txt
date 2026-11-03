@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: performance.md
+path: guides/performance.md.txt
+permalink: /guides/performance/index.md
+---

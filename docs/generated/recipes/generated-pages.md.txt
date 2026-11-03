@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: generated-pages.md
+path: recipes/generated-pages.md.txt
+permalink: /recipes/generated-pages/index.md
+---

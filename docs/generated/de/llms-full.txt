@@ -1,0 +1,6 @@
+---
+layout: llms-full
+lang: de
+path: de/llms-full.txt
+permalink: /de/llms-full.txt
+---

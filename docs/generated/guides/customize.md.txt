@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: customize.md
+path: guides/customize.md.txt
+permalink: /guides/customize/index.md
+---

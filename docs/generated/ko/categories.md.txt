@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: categories.md
+lang: ko
+path: ko/categories.md.txt
+permalink: /ko/categories/index.md
+---

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: changelog.md
+path: reference/changelog.md.txt
+permalink: /reference/changelog/index.md
+---

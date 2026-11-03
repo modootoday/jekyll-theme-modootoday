@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: index.md
+lang: zh-CN
+path: zh-CN/index.md.txt
+permalink: /zh-CN/index.md
+---

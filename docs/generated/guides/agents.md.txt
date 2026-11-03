@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: agents.md
+path: guides/agents.md.txt
+permalink: /guides/agents/index.md
+---

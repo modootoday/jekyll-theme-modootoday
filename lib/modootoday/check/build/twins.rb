@@ -23,7 +23,8 @@ module Modootoday
 
       def page(ctx, f, bodies)
         errs, site, rf = ctx.errs, ctx.site, ctx.rel(f)
-        stub = "#{f}.txt"
+        # A stub sits next to its page, or under generated/ with path: set (the docs site).
+        stub = ["#{f}.txt", "#{ctx.src}/generated/#{rf}.txt"].find { |s| File.exist?(s) } || "#{f}.txt"
         if File.exist?(stub)
           st = File.read(stub)
           meta = (Markdown.fm(st) rescue {})

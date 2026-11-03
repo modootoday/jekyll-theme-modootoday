@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: upgrade.md
+path: guides/upgrade.md.txt
+permalink: /guides/upgrade/index.md
+---

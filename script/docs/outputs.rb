@@ -6,16 +6,24 @@ module DocsIndex
   MARK = "<!-- spec:docs-index:%s -->"
 
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
+  # Tool output (twin stubs, llms files) lives under GENERATED, which only this class writes.
   class Outputs
+    GENERATED = "generated"
+    LLMS = %w[llms llms-full].freeze
+
     def initialize(tree)
       @t = tree
     end
 
     def files
-      @files ||= nav_files.merge(index_lists).merge(twins)
+      @files ||= nav_files.merge(index_lists).merge(twins).merge(llms_files)
     end
 
-    def orphan_twins = stub_twins.orphans.map { |r| "#{@t.root}/#{r}" }
+    # Files under GENERATED that no output wants any more.
+    def orphans
+      llms = Dir.glob("#{@t.root}/#{GENERATED}/**/llms{,-full}.txt").reject { |f| files.key?(f) }
+      (stub_twins.orphans.map { |r| "#{@t.root}/#{r}" } + llms).sort
+    end
 
     private
 
@@ -72,7 +80,24 @@ module DocsIndex
 
     # Twin stubs come from the same code as the modootoday-stubs command.
     def twins = stub_twins.wanted.transform_keys { |r| "#{@t.root}/#{r}" }
-    def stub_twins = @stub_twins ||= Modootoday::Stubs::Twins.new(Modootoday::Stubs::Source.new(@t.root))
+    def stub_twins = @stub_twins ||= Modootoday::Stubs::Twins.new(source, dir: GENERATED)
+    def source = @source ||= Modootoday::Stubs::Source.new(@t.root)
+
+    # llms.txt and llms-full.txt for each language with a home page, at /llms.txt and /<lang>/llms.txt.
+    # path: is where the stub would sit, so the llms layouts list that language's directory; lang: is what the
+    # defaults gave it there.
+    def llms_files
+      homes = @t.pages.select { |p| p.key == "index.md" }.map(&:lang)
+      (@t.langs & homes).each_with_object({}) do |lang, h|
+        dir = lang == @t.default_lang ? "" : "#{lang}/"
+        LLMS.each do |layout|
+          rel = "#{dir}#{layout}.txt"
+          fm = source.default(rel, "lang") ? "lang: #{source.default(rel, "lang")}\n" : ""
+          body = "---\nlayout: #{layout}\n#{fm}path: #{rel}\npermalink: /#{rel}\n---\n"
+          h["#{@t.root}/#{GENERATED}/#{dir}#{layout}.txt"] = body
+        end
+      end
+    end
 
     def q(s) = s.to_s.match?(/[:#{}\[\],&*?|<>=!%@`'"]/) ? s.to_s.inspect : s.to_s
   end

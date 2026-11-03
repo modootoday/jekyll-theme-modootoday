@@ -1,0 +1,6 @@
+---
+layout: llms-full
+lang: zh-CN
+path: zh-CN/llms-full.txt
+permalink: /zh-CN/llms-full.txt
+---

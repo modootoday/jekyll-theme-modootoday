@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: index.md
+path: components/index.md.txt
+permalink: /components/index.md
+---

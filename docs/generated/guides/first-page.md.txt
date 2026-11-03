@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: first-page.md
+path: guides/first-page.md.txt
+permalink: /guides/first-page/index.md
+---

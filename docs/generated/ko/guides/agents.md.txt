@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: agents.md
+lang: ko
+path: ko/guides/agents.md.txt
+permalink: /ko/guides/agents/index.md
+---

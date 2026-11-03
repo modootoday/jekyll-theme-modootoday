@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: upgrade.md
+lang: ko
+path: ko/guides/upgrade.md.txt
+permalink: /ko/guides/upgrade/index.md
+---

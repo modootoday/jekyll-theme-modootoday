@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: categories.md
+path: categories.md.txt
+permalink: /categories/index.md
+---
