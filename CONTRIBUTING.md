@@ -87,7 +87,7 @@ Where things live:
 | `test/fixtures/` | inputs shared by the tests |
 | `docs/generated/` | tool output: the docs site's twin stubs and per-language `llms.txt` / `llms-full.txt` stubs, written by `ruby script/docs-index` (`--check` fails when they are stale). Do not edit by hand; each stub sets `path:` to where it would sit beside its page and `permalink:` to its URL |
 | `qa/site/` | building and serving the docs site |
-| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: per file, per page, per page type in gzip), registry parts, strict CSP (`npm run qa`) |
+| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: per file, per page, per page type in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
 | `qa/visual/` | visual regression (`npm run qa:visual`) |
 | `qa/lighthouse/` | Lighthouse runs and budget |
 | `qa/docs/` | link check and kitchen-sink coverage |
