@@ -211,7 +211,17 @@ An ordered list works too.
 
 ## Tables
 
-`status:available` GFM tables scroll sideways on small screens instead of overflowing the page.
+`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge shows there is more to scroll.
+
+Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. On a site that allows kramdown attribute lists, a line right after any table picks a variant:
+
+```text
+{: .mt-table--stack}  rows become labelled blocks below 40rem
+{: .mt-table--dl}     two columns: each key above its value below 40rem
+{: .mt-table--fixed}  equal columns that wrap anywhere, for comparison grids
+```
+
+`modootoday-check` reports attribute lists, because GitHub shows them as text. The two stacked forms need JavaScript; without it the table scrolls.
 
 | Key | Default | Description |
 |---|---|---|

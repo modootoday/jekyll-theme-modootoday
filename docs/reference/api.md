@@ -54,7 +54,8 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
 | File tree | `section.mt-c-filetree` | `ul[aria-label]`, nested `ul` (items holding one are folders) | — |
 | Details / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, the content after it | `[open]` |
-| Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | — |
+| Table | `div.mt-table` around every body table (added at render time; scrolls, becomes a labelled region when it overflows) | the `table` inside it | `table.mt-table--stack`, `table.mt-table--dl`, `table.mt-table--fixed` (kramdown attribute list; `c: params` tables get `--stack`); `[data-mt-labelled]` and `td[data-label]` once the script has labelled a stacked table; `table` and `table-stack` sheets |
+| Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | stacks below 40rem (`table.mt-table--stack`) |
 | Link cards | `section.mt-c-linkcards` | `ul > li > a` (the whole card is the link target) | — |
 | Quote | `figure.mt-quote` | `blockquote`, `figcaption` | — |
 | Gallery | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | `:target` on the open lightbox |

@@ -42,7 +42,7 @@ class StylesheetProbeTest < Minitest::Test
   SEARCH = "search.js search-keys.js"
   DEFAULT = {
     "pr/plain" => "css/modootoday.css doc.css search.css #{PLAIN} #{SEARCH}",
-    "pr/table" => "css/modootoday.css doc.css search.css menu.js scroll-region.js theme-toggle.js #{SEARCH}",
+    "pr/table" => "css/modootoday.css doc.css search.css table.css menu.js scroll-region.js theme-toggle.js #{SEARCH}",
     "pr/spinner" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
     "pr/skeleton" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
     "pr/topbar" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
@@ -57,7 +57,7 @@ class StylesheetProbeTest < Minitest::Test
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css search.css #{PLAIN} share.js #{SEARCH}",
     "." => "css/modootoday.css css/modootoday-hero.css doc.css search.css bleed.css showcase/cta.css showcase/card.css " \
            "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
-    "guide" => "css/modootoday.css doc.css search.css #{CHROME} #{SEARCH}",
+    "guide" => "css/modootoday.css doc.css search.css table.css #{CHROME} #{SEARCH}",
     "blog:." => "css/modootoday.css css/modootoday-blog.css search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
@@ -69,7 +69,7 @@ class StylesheetProbeTest < Minitest::Test
     "pr/split" => "css/modootoday.css doc.css loading.css terminal.css menu.js scroll-region.js",
     "pr/bare" => "css/modootoday.css doc.css loading.css",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css loading.css menu.js",
-    "guide" => "css/modootoday.css doc.css loading.css menu.js scroll-region.js code-copy.js",
+    "guide" => "css/modootoday.css doc.css loading.css table.css menu.js scroll-region.js code-copy.js",
     "blog:." => "css/modootoday.css css/modootoday-blog.css loading.css menu.js code-copy.js",
   }.freeze
   BUNDLE = {

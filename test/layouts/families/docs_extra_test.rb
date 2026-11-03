@@ -92,10 +92,10 @@ class DocsExtraLayoutsTest < Minitest::Test
       refute_includes r, "mt-dx-pkgs"
       assert_includes r, '<nav class="mt-dx-toc"'
       refute_includes html(s, "p.md"), "mt-dx-member"
-      assert_operator a.index('<div class="mt-dx-pkgs"><table>'), :<, a.index('<div class="mt-dx-body">')
+      assert_operator a.index('<div class="mt-table"><table class="mt-dx-pkgs">'), :<, a.index('<div class="mt-dx-body">')
       k = html(s, "k.md")
       refute_includes k, "Hidden words."
-      assert_operator k.index("Intro."), :<, k.index('<div class="mt-dx-pkgs">')
+      assert_operator k.index("Intro."), :<, k.index('<table class="mt-dx-pkgs">')
       assert_match(/<blockquote class="mt-callout mt-callout-tip"/, k)
       refute_includes k, "[!TIP]"
       out, st = check(src, s)

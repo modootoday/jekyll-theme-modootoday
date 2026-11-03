@@ -12,7 +12,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | Asset | Loaded on |
 |---|---|
 | `assets/css/modootoday.css` (core sheet) | every page |
-| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`) | pages whose layout or body uses them |
+| Context sheets (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
 | `menu.js`, `theme-toggle.js`, `search.js` | pages with the header, the toggle, or a search index |
 | `code-copy.js` | pages with a code block, and pages with the page actions menu |

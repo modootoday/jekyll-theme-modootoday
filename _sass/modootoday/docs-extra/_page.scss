@@ -47,12 +47,13 @@
     .mt-dx-api > .mt-dx-side { grid-column: 1; grid-row: 1 / span 999; align-self: start; position: sticky; top: 4.5rem; max-height: calc(100vh - 6rem); overflow-y: auto; padding-inline-end: .5rem; border-inline-end: 1px solid mt(border); }
     .mt-dx-api > .mt-dx-side ul { margin-bottom: 0; }
   }
-  .mt-dx-pkgs { overflow-x: auto; margin-bottom: 2rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
-  .mt-dx-pkgs table { display: table; width: 100%; margin: 0; border: 0; border-radius: 0; }
+  // The table sheet's wrapper draws the border, so the caption sits inside it.
+  .mt-table:has(> .mt-dx-pkgs) { margin-bottom: 2rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
+  .mt-table > .mt-dx-pkgs { width: 100%; max-inline-size: none; }
+  .mt-table > table.mt-dx-pkgs :is(th, td) { padding: .6rem .9rem; }
   .mt-dx-pkgs caption { padding: .75rem .9rem .5rem; font-weight: 600; text-align: start; }
-  .mt-dx-pkgs thead th { color: mt(muted-foreground); }
-  .mt-dx-pkgs tbody th { white-space: normal; background: none; font-size: inherit; font-weight: 400; }
-  .mt-dx-pkgs tr:last-child > th { border-bottom: 0; }
+  .mt-dx-pkgs tbody th { white-space: normal; font-weight: 400; color: mt(foreground); }
+  .mt-dx-pkgs tr:last-child > :is(th, td) { border-bottom: 0; }
   .mt-dx-pkgs tbody th > code { font-weight: 600; }
   // Package names are links: plain foreground code, underlined on hover only.
   .mt-dx-pkgs code a { color: mt(foreground); text-decoration: none; }
@@ -61,11 +62,11 @@
   .mt-dx-pkgs ul { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin: 0; padding: 0; list-style: none; }
   .mt-dx-pkgs li { margin: 0; }
   @media (max-width: 39.99rem) {
-    .mt-dx-pkgs table, .mt-dx-pkgs caption, .mt-dx-pkgs tbody, .mt-dx-pkgs tr, .mt-dx-pkgs th, .mt-dx-pkgs td { display: block; }
+    .mt-table > .mt-dx-pkgs, .mt-dx-pkgs :is(caption, tbody, tr, th, td) { display: block; }
     .mt-dx-pkgs thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
     .mt-dx-pkgs tr { padding: .5rem .9rem; border-bottom: 1px solid mt(border); }
     .mt-dx-pkgs tr:last-child { border-bottom: 0; }
-    .mt-dx-pkgs tbody th, .mt-dx-pkgs td { padding: .25rem 0; border: 0; }
+    .mt-table > table.mt-dx-pkgs :is(th, td) { padding: .25rem 0; border: 0; }
     .mt-dx-pkgs td:empty { display: none; }
     .mt-dx-pkgs td::before { content: attr(data-label) ": "; color: mt(muted-foreground); font-size: .8125rem; }
   }

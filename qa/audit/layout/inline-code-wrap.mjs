@@ -1,5 +1,6 @@
-// Inline code wrap: at 360px a long unbroken inline code in a paragraph, list item, link, heading, callout, quote or
-// table cell must wrap inside the column (no page-level horizontal scroll), while a fenced block keeps its own scroll.
+// Inline code wrap: at 360px a long unbroken inline code in a paragraph, list item, link, heading, callout or quote must
+// wrap inside the column (no page-level horizontal scroll), while a fenced block keeps its own scroll. Code in table cells
+// stays whole and the table scrolls instead: table-reflow.mjs checks it on pages with tables.
 const W = 360;
 const LONG = "site.modootoday.a_really_long_configuration_key_without_breaks.and_more_segments_here";
 export async function checkInlineCodeWrap(page, scheme, url, fails) {
@@ -9,7 +10,7 @@ export async function checkInlineCodeWrap(page, scheme, url, fails) {
     const c = `<code>${long}</code>`;
     const box = document.createElement("div");
     box.innerHTML = `<p>${c}</p><ul><li>${c}</li></ul><p><a href="#">${c}</a></p><h2>${c}</h2>` +
-      `<div class="mt-callout"><p>${c}</p></div><blockquote><p>${c}</p></blockquote><table><tr><td>${c}</td></tr></table>` +
+      `<div class="mt-callout"><p>${c}</p></div><blockquote><p>${c}</p></blockquote>` +
       `<div class="highlighter-rouge"><pre><code>${long}${long}</code></pre></div>`;
     host.prepend(box);
     const over = document.documentElement.scrollWidth - innerWidth;

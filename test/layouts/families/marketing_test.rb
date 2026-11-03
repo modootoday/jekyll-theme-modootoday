@@ -32,6 +32,7 @@ class MarketingLayoutsTest < Minitest::Test
       assert_equal ["Person", ["https://github.com/ada"]], [lp["mainEntity"]["@type"], lp["mainEntity"]["sameAs"]]
       assert graph(s, "c.md").any? { |n| n["@type"] == "ContactPage" }
       assert_includes html(s, "c.md"), '<label for="mt-f-email">'
+      assert_includes html(s, "d.md"), '<div class="mt-table"><table class="mt-mk-table">'
       out, st = check(src, s)
       assert st.success?, out
     end

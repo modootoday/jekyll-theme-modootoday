@@ -9,7 +9,7 @@ const shown = (r) => !r.hidden && (!r.checkVisibility || r.checkVisibility());
 
 export function initFilter(root) {
   const box = root.querySelector(".mt-filter");
-  const target = root.querySelector(":scope > ul, :scope > ol, :scope > table");
+  const target = root.querySelector(":scope > ul, :scope > ol, :scope > table, :scope > .mt-table > table");
   if (!box || !target) {
     return;
   }
@@ -48,7 +48,9 @@ export function initFilter(root) {
       count();
     }
   });
-  target.before(box);
+  // A table sits in its scroll wrapper; the controls go before the wrapper, outside the scrolling box.
+  const outer = target.parentElement == root ? target : target.parentElement;
+  outer.before(box);
   count();
   box.hidden = false;
 }

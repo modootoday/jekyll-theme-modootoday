@@ -1,3 +1,4 @@
-{%- comment -%}c: params — header cells get scope="col"; a cell holding `required` shows the params.required badge.{%- endcomment -%}
+{%- comment -%}c: params — header cells get scope="col"; a cell holding `required` shows the params.required badge; the table
+  stacks below 40rem (mt-table--stack) unless its own {: .class} names a variant.{%- endcomment -%}
 {%- capture _rq %}<span class="mt-param-required">{{ mt_t_params_required }}</span>{% endcapture -%}
-{{ include.html | replace: "<th>", '<th scope="col">' | replace: '<code class="language-plaintext highlighter-rouge">required</code>', _rq | replace: "<code>required</code>", _rq }}
+{{ include.html | replace: "<table>", '<table class="mt-table--stack">' | replace: "<th>", '<th scope="col">' | replace: '<code class="language-plaintext highlighter-rouge">required</code>', _rq | replace: "<code>required</code>", _rq }}

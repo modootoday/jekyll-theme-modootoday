@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:7d20ea0137bc
+source_rev: sha256:e303b102e40a
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -217,7 +217,17 @@ bundle exec jekyll serve
 
 ## 표
 
-`status:available` GFM 표는 작은 화면에서 페이지를 넘치지 않고 가로로 스크롤됩니다.
+`status:available` 모든 표는 테마가 페이지를 렌더링할 때 씌우는 스크롤 상자(`div.mt-table`) 안에 들어갑니다. 2~3열 표는 칸 안에서 줄을 바꾸되, 열마다 최소 5rem(마지막 열은 9rem)을 지키고 그보다 좁으면 상자가 스크롤됩니다. 4열 이상인 표는 열마다 9rem 정도까지 넓어진 뒤 스크롤되고, 첫 열은 화면에 남습니다. 첫 열의 코드와 오른쪽·가운데 정렬 칸은 줄을 바꾸지 않으며, 가장자리의 그림자가 더 스크롤할 내용이 있음을 알려 줍니다.
+
+40rem보다 좁은 화면에서 `c: params` 표는 행마다 블록이 되고, 칸마다 열 이름이 레이블로 붙습니다. kramdown 속성 목록을 허용하는 사이트에서는 표 바로 다음 줄에 변형을 지정할 수 있습니다.
+
+```text
+{: .mt-table--stack}  40rem 미만에서 행이 레이블 붙은 블록이 됨
+{: .mt-table--dl}     2열 표: 40rem 미만에서 키 아래에 값
+{: .mt-table--fixed}  같은 너비의 열, 어디서든 줄바꿈(비교표용)
+```
+
+GitHub은 속성 목록을 글자 그대로 보여 주므로 `modootoday-check`는 이를 오류로 알립니다. 쌓이는 두 변형은 JavaScript가 필요하며, 없으면 표가 스크롤됩니다.
 
 | 키 | 기본값 | 설명 |
 |---|---|---|

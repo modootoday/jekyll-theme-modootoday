@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:7d20ea0137bc
+source_rev: sha256:e303b102e40a
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -218,7 +218,17 @@ bundle exec jekyll serve
 
 ## 表
 
-`status:available` GFM の表は、狭い画面ではページからはみ出さず横にスクロールします。
+`status:available` すべての表は、テーマがページを描画するときに付けるスクロール枠（`div.mt-table`）に入ります。2〜3 列の表はセル内で折り返しますが、各列は 5rem（最後の列は 9rem）より狭くならず、それを超える分は枠がスクロールします。4 列以上の表は 1 列あたり約 9rem まで広がってからスクロールし、最初の列は画面に残ります。最初の列のコードと右揃え・中央揃えのセルは折り返さず、端の影でまだスクロールできることがわかります。
+
+40rem より狭い画面では、`c: params` の表は行ごとのブロックになり、各セルに列名のラベルが付きます。kramdown の属性リストを使えるサイトでは、表の直後の行で表示を切り替えられます。
+
+```text
+{: .mt-table--stack}  40rem 未満で行がラベル付きのブロックになる
+{: .mt-table--dl}     2 列の表：40rem 未満でキーの下に値
+{: .mt-table--fixed}  同じ幅の列、どこでも折り返す（比較表向け）
+```
+
+GitHub は属性リストをそのまま文字として表示するため、`modootoday-check` はエラーとして報告します。積み重ねる 2 つの表示には JavaScript が必要で、ない場合は表がスクロールします。
 
 | キー | 既定値 | 説明 |
 |---|---|---|

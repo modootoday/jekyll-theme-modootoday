@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:e80e67096a7b
+source_rev: sha256:b96691abe60a
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -35,7 +35,7 @@ modootoday:
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
 | `code_theme` | `theme` | コードブロックの色。`theme` はテーマのパレットのまま、`github` は GitHub のライトとダークのパレットを使う。[カスタマイズ](../customize/)を参照 |
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
-| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual`・`filter` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
+| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
 | `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う |
 | `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |

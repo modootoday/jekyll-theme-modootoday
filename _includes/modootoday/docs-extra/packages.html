@@ -1,8 +1,8 @@
 {%- include modootoday/i18n.html -%}
 {%- comment -%}Package table: include.items is [{name, version, text, url, links: [{label, url}]}]; include.caption is optional;
 compact=true leaves out each package's text (for pages whose body already describes the packages).
-One row per package (the name is the row header, the text under it); rows stack into cards on narrow screens. CSS in docs-extra; the wrapper draws the border so the caption sits inside it.{%- endcomment -%}
-<div class="mt-dx-pkgs"><table>
+One row per package (the name is the row header, the text under it); rows stack into cards on narrow screens. CSS in docs-extra; the div.mt-table that links/content.html adds draws the border, so the caption sits inside it.{%- endcomment -%}
+<table class="mt-dx-pkgs">
 {%- if include.caption %}<caption>{{ include.caption }}</caption>{% endif %}
 <thead><tr><th scope="col">{{ mt_t_layouts_name }}</th><th scope="col">{{ mt_t_layouts_version }}</th><th scope="col">{{ mt_t_layouts_links }}</th></tr></thead>
 <tbody>
@@ -12,4 +12,4 @@ One row per package (the name is the row header, the text under it); rows stack 
 <td data-label="{{ mt_t_layouts_links }}">{% if p.links.size > 0 %}<ul>{% for l in p.links %}<li><a href="{% include modootoday/link.html url=l.url %}"{% include modootoday/links/attrs.html on=l.new_window target=l.target url=l.url %}>{{ l.label }}</a></li>{% endfor %}</ul>{% endif %}</td></tr>
 {%- endfor %}
 </tbody>
-</table></div>
+</table>

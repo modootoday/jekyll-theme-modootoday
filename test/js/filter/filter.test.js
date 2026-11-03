@@ -56,6 +56,14 @@ test("table: rows of the body are filtered, the header stays", async () => {
   assert.strictEqual(root.querySelector("thead tr").hidden, false);
 });
 
+test("table in its scroll wrapper: the controls go before the wrapper, rows are filtered", async () => {
+  const { root, box, type, shown } = await page(`<section data-mt-filter><div class="mt-table">${TABLE}</div>${CONTROLS}</section>`);
+  assert.strictEqual(box.hidden, false);
+  assert.strictEqual(box.nextElementSibling, root.querySelector(".mt-table"));
+  type("paid");
+  assert.deepStrictEqual(shown(), ["VolumePaid"]);
+});
+
 test("facet: one chip per value of the column, named by its header; one value at a time", async () => {
   const { box, type, shown, count } = await page(`<section data-mt-filter data-facet="2">${TABLE}${CONTROLS}</section>`);
   const group = box.querySelector(".mt-filter-chips");
