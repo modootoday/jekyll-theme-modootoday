@@ -1,0 +1,6 @@
+starters:
+  - name: tiny
+    repo: owner/tiny-starter
+    languages: [en, ko]
+    stacks: [github-pages, jekyll4]
+    check: [--twins]

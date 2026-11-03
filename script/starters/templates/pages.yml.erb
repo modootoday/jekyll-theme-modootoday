@@ -1,0 +1,68 @@
+# Builds the site, runs modootoday-check on it and, on main, deploys it to GitHub Pages
+# (Settings > Pages > Source: GitHub Actions). Pull requests are built and checked only.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+<% if remote? -%>
+      # The builder image classic GitHub Pages uses; the theme comes from remote_theme in _config.yml.
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+      # No --github-pages here: the build above is the GitHub Pages builder itself, and there is no Gemfile.lock to read.
+      - name: Check the built site
+        run: |
+          gem install <%= theme.name %> -v <%= theme.version %> --no-document
+          modootoday-check . _site <%= starter.check.join(" ") %>
+<% else -%>
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - id: pages
+        uses: actions/configure-pages@v6
+      - name: Build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+      - name: Check the built site
+        run: bundle exec modootoday-check . _site <%= starter.check.join(" ") %>
+<% end -%>
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request'
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,55 @@
+# <%= title %>
+
+<%= description %>
+
+A <%= starter.name %> starter for [<%= theme.name %>](https://github.com/<%= theme.repo %>) <%= theme.version %>. Pages are plain GitHub Markdown; the theme's layouts, includes and CSS style them.
+
+## Start
+
+1. Create a repository from this template, or copy these files into an empty repository.
+2. In **Settings > Pages**, set **Source** to **GitHub Actions**. `.github/workflows/pages.yml` builds the site, runs `modootoday-check` on it and deploys it on every push to `main`; pull requests are built and checked only.
+3. Set `title` and `description` in `_config.yml`, then replace the sample pages with yours.
+
+## Stack
+
+<% if remote? -%>
+The theme loads with `remote_theme: <%= theme.repo %>@v<%= theme.version %>`, and the workflow builds the site with the same builder image as classic GitHub Pages, so no plugin outside the GitHub Pages list runs. To upgrade, change the tag in `_config.yml` and the version in `Gemfile`.
+<% else -%>
+Jekyll 4 with the theme gem, pinned in `Gemfile`. To upgrade, change its version there and run `bundle update <%= theme.name %>`.
+<% end -%>
+
+## Run it locally
+
+```sh
+bundle install
+bundle exec jekyll serve
+```
+<% if remote? -%>
+
+`jekyll serve` downloads the theme from GitHub (remote_theme), so it needs a network connection. The `Gemfile` also installs the theme gem for its two commands.
+<% end -%>
+
+## Add or rename a page
+
+Every page has a Markdown twin at `<page>/index.md`. GitHub Pages runs no plugin that writes it, so each page has a small stub file beside it. After you add, rename or delete a page, write the stubs and check the site:
+
+```sh
+bundle exec modootoday-stubs . <%= stub_flags %> --write
+bundle exec jekyll build
+bundle exec modootoday-check . _site <%= check_flags %>
+```
+<% if starter.languages.size > 1 -%>
+
+## Languages
+
+Pages in the default language (`<%= starter.languages.first %>`) sit at the root. Translations live in one folder per language with the same page names: <%= starter.languages.drop(1).map { |l| "`#{l}/`" }.join(", ") %>. `_data/i18n/<language>.yml` overrides the theme's interface strings and `_data/nav/main-<language>.yml` is that language's menu.
+<% end -%>
+
+## Commands
+
+### modootoday-check
+
+<%= theme.commands["check"] %>
+### modootoday-stubs
+
+<%= theme.commands["stubs"] -%>

@@ -1,0 +1,11 @@
+title: Tiny
+description: A starter fixture.
+lang: en
+theme: jekyll-theme-modootoday
+markdown: kramdown
+kramdown: {input: GFM}
+permalink: pretty
+exclude: [Gemfile, Gemfile.lock, README.md]
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+  - {scope: {path: "ko"}, values: {lang: ko}}

@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+# <%= theme.name %> <%= theme.version %>, <%= stack %> stack. The theme gem also brings modootoday-check and modootoday-stubs.
+source "https://rubygems.org"
+gem "<%= theme.name %>", "<%= theme.version %>"
+<% theme.gem_lines(stack).each do |line| -%>
+<%= line %>
+<% end -%>
