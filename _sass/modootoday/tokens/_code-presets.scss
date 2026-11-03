@@ -1,0 +1,17 @@
+// Code colour presets (modootoday.code_theme). Values from github-light-default and github-dark-default in
+// tm-themes 1.12.12 (MIT), editor background and foreground included; the palette matches, Rouge's token classes
+// differ from TextMate scopes. Merged before the site's overrides, so the token bridge still wins.
+$mt-code-github-light: (
+  code-background: #ffffff, code-foreground: #1f2328, code-keyword: #cf222e, code-string: #0a3069, code-comment: #6e7781,
+  code-function: #8250df, code-constant: #0550ae, code-variable: #953800, code-type: #953800, code-number: #0550ae,
+  code-operator: #cf222e, code-tag: #116329, code-attribute: #0550ae, code-inserted: #116329, code-deleted: #82071e
+);
+$mt-code-github-dark: (
+  code-background: #0d1117, code-foreground: #e6edf3, code-keyword: #ff7b72, code-string: #a5d6ff, code-comment: #8b949e,
+  code-function: #d2a8ff, code-constant: #79c0ff, code-variable: #ffa657, code-type: #ffa657, code-number: #79c0ff,
+  code-operator: #ff7b72, code-tag: #7ee787, code-attribute: #79c0ff, code-inserted: #7ee787, code-deleted: #ffa198
+);
+@if $mt-code-theme == github {
+  $mt-light: map-merge($mt-light, $mt-code-github-light) !global;
+  $mt-dark: map-merge($mt-dark, $mt-code-github-dark) !global;
+}

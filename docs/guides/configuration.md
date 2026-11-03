@@ -27,6 +27,7 @@ modootoday:
 | Key | Default | Effect |
 |---|---|---|
 | `badges` | `true` | turn status code spans into badges; `false` keeps code |
+| `code_theme` | `theme` | code block colours: `theme` keeps the theme palette, `github` uses GitHub's light and dark palettes; see [Code colours](../customize/#code-colours) |
 | `color_scheme` | `auto` | `auto` follows the OS; `auto-dark` or `auto-light` starts dark or light and keeps the toggle (the reader's choice is remembered); `light` or `dark` forces one scheme without a toggle. The starting scheme is printed in the HTML, so nothing flashes |
 | `components` | all | limit the CSS and JS that are shipped. `lists`, `bleed` and `terminal` are always included: their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:` and `chrome: terminal`. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll) |
 | `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |

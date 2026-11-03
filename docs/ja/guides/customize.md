@@ -6,6 +6,7 @@ description: トークンとトークンブリッジで色、角丸、フォン�
 sections:
   - tokens
   - bridge
+  - code
   - visuals
   - sass
   - shadow
@@ -61,6 +62,17 @@ modootoday:
 
 配色、セルフホストのフォント、コントラストの確認までそろった例は[ブランドトークン](../../recipes/brand-tokens/)にあります。
 
+## コードの色
+
+コードブロックは `--mt-code-*` トークンから色を取ります。`modootoday.code_theme: github` を設定すると、GitHub のライトとダークのパレットに切り替わります（[デモ](../../layouts/demo/code-github/)）。
+
+```yaml
+modootoday:
+  code_theme: github   # theme (default) or github
+```
+
+色は GitHub のエディターテーマ（github-light-default と github-dark-default）から取っています。Rouge はエディターとは違う基準でトークンを分けるため、パレットは GitHub と同じでも、単語ひとつの色が異なることがあります。トークンは `code-background`、`code-foreground`、`code-keyword`、`code-string`、`code-comment`、`code-function`、`code-constant`、`code-variable`、`code-type`、`code-number`、`code-operator`、`code-tag`、`code-attribute`、`code-inserted`、`code-deleted` です。既定の `theme` では、新しい十個が従来の五個に従うので、コードの見た目は変わりません。トークンブリッジはプリセットの後に適用されるので、`$mt-overrides: (code-comment: #57606a)` のように一色だけ変えられます。コードの色には Jekyll の既定である Rouge（`kramdown.syntax_highlighter`）が必要で、別のハイライターを設定すると `modootoday-check` が警告します。
+
 ## セクションのビジュアルと全幅ページ
 
 `sections:` の項目に `visual: <name>` を書くと、そのセクションの末尾にサイトの `_includes/sections/<name>.html` が描画されます。 include は項目を `include.section` として受け取るので、`scene:` のような追加キーも渡ります。front matter の `hero: {visual: <name>}` は最初の `##` より前の部分に同じことをします（`sections:` が必要です）。 include がないと `modootoday-check` が失敗します。
@@ -99,7 +111,9 @@ Jekyll はテーマより先にサイトの `_sass/` を読みます。`assets/c
 
 ## レイアウトと include の上書き
 
-テーマの `_layouts/`、`_includes/`、`_sass/` にあるファイルは、サイトの同じパスにファイルを置けば置き換えられます。ページの head にタグを足すには `_includes/head-custom.html` を使います。
+テーマの `_layouts/`、`_includes/`、`assets/` にあるファイルは、サイトの同じパスにファイルを置けば置き換えられます。`_sass/` でそうなるのは、テーマが Sass のロードパスから読み込むパーシャルだけです。トークンフック `_sass/modootoday/_site.scss`、`_sass/modootoday/_access.scss`、`_sass/modootoday/components/` 以下のコンポーネントのパーシャルが該当します（FAQ のシートはそれでもテーマの `_details.scss` を読みます）。ほかのパーシャル（設定、ツール、トークン、基本スタイル、レイアウト、レイアウトごとのシート）は、それを使うテーマのファイルからの相対パスで読み込まれるため、GitHub Pages でも Jekyll 4 でも Sass はテーマのファイルを読み、サイトのファイルは無視されます。`_core.scss`、`_sheet.scss`、レイアウトごとの `_index.scss` をコピーすると、相対パスで読み込むファイルが隣にないためビルドが失敗します。コンポーネントのパーシャルは内部 API なので、上書きするとテーマの更新で壊れることがあります。それ以外を変えるには、`site_css` でルールを足すか、`assets/css/` 以下のスタイルシートを上書きしてください。
+
+ページの head にタグを足すには `_includes/head-custom.html` を使います。
 
 ```html
 <link rel="icon" href="/favicon.svg">

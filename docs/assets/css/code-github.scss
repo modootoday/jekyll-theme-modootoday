@@ -1,0 +1,13 @@
+---
+# Docs demo for modootoday.code_theme: github (front matter site_css on that page only). A site sets the key instead;
+# here the preset maps are emitted for one page, so the rest of the docs keep the default code colours.
+---
+$mt-code-theme: theme;
+@import "modootoday/tools/mixins";
+@import "modootoday/tokens/code-presets";
+
+:root { @include mt-emit($mt-code-github-light); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include mt-emit($mt-code-github-dark); }
+}
+:root[data-theme="dark"] { @include mt-emit($mt-code-github-dark); }

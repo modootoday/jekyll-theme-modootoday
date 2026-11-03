@@ -5,6 +5,7 @@
 ---
 {%- include modootoday/config.html -%}
 $mt-css-layers: {{ mt_css_layers }};
+$mt-code-theme: {{ mt_code_theme }};
 @import "modootoday/core";
 {% for p in mt_core_partials %}{% assign c = p | split: "/" | last %}{% if mt_components contains c %}@import "modootoday/components/{{ p }}";
 {% endif %}{% endfor %}

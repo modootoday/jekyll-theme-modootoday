@@ -1,16 +1,20 @@
 // Token-level WCAG AA contrast: foreground/background token pairs, read from the live page per colour scheme.
+// Code block text tokens, each measured on code-background (code_theme presets and the default).
+const CODE = ["foreground", "keyword", "string", "comment", "function", "constant", "variable", "type", "number", "operator", "tag", "attribute", "inserted", "deleted"];
 // logical name -> candidate token names (v0.2 semantic names first, v0.1 names as fallback)
 const T = {
   fg: ["foreground", "fg"], "fg-muted": ["muted-foreground", "fg-muted"], bg: ["background", "bg"], "bg-subtle": ["muted", "bg-subtle"],
   accent: ["primary", "accent"], "accent-fg": ["primary-foreground", "accent-fg"], link: ["link"], card: ["card"], "card-fg": ["card-foreground"], border: ["border"],
   ...Object.fromEntries(["note", "tip", "important", "warning", "caution"].map((t) => [t, [t]])),
   ...Object.fromEntries(["available", "partial", "planned"].map((t) => [t, ["status-" + t, t]])),
+  ...Object.fromEntries(["background", ...CODE].map((t) => ["code-" + t, ["code-" + t]])),
 };
 const PAIRS = [
   ["fg", "bg", 4.5], ["fg-muted", "bg", 4.5], ["fg", "bg-subtle", 4.5], ["fg-muted", "bg-subtle", 4.5], ["card-fg", "card", 4.5],
   ["accent", "bg", 4.5], ["accent-fg", "accent", 4.5], ["link", "bg", 4.5], ["border", "bg", 1.2],
   ...["note", "tip", "important", "warning", "caution", "available", "partial", "planned"].map((t) => [t, "bg", 4.5]),
   ...["note", "tip", "important", "warning", "caution"].map((t) => [t, "bg-subtle", 3]),
+  ...CODE.map((t) => ["code-" + t, "code-background", 4.5]),
 ];
 const lum = (c) => { const [r, g, b] = c.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
 const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };

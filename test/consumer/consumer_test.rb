@@ -95,6 +95,30 @@ class ConsumerTest < Minitest::Test
     end
   end
 
+  # Sass resolves a relative @import next to the importing theme file before the load path, so only partials the theme
+  # imports as modootoday/... can be shadowed; a lone copy of an importing partial misses its siblings (Customize guide).
+  def test_only_load_path_sass_partials_can_be_shadowed
+    Dir.mktmpdir do |d|
+      src = "#{d}/src"
+      FileUtils.cp_r(EXAMPLE, src)
+      FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
+      parts = { "_access" => true, "components/core/inline/_callout" => true, "components/section/structure/_tabs" => true,
+                "_settings" => false, "tools/_mixins" => false, "tokens/_semantic" => false, "base/_prose" => false,
+                "layout/_shell" => false, "blog/_post" => false }
+      parts.each_key.with_index do |p, i|
+        FileUtils.mkdir_p(File.dirname("#{src}/_sass/modootoday/#{p}"))
+        File.write("#{src}/_sass/modootoday/#{p}.scss", File.read("#{ROOT}/_sass/modootoday/#{p}.scss") + "\n.mt-shadow-#{i} { color: red; }\n")
+      end
+      build(src, "#{d}/out")
+      css = Dir["#{d}/out/assets/css/**/*.css"].map { File.read(_1) }.join
+      parts.each_with_index { |(p, shadows), i| assert_equal shadows, css.match?(/\.mt-shadow-#{i}(?!\d)/), p }
+      File.write("#{src}/_sass/modootoday/_core.scss", File.read("#{ROOT}/_sass/modootoday/_core.scss"))
+      out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{d}/core", chdir: ROOT)
+      refute st.success?, "a lone copy of _core.scss cannot find its relative imports"
+      assert_match(/stylesheet to import|import not found/, out)
+    end
+  end
+
   # Front-matter-less mode (modootoday.twins: source): jekyll-optional-front-matter renders each
   # front-matter-less page AND copies the raw source to its own path, which is the twin. Same on
   # github-pages (Jekyll 3.10) and Jekyll 4 with the plugins listed explicitly.

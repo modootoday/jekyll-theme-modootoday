@@ -4,6 +4,7 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.color_scheme  auto | light | dark | auto-dark | auto-light  (default auto)
                                 auto*: toggle shown; auto follows the system, auto-dark/auto-light start in that scheme
   site.modootoday.css_layers    true | false                 (default false)
+  site.modootoday.code_theme    theme | github: code block colours (default theme; github = the GitHub light and dark palettes)
   site.modootoday.components    list of component names      (default: all); lists, bleed and terminal are always added:
                                 their CSS only reaches pages that turn them on (modootoday.lists / hero.checks, bleed:, chrome: terminal)
   site.modootoday.css           split | bundle: split (default) links the core sheet plus only the sheets a page uses; bundle links one file with everything
@@ -31,6 +32,7 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- if mt_color_scheme contains "auto" -%}{%- assign mt_theme_toggle = true -%}{%- endif -%}
 {%- if mt_color_scheme == "auto" -%}{%- assign mt_theme_start = nil -%}{%- endif -%}
 {%- if mt.css_layers == true -%}{%- assign mt_css_layers = "true" -%}{%- else -%}{%- assign mt_css_layers = "false" -%}{%- endif -%}
+{%- if mt.code_theme == "github" -%}{%- assign mt_code_theme = "github" -%}{%- else -%}{%- assign mt_code_theme = "theme" -%}{%- endif -%}
 {%- if mt.badges == false -%}{%- assign mt_badges = false -%}{%- else -%}{%- assign mt_badges = true -%}{%- endif -%}
 {%- assign mt_nav_name = mt.nav | default: "main" -%}
 {%- assign mt_nav = site.data.nav[mt_nav_name] -%}

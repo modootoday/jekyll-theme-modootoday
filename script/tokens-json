@@ -27,7 +27,7 @@ end
 def ref(v) = v.gsub(/var\(--mt-p-([\w-]+)\)/) { "{primitive.#{$1}}" }
 
 def type_of(k, v)
-  return "color" if v.start_with?("#") || v.include?("{primitive.") && !k.match?(/space|radius/)
+  return "color" if v.start_with?("#") || v == "currentColor" || v.include?("{primitive.") && !k.match?(/space|radius/)
   return "fontFamily" if k.start_with?("font-") && k != "font-size"
   return "dimension" if v.match?(/\A[\d.]+(rem|px|em)\z/) || k.match?(/space|radius/)
   "number"

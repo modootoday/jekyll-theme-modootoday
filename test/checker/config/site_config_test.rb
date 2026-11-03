@@ -61,4 +61,20 @@ class CheckSiteConfigTest < CheckerCase
     assert_equal 1, code
     assert_includes o, "asset_version must be theme, build or false (got true)"
   end
+
+  def test_code_theme_validation
+    page "_config.yml", "modootoday:\n  code_theme: github\n  tokens: {code-keyword: '#cf222e'}\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+    page "_config.yml", "modootoday:\n  code_theme: monokai\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "code_theme must be theme or github (got \"monokai\")"
+    ["highlighter: none\n", "kramdown: {syntax_highlighter: coderay}\n"].each do |cfg|
+      page "_config.yml", "#{cfg}modootoday:\n  code_theme: github\n"
+      assert_includes check[0], "code_theme: colours Rouge output only", cfg
+    end
+    page "_config.yml", "highlighter: none\nmodootoday:\n  code_theme: theme\n"
+    refute_includes check[0], "code_theme"
+  end
 end

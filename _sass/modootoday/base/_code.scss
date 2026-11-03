@@ -1,18 +1,24 @@
 @include mt-layer(base) {
   code, pre, kbd { font-family: mt(font-mono); }
   :not(pre) > code { font-size: .875em; background: mt(muted); border: 1px solid mt(border); padding: .1em .35em; border-radius: var(--mt-p-radius-sm); overflow-wrap: anywhere; }
-  pre { font-size: .875rem; line-height: 1.6; background: mt(muted); border: 1px solid mt(border); border-radius: mt(radius-lg);
+  pre { font-size: .875rem; line-height: 1.6; background: mt(code-background); color: mt(code-foreground); border: 1px solid mt(border); border-radius: mt(radius-lg);
     padding: 1rem 1.25rem; margin: 0 0 1.25rem; overflow-x: auto; tab-size: 2; }
   pre code { font-size: inherit; }
   div.highlighter-rouge, figure.highlight { margin: 0 0 1.25rem; }
   div.highlighter-rouge pre, figure.highlight pre { margin: 0; }
-  // Rouge token colors (kramdown syntax_highlighter: rouge), from --mt-code-* tokens.
-  // :is() keeps each token list short; same specificity as .highlight .x.
+  // Rouge token classes to --mt-code-* tokens (test/theme/tokens/code_tokens_test.rb holds the table).
+  // :is() keeps each list short; same specificity as .highlight .x. Keyword types (.kt) stay keywords, as on GitHub.
   .highlight :is(.c, .c1, .cm, .cs, .cp, .cd) { color: mt(code-comment); font-style: italic; }
-  .highlight :is(.k, .kd, .kn, .kp, .kr, .kt, .kc, .ow, .nt) { color: mt(code-keyword); }
+  .highlight :is(.k, .kd, .kn, .kp, .kr, .kt, .kc, .ow) { color: mt(code-keyword); }
+  .highlight .nt { color: mt(code-tag); }
   .highlight :is(.s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss), .highlight .na + .s { color: mt(code-string); }
-  .highlight :is(.m, .mi, .mf, .mh, .mo, .il, .no, .bp, .vc, .vg, .vi, .na, .py) { color: mt(code-constant); }
-  .highlight :is(.nf, .fm, .nc, .nn, .nb, .nd, .ne) { color: mt(code-function); }
-  .highlight :is(.gd, .err) { color: mt(caution); }
-  .highlight .gi { color: mt(tip); }
+  .highlight :is(.m, .mi, .mf, .mh, .mo, .il) { color: mt(code-number); }
+  .highlight :is(.no, .bp, .py) { color: mt(code-constant); }
+  .highlight :is(.vc, .vg, .vi) { color: mt(code-variable); }
+  .highlight .na { color: mt(code-attribute); }
+  .highlight :is(.nf, .fm, .nn, .nb, .nd, .ne) { color: mt(code-function); }
+  .highlight .nc { color: mt(code-type); }
+  .highlight .o { color: mt(code-operator); }
+  .highlight :is(.gd, .err) { color: mt(code-deleted); }
+  .highlight .gi { color: mt(code-inserted); }
 }

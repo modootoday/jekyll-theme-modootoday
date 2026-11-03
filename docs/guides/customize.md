@@ -5,6 +5,7 @@ description: Change colors, radius and fonts with tokens and the token bridge, a
 sections:
   - tokens
   - bridge
+  - code
   - visuals
   - sass
   - shadow
@@ -57,6 +58,17 @@ modootoday:
 
 A worked example with a palette, a self-hosted font and the contrast checks is in [Brand tokens](../../recipes/brand-tokens/).
 
+## Code colours
+
+Code blocks take their colours from `--mt-code-*` tokens. `modootoday.code_theme: github` switches them to GitHub's light and dark palettes ([demo](../../layouts/demo/code-github/)):
+
+```yaml
+modootoday:
+  code_theme: github   # theme (default) or github
+```
+
+The colours come from GitHub's editor themes (github-light-default and github-dark-default). Rouge sorts code into other token classes than the editor does, so the palette matches GitHub's but a word can get a different colour. The tokens are `code-background`, `code-foreground`, `code-keyword`, `code-string`, `code-comment`, `code-function`, `code-constant`, `code-variable`, `code-type`, `code-number`, `code-operator`, `code-tag`, `code-attribute`, `code-inserted` and `code-deleted`. With the default `theme`, the ten finer ones follow the older five, so code looks as before. The token bridge applies after the preset, so `$mt-overrides: (code-comment: #57606a)` changes one colour. Code colours need Rouge, the default `kramdown.syntax_highlighter`; `modootoday-check` warns when another highlighter is set.
+
 ## Section visuals and full-width pages
 
 Add `visual: <name>` to a `sections:` item to render your own `_includes/sections/<name>.html` at the end of that section. The include gets the item as `include.section`, so extra keys such as `scene:` reach it. `hero: {visual: <name>}` in front matter does the same for the part before the first `##` (it needs `sections:`). `modootoday-check` fails when the include is missing.
@@ -95,7 +107,9 @@ Jekyll reads `_sass/` from your site before the theme. A site that already shado
 
 ## Shadowing layouts and includes
 
-Any file in the theme's `_layouts/`, `_includes/` or `_sass/` can be replaced by a file with the same path in your site. Add tags to the page head with `_includes/head-custom.html`:
+Any file in the theme's `_layouts/`, `_includes/` or `assets/` can be replaced by a file with the same path in your site. In `_sass/` that holds only for the partials the theme imports through the Sass load path: the token hook `_sass/modootoday/_site.scss`, `_sass/modootoday/_access.scss` and the component partials under `_sass/modootoday/components/` (the FAQ sheet still reads the theme's `_details.scss`). Every other partial (settings, tools, tokens, base, layout and the per-layout sheets) is imported relative to the theme file that uses it, so Sass reads the theme's copy and ignores yours, on GitHub Pages and on Jekyll 4 alike. A copy of `_core.scss`, `_sheet.scss` or a per-layout `_index.scss` stops the build, because its relative imports are not next to it. Component partials are internal, so a shadowed one can break on a theme update; to change the rest, add rules with `site_css` or shadow the stylesheet under `assets/css/`.
+
+Add tags to the page head with `_includes/head-custom.html`:
 
 ```html
 <link rel="icon" href="/favicon.svg">

@@ -30,6 +30,7 @@ modootoday:
 | 키 | 기본값 | 효과 |
 |---|---|---|
 | `badges` | `true` | 상태 코드 스팬을 배지로 바꿈. `false`면 코드 그대로 |
+| `code_theme` | `theme` | 코드 블록 색. `theme`은 테마 팔레트를 유지하고 `github`는 GitHub의 라이트·다크 팔레트를 씀. [커스터마이즈](../customize/) 참고 |
 | `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
 | `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`로 켠 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |

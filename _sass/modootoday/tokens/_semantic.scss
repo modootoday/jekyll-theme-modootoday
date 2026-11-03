@@ -19,7 +19,10 @@ $mt-light: (
   status-available: var(--mt-p-green-600), status-partial: var(--mt-p-yellow-600), status-planned: var(--mt-p-gray-500),
   shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06), shadow: 0 6px 20px -6px rgba(31, 35, 40, 0.16),
   code-keyword: var(--mt-p-red-600), code-string: var(--mt-p-teal-600), code-comment: var(--mt-p-gray-500),
-  code-function: var(--mt-p-purple-600), code-constant: var(--mt-p-orange-600)
+  code-function: var(--mt-p-purple-600), code-constant: var(--mt-p-orange-600),
+  code-background: var(--mt-muted), code-foreground: currentColor, code-variable: var(--mt-code-constant),
+  code-type: var(--mt-code-function), code-number: var(--mt-code-constant), code-operator: var(--mt-code-foreground),
+  code-tag: var(--mt-code-keyword), code-attribute: var(--mt-code-constant), code-inserted: var(--mt-tip), code-deleted: var(--mt-caution)
 ) !default;
 $mt-dark: (
   background: var(--mt-p-gray-900), foreground: var(--mt-p-gray-100d),
@@ -34,5 +37,8 @@ $mt-dark: (
   status-available: var(--mt-p-green-400), status-partial: var(--mt-p-yellow-400), status-planned: var(--mt-p-gray-400),
   shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5),
   code-keyword: var(--mt-p-red-400), code-string: var(--mt-p-teal-400), code-comment: var(--mt-p-gray-400),
-  code-function: var(--mt-p-purple-400), code-constant: var(--mt-p-orange-400)
+  code-function: var(--mt-p-purple-400), code-constant: var(--mt-p-orange-400),
+  code-background: var(--mt-muted), code-foreground: currentColor, code-variable: var(--mt-code-constant),
+  code-type: var(--mt-code-function), code-number: var(--mt-code-constant), code-operator: var(--mt-code-foreground),
+  code-tag: var(--mt-code-keyword), code-attribute: var(--mt-code-constant), code-inserted: var(--mt-tip), code-deleted: var(--mt-caution)
 ) !default;

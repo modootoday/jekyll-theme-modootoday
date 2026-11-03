@@ -5,6 +5,7 @@ description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 
 sections:
   - tokens
   - bridge
+  - code
   - visuals
   - sass
   - shadow
@@ -60,6 +61,17 @@ modootoday:
 
 색 팔레트, 자체 호스팅 글꼴, 대비 검사를 갖춘 예제는 [브랜드 토큰](../../recipes/brand-tokens/)에 있습니다.
 
+## 코드 색
+
+코드 블록은 `--mt-code-*` 토큰에서 색을 가져옵니다. `modootoday.code_theme: github`를 설정하면 GitHub의 라이트·다크 팔레트로 바뀝니다([데모](../../layouts/demo/code-github/)).
+
+```yaml
+modootoday:
+  code_theme: github   # theme (default) or github
+```
+
+색은 GitHub의 편집기 테마(github-light-default, github-dark-default)에서 가져왔습니다. Rouge는 편집기와 다른 기준으로 토큰을 나누므로, 팔레트는 GitHub와 같아도 단어 하나의 색은 다를 수 있습니다. 토큰은 `code-background`, `code-foreground`, `code-keyword`, `code-string`, `code-comment`, `code-function`, `code-constant`, `code-variable`, `code-type`, `code-number`, `code-operator`, `code-tag`, `code-attribute`, `code-inserted`, `code-deleted`입니다. 기본값 `theme`에서는 새로 생긴 열 개가 기존 다섯 개를 따르므로 코드가 전과 똑같이 보입니다. 토큰 브리지는 프리셋 다음에 적용되므로 `$mt-overrides: (code-comment: #57606a)`처럼 색 하나만 바꿀 수 있습니다. 코드 색은 Jekyll 기본값인 Rouge(`kramdown.syntax_highlighter`)가 있어야 하며, 다른 하이라이터를 설정하면 `modootoday-check`가 경고합니다.
+
 ## 섹션 비주얼과 전체 폭 페이지
 
 `sections:` 항목에 `visual: <name>`을 쓰면 그 섹션 끝에 사이트의 `_includes/sections/<name>.html`이 렌더링됩니다. include는 항목을 `include.section`으로 받으므로 `scene:` 같은 추가 키도 전달됩니다. front matter의 `hero: {visual: <name>}`은 첫 `##` 앞부분에 같은 일을 합니다(`sections:`가 있어야 합니다). include가 없으면 `modootoday-check`가 실패합니다.
@@ -98,7 +110,9 @@ Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. 이미 `ass
 
 ## 레이아웃과 include 섀도잉
 
-테마의 `_layouts/`, `_includes/`, `_sass/` 파일은 사이트에 같은 경로의 파일을 두면 대체됩니다. 페이지 head에 태그를 넣으려면 `_includes/head-custom.html`을 쓰세요.
+테마의 `_layouts/`, `_includes/`, `assets/` 파일은 사이트에 같은 경로의 파일을 두면 대체됩니다. `_sass/`에서는 테마가 Sass 로드 경로로 가져오는 파셜만 그렇습니다. 토큰 훅 `_sass/modootoday/_site.scss`, `_sass/modootoday/_access.scss`, `_sass/modootoday/components/` 아래의 컴포넌트 파셜입니다(FAQ 시트는 그래도 테마의 `_details.scss`를 읽습니다). 나머지 파셜(설정, 도구, 토큰, 기본 스타일, 레이아웃, 레이아웃별 시트)은 그 파셜을 쓰는 테마 파일을 기준으로 상대 경로로 가져오므로, GitHub Pages와 Jekyll 4 모두 Sass가 테마의 파일을 읽고 사이트의 파일은 무시합니다. `_core.scss`, `_sheet.scss`, 레이아웃별 `_index.scss`를 복사해 두면 상대 경로로 가져오는 파일이 옆에 없어서 빌드가 실패합니다. 컴포넌트 파셜은 내부 API라서 섀도잉하면 테마를 업데이트할 때 깨질 수 있습니다. 나머지를 바꾸려면 `site_css`로 규칙을 더하거나 `assets/css/` 아래의 스타일시트를 섀도잉하세요.
+
+페이지 head에 태그를 넣으려면 `_includes/head-custom.html`을 쓰세요.
 
 ```html
 <link rel="icon" href="/favicon.svg">

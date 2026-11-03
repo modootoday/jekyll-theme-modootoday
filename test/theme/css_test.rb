@@ -15,13 +15,15 @@ class CssTest < Minitest::Test
     "layers" => "modootoday: {css_layers: true, color_scheme: dark, components: [callout, tabs], " \
                 "tokens: {primary: '#c2410c'}, tokens_dark: {primary: '#fb923c'}}\n",
     "empty" => "",
-    "bridge" => ""
+    "bridge" => "",
+    "code-github" => "modootoday: {code_theme: github}\n"
   }.freeze
   # The site's _sass/modootoday/_site.scss (token bridge) per config; without one the theme's empty copy is used.
   HOOKS = {
     "empty" => "// nothing here yet\n",
     "bridge" => "$mt-overrides-base: (font-heading: (Georgia, serif), heading-weight: 700);\n" \
-                "$mt-overrides: (primary: #0f766e, link: #115e59);\n$mt-overrides-dark: (primary: #2dd4bf, link-hover: #99f6e4);\n"
+                "$mt-overrides: (primary: #0f766e, link: #115e59);\n$mt-overrides-dark: (primary: #2dd4bf, link-hover: #99f6e4);\n",
+    "code-github" => "$mt-overrides: (code-comment: #57606a);\n"
   }.freeze
 
   def self.build(name)
@@ -127,5 +129,23 @@ class CssTest < Minitest::Test
     assert_match(/--mt-heading-weight:\s*650;/, root)
     assert_match(/--mt-link:\s*var\(--mt-primary\);/, root)
     assert_match(/--mt-link-hover:\s*var\(--mt-link\);/, root)
+  end
+
+  def test_code_theme_github_merges_the_preset_under_the_bridge
+    css, = self.class.build("code-github")
+    root = css[/:root\s*\{(.*?)\}/m, 1]
+    dark = css[/:root\[data-theme="?dark"?\]\s*\{(.*?)\}/m, 1]
+    media = css[/:root:not\(\[data-theme="?light"?\]\)\s*\{(.*?)\}/m, 1]
+    assert_match(/--mt-code-keyword:\s*#cf222e;/, root)
+    assert_match(/--mt-code-background:\s*#ffffff;/, root)
+    assert_match(/--mt-code-comment:\s*#57606a;/, root, "the token bridge wins over the preset")
+    assert_equal 1, root.scan("--mt-code-keyword:").size, "merged in place, not appended"
+    [dark, media].each do |d|
+      assert_match(/--mt-code-keyword:\s*#ff7b72;/, d)
+      assert_match(/--mt-code-comment:\s*#8b949e;/, d)
+    end
+    default, = self.class.build("all")
+    decls = /--mt-[\w-]+:[^;}]*;?/
+    assert_equal default.gsub(decls, ""), css.gsub(decls, ""), "a preset changes token values only"
   end
 end

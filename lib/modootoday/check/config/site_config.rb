@@ -8,7 +8,9 @@ module Modootoday
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border ring note tip important warning caution status-available status-partial
                     status-planned link link-hover font-sans font-mono font-heading heading-weight font-size line-height
-                    measure space radius].freeze
+                    measure space radius code-background code-foreground code-keyword code-string code-comment
+                    code-function code-constant code-variable code-type code-number code-operator code-tag
+                    code-attribute code-inserted code-deleted].freeze
 
       module_function
 

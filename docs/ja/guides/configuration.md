@@ -30,6 +30,7 @@ modootoday:
 | キー | 既定値 | 効果 |
 |---|---|---|
 | `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
+| `code_theme` | `theme` | コードブロックの色。`theme` はテーマのパレットのまま、`github` は GitHub のライトとダークのパレットを使う。[カスタマイズ](../customize/)を参照 |
 | `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
 | `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal` で有効にしたページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
 | `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
