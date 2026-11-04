@@ -10,8 +10,15 @@
   .mt-sidebar summary { cursor: pointer; }
   .mt-sidebar ul ul summary { padding: .375rem .5rem; color: mt(muted-foreground); }
   .mt-sidebar ul ul { padding-inline-start: .75rem; }
-  // The group title is a summary (a target): 16px text with .25rem above and below makes it 24px (WCAG 2.5.8).
-  .mt-sidebar-title { display: list-item; padding: .25rem .5rem; font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; color: mt(muted-foreground); }
+  // The group title is a summary (a 28px target): item size at weight 600 in the text colour, so it reads above its
+  // links, with a chevron at the end in place of the small native marker.
+  .mt-sidebar-title { display: flex; align-items: center; justify-content: space-between; padding: .25rem .5rem; list-style: none;
+    font-weight: 600; color: mt(foreground); }
+  .mt-sidebar-title::-webkit-details-marker { display: none; }
+  .mt-sidebar-title::after { content: ""; width: .375rem; height: .375rem; margin-inline-end: .25rem; border: solid mt(muted-foreground);
+    border-width: 0 1.5px 1.5px 0; rotate: -45deg; }
+  [dir="rtl"] .mt-sidebar-title::after { rotate: 135deg; }
+  [open] > .mt-sidebar-title::after { rotate: 45deg; }
   .mt-doc-nav { display: none; }
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
