@@ -9,4 +9,5 @@
   // .mt-illustration: figure[role=img][aria-label] for drawn scenes. The tag sits above the art, so it never covers it.
   .mt-illustration { position: relative; margin: 0 0 1.5rem; }
   .mt-illustration-tag { display: table; margin-bottom: .5rem; padding: .125rem .5rem; border: 1px solid mt(border); border-radius: 999px; color: mt(muted-foreground); font-size: mt-size(xs); line-height: mt-leading(xs); }
+  .mt-illustration-tag:empty { display: none; }
 }

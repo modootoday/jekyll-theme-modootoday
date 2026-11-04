@@ -184,6 +184,7 @@ class CssTest < Minitest::Test
     assert_match(/font-size:\s*0?\.875rem;\s*line-height:\s*1\.25rem/, rule.(content, ".mt-figure figcaption"))
     tag = rule.(content, ".mt-illustration-tag")
     refute_match(/position:\s*absolute/, tag, "the tag sits above the art instead of over it")
+    assert_match(/display:\s*none/, rule.(content, ".mt-illustration-tag:empty"), "an empty tag draws no pill")
   end
 
   def test_site_title_takes_two_lines_then_an_ellipsis
