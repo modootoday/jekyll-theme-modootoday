@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:3bd14f9b3060
+source_rev: sha256:22a2ccf04626
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -18,7 +18,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 자산 | 불러오는 페이지 |
 |---|---|
 | `assets/css/modootoday.css` (핵심 시트) | 모든 페이지 |
-| 맥락 시트 (`doc`, `search`, `loading`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
+| 맥락 시트 (`doc`, `search`, `loading`, `content`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
 | `menu.js`, `theme-toggle.js`, `search.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
 | `code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |

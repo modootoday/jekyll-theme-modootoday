@@ -24,6 +24,7 @@ class StylesheetProbeTest < Minitest::Test
     "pr/css.md" => ["title: X\ncss: [figure, bleed, lists]\nmt_bundle: hero\n", "# X\n\nText.\n"],
     "pr/bare.md" => ["title: N\nchrome: false\n", "# N\n\nText.\n"],
     "pr/blog.md" => ["title: G\nblog_css: true\n", "# G\n\nText.\n"],
+    "pr/note.md" => ["title: A\n", "# A\n\n> [!TIP]\n> Tip.\n"],
   }.freeze
 
   CONFIGS = {
@@ -46,7 +47,8 @@ class StylesheetProbeTest < Minitest::Test
     "pr/spinner" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
     "pr/skeleton" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
     "pr/topbar" => "css/modootoday.css doc.css search.css loading.css #{PLAIN} #{SEARCH}",
-    "pr/svg" => "css/modootoday.css doc.css search.css figure.css #{PLAIN} #{SEARCH}",
+    "pr/svg" => "css/modootoday.css doc.css search.css content.css figure.css #{PLAIN} #{SEARCH}",
+    "pr/note" => "css/modootoday.css doc.css search.css content.css #{PLAIN} #{SEARCH}",
     "pr/checks" => "css/modootoday.css doc.css search.css lists.css #{PLAIN} #{SEARCH}",
     "pr/titled" => "css/modootoday.css doc.css search.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css doc.css search.css bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
@@ -57,23 +59,25 @@ class StylesheetProbeTest < Minitest::Test
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css search.css #{PLAIN} share.js #{SEARCH}",
     "." => "css/modootoday.css css/modootoday-hero.css doc.css search.css bleed.css showcase/cta.css showcase/card.css " \
            "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
-    "guide" => "css/modootoday.css doc.css search.css table.css #{CHROME} #{SEARCH}",
+    "guide" => "css/modootoday.css doc.css search.css content.css table.css #{CHROME} #{SEARCH}",
     "blog:." => "css/modootoday.css css/modootoday-blog.css search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
   SUBSET = {
     "pr/plain" => "css/modootoday.css doc.css loading.css menu.js",
     "pr/svg" => "css/modootoday.css doc.css loading.css menu.js",
+    "pr/note" => "css/modootoday.css doc.css loading.css content.css menu.js",
     "pr/titled" => "css/modootoday.css doc.css loading.css lists.css menu.js",
     "pr/sections" => "css/modootoday.css doc.css loading.css bleed.css structure/tabs.css structure/faq.css tabs.js menu.js scroll-region.js",
     "pr/split" => "css/modootoday.css doc.css loading.css terminal.css menu.js scroll-region.js",
     "pr/bare" => "css/modootoday.css doc.css loading.css",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css doc.css loading.css menu.js",
-    "guide" => "css/modootoday.css doc.css loading.css table.css menu.js scroll-region.js code-copy.js",
+    "guide" => "css/modootoday.css doc.css loading.css content.css table.css menu.js scroll-region.js code-copy.js",
     "blog:." => "css/modootoday.css css/modootoday-blog.css loading.css menu.js code-copy.js",
   }.freeze
   BUNDLE = {
     "pr/svg" => "css/modootoday.css #{PLAIN} #{SEARCH}",
+    "pr/note" => "css/modootoday.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css tabs.js #{CHROME} accordion.js #{SEARCH}",
     "pr/css" => "css/modootoday.css css/modootoday-hero.css #{PLAIN} #{SEARCH}",
     "pr/bare" => "css/modootoday.css theme-toggle.js #{SEARCH}",
@@ -81,7 +85,7 @@ class StylesheetProbeTest < Minitest::Test
   }.freeze
 
   { "default" => DEFAULT, "subset" => SUBSET, "bundle" => BUNDLE }.each do |config, pages|
-    define_method("test_#{config}_tags") { pages.each { |page, want| assert_tags(self.class.list(want), config, page) } }
+    define_method("test_#{config}_tags") { assert_tags(pages.transform_values { |w| self.class.list(w) }, config) }
   end
 
   def self.sites = @sites ||= {}
@@ -103,5 +107,6 @@ class StylesheetProbeTest < Minitest::Test
     h.scan(%r{<link rel="stylesheet" href="/assets/([^"?]+)[^"]*"|<script src="/assets/([^"?]+)[^"]*"}).map { |a, b| a || b }
   end
 
-  def assert_tags(expected, name, page) = assert_equal(expected, tags(name, page), "#{name}: #{page}")
+  # Every page of a config in one comparison, so one run shows every difference.
+  def assert_tags(expected, name) = assert_equal(expected, expected.to_h { |page, _| [page, tags(name, page)] }, name)
 end

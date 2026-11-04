@@ -1,12 +1,12 @@
 // Figure: an image alone in a paragraph followed by a paragraph that is only *emphasis* → figure + figcaption.
 @include mt-layer(components) {
   .mt-figure { margin: 1.5rem 0; }
-  .mt-figure img { display: block; border-radius: mt(radius-lg); border: 1px solid mt(border); }
+  .mt-figure img { display: block; border-radius: mt(radius); border: 1px solid mt(border); }
   // Dim images a little in dark mode so a light screenshot does not glare.
   :root[data-theme="dark"] .mt-figure img { filter: brightness(.85); }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure img { filter: brightness(.85); } }
-  .mt-figure figcaption { margin-top: .6rem; color: mt(muted-foreground); font-size: .875rem; text-align: center; }
-  // .mt-illustration: figure[role=img][aria-label] for drawn scenes; .mt-illustration-tag marks it (e.g. "Illustration").
+  .mt-figure figcaption { margin-top: .5rem; color: mt(muted-foreground); font-size: mt-size(sm); line-height: mt-leading(sm); text-align: center; }
+  // .mt-illustration: figure[role=img][aria-label] for drawn scenes. The tag sits above the art, so it never covers it.
   .mt-illustration { position: relative; margin: 0 0 1.5rem; }
-  .mt-illustration-tag { position: absolute; inset-block-start: .5rem; inset-inline-start: .5rem; padding: .125rem .5rem; border: 1px solid mt(border); border-radius: 999px; background: mt(background); color: mt(foreground); font-size: .75rem; }
+  .mt-illustration-tag { display: table; margin-bottom: .5rem; padding: .125rem .5rem; border: 1px solid mt(border); border-radius: 999px; color: mt(muted-foreground); font-size: mt-size(xs); line-height: mt-leading(xs); }
 }

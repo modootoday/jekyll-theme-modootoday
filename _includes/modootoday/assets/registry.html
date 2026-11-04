@@ -1,6 +1,7 @@
 {%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. kind: css, js (a classic
   deferred script) or module (an ES module script). probe: text in the rendered body that turns the row on (repeat a row for
-  another probe); parts: the Sass partials modootoday.css: bundle folds in.
+  another probe); parts: the Sass partials modootoday.css: bundle folds in (components/<name>/_<part>.scss, or a path under
+  components/ when the part has a slash, so a moved rule keeps the partial path sites shadow).
   Sets mt_asset_rows and mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss).{%- endcomment -%}
 {%- capture _mta_rows -%}
 doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions
@@ -8,6 +9,10 @@ search|css|/assets/css/modootoday/search.css||search
 loading|css|/assets/css/modootoday/loading.css|class="mt-spinner|loading
 loading|css|/assets/css/modootoday/loading.css|class="mt-skeleton
 loading|css|/assets/css/modootoday/loading.css|class="mt-topbar
+content|css|/assets/css/modootoday/content.css|class="mt-callout|core/inline/callout core/inline/figure core/inline/embed
+content|css|/assets/css/modootoday/content.css|class="mt-figure
+content|css|/assets/css/modootoday/content.css|mt-illustration
+content|css|/assets/css/modootoday/content.css|class="mt-embed
 figure|css|/assets/css/modootoday/figure.css|class="mt-figure mt-figure-svg|figure-svg
 lists|css|/assets/css/modootoday/lists.css|class="mt-hero mt-hero-checks|lists
 lists|css|/assets/css/modootoday/lists.css|class="mt-chips"

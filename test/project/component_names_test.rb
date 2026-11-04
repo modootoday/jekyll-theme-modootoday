@@ -30,11 +30,13 @@ class ComponentNamesTest < Minitest::Test
 
   def bundle_imports = File.read(File.join(ROOT, "_sass/modootoday.scss")).scan(%r{@import "modootoday/components/([^"]+)"}).flatten
 
-  # Sass parts of the optional sheets (fifth column of assets/registry.html).
-  def registry_parts
+  # Sass parts of the optional sheets (fifth column of assets/registry.html), as written: a name, or a path under components/.
+  def registry_part_paths
     rows = File.read(File.join(ROOT, "_includes/modootoday/assets/registry.html"))[/capture _mta_rows -%}\n(.*?)\{%- endcapture/m, 1]
     rows.to_s.lines.flat_map { |r| r.chomp.split("|")[4].to_s.split }.uniq
   end
+
+  def registry_parts = registry_part_paths.map { |p| name_of(p) }.uniq
 
   def docs_components = YAML.safe_load(File.read(File.join(ROOT, "docs/_data/components.yml"))).keys
 
@@ -83,6 +85,10 @@ class ComponentNamesTest < Minitest::Test
     assert_empty imports - partials, "_sass/modootoday.scss imports a partial that does not exist"
     assert_empty core_partials - imports, "core partial missing from _sass/modootoday.scss"
     assert_empty section_sheets.values.map { |v| "section/#{v}" } - imports, "section sheet missing from _sass/modootoday.scss"
+  end
+
+  def test_registry_part_paths_exist
+    assert_empty registry_part_paths.select { |p| p.include?("/") } - partials, "a registry part path with no partial"
   end
 
   def test_partials_outside_the_core_and_section_sheets_are_registry_parts

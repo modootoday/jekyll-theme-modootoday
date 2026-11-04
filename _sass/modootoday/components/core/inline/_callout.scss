@@ -1,11 +1,13 @@
 // Callout (GitHub alert): blockquote.mt-callout.mt-callout-<type> [data-variant]
+// Flat: a hairline box; the type colour reaches only the 16px icon and the title, never a fill or a stripe.
 $mt-callout-variants: (note: note, tip: tip, important: important, warning: warning, caution: caution) !default;
 @include mt-layer(components) {
-  .mt-callout { --mt-callout-accent: #{mt(note)}; color: mt(foreground); padding: .85rem 1.1rem; margin: 1.25rem 0;
+  .mt-callout { --mt-callout-accent: #{mt(note)}; color: mt(foreground); padding: 1rem; margin: 1.5rem 0;
     border: 1px solid mt(border); border-radius: mt(radius); }
   .mt-callout > p:empty { display: none; }
   .mt-callout > :last-child { margin-bottom: 0; }
-  .mt-callout-title { display: flex; align-items: center; gap: .4rem; color: var(--mt-callout-accent); font-weight: 650; font-size: .875rem; letter-spacing: .01em; margin: 0 0 .3rem; }
+  .mt-callout-title { display: flex; align-items: center; gap: .5rem; color: var(--mt-callout-accent); font-weight: 600;
+    font-size: mt-size(sm); line-height: mt-leading(sm); margin: 0 0 .25rem; }
   @each $name, $token in $mt-callout-variants {
     .mt-callout-#{$name} { --mt-callout-accent: #{mt($token)}; }
   }

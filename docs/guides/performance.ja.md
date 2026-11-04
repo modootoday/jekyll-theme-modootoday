@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:3bd14f9b3060
+source_rev: sha256:22a2ccf04626
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -18,7 +18,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | アセット | 読み込むページ |
 |---|---|
 | `assets/css/modootoday.css` (コアシート) | すべてのページ |
-| コンテキストシート (`doc`、`search`、`loading`、`figure`、`lists`、`bleed`、`terminal`、`visual`、`filter`、`table`、`table-stack`) | レイアウトか本文がそのシートを使うページ |
+| コンテキストシート (`doc`、`search`、`loading`、`content`、`figure`、`lists`、`bleed`、`terminal`、`visual`、`filter`、`table`、`table-stack`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
 | `menu.js`、`theme-toggle.js`、`search.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
 | `code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |

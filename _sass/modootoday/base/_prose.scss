@@ -14,13 +14,13 @@
   :where(:not([class])) > li + li { margin-top: .3em; } // flow lists only: classed grid/flex lists keep item 1 aligned
   .mt-flat-list li + li { margin-top: 0; } // opt-out on an ancestor, for unclassed Markdown lists made grid/flex (.c-body > ul)
   li > ul, li > ol { margin: .3em 0 0; }
-  blockquote { margin: 1.25rem 0; padding: .25rem 1rem; color: mt(muted-foreground); border-inline-start: 3px solid mt(border); }
+  blockquote { margin: 1.5rem 0; padding: 0 1rem; color: mt(muted-foreground); border-inline-start: 2px solid mt(border); }
   blockquote > :last-child { margin-bottom: 0; }
   // On the lang element only, so cells and code can override by inheritance; break-word keeps min-content widths.
   [lang|="ko"] { word-break: keep-all; overflow-wrap: break-word; }
   :lang(ja) { line-break: strict; }
   @supports (word-break: auto-phrase) { :lang(ja) { word-break: auto-phrase; } }
-  hr { border: 0; border-top: 1px solid mt(border); margin: 2.5rem 0; }
+  hr { border: 0; border-top: 1px solid mt(border); margin: 3rem 0; }
   strong { font-weight: 600; }
   // Section rhythm in documents: a hairline above each h2 (except the first) separates dense pages like the kitchen sink.
   .mt-doc h2, .mt-doc .mt-section + .mt-section:not(.mt-cta) { margin-top: 3.25rem; padding-top: 2rem; border-top: 1px solid mt(border); }

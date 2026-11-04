@@ -5,7 +5,7 @@
 // Narrow screens: the image keeps --mt-figure-min-width and div.mt-figure-scroll (focusable, labelled) scrolls sideways.
 @include mt-layer(components) {
   :where(:root) { --mt-img-filter-dark: brightness(.85) contrast(1.05) saturate(.9); --mt-diagram-filter-dark: invert(.9) hue-rotate(180deg) var(--mt-img-filter-dark); --mt-figure-min-width: 32rem; }
-  .mt-figure-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border-radius: mt(radius-lg); }
+  .mt-figure-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border-radius: mt(radius); }
   .mt-figure-svg img { width: 100%; max-width: none; min-width: var(--mt-figure-min-width); height: auto; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); } }
   [data-theme="dark"] .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); }

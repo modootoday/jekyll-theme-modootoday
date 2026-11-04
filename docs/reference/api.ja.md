@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:37faea4a2aa8
+source_rev: sha256:9b85a7a1f7ff
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -51,7 +51,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | セクションの装飾 | `section.mt-hero` または `section.mt-section` の `.mt-has-decor`(front matter `decor: <include>`) | 最後の子 `.mt-section-decor[aria-hidden=true]`。中身は `_includes/sections/<include>.html` で、上の終端の角に置かれ、ポインターイベントを受けません | — |
 | スクロール表示 | `section.mt-hero` または `section.mt-section` の `.mt-reveal`（front matter `reveal: true`） | — | CSS のみ: `@supports (animation-timeline: view())` と `prefers-reduced-motion: no-preference` の場合だけスクロール時にゆっくり表示され、それ以外ではそのまま表示されます |
 | 全幅の帯 | `section.mt-hero` または `section.mt-section` の `.mt-bleed` (front matter `bleed: true`)、`.mt-bleed-wide` (`bleed: wide`) | — | `--mt-bleed-bg` で帯の色を指定します。サイドバーや目次があるレイアウトでは、帯は本文の列の中に収まります。`bleed` シート |
-| イラスト | `figure.mt-illustration[role=img][aria-label]`(サイトの include) | 上の開始側の角の `.mt-illustration-tag` バッジ。`role=img` の子は読み上げられないため、バッジの文字も `aria-label` に入れます | — |
+| イラスト | `figure.mt-illustration[role=img][aria-label]`(サイトの include) | 絵の上、開始側の `.mt-illustration-tag` バッジ。`role=img` の子は読み上げられないため、バッジの文字も `aria-label` に入れます | — |
 | リストスタイル | `ul.mt-chips`、`li > strong.mt-item-title + span.mt-item-sep` (`modootoday.lists` を使うとき) | `li > a` のチップ (高さ 44px、テキストの後に →)、タイトルと `: ` の区切り | — |
 | 本文 (`sections:` なし) | `div.mt-prose` | レンダリングされた本文 | — |
 | カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |

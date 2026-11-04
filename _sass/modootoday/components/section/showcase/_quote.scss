@@ -1,7 +1,8 @@
 // Quote: c: quote; a quote whose last paragraph starts with "— " becomes figure > blockquote + figcaption.
+// Flat like a body quote (the same 2px start rule, no box or fill), set larger with the attribution below.
 @include mt-layer(components) {
-  .mt-quote { margin: 1.5rem 0; padding: 1.5rem 1.75rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); }
-  .mt-quote blockquote { margin: 0; padding: 0; border: 0; color: mt(card-foreground); font-size: 1.125rem; line-height: 1.6; }
+  .mt-quote { margin: 2rem 0; padding-inline-start: 1.5rem; border-inline-start: 2px solid mt(border); }
+  .mt-quote blockquote { margin: 0; padding: 0; border: 0; color: mt(foreground); font-size: mt-size(lg); line-height: mt-leading(lg); }
   .mt-quote blockquote > :last-child { margin-bottom: 0; }
-  .mt-quote figcaption { margin-top: 1rem; color: mt(muted-foreground); font-size: .875rem; font-weight: 600; }
+  .mt-quote figcaption { margin-top: 1rem; color: mt(muted-foreground); font-size: mt-size(sm); line-height: mt-leading(sm); font-weight: 500; }
 }

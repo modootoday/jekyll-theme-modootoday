@@ -103,12 +103,14 @@ class CssTest < Minitest::Test
     core, html, = self.class.build("bundle")
     assert_includes core, ".mt-c-features"
     assert_includes core, ".mt-skeleton"
+    assert_equal 1, core.scan(/\.mt-callout-title\s*\{/).size, "the content parts fold in once, from their core/inline paths"
     refute_includes html, "modootoday/doc.css"
   end
 
   def test_component_list_narrows
-    css, html = self.class.build("minimal")
-    assert_includes css, ".mt-callout"
+    css, html, sheets = self.class.build("minimal")
+    assert_includes sheets.fetch("content.css"), ".mt-callout"
+    refute_includes sheets.fetch("content.css"), ".mt-embed"
     refute_includes css, ".mt-badge"
     refute_includes html, "code-copy.js"
   end
@@ -161,7 +163,27 @@ class CssTest < Minitest::Test
   def test_flat_surfaces
     core, _, sheets = self.class.build("all")
     [core, *sheets.values].each { |s| refute_includes s, "backdrop-filter" }
-    refute_match(/\.mt-callout\s*\{[^}]*color-mix/, core, "callouts are plain bordered boxes")
+    refute_match(/\.mt-callout\s*\{[^}]*color-mix/, sheets.fetch("content.css"), "callouts are plain bordered boxes")
+  end
+
+  def test_callouts_quotes_and_figures_are_flat
+    core, html, sheets = self.class.build("all")
+    content = sheets.fetch("content.css")
+    %w[.mt-callout .mt-figure .mt-illustration .mt-embed].each { |c| refute_includes core, c, "#{c} lives in content.css" }
+    assert_includes html, "modootoday/content.css", "a page with a callout links the content sheet"
+    rule = ->(css, sel) { css[/(?:^|[}\s])#{Regexp.escape(sel)}\s*\{([^}]*)\}/, 1].to_s }
+    callout = rule.(content, ".mt-callout")
+    assert_match(/padding:\s*1rem/, callout)
+    refute_match(/background|border-inline-start|border-left/, callout, "no fill and no stripe")
+    assert_match(/gap:\s*0?\.5rem/, rule.(content, ".mt-callout-title"))
+    assert_match(/border-inline-start:\s*2px solid var\(--mt-border\)/, rule.(core, "blockquote"))
+    quote = rule.(sheets.fetch("showcase/quote.css"), ".mt-quote")
+    assert_match(/border-inline-start:\s*2px solid/, quote)
+    refute_match(/background|border-radius/, quote, "a quote is not a card")
+    [rule.(content, ".mt-figure img"), rule.(content, ".mt-embed")].each { |r| assert_match(/border-radius:\s*var\(--mt-radius\)/, r) }
+    assert_match(/font-size:\s*0?\.875rem;\s*line-height:\s*1\.25rem/, rule.(content, ".mt-figure figcaption"))
+    tag = rule.(content, ".mt-illustration-tag")
+    refute_match(/position:\s*absolute/, tag, "the tag sits above the art instead of over it")
   end
 
   def test_font_stacks_only_for_declared_languages
