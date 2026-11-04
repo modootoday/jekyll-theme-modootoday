@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:44d31b3dbb53
+source_rev: sha256:5fa2ea916ef4
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -98,7 +98,7 @@ description: このテーマがサイト向けに文書化している名前、�
 
 上の行についての補足:
 
-- ページの枠: `header.mt-header` > `.mt-header-inner` の中に `.mt-site-title` > `.mt-site-name`(サイト名。2 行まで表示し、あふれたら省略記号)、`nav.mt-nav`、`.mt-search`、`details.mt-lang.mt-menu`、`.mt-theme-toggle` があります。`nav.mt-nav` は 64rem 以上ではリンクが 1 行に並ぶ `ul`、それより狭いと `details.mt-menu.mt-nav-sheet` になります。そこには `summary` のメニューボタンと、`.mt-nav-sheet-label` のグループ名を含む `ul` のシートがあります。言語メニューには `summary` の地球儀ボタンと `a[lang][hreflang]` の `ul` があり、現在の言語には `aria-current` が付きます。`html[data-theme]` は固定の配色か切り替えボタンが設定します。
+- ページの枠: `header.mt-header` > `.mt-header-inner` の中に `.mt-site-title` > `.mt-site-name`(サイト名。2 行まで表示し、長い単語はドットの後ろで折り返し、あふれたら省略記号)、`nav.mt-nav`、`.mt-search`、`details.mt-lang.mt-menu`、`.mt-theme-toggle` があります。`nav.mt-nav` は 64rem 以上ではリンクが 1 行に並ぶ `ul`、それより狭いと `details.mt-menu.mt-nav-sheet` になります。そこには `summary` のメニューボタンと、`.mt-nav-sheet-label` のグループ名を含む `ul` のシートがあります。言語メニューには `summary` の地球儀ボタンと `a[lang][hreflang]` の `ul` があり、現在の言語には `aria-current` が付きます。`html[data-theme]` は固定の配色か切り替えボタンが設定します。
 - ドキュメントのサイドバー: `nav.mt-sidebar` は 64rem 以上で、`details.mt-sidebar-mobile` はそれより狭いときに表示されます。現在のリンクには `aria-current=page` が付きます。
 - ページの操作: ボタンは `ul` の中にあり、JS が動くまで隠れています。`a[type="text/markdown"]` は「Markdown で表示」のリンクです。
 - ヒーロー: リードは `h1` の直後の最初の `p` です。リンクだけの `p` では最初のリンクが主ボタンになります。`.mt-hero-checks` は front matter の `hero: {checks: true}` で有効になり、最初の `ul` が `--mt-ok` の色の ✓ の行になります。

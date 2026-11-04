@@ -102,6 +102,7 @@ class HeadMetaTest < Minitest::Test
       assert_includes ko, '<meta property="og:site_name" content="모두의오늘 테마">'
       title = File.read("#{src}/_config.yml")[/^title:\s*(.+)$/, 1].delete('"')
       assert_includes File.read("#{d}/s/index.html"), "#{title}</title>"
+      assert_includes File.read("#{d}/s/index.html"), %(<span class="mt-site-name">#{title.gsub(".", ".<wbr>")}</span>), "a dotted name may break after a dot"
     end
   end
 end

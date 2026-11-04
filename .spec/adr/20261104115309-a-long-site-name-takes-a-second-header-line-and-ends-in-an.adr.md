@@ -3,7 +3,7 @@ id: adr:modootoday/20261104115309
 title: A long site name takes a second header line and ends in an ellipsis
 status: active
 created: 2026-11-04T11:53:09Z
-updated: 2026-11-04T11:53:51Z
+updated: 2026-11-04T19:59:10Z
 rel:
   governs: [_sass/modootoday/components/core/chrome/_header.scss, _layouts/default.html]
 ---
@@ -19,10 +19,11 @@ Options weighed: a single line with an ellipsis (always safe, but hides most of 
 ## Decision
 
 - The name is printed in `span.mt-site-name` inside `a.mt-site-title`.
-- The span may take two lines (`-webkit-line-clamp: 2`, line height 1.2, so 2.4em fits in the 4rem row); a word that still does not fit, and the end of a third line, end in an ellipsis (`text-overflow: ellipsis`, words never break inside). The title is no longer `nowrap`.
+- The span may take two lines (`-webkit-line-clamp: 2`, line height 1.2, so 2.4em fits in the 4rem row); text past the second line ends in an ellipsis (`text-overflow: ellipsis`). The title is no longer `nowrap`.
+- Amended for 1.5.0 (visual review): a single token wider than the space, such as "modoo.today" in 75px, ended in an ellipsis on the first line ("modoo…" over "theme"), hiding the brand. The header prints `<wbr>` after every dot of the name, and the span has `overflow-wrap: anywhere`, so such a token breaks after a dot, or anywhere as a last resort, before the two-line clamp applies: "modoo." over "today…" at 360px. The two-line clamp itself is unchanged.
 - Below 64rem the name is one step smaller (15px), so a two-word name such as "modoo.today theme" or "Static Agent Marketplace" shows in full from 390px.
 - The breakpoint of the inline nav stays at 64rem.
 
 ## Consequences
 
-Every page's header markup gains the span. A site rule that set `white-space` or `text-overflow` on `.mt-site-title` now targets `.mt-site-name`. At 360px a long single word still ends in an ellipsis; the full name stays in the link's text for assistive technology. The core sheet grows by the two rules.
+Every page's header markup gains the span. A site rule that set `white-space` or `text-overflow` on `.mt-site-title` now targets `.mt-site-name`. At 360px a name that needs three lines ends in an ellipsis on the second; the full name stays in the link's text for assistive technology (`<wbr>` adds no text). The core sheet grows by the two rules.

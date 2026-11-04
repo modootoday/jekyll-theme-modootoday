@@ -192,6 +192,7 @@ class CssTest < Minitest::Test
     name = core[/\.mt-site-name\s*\{([^}]*)\}/, 1].to_s
     assert_match(/-webkit-line-clamp:\s*2/, name)
     assert_match(/text-overflow:\s*ellipsis/, name)
+    assert_match(/overflow-wrap:\s*anywhere/, name, "a long token breaks before the ellipsis")
     refute_match(/nowrap/, core[/\.mt-site-title\s*\{([^}]*)\}/, 1].to_s, "a one-line title is cut mid-word")
   end
 
