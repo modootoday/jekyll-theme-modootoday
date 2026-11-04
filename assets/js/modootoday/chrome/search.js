@@ -90,10 +90,12 @@ export function init(root) {
       out.append(li);
     });
   };
+  // One Han, kana or Hangul character is already a word (표, 表).
+  const cjk = /[\p{sc=Han}\p{sc=Hiragana}\p{sc=Katakana}\p{sc=Hangul}]/u;
   const render = (q) => {
     q = normalize(q.trim());
     out.textContent = "";
-    if (q.length > 1) {
+    if (q.length > 1 || cjk.test(q)) {
       load().then((d) => show(d, q));
     }
   };

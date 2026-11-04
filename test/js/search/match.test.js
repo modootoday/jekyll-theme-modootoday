@@ -93,3 +93,10 @@ test("matches are wrapped in <mark> from text nodes; markup in the index stays t
   const snippet = box.querySelector(".mt-search-snippet");
   assert.deepStrictEqual([...snippet.querySelectorAll("mark")].map((m) => m.textContent), ["volume", "VOLUME"]);
 });
+
+test("one Han, kana or Hangul character searches; one Latin letter does not", async () => {
+  const one = [doc("表の使い方", "表を書く。", "ja"), doc("표 쓰기", "표를 씁니다.", "ko"), doc("Tables", "x")];
+  assert.deepStrictEqual(await (await page("", one, "ja")).search("表"), ["表の使い方"]);
+  assert.deepStrictEqual(await (await page("", one, "ko")).search("표"), ["표 쓰기"]);
+  assert.deepStrictEqual(await (await page("", one)).search("t"), []);
+});

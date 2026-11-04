@@ -8,7 +8,7 @@ const { run } = require("../support/module.js");
 const INDEX = [{ title: "Install", url: "/install/", lang: "en", text: "Add the gem." }];
 
 async function page() {
-  const html = '<!doctype html><html lang="en"><body><p id="p">x</p><div class="mt-search" data-index="/search.json" hidden>' +
+  const html = '<!doctype html><html lang="en"><body><p id="p">x</p><a id="after" href="#">after</a><div class="mt-search" data-index="/search.json" hidden>' +
     '<input type="search"><ul class="mt-search-results"></ul></div></body></html>';
   const w = new JSDOM(html, { url: "https://x.test/" }).window;
   let fetched = 0;
@@ -50,4 +50,16 @@ test("/ outside a field focuses the box and starts the search; Esc clears it", a
   input.dispatchEvent(new w.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   assert.strictEqual(input.value, "");
   assert.strictEqual(box.querySelectorAll("li").length, 0);
+});
+
+test("Tab out of the box closes the results, and focus back in shows them again", async () => {
+  const { w, box, input } = await page();
+  const out = box.querySelector("ul");
+  const after = w.document.getElementById("after");
+  input.dispatchEvent(new w.FocusEvent("focusout", { bubbles: true, relatedTarget: after }));
+  assert.strictEqual(out.hidden, true);
+  input.dispatchEvent(new w.FocusEvent("focusin", { bubbles: true }));
+  assert.strictEqual(out.hidden, false);
+  input.dispatchEvent(new w.FocusEvent("focusout", { bubbles: true, relatedTarget: null }));
+  assert.strictEqual(out.hidden, false, "a click elsewhere leaves the list for a link that takes no focus");
 });

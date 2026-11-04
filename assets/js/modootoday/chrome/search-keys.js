@@ -14,6 +14,14 @@ export function init(root) {
   };
   box.hidden = false;
   input.addEventListener("focus", start);
+  // The results close when Tab moves focus out of the box and come back with it. A click elsewhere has no
+  // relatedTarget and leaves them, so a result link that takes no focus on click (Safari) still follows.
+  box.addEventListener("focusout", (e) => {
+    out.hidden = !!e.relatedTarget && !box.contains(e.relatedTarget);
+  });
+  box.addEventListener("focusin", () => {
+    out.hidden = false;
+  });
   box.addEventListener("keydown", (e) => {
     const links = [...out.querySelectorAll("a")];
     const i = links.indexOf(doc.activeElement);
