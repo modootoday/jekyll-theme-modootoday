@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:8001827b9a70
+source_rev: sha256:7ae4871515d0
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -20,7 +20,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 4. 색과 글꼴은 CSS 선택자를 덮어쓰는 대신 `modootoday.tokens`로 옮깁니다.
 5. `jekyll build`와 `modootoday-check SRC _site`를 실행하고 보고된 내용을 고칩니다.
 
-`jekyll new`로 만든 사이트(minima)는 따로 고칠 것이 없습니다. `layout: page`는 이름만 다른 `doc` 레이아웃이고, 홈 페이지는 글 목록을 보여 주고, 헤더는 `header_pages`나 제목이 있는 최상위 페이지를 모두 보여 주고, 글에는 사이트의 `author:`가 나옵니다. `modootoday-check`는 사이트와 테마 어디에도 없는 레이아웃을 보고하고, `single`(`doc` 또는 `post`)이나 `splash` 같은 Minimal Mistakes 레이아웃에는 대신 쓸 레이아웃을 알려 줍니다.
+`jekyll new`로 만든 사이트(minima)는 따로 고칠 것이 없습니다. `layout: page`는 이름만 다른 `doc` 레이아웃으로 본문에 제목이 없으면 `title:`을 페이지 제목으로 표시하고(About 페이지), 홈 페이지는 사이트 제목을 제목으로 두고 글 목록을 보여 주고, 헤더는 `header_pages`나 제목이 있는 최상위 페이지를 모두 보여 주고, 글에는 사이트의 `author:`가 나옵니다. `modootoday-check`는 사이트와 테마 어디에도 없는 레이아웃을 보고하고, `single`(`doc` 또는 `post`)이나 `splash` 같은 Minimal Mistakes 레이아웃에는 대신 쓸 레이아웃을 알려 줍니다.
 
 흔한 대응: just-the-docs의 `layout: default`는 `layout: doc`이 됩니다. `include note.html` 태그로 만든 알림은 `> [!NOTE]`가 되고, HTML로 쓴 배지는 `` `status:available` `` 코드 스팬이 됩니다.
 

@@ -11,8 +11,8 @@ Set `layout:` in a page's front matter. The page shells below load an extra styl
 |---|---|---|
 | `minimal` | Standalone notices, sign-in notes, link pages. No header, page meta or pagination. | [Minimal](/jekyll-theme-modootoday/layouts/demo/minimal/) |
 | `wide` | Card grids, wide tables and galleries. Full header and footer, no reading-width cap. | [Wide](/jekyll-theme-modootoday/layouts/demo/wide/) |
-| `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Adds WebSite structured data. | [Home](/jekyll-theme-modootoday/layouts/demo/home/) |
-| `page` | The name Jekyll, minima and `jekyll new` use for a plain page. It is the `doc` layout under that name. | none |
+| `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Without a hero title or a `# ` heading in the body, the page title, else the site title, is the `h1`. Adds WebSite structured data. | [Home](/jekyll-theme-modootoday/layouts/demo/home/) |
+| `page` | The name Jekyll, minima and `jekyll new` use for a plain page. It is the `doc` layout under that name. Like every `doc` page, it prints `title:` as the `h1` when the body has no `# ` heading, as minima does. | none |
 | `error` | 404, 410 and 500 pages with localized title and text. | [Error](/jekyll-theme-modootoday/layouts/demo/error/) |
 | `redirect` | A moved page. Sends visitors on without script, so it works under a strict CSP. | [Redirect](/jekyll-theme-modootoday/layouts/demo/redirect/) |
 | `search` | A full search page with a form that also works without JavaScript. | [Search](/jekyll-theme-modootoday/layouts/demo/search/) |
@@ -71,3 +71,5 @@ modootoday:
   search:
     fallback: {url: "https://duckduckgo.com/", param: q}   # or false to hide the form
 ```
+
+The form limits the engine to the host of `url:`. A site without `url:` (`jekyll new` writes `url: ""`) has no host to limit it to, so the layout leaves the form out rather than search the whole web; set `url:` to your site's address to get it. The page prints its `title:` as the heading when the body has no `# ` heading, and the form is a search landmark named by its label, apart from the header search box.

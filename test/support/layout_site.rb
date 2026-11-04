@@ -12,8 +12,9 @@ require_relative "starters"
 module LayoutSite
   ROOT = File.expand_path("../..", __dir__)
 
-  # from: a site folder to start from instead of a starter (test/fixtures/sites/<name>); files: other files (path => text).
-  def build_site(dir, pages, config: "", env: {}, starter: "docs", from: nil, files: {})
+  # from: a site folder to start from instead of a starter (test/fixtures/sites/<name>); files: other files (path => text);
+  # url: "" builds as a jekyll new site does.
+  def build_site(dir, pages, config: "", env: {}, starter: "docs", from: nil, files: {}, url: "https://example.org")
     src = "#{dir}/src"
     FileUtils.cp_r(from || Starters::Sources.path(starter), src)
     FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
@@ -22,7 +23,7 @@ module LayoutSite
       File.write("#{src}/#{n}", text)
     end
     merge_config("#{src}/_config.yml", config) unless config.empty?
-    File.write("#{dir}/o.yml", "url: https://example.org\n")
+    File.write("#{dir}/o.yml", "url: #{url.inspect}\n")
     out, st = Open3.capture2e(bundle_env.merge(env), "bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",
                               "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: dir)
     assert st.success?, out

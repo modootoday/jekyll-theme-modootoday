@@ -1,0 +1,6 @@
+{%- comment -%}The page's h1 from its title when the rendered body has none, as minima prints title: (a jekyll new About page).
+  include.html: the body as rendered; include.title: the text, page.title by default.{%- endcomment -%}
+{%- assign _pt = include.title | default: page.title -%}
+{%- if _pt and _pt != "" -%}{%- unless include.html contains "<h1" -%}
+<h1>{{ _pt | escape }}</h1>
+{% endunless -%}{%- endif -%}

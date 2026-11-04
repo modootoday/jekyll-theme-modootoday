@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/shells/
-source_rev: sha256:8ca797b602ed
+source_rev: sha256:5496102dd9a9
 title: 페이지 셸
 description: 페이지 종류별 셸과 레이아웃마다 따로 불러오는 선택 스타일시트입니다.
 nav_order: 10
@@ -14,8 +14,8 @@ nav_order: 10
 |---|---|---|
 | `minimal` | 단독 공지, 로그인 안내, 링크 모음. 헤더·페이지 정보·페이지 이동이 없습니다. | [미니멀](/jekyll-theme-modootoday/ko/layouts/demo/minimal/) |
 | `wide` | 카드 그리드, 넓은 표, 갤러리. 헤더와 푸터는 있고 읽기 폭 제한이 없습니다. | [와이드](/jekyll-theme-modootoday/ko/layouts/demo/wide/) |
-| `home` | 랜딩 페이지. front matter의 히어로 다음에 본문이 오고, 히어로가 없으면 최근 글 목록이 이어집니다. WebSite 구조화 데이터를 추가합니다. | [홈](/jekyll-theme-modootoday/ko/layouts/demo/home/) |
-| `page` | Jekyll, minima, `jekyll new`가 일반 페이지에 쓰는 이름입니다. 이름만 다른 `doc` 레이아웃입니다. | 없음 |
+| `home` | 랜딩 페이지. front matter의 히어로 다음에 본문이 오고, 히어로가 없으면 최근 글 목록이 이어집니다. 히어로 제목도 본문의 `# ` 제목도 없으면 페이지 제목(없으면 사이트 제목)이 `h1`이 됩니다. WebSite 구조화 데이터를 추가합니다. | [홈](/jekyll-theme-modootoday/ko/layouts/demo/home/) |
+| `page` | Jekyll, minima, `jekyll new`가 일반 페이지에 쓰는 이름입니다. 이름만 다른 `doc` 레이아웃입니다. 다른 `doc` 페이지처럼, 본문에 `# ` 제목이 없으면 minima처럼 `title:`을 `h1`로 표시합니다. | 없음 |
 | `error` | 제목과 설명이 번역된 404, 410, 500 페이지. | [오류](/jekyll-theme-modootoday/ko/layouts/demo/error/) |
 | `redirect` | 옮겨진 페이지. 스크립트 없이 이동하므로 엄격한 CSP에서도 동작합니다. | [리디렉션](/jekyll-theme-modootoday/ko/layouts/demo/redirect/) |
 | `search` | JavaScript 없이도 쓸 수 있는 양식이 있는 전체 검색 페이지. | [검색](/jekyll-theme-modootoday/ko/layouts/demo/search/) |
@@ -74,3 +74,5 @@ modootoday:
   search:
     fallback: {url: "https://duckduckgo.com/", param: q}   # 양식을 숨기려면 false
 ```
+
+양식은 검색 범위를 `url:`의 호스트로 제한합니다. `url:`이 없는 사이트(`jekyll new`는 `url: ""`을 씁니다)는 제한할 호스트가 없으므로, 웹 전체를 검색하지 않도록 레이아웃이 양식을 넣지 않습니다. 양식을 쓰려면 `url:`에 사이트 주소를 적으세요. 본문에 `# ` 제목이 없으면 페이지의 `title:`이 제목으로 나오고, 양식은 레이블로 이름이 붙은 검색 랜드마크라서 헤더 검색창과 구별됩니다.

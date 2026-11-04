@@ -4,5 +4,5 @@ mt_main: mt-shell-wide mt-search-page
 ---
 {%- comment -%}search: a full search page. The header search (chrome/search.js) gives instant results;
   the form below works without JavaScript through an external engine limited to this site (modootoday.search.fallback).{%- endcomment -%}
-{{ content }}
+{% include modootoday/pages/title.html html=content %}{{ content }}
 {%- include modootoday/pages/search-form.html -%}

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/shells/
-source_rev: sha256:8ca797b602ed
+source_rev: sha256:5496102dd9a9
 title: ページシェル
 description: ページの種類ごとのシェルと、レイアウト単位で読み込む任意のスタイルシートです。
 nav_order: 10
@@ -14,8 +14,8 @@ nav_order: 10
 |---|---|---|
 | `minimal` | 単独のお知らせ、サインイン案内、リンク集。ヘッダー、ページ情報、ページ送りはありません。 | [ミニマル](/jekyll-theme-modootoday/ja/layouts/demo/minimal/) |
 | `wide` | カードグリッド、幅の広い表、ギャラリー。ヘッダーとフッターはあり、読みやすさのための幅制限はありません。 | [ワイド](/jekyll-theme-modootoday/ja/layouts/demo/wide/) |
-| `home` | ランディングページ。front matter のヒーローの後に本文が続き、ヒーローがないときは最新の記事一覧が続きます。WebSite の構造化データを追加します。 | [ホーム](/jekyll-theme-modootoday/ja/layouts/demo/home/) |
-| `page` | Jekyll、minima、`jekyll new` が通常のページに使う名前です。名前が違うだけの `doc` レイアウトです。 | なし |
+| `home` | ランディングページ。front matter のヒーローの後に本文が続き、ヒーローがないときは最新の記事一覧が続きます。ヒーローのタイトルも本文の `# ` 見出しもなければ、ページのタイトル（なければサイト名）が `h1` になります。WebSite の構造化データを追加します。 | [ホーム](/jekyll-theme-modootoday/ja/layouts/demo/home/) |
+| `page` | Jekyll、minima、`jekyll new` が通常のページに使う名前です。名前が違うだけの `doc` レイアウトです。ほかの `doc` ページと同じく、本文に `# ` の見出しがなければ minima と同じように `title:` を `h1` として表示します。 | なし |
 | `error` | タイトルと説明が翻訳された 404、410、500 ページ。 | [エラー](/jekyll-theme-modootoday/ja/layouts/demo/error/) |
 | `redirect` | 移動したページ。スクリプトを使わずに移動するため、厳しい CSP でも動きます。 | [リダイレクト](/jekyll-theme-modootoday/ja/layouts/demo/redirect/) |
 | `search` | JavaScript なしでも使えるフォームを備えた検索ページ。 | [検索](/jekyll-theme-modootoday/ja/layouts/demo/search/) |
@@ -74,3 +74,5 @@ modootoday:
   search:
     fallback: {url: "https://duckduckgo.com/", param: q}   # フォームを隠すには false
 ```
+
+フォームは検索範囲を `url:` のホストに限定します。`url:` のないサイト（`jekyll new` は `url: ""` を書きます）には限定するホストがないため、ウェブ全体を検索しないようにレイアウトはフォームを出しません。フォームを使うには `url:` にサイトのアドレスを書いてください。本文に `# ` の見出しがなければページの `title:` が見出しになり、フォームはラベルで名前の付いた検索ランドマークなので、ヘッダーの検索ボックスと区別されます。

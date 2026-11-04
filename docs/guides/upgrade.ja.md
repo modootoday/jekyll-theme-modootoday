@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:8001827b9a70
+source_rev: sha256:7ae4871515d0
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -20,7 +20,7 @@ description: 別の Jekyll テーマからの移行、既存プロジェクト�
 4. 色とフォントは CSS セレクターを上書きせず `modootoday.tokens` に移します。
 5. `jekyll build` と `modootoday-check SRC _site` を実行し、報告された内容を直します。
 
-`jekyll new` で作ったサイト(minima)は、ほかに直すところはありません。`layout: page` は名前が違うだけの `doc` レイアウトで、ホームページは記事一覧を表示し、ヘッダーは `header_pages` または `title` のある最上位のページをすべて表示し、記事にはサイトの `author:` が出ます。`modootoday-check` はサイトにもテーマにもないレイアウトを報告し、`single`(`doc` または `post`)や `splash` などの Minimal Mistakes のレイアウトには代わりのレイアウトを示します。
+`jekyll new` で作ったサイト(minima)は、ほかに直すところはありません。`layout: page` は名前が違うだけの `doc` レイアウトで、本文に見出しがなければ `title:` をページの見出しとして表示し（About ページ）、ホームページはサイト名を見出しにして記事一覧を表示し、ヘッダーは `header_pages` または `title` のある最上位のページをすべて表示し、記事にはサイトの `author:` が出ます。`modootoday-check` はサイトにもテーマにもないレイアウトを報告し、`single`(`doc` または `post`)や `splash` などの Minimal Mistakes のレイアウトには代わりのレイアウトを示します。
 
 よくある対応: just-the-docs の `layout: default` は `layout: doc` になります。`include note.html` タグで作ったコールアウトは `> [!NOTE]` に、HTML で書いたバッジは `` `status:available` `` のコードスパンになります。
 

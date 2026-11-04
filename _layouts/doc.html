@@ -8,6 +8,7 @@ layout: default
 {%- assign _fig = false -%}{%- if mt_components contains "figure" -%}{%- assign _fig = true -%}{%- endif -%}
 {%- assign _kbd = false -%}{%- if mt_components contains "kbd" -%}{%- assign _kbd = true -%}{%- endif -%}
 {%- capture html %}{% include modootoday/markdown/components.html content=content lang=page.lang badges=_badges figure=_fig kbd=_kbd %}{% endcapture -%}
+{%- capture _h1 %}{% include modootoday/pages/title.html html=html %}{% endcapture -%}{%- assign html = _h1 | append: html -%}
 {%- capture _toc %}{% include modootoday/toc.html html=html %}{% endcapture -%}
 {%- assign _toc = _toc | strip -%}
 <div class="mt-doc-layout{% if _toc != "" %} mt-has-toc{% endif %}{% if mt_sidebar %} mt-has-sidebar{% endif %}">

@@ -5,5 +5,6 @@ mt_main: mt-shell-wide mt-home
 {%- comment -%}home: optional hero from front matter (hero.title, hero.text, hero.actions[label,url]), then the page body (the WebSite node is in every page's JSON-LD graph),
 then the post list (blog/home-list.html: posts, list_title, show_excerpts).{%- endcomment -%}
 {%- include modootoday/pages/hero.html hero=page.hero -%}
+{%- unless page.hero.title %}{% assign _ht = page.title | default: site.title %}{% include modootoday/pages/title.html html=content title=_ht %}{% endunless -%}
 {{ content }}
 {% include modootoday/blog/home-list.html -%}
