@@ -45,3 +45,21 @@
     .mt-table > table:has(th:nth-child(4)) :is(th, td):first-child { background: Canvas; box-shadow: none; border-inline-end: 1px solid CanvasText; }
   }
 }
+// Edge hint that content cannot cover (code chips, the sticky column paint over the shades above): where scroll timelines
+// exist, the region's mask fades the side with more to scroll. Each fade sits 2rem outside the box until the scroll
+// position moves it in; a sticky first column never fades.
+@include mt-layer(components) {
+  @supports (animation-timeline: scroll()) {
+    @media screen {
+      @keyframes mt-table-edge { from { mask-position: -2rem 0, -2rem 0; } to { mask-position: 0 0, 0 0; } }
+      @keyframes mt-table-edge-end { from { mask-position: -2rem 0, -2rem 0; } to { mask-position: -2rem 0, 0 0; } }
+      @keyframes mt-table-edge-rtl { from { mask-position: 0 0, 0 0; } to { mask-position: -2rem 0, 0 0; } }
+      .mt-table { mask: linear-gradient(to right, transparent, #000 2rem) -2rem 0 / calc(100% + 2rem) 100% no-repeat,
+          linear-gradient(to left, transparent, #000 2rem) 0 0 / calc(100% + 2rem) 100% no-repeat;
+        mask-composite: intersect; animation: mt-table-edge linear both; animation-timeline: scroll(self inline); }
+      .mt-table:has(> table th:nth-child(4)) { animation-name: mt-table-edge-end; }
+      .mt-table:dir(rtl) { animation-direction: reverse; }
+      .mt-table:dir(rtl):has(> table th:nth-child(4)) { animation-name: mt-table-edge-rtl; animation-direction: normal; }
+    }
+  }
+}
