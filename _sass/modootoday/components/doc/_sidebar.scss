@@ -6,11 +6,12 @@
   .mt-sidebar a { display: flex; align-items: center; min-height: 2rem; padding: 0 .5rem; border-radius: mt(radius); color: mt(muted-foreground); text-decoration: none; }
   .mt-sidebar a:hover, .mt-sidebar [aria-current] { color: mt(foreground); background: mt(accent); }
   .mt-sidebar [aria-current] { font-weight: 500; }
-  .mt-sidebar-group { margin-top: 1.5rem; }
+  .mt-sidebar-group { margin-top: 1.25rem; }
   .mt-sidebar summary { cursor: pointer; }
   .mt-sidebar ul ul summary { padding: .375rem .5rem; color: mt(muted-foreground); }
   .mt-sidebar ul ul { padding-inline-start: .75rem; }
-  .mt-sidebar-title { display: list-item; padding: 0 .5rem .25rem; font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; color: mt(muted-foreground); }
+  // The group title is a summary (a target): 16px text with .25rem above and below makes it 24px (WCAG 2.5.8).
+  .mt-sidebar-title { display: list-item; padding: .25rem .5rem; font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; color: mt(muted-foreground); }
   .mt-doc-nav { display: none; }
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
