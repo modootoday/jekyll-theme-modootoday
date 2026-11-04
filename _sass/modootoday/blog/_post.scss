@@ -3,7 +3,7 @@
   .mt-post-meta, .mt-post-terms p, .mt-archive-index ul { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; align-items: center; }
   .mt-archive-index li { display: flex; margin: 0; }
   .mt-post-meta, .mt-post-terms span, .mt-archive-count, .mt-archive-list time { color: mt(muted-foreground); }
-  .mt-post-terms { margin-block-start: 2rem; border-block-start: 1px solid mt(border); }
+  .mt-post-terms { margin-block-start: 2rem; }
   .mt-badge[href] { min-block-size: 24px; }
   .mt-archive-list { list-style: none; padding: 0; }
 }

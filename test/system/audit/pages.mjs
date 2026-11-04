@@ -49,7 +49,7 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   await page.setViewportSize({ width: 1024, height: 900 });
   if (RTL_PAGES.includes(p)) await checkRtl(page, scheme, url, fails);
   if (p === "components/") await checkExampleCards(page, scheme, url, fails);
-  if (await page.$(".mt-c-features, .mt-c-linkcards")) await checkCardGrid(page, scheme, url, fails);
+  if (await page.$(".mt-c-features, .mt-c-linkcards, .mt-post-list")) await checkCardGrid(page, scheme, url, fails);
   if (await page.$(".mt-plans")) await checkPlanCta(page, scheme, url, fails);
   if (await page.$(".mt-badge")) await checkChipRows(page, scheme, url, fails);
   await checkListRows(page, scheme, url, fails);

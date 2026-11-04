@@ -53,6 +53,13 @@ class BlogTest < Minitest::Test
     assert_includes h, "modootoday-blog.css"
   end
 
+  def test_blog_index_has_the_post_breadcrumb
+    h = read("blog/index.html")
+    assert_match(%r{<div class="mt-blog" data-variant="magazine"><nav class="mt-breadcrumb"[^>]*><ol>\s*<li><a href="/">}, h)
+    assert_includes h, '<span aria-current="page">Blog</span>'
+    assert_includes h, "modootoday/chrome/doc-nav.css"
+  end
+
   def test_news_front_lead_latest_sections
     h = read("news/index.html")
     lead = h[/<div class="mt-news-lead".*?<\/article>/m]

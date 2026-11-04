@@ -8,7 +8,9 @@ layout: default
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/i18n.html lang=_lang -%}
 {%- include modootoday/blog/config.html -%}
+{%- include modootoday/config.html -%}
 <div class="mt-blog" data-variant="{{ mt_blog_variant }}">
+{%- include modootoday/breadcrumb.html -%}
 {%- if content != "" %}
 <header class="mt-blog-intro mt-doc">{{ content }}</header>
 {%- endif -%}

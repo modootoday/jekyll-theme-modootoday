@@ -2,13 +2,13 @@
 @include mt-layer(components) {
   .mt-post-header { margin-block-end: 2rem; }
   .mt-post-deck { margin: 0 0 1rem; font-size: 1.1875rem; line-height: 1.55; color: mt(muted-foreground); }
-  .mt-byline { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1rem; font-size: .875rem; color: mt(muted-foreground); }
+  .mt-byline { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1rem; font-size: mt-size(sm); line-height: mt-leading(sm); color: mt(muted-foreground); }
   .mt-byline p { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; margin: 0; }
   .mt-byline a { color: mt(foreground); font-weight: 600; }
   .mt-dateline { color: mt(foreground); font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
   .mt-post-cover { margin: 1.5rem 0 0; }
-  .mt-post-cover img { display: block; inline-size: 100%; block-size: auto; border-radius: mt(radius-lg); }
-  .mt-post-cover figcaption { margin-block-start: .5rem; font-size: .8125rem; color: mt(muted-foreground); }
+  .mt-post-cover img { display: block; inline-size: 100%; block-size: auto; border: 1px solid mt(border); border-radius: mt(radius); }
+  .mt-post-cover figcaption { margin-block-start: .5rem; font-size: mt-size(sm); line-height: mt-leading(sm); color: mt(muted-foreground); }
   .mt-post-flags { margin: 0 0 .75rem; }
   .mt-series { margin-block: 1.5rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-inline-start: 3px solid mt(primary); border-radius: mt(radius); background: mt(muted); }
   .mt-series-title { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin: 0 0 .5rem; }
@@ -24,4 +24,9 @@
   .mt-related { margin-block-start: 3rem; padding-block-start: 1.5rem; border-block-start: 1px solid mt(border); }
   .mt-related h2 { margin: 0; font-size: 1.25rem; }
   .mt-post-nav { margin-block-start: 2rem; }
+  // Post body: 18/28 (CJK 18/32) on the narrow measure; the title one step up from h1. The post header marks a post page.
+  .mt-doc:has(> .mt-post-header) { max-inline-size: mt(narrow); font-size: mt-size(lg); line-height: mt-leading(lg); }
+  .mt-doc:has(> .mt-post-header):is(:lang(ko), :lang(ja), :lang(zh)) { line-height: 2rem; }
+  .mt-doc:has(> .mt-post-header) > h1 { font-size: unquote("clamp(2.5rem, 2rem + 2vw, 3rem)"); line-height: calc(1em + .5rem); }
+  .mt-doc:has(> .mt-post-header) .mt-figure img { border: 1px solid mt(border); border-radius: mt(radius); }
 }

@@ -8,10 +8,10 @@ export async function checkExampleCards(page, scheme, url, fails) {
   if (cards.length < 10) fails.push(`only ${cards.length} example cards found ${scheme} ${url}`);
 }
 
-// Card grids (features, link cards): no card narrower than its grid's floor where the section is wider than the floor,
+// Card grids (features, link cards, post cards): no card narrower than its grid's floor where the section is wider than the floor,
 // so a row never ends in one cramped card or leaves a lone narrow column. Floors in rem, by grid.
 export const GRID_WIDTHS = [720, 1024, 1440];
-export const GRID_FLOORS = { ".mt-c-features > ul": 16, ".mt-c-linkcards > ul": 16 };
+export const GRID_FLOORS = { ".mt-c-features > ul": 16, ".mt-c-linkcards > ul": 16, ".mt-blog .mt-post-list:not([data-variant=\"list\"])": 18 };
 export function narrowCards(floors) {
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const out = [];
