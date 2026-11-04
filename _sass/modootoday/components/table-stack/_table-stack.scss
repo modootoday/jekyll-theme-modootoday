@@ -7,13 +7,14 @@
     .mt-table > table[data-mt-labelled][role] { display: block; width: auto; max-inline-size: none; }
     [data-mt-labelled] :is(tbody, tr) { display: block; }
     [data-mt-labelled] thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    [data-mt-labelled] tr { padding: .75rem 0; border-bottom: 1px solid mt(border); }
+    // A label sits close to its value and fields clearly apart, so a block reads as one record on a phone.
+    [data-mt-labelled] tr { display: grid; gap: .875rem; padding: 1.25rem 0; border-bottom: 1px solid mt(border); }
     .mt-table > table[data-mt-labelled][role] :is(th, td):is(:first-child, *) { display: block; position: static; min-inline-size: 0;
-      padding: .125rem 0; border: 0; background: none; box-shadow: none; }
+      padding: 0; border: 0; background: none; box-shadow: none; }
     // A block is the full width, so long code may break here rather than scroll the stacked table.
     .mt-table > table[data-mt-labelled][role] td code { white-space: normal; overflow-wrap: anywhere; }
     .mt-table--stack[data-mt-labelled] td[data-label]::before { content: attr(data-label); content: unquote('attr(data-label) / ""'); display: block;
-      color: mt(muted-foreground); font-size: mt-size(xs); line-height: mt-leading(xs); }
+      margin-block-end: .25rem; color: mt(muted-foreground); font-size: mt-size(xs); line-height: mt-leading(xs); }
     [data-mt-labelled] :is(th, td):first-child { font-weight: 500; color: mt(foreground); }
   }
   .mt-table > table.mt-table--fixed { table-layout: fixed; width: 100%; }
