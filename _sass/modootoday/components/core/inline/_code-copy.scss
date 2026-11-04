@@ -6,11 +6,21 @@
     border: 0; border-radius: mt(radius); background: mt(code-background); color: mt(muted-foreground); cursor: pointer; transition: .15s; }
   .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); background: mt(accent); }
   .mt-code-title + .mt-code .mt-code-copy { top: -2.25rem; }
-  // Reserved whenever scripting is on, before code-copy.js adds the button, so nothing moves after load: the end
-  // padding means a first line that reaches the button scrolls, and its end clears the button once scrolled.
+  // Reserved from the first paint while scripting is on, so nothing moves after load: end padding keeps lines clear of
+  // the button once scrolled, and a first line wider than the block minus the button (data-mt-line, 8ch steps from
+  // markdown/code.html) gets a 40px strip above it, so the button never covers code.
   @media (scripting: enabled) {
     .mt-main pre { padding-inline-end: 3rem; }
     .mt-main .mt-code-title + div pre { padding-inline-end: 1rem; }
+    .mt-main div.highlight { container: mt-code / inline-size; font-family: mt(font-mono); font-size: mt-size(sm); }
+    .mt-main .mt-code-title + div div.highlight { container: none; }
+    // Kept at or under the coarse-pointer rules' specificity, so the 44px button's taller strip wins below.
+    pre[data-mt-line="x"] { padding-top: 2.5rem; }
+    .mt-code-title + div pre[data-mt-line="x"] { padding-top: 1rem; }
+    @for $k from 1 through 16 {
+      // 58px: the 1px border and 1rem padding at the start, the button and its .25rem inset and gap at the end.
+      @container mt-code (max-width: calc(#{$k * 8}ch + 58px)) { [data-mt-line="#{$k}"] { padding-top: 2.5rem; } }
+    }
   }
 }
 // Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).

@@ -1,0 +1,19 @@
+{%- comment -%}md-components v1 — code block fix-ups (called by components.html).
+  Each highlighted pre is focusable (it scrolls) and carries data-mt-line: its first line's width in 8ch steps
+  (1-16, x beyond; non-ASCII counts 2ch), so the copy button's strip appears only where that line reaches it.{%- endcomment -%}
+{%- assign _x = include.html -%}
+{%- assign _key = '<pre class="highlight">' -%}
+{%- if _x contains _key -%}
+{%- assign _nl = "
+" -%}
+{%- assign _bits = _x | split: _key -%}
+{%- capture _x -%}{{ _bits[0] }}{%- for _b in _bits offset: 1 -%}
+{%- assign _l = _b | split: _nl | first | strip_html | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+{%- assign _w = 0 -%}
+{%- assign _cs = _l | split: "" -%}
+{%- for _ch in _cs limit: 130 -%}{%- if _ch > "~" -%}{%- assign _w = _w | plus: 2 -%}{%- else -%}{%- assign _w = _w | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- assign _k = _w | plus: 7 | divided_by: 8 -%}{%- if _k > 16 -%}{%- assign _k = "x" -%}{%- endif -%}
+<pre class="highlight" tabindex="0" data-mt-line="{{ _k }}">{{ _b }}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{{ _x }}

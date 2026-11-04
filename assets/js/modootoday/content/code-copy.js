@@ -22,7 +22,13 @@ export function init(root) {
     live.textContent = "";
   };
   root.querySelectorAll(".mt-main pre").forEach((pre) => {
-    const box = pre.closest("div.highlighter-rouge") || pre;
+    // A bare pre gets a box of its own, so the button does not scroll away with the code.
+    let box = pre.closest("div.highlighter-rouge, div.mt-code-box");
+    if (!box) {
+      box = Object.assign(doc.createElement("div"), { className: "mt-code-box" });
+      pre.before(box);
+      box.append(pre);
+    }
     if (box.querySelector(".mt-code-copy")) {
       return;
     }
