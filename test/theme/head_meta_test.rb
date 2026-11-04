@@ -98,7 +98,7 @@ class HeadMetaTest < Minitest::Test
       assert st.success?, out
       ko = File.read("#{d}/s/ko/index.html")
       assert_match(%r{<title>[^<]*모두의오늘 테마</title>}, ko)
-      assert_match(/class="mt-site-title[^"]*"[^>]*>(?:<svg.*?<\/svg>)?\s*모두의오늘 테마/m, ko)
+      assert_match(/class="mt-site-title[^"]*"[^>]*>(?:<svg.*?<\/svg>)?\s*<span class="mt-site-name">모두의오늘 테마<\/span><\/a>/m, ko)
       assert_includes ko, '<meta property="og:site_name" content="모두의오늘 테마">'
       title = File.read("#{src}/_config.yml")[/^title:\s*(.+)$/, 1].delete('"')
       assert_includes File.read("#{d}/s/index.html"), "#{title}</title>"

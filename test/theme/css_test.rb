@@ -186,6 +186,14 @@ class CssTest < Minitest::Test
     refute_match(/position:\s*absolute/, tag, "the tag sits above the art instead of over it")
   end
 
+  def test_site_title_takes_two_lines_then_an_ellipsis
+    core, = self.class.build("all")
+    name = core[/\.mt-site-name\s*\{([^}]*)\}/, 1].to_s
+    assert_match(/-webkit-line-clamp:\s*2/, name)
+    assert_match(/text-overflow:\s*ellipsis/, name)
+    refute_match(/nowrap/, core[/\.mt-site-title\s*\{([^}]*)\}/, 1].to_s, "a one-line title is cut mid-word")
+  end
+
   def test_font_stacks_only_for_declared_languages
     langs, = self.class.build("langs")
     assert_match(/:root:lang\(ko\)\s*\{\s*--mt-font-sans:\s*Pretendard Variable,\s*Pretendard,/, langs)

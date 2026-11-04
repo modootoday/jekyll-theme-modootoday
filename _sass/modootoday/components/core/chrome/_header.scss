@@ -7,11 +7,14 @@
   // The first trailing control (search, language menu or theme toggle) pushes the group to the inline end, with or without search.
   .mt-header-inner > :is(.mt-search,details.mt-lang,.mt-theme-toggle):not(:is(.mt-search,details.mt-lang,.mt-theme-toggle) ~ *) { margin-inline-start: auto; }
   .mt-site-title { flex: 0 1 auto; min-width: 0; overflow: hidden; display: inline-flex; align-items: center; gap: .55rem; font-weight: 700;
-    letter-spacing: -.01em; text-decoration: none; color: mt(foreground); white-space: nowrap; }
+    letter-spacing: -.01em; line-height: 1.2; text-decoration: none; color: mt(foreground); }
+  // A long name takes a second line inside the row, and a word that still does not fit ends in an ellipsis.
+  .mt-site-name { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: normal;
+    text-overflow: ellipsis; }
   .mt-site-title:not(.mt-has-logo)::before { content: ""; width: 1.4rem; height: 1.4rem; border-radius: .4rem; flex: none;
     background: mt(brand); }
   details.mt-lang { position: relative; flex: none; }
   @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-header-inner { column-gap: .75rem; } }
   // Below 64rem the nav is a menu button at the end of the row; the title takes the free space.
-  @media (max-width: 63.99rem) { .mt-header-inner { column-gap: .5rem; } .mt-site-title { margin-inline-end: auto; } }
+  @media (max-width: 63.99rem) { .mt-header-inner { column-gap: .5rem; } .mt-site-title { margin-inline-end: auto; font-size: .9375rem; } }
 }

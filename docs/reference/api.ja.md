@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:b55281411c2d
+source_rev: sha256:185653b779c6
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -42,7 +42,7 @@ description: このテーマがサイト向けに文書化している名前、�
 
 | コンポーネント | ルート | スタイルを当ててよい部分 | 状態とバリエーション |
 |---|---|---|---|
-| ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title`, `nav.mt-nav` (from 64rem its `ul` row of links; below 64rem `details.mt-menu.mt-nav-sheet`: `summary` menu button, `ul` sheet with `.mt-nav-sheet-label` group titles), `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (固定の配色、またはトグルが設定) |
+| ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title` > `.mt-site-name` (the name: up to two lines, then an ellipsis), `nav.mt-nav` (from 64rem its `ul` row of links; below 64rem `details.mt-menu.mt-nav-sheet`: `summary` menu button, `ul` sheet with `.mt-nav-sheet-label` group titles), `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (固定の配色、またはトグルが設定) |
 | ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
 | ドキュメントのサイドバー | `aside.mt-doc-nav` > `nav.mt-sidebar`(64rem 以上)、`details.mt-sidebar-mobile`(それより狭い画面) | `.mt-sidebar-group`、`.mt-sidebar-title`、リンクの `ul`。現在のリンクは `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`、モバイルメニューの `[open]` |
 | ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`(JS が動くまで非表示)と Markdown 表示の `a[type="text/markdown"]` を含む `ul` | `[open]` |

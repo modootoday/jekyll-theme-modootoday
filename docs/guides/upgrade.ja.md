@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:2b7d33f1873c
+source_rev: sha256:72dde5f8c6a6
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -93,7 +93,7 @@ $mt-overrides-dark: (
 
 `modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}` もあわせて設定してください。ヘッダーのぼかし、アラートの帯と背景色、ボタンの浮き上がりはなくなり、自分の `site_css` でのみ戻せます。
 
-ヘッダーはどの幅でも高さ 4rem の 1 行のままです。64rem より狭いとリンクはメニューボタン（`.mt-nav-sheet`）の中に移り、グループのリンクを行内に並べ直していた `.mt-nav-flat` はなくなりました。`.mt-nav-flat` に書いたルールは `.mt-nav-sheet` を対象にしてください。見出しには `scroll-margin-top` がなくなり、アンカーへ移動するとページの `scroll-padding-top` によってヘッダーの下に収まります。
+ヘッダーはどの幅でも高さ 4rem の 1 行のままです。64rem より狭いとリンクはメニューボタン（`.mt-nav-sheet`）の中に移り、グループのリンクを行内に並べ直していた `.mt-nav-flat` はなくなりました。`.mt-nav-flat` に書いたルールは `.mt-nav-sheet` を対象にしてください。見出しには `scroll-margin-top` がなくなり、アンカーへ移動するとページの `scroll-padding-top` によってヘッダーの下に収まります。サイト名は `.mt-site-title` の中の `span.mt-site-name` になりました。長い名前は行の中で 2 行目を使い（64rem より狭いと 1 段小さい文字）、それでも収まらない単語は文字が切れる代わりに省略記号で終わります。タイトルの `white-space` や `text-overflow` に書いたルールは `.mt-site-name` を対象にしてください。
 
 コールアウト、引用、図も同じフラットなスタイルになります。コールアウトは内側の余白 1rem の細い枠で、種類の色は 16px のアイコンと見出しだけに付きます。本文の引用は開始側に 2px の線が付き(以前は 3px)、`c: quote` セクションは背景を塗ったカードではなく、同じ線の付いた大きめの引用になります。図、SVG の図の枠、埋め込みの角は 8px(`radius`、以前は `radius-lg`)、キャプションは 14/20 で、`.mt-illustration-tag` バッジは絵に重ならず絵の上に置かれます。コールアウトのルールはコアシートを離れて `content/inline.css` に、図と埋め込みのルールは `media/figure.css` に移り、そのどれかがあるページだけがこれらのシートを読み込みます。部分ファイルは `components/core/inline/` のパスのままなので、サイトで上書きしたファイルも引き続き効きます。`modootoday.css: bundle` ではコアシートにそのまま含まれます。
 
