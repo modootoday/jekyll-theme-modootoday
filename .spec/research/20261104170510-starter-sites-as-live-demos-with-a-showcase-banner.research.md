@@ -34,7 +34,7 @@ It also records the market survey behind both decisions and the implementation r
 
 - Read the repository at the head of this change:
   - the demo pages under `docs/` and the generated navigation;
-  - every page list in `qa/` and `test/`;
+  - every page list in `test/system/` and `test/`;
   - `example/starters.yml`, the starter renderer, its templates and the Starters workflow;
   - the docs Pages configuration;
   - the documentation site map, [[sot:modootoday/documentation-site-map]].
@@ -80,7 +80,7 @@ That is 32 demo pages, 96 files with translations. Each group also has an index 
 **Other demos:**
 
 - **Kitchen sink:** `components/kitchen-sink` (en/ko/ja) and `components/kitchen-sink-rtl` (English tree, `dir="rtl"`).
-- **Live sample trees:** `blog/`, `news/`, `authors/` and the posts in `docs/_posts`. `qa/docs/structure.rb` treats them as sample sites.
+- **Live sample trees:** `blog/`, `news/`, `authors/` and the posts in `docs/_posts`. `test/system/docs/structure.rb` treats them as sample sites.
 - **Records:** `recipes/records/` and its five record pages.
 
 **Inbound links from other docs pages.** English sources only; the translations mirror them.
@@ -96,18 +96,18 @@ That is 32 demo pages, 96 files with translations. Each group also has an index 
 
 | Suite | File | Demo pages it names |
 |---|---|---|
-| Visual regression | `qa/visual/visual.mjs` `PAGES` | `components/kitchen-sink/`, `layouts/demo/orbit/`. Baselines are not committed: the workflow renders the base commit and compares. |
-| Lighthouse | `qa/lighthouse/lighthouse.sh` | `components/kitchen-sink/` (en, ko), `layouts/demo/orbit/` |
-| Docs audit, all pages | `qa/audit/config.mjs` `PAGES` | every layout-group demo and index above, plus `layouts/demo/` minimal, wide, home, error, search, code-github, orbit, filter |
+| Visual regression | `test/system/visual/visual.mjs` `PAGES` | `components/kitchen-sink/`, `layouts/demo/orbit/`. Baselines are not committed: the workflow renders the base commit and compares. |
+| Lighthouse | `test/system/lighthouse/lighthouse.sh` | `components/kitchen-sink/` (en, ko), `layouts/demo/orbit/` |
+| Docs audit, all pages | `test/system/audit/config.mjs` `PAGES` | every layout-group demo and index above, plus `layouts/demo/` minimal, wide, home, error, search, code-github, orbit, filter |
 | Page-type budgets | `PAGE_TYPES` | landing: `layouts/demo/home/`, `layouts/marketing/`; showcase: kitchen sink, `layouts/demo/csp/`; visual: orbit; filter: `layouts/demo/filter/` |
 | CSP audit | `CSP_PAGES` | `layouts/demo/` csp, search, code-github, orbit, filter |
 | Contrast | `CONTRAST_PAGES` | `layouts/demo/code-github/` |
 | RTL and English-only | `RTL_PAGES`, `EN_ONLY` | `components/kitchen-sink-rtl/`, `layouts/demo/error-rtl/` |
-| Header and anchor offsets | `qa/audit/pages.mjs` | `HEADER_PAGES` has `layouts/marketing/pricing/`; `ANCHOR_PAGES` has `layouts/documents/legal/`; a code-wrap check runs on `layouts/blog-news/post/` |
-| Layout checks | `qa/audit/layout/` | column-align: `layouts/demo/wide/`; table-reflow: `layouts/detail/`, `layouts/blog-news/` (indexes) |
-| Mobile, keyboard, parts | `qa/audit/mobile.mjs`, `keyboard.mjs`, `parts.mjs` | the kitchen sink and its RTL twin |
-| Coverage | `qa/docs/coverage.rb` | every alert type and status value must appear in `components/kitchen-sink*.md` |
-| Structure | `qa/docs/structure.rb` | sample trees are exempt; demo pages must carry `nav_order` or `nav_exclude` |
+| Header and anchor offsets | `test/system/audit/pages.mjs` | `HEADER_PAGES` has `layouts/marketing/pricing/`; `ANCHOR_PAGES` has `layouts/documents/legal/`; a code-wrap check runs on `layouts/blog-news/post/` |
+| Layout checks | `test/system/audit/layout/` | column-align: `layouts/demo/wide/`; table-reflow: `layouts/detail/`, `layouts/blog-news/` (indexes) |
+| Mobile, keyboard, parts | `test/system/audit/mobile.mjs`, `keyboard.mjs`, `parts.mjs` | the kitchen sink and its RTL twin |
+| Coverage | `test/system/docs/coverage.rb` | every alert type and status value must appear in `components/kitchen-sink*.md` |
+| Structure | `test/system/docs/structure.rb` | sample trees are exempt; demo pages must carry `nav_order` or `nav_exclude` |
 | Unit tests | `test/layouts/features/lists_test.rb` | reads the kitchen-sink sources in three languages |
 
 ### 2. Starters and deployment today
@@ -208,7 +208,7 @@ These do not change the decisions. They are what the implementation has to handl
 - **They stay in the docs:**
   - **Feature demos** (`orbit`, `filter`, `csp`, `code-github`) demonstrate features, not layouts. The site map already moves each to the page that documents its feature.
   - **Shell demos** (`home`, `minimal`, `wide`, `error`, `error-rtl`, `redirect`, `search`) render the theme's own shells. They are test fixtures for every audit, and a starter would hide them under starter content.
-  - **The kitchen sink and the RTL kitchen sink** are component reference and the coverage gate (`qa/docs/coverage.rb`). The rebuild replaces them with component group pages.
+  - **The kitchen sink and the RTL kitchen sink** are component reference and the coverage gate (`test/system/docs/coverage.rb`). The rebuild replaces them with component group pages.
   - **Inline examples on component and layout pages** stay. A layout page keeps its front matter and composition reference, gains a "Live demo" link to the starter (new tab), and loses only the embedded demo page.
   - **The live sample trees** (`blog/`, `news/`, `authors/`, posts) feed the docs' own blog and news. They are not demos.
 - **The links from the docs** use the theme's existing new-window link attributes (`target="_blank"`, `rel="noopener noreferrer"`, the localized new-window hint through `aria-describedby`, and the arrow mark). No new markup is needed.
@@ -252,10 +252,10 @@ These do not change the decisions. They are what the implementation has to handl
 - **One owner for demo page lists.**
   - `example/starters.yml` gains, per starter, the paths the audits open (for example `qa: [/, /pricing/, /legal/]`).
   - The demo URL is derived from the name, as decided.
-  - `qa/audit/config.mjs`, `qa/visual/visual.mjs` and `qa/lighthouse/lighthouse.sh` read those paths instead of hard-coding them, per the structure rule that QA, visual and Lighthouse lists have one owner.
+  - `test/system/audit/config.mjs`, `test/system/visual/visual.mjs` and `test/system/lighthouse/lighthouse.sh` read those paths instead of hard-coding them, per the structure rule that QA, visual and Lighthouse lists have one owner.
 - **Audits run on starter builds with the demo overlay.**
   - The Starters workflow already builds every starter; it adds a build with `_config.demo.yml` and runs the audits on it.
-  - The audit scripts already take a site directory (`qa/site/server.mjs` serves any built site).
+  - The audit scripts already take a site directory (`test/system/site/server.mjs` serves any built site).
 - **Moved checks follow their pages:**
   - `HEADER_PAGES` (pricing) and `ANCHOR_PAGES` (legal) run on the landing demo. These are the checks that matter most for the bar, because it changes the header's sticky top and `scroll-padding-top`. Add one bar page and one pill page to the anchor check.
   - The landing page type (`layouts/demo/home/`, `layouts/marketing/`) gains the landing starter's home and keeps the shell demo until the rebuild.

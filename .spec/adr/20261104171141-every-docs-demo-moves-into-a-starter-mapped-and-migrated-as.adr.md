@@ -93,7 +93,7 @@ The 13 starters of the catalog are kept as they are; the demos need no merge and
 - **QA and coverage follow the rows.**
   - **One owner for page lists:**
     - each starter's `qa:` paths in `example/starters.yml` are the starter-side list;
-    - the docs-side lists in `qa/audit/config.mjs`, `qa/visual/visual.mjs` and `qa/lighthouse/lighthouse.sh` drop a row's docs URL in the commit that moves it;
+    - the docs-side lists in `test/system/audit/config.mjs`, `test/system/visual/visual.mjs` and `test/system/lighthouse/lighthouse.sh` drop a row's docs URL in the commit that moves it;
     - a test fails when any list names a moved docs URL or a starter path that the starter build lacks.
   - **Where the suites run:** on the output of `rake starters:build`, built with the starter's `_config.demo.yml` so the showcase is included. The Starters workflow runs the audit, visual and Lighthouse suites there, with each starter's `qa:` paths.
   - **What follows the moved pages:**
@@ -102,7 +102,7 @@ The 13 starters of the catalog are kept as they are; the demos need no merge and
     - the filter page type moves to marketplace;
     - the landing page type moves to the landing starter's home;
     - the visual regression of the script-visual demo moves to the landing home.
-  - **The coverage check** (`qa/docs/coverage.rb`) stays on the kitchen sink until the docs rebuild.
+  - **The coverage check** (`test/system/docs/coverage.rb`) stays on the kitchen sink until the docs rebuild.
   - **Layout coverage:** a starter-coverage check reads section 6 of the map and fails when a layout in `_layouts/` has no published or planned starter.
 - **Search engines.**
   - Every page of a starter demo carries `<meta name="robots" content="noindex">`, emitted by the theme whenever the showcase is enabled.

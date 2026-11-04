@@ -105,7 +105,7 @@ Total: 32 layout rows and 14 shell, feature and record rows. The record row cove
 
 | Source (docs/) | Why it stays |
 |---|---|
-| `components/kitchen-sink.md` (en/ko/ja) | Component reference and the coverage gate (`qa/docs/coverage.rb`). The docs rebuild replaces it with component group pages |
+| `components/kitchen-sink.md` (en/ko/ja) | Component reference and the coverage gate (`test/system/docs/coverage.rb`). The docs rebuild replaces it with component group pages |
 | `components/kitchen-sink-rtl.md` (en) | The right-to-left mirroring fixture for every component; a starter shows one RTL language, not every component |
 | `index.md`, `home/index.<lang>.md` | The docs home in each language |
 | `blog/`, `news/`, `authors/`, `_posts/` | The docs site's own release posts and updates, shown through the blog and news layouts. Their descriptions stop calling them samples |
