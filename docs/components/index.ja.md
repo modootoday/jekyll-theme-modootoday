@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:4e2c57a7f179
+source_rev: sha256:690cfbc7f527
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -446,7 +446,7 @@ modootoday:
 
 ## パンくずリストと目次
 
-`status:available` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外します。このページの上部と横がその表示結果です。
+`status:available` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外すか、1 ページだけなら `toc: false` を書きます。サイドバーのあるページでは、80rem 以上で本文の列が目次の列の場所まで広がります。ホームページがその例です。このページの上部と横がその表示結果です。
 
 ```yaml
 modootoday:

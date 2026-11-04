@@ -35,6 +35,8 @@
     .mt-doc-layout.mt-has-sidebar ~ * { max-width: mt(measure); margin-inline-start: calc(#{mt-hook(sidebar-width)} + #{mt-hook(doc-gap)}); }
   }
   @media (min-width: 80rem) {
+    // toc: false gives the text column the TOC's track (a landing page such as the docs home).
+    .mt-doc-layout.mt-has-sidebar.mt-toc-off { grid-template-columns: #{mt-hook(sidebar-width)} minmax(0, calc(#{mt(measure)} + #{mt-hook(doc-gap)} + #{mt-hook(toc-width)})); }
     .mt-has-sidebar .mt-doc-aside { display: block; grid-column: 3; grid-row: 1; }
     .mt-has-sidebar .mt-toc-mobile { display: none; }
   }

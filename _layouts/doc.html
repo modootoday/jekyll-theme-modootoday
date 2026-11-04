@@ -11,7 +11,7 @@ layout: default
 {%- capture _h1 %}{% include modootoday/pages/title.html html=html %}{% endcapture -%}{%- assign html = _h1 | append: html -%}
 {%- capture _toc %}{% include modootoday/toc.html html=html %}{% endcapture -%}
 {%- assign _toc = _toc | strip -%}
-<div class="mt-doc-layout{% if _toc != "" %} mt-has-toc{% endif %}{% if mt_sidebar %} mt-has-sidebar{% endif %}">
+<div class="mt-doc-layout{% if _toc != "" %} mt-has-toc{% elsif page.toc == false %} mt-toc-off{% endif %}{% if mt_sidebar %} mt-has-sidebar{% endif %}">
 {%- include modootoday/doc/sidebar.html part="aside" %}
 <div class="mt-doc-main">
 {%- include modootoday/doc/sidebar.html part="mobile" -%}

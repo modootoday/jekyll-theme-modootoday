@@ -439,7 +439,7 @@ modootoday:
 
 ## Breadcrumb and table of contents
 
-`status:available` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off. The result is at the top and side of this page.
+`status:available` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off, or set `toc: false` on one page; on a page with a sidebar, the text column then also takes the contents column's space from 80rem, as the home page does. The result is at the top and side of this page.
 
 ```yaml
 modootoday:

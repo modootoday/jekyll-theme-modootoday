@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:4e2c57a7f179
+source_rev: sha256:690cfbc7f527
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -445,7 +445,7 @@ modootoday:
 
 ## 이동 경로와 목차
 
-`status:available` 문서 페이지에는 URL로 만든 이동 경로와, `##`·`###` 제목으로 만든 목차가 붙습니다. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보입니다. 레이아웃이 붙이므로 따로 쓸 소스는 없습니다. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼세요. 이 페이지 위쪽과 옆이 그 결과입니다.
+`status:available` 문서 페이지에는 URL로 만든 이동 경로와, `##`·`###` 제목으로 만든 목차가 붙습니다. 목차는 넓은 화면에서 옆에, 좁은 화면에서는 접는 상자로 보입니다. 레이아웃이 붙이므로 따로 쓸 소스는 없습니다. 끄려면 `components`에서 `breadcrumb`이나 `toc`를 빼거나, 한 페이지에서만 `toc: false`를 쓰세요. 사이드바가 있는 페이지라면 80rem부터 본문 열이 목차 열의 자리까지 넓어집니다. 홈 페이지가 그렇습니다. 이 페이지 위쪽과 옆이 그 결과입니다.
 
 ```yaml
 modootoday:
