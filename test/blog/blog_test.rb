@@ -63,14 +63,6 @@ class BlogTest < Minitest::Test
     refute_includes h, '<a href=""'
   end
 
-  def test_blog_bundle_budgets
-    require "zlib"
-    js = File.read(File.join(ROOT, "assets/js/modootoday/share.js"))
-    assert_operator js.bytesize, :<=, 1024, "share.js: blog-js budget is 1 KB"
-    css = read("assets/css/modootoday-blog.css")
-    assert_operator css.bytesize, :<=, 8 * 1024, "modootoday-blog.css: blog-css budget is 8 KB"
-  end
-
   def test_post_parts
     h = read("world/2026/10/01/a/index.html")
     assert_includes h, '<a class="mt-post-author" rel="author" href="/authors/jane/">Jane Roe</a>'

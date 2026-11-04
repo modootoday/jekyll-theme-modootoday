@@ -1,7 +1,8 @@
 {%- comment -%}The theme's CSS and JS files, one row each: name|kind|path|triggers|parts|cap|deps. kind: component (a sheet linked right
   after core) or css (a context sheet, linked after the blog sheet and layout bundles; both assets/sheets.html), section (triggers is the
-  sections: name), js (classic deferred) or module (assets/scripts.html). triggers: texts of the rendered body, separated by ^. parts: the
-  Sass partials (assets/imports.html), in old cascade order. cap: gzip bytes (qa/audit/budgets/modules.mjs). deps: a module's imports.
+  sections: name), js (a classic deferred script) or module (an ES module; assets/scripts.html). triggers: texts of the rendered body,
+  separated by ^. parts: the Sass partials (assets/imports.html), in old cascade order. cap: gzip bytes (qa/audit/budgets/modules.mjs).
+  deps: a module's static imports, each preloaded with a modulepreload link.
   _mta_fixed holds the files the layouts link themselves; Liquid never reads it. Sets mt_asset_rows, mt_context_sheets ("doc:sidebar|toc|
   page-actions,...", read by assets/imports.html) and mt_section_sheets.{%- endcomment -%}
 {%- capture _mta_rows -%}
@@ -38,17 +39,17 @@ details|section|/assets/css/modootoday/structure/details.css|details||512
 faq|section|/assets/css/modootoday/structure/faq.css|faq||640
 params|section|/assets/css/modootoday/structure/params.css|params||384
 split|section|/assets/css/modootoday/structure/split.css|split||512
-tabs|js|/assets/js/modootoday/tabs.js|||1024
-menu|js|/assets/js/modootoday/menu.js|||640
-scroll-region|js|/assets/js/modootoday/scroll-region.js|<pre^<table||640
-table-stack|js|/assets/js/modootoday/table-stack.js|class="mt-table--^ mt-table--||640
-code-copy|js|/assets/js/modootoday/code-copy.js|<pre||1152
-theme-toggle|js|/assets/js/modootoday/theme-toggle.js|||640
-accordion|js|/assets/js/modootoday/accordion.js|||512
-share|js|/assets/js/modootoday/share.js|||512
+tabs|module|/assets/js/modootoday/structure/tabs.js|||1024
+menu|module|/assets/js/modootoday/chrome/menu.js|||768
+scroll-region|module|/assets/js/modootoday/content/scroll-region.js|<pre^<table||640
+table-stack|module|/assets/js/modootoday/data/table-stack.js|class="mt-table--^ mt-table--||640
+code-copy|module|/assets/js/modootoday/content/code-copy.js|<pre||1280
+theme-toggle|module|/assets/js/modootoday/chrome/theme-toggle.js|||768
+accordion|module|/assets/js/modootoday/structure/accordion.js|||640
+share|module|/assets/js/modootoday/blog/share.js|||640
 search|js|/assets/js/modootoday/search.js|||1408
-search-keys|js|/assets/js/modootoday/search-keys.js|||640
-filter|module|/assets/js/modootoday/filter/filter.js|<div class="mt-filter"||1024|/assets/js/modootoday/text/normalize.js /assets/js/modootoday/dom/config.js /assets/js/modootoday/filter/chips.js
+search-keys|module|/assets/js/modootoday/chrome/search-keys.js|||768
+filter|module|/assets/js/modootoday/data/filter.js|<div class="mt-filter"||1152|/assets/js/modootoday/text/normalize.js /assets/js/modootoday/dom/config.js /assets/js/modootoday/data/filter-chips.js
 {%- endcapture -%}
 {%- capture _mta_fixed -%}
 core|sheet|/assets/css/modootoday.css|||4608
@@ -60,13 +61,13 @@ hero|sheet|/assets/css/modootoday-hero.css|||1280
 marketing|sheet|/assets/css/modootoday-marketing.css|||1536
 pages|sheet|/assets/css/modootoday-pages.css|||1408
 resume|sheet|/assets/css/modootoday-resume.css|||768
-theme-init|script|/assets/js/modootoday/theme-init.js|||256
+theme-init|script|/assets/js/modootoday/chrome/theme-init.js|||256
 mermaid|script|/assets/js/modootoday-mermaid.js|||1152
 math|script|/assets/js/modootoday-math.js|||768
 config|import|/assets/js/modootoday/dom/config.js|||640
 normalize|import|/assets/js/modootoday/text/normalize.js|||512
 current|import|/assets/js/modootoday/theme/current.js|||640
-chips|import|/assets/js/modootoday/filter/chips.js|||640
+chips|import|/assets/js/modootoday/data/filter-chips.js|||640
 {%- endcapture -%}
 {%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
 {%- assign _mta_cs = "" -%}{%- assign _mta_ss = "" -%}

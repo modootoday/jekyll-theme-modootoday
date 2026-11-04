@@ -11,20 +11,21 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 
 | Asset | Loaded on |
 |---|---|
-| `assets/css/modootoday.css` (core sheet) | every page |
-| Context sheets (`doc`, `search`, `loading`, `content`, `figure`, `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`) | pages whose layout or body uses them |
+| `assets/css/modootoday.css` (core sheet: tokens, base elements, header, nav, theme toggle) | every page |
+| Component sheets (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`), linked right after the core sheet | pages whose body or page footer uses them |
+| Context sheets (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
-| `menu.js`, `theme-toggle.js`, `search.js` | pages with the header, the toggle, or a search index |
-| `code-copy.js` | pages with a code block, and pages with the page actions menu |
-| `scroll-region.js` | pages with a code block or a table |
-| `table-stack.js` | pages with a stacked table (`c: params`, or the `mt-table--stack` or `mt-table--dl` class) |
-| `tabs.js`, `accordion.js`, `share.js` | pages that use tabs, an accordion, or a blog layout |
-| `filter/filter.js` (an ES module, with `chips.js`, `text/normalize.js` and `dom/config.js`) | pages with `filter:` or `filter_text:` |
+| `chrome/menu.js`, `chrome/theme-toggle.js`, `search.js` with `chrome/search-keys.js` | pages with the header, the toggle, or a search index |
+| `content/code-copy.js` | pages with a code block, and pages with the page actions menu |
+| `content/scroll-region.js` | pages with a code block or a table |
+| `data/table-stack.js` | pages with a stacked table (`c: params`, or the `mt-table--stack` or `mt-table--dl` class) |
+| `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | pages that use tabs, an accordion, or a blog layout |
+| `data/filter.js` (with `data/filter-chips.js`, `text/normalize.js` and `dom/config.js`, preloaded) | pages with `filter:` or `filter_text:` |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
 
-Scripts load with `defer` and do not block the first paint; the one exception is the small pre-paint theme script that `csp: strict` loads from a file. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
+Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
 
 ## Versioned asset URLs
 

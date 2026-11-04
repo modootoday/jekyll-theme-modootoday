@@ -54,7 +54,7 @@ class HeadMetaTest < Minitest::Test
         assert_includes h, '<link rel="alternate" hreflang="x-default" href="https://example.org/docs/">'
         assert_includes h, 'href="/docs/feed.xml"'
         assert_includes h, '<meta property="og:image" content="https://example.org/docs/assets/og.png">'
-        assert_match %r{<script src="/docs/assets/js/modootoday/theme-init\.js\?v=[^"]+"></script>}, h
+        assert_match %r{<script src="/docs/assets/js/modootoday/chrome/theme-init\.js\?v=[^"]+"></script>}, h
         refute_includes h, INLINE
         refute_match(/<script>(?!<\/script>)/, h, "no inline script with csp: strict")
       end
@@ -65,7 +65,7 @@ class HeadMetaTest < Minitest::Test
         assert_includes File.read("#{s}/#{l}/guide/index.html"), %(<link rel="alternate" hreflang="en" href="https://example.org/docs/guide/">)
       end
       assert_includes en, 'href="https://github.com/o/r/edit/main/site/index.md"'
-      assert File.exist?("#{s}/assets/js/modootoday/theme-init.js")
+      assert File.exist?("#{s}/assets/js/modootoday/chrome/theme-init.js")
     end
   end
 

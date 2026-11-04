@@ -27,7 +27,7 @@ class IconTest < Minitest::Test
     refute_empty used
     assert_empty used - DEFINED, "undefined icon names"
     %w[note tip important warning caution].each { |t| assert_includes DEFINED, t, "callout type #{t}" }
-    js = File.read(File.join(ROOT, "assets/js/modootoday/code-copy.js"))
+    js = File.read(File.join(ROOT, "assets/js/modootoday/content/code-copy.js"))
     assert_match(/<svg[^"]*class="mt-icon/, js)
   end
 

@@ -10,7 +10,7 @@ class AssetUrlTest < Minitest::Test
   INCLUDE = "_includes/modootoday/assets/url.html"
   PAGES = { "v/code.md" => ["title: C\n", "# C\n\n```sh\nrun\n```\n\n| a | b |\n|---|---|\n| 1 | 2 |\n"] }.freeze
   TIME = "time: \"2026-01-01T00:00:00+00:00\"\n"
-  THEME_TAG = %r{<link rel="stylesheet" href="/assets/(?:css/modootoday[^"]*)"|<script src="/assets/(?:js/modootoday[^"]*)"}
+  THEME_TAG = %r{<link rel="stylesheet" href="/assets/(?:css/modootoday[^"]*)"|<script (?:type="module" )?src="/assets/(?:js/modootoday[^"]*)"}
 
   def version = File.read(File.join(ROOT, "jekyll-theme-modootoday.gemspec"))[/spec\.version\s*=\s*"([^"]+)"/, 1]
 
@@ -25,7 +25,7 @@ class AssetUrlTest < Minitest::Test
   end
 
   def test_theme_version_by_default
-    assert_versions("modootoday: {csp: strict}\n", "?v=#{version}", "theme-init.js")
+    assert_versions("modootoday: {csp: strict}\n", "?v=#{version}", "chrome/theme-init.js")
   end
 
   def test_false_drops_the_query

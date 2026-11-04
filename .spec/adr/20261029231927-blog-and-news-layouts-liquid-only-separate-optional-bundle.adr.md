@@ -3,9 +3,9 @@ id: adr:modootoday/20261029231927
 title: "Blog and news layouts: Liquid-only, separate optional bundle"
 status: active
 created: 2026-10-29T23:19:27Z
-updated: 2026-10-29T23:19:27Z
+updated: 2026-11-04T06:19:30Z
 rel:
-  governs: [_layouts/blog.html, _layouts/news.html, _layouts/news-article.html, _layouts/author.html, _layouts/feed.html, _layouts/post.html, _includes/modootoday/blog, _includes/modootoday/meta, _includes/modootoday/news, _sass/modootoday/blog, _layouts/archive.html, assets/css/modootoday-blog.scss, assets/js/modootoday/share.js, qa/audit/budgets.mjs]
+  governs: [_layouts/blog.html, _layouts/news.html, _layouts/news-article.html, _layouts/author.html, _layouts/feed.html, _layouts/post.html, _includes/modootoday/blog, _includes/modootoday/meta, _includes/modootoday/news, _sass/modootoday/blog, _layouts/archive.html, assets/css/modootoday-blog.scss, qa/audit/budgets.mjs, assets/js/modootoday/blog/share.js]
 ---
 
 # Blog and news layouts: Liquid-only, separate optional bundle

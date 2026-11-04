@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/csp/
-source_rev: sha256:527d47fc6ebf
+source_rev: sha256:ac360e7da233
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy
@@ -16,7 +16,7 @@ description: unsafe-inline なしの厳格な CSP でテーマを動かします
 
 | インラインの項目 | 条件 | 厳格にする方法 |
 |---|---|---|
-| ペイント前のテーマスクリプト (誤った配色が一瞬表示されるのを防ぐ) | `theme-toggle` が有効で `color_scheme: auto` | `modootoday.csp: strict` で、代わりに `assets/js/modootoday/theme-init.js` をブロッキングスクリプトとして読み込む |
+| ペイント前のテーマスクリプト (誤った配色が一瞬表示されるのを防ぐ) | `theme-toggle` が有効で `color_scheme: auto` | `modootoday.csp: strict` で、代わりに `assets/js/modootoday/chrome/theme-init.js` をブロッキングスクリプトとして読み込む |
 | `<style id="mt-tokens">` | `modootoday.tokens` または `tokens_dark` を設定している | 値をトークンブリッジ (`_sass/modootoday/_site.scss`、[ブランドトークン](../brand-tokens/)を参照) に移し、キーを削除する |
 
 両方に対応すれば、次のポリシーで動きます。

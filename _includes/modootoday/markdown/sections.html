@@ -22,7 +22,7 @@ bleed: wide also adds .mt-bleed-wide, which widens the content box up to the con
 The hero's first p after the h1 gets .mt-hero-lead; hero checks: true adds .mt-hero-checks (its first ul is a ✓ row, lists sheet).
 site.modootoday.lists (link_chips, titled_items) runs markdown/lists.html on the hero, plain sections and section-less pages.
 filter: true | {facet: <column>} on an item (or include.filter, the page's filter:, on a page without sections) adds
-data-mt-filter (data-facet) and the hidden controls of filter/controls.html; filter/filter.js filters the first list or table.
+data-mt-filter (data-facet) and the hidden controls of filter/controls.html; data/filter.js filters the first list or table.
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}

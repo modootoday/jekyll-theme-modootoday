@@ -65,7 +65,7 @@ class SiteScriptsTest < Minitest::Test
   def test_remote_src_and_pages_without_script_get_no_module
     refute_includes head("v/remote.md"), "type=\"module\""
     h = html(built, "v/plain.md")
-    refute_includes h, "type=\"module\""
+    refute_match %r{<script type="module" src="/b/assets/js/(?!modootoday/)}, h, "no site module; theme modules are fine"
     refute_includes h, "data-mt-script"
     refute_includes h, "mt-visual-poster"
   end

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:f87d2dbb255b
+source_rev: sha256:412840970ab4
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -17,20 +17,21 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 
 | アセット | 読み込むページ |
 |---|---|
-| `assets/css/modootoday.css` (コアシート) | すべてのページ |
-| コンテキストシート (`doc`、`search`、`loading`、`content`、`figure`、`lists`、`bleed`、`terminal`、`visual`、`filter`、`table`、`table-stack`) | レイアウトか本文がそのシートを使うページ |
+| `assets/css/modootoday.css` (コアシート: トークン、基本要素、ヘッダー、ナビゲーション、テーマ切り替えボタン) | すべてのページ |
+| コンポーネントシート (`content/code`、`chrome/doc-nav`、`content/inline`、`marketing/hero`、`content/extras`、`media/figure`、`chrome/banner`)。コアシートのすぐ後に読み込む | 本文かページ下部がそのシートを使うページ |
+| コンテキストシート (`docs/doc`、`chrome/search`、`content/loading`、`content/lists`、`structure/bleed`、`chrome/terminal`、`media/visual`、`data/filter`、`data/table`、`data/table-stack`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
-| `menu.js`、`theme-toggle.js`、`search.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
-| `code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
-| `scroll-region.js` | コードブロックか表があるページ |
-| `table-stack.js` | 積み重ねる表があるページ（`c: params`、または `mt-table--stack` か `mt-table--dl` クラス） |
-| `tabs.js`、`accordion.js`、`share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
-| `filter/filter.js`（ES モジュール。`chips.js`、`text/normalize.js`、`dom/config.js` を含む） | `filter:` か `filter_text:` を使うページ |
+| `chrome/menu.js`、`chrome/theme-toggle.js`、`search.js` と `chrome/search-keys.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
+| `content/code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
+| `content/scroll-region.js` | コードブロックか表があるページ |
+| `data/table-stack.js` | 積み重ねる表があるページ（`c: params`、または `mt-table--stack` か `mt-table--dl` クラス） |
+| `structure/tabs.js`、`structure/accordion.js`、`blog/share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
+| `data/filter.js`（`data/filter-chips.js`、`text/normalize.js`、`dom/config.js` を先読み） | `filter:` か `filter_text:` を使うページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
 
-スクリプトは `defer` で読み込むため、最初の描画を妨げません。例外は、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプトだけです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。
+テーマのスクリプトは ES モジュール (`<script type="module">`) です。`defer` と同じく、ページを読み終えた後に順番に実行されるため、最初の描画を妨げません。モジュールが読み込むファイルには `<link rel="modulepreload">` が付き、1 つずつ順に取得せず一緒に取得します。クラシックスクリプトは、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプト (`chrome/theme-init.js`) だけです。最初の描画より前に実行する必要があるためです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。
 
 ## バージョン付きアセット URL
 

@@ -48,7 +48,7 @@ class TableTest < Minitest::Test
     p = html(built, "t/params.md")
     assert_match sheet("data/table"), p
     assert_match sheet("data/table-stack"), p
-    assert_includes p, "/assets/js/modootoday/table-stack.js"
+    assert_includes p, "/assets/js/modootoday/data/table-stack.js"
     refute_includes html(built, "t/table.md"), "table-stack.js"
     refute_includes html(built, "t/prose.md"), "table-stack.js"
     plain = html(built, "t/plain.md")

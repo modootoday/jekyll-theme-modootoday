@@ -3,9 +3,9 @@ id: adr:modootoday/20261103012842
 title: The toggle announces mt:themechange; site modules read the scheme and settings through two small theme modules
 status: active
 created: 2026-11-03T01:28:42Z
-updated: 2026-11-03T01:43:23Z
+updated: 2026-11-04T06:19:30Z
 rel:
-  governs: [assets/js/modootoday/theme, assets/js/modootoday/dom, assets/js/modootoday/theme-toggle.js]
+  governs: [assets/js/modootoday/theme, assets/js/modootoday/dom, assets/js/modootoday/chrome/theme-toggle.js]
 ---
 
 # The toggle announces mt:themechange; site modules read the scheme and settings through two small theme modules

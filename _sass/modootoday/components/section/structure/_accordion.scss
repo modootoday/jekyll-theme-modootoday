@@ -1,4 +1,4 @@
-// Accordion: sections with `c: accordion`; each `###` becomes a disclosure (assets/js/modootoday/accordion.js).
+// Accordion: sections with `c: accordion`; each `###` becomes a disclosure (assets/js/modootoday/structure/accordion.js).
 @include mt-layer(components) {
   .mt-c-accordion h3 { margin: 0; border-top: 1px solid mt(border); font-size: 1rem; }
   .mt-c-accordion > h2 + h3 { margin-top: 1.25rem; }

@@ -35,16 +35,16 @@ class StylesheetProbeTest < Minitest::Test
     "bundle" => "modootoday: {css: bundle}\n",
   }.freeze
 
-  # "docs/doc.css tabs.js" short names expand to css/modootoday/docs/doc.css and js/modootoday/tabs.js.
+  # "docs/doc.css structure/tabs.js" short names expand to css/modootoday/docs/doc.css and js/modootoday/structure/tabs.js.
   def self.list(s) = s.split.map { |w| w.start_with?("css/", "js/") ? w : "#{w[/\w+\z/]}/modootoday/#{w}" }
 
   # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>).
-  CHROME = "menu.js scroll-region.js code-copy.js theme-toggle.js"
-  PLAIN = "menu.js theme-toggle.js"
-  SEARCH = "search.js search-keys.js"
+  CHROME = "chrome/menu.js content/scroll-region.js content/code-copy.js chrome/theme-toggle.js"
+  PLAIN = "chrome/menu.js chrome/theme-toggle.js"
+  SEARCH = "search.js chrome/search-keys.js"
   DEFAULT = {
     "pr/plain" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
-    "pr/table" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css data/table.css menu.js scroll-region.js theme-toggle.js #{SEARCH}",
+    "pr/table" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css data/table.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",
     "pr/spinner" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/skeleton" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/topbar" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
@@ -53,36 +53,36 @@ class StylesheetProbeTest < Minitest::Test
     "pr/checks" => "css/modootoday.css chrome/doc-nav.css marketing/hero.css docs/doc.css chrome/search.css content/lists.css #{PLAIN} #{SEARCH}",
     "pr/titled" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css content/code.css chrome/doc-nav.css marketing/hero.css docs/doc.css chrome/search.css structure/bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
-                     "tabs.js #{CHROME} accordion.js #{SEARCH}",
+                     "structure/tabs.js #{CHROME} structure/accordion.js #{SEARCH}",
     "pr/split" => "css/modootoday.css content/code.css chrome/doc-nav.css marketing/hero.css docs/doc.css chrome/search.css chrome/terminal.css structure/split.css #{CHROME} #{SEARCH}",
     "pr/css" => "css/modootoday.css chrome/doc-nav.css media/figure.css css/modootoday-hero.css docs/doc.css chrome/search.css content/lists.css structure/bleed.css #{PLAIN} #{SEARCH}",
-    "pr/bare" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css theme-toggle.js #{SEARCH}",
-    "pr/blog" => "css/modootoday.css chrome/doc-nav.css css/modootoday-blog.css docs/doc.css chrome/search.css #{PLAIN} share.js #{SEARCH}",
+    "pr/bare" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css chrome/theme-toggle.js #{SEARCH}",
+    "pr/blog" => "css/modootoday.css chrome/doc-nav.css css/modootoday-blog.css docs/doc.css chrome/search.css #{PLAIN} blog/share.js #{SEARCH}",
     "." => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css marketing/hero.css css/modootoday-hero.css docs/doc.css chrome/search.css structure/bleed.css showcase/cta.css showcase/card.css " \
-           "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
+           "structure/tabs.css structure/tabs.js #{CHROME} #{SEARCH}",
     "guide" => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css docs/doc.css chrome/search.css data/table.css #{CHROME} #{SEARCH}",
-    "blog:." => "css/modootoday.css chrome/doc-nav.css content/inline.css css/modootoday-blog.css chrome/search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
+    "blog:." => "css/modootoday.css chrome/doc-nav.css content/inline.css css/modootoday-blog.css chrome/search.css chrome/menu.js content/code-copy.js chrome/theme-toggle.js blog/share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
   SUBSET = {
-    "pr/plain" => "css/modootoday.css docs/doc.css content/loading.css menu.js",
-    "pr/svg" => "css/modootoday.css docs/doc.css content/loading.css menu.js",
-    "pr/note" => "css/modootoday.css content/inline.css docs/doc.css content/loading.css menu.js",
-    "pr/titled" => "css/modootoday.css docs/doc.css content/loading.css content/lists.css menu.js",
-    "pr/sections" => "css/modootoday.css content/code.css marketing/hero.css docs/doc.css content/loading.css structure/bleed.css structure/tabs.css structure/faq.css tabs.js menu.js scroll-region.js",
-    "pr/split" => "css/modootoday.css content/code.css marketing/hero.css docs/doc.css content/loading.css chrome/terminal.css menu.js scroll-region.js",
+    "pr/plain" => "css/modootoday.css docs/doc.css content/loading.css chrome/menu.js",
+    "pr/svg" => "css/modootoday.css docs/doc.css content/loading.css chrome/menu.js",
+    "pr/note" => "css/modootoday.css content/inline.css docs/doc.css content/loading.css chrome/menu.js",
+    "pr/titled" => "css/modootoday.css docs/doc.css content/loading.css content/lists.css chrome/menu.js",
+    "pr/sections" => "css/modootoday.css content/code.css marketing/hero.css docs/doc.css content/loading.css structure/bleed.css structure/tabs.css structure/faq.css structure/tabs.js chrome/menu.js content/scroll-region.js",
+    "pr/split" => "css/modootoday.css content/code.css marketing/hero.css docs/doc.css content/loading.css chrome/terminal.css chrome/menu.js content/scroll-region.js",
     "pr/bare" => "css/modootoday.css docs/doc.css content/loading.css",
-    "pr/blog" => "css/modootoday.css css/modootoday-blog.css docs/doc.css content/loading.css menu.js",
-    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css content/loading.css data/table.css menu.js scroll-region.js code-copy.js",
-    "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css content/loading.css menu.js code-copy.js",
+    "pr/blog" => "css/modootoday.css css/modootoday-blog.css docs/doc.css content/loading.css chrome/menu.js",
+    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css content/loading.css data/table.css chrome/menu.js content/scroll-region.js content/code-copy.js",
+    "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css content/loading.css chrome/menu.js content/code-copy.js",
   }.freeze
   BUNDLE = {
     "pr/svg" => "css/modootoday.css #{PLAIN} #{SEARCH}",
     "pr/note" => "css/modootoday.css #{PLAIN} #{SEARCH}",
-    "pr/sections" => "css/modootoday.css tabs.js #{CHROME} accordion.js #{SEARCH}",
+    "pr/sections" => "css/modootoday.css structure/tabs.js #{CHROME} structure/accordion.js #{SEARCH}",
     "pr/css" => "css/modootoday.css css/modootoday-hero.css #{PLAIN} #{SEARCH}",
-    "pr/bare" => "css/modootoday.css theme-toggle.js #{SEARCH}",
-    "blog:." => "css/modootoday.css css/modootoday-blog.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
+    "pr/bare" => "css/modootoday.css chrome/theme-toggle.js #{SEARCH}",
+    "blog:." => "css/modootoday.css css/modootoday-blog.css chrome/menu.js content/code-copy.js chrome/theme-toggle.js blog/share.js #{SEARCH}",
   }.freeze
 
   { "default" => DEFAULT, "subset" => SUBSET, "bundle" => BUNDLE }.each do |config, pages|
@@ -105,7 +105,7 @@ class StylesheetProbeTest < Minitest::Test
   def tags(name, key)
     starter, page = key.include?(":") ? key.split(":", 2) : ["docs", key]
     h = File.read(File.join(site(name, starter), page, "index.html"))
-    h.scan(%r{<link rel="stylesheet" href="/assets/([^"?]+)[^"]*"|<script src="/assets/([^"?]+)[^"]*"}).map { |a, b| a || b }
+    h.scan(%r{<link rel="stylesheet" href="/assets/([^"?]+)[^"]*"|<script (?:type="module" )?src="/assets/([^"?]+)[^"]*"}).map { |a, b| a || b }
   end
 
   # Every page of a config in one comparison, so one run shows every difference.

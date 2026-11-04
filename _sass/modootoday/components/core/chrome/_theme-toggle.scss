@@ -1,4 +1,4 @@
-// Light/dark toggle button (assets/js/modootoday/theme-toggle.js). Shown from the first paint when scripting is on
+// Light/dark toggle button (assets/js/modootoday/chrome/theme-toggle.js). Shown from the first paint when scripting is on
 // (no header jump when the deferred script runs); the icon follows the scheme in CSS, not aria-pressed.
 @include mt-layer(components) {
   // Icon button: a moon while light, a sun while dark; the name is the aria-label.

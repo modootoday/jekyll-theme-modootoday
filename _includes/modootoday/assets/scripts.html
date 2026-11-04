@@ -18,14 +18,18 @@
 {%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search|search-keys|" -%}{%- endif -%}
 {%- if mt_components contains "filter" and _mta_hit contains "|filter|" -%}{%- assign _mta_on = _mta_on | append: "filter|" -%}{%- endif -%}
-{%- assign _mta_done = "|" -%}
+{%- assign _mta_done = "|" -%}{%- assign _mta_pre = "|" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
 {%- if _mta_c[1] == "js" or _mta_c[1] == "module" -%}{%- if _mta_on contains _mta_k -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}
-{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p -%}
-{%- if _mta_c[1] == "module" %}
-<script type="module" src="{{ mt_asset_url }}"></script>
+{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p -%}{%- assign _mta_src = mt_asset_url -%}
+{%- if _mta_c[1] == "module" -%}{%- assign _mta_deps = _mta_c[6] | split: " " -%}
+{%- for _mta_d in _mta_deps -%}{%- assign _mta_dk = "|" | append: _mta_d | append: "|" -%}{%- unless _mta_pre contains _mta_dk -%}{%- assign _mta_pre = _mta_pre | append: _mta_d | append: "|" -%}
+{%- include modootoday/assets/url.html path=_mta_d version=false %}
+<link rel="modulepreload" href="{{ mt_asset_url }}">
+{%- endunless -%}{%- endfor %}
+<script type="module" src="{{ _mta_src }}"></script>
 {%- else %}
-<script src="{{ mt_asset_url }}" defer></script>
+<script src="{{ _mta_src }}" defer></script>
 {%- endif -%}
 {%- endunless -%}{%- endif -%}{%- endif -%}{%- endfor -%}
 {%- include modootoday/render/mermaid.html -%}

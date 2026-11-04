@@ -3,9 +3,9 @@ id: adr:modootoday/20261103210503
 title: "The code copy button is a 32px icon button named by aria-label, in the title bar or a reserved strip, with a polite status"
 status: active
 created: 2026-11-03T21:05:03Z
-updated: 2026-11-03T21:05:19Z
+updated: 2026-11-04T06:19:31Z
 rel:
-  governs: [_sass/modootoday/components/core/inline/_code-copy.scss, assets/js/modootoday/code-copy.js]
+  governs: [_sass/modootoday/components/core/inline/_code-copy.scss, assets/js/modootoday/content/code-copy.js]
 ---
 
 # The code copy button is a 32px icon button named by aria-label, in the title bar or a reserved strip, with a polite status

@@ -3,9 +3,9 @@ id: adr:modootoday/20261103033054
 title: "The list and table filter is an ES module that only pages with filter: load"
 status: active
 created: 2026-11-03T03:30:53Z
-updated: 2026-11-03T03:31:29Z
+updated: 2026-11-04T06:19:31Z
 rel:
-  governs: [assets/js/modootoday/filter/filter.js, _includes/modootoday/filter/controls.html]
+  governs: [_includes/modootoday/filter/controls.html, assets/js/modootoday/data/filter.js]
 ---
 
 # The list and table filter is an ES module that only pages with filter: load

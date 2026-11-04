@@ -2,7 +2,7 @@
 // Liquid writes the controls hidden, so without JavaScript every item stays visible.
 import { terms, matches } from "../text/normalize.js";
 import { readConfig } from "../dom/config.js";
-import { chips, cellText } from "./chips.js";
+import { chips, cellText } from "./filter-chips.js";
 
 // Items hidden by something else (the directory's CSS facet) do not count as shown.
 const shown = (r) => !r.hidden && (!r.checkVisibility || r.checkVisibility());
@@ -55,4 +55,8 @@ export function initFilter(root) {
   box.hidden = false;
 }
 
-document.querySelectorAll("[data-mt-filter]").forEach(initFilter);
+export function init(root) {
+  root.querySelectorAll("[data-mt-filter]").forEach(initFilter);
+}
+
+init(document);

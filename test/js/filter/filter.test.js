@@ -1,4 +1,4 @@
-// jsdom tests for assets/js/modootoday/filter/filter.js (with chips.js): lists, tables, facet chips and keys. Run: npm test
+// jsdom tests for assets/js/modootoday/data/filter.js (with chips.js): lists, tables, facet chips and keys. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const path = require("node:path");
@@ -16,7 +16,7 @@ async function page(body) {
   const w = new JSDOM(`<!doctype html><html><body>${body}</body></html>`).window;
   if (!mod) {
     globalThis.document = new JSDOM("<!doctype html><html><body></body></html>").window.document;
-    mod = await import(pathToFileURL(path.join(__dirname, "../../../assets/js/modootoday/filter/filter.js")).href);
+    mod = await import(pathToFileURL(path.join(__dirname, "../../../assets/js/modootoday/data/filter.js")).href);
   }
   globalThis.document = w.document;
   const root = w.document.querySelector("[data-mt-filter]");

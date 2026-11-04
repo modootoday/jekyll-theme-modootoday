@@ -1,5 +1,5 @@
-{%- comment -%}Sets mt_asset_url for include.path (a site path such as /assets/js/modootoday/tabs.js). Every theme CSS and JS
+{%- comment -%}Sets mt_asset_url for include.path (a site path such as /assets/js/modootoday/structure/tabs.js). Every theme CSS and JS
   tag takes its URL from here. The ?v= query (mt_asset_v, assets/registry.html) lets a CDN cache theme files for long;
-  GitHub Pages ignores it and serves the same file.{%- endcomment -%}
+  GitHub Pages ignores it and serves the same file. version=false leaves it off (module imports and their preloads).{%- endcomment -%}
 {%- assign mt_asset_url = include.path | relative_url -%}
-{%- if mt_asset_v and mt_asset_v != "" -%}{%- assign mt_asset_url = mt_asset_url | append: "?v=" | append: mt_asset_v -%}{%- endif -%}
+{%- if mt_asset_v and mt_asset_v != "" and include.version != false -%}{%- assign mt_asset_url = mt_asset_url | append: "?v=" | append: mt_asset_v -%}{%- endif -%}
