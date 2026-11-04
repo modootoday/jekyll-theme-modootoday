@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:4c3f18b429ce
+source_rev: sha256:f7673a0885e6
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -24,7 +24,7 @@ sections:
 ### GitHub Pages
 
 ```yaml
-# _config.yml (classic GitHub Pages build, no Gemfile needed)
+# _config.yml（従来の GitHub Pages ビルド。ローカルでビルドするには github-pages gem の Gemfile も必要）
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```
@@ -56,14 +56,21 @@ lang: en
 permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
+sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: Dart Sass の @import の通知を抑える
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
 
 > [!TIP]
 > `remote_theme` を使う場合は、`theme:` の行を GitHub Pages タブにある `remote_theme` の 2 行に置き換えてください。
+>
+> このサイトを手元の github-pages gem でビルドするには、`repository: <owner>/<name>`（GitHub のリポジトリ）も追加するか、環境変数 `PAGES_REPO_NWO=<owner>/<name>` を設定します。どちらもなく、GitHub の `origin` リモートを持つクローンの外でビルドすると、「No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository.」というエラーで止まります。GitHub Pages ではこの値が自動で設定されます。
+
+`sass:` の行は、Jekyll 4 のビルドで `@import` に関する Dart Sass の通知が何千行も出力されないようにします。出力結果はどちらでも同じです。
 
 ## ビルドを確認する
+
+`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[エージェント向け](../agents/)）。ページごとの Markdown のツインと、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横にツインのスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。Markdown だけを確認するには `--twins` を外します。
 
 ```sh
 bundle exec jekyll build
@@ -96,7 +103,7 @@ ruby /tmp/jekyll-theme-modootoday-1.4.1/exe/modootoday-check . _site --twins
 
 GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`。
 
-`github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が警告を抑える設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
+`github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が `sass: silence_deprecations` の設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
 
 ## スターターサイト
 

@@ -13,7 +13,9 @@ module Modootoday
     #    llms.txt / llms-full.txt exist at / and at /<lang>/ for each language with pages; llms-full.txt contains
     #    every page body of its language.
     module Twins
-      HINT = "add a stub %s (front matter `layout: twin`, `twin_of`, `permalink`) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
+      HINT = "add a stub %s with front matter `layout: twin`, `twin_of: %s` and `permalink: %s` (`modootoday-stubs SRC --twins --write` " \
+             "writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
+      LLMS = "missing: add %s with only front matter `layout: %s`%s and no body, or enable `plugins: [jekyll-theme-modootoday]`"
 
       module_function
 
@@ -56,7 +58,7 @@ module Modootoday
         out = twin_path(site, rf, r, fm)
         b = Markdown.body(src)
         bodies[lang] << [rf, b]
-        return errs << "#{rf}: twin missing at #{out}: #{format(HINT, "#{rf}.txt")}" unless File.exist?(out)
+        return errs << "#{rf}: twin missing at #{out}: #{format(HINT, "#{rf}.txt", File.basename(rf), out.delete_prefix(site))}" unless File.exist?(out)
         tw = File.binread(out)
         pk = fm["layout"] == "reference" && fm["packages"].is_a?(Array) && !fm["packages"].empty? ? fm["packages"] : nil
         return errs << "#{out}: twin is not byte-identical to the body of #{rf}" unless pk || tw == b.b
@@ -79,7 +81,8 @@ module Modootoday
         langs.each do |l|
           %w[llms.txt llms-full.txt].each do |n|
             p = [ctx.site, l, n].reject(&:empty?).join("/")
-            next ctx.errs << "#{p}: missing (per-language llms file; stub with `layout: #{n.delete_suffix('.txt')}` or the plugin)" unless File.exist?(p)
+            stub = [l, n].reject(&:empty?).join("/")
+            next ctx.errs << "#{p}: #{format(LLMS, stub, n.delete_suffix('.txt'), l.empty? ? '' : " and `lang: #{l}`")}" unless File.exist?(p)
             txt = File.read(p)
             if n == "llms.txt"
               ctx.errs << "#{p}: must start with an H1 (llmstxt.org)" unless txt.start_with?("# ")

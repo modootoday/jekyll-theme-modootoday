@@ -98,8 +98,8 @@ class CheckBuildTest < CheckerCase
     File.delete(File.join(@site, "ko/llms-full.txt"))
     File.delete(File.join(@site, "ko/g/index.md"))
     o, = check("--twins")
-    assert_match(%r{g\.ko\.md: twin missing at .*/ko/g/index\.md}, o)
-    assert_match(%r{ko/llms-full\.txt: missing}, o)
+    assert_match(%r{g\.ko\.md: twin missing at .*/ko/g/index\.md: add a stub g\.ko\.md\.txt with front matter `layout: twin`, `twin_of: g\.ko\.md` and `permalink: /ko/g/index\.md`}, o)
+    assert_match(%r{ko/llms-full\.txt: missing: add ko/llms-full\.txt with only front matter `layout: llms-full` and `lang: ko` and no body}, o)
   end
 
   def test_stub_must_use_twin_layout

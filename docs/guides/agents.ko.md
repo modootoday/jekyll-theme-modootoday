@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/agents/
-source_rev: sha256:7ff002c59e2b
+source_rev: sha256:4ed66d6e6b1e
 nav_order: 50
 nav_title: 에이전트
 title: 에이전트용
@@ -73,12 +73,15 @@ modootoday:
 
 ## llms.txt
 
-`/llms.txt`는 [llmstxt.org](https://llmstxt.org) 형식으로 한 언어의 모든 페이지를 나열합니다. `/llms-full.txt`는 모든 페이지 본문을 이어 붙입니다. 둘 다 한 줄짜리 스텁으로 만듭니다.
+`/llms.txt`는 [llmstxt.org](https://llmstxt.org) 형식으로 한 언어의 모든 페이지를 나열합니다. `/llms-full.txt`는 모든 페이지 본문을 이어 붙입니다. 플러그인이 둘 다 추가하고, 기본 GitHub Pages에서는 사이트 루트에 front matter만 담은 파일 두 개, `llms.txt`와 `llms-full.txt`로 만듭니다.
 
 ```yaml
+# llms.txt (llms-full.txt는 layout: llms-full로 같게)
 ---
 layout: llms
 ---
 ```
+
+페이지가 있는 다른 언어마다 그 언어 폴더에 같은 두 파일을 두고 `lang:`을 적습니다. 예를 들어 `ko/llms.txt`에는 `layout: llms`와 `lang: ko`를 씁니다. 빠진 파일은 `modootoday-check --twins`가 알려 줍니다.
 
 이 사이트에서 확인해 보세요: [llms.txt](../../llms.txt), [llms-full.txt](../../llms-full.txt).

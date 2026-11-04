@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:7ae4871515d0
+source_rev: sha256:7633da1e85b2
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -56,7 +56,7 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 ## アップグレード
 
-飛ばすすべてのバージョンについて `CHANGELOG.md` を読んでください。文書化された名前は[公開 API](../../reference/api/)にあります。アップグレード後に `modootoday-check --strict` を実行してください。
+飛ばすすべてのバージョンについて `CHANGELOG.md` を読んでください。文書化された名前は[公開 API](../../reference/api/)にあります。アップグレード後にサイトをビルドし、`modootoday-check . _site --strict` を実行してください（ソースのフォルダー、ビルドしたサイトの順）。
 
 | 移行元 | 移行先 | やること |
 |---|---|---|

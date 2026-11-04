@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/agents/
-source_rev: sha256:7ff002c59e2b
+source_rev: sha256:4ed66d6e6b1e
 nav_order: 50
 nav_title: AI 向け
 title: エージェント向け
@@ -73,12 +73,15 @@ modootoday:
 
 ## llms.txt
 
-`/llms.txt` は [llmstxt.org](https://llmstxt.org) に従って、ある言語のすべてのページを一覧にします。`/llms-full.txt` はすべてのページ本文をつなげたものです。どちらも 1 行のスタブから作られます。
+`/llms.txt` は [llmstxt.org](https://llmstxt.org) に従って、ある言語のすべてのページを一覧にします。`/llms-full.txt` はすべてのページ本文をつなげたものです。プラグインが両方を追加します。従来の GitHub Pages では、サイトのルートに front matter だけを書いた 2 つのファイル `llms.txt` と `llms-full.txt` から作ります。
 
 ```yaml
+# llms.txt（llms-full.txt は layout: llms-full にして同じように）
 ---
 layout: llms
 ---
 ```
+
+ページのあるほかの言語ごとに、その言語のフォルダーに同じ 2 つのファイルを置き、`lang:` を書きます。たとえば `ko/llms.txt` には `layout: llms` と `lang: ko` を書きます。足りないファイルは `modootoday-check --twins` が知らせます。
 
 このサイトで試せます: [llms.txt](../../llms.txt) と [llms-full.txt](../../llms-full.txt)。

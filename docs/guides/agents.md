@@ -67,12 +67,15 @@ Then `modootoday-stubs . --aliases --write` adds up to two stubs for each page w
 
 ## llms.txt
 
-`/llms.txt` lists every page of a language, following [llmstxt.org](https://llmstxt.org). `/llms-full.txt` concatenates every page body. Both come from one-line stubs:
+`/llms.txt` lists every page of a language, following [llmstxt.org](https://llmstxt.org). `/llms-full.txt` concatenates every page body. The plugin adds both; on classic GitHub Pages they come from two files at the site root that hold only front matter, `llms.txt` and `llms-full.txt`:
 
 ```yaml
+# llms.txt (llms-full.txt is the same with layout: llms-full)
 ---
 layout: llms
 ---
 ```
+
+Each other language with pages needs the same two files in its folder with its `lang:`, such as `ko/llms.txt` with `layout: llms` and `lang: ko`. `modootoday-check --twins` names any that are missing.
 
 Try them on this site: [llms.txt](../../llms.txt) and [llms-full.txt](../../llms-full.txt).

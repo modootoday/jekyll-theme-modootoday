@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:7ae4871515d0
+source_rev: sha256:7633da1e85b2
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -56,7 +56,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 
 ## 업그레이드
 
-건너뛰는 모든 버전의 `CHANGELOG.md`를 읽으세요. 문서화된 이름은 [공개 API](../../reference/api/)에 있습니다. 업그레이드한 뒤 `modootoday-check --strict`를 실행하세요.
+건너뛰는 모든 버전의 `CHANGELOG.md`를 읽으세요. 문서화된 이름은 [공개 API](../../reference/api/)에 있습니다. 업그레이드한 뒤 사이트를 빌드하고 `modootoday-check . _site --strict`를 실행하세요(소스 폴더, 빌드한 사이트 순서).
 
 | 이전 | 이후 | 할 일 |
 |---|---|---|

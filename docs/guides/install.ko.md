@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:4c3f18b429ce
+source_rev: sha256:f7673a0885e6
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
@@ -23,7 +23,7 @@ sections:
 ### GitHub Pages
 
 ```yaml
-# _config.yml (기본 GitHub Pages 빌드, Gemfile 불필요)
+# _config.yml (기본 GitHub Pages 빌드. 로컬 빌드에는 github-pages gem의 Gemfile도 필요)
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```
@@ -55,14 +55,21 @@ lang: ko
 permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
+sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: Dart Sass의 @import 안내 숨김
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
 
 > [!TIP]
 > `remote_theme`을 쓸 때는 `theme:` 줄 대신 GitHub Pages 탭의 `remote_theme` 두 줄을 넣으세요.
+>
+> 이 사이트를 내 컴퓨터에서 github-pages gem으로 빌드하려면 `repository: <owner>/<name>`(GitHub 저장소)도 추가하거나 환경 변수 `PAGES_REPO_NWO=<owner>/<name>`을 설정하세요. 둘 다 없고 GitHub `origin` 원격이 있는 복제본 밖에서 빌드하면 "No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository." 오류로 멈춥니다. GitHub Pages에서는 이 값을 자동으로 정합니다.
+
+`sass:` 줄은 Jekyll 4 빌드에서 `@import`에 관한 Dart Sass 안내가 수천 줄 출력되지 않게 합니다. 결과물은 어느 쪽이든 같습니다.
 
 ## 빌드 확인
+
+`--twins`는 테마가 AI 에이전트용으로 내보내는 파일도 확인합니다([에이전트용](../agents/)). 페이지마다 하나씩인 Markdown 쌍둥이와 `llms.txt`, `llms-full.txt`입니다. Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`를 추가하면 빌드가 만들어 줍니다. 기본 GitHub Pages에서는 `modootoday-stubs . --twins --write`를 한 번 실행해 페이지마다 쌍둥이 스텁을 추가하고, 사이트 루트에 front matter만 담은 파일 두 개를 둡니다. `layout: llms`인 `llms.txt`와 `layout: llms-full`인 `llms-full.txt`입니다. Markdown만 검사하려면 `--twins`를 빼세요.
 
 ```sh
 bundle exec jekyll build
@@ -95,7 +102,7 @@ ruby /tmp/jekyll-theme-modootoday-1.4.1/exe/modootoday-check . _site --twins
 
 GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`.
 
-`github-pages` gem이 내는 경고 두 가지는 무시해도 됩니다. `To use retry middleware with Faraday v2.0+, install faraday-retry gem`이 나와도 원격 테마는 정상으로 내려받습니다. `@import`에 관한 Sass 안내는 GitHub Pages의 Sass가 경고 숨김 옵션을 읽지 않는 이전 버전이라서 `_config.yml`에 설정해도 계속 나옵니다. 어느 쪽이든 빌드 결과는 정상입니다.
+`github-pages` gem이 내는 경고 두 가지는 무시해도 됩니다. `To use retry middleware with Faraday v2.0+, install faraday-retry gem`이 나와도 원격 테마는 정상으로 내려받습니다. `@import`에 관한 Sass 안내는 GitHub Pages의 Sass가 `sass: silence_deprecations` 옵션을 읽지 않는 이전 버전이라서 `_config.yml`에 설정해도 계속 나옵니다. 어느 쪽이든 빌드 결과는 정상입니다.
 
 ## 시작 사이트
 

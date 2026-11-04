@@ -17,7 +17,7 @@ Pick the build you already use. All three read the same Markdown.
 ### GitHub Pages
 
 ```yaml
-# _config.yml (classic GitHub Pages build, no Gemfile needed)
+# _config.yml (classic GitHub Pages build; a local build also needs the github-pages gem Gemfile)
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```
@@ -49,14 +49,21 @@ lang: en
 permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
+sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: no Dart Sass @import notices
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
 
 > [!TIP]
 > With `remote_theme`, replace the `theme:` line with the two `remote_theme` lines from the GitHub Pages tab.
+>
+> To build that site on your machine with the github-pages gem, also add `repository: <owner>/<name>` (your GitHub repository), or set the environment variable `PAGES_REPO_NWO=<owner>/<name>`. Without either, outside a clone with a GitHub `origin` remote, the build stops with "No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository." GitHub Pages itself sets it.
+
+The `sass:` line keeps a Jekyll 4 build from printing thousands of Dart Sass notices about `@import`; the output is the same either way.
 
 ## Verify the build
+
+`--twins` also checks the files the theme publishes for AI agents ([For agents](../agents/)): a Markdown twin of each page, and `llms.txt` and `llms-full.txt`. On Jekyll 4, add `plugins: [jekyll-theme-modootoday]` and the build makes them. On classic GitHub Pages, run `modootoday-stubs . --twins --write` once to add a twin stub beside each page, and add two files at the site root that hold only front matter: `llms.txt` with `layout: llms` and `llms-full.txt` with `layout: llms-full`. To check only the Markdown, leave `--twins` out.
 
 ```sh
 bundle exec jekyll build
@@ -89,7 +96,7 @@ Use the tag your `remote_theme` line names.
 
 In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`.
 
-Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the Sass silencing option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
+Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the `sass: silence_deprecations` option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
 
 ## Starter sites
 

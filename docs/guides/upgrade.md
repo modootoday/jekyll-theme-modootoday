@@ -50,7 +50,7 @@ To let the kit write the SEO tags instead of `jekyll-seo-tag`:
 
 ## Upgrading
 
-Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference/api/) page lists the documented names. After upgrading, run `modootoday-check --strict`.
+Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference/api/) page lists the documented names. After upgrading, build the site and run `modootoday-check . _site --strict` (the source folder, then the built site).
 
 | From | To | What to do |
 |---|---|---|
