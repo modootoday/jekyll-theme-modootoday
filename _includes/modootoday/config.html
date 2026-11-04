@@ -18,10 +18,9 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- assign mt = site.modootoday -%}
 {%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,lists,reveal,bleed,terminal,visual,filter,table,table-stack" | split: "," -%}
 {%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
-  Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (c:sheet).
+  Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (section rows of assets/registry.html).
   Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}
 {%- assign mt_core_partials = "core/inline/badge,core/inline/kbd,core/inline/code-copy,core/inline/hero,core/inline/reveal,core/inline/cta,core/inline/code,core/inline/footnotes,core/inline/progress,core/chrome/nav,core/chrome/theme-toggle,core/chrome/breadcrumb,core/chrome/pagination,core/chrome/banner" | split: "," -%}
-{%- assign mt_section_sheets = "cta:showcase/cta,features:showcase/card,linkcards:showcase/linkcards,quote:showcase/quote,gallery:showcase/gallery,pricing:showcase/pricing,subscribe:showcase/subscribe,tabs:structure/tabs,accordion:structure/accordion,steps:structure/steps,timeline:structure/timeline,filetree:structure/filetree,details:structure/details,faq:structure/faq,params:structure/params,split:structure/split" | split: "," -%}
 {%- include modootoday/assets/registry.html -%}
 {%- assign mt_components = mt_all_components -%}
 {%- if mt.components -%}{%- assign _mt_optin = "lists,bleed,terminal,visual,filter,table,table-stack" | split: "," -%}{%- assign mt_components = mt.components | concat: _mt_optin | uniq -%}{%- endif -%}

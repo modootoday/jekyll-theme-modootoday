@@ -1,50 +1,76 @@
-{%- comment -%}Theme asset table, one row per optional sheet or script: name|kind|path|probe|parts. kind: css, js (a classic
-  deferred script) or module (an ES module script). probe: text in the rendered body that turns the row on (repeat a row for
-  another probe); parts: the Sass partials modootoday.css: bundle folds in (components/<name>/_<part>.scss, or a path under
-  components/ when the part has a slash, so a moved rule keeps the partial path sites shadow).
-  Sets mt_asset_rows and mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss).{%- endcomment -%}
+{%- comment -%}The theme's CSS and JS files, one row each: name|kind|path|triggers|parts|cap|deps. kind: css (a context sheet, assets/sheets.html),
+  section (a section sheet; triggers is the sections: name), js (a classic deferred script) or module (assets/scripts.html). triggers: texts
+  of the rendered body that turn the row on, separated by ^. parts: the Sass partials of css: bundle (components/<name>/_<part>.scss, or a path
+  under components/ when it has a slash, so a moved rule keeps the partial path sites shadow). cap: gzip bytes (qa/audit/budgets/modules.mjs).
+  deps: a module's static imports. _mta_fixed holds the files the layouts link themselves; Liquid never reads it.
+  Sets mt_asset_rows, mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss) and mt_section_sheets.{%- endcomment -%}
 {%- capture _mta_rows -%}
-doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions
-search|css|/assets/css/modootoday/search.css||search
-loading|css|/assets/css/modootoday/loading.css|class="mt-spinner|loading
-loading|css|/assets/css/modootoday/loading.css|class="mt-skeleton
-loading|css|/assets/css/modootoday/loading.css|class="mt-topbar
-content|css|/assets/css/modootoday/content.css|class="mt-callout|core/inline/callout core/inline/figure core/inline/embed
-content|css|/assets/css/modootoday/content.css|class="mt-figure
-content|css|/assets/css/modootoday/content.css|mt-illustration
-content|css|/assets/css/modootoday/content.css|class="mt-embed
-figure|css|/assets/css/modootoday/figure.css|class="mt-figure mt-figure-svg|figure-svg
-lists|css|/assets/css/modootoday/lists.css|class="mt-hero mt-hero-checks|lists
-lists|css|/assets/css/modootoday/lists.css|class="mt-chips"
-lists|css|/assets/css/modootoday/lists.css|class="mt-item-title"
-bleed|css|/assets/css/modootoday/bleed.css||bleed
-terminal|css|/assets/css/modootoday/terminal.css||terminal
-visual|css|/assets/css/modootoday/visual.css|class="mt-visual-poster|visual
-visual|css|/assets/css/modootoday/visual.css|data-mt-script="
-filter|css|/assets/css/modootoday/filter.css|<div class="mt-filter"|filter
-table|css|/assets/css/modootoday/table.css|<table|table
-table-stack|css|/assets/css/modootoday/table-stack.css|class="mt-table--|table-stack
-table-stack|css|/assets/css/modootoday/table-stack.css| mt-table--
-tabs|js|/assets/js/modootoday/tabs.js
-menu|js|/assets/js/modootoday/menu.js
-scroll-region|js|/assets/js/modootoday/scroll-region.js|<pre
-scroll-region|js|/assets/js/modootoday/scroll-region.js|<table
-table-stack|js|/assets/js/modootoday/table-stack.js|class="mt-table--
-table-stack|js|/assets/js/modootoday/table-stack.js| mt-table--
-code-copy|js|/assets/js/modootoday/code-copy.js|<pre
-theme-toggle|js|/assets/js/modootoday/theme-toggle.js
-accordion|js|/assets/js/modootoday/accordion.js
-share|js|/assets/js/modootoday/share.js
-search|js|/assets/js/modootoday/search.js
-search-keys|js|/assets/js/modootoday/search-keys.js
-filter|module|/assets/js/modootoday/filter/filter.js|<div class="mt-filter"
+doc|css|/assets/css/modootoday/doc.css||sidebar toc page-actions|1152
+search|css|/assets/css/modootoday/search.css||search|1024
+loading|css|/assets/css/modootoday/loading.css|class="mt-spinner^class="mt-skeleton^class="mt-topbar|loading|1024
+content|css|/assets/css/modootoday/content.css|class="mt-callout^class="mt-figure^mt-illustration^class="mt-embed|core/inline/callout core/inline/figure core/inline/embed|768
+figure|css|/assets/css/modootoday/figure.css|class="mt-figure mt-figure-svg|figure-svg|512
+lists|css|/assets/css/modootoday/lists.css|class="mt-hero mt-hero-checks^class="mt-chips"^class="mt-item-title"|lists|640
+bleed|css|/assets/css/modootoday/bleed.css||bleed|512
+terminal|css|/assets/css/modootoday/terminal.css||terminal|384
+visual|css|/assets/css/modootoday/visual.css|class="mt-visual-poster^data-mt-script="|visual|256
+filter|css|/assets/css/modootoday/filter.css|<div class="mt-filter"|filter|512
+table|css|/assets/css/modootoday/table.css|<table|table|896
+table-stack|css|/assets/css/modootoday/table-stack.css|class="mt-table--^ mt-table--|table-stack|640
+cta|section|/assets/css/modootoday/showcase/cta.css|cta||384
+card|section|/assets/css/modootoday/showcase/card.css|features||640
+linkcards|section|/assets/css/modootoday/showcase/linkcards.css|linkcards||640
+quote|section|/assets/css/modootoday/showcase/quote.css|quote||384
+gallery|section|/assets/css/modootoday/showcase/gallery.css|gallery||640
+pricing|section|/assets/css/modootoday/showcase/pricing.css|pricing||640
+subscribe|section|/assets/css/modootoday/showcase/subscribe.css|subscribe||512
+tabs|section|/assets/css/modootoday/structure/tabs.css|tabs||640
+accordion|section|/assets/css/modootoday/structure/accordion.css|accordion||640
+steps|section|/assets/css/modootoday/structure/steps.css|steps||512
+timeline|section|/assets/css/modootoday/structure/timeline.css|timeline||512
+filetree|section|/assets/css/modootoday/structure/filetree.css|filetree||512
+details|section|/assets/css/modootoday/structure/details.css|details||512
+faq|section|/assets/css/modootoday/structure/faq.css|faq||640
+params|section|/assets/css/modootoday/structure/params.css|params||384
+split|section|/assets/css/modootoday/structure/split.css|split||512
+tabs|js|/assets/js/modootoday/tabs.js|||1024
+menu|js|/assets/js/modootoday/menu.js|||640
+scroll-region|js|/assets/js/modootoday/scroll-region.js|<pre^<table||640
+table-stack|js|/assets/js/modootoday/table-stack.js|class="mt-table--^ mt-table--||640
+code-copy|js|/assets/js/modootoday/code-copy.js|<pre||1152
+theme-toggle|js|/assets/js/modootoday/theme-toggle.js|||640
+accordion|js|/assets/js/modootoday/accordion.js|||512
+share|js|/assets/js/modootoday/share.js|||512
+search|js|/assets/js/modootoday/search.js|||1408
+search-keys|js|/assets/js/modootoday/search-keys.js|||640
+filter|module|/assets/js/modootoday/filter/filter.js|<div class="mt-filter"||1024|/assets/js/modootoday/text/normalize.js /assets/js/modootoday/dom/config.js /assets/js/modootoday/filter/chips.js
+{%- endcapture -%}
+{%- capture _mta_fixed -%}
+core|sheet|/assets/css/modootoday.css|||6528
+blog|sheet|/assets/css/modootoday-blog.css|||2176
+detail|sheet|/assets/css/modootoday-detail.css|||1024
+directory|sheet|/assets/css/modootoday-directory.css|||1920
+docs-extra|sheet|/assets/css/modootoday-docs-extra.css|||1664
+hero|sheet|/assets/css/modootoday-hero.css|||1280
+marketing|sheet|/assets/css/modootoday-marketing.css|||1536
+pages|sheet|/assets/css/modootoday-pages.css|||1408
+resume|sheet|/assets/css/modootoday-resume.css|||768
+theme-init|script|/assets/js/modootoday/theme-init.js|||256
+mermaid|script|/assets/js/modootoday-mermaid.js|||1152
+math|script|/assets/js/modootoday-math.js|||768
+config|import|/assets/js/modootoday/dom/config.js|||640
+normalize|import|/assets/js/modootoday/text/normalize.js|||512
+current|import|/assets/js/modootoday/theme/current.js|||640
+chips|import|/assets/js/modootoday/filter/chips.js|||640
 {%- endcapture -%}
 {%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
-{%- assign _mta_cs = "" -%}
+{%- assign _mta_cs = "" -%}{%- assign _mta_ss = "" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
-{%- if _mta_c[4] -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}{%- endif -%}
+{%- if _mta_c[1] == "css" and _mta_c[4] and _mta_c[4] != "" -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}
+{%- elsif _mta_c[1] == "section" -%}{%- assign _mta_sp = _mta_c[2] | remove_first: "/assets/css/modootoday/" | remove: ".css" -%}{%- assign _mta_ss = _mta_ss | append: "," | append: _mta_c[3] | append: ":" | append: _mta_sp -%}{%- endif -%}
 {%- endfor -%}
 {%- assign mt_context_sheets = _mta_cs | remove_first: "," | split: "," -%}
+{%- assign mt_section_sheets = _mta_ss | remove_first: "," | split: "," -%}
 {%- comment -%}mt_asset_v: the ?v= query of every theme CSS and JS URL (assets/url.html), from modootoday.asset_version:
   theme (default) the theme version, build adds the commit (or the build time), false none.{%- endcomment -%}
 {%- include modootoday/version.html -%}

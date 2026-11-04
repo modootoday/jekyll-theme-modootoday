@@ -2,9 +2,9 @@
   rendered body adds its name to mt_page_c; each sheet is linked once when mt_page_c or the layout chain's mt_sheets names it.{%- endcomment -%}
 {%- if site.modootoday.loading -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
-{%- if _mta_c[1] == "css" and _mta_c[3] and _mta_c[3] != "" and content contains _mta_c[3] -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
-{%- unless mt_page_c contains _mta_k -%}{%- assign mt_page_c = mt_page_c | append: _mta_c[0] | append: "|" -%}{%- endunless -%}
-{%- endif -%}{%- endfor -%}
+{%- if _mta_c[1] == "css" and _mta_c[3] and _mta_c[3] != "" -%}{%- assign _mta_ps = _mta_c[3] | split: "^" -%}{%- for _mta_p in _mta_ps -%}{%- if content contains _mta_p -%}
+{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}{%- unless mt_page_c contains _mta_k -%}{%- assign mt_page_c = mt_page_c | append: _mta_c[0] | append: "|" -%}{%- endunless -%}{%- break -%}
+{%- endif -%}{%- endfor -%}{%- endif -%}{%- endfor -%}
 {%- assign _mta_ls = layout.mt_sheets | default: "" -%}{%- assign _mta_done = "|" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
 {%- if _mta_c[1] == "css" -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}

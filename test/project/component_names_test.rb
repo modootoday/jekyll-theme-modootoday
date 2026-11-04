@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 # Component names live in several homes that cannot read one data file yet: config.html (mt_all_components,
-# mt_core_partials, mt_section_sheets), the _sass/modootoday.scss imports, the checker's COMPONENTS, the asset
-# registry and docs/_data/components.yml. This pins them to each other.
+# mt_core_partials), the _sass/modootoday.scss imports, the checker's COMPONENTS, the asset registry (parts and
+# section rows) and docs/_data/components.yml. This pins them to each other.
 require "minitest/autorun"
 require "yaml"
 require_relative "../../lib/modootoday/check"
+require_relative "../support/asset_registry"
 
 class ComponentNamesTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -16,7 +17,7 @@ class ComponentNamesTest < Minitest::Test
   def config_list(name) = config[/assign #{name} = "([^"]+)"/, 1].to_s.split(",")
   def liquid = config_list("mt_all_components")
   def core_partials = config_list("mt_core_partials")
-  def section_sheets = config_list("mt_section_sheets").to_h { |s| s.split(":", 2) }
+  def section_sheets = AssetRegistry.rows("_mta_rows").select { |r| r.kind == "section" }.to_h { |r| [r.triggers.first, r.path[%r{modootoday/(.+)\.css}, 1]] }
   def name_of(partial) = partial.split("/").last
 
   # Partial paths under components/, without the underscore and extension ("core/inline/callout"). Partials that
@@ -75,7 +76,7 @@ class ComponentNamesTest < Minitest::Test
   end
 
   def test_section_sheets_match_the_docs_registry
-    assert_equal docs_components.sort, section_sheets.keys.sort, "mt_section_sheets keys vs docs/_data/components.yml"
+    assert_equal docs_components.sort, section_sheets.keys.sort, "registry section rows vs docs/_data/components.yml"
     assert_empty section_sheets.values.map { |v| "section/#{v}" } - partials, "a section sheet with no partial"
   end
 
