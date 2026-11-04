@@ -48,7 +48,11 @@ sitemap: false
 ---
 ```
 
-`status` is `404` (default), `410` or `500`. The title and text come from the theme's catalogs in 23 languages; set `heading:` to replace the title, and write a body to add your own links.
+`status` is `404` (default), `410` or `500`. The title and text come from the theme's catalogs in 23 languages; set `heading:` to replace the title. The page always ends with a button to the home page; to add quick links, write them as one paragraph of links separated by spaces, which becomes a row of chips:
+
+```markdown
+[Components](/components/) [Search](/search/) [한국어](/ko/)
+```
 
 ## Redirect
 
