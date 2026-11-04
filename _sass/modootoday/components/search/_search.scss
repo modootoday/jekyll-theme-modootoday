@@ -16,8 +16,9 @@
   .mt-search-results li + li { margin-top: 0; }
   .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; color: mt(foreground); }
   .mt-search-title { display: block; font-weight: 600; }
-  // The accent fill was 1.1:1 on the popover; an underline in the text colour carries the match, a light tint helps.
-  .mt-search-results mark { background: color-mix(in srgb, #{mt(primary)} 14%, transparent); color: inherit; font-weight: 600;
+  // The accent fill was 1.1:1 on the popover; an underline carries the match, a light tint helps, and the word takes the
+  // text colour (muted snippet text is 4.3:1 on the tint).
+  .mt-search-results mark { background: color-mix(in srgb, #{mt(primary)} 14%, transparent); color: mt(foreground); font-weight: 600;
     text-decoration: underline 1px; text-underline-offset: .2em; border-radius: 2px; }
   .mt-search-snippet { display: block; margin-top: .1rem; font-size: .8rem; line-height: 1.45; color: mt(muted-foreground);
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
