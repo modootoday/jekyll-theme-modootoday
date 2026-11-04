@@ -1,5 +1,5 @@
-// Code copy: the copy button never covers code. Its box stays above the top of each block's text (the pre's content
-// box), whether it sits in the reserved strip or in a title bar, at 360, 768 and 1440px.
+// Code copy: the copy button never hides code for good. In a title bar it stays above the text; over the top-end corner
+// of an untitled block, each line it overlaps ends clear of it once the block is scrolled to its end. At 360, 768, 1440px.
 export const COPY_WIDTHS = [360, 768, 1440];
 export function coveredBlocks() {
   const bad = [];
@@ -9,10 +9,19 @@ export function coveredBlocks() {
       continue;
     }
     const cs = getComputedStyle(pre);
+    const btn = b.getBoundingClientRect();
     const textTop = pre.getBoundingClientRect().top + parseFloat(cs.borderTopWidth) + parseFloat(cs.paddingTop);
-    const over = b.getBoundingClientRect().bottom - textTop;
-    if (over > 0.5) {
-      bad.push(`${Math.round(over)}px over "${pre.textContent.trim().slice(0, 24)}"`);
+    if (btn.bottom - textTop <= 0.5) {
+      continue;
+    }
+    const left = pre.scrollLeft;
+    pre.scrollLeft = pre.scrollWidth;
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const hits = [...range.getClientRects()].filter((r) => r.width > 0 && r.top < btn.bottom && r.bottom > btn.top && r.right > btn.left + 0.5);
+    pre.scrollLeft = left;
+    if (hits.length) {
+      bad.push(`${Math.round(hits[0].right - btn.left)}px under it in "${pre.textContent.trim().slice(0, 24)}"`);
     }
   }
   return bad;

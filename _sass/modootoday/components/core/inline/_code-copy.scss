@@ -1,15 +1,16 @@
 // Copy button on code blocks (assets/js/modootoday/content/code-copy.js): a 32px icon button at the top end, named by its
-// aria-label. A titled block puts it in the title bar; an untitled one keeps a 40px strip above the code for it.
+// aria-label. A titled block puts it in the title bar; an untitled one overlays the top-end corner on the code background.
 @include mt-layer(components) {
   .mt-code { position: relative; }
   .mt-code-copy { position: absolute; top: .25rem; inset-inline-end: .25rem; display: grid; place-items: center; width: 2rem; height: 2rem; padding: 0;
-    border: 0; border-radius: mt(radius); background: transparent; color: mt(muted-foreground); cursor: pointer; transition: .15s; }
+    border: 0; border-radius: mt(radius); background: mt(code-background); color: mt(muted-foreground); cursor: pointer; transition: .15s; }
   .mt-code-copy:hover, .mt-code-copy:focus-visible { color: mt(foreground); background: mt(accent); }
   .mt-code-title + .mt-code .mt-code-copy { top: -2.25rem; }
-  // Reserved whenever scripting is on, before code-copy.js adds the button, so nothing moves after load.
+  // Reserved whenever scripting is on, before code-copy.js adds the button, so nothing moves after load: the end
+  // padding means a first line that reaches the button scrolls, and its end clears the button once scrolled.
   @media (scripting: enabled) {
-    .mt-main pre { padding-top: 2.5rem; }
-    .mt-main .mt-code-title + div pre { padding-top: 1rem; }
+    .mt-main pre { padding-inline-end: 3rem; }
+    .mt-main .mt-code-title + div pre { padding-inline-end: 1rem; }
   }
 }
 // Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).
