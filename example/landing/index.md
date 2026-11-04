@@ -2,6 +2,7 @@
 title: Example Product
 description: A product page written in plain Markdown.
 layout: home
+pagination: false
 hero:
   title: Publish a product page from Markdown
   text: Each section below is a plain Markdown list or paragraph that the theme lays out.

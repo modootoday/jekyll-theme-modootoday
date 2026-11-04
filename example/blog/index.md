@@ -2,6 +2,7 @@
 title: Blog
 layout: blog
 variant: grid
+pagination: false
 ---
 # Blog
 

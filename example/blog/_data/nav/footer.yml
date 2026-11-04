@@ -1,0 +1,8 @@
+# The site footer: link columns and a copyright line.
+columns:
+  - title: Read
+    items:
+      - {title: Blog, url: /}
+      - {title: News, url: /news/}
+      - {title: Feed, url: /feed.xml}
+copyright: © Example Blog

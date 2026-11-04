@@ -1,0 +1,10 @@
+# The site footer: link columns and a copyright line (footer-ko.yml and footer-ja.yml for the other languages).
+columns:
+  - title: Docs
+    items:
+      - {title: Guide, url: /guide/}
+      - {title: Plugins, url: /plugins/}
+  - title: Elsewhere
+    items:
+      - {title: Theme, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
+copyright: © Example Docs

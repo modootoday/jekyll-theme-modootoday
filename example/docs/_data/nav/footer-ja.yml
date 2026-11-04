@@ -1,0 +1,10 @@
+# Japanese footer.
+columns:
+  - title: ドキュメント
+    items:
+      - {title: ガイド, url: /ja/guide/}
+      - {title: プラグイン, url: /plugins/}
+  - title: その他
+    items:
+      - {title: テーマ, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
+copyright: © Example Docs

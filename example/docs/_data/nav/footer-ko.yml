@@ -1,0 +1,10 @@
+# Korean footer.
+columns:
+  - title: 문서
+    items:
+      - {title: 가이드, url: /ko/guide/}
+      - {title: 플러그인, url: /plugins/}
+  - title: 더 보기
+    items:
+      - {title: 테마, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
+copyright: © Example Docs

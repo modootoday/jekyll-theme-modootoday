@@ -9,6 +9,9 @@ permalink: pretty
 # Logo and favicon from the modootoday mark (or a path to your own image): modootoday: {logo: brand, favicon: brand}
 exclude: [Gemfile, Gemfile.lock, README.md]
 modootoday:
+  # The languages of the en, ko/ and ja/ pages, with a switcher in the header.
+  languages: [en, ko, ja]
+  language_switcher: header
   # One page per record of _data/plugins.json, written by: modootoday-stubs . --records --write
   records:
     plugins: {title: name, description: summary, facts: [category, version, tags], body: readme}

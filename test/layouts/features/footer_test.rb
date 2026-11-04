@@ -35,8 +35,9 @@ class FooterTest < Minitest::Test
     refute_includes ko, "(c) Site"
   end
 
-  def test_no_data_no_footer_no_sheet
-    _, s = site("plain", {})
+  # The docs starter ships footer data; an empty file stands for a site without columns.
+  def test_no_columns_no_footer_no_sheet
+    _, s = site("plain", { "_data/nav/footer.yml" => "{}\n" })
     h = html(s, "f/a")
     refute_includes h, "mt-footer-cols"
     refute_includes h, "chrome/footer.css"

@@ -1,0 +1,9 @@
+# The site footer: link columns and a copyright line.
+columns:
+  - title: Product
+    items:
+      - {title: Pricing, url: /pricing/}
+  - title: Company
+    items:
+      - {title: Privacy, url: /privacy/}
+copyright: © Example Product
