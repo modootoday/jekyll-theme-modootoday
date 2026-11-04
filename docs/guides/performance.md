@@ -53,6 +53,8 @@ GitHub Pages sends `Cache-Control: max-age=600`. With a CDN in front, cache them
 
 Keep the HTML on a short TTL, so visitors pick up the new `?v=` soon after you deploy.
 
+Only the files a page links carry `?v=`. The modules they import (such as `text/normalize.js`) and their `modulepreload` hints do not, so their URLs match, and this rule leaves them on the origin's ten minutes. For those minutes after a deploy, a new module can meet an older cached import; within a minor release the theme keeps the names its shared modules export, so the pair still works.
+
 ## Size budgets
 
 The theme's CI fails a change that makes pages heavier than its budgets:

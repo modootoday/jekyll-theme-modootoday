@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:4d769f73c7c7
+source_rev: sha256:3fa760a08ae0
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -62,7 +62,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 1.0 또는 1.1 | 1.2 | `~> 1.2`(또는 `remote_theme`에서는 최신 `v1.2.x` 태그)로 고정합니다. 새 섹션·히어로 옵션(`bleed:`, `reveal:`, `visual:`과 함께 쓰는 `c: split`)은 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 | 1.2 | 1.3 | `~> 1.3`(또는 `remote_theme`에서는 `@v1.3.0`)으로 고정합니다. `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`)는 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
 | 1.3 | 1.4 | `~> 1.4`(또는 `remote_theme`에서는 `@v1.4.1`)으로 고정합니다. `packages_compact`와 `packages_position`은 선택 사항이고, `reference` 페이지도 이제 `doc`처럼 알림을 변환하므로 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
-| 1.4 | 1.5 | `~> 1.5`(또는 `remote_theme`에서는 `@v1.5.0`)으로 고정합니다. 기본 모습이 바뀌지만(아래 참고) 페이지를 고칠 필요는 없습니다. `modootoday-check --strict` 실행 |
+| 1.4 | 1.5 | `~> 1.5`(또는 `remote_theme`에서는 `@v1.5.0`)으로 고정합니다. 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀌지만(아래 참고) 페이지를 고칠 필요는 없습니다. `modootoday-check --strict` 실행 |
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 
@@ -94,3 +94,11 @@ $mt-overrides-dark: (
 헤더는 모든 너비에서 4rem 높이의 한 줄로 유지됩니다. 64rem보다 좁으면 헤더 링크가 메뉴 버튼(`.mt-nav-sheet`) 안으로 들어가고, 그룹 링크를 줄 안에 다시 늘어놓던 `.mt-nav-flat`은 없어졌습니다. `.mt-nav-flat`에 쓴 규칙은 이제 `.mt-nav-sheet`를 대상으로 바꾸세요. 제목에는 더 이상 `scroll-margin-top`이 없고, 앵커로 이동하면 페이지의 `scroll-padding-top` 덕분에 헤더 아래에 자리 잡습니다.
 
 콜아웃, 인용, 그림도 같은 평면 스타일을 따릅니다. 콜아웃은 안쪽 여백 1rem인 가는 테두리 상자이고, 종류 색은 16px 아이콘과 제목에만 들어갑니다. 본문 인용은 시작 쪽에 2px 선이 있고(이전 3px), `c: quote` 섹션은 배경을 채운 카드 대신 같은 선이 있는 큰 인용이 됩니다. 그림, SVG 그림 틀, 임베드의 모서리는 8px(`radius`, 이전 `radius-lg`)이고, 캡션은 14/20이며, `.mt-illustration-tag` 배지는 그림 위를 덮지 않고 그림 위쪽에 놓입니다. 콜아웃 규칙은 핵심 시트에서 빠져 `content/inline.css`로, 그림과 임베드 규칙은 `media/figure.css`로 옮겨 갔고, 이 시트들은 그중 하나가 있는 페이지만 불러옵니다. 부분 파일은 `components/core/inline/` 경로에 그대로 있으므로, 사이트에서 덮어쓴 파일도 계속 적용됩니다. `modootoday.css: bundle`에서는 핵심 시트에 그대로 들어 있습니다.
+
+### 1.5에서 페이지가 테마를 불러오는 방식
+
+핵심 시트에는 토큰, 기본 요소 규칙, 헤더, 내비게이션, 테마 전환 버튼만 남습니다. 나머지 컴포넌트는 그것을 쓰는 페이지만 핵심 시트 바로 뒤에 연결하는 시트로 옮겨 갔고(코드, 콜아웃과 배지, 그림, 페이지 아래쪽 내비게이션, 히어로, 배너), 맥락 시트는 `assets/css/modootoday/<group>/<name>.css`로 옮겨 갔습니다. 규칙과 순서는 같으므로 페이지 모습은 바뀌지 않습니다. 테마 스크립트는 `assets/js/modootoday/<group>/<name>.js`의 ES 모듈(`<script type="module">`)이 되었고, 헤더 검색은 처음 쓸 때 불러옵니다.
+
+- `assets/css/modootoday.scss`를 섀도잉했다면 1.5 버전을 복사하거나 사이트의 사본을 지우세요. 예전 사본도 빌드는 되지만 옮겨 간 컴포넌트가 핵심 시트에도 남아서, 페이지가 그 규칙을 두 번 불러옵니다.
+- 테마 시트나 스크립트를 직접 연결했다면(예: `head-custom.html`) 새 경로를 쓰고, 스크립트에는 `type="module"`을 붙이세요.
+- 사이트 스타일시트가 테마 컴포넌트를 덮어쓴다면 `site_css`로 연결하세요. 언제나 모든 테마 시트 뒤에 옵니다.

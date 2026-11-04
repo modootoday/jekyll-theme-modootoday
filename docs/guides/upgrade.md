@@ -56,7 +56,7 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 | 1.0 or 1.1 | 1.2 | pin `~> 1.2` (or the newest `v1.2.x` tag with `remote_theme`); the new section and hero options (`bleed:`, `reveal:`, `c: split` with `visual:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
 | 1.2 | 1.3 | pin `~> 1.3` (or `@v1.3.0` with `remote_theme`); the `reference` sidebar (`sidebar: true`) and package table (`packages:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
 | 1.3 | 1.4 | pin `~> 1.4` (or `@v1.4.1` with `remote_theme`); `packages_compact` and `packages_position` are opt-in, and `reference` pages now convert alerts like `doc`, so pages need no edits; run `modootoday-check --strict` |
-| 1.4 | 1.5 | pin `~> 1.5` (or `@v1.5.0` with `remote_theme`); the default look changes (see below), and pages need no edits; run `modootoday-check --strict` |
+| 1.4 | 1.5 | pin `~> 1.5` (or `@v1.5.0` with `remote_theme`); the default look and the way pages load theme CSS and JavaScript change (see below), and pages need no edits; run `modootoday-check --strict` |
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
 
@@ -88,3 +88,11 @@ Set `modootoday.theme_color: {light: "#ffffff", dark: "#0d1117"}` as well. The h
 The header stays one 4rem row at every width. Below 64rem its links move into a menu button (`.mt-nav-sheet`), and the inline copies of group links (`.mt-nav-flat`) are gone, so rules a site wrote for `.mt-nav-flat` now target `.mt-nav-sheet`. Headings no longer set `scroll-margin-top`; anchors land below the header through `scroll-padding-top` on the page.
 
 Callouts, quotes and figures follow the same flat style. A callout is a hairline box with 1rem padding whose type colour reaches only the 16px icon and the title. Body quotes have a 2px start rule (was 3px), and a `c: quote` section is no longer a filled card but a larger quote with the same rule. Figures, SVG figure frames and embeds have 8px corners (`radius`, was `radius-lg`), captions are 14/20, and an `.mt-illustration-tag` badge sits above the picture instead of over it. The callout rules leave the core sheet for `content/inline.css` and the figure and embed rules for `media/figure.css`, which only pages with one of them link; their partials keep the `components/core/inline/` paths, so a site that shadows one still changes it. With `modootoday.css: bundle` the core sheet still holds them.
+
+### How 1.5 pages load the theme
+
+The core sheet keeps only the tokens, the base element rules, the header, the nav and the theme toggle. Every other component moved to a sheet that pages link only when they use it, right after the core sheet (code, callouts and badges, figures, the page footer navigation, the hero, the banner), and the context sheets moved to `assets/css/modootoday/<group>/<name>.css`. The rules and their order are the same, so pages look the same. Theme scripts are ES modules (`<script type="module">`) at `assets/js/modootoday/<group>/<name>.js`, and the header search loads on first use.
+
+- If you shadow `assets/css/modootoday.scss`, copy the 1.5 version or delete your copy. An older copy still builds, but it keeps the moved components in the core sheet as well, so pages load those rules twice.
+- If you link a theme sheet or script by hand (in `head-custom.html`, for example), use the new path, and `type="module"` for a script.
+- If your stylesheets override a theme component, link them with `site_css`: it always comes after every theme sheet.

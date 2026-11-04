@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:9f1de5795f9b
+source_rev: sha256:0e2515c264ef
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -58,6 +58,8 @@ GitHub Pages는 `Cache-Control: max-age=600`을 보냅니다. 앞단에 CDN을 �
 | 캐시 키 | 쿼리 문자열 포함(기본값) |
 
 HTML은 TTL을 짧게 두어야 배포 뒤 새 `?v=`가 빨리 퍼집니다.
+
+`?v=`는 페이지가 연결하는 파일에만 붙습니다. 그 파일이 가져오는 모듈(`text/normalize.js` 등)과 `modulepreload` 힌트에는 붙지 않아야 URL이 서로 맞으므로, 이 규칙에서는 원본의 10분 캐시를 그대로 따릅니다. 배포 뒤 그 10분 동안은 새 모듈이 캐시된 예전 모듈을 가져올 수 있습니다. 테마는 마이너 릴리스 안에서 공유 모듈이 내보내는 이름을 바꾸지 않으므로 그래도 동작합니다.
 
 ## 크기 예산
 
