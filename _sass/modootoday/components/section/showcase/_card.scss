@@ -14,10 +14,16 @@
   // badge: bottom: a status badge (.mt-badge) written as a direct child of the item sits at the card's bottom edge.
   .mt-badge-bottom > ul > li:has(> .mt-badge) { position: relative; padding-block-end: calc(var(--mt-card-padding) + 2rem); }
   .mt-badge-bottom > ul > li > .mt-badge { position: absolute; inset-block-end: var(--mt-card-padding); inset-inline-start: var(--mt-card-padding); }
-  // cols-<n> fills whole rows: one column, then n (cols-4 two by two first), so a 45rem text column holds three
-  // tracks but not four, whose text would be about 9rem wide.
+  // cols-<n> adds a track only once every track can be 16rem (n x 16rem + gaps), so no card is ever cramped; in two
+  // columns an odd last card of cols-3 spans the row instead of sitting alone.
   .mt-c-features:is(.mt-cols-2, .mt-cols-3, .mt-cols-4) > ul { grid-template-columns: minmax(0, 1fr); }
-  @container (min-width: 30rem) { .mt-c-features:is(.mt-cols-2, .mt-cols-4) > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @container (min-width: 40rem) { .mt-c-features.mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @container (min-width: 52rem) { .mt-c-features.mt-cols-4 > ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @container (min-width: 33rem) {
+    .mt-c-features:is(.mt-cols-2, .mt-cols-3, .mt-cols-4) > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mt-c-features.mt-cols-3 > ul > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  }
+  @container (min-width: 50rem) {
+    .mt-c-features.mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mt-c-features.mt-cols-3 > ul > li:last-child:nth-child(odd) { grid-column: auto; }
+  }
+  @container (min-width: 67rem) { .mt-c-features.mt-cols-4 > ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 }

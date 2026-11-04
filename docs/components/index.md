@@ -86,7 +86,7 @@ An alert can hold lists and code. Leave nothing after the marker on its line.
 
 ## Cards
 
-`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. The bold text is the card title; one separator after it (` — `, `: ` or the full-width `：`) is not shown, and colons later in the text stay. `cols: 2`, `cols: 3` or `cols: 4` sets the grid by the width of the section, not the screen: one column below 30rem, `cols: 2` two from 30rem, `cols: 3` three from 40rem, and `cols: 4` two by two from 30rem and four across from 52rem. So in a text column like this one, `cols: 3` is three across and `cols: 4` stays two by two, where four cards would be too narrow to read.
+`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. The bold text is the card title; one separator after it (` — `, `: ` or the full-width `：`) is not shown, and colons later in the text stay. `cols: 2`, `cols: 3` or `cols: 4` sets the grid by the width of the section, not the screen: a column is added only when every card can stay at least 16rem wide. One column below 33rem, two from 33rem, `cols: 3` three across from 50rem and `cols: 4` four across from 67rem. In two columns, an odd last card of `cols: 3` spans the row. So in a text column like this one, `cols: 3` is two cards and one full-width card and `cols: 4` stays two by two; in a wider section, such as the docs home on a wide screen, `cols: 3` is three across.
 
 - **Plain Markdown** — Pages read well on github.com too.
 - **With a badge** — Cards can carry status. `status:available`
@@ -103,7 +103,7 @@ The same list with `cols: 3`. With `reveal: true`, the section fades in as it sc
 
 ## Cards in four columns
 
-The same idea with `cols: 4`: two by two in this text column, four across in a section 52rem wide or more.
+The same idea with `cols: 4`: two by two in this text column, four across in a section 67rem wide or more.
 
 - **Alerts** — Five alert types.
 - **Tabs** — Accessible code tabs.

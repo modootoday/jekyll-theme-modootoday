@@ -100,7 +100,7 @@ Every component the theme ships, in every variant. The same file is readable on 
 - **Tokens** — Colors, radius and fonts. `status:available`
 - **Sass** — One partial per component. `status:available`
 - **Twins** — Markdown for agents. `status:available`
-- **Grid** — Four across in a section 52rem wide or more, two by two in a text column.
+- **Grid** — Four across in a section 67rem wide or more, two by two in a text column.
 - **Rows** — Eight cards fill every row.
 
 ## Tabs with two panels

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:ebc3b7fabc0e
+source_rev: sha256:629228bf1e3d
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
@@ -106,7 +106,7 @@ sections:
 - **토큰** — 색상, 모서리 반경, 글꼴. `status:available`
 - **Sass** — 컴포넌트마다 파셜 하나. `status:available`
 - **Markdown 버전** — 에이전트용 Markdown. `status:available`
-- **그리드** — 폭이 52rem 이상인 섹션에서는 네 열, 본문 열에서는 2×2.
+- **그리드** — 폭이 67rem 이상인 섹션에서는 네 열, 본문 열에서는 2×2.
 - **줄** — 카드 여덟 장이 모든 줄을 채웁니다.
 
 ## 패널이 두 개인 탭
