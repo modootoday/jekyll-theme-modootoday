@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:e9b7a63c67de
+source_rev: sha256:93ce98b1c82a
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -43,7 +43,7 @@ sections:
 
 ### レイアウトのフック
 
-一部のサイズはフックです。テーマはこれを `var(--mt-<name>, <既定値>)` として読むだけで自分では設定しないため、自分のスタイルシート（たとえば `site_css` で読み込むファイル）の普通のルールで、テーマのセレクターより優先させる工夫なしに変更できます。
+一部のサイズと主要なボタンの色はフックです。テーマはこれを `var(--mt-<name>, <既定値>)` として読むだけで自分では設定しないため、自分のスタイルシート（たとえば `site_css` で読み込むファイル）の普通のルールで、テーマのセレクターより優先させる工夫なしに変更できます。
 
 | フック | 既定値 | 決めるもの |
 |---|---|---|
@@ -52,6 +52,8 @@ sections:
 | `--mt-doc-gap` | `2rem` | ドキュメントの列の間隔 |
 | `--mt-doc-container` | `90rem` | ドキュメントのサイドバーがあるページのヘッダー、本文、フッターの幅 |
 | `--mt-code-radius` | `var(--mt-radius)` | コードブロックとタイトルの行の角 |
+| `--mt-button-primary-bg` | `var(--mt-foreground)` | 主要な操作(ヒーローや `c: cta` のボタンの行の最初のリンク)の塗りと枠線 |
+| `--mt-button-primary-fg` | `var(--mt-background)` | 主要な操作の文字 |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

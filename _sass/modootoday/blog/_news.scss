@@ -16,7 +16,7 @@
   .mt-news-latest .mt-card-post-body { padding-inline: 0; }
   .mt-news-more { margin: 0; text-align: end; font-weight: 600; }
   .mt-badge-breaking { background: mt(caution); color: mt(primary-foreground); font-weight: 700; text-transform: uppercase; }
-  .mt-badge-live { display: inline-flex; align-items: center; gap: .375rem; border: 1px solid mt(caution); color: mt(caution); font-weight: 700; text-transform: uppercase; }
+  .mt-badge-live { display: inline-flex; align-items: center; gap: .375rem; outline-color: mt(caution); background: none; color: mt(caution); font-weight: 700; text-transform: uppercase; }
   .mt-live-dot { inline-size: .5rem; block-size: .5rem; border-radius: 50%; background: currentColor; animation: mt-live 1.5s ease-in-out infinite; }
   @keyframes mt-live { 50% { opacity: .3; } }
   @media (prefers-reduced-motion: reduce) { .mt-live-dot { animation: none; } }

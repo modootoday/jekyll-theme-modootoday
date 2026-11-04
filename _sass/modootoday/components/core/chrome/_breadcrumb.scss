@@ -1,8 +1,12 @@
-// Breadcrumb generated from the page URL (layout only, no Markdown).
+// Breadcrumb generated from the page URL (layout only, no Markdown). Each chevron ends the item before it and items
+// never break inside (the current page may), so a wrapped line starts with a name.
 @include mt-layer(components) {
-  .mt-breadcrumb ol { list-style: none; margin: 0 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; font-size: .8125rem; }
+  .mt-breadcrumb ol { list-style: none; margin: 0 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem;
+    font-size: mt-size(sm); line-height: mt-leading(sm); }
   .mt-breadcrumb li + li { margin-top: 0; }
-  .mt-breadcrumb li { display: inline-flex; align-items: center; gap: .35rem; }
+  .mt-breadcrumb li { display: inline-flex; align-items: center; gap: .5rem; max-inline-size: 100%; white-space: nowrap; }
+  .mt-breadcrumb li > a { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; }
+  .mt-breadcrumb li:last-child { white-space: normal; }
   .mt-breadcrumb .mt-icon { color: mt(muted-foreground); }
   .mt-breadcrumb a { color: mt(muted-foreground); text-decoration: none; }
   .mt-breadcrumb a:hover { color: mt(foreground); text-decoration: underline; }

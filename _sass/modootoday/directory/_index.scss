@@ -2,6 +2,8 @@
 @import "../settings";
 @import "../tools/functions";
 @import "../tools/mixins";
+@import "../tokens/scale";
+@import "../registry/hooks";
 @import "../pages/shells";
 @import "../pages/actions";
 @import "grid";

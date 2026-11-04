@@ -1,5 +1,6 @@
 // Chip rows: sibling badges/chips in one list (archive index, post footer terms, any flex row of .mt-badge)
-// must share bounding-box height and vertical centre (tolerance 0.5px). Checked at 360/768/1280.
+// must share bounding-box height and vertical centre (tolerance 0.5px); a badge that is not a link is 20px tall.
+// Checked at 360/768/1280.
 export const CHIP_WIDTHS = [360, 768, 1280];
 const TOL = 0.5;
 export async function checkChipRows(page, scheme, url, fails) {
@@ -7,6 +8,10 @@ export async function checkChipRows(page, scheme, url, fails) {
     await page.setViewportSize({ width: w, height: 900 });
     const bad = await page.evaluate((tol) => {
       const out = [], groups = new Map();
+      for (const b of document.querySelectorAll("span.mt-badge")) {
+        const h = b.getBoundingClientRect().height;
+        if (h && Math.abs(h - 20) > tol) out.push(`span.mt-badge is ${h.toFixed(1)}px tall, not 20`);
+      }
       for (const b of document.querySelectorAll(".mt-badge")) {
         const host = b.closest("ul,ol,p,div,nav") || b.parentElement;
         if (!groups.has(host)) groups.set(host, []);

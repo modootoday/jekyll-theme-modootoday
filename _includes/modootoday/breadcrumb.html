@@ -1,21 +1,21 @@
 {%- comment -%}Breadcrumb from the page URL: each parent directory that is a page becomes a link.
-The home crumb uses the home page short_title, then its title. Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: false.{%- endcomment -%}
+The home crumb uses the home page short_title, then its title. Each chevron closes the item before it, so a wrapped line starts with a name. Hidden on the home page (or a /<lang>/ home) and with front matter breadcrumb: false.{%- endcomment -%}
 {%- if mt_components contains "breadcrumb" and page.breadcrumb != false -%}
 {%- include modootoday/lookup/crumbs.html lang=_lang -%}
 {%- assign _segs = page.url | split: "/" -%}{%- assign _home = mt_crumb_home -%}{%- assign _start = mt_crumb_start -%}
 {%- if page.url != _home and page.url != "/" -%}
 {%- assign _hp = mt_crumb_pages | where: "url", _home | first -%}
 <nav class="mt-breadcrumb" aria-label="{% include modootoday/i18n.html lang=_lang %}{{ mt_t_breadcrumb_label }}"><ol>
-<li><a href="{{ _home | relative_url }}">{{ _hp.short_title | default: _hp.title | default: mt_site_title | default: site.title | default: "Home" }}</a></li>
+<li><a href="{{ _home | relative_url }}">{{ _hp.short_title | default: _hp.title | default: mt_site_title | default: site.title | default: "Home" }}</a>
 {%- assign _acc = _home -%}
 {%- for _s in _segs offset: 1 -%}{%- if forloop.index > _start and _s != "" and _s != "index.html" -%}
 {%- assign _acc = _acc | append: _s | append: "/" -%}
 {%- if _acc == page.url or forloop.last -%}
-<li>{% include modootoday/brand/icon.html name="chevron-right" size=12 %}<span aria-current="page">{{ page.title | default: _s }}</span></li>
+{% include modootoday/brand/icon.html name="chevron-right" size=12 %}</li><li><span aria-current="page">{{ page.title | default: _s }}</span>
 {%- else -%}{%- assign _pp = mt_crumb_pages | where: "url", _acc | first -%}{%- if _pp -%}
-<li>{% include modootoday/brand/icon.html name="chevron-right" size=12 %}<a href="{{ _acc | relative_url }}">{{ _pp.title | default: _s }}</a></li>
+{% include modootoday/brand/icon.html name="chevron-right" size=12 %}</li><li><a href="{{ _acc | relative_url }}">{{ _pp.title | default: _s }}</a>
 {%- endif -%}{%- endif -%}
 {%- endif -%}{%- endfor %}
-</ol></nav>
+</li></ol></nav>
 {%- endif -%}
 {%- endif -%}

@@ -36,7 +36,7 @@ Images in dark mode: photos use `--mt-img-filter-dark`; `.svg` figures (diagrams
 
 ### Layout hooks
 
-Some sizes are hooks: the theme reads them as `var(--mt-<name>, <default>)` and never sets them, so a plain rule in your own stylesheet (for example one linked with `site_css`) changes them without having to beat the theme's selectors.
+Some sizes and the primary button colours are hooks: the theme reads them as `var(--mt-<name>, <default>)` and never sets them, so a plain rule in your own stylesheet (for example one linked with `site_css`) changes them without having to beat the theme's selectors.
 
 | Hook | Default | What it sets |
 |---|---|---|
@@ -45,6 +45,8 @@ Some sizes are hooks: the theme reads them as `var(--mt-<name>, <default>)` and 
 | `--mt-doc-gap` | `2rem` | the gap between the doc columns |
 | `--mt-doc-container` | `90rem` | the width of the header, main and footer on pages with a doc sidebar |
 | `--mt-code-radius` | `var(--mt-radius)` | the corners of code blocks and their title bar |
+| `--mt-button-primary-bg` | `var(--mt-foreground)` | the fill and border of the primary action (the first link of a hero or `c: cta` button row) |
+| `--mt-button-primary-fg` | `var(--mt-background)` | the text of the primary action |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

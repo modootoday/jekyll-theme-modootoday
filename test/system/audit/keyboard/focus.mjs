@@ -1,8 +1,10 @@
-// Focus flows: a visible ring on every Tab stop, the skip link, and a TOC ring that stays inside its column.
+// Focus flows: a visible ring on every Tab stop (a link card draws it on the card), the skip link, a TOC ring that
+// stays inside its column, and a link-card ring that encloses the whole card.
 const ring = () => {
   const e = document.activeElement; if (!e || e === document.body) return null;
-  const s = getComputedStyle(e), r = e.getBoundingClientRect();
-  const visible = (s.outlineStyle !== "none" && parseFloat(s.outlineWidth) >= 2) || (s.boxShadow !== "none" && s.boxShadow !== "");
+  const drawn = (x) => { const s = getComputedStyle(x); return (s.outlineStyle !== "none" && parseFloat(s.outlineWidth) >= 2) || (s.boxShadow !== "none" && s.boxShadow !== ""); };
+  const card = e.closest(".mt-c-linkcards > ul > li"), r = e.getBoundingClientRect();
+  const visible = drawn(e) || (!!card && drawn(card));
   return { tag: e.tagName + (e.className ? "." + String(e.className).split(" ")[0] : ""), visible, inView: r.width > 0 && r.height > 0 };
 };
 
@@ -52,4 +54,23 @@ export async function tocRing(page, url, fails) {
   });
   if (out > 0.5) fails.push(`keyboard: the TOC focus ring reaches ${out}px outside the column ${url}`);
   await page.setViewportSize({ width: 1024, height: 900 });
+}
+
+// A link card is one target: its ring is drawn on the card (li), so it must enclose the card, not just the title.
+export async function cardRing(page, url, fails) {
+  await page.goto(url, { waitUntil: "networkidle" });
+  const link = page.locator(".mt-c-linkcards > ul > li > a:first-child").first();
+  if (!(await link.count())) {
+    fails.push(`keyboard: no link card ${url}`);
+    return;
+  }
+  await page.keyboard.press("Tab");
+  await link.focus();
+  const r = await link.evaluate((a) => {
+    const li = a.parentElement;
+    const s = getComputedStyle(li);
+    return { width: parseFloat(s.outlineWidth), style: s.outlineStyle, own: getComputedStyle(a).outlineStyle };
+  });
+  if (r.style === "none" || r.width < 2) fails.push(`keyboard: the link card has no ring round the card ${url}`);
+  if (r.own !== "none") fails.push(`keyboard: the link card title draws a second ring ${url}`);
 }

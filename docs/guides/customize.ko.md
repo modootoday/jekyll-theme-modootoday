@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:e9b7a63c67de
+source_rev: sha256:93ce98b1c82a
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -42,7 +42,7 @@ sections:
 
 ### 레이아웃 훅
 
-일부 크기는 훅입니다. 테마는 이 값을 `var(--mt-<name>, <기본값>)`으로 읽기만 하고 직접 설정하지 않으므로, 직접 만든 스타일시트(예: `site_css`로 연결한 파일)의 평범한 규칙으로 테마 선택자보다 우선하려고 애쓰지 않고 바꿀 수 있습니다.
+일부 크기와 주요 버튼 색은 훅입니다. 테마는 이 값을 `var(--mt-<name>, <기본값>)`으로 읽기만 하고 직접 설정하지 않으므로, 직접 만든 스타일시트(예: `site_css`로 연결한 파일)의 평범한 규칙으로 테마 선택자보다 우선하려고 애쓰지 않고 바꿀 수 있습니다.
 
 | 훅 | 기본값 | 정하는 것 |
 |---|---|---|
@@ -51,6 +51,8 @@ sections:
 | `--mt-doc-gap` | `2rem` | 문서 열 사이의 간격 |
 | `--mt-doc-container` | `90rem` | 문서 사이드바가 있는 페이지의 헤더, 본문, 푸터 너비 |
 | `--mt-code-radius` | `var(--mt-radius)` | 코드 블록과 제목 줄의 모서리 |
+| `--mt-button-primary-bg` | `var(--mt-foreground)` | 주요 동작(히어로나 `c: cta` 버튼 줄의 첫 링크)의 채움과 테두리 |
+| `--mt-button-primary-fg` | `var(--mt-background)` | 주요 동작의 글자 |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

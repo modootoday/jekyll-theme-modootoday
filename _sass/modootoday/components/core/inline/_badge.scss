@@ -1,15 +1,19 @@
-// Status badge: span.mt-badge.mt-badge-<available|partial|planned>
+// Badge: a 20px chip on the accent fill; span.mt-badge.mt-badge-<available|partial|planned> adds a status dot.
+// The dot is a border, and the transparent outline becomes the chip edge, so both survive forced colours.
 $mt-badge-variants: (available: status-available, partial: status-partial, planned: status-planned) !default;
 @include mt-layer(components) {
   .mt-badge { --mt-badge-color: #{mt(status-planned)}; --mt-badge-radius: var(--mt-p-radius-full);
-    display: inline-flex; gap: .3em; align-items: center; vertical-align: .1em; font-size: .75rem; line-height: 1.5; font-weight: 600; padding: 0 .55em;
-    border: 1px solid color-mix(in srgb, var(--mt-badge-color) 35%, transparent); border-radius: var(--mt-badge-radius); color: color-mix(in srgb, var(--mt-badge-color) 78%, #{mt(foreground)});
-    background: color-mix(in srgb, var(--mt-badge-color) 9%, transparent); white-space: nowrap; }
+    display: inline-flex; gap: .375rem; align-items: center; vertical-align: .1em; padding: .125rem .5rem;
+    font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; border-radius: var(--mt-badge-radius);
+    outline: 1px solid transparent; outline-offset: -1px; color: mt(foreground); background: mt(accent); white-space: nowrap; text-decoration: none; }
   @each $name, $token in $mt-badge-variants {
-    .mt-badge-#{$name} { --mt-badge-color: #{mt($token)}; }
+    // The dot sits out of the flex flow, so the text alone sets the baseline in a row of mixed badges.
+    .mt-badge-#{$name} { --mt-badge-color: #{mt($token)}; position: relative; padding-inline-start: 1.25rem; }
+    .mt-badge-#{$name}::before { content: ""; position: absolute; inset-inline-start: .5rem; top: calc(50% - 3px);
+      border: 3px solid var(--mt-badge-color); border-radius: 50%; }
   }
 }
 // `tag:<word>` badges
 @include mt-layer(components) {
-  .mt-badge-tag { --mt-badge-color: #{mt(primary)}; --mt-badge-radius: #{mt(radius)}; }
+  .mt-badge-tag { --mt-badge-radius: #{mt(radius)}; }
 }

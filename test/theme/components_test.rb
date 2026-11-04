@@ -55,8 +55,9 @@ class ComponentsTest < Minitest::Test
 
   def h = self.class.build
 
+  # The chevron ends the item before it, so a wrapped line never starts with one.
   def test_breadcrumb
-    assert_match(%r{<nav class="mt-breadcrumb" aria-label="Breadcrumb"><ol>\s*<li><a href="/">Home</a></li>\s*<li><svg class="mt-icon mt-icon-chevron-right mt-icon-flip"[^>]*>.*?</svg><a href="/guide/">Guide</a></li>\s*<li><svg [^>]*>.*?</svg><span aria-current="page">Probe</span></li>}, h)
+    assert_match(%r{<nav class="mt-breadcrumb" aria-label="Breadcrumb"><ol>\s*<li><a href="/">Home</a><svg class="mt-icon mt-icon-chevron-right mt-icon-flip"[^>]*>.*?</svg></li><li><a href="/guide/">Guide</a><svg [^>]*>.*?</svg></li><li><span aria-current="page">Probe</span>\s*</li></ol>}, h)
   end
 
   def test_toc

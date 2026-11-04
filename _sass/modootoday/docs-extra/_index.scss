@@ -2,6 +2,8 @@
 @import "../settings";
 @import "../tools/functions";
 @import "../tools/mixins";
+@import "../tokens/scale";
+@import "../registry/hooks";
 @import "page";
 @import "../tools/img-dark";
 @include mt-img-dark(".mt-dx-cover");

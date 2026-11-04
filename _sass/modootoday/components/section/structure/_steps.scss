@@ -8,6 +8,6 @@
   .mt-c-steps > h3 ~ :not(h3) { padding-inline-start: 2.75rem; }
   .mt-c-steps > ol > li::before, .mt-c-steps > h3::before { content: counter(mt-step); position: absolute; inset-inline-start: 0; top: 0;
     width: 1.75rem; height: 1.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
-    background: mt(muted); border: 1px solid mt(border); color: mt(foreground); font-size: .8rem; font-weight: 650; }
+    background: mt(muted); border: 1px solid mt(border); color: mt(foreground); font-size: mt-size(xs); font-weight: 600; }
   .mt-c-steps > h3 { margin-top: 1.5rem; line-height: 1.75rem; }
 }

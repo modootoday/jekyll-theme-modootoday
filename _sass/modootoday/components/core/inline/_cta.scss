@@ -1,10 +1,11 @@
 // CTA buttons: paragraphs that hold only links (p.mt-actions, marked in Liquid) in the hero and in c: cta sections.
+// The first link is the primary action, neutral by default; the button-primary hooks recolour it.
 @include mt-layer(components) {
   .mt-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0 0; }
-  .mt-actions > a { display: inline-flex; align-items: center; height: 2.75rem; padding: 0 1.25rem; border-radius: mt(radius);
+  .mt-actions > a { display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1rem; border-radius: mt(radius);
     border: 1px solid mt(border); background: mt(background); color: mt(foreground);
-    font-size: .9375rem; font-weight: 600; text-decoration: none; transition: background-color .15s, border-color .15s; }
+    font-size: mt-size(sm); line-height: mt-leading(sm); font-weight: 500; text-decoration: none; transition: background-color .15s, border-color .15s; }
   .mt-actions > a:hover { background: mt(accent); }
-  .mt-actions > a:first-child { background: mt(primary); border-color: mt(primary); color: mt(primary-foreground); }
-  .mt-actions > a:first-child:hover { background: color-mix(in srgb, #{mt(primary)} 88%, #{mt(foreground)}); }
+  .mt-actions > a:first-child { background: mt-hook(button-primary-bg); border-color: mt-hook(button-primary-bg); color: mt-hook(button-primary-fg); }
+  .mt-actions > a:first-child:hover { background: color-mix(in srgb, #{mt-hook(button-primary-bg)} 90%, #{mt(background)}); }
 }

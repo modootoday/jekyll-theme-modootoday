@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
 import path from "node:path";
 import { WIDTHS, RTL_PAGES } from "./config.mjs";
-import { checkExampleCards } from "./layout/example-cards.mjs";
+import { checkExampleCards, checkCardGrid } from "./layout/example-cards.mjs";
 import { checkTabsScroll } from "./layout/tabs-scroll.mjs";
 import { checkChipRows } from "./layout/chip-rows.mjs";
 import { checkListRows } from "./layout/list-rows.mjs";
@@ -48,6 +48,7 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   await page.setViewportSize({ width: 1024, height: 900 });
   if (RTL_PAGES.includes(p)) await checkRtl(page, scheme, url, fails);
   if (p === "components/") await checkExampleCards(page, scheme, url, fails);
+  if (await page.$(".mt-c-features, .mt-c-linkcards")) await checkCardGrid(page, scheme, url, fails);
   if (await page.$(".mt-badge")) await checkChipRows(page, scheme, url, fails);
   await checkListRows(page, scheme, url, fails);
   if (await page.$('[role="tablist"]')) await checkTabsScroll(page, scheme, url, fails);
