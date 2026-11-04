@@ -17,7 +17,7 @@ class MinimaShapedTest < Minitest::Test
     # minima reads author: {name, email}; jekyll new leaves it out, so it is the one added key.
     File.write("#{src}/_config.yml", File.read("#{src}/_config.yml") + "author: {name: Jane Doe, email: jane@example.com}\n")
     File.write("#{dir}/o.yml", plugins_yaml.empty? ? "{}\n" : plugins_yaml)
-    out, st = Open3.capture2e("bundle", "exec", "jekyll", "build", "-s", src, "-d", "#{dir}/s", "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: ROOT)
+    out, st = Open3.capture2e(bundle_env, "bundle", "exec", "jekyll", "build", "-s", src, "-d", "#{dir}/s", "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: dir)
     assert st.success?, out
     [src, "#{dir}/s", out]
   end

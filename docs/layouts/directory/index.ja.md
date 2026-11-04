@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/
-source_rev: sha256:6d554e344870
+source_rev: sha256:3ef4ddc6d439
 title: ディレクトリレイアウト
 description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで絞り込めます。
 nav_order: 20
@@ -21,7 +21,7 @@ nav_order: 20
 
 `layout: directory` は基本形です。`preset:` に上の名前のどれかを指定するか、省略すると簡単なカードになります。
 
-GitHub Pages では、jekyll-default-layout がレイアウトのないコレクション文書にコレクションと同じ名前のレイアウトを付けます。そのため `_portfolio/atlas.md` は `portfolio` になります。`items:`、`data:`、`records:` のない文書は一覧ではなく一つの項目なので、これらのレイアウトは対応する詳細ページとして描きます。`portfolio` は `project`、`jobs` は `job`、`events` は `event`、それ以外は `detail` になり、構造化データもそのページに従います。`defaults` でコレクションのレイアウトを指定するまで、`modootoday-check` が警告します。
+ほかのテーマから移ったサイトは、`defaults` でコレクションに同じ名前のレイアウトを付けることがよくあります。そのため `_portfolio/atlas.md` は `portfolio` になります。`items:`、`data:`、`records:` のない文書は一覧ではなく一つの項目なので、これらのレイアウトは対応する詳細ページとして描きます。`portfolio` は `project`、`jobs` は `job`、`events` は `event`、それ以外は `detail` になり、構造化データもそのページに従います。レイアウトがまったくないコレクション文書はテーマなしで出力されます(jekyll-default-layout はページと記事にだけレイアウトを付けます)。`modootoday-check` はこれを警告し、`defaults` に入れるレイアウトを示します。
 
 ## 項目
 

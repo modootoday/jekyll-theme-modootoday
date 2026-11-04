@@ -1,16 +1,15 @@
 # frozen_string_literal: true
-# Collection self-detail (directory/self.html): jekyll-default-layout gives _portfolio/x.md the portfolio list layout;
-# such a document has no list source, so it draws as its family's detail page with that page's structured data,
-# while a page with items: keeps the list. The checker warns until defaults name the layout.
+# Collection self-detail (directory/self.html): a collection document given a directory list layout (defaults or front
+# matter) has no list source, so it draws as its family's detail page with that page's sheet and structured data,
+# while a page with items: keeps the list. jekyll-default-layout never sets a collection document's layout.
 require "minitest/autorun"
 require_relative "../support/native_site"
 
 class DirectorySelfTest < Minitest::Test
   include NativeSite
 
-  CONFIG = "collections: {portfolio: {output: true}, events: {output: true}}\n"
-  # Off GitHub Pages nothing applies jekyll-default-layout, so defaults give the layout it would.
-  PLUGIN = "defaults: [{scope: {type: portfolio}, values: {layout: portfolio}}, {scope: {type: events}, values: {layout: events}}]\n"
+  CONFIG = "collections: {portfolio: {output: true}, events: {output: true}}\n" \
+           "defaults: [{scope: {type: portfolio}, values: {layout: portfolio}}, {scope: {type: events}, values: {layout: events}}]\n"
 
   def test_collection_documents_draw_as_their_detail_page
     pages = {
@@ -19,7 +18,7 @@ class DirectorySelfTest < Minitest::Test
       "work.md" => ["title: Work\nlayout: portfolio\nitems: [{title: Atlas, url: /portfolio/atlas/}]\n"],
     }
     Dir.mktmpdir do |d|
-      src, site = build_minima(d, pages, config: CONFIG + (GH_PAGES ? "" : PLUGIN))
+      _src, site = build_minima(d, pages, config: CONFIG)
       atlas = html(site, "portfolio/atlas.md")
       assert_includes atlas, 'class="mt-main mt-detail"'
       assert_includes atlas, '<article class="mt-detail-page mt-detail-project"'
@@ -34,10 +33,6 @@ class DirectorySelfTest < Minitest::Test
       assert_includes work, "mt-dir-page"
       assert_includes work, "/assets/css/modootoday-directory.css"
       refute_includes work, "mt-detail-page"
-      next unless GH_PAGES
-
-      out, = check(src, site)
-      assert_match(/collections\.portfolio: 1 document\(s\) without a layout .* draws each as a project page/, out)
     end
   end
 

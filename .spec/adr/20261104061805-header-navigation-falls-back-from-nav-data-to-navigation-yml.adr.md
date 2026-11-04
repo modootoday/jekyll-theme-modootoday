@@ -18,6 +18,7 @@ The header read only `_data/nav/<name>.yml` or a list in `_data/nav.yml`. A mini
 
 - `_includes/modootoday/site/nav.html` is the one owner of the header list. It sets `mt_nav`, `mt_nav_source` (`data`, `navigation`, `header_pages` or `auto`) and `mt_nav_groups`. `config.html` includes it in place of its own nav lines, which moved there unchanged.
 - Order: `_data/nav/<modootoday.nav>[-<lang>].yml` or a list in `_data/nav.yml`; `main` in `_data/navigation.yml`; `site.header_pages` (page paths, each page with a title); then every page of `site.html_pages` with a `title` in the page's language, `nav_order` first and then by title. The automatic list leaves out `/`, `nav: false`, `nav_exclude: true`, `hidden: true` and machine or shell layouts (home, redirect, error, twin, llms, feed).
+- Jekyll 3's `sort` raises when two values do not compare (a number and a text). Titles therefore sort with `sort_natural` (as text, ignoring case), numeric `nav_order` values with `sort`, and other `nav_order` values as text after them.
 - `modootoday.nav: false` turns the automatic list off; the explicit sources still apply. The checker validates `modootoday.nav` as a name or false.
 - When the list is made of pages (`header_pages` or automatic), `mt_nav_groups` is false: a page's own `items:` front matter (a directory page) must not become a nav group, and the sidebar and previous/next links stay off, as minima has neither.
 

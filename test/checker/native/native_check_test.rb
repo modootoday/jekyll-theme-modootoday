@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Plain Jekyll conventions in the checker (check/native/): a layout no site or theme file provides is an error that
-# names the replacement for another theme's layout; a collection whose documents would get a theme list layout from
-# jekyll-default-layout is a warning (self-detail) or an error (no detail).
+# names the replacement for another theme's layout; collection documents without a layout, which Jekyll writes without
+# the theme, are a warning that names a layout for defaults.
 require "yaml"
 require_relative "../checker_case"
 
@@ -22,16 +22,17 @@ class NativeCheckTest < CheckerCase
     refute_match(/^(ok|raw|api)\.md:/, o)
   end
 
-  def test_collections_named_like_theme_list_layouts
-    page("_config.yml", "collections:\n  portfolio: {output: true}\n  feed: {output: true}\n  jobs: {output: true}\n  notes: {output: true}\n" \
+  def test_collection_documents_without_a_layout
+    page("_config.yml", "collections:\n  portfolio: {output: true}\n  notes: {output: true}\n  jobs: {output: true}\n  drafts: {output: false}\n" \
                         "defaults:\n  - {scope: {type: jobs}, values: {layout: job}}\n")
-    %w[portfolio feed jobs notes].each { |c| page("_#{c}/a.md", "---\ntitle: A\n---\nText.\n") }
+    %w[portfolio notes jobs drafts].each { |c| page("_#{c}/a.md", "---\ntitle: A\n---\nText.\n") }
     page("_portfolio/b.md", "---\ntitle: B\nlayout: project\n---\nText.\n")
     o, st = check
-    assert_equal 1, st
-    assert_includes o, "warning: _config.yml: collections.portfolio: 1 document(s) without a layout get the portfolio layout from jekyll-default-layout, which draws each as a project page; set defaults: [{scope: {type: portfolio}, values: {layout: project}}] in _config.yml"
-    assert_includes o, "_config.yml: collections.feed: 1 document(s) without a layout get the feed layout from jekyll-default-layout, which cannot show one document"
-    refute_match(/collections\.(jobs|notes)/, o)
+    assert_equal 0, st, o
+    assert_includes o, "warning: _config.yml: collections.portfolio: 1 document(s) have no layout, so Jekyll writes them without the theme (jekyll-default-layout covers only pages and posts); set defaults: [{scope: {type: portfolio}, values: {layout: project}}]"
+    assert_includes o, "collections.notes: 1 document(s) have no layout"
+    assert_includes o, "values: {layout: doc}}]"
+    refute_match(/collections\.(jobs|drafts)/, o)
   end
 
   def test_compat_maps_name_existing_layouts

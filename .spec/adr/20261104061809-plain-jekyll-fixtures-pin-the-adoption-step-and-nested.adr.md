@@ -22,4 +22,4 @@ The first step of adopting the theme is changing one line in an existing Jekyll 
 
 ## Consequences
 
-The registry phase can add `_layouts/<group>/` files on a tested fact. The acceptance covers the pieces shipped now; the feed link, social links and SEO keys of the same adoption step come with the site variable resolvers and get their assertions then.
+The registry phase can add `_layouts/<group>/` files on a tested fact. Jekyll 3 outside safe mode reads `./_layouts` of the working directory before the site's (`layout_directory_in_cwd`, gone in Jekyll 4), so test builds run from a temporary folder, as a user builds from the site; a build started from another folder that has `_layouts` would read that folder's layouts on Jekyll 3. The acceptance covers the pieces shipped now; the feed link, social links and SEO keys of the same adoption step come with the site variable resolvers and get their assertions then.

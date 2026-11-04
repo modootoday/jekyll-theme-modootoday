@@ -3,9 +3,9 @@
 module Modootoday
   module Check
     module Native
-      # jekyll-default-layout (on in GitHub Pages) gives a collection document without a layout the layout named like its
-      # collection. When that is a theme list layout, the document draws as its detail page (mt_self_detail, a warning);
-      # a layout without one (blog, feed, search) cannot show one document (an error). defaults for the type end both.
+      # A collection document without a layout is written without the theme: jekyll-default-layout (on in GitHub Pages)
+      # sets layouts only for pages and posts. A warning per output collection, naming a layout for its defaults: the
+      # detail page of a theme list layout named like the collection (its mt_self_detail), else doc.
       module Collections
         THEME = File.expand_path("../../../../_layouts", __dir__)
 
@@ -15,19 +15,17 @@ module Modootoday
           cols = ctx.site_cfg["collections"]
           return unless cols.is_a?(Hash)
           cols.each do |label, c|
-            next unless c.is_a?(Hash) && c["output"] == true && File.file?("#{THEME}/#{label}.html")
-            next if File.file?("#{ctx.src}/_layouts/#{label}.html") || defaulted?(ctx, label)
+            next unless c.is_a?(Hash) && c["output"] == true && label != "posts" && !defaulted?(ctx, label)
             bare = docs(ctx, label).reject { |_, fm| fm.key?("layout") }
             report(ctx, label, bare.size) unless bare.empty?
           end
         end
 
         def report(ctx, label, n)
-          detail = Markdown.fm(File.read("#{THEME}/#{label}.html"))["mt_self_detail"]
-          fix = "set defaults: [{scope: {type: #{label}}, values: {layout: #{detail || '<a layout>'}}}] in _config.yml"
-          where = "_config.yml: collections.#{label}: #{n} document(s) without a layout get the #{label} layout from jekyll-default-layout"
-          return ctx.warns << "#{where}, which draws each as a #{detail} page; #{fix}" if detail
-          ctx.errs << "#{where}, which cannot show one document; #{fix}"
+          list = "#{THEME}/#{label}.html"
+          layout = (File.file?(list) && Markdown.fm(File.read(list))["mt_self_detail"]) || "doc"
+          ctx.warns << "_config.yml: collections.#{label}: #{n} document(s) have no layout, so Jekyll writes them without the theme " \
+                       "(jekyll-default-layout covers only pages and posts); set defaults: [{scope: {type: #{label}}, values: {layout: #{layout}}}]"
         end
 
         def docs(ctx, label)

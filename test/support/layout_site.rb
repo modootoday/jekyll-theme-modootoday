@@ -23,11 +23,15 @@ module LayoutSite
     end
     merge_config("#{src}/_config.yml", config) unless config.empty?
     File.write("#{dir}/o.yml", "url: https://example.org\n")
-    out, st = Open3.capture2e(env, "bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",
-                              "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: ROOT)
+    out, st = Open3.capture2e(bundle_env.merge(env), "bundle", "exec", "jekyll", "build", "-q", "-s", src, "-d", "#{dir}/s",
+                              "--config", "#{src}/_config.yml,#{dir}/o.yml", chdir: dir)
     assert st.success?, out
     [src, "#{dir}/s"]
   end
+
+  # Jekyll 3 outside safe mode reads ./_layouts of the working directory before the site's, so builds run from the
+  # temporary folder (as a user runs them from the site), with the active bundle named explicitly.
+  def bundle_env = { "BUNDLE_GEMFILE" => ENV["BUNDLE_GEMFILE"] || File.join(ROOT, "Gemfile") }
 
   # Deep-merges YAML into the copied _config.yml, so the checker reads the same settings as the build.
   def merge_config(file, yaml)

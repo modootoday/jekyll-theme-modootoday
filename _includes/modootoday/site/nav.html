@@ -17,14 +17,19 @@
 {%- elsif mt.nav != false -%}
 {%- assign _nl = page.lang | default: site.lang | default: "en" -%}{%- assign _nd = site.lang | default: "en" -%}
 {%- assign _nskip = "|home|redirect|error|twin|llms|llms-full|feed|null|none|" -%}
-{%- assign _nord = "" | split: "" -%}{%- assign _nrest = "" | split: "" -%}
-{%- assign _ncand = site.html_pages | where_exp: "p", "p.title" | sort: "title" -%}
+{%- comment -%}Jekyll 3's sort raises on values that do not compare (a number and a text): titles sort as text, numeric
+  nav_order values by number, and any other nav_order value as text after them.{%- endcomment -%}
+{%- assign _nord = "" | split: "" -%}{%- assign _ntxt = "" | split: "" -%}{%- assign _nrest = "" | split: "" -%}
+{%- assign _ncand = site.html_pages | where_exp: "p", "p.title" | sort_natural: "title" -%}
 {%- for _np in _ncand -%}
 {%- if _np.url == "/" or _np.nav == false or _np.nav_exclude == true or _np.hidden == true -%}{%- continue -%}{%- endif -%}
 {%- assign _npl = _np.lang | default: _nd -%}{%- if _npl != _nl -%}{%- continue -%}{%- endif -%}
 {%- assign _nlk = "|" | append: _np.layout | append: "|" -%}{%- if _nskip contains _nlk -%}{%- continue -%}{%- endif -%}
-{%- if _np.nav_order -%}{%- assign _nord = _nord | push: _np -%}{%- else -%}{%- assign _nrest = _nrest | push: _np -%}{%- endif -%}
+{%- if _np.nav_order == nil -%}{%- assign _nrest = _nrest | push: _np -%}{%- continue -%}{%- endif -%}
+{%- assign _nnum = _np.nav_order | plus: 0 -%}
+{%- if _nnum == _np.nav_order -%}{%- assign _nord = _nord | push: _np -%}{%- else -%}{%- assign _ntxt = _ntxt | push: _np -%}{%- endif -%}
 {%- endfor -%}
-{%- assign mt_nav = _nord | sort: "nav_order" | concat: _nrest -%}
+{%- assign _ntxt = _ntxt | sort_natural: "nav_order" -%}
+{%- assign mt_nav = _nord | sort: "nav_order" | concat: _ntxt | concat: _nrest -%}
 {%- if mt_nav.size > 0 -%}{%- assign mt_nav_source = "auto" -%}{%- else -%}{%- assign mt_nav = nil -%}{%- endif -%}
 {%- endif -%}

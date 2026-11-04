@@ -12,7 +12,7 @@ rel:
 
 ## Context
 
-jekyll-default-layout, on by default on GitHub Pages, gives a collection document without a layout the layout named like its collection. The theme has list layouts named `portfolio`, `team`, `jobs`, `events`, `sponsors`, `integrations` and `directory`, so `_portfolio/atlas.md` rendered as an empty card list. `_portfolio` is a common collection name.
+Sites from other themes often give a collection the layout named like it, `defaults: [{scope: {type: portfolio}, values: {layout: portfolio}}]`. The theme has list layouts named `portfolio`, `team`, `jobs`, `events`, `sponsors`, `integrations` and `directory`, so `_portfolio/atlas.md` rendered as an empty card list. jekyll-default-layout 0.1.5, on by default on GitHub Pages, sets layouts only for pages and posts (its generator reads `site.pages` and `site.posts`), so it does not cause this; a collection document without a layout is written without the theme, which the checker reports (see the checker ADR of the same change).
 
 ## Decision
 

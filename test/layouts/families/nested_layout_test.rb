@@ -34,7 +34,7 @@ class NestedLayoutTest < Minitest::Test
       theme = Jekyll::Theme.allocate
       theme.define_singleton_method(:root) { "#{d}/theme" }
       site.instance_variable_set(:@theme, theme)
-      layouts = Jekyll::LayoutReader.new(site).read
+      layouts = Dir.chdir(d) { Jekyll::LayoutReader.new(site).read } # Jekyll 3 tries ./_layouts first; d has none
       assert_equal "theme\n", layouts.fetch("docs/release").content
       assert_equal "site\n", layouts.fetch("docs/endpoint").content, "a site layout wins over the theme's"
     end

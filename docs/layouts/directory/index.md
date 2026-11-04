@@ -18,7 +18,7 @@ A directory page is your text followed by a list of cards. The cards come from `
 
 `layout: directory` is the plain version: set `preset:` to one of the names above, or leave it out for simple cards.
 
-On GitHub Pages, jekyll-default-layout gives a collection document without a layout the layout named like its collection, so `_portfolio/atlas.md` gets `portfolio`. A document with no `items:`, `data:` or `records:` is one item, not a list, so these layouts draw it as the matching detail page: `project` for `portfolio`, `job` for `jobs`, `event` for `events`, and `detail` for the others, with that page's structured data. `modootoday-check` warns until `defaults` name the layout for the collection.
+Sites from other themes often give a collection the layout named like it in `defaults`, so `_portfolio/atlas.md` gets `portfolio`. A document with no `items:`, `data:` or `records:` is one item, not a list, so these layouts draw it as the matching detail page: `project` for `portfolio`, `job` for `jobs`, `event` for `events`, and `detail` for the others, with that page's structured data. Collection documents without any layout are written without the theme (jekyll-default-layout sets layouts only for pages and posts); `modootoday-check` warns about them and names the layout to put in `defaults`.
 
 ## Items
 
