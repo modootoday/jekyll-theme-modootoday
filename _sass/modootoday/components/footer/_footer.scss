@@ -1,9 +1,10 @@
 // Footer columns (modootoday/chrome/footer.html): as many 10rem link columns as fit, a 14/20 title and muted links.
 // The footer sheet, linked when _data/nav/footer has columns.
 @include mt-layer(components) {
-  .mt-footer-inner:has(> .mt-footer-cols) { flex-direction: column; gap: 2rem; }
+  // A wrapping column flex sized the grid at its min-content height (every column stacked), about 260px of blank space.
+  .mt-footer-inner:has(> .mt-footer-cols) { flex-flow: column nowrap; justify-content: flex-start; gap: 2rem; }
   .mt-footer-cols { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
-  .mt-footer-title { margin: 0 0 .75rem; color: mt(foreground); font-size: mt-size(sm); line-height: mt-leading(sm); font-weight: 500; }
+  .mt-footer .mt-footer-title { margin: 0 0 .75rem; color: mt(foreground); font-size: mt-size(sm); line-height: mt-leading(sm); font-weight: 500; }
   .mt-footer-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; font-size: mt-size(sm); line-height: mt-leading(sm); }
   .mt-footer-cols li { margin: 0; }
   .mt-footer-cols a { color: mt(muted-foreground); text-decoration: none; }
