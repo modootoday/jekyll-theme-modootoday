@@ -1,8 +1,7 @@
 {%- comment -%}Sets mt_nav (a list of {title, url}, groups with items:), mt_nav_source (data | navigation | header_pages | auto) and
   mt_nav_groups (false for pages, whose own items: front matter is not a nav group: no groups, sidebar or pager).
   Order: _data/nav/<modootoday.nav>[-<lang>].yml or a list in _data/nav.yml; the main list of _data/navigation.yml;
-  site.header_pages (paths); else every HTML page with a title, nav_order first, then by title (modootoday.nav: false skips it).
-  Auto leaves out the home page, nav: false, nav_exclude: true, hidden pages, other languages and machine layouts.{%- endcomment -%}
+  site.header_pages (paths). With include.auto (the header only, once per page) and none of those: site/nav-auto.html.{%- endcomment -%}
 {%- assign mt_nav_source = nil -%}{%- assign mt_nav_groups = false -%}
 {%- assign mt_nav_name = mt.nav | default: "main" -%}
 {%- assign mt_nav = site.data.nav[mt_nav_name] -%}
@@ -14,22 +13,5 @@
 {%- elsif site.header_pages.size > 0 -%}
 {%- assign mt_nav = "" | split: "" -%}{%- assign mt_nav_source = "header_pages" -%}
 {%- for _np in site.header_pages -%}{%- assign _npg = site.pages | where: "path", _np | first -%}{%- if _npg.title -%}{%- assign mt_nav = mt_nav | push: _npg -%}{%- endif -%}{%- endfor -%}
-{%- elsif mt.nav != false -%}
-{%- assign _nl = page.lang | default: site.lang | default: "en" -%}{%- assign _nd = site.lang | default: "en" -%}
-{%- assign _nskip = "|home|redirect|error|twin|llms|llms-full|feed|null|none|" -%}
-{%- comment -%}Jekyll 3's sort raises on values that do not compare (a number and a text): titles sort as text, numeric
-  nav_order values by number, and any other nav_order value as text after them.{%- endcomment -%}
-{%- assign _nord = "" | split: "" -%}{%- assign _ntxt = "" | split: "" -%}{%- assign _nrest = "" | split: "" -%}
-{%- assign _ncand = site.html_pages | where_exp: "p", "p.title" | sort_natural: "title" -%}
-{%- for _np in _ncand -%}
-{%- if _np.url == "/" or _np.nav == false or _np.nav_exclude == true or _np.hidden == true -%}{%- continue -%}{%- endif -%}
-{%- assign _npl = _np.lang | default: _nd -%}{%- if _npl != _nl -%}{%- continue -%}{%- endif -%}
-{%- assign _nlk = "|" | append: _np.layout | append: "|" -%}{%- if _nskip contains _nlk -%}{%- continue -%}{%- endif -%}
-{%- if _np.nav_order == nil -%}{%- assign _nrest = _nrest | push: _np -%}{%- continue -%}{%- endif -%}
-{%- assign _nnum = _np.nav_order | plus: 0 -%}
-{%- if _nnum == _np.nav_order -%}{%- assign _nord = _nord | push: _np -%}{%- else -%}{%- assign _ntxt = _ntxt | push: _np -%}{%- endif -%}
-{%- endfor -%}
-{%- assign _ntxt = _ntxt | sort_natural: "nav_order" -%}
-{%- assign mt_nav = _nord | sort: "nav_order" | concat: _ntxt | concat: _nrest -%}
-{%- if mt_nav.size > 0 -%}{%- assign mt_nav_source = "auto" -%}{%- else -%}{%- assign mt_nav = nil -%}{%- endif -%}
+{%- elsif include.auto and mt.nav != false -%}{%- include modootoday/site/nav-auto.html -%}
 {%- endif -%}

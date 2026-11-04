@@ -1,0 +1,22 @@
+{%- comment -%}The header list when a site has no nav source: top-level pages (/about/, /about.html) with a title in the page's
+  language, nav_order first, then by title. Leaves out the home page, nav: false, nav_exclude: true, hidden pages and machine
+  layouts. Liquid keeps nothing between pages and this runs on each one, so only sites of up to 100 HTML pages get it.
+  Jekyll 3's sort raises on values that do not compare: titles sort as text, numeric nav_order by number, others as text.{%- endcomment -%}
+{%- if site.html_pages.size <= 100 -%}
+{%- assign _nl = page.lang | default: site.lang | default: "en" -%}{%- assign _nd = site.lang | default: "en" -%}
+{%- assign _nskip = "|home|redirect|error|twin|llms|llms-full|feed|null|none|" -%}
+{%- assign _nord = "" | split: "" -%}{%- assign _ntxt = "" | split: "" -%}{%- assign _nrest = "" | split: "" -%}
+{%- assign _ntop = site.html_pages | group_by_exp: "p", "p.url | split: '/' | size" | where: "name", 2 | first -%}
+{%- assign _ncand = _ntop.items | where_exp: "p", "p.title" | sort_natural: "title" -%}
+{%- for _np in _ncand -%}
+{%- if _np.nav == false or _np.nav_exclude == true or _np.hidden == true -%}{%- continue -%}{%- endif -%}
+{%- assign _npl = _np.lang | default: _nd -%}{%- if _npl != _nl -%}{%- continue -%}{%- endif -%}
+{%- assign _nlk = "|" | append: _np.layout | append: "|" -%}{%- if _nskip contains _nlk -%}{%- continue -%}{%- endif -%}
+{%- if _np.nav_order == nil -%}{%- assign _nrest = _nrest | push: _np -%}{%- continue -%}{%- endif -%}
+{%- assign _nnum = _np.nav_order | plus: 0 -%}
+{%- if _nnum == _np.nav_order -%}{%- assign _nord = _nord | push: _np -%}{%- else -%}{%- assign _ntxt = _ntxt | push: _np -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _ntxt = _ntxt | sort_natural: "nav_order" -%}
+{%- assign mt_nav = _nord | sort: "nav_order" | concat: _ntxt | concat: _nrest -%}
+{%- if mt_nav.size > 0 -%}{%- assign mt_nav_source = "auto" -%}{%- else -%}{%- assign mt_nav = nil -%}{%- endif -%}
+{%- endif -%}

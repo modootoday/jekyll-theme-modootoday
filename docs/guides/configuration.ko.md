@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:7c5d25cc3060
+source_rev: sha256:f539ce970fd3
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -37,7 +37,7 @@ modootoday:
 | `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
 | `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요 |
 | `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
-| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 `title`이 있는 모든 페이지를 읽음(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `false`는 마지막 목록을 끔 |
+| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 HTML 페이지가 100개 이하인 사이트에서는 `title`이 있는 최상위 페이지(`/about/` 같은)를 모두 읽음(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `false`는 마지막 목록을 끔 |
 | `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
 | `page_actions` | `true` | Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 front matter에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
 | `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀(인라인 `<style>`. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씀) |

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # The header nav resolver (site/nav.html): _data/nav, then _data/navigation.yml main, then header_pages, then
-# titled pages (nav_order first, then by title), and modootoday.nav: false turns the last one off.
+# top-level titled pages (nav_order first, then by title; deeper pages left out), and modootoday.nav: false turns the last one off.
 require "minitest/autorun"
 require_relative "../support/native_site"
 
@@ -13,6 +13,7 @@ class NavResolverTest < Minitest::Test
     "first.md" => ["title: First\nnav_order: 1\n"],
     "hidden.md" => ["title: Hidden\nnav: false\n"],
     "jtd.md" => ["title: Excluded\nnav_exclude: true\n"],
+    "guide/deep.md" => ["title: Deep\n"],
     "team.md" => ["title: Team\nlayout: team\nitems: [{name: Ann}]\n"],
   }.freeze
 
