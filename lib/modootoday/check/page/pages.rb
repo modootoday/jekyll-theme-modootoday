@@ -17,6 +17,7 @@ module Modootoday
       module_function
 
       def call(ctx)
+        unchecked(ctx)
         ctx.mds.each do |f|
           text = File.read(f)
           b = Markdown.body(text)
@@ -28,6 +29,13 @@ module Modootoday
           Filter.call(ctx, f, text, b, code)
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
           NewWindow.call(ctx, f, text, Markdown.strip_comments(code))
+        end
+      end
+
+      # Jekyll also renders .markdown, .mkd and .mkdn (jekyll new writes about.markdown); the rules read only .md.
+      def unchecked(ctx)
+        Dir.glob("#{ctx.src}/**/*.{markdown,mkd,mkdn}").reject { |f| ctx.skipped?(f) }.sort.each do |f|
+          ctx.warns << "#{ctx.rel(f)}: not checked (the rules read .md pages); rename it to .md"
         end
       end
     end

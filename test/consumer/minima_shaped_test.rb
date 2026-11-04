@@ -31,12 +31,15 @@ class MinimaShapedTest < Minitest::Test
       assert_includes home, 'class="mt-blog mt-home-posts"'
       assert_includes home, "Welcome to Jekyll!"
       assert_includes File.read("#{site}/about/index.html"), '<article class="mt-doc">'
+      assert_includes File.read("#{site}/about/index.html"), "<h1>About</h1>", "page prints title: as minima does"
+      assert_equal 1, home.scan("<h1").size, "the home page has one h1, the site title"
       assert_includes File.read("#{site}/404.html"), '<article class="mt-doc">'
       post = post_html(site)
       assert_includes post, '<span class="mt-post-author">Jane Doe</span>'
       assert_includes post, '<time datetime="2026-01-05T10:00:00+00:00">'
       out, st = check(src, site)
       assert st.success?, out
+      assert_match(/about\.markdown: not checked \(the rules read \.md pages\); rename it to \.md/, out)
     end
   end
 end
