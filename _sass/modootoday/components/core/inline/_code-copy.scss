@@ -12,3 +12,15 @@
     .mt-main .mt-code-title + div pre { padding-top: 1rem; }
   }
 }
+// Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).
+@include mt-layer(components) {
+  @media (pointer: coarse) {
+    .mt-code-copy { min-height: 2.75rem; }
+    .mt-code-copy { width: 2.75rem; height: 2.75rem; }
+    .mt-code pre, pre.mt-code { padding-top: 3.25rem; }
+    .mt-code-title + div pre { padding-top: 1rem; }
+  }
+  @media (forced-colors: active) {
+    .mt-code-copy { border: 1px solid ButtonText; }
+  }
+}

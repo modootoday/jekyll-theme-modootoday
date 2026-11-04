@@ -1,13 +1,12 @@
-// Touch targets (44px on coarse pointers, 16px inputs so iOS does not zoom) and forced colors (Windows
-// high contrast: visible borders on icon buttons and the search box). Imported after the components so these overrides win at equal specificity and in @layer mode.
+// Touch targets (44px on coarse pointers) and forced colors (Windows high contrast: visible borders on icon buttons)
+// for the shell: header links, menus and the theme toggle. Imported last in the core sheet so these overrides win at
+// equal specificity and in @layer mode; a component's own part closes its partial (code copy, pagination, tabs, accordion).
 @include mt-layer(components) {
   @media (pointer: coarse) {
-    .mt-site-title, .mt-lang a, .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary, [role="tab"], .mt-code-copy, .mt-pagination a, .mt-accordion-trigger { min-height: 2.75rem; }
-    .mt-theme-toggle, .mt-lang > summary, .mt-nav-sheet > summary, .mt-code-copy { width: 2.75rem; height: 2.75rem; }
-    .mt-code pre, pre.mt-code { padding-top: 3.25rem; }
-    .mt-code-title + div pre { padding-top: 1rem; }
+    .mt-site-title, .mt-lang a, .mt-nav a, .mt-nav summary, .mt-menu a, .mt-menu summary { min-height: 2.75rem; }
+    .mt-theme-toggle, .mt-lang > summary, .mt-nav-sheet > summary { width: 2.75rem; height: 2.75rem; }
   }
   @media (forced-colors: active) {
-    .mt-theme-toggle, .mt-lang > summary, .mt-nav-sheet > summary, .mt-code-copy { border: 1px solid ButtonText; }
+    .mt-theme-toggle, .mt-lang > summary, .mt-nav-sheet > summary { border: 1px solid ButtonText; }
   }
 }

@@ -19,3 +19,9 @@
     }
   }
 }
+// Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).
+@include mt-layer(components) {
+  @media (pointer: coarse) {
+    [role="tab"] { min-height: 2.75rem; }
+  }
+}

@@ -66,6 +66,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- On touch screens (`pointer: coarse`), an accordion trigger now gets the 44px minimum height with `modootoday.css: split` too: the rule sat in the core sheet, and the accordion sheet linked after it reset it (`all: unset`). The touch-target and forced-colour rules of the code copy button, pagination, tabs and the accordion now close their own partials, and `_access.scss` keeps the header, menu and theme toggle part (adr:modootoday/20261104053143). The rules are the same.
 - Diff blocks showed each added line beside the removed one, off screen, because the line spans were inline blocks; they now stack. From 48rem the copy button covered the end of long first lines.
 - With a doc sidebar, "Edit this page" and its rule sat 8px off the text column; a split hero was squeezed beside the page actions menu; the focus ring of "On this page" links was clipped by the scrolling column.
 - Below 64rem the header showed only the first group's links and grew to two or three rows (105 to 139px, depending on the layout), so anchor targets landed under it on phones; between 30rem and 48rem the search icon sat outside its field.

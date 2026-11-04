@@ -13,3 +13,9 @@
   .mt-accordion-panel[hidden] { display: none; }
   .mt-c-accordion { border-bottom: 1px solid mt(border); }
 }
+// Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).
+@include mt-layer(components) {
+  @media (pointer: coarse) {
+    .mt-accordion-trigger { min-height: 2.75rem; }
+  }
+}

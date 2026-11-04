@@ -8,3 +8,9 @@
   .mt-pagination [rel="next"] small { justify-content: flex-end; }
   .mt-pagination small { display: inline-flex; align-items: center; gap: .3rem; color: mt(muted-foreground); font-weight: 500; font-size: .8125rem; }
 }
+// Touch target and forced colors last, so they win at equal specificity (the shell's part is _access.scss).
+@include mt-layer(components) {
+  @media (pointer: coarse) {
+    .mt-pagination a { min-height: 2.75rem; }
+  }
+}
