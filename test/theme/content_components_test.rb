@@ -156,7 +156,7 @@ class ContentComponentsTest < Minitest::Test
 
   def test_sheets_per_page
     probe, home = self.class.build
-    %w[loading.css showcase/gallery.css showcase/pricing.css structure/faq.css].each { |c| assert_includes probe, "modootoday/#{c}" }
+    %w[content/loading.css showcase/gallery.css showcase/pricing.css structure/faq.css].each { |c| assert_includes probe, "modootoday/#{c}" }
     %w[loading.css gallery.css tabs.js].each { |c| refute_includes home, c }
   end
 end
@@ -196,14 +196,14 @@ class OptinSheetsTest < Minitest::Test
     refute_includes h, "mt-c-split"
     refute_includes h, "structure/split.css"
     refute_includes h, "showcase/cta.css"
-    assert_includes h, "modootoday/lists.css"
+    assert_includes h, "modootoday/content/lists.css"
   end
 
   def test_optin_sheets_have_rules_with_a_components_list
     h = read("term/index.html")
-    %w[terminal bleed].each { |s| assert_includes h, "modootoday/#{s}.css" }
-    assert_includes read("assets/css/modootoday/terminal.css"), ".mt-split-terminal"
-    assert_includes read("assets/css/modootoday/bleed.css"), ".mt-bleed"
-    assert_includes read("assets/css/modootoday/lists.css"), ".mt-hero-checks"
+    %w[chrome/terminal structure/bleed].each { |s| assert_includes h, "modootoday/#{s}.css" }
+    assert_includes read("assets/css/modootoday/chrome/terminal.css"), ".mt-split-terminal"
+    assert_includes read("assets/css/modootoday/structure/bleed.css"), ".mt-bleed"
+    assert_includes read("assets/css/modootoday/content/lists.css"), ".mt-hero-checks"
   end
 end

@@ -50,7 +50,7 @@ class FilterTest < Minitest::Test
   def test_sheet_and_module_only_where_used
     %w[f/page.md f/sections.md f/dir.md].each do |p|
       h = head(p) + html(built, p)
-      assert_match %r{<link rel="stylesheet" href="/assets/css/modootoday/filter\.css\?v=[^"]+">}, h, p
+      assert_match %r{<link rel="stylesheet" href="/assets/css/modootoday/data/filter\.css\?v=[^"]+">}, h, p
       assert_match %r{<script type="module" src="/assets/js/modootoday/filter/filter\.js\?v=[^"]+"></script>}, h, p
     end
     plain = html(built, "f/plain.md")

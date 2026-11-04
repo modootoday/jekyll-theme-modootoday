@@ -3,10 +3,10 @@ id: adr:modootoday/20261104011122
 title: "Callout, figure and embed rules leave the core sheet for a probed content sheet and keep their partial paths"
 status: active
 created: 2026-11-04T01:11:21Z
-updated: 2026-11-04T01:12:42Z
+updated: 2026-11-04T06:19:30Z
 rel:
   depends_on: [adr:modootoday/20261103092701, adr:modootoday/20261103223545]
-  governs: [assets/css/modootoday/content.scss, _includes/modootoday/assets/registry.html, _includes/modootoday/config.html, assets/css/modootoday.scss]
+  governs: [_includes/modootoday/assets/registry.html, _includes/modootoday/config.html, assets/css/modootoday.scss, assets/css/modootoday/content/inline.scss]
 ---
 
 # Callout, figure and embed rules leave the core sheet for a probed content sheet and keep their partial paths

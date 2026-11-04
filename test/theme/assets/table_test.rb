@@ -42,12 +42,12 @@ class TableTest < Minitest::Test
   end
 
   def test_sheets_follow_the_body
-    assert_match sheet("table"), html(built, "t/table.md")
-    refute_match sheet("table-stack"), html(built, "t/table.md")
-    refute_match sheet("table-stack"), html(built, "t/prose.md"), "the class named in prose is no probe"
+    assert_match sheet("data/table"), html(built, "t/table.md")
+    refute_match sheet("data/table-stack"), html(built, "t/table.md")
+    refute_match sheet("data/table-stack"), html(built, "t/prose.md"), "the class named in prose is no probe"
     p = html(built, "t/params.md")
-    assert_match sheet("table"), p
-    assert_match sheet("table-stack"), p
+    assert_match sheet("data/table"), p
+    assert_match sheet("data/table-stack"), p
     assert_includes p, "/assets/js/modootoday/table-stack.js"
     refute_includes html(built, "t/table.md"), "table-stack.js"
     refute_includes html(built, "t/prose.md"), "table-stack.js"
@@ -62,11 +62,11 @@ class TableTest < Minitest::Test
     assert_match(/\[lang\|="?ko"?\]\{word-break:keep-all;overflow-wrap:break-word;?\}/, core)
     refute_includes core, ":lang(ko){word-break"
     refute_includes core, ".mt-table"
-    table = css.("modootoday/table.css")
+    table = css.("modootoday/data/table.css")
     assert_includes table, ".mt-table>table:has(th:nth-child(4))"
     assert_includes table, "max(100%,36rem)"
     assert_includes table, "position:sticky"
-    stack = css.("modootoday/table-stack.css")
+    stack = css.("modootoday/data/table-stack.css")
     assert_includes stack, "[data-mt-labelled]"
     assert_includes stack, "mt-table--fixed"
   end

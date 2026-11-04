@@ -55,10 +55,10 @@ class SiteScriptsTest < Minitest::Test
   end
 
   def test_visual_sheet_only_where_used
-    assert_match %r{/b/assets/css/modootoday/visual\.css}, head("v/hero.md")
-    assert_match %r{/b/assets/css/modootoday/visual\.css}, head("v/remote.md"), "a script without a poster still gets the sheet"
+    assert_match %r{/b/assets/css/modootoday/media/visual\.css}, head("v/hero.md")
+    assert_match %r{/b/assets/css/modootoday/media/visual\.css}, head("v/remote.md"), "a script without a poster still gets the sheet"
     refute_includes head("v/plain.md"), "visual.css"
-    css = File.read("#{built}/assets/css/modootoday/visual.css")
+    css = File.read("#{built}/assets/css/modootoday/media/visual.css")
     assert_match(/\[data-mt-ready\]\s*>\s*\.mt-visual-poster\s*\{\s*opacity:\s*0/, css)
   end
 

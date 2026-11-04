@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:5b5a5a1d6826
+source_rev: sha256:d4a5c9075459
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -93,4 +93,4 @@ $mt-overrides-dark: (
 
 헤더는 모든 너비에서 4rem 높이의 한 줄로 유지됩니다. 64rem보다 좁으면 헤더 링크가 메뉴 버튼(`.mt-nav-sheet`) 안으로 들어가고, 그룹 링크를 줄 안에 다시 늘어놓던 `.mt-nav-flat`은 없어졌습니다. `.mt-nav-flat`에 쓴 규칙은 이제 `.mt-nav-sheet`를 대상으로 바꾸세요. 제목에는 더 이상 `scroll-margin-top`이 없고, 앵커로 이동하면 페이지의 `scroll-padding-top` 덕분에 헤더 아래에 자리 잡습니다.
 
-콜아웃, 인용, 그림도 같은 평면 스타일을 따릅니다. 콜아웃은 안쪽 여백 1rem인 가는 테두리 상자이고, 종류 색은 16px 아이콘과 제목에만 들어갑니다. 본문 인용은 시작 쪽에 2px 선이 있고(이전 3px), `c: quote` 섹션은 배경을 채운 카드 대신 같은 선이 있는 큰 인용이 됩니다. 그림, SVG 그림 틀, 임베드의 모서리는 8px(`radius`, 이전 `radius-lg`)이고, 캡션은 14/20이며, `.mt-illustration-tag` 배지는 그림 위를 덮지 않고 그림 위쪽에 놓입니다. 콜아웃, 그림, 임베드 규칙은 핵심 시트에서 빠져 `content.css`로 옮겨 갔고, 이 시트는 그중 하나가 있는 페이지만 불러옵니다. 부분 파일은 `components/core/inline/` 경로에 그대로 있으므로, 사이트에서 덮어쓴 파일도 계속 적용됩니다. `modootoday.css: bundle`에서는 핵심 시트에 그대로 들어 있습니다.
+콜아웃, 인용, 그림도 같은 평면 스타일을 따릅니다. 콜아웃은 안쪽 여백 1rem인 가는 테두리 상자이고, 종류 색은 16px 아이콘과 제목에만 들어갑니다. 본문 인용은 시작 쪽에 2px 선이 있고(이전 3px), `c: quote` 섹션은 배경을 채운 카드 대신 같은 선이 있는 큰 인용이 됩니다. 그림, SVG 그림 틀, 임베드의 모서리는 8px(`radius`, 이전 `radius-lg`)이고, 캡션은 14/20이며, `.mt-illustration-tag` 배지는 그림 위를 덮지 않고 그림 위쪽에 놓입니다. 콜아웃, 그림, 임베드 규칙은 핵심 시트에서 빠져 `content/inline.css`로 옮겨 갔고, 이 시트는 그중 하나가 있는 페이지만 불러옵니다. 부분 파일은 `components/core/inline/` 경로에 그대로 있으므로, 사이트에서 덮어쓴 파일도 계속 적용됩니다. `modootoday.css: bundle`에서는 핵심 시트에 그대로 들어 있습니다.

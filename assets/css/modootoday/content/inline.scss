@@ -1,0 +1,9 @@
+---
+# md-components v1 — jekyll-theme-modootoday optional sheet (callouts, figures, illustrations and embeds in the body). Linked only by pages that use them.
+# The partials are the parts of the inline row in assets/registry.html; they keep their core/inline paths, so shadows still apply.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% for s in mt_context_sheets %}{% assign kv = s | split: ":" %}{% if kv[0] == "inline" %}{% assign cs = kv[1] | split: "|" %}{% for c in cs %}{% assign n = c | split: "/" | last %}{% if mt_components contains n %}@import "modootoday/components/{{ c }}";
+{% endif %}{% endfor %}{% endif %}{% endfor %}

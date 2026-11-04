@@ -92,10 +92,10 @@ class CssTest < Minitest::Test
     refute_includes core, ".mt-c-features"
     refute_includes core, ".mt-skeleton"
     assert_includes sheets.keys, "showcase/card.css"
-    assert_includes sheets.keys, "loading.css"
-    assert_match(/prefers-reduced-motion/, sheets["loading.css"])
-    assert_match(/forced-colors/, sheets["loading.css"])
-    assert_includes html, "modootoday/doc.css"
+    assert_includes sheets.keys, "content/loading.css"
+    assert_match(/prefers-reduced-motion/, sheets["content/loading.css"])
+    assert_match(/forced-colors/, sheets["content/loading.css"])
+    assert_includes html, "modootoday/docs/doc.css"
     refute_includes html, "loading.css"
   end
 
@@ -104,13 +104,13 @@ class CssTest < Minitest::Test
     assert_includes core, ".mt-c-features"
     assert_includes core, ".mt-skeleton"
     assert_equal 1, core.scan(/\.mt-callout-title\s*\{/).size, "the content parts fold in once, from their core/inline paths"
-    refute_includes html, "modootoday/doc.css"
+    refute_includes html, "modootoday/docs/doc.css"
   end
 
   def test_component_list_narrows
     css, html, sheets = self.class.build("minimal")
-    assert_includes sheets.fetch("content.css"), ".mt-callout"
-    refute_includes sheets.fetch("content.css"), ".mt-embed"
+    assert_includes sheets.fetch("content/inline.css"), ".mt-callout"
+    refute_includes sheets.fetch("content/inline.css"), ".mt-embed"
     refute_includes css, ".mt-badge"
     refute_includes html, "code-copy.js"
   end
@@ -163,14 +163,14 @@ class CssTest < Minitest::Test
   def test_flat_surfaces
     core, _, sheets = self.class.build("all")
     [core, *sheets.values].each { |s| refute_includes s, "backdrop-filter" }
-    refute_match(/\.mt-callout\s*\{[^}]*color-mix/, sheets.fetch("content.css"), "callouts are plain bordered boxes")
+    refute_match(/\.mt-callout\s*\{[^}]*color-mix/, sheets.fetch("content/inline.css"), "callouts are plain bordered boxes")
   end
 
   def test_callouts_quotes_and_figures_are_flat
     core, html, sheets = self.class.build("all")
-    content = sheets.fetch("content.css")
+    content = sheets.fetch("content/inline.css")
     %w[.mt-callout .mt-figure .mt-illustration .mt-embed].each { |c| refute_includes core, c, "#{c} lives in content.css" }
-    assert_includes html, "modootoday/content.css", "a page with a callout links the content sheet"
+    assert_includes html, "modootoday/content/inline.css", "a page with a callout links the content sheet"
     rule = ->(css, sel) { css[/(?:^|[}\s])#{Regexp.escape(sel)}\s*\{([^}]*)\}/, 1].to_s }
     callout = rule.(content, ".mt-callout")
     assert_match(/padding:\s*1rem/, callout)
