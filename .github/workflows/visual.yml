@@ -48,16 +48,20 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Build docs/ at the base commit
         id: base
+        # The base is built with this commit's site script, so a base from before a script move still compares.
         run: |
-          build=test/system/site/build-docs.sh
-          if ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || ! git cat-file -e "$BASE_SHA:$build" 2>/dev/null; then
-            echo "No usable base commit; skipping the comparison." >> "$GITHUB_STEP_SUMMARY"
+          skip() {
+            echo "No usable base commit ($1); skipping the comparison." | tee -a "$GITHUB_STEP_SUMMARY"
             echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
-          fi
+          }
+          git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || skip "$BASE_SHA is not a commit here"
+          for f in docs/_config.yml gemfiles/github-pages.gemfile; do
+            git cat-file -e "$BASE_SHA:$f" 2>/dev/null || skip "$BASE_SHA has no $f"
+          done
           git worktree add -q "$RUNNER_TEMP/base" "$BASE_SHA"
           export BUNDLE_GEMFILE="$RUNNER_TEMP/base/gemfiles/github-pages.gemfile"
           bundle install --quiet
-          (cd "$RUNNER_TEMP/base" && "$build" "$RUNNER_TEMP/base-site")
+          test/system/site/build-docs.sh "$RUNNER_TEMP/base-site" "$RUNNER_TEMP/base"
       - name: Baseline from the base commit
         if: steps.base.outputs.skip != 'true'
         run: node test/system/visual/visual.mjs "$RUNNER_TEMP/base-site" --update --baseline qa-out/visual/baseline
