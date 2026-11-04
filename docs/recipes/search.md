@@ -40,7 +40,7 @@ Matching ignores case and compares text in Unicode NFC, so an accent or a Hangul
 
 Without these keys the search works as before: the query as typed, 8 results, 300 words per page.
 
-A query starts at two characters, or at one Han, kana or Hangul character (표, 表). In the results, every matched word in the title and the snippet is a `mark`, underlined on a light tint of the primary colour; restyle it with `.mt-search-results mark`. The results close when Tab moves focus out of the search box, and Esc clears the query.
+A query starts at two characters, or at one Han, kana or Hangul character (표, 表). In the results, every matched word in the title and the snippet is a `mark`, underlined on a light tint of the primary colour (in the one-line snippet, underlined only, so a match cut by the ellipsis leaves no tint); restyle it with `.mt-search-results mark`. The results close when Tab moves focus out of the search box, and Esc clears the query.
 
 ## Filter a list or table
 

@@ -70,7 +70,7 @@ pages:
   home: "返回首頁"
   moved: "此頁面已移動。"
   moved_link: "前往新頁面"
-  search_hint: "輸入至少兩個字元開始搜尋。"
+  search_hint: "輸入關鍵字即可搜尋。"
 layouts:
   all: "全部"
   filter: "篩選"

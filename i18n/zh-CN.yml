@@ -70,7 +70,7 @@ pages:
   home: "返回首页"
   moved: "此页面已移动。"
   moved_link: "前往新页面"
-  search_hint: "输入至少两个字符开始搜索。"
+  search_hint: "输入关键词即可搜索。"
 layouts:
   all: "全部"
   filter: "筛选"

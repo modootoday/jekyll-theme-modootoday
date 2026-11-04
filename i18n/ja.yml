@@ -70,7 +70,7 @@ pages:
   home: "ホームへ戻る"
   moved: "このページは移動しました。"
   moved_link: "新しいページへ進む"
-  search_hint: "2文字以上入力すると検索します。"
+  search_hint: "キーワードを入力すると検索します。"
 layouts:
   all: "すべて"
   filter: "絞り込み"

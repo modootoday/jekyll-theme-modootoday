@@ -88,6 +88,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- The Korean, Japanese and Chinese search hints said two characters were needed, though one Han, kana or Hangul character now searches; they now just invite a query.
+- A search snippet cut by its ellipsis through a match left a small tint chip past the ellipsis; marks in the one-line snippet keep the underline and weight without the fill.
+- A doc page's flat `c: cta` section was left out of the section rule, so it sat about twice as far below the section above with no hairline; it now has the same rule and spacing (adr:modootoday/20261104223512).
+- Below 64rem the Guides and On this page disclosures kept the native triangle while the sidebar group titles use a chevron; they now use the same chevron, mirrored in RTL.
 - A `reveal: true` section stayed invisible until it scrolled into view, so a page that is never scrolled (a full-page capture, a reader view) showed a blank band where it sat. The scroll-driven fade has no backwards fill now: below the viewport the section keeps full opacity and turns transparent only as it starts to enter, where none of it is visible yet. Print already showed it.
 - `modootoday-check` printed "OK (0 pages)" on a `jekyll new` site, whose pages are `.markdown` files it does not read. It now warns about each `.markdown`, `.mkd` or `.mkdn` page ("not checked (the rules read .md pages); rename it to .md"), and the Upgrade guide says so.
 - The error page's home button, and the buttons of the minimal and home shells and the search page's submit button, kept the old accent fill and 44px size; they now follow the flat buttons: 40px, 14/20 at weight 500, the primary one neutral through the `--mt-button-primary-bg` and `--mt-button-primary-fg` hooks. The Layouts page shows the quick-link paragraph of an error page, and the docs 404 page drops its Home chip, which repeated the button.
