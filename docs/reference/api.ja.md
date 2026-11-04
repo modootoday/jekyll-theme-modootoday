@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:c8b393302f83
+source_rev: sha256:44d31b3dbb53
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -86,7 +86,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | 読み込み表示（任意シート） | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | バナー | `div.mt-banner` | その `p` とリンク、`a.mt-back-to-top` | — |
 | アラート | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`、本文 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| バッジ | `span.mt-badge` | 記号(`aria-hidden`)、ラベル | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
+| バッジ | `span.mt-badge` | ラベル(ステータスバッジの点は `::before` で描画) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | キーボードのキー | `kbd.mt-kbd` | キーごとの `kbd` | — |
 | 図 | `figure.mt-figure` | `img`、`figcaption` | — |
 | 記事ヘッダー | `header.mt-post-header` | `h1.mt-post-title`、`.mt-post-deck`、`.mt-byline`、`figure.mt-post-cover`、`nav.mt-series`、`p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |

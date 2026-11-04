@@ -33,7 +33,7 @@ Every content page starts with front matter; an empty block (`---` then `---`) i
 ## 2. Optional components
 | Component | Markdown | Transformation | Notes |
 |---|---|---|---|
-| Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.mt-badge.mt-badge-<value>` = symbol (●◐○, `aria-hidden`) + i18n `status.<value>` | unknown values and leftover `<code>status:` in the build are checker errors |
+| Status badge | code span `` `status:available` `` / `partial` / `planned` (fixed set) | with badges on (default; `badges: false` per page or `modootoday.badges: false` site-wide): `span.mt-badge.mt-badge-<value>` = i18n `status.<value>`, with a status-coloured dot drawn by CSS (a border, so it survives forced colours) | unknown values and leftover `<code>status:` in the build are checker errors |
 | Tag badge | `` `tag:beta` `` (one token `[A-Za-z0-9._-]+`) | `span.mt-badge.mt-badge-tag` | needs the `badge` component; bad values are checker errors. `since:` is not part of 1.0 and is a checker error |
 | Accordion | `c: accordion` section, each `###` is a question | JS turns `###` into `button[aria-expanded]` + panel; content stays visible without JS | — |
 | Steps | `c: steps` section with an `ol` or `###` items | CSS counters | — |

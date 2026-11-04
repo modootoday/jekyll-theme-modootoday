@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:c8b393302f83
+source_rev: sha256:44d31b3dbb53
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -86,7 +86,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 로딩(선택 시트) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | 배너 | `div.mt-banner` | 그 `p`와 링크, `a.mt-back-to-top` | — |
 | 알림 | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, 본문 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| 배지 | `span.mt-badge` | 기호(`aria-hidden`), 레이블 | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
+| 배지 | `span.mt-badge` | 레이블(상태 배지의 점은 `::before`로 그림) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |
 | 그림 | `figure.mt-figure` | `img`, `figcaption` | — |
 | 글 머리 | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |

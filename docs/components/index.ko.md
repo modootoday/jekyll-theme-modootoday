@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:9faac3980c97
+source_rev: sha256:414ab849d721
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -141,7 +141,7 @@ sudo apt install ruby-full
 
 ## 배지
 
-`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 됩니다. status(available, partial, planned)와 tag가 있습니다. 상태 기호는 스크린 리더에서 숨기고 이름을 읽습니다.
+`status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 됩니다. status(available, partial, planned)와 tag가 있습니다. 상태 배지는 이름 앞에 색 점을 표시합니다. 점은 CSS로 그리므로 스크린 리더는 이름만 읽고, 강제 색상 모드에서도 보입니다.
 
 `status:available` `status:partial` `status:planned`
 

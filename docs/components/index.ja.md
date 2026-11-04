@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:9faac3980c97
+source_rev: sha256:414ab849d721
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -142,7 +142,7 @@ sudo apt install ruby-full
 
 ## バッジ
 
-`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータス記号はスクリーンリーダーから隠し、名前を読み上げます。
+`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータスバッジは名前の前に色の点を表示します。点は CSS で描くので、スクリーンリーダーは名前だけを読み上げ、強制カラーモードでも見えます。
 
 `status:available` `status:partial` `status:planned`
 

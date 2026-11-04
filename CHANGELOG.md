@@ -87,6 +87,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- A status badge showed two symbols before its label, the CSS dot and the old text glyph (● ◐ ○) on a different baseline. The glyph span is gone: `span.mt-badge-<status>` holds only the label, and the dot is the `::before` border, which stays visible in forced colours.
 - Doc sidebar group titles (`summary.mt-sidebar-title`, which open and close a group) were 20px tall targets and failed WCAG 2.5.8 target size in axe and Lighthouse; they are now 24px (`.25rem` above and below the 16px line), and the group's top margin is `.25rem` smaller, so the title text stays where it was.
 - In a table of two or three columns, a short code span such as `header` no longer breaks inside the word at desktop widths: from 40rem, text and code after the first column break only a word longer than the column (`overflow-wrap: break-word`). Below 40rem they still break anywhere, as before.
 - A table of four or more columns whose later cells hold long code no longer scrolls inside the text column with its last column cut off (the API reference's component table was 817px in a 720px column at 768 and 1440px): code after the first column may break, with a 6rem floor per cell, so the table fits (adr:modootoday/20261104174901). Also fixed, the four reflow failures of the accessibility audit: event and job rows of a directory wrap their body under the date tile and image at 320px or 200% text, and previous/next links break a word longer than their half of the row.

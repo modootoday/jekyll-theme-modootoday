@@ -15,7 +15,7 @@ class ComponentsTest < Minitest::Test
     ---
     # Probe
 
-    Intro `tag:beta`, `since:0.3`, `tag:two words`.
+    Intro `tag:beta`, `since:0.3`, `tag:two words`, `status:partial`.
 
     ![A cat](/cat.png)
 
@@ -73,6 +73,11 @@ class ComponentsTest < Minitest::Test
     assert_includes h, '<span class="mt-badge mt-badge-tag" data-variant="tag">beta</span>'
     refute_includes h, 'mt-badge-since'
     assert_includes h, ">tag:two words</code>"
+  end
+
+  def test_status_badge_is_the_label_alone_and_the_dot_comes_from_css
+    assert_includes h, '<span class="mt-badge mt-badge-partial" data-variant="partial">Partial</span>'
+    refute_match(/[●◐○]/, h)
   end
 
   def test_sections_and_scripts

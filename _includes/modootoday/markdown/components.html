@@ -45,14 +45,12 @@ Titles/labels: modootoday/i18n.html (site _data/i18n, theme catalog, English).
 {%- endfor -%}{%- endcapture -%}
 {%- endif -%}
 {%- if include.badges -%}
-  {%- assign _st = "available:●,partial:◐,planned:○" | split: "," -%}
-  {%- for _pair in _st -%}
-    {%- assign _kv = _pair | split: ":" -%}
-    {%- assign _k = _kv[0] -%}
+  {%- assign _st = "available,partial,planned" | split: "," -%}
+  {%- for _k in _st -%}
     {%- case _k -%}{%- when "available" -%}{%- assign _label = mt_t_status_available -%}{%- when "partial" -%}{%- assign _label = mt_t_status_partial -%}{%- else -%}{%- assign _label = mt_t_status_planned -%}{%- endcase -%}
-    {%- capture _to %}<span class="mt-badge mt-badge-{{ _kv[0] }}" data-variant="{{ _kv[0] }}"><span aria-hidden="true">{{ _kv[1] }}</span> {{ _label }}</span>{% endcapture -%}
-    {%- capture _from %}<code class="language-plaintext highlighter-rouge">status:{{ _kv[0] }}</code>{% endcapture -%}
-    {%- capture _from2 %}<code>status:{{ _kv[0] }}</code>{% endcapture -%}
+    {%- capture _to %}<span class="mt-badge mt-badge-{{ _k }}" data-variant="{{ _k }}">{{ _label }}</span>{% endcapture -%}
+    {%- capture _from %}<code class="language-plaintext highlighter-rouge">status:{{ _k }}</code>{% endcapture -%}
+    {%- capture _from2 %}<code>status:{{ _k }}</code>{% endcapture -%}
     {%- assign _c = _c | replace: _from, _to | replace: _from2, _to -%}
   {%- endfor -%}
 {%- endif -%}

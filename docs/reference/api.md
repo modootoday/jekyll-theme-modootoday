@@ -80,7 +80,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |
 | Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
-| Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
+| Badge | `span.mt-badge` | the label (a status badge draws its dot with `::before`) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
 | Figure | `figure.mt-figure` | `img`, `figcaption` | — |
 | Post header | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |

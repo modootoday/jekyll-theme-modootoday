@@ -135,7 +135,7 @@ sudo apt install ruby-full
 
 ## Badges
 
-`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. The status symbol is hidden from screen readers, and the label is read instead.
+`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. A status badge shows a coloured dot before its label; the dot is drawn by CSS, so screen readers read only the label, and it stays visible in forced colours.
 
 `status:available` `status:partial` `status:planned`
 
