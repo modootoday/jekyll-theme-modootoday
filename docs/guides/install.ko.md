@@ -69,7 +69,7 @@ defaults:
 
 ## 빌드 확인
 
-`--twins`는 테마가 AI 에이전트용으로 내보내는 파일도 확인합니다([에이전트용](../agents/)). 페이지마다 하나씩인 Markdown 쌍둥이와 `llms.txt`, `llms-full.txt`입니다. Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`를 추가하면 빌드가 만들어 줍니다. 기본 GitHub Pages에서는 `modootoday-stubs . --twins --write`를 한 번 실행해 페이지마다 쌍둥이 스텁을 추가하고, 사이트 루트에 front matter만 담은 파일 두 개를 둡니다. `layout: llms`인 `llms.txt`와 `layout: llms-full`인 `llms-full.txt`입니다. Markdown만 검사하려면 `--twins`를 빼세요.
+`--twins`는 테마가 AI 에이전트용으로 내보내는 파일도 확인합니다([에이전트용](../agents/)). 페이지마다 하나씩인 Markdown 버전과 `llms.txt`, `llms-full.txt`입니다. Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`를 추가하면 빌드가 만들어 줍니다. 기본 GitHub Pages에서는 `modootoday-stubs . --twins --write`를 한 번 실행해 페이지마다 Markdown 버전의 스텁을 추가하고, 사이트 루트에 front matter만 담은 파일 두 개를 둡니다. `layout: llms`인 `llms.txt`와 `layout: llms-full`인 `llms-full.txt`입니다. Markdown만 검사하려면 `--twins`를 빼세요.
 
 ```sh
 bundle exec jekyll build

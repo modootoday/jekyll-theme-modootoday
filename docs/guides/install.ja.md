@@ -64,13 +64,13 @@ defaults:
 > [!TIP]
 > `remote_theme` を使う場合は、`theme:` の行を GitHub Pages タブにある `remote_theme` の 2 行に置き換えてください。
 >
-> このサイトを手元の github-pages gem でビルドするには、`repository: <owner>/<name>`（GitHub のリポジトリ）も追加するか、環境変数 `PAGES_REPO_NWO=<owner>/<name>` を設定します。どちらもなく、GitHub の `origin` リモートを持つクローンの外でビルドすると、「No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository.」というエラーで止まります。GitHub Pages ではこの値が自動で設定されます。
+> このサイトを手元の github-pages gem でビルドするには、`repository: <owner>/<name>`（GitHub のリポジトリ）も追加するか、環境変数 `PAGES_REPO_NWO=<owner>/<name>` を設定します。どちらもなく、GitHub の `origin` リモートがあるクローンの外でビルドすると、「No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository.」というエラーで止まります。GitHub Pages ではこの値が自動で設定されます。
 
 `sass:` の行は、Jekyll 4 のビルドで `@import` に関する Dart Sass の通知が何千行も出力されないようにします。出力結果はどちらでも同じです。
 
 ## ビルドを確認する
 
-`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[エージェント向け](../agents/)）。ページごとの Markdown のツインと、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横にツインのスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。Markdown だけを確認するには `--twins` を外します。
+`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[エージェント向け](../agents/)）。ページごとの Markdown 版と、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横に Markdown 版のスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。Markdown だけを確認するには `--twins` を外します。
 
 ```sh
 bundle exec jekyll build
