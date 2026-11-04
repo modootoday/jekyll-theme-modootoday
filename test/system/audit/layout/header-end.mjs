@@ -1,13 +1,16 @@
-// Header end: the trailing controls (language menu, theme toggle) sit at the inline end of the header row on a site
+// Header end: the trailing controls (language menu, theme toggle, and below 64rem the menu button) sit at the inline end of the header row on a site
 // without search (and with no language menu either), in LTR and RTL; a gap there means only .mt-search pushed them.
 export const HEADER_WIDTHS = [1440, 390];
 export function headerEndGap(strip) {
   const h = document.querySelector(".mt-header-inner");
   for (const s of strip) h.querySelector(s)?.remove();
   const cs = getComputedStyle(h), r = h.getBoundingClientRect(), rtl = cs.direction === "rtl";
-  const last = [...h.children].filter((e) => e.offsetParent && e.matches(".mt-search, .mt-lang, .mt-theme-toggle")).at(-1);
-  if (!last) return 0;
-  const q = last.getBoundingClientRect();
+  // Below 64rem the nav is the menu button and sits last by CSS order (adr:modootoday/20261103205338), so the visual end
+  // is the outermost control, not the last in source order.
+  const end = (e) => (rtl ? -e.getBoundingClientRect().left : e.getBoundingClientRect().right);
+  const controls = [...h.children].filter((e) => e.offsetParent && e.matches(".mt-search, .mt-lang, .mt-theme-toggle, .mt-nav"));
+  if (!controls.length) return 0;
+  const q = controls.reduce((a, b) => (end(b) > end(a) ? b : a)).getBoundingClientRect();
   return rtl ? q.left - (r.left + parseFloat(cs.paddingLeft)) : r.right - parseFloat(cs.paddingRight) - q.right;
 }
 export async function checkHeaderEnd(page, scheme, url, fails) {
