@@ -47,6 +47,7 @@ Some sizes and the primary button colours are hooks: the theme reads them as `va
 | `--mt-code-radius` | `var(--mt-radius)` | the corners of code blocks and their title bar |
 | `--mt-button-primary-bg` | `var(--mt-foreground)` | the fill and border of the primary action (the first link of a hero or `c: cta` button row) |
 | `--mt-button-primary-fg` | `var(--mt-background)` | the text of the primary action |
+| `--mt-hero-title-size` | `clamp(2.5rem, 1.5rem + 3vw, 3.5rem)` | the hero title and the marketing page title |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

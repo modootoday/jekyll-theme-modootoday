@@ -8,5 +8,6 @@ $mt-hooks: (
   "doc-container": 90rem,
   "code-radius": unquote("var(--mt-radius)"),
   "button-primary-bg": unquote("var(--mt-foreground)"),
-  "button-primary-fg": unquote("var(--mt-background)")
+  "button-primary-fg": unquote("var(--mt-background)"),
+  "hero-title-size": unquote("clamp(2.5rem, 1.5rem + 3vw, 3.5rem)")
 ) !default;

@@ -1,8 +1,10 @@
-// Hero: everything before the first ## when sections: is set.
+// Hero: everything before the first ## when sections: is set. The title size is the hero-title-size hook.
 @include mt-layer(components) {
   .mt-hero { position: relative; clear: both; padding: 2rem 0 1rem; }
-  .mt-hero h1 { font-size: unquote("clamp(2.25rem, 1.5rem + 3vw, 3.5rem)"); line-height: 1.08; letter-spacing: -.035em; font-weight: 750; margin-bottom: 1.25rem; }
-  .mt-hero > p:first-of-type { font-size: 1.2rem; line-height: 1.6; color: mt(muted-foreground); max-width: 40rem; }
+  .mt-hero h1 { font-size: mt-hook(hero-title-size); line-height: calc(1em + .5rem); letter-spacing: -.04em; font-weight: 600; margin-bottom: 1.25rem;
+    overflow-wrap: break-word; }
+  .mt-hero h1:is(:lang(ko), :lang(ja), :lang(zh)) { letter-spacing: 0; }
+  .mt-hero > p:first-of-type { font-size: mt-size(lg); line-height: mt-leading(lg); color: mt(muted-foreground); max-width: 36rem; }
   .mt-hero .mt-actions > a { height: 3rem; padding: 0 1.5rem; }
   .mt-section { padding: mt(space-section) 0 0; }
   .mt-section > h2:first-child { margin-top: 0; }

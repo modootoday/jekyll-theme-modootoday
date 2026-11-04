@@ -69,7 +69,7 @@ class CssTest < Minitest::Test
     css = core + sheets.values.join
     hooks.each do |name, default|
       refute_match(/--mt-#{name}\s*:/, css, "the theme declares the hook --mt-#{name}")
-      uses = css.scan(/var\(--mt-#{name}\s*,\s*(var\([^)]*\)|[^)]+)\)/).flatten.map(&:strip).uniq
+      uses = css.scan(/var\(--mt-#{name}\s*,\s*([\w-]+\([^)]*\)|[^)]+)\)/).flatten.map(&:strip).uniq
       assert_equal [default], uses, "--mt-#{name} fallbacks"
     end
     %w[customize customize.ko customize.ja].each do |doc|

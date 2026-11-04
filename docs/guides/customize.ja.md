@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:93ce98b1c82a
+source_rev: sha256:f8a5f64ac657
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -54,6 +54,7 @@ sections:
 | `--mt-code-radius` | `var(--mt-radius)` | コードブロックとタイトルの行の角 |
 | `--mt-button-primary-bg` | `var(--mt-foreground)` | 主要な操作(ヒーローや `c: cta` のボタンの行の最初のリンク)の塗りと枠線 |
 | `--mt-button-primary-fg` | `var(--mt-background)` | 主要な操作の文字 |
+| `--mt-hero-title-size` | `clamp(2.5rem, 1.5rem + 3vw, 3.5rem)` | ヒーローの見出しとマーケティングページの見出しの大きさ |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

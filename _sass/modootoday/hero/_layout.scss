@@ -1,27 +1,31 @@
 @import "../tools/img-dark";
-// Showcase hero layout: copy on the left, scene on the right, one image behind both (dark mode via CSS filter only).
+// Showcase hero layout: copy on the start half over a solid panel, scene on the end half, one image behind both (dark
+// mode via CSS filter only). The second action is a text link, so the row fits beside the scene.
 @include mt-layer(components) {
   :where(:root) { --mt-hero-filter-dark: brightness(.42) saturate(.7) contrast(1.08); }
   .mt-hero:has(> .mt-showcase) {
-    display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: 1.5rem; align-content: center; clear: both;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 1.5rem; align-content: center; clear: both;
     position: relative; isolation: isolate; overflow: clip; border-radius: mt(radius-lg); padding: 3rem clamp(1.25rem, 4vw, 3rem); min-height: 28rem;
   }
   .mt-hero:has(> .mt-showcase) > :not(.mt-showcase) { grid-column: 1; }
   .mt-hero:has(> .mt-showcase) h1 { font-size: unquote("clamp(2rem, 1.4rem + 1.6vw, 2.75rem)"); }
-  .mt-hero:has(> .mt-showcase) .mt-actions a { min-height: 44px; }
+  .mt-hero:has(> .mt-showcase) .mt-actions > a + a { border-color: transparent; background: none; padding-inline: .5rem; text-decoration: underline; text-underline-offset: .2em; }
   .mt-showcase { display: contents; }
   .mt-showcase-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
   .mt-showcase-art { grid-column: 2; grid-row: 1 / span 9; align-self: center; position: relative; aspect-ratio: 4 / 3; }
   .mt-hero:has(> .mt-showcase)::before {
-    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    background: linear-gradient(100deg, unquote("color-mix(in srgb, var(--mt-background) 70%, transparent)") 0 35%, transparent 80%);
+    content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; inset-inline-end: 50%; z-index: -1; pointer-events: none;
+    background: unquote("color-mix(in srgb, var(--mt-background) 85%, transparent)");
   }
   .mt-showcase-art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .mt-showcase-still { display: none; }
   @media (prefers-reduced-motion: reduce) { .mt-showcase-motion { display: none; } .mt-showcase-still { display: block; } }
   @media (max-width: 48rem) {
     .mt-hero:has(> .mt-showcase) { grid-template-columns: minmax(0, 1fr); padding: 2rem 1.25rem; min-height: 0; }
-    .mt-showcase-art { grid-column: 1; grid-row: auto; width: min(100%, 22rem); justify-self: center; margin-top: 1.5rem; }
+    .mt-hero:has(> .mt-showcase)::before { inset-inline-end: 0; }
+    .mt-showcase-art { grid-column: 1; grid-row: auto; width: 100%; aspect-ratio: 16 / 9; margin-top: 1.5rem; }
   }
+  // Forced colours: no photo or panel behind the text.
+  @media (forced-colors: active) { .mt-showcase-bg, .mt-hero:has(> .mt-showcase)::before { display: none; } }
 }
 @include mt-img-dark(".mt-showcase-bg", $filter: var(--mt-hero-filter-dark, var(--mt-img-filter-dark)));

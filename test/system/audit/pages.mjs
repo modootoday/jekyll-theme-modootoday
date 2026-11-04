@@ -14,6 +14,7 @@ import { checkAnchorOffset } from "./layout/anchor-offset.mjs";
 import { checkColumnAlign, ALIGN_PAGES } from "./layout/column-align.mjs";
 import { checkCodeCopy } from "./layout/code-copy.mjs";
 import { checkTableReflow, REFLOW_PAGES } from "./layout/table-reflow.mjs";
+import { checkPlanCta } from "./layout/plan-cta.mjs";
 
 // Header height: a doc page, pricing, the blog list and the home page; anchor jumps: two long pages.
 const HEADER_PAGES = ["guides/configuration/", "layouts/marketing/pricing/", "blog/", ""];
@@ -49,6 +50,7 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   if (RTL_PAGES.includes(p)) await checkRtl(page, scheme, url, fails);
   if (p === "components/") await checkExampleCards(page, scheme, url, fails);
   if (await page.$(".mt-c-features, .mt-c-linkcards")) await checkCardGrid(page, scheme, url, fails);
+  if (await page.$(".mt-plans")) await checkPlanCta(page, scheme, url, fails);
   if (await page.$(".mt-badge")) await checkChipRows(page, scheme, url, fails);
   await checkListRows(page, scheme, url, fails);
   if (await page.$('[role="tablist"]')) await checkTabsScroll(page, scheme, url, fails);

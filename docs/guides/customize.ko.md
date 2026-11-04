@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:93ce98b1c82a
+source_rev: sha256:f8a5f64ac657
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -53,6 +53,7 @@ sections:
 | `--mt-code-radius` | `var(--mt-radius)` | 코드 블록과 제목 줄의 모서리 |
 | `--mt-button-primary-bg` | `var(--mt-foreground)` | 주요 동작(히어로나 `c: cta` 버튼 줄의 첫 링크)의 채움과 테두리 |
 | `--mt-button-primary-fg` | `var(--mt-background)` | 주요 동작의 글자 |
+| `--mt-hero-title-size` | `clamp(2.5rem, 1.5rem + 3vw, 3.5rem)` | 히어로 제목과 마케팅 페이지 제목의 크기 |
 
 ```css
 :root { --mt-sidebar-width: 16rem; }

@@ -1,12 +1,22 @@
-// Pricing: c: pricing; each ### is a plan card (price, feature list, link). recommended: <n> marks one plan in text.
+// Pricing: c: pricing; each ### is a plan (price, feature list, link). recommended: <n> marks one plan in text.
+// One bordered grid with hairline dividers (the 1px gap shows the border colour); a narrow grid stacks the plans.
 @include mt-layer(components) {
-  .mt-plans { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); align-items: stretch; }
-  .mt-plan { position: relative; display: flex; flex-direction: column; padding: 1.5rem; border: 1px solid mt(border); border-radius: mt(radius-lg); background: mt(card); }
-  .mt-plan h3 { margin: 0 0 .5rem; font-size: 1.0625rem; }
-  .mt-plan h3 + p { margin: 0 0 1rem; color: mt(muted-foreground); }
-  .mt-plan h3 + p strong { color: mt(card-foreground); font-size: 1.875rem; font-weight: 750; letter-spacing: -.02em; }
-  .mt-plan ul { flex: 1; margin: 0 0 1.25rem; padding-inline-start: 1.1rem; color: mt(muted-foreground); font-size: .9375rem; }
+  .mt-plans { display: grid; gap: 1px; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    align-items: stretch; background: mt(border); border: 1px solid mt(border); border-radius: mt(radius-lg); overflow: hidden; }
+  .mt-c-pricing, .mt-mk-pricing-box { container-type: inline-size; }
+  .mt-plan { position: relative; display: flex; flex-direction: column; padding: 1.5rem; background: mt(muted); }
+  .mt-plan h3 { margin: 0 0 .5rem; font-size: mt-size(base); line-height: 1.5rem; }
+  .mt-plan h3 + p { margin: 0 0 1rem; color: mt(muted-foreground); font-family: mt(font-mono); font-size: mt-size(sm); }
+  .mt-plan h3 + p strong { color: mt(card-foreground); font-family: mt(font-sans); font-size: mt-size(4xl); line-height: mt-leading(4xl);
+    font-weight: 600; letter-spacing: -.02em; }
+  .mt-plan ul { flex: 1; margin: 0 0 1.5rem; padding-inline-start: 1.1rem; color: mt(muted-foreground); font-size: mt-size(sm); line-height: mt-leading(sm); }
+  .mt-plan li { padding-block: .375rem; margin: 0; }
   .mt-plan .mt-actions { margin-top: auto; }
-  .mt-plan-recommended { border: 2px solid mt(primary); }
-  .mt-plan-flag { align-self: flex-start; margin-bottom: .75rem; padding: .1rem .6rem; border-radius: 999px; background: mt(primary); color: mt(primary-foreground); font-size: .75rem; font-weight: 600; }
+  .mt-plan .mt-actions > a { flex: 1; justify-content: center; }
+  .mt-plan-recommended { background: mt(card); }
+  .mt-plan-recommended > :is(h2, h3) { padding-inline-end: 7rem; }
+  .mt-plan-flag { position: absolute; inset-block-start: 1.5rem; inset-inline-end: 1.5rem; margin: 0; padding: .125rem .5rem; border-radius: 999px;
+    background: mt(accent); color: mt(foreground); font-size: mt-size(xs); line-height: mt-leading(xs); font-weight: 500; }
+  .mt-plans + p { margin-top: 1.5rem; }
+  @container (max-width: 44rem) { .mt-plans { grid-template-columns: minmax(0, 1fr); } }
 }
