@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261103074357
 title: A record page type budget at 9.25 KiB CSS and 3.5 KiB JavaScript; the records list joins the filter type
-status: active
+status: superseded
 created: 2026-11-03T07:43:57Z
-updated: 2026-11-03T07:44:09Z
+updated: 2026-11-04T05:33:07Z
 rel:
   governs: [qa/audit/config.mjs]
 ---

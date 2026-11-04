@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261103235459
 title: Page CSS and page-type script budgets rise for the table sheets and stacked-table labels
-status: active
+status: superseded
 created: 2026-11-03T23:54:59Z
-updated: 2026-11-04T01:10:00Z
+updated: 2026-11-04T05:33:07Z
 rel:
   governs: [qa/audit/config.mjs]
 ---

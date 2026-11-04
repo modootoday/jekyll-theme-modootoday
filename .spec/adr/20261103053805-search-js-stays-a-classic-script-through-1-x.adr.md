@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261103053805
 title: search.js stays a classic script through 1.x
-status: active
+status: superseded
 created: 2026-11-03T05:38:05Z
-updated: 2026-11-03T05:38:26Z
+updated: 2026-11-04T05:31:47Z
 rel:
   governs: [assets/js/modootoday/search.js]
 ---
