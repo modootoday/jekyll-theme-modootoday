@@ -4,6 +4,7 @@
 @import "../tools/mixins";
 @import "../tokens/scale";
 @import "../registry/hooks";
+@import "../kit/measure";
 @import "page";
 @import "../tools/img-dark";
 @include mt-img-dark(".mt-dx-cover");

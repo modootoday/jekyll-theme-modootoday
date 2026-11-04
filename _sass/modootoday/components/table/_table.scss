@@ -22,11 +22,15 @@
   .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) { overflow-wrap: anywhere; min-inline-size: 5rem; }
   .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) * { overflow-wrap: anywhere; }
   .mt-table > table:not(:has(th:nth-child(4))) td:last-child:not(:first-child) { min-inline-size: 9rem; }
-  // 4+ columns: code never breaks, the table may grow to about 9rem per column, the first column stays in view.
+  // 4+ columns: the table may grow to about 9rem per column and the first column stays in view.
   .mt-table > table:has(th:nth-child(4)) { max-inline-size: unquote("max(100%, 36rem)"); }
   .mt-table > table:has(th:nth-child(5)) { max-inline-size: unquote("max(100%, 45rem)"); }
   .mt-table > table:has(th:nth-child(6)) { max-inline-size: unquote("max(100%, 54rem)"); }
-  .mt-table > table:has(th:nth-child(4)) td code { overflow-wrap: normal; }
+  // Code in the first column never breaks; later cells may break long code (6rem floor), so a table whose code is longer
+  // than its share fits the measure instead of scrolling a clipped last column.
+  .mt-table > table:has(th:nth-child(4)) td:first-child code { overflow-wrap: normal; }
+  .mt-table > table:has(th:nth-child(4)) td:not(:first-child) { min-inline-size: 6rem; }
+  .mt-table > table:has(th:nth-child(4)) td:not(:first-child) code { overflow-wrap: anywhere; }
   .mt-table > table:has(th:nth-child(4)) :is(th, td):first-child { position: sticky; inset-inline-start: 0; z-index: 1;
     padding-inline-end: 1rem; background: mt(background); box-shadow: inset -1px 0 mt(border); }
   .mt-table > table:has(th:nth-child(4)) :is(th, td):first-child:dir(rtl) { box-shadow: inset 1px 0 mt(border); }

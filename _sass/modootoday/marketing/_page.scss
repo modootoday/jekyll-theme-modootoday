@@ -22,7 +22,7 @@
   .mt-mk-swatches code { display: block; font-size: .8125rem; }
   .mt-mk-files li { padding: .5rem 0; border-bottom: 1px solid mt(border); }
   .mt-mk-files span { color: mt(muted-foreground); font-size: .875rem; }
-  .mt-mk-links { max-width: 30rem; margin-inline: auto; text-align: center; }
+  .mt-mk-links { max-width: mt(narrow); margin-inline: auto; text-align: center; }
   .mt-mk-links .mt-mk-lead { margin-inline: auto; }
   .mt-mk-avatar { display: block; margin: 2rem auto 0; border-radius: 50%; }
   .mt-mk-linklist { display: grid; gap: .75rem; }
@@ -31,3 +31,5 @@
   .mt-mk-linklist a:hover { border-color: mt(border-input); }
   .mt-mk-linklist a:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
 }
+// Marketing page text stops at the measure; the link page is one narrow centred column.
+@include mt-layer(components) { @include mt-kit-measure(".mt-main.mt-mk"); }

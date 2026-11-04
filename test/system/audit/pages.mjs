@@ -11,9 +11,9 @@ import { checkInlineCodeWrap } from "./layout/inline-code-wrap.mjs";
 import { checkHeaderEnd, checkHeaderHeight } from "./layout/header-end.mjs";
 import { checkCjkClip } from "./layout/cjk-clip.mjs";
 import { checkAnchorOffset } from "./layout/anchor-offset.mjs";
-import { checkColumnAlign, ALIGN_PAGES } from "./layout/column-align.mjs";
+import { checkColumnAlign, checkMeasure, ALIGN_PAGES, MEASURE_PAGES } from "./layout/column-align.mjs";
 import { checkCodeCopy } from "./layout/code-copy.mjs";
-import { checkTableReflow, REFLOW_PAGES } from "./layout/table-reflow.mjs";
+import { checkTableReflow, checkWideTables, REFLOW_PAGES } from "./layout/table-reflow.mjs";
 import { checkPlanCta } from "./layout/plan-cta.mjs";
 
 // Header height: a doc page, pricing, the blog list and the home page; anchor jumps: two long pages.
@@ -60,8 +60,12 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   if (!lang && HEADER_PAGES.includes(p)) await checkHeaderHeight(page, scheme, url, fails);
   if (!lang && ANCHOR_PAGES.includes(p)) await checkAnchorOffset(page, scheme, url, fails);
   if (!lang && ALIGN_PAGES.includes(p)) await checkColumnAlign(page, scheme, url, fails);
+  if (!lang && MEASURE_PAGES.includes(p)) await checkMeasure(page, scheme, url, fails);
   if (await page.$(".mt-code-copy")) await checkCodeCopy(page, scheme, url, fails);
-  if (REFLOW_PAGES.includes(p)) await checkTableReflow(page, scheme, url, fails);
+  if (REFLOW_PAGES.includes(p)) {
+    await checkTableReflow(page, scheme, url, fails);
+    await checkWideTables(page, scheme, url, fails);
+  }
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   for (const v of axe.violations) {
     report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });

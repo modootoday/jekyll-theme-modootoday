@@ -106,6 +106,8 @@ Posts read on the `narrow` measure (40rem) at 18/28 (18/32 in Korean, Japanese a
 
 The footer has no fill and more room (3rem above, 2rem below), and the theme can now print one from `_data/nav/footer.yml` (see [Customize](../customize/#footer)). Search results mark the matched words, and the error layout shows a body paragraph of links as a row of chips; its status code is the foreground colour at weight 600 (was the accent at 800).
 
+Every layout uses one of three widths: `measure` (45rem) for running text, `container` (75rem) for grids and `narrow` (40rem) for legal pages, the link page, the resume and the search form. Paragraphs and plain lists on detail, directory, search, marketing and docs-extra pages now stop at the measure instead of running across the container. In a table of four or more columns, code after the first column may break, so such a table fits its text column instead of scrolling.
+
 ### How 1.5 pages load the theme
 
 The core sheet keeps only the tokens, the base element rules, the header, the nav and the theme toggle. Every other component moved to a sheet that pages link only when they use it, right after the core sheet (code, callouts and badges, figures, the page footer navigation, the hero, the banner), and the context sheets moved to `assets/css/modootoday/<group>/<name>.css`. The rules and their order are the same, so pages look the same. Theme scripts are ES modules (`<script type="module">`) at `assets/js/modootoday/<group>/<name>.js`, and the header search loads on first use.

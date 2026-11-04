@@ -72,3 +72,5 @@
   }
   @media print { .mt-dx-side { display: none; } .mt-dx-api { display: block; } }
 }
+// Running text in reference, changelog and the other docs-extra layouts stops at the measure.
+@include mt-layer(components) { @include mt-kit-measure(".mt-main.mt-dx"); }

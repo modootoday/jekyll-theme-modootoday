@@ -1,6 +1,7 @@
 // Table reflow at phone widths: every body table sits in div.mt-table; 2-3 column tables keep their column floors (5rem,
 // the last 9rem) and show the last column up to 9rem before any scrolling; first-column code never breaks; 4+ column tables
 // keep a sticky first column and no cell over 6 lines; a scrolling wrapper is a labelled region; a stacked table fits.
+// At 768 and 1440px a four-column table fits its text column (later code cells may break), so no last column is cut.
 export const REFLOW_WIDTHS = [320, 360, 390];
 export const REFLOW_PAGES = ["guides/configuration/", "components/", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "layouts/detail/", "layouts/blog-news/", "reference/api/"];
 
@@ -71,6 +72,26 @@ export async function checkTableReflow(page, scheme, url, fails) {
     const bad = await page.evaluate(`(${tableProblems})()`);
     for (const b of bad) {
       fails.push(`table reflow: ${b} at ${w}px ${scheme} ${url}`);
+    }
+  }
+  await page.setViewportSize({ width: 1024, height: 900 });
+}
+
+export const WIDE_WIDTHS = [768, 1440];
+export function wideTableProblems() {
+  return [...document.querySelectorAll(".mt-main .mt-table > table")].flatMap((t, i) => {
+    const w = t.parentElement;
+    const cols = t.rows[0] ? t.rows[0].cells.length : 0;
+    return cols === 4 && w.scrollWidth > w.clientWidth + 1 ? [`table ${i + 1} (4 columns) is ${t.offsetWidth}px in a ${w.clientWidth}px column`] : [];
+  });
+}
+
+export async function checkWideTables(page, scheme, url, fails) {
+  for (const w of WIDE_WIDTHS) {
+    await page.setViewportSize({ width: w, height: 900 });
+    const bad = await page.evaluate(`(${wideTableProblems})()`);
+    for (const b of bad) {
+      fails.push(`table width: ${b} at ${w}px ${scheme} ${url}`);
     }
   }
   await page.setViewportSize({ width: 1024, height: 900 });

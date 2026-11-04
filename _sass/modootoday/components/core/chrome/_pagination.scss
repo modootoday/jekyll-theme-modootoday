@@ -1,7 +1,7 @@
 // Previous / next links in nav order.
 @include mt-layer(components) {
   .mt-pagination { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid mt(border); }
-  .mt-pagination a { display: flex; flex-direction: column; gap: .25rem; text-decoration: none; padding: 1rem; color: mt(foreground);
+  .mt-pagination a { display: flex; flex-direction: column; gap: .25rem; text-decoration: none; padding: 1rem; color: mt(foreground); overflow-wrap: break-word;
     font-size: mt-size(base); line-height: 1.5rem; font-weight: 500;
     border: 1px solid mt(border); border-radius: mt(radius); transition: border-color .15s; }
   .mt-pagination a:hover { border-color: mt(border-input); }

@@ -16,3 +16,10 @@
   .mt-dir-tags > span { font-size: .75rem; padding: .125rem .5rem; border-radius: 999px; background: mt(muted); color: mt(muted-foreground); }
   .mt-ics { position: relative; z-index: 1; display: inline-block; margin-top: .75rem; font-size: .875rem; font-weight: 600; }
 }
+// Directory intro text stops at the measure. Event and job rows wrap their body under the tile and image when the
+// row is too narrow (320px, 200% text), so no card is wider than the page.
+@include mt-layer(components) {
+  @include mt-kit-measure(".mt-main.mt-dir-page");
+  .mt-dir-events .mt-dir-item, .mt-dir-jobs .mt-dir-item { flex-wrap: wrap; }
+  :is(.mt-dir-events, .mt-dir-jobs) .mt-dir-item > * { min-inline-size: 0; }
+}

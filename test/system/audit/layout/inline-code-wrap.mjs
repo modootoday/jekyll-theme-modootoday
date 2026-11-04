@@ -1,6 +1,6 @@
 // Inline code wrap: at 360px a long unbroken inline code in a paragraph, list item, link, heading, callout or quote must
-// wrap inside the column (no page-level horizontal scroll), while a fenced block keeps its own scroll. Code in table cells
-// stays whole and the table scrolls instead: table-reflow.mjs checks it on pages with tables.
+// wrap inside the column (no page-level horizontal scroll), while a fenced block keeps its own scroll. First-column code in a
+// table stays whole and the table scrolls instead: table-reflow.mjs checks it on pages with tables.
 const W = 360;
 const LONG = "site.modootoday.a_really_long_configuration_key_without_breaks.and_more_segments_here";
 export async function checkInlineCodeWrap(page, scheme, url, fails) {

@@ -1,4 +1,4 @@
-// Column alignment: the page meta line and the pager start where the text column (.mt-doc-main) starts, with and
+// Column alignment and measure: the page meta line and the pager start where the text column (.mt-doc-main) starts, with and
 // without the doc sidebar, at 1024 and 1440px (the inline start edge: left in LTR, right in RTL).
 export const ALIGN_WIDTHS = [1024, 1440];
 export const ALIGN_PAGES = ["guides/configuration/", "components/kitchen-sink/", "layouts/demo/wide/"];
@@ -26,6 +26,25 @@ export async function checkColumnAlign(page, scheme, url, fails) {
         fails.push(`column align: .${name} starts ${off}px from the text column at ${w}px ${scheme} ${url}`);
       }
     }
+  }
+  await page.setViewportSize({ width: 1024, height: 900 });
+}
+
+// Measure: on wide layouts running text stops at the measure token (45rem), so no paragraph or plain list item in main is
+// wider than that at 1440px (about 90 Latin characters a line).
+export const MEASURE_PAGES = ["layouts/detail/project/", "layouts/directory/events/", "layouts/demo/search/", "layouts/documents/legal/", "layouts/docs-extra/api/"];
+export function wideText() {
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const max = Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--mt-measure")) * rem) || 45 * rem;
+  return [...document.querySelectorAll(".mt-main :is(p, ul:not([class]) > li, ol:not([class]) > li)")]
+    .filter((e) => e.offsetParent && !e.closest("table, .mt-hero, .mt-dir-grid, .mt-plans, footer") && e.getBoundingClientRect().width > max + 1)
+    .map((e) => `${e.tagName.toLowerCase()} "${e.textContent.trim().slice(0, 30)}" is ${Math.round(e.getBoundingClientRect().width)}px`);
+}
+export async function checkMeasure(page, scheme, url, fails) {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const bad = await page.evaluate(`(${wideText})()`);
+  for (const b of bad.slice(0, 3)) {
+    fails.push(`measure: ${b}, wider than the measure at 1440px ${scheme} ${url}`);
   }
   await page.setViewportSize({ width: 1024, height: 900 });
 }

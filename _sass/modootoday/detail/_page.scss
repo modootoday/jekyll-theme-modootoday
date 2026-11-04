@@ -23,3 +23,5 @@
   .mt-detail-cta .mt-ics { font-size: .875rem; font-weight: 600; }
   @media print { .mt-detail-cta, .mt-detail-media audio { display: none; } }
 }
+// Running text on detail pages stops at the measure; facts, media and covers keep the full width.
+@include mt-layer(components) { @include mt-kit-measure(".mt-main.mt-detail"); }

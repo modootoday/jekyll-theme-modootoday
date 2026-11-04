@@ -6,10 +6,11 @@
   .mt-legal-lead { font-size: 1.0625rem; }
   .mt-legal .mt-toc { margin-bottom: 2rem; padding: 1rem 1.25rem; border: 1px solid mt(border); border-radius: mt(radius-lg); }
   .mt-legal .mt-toc ol { margin: 0; }
-  .mt-legal-body { max-width: 44rem; }
+  // One narrow column, centred: title, dates, contents and body.
+  .mt-main.mt-legal > article { max-inline-size: mt(narrow); margin-inline: auto; }
   @media print {
     .mt-legal .mt-toc { display: none; }
-    .mt-legal-body { max-width: none; }
+    .mt-main.mt-legal > article { max-inline-size: none; }
     .mt-legal-body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
   }
 }

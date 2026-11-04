@@ -1,0 +1,5 @@
+// Reading measure for the layout bundles: running text inside $scope stops at the measure token (45rem), while grids,
+// tables and code keep the container width. Text columns start at the container's start edge.
+@mixin mt-kit-measure($scope) {
+  #{$scope} :is(p, blockquote, dd, ul:not([class]) > li, ol:not([class]) > li) { max-inline-size: mt(measure); }
+}

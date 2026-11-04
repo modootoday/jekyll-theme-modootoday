@@ -1,6 +1,6 @@
 // One column that reads like paper on screen and fits A4 / Letter in print. // Print: the page alone on paper (no header, skip link, banner, page meta, back-to-top or footer).
 @include mt-layer(components) {
-  .mt-cv { max-width: 46rem; margin-inline: auto; }
+  .mt-cv { max-width: mt(narrow); margin-inline: auto; }
   .mt-cv-head { margin: 1rem 0 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid mt(foreground); }
   .mt-cv-head h1 { margin: 0; font-size: 2.25rem; letter-spacing: -.02em; }
   .mt-cv-headline { margin: .25rem 0 0; font-size: 1.125rem; color: mt(muted-foreground); }
