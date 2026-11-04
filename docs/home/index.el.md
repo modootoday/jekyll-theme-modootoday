@@ -1,7 +1,7 @@
 ---
 lang: el
 permalink: /el/
-source_rev: sha256:d37dbce14dd4
+source_rev: sha256:65936e4f01e7
 toc: false
 hero: {visual: showcase}
 title: Αρχική
@@ -29,14 +29,14 @@ sections:
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.5.0
 plugins: [jekyll-remote-theme]
 ```
 
 ### Gemfile
 
 ```ruby
-gem "jekyll-theme-modootoday", "~> 1.4"
+gem "jekyll-theme-modootoday", "~> 1.5"
 ```
 
 ### _config.yml

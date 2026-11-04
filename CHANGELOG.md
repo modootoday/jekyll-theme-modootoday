@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-11-04
+
+Visual: every page differs from 1.4.1 by design (flat overhaul); see [The 1.5 look](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/#the-15-look) in the Upgrade guide.
+
 ### Added
 
 - On screens narrower than 30rem a site with a `logo` shows only the logo in the header, since the menu, search, language and theme buttons leave the name 73 to 127 px between 360 and 414 px. The name is hidden visually (`.mt-compact-title`), so it stays the link's accessible name, and the link keeps a 40 px target; a site without a logo is unchanged. `modootoday.header: {compact_title: false}` keeps the name, and `modootoday-check` validates the key (adr:modootoday/20261104115309).
@@ -421,7 +425,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.5.0
 [1.4.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.1
 [1.4.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0
 [1.3.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.3.0

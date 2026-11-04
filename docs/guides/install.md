@@ -18,7 +18,7 @@ Pick the build you already use. All three read the same Markdown.
 
 ```yaml
 # _config.yml (to build locally, see the github-pages gem tab)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.5.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -28,7 +28,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.4"
+gem "jekyll-theme-modootoday", "~> 1.5"
 ```
 
 ### github-pages gem
@@ -75,7 +75,7 @@ The checker reports any syntax that would not render the same on github.com.
 A `remote_theme` site has no Gemfile entry for the theme, so `bundle exec modootoday-check` is not available. Install the gem once, at the same minor version as the theme tag, and run the checker on the built site:
 
 ```sh
-gem install jekyll-theme-modootoday -v '~> 1.4'
+gem install jekyll-theme-modootoday -v '~> 1.5'
 modootoday-check . _site --twins
 ```
 
@@ -88,13 +88,13 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 Without installing a gem, run the checker from the release source. It needs only Ruby:
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.4.1.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.4.1/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.5.0.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.5.0/exe/modootoday-check . _site --twins
 ```
 
 Use the tag your `remote_theme` line names.
 
-In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`.
+In GitHub Actions, add the same two lines as a step after the build, for example `run: gem install jekyll-theme-modootoday -v '~> 1.5' && modootoday-check docs docs/_site --twins`.
 
 Two warnings from the `github-pages` gem are harmless: `To use retry middleware with Faraday v2.0+, install faraday-retry gem` (the remote theme download still works), and Sass notices about `@import`. GitHub Pages uses an older Sass that does not read the `sass: silence_deprecations` option, so the notices appear even when your `_config.yml` sets it. The build output is correct either way.
 

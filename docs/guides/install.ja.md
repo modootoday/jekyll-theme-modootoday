@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:318242aa300d
+source_rev: sha256:722b573e76b2
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -25,7 +25,7 @@ sections:
 
 ```yaml
 # _config.yml（ローカルでのビルドは github-pages gem のタブを参照）
-remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.5.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -35,7 +35,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.4"
+gem "jekyll-theme-modootoday", "~> 1.5"
 ```
 
 ### github-pages gem
@@ -82,7 +82,7 @@ bundle exec modootoday-check . _site --twins
 `remote_theme` のサイトは Gemfile にテーマがないため、`bundle exec modootoday-check` は使えません。テーマのタグと同じマイナーバージョンで gem を一度インストールし、ビルドしたサイトにチェッカーを実行します。
 
 ```sh
-gem install jekyll-theme-modootoday -v '~> 1.4'
+gem install jekyll-theme-modootoday -v '~> 1.5'
 modootoday-check . _site --twins
 ```
 
@@ -95,13 +95,13 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 gem をインストールしない場合は、リリースのソースからチェッカーを実行します。必要なのは Ruby だけです。
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.4.1.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.4.1/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.5.0.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.5.0/exe/modootoday-check . _site --twins
 ```
 
 `remote_theme` の行に書いたタグを使います。
 
-GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`。
+GitHub Actions では、ビルドの次のステップに同じ 2 行を入れます。例: `run: gem install jekyll-theme-modootoday -v '~> 1.5' && modootoday-check docs docs/_site --twins`。
 
 `github-pages` gem が出す次の 2 つの警告は問題ありません。`To use retry middleware with Faraday v2.0+, install faraday-retry gem` が出てもリモートテーマは正しく取得されます。`@import` に関する Sass の通知は、GitHub Pages の Sass が `sass: silence_deprecations` の設定を読まない古い版のため、`_config.yml` で設定しても表示されます。どちらの場合もビルド結果は正しいです。
 

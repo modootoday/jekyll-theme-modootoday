@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:318242aa300d
+source_rev: sha256:722b573e76b2
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
@@ -24,7 +24,7 @@ sections:
 
 ```yaml
 # _config.yml (로컬 빌드는 github-pages gem 탭 참고)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
+remote_theme: modootoday/jekyll-theme-modootoday@v1.5.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -34,7 +34,7 @@ plugins: [jekyll-remote-theme]
 # Gemfile
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
-gem "jekyll-theme-modootoday", "~> 1.4"
+gem "jekyll-theme-modootoday", "~> 1.5"
 ```
 
 ### github-pages gem
@@ -81,7 +81,7 @@ bundle exec modootoday-check . _site --twins
 `remote_theme` 사이트는 Gemfile에 테마가 없으므로 `bundle exec modootoday-check`를 쓸 수 없습니다. 테마 태그와 같은 마이너 버전으로 gem을 한 번 설치하고, 빌드한 사이트에 검사기를 실행합니다.
 
 ```sh
-gem install jekyll-theme-modootoday -v '~> 1.4'
+gem install jekyll-theme-modootoday -v '~> 1.5'
 modootoday-check . _site --twins
 ```
 
@@ -94,13 +94,13 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 gem을 설치하지 않으려면 릴리스 소스에서 검사기를 실행합니다. Ruby만 있으면 됩니다.
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.4.1.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.4.1/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.5.0.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.5.0/exe/modootoday-check . _site --twins
 ```
 
 `remote_theme` 줄에 적은 태그를 씁니다.
 
-GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday -v '~> 1.4' && modootoday-check docs docs/_site --twins`.
+GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 예: `run: gem install jekyll-theme-modootoday -v '~> 1.5' && modootoday-check docs docs/_site --twins`.
 
 `github-pages` gem이 내는 경고 두 가지는 무시해도 됩니다. `To use retry middleware with Faraday v2.0+, install faraday-retry gem`이 나와도 원격 테마는 정상으로 내려받습니다. `@import`에 관한 Sass 안내는 GitHub Pages의 Sass가 `sass: silence_deprecations` 옵션을 읽지 않는 이전 버전이라서 `_config.yml`에 설정해도 계속 나옵니다. 어느 쪽이든 빌드 결과는 정상입니다.
 
