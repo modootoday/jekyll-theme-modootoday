@@ -1,4 +1,4 @@
-// Page types (qa/audit/config.mjs PAGE_TYPES): what one page of each type loads, in gzip bytes. The limit of the theme's
+// Page types (test/system/audit/config.mjs PAGE_TYPES): what one page of each type loads, in gzip bytes. The limit of the theme's
 // part is derived, the sum of the caps of the theme files the page loads; the GUIDE targets (whole page) only warn.
 import fs from "node:fs";
 import path from "node:path";

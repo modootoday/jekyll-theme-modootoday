@@ -3,9 +3,9 @@ id: adr:modootoday/20261029211906
 title: "Docs QA gate v2: Lighthouse budget in CI, blocking PR visual diff without committed baselines"
 status: active
 created: 2026-10-29T21:19:06Z
-updated: 2026-10-29T21:19:06Z
+updated: 2026-11-04T16:35:36Z
 rel:
-  governs: [qa]
+  governs: [test/system]
   supersedes: [adr:modootoday/20261029210930]
 ---
 
@@ -17,7 +17,7 @@ The first QA gate kept Lighthouse out of CI because scores vary with runner load
 
 ## Decision
 
-All deterministic docs-qa checks from the superseded decision stay unchanged. A separate Lighthouse workflow builds docs/ with this checkout's theme, runs qa/lighthouse.sh three times per page and form factor (seven pages, mobile and desktop), and qa/lighthouse-budget.mjs fails the job when a median score is below qa/lighthouse-budget.json: accessibility, best practices and SEO 100; performance 90 on desktop and 80 on mobile. The median of three and the loose performance floor absorb runner variance while still catching real regressions. The visual workflow keeps comparing the base and head builds on the same runner, so no baseline images are committed and qa/visual-baseline/ is git-ignored. It blocks pull requests; an intended change is approved by adding the visual-ok label after reviewing the diff artifact. Pushes to main remain report-only.
+All deterministic docs-qa checks from the superseded decision stay unchanged. A separate Lighthouse workflow builds docs/ with this checkout's theme, runs test/system/lighthouse.sh three times per page and form factor (seven pages, mobile and desktop), and test/system/lighthouse-budget.mjs fails the job when a median score is below test/system/lighthouse-budget.json: accessibility, best practices and SEO 100; performance 90 on desktop and 80 on mobile. The median of three and the loose performance floor absorb runner variance while still catching real regressions. The visual workflow keeps comparing the base and head builds on the same runner, so no baseline images are committed and test/system/visual-baseline/ is git-ignored. It blocks pull requests; an intended change is approved by adding the visual-ok label after reviewing the diff artifact. Pushes to main remain report-only.
 
 ## Consequences
 

@@ -1,5 +1,5 @@
-# Per-partial CSS size (Ruby Sass): bundle exec ruby qa/css/css-sizes.rb — core plus each component partial alone
-# (components/<group>/_<name>.scss), compact and compressed. Shipped sheet sizes are budgeted in qa/audit/config.mjs.
+# Per-partial CSS size (Ruby Sass): bundle exec ruby test/system/css/css-sizes.rb — core plus each component partial alone
+# (components/<group>/_<name>.scss), compact and compressed. Shipped sheet sizes are budgeted in test/system/audit/config.mjs.
 require "sass"; require "zlib"
 comps = Dir["_sass/modootoday/components/**/_*.scss"].map { |f| f.delete_prefix("_sass/modootoday/components/").sub(%r{_([^/]+)\.scss\z}, '\1') }.sort
 def css(src, style) = Sass::Engine.new(src, syntax: :scss, style: style, load_paths: ["_sass"]).render

@@ -1,5 +1,5 @@
 // Median Lighthouse scores per page/form factor from OUT/<name>-<mobile|desktop>.runN.json,
-// checked against qa/budget.json. Exit 1 on a miss unless --summary-only.
+// checked against test/system/lighthouse/budget.json. Exit 1 on a miss unless --summary-only.
 import fs from "node:fs";
 import path from "node:path";
 const args = process.argv.slice(2);

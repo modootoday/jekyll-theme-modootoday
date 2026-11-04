@@ -3,9 +3,9 @@ id: adr:modootoday/20261103033055
 title: Core script budget rises to 9.25 KiB for the filter; the filter demo gets its own page type
 status: superseded
 created: 2026-11-03T03:30:53Z
-updated: 2026-11-04T05:33:07Z
+updated: 2026-11-04T16:35:37Z
 rel:
-  governs: [qa/audit/config.mjs]
+  governs: [test/system/audit/config.mjs]
   depends_on: [adr:modootoday/20261103012843]
 ---
 

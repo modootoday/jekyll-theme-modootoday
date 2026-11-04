@@ -5,7 +5,7 @@ require "date"
 
 module Modootoday
   # Markdown source text: front matter, fenced code, code spans, comments. The one owner of front matter parsing
-  # for modootoday-check, modootoday-stubs, script/docs and qa/docs.
+  # for modootoday-check, modootoday-stubs, script/docs and test/system/docs.
   module Markdown
     FM = /\A---\r?\n(.*?\r?\n)?---\r?\n/m
     FENCE_OPEN = /^( {0,3})(`{3,}|~{3,})(.*)$/

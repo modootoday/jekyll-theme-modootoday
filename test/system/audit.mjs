@@ -1,6 +1,6 @@
 // Dev-only visual + accessibility audit of the docs/ site (not shipped in the gem).
-// Usage: node qa/audit.mjs SITE_DIR [OUT_DIR]   (SITE_DIR built by qa/site/build-docs.sh)
-// Assembles the checks in qa/audit/: redirects, budgets, contrast, pages (shots, overflow, RTL, axe), parts, first paint, keyboard, mobile, CSP, report.
+// Usage: node test/system/audit.mjs SITE_DIR [OUT_DIR]   (SITE_DIR built by test/system/site/build-docs.sh)
+// Assembles the checks in test/system/audit/: redirects, budgets, contrast, pages (shots, overflow, RTL, axe), parts, first paint, keyboard, mobile, CSP, report.
 import { chromium } from "playwright";
 import path from "node:path";
 import { serveSite } from "./site/server.mjs";

@@ -1,4 +1,4 @@
-// Size budgets, assembled from qa/audit/budgets/: each theme file against the cap on its registry row (modules.mjs)
+// Size budgets, assembled from test/system/audit/budgets/: each theme file against the cap on its registry row (modules.mjs)
 // and, per page type, what one page loads against the sum of those caps (types.mjs).
 import { readRegistry } from "./budgets/registry.mjs";
 import { checkModules } from "./budgets/modules.mjs";

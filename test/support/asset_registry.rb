@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # Rows of _includes/modootoday/assets/registry.html as tests read them: the rows Liquid links (_mta_rows) and the files
-# the layouts link themselves (_mta_fixed), in file order. qa/audit/budgets/registry.mjs reads the same format.
+# the layouts link themselves (_mta_fixed), in file order. test/system/audit/budgets/registry.mjs reads the same format.
 module AssetRegistry
   ROOT = File.expand_path("../..", __dir__)
   FILE = File.join(ROOT, "_includes/modootoday/assets/registry.html")

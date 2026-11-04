@@ -3,7 +3,7 @@
 
 # Records benchmark: builds the synthetic records site (fixture.rb) with the classic GitHub Pages builder image and reports
 # build time and peak memory per record count. Fails when a build fails or takes longer than --limit seconds.
-# Usage: ruby qa/bench/records.rb [--records 250,1000] [--where] [--limit 300] [--work DIR] [--image IMAGE]
+# Usage: ruby test/system/bench/records.rb [--records 250,1000] [--where] [--limit 300] [--work DIR] [--image IMAGE]
 require "optparse"
 require "tmpdir"
 require "rbconfig"

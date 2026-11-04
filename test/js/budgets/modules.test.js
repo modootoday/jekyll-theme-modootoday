@@ -1,4 +1,4 @@
-// Tests for the size budgets of qa/audit/budgets/: registry rows, per-file caps and derived page-type limits. Run: npm test
+// Tests for the size budgets of test/system/audit/budgets/: registry rows, per-file caps and derived page-type limits. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const fs = require("node:fs");
@@ -8,7 +8,7 @@ const zlib = require("node:zlib");
 const crypto = require("node:crypto");
 const { pathToFileURL } = require("node:url");
 
-const QA = path.join(__dirname, "../../../qa/audit/budgets");
+const QA = path.join(__dirname, "../../system/audit/budgets");
 const load = (f) => import(pathToFileURL(path.join(QA, f)).href);
 
 // A built site with the given assets (path -> text) and pages (path -> html).

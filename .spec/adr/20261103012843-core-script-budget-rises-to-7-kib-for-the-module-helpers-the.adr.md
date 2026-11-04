@@ -3,9 +3,9 @@ id: adr:modootoday/20261103012843
 title: Core script budget rises to 7 KiB for the module helpers; the hero demo gets its own page type
 status: superseded
 created: 2026-11-03T01:28:42Z
-updated: 2026-11-04T05:33:06Z
+updated: 2026-11-04T16:35:37Z
 rel:
-  governs: [qa/audit/config.mjs]
+  governs: [test/system/audit/config.mjs]
 ---
 
 # Core script budget rises to 7 KiB for the module helpers; the hero demo gets its own page type

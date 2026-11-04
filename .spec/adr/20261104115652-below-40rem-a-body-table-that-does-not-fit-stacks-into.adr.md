@@ -3,9 +3,9 @@ id: adr:modootoday/20261104115652
 title: Below 40rem a body table that does not fit stacks into labelled blocks
 status: active
 created: 2026-11-04T11:56:52Z
-updated: 2026-11-04T11:57:47Z
+updated: 2026-11-04T16:35:37Z
 rel:
-  governs: [assets/js/modootoday/data/table-stack.js, _sass/modootoday/components/table-stack, qa/audit/layout/table-reflow.mjs]
+  governs: [assets/js/modootoday/data/table-stack.js, _sass/modootoday/components/table-stack, test/system/audit/layout/table-reflow.mjs]
 ---
 
 # Below 40rem a body table that does not fit stacks into labelled blocks

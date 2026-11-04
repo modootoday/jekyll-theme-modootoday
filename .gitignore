@@ -24,4 +24,4 @@ docs/.jekyll-cache/
 qa-out/
 
 # Visual baselines are never committed: CI compares base and head on the same runner
-qa/visual/baseline/
+test/system/visual/baseline/

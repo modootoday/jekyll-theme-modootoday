@@ -25,4 +25,4 @@ The core sheet is linked by every page and has a fixed budget (27,648 bytes on t
 
 ## Consequences
 
-Pages without these components load less CSS; pages with them load one more small sheet. A site that narrows `modootoday.components` gets only the named parts in the sheet. The probe test pins which pages link `content.css`, `test/project/component_names_test.rb` checks that a path part names an existing partial, and `qa/audit/config.mjs` budgets the sheet (measured plus about 10%).
+Pages without these components load less CSS; pages with them load one more small sheet. A site that narrows `modootoday.components` gets only the named parts in the sheet. The probe test pins which pages link `content.css`, `test/project/component_names_test.rb` checks that a path part names an existing partial, and `test/system/audit/config.mjs` budgets the sheet (measured plus about 10%).

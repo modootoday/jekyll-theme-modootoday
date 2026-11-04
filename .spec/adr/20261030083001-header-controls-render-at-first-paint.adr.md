@@ -1,11 +1,11 @@
 ---
 id: adr:modootoday/20261030083001
-title: Header controls render at first paint (CSS scripting query, no new JS)
+title: "Header controls render at first paint (CSS scripting query, no new JS)"
 status: active
 created: 2026-10-29T23:30:00Z
-updated: 2026-10-29T23:30:00Z
+updated: 2026-11-04T16:35:36Z
 rel:
-  governs: [_sass/modootoday/components/core/chrome/_theme-toggle.scss, _sass/modootoday/components/search/_search.scss, qa/audit/first-paint.mjs]
+  governs: [_sass/modootoday/components/core/chrome/_theme-toggle.scss, _sass/modootoday/components/search/_search.scss, test/system/audit/first-paint.mjs]
 ---
 
 # Header controls render at first paint
@@ -18,7 +18,7 @@ Every page load (worst on the logo click to home) flashed: the search box and th
 
 - `@media (scripting: enabled)` shows `.mt-search[hidden]` and `.mt-theme-toggle[hidden]` from the first paint; without scripting they stay hidden as before. The scripts are unchanged (no core JS bytes added).
 - The toggle icon (moon or sun) follows the scheme in CSS (`data-theme` and `prefers-color-scheme`), not `aria-pressed`.
-- QA `qa/audit/first-paint.mjs` clicks the logo on a throttled network, records screencast frames and fails when the header band of the first new frame differs from the settled page, the body background changes, or CLS reaches 0.02 (light, dark, and stored dark on a light system).
+- QA `test/system/audit/first-paint.mjs` clicks the logo on a throttled network, records screencast frames and fails when the header band of the first new frame differs from the settled page, the body background changes, or CLS reaches 0.02 (light, dark, and stored dark on a light system).
 
 ## Consequences
 

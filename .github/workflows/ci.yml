@@ -62,7 +62,7 @@ jobs:
       - name: Build gem
         run: gem build jekyll-theme-modootoday.gemspec
 
-  # 250 and 1,000 record pages (qa/bench/records.rb) built by the Pages builder image; fails over 300 s, half the Pages limit.
+  # 250 and 1,000 record pages (test/system/bench/records.rb) built by the Pages builder image; fails over 300 s, half the Pages limit.
   records-bench:
     name: records benchmark (github-pages 232)
     runs-on: ubuntu-24.04
@@ -75,7 +75,7 @@ jobs:
         with:
           ruby-version: "3.3.4"
       - name: Build 250 and 1,000 records (times in the job summary)
-        run: ruby qa/bench/records.rb --records 250,1000 --limit 300 --work "$RUNNER_TEMP/bench"
+        run: ruby test/system/bench/records.rb --records 250,1000 --limit 300 --work "$RUNNER_TEMP/bench"
 
   js:
     runs-on: ubuntu-24.04
@@ -128,15 +128,15 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build docs/ with this checkout's theme (github-pages 232)
-        run: qa/site/build-docs.sh docs/_site
+        run: test/system/site/build-docs.sh docs/_site
       - name: Check docs/
         run: bundle exec ruby exe/modootoday-check docs docs/_site --twins
       - name: Internal links and anchors (external links are not fetched)
-        run: bundle exec ruby qa/docs/links.rb docs/_site /jekyll-theme-modootoday
+        run: bundle exec ruby test/system/docs/links.rb docs/_site /jekyll-theme-modootoday
       - name: Kitchen-sink coverage
-        run: ruby qa/docs/coverage.rb
+        run: ruby test/system/docs/coverage.rb
       - name: Docs structure (sections, front matter, generated nav and twins, size limits)
-        run: ruby qa/docs/structure.rb
+        run: ruby test/system/docs/structure.rb
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Screenshots, axe, contrast, budgets, CSP

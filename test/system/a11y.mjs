@@ -1,5 +1,5 @@
 // Dev-only screen-reader audit over EVERY page of one or more built sites (not shipped in the gem).
-// Usage: node qa/a11y.mjs OUT_DIR SITE_DIR...   axe WCAG 2.2 AA + structure + reflow + a11y-tree snapshots.
+// Usage: node test/system/a11y.mjs OUT_DIR SITE_DIR...   axe WCAG 2.2 AA + structure + reflow + a11y-tree snapshots.
 import { chromium } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";

@@ -26,4 +26,4 @@ rel:
 
 - Core CSS is 32,762 of 32,768 B (6 B headroom) after trimming; core JS is at its limit. Further features cannot fit the core bundle.
 - Recommendation: replace the single budget with per-bundle budgets - a core budget (layout, tokens, shared components, a11y) kept at the current numbers, and separate budgets for optional bundles (per-component CSS from the component-CSS-split work, blog/news, doc-only scripts) loaded only on pages that use them. The QA budget check should report each bundle. To be decided together with the component CSS split landing in parallel.
-- Keyboard and mobile behaviour is checked by `qa/audit/keyboard.mjs` and `qa/audit/mobile.mjs`.
+- Keyboard and mobile behaviour is checked by `test/system/audit/keyboard.mjs` and `test/system/audit/mobile.mjs`.

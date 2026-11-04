@@ -3,9 +3,9 @@ id: adr:modootoday/20261104053146
 title: Size budgets are per-asset caps on registry rows; page-type limits are derived and guide targets only warn
 status: active
 created: 2026-11-04T05:31:46Z
-updated: 2026-11-04T05:33:07Z
+updated: 2026-11-04T16:35:37Z
 rel:
-  governs: [qa/audit]
+  governs: [test/system/audit]
   depends_on: [adr:modootoday/20261102215138]
   supersedes: [adr:modootoday/20261103012843, adr:modootoday/20261103033055, adr:modootoday/20261103074357, adr:modootoday/20261103235459]
 ---
@@ -14,12 +14,12 @@ rel:
 
 ## Context
 
-The budgets in `qa/audit/config.mjs` mixed three kinds of number, each kept by hand. `js_total` summed the gzip bytes of every theme script (9,258 of 9,472 bytes), although no page loads all of them: the largest page loads 6,934 bytes. Every new script raised it with a record, as did most page-type limits (adr:modootoday/20261103012843, adr:modootoday/20261103033055, adr:modootoday/20261103074357, adr:modootoday/20261103235459). `BUDGET.css` and `css_showcase` capped the raw core CSS one page links, `SHEETS` and `SECTION_SHEET` capped each sheet, and the blog and layout bundles had caps of their own. A feature kept competing with every other feature for one shared headroom.
+The budgets in `test/system/audit/config.mjs` mixed three kinds of number, each kept by hand. `js_total` summed the gzip bytes of every theme script (9,258 of 9,472 bytes), although no page loads all of them: the largest page loads 6,934 bytes. Every new script raised it with a record, as did most page-type limits (adr:modootoday/20261103012843, adr:modootoday/20261103033055, adr:modootoday/20261103074357, adr:modootoday/20261103235459). `BUDGET.css` and `css_showcase` capped the raw core CSS one page links, `SHEETS` and `SECTION_SHEET` capped each sheet, and the blog and layout bundles had caps of their own. A feature kept competing with every other feature for one shared headroom.
 
 ## Decision
 
 - **Each theme CSS and JS file has one cap**: gzip bytes, the sixth column of its row in `_includes/modootoday/assets/registry.html`, the owner of the asset list. Rows the layouts link themselves (the core sheet, the blog sheet, layout bundles, renderer scripts, `theme-init.js`) sit in a second list there that Liquid never reads.
-- **A cap is the measured gzip size plus 10%, rounded up to 128 bytes.** `qa/audit/budgets/modules.mjs` measures each row on the built site:
+- **A cap is the measured gzip size plus 10%, rounded up to 128 bytes.** `test/system/audit/budgets/modules.mjs` measures each row on the built site:
   - a row without a cap fails, and the message prints the measured size and the cap to paste;
   - a file over its cap fails for that file only;
   - a cap above twice the measured size warns that it is loose;

@@ -3,9 +3,9 @@ id: adr:modootoday/20261029222251
 title: Components docs pair each example's source with its live result
 status: active
 created: 2026-10-29T22:22:51Z
-updated: 2026-10-29T22:23:31Z
+updated: 2026-11-04T16:35:36Z
 rel:
-  governs: [docs/_layouts/examples.html, docs/components/index.md, qa/docs/coverage.rb]
+  governs: [docs/_layouts/examples.html, docs/components/index.md, test/system/docs/coverage.rb]
 ---
 
 # Components docs pair each example's source with its live result
@@ -21,7 +21,7 @@ The owner found the Components page hard to follow with descriptions alone: ever
 - Source comes before result so accordion and tabs scripts, which act on the section's `h3`s, never take it into a panel.
 - Site chrome (navigation, language switcher, theme toggle, search, breadcrumb and table of contents, pagination, posts) is shown by configuration and points at this page's own chrome: a second live copy would duplicate ids and landmarks.
 - Label styles live in `docs/assets/css/docs.css`, loaded from the docs `head-custom.html`, outside the theme bundle, with logical properties only.
-- `qa/coverage.rb` fails when a components page in any language lacks `layout: examples`, an example per `_data/components.yml` key and per inline component, or a built source and result pair.
+- `test/system/docs/coverage.rb` fails when a components page in any language lacks `layout: examples`, an example per `_data/components.yml` key and per inline component, or a built source and result pair.
 
 ## Consequences
 

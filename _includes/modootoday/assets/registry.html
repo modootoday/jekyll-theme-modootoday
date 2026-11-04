@@ -1,7 +1,7 @@
 {%- comment -%}The theme's CSS and JS files, one row each: name|kind|path|triggers|parts|cap|deps. kind: component (a sheet linked right
   after core) or css (a context sheet, linked after the blog sheet and layout bundles; both assets/sheets.html), section (triggers is the
   sections: name), js (a classic deferred script) or module (an ES module; assets/scripts.html). triggers: texts of the rendered body,
-  separated by ^. parts: the Sass partials (assets/imports.html), in old cascade order. cap: gzip bytes (qa/audit/budgets/modules.mjs).
+  separated by ^. parts: the Sass partials (assets/imports.html), in old cascade order. cap: gzip bytes (test/system/audit/budgets/modules.mjs).
   deps: a module's static imports, each preloaded with a modulepreload link.
   _mta_fixed holds the files the layouts link themselves; Liquid never reads it. Sets mt_asset_rows, mt_context_sheets ("doc:sidebar|toc|
   page-actions,...", read by assets/imports.html) and mt_section_sheets.{%- endcomment -%}

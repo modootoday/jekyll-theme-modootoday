@@ -3,9 +3,9 @@ id: adr:modootoday/20261030083500
 title: Page layouts with optional per-layout CSS bundles
 status: active
 created: 2026-10-29T23:35:00Z
-updated: 2026-10-29T23:35:00Z
+updated: 2026-11-04T16:35:36Z
 rel:
-  governs: [_layouts/, _includes/modootoday/pages/, assets/css/, qa/audit/budgets.mjs, lib/modootoday/check/layouts.rb, docs/layouts/shells.md]
+  governs: [_layouts/, _includes/modootoday/pages/, assets/css/, lib/modootoday/check/layouts.rb, docs/layouts/shells.md, test/system/audit/budgets.mjs]
 ---
 
 # Page layouts with optional per-layout CSS bundles

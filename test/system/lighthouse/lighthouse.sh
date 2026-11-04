@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Lighthouse on a built docs site, served at the Pages baseurl.
-# Usage: qa/lighthouse/lighthouse.sh [SITE_DIR=docs/_site] [OUT=qa-out/lighthouse]
+# Usage: test/system/lighthouse/lighthouse.sh [SITE_DIR=docs/_site] [OUT=qa-out/lighthouse]
 # Env: RUNS (default 1; CI uses 3, the median score per category is kept), PORT, CHROME_PATH.
-# Then `node qa/lighthouse/budget.mjs OUT` checks the medians against qa/lighthouse/budget.json.
+# Then `node test/system/lighthouse/budget.mjs OUT` checks the medians against test/system/lighthouse/budget.json.
 set -euo pipefail
 site="${1:-docs/_site}"; out="${2:-qa-out/lighthouse}"; port="${PORT:-8799}"; runs="${RUNS:-1}"
 # A server left on the port would answer instead of this site and every score would read "-".
@@ -22,4 +22,4 @@ for p in "" components/ components/kitchen-sink/ guides/install/ ko/ ko/componen
     done
   done
 done
-node qa/lighthouse/budget.mjs "$out" --summary-only
+node test/system/lighthouse/budget.mjs "$out" --summary-only

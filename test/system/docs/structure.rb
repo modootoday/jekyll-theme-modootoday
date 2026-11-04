@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 # Docs structure (dev-only): fails when docs/ drifts from the information architecture in
 # .spec/adr (sections from docs/_data/sections.yml, one source of truth in front matter).
-require_relative "../../script/docs/tree"
-require_relative "../../script/docs/outputs"
+require_relative "../../../script/docs/tree"
+require_relative "../../../script/docs/outputs"
 
 LIMIT_FILES = 12   # authored files per directory (generated/ excluded)
 LIMIT_ENTRIES = 12 # sidebar entries per group
@@ -10,7 +10,7 @@ SAMPLE_DIRS = %w[blog news authors].freeze
 ROOT_PAGES = %w[index.md 404.md tags.md categories.md].freeze
 BANNED = [/^since:/, /\bdeprecat/i, /(?<![\w.])2\.0\b/, /\bfrozen\b/i, /\.spec\.local/].freeze
 
-tree = DocsIndex::Tree.new(File.expand_path("../../docs", __dir__))
+tree = DocsIndex::Tree.new(File.expand_path("../../../docs", __dir__))
 out = DocsIndex::Outputs.new(tree)
 ids = tree.sections.map { |s| s["id"] }
 errs = []

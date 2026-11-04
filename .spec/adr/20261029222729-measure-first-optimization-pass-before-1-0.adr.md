@@ -27,7 +27,7 @@ Before 1.0 we optimise only what a measurement shows. The site will grow from 3 
 ## Decision
 
 - Hreflang links and the language switcher look up pages through one URL index per page render (`site.pages | map: "url" | join`) and a string `contains`. Before, they ran `site.pages | where` once per language, which costs O(pages² × languages).
-- `qa/qa.mjs` checks pages concurrently, `QA_JOBS` pages per colour scheme (default 4). It sorts failures and axe results so the report stays stable.
+- `test/system/audit.mjs` checks pages concurrently, `QA_JOBS` pages per colour scheme (default 4). It sorts failures and axe results so the report stays stable.
 - No budget changes.
 
 ## Consequences

@@ -21,7 +21,7 @@ class LayoutTest < Minitest::Test
     "_includes/modootoday" => "theme include API: paths are documented include names",
   }.freeze
 
-  MAX_LINES = 150 # code files under lib/, qa/, exe/, script/, assets/js/ and test helpers
+  MAX_LINES = 150 # code files under lib/, exe/, script/, assets/js/ and test/ (system audits, helpers)
   MAX_TEST_LINES = 300 # *_test.rb and *.test.js
   DATA_EXT = %w[.json .txt].freeze # data, not code: lib/modootoday/schema/vocab.txt is one schema.org term per line
   LONG_OK = {}.freeze
@@ -64,6 +64,6 @@ class LayoutTest < Minitest::Test
 
   private
 
-  def code_files = tracked.select { |f| f.match?(%r{\A(lib|qa|exe|script|assets/js|test)/}) && !f.start_with?("test/fixtures/") && !f.end_with?(*DATA_EXT) }
+  def code_files = tracked.select { |f| f.match?(%r{\A(lib|exe|script|assets/js|test)/}) && !f.start_with?("test/fixtures/") && !f.end_with?(*DATA_EXT) }
   def limit(f) = f.match?(/(_test\.rb|\.test\.js)\z/) ? MAX_TEST_LINES : MAX_LINES
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # The asset registry (_includes/modootoday/assets/registry.html) owns the theme's CSS and JS files: one row per file, each
-# with its source and a gzip cap (qa/audit/budgets/modules.mjs measures it), and no theme file without a row.
+# with its source and a gzip cap (test/system/audit/budgets/modules.mjs measures it), and no theme file without a row.
 require "minitest/autorun"
 require_relative "../../support/asset_registry"
 
@@ -20,7 +20,7 @@ class RegistryTest < Minitest::Test
     rows.each do |r|
       assert_includes KINDS[r.fixed], r.kind, r.path
       assert File.file?(r.source), "#{r.path}: no source #{r.source.delete_prefix("#{ROOT}/")}"
-      assert r.cap&.positive?, "#{r.path}: no cap (gzip bytes; qa/audit/budgets/modules.mjs prints the value to use)"
+      assert r.cap&.positive?, "#{r.path}: no cap (gzip bytes; test/system/audit/budgets/modules.mjs prints the value to use)"
       assert_equal 0, r.cap % 128, "#{r.path}: a cap is a multiple of 128"
     end
   end

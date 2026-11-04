@@ -3,16 +3,16 @@ id: adr:modootoday/20261103074357
 title: A record page type budget at 9.25 KiB CSS and 3.5 KiB JavaScript; the records list joins the filter type
 status: superseded
 created: 2026-11-03T07:43:57Z
-updated: 2026-11-04T05:33:07Z
+updated: 2026-11-04T16:35:37Z
 rel:
-  governs: [qa/audit/config.mjs]
+  governs: [test/system/audit/config.mjs]
 ---
 
 # A record page type budget at 9.25 KiB CSS and 3.5 KiB JavaScript; the records list joins the filter type
 
 ## Context
 
-Record pages are a new kind of page that sites may have by the thousand, so they get their own page-type budget like the other kinds (`PAGE_TYPES` in `qa/audit/config.mjs`). The docs site now has a records demo: a list at `recipes/records/` and five record pages under it. Built from the docs site, the record page `recipes/records/lantern/` loads 8,425 bytes of CSS (core, the detail bundle, search, docs) and 3,076 bytes of JavaScript (core scripts only), the same files as the `project` detail demo. The list loads 9,637 bytes of CSS and 5,376 bytes of JavaScript, including the filter modules.
+Record pages are a new kind of page that sites may have by the thousand, so they get their own page-type budget like the other kinds (`PAGE_TYPES` in `test/system/audit/config.mjs`). The docs site now has a records demo: a list at `recipes/records/` and five record pages under it. Built from the docs site, the record page `recipes/records/lantern/` loads 8,425 bytes of CSS (core, the detail bundle, search, docs) and 3,076 bytes of JavaScript (core scripts only), the same files as the `project` detail demo. The list loads 9,637 bytes of CSS and 5,376 bytes of JavaScript, including the filter modules.
 
 ## Decision
 

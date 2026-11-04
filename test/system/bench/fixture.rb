@@ -7,7 +7,7 @@ module Bench
   # A synthetic site for the records benchmark: N records in _data/skills.json, one stub page each (written by
   # modootoday-stubs), a directory page that lists them and the theme copied in, as a classic Pages build sees it.
   module Fixture
-    ROOT = File.expand_path("../..", __dir__)
+    ROOT = File.expand_path("../../..", __dir__)
     THEME = %w[_layouts _includes _sass assets].freeze
     WORDS = %w[page record search filter theme build layout render static index token module list table guide].freeze
     CONFIG = <<~YAML

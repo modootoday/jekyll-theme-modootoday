@@ -17,7 +17,7 @@ The maintainer works alone, and `main` has no branch protection or required revi
 ## Decision
 
 - Changes that can alter what a site renders or ships merge through a pull request: `_includes`, `_layouts`, `_sass`, `assets`, `lib`, `exe`, `i18n`, the gemspec and dependency updates. The pull request merges as soon as every check passes; nobody waits for a review.
-- Changes that cannot alter site output (tests, `docs/`, `.spec/`, `qa/`, CI workflows, repository metadata) push straight to `main`.
+- Changes that cannot alter site output (tests, `docs/`, `.spec/`, `test/system/`, CI workflows, repository metadata) push straight to `main`.
 - When unsure, use a pull request.
 
 ## Consequences

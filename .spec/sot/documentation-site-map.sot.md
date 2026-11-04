@@ -53,7 +53,7 @@ Why this set:
 
 ### 2. Tree
 
-URLs use the pretty permalink style with a trailing slash, as today (`permalink: pretty`). Depth is at most section/group/page (`qa/docs/structure.rb`). Korean and Japanese pages are the same path under `/ko/` and `/ja/`.
+URLs use the pretty permalink style with a trailing slash, as today (`permalink: pretty`). Depth is at most section/group/page (`test/system/docs/structure.rb`). Korean and Japanese pages are the same path under `/ko/` and `/ja/`.
 
 ```text
 /                                   Home
@@ -532,7 +532,7 @@ Every URL maps to one predictable file:
 Rules:
 
 - One directory per top-level section, named as its URL segment. The `docs` root holds only the section directories, `_config.yml`, `_data`, `_posts`, `assets`, `generated`, the home folder, the root pages (index, 404, search, tags, categories) and the feed and search outputs.
-- At most 12 authored pages per directory; a translation counts as its English page ([[adr:modootoday/20261103092701]], `qa/docs/structure.rb`). Every directory in the tree above holds 12 or fewer by construction.
+- At most 12 authored pages per directory; a translation counts as its English page ([[adr:modootoday/20261103092701]], `test/system/docs/structure.rb`). Every directory in the tree above holds 12 or fewer by construction.
 - Generated pages live only under `docs/generated/pages/`, twins under `docs/generated/twins/`, alias and moved stubs under `docs/generated/aliases/`, per-language llms files under `docs/generated/llms/`. Generated files carry `generated_by:` and an explicit permalink. A path is either hand-written or generated, never both; the check in section 10 fails on a collision.
 - The "edit this page" link of a generated page points at its registry source, not at the generated file.
 - `_data` is split per concern: `_data/nav/` (header, footer and per-context sidebars, all generated), `_data/i18n/` (catalog overrides), `_data/languages.yml` (generated), `_data/docs/` (sections, moves table), `_data/demo/` (records and sample data), and the files the theme reads by fixed name (`authors.yml`, `components.yml`).

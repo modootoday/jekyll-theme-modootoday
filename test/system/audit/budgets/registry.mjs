@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
-export const REGISTRY = fileURLToPath(new URL("../../../_includes/modootoday/assets/registry.html", import.meta.url));
+export const REGISTRY = fileURLToPath(new URL("../../../../_includes/modootoday/assets/registry.html", import.meta.url));
 
 const CAPTURES = ["_mta_rows", "_mta_fixed"];
 
