@@ -1,6 +1,9 @@
 @include mt-layer(base) {
   code, pre, kbd { font-family: mt(font-mono); }
   :not(pre) > code { font-size: .875em; background: mt(accent); border: 1px solid mt(border); padding: 0 .25rem; border-radius: var(--mt-p-radius-sm); overflow-wrap: anywhere; }
+  // In running text a code span moves to the next line whole instead of splitting at a hyphen (news-article); one
+  // longer than the line still wraps inside it.
+  :is(p, li) > code { display: inline-block; max-inline-size: 100%; }
   pre { font-size: mt-size(sm); line-height: 1.5rem; background: mt(code-background); color: mt(code-foreground); border: 1px solid mt(border); border-radius: mt-hook(code-radius);
     padding: 1rem; margin: 0 0 1.25rem; overflow-x: auto; tab-size: 2; }
   pre code { font-size: inherit; }
