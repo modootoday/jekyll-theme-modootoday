@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:0e2515c264ef
+source_rev: sha256:e9f7f1661fc1
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -25,7 +25,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `chrome/search.js`（`text/normalize.js` を含む）と `search.json` | 読者が初めて検索ボックスにフォーカスしたとき、または `/` か Ctrl+K を押したとき |
 | `content/code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
 | `content/scroll-region.js` | コードブロックか表があるページ |
-| `data/table-stack.js` | 積み重ねる表があるページ（`c: params`、または `mt-table--stack` か `mt-table--dl` クラス） |
+| `data/table-stack.js` | 本文に表があるページ（`c: params` の表、`mt-table--stack` と `mt-table--dl` クラス、そして 40rem より狭いときに収まらない表を積み重ねる） |
 | `structure/tabs.js`、`structure/accordion.js`、`blog/share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
 | `data/filter.js`（`data/filter-chips.js`、`text/normalize.js`、`dom/config.js` を先読み） | `filter:` か `filter_text:` を使うページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |

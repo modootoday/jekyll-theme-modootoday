@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:185653b779c6
+source_rev: sha256:f50b68e885c6
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -60,7 +60,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | ステップ / タイムライン | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` または `h3` の項目 | — |
 | ファイルツリー | `section.mt-c-filetree` | `ul[aria-label]`、入れ子の `ul`（それがある項目はフォルダー） | — |
 | 詳細 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`、`summary > h3`、その後の内容 | `[open]` |
-| 表 | 本文のすべての表を包む `div.mt-table`（描画時に追加。はみ出すとスクロールし、名前付きの領域になる） | その中の `table` | `table.mt-table--stack`、`table.mt-table--dl`、`table.mt-table--fixed`（kramdown の属性リスト。`c: params` の表は `--stack`）、スクリプトが積み重ねる表にラベルを付けた後の `[data-mt-labelled]` と `td[data-label]`、`table`・`table-stack` シート |
+| 表 | 本文のすべての表を包む `div.mt-table`（描画時に追加。はみ出すとスクロールし、名前付きの領域になる） | その中の `table` | `table.mt-table--stack`、`table.mt-table--dl`、`table.mt-table--fixed`（kramdown の属性リスト。`c: params` の表と、40rem より狭いときに収まらない表は `--stack`）、スクリプトが積み重ねる表にラベルを付けた後の `[data-mt-labelled]` と `td[data-label]`、`table`・`table-stack` シート |
 | パラメーター表 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | 40rem 未満で積み重なる（`table.mt-table--stack`） |
 | リンクカード | `section.mt-c-linkcards` | `ul > li > a`（カード全体がリンク先） | — |
 | 引用 | `figure.mt-quote` | `blockquote`, `figcaption` | — |

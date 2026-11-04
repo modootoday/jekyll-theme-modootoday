@@ -1,8 +1,8 @@
 // Table reflow at phone widths: every body table sits in div.mt-table; 2-3 column tables keep their column floors (5rem,
-// the last 9rem); first-column code never breaks; 4+ column tables keep a sticky first column and no cell over 6 lines;
-// a wrapper that scrolls is a focusable labelled region; a stacked table is labelled blocks that fit.
+// the last 9rem) and show the last column up to 9rem before any scrolling; first-column code never breaks; 4+ column tables
+// keep a sticky first column and no cell over 6 lines; a scrolling wrapper is a labelled region; a stacked table fits.
 export const REFLOW_WIDTHS = [320, 360, 390];
-export const REFLOW_PAGES = ["guides/configuration/", "components/", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "layouts/detail/", "layouts/blog-news/"];
+export const REFLOW_PAGES = ["guides/configuration/", "components/", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "layouts/detail/", "layouts/blog-news/", "reference/api/"];
 
 export function tableProblems() {
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -36,6 +36,14 @@ export function tableProblems() {
       }
     }
     const wide = !!t.querySelector("th:nth-child(4)");
+    const last = t.querySelector("tr > :last-child");
+    if (!wide && last) {
+      const [c, b] = [last.getBoundingClientRect(), w.getBoundingClientRect()];
+      const shown = Math.max(0, Math.min(c.right, b.right) - Math.max(c.left, b.left));
+      if (shown < Math.min(c.width, 9 * rem) - 1) {
+        out.push(`${name} shows ${Math.round(shown)}px of its last column before scrolling`);
+      }
+    }
     for (const row of t.tBodies[0] ? t.tBodies[0].rows : []) {
       [...row.cells].forEach((c, k) => {
         const width = c.getBoundingClientRect().width;

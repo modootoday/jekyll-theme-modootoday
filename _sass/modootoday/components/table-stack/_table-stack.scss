@@ -1,5 +1,6 @@
 // Opt-in table variants by kramdown IAL: {: .mt-table--stack} (labelled blocks), {: .mt-table--dl} (key over value) and
-// {: .mt-table--fixed} (equal columns). The two stacked forms apply only once table-stack.js has set roles and labels.
+// {: .mt-table--fixed} (equal columns). The two stacked forms apply only once table-stack.js has set roles and labels;
+// below 40rem the script also stacks a plain table that does not fit.
 @include mt-layer(components) {
   @media (max-width: 39.99rem) {
     // [role] lifts these over the table sheet's floors, widths and sticky first column.
@@ -9,6 +10,8 @@
     [data-mt-labelled] tr { padding: .75rem 0; border-bottom: 1px solid mt(border); }
     .mt-table > table[data-mt-labelled][role] :is(th, td):is(:first-child, *) { display: block; position: static; min-inline-size: 0;
       padding: .125rem 0; border: 0; background: none; box-shadow: none; }
+    // A block is the full width, so long code may break here rather than scroll the stacked table.
+    .mt-table > table[data-mt-labelled][role] td code { white-space: normal; overflow-wrap: anywhere; }
     .mt-table--stack[data-mt-labelled] td[data-label]::before { content: attr(data-label); content: unquote('attr(data-label) / ""'); display: block;
       color: mt(muted-foreground); font-size: mt-size(xs); line-height: mt-leading(xs); }
     [data-mt-labelled] :is(th, td):first-child { font-weight: 500; color: mt(foreground); }

@@ -38,13 +38,14 @@ class StylesheetProbeTest < Minitest::Test
   # "docs/doc.css structure/tabs.js" short names expand to css/modootoday/docs/doc.css and js/modootoday/structure/tabs.js.
   def self.list(s) = s.split.map { |w| w.start_with?("css/", "js/") ? w : "#{w[/\w+\z/]}/modootoday/#{w}" }
 
-  # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>).
+  # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>);
+  # a <table> also brings table-stack.css and table-stack.js.
   CHROME = "chrome/menu.js content/scroll-region.js content/code-copy.js chrome/theme-toggle.js"
   PLAIN = "chrome/menu.js chrome/theme-toggle.js"
   SEARCH = "chrome/search-keys.js"
   DEFAULT = {
     "pr/plain" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
-    "pr/table" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css data/table.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",
+    "pr/table" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css data/table.css data/table-stack.css chrome/menu.js content/scroll-region.js data/table-stack.js chrome/theme-toggle.js #{SEARCH}",
     "pr/spinner" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/skeleton" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/topbar" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
@@ -60,7 +61,8 @@ class StylesheetProbeTest < Minitest::Test
     "pr/blog" => "css/modootoday.css chrome/doc-nav.css css/modootoday-blog.css docs/doc.css chrome/search.css #{PLAIN} blog/share.js #{SEARCH}",
     "." => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css marketing/hero.css css/modootoday-hero.css docs/doc.css chrome/search.css structure/bleed.css showcase/cta.css showcase/card.css " \
            "structure/tabs.css structure/tabs.js #{CHROME} #{SEARCH}",
-    "guide" => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css docs/doc.css chrome/search.css data/table.css #{CHROME} #{SEARCH}",
+    "guide" => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css docs/doc.css chrome/search.css data/table.css data/table-stack.css " \
+               "chrome/menu.js content/scroll-region.js data/table-stack.js content/code-copy.js chrome/theme-toggle.js #{SEARCH}",
     "blog:." => "css/modootoday.css chrome/doc-nav.css content/inline.css css/modootoday-blog.css chrome/search.css chrome/menu.js content/code-copy.js chrome/theme-toggle.js blog/share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
@@ -73,7 +75,7 @@ class StylesheetProbeTest < Minitest::Test
     "pr/split" => "css/modootoday.css content/code.css marketing/hero.css docs/doc.css content/loading.css chrome/terminal.css chrome/menu.js content/scroll-region.js",
     "pr/bare" => "css/modootoday.css docs/doc.css content/loading.css",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css docs/doc.css content/loading.css chrome/menu.js",
-    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css content/loading.css data/table.css chrome/menu.js content/scroll-region.js content/code-copy.js",
+    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css content/loading.css data/table.css data/table-stack.css chrome/menu.js content/scroll-region.js data/table-stack.js content/code-copy.js",
     "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css content/loading.css chrome/menu.js content/code-copy.js",
   }.freeze
   BUNDLE = {

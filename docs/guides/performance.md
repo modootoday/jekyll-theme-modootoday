@@ -19,7 +19,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `chrome/search.js` (with `text/normalize.js`) and `search.json` | the first time a reader focuses the search box or presses `/` or Ctrl+K |
 | `content/code-copy.js` | pages with a code block, and pages with the page actions menu |
 | `content/scroll-region.js` | pages with a code block or a table |
-| `data/table-stack.js` | pages with a stacked table (`c: params`, or the `mt-table--stack` or `mt-table--dl` class) |
+| `data/table-stack.js` | pages with a body table (it stacks `c: params` tables, the `mt-table--stack` and `mt-table--dl` classes, and below 40rem any table that does not fit) |
 | `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | pages that use tabs, an accordion, or a blog layout |
 | `data/filter.js` (with `data/filter-chips.js`, `text/normalize.js` and `dom/config.js`, preloaded) | pages with `filter:` or `filter_text:` |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |

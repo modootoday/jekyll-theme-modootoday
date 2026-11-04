@@ -42,18 +42,14 @@ class TableTest < Minitest::Test
   end
 
   def test_sheets_follow_the_body
-    assert_match sheet("data/table"), html(built, "t/table.md")
-    refute_match sheet("data/table-stack"), html(built, "t/table.md")
-    refute_match sheet("data/table-stack"), html(built, "t/prose.md"), "the class named in prose is no probe"
-    p = html(built, "t/params.md")
-    assert_match sheet("data/table"), p
-    assert_match sheet("data/table-stack"), p
-    assert_includes p, "/assets/js/modootoday/data/table-stack.js"
-    refute_includes html(built, "t/table.md"), "table-stack.js"
-    refute_includes html(built, "t/prose.md"), "table-stack.js"
+    %w[t/table.md t/params.md t/prose.md].each do |n|
+      p = html(built, n)
+      assert_match sheet("data/table"), p, n
+      assert_match sheet("data/table-stack"), p, "#{n}: any body table may stack below 40rem"
+      assert_includes p, "/assets/js/modootoday/data/table-stack.js", n
+    end
     plain = html(built, "t/plain.md")
-    refute_includes plain, "table.css"
-    refute_includes plain, "scroll-region.js"
+    %w[table.css table-stack.css scroll-region.js table-stack.js].each { |f| refute_includes plain, f }
   end
 
   def test_sheets_hold_the_table_rules_and_the_core_only_a_fallback

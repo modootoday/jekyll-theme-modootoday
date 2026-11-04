@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:185653b779c6
+source_rev: sha256:f50b68e885c6
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -60,7 +60,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 단계 / 타임라인 | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` 또는 `h3` 항목 | — |
 | 파일 트리 | `section.mt-c-filetree` | `ul[aria-label]`, 중첩 `ul`(하위 목록이 있는 항목은 폴더) | — |
 | 세부 정보 / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, 그 뒤의 내용 | `[open]` |
-| 표 | 본문의 모든 표를 감싸는 `div.mt-table`(렌더링할 때 추가, 넘치면 스크롤되는 이름 붙은 영역) | 그 안의 `table` | `table.mt-table--stack`, `table.mt-table--dl`, `table.mt-table--fixed`(kramdown 속성 목록, `c: params` 표는 `--stack`), 스크립트가 쌓이는 표에 레이블을 붙인 뒤의 `[data-mt-labelled]`와 `td[data-label]`, `table`·`table-stack` 시트 |
+| 표 | 본문의 모든 표를 감싸는 `div.mt-table`(렌더링할 때 추가, 넘치면 스크롤되는 이름 붙은 영역) | 그 안의 `table` | `table.mt-table--stack`, `table.mt-table--dl`, `table.mt-table--fixed`(kramdown 속성 목록, `c: params` 표와 40rem보다 좁을 때 들어가지 않는 표는 `--stack`), 스크립트가 쌓이는 표에 레이블을 붙인 뒤의 `[data-mt-labelled]`와 `td[data-label]`, `table`·`table-stack` 시트 |
 | 매개변수 표 | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | 40rem 미만에서 쌓임(`table.mt-table--stack`) |
 | 링크 카드 | `section.mt-c-linkcards` | `ul > li > a`(카드 전체가 링크 대상) | — |
 | 인용 | `figure.mt-quote` | `blockquote`, `figcaption` | — |

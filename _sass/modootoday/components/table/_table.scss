@@ -1,5 +1,6 @@
 // Body tables (div.mt-table > table, from links/content.html): table sheet, linked by pages whose body has a <table.
 // Short tables keep column floors and scroll past them; 4+ column tables get a wider budget and a sticky first column.
+// Below 40rem table-stack.js stacks a table that does not fit (table-stack sheet).
 @include mt-layer(components) {
   // Local gradients cover the shades until the region scrolls, so a shade shows only on the side with more content.
   .mt-table { --mt-table-shade: color-mix(in srgb, #{mt(foreground)} 18%, transparent); overflow-x: auto; overscroll-behavior-inline: contain;
