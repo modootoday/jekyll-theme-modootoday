@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:e9f7f1661fc1
+source_rev: sha256:76b80c35c68a
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -25,12 +25,14 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `chrome/search.js`（`text/normalize.js` を含む）と `search.json` | 読者が初めて検索ボックスにフォーカスしたとき、または `/` か Ctrl+K を押したとき |
 | `content/code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
 | `content/scroll-region.js` | コードブロックか表があるページ |
-| `data/table-stack.js` | 本文に表があるページ（`c: params` の表、`mt-table--stack` と `mt-table--dl` クラス、そして 40rem より狭いときに収まらない表を積み重ねる） |
+| `data/table-stack.js` | 本文に表があるページ |
 | `structure/tabs.js`、`structure/accordion.js`、`blog/share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
 | `data/filter.js`（`data/filter-chips.js`、`text/normalize.js`、`dom/config.js` を先読み） | `filter:` か `filter_text:` を使うページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
+
+`data/table-stack.js` は、`c: params` の表、`mt-table--stack` か `mt-table--dl` クラスの付いた表、そして 40rem より狭いときに収まらない表を積み重ねます。
 
 テーマのスクリプトは ES モジュール (`<script type="module">`) です。`defer` と同じく、ページを読み終えた後に順番に実行されるため、最初の描画を妨げません。モジュールが読み込むファイルには `<link rel="modulepreload">` が付き、1 つずつ順に取得せず一緒に取得します。クラシックスクリプトは、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプト (`chrome/theme-init.js`) だけです。最初の描画より前に実行する必要があるためです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。
 
@@ -41,8 +43,10 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `modootoday.asset_version` | クエリ | 使う場面 |
 |---|---|---|
 | `theme` (既定) | `?v=X.Y.Z` | テーマのファイルがテーマのバージョンと一緒にしか変わらないとき |
-| `build` | `?v=X.Y.Z-a1b2c3d` | サイトでテーマのファイル (Sass パーシャル、スクリプト) も上書きするとき。GitHub Pages では `site.github.build_revision` のコミットを、それ以外ではビルド時刻を使います |
+| `build` | `?v=X.Y.Z-a1b2c3d` | サイトでテーマのファイル (Sass パーシャル、スクリプト) も上書きするとき |
 | `false` | なし | アセットのバージョンを自分で管理するとき |
+
+`build` は、GitHub Pages では `site.github.build_revision` のコミットを、それ以外ではビルド時刻を使います。
 
 クエリが付くのはテーマ自身の CSS と JavaScript、それに `site_css` に登録したシートです。それ以外のスタイルシート、画像、フォントの URL は変わらず、`preload` のヒントも同じです。ヒントはページやスタイルシートが要求する URL と一致する必要があり、違うとブラウザーがファイルを二度ダウンロードします。
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:f539ce970fd3
+source_rev: sha256:3b72958f7d00
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -30,57 +30,78 @@ modootoday:
   nav: main
 ```
 
-| キー | 既定値 | 効果 |
+| キー | 既定値 | 役割 |
 |---|---|---|
-| `badges` | `true` | ステータスのコードスパンをバッジにする。`false` ならコードのまま |
-| `code_theme` | `theme` | コードブロックの色。`theme` はテーマのパレットのまま、`github` は GitHub のライトとダークのパレットを使う。[カスタマイズ](../customize/)を参照 |
-| `color_scheme` | `auto` | `auto` は OS に合わせる。`auto-dark`・`auto-light` はダーク・ライトで始まり切り替えボタンを残す(読者の選択は記憶される)。`light`・`dark` は切り替えなしで固定。開始時の配色は HTML に書き出されるので、ちらつかない |
-| `components` | すべて | 配信する CSS と JS を絞ります。`lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれ、そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル（ダークトーン、横スクロール）を残すには、`figure` と一緒に `figure-svg` を入れてください |
-| `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む |
-| `nav` | `main` | `_data/nav/` のナビゲーションファイル。`items:` がある項目はグループになる。前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従う。このファイルがないとき、ヘッダーは `_data/navigation.yml` の `main`、次に `header_pages`(minima と同じページパスの一覧)、次に、HTML ページが 100 以下のサイトでは `title` のある最上位のページ(`/about/` など)をすべて読む(`nav_order` が先、次にタイトル順。`nav: false` または `nav_exclude: true` のページは除く)。`false` は最後の一覧を止める |
-| `sidebar` | `auto` | `auto` はナビゲーションにグループがあるとき `doc` ページにサイドバーを付ける。`true` は常に、`false` は付けない。64rem より狭い画面では本文の上の折りたたみメニューになる。front matter の `sidebar: false` でそのページだけ隠す |
-| `page_actions` | `true` | Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューを出す。ここか front matter で `false` にすると消える。完全に外すなら `components` から `page-actions` を除く |
-| `tokens`, `tokens_dark` | テーマの値 | セマンティックなデザイントークンをインラインで上書きする (インラインの `<style>`。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う) |
-| `site_css` | なし | サイト独自のスタイルシート。`[/assets/css/site.css]` のようなサイトパスのリストで、テーマのシートの後に同じ `?v=` クエリを付けて読み込む。front matter の `site_css:` はそのページだけにシートを追加する。[ブランドトークン](../../recipes/brand-tokens/)を参照 |
-| `preload` | なし | スタイルシートより前の `<link rel="preload">`。`{href, as, type}` のリストで、`href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれか (フォントと fetch には `crossorigin` が付き、`?v=` クエリは付かない)。front matter の `preload:` はそのページだけに追加する |
-| `scripts` | なし | サイトの ES モジュールを名前ごとに書く。値はサイトパスで書いた `{src, css, preload, element}`（`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素）。ヒーローかセクションの項目の `script:` がその名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照 |
-| `search` | なし | サイトに `search.json` があるときのヘッダー検索の設定。`words`（各ページ本文から索引する語数。既定は 300、`0` で全文）、`collections`（一緒に索引するコレクション。`output: true` のものだけ）、`fields`（本文と一緒に検索する front matter のキー。例: `[description, tags]`）、`exclude`（除外する URL の接頭辞。例: `[/v1/]`）、`match`（既定の `substring` は入力どおりに探し、`terms` はすべての語を順不同で探す）、`compact: true`（空白を除いた比較もする。韓国語の分かち書き向け）、`results`（結果数。既定は 8）。[検索](../../recipes/search/)を参照 |
-| `twins` | スタブ | `source` で front matter のない Markdown 版を使う ([エージェント](../agents/)を参照) |
-| `aliases` | なし | エージェント向けの URL エイリアス。`md: true` は各 Markdown 版を `/<page>.md` でも配信し、`html: true` は `/<page>.html` をそのページにリダイレクトする。スタブは `modootoday-stubs --aliases` が書き、`modootoday-check --aliases` が確認する。`twins: source` とは `md` を併用できない ([URL エイリアス](../agents/#url-エイリアス)を参照) |
-| `records` | なし | レコードセット。`_data` ファイルのレコードごとに 1 ページ。セットごとに `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`。ページは `modootoday-stubs --records` が書き、`modootoday-check` が確認する ([生成ページ](../../recipes/generated-pages/)を参照) |
-| `seo` | `true` | `false` で組み込みの canonical、hreflang、Open Graph タグを出さない |
-| `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` の代替リンクを残す（`jekyll-seo-tag` を使うサイト向け） |
-| `schema` | `url` があれば有効 | schema.org JSON-LD グラフ: `publisher`、`search_url`、`layouts`、`faq`。`false` で無効。[構造化データ](../structured-data/)を参照 |
-| `languages` | なし | `hreflang` 用の言語コード。例: `[en, ko]` ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。 |
-| `full_languages` | なし | すべてのページを翻訳する `languages` 内のコード。例: `[ko, ja]` `modootoday-check --i18n-pages` は、その言語の翻訳がない既定言語のページごとに警告します。 |
-| `lists` | なし | `{link_chips: true, titled_items: true}` 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれと `hero: {checks: true}` を整え、使うページにだけリンクされます。 |
-| `language_switcher` | なし | `header`(地球儀ボタンとドロップダウンメニュー。言語数によらず幅は一定)または `footer`(言語名の一覧)で `languages` から言語切り替えを表示。各リンクはこのページの翻訳、なければその言語のトップへ。言語が 2 つ未満なら描画しない。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側クリックで閉じる動作を加える |
-| `og_image` | なし | 既定の Open Graph 画像。front matter の `image:` が優先 |
-| `feed` | `false` | `true` で `/feed.xml` にリンクする (`plugins` に `jekyll-feed` を追加) |
-| `logo` | なし | `brand` でサイト名の前にテーマのブランドマークを `currentColor`(`brand` トークンなのでライト・ダークに追従)で表示。パスを指定するとその画像を表示(装飾、`alt=""`)。別のロゴは `modootoday/brand/logo.html` を上書き |
-| `favicon` | なし | `brand` でテーマのブランドマークを SVG、32px PNG、Apple タッチアイコンとしてリンク。パスを指定するとそのアイコンをリンク |
-| `csp` | なし | `strict` でペイント前スクリプトをインラインではなくファイルから読み込む |
-| `asset_version` | `theme` | テーマの CSS と JavaScript の URL に付く `?v=` クエリ。`theme` はテーマのバージョン、`build` はさらにコミット (またはビルド時刻) を付け、`false` は付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照 |
-| `viewport_fit` | `cover` | `auto` でノッチの下まで描かず、ページをセーフエリア内に収める ([アクセシビリティ](../accessibility/#設定)を参照) |
-| `theme_color` | ページ背景 | ブラウザーのバーの色: `"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、またはタグを出さない `false` |
-| `edit_url` | なし | 「このページを編集」リンクの接頭辞。末尾は `/` |
-| `archive` | なし | アーカイブページの URL。例：`{tags: /tags/, categories: /categories/}`。記事フッターのリンク先（[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照） |
-| `mermaid` | 無効 | `{enabled: true, src:, integrity:, theme: auto}` で、```` ```mermaid ```` フェンスのあるページで描画します。`src` はバージョンを固定した https の URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。CDN を使うと `script-src` にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。[数式と図](../../recipes/math-diagrams/#組み込みローダー)を参照 |
-| `math` | 無効 | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、```` ```math ```` フェンスと `$$` ブロックのあるページで KaTeX により描画します。`inline: true` で `$…$` も描画します。CDN を使うと `script-src`、`style-src`、`font-src` にそのオリジンが加わります。[数式と図](../../recipes/math-diagrams/#csp-とプライバシー)を参照 |
-| `external_links` | なし | `new_window: true` で外部リンク（`url:` で始まらないリンク）をすべて新しいウィンドウで開きます。`icon: false` で矢印を隠します。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照 |
-| `blog` | なし | ブログ設定（`per_page`、`variant`、`related`、`share`、`reading_time` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
-| `news` | なし | ニュース設定（トップページの `sections:` など）。[ブログとニュース](../../layouts/blog-news/#設定)を参照 |
-| `css` | `split` | `split` は小さなコアシートと、ページが使うコンポーネントのシートだけを読み込みます。`bundle` はすべてを含む 1 枚のシートを読み込みます |
-| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` はスキップリンクの下にサイト全体のお知らせバーを表示します |
-| `back_to_top` | `false` | `true` はすべてのページの末尾に「先頭へ戻る」リンクを追加します |
-| `loading` | `false` | `true` は独自スクリプトが追加するプレースホルダーのため、スピナーとスケルトンのシートを全ページで読み込みます。Markdown で使うページは自動で読み込みます |
-| `subscribe` | なし | `{action: https://…}` は `c: subscribe` のメールフォームの送信先です |
+| `badges` | `true` | ステータスのコードスパンをバッジで表示する。`false` ならコードのまま。 |
+| `code_theme` | `theme` | コードブロックの色。テーマの色(`theme`)か GitHub の色(`github`)を選ぶ。[コードの色](../customize/#コードの色)を参照。 |
+| `color_scheme` | `auto` | ライト・ダークの表示。`auto` は端末に合わせ、`auto-dark`・`auto-light` は開始時の表示を、`light`・`dark` は固定の表示を決める。 |
+| `components` | すべて | サイトが配信するコンポーネントの CSS と JS を絞る。 |
+| `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む。 |
+| `nav` | `main` | メニューを作る `_data/nav/` のファイル。`items:` がある項目はグループになる。 |
+| `sidebar` | `auto` | `doc` ページのサイドメニュー。`auto` はメニューにグループがあるとき、`true` は常に表示、`false` は表示しない。 |
+| `page_actions` | `true` | ページのコピーや Markdown 表示ができるメニュー。`false` で消える。 |
+| `tokens`, `tokens_dark` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
+| `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |
+| `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |
+| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照。 |
+| `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |
+| `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[エージェント](../agents/)を参照。 |
+| `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |
+| `records` | なし | `_data` ファイルの項目ごとにページを 1 つ作る。[生成ページ](../../recipes/generated-pages/)を参照。 |
+| `seo` | `true` | `false` で組み込みの canonical、`hreflang`、Open Graph タグを出さない。 |
+| `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` リンクを残す。`jekyll-seo-tag` を使うサイト向け。 |
+| `schema` | `url` があれば有効 | schema.org の構造化データを出す。`false` で無効。[構造化データ](../structured-data/)を参照。 |
+| `languages` | なし | `[en, ko]` のようなサイトの言語コード。`hreflang` と言語メニューに使う。 |
+| `full_languages` | なし | すべてのページを翻訳する言語(例: `[ko, ja]`)。`modootoday-check --i18n-pages` が足りない翻訳を警告する。 |
+| `lists` | なし | `{link_chips: true, titled_items: true}` で、リンクだけのリストをチップに、`**タイトル**:` の項目を見出し付きの項目にする。 |
+| `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |
+| `og_image` | なし | リンクプレビューの既定の画像。ページの `image:` が優先。 |
+| `feed` | `false` | `true` で `/feed.xml` にリンクする。`plugins` に `jekyll-feed` を追加する。 |
+| `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
+| `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
+| `csp` | なし | `strict` で、最初の描画前に動くテーマのスクリプトをインラインではなくファイルから読み込む。 |
+| `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |
+| `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |
+| `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
+| `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。 |
+| `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
+| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[数式と図](../../recipes/math-diagrams/#組み込みローダー)を参照。 |
+| `math` | 無効 | ```` ```math ```` と `$$` のブロックを KaTeX で描画する。[数式と図](../../recipes/math-diagrams/#csp-とプライバシー)を参照。 |
+| `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
+| `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
+| `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
+| `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |
+| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |
+| `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
+| `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
+| `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
 
+### いくつかのキーの詳細
+
+- `color_scheme`: `auto-dark`・`auto-light` は切り替えボタンを残し、読者の選択を記憶します。`light`・`dark` には切り替えボタンがありません。開始時の配色は HTML に書き出されるので、ちらつきません。
+- `components`: `lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれます。そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル(ダークトーン、横スクロール)を残すには、`figure` と一緒に `figure-svg` を入れてください。
+- `nav`: 前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従います。このファイルがないとき、ヘッダーは `_data/navigation.yml` の `main`、次に `header_pages`(minima と同じページパスの一覧)、次に、HTML ページが 100 以下のサイトでは `title` のある最上位のページ(`/about/` など)をすべて読みます(`nav_order` が先、次にタイトル順。`nav: false` または `nav_exclude: true` のページは除く)。`nav: false` は最後の一覧を止めます。
+- `sidebar`: 64rem より狭い画面では本文の上の折りたたみメニューになります。front matter の `sidebar: false` でそのページだけ隠せます。
+- `page_actions`: Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューが出ます。front matter の `page_actions: false` はそのページだけ消し、完全に外すなら `components` から `page-actions` を除きます。
+- `tokens`, `tokens_dark`: 値はインラインの `<style>` に書き出されます。
+- `site_css`, `preload`: `site_css` のシートにはテーマのシートと同じ `?v=` クエリが付きます。`preload` の `href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれかです。フォントと fetch には `crossorigin` が付き、`?v=` クエリは付きません。front matter の `site_css:` と `preload:` はそのページだけに追加します。
+- `scripts`: 各項目はサイトパスで書いた `{src, css, preload, element}` です。`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素です。
+- `aliases`: スタブは `modootoday-stubs --aliases` が書き、`modootoday-check --aliases` が確認します。`twins: source` とは `md` を併用できません。
+- `records`: セットごとに `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}` を指定します。ページは `modootoday-stubs --records` が書き、`modootoday-check` が確認します。
+- `schema`: グラフの設定は `publisher`、`search_url`、`layouts`、`faq` です。
+- `languages`: ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。
+- `lists`: 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれらと `hero: {checks: true}` を整え、使うページにだけ読み込まれます。
+- `language_switcher`: 各リンクはこのページの翻訳、なければその言語のトップページに移動します。ヘッダーのメニューは言語数によらず幅が一定で、言語が 2 つ未満なら表示しません。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側のクリックで閉じる動作を加えます。
+- `logo`, `favicon`: `brand` のマークは `currentColor`(`brand` トークンなのでライト・ダークに追従)で描きます。独自のロゴ画像は装飾扱い(`alt=""`)です。別のロゴを描くには `modootoday/brand/logo.html` を上書きします。`brand` のファビコンは SVG、32px PNG、Apple タッチアイコンをリンクします。
+- `mermaid`, `math`: 設定は `{enabled: true, src:, integrity:, theme: auto}` と `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、ブロックのあるページでだけ読み込みます。`src` はバージョンを固定した https URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。`inline: true` なら `$…$` も描画します。CDN を使うと `script-src`(数式は `style-src` と `font-src` も)にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。
+- `banner`: バーはスキップリンクの下に表示されます。
+- `loading`: Markdown でスピナーやスケルトンを使うページは、シートを自動で読み込みます。
+
 ## 新しいウィンドウで開くリンク
 
-新しいウィンドウで開く動作は、明示的に有効にしたときだけ働きます。リンクごと、または外部リンク全体に設定できます。
+新しいウィンドウで開く動作は、明示的に有効にしたときだけ働きます。リンクごと、または外部リンク(サイトの `url:` で始まらないリンク)全体に設定できます。
 
 ```yaml
 # _config.yml: 外部リンク全体

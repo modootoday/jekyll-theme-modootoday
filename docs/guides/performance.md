@@ -19,12 +19,14 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `chrome/search.js` (with `text/normalize.js`) and `search.json` | the first time a reader focuses the search box or presses `/` or Ctrl+K |
 | `content/code-copy.js` | pages with a code block, and pages with the page actions menu |
 | `content/scroll-region.js` | pages with a code block or a table |
-| `data/table-stack.js` | pages with a body table (it stacks `c: params` tables, the `mt-table--stack` and `mt-table--dl` classes, and below 40rem any table that does not fit) |
+| `data/table-stack.js` | pages with a body table |
 | `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | pages that use tabs, an accordion, or a blog layout |
 | `data/filter.js` (with `data/filter-chips.js`, `text/normalize.js` and `dom/config.js`, preloaded) | pages with `filter:` or `filter_text:` |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
+
+`data/table-stack.js` stacks `c: params` tables, tables with the `mt-table--stack` or `mt-table--dl` class, and, below 40rem, any table that does not fit.
 
 Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
 
@@ -35,8 +37,10 @@ Every theme stylesheet and script URL ends in `?v=` and the theme version, such 
 | `modootoday.asset_version` | Query | Use when |
 |---|---|---|
 | `theme` (default) | `?v=X.Y.Z` | the theme files change only with the theme version |
-| `build` | `?v=X.Y.Z-a1b2c3d` | you also override theme files (Sass partials, scripts) in your site; the commit comes from `site.github.build_revision` on GitHub Pages, and the build time elsewhere |
+| `build` | `?v=X.Y.Z-a1b2c3d` | you also override theme files (Sass partials, scripts) in your site |
 | `false` | none | you version or fingerprint assets yourself |
+
+With `build`, the commit comes from `site.github.build_revision` on GitHub Pages, and the build time is used elsewhere.
 
 The theme's own CSS and JavaScript get the query, and so do the sheets you list in `site_css`. Your other stylesheets, images and fonts keep their URLs, and so do `preload` hints: a hint has to match the URL the page or stylesheet requests, or the browser downloads the file twice.
 

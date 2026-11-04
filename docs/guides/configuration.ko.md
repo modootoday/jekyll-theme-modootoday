@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:f539ce970fd3
+source_rev: sha256:3b72958f7d00
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -30,57 +30,78 @@ modootoday:
   nav: main
 ```
 
-| 키 | 기본값 | 효과 |
+| 키 | 기본값 | 하는 일 |
 |---|---|---|
-| `badges` | `true` | 상태 코드 스팬을 배지로 바꿈. `false`면 코드 그대로 |
-| `code_theme` | `theme` | 코드 블록 색. `theme`은 테마 팔레트를 유지하고 `github`는 GitHub의 라이트·다크 팔레트를 씀. [커스터마이즈](../customize/) 참고 |
-| `color_scheme` | `auto` | `auto`는 OS를 따름. `auto-dark`·`auto-light`는 다크·라이트로 시작하고 전환 버튼을 유지(독자의 선택은 기억). `light`·`dark`는 전환 버튼 없이 고정. 시작 색은 HTML에 들어가므로 깜빡임이 없음 |
-| `components` | 전체 | 내보낼 CSS와 JS를 제한합니다. `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함되며, 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요 |
-| `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌈 |
-| `nav` | `main` | `_data/nav/`의 내비게이션 파일. `items:`가 있는 항목은 그룹이 됨. 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따름. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 HTML 페이지가 100개 이하인 사이트에서는 `title`이 있는 최상위 페이지(`/about/` 같은)를 모두 읽음(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `false`는 마지막 목록을 끔 |
-| `sidebar` | `auto` | `auto`면 내비게이션에 그룹이 있을 때 `doc` 페이지에 사이드바를 붙임. `true`는 항상, `false`는 끔. 64rem보다 좁으면 본문 위의 접이식 메뉴가 됨. front matter의 `sidebar: false`로 한 페이지에서만 숨김 |
-| `page_actions` | `true` | Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴를 표시. 여기나 front matter에서 `false`면 끔. 아예 빼려면 `components`에서 `page-actions`를 제외 |
-| `tokens`, `tokens_dark` | 테마 값 | 시맨틱 디자인 토큰을 인라인으로 덮어씀(인라인 `<style>`. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씀) |
-| `site_css` | 없음 | 사이트의 스타일시트. `[/assets/css/site.css]`처럼 사이트 경로 목록으로 적고, 테마 시트 뒤에 같은 `?v=` 쿼리를 붙여 연결함. front matter `site_css:`는 그 페이지에만 시트를 더함. [브랜드 토큰](../../recipes/brand-tokens/) 참고 |
-| `preload` | 없음 | 스타일시트 앞에 내는 `<link rel="preload">`. `{href, as, type}` 목록이며 `href`는 사이트 경로, `as`는 `font`, `image`, `style`, `script`, `fetch` 중 하나(글꼴과 fetch에는 `crossorigin`이 붙고 `?v=` 쿼리는 붙지 않음). front matter `preload:`는 그 페이지에만 더함 |
-| `scripts` | 없음 | 사이트의 ES 모듈을 이름별로 적음. 값은 사이트 경로로 쓴 `{src, css, preload, element}`(`src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소). 히어로나 섹션 항목의 `script:`가 그 이름을 적은 페이지만 불러옴. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터) 참고 |
-| `search` | 없음 | 사이트에 `search.json`이 있을 때 헤더 검색을 설정함. `words`(각 페이지 본문에서 색인할 단어 수, 기본 300, `0`이면 전부), `collections`(함께 색인할 컬렉션, `output: true`인 것만), `fields`(본문과 함께 검색할 front matter 키, 예: `[description, tags]`), `exclude`(뺄 URL 접두사, 예: `[/v1/]`), `match`(기본값 `substring`은 입력한 그대로 찾고, `terms`는 모든 단어를 순서와 상관없이 찾음), `compact: true`(공백을 뺀 비교도 함, 한국어 띄어쓰기용), `results`(결과 수, 기본 8). [검색](../../recipes/search/) 참고 |
-| `twins` | 스텁 | front matter 없는 Markdown 버전은 `source` ([에이전트](../agents/) 참고) |
-| `aliases` | 없음 | 에이전트용 URL 별칭. `md: true`는 각 Markdown 버전을 `/<page>.md`에서도 제공하고, `html: true`는 `/<page>.html`을 페이지로 리다이렉트함. 스텁 파일은 `modootoday-stubs --aliases`가 쓰고 `modootoday-check --aliases`가 확인함. `twins: source`와는 `md`를 함께 쓸 수 없음 ([URL 별칭](../agents/#url-별칭) 참고) |
-| `records` | 없음 | 레코드 세트. `_data` 파일의 레코드마다 페이지 하나. 세트마다 `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`. 페이지는 `modootoday-stubs --records`가 쓰고 `modootoday-check`가 확인함 ([생성 페이지](../../recipes/generated-pages/) 참고) |
-| `seo` | `true` | `false`면 내장 canonical, hreflang, Open Graph 태그를 뺌 |
-| `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 대체 링크를 유지 (`jekyll-seo-tag`를 쓰는 사이트용) |
-| `schema` | `url`이 있으면 켜짐 | schema.org JSON-LD 그래프: `publisher`, `search_url`, `layouts`, `faq`. `false`면 끔. [구조화 데이터](../structured-data/) 참고 |
-| `languages` | 없음 | `hreflang`용 언어 코드, 예: `[en, ko]` 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다. |
-| `full_languages` | 없음 | 모든 페이지를 번역하는 `languages` 안의 코드, 예: `[ko, ja]` `modootoday-check --i18n-pages`는 이 언어의 번역이 없는 기본 언어 페이지마다 경고합니다. |
-| `lists` | 없음 | `{link_chips: true, titled_items: true}` 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다. |
-| `language_switcher` | 없음 | `header`(지구본 버튼과 드롭다운 메뉴, 언어 수와 상관없이 폭 고정) 또는 `footer`(언어 이름 목록)로 `languages` 기반 언어 전환기를 표시. 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 이동. 언어가 둘 미만이면 렌더하지 않음. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더함 |
-| `og_image` | 없음 | 기본 Open Graph 이미지. front matter의 `image:`가 우선 |
-| `feed` | `false` | `true`면 `/feed.xml` 링크 추가 (`plugins`에 `jekyll-feed` 필요) |
-| `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 브랜드 마크를 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 표시. 경로를 주면 그 이미지를 표시(장식용, `alt=""`). 다른 로고는 `modootoday/brand/logo.html`을 덮어쓰기 |
-| `favicon` | 없음 | `brand`면 테마 브랜드 마크를 SVG, 32px PNG, Apple 터치 아이콘으로 연결. 경로를 주면 그 아이콘을 연결 |
-| `csp` | 없음 | `strict`면 사전 페인트 스크립트를 인라인 대신 파일로 불러옴 |
-| `asset_version` | `theme` | 테마 CSS와 JavaScript URL에 붙는 `?v=` 쿼리: `theme`은 테마 버전, `build`는 커밋(또는 빌드 시각)까지 붙이고, `false`면 붙이지 않음. [성능](../performance/#버전-붙은-자산-url) 참고 |
-| `viewport_fit` | `cover` | `auto`면 노치 아래까지 그리지 않고 페이지를 안전 영역 안에 둠 ([접근성](../accessibility/#설정) 참고) |
-| `theme_color` | 페이지 배경 | 브라우저 막대 색: `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 태그를 빼려면 `false` |
-| `edit_url` | 없음 | "이 페이지 편집" 링크의 앞부분, `/`로 끝남 |
-| `archive` | 없음 | 아카이브 페이지 URL, 예: `{tags: /tags/, categories: /categories/}`. 글 하단 링크가 여기로 이어짐([글과 아카이브](../../reference/api/#글과-아카이브) 참고) |
-| `mermaid` | 꺼짐 | `{enabled: true, src:, integrity:, theme: auto}`면 ```` ```mermaid ```` 펜스가 있는 페이지에서 렌더링합니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. CDN을 쓰면 `script-src`에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다. [수식과 다이어그램](../../recipes/math-diagrams/#내장-로더) 참고 |
-| `math` | 꺼짐 | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`면 ```` ```math ```` 펜스와 `$$` 블록이 있는 페이지에서 KaTeX로 렌더링합니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`, `style-src`, `font-src`에 그 출처가 추가됩니다. [수식과 다이어그램](../../recipes/math-diagrams/#csp와-개인정보) 참고 |
-| `external_links` | 없음 | `new_window: true`면 외부 링크(`url:`로 시작하지 않는 링크)를 모두 새 창에서 엽니다. `icon: false`면 화살표를 숨깁니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고 |
-| `blog` | 없음 | 블로그 설정(`per_page`, `variant`, `related`, `share`, `reading_time` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
-| `news` | 없음 | 뉴스 설정(첫 화면의 `sections:` 등). [블로그와 뉴스](../../layouts/blog-news/#설정) 참고 |
-| `css` | `split` | `split`는 작은 핵심 시트와 페이지가 쓰는 컴포넌트 시트만 연결합니다. `bundle`은 모든 것이 담긴 시트 하나를 연결합니다 |
-| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`는 건너뛰기 링크 아래에 사이트 전체 공지 막대를 표시합니다 |
-| `back_to_top` | `false` | `true`는 모든 페이지 끝에 맨 위로 링크를 추가합니다 |
-| `loading` | `false` | `true`는 직접 작성한 스크립트가 추가하는 자리 표시자를 위해 스피너·스켈레톤 시트를 모든 페이지에서 불러옵니다. Markdown에서 이를 쓰는 페이지는 알아서 불러옵니다 |
-| `subscribe` | 없음 | `{action: https://…}`는 `c: subscribe` 이메일 양식이 전송되는 주소입니다 |
+| `badges` | `true` | 상태 코드 스팬을 배지로 보여 줍니다. `false`면 코드 그대로 둡니다. |
+| `code_theme` | `theme` | 코드 블록 색입니다. 테마 색(`theme`)이나 GitHub 색(`github`)을 고릅니다. [코드 색](../customize/#코드-색) 참고. |
+| `color_scheme` | `auto` | 라이트·다크 모드입니다. `auto`는 기기를 따르고, `auto-dark`·`auto-light`는 시작 모드를, `light`·`dark`는 고정 모드를 정합니다. |
+| `components` | 전체 | 사이트가 내보낼 컴포넌트 CSS와 JS를 줄입니다. |
+| `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌉니다. |
+| `nav` | `main` | 메뉴를 만드는 `_data/nav/`의 파일입니다. `items:`가 있는 항목은 그룹이 됩니다. |
+| `sidebar` | `auto` | `doc` 페이지의 사이드 메뉴입니다. `auto`는 메뉴에 그룹이 있을 때, `true`는 항상, `false`는 표시하지 않습니다. |
+| `page_actions` | `true` | 페이지를 복사하거나 Markdown으로 보는 메뉴입니다. `false`면 끕니다. |
+| `tokens`, `tokens_dark` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
+| `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |
+| `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |
+| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적은 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터) 참고. |
+| `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |
+| `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [에이전트](../agents/) 참고. |
+| `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |
+| `records` | 없음 | `_data` 파일의 항목마다 페이지를 하나씩 만듭니다. [생성 페이지](../../recipes/generated-pages/) 참고. |
+| `seo` | `true` | `false`면 내장 canonical, `hreflang`, Open Graph 태그를 뺍니다. |
+| `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 링크를 남깁니다. `jekyll-seo-tag`를 쓰는 사이트용입니다. |
+| `schema` | `url`이 있으면 켜짐 | schema.org 구조화 데이터를 넣습니다. `false`면 끕니다. [구조화 데이터](../structured-data/) 참고. |
+| `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. |
+| `full_languages` | 없음 | 모든 페이지를 번역하는 언어입니다(예: `[ko, ja]`). `modootoday-check --i18n-pages`가 빠진 번역을 알려 줍니다. |
+| `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |
+| `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
+| `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 페이지의 `image:`가 우선합니다. |
+| `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
+| `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
+| `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
+| `csp` | 없음 | `strict`면 처음 그리기 전에 도는 테마 스크립트를 인라인 대신 파일로 불러옵니다. |
+| `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |
+| `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
+| `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
+| `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. |
+| `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
+| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [수식과 다이어그램](../../recipes/math-diagrams/#내장-로더) 참고. |
+| `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 KaTeX로 렌더링합니다. [수식과 다이어그램](../../recipes/math-diagrams/#csp와-개인정보) 참고. |
+| `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
+| `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
+| `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
+| `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
+| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |
+| `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
+| `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
+| `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
 
+### 몇몇 키 자세히
+
+- `color_scheme`: `auto-dark`·`auto-light`는 전환 버튼을 두고 독자의 선택을 기억합니다. `light`·`dark`에는 전환 버튼이 없습니다. 시작 색은 HTML에 들어가므로 깜빡임이 없습니다.
+- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함됩니다. 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요.
+- `nav`: 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따릅니다. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 HTML 페이지가 100개 이하인 사이트에서는 `title`이 있는 최상위 페이지(`/about/` 같은)를 모두 읽습니다(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `nav: false`는 마지막 목록을 끕니다.
+- `sidebar`: 64rem보다 좁으면 본문 위의 접이식 메뉴가 됩니다. front matter의 `sidebar: false`로 한 페이지에서만 숨깁니다.
+- `page_actions`: Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴가 나옵니다. front matter의 `page_actions: false`는 그 페이지에서만 끄고, 아예 빼려면 `components`에서 `page-actions`를 제외합니다.
+- `tokens`, `tokens_dark`: 값은 인라인 `<style>`에 들어갑니다.
+- `site_css`, `preload`: `site_css` 시트에는 테마 시트와 같은 `?v=` 쿼리가 붙습니다. `preload`의 `href`는 사이트 경로, `as`는 `font`, `image`, `style`, `script`, `fetch` 중 하나입니다. 글꼴과 fetch에는 `crossorigin`이 붙고 `?v=` 쿼리는 붙지 않습니다. front matter의 `site_css:`와 `preload:`는 그 페이지에만 더합니다.
+- `scripts`: 항목마다 사이트 경로로 쓴 `{src, css, preload, element}`입니다. `src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소입니다.
+- `aliases`: 스텁 파일은 `modootoday-stubs --aliases`가 쓰고 `modootoday-check --aliases`가 확인합니다. `twins: source`와는 `md`를 함께 쓸 수 없습니다.
+- `records`: 세트마다 `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`를 받습니다. 페이지는 `modootoday-stubs --records`가 쓰고 `modootoday-check`가 확인합니다.
+- `schema`: 그래프 설정은 `publisher`, `search_url`, `layouts`, `faq`입니다.
+- `languages`: 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다.
+- `lists`: 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다.
+- `language_switcher`: 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 갑니다. 헤더 메뉴는 언어 수와 상관없이 폭이 같고, 언어가 둘 미만이면 표시하지 않습니다. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더합니다.
+- `logo`, `favicon`: `brand` 마크는 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 그립니다. 직접 지정한 로고 이미지는 장식용(`alt=""`)입니다. 다른 로고를 그리려면 `modootoday/brand/logo.html`을 덮어쓰세요. `brand` 파비콘은 SVG, 32px PNG, Apple 터치 아이콘을 연결합니다.
+- `mermaid`, `math`: 설정은 `{enabled: true, src:, integrity:, theme: auto}`와 `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`이고, 블록이 있는 페이지에서만 불러옵니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`(수식은 `style-src`, `font-src`도)에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다.
+- `banner`: 막대는 건너뛰기 링크 아래에 놓입니다.
+- `loading`: Markdown에서 스피너나 스켈레톤을 쓰는 페이지는 알아서 시트를 불러옵니다.
+
 ## 새 창으로 여는 링크
 
-새 창으로 여는 건 직접 켤 때만 동작합니다. 링크마다 켜거나, 외부 링크 전체에 켤 수 있습니다.
+새 창으로 여는 건 직접 켤 때만 동작합니다. 링크마다 켜거나, 외부 링크(사이트의 `url:`로 시작하지 않는 링크) 전체에 켤 수 있습니다.
 
 ```yaml
 # _config.yml: 외부 링크 전체

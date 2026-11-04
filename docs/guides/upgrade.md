@@ -24,9 +24,9 @@ Common mappings: just-the-docs `layout: default` becomes `layout: doc`; callouts
 |---|---|---|
 | Gem (`theme:`) | the site has a `Gemfile` (Jekyll 4 or the `github-pages` gem) | `bundle update jekyll-theme-modootoday` |
 | `remote_theme:` | classic GitHub Pages without a `Gemfile` | change the `@vX.Y.Z` tag |
-| Copy-in | you need to fork layouts or cannot add a dependency | copy `_layouts`, `_includes`, `_sass` and `assets` from a tagged release and record the version; you merge updates by hand |
+| Copy-in | you need to fork layouts or cannot add a dependency | copy `_layouts`, `_includes`, `_sass` and `assets` from a release tag; merge updates by hand |
 
-Prefer the gem or `remote_theme:` pinned to a tag. Copy-in loses upgrades and checker guarantees for the files you change.
+Prefer the gem or `remote_theme:` pinned to a tag. With copy-in, record which version you copied. Copy-in loses upgrades and checker guarantees for the files you change.
 
 ## Markdown twins
 
@@ -54,11 +54,18 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 
 | From | To | What to do |
 |---|---|---|
-| a build from the repository before 1.0.0 | 1.0 | pin `~> 1.0` or `@v1.0.0`; run `modootoday-check --strict` |
-| 1.0 or 1.1 | 1.2 | pin `~> 1.2` (or the newest `v1.2.x` tag with `remote_theme`); the new section and hero options (`bleed:`, `reveal:`, `c: split` with `visual:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
-| 1.2 | 1.3 | pin `~> 1.3` (or `@v1.3.0` with `remote_theme`); the `reference` sidebar (`sidebar: true`) and package table (`packages:`) are opt-in, so pages need no edits; run `modootoday-check --strict` |
-| 1.3 | 1.4 | pin `~> 1.4` (or `@v1.4.1` with `remote_theme`); `packages_compact` and `packages_position` are opt-in, and `reference` pages now convert alerts like `doc`, so pages need no edits; run `modootoday-check --strict` |
-| 1.4 | 1.5 | pin `~> 1.5` (or `@v1.5.0` with `remote_theme`); the default look and the way pages load theme CSS and JavaScript change (see below), and pages need no edits; run `modootoday-check --strict` |
+| a build from the repository before 1.0.0 | 1.0 | Pin `~> 1.0` or `@v1.0.0`. |
+| 1.0 or 1.1 | 1.2 | Pin `~> 1.2` (with `remote_theme`, the newest `v1.2.x` tag). |
+| 1.2 | 1.3 | Pin `~> 1.3` (with `remote_theme`, `@v1.3.0`). |
+| 1.3 | 1.4 | Pin `~> 1.4` (with `remote_theme`, `@v1.4.1`). |
+| 1.4 | 1.5 | Pin `~> 1.5` (with `remote_theme`, `@v1.5.0`). |
+
+None of these upgrades needs page edits. What each one adds:
+
+- 1.2: section and hero options (`bleed:`, `reveal:`, `c: split` with `visual:`), all opt-in.
+- 1.3: the `reference` sidebar (`sidebar: true`) and package table (`packages:`), both opt-in.
+- 1.4: `packages_compact` and `packages_position`, both opt-in; `reference` pages now convert alerts like `doc`.
+- 1.5: the default look and the way pages load theme CSS and JavaScript change (see below).
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
 

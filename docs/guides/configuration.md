@@ -24,57 +24,78 @@ modootoday:
   nav: main
 ```
 
-| Key | Default | Effect |
+| Key | Default | What it does |
 |---|---|---|
-| `badges` | `true` | turn status code spans into badges; `false` keeps code |
-| `code_theme` | `theme` | code block colours: `theme` keeps the theme palette, `github` uses GitHub's light and dark palettes; see [Code colours](../customize/#code-colours) |
-| `color_scheme` | `auto` | `auto` follows the OS; `auto-dark` or `auto-light` starts dark or light and keeps the toggle (the reader's choice is remembered); `light` or `dark` forces one scheme without a toggle. The starting scheme is printed in the HTML, so nothing flashes |
-| `components` | all | limit the CSS and JS that are shipped. `lists`, `bleed`, `terminal`, `visual`, `filter`, `table` and `table-stack` are always included: their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` or `poster:`, `filter:` or `filter_text:`, and a table in the body. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll) |
-| `css_layers` | `false` | wrap the theme CSS in `@layer mt.*` |
-| `nav` | `main` | navigation file in `_data/nav/`; an entry with `items:` becomes a group. Previous/next links walk the file in order: a group's own page, then its items. Without that file the header reads `main` in `_data/navigation.yml`, then `header_pages` (a list of page paths, as in minima), then, on sites of up to 100 HTML pages, lists every top-level page (such as `/about/`) with a `title` (`nav_order` first, then by title; `nav: false` or `nav_exclude: true` leaves a page out). `false` turns that last list off |
-| `sidebar` | `auto` | `auto` adds a sidebar to `doc` pages when the nav has groups; `true` always, `false` never. Below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page |
-| `page_actions` | `true` | on pages with a Markdown twin, a menu with View as Markdown, Copy page and Copy for AI (copies the source URL, then the Markdown). `false` here or in front matter turns it off; leave `page-actions` out of `components` to drop it entirely |
-| `tokens`, `tokens_dark` | theme values | override semantic design tokens inline (an inline `<style>`; on a strict CSP site use the [token bridge](../customize/#token-bridge)) |
-| `site_css` | none | your own stylesheets, a list of site paths such as `[/assets/css/site.css]`, linked after the theme sheets with the same `?v=` query; front matter `site_css:` adds sheets on one page. See [Brand tokens](../../recipes/brand-tokens/) |
-| `preload` | none | `<link rel="preload">` before the stylesheets: a list of `{href, as, type}` with a site path `href` and `as` one of `font`, `image`, `style`, `script`, `fetch` (fonts and fetches add `crossorigin`; no `?v=` query); front matter `preload:` adds hints on one page |
-| `scripts` | none | the site's ES modules, by name: `{src, css, preload, element}` with site paths (`src` a `.js` file, `css` a sheet, `preload` the modules to `modulepreload`, `element` the custom element it defines). A page loads one only when `script:` on its hero or a section item names it; see [Module scripts and posters](../customize/#module-scripts-and-posters) |
-| `search` | none | the header search, once the site has a `search.json`: `words` (default 300 words of each page's text, `0` for all), `collections` (collections with `output: true` to index too), `fields` (front matter keys searched with the text, such as `[description, tags]`), `exclude` (URL prefixes to leave out, such as `[/v1/]`), `match` (`substring`, the default, finds the query as typed; `terms` finds every word in any order), `compact: true` (also matches with the spaces taken out, for Korean spacing) and `results` (default 8). See [Search](../../recipes/search/) |
-| `twins` | stubs | `source` for front-matter-less twins (see [Agents](../agents/)) |
-| `aliases` | none | URL aliases for agents: `md: true` serves each twin again at `/<page>.md`, `html: true` redirects `/<page>.html` to the page. `modootoday-stubs --aliases` writes the stub files and `modootoday-check --aliases` checks them; `md` is not available with `twins: source` (see [URL aliases](../agents/#url-aliases)) |
-| `records` | none | record sets: one page per record of a `_data` file, `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}` per set. `modootoday-stubs --records` writes the pages and `modootoday-check` checks them (see [Generated pages](../../recipes/generated-pages/)) |
-| `seo` | `true` | `false` drops the built-in canonical, hreflang and Open Graph tags |
-| `hreflang` | follows `seo` | `true` keeps the `hreflang` alternates when `seo: false` (for sites that bring `jekyll-seo-tag`) |
-| `schema` | on when `url` is set | schema.org JSON-LD graph: `publisher`, `search_url`, `layouts`, `faq`; `false` turns it off. See [Structured data](../structured-data/) |
-| `languages` | none | language codes for `hreflang`, such as `[en, ko]` The header site title links to the page language's home (`/<lang>/`) when it exists. |
-| `full_languages` | none | the codes from `languages` that translate every page, such as `[ko, ja]`; `modootoday-check --i18n-pages` warns about each default-language page without one |
-| `lists` | none | `{link_chips: true, titled_items: true}`: on plain sections and pages, a list of links only becomes `ul.mt-chips` and an item starting with `**Title**:` gets `strong.mt-item-title`; the optional `lists` sheet styles them (and `hero: {checks: true}`) and is linked only where used |
-| `language_switcher` | none | `header` (a globe button with a dropdown menu; same width however many languages) or `footer` (a list of language names) shows a language switcher built from `languages`; each link goes to this page's translation, or that language's home page. Nothing renders with fewer than two languages. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click |
-| `og_image` | none | default Open Graph image; `image:` in front matter wins |
-| `feed` | `false` | `true` links `/feed.xml` (add `jekyll-feed` to `plugins`) |
-| `logo` | none | `brand` puts the theme's brand mark before the site title in `currentColor` (the `brand` token, so it follows light and dark); a path shows your own image instead (decorative, `alt=""`). Override `modootoday/brand/logo.html` to draw something else |
-| `favicon` | none | `brand` links the theme's brand mark as SVG, 32 px PNG and Apple touch icon; a path links your own icon |
-| `csp` | none | `strict` loads the pre-paint script from a file instead of inline |
-| `asset_version` | `theme` | the `?v=` query on theme CSS and JavaScript URLs: `theme` adds the theme version, `build` also the commit (or the build time), `false` none; see [Performance](../performance/#versioned-asset-urls) |
-| `viewport_fit` | `cover` | `auto` keeps the page inside the safe area instead of drawing under the notch (see [Accessibility](../accessibility/#settings)) |
-| `theme_color` | page background | browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` to drop the tags |
-| `edit_url` | none | prefix for an "Edit this page" link, ending in `/` |
-| `archive` | none | archive page URLs, such as `{tags: /tags/, categories: /categories/}`; post footers link here (see [Posts and archives](../../reference/api/#posts-and-archives)) |
-| `mermaid` | off | `{enabled: true, src:, integrity:, theme: auto}` renders ```` ```mermaid ```` fences on the pages that have one; `src` is a version-pinned https URL with an SRI `integrity` hash, or a path on your site. A CDN adds its origin to `script-src` and sends visitors' IP addresses to it; see [Math and diagrams](../../recipes/math-diagrams/#built-in-loaders) |
-| `math` | off | `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` renders ```` ```math ```` fences and `$$` blocks with KaTeX on the pages that have one; `inline: true` also renders `$…$`. A CDN adds its origin to `script-src`, `style-src` and `font-src`; see [Math and diagrams](../../recipes/math-diagrams/#csp-and-privacy) |
-| `external_links` | none | `new_window: true` opens every external link (not starting with `url:`) in a new window; `icon: false` hides the arrow; see [Links that open a new window](#links-that-open-a-new-window) |
-| `blog` | none | blog settings (`per_page`, `variant`, `related`, `share`, `reading_time`, ...); see [Blog and news](../../layouts/blog-news/#settings) |
-| `news` | none | news settings, such as `sections:` for the front page; see [Blog and news](../../layouts/blog-news/#settings) |
-| `css` | `split` | `split` links a small core sheet plus only the component sheets a page uses; `bundle` links one sheet with everything |
-| `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows a site-wide announcement bar under the skip link |
-| `back_to_top` | `false` | `true` adds a Back to top link at the end of every page |
-| `loading` | `false` | `true` loads the spinner and skeleton sheet on every page, for placeholders your own scripts add; pages that use them in Markdown load it on their own |
-| `subscribe` | none | `{action: https://…}` is where the `c: subscribe` email form posts |
+| `badges` | `true` | Shows status code spans as badges. `false` keeps them as code. |
+| `code_theme` | `theme` | Code block colours: the theme's (`theme`) or GitHub's (`github`). See [Code colours](../customize/#code-colours). |
+| `color_scheme` | `auto` | Light or dark mode. `auto` follows the device; `auto-dark` and `auto-light` pick a start; `light` and `dark` fix one. |
+| `components` | all | Limits which component CSS and JS the site ships. |
+| `css_layers` | `false` | Wraps the theme CSS in `@layer mt.*`. |
+| `nav` | `main` | The menu file in `_data/nav/`. An entry with `items:` becomes a group. |
+| `sidebar` | `auto` | Side menu on `doc` pages: `auto` when the menu has groups, `true` always, `false` never. |
+| `page_actions` | `true` | A menu to copy the page or view it as Markdown. `false` turns it off. |
+| `tokens`, `tokens_dark` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
+| `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
+| `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
+| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:`. See [Module scripts and posters](../customize/#module-scripts-and-posters). |
+| `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |
+| `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [Agents](../agents/). |
+| `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |
+| `records` | none | One page for each entry of a `_data` file. See [Generated pages](../../recipes/generated-pages/). |
+| `seo` | `true` | `false` removes the built-in canonical, `hreflang` and Open Graph tags. |
+| `hreflang` | follows `seo` | `true` keeps the `hreflang` links when `seo: false`, for sites that use `jekyll-seo-tag`. |
+| `schema` | on when `url` is set | Adds schema.org structured data. `false` turns it off. See [Structured data](../structured-data/). |
+| `languages` | none | The site's language codes, such as `[en, ko]`, used for `hreflang` and the language menu. |
+| `full_languages` | none | Languages that translate every page, such as `[ko, ja]`. `modootoday-check --i18n-pages` warns about missing pages. |
+| `lists` | none | `{link_chips: true, titled_items: true}` turns link-only lists into chips and `**Title**:` items into titled items. |
+| `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |
+| `og_image` | none | Default image for link previews. A page's `image:` wins. |
+| `feed` | `false` | `true` links `/feed.xml`. Add `jekyll-feed` to `plugins`. |
+| `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
+| `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
+| `csp` | none | `strict` loads the early theme script from a file instead of inline. |
+| `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |
+| `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
+| `theme_color` | page background | Browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
+| `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`. |
+| `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
+| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Math and diagrams](../../recipes/math-diagrams/#built-in-loaders). |
+| `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX. See [Math and diagrams](../../recipes/math-diagrams/#csp-and-privacy). |
+| `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |
+| `blog` | none | Blog settings, such as `per_page`. See [Blog and news](../../layouts/blog-news/#settings). |
+| `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |
+| `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |
+| `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |
+| `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
+| `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
+| `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
 
+### More about some keys
+
+- `color_scheme`: `auto-dark` and `auto-light` keep the toggle and remember the reader's choice; `light` and `dark` have no toggle. The starting scheme is printed in the HTML, so nothing flashes.
+- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table` and `table-stack` are always included. Their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` or `poster:`, `filter:` or `filter_text:`, or have a table in the body. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll).
+- `nav`: previous and next links walk the file in order: a group's own page, then its items. Without that file the header reads `main` in `_data/navigation.yml`, then `header_pages` (a list of page paths, as in minima), then, on sites of up to 100 HTML pages, lists every top-level page (such as `/about/`) with a `title` (`nav_order` first, then by title; `nav: false` or `nav_exclude: true` leaves a page out). `nav: false` turns that last list off.
+- `sidebar`: below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page.
+- `page_actions`: the menu appears on pages with a Markdown twin and offers View as Markdown, Copy page and Copy for AI (the source URL, then the Markdown). `page_actions: false` in front matter turns it off on one page; leave `page-actions` out of `components` to drop it entirely.
+- `tokens`, `tokens_dark`: the values go into an inline `<style>`.
+- `site_css`, `preload`: `site_css` sheets get the same `?v=` query as the theme sheets. A `preload` `href` is a site path and `as` is one of `font`, `image`, `style`, `script`, `fetch`; fonts and fetches add `crossorigin`, and no `?v=` query is added. Front matter `site_css:` and `preload:` add more on one page.
+- `scripts`: each entry is `{src, css, preload, element}` with site paths: `src` a `.js` file, `css` a sheet, `preload` the modules to `modulepreload`, `element` the custom element it defines.
+- `aliases`: `modootoday-stubs --aliases` writes the stub files and `modootoday-check --aliases` checks them. `md` is not available with `twins: source`.
+- `records`: each set takes `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`. `modootoday-stubs --records` writes the pages and `modootoday-check` checks them.
+- `schema`: the graph takes `publisher`, `search_url`, `layouts` and `faq`.
+- `languages`: the header site title links to the page language's home (`/<lang>/`) when it exists.
+- `lists`: on plain sections and pages, a list of links only becomes `ul.mt-chips` and an item starting with `**Title**:` gets `strong.mt-item-title`. The optional `lists` sheet styles them (and `hero: {checks: true}`) and is linked only where used.
+- `language_switcher`: each link goes to this page's translation, or that language's home page. The header menu keeps the same width however many languages there are, and nothing renders with fewer than two. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click.
+- `logo`, `favicon`: the `brand` mark is drawn in `currentColor` (the `brand` token, so it follows light and dark); your own logo image is decorative (`alt=""`). Override `modootoday/brand/logo.html` to draw something else. The `brand` favicon links an SVG, a 32 px PNG and an Apple touch icon.
+- `mermaid`, `math`: the settings are `{enabled: true, src:, integrity:, theme: auto}` and `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`, and they load only on pages with a block. `src` is a version-pinned https URL with an SRI `integrity` hash, or a path on your site. `inline: true` also renders `$…$`. A CDN adds its origin to `script-src` (math also to `style-src` and `font-src`) and sends visitors' IP addresses to it.
+- `banner`: the bar sits under the skip link.
+- `loading`: pages that use the spinner or skeleton in Markdown load the sheet on their own.
+
 ## Links that open a new window
 
-Opening a new window is opt-in. Set it per link or for every external link.
+Opening a new window is opt-in. Set it per link or for every external link (a link that does not start with the site's `url:`).
 
 ```yaml
 # _config.yml: every external link

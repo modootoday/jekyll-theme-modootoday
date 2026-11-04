@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:72dde5f8c6a6
+source_rev: sha256:920387a90905
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -30,9 +30,9 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 |---|---|---|
 | gem (`theme:`) | 사이트에 `Gemfile`이 있을 때 (Jekyll 4 또는 `github-pages` gem) | `bundle update jekyll-theme-modootoday` |
 | `remote_theme:` | `Gemfile` 없는 기본 GitHub Pages | `@vX.Y.Z` 태그 변경 |
-| 복사해 넣기 | 레이아웃을 고쳐 써야 하거나 의존성을 추가할 수 없을 때 | 태그된 릴리스에서 `_layouts`, `_includes`, `_sass`, `assets`를 복사하고 버전을 기록. 업데이트는 직접 병합 |
+| 복사해 넣기 | 레이아웃을 고쳐 써야 하거나 의존성을 추가할 수 없을 때 | 릴리스 태그에서 `_layouts`, `_includes`, `_sass`, `assets`를 복사하고, 업데이트는 직접 병합 |
 
-태그로 고정한 gem이나 `remote_theme:`을 권합니다. 복사해 넣기는 고친 파일에 대해 업그레이드와 검사기 보장을 잃습니다.
+태그로 고정한 gem이나 `remote_theme:`을 권합니다. 복사해 넣었다면 어떤 버전을 복사했는지 기록해 두세요. 복사해 넣기는 고친 파일에 대해 업그레이드와 검사기 보장을 잃습니다.
 
 ## Markdown 버전
 
@@ -60,11 +60,18 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 
 | 이전 | 이후 | 할 일 |
 |---|---|---|
-| 1.0.0 이전에 저장소에서 빌드 | 1.0 | `~> 1.0` 또는 `@v1.0.0`으로 고정하고 `modootoday-check --strict` 실행 |
-| 1.0 또는 1.1 | 1.2 | `~> 1.2`(또는 `remote_theme`에서는 최신 `v1.2.x` 태그)로 고정합니다. 새 섹션·히어로 옵션(`bleed:`, `reveal:`, `visual:`과 함께 쓰는 `c: split`)은 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
-| 1.2 | 1.3 | `~> 1.3`(또는 `remote_theme`에서는 `@v1.3.0`)으로 고정합니다. `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`)는 선택 사항이라 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
-| 1.3 | 1.4 | `~> 1.4`(또는 `remote_theme`에서는 `@v1.4.1`)으로 고정합니다. `packages_compact`와 `packages_position`은 선택 사항이고, `reference` 페이지도 이제 `doc`처럼 알림을 변환하므로 페이지를 고칠 필요가 없습니다. `modootoday-check --strict` 실행 |
-| 1.4 | 1.5 | `~> 1.5`(또는 `remote_theme`에서는 `@v1.5.0`)으로 고정합니다. 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀌지만(아래 참고) 페이지를 고칠 필요는 없습니다. `modootoday-check --strict` 실행 |
+| 1.0.0 이전에 저장소에서 빌드 | 1.0 | `~> 1.0` 또는 `@v1.0.0`으로 고정합니다. |
+| 1.0 또는 1.1 | 1.2 | `~> 1.2`로 고정합니다(`remote_theme`은 최신 `v1.2.x` 태그). |
+| 1.2 | 1.3 | `~> 1.3`으로 고정합니다(`remote_theme`은 `@v1.3.0`). |
+| 1.3 | 1.4 | `~> 1.4`로 고정합니다(`remote_theme`은 `@v1.4.1`). |
+| 1.4 | 1.5 | `~> 1.5`로 고정합니다(`remote_theme`은 `@v1.5.0`). |
+
+어느 업그레이드도 페이지를 고칠 필요가 없습니다. 버전마다 더해진 것:
+
+- 1.2: 새 섹션·히어로 옵션(`bleed:`, `reveal:`, `visual:`과 함께 쓰는 `c: split`). 모두 선택 사항입니다.
+- 1.3: `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`). 모두 선택 사항입니다.
+- 1.4: `packages_compact`와 `packages_position`(선택 사항). `reference` 페이지도 이제 `doc`처럼 알림을 변환합니다.
+- 1.5: 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀝니다(아래 참고).
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 

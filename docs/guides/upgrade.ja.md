@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:72dde5f8c6a6
+source_rev: sha256:920387a90905
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -30,9 +30,9 @@ description: 別の Jekyll テーマからの移行、既存プロジェクト�
 |---|---|---|
 | Gem (`theme:`) | サイトに `Gemfile` がある (Jekyll 4 または `github-pages` gem) | `bundle update jekyll-theme-modootoday` |
 | `remote_theme:` | `Gemfile` のないクラシックな GitHub Pages | `@vX.Y.Z` タグを変える |
-| コピーして取り込む | レイアウトをフォークする必要がある、または依存を追加できない | タグ付きリリースから `_layouts`、`_includes`、`_sass`、`assets` をコピーしてバージョンを記録する。更新は手作業でマージする |
+| コピーして取り込む | レイアウトをフォークする必要がある、または依存を追加できない | リリースのタグから `_layouts`、`_includes`、`_sass`、`assets` をコピーし、更新は手作業でマージする |
 
-gem か、タグに固定した `remote_theme:` を推奨します。コピーで取り込むと、変更したファイルについてはアップグレードとチェッカーの保証を失います。
+gem か、タグに固定した `remote_theme:` を推奨します。コピーで取り込んだ場合は、どのバージョンをコピーしたかを記録してください。コピーで取り込むと、変更したファイルについてはアップグレードとチェッカーの保証を失います。
 
 ## Markdown 版
 
@@ -60,11 +60,18 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 | 移行元 | 移行先 | やること |
 |---|---|---|
-| 1.0.0 より前のリポジトリからのビルド | 1.0 | `~> 1.0` または `@v1.0.0` に固定し、`modootoday-check --strict` を実行する |
-| 1.0 または 1.1 | 1.2 | `~> 1.2`（`remote_theme` では最新の `v1.2.x` タグ）に固定する。新しいセクションとヒーローのオプション（`bleed:`、`reveal:`、`visual:` と組み合わせる `c: split`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
-| 1.2 | 1.3 | `~> 1.3`（`remote_theme` では `@v1.3.0`）に固定する。`reference` のサイドバー（`sidebar: true`）とパッケージ表（`packages:`）は任意なので、ページの修正は不要。`modootoday-check --strict` を実行する |
-| 1.3 | 1.4 | `~> 1.4`（`remote_theme` では `@v1.4.1`）に固定する。`packages_compact` と `packages_position` は任意で、`reference` ページも `doc` と同じくアラートを変換するようになったため、ページの修正は不要。`modootoday-check --strict` を実行する |
-| 1.4 | 1.5 | `~> 1.5`（`remote_theme` では `@v1.5.0`）に固定する。既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わるが（下記参照）、ページの修正は不要。`modootoday-check --strict` を実行する |
+| 1.0.0 より前のリポジトリからのビルド | 1.0 | `~> 1.0` または `@v1.0.0` に固定する。 |
+| 1.0 または 1.1 | 1.2 | `~> 1.2` に固定する(`remote_theme` では最新の `v1.2.x` タグ)。 |
+| 1.2 | 1.3 | `~> 1.3` に固定する(`remote_theme` では `@v1.3.0`)。 |
+| 1.3 | 1.4 | `~> 1.4` に固定する(`remote_theme` では `@v1.4.1`)。 |
+| 1.4 | 1.5 | `~> 1.5` に固定する(`remote_theme` では `@v1.5.0`)。 |
+
+どのアップグレードでもページの修正は不要です。各バージョンで加わったもの:
+
+- 1.2: 新しいセクションとヒーローのオプション(`bleed:`、`reveal:`、`visual:` と組み合わせる `c: split`)。すべて任意です。
+- 1.3: `reference` のサイドバー(`sidebar: true`)とパッケージ表(`packages:`)。どちらも任意です。
+- 1.4: `packages_compact` と `packages_position`(任意)。`reference` ページも `doc` と同じくアラートを変換するようになりました。
+- 1.5: 既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わります(下記参照)。
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
 

@@ -11,20 +11,34 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 
 | Area | Stable names |
 |---|---|
-| Settings | every key under `modootoday:` listed in [Configuration](../../guides/configuration/) |
-| Design tokens | semantic and component custom properties `--mt-*` (not the primitives `--mt-p-*`); the generated `tokens.json` mirrors them |
-| Sass | the token hook `_sass/modootoday/_site.scss` and its maps `$mt-overrides-base`, `$mt-overrides` and `$mt-overrides-dark` (see [Customize](../../guides/customize/#token-bridge)); every other Sass partial and variable is internal |
-| Markdown rules | the patterns in `RULES.md` and their output classes `mt-*`; the opt-out class `mt-flat-list` (no gap between list items below it) |
-| Layouts | `default`, `doc`, `page` (the `doc` layout under the name Jekyll and minima use), `post`, `archive`, `twin`, `llms`, `llms-full` |
-| Includes you may override | `head-custom.html`, `footer-custom.html`; `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`) can be included from your footer; override `modootoday/brand/logo.html` to draw your own logo |
-| Includes you provide | `_includes/sections/<name>.html`, rendered at the end of a section or the hero by `visual: <name>` (see [Customize](../../guides/customize/#section-visuals-and-full-width-pages)) |
-| Module helpers and events | the ES modules `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`) for your `scripts` modules; the `mt:themechange` event (see [Events](#events)); the `script:` visual contract (`data-mt-script`, `.mt-visual-stage`, `data-mt-ready`, see [Customize](../../guides/customize/#module-scripts-and-posters)) |
-| Includes you may call | `modootoday/archive.html` with `by` and `lang`; `modootoday/brand/icon.html` with `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL) |
-| Includes | `modootoday/t.html` (`key=`, optional `n=` / `name=`) prints a theme label for the page language |
-| Data files | `_data/i18n/<lang>.yml` keys (optional overrides of the built-in catalogs), `_data/nav/<name>.yml`, `_data/navigation.yml` (`main`), `_data/authors.yml`, `_data/components.yml` |
-| Checker | the `modootoday-check` options, exit code 0 (no problems) and 1 (problems or bad usage) |
-| Record pages | `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts` |
-| Stub writer | the `modootoday-stubs` options, the stub file names (`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, record pages `<dir>/<key>.md`) and their front matter, exit codes 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data) |
+| Settings | Every key under `modootoday:` in [Configuration](../../guides/configuration/). |
+| Design tokens | The `--mt-*` custom properties, not the `--mt-p-*` primitives. |
+| Sass | Only the token hook `_sass/modootoday/_site.scss` and its override maps. See [Customize](../../guides/customize/#token-bridge). |
+| Markdown rules | The patterns in `RULES.md`, their `mt-*` classes, and `mt-flat-list`. |
+| Layouts | `default`, `doc`, `page`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| Includes you may override | `head-custom.html`, `footer-custom.html` and `modootoday/brand/logo.html`. |
+| Includes you provide | `_includes/sections/<name>.html`, shown by `visual: <name>`. See [Customize](../../guides/customize/#section-visuals-and-full-width-pages). |
+| Module helpers and events | Two ES modules for your `scripts`, the `mt:themechange` event and the `script:` visual contract. |
+| Includes you may call | `modootoday/archive.html`, `modootoday/brand/icon.html` and the two footer includes. |
+| Includes | `modootoday/t.html` prints a theme label in the page language. |
+| Data files | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
+| Checker | `modootoday-check` options and exit codes. |
+| Record pages | `modootoday.records`, the record front matter and the facts list. |
+| Stub writer | `modootoday-stubs` options, stub file names and front matter, and exit codes. |
+
+Details for the rows above:
+
+- Design tokens: the generated `tokens.json` mirrors them.
+- Sass: the maps are `$mt-overrides-base`, `$mt-overrides` and `$mt-overrides-dark`. Every other Sass partial and variable is internal.
+- Markdown rules: `mt-flat-list` is an opt-out class that removes the gap between the list items below it.
+- Layouts: `page` is the `doc` layout under the name Jekyll and minima use.
+- Includes: your footer can include `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`); override `modootoday/brand/logo.html` to draw your own logo. `modootoday/archive.html` takes `by` and `lang`. `modootoday/t.html` takes `key=`, optional `n=` / `name=`.
+- `modootoday/brand/icon.html` takes `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL).
+- Module helpers: `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`). The `mt:themechange` event is under [Events](#events). The `script:` visual contract is `data-mt-script`, `.mt-visual-stage` and `data-mt-ready`; see [Customize](../../guides/customize/#module-scripts-and-posters).
+- Data files: `_data/i18n/<lang>.yml` keys are optional overrides of the built-in catalogs; `_data/navigation.yml` is read for `main`.
+- Checker exit codes: 0 (no problems) and 1 (problems or bad usage).
+- Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
+- Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt` and record pages `<dir>/<key>.md`. Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
 
 ## Markdown rules
 
@@ -34,34 +48,34 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 
 This is the markup you can target from your own CSS today. Classes and attributes in this table are part of the public API; elements inside them that the table does not name (wrappers, generated ids, the order of child elements) are not. The [slot contract](#slot-contract) names the Markdown parts each component consumes.
 
-| Component | Root | Parts you may style | State and variants |
+| Component | Root | Parts | States |
 |---|---|---|---|
-| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header` > `.mt-header-inner` (`.mt-site-title` > `.mt-site-name` (the name: up to two lines, then an ellipsis), `nav.mt-nav` (from 64rem its `ul` row of links; below 64rem `details.mt-menu.mt-nav-sheet`: `summary` menu button, `ul` sheet with `.mt-nav-sheet-label` group titles), `.mt-search`, `details.mt-lang.mt-menu` (`summary` globe button, `ul` of `a[lang][hreflang]`, current one `aria-current`), `.mt-theme-toggle`), `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` (fixed scheme, or set by the toggle) |
+| Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` |
 | Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
-| Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar` (from 64rem); `details.mt-sidebar-mobile` (below) | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links; the current link has `aria-current=page` | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
-| Page actions | `details.mt-menu.mt-page-actions` | `summary`, the `ul` of `button[data-mt-act=copy\|ai]` (hidden until JS runs) and the View as Markdown `a[type="text/markdown"]` | `[open]` |
-| Hero | `section.mt-hero` | the `h1`, lead `p.mt-hero-lead` (the first `p` right after the `h1`), link-only `p` (CTA buttons; first link is primary) | `.mt-hero-checks` (front matter `hero: {checks: true}`: the first `ul` is a row of ✓ marks in `--mt-ok`) |
-| Section | `section.mt-section` | the `h2` and its content | `[data-section]` = name; `[data-c]` and `.mt-c-<c>` = component; `.mt-cols-<n>`; `.mt-cta` (on the section, or on a `[data-mt-result]` element inside it when one is present) |
-| Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` (front matter `decor: <include>`) | `.mt-section-decor[aria-hidden=true]`, the last child, holding `_includes/sections/<include>.html`; placed in the top end corner, no pointer events | — |
-| Scroll reveal | `.mt-reveal` on `section.mt-hero` or `section.mt-section` (front matter `reveal: true`) | — | CSS only: fades in on scroll inside `@supports (animation-timeline: view())` and `prefers-reduced-motion: no-preference`; shown as is otherwise |
-| Full-width band | `.mt-bleed` on `section.mt-hero` or `section.mt-section` (front matter `bleed: true`), `.mt-bleed-wide` (`bleed: wide`) | — | `--mt-bleed-bg` sets the band colour; inside a sidebar or table-of-contents layout the band stays in the main column; `bleed` sheet |
-| Illustration | `figure.mt-illustration[role=img][aria-label]` (your own include) | `.mt-illustration-tag` badge above the picture, at the start; its text belongs in the `aria-label` too, because the children of `role=img` are not read | — |
-| List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` (with `modootoday.lists`) | the `li > a` chips (44px tall, → after the text); the title and the `: ` separator | — |
+| Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar`; `details.mt-sidebar-mobile` | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
+| Page actions | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`, `a[type="text/markdown"]` | `[open]` |
+| Hero | `section.mt-hero` | the `h1`, `p.mt-hero-lead`, the link-only `p` (buttons) | `.mt-hero-checks` |
+| Section | `section.mt-section` | the `h2` and its content | `[data-section]`, `[data-c]`, `.mt-c-<c>`, `.mt-cols-<n>`, `.mt-cta` |
+| Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` | `.mt-section-decor[aria-hidden=true]` | — |
+| Scroll reveal | `.mt-reveal` on `section.mt-hero` or `section.mt-section` | — | fades in on scroll |
+| Full-width band | `.mt-bleed`, `.mt-bleed-wide` on `section.mt-hero` or `section.mt-section` | — | `--mt-bleed-bg` sets the colour |
+| Illustration | `figure.mt-illustration[role=img][aria-label]` | `.mt-illustration-tag` | — |
+| List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` | the `li > a` chips; the title and separator | — |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
 | Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
-| Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` (built by JS; without JS the `h3` + code blocks stay) | `[aria-selected]` |
+| Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` | `[aria-selected]` |
 | Accordion | `section.mt-c-accordion` | `h3 > button[aria-expanded]`, the panel after it | `[aria-expanded=true\|false]` |
 | Steps / Timeline | `section.mt-c-steps`, `section.mt-c-timeline` | `ol > li` or `h3` items | — |
-| File tree | `section.mt-c-filetree` | `ul[aria-label]`, nested `ul` (items holding one are folders) | — |
+| File tree | `section.mt-c-filetree` | `ul[aria-label]`, nested `ul` (folders) | — |
 | Details / FAQ | `section.mt-c-details`, `section.mt-c-faq` | `details.mt-details`, `summary > h3`, the content after it | `[open]` |
-| Table | `div.mt-table` around every body table (added at render time; scrolls, becomes a labelled region when it overflows) | the `table` inside it | `table.mt-table--stack`, `table.mt-table--dl`, `table.mt-table--fixed` (kramdown attribute list; `c: params` tables get `--stack`, and so does a table that does not fit below 40rem); `[data-mt-labelled]` and `td[data-label]` once the script has labelled a stacked table; `table` and `table-stack` sheets |
-| Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | stacks below 40rem (`table.mt-table--stack`) |
-| Link cards | `section.mt-c-linkcards` | `ul > li > a` (the whole card is the link target) | — |
+| Table | `div.mt-table` | the `table` inside it | `table.mt-table--stack`, `table.mt-table--dl`, `table.mt-table--fixed`, `td[data-label]` |
+| Parameter table | `section.mt-c-params` | `th[scope=col]`, `.mt-param-required` | stacks on narrow screens |
+| Link cards | `section.mt-c-linkcards` | `ul > li > a` (the whole card is the link) | — |
 | Quote | `figure.mt-quote` | `blockquote`, `figcaption` | — |
 | Gallery | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | `:target` on the open lightbox |
 | Pricing | `.mt-plans` | `.mt-plan`, its `h3`, link-only `p.mt-actions` | `.mt-plan-recommended` with `.mt-plan-flag` |
-| Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe` (when an action is set), `label`, `input[type=email]`, `button` | — |
-| Split | `section.mt-c-split` (with `.mt-split-start`, `.mt-split-5-7`) | `.mt-section-in` > `.mt-section-body` (the `h2` and text) + `.mt-section-visual` (the `visual:` include). `hero: {c: split}` puts `section.mt-hero` in the same wrappers, with the `h1`, lead, check row and actions in `.mt-section-body`. `visual: code` puts the first code block in `div.mt-section-visual.mt-split-code`; `chrome: terminal` adds `.mt-split-terminal` and `div.mt-split-bar` (`aria-hidden`). | — |
+| Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe`, `label`, `input[type=email]`, `button` | — |
+| Split | `section.mt-c-split` | `.mt-section-in` > `.mt-section-body` + `.mt-section-visual` | `.mt-split-start`, `.mt-split-5-7`, `.mt-split-code`, `.mt-split-terminal` |
 | Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |
@@ -69,12 +83,34 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Badge | `span.mt-badge` | the symbol (`aria-hidden`), the label | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
 | Figure | `figure.mt-figure` | `img`, `figcaption` | — |
-| Post header | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline` (`.mt-byline-authors` > `.mt-post-author`, `.mt-byline-dates` > `time`), `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` (tag badges) | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
+| Post header | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
 | Post footer | `article.mt-doc` | `.mt-share` button, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | Post card | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
 | News front | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
-| Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` from `modootoday.search` |
-| Filter | `[data-mt-filter]` on `section.mt-section`, `div.mt-prose` or `div.mt-dir` (front matter `filter:`, `filter_text:`) | `div.mt-filter` (`input[type=search]`, `output[aria-live]`), hidden until the script moves it before the first list or table; `.mt-filter-chips[role=group]` > `button[aria-pressed]` with a facet | `[data-facet]` = column; items left out get `[hidden]`; `filter` sheet |
+| Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
+| Filter | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`; `[hidden]` on items left out |
+
+Notes on the rows above:
+
+- Page shell: `header.mt-header` > `.mt-header-inner` holds `.mt-site-title` > `.mt-site-name` (the name: up to two lines, then an ellipsis), `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` and `.mt-theme-toggle`. From 64rem `nav.mt-nav` is a `ul` row of links; below 64rem it is `details.mt-menu.mt-nav-sheet` with a `summary` menu button and a `ul` sheet with `.mt-nav-sheet-label` group titles. The language menu has a `summary` globe button and a `ul` of `a[lang][hreflang]`; the current one has `aria-current`. `html[data-theme]` is set by a fixed scheme or by the toggle.
+- Doc sidebar: `nav.mt-sidebar` shows from 64rem, `details.mt-sidebar-mobile` below. The current link has `aria-current=page`.
+- Page actions: the buttons sit in a `ul` and stay hidden until JS runs; `a[type="text/markdown"]` is View as Markdown.
+- Hero: the lead is the first `p` right after the `h1`; in the link-only `p` the first link is primary. `.mt-hero-checks` comes from front matter `hero: {checks: true}`: the first `ul` becomes a row of ✓ marks in `--mt-ok`.
+- Section: `[data-section]` is the name; `[data-c]` and `.mt-c-<c>` are the component. `.mt-cta` sits on the section, or on a `[data-mt-result]` element inside it when one is present.
+- Section decor: front matter `decor: <include>`. The decor is the last child, holds `_includes/sections/<include>.html`, sits in the top end corner and takes no pointer events.
+- Scroll reveal: front matter `reveal: true`. CSS only: it fades in inside `@supports (animation-timeline: view())` and `prefers-reduced-motion: no-preference`, and is shown as is otherwise.
+- Full-width band: front matter `bleed: true` or `bleed: wide`. Inside a sidebar or table-of-contents layout the band stays in the main column. It uses the `bleed` sheet.
+- Illustration: your own include. The tag is a badge above the picture, at the start. Put its text in the `aria-label` too, because the children of `role=img` are not read.
+- List styles: with `modootoday.lists`. The chips are 44px tall with → after the text; the separator is `: `.
+- Tabs: JS builds the tab parts; without JS the `h3` and code blocks stay.
+- File tree: items holding a nested `ul` are folders.
+- Table: `div.mt-table` is added around every body table at render time; it scrolls, and becomes a labelled region when it overflows. The classes come from a kramdown attribute list; `c: params` tables get `--stack`, and so does a table that does not fit below 40rem. Once the script has labelled a stacked table it has `[data-mt-labelled]` and `td[data-label]`. Styles come from the `table` and `table-stack` sheets.
+- Parameter table: below 40rem it stacks as `table.mt-table--stack`.
+- Subscribe: `form.mt-subscribe` appears when an action is set.
+- Split: `.mt-section-body` holds the `h2` and text, `.mt-section-visual` the `visual:` include. `hero: {c: split}` puts `section.mt-hero` in the same wrappers, with the `h1`, lead, check row and actions in `.mt-section-body`. `visual: code` puts the first code block in `div.mt-section-visual.mt-split-code`; `chrome: terminal` adds `.mt-split-terminal` and `div.mt-split-bar` (`aria-hidden`).
+- Post header: `.mt-byline` holds `.mt-byline-authors` > `.mt-post-author` and `.mt-byline-dates` > `time`; `p.mt-post-meta` holds the tag badges.
+- Search: the states come from `modootoday.search`.
+- Filter: the root is `section.mt-section`, `div.mt-prose` or `div.mt-dir` (front matter `filter:`, `filter_text:`). `div.mt-filter` holds `input[type=search]` and `output[aria-live]`, hidden until the script moves it before the first list or table. The chips appear with a facet; `[data-facet]` is the column. It uses the `filter` sheet.
 
 ## Slot contract
 
@@ -103,9 +139,11 @@ A component entry takes only `params`, `i18n`, `slots` and `parts`, and a slot r
 
 ## Events
 
-| Event | Sent | `detail` |
+| Event | When | `detail` |
 |---|---|---|
-| `mt:themechange` | on `document` by the theme toggle (`theme-toggle.js`): after a click, and after a change of the system colour scheme while the reader has not chosen one. Same document only; never on the first paint, and not on sites without the toggle (`color_scheme: light` or `dark`) | `{theme: "light" or "dark", source: "toggle" or "system"}` |
+| `mt:themechange` | The page switches between light and dark mode. | `{theme: "light" or "dark", source: "toggle" or "system"}` |
+
+The theme toggle (`theme-toggle.js`) sends it on `document` after a click, and after a change of the system colour scheme while the reader has not chosen one. It stays in the same document, is never sent on the first paint, and is not sent on sites without the toggle (`color_scheme: light` or `dark`).
 
 For one callback per real change that also works without the toggle, use `onThemeChange` from `assets/js/modootoday/theme/current.js`: it listens to the event and to the system setting, and returns a function that stops listening.
 

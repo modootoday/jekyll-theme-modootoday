@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:e9f7f1661fc1
+source_rev: sha256:76b80c35c68a
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -25,12 +25,14 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `chrome/search.js`(`text/normalize.js` 포함)와 `search.json` | 독자가 검색창에 처음 들어가거나 `/`, Ctrl+K를 누를 때 |
 | `content/code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |
 | `content/scroll-region.js` | 코드 블록이나 표가 있는 페이지 |
-| `data/table-stack.js` | 본문에 표가 있는 페이지(`c: params` 표, `mt-table--stack`과 `mt-table--dl` 클래스, 그리고 40rem보다 좁을 때 들어가지 않는 표를 쌓음) |
+| `data/table-stack.js` | 본문에 표가 있는 페이지 |
 | `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
 | `data/filter.js`(`data/filter-chips.js`, `text/normalize.js`, `dom/config.js`를 미리 불러옴) | `filter:`나 `filter_text:`를 쓰는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
+
+`data/table-stack.js`는 `c: params` 표, `mt-table--stack`이나 `mt-table--dl` 클래스가 붙은 표, 그리고 40rem보다 좁을 때 들어가지 않는 표를 쌓습니다.
 
 테마 스크립트는 ES 모듈(`<script type="module">`)입니다. `defer`처럼 페이지를 다 읽은 뒤 순서대로 실행되므로 첫 화면 표시를 막지 않습니다. 모듈이 가져오는 파일에는 `<link rel="modulepreload">`가 붙어서, 하나씩 차례로 받지 않고 함께 받습니다. 클래식 스크립트는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트(`chrome/theme-init.js`) 하나뿐입니다. 첫 화면을 그리기 전에 실행되어야 하기 때문입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요.
 
@@ -41,8 +43,10 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `modootoday.asset_version` | 쿼리 | 쓰는 경우 |
 |---|---|---|
 | `theme` (기본값) | `?v=X.Y.Z` | 테마 파일이 테마 버전과 함께만 바뀔 때 |
-| `build` | `?v=X.Y.Z-a1b2c3d` | 사이트에서 테마 파일(Sass partial, 스크립트)도 덮어쓸 때. GitHub Pages에서는 `site.github.build_revision`의 커밋을, 다른 곳에서는 빌드 시각을 씁니다 |
+| `build` | `?v=X.Y.Z-a1b2c3d` | 사이트에서 테마 파일(Sass partial, 스크립트)도 덮어쓸 때 |
 | `false` | 없음 | 자산 버전을 직접 관리할 때 |
+
+`build`는 GitHub Pages에서는 `site.github.build_revision`의 커밋을, 다른 곳에서는 빌드 시각을 씁니다.
 
 쿼리는 테마 자체의 CSS와 JavaScript, 그리고 `site_css`에 올린 시트에 붙습니다. 그 밖의 스타일시트, 이미지, 글꼴 URL은 그대로이고 `preload` 힌트도 그렇습니다. 힌트는 페이지나 스타일시트가 요청하는 URL과 같아야 하며, 다르면 브라우저가 파일을 두 번 내려받습니다.
 
