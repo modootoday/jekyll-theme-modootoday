@@ -41,7 +41,7 @@ class StylesheetProbeTest < Minitest::Test
   # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>).
   CHROME = "chrome/menu.js content/scroll-region.js content/code-copy.js chrome/theme-toggle.js"
   PLAIN = "chrome/menu.js chrome/theme-toggle.js"
-  SEARCH = "search.js chrome/search-keys.js"
+  SEARCH = "chrome/search-keys.js"
   DEFAULT = {
     "pr/plain" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
     "pr/table" => "css/modootoday.css chrome/doc-nav.css docs/doc.css chrome/search.css data/table.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",

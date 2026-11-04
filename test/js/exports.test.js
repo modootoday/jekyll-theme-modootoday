@@ -7,11 +7,11 @@ const { load } = require("./support/module.js");
 
 const SHARED = {
   "dom/config.js": ["parseValue", "readConfig"],
-  "text/normalize.js": ["matches", "normalize", "terms"],
+  "text/normalize.js": ["includesAll", "matches", "normalize", "squash", "terms"],
   "theme/current.js": ["currentTheme", "onThemeChange"],
   "data/filter-chips.js": ["cellText", "chips"],
 };
-const FEATURES = ["chrome/menu.js", "chrome/theme-toggle.js", "chrome/search-keys.js", "content/code-copy.js", "content/scroll-region.js",
+const FEATURES = ["chrome/menu.js", "chrome/theme-toggle.js", "chrome/search-keys.js", "chrome/search.js", "content/code-copy.js", "content/scroll-region.js",
   "structure/tabs.js", "structure/accordion.js", "data/table-stack.js", "data/filter.js", "blog/share.js"];
 
 test("shared modules keep their export names", async () => {

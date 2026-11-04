@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:412840970ab4
+source_rev: sha256:9f1de5795f9b
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -21,7 +21,8 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | コンポーネントシート (`content/code`、`chrome/doc-nav`、`content/inline`、`marketing/hero`、`content/extras`、`media/figure`、`chrome/banner`)。コアシートのすぐ後に読み込む | 本文かページ下部がそのシートを使うページ |
 | コンテキストシート (`docs/doc`、`chrome/search`、`content/loading`、`content/lists`、`structure/bleed`、`chrome/terminal`、`media/visual`、`data/filter`、`data/table`、`data/table-stack`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
-| `chrome/menu.js`、`chrome/theme-toggle.js`、`search.js` と `chrome/search-keys.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
+| `chrome/menu.js`、`chrome/theme-toggle.js`、`chrome/search-keys.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
+| `chrome/search.js`（`text/normalize.js` を含む）と `search.json` | 読者が初めて検索ボックスにフォーカスしたとき、または `/` か Ctrl+K を押したとき |
 | `content/code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
 | `content/scroll-region.js` | コードブロックか表があるページ |
 | `data/table-stack.js` | 積み重ねる表があるページ（`c: params`、または `mt-table--stack` か `mt-table--dl` クラス） |

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/search/
-source_rev: sha256:cf7c0dca55a3
+source_rev: sha256:f2c1083d1a85
 nav_order: 25
 title: 검색
 description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 맞추는 방식을 정하고, 긴 목록이나 표를 독자가 거를 수 있게 합니다.
@@ -11,7 +11,7 @@ description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 �
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../recipes/search/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
-헤더 검색은 Liquid가 만드는 `search.json` 파일 하나를 읽습니다. 그래서 플러그인이나 외부 서비스 없이 클래식 GitHub Pages에서도 동작합니다. 스크립트는 독자가 검색창에 처음 들어갈 때 이 파일을 불러옵니다.
+헤더 검색은 Liquid가 만드는 `search.json` 파일 하나를 읽습니다. 그래서 플러그인이나 외부 서비스 없이 클래식 GitHub Pages에서도 동작합니다. 검색 스크립트와 이 파일은 독자가 검색창에 처음 들어가거나 `/`, Ctrl+K를 누를 때 불러옵니다. 그래서 검색하지 않는 방문에서는 둘 다 받지 않습니다.
 
 ## 켜기
 

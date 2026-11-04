@@ -5,7 +5,7 @@ description: Turn on the header search, choose what the index holds and how quer
 ---
 # Search
 
-The header search reads one `search.json` file that Liquid builds, so it works on classic GitHub Pages with no plugin and no outside service. The script loads the file the first time a reader focuses the search box.
+The header search reads one `search.json` file that Liquid builds, so it works on classic GitHub Pages with no plugin and no outside service. The search script and the file load the first time a reader focuses the search box or presses `/` or Ctrl+K, so a visit that never searches loads neither.
 
 ## Turn it on
 

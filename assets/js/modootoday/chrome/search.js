@@ -1,7 +1,13 @@
-// Search over /search.json; keys in search-keys.js. Classic script: the rules of text/normalize.js, tested together.
-(() => {
-  const box = document.querySelector(".mt-search");
-  if (!box) {
+// Header search over /search.json. chrome/search-keys.js imports it on first use; matching is text/normalize.js.
+import { normalize, squash, includesAll } from "../text/normalize.js";
+
+const lang = (l) => l.toLowerCase().split("-")[0];
+
+export function init(root) {
+  const doc = root.ownerDocument || root;
+  const win = doc.defaultView;
+  const box = root.querySelector(".mt-search");
+  if (!box || box.mtRender) {
     return;
   }
   const input = box.querySelector("input");
@@ -10,47 +16,42 @@
   const byTerms = cfg.match == "terms";
   const compact = cfg.compact != null;
   const max = +cfg.results || 8;
-  const el = (t, c) => Object.assign(document.createElement(t), { className: c || "" });
-  const norm = (t) => t.normalize("NFC").toLowerCase();
-  const flat = (t) => t.replace(/\s+/g, "");
-  const found = (hay, words) => words.every((w) => hay.includes(w));
+  const el = (t, c) => Object.assign(doc.createElement(t), { className: c || "" });
   const prep = (d) => {
     d.forEach((p) => {
-      p.k = norm(p.title + " " + p.text);
-      p.f = compact && flat(p.k);
+      p.k = normalize(p.title + " " + p.text);
+      p.f = compact && squash(p.k);
     });
     return d;
   };
   let data;
-  box.hidden = false;
-  const load = () => data || (data = fetch(cfg.index).then((r) => r.json()).then(prep).catch(() => []));
+  const load = () => data || (data = win.fetch(cfg.index).then((r) => r.json()).then(prep).catch(() => []));
   // textarea decodes entities.
   const ta = el("textarea");
   const plain = (t) => {
     ta.innerHTML = t;
     return ta.value;
   };
-  const lg = (l) => l.toLowerCase().split("-")[0];
   const show = (d, q) => {
-    if (norm(input.value.trim()) != q) {
+    if (normalize(input.value.trim()) != q) {
       return;
     }
     const words = byTerms ? q.split(/\s+/) : [q];
-    const fw = words.map(flat);
+    const fw = words.map(squash);
     // k, f (k without spaces): made once, at load.
-    const match = (k, f) => found(k, words) || (compact && found(f, fw));
+    const match = (k, f) => includesAll(k, words) || (compact && includesAll(f, fw));
     let hits = d.filter((p) => match(p.k, p.f));
     // Page language, else site default, else all; title hits first.
-    for (const l of [document.documentElement.lang, cfg.lang]) {
-      const same = hits.filter((p) => !l || !p.lang || lg(p.lang) == lg(l));
+    for (const l of [doc.documentElement.lang, cfg.lang]) {
+      const same = hits.filter((p) => !l || !p.lang || lang(p.lang) == lang(l));
       if (same.length) {
         hits = same;
         break;
       }
     }
     hits.forEach((p) => {
-      const t = norm(p.title);
-      p.t = match(t, flat(t));
+      const t = normalize(p.title);
+      p.t = match(t, squash(t));
     });
     hits.sort((a, b) => b.t - a.t).slice(0, max).forEach((p) => {
       const li = el("li");
@@ -67,13 +68,20 @@
     });
   };
   const render = (q) => {
-    q = norm(q.trim());
+    q = normalize(q.trim());
     out.textContent = "";
     if (q.length > 1) {
       load().then((d) => show(d, q));
     }
   };
-  input.addEventListener("focus", load);
+  box.hidden = false;
   input.addEventListener("input", () => render(input.value));
   box.mtRender = render;
-})();
+  load();
+  // Text typed before this module arrived.
+  if (input.value) {
+    render(input.value);
+  }
+}
+
+init(document);

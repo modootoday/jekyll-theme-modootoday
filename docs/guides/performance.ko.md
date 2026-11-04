@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:412840970ab4
+source_rev: sha256:9f1de5795f9b
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -21,7 +21,8 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 컴포넌트 시트 (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`). 핵심 시트 바로 뒤에 연결 | 본문이나 페이지 아래쪽이 그 시트를 쓰는 페이지 |
 | 맥락 시트 (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
-| `chrome/menu.js`, `chrome/theme-toggle.js`, `search.js`와 `chrome/search-keys.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
+| `chrome/menu.js`, `chrome/theme-toggle.js`, `chrome/search-keys.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
+| `chrome/search.js`(`text/normalize.js` 포함)와 `search.json` | 독자가 검색창에 처음 들어가거나 `/`, Ctrl+K를 누를 때 |
 | `content/code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |
 | `content/scroll-region.js` | 코드 블록이나 표가 있는 페이지 |
 | `data/table-stack.js` | 쌓이는 표가 있는 페이지(`c: params`, 또는 `mt-table--stack`이나 `mt-table--dl` 클래스) |

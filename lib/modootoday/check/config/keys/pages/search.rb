@@ -3,7 +3,7 @@
 module Modootoday
   module Check
     module Config
-      # modootoday.search: what the search.json include indexes (words, collections, fields, exclude) and how search.js
+      # modootoday.search: what the search.json include indexes (words, collections, fields, exclude) and how chrome/search.js
       # matches (match, compact, results). fallback belongs to the search layout (layouts/shells.rb).
       module Search
         KEYS = %w[words collections fields exclude match compact results fallback].freeze

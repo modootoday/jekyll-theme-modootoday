@@ -1,4 +1,4 @@
-// Search keys: /, Ctrl/Cmd+K, arrows, Esc.
+// Search keys: /, Ctrl/Cmd+K, arrows, Esc. Shows the box; the search itself (search.js) is imported on first use.
 export function init(root) {
   const doc = root.ownerDocument || root;
   const box = root.querySelector(".mt-search");
@@ -7,6 +7,13 @@ export function init(root) {
   }
   const input = box.querySelector("input");
   const out = box.querySelector("ul");
+  let search;
+  const start = () => {
+    search ||= import("./search.js").then((m) => m.init(root));
+    return search;
+  };
+  box.hidden = false;
+  input.addEventListener("focus", start);
   box.addEventListener("keydown", (e) => {
     const links = [...out.querySelectorAll("a")];
     const i = links.indexOf(doc.activeElement);
@@ -16,7 +23,8 @@ export function init(root) {
       if (i > -1) {
         input.focus();
       } else {
-        box.mtRender(input.value = "");
+        input.value = "";
+        box.mtRender?.("");
       }
     } else if ((k == "ArrowDown" || k == "ArrowUp") && links.length) {
       e.preventDefault();
@@ -30,6 +38,7 @@ export function init(root) {
     const mod = e.ctrlKey || e.metaKey;
     if ((e.key == "/" && !typing && !mod && !e.altKey) || (mod && e.key.toLowerCase() == "k")) {
       e.preventDefault();
+      start();
       input.focus();
       input.select();
     }

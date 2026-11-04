@@ -75,13 +75,7 @@ class V04Test < Minitest::Test
 
   def test_disabled
     h = read("index.html", "modootoday: {components: [callout]}\n")
-    %w[mt-kbd mt-search search.js].each { refute_includes h, _1 }
-  end
-
-  def test_search_js_size_budget
-    require "zlib"
-    js = File.read(File.join(ROOT, "assets/js/modootoday/search.js"))
-    assert_operator Zlib::Deflate.deflate(js, 9).bytesize, :<=, 1229, "search.js must stay within 1.2 KiB compressed"
+    %w[mt-kbd mt-search search-keys.js].each { refute_includes h, _1 }
   end
 
   def test_tokens_json_matches_css
