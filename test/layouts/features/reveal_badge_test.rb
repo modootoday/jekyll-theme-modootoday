@@ -21,6 +21,7 @@ class RevealBadgeTest < Minitest::Test
       css = File.read("#{s}/assets/css/modootoday/content/extras.css")
       assert_match(/@supports \(animation-timeline: ?view\(\)\)/, css)
       assert_match(/prefers-reduced-motion: ?no-preference/, css)
+      assert_match(/\.mt-reveal ?\{[^}]*animation: ?mt-reveal linear forwards/, css, "no backwards fill: an unscrolled page shows it")
       assert_includes File.read("#{s}/assets/css/modootoday/showcase/card.css"), ".mt-badge-bottom"
       out, st = check(src, s)
       assert st.success?, out
