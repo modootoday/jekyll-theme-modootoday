@@ -89,7 +89,9 @@ class ComponentNamesTest < Minitest::Test
   end
 
   def test_registry_part_paths_exist
-    assert_empty registry_part_paths.select { |p| p.include?("/") } - partials, "a registry part path with no partial"
+    assert_empty registry_part_paths.select { |p| p.include?("/") && !p.start_with?("/") } - partials, "a registry part path with no partial"
+    base = registry_part_paths.select { |p| p.start_with?("/") }
+    base.each { |p| assert File.file?(File.join(ROOT, "_sass/modootoday", p.sub(%r{([^/]+)\z}, '_\1.scss'))), "no partial for registry part #{p}" }
   end
 
   def test_partials_outside_the_core_and_section_sheets_are_registry_parts

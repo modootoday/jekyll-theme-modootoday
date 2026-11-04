@@ -52,15 +52,15 @@ class StylesheetProbeTest < Minitest::Test
     "pr/note" => "css/modootoday.css content/inline.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
     "pr/checks" => "css/modootoday.css docs/doc.css chrome/search.css content/lists.css #{PLAIN} #{SEARCH}",
     "pr/titled" => "css/modootoday.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
-    "pr/sections" => "css/modootoday.css docs/doc.css chrome/search.css structure/bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
+    "pr/sections" => "css/modootoday.css content/code.css docs/doc.css chrome/search.css structure/bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
                      "tabs.js #{CHROME} accordion.js #{SEARCH}",
-    "pr/split" => "css/modootoday.css docs/doc.css chrome/search.css chrome/terminal.css structure/split.css #{CHROME} #{SEARCH}",
+    "pr/split" => "css/modootoday.css content/code.css docs/doc.css chrome/search.css chrome/terminal.css structure/split.css #{CHROME} #{SEARCH}",
     "pr/css" => "css/modootoday.css media/figure.css css/modootoday-hero.css docs/doc.css chrome/search.css content/lists.css structure/bleed.css #{PLAIN} #{SEARCH}",
     "pr/bare" => "css/modootoday.css docs/doc.css chrome/search.css theme-toggle.js #{SEARCH}",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css docs/doc.css chrome/search.css #{PLAIN} share.js #{SEARCH}",
-    "." => "css/modootoday.css content/inline.css css/modootoday-hero.css docs/doc.css chrome/search.css structure/bleed.css showcase/cta.css showcase/card.css " \
+    "." => "css/modootoday.css content/code.css content/inline.css css/modootoday-hero.css docs/doc.css chrome/search.css structure/bleed.css showcase/cta.css showcase/card.css " \
            "structure/tabs.css tabs.js #{CHROME} #{SEARCH}",
-    "guide" => "css/modootoday.css content/inline.css docs/doc.css chrome/search.css data/table.css #{CHROME} #{SEARCH}",
+    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css chrome/search.css data/table.css #{CHROME} #{SEARCH}",
     "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css chrome/search.css menu.js code-copy.js theme-toggle.js share.js #{SEARCH}",
   }.freeze
   # components: has no code-copy, theme-toggle or search; page-actions still brings code-copy on pages with a twin.
@@ -69,11 +69,11 @@ class StylesheetProbeTest < Minitest::Test
     "pr/svg" => "css/modootoday.css docs/doc.css content/loading.css menu.js",
     "pr/note" => "css/modootoday.css content/inline.css docs/doc.css content/loading.css menu.js",
     "pr/titled" => "css/modootoday.css docs/doc.css content/loading.css content/lists.css menu.js",
-    "pr/sections" => "css/modootoday.css docs/doc.css content/loading.css structure/bleed.css structure/tabs.css structure/faq.css tabs.js menu.js scroll-region.js",
-    "pr/split" => "css/modootoday.css docs/doc.css content/loading.css chrome/terminal.css menu.js scroll-region.js",
+    "pr/sections" => "css/modootoday.css content/code.css docs/doc.css content/loading.css structure/bleed.css structure/tabs.css structure/faq.css tabs.js menu.js scroll-region.js",
+    "pr/split" => "css/modootoday.css content/code.css docs/doc.css content/loading.css chrome/terminal.css menu.js scroll-region.js",
     "pr/bare" => "css/modootoday.css docs/doc.css content/loading.css",
     "pr/blog" => "css/modootoday.css css/modootoday-blog.css docs/doc.css content/loading.css menu.js",
-    "guide" => "css/modootoday.css content/inline.css docs/doc.css content/loading.css data/table.css menu.js scroll-region.js code-copy.js",
+    "guide" => "css/modootoday.css content/code.css content/inline.css docs/doc.css content/loading.css data/table.css menu.js scroll-region.js code-copy.js",
     "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css content/loading.css menu.js code-copy.js",
   }.freeze
   BUNDLE = {

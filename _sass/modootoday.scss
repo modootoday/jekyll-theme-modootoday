@@ -1,6 +1,7 @@
 // jekyll-theme-modootoday — everything (core + all components) in one file. Sites set token overrides in
 // _sass/modootoday/_site.scss (the token bridge), which _core.scss imports first.
 @import "modootoday/core";
+@import "modootoday/base/code";
 @import "modootoday/components/core/inline/callout";
 @import "modootoday/components/core/inline/badge";
 @import "modootoday/components/core/inline/kbd";

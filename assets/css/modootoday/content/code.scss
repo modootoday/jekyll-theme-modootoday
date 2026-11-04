@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday component sheet (code: inline code, code blocks and their colours, titles, the copy button).
+# Linked right after the core sheet, only by pages that use it. Its partials are the parts of its row in assets/registry.html.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% include modootoday/assets/imports.html row="code" %}
