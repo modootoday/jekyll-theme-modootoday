@@ -3,9 +3,10 @@ id: adr:modootoday/20261104170556
 title: A starter's live demo is its own repository's Pages site
 status: active
 created: 2026-11-04T17:05:56Z
-updated: 2026-11-04T17:06:14Z
+updated: 2026-11-04T17:16:45Z
 rel:
   governs: [example/starters.yml]
+  evidence: [research:modootoday/20261104170510]
 ---
 
 # A starter's live demo is its own repository's Pages site

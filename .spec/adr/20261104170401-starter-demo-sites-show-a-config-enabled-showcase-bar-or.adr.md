@@ -3,9 +3,10 @@ id: adr:modootoday/20261104170401
 title: Starter demo sites show a config-enabled showcase bar or pill
 status: active
 created: 2026-11-04T17:04:01Z
-updated: 2026-11-04T17:04:42Z
+updated: 2026-11-04T17:16:45Z
 rel:
   governs: [example/starters.yml]
+  evidence: [research:modootoday/20261104170510]
 ---
 
 # Starter demo sites show a config-enabled showcase bar or pill
