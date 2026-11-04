@@ -20,6 +20,8 @@ module Modootoday
         end
 
         def home(errs, where, fm, _ctx)
+          errs << "#{where}: posts must be true or false (the post list under the body)" unless [nil, true, false].include?(fm["posts"])
+          errs << "#{where}: list_title must be text" unless fm["list_title"].nil? || Shape.text?(fm["list_title"])
           hero = fm["hero"]
           return if hero.nil?
           return errs << "#{where}: hero must be a map of title, text, actions, image" unless hero.is_a?(Hash)

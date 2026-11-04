@@ -8,8 +8,9 @@ module Modootoday
       module Validate
         BOOL = [true, false].freeze
         SITE_PATH = %r{\A/(\S*/)?\z}
+        NAME = /\A[A-Za-z0-9_-]+\z/
         URL = %r{\Ahttps?://\S+\z}
-        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list", off_or_map: "must be false or a map" }.freeze
+        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list", off_or_map: "must be false or a map", off_or_name: "must be false or a name" }.freeze
 
         module_function
 
@@ -27,6 +28,7 @@ module Modootoday
           when :list then v.is_a?(Array) && (key.pattern.nil? || v.all? { |x| x.to_s.match?(key.pattern) })
           when :map then map?(key, v)
           when :off_or_map then v == false || map?(key, v)
+          when :off_or_name then v == false || (v.is_a?(String) && v.match?(NAME))
           else raise ArgumentError, "unknown config type #{key.type.inspect} for #{key.name}"
           end
         end

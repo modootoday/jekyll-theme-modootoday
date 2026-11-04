@@ -51,7 +51,7 @@ With `jekyll-paginate` on and `paginate:` set, the root `index.html` blog page s
 ```markdown
 ---
 title: Shipping 1.0
-author: kim            # or authors: [kim, lee], ids from _data/authors.yml
+author: kim            # or authors: [kim, lee], ids from _data/authors.yml, or {name, url, picture}
 image: /assets/cover.png
 image_alt: The release dashboard
 series: launch         # posts with the same series get "Part 2 of 3" and links
@@ -64,6 +64,8 @@ Author data lives in `_data/authors.yml`:
 ```yaml
 kim: {name: Kim, url: "https://example.com", page: /authors/kim/, bio: Writes the docs.}
 ```
+
+An id without an entry prints as written, so `author: Kim Lee` works without the file. `author:` may also be a comma list or a map with `name`, `url` and `picture` (the jekyll-seo-tag shape). A post without either falls back to `modootoday.schema.author`, then to the site's `author:` (a name or a map such as minima's `{name, email}`). The byline, the Atom feed and JSON-LD read the same list.
 
 Each post emits `BlogPosting` JSON-LD and `article:*` Open Graph tags. Related posts are scored by shared tags and categories.
 
@@ -113,7 +115,7 @@ modootoday:
 | `posts_lang` | blog, news, author | `all` lists every language |
 | `featured` | post | Pins the post as the lead card |
 | `hidden`, `list: false` | post | Leaves the post out of lists |
-| `author`, `authors` | post, author | Ids from `_data/authors.yml` |
+| `author`, `authors` | post, author | Ids from `_data/authors.yml`, names, or `{name, url, picture}`; default: the site's `author` |
 | `series` | post | Groups posts into numbered parts |
 | `deck`, `breaking`, `live`, `correction`, `sources`, `credits` | news-article | News details |
 | `feed_lang`, `limit`, `feed_content` | feed | Feed scope |

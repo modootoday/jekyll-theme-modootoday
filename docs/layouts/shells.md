@@ -11,7 +11,8 @@ Set `layout:` in a page's front matter. The page shells below load an extra styl
 |---|---|---|
 | `minimal` | Standalone notices, sign-in notes, link pages. No header, page meta or pagination. | [Minimal](/jekyll-theme-modootoday/layouts/demo/minimal/) |
 | `wide` | Card grids, wide tables and galleries. Full header and footer, no reading-width cap. | [Wide](/jekyll-theme-modootoday/layouts/demo/wide/) |
-| `home` | A landing page: hero from front matter, then the body. Adds WebSite structured data. | [Home](/jekyll-theme-modootoday/layouts/demo/home/) |
+| `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Adds WebSite structured data. | [Home](/jekyll-theme-modootoday/layouts/demo/home/) |
+| `page` | The name Jekyll, minima and `jekyll new` use for a plain page. It is the `doc` layout under that name. | none |
 | `error` | 404, 410 and 500 pages with localized title and text. | [Error](/jekyll-theme-modootoday/layouts/demo/error/) |
 | `redirect` | A moved page. Sends visitors on without script, so it works under a strict CSP. | [Redirect](/jekyll-theme-modootoday/layouts/demo/redirect/) |
 | `search` | A full search page with a form that also works without JavaScript. | [Search](/jekyll-theme-modootoday/layouts/demo/search/) |
@@ -33,6 +34,8 @@ hero:
 ```
 
 The first action is the primary button. Without `hero.title` the layout shows only the body. `home` renders the body as written and does not read `sections:`, so cards, tabs and buttons sections do not apply. For a rich home page with those, use `layout: doc` with `hero:` and `sections:`, as this site's home page does. An optional `hero.image` (a path, or `{path, alt, width, height, srcset}`) shows a wide picture under the actions; leave `alt` empty when it is decorative. The `showcase` hero visual reads the same `hero.image` key (see [Customize](../../guides/customize/)).
+
+A home page without `hero:` and `sections:` lists the latest posts under its body when the site has posts, as minima does, so the `index.md` of `jekyll new` keeps its list. `posts: true` adds the list to any home page and `posts: false` removes it; `list_title:` replaces the heading, and `show_excerpts:` (on the page, then in `_config.yml`) shows or hides the excerpts, which otherwise follow `modootoday.blog.excerpt`. With jekyll-paginate on an `index.html` the list pages with it; otherwise it shows `modootoday.blog.per_page` posts and links the archive.
 
 ## Error
 

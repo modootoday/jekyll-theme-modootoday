@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:9b85a7a1f7ff
+source_rev: sha256:b55281411c2d
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -21,13 +21,13 @@ description: このテーマがサイト向けに文書化している名前、�
 | デザイントークン | セマンティックおよびコンポーネントのカスタムプロパティ `--mt-*` (プリミティブ `--mt-p-*` を除く)。生成される `tokens.json` も同じ |
 | Sass | トークンフック `_sass/modootoday/_site.scss` とそのマップ `$mt-overrides-base`、`$mt-overrides`、`$mt-overrides-dark` ([カスタマイズ](../../guides/customize/#トークンブリッジ)を参照)。それ以外の Sass パーシャルと変数は内部用 |
 | Markdown ルール | `RULES.md` のパターンと、その出力クラス `mt-*`、解除用クラス `mt-flat-list`（その下のリスト項目の間隔をなくす） |
-| レイアウト | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| レイアウト | `default`, `doc`, `page`(Jekyll と minima が使う名前の `doc` レイアウト), `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 上書きしてよい include | `head-custom.html`, `footer-custom.html`。自作のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` 指定可)を include できる。独自のロゴは `modootoday/brand/logo.html` を上書き |
 | 自分で用意する include | `_includes/sections/<name>.html`。`visual: <name>` を書いたセクションかヒーローの末尾に描画される（[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照） |
 | モジュールのヘルパーとイベント | サイトの `scripts` のモジュールが使う ES モジュール `assets/js/modootoday/theme/current.js`（`currentTheme()`、待ち受けを止める関数を返す `onThemeChange(callback)`）と `assets/js/modootoday/dom/config.js`（`readConfig(element, defaults)`）。`mt:themechange` イベント（[イベント](#イベント)を参照）。`script:` のビジュアルの契約（`data-mt-script`、`.mt-visual-stage`、`data-mt-ready`、[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照） |
 | 呼び出してよい include | `modootoday/archive.html`（`by`、`lang`）。`modootoday/brand/icon.html`（`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand。任意で `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class`）。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、向きのあるアイコンは `.mt-icon-flip` が付き RTL で反転 |
 | include | `modootoday/t.html`（`key=`、任意の `n=` / `name=`）はページの言語でテーマの文言を出力します |
-| データファイル | `_data/i18n/<lang>.yml` のキー（組み込みカタログを上書きする場合のみ）、`_data/nav/<name>.yml`、`_data/components.yml` |
+| データファイル | `_data/i18n/<lang>.yml` のキー（組み込みカタログを上書きする場合のみ）、`_data/nav/<name>.yml`、`_data/navigation.yml`(`main`)、`_data/authors.yml`、`_data/components.yml` |
 | チェッカー | `modootoday-check` のオプション、終了コード 0 (問題なし) と 1 (問題あり、または使い方の誤り) |
 | レコードのページ | `modootoday.records` ([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリーページの `records: <set>`、情報の一覧 `dl.mt-detail-facts.mt-record-facts` |
 | スタブ作成 | `modootoday-stubs` のオプション、スタブのファイル名 (`<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md`) とその front matter、終了コード 0 (することなし、プレビューまたは書き込み済み)、1 (`--check` が差分を検出)、2 (使い方または `_config.yml`)、3 (データ) |

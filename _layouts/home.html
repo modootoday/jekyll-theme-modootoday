@@ -2,6 +2,8 @@
 layout: wide
 mt_main: mt-shell-wide mt-home
 ---
-{%- comment -%}home: optional hero from front matter (hero.title, hero.text, hero.actions[label,url]), then the page body (the WebSite node is in every page's JSON-LD graph).{%- endcomment -%}
+{%- comment -%}home: optional hero from front matter (hero.title, hero.text, hero.actions[label,url]), then the page body (the WebSite node is in every page's JSON-LD graph),
+then the post list (blog/home-list.html: posts, list_title, show_excerpts).{%- endcomment -%}
 {%- include modootoday/pages/hero.html hero=page.hero -%}
 {{ content }}
+{% include modootoday/blog/home-list.html -%}

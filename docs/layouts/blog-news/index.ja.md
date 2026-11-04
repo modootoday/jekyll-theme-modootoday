@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/blog-news/
-source_rev: sha256:3935f68404ab
+source_rev: sha256:93a03a008efa
 title: ブログとニュース
 nav_order: 50
 description: ブログ一覧、ニュースのトップページ、署名、著者ページ、Atom フィードを作ります。
@@ -52,14 +52,14 @@ category: guides   # 任意の絞り込み。tag: も使えます
 ```markdown
 ---
 title: 1.0 リリース
-author: kim            # または authors: [kim, lee]。_data/authors.yml の id
+author: kim            # または authors: [kim, lee]。_data/authors.yml の id、名前、{name, url, picture}
 image: /assets/cover.png
 series: launch         # 同じ series の記事に「全 3 回中 2 回目」とリンクが付きます
 last_modified_at: 2026-10-30
 ---
 ```
 
-著者情報は `_data/authors.yml` に書きます。各記事は `BlogPosting` JSON-LD と `article:*` Open Graph タグを出力します。
+著者情報は `_data/authors.yml` に書きます。このファイルにない id は書いたとおりに表示されるので、`author: Kim Lee` のように名前だけでも使えます。`author:` にはカンマ区切りの一覧や、`name`、`url`、`picture` のあるマップ(jekyll-seo-tag の形)も書けます。どちらもない記事は `modootoday.schema.author`、次にサイトの `author:`(名前、または minima の `{name, email}` のようなマップ)を使います。署名、Atom フィード、JSON-LD は同じ一覧を読みます。各記事は `BlogPosting` JSON-LD と `article:*` Open Graph タグを出力します。
 
 ## ニュース
 

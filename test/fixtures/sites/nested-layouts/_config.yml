@@ -1,0 +1,7 @@
+# Layouts in subfolders: _layouts/<group>/<name>.html is layout: group/name on Jekyll 3.10, 4 and remote_theme.
+title: Nested layouts
+lang: en
+theme: jekyll-theme-modootoday
+permalink: pretty
+defaults:
+  - {scope: {path: learn}, values: {layout: learn/lesson}}

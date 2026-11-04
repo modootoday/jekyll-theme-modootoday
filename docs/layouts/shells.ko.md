@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/shells/
-source_rev: sha256:c33dd975fa21
+source_rev: sha256:8ca797b602ed
 title: 페이지 셸
 description: 페이지 종류별 셸과 레이아웃마다 따로 불러오는 선택 스타일시트입니다.
 nav_order: 10
@@ -14,7 +14,8 @@ nav_order: 10
 |---|---|---|
 | `minimal` | 단독 공지, 로그인 안내, 링크 모음. 헤더·페이지 정보·페이지 이동이 없습니다. | [미니멀](/jekyll-theme-modootoday/ko/layouts/demo/minimal/) |
 | `wide` | 카드 그리드, 넓은 표, 갤러리. 헤더와 푸터는 있고 읽기 폭 제한이 없습니다. | [와이드](/jekyll-theme-modootoday/ko/layouts/demo/wide/) |
-| `home` | 랜딩 페이지. front matter의 히어로 다음에 본문이 오고 WebSite 구조화 데이터를 추가합니다. | [홈](/jekyll-theme-modootoday/ko/layouts/demo/home/) |
+| `home` | 랜딩 페이지. front matter의 히어로 다음에 본문이 오고, 히어로가 없으면 최근 글 목록이 이어집니다. WebSite 구조화 데이터를 추가합니다. | [홈](/jekyll-theme-modootoday/ko/layouts/demo/home/) |
+| `page` | Jekyll, minima, `jekyll new`가 일반 페이지에 쓰는 이름입니다. 이름만 다른 `doc` 레이아웃입니다. | 없음 |
 | `error` | 제목과 설명이 번역된 404, 410, 500 페이지. | [오류](/jekyll-theme-modootoday/ko/layouts/demo/error/) |
 | `redirect` | 옮겨진 페이지. 스크립트 없이 이동하므로 엄격한 CSP에서도 동작합니다. | [리디렉션](/jekyll-theme-modootoday/ko/layouts/demo/redirect/) |
 | `search` | JavaScript 없이도 쓸 수 있는 양식이 있는 전체 검색 페이지. | [검색](/jekyll-theme-modootoday/ko/layouts/demo/search/) |
@@ -36,6 +37,8 @@ hero:
 ```
 
 첫 번째 액션이 주 버튼이 됩니다. `hero.title`이 없으면 본문만 보여 줍니다. `home`은 본문을 쓴 그대로 보여 주고 `sections:`를 읽지 않으므로 카드, 탭, 버튼 섹션은 적용되지 않습니다. 이런 섹션이 있는 홈 페이지는 이 사이트의 홈처럼 `layout: doc`에 `hero:`와 `sections:`를 함께 씁니다. 선택 항목인 `hero.image`(경로 또는 `{path, alt, width, height, srcset}`)를 주면 액션 아래에 넓은 그림을 보여 줍니다. 장식용이면 `alt`를 비워 두세요. 히어로 비주얼 `showcase`도 같은 `hero.image` 키를 읽습니다([커스터마이즈](../../guides/customize/) 참고).
+
+`hero:`와 `sections:`가 없는 홈 페이지는 사이트에 글이 있으면 minima처럼 본문 아래에 최근 글 목록을 보여 줍니다. 그래서 `jekyll new`가 만든 `index.md`도 목록을 그대로 유지합니다. `posts: true`는 어느 홈 페이지에나 목록을 더하고 `posts: false`는 목록을 뺍니다. `list_title:`은 목록 제목을 바꾸고, `show_excerpts:`(페이지, 그다음 `_config.yml`)는 요약을 보이거나 숨깁니다. 이 키가 없으면 요약은 `modootoday.blog.excerpt`를 따릅니다. `index.html`에서 jekyll-paginate를 쓰면 목록도 함께 페이지가 나뉘고, 그렇지 않으면 `modootoday.blog.per_page`개를 보여 준 뒤 아카이브로 연결합니다.
 
 ## 오류
 

@@ -9,7 +9,8 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
                                 are always added: their CSS only reaches pages that turn them on (modootoday.lists / hero.checks, bleed:,
                                 chrome: terminal, script: / poster:, filter: / filter_text:)
   site.modootoday.css           split | bundle: split (default) links the core sheet plus only the sheets a page uses; bundle links one file with everything
-  site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang
+  site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang;
+                                then _data/navigation.yml main, header_pages, titled pages; false: no titled-page list (site/nav.html)
   site.modootoday.tokens / tokens_dark  semantic token overrides, inline :root CSS
   site.modootoday.sidebar       auto | true | false: doc-page sidebar from the nav (default auto: on when the nav has a group)
   site.modootoday.badges        false disables status badges (default true)
@@ -37,12 +38,8 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
 {%- if mt.tokens["font-sans"] -%}{%- assign mt_langs = "" | split: "," -%}{%- endif -%}
 {%- if mt.code_theme == "github" -%}{%- assign mt_code_theme = "github" -%}{%- else -%}{%- assign mt_code_theme = "theme" -%}{%- endif -%}
 {%- if mt.badges == false -%}{%- assign mt_badges = false -%}{%- else -%}{%- assign mt_badges = true -%}{%- endif -%}
-{%- assign mt_nav_name = mt.nav | default: "main" -%}
-{%- assign mt_nav = site.data.nav[mt_nav_name] -%}
-{%- assign _mt_nav_l = mt_nav_name | append: "-" | append: page.lang -%}
-{%- if page.lang and site.data.nav[_mt_nav_l] -%}{%- assign mt_nav = site.data.nav[_mt_nav_l] -%}{%- endif -%}
-{%- if mt_nav == nil and site.data.nav.first.url -%}{%- assign mt_nav = site.data.nav -%}{%- endif -%}
+{%- include modootoday/site/nav.html -%}
 {%- assign mt_sidebar = false -%}
-{%- if mt_nav and mt_components contains "sidebar" and mt.sidebar != false and page.sidebar != false -%}
+{%- if mt_nav and mt_nav_groups and mt_components contains "sidebar" and mt.sidebar != false and page.sidebar != false -%}
 {%- if mt.sidebar == true -%}{%- assign mt_sidebar = true -%}{%- else -%}{%- for _it in mt_nav -%}{%- if _it.items -%}{%- assign mt_sidebar = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
 {%- endif -%}

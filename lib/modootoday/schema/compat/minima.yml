@@ -1,0 +1,8 @@
+# minima 2.5 (the GitHub Pages default theme): its layout names and the theme layouts that take their place.
+# Read by modootoday-check (an unknown layout names the replacement) and the docs migration table.
+theme: minima
+layouts:
+  default: default
+  home: home
+  page: page
+  post: post

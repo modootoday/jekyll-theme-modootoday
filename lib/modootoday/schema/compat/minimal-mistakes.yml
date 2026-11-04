@@ -1,0 +1,16 @@
+# Minimal Mistakes 4: its layout names and the theme layouts that take their place.
+# Read by modootoday-check (an unknown layout names the replacement) and the docs migration table.
+theme: Minimal Mistakes
+layouts:
+  single: doc or post
+  splash: home with sections
+  posts: blog
+  categories: archive
+  tags: archive
+  collection: directory
+  search: search
+  home: home
+  archive: archive
+  archive-taxonomy: archive
+# Same name, different meaning: Minimal Mistakes' archive is a page that lists posts in its body.
+same_name: [archive, home, search]

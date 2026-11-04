@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/
-source_rev: sha256:0af13edb9a3d
+source_rev: sha256:6d554e344870
 title: 디렉터리 레이아웃
 description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카드 목록으로 보여 주며 JavaScript 없이 필터링합니다.
 nav_order: 20
@@ -20,6 +20,8 @@ nav_order: 20
 | `integrations` | 로고, 이름, 분류, 설명 | `category` | ItemList | [연동](/jekyll-theme-modootoday/ko/layouts/directory/integrations/) |
 
 `layout: directory`는 기본형입니다. `preset:`에 위 이름 중 하나를 쓰거나, 생략하면 단순한 카드가 됩니다.
+
+GitHub Pages에서는 jekyll-default-layout이 레이아웃이 없는 컬렉션 문서에 컬렉션과 같은 이름의 레이아웃을 붙입니다. 그래서 `_portfolio/atlas.md`는 `portfolio`가 됩니다. `items:`, `data:`, `records:`가 없는 문서는 목록이 아니라 항목 하나이므로, 이 레이아웃들은 그 문서를 짝이 되는 상세 페이지로 그립니다. `portfolio`는 `project`, `jobs`는 `job`, `events`는 `event`, 나머지는 `detail`이 되고 구조화 데이터도 그 페이지를 따릅니다. `defaults`에서 컬렉션의 레이아웃을 정할 때까지 `modootoday-check`가 경고합니다.
 
 ## 항목
 

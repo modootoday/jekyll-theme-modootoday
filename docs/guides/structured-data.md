@@ -35,7 +35,7 @@ Dates are ISO 8601 with the site time zone; text is escaped so the block is safe
 | `course` | `Course`; `LearningResource` through `schema.type` or `schema.layouts` |
 | others | `WebPage` |
 
-Authors come from `author`/`authors` in front matter, looked up in `_data/authors.yml`.
+Authors come from `author`/`authors` in front matter (ids looked up in `_data/authors.yml`, names, or a `{name, url}` map), else from `modootoday.schema.author`, else from the site's `author:`; the byline and the Atom feed show the same people.
 
 ## Configuration
 

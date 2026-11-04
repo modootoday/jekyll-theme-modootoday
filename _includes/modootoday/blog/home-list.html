@@ -1,0 +1,26 @@
+{%- comment -%}The post list under a home page body, as minima draws it, when blog/home-posts.html says so. Heading: list_title,
+  else blog.latest. Excerpts: show_excerpts (page, then site), else modootoday.blog.excerpt. Uses jekyll-paginate's
+  paginator on index.html.{%- endcomment -%}
+{%- include modootoday/blog/home-posts.html -%}
+{%- if mt_home_posts -%}
+{%- assign _lang = page.lang | default: site.lang | default: "en" -%}
+{%- include modootoday/i18n.html lang=_lang -%}
+{%- include modootoday/blog/config.html -%}
+{%- assign _hx = page.show_excerpts -%}{%- if _hx == nil -%}{%- assign _hx = site.show_excerpts -%}{%- endif -%}
+{%- if _hx == true -%}{%- assign mt_blog_excerpt = true -%}{%- elsif _hx == false -%}{%- assign mt_blog_excerpt = false -%}{%- endif -%}
+{%- if paginator.posts -%}{%- assign _hl = paginator.posts -%}{%- assign _hmore = false -%}
+{%- else -%}
+{%- include modootoday/blog/select.html lang=page.posts_lang -%}
+{%- assign _hl = mt_posts -%}{%- assign _hmore = false -%}{%- if mt_posts.size > mt_blog_per_page -%}{%- assign _hmore = true -%}{%- endif -%}
+{%- endif %}
+<section class="mt-blog mt-home-posts" data-variant="{{ mt_blog_variant }}" aria-labelledby="mt-home-posts-title">
+<h2 id="mt-home-posts-title">{{ page.list_title | default: mt_t_blog_latest }}</h2>
+{%- if _hl.size == 0 %}
+<p class="mt-archive-empty">{{ mt_t_archive_empty }}</p>
+{%- else -%}
+{% include modootoday/blog/list.html posts=_hl limit=mt_blog_per_page heading="h3" %}
+{%- endif -%}
+{%- assign _hau = page.archive_url | default: site.modootoday.archive.tags -%}
+{% include modootoday/blog/pager.html more=_hmore url=_hau %}
+</section>
+{%- endif -%}

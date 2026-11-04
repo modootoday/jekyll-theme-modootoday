@@ -10,7 +10,7 @@
 {% for _p in _llms_pages -%}
 {%- assign _tw = _p.url | append: "index.md" -%}{%- if _p.url contains ".html" -%}{%- assign _tw = _p.url | replace: ".html", ".md" -%}{%- endif -%}
 {%- assign _sp = "/" | append: _p.path -%}{%- assign _sf = site.static_files | where: "path", _sp | first -%}{%- if _sf -%}{%- assign _tw = _sp -%}{%- endif -%}
-{%- if site.url -%}{%- assign _href = _tw | absolute_url -%}{%- else -%}{%- assign _href = _tw | relative_url -%}{%- endif -%}
+{%- if site.url and site.url != "" -%}{%- assign _href = _tw | absolute_url -%}{%- else -%}{%- assign _href = _tw | relative_url -%}{%- endif -%}
 - [{{ _p.title | default: _p.name }}]({{ _href }}){% if _p.description %}: {{ _p.description | strip_newlines }}{% endif %}
 {% endfor -%}
 {%- assign _llms_def = site.lang | default: "en" -%}
@@ -21,7 +21,7 @@
   {%- assign _lurl = "/" | append: _code | append: "/llms.txt" -%}
   {%- assign _lp = site.pages | where: "url", _lurl | first -%}
   {%- if _lp and _code != _llms_lang -%}
-    {%- if site.url -%}{%- assign _href = _lurl | absolute_url -%}{%- else -%}{%- assign _href = _lurl | relative_url -%}{%- endif -%}
+    {%- if site.url and site.url != "" -%}{%- assign _href = _lurl | absolute_url -%}{%- else -%}{%- assign _href = _lurl | relative_url -%}{%- endif -%}
     {%- capture _lname -%}{%- include modootoday/i18n/name.html code=_code -%}{%- endcapture -%}
     {%- assign _lname = _l[1].language | default: _lname -%}
     {%- capture _tr %}{{ _tr }}- [{{ _lname }}]({{ _href }}): {{ _code }} pages

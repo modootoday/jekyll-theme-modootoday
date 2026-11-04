@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/structured-data/
-source_rev: sha256:424690582723
+source_rev: sha256:e75b29287dce
 nav_order: 80
 title: 구조화 데이터
 description: 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프와 설정 방법.
@@ -41,7 +41,7 @@ description: 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프�
 | `course` | `Course`. `schema.type`이나 `schema.layouts`로 `LearningResource` |
 | 그 밖 | `WebPage` |
 
-저자는 front matter의 `author`/`authors`를 `_data/authors.yml`에서 찾아 넣습니다.
+저자는 front matter의 `author`/`authors`(`_data/authors.yml`에서 찾는 id, 이름, `{name, url}` 맵)에서 오고, 없으면 `modootoday.schema.author`, 그다음 사이트의 `author:`에서 옵니다. 작성자 줄과 Atom 피드도 같은 사람을 보여 줍니다.
 
 ## 설정
 

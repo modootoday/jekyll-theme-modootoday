@@ -2,7 +2,7 @@
 listing the top-level links, then each group's links under the group title. Needs mt_nav and the i18n labels.{%- endcomment -%}
 <details class="mt-menu mt-nav-sheet"><summary aria-label="{{ mt_t_nav_menu }}" title="{{ mt_t_nav_menu }}">{% include modootoday/brand/icon.html name="menu" %}</summary><ul>
 {%- for it in mt_nav %}
-{%- if it.items %}
+{%- if it.items and mt_nav_groups %}
 <li><span class="mt-nav-sheet-label">{{ it.title }}</span><ul>
 {%- for sub in it.items %}<li><a href="{% include modootoday/link.html url=sub.url %}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
 </ul></li>

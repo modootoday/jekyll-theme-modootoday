@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # md-components v1 checker (Ruby stdlib only; Nokogiri optional). This file only assembles the parts;
-# rule groups live in check/<context>/ (config, page, build, registry, source, layouts) and report into one shared Context.
+# rule groups live in check/<context>/ (config, page, build, registry, source, layouts, native) and report into one shared Context.
 require "yaml"
 require "date"
 require_relative "markdown"
@@ -23,6 +23,9 @@ require_relative "check/config/keys"
 require_relative "check/build/site_assets"
 require_relative "check/source/github_pages"
 require_relative "check/layouts"
+require_relative "check/native/sources"
+require_relative "check/native/layouts"
+require_relative "check/native/collections"
 require_relative "check/build/twins"
 require_relative "check/build/aliases"
 require_relative "check/build/records"

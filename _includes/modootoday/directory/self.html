@@ -1,0 +1,8 @@
+{%- comment -%}Sets mt_self_detail when a directory layout renders a collection document itself (jekyll-default-layout gives _portfolio/x.md
+  the portfolio layout): the document has no items:, data: or records: source, so it is one item. The value is the layout's
+  mt_self_detail, the detail layout of the same family (project, job, event or detail); mt_self_kind is its mt_kind.{%- endcomment -%}
+{%- assign mt_self_detail = nil -%}{%- assign mt_self_kind = nil -%}
+{%- if layout.mt_self_detail and page.collection and page.collection != "posts" and page.items == nil and page.data == nil and page.records == nil -%}
+{%- assign mt_self_detail = layout.mt_self_detail -%}
+{%- assign mt_self_kind = mt_self_detail -%}{%- if mt_self_kind == "detail" -%}{%- assign mt_self_kind = "item" -%}{%- endif -%}
+{%- endif -%}

@@ -1,0 +1,6 @@
+{%- comment -%}Sets mt_home_posts: whether a home page lists the latest posts. Front matter posts: true or false decides; unset, the
+  list shows when the page has no hero and no sections: and the site has posts. Read by blog/home-list.html and stylesheets.html.{%- endcomment -%}
+{%- assign mt_home_posts = false -%}
+{%- if page.posts == true -%}{%- assign mt_home_posts = true -%}
+{%- elsif page.posts == nil and page.hero == nil and page.sections == nil and site.posts.size > 0 -%}{%- assign mt_home_posts = true -%}
+{%- endif -%}

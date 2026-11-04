@@ -64,6 +64,25 @@ jobs:
           bundle exec jekyll build -s "$CLASSIC_TREE" -d "$RUNNER_TEMP/remote-site" --config "$CLASSIC_TREE/_config.yml,$RUNNER_TEMP/remote.yml"
           bundle exec ruby exe/modootoday-check "$CLASSIC_TREE" "$RUNNER_TEMP/remote-site" $flags --github-pages
           diff -r -x '*.css' "$RUNNER_TEMP/gem-site" "$RUNNER_TEMP/remote-site"
+      # Plain Jekyll shapes on remote_theme at this commit: a `jekyll new` site and layouts in subfolders
+      # (test/consumer/minima_shaped_test.rb and test/layouts/families/nested_layout_test.rb run them on the gem).
+      - name: Plain Jekyll fixtures on remote_theme
+        if: matrix.stack == 'github-pages' && matrix.starter == 'docs'
+        env:
+          PAGES_REPO_NWO: ${{ github.repository }}
+          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          printf 'theme: null\nremote_theme: %s@%s\nplugins: [jekyll-remote-theme, jekyll-feed]\nauthor: {name: Jane Doe}\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$RUNNER_TEMP/plain.yml"
+          for f in minima-shaped nested-layouts; do
+            bundle exec jekyll build -s "test/fixtures/sites/$f" -d "$RUNNER_TEMP/$f" --config "test/fixtures/sites/$f/_config.yml,$RUNNER_TEMP/plain.yml" 2>&1 | tee "$RUNNER_TEMP/$f.log"
+            if grep -q 'does not exist' "$RUNNER_TEMP/$f.log"; then exit 1; fi
+            bundle exec ruby exe/modootoday-check "test/fixtures/sites/$f" "$RUNNER_TEMP/$f"
+          done
+          grep -q 'href="/about/"' "$RUNNER_TEMP/minima-shaped/index.html"
+          grep -q 'mt-home-posts' "$RUNNER_TEMP/minima-shaped/index.html"
+          grep -q 'mt-post-author">Jane Doe' "$RUNNER_TEMP"/minima-shaped/jekyll/update/2026/01/05/welcome-to-jekyll.html
+          grep -q 'data-fixture-layout="endpoint" data-fixture-page="docs/endpoint"' "$RUNNER_TEMP/nested-layouts/api/get-user/index.html"
+          grep -q 'data-fixture-layout="lesson" data-fixture-page="learn/lesson"' "$RUNNER_TEMP/nested-layouts/learn/first/index.html"
 
   # The real GitHub Pages builder (the image Pages deployments use) on each classic tree, remote_theme pinned to this
   # commit and both URL aliases on, with the stubs modootoday-stubs writes; then the checker on its output.

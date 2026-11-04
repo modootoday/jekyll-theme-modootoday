@@ -1,0 +1,18 @@
+{%- comment -%}Sets mt_authors for include.of (default page): each entry is a map (name, url, page, avatar or picture, bio, email) or
+  a plain name. Sources in order: authors, author (a _data/authors.yml key, a comma list, a list or a map), then
+  site.modootoday.schema.author, then site.author. A key of _data/authors.yml becomes its entry there.{%- endcomment -%}
+{%- assign _asp = include.of | default: page -%}
+{%- assign _asv = _asp.authors | default: _asp.author | default: site.modootoday.schema.author | default: site.author -%}
+{%- assign mt_authors = "" | split: "" -%}
+{%- assign _asl = "" | split: "" -%}
+{%- if _asv.name -%}{%- assign _asl = _asl | push: _asv -%}
+{%- elsif _asv.first == nil -%}{%- if _asv -%}{%- assign _asl = _asv | split: "," -%}{%- endif -%}
+{%- else -%}{%- assign _asl = _asv -%}
+{%- endif -%}
+{%- for _ase in _asl -%}
+{%- if _ase.name -%}{%- assign mt_authors = mt_authors | push: _ase -%}{%- continue -%}{%- endif -%}
+{%- if _ase.first -%}{%- continue -%}{%- endif -%}
+{%- assign _asi = _ase | strip -%}{%- if _asi == "" -%}{%- continue -%}{%- endif -%}
+{%- assign _asd = site.data.authors[_asi] -%}
+{%- if _asd.name -%}{%- assign mt_authors = mt_authors | push: _asd -%}{%- else -%}{%- assign mt_authors = mt_authors | push: _asi -%}{%- endif -%}
+{%- endfor -%}

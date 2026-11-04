@@ -1,5 +1,5 @@
 {%- comment -%}Previous / next in docs order: the nav flattened, a group's own page first, then its items (and their sub-items) (only for pages listed in the nav; front matter pagination: false hides it).{%- endcomment -%}
-{%- if mt_nav and mt_components contains "pagination" and page.pagination != false -%}
+{%- if mt_nav and mt_nav_groups and mt_components contains "pagination" and page.pagination != false -%}
 {%- assign _flat = "" | split: "" -%}
 {%- for it in mt_nav -%}
 {%- if it.url -%}{%- assign _one = mt_nav | where: "url", it.url -%}{%- assign _flat = _flat | concat: _one -%}{%- endif -%}

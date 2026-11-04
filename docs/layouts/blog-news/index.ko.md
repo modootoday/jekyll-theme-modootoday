@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/blog-news/
-source_rev: sha256:3935f68404ab
+source_rev: sha256:93a03a008efa
 title: 블로그와 뉴스
 nav_order: 50
 description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 페이지, Atom 피드를 만듭니다.
@@ -52,14 +52,14 @@ category: guides   # 필요할 때만 넣습니다. tag: 도 쓸 수 있습니�
 ```markdown
 ---
 title: 1.0 출시
-author: kim            # 또는 authors: [kim, lee]. _data/authors.yml의 id를 씁니다
+author: kim            # 또는 authors: [kim, lee]. _data/authors.yml의 id, 이름, {name, url, picture}를 씁니다
 image: /assets/cover.png
 series: launch         # 같은 series 글에는 "3편 중 2편"과 이동 링크가 붙습니다
 last_modified_at: 2026-10-30
 ---
 ```
 
-작성자 정보는 `_data/authors.yml`에 넣습니다. 글마다 `BlogPosting` JSON-LD와 `article:*` Open Graph 태그가 나갑니다.
+작성자 정보는 `_data/authors.yml`에 넣습니다. 이 파일에 없는 id는 쓴 그대로 나오므로 `author: Kim Lee`처럼 이름만 써도 됩니다. `author:`에는 쉼표 목록이나 `name`, `url`, `picture`가 있는 맵(jekyll-seo-tag 형식)도 쓸 수 있습니다. 둘 다 없는 글은 `modootoday.schema.author`, 그다음 사이트의 `author:`(이름, 또는 minima의 `{name, email}` 같은 맵)를 씁니다. 작성자 줄, Atom 피드, JSON-LD가 같은 목록을 읽습니다. 글마다 `BlogPosting` JSON-LD와 `article:*` Open Graph 태그가 나갑니다.
 
 ## 뉴스
 

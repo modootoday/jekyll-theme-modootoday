@@ -14,7 +14,9 @@ description: Move a site from another Jekyll theme, adopt the theme in an existi
 4. Move colours and fonts into `modootoday.tokens` instead of overriding CSS selectors.
 5. Run `jekyll build` and `modootoday-check SRC _site`, then fix what it reports.
 
-Common mappings: minima `layout: page` and just-the-docs `layout: default` become `layout: doc`; callouts made with an `include note.html` tag become `> [!NOTE]`; badges written in HTML become `` `status:available` `` code spans.
+A site that `jekyll new` made (minima) needs no other change: `layout: page` is the `doc` layout under that name, the home page lists the posts, the header lists `header_pages` or every titled page, and posts show the site's `author:`. `modootoday-check` reports a layout that no site or theme file provides and names the replacement for Minimal Mistakes layouts such as `single` (`doc` or `post`) and `splash`.
+
+Common mappings: just-the-docs `layout: default` becomes `layout: doc`; callouts made with an `include note.html` tag become `> [!NOTE]`; badges written in HTML become `` `status:available` `` code spans.
 
 ## Adopting in an existing project
 

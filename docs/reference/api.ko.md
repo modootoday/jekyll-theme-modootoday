@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:9b85a7a1f7ff
+source_rev: sha256:b55281411c2d
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -21,13 +21,13 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 디자인 토큰 | 시맨틱·컴포넌트 사용자 속성 `--mt-*` (기본 토큰 `--mt-p-*` 제외). 생성되는 `tokens.json`도 같음 |
 | Sass | 토큰 훅 `_sass/modootoday/_site.scss`와 그 맵 `$mt-overrides-base`, `$mt-overrides`, `$mt-overrides-dark`([커스터마이즈](../../guides/customize/#토큰-브리지) 참고). 나머지 Sass 파셜과 변수는 내부용 |
 | Markdown 규칙 | `RULES.md`의 패턴과 출력 클래스 `mt-*`, 해제용 클래스 `mt-flat-list`(그 아래 목록 항목 사이 간격 없음) |
-| 레이아웃 | `default`, `doc`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| 레이아웃 | `default`, `doc`, `page`(Jekyll과 minima가 쓰는 이름의 `doc` 레이아웃), `post`, `archive`, `twin`, `llms`, `llms-full` |
 | 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`; 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있음; 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰기 |
 | 직접 만드는 include | `_includes/sections/<name>.html`. `visual: <name>`을 쓴 섹션이나 히어로 끝에 렌더링됨 ([사용자 정의](../../guides/customize/#섹션-비주얼과-전체-폭-페이지) 참고) |
 | 모듈 도우미와 이벤트 | 사이트의 `scripts` 모듈이 쓰는 ES 모듈 `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`). `mt:themechange` 이벤트([이벤트](#이벤트) 참고). `script:` 비주얼 계약(`data-mt-script`, `.mt-visual-stage`, `data-mt-ready`, [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고) |
 | 호출해도 되는 include | `modootoday/archive.html`(`by`, `lang`); `modootoday/brand/icon.html`(`name`: globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand. 선택: `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`). 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힘 |
 | include | `modootoday/t.html`(`key=`, 선택 `n=` / `name=`)은 페이지 언어의 테마 문구를 출력합니다 |
-| 데이터 파일 | `_data/i18n/<lang>.yml` 키(내장 카탈로그를 덮어쓸 때만), `_data/nav/<name>.yml`, `_data/components.yml` |
+| 데이터 파일 | `_data/i18n/<lang>.yml` 키(내장 카탈로그를 덮어쓸 때만), `_data/nav/<name>.yml`, `_data/navigation.yml`(`main`), `_data/authors.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션, 종료 코드 0(문제 없음)과 1(문제 또는 잘못된 사용법) |
 | 레코드 페이지 | `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts` |
 | 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름(`<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`)과 그 front matter, 종료 코드 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터) |

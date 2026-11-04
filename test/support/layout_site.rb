@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-# Builds a starter site (the docs starter unless named) plus extra pages (name => front matter + body) with a url,
-# for layout build tests.
+# Builds a starter site (the docs starter unless named, or a fixture site) plus extra pages (name => front matter + body)
+# with a url, for layout build tests.
 require "tmpdir"
 require "fileutils"
 require "open3"
@@ -12,13 +12,14 @@ require_relative "starters"
 module LayoutSite
   ROOT = File.expand_path("../..", __dir__)
 
-  def build_site(dir, pages, config: "", env: {}, starter: "docs")
+  # from: a site folder to start from instead of a starter (test/fixtures/sites/<name>); files: other files (path => text).
+  def build_site(dir, pages, config: "", env: {}, starter: "docs", from: nil, files: {})
     src = "#{dir}/src"
-    FileUtils.cp_r(Starters::Sources.path(starter), src)
+    FileUtils.cp_r(from || Starters::Sources.path(starter), src)
     FileUtils.rm_rf(["#{src}/_site", "#{src}/.jekyll-cache"])
-    pages.each do |n, (fm, body)|
+    pages.to_h { |n, (fm, body)| [n, "---\n#{fm}---\n#{body || "Body text.\n"}"] }.merge(files).each do |n, text|
       FileUtils.mkdir_p(File.dirname("#{src}/#{n}"))
-      File.write("#{src}/#{n}", "---\n#{fm}---\n#{body || "Body text.\n"}")
+      File.write("#{src}/#{n}", text)
     end
     merge_config("#{src}/_config.yml", config) unless config.empty?
     File.write("#{dir}/o.yml", "url: https://example.org\n")

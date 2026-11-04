@@ -5,7 +5,7 @@ an Article type or a front matter entity), BreadcrumbList (#breadcrumb). Absolut
   front matter schema: false           no JSON-LD on that page
   "<" is printed as \u003c, so the block never closes the script element early (CSP-safe: data, not script).{%- endcomment -%}
 {%- assign _ld = site.modootoday.schema -%}
-{%- unless site.modootoday.seo == false or _ld == false or _ld.enabled == false or page.schema == false or page.jsonld == false or site.url == nil -%}
+{%- unless site.modootoday.seo == false or _ld == false or _ld.enabled == false or page.schema == false or page.jsonld == false or site.url == nil or site.url == "" -%}
 {%- include modootoday/jsonld/type.html -%}
 {%- assign _ld_root = "/" | absolute_url -%}
 {%- assign _ld_url = page.url | absolute_url -%}

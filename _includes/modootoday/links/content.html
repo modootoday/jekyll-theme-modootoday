@@ -12,7 +12,7 @@
 {%- if site.modootoday.external_links.new_window -%}
 {%- assign _ext = _nwa | prepend: "<a" | append: ' href="http' -%}
 {%- assign _h = _h | replace: '<a href="http', _ext -%}
-{%- if site.url -%}{%- assign _own = _nwa | prepend: "<a" | append: ' href="' | append: site.url -%}{%- assign _ownr = '<a href="' | append: site.url -%}{%- assign _h = _h | replace: _own, _ownr -%}{%- endif -%}
+{%- if site.url and site.url != "" -%}{%- assign _own = _nwa | prepend: "<a" | append: ' href="' | append: site.url -%}{%- assign _ownr = '<a href="' | append: site.url -%}{%- assign _h = _h | replace: _own, _ownr -%}{%- endif -%}
 {%- endif -%}
 {%- if _h contains "<table" -%}{%- assign _h = _h | replace: "<table", '<div class="mt-table"><table' | replace: "</table>", "</table></div>" -%}{%- endif -%}
 {{ _h }}

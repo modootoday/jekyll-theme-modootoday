@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/structured-data/
-source_rev: sha256:424690582723
+source_rev: sha256:e75b29287dce
 nav_order: 80
 title: 構造化データ
 description: テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。
@@ -41,7 +41,7 @@ description: テーマが全ページに出力する schema.org JSON-LD グラ�
 | `course` | `Course`。`schema.type` か `schema.layouts` で `LearningResource` |
 | その他 | `WebPage` |
 
-著者は front matter の `author`/`authors` を `_data/authors.yml` から引きます。
+著者は front matter の `author`/`authors`(`_data/authors.yml` から引く id、名前、`{name, url}` のマップ)から取り、なければ `modootoday.schema.author`、次にサイトの `author:` から取ります。署名と Atom フィードも同じ人を表示します。
 
 ## 設定
 

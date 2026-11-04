@@ -26,14 +26,14 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- endif -%}
 {%- unless site.modootoday.seo == false -%}
 {%- assign _mt_url = page.url | absolute_url -%}
-{%- if site.url %}
+{%- if site.url and site.url != "" %}
 <link rel="canonical" href="{{ _mt_url }}">
 {%- endif -%}
 {%- endunless -%}
 {%- assign _mt_hreflang = site.modootoday.hreflang -%}{%- if _mt_hreflang == nil -%}{%- if site.modootoday.seo == false -%}{%- assign _mt_hreflang = false -%}{%- else -%}{%- assign _mt_hreflang = true -%}{%- endif -%}{%- endif -%}
 {%- if _mt_hreflang -%}
 {%- assign _mt_langs = site.modootoday.languages -%}
-{%- if _mt_langs and site.url -%}
+{%- if _mt_langs and site.url and site.url != "" -%}
 {%- assign _mt_def = site.lang | default: "en" -%}
 {%- assign _mt_plang = page.lang | default: _mt_def -%}
 {%- assign _mt_base = page.url -%}
@@ -72,7 +72,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- if site.title %}
 <meta property="og:site_name" content="{{ mt_site_title | default: site.title | escape }}">
 {%- endif -%}
-{%- if site.url %}
+{%- if site.url and site.url != "" %}
 <meta property="og:url" content="{{ _mt_url }}">
 {%- endif -%}
 <meta property="og:locale" content="{{ page.lang | default: site.lang | default: 'en' | replace: '-', '_' }}">

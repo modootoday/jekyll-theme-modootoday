@@ -15,16 +15,21 @@ Both modes: preload hints first (assets/preload.html), the site's own sheets las
 {%- for _x in layout.mt_css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor -%}
 {%- for _x in page.css -%}{%- assign mt_page_c = mt_page_c | append: _x | append: "|" -%}{%- endfor %}
 {%- include modootoday/assets/preload.html -%}
-{%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}
-{%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday.css" %}
+{%- comment -%}Blog, news and archive layouts and a home page with its post list add the separate blog sheet (both modes);
+  front matter blog_css: true opts any page in.{%- endcomment -%}
+{%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif -%}
+{%- if page.layout == "home" -%}{%- include modootoday/blog/home-posts.html -%}{%- if mt_home_posts -%}{%- assign mt_blog_css = true -%}{%- endif -%}{%- endif -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday.css" %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- unless mt.css == "bundle" -%}{%- include modootoday/assets/sheets.html kind="component" -%}{%- endunless %}
 {%- if mt_blog_css -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday-blog.css" %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}
 {%- comment -%}Optional per-layout bundles: the layout chain and the page may set mt_bundle: "<name> [<name>…]" to add
-  assets/css/modootoday-<name>.css (both modes), each on its own budget outside core.{%- endcomment -%}
-{%- assign _mtbn = layout.mt_bundle | append: " " | append: page.mt_bundle -%}{%- if page.hero.visual == "showcase" -%}{%- assign _mtbn = _mtbn | append: " hero" -%}{%- endif -%}{%- assign _mtbn = _mtbn | split: " " | uniq -%}
+  assets/css/modootoday-<name>.css (both modes), each on its own budget outside core. A directory layout's self-detail
+  (directory/self.html) takes the detail bundle in place of the layout chain's.{%- endcomment -%}
+{%- include modootoday/directory/self.html -%}
+{%- assign _mtbn = layout.mt_bundle -%}{%- if mt_self_detail -%}{%- assign _mtbn = "detail" -%}{%- endif -%}
+{%- assign _mtbn = _mtbn | append: " " | append: page.mt_bundle -%}{%- if page.hero.visual == "showcase" -%}{%- assign _mtbn = _mtbn | append: " hero" -%}{%- endif -%}{%- assign _mtbn = _mtbn | split: " " | uniq -%}
 {%- for _b in _mtbn -%}{%- if _b != "" and _b != "blog" -%}{%- assign _mtbp = '/assets/css/modootoday-' | append: _b | append: '.css' -%}{%- include modootoday/assets/url.html path=_mtbp %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}{%- endfor -%}

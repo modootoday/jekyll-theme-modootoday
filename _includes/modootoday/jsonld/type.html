@@ -1,13 +1,15 @@
 {%- comment -%}Resolves the page's schema.org type into _ld_type and its kind into _ld_kind (page | article | entity).
 Order: front matter schema.type, then FAQPage when schema.faq is auto (front matter, else site) and a c: faq section exists
-(_ld_faqs), then site.modootoday.schema.layouts[<layout>], then the theme's layout map, then WebPage.{%- endcomment -%}
+(_ld_faqs), then site.modootoday.schema.layouts[<layout>], then the theme's layout map, then WebPage. A directory layout's
+self-detail (directory/self.html) counts as its detail layout.{%- endcomment -%}
 {%- assign _ld_faq = _ld.faq -%}{%- if page.schema.faq != nil -%}{%- assign _ld_faq = page.schema.faq -%}{%- endif -%}
 {%- assign _ld_faqs = false -%}
 {%- if _ld_faq == "auto" -%}{%- for _s in page.sections -%}{%- if _s.c == "faq" -%}{%- assign _ld_faqs = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
 {%- assign _ld_type = page.schema.type -%}{%- if _ld_type == nil and _ld_faqs -%}{%- assign _ld_type = "FAQPage" -%}{%- endif -%}
-{%- assign _ld_type = _ld_type | default: site.modootoday.schema.layouts[page.layout] -%}
+{%- include modootoday/directory/self.html -%}{%- assign _ld_layout = mt_self_detail | default: page.layout -%}
+{%- assign _ld_type = _ld_type | default: site.modootoday.schema.layouts[_ld_layout] -%}
 {%- unless _ld_type -%}
-{%- case page.layout -%}
+{%- case _ld_layout -%}
 {%- when "post" -%}{%- assign _ld_type = "BlogPosting" -%}
 {%- when "news-article" -%}{%- assign _ld_type = "NewsArticle" -%}
 {%- when "project" -%}{%- assign _ld_type = "CreativeWork" -%}

@@ -4,7 +4,7 @@ Below 64rem the row is hidden and the same items open from a menu button (modoot
 {%- if mt_nav and mt_components contains "nav" %}
 <nav class="mt-nav" aria-label="{% include modootoday/i18n.html lang=_lang %}{{ mt_t_nav_label }}"><ul>
 {%- for it in mt_nav %}
-{%- if it.items %}
+{%- if it.items and mt_nav_groups %}
 {%- assign _cur = it.items | where: "url", page.url | first %}
 <li class="mt-nav-group"><details class="mt-menu"><summary{% if _cur %} class="mt-nav-current"{% endif %}>{{ it.title }}{% include modootoday/brand/icon.html name="chevron-down" size=14 %}</summary><ul>
 {%- for sub in it.items %}<li><a href="{% include modootoday/link.html url=sub.url %}"{% include modootoday/links/attrs.html on=sub.new_window target=sub.target url=sub.url %}{% if sub.url == page.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>{% endfor -%}
