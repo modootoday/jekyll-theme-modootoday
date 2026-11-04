@@ -211,7 +211,7 @@ An ordered list works too.
 
 ## Tables
 
-`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge shows there is more to scroll.
+`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that; from 40rem a word or code span breaks only when it is longer than its column. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge shows there is more to scroll.
 
 Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. Any other table stacks the same way when it does not fit: two or three columns that would scroll, or four or more with a cell over six lines. On a site that allows kramdown attribute lists, a line right after any table picks a variant:
 

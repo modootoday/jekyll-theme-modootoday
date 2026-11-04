@@ -19,8 +19,13 @@
   // Keys never break; numbers and aligned cells stay on one line.
   .mt-table td:first-child code, .mt-table td:is([style*="right"], [style*="center"]) { white-space: nowrap; }
   // 2-3 columns: later cells may break long words, but never below 5rem (the last one 9rem); then the region scrolls.
-  .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) { overflow-wrap: anywhere; min-inline-size: 5rem; }
-  .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) * { overflow-wrap: anywhere; }
+  // From 40rem only a word longer than its column breaks (break-word keeps min-content), so a short key never splits.
+  .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) { min-inline-size: 5rem; }
+  @media (min-width: 40rem) { .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) code { overflow-wrap: break-word; } }
+  @media (max-width: 39.99rem) {
+    .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child),
+    .mt-table > table:not(:has(th:nth-child(4))) td:not(:first-child) * { overflow-wrap: anywhere; }
+  }
   .mt-table > table:not(:has(th:nth-child(4))) td:last-child:not(:first-child) { min-inline-size: 9rem; }
   // 4+ columns: the table may grow to about 9rem per column and the first column stays in view.
   .mt-table > table:has(th:nth-child(4)) { max-inline-size: unquote("max(100%, 36rem)"); }
