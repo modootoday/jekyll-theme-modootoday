@@ -233,6 +233,13 @@ That is the 46 layouts of today plus the two planned machine layouts. The machin
 
 #### 3.8 Demos (hidden fixtures)
 
+Replaced by [[sot:modootoday/docs-demo-to-starter-map]] ([[adr:modootoday/20261104171141]]):
+
+- Demos move into the starters.
+- Layout demo URLs keep reference pages.
+- The other demo URLs become stubs to starter pages.
+- The `/demos/` rows here and the demo rows of section 5.2 no longer apply.
+
 | URL | Purpose | Layout | Src | Lang |
 |---|---|---|---|---|
 | `/demos/` | List of every demo, so none is an orphan | `doc` | G | F |
