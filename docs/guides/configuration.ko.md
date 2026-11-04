@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:68b162358137
+source_rev: sha256:00e9396d7ca4
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -58,6 +58,7 @@ modootoday:
 | `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
 | `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
+| `header` | `{compact_title: true}` | `compact_title: false`면 휴대폰에서도 로고 옆에 사이트 이름을 보여 줍니다. |
 | `csp` | 없음 | `strict`면 처음 그리기 전에 도는 테마 스크립트를 인라인 대신 파일로 불러옵니다. |
 | `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |
 | `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
@@ -94,6 +95,7 @@ modootoday:
 - `lists`: 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다.
 - `language_switcher`: 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 갑니다. 헤더 메뉴는 언어 수와 상관없이 폭이 같고, 언어가 둘 미만이면 표시하지 않습니다. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더합니다.
 - `logo`, `favicon`: `brand` 마크는 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 그립니다. 직접 지정한 로고 이미지는 장식용(`alt=""`)입니다. 다른 로고를 그리려면 `modootoday/brand/logo.html`을 덮어쓰세요. `brand` 파비콘은 SVG, 32px PNG, Apple 터치 아이콘을 연결합니다.
+- `header`: 화면 너비가 30rem(480px)보다 좁으면 `logo`가 있는 사이트는 헤더에 로고만 보여 줍니다. 스크린 리더는 사이트 이름을 그대로 읽습니다. `logo`가 없으면 이름이 항상 보입니다.
 - `mermaid`, `math`: 설정은 `{enabled: true, src:, integrity:, theme: auto}`와 `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`이고, 블록이 있는 페이지에서만 불러옵니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`(수식은 `style-src`, `font-src`도)에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다.
 - `banner`: 막대는 건너뛰기 링크 아래에 놓입니다.
 - `loading`: Markdown에서 스피너나 스켈레톤을 쓰는 페이지는 알아서 시트를 불러옵니다.

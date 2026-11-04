@@ -196,6 +196,16 @@ class CssTest < Minitest::Test
     refute_match(/nowrap/, core[/\.mt-site-title\s*\{([^}]*)\}/, 1].to_s, "a one-line title is cut mid-word")
   end
 
+  def test_compact_title_hides_the_name_visually_below_30rem
+    core, = self.class.build("all")
+    narrow = core[/@media ?\(max-width: ?29\.99rem\)\s*\{(.*?\}\s*)\}/m, 1].to_s
+    name = narrow[/\.mt-compact-title \.mt-site-name\s*\{([^}]*)\}/, 1].to_s
+    assert_match(/position:\s*absolute/, name)
+    assert_match(/clip:\s*rect\(0 0 0 0\)/, name)
+    refute_match(/display:\s*none/, name, "the name stays the link's accessible name")
+    assert_match(/min-width:\s*2\.5rem/, narrow[/\.mt-compact-title\s*\{([^}]*)\}/, 1].to_s, "a 40px target")
+  end
+
   def test_font_stacks_only_for_declared_languages
     langs, = self.class.build("langs")
     assert_match(/:root:lang\(ko\)\s*\{\s*--mt-font-sans:\s*Pretendard Variable,\s*Pretendard,/, langs)

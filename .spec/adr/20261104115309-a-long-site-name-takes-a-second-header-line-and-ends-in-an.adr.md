@@ -3,9 +3,9 @@ id: adr:modootoday/20261104115309
 title: A long site name takes a second header line and ends in an ellipsis
 status: active
 created: 2026-11-04T11:53:09Z
-updated: 2026-11-04T19:59:10Z
+updated: 2026-11-04T21:32:17Z
 rel:
-  governs: [_sass/modootoday/components/core/chrome/_header.scss, _layouts/default.html]
+  governs: [_sass/modootoday/components/core/chrome/_header.scss, _layouts/default.html, lib/modootoday/check/config/keys/appearance/chrome.rb]
 ---
 
 # A long site name takes a second header line and ends in an ellipsis
@@ -23,6 +23,10 @@ Options weighed: a single line with an ellipsis (always safe, but hides most of 
 - Amended for 1.5.0 (visual review): a single token wider than the space, such as "modoo.today" in 75px, ended in an ellipsis on the first line ("modoo…" over "theme"), hiding the brand. The header prints `<wbr>` after every dot of the name, and the span has `overflow-wrap: anywhere`, so such a token breaks after a dot, or anywhere as a last resort, before the two-line clamp applies: "modoo." over "today…" at 360px. The two-line clamp itself is unchanged.
 - Below 64rem the name is one step smaller (15px), so a two-word name such as "modoo.today theme" or "Static Agent Marketplace" shows in full from 390px.
 - The breakpoint of the inline nav stays at 64rem.
+- Amended for phones (maintainer request): below 30rem a site with a logo shows only the logo. Measured on the docs header with the menu, search, language and theme buttons, those controls and the gutters take 287px, leaving the name 73px at 360, 103px at 390 and 127px at 414, where "modoo.today theme" (167px) and the Japanese name (159px) still wrap or clamp; the English name needs about 454px for one line, and from 480px every docs name fits on one line. 30rem is the first step above that; 40rem would hide a name that already fits between 480 and 640px.
+  - The layout adds `mt-compact-title` to the title link only when `modootoday.logo` is set and `modootoday.header.compact_title` is not `false` (default on), so a site without a logo keeps the visible name and never gets an empty link.
+  - The name is hidden with the theme's visually-hidden declarations (those of `.mt-sr-only`), not `display: none`, so it stays the link's accessible name. The link gets `min-width` and `min-height` of 2.5rem, a 40px target like the other header buttons.
+  - The rule lives in the core header partial with the other title rules: the header is on every page, so a module sheet would add a request for one rule. Core grows from 4,168 to 4,191 bytes gzip, under its 4,608-byte cap.
 
 ## Consequences
 

@@ -16,6 +16,7 @@ _config.yml: modootoday.back_to_top must be true or false
 _config.yml: modootoday.loading must be true or false
 _config.yml: modootoday.css must be split or bundle
 _config.yml: modootoday.banner must be a map with text: (and optional url:, link:)
+_config.yml: modootoday.header must be a map with compact_title: set to true or false
 _config.yml: modootoday.sidebar must be auto, true or false
 _config.yml: modootoday.components must be a list
 _config.yml: modootoday.tokens must be a map
@@ -30,6 +31,6 @@ _config.yml: modootoday.math.integrity must be a map {js: sha384-…, css: sha38
 _config.yml: modootoday.math.src: use https:// (got http://cdn.example/katex.js)
 _config.yml: modootoday.math.css: pin an exact version in the URL (e.g. …@11.4.1/…), not a range or latest (got https://cdn.example/katex@latest/katex.css)
 _config.yml: modootoday.math: css is an https URL, so integrity.css (an SRI hash such as sha384-…) is required; nothing loads without it
-md-components check: 32 problem(s)
+md-components check: 33 problem(s)
 warning: _config.yml: modootoday.math: without auto_render_src only ```math fences render; $$ blocks stay TeX source
 exit 1

@@ -18,4 +18,9 @@
   @media (min-width: 64rem) and (max-width: 79.99rem) { .mt-header-inner { column-gap: .75rem; } }
   // Below 64rem the nav is a menu button at the end of the row; the title takes the free space.
   @media (max-width: 63.99rem) { .mt-header-inner { column-gap: .5rem; } .mt-site-title { margin-inline-end: auto; font-size: .9375rem; } }
+  // Below 30rem the controls leave the name under 130px, so a site with a logo shows only the logo; the hidden name
+  // stays the link's accessible name, and the link keeps a 40px target.
+  @media (max-width: 29.99rem) { .mt-compact-title { min-width: 2.5rem; min-height: 2.5rem; }
+    .mt-compact-title .mt-site-name { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; } }
 }

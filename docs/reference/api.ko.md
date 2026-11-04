@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:ca9f50ec884c
+source_rev: sha256:e4115bfcab37
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -98,7 +98,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 
 위 행에 대한 참고:
 
-- 페이지 틀: `header.mt-header` > `.mt-header-inner` 안에 `.mt-site-title` > `.mt-site-name`(사이트 이름, 두 줄까지 보이고 긴 단어는 점 뒤에서 나뉘며 넘치면 말줄임), `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu`, `.mt-theme-toggle`이 있습니다. `nav.mt-nav`는 64rem 이상에서 링크가 한 줄로 놓인 `ul`이고, 그보다 좁으면 `details.mt-menu.mt-nav-sheet`가 됩니다. 이 메뉴에는 `summary` 메뉴 버튼과 `.mt-nav-sheet-label` 그룹 제목이 든 `ul` 시트가 있습니다. 언어 메뉴에는 `summary` 지구본 버튼과 `a[lang][hreflang]` 링크 `ul`이 있고, 현재 언어에는 `aria-current`가 붙습니다. `html[data-theme]`는 고정 색 구성이나 전환 버튼이 정합니다.
+- 페이지 틀: `header.mt-header` > `.mt-header-inner` 안에 `.mt-site-title` > `.mt-site-name`(사이트 이름, 두 줄까지 보이고 긴 단어는 점 뒤에서 나뉘며 넘치면 말줄임. 로고가 있으면 제목에 `.mt-compact-title`이 붙어 30rem보다 좁을 때 이름을 화면에서만 숨김), `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu`, `.mt-theme-toggle`이 있습니다. `nav.mt-nav`는 64rem 이상에서 링크가 한 줄로 놓인 `ul`이고, 그보다 좁으면 `details.mt-menu.mt-nav-sheet`가 됩니다. 이 메뉴에는 `summary` 메뉴 버튼과 `.mt-nav-sheet-label` 그룹 제목이 든 `ul` 시트가 있습니다. 언어 메뉴에는 `summary` 지구본 버튼과 `a[lang][hreflang]` 링크 `ul`이 있고, 현재 언어에는 `aria-current`가 붙습니다. `html[data-theme]`는 고정 색 구성이나 전환 버튼이 정합니다.
 - 문서 사이드바: `nav.mt-sidebar`는 64rem 이상에서, `details.mt-sidebar-mobile`은 그보다 좁을 때 보입니다. 현재 링크에는 `aria-current=page`가 붙습니다.
 - 페이지 도구: 버튼은 `ul` 안에 있고 JS가 돌기 전에는 숨겨집니다. `a[type="text/markdown"]`는 Markdown 보기 링크입니다.
 - 히어로: 리드는 `h1` 바로 다음의 첫 `p`입니다. 링크만 있는 `p`에서는 첫 링크가 주 버튼입니다. `.mt-hero-checks`는 front matter `hero: {checks: true}`로 켜며, 첫 `ul`이 `--mt-ok` 색 ✓ 표시 줄이 됩니다.

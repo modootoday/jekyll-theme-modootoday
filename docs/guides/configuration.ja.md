@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:68b162358137
+source_rev: sha256:00e9396d7ca4
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -58,6 +58,7 @@ modootoday:
 | `feed` | `false` | `true` で `/feed.xml` にリンクする。`plugins` に `jekyll-feed` を追加する。 |
 | `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
 | `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
+| `header` | `{compact_title: true}` | `compact_title: false` でスマートフォンでもロゴの横にサイト名を表示する。 |
 | `csp` | なし | `strict` で、最初の描画前に動くテーマのスクリプトをインラインではなくファイルから読み込む。 |
 | `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |
 | `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |
@@ -94,6 +95,7 @@ modootoday:
 - `lists`: 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれらと `hero: {checks: true}` を整え、使うページにだけ読み込まれます。
 - `language_switcher`: 各リンクはこのページの翻訳、なければその言語のトップページに移動します。ヘッダーのメニューは言語数によらず幅が一定で、言語が 2 つ未満なら表示しません。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側のクリックで閉じる動作を加えます。
 - `logo`, `favicon`: `brand` のマークは `currentColor`(`brand` トークンなのでライト・ダークに追従)で描きます。独自のロゴ画像は装飾扱い(`alt=""`)です。別のロゴを描くには `modootoday/brand/logo.html` を上書きします。`brand` のファビコンは SVG、32px PNG、Apple タッチアイコンをリンクします。
+- `header`: 画面の幅が 30rem(480px)より狭いと、`logo` のあるサイトはヘッダーにロゴだけを表示します。スクリーンリーダーはサイト名をそのまま読み上げます。`logo` がなければ名前は常に表示されます。
 - `mermaid`, `math`: 設定は `{enabled: true, src:, integrity:, theme: auto}` と `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、ブロックのあるページでだけ読み込みます。`src` はバージョンを固定した https URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。`inline: true` なら `$…$` も描画します。CDN を使うと `script-src`(数式は `style-src` と `font-src` も)にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。
 - `banner`: バーはスキップリンクの下に表示されます。
 - `loading`: Markdown でスピナーやスケルトンを使うページは、シートを自動で読み込みます。

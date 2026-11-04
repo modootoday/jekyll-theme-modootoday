@@ -23,6 +23,7 @@ class MessagesSnapshotTest < Minitest::Test
       components: callout
       sidebar: left
       banner: {url: /x/}
+      header: {compact_title: maybe}
       css: inline
       loading: maybe
       back_to_top: maybe
@@ -67,6 +68,7 @@ class MessagesSnapshotTest < Minitest::Test
       languages: [en, ko]
       full_languages: [ko]
       lists: {link_chips: true, titled_items: false}
+      header: {compact_title: false}
       archive: {tags: /tags/, categories: /categories/}
       edit_url: https://git.example/o/r/edit/main/
       css_layers: true

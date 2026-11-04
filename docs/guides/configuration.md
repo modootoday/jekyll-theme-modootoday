@@ -52,6 +52,7 @@ modootoday:
 | `feed` | `false` | `true` links `/feed.xml`. Add `jekyll-feed` to `plugins`. |
 | `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
 | `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
+| `header` | `{compact_title: true}` | `compact_title: false` keeps the site name beside the logo on phones. |
 | `csp` | none | `strict` loads the early theme script from a file instead of inline. |
 | `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |
 | `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
@@ -88,6 +89,7 @@ modootoday:
 - `lists`: on plain sections and pages, a list of links only becomes `ul.mt-chips` and an item starting with `**Title**:` gets `strong.mt-item-title`. The optional `lists` sheet styles them (and `hero: {checks: true}`) and is linked only where used.
 - `language_switcher`: each link goes to this page's translation, or that language's home page. The header menu keeps the same width however many languages there are, and nothing renders with fewer than two. The menu opens without JavaScript; `menu.js` adds Esc, arrow keys and closing on an outside click.
 - `logo`, `favicon`: the `brand` mark is drawn in `currentColor` (the `brand` token, so it follows light and dark); your own logo image is decorative (`alt=""`). Override `modootoday/brand/logo.html` to draw something else. The `brand` favicon links an SVG, a 32 px PNG and an Apple touch icon.
+- `header`: on screens narrower than 30rem (480 px), a site with a `logo` shows only the logo in the header. Screen readers still read the site name. Without a `logo` the name always shows.
 - `mermaid`, `math`: the settings are `{enabled: true, src:, integrity:, theme: auto}` and `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`, and they load only on pages with a block. `src` is a version-pinned https URL with an SRI `integrity` hash, or a path on your site. `inline: true` also renders `$…$`. A CDN adds its origin to `script-src` (math also to `style-src` and `font-src`) and sends visitors' IP addresses to it.
 - `banner`: the bar sits under the skip link.
 - `loading`: pages that use the spinner or skeleton in Markdown load the sheet on their own.

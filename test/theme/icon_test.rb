@@ -43,7 +43,17 @@ class IconTest < Minitest::Test
       end
       assert_match(/<button class="mt-theme-toggle"[^>]*aria-label="[^"]+"/, html)
       refute_match(/https?:\/\/[^"]*\.svg/, html, "icons are inline, no external requests")
-      assert_match(/class="mt-site-title mt-has-logo"[^>]*><svg class="mt-icon mt-icon-brand mt-logo"/, html)
+      assert_match(/class="mt-site-title mt-has-logo mt-compact-title"[^>]*><svg class="mt-icon mt-icon-brand mt-logo"/, html)
+    end
+  end
+
+  def test_compact_title_needs_a_logo_and_can_be_turned_off
+    Dir.mktmpdir do |d|
+      off = File.read("#{build(d, "modootoday: {logo: brand, header: {compact_title: false}}\n")}/guide/index.html")
+      assert_match(/class="mt-site-title mt-has-logo"[^>]*>/, off)
+      plain = File.read("#{build(d, "x: 1\n")}/guide/index.html")
+      refute_includes plain, "mt-compact-title", "without a logo the name is the only visible content of the link"
+      assert_match(%r{class="mt-site-title"[^>]*><span class="mt-site-name">[^<]+}, plain)
     end
   end
 
