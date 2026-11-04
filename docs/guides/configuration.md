@@ -8,7 +8,6 @@ sections:
   - head
   - i18n
   - registry
-  - {c: cta, name: next}
 ---
 # Configuration
 
@@ -176,7 +175,3 @@ features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```
-
-## Next
-
-[Customize the look](../customize/) [Components](../../components/)

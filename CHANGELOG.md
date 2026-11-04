@@ -87,6 +87,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- A `c: cta` section was the last tinted surface in the flat docs: a centred panel with a radial primary gradient and 2.5rem padding. It is now flat, with no panel or gradient; its heading and buttons sit on the start edge under the usual heading rule on a doc page and are centred elsewhere. The docs drop the "Next" call to action from Install, Configuration, Customize, Agents and Components, where the Previous/Next links below already lead on.
 - `cols: 3` and `cols: 4` card grids showed two columns in a doc page's 45rem text column, because they switched on only in a section 48rem or 64rem wide (adr:modootoday/20261104195533). The count now follows the section's width and fills whole rows: `cols: 2` two from 30rem, `cols: 3` three from 40rem, `cols: 4` two by two from 30rem and four from 52rem, one column below.
 - A status badge showed two symbols before its label, the CSS dot and the old text glyph (● ◐ ○) on a different baseline. The glyph span is gone: `span.mt-badge-<status>` holds only the label, and the dot is the `::before` border, which stays visible in forced colours.
 - Doc sidebar group titles (`summary.mt-sidebar-title`, which open and close a group) were 20px tall targets and failed WCAG 2.5.8 target size in axe and Lighthouse; they are now 24px (`.25rem` above and below the 16px line), and the group's top margin is `.25rem` smaller, so the title text stays where it was.

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:293ae7918adb
+source_rev: sha256:dd46340a24ae
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -12,7 +12,6 @@ sections:
   - visuals
   - sass
   - shadow
-  - {c: cta, name: next}
 ---
 # 커스터마이즈
 
@@ -193,7 +192,3 @@ copyright: © 2026 You
 ```
 
 각 열은 제목으로 이름 붙은 `nav`이고, 들어가는 만큼 10rem 열로 놓입니다. 스타일은 `footer` 컴포넌트이며, 열이 있는 페이지만 그 시트를 연결합니다. `modootoday.language_switcher: footer`이면 언어 전환기가 열 뒤에 옵니다. 직접 만든 `_includes/footer-custom.html`은 여전히 푸터 전체를 바꿉니다. 열을 유지하려면 그 안에서 `modootoday/chrome/footer.html`을 include하세요.
-
-## 다음
-
-[에이전트용 Markdown](../agents/) [설정](../configuration/)

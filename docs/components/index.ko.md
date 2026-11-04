@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:6c5968e5735e
+source_rev: sha256:4e2c57a7f179
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -51,7 +51,6 @@ sections:
   - pagination
   - posts
   - status
-  - {c: cta, name: next}
 ---
 # 컴포넌트
 
@@ -485,7 +484,3 @@ tags: [release]
 | `status:available` | 출시되어 안정적 |
 | `status:partial` | 알려진 한계가 있음 |
 | `status:planned` | 로드맵에 있음 |
-
-## 다음
-
-[키친싱크](kitchen-sink/) [설정](../guides/configuration/)

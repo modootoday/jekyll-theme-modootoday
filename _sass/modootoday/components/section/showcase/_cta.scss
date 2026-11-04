@@ -1,7 +1,9 @@
-// c: cta sections: a centred, tinted panel around the heading and its action buttons (.mt-actions lives in core).
+// c: cta sections: the heading and its action buttons (.mt-actions lives in core), flat like every other section.
+// Centred on landing pages; a doc page keeps them on the text column's start edge under its usual h2 rule.
 @include mt-layer(components) {
-  .mt-cta { margin-top: mt(space-section); padding: 2.5rem 2rem; text-align: center; border: 1px solid mt(border); border-radius: mt(radius-lg);
-    background: radial-gradient(120% 140% at 50% 0%, color-mix(in srgb, #{mt(primary)} 10%, #{mt(background)}), #{mt(muted)}); }
+  .mt-cta { margin-top: mt(space-section); text-align: center; }
   .mt-cta > h2 { margin: 0 0 .5rem; }
   .mt-cta > .mt-actions { justify-content: center; margin-top: 1.25rem; }
+  .mt-doc .mt-cta { text-align: start; }
+  .mt-doc .mt-cta > .mt-actions { justify-content: flex-start; }
 }

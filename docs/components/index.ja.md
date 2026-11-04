@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:6c5968e5735e
+source_rev: sha256:4e2c57a7f179
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -52,7 +52,6 @@ sections:
   - pagination
   - posts
   - status
-  - {c: cta, name: next}
 ---
 # コンポーネント
 
@@ -486,7 +485,3 @@ tags: [release]
 | `status:available` | 提供中で安定 |
 | `status:partial` | 既知の制限あり |
 | `status:planned` | ロードマップにある |
-
-## 次へ
-
-[キッチンシンク](kitchen-sink/) [設定](../guides/configuration/)

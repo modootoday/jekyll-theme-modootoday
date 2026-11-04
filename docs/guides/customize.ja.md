@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:293ae7918adb
+source_rev: sha256:dd46340a24ae
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -13,7 +13,6 @@ sections:
   - visuals
   - sass
   - shadow
-  - {c: cta, name: next}
 ---
 # カスタマイズ
 
@@ -194,7 +193,3 @@ copyright: © 2026 You
 ```
 
 各列はタイトルで名前を付けた `nav` で、収まるだけ 10rem の列に並びます。スタイルは `footer` コンポーネントで、列があるページだけがそのシートを読み込みます。`modootoday.language_switcher: footer` なら言語の切り替えが列の後に続きます。自作の `_includes/footer-custom.html` はこれまでどおりフッター全体を置き換えます。列を残すには、その中で `modootoday/chrome/footer.html` を include してください。
-
-## 次へ
-
-[エージェントが読める Markdown](../agents/) [設定](../configuration/)

@@ -7,7 +7,6 @@ sections:
   - minimal
   - check
   - starters
-  - {c: cta, name: next}
 ---
 # Install
 
@@ -95,7 +94,3 @@ Two warnings from the `github-pages` gem are harmless: `To use retry middleware 
 ## Starter sites
 
 The theme repository has three starter sites in [`example/`](https://github.com/modootoday/jekyll-theme-modootoday/tree/main/example): `docs` (a guide, pages from data, Korean and Japanese in `ko/` and `ja/`), `blog` (posts, a news article, an author page and a feed) and `landing` (a hero, pricing and a legal page). Each one builds on its own. To start from one, run `bundle exec rake starters:render` in a clone of the repository and copy `pkg/starters/github-pages/<name>/` (`remote_theme`) or `pkg/starters/jekyll4/<name>/` (the gem) into a new repository. Each copy has a `Gemfile`, a `README.md`, the stubs, and a Pages workflow that builds the site, runs `modootoday-check` and deploys it.
-
-## Next
-
-[Write your first page](../first-page/) [Back to home](../../)

@@ -9,7 +9,6 @@ sections:
   - visuals
   - sass
   - shadow
-  - {c: cta, name: next}
 ---
 # Customize
 
@@ -187,7 +186,3 @@ copyright: © 2026 You
 ```
 
 The columns are `nav` elements labelled by their titles, as many 10rem columns as fit; their styles are the `footer` component, a sheet that only pages with columns link. With `modootoday.language_switcher: footer` the switcher follows them. Your own `_includes/footer-custom.html` still replaces the whole footer; include `modootoday/chrome/footer.html` in it to keep the columns.
-
-## Next
-
-[Agent-readable Markdown](../agents/) [Configuration](../configuration/)

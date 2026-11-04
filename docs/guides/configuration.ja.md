@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:3b72958f7d00
+source_rev: sha256:68b162358137
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -11,7 +11,6 @@ sections:
   - head
   - i18n
   - registry
-  - {c: cta, name: next}
 ---
 # 設定
 
@@ -182,7 +181,3 @@ features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```
-
-## 次へ
-
-[見た目をカスタマイズ](../customize/) [コンポーネント](../../components/)

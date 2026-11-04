@@ -7,7 +7,6 @@ sections:
   - twins
   - aliases
   - llms
-  - {c: cta, name: next}
 ---
 # Agent-readable Markdown
 
@@ -77,7 +76,3 @@ layout: llms
 ```
 
 Try them on this site: [llms.txt](../../llms.txt) and [llms-full.txt](../../llms-full.txt).
-
-## Next
-
-[Changelog](../../reference/changelog/) [Home](../../)

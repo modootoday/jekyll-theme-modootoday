@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/agents/
-source_rev: sha256:cd4bfc0b15c0
+source_rev: sha256:7ff002c59e2b
 nav_order: 50
 nav_title: 에이전트
 title: 에이전트용
@@ -10,7 +10,6 @@ sections:
   - twins
   - aliases
   - llms
-  - {c: cta, name: next}
 ---
 # 에이전트가 읽는 Markdown
 
@@ -83,7 +82,3 @@ layout: llms
 ```
 
 이 사이트에서 확인해 보세요: [llms.txt](../../llms.txt), [llms-full.txt](../../llms-full.txt).
-
-## 다음
-
-[변경 기록](../../reference/changelog/) [홈](../../)

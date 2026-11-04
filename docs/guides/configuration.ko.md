@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:3b72958f7d00
+source_rev: sha256:68b162358137
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -11,7 +11,6 @@ sections:
   - head
   - i18n
   - registry
-  - {c: cta, name: next}
 ---
 # 설정
 
@@ -182,7 +181,3 @@ features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed
 tabs: {i18n: [tabs.label]}
 cta: {}
 ```
-
-## 다음
-
-[모양 바꾸기](../customize/) [컴포넌트](../../components/)

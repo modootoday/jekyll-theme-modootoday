@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/agents/
-source_rev: sha256:cd4bfc0b15c0
+source_rev: sha256:7ff002c59e2b
 nav_order: 50
 nav_title: AI 向け
 title: エージェント向け
@@ -10,7 +10,6 @@ sections:
   - twins
   - aliases
   - llms
-  - {c: cta, name: next}
 ---
 # エージェントが読める Markdown
 
@@ -83,7 +82,3 @@ layout: llms
 ```
 
 このサイトで試せます: [llms.txt](../../llms.txt) と [llms-full.txt](../../llms-full.txt)。
-
-## 次へ
-
-[変更履歴](../../reference/changelog/) [ホーム](../../)

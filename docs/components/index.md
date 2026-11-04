@@ -48,7 +48,6 @@ sections:
   - pagination
   - posts
   - status
-  - {c: cta, name: next}
 ---
 # Components
 
@@ -479,7 +478,3 @@ tags: [release]
 | `status:available` | shipped and stable |
 | `status:partial` | works with known limits |
 | `status:planned` | on the roadmap |
-
-## Next
-
-[Kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)

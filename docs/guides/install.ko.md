@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:11c75ce2a02d
+source_rev: sha256:4c3f18b429ce
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
@@ -10,7 +10,6 @@ sections:
   - minimal
   - check
   - starters
-  - {c: cta, name: next}
 ---
 # 설치
 
@@ -101,7 +100,3 @@ GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 
 ## 시작 사이트
 
 테마 저장소의 [`example/`](https://github.com/modootoday/jekyll-theme-modootoday/tree/main/example)에는 시작 사이트 세 개가 있습니다. `docs`(가이드, 데이터에서 만드는 페이지, `ko/`와 `ja/`의 한국어·일본어), `blog`(글, 뉴스 기사, 작성자 페이지, 피드), `landing`(히어로, 요금제, 약관 페이지)이며, 각각 따로 빌드됩니다. 하나로 시작하려면 저장소를 복제한 곳에서 `bundle exec rake starters:render`를 실행하고 `pkg/starters/github-pages/<name>/`(`remote_theme`) 또는 `pkg/starters/jekyll4/<name>/`(gem)을 새 저장소에 복사합니다. 복사본에는 `Gemfile`, `README.md`, 스텁, 그리고 사이트를 빌드하고 `modootoday-check`를 실행한 뒤 배포하는 Pages 워크플로가 들어 있습니다.
-
-## 다음
-
-[첫 페이지 쓰기](../first-page/) [홈으로](../../)
