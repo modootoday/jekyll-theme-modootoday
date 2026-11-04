@@ -4,7 +4,4 @@
 {%- include modootoday/config.html -%}
 $mt-css-layers: {{ mt_css_layers }};
 @import "modootoday/sheet";
-{% if mt_components contains "sidebar" %}@import "modootoday/components/doc/sidebar";
-{% endif %}{% if mt_components contains "toc" %}@import "modootoday/components/doc/toc";
-{% endif %}{% if mt_components contains "page-actions" %}@import "modootoday/components/doc/page-actions";
-{% endif %}
+{% include modootoday/assets/imports.html row="doc" %}

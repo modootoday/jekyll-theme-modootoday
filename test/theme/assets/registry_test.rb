@@ -6,7 +6,7 @@ require_relative "../../support/asset_registry"
 
 class RegistryTest < Minitest::Test
   ROOT = AssetRegistry::ROOT
-  KINDS = { false => %w[css section js module], true => %w[sheet script import] }.freeze
+  KINDS = { false => %w[component css section js module], true => %w[sheet script import] }.freeze
   IMPORT = /^\s*(?:import|export)\s*(?:[\w$*{}\s,]+from\s*)?["'](\.{1,2}\/[^"']+)["']/
 
   def rows = AssetRegistry.rows

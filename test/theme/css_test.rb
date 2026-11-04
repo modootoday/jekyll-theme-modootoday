@@ -168,7 +168,7 @@ class CssTest < Minitest::Test
 
   def test_callouts_quotes_and_figures_are_flat
     core, html, sheets = self.class.build("all")
-    content = sheets.fetch("content/inline.css")
+    content = sheets.fetch("content/inline.css") + sheets.fetch("media/figure.css")
     %w[.mt-callout .mt-figure .mt-illustration .mt-embed].each { |c| refute_includes core, c, "#{c} lives in content.css" }
     assert_includes html, "modootoday/content/inline.css", "a page with a callout links the content sheet"
     rule = ->(css, sel) { css[/(?:^|[}\s])#{Regexp.escape(sel)}\s*\{([^}]*)\}/, 1].to_s }

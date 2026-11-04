@@ -18,7 +18,7 @@ class RevealBadgeTest < Minitest::Test
       assert_match(/<section class="mt-hero[^"]* mt-reveal"/, h)
       assert_match(/class="mt-section mt-c-features mt-reveal mt-badge-bottom" data-section="f"/, h)
       assert_includes h, 'class="mt-section mt-c-features" data-section="g"'
-      css = File.read("#{s}/assets/css/modootoday.css")
+      css = File.read("#{s}/assets/css/modootoday/content/extras.css")
       assert_match(/@supports \(animation-timeline: ?view\(\)\)/, css)
       assert_match(/prefers-reduced-motion: ?no-preference/, css)
       assert_includes File.read("#{s}/assets/css/modootoday/showcase/card.css"), ".mt-badge-bottom"

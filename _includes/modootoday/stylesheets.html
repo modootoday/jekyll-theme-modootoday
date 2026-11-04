@@ -1,6 +1,6 @@
 {%- comment -%}
 Stylesheet links (needs modootoday/config.html first). Sets mt_page_c ("|tabs|faq|": this page's section components).
-  split (default): the core sheet, the context sheets of assets/sheets.html (front matter mt_sheets, body probes),
+  split (default): the core sheet and its component sheets, then the context sheets of assets/sheets.html (front matter mt_sheets, body probes),
                    and one sheet per section component the page's sections: use. Page front matter css: [c, ...] adds more.
   modootoday.css: bundle — only the core sheet, which then holds everything.
 Both modes: preload hints first (assets/preload.html), the site's own sheets last (assets/site-sheets.html, site_css), then the
@@ -18,6 +18,7 @@ Both modes: preload hints first (assets/preload.html), the site's own sheets las
 {%- comment -%}Blog, news and archive layouts add the separate blog sheet (both modes); front matter blog_css: true opts any page in.{%- endcomment -%}
 {%- assign mt_blog_css = false -%}{%- if page.blog_css or page.layout == "post" or page.layout == "blog" or page.layout == "news" or page.layout == "news-article" or page.layout == "author" or page.layout == "archive" -%}{%- assign mt_blog_css = true -%}{%- endif -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday.css" %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
+{%- unless mt.css == "bundle" -%}{%- include modootoday/assets/sheets.html kind="component" -%}{%- endunless %}
 {%- if mt_blog_css -%}{%- include modootoday/assets/url.html path="/assets/css/modootoday-blog.css" %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}
@@ -28,7 +29,7 @@ Both modes: preload hints first (assets/preload.html), the site's own sheets las
 <link rel="stylesheet" href="{{ mt_asset_url }}">
 {%- endif -%}{%- endfor -%}
 {%- unless mt.css == "bundle" -%}
-{%- include modootoday/assets/sheets.html -%}
+{%- include modootoday/assets/sheets.html kind="css" -%}
 {%- for _s in mt_section_sheets -%}{%- assign _kv = _s | split: ":" -%}{%- assign _k = "|" | append: _kv[0] | append: "|" -%}{%- assign _n = _kv[1] | split: "/" | last -%}
 {%- if mt_page_c contains _k and mt_components contains _n -%}{%- assign _mtsp = '/assets/css/modootoday/' | append: _kv[1] | append: '.css' -%}{%- include modootoday/assets/url.html path=_mtsp %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">

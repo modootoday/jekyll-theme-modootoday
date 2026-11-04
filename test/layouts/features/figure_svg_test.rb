@@ -19,7 +19,7 @@ class FigureSvgTest < Minitest::Test
       assert_match %r{href="[^"]*/assets/css/modootoday/media/figure\.css(\?v=[^"]*)?"}, h
       p = html(s, "png.md")
       assert_includes p, %(<figure class="mt-figure"><img src="/assets/photo.png")
-      refute_includes p, "figure.css"
+      assert_includes p, "modootoday/media/figure.css", "a plain figure needs the figure rules too"
       refute_includes p, "mt-figure-scroll"
       css = File.read("#{s}/assets/css/modootoday/media/figure.css")
       assert_includes css, "--mt-diagram-filter-dark"

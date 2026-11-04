@@ -1,15 +1,16 @@
-{%- comment -%}The theme's CSS and JS files, one row each: name|kind|path|triggers|parts|cap|deps. kind: css (a context sheet, assets/sheets.html),
-  section (a section sheet; triggers is the sections: name), js (a classic deferred script) or module (assets/scripts.html). triggers: texts
-  of the rendered body that turn the row on, separated by ^. parts: the Sass partials of css: bundle (components/<name>/_<part>.scss, or a path
-  under components/ when it has a slash, so a moved rule keeps the partial path sites shadow). cap: gzip bytes (qa/audit/budgets/modules.mjs).
-  deps: a module's static imports. _mta_fixed holds the files the layouts link themselves; Liquid never reads it.
-  Sets mt_asset_rows, mt_context_sheets ("doc:sidebar|toc|page-actions,...", read by assets/css/modootoday.scss) and mt_section_sheets.{%- endcomment -%}
+{%- comment -%}The theme's CSS and JS files, one row each: name|kind|path|triggers|parts|cap|deps. kind: component (a sheet linked right
+  after core) or css (a context sheet, linked after the blog sheet and layout bundles; both assets/sheets.html), section (triggers is the
+  sections: name), js (classic deferred) or module (assets/scripts.html). triggers: texts of the rendered body, separated by ^. parts: the
+  Sass partials (assets/imports.html), in old cascade order. cap: gzip bytes (qa/audit/budgets/modules.mjs). deps: a module's imports.
+  _mta_fixed holds the files the layouts link themselves; Liquid never reads it. Sets mt_asset_rows, mt_context_sheets ("doc:sidebar|toc|
+  page-actions,...", read by assets/imports.html) and mt_section_sheets.{%- endcomment -%}
 {%- capture _mta_rows -%}
+inline|component|/assets/css/modootoday/content/inline.css|mt-callout^mt-badge^mt-kbd|core/inline/callout core/inline/badge core/inline/kbd|768
+extras|component|/assets/css/modootoday/content/extras.css|mt-reveal^role="doc-noteref"^class="footnotes"^reversefootnote^mt-progress|core/inline/reveal core/inline/footnotes core/inline/progress|640
+figure|component|/assets/css/modootoday/media/figure.css|class="mt-figure^mt-illustration^class="mt-embed|core/inline/figure core/inline/embed figure-svg|896
 doc|css|/assets/css/modootoday/docs/doc.css||sidebar toc page-actions|1152
 search|css|/assets/css/modootoday/chrome/search.css||search|1024
 loading|css|/assets/css/modootoday/content/loading.css|class="mt-spinner^class="mt-skeleton^class="mt-topbar|loading|1024
-inline|css|/assets/css/modootoday/content/inline.css|class="mt-callout^class="mt-figure^mt-illustration^class="mt-embed|core/inline/callout core/inline/figure core/inline/embed|768
-figure|css|/assets/css/modootoday/media/figure.css|class="mt-figure mt-figure-svg|figure-svg|512
 lists|css|/assets/css/modootoday/content/lists.css|class="mt-hero mt-hero-checks^class="mt-chips"^class="mt-item-title"|lists|640
 bleed|css|/assets/css/modootoday/structure/bleed.css||bleed|512
 terminal|css|/assets/css/modootoday/chrome/terminal.css||terminal|384
@@ -66,7 +67,7 @@ chips|import|/assets/js/modootoday/filter/chips.js|||640
 {%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
 {%- assign _mta_cs = "" -%}{%- assign _mta_ss = "" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
-{%- if _mta_c[1] == "css" and _mta_c[4] and _mta_c[4] != "" -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}
+{%- if _mta_c[1] == "component" or _mta_c[1] == "css" -%}{%- if _mta_c[4] and _mta_c[4] != "" -%}{%- assign _mta_parts = _mta_c[4] | replace: " ", "|" -%}{%- assign _mta_cs = _mta_cs | append: "," | append: _mta_c[0] | append: ":" | append: _mta_parts -%}{%- endif -%}
 {%- elsif _mta_c[1] == "section" -%}{%- assign _mta_sp = _mta_c[2] | remove_first: "/assets/css/modootoday/" | remove: ".css" -%}{%- assign _mta_ss = _mta_ss | append: "," | append: _mta_c[3] | append: ":" | append: _mta_sp -%}{%- endif -%}
 {%- endfor -%}
 {%- assign mt_context_sheets = _mta_cs | remove_first: "," | split: "," -%}

@@ -1,13 +1,23 @@
-{%- comment -%}Context sheets: the css rows of assets/registry.html (needs config.html and mt_page_c). A row whose probe is in the
-  rendered body adds its name to mt_page_c; each sheet is linked once when mt_page_c or the layout chain's mt_sheets names it.{%- endcomment -%}
+{%- comment -%}Links the rows of kind include.kind of assets/registry.html (needs config.html and mt_page_c): component sheets right after core,
+  context sheets after the blog sheet and layout bundles. A row whose trigger is in the rendered body adds its name to mt_page_c; a sheet
+  is linked when mt_page_c or the layout chain's mt_sheets names it. Parts the base layout draws after the head are named here.{%- endcomment -%}
+{%- if include.kind == "component" -%}
 {%- if site.modootoday.loading -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
+{%- if mt_components contains "banner" -%}{%- if site.modootoday.banner.text or site.modootoday.back_to_top -%}{%- assign mt_page_c = mt_page_c | append: "banner|" -%}{%- endif -%}{%- endif -%}
+{%- unless layout.mt_chrome == false or page.chrome == false -%}
+{%- if page.last_modified_at -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
+{%- elsif site.modootoday.edit_url and page.edit != false and page.path -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
+{%- elsif mt_nav and mt_components contains "pagination" and page.pagination != false -%}{%- assign _mta_nj = mt_nav | jsonify -%}
+{%- assign _mta_nu = '"url":"' | append: page.url | append: '"' -%}{%- if _mta_nj contains _mta_nu -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}{%- endif -%}
+{%- endif -%}
+{%- endunless -%}
+{%- endif -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}
-{%- if _mta_c[1] == "css" and _mta_c[3] and _mta_c[3] != "" -%}{%- assign _mta_ps = _mta_c[3] | split: "^" -%}{%- for _mta_p in _mta_ps -%}{%- if content contains _mta_p -%}
+{%- if _mta_c[1] == include.kind and _mta_c[3] and _mta_c[3] != "" -%}{%- assign _mta_ps = _mta_c[3] | split: "^" -%}{%- for _mta_p in _mta_ps -%}{%- if content contains _mta_p -%}
 {%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}{%- unless mt_page_c contains _mta_k -%}{%- assign mt_page_c = mt_page_c | append: _mta_c[0] | append: "|" -%}{%- endunless -%}{%- break -%}
 {%- endif -%}{%- endfor -%}{%- endif -%}{%- endfor -%}
-{%- assign _mta_ls = layout.mt_sheets | default: "" -%}{%- assign _mta_done = "|" -%}
+{%- assign _mta_ls = layout.mt_sheets | default: "" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
-{%- if _mta_c[1] == "css" -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}
-{%- if _mta_ls contains _mta_c[0] or mt_page_c contains _mta_k -%}{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p %}
+{%- if _mta_c[1] == include.kind -%}{%- if _mta_ls contains _mta_c[0] or mt_page_c contains _mta_k -%}{%- assign _mta_p = _mta_c[2] -%}{%- include modootoday/assets/url.html path=_mta_p %}
 <link rel="stylesheet" href="{{ mt_asset_url }}">
-{%- endif -%}{%- endunless -%}{%- endif -%}{%- endfor -%}
+{%- endif -%}{%- endif -%}{%- endfor -%}

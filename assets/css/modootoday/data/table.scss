@@ -4,5 +4,4 @@
 {%- include modootoday/config.html -%}
 $mt-css-layers: {{ mt_css_layers }};
 @import "modootoday/sheet";
-{% if mt_components contains "table" %}@import "modootoday/components/table/table";
-{% endif %}
+{% include modootoday/assets/imports.html row="table" %}

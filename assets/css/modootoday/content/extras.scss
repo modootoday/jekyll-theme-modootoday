@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday component sheet (reveal, footnotes and progress bars in the body). Linked right after the core sheet, only by pages that use it.
+# Its partials are the parts of its row in assets/registry.html; they keep their paths, so shadows still apply.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% include modootoday/assets/imports.html row="extras" %}

@@ -1,0 +1,14 @@
+{%- comment -%}Sass @import lines for the parts of the css rows of assets/registry.html (needs config.html): only row include.row, or
+  every row in registry order when it is empty (css: bundle). A part is components/<row>/_<part>.scss, a path under components/
+  when it has a slash, or one under modootoday/ when it starts with one; components a site turned off are skipped.{%- endcomment -%}
+{%- for _mti_s in mt_context_sheets -%}{%- assign _mti_kv = _mti_s | split: ":" -%}
+{%- if include.row == nil or include.row == _mti_kv[0] -%}{%- assign _mti_ps = _mti_kv[1] | split: "|" -%}
+{%- for _mti_p in _mti_ps -%}{%- assign _mti_n = _mti_p | split: "/" | last -%}{%- assign _mti_1 = _mti_p | slice: 0, 1 -%}
+{%- if _mti_1 == "/" %}
+@import "modootoday{{ _mti_p }}";
+{%- elsif mt_components contains _mti_n -%}{%- if _mti_p contains "/" %}
+@import "modootoday/components/{{ _mti_p }}";
+{%- else %}
+@import "modootoday/components/{{ _mti_kv[0] }}/{{ _mti_p }}";
+{%- endif -%}{%- endif -%}
+{%- endfor -%}{%- endif -%}{%- endfor %}

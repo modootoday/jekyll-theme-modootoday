@@ -1,8 +1,8 @@
 ---
-# md-components v1 — jekyll-theme-modootoday optional sheet (SVG figures: dark tone, horizontal scroll). Linked only by pages that use it.
+# md-components v1 — jekyll-theme-modootoday component sheet (figures, illustrations, embeds and SVG figures in the body). Linked right after the core sheet, only by pages that use it.
+# Its partials are the parts of its row in assets/registry.html; they keep their paths, so shadows still apply.
 ---
 {%- include modootoday/config.html -%}
 $mt-css-layers: {{ mt_css_layers }};
 @import "modootoday/sheet";
-{% if mt_components contains "figure-svg" %}@import "modootoday/components/figure/figure-svg";
-{% endif %}
+{% include modootoday/assets/imports.html row="figure" %}
