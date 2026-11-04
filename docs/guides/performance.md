@@ -12,7 +12,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | Asset | Loaded on |
 |---|---|
 | `assets/css/modootoday.css` (core sheet: tokens, base elements, header, nav, theme toggle) | every page |
-| Component sheets (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`), linked right after the core sheet | pages whose body or page footer uses them |
+| Component sheets (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`, `chrome/footer`), linked right after the core sheet | pages whose body or page footer uses them |
 | Context sheets (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
 | `chrome/menu.js`, `chrome/theme-toggle.js`, `chrome/search-keys.js` | pages with the header, the toggle, or a search index |
@@ -27,6 +27,8 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
 
 `data/table-stack.js` stacks `c: params` tables, tables with the `mt-table--stack` or `mt-table--dl` class, and, below 40rem, any table that does not fit.
+
+`chrome/footer` loads when `_data/nav/footer.yml` (or the page language's `footer-<lang>.yml`) has columns.
 
 Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
 

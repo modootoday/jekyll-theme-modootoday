@@ -25,7 +25,7 @@ export const PAGE_TYPES = {
 export const GUIDE = { css: 8 * 1024, js: 6 * 1024, sheets: 6, skip: ["showcase"] };
 // Pages the CSP audit (csp.mjs) opens under a strict Content-Security-Policy header; a feature with a demo page adds it here.
 // The kitchen sink stays out: it embeds a third-party frame and aligned table columns (kramdown writes style attributes).
-export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blog/", "layouts/demo/search/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/", "recipes/records/", "recipes/records/lantern/"];
+export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blog/", "layouts/demo/search/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/", "recipes/records/", "recipes/records/lantern/", "layouts/demo/error/"];
 // Pages whose token palette the contrast check (contrast.mjs) measures in each scheme: the theme default, the brand tokens recipe
 // and the GitHub code colours (code_theme: github).
 export const CONTRAST_PAGES = ["", "recipes/brand-tokens/", "layouts/demo/code-github/"];

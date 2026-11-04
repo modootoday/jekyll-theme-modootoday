@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:76b80c35c68a
+source_rev: sha256:9b6d1e58700e
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -18,7 +18,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | アセット | 読み込むページ |
 |---|---|
 | `assets/css/modootoday.css` (コアシート: トークン、基本要素、ヘッダー、ナビゲーション、テーマ切り替えボタン) | すべてのページ |
-| コンポーネントシート (`content/code`、`chrome/doc-nav`、`content/inline`、`marketing/hero`、`content/extras`、`media/figure`、`chrome/banner`)。コアシートのすぐ後に読み込む | 本文かページ下部がそのシートを使うページ |
+| コンポーネントシート (`content/code`、`chrome/doc-nav`、`content/inline`、`marketing/hero`、`content/extras`、`media/figure`、`chrome/banner`、`chrome/footer`)。コアシートのすぐ後に読み込む | 本文かページ下部がそのシートを使うページ |
 | コンテキストシート (`docs/doc`、`chrome/search`、`content/loading`、`content/lists`、`structure/bleed`、`chrome/terminal`、`media/visual`、`data/filter`、`data/table`、`data/table-stack`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
 | `chrome/menu.js`、`chrome/theme-toggle.js`、`chrome/search-keys.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
@@ -33,6 +33,8 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
 
 `data/table-stack.js` は、`c: params` の表、`mt-table--stack` か `mt-table--dl` クラスの付いた表、そして 40rem より狭いときに収まらない表を積み重ねます。
+
+`chrome/footer` は、`_data/nav/footer.yml`(またはページの言語の `footer-<lang>.yml`)に列があるときに読み込みます。
 
 テーマのスクリプトは ES モジュール (`<script type="module">`) です。`defer` と同じく、ページを読み終えた後に順番に実行されるため、最初の描画を妨げません。モジュールが読み込むファイルには `<link rel="modulepreload">` が付き、1 つずつ順に取得せず一緒に取得します。クラシックスクリプトは、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプト (`chrome/theme-init.js`) だけです。最初の描画より前に実行する必要があるためです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。
 

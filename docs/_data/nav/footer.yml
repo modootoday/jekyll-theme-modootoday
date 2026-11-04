@@ -1,0 +1,18 @@
+# Site footer (modootoday/chrome/footer.html): link columns and the copyright line. footer-ko.yml and footer-ja.yml translate it.
+columns:
+  - title: Docs
+    items:
+      - {title: Install, url: /guides/install/}
+      - {title: Configuration, url: /guides/configuration/}
+      - {title: Components, url: /components/}
+      - {title: Layouts, url: /layouts/}
+  - title: Reference
+    items:
+      - {title: Public API, url: /reference/api/}
+      - {title: Recipes, url: /recipes/}
+      - {title: Changelog, url: /reference/changelog/}
+  - title: Project
+    items:
+      - {title: GitHub, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
+      - {title: RubyGems, url: "https://rubygems.org/gems/jekyll-theme-modootoday"}
+copyright: modoo.today theme · MIT License

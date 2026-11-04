@@ -169,6 +169,25 @@ Add tags to the page head with `_includes/head-custom.html`:
 
 Lists without a class get a small gap between items. If your layout or include turns an unclassed Markdown list into a grid or flex row (for example `.c-body > ul`), add `mt-flat-list` to an ancestor, such as `<div class="c-body mt-flat-list">`, so the first item lines up with the rest. A list that has a class of its own gets no gap.
 
+### Footer
+
+The theme prints a footer from `_data/nav/footer.yml` (and `footer-<lang>.yml` for a language, such as `footer-ko.yml`): link columns and a copyright line. Without the file there is no footer, as before.
+
+```yaml
+# _data/nav/footer.yml
+columns:
+  - title: Docs
+    items:
+      - {title: Install, url: /guides/install/}
+      - {title: Changelog, url: /changelog/}
+  - title: Project
+    items:
+      - {title: GitHub, url: "https://github.com/you/site"}
+copyright: © 2026 You
+```
+
+The columns are `nav` elements labelled by their titles, as many 10rem columns as fit; their styles are the `footer` component, a sheet that only pages with columns link. With `modootoday.language_switcher: footer` the switcher follows them. Your own `_includes/footer-custom.html` still replaces the whole footer; include `modootoday/chrome/footer.html` in it to keep the columns.
+
 ## Next
 
 [Agent-readable Markdown](../agents/) [Configuration](../configuration/)

@@ -104,6 +104,8 @@ Heroes and pricing are flat too. A hero title is `--mt-hero-title-size` (a new h
 
 Posts read on the `narrow` measure (40rem) at 18/28 (18/32 in Korean, Japanese and Chinese), with a title of `clamp(2.5rem, 2rem + 2vw, 3rem)`, and the tag footer no longer adds a second rule under the page meta line. Cover and body images have 8px corners and a hairline border. Post cards lose their box: the 16:9 cover has the corners and the border, the title is 18/28 at weight 600 and underlines on hover, the excerpt stops after two lines, and grid and magazine lists use 18rem columns with a 2rem gap. The blog list now shows the breadcrumb a post shows.
 
+The footer has no fill and more room (3rem above, 2rem below), and the theme can now print one from `_data/nav/footer.yml` (see [Customize](../customize/#footer)). Search results mark the matched words, and the error layout shows a body paragraph of links as a row of chips; its status code is the foreground colour at weight 600 (was the accent at 800).
+
 ### How 1.5 pages load the theme
 
 The core sheet keeps only the tokens, the base element rules, the header, the nav and the theme toggle. Every other component moved to a sheet that pages link only when they use it, right after the core sheet (code, callouts and badges, figures, the page footer navigation, the hero, the banner), and the context sheets moved to `assets/css/modootoday/<group>/<name>.css`. The rules and their order are the same, so pages look the same. Theme scripts are ES modules (`<script type="module">`) at `assets/js/modootoday/<group>/<name>.js`, and the header search loads on first use.

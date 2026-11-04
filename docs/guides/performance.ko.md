@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:76b80c35c68a
+source_rev: sha256:9b6d1e58700e
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -18,7 +18,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 자산 | 불러오는 페이지 |
 |---|---|
 | `assets/css/modootoday.css` (핵심 시트: 토큰, 기본 요소, 헤더, 내비게이션, 테마 전환 버튼) | 모든 페이지 |
-| 컴포넌트 시트 (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`). 핵심 시트 바로 뒤에 연결 | 본문이나 페이지 아래쪽이 그 시트를 쓰는 페이지 |
+| 컴포넌트 시트 (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`, `chrome/footer`). 핵심 시트 바로 뒤에 연결 | 본문이나 페이지 아래쪽이 그 시트를 쓰는 페이지 |
 | 맥락 시트 (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
 | `chrome/menu.js`, `chrome/theme-toggle.js`, `chrome/search-keys.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
@@ -33,6 +33,8 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
 
 `data/table-stack.js`는 `c: params` 표, `mt-table--stack`이나 `mt-table--dl` 클래스가 붙은 표, 그리고 40rem보다 좁을 때 들어가지 않는 표를 쌓습니다.
+
+`chrome/footer`는 `_data/nav/footer.yml`(또는 페이지 언어의 `footer-<lang>.yml`)에 열이 있을 때 불러옵니다.
 
 테마 스크립트는 ES 모듈(`<script type="module">`)입니다. `defer`처럼 페이지를 다 읽은 뒤 순서대로 실행되므로 첫 화면 표시를 막지 않습니다. 모듈이 가져오는 파일에는 `<link rel="modulepreload">`가 붙어서, 하나씩 차례로 받지 않고 함께 받습니다. 클래식 스크립트는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트(`chrome/theme-init.js`) 하나뿐입니다. 첫 화면을 그리기 전에 실행되어야 하기 때문입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요.
 

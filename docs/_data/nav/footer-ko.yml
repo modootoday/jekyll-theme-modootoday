@@ -1,0 +1,18 @@
+# Korean site footer (see footer.yml).
+columns:
+  - title: 문서
+    items:
+      - {title: 설치, url: /ko/guides/install/}
+      - {title: 설정, url: /ko/guides/configuration/}
+      - {title: 컴포넌트, url: /ko/components/}
+      - {title: 레이아웃, url: /ko/layouts/}
+  - title: 레퍼런스
+    items:
+      - {title: 공개 API, url: /ko/reference/api/}
+      - {title: 레시피, url: /ko/recipes/}
+      - {title: 변경 기록, url: /ko/reference/changelog/}
+  - title: 프로젝트
+    items:
+      - {title: GitHub, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
+      - {title: RubyGems, url: "https://rubygems.org/gems/jekyll-theme-modootoday"}
+copyright: modoo.today theme · MIT 라이선스

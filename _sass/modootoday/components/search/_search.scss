@@ -16,6 +16,7 @@
   .mt-search-results li + li { margin-top: 0; }
   .mt-search-results a { display: block; padding: .4rem .6rem; border-radius: var(--mt-p-radius-sm); text-decoration: none; font-size: .9rem; color: mt(foreground); }
   .mt-search-title { display: block; font-weight: 600; }
+  .mt-search-results mark { background: mt(accent); color: inherit; font-weight: 600; }
   .mt-search-snippet { display: block; margin-top: .1rem; font-size: .8rem; line-height: 1.45; color: mt(muted-foreground);
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .mt-search-results a:hover, .mt-search-results a:focus { background: mt(accent); color: mt(accent-foreground); }

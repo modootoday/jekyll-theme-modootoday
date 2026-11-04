@@ -81,3 +81,15 @@ test("data-results sets how many results show", async () => {
   const { search } = await page(' data-results="3"', many);
   assert.strictEqual((await search("common")).length, 3);
 });
+
+test("matches are wrapped in <mark> from text nodes; markup in the index stays text", async () => {
+  const index = [doc("Volume <b>tips</b>", "Read the volume, then the VOLUME again.")];
+  const { box, search } = await page(" data-match=\"terms\"", index);
+  await search("volume tips");
+  const title = box.querySelector(".mt-search-title");
+  assert.deepStrictEqual([...title.querySelectorAll("mark")].map((m) => m.textContent), ["Volume", "tips"]);
+  assert.strictEqual(title.querySelector("b"), null);
+  assert.strictEqual(title.textContent, "Volume <b>tips</b>");
+  const snippet = box.querySelector(".mt-search-snippet");
+  assert.deepStrictEqual([...snippet.querySelectorAll("mark")].map((m) => m.textContent), ["volume", "VOLUME"]);
+});

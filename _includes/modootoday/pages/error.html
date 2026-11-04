@@ -1,4 +1,5 @@
-{%- comment -%}Error body for include.status (404 default, 410, 500): localized title and text, then the page body and a home link.{%- endcomment -%}
+{%- comment -%}Error body for include.status (404 default, 410, 500): localized title and text, then the page body and a home link.
+  A body paragraph that holds only links is a row of quick-link chips (p.mt-error-links).{%- endcomment -%}
 {%- include modootoday/i18n.html -%}{%- include modootoday/home-url.html -%}
 {%- assign _s = include.status | default: 404 | append: "" -%}
 {%- case _s -%}
@@ -9,5 +10,6 @@
 <p class="mt-error-code" aria-hidden="true">{{ _s }}</p>
 <h1>{{ page.heading | default: _et }}</h1>
 <p>{{ _ex }}</p>
-{{ content }}
+{%- capture _eb %}{% include modootoday/actions.html html=content %}{% endcapture %}
+{{ _eb | replace: '<p class="mt-actions">', '<p class="mt-error-links">' }}
 <p class="mt-actions"><a href="{{ mt_home | relative_url }}">{{ mt_t_pages_home }}</a></p>

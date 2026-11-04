@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:f8a5f64ac657
+source_rev: sha256:293ae7918adb
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -174,6 +174,25 @@ Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. 이미 `ass
 > 섀도잉한 파일은 테마 업데이트를 받지 못합니다. 토큰과 `head-custom.html`을 먼저 쓰세요.
 
 class가 없는 목록은 항목 사이에 작은 간격이 생깁니다. 레이아웃이나 include에서 class가 없는 Markdown 목록을 grid나 flex 행으로 바꾸면(예: `.c-body > ul`) `<div class="c-body mt-flat-list">`처럼 상위 요소에 `mt-flat-list`를 붙입니다. 그러면 첫 항목이 나머지 항목과 맞게 정렬됩니다. 자체 class가 있는 목록에는 간격이 생기지 않습니다.
+
+### 푸터
+
+테마는 `_data/nav/footer.yml`(언어별로는 `footer-ko.yml`처럼 `footer-<lang>.yml`)로 링크 열과 저작권 줄이 있는 푸터를 그립니다. 이 파일이 없으면 지금처럼 푸터가 없습니다.
+
+```yaml
+# _data/nav/footer.yml
+columns:
+  - title: 문서
+    items:
+      - {title: 설치, url: /guides/install/}
+      - {title: 변경 기록, url: /changelog/}
+  - title: 프로젝트
+    items:
+      - {title: GitHub, url: "https://github.com/you/site"}
+copyright: © 2026 You
+```
+
+각 열은 제목으로 이름 붙은 `nav`이고, 들어가는 만큼 10rem 열로 놓입니다. 스타일은 `footer` 컴포넌트이며, 열이 있는 페이지만 그 시트를 연결합니다. `modootoday.language_switcher: footer`이면 언어 전환기가 열 뒤에 옵니다. 직접 만든 `_includes/footer-custom.html`은 여전히 푸터 전체를 바꿉니다. 열을 유지하려면 그 안에서 `modootoday/chrome/footer.html`을 include하세요.
 
 ## 다음
 

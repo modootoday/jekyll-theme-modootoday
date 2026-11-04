@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday component sheet (footer columns from _data/nav/footer.yml).
+# Linked right after the core sheet, only by pages whose footer has columns. Its partials are the parts of its row in assets/registry.html.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% include modootoday/assets/imports.html row="footer" %}

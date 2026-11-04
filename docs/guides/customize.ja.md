@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:f8a5f64ac657
+source_rev: sha256:293ae7918adb
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -175,6 +175,25 @@ Jekyll はテーマより先にサイトの `_sass/` を読みます。`assets/c
 > 上書きしたファイルにはテーマの更新が反映されません。トークンと `head-custom.html` を優先してください。
 
 class のないリストには、項目の間に小さな間隔が入ります。レイアウトや include で class のない Markdown リストを grid や flex の行にする場合は（例: `.c-body > ul`）、`<div class="c-body mt-flat-list">` のように祖先要素に `mt-flat-list` を付けます。こうすると最初の項目が他の項目とそろいます。独自の class があるリストには間隔が入りません。
+
+### フッター
+
+テーマは `_data/nav/footer.yml`(言語ごとには `footer-ko.yml` のような `footer-<lang>.yml`)から、リンクの列と著作権の行があるフッターを描きます。このファイルがなければ、これまでどおりフッターはありません。
+
+```yaml
+# _data/nav/footer.yml
+columns:
+  - title: ドキュメント
+    items:
+      - {title: 導入, url: /guides/install/}
+      - {title: 変更履歴, url: /changelog/}
+  - title: プロジェクト
+    items:
+      - {title: GitHub, url: "https://github.com/you/site"}
+copyright: © 2026 You
+```
+
+各列はタイトルで名前を付けた `nav` で、収まるだけ 10rem の列に並びます。スタイルは `footer` コンポーネントで、列があるページだけがそのシートを読み込みます。`modootoday.language_switcher: footer` なら言語の切り替えが列の後に続きます。自作の `_includes/footer-custom.html` はこれまでどおりフッター全体を置き換えます。列を残すには、その中で `modootoday/chrome/footer.html` を include してください。
 
 ## 次へ
 

@@ -4,6 +4,8 @@
 {%- if include.kind == "component" -%}
 {%- if site.modootoday.loading -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
 {%- if mt_components contains "banner" -%}{%- if site.modootoday.banner.text or site.modootoday.back_to_top -%}{%- assign mt_page_c = mt_page_c | append: "banner|" -%}{%- endif -%}{%- endif -%}
+{%- assign _mta_fk = "footer-" | append: _lang -%}{%- assign _mta_fd = site.data.nav[_mta_fk] | default: site.data.nav.footer -%}
+{%- if _mta_fd.columns and mt_components contains "footer" -%}{%- assign mt_page_c = mt_page_c | append: "footer|" -%}{%- endif -%}
 {%- unless layout.mt_chrome == false or page.chrome == false -%}
 {%- if page.last_modified_at -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
 {%- elsif site.modootoday.edit_url and page.edit != false and page.path -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}

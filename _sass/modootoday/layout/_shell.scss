@@ -13,8 +13,8 @@
   .mt-doc-layout.mt-has-toc { max-width: none; }
   .mt-doc-main { min-width: 0; }
   .mt-doc-aside { display: none; }
-  .mt-footer { padding-bottom: var(--mt-safe-bottom); border-top: 1px solid mt(border); color: mt(muted-foreground); font-size: .875rem; background: mt(muted); }
-  .mt-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .mt-footer { padding-bottom: var(--mt-safe-bottom); border-top: 1px solid mt(border); color: mt(muted-foreground); font-size: .875rem; }
+  .mt-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-top: 3rem; padding-bottom: 2rem; }
   .mt-footer p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
   .mt-footer a { color: mt(foreground); }
   // Language switcher (modootoday/lang-switch.html): a list in footers; in the header a globe button whose <details>

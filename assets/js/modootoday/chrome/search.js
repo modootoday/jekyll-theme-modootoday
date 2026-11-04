@@ -32,6 +32,29 @@ export function init(root) {
     ta.innerHTML = t;
     return ta.value;
   };
+  // Fills span with text, each query word wrapped in <mark>: text nodes only, never markup.
+  const marked = (span, text, words) => {
+    const low = text.toLowerCase();
+    let at = 0;
+    for (;;) {
+      let next = -1;
+      let len = 0;
+      for (const w of words) {
+        const i = w ? low.indexOf(w, at) : -1;
+        if (i > -1 && (next < 0 || i < next)) {
+          next = i;
+          len = w.length;
+        }
+      }
+      if (next < 0) {
+        break;
+      }
+      span.append(text.slice(at, next), Object.assign(el("mark"), { textContent: text.slice(next, next + len) }));
+      at = next + len;
+    }
+    span.append(text.slice(at));
+    return span;
+  };
   const show = (d, q) => {
     if (normalize(input.value.trim()) != q) {
       return;
@@ -59,9 +82,9 @@ export function init(root) {
       const txt = plain(p.text).normalize("NFC");
       const i = txt.toLowerCase().indexOf(words[0]);
       a.href = p.url;
-      a.append(Object.assign(el("span", "mt-search-title"), { textContent: p.title }));
+      a.append(marked(el("span", "mt-search-title"), p.title, words));
       if (i > -1) {
-        a.append(Object.assign(el("span", "mt-search-snippet"), { textContent: (i > 30 ? "…" : "") + txt.slice(Math.max(0, i - 30), i + 70).trim() + "…" }));
+        a.append(marked(el("span", "mt-search-snippet"), (i > 30 ? "…" : "") + txt.slice(Math.max(0, i - 30), i + 70).trim() + "…", words));
       }
       li.append(a);
       out.append(li);
