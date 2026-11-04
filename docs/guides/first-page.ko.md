@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/first-page/
-source_rev: sha256:08d931ec6892
+source_rev: sha256:67e4443239e8
 nav_order: 20
 title: 첫 페이지
 description: front matter, 섹션, 알림으로 페이지를 씁니다.
@@ -61,7 +61,7 @@ sections:
 | 최상위 GitHub 알림 | kramdown 속성과 `{#id}` |
 | `<https://…>` 자동 링크 | 맨 URL |
 
-전체 목록은 [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)에 있습니다.
+표에는 속성이 필요 없습니다. 40rem보다 좁을 때 들어가지 않는 표는 저절로 레이블 붙은 블록으로 쌓입니다. 전체 목록은 [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)에 있습니다.
 
 ## 다음
 

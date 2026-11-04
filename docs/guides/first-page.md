@@ -55,7 +55,7 @@ One sentence that explains the page.
 | top-level GitHub alerts | kramdown attributes and `{#id}` |
 | `<https://…>` autolinks | bare URLs |
 
-The full list lives in [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md).
+Tables need no attribute: below 40rem a table that does not fit stacks into labelled blocks by itself. The full list lives in [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md).
 
 ## Next
 

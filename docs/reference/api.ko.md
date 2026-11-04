@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:5fa2ea916ef4
+source_rev: sha256:ca9f50ec884c
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -110,7 +110,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - 목록 스타일: `modootoday.lists`를 켜면 쓰입니다. 칩은 높이 44px이고 텍스트 뒤에 →가 붙습니다. 구분자는 `: `입니다.
 - 탭: 탭 부분은 JS가 만듭니다. JS가 없으면 `h3`와 코드 블록이 그대로 남습니다.
 - 파일 트리: 중첩 `ul`이 있는 항목이 폴더입니다.
-- 표: `div.mt-table`은 렌더링할 때 본문의 모든 표를 감싸며, 스크롤되고 넘치면 이름 붙은 영역이 됩니다. 클래스는 kramdown 속성 목록으로 붙입니다. `c: params` 표와 40rem보다 좁을 때 들어가지 않는 표는 `--stack`을 받습니다. 스크립트가 쌓인 표에 레이블을 붙이면 `[data-mt-labelled]`와 `td[data-label]`가 생깁니다. 스타일은 `table`·`table-stack` 시트에 있습니다.
+- 표: `div.mt-table`은 렌더링할 때 본문의 모든 표를 감싸며, 스크롤되고 넘치면 이름 붙은 영역이 됩니다. 본문에는 클래스를 붙이지 않습니다. 세 클래스는 사이트가 직접 만든 레이아웃과 include의 표를 위한 훅입니다(본문의 kramdown 속성 목록은 이식되지 않고 `modootoday-check`가 보고합니다). `c: params` 표와 40rem보다 좁을 때 들어가지 않는 표는 `--stack`을 받습니다. 스크립트가 쌓인 표에 레이블을 붙이면 `[data-mt-labelled]`와 `td[data-label]`가 생깁니다. 스타일은 `table`·`table-stack` 시트에 있습니다.
 - 매개변수 표: 40rem 미만에서 `table.mt-table--stack`으로 쌓입니다.
 - 구독: `form.mt-subscribe`는 action을 설정했을 때 나옵니다.
 - 분할: `.mt-section-body`에는 `h2`와 텍스트가, `.mt-section-visual`에는 `visual:` include가 들어갑니다. `hero: {c: split}`는 `section.mt-hero`를 같은 래퍼로 감싸며, `h1`, 리드 문단, 체크 행, 액션은 `.mt-section-body`에 들어갑니다. `visual: code`는 첫 코드 블록을 `div.mt-section-visual.mt-split-code`에 넣고, `chrome: terminal`은 `.mt-split-terminal`과 `div.mt-split-bar`(`aria-hidden`)를 더합니다.

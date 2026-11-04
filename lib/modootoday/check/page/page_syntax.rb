@@ -57,6 +57,9 @@ module Modootoday
       # they stay on one line and contain no `>`, `--` or `##` (also inside quotes).
       SPEC = %r{<!--[ \t]*/?spec:[a-z0-9._-]+(?::[a-z0-9._-]+)*(?:[ \t]+(?:(?!--|\#\#)[^>\n])*)?-->}
 
+      IAL = "kramdown IAL/ALD `{: ...}` (kramdown-only; GitHub shows it as text); remove it"
+      IAL_TABLE = ": a table that does not fit stacks by itself below 40rem, and the classes are for a site's own HTML"
+
       # 1c. forbidden syntax outside code
       def forbidden(ctx, f, code, html_free)
         r = ctx.rel(f)
@@ -67,7 +70,7 @@ module Modootoday
           why = case l
                 when /<\/?[a-zA-Z][\w-]*[\s>\/]/ then "raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)"
                 when /\{%|\{\{/ then "Liquid"
-                when /\{:/ then "kramdown IAL/ALD"
+                when /\{:/ then IAL + (l.include?("mt-table--") ? IAL_TABLE : "")
                 when /\{#[\w-]+\}/ then "{#id} header id"
                 when /^:\s/ then "definition list"
                 when /^\*\[[^\]]+\]:/ then "abbreviation definition *[X]: (kramdown-only)"

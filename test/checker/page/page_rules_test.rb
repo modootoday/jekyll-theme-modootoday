@@ -33,6 +33,12 @@ class CheckPageRulesTest < CheckerCase
     refute_match(/a\.md:10:/, o)
   end
 
+  def test_table_class_attribute_points_to_automatic_stacking
+    page "a.md", "---\n---\n| A | B |\n|---|---|\n| 1 | 2 |\n{: .mt-table--stack}\n"
+    o, = check
+    assert_match(/a\.md:5: kramdown IAL\/ALD .*remove it: a table that does not fit stacks by itself below 40rem/, o)
+  end
+
   def test_status_vocabulary
     page "a.md", "---\n---\n`status:done` `status:available`\n"
     o, code = check

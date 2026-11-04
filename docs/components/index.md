@@ -210,17 +210,19 @@ An ordered list works too.
 
 ## Tables
 
-`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that; from 40rem a word or code span breaks only when it is longer than its column. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge shows there is more to scroll.
+`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that; from 40rem a word or code span breaks only when it is longer than its column. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge, with the content fading there in browsers that support scroll-driven animations, shows there is more to scroll.
 
-Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. Any other table stacks the same way when it does not fit: two or three columns that would scroll, or four or more with a cell over six lines. On a site that allows kramdown attribute lists, a line right after any table picks a variant:
+Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. Any other table stacks the same way when it does not fit: two or three columns that would scroll, or four or more with a cell over six lines. So a page needs no markup for narrow screens.
+
+Three classes are hooks for tables a site writes in its own layouts or includes, outside page bodies:
 
 ```text
-{: .mt-table--stack}  rows become labelled blocks below 40rem
-{: .mt-table--dl}     two columns: each key above its value below 40rem
-{: .mt-table--fixed}  equal columns that wrap anywhere, for comparison grids
+table.mt-table--stack  rows become labelled blocks below 40rem
+table.mt-table--dl     two columns: each key above its value below 40rem
+table.mt-table--fixed  equal columns that wrap anywhere, for comparison grids
 ```
 
-`modootoday-check` reports attribute lists, because GitHub shows them as text. The stacked forms need JavaScript; without it the table scrolls. `mt-table--fixed` keeps a table from stacking.
+A page body cannot set them: a kramdown attribute list (`{: .mt-table--stack}`) is kramdown-only, GitHub shows it as text, and `modootoday-check` reports it. The stacked forms need JavaScript; without it the table scrolls. `mt-table--fixed` keeps a table from stacking.
 
 | Key | Default | Description |
 |---|---|---|

@@ -10,14 +10,14 @@ a20-bold-title-line.md:1: formatted alert marker (e.g. **[!NOTE]**) is not an al
 a27-heading-first.md:2: '##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text
 a29-h2-in-alert-sections.md:4: '##' inside a quote/alert is not a section (sections split only on column-0 '## '; GitHub would show an h2 inside the box); use '###' or bold text
 f02-html-comment.md: HTML comment <!-- --> (hidden on GitHub, emitted by kramdown); remove it (first: `<!-- hidden note -->`)
-f04-ial.md:2: kramdown IAL/ALD
+f04-ial.md:2: kramdown IAL/ALD `{: ...}` (kramdown-only; GitHub shows it as text); remove it
 f05-header-id.md:1: {#id} header id
 f06-deflist.md:2: definition list
 f07-raw-details.md:1: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
 f07-raw-details.md:5: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
 f08-autolink-email.md:1: bare URL/e-mail autolink (kramdown does not link it); write <https://…> or [text](url)
 f12-liquid-in-text.md:1: Liquid
-f13-kramdown-toc.md:2: kramdown IAL/ALD
+f13-kramdown-toc.md:2: kramdown IAL/ALD `{: ...}` (kramdown-only; GitHub shows it as text); remove it
 f14-abbr.md:1: abbreviation definition *[X]: (kramdown-only)
 f16-tagfilter.md:1: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
 f16-tagfilter.md:3: raw HTML (not portable: GitHub renders some tags, strips others; kramdown passes all through)
