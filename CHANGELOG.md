@@ -87,6 +87,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ### Fixed
 
+- `cols: 3` and `cols: 4` card grids showed two columns in a doc page's 45rem text column, because they switched on only in a section 48rem or 64rem wide (adr:modootoday/20261104195533). The count now follows the section's width and fills whole rows: `cols: 2` two from 30rem, `cols: 3` three from 40rem, `cols: 4` two by two from 30rem and four from 52rem, one column below.
 - A status badge showed two symbols before its label, the CSS dot and the old text glyph (● ◐ ○) on a different baseline. The glyph span is gone: `span.mt-badge-<status>` holds only the label, and the dot is the `::before` border, which stays visible in forced colours.
 - Doc sidebar group titles (`summary.mt-sidebar-title`, which open and close a group) were 20px tall targets and failed WCAG 2.5.8 target size in axe and Lighthouse; they are now 24px (`.25rem` above and below the 16px line), and the group's top margin is `.25rem` smaller, so the title text stays where it was.
 - In a table of two or three columns, a short code span such as `header` no longer breaks inside the word at desktop widths: from 40rem, text and code after the first column break only a word longer than the column (`overflow-wrap: break-word`). Below 40rem they still break anywhere, as before.

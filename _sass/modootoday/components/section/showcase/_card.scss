@@ -1,5 +1,5 @@
 // Cards: c: features section, list items "- **Title** — description" (the dash is dropped in Liquid).
-// The grid fits as many 16rem columns as the section holds; cols-<n> fixes the count by the section's own width.
+// The grid fits as many 16rem columns as the section holds; cols-<n> sets the count by the section's own width.
 @include mt-layer(components) {
   .mt-c-features { container-type: inline-size; }
   .mt-c-features > ul { --mt-card-padding: 1.5rem;
@@ -14,10 +14,10 @@
   // badge: bottom: a status badge (.mt-badge) written as a direct child of the item sits at the card's bottom edge.
   .mt-badge-bottom > ul > li:has(> .mt-badge) { position: relative; padding-block-end: calc(var(--mt-card-padding) + 2rem); }
   .mt-badge-bottom > ul > li > .mt-badge { position: absolute; inset-block-end: var(--mt-card-padding); inset-inline-start: var(--mt-card-padding); }
-  @container (min-width: 48rem) {
-    .mt-cols-2 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .mt-cols-4 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @container (min-width: 64rem) { .mt-cols-4 > ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  // cols-<n> fills whole rows: one column, then n (cols-4 two by two first), so a 45rem text column holds three
+  // tracks but not four, whose text would be about 9rem wide.
+  .mt-c-features:is(.mt-cols-2, .mt-cols-3, .mt-cols-4) > ul { grid-template-columns: minmax(0, 1fr); }
+  @container (min-width: 30rem) { .mt-c-features:is(.mt-cols-2, .mt-cols-4) > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 40rem) { .mt-c-features.mt-cols-3 > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @container (min-width: 52rem) { .mt-c-features.mt-cols-4 > ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 }

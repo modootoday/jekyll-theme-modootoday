@@ -87,7 +87,7 @@ An alert can hold lists and code. Leave nothing after the marker on its line.
 
 ## Cards
 
-`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. The bold text is the card title; one separator after it (` — `, `: ` or the full-width `：`) is not shown, and colons later in the text stay. `cols: 2`, `cols: 3` or `cols: 4` sets the grid; narrow screens show one column, and `cols: 4` shows two columns on medium screens.
+`status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. The bold text is the card title; one separator after it (` — `, `: ` or the full-width `：`) is not shown, and colons later in the text stay. `cols: 2`, `cols: 3` or `cols: 4` sets the grid by the width of the section, not the screen: one column below 30rem, `cols: 2` two from 30rem, `cols: 3` three from 40rem, and `cols: 4` two by two from 30rem and four across from 52rem. So in a text column like this one, `cols: 3` is three across and `cols: 4` stays two by two, where four cards would be too narrow to read.
 
 - **Plain Markdown** — Pages read well on github.com too.
 - **With a badge** — Cards can carry status. `status:available`
@@ -104,7 +104,7 @@ The same list with `cols: 3`. With `reveal: true`, the section fades in as it sc
 
 ## Cards in four columns
 
-The same idea with `cols: 4` on wide screens.
+The same idea with `cols: 4`: two by two in this text column, four across in a section 52rem wide or more.
 
 - **Alerts** — Five alert types.
 - **Tabs** — Accessible code tabs.

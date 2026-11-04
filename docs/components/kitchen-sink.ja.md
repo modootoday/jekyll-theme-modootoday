@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:1c991a8ab375
+source_rev: sha256:ebc3b7fabc0e
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
@@ -106,8 +106,8 @@ sections:
 - **トークン** — 色、角丸、フォント。 `status:available`
 - **Sass** — コンポーネントごとに一つのパーシャル。 `status:available`
 - **Markdown 版** — エージェント向けの Markdown。 `status:available`
-- **グリッド** — 広い画面では 4 列。
-- **行** — 8 枚のカードで 2 行になります。
+- **グリッド** — 幅が 52rem 以上のセクションでは 4 列、本文の列では 2×2。
+- **行** — 8 枚のカードがどの行も埋めます。
 
 ## パネルが二つのタブ
 
