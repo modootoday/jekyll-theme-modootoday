@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:f7673a0885e6
+source_rev: sha256:cd357c0a7996
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
@@ -23,7 +23,7 @@ sections:
 ### GitHub Pages
 
 ```yaml
-# _config.yml (기본 GitHub Pages 빌드. 로컬 빌드에는 github-pages gem의 Gemfile도 필요)
+# _config.yml (로컬 빌드는 github-pages gem 탭 참고)
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:f7673a0885e6
+source_rev: sha256:cd357c0a7996
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -24,7 +24,7 @@ sections:
 ### GitHub Pages
 
 ```yaml
-# _config.yml（従来の GitHub Pages ビルド。ローカルでビルドするには github-pages gem の Gemfile も必要）
+# _config.yml（ローカルでのビルドは github-pages gem のタブを参照）
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```

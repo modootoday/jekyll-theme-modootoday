@@ -17,7 +17,7 @@ Pick the build you already use. All three read the same Markdown.
 ### GitHub Pages
 
 ```yaml
-# _config.yml (classic GitHub Pages build; a local build also needs the github-pages gem Gemfile)
+# _config.yml (to build locally, see the github-pages gem tab)
 remote_theme: modootoday/jekyll-theme-modootoday@v1.4.1
 plugins: [jekyll-remote-theme]
 ```
