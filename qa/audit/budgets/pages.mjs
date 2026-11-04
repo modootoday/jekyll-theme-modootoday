@@ -1,8 +1,6 @@
 // What one built page loads: its local stylesheets, scripts and module preloads, plus the modules those scripts import.
-// Also checks the core CSS each page links in total (raw bytes; showcase pages have a larger cap).
 import fs from "node:fs";
 import path from "node:path";
-import { BUDGET, BLOG_FILES, SHOWCASE, BUNDLE } from "../config.mjs";
 
 const TAG = /<(?:link|script)\b[^>]*>/g;
 const IMPORT = /(?:^|[;\s})])(?:import|export)\s*(?:[\w$*{}\s,]+from\s*)?["'](\.{1,2}\/[^"']+)["']/g;
@@ -60,22 +58,4 @@ export function pageAssets(site, html) {
     }
   }
   return { css: [...css], js: withImports(site, [...js]) };
-}
-
-export function checkPages(site, fails) {
-  const dir = path.join(site, "assets");
-  let worst = 0;
-  for (const h of fs.readdirSync(site, { recursive: true }).filter((f) => f.endsWith(".html"))) {
-    const html = fs.readFileSync(path.join(site, h), "utf8");
-    const core = pageAssets(site, html).css.filter((f) => f.startsWith("css/modootoday") && !BLOG_FILES.includes(f) && !BUNDLE.test(f));
-    const total = core.reduce((n, f) => n + (fs.existsSync(path.join(dir, f)) ? fs.statSync(path.join(dir, f)).size : 0), 0);
-    const cap = SHOWCASE.test(h) ? BUDGET.css_showcase : BUDGET.css;
-    if (cap === BUDGET.css) {
-      worst = Math.max(worst, total);
-    }
-    if (total > cap) {
-      fails.push(`css linked by ${h}: ${total} B > budget ${cap} B`);
-    }
-  }
-  return worst;
 }

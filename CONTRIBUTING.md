@@ -18,7 +18,7 @@ npm ci && npm test
 gem build jekyll-theme-modootoday.gemspec
 ```
 
-Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. The budgets in `qa/audit/config.mjs` cover each file, the core CSS one page links, all core scripts (gzip) and, per page type (`PAGE_TYPES`), the gzip bytes one page loads; limits are the measured value plus about 10 %. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there.
+Changes to `docs/` or the theme's look: `qa/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. Every theme CSS and JS file has a gzip cap on its row in `_includes/modootoday/assets/registry.html` (the measured size plus 10 %, rounded up to 128 bytes): a file over its cap, a row without a cap (the message prints the cap to use) and a theme file without a row fail. Per page type (`PAGE_TYPES` in `qa/audit/config.mjs`) the limit is the sum of the caps of what one page loads; the `GUIDE` targets (8 KiB CSS, 6 KiB JavaScript, six theme sheets) only warn. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there.
 
 ### Visual regression
 
@@ -87,7 +87,7 @@ Where things live:
 | `test/fixtures/` | inputs shared by the tests |
 | `docs/generated/` | tool output: the docs site's twin stubs and per-language `llms.txt` / `llms-full.txt` stubs, written by `ruby script/docs-index` (`--check` fails when they are stale). Do not edit by hand; each stub sets `path:` to where it would sit beside its page and `permalink:` to its URL |
 | `qa/site/` | building and serving the docs site |
-| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: per file, per page, per page type in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
+| `qa/audit.mjs`, `qa/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
 | `qa/visual/` | visual regression (`npm run qa:visual`) |
 | `qa/lighthouse/` | Lighthouse runs and budget |
 | `qa/docs/` | link check and kitchen-sink coverage |

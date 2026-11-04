@@ -20,8 +20,9 @@ const site = path.resolve(process.argv[2] || "docs/_site");
 const out = path.resolve(process.argv[3] || "qa-out");
 const langs = langsOf(site);
 const fails = [];
+const warns = [];
 const { origin, close } = await serveSite(site);
-const report = { origin, redirects: checkRedirects(site, fails), sizes: checkBudgets(site, fails), contrast: [], axe: [], shots: 0, http: [] };
+const report = { origin, redirects: checkRedirects(site, fails), sizes: checkBudgets(site, fails, warns), contrast: [], axe: [], shots: 0, http: [] };
 
 const browser = await chromium.launch();
 const ctxs = [], tasks = [];
@@ -50,4 +51,4 @@ report.keyboard = await checkKeyboard(browser, origin, fails);
 report.mobile = (await checkMobile(browser, origin, out, fails)).length;
 report.csp = await checkCsp(browser, site, fails);
 await browser.close(); close();
-process.exit(writeReport(out, report, fails));
+process.exit(writeReport(out, report, fails, warns));
