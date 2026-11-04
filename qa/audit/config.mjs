@@ -14,14 +14,15 @@ export const BLOG_FILES = ["css/modootoday-blog.css", "js/modootoday/share.js"];
 export const BUDGET = { css: 40 * 1024, css_showcase: 53 * 1024, js_total: 9.25 * 1024, "blog-css": 8 * 1024, "blog-js": 1024, bundle: 8 * 1024, bundle_js: 2.5 * 1024 };
 // Per page type: gzip bytes of what one page actually loads (stylesheets, scripts and their module imports). Limits: the largest
 // page of the type, docs site built by the Pages builder, plus 10% rounded up to 0.25 KiB (js_total likewise: 8586 B measured, with the module helpers and the filter).
-// doc, landing, showcase and visual JS: scroll-region.js labels stacked tables (5718, 5718, 6175 and 6902 B measured).
+// doc, landing, showcase and visual JS: scroll-region.js labels table wrappers, and showcase pages (c: params) also load
+// table-stack.js (5369, 5369, 6345 and 6553 B measured).
 export const PAGE_TYPES = {
-  doc: { pages: ["guides/configuration/", "guides/install/", "recipes/csp/"], css: 9.75 * 1024, js: 6.25 * 1024 },
-  landing: { pages: ["", "layouts/demo/home/", "layouts/marketing/"], css: 11.5 * 1024, js: 6.25 * 1024 },
+  doc: { pages: ["guides/configuration/", "guides/install/", "recipes/csp/"], css: 9.75 * 1024, js: 6 * 1024 },
+  landing: { pages: ["", "layouts/demo/home/", "layouts/marketing/"], css: 11.5 * 1024, js: 6 * 1024 },
   blog: { pages: ["blog/", "guides/2026/10/28/archives/"], css: 11 * 1024, js: 5 * 1024 },
-  showcase: { pages: ["components/", "components/kitchen-sink/", "layouts/demo/csp/"], css: 18.25 * 1024, js: 6.75 * 1024 },
-  // A doc page with a script: visual: its site module and the theme helpers it imports (measured 9360 / 6902 B).
-  visual: { pages: ["layouts/demo/orbit/"], css: 10.25 * 1024, js: 7.5 * 1024 },
+  showcase: { pages: ["components/", "components/kitchen-sink/", "layouts/demo/csp/"], css: 18.25 * 1024, js: 7 * 1024 },
+  // A doc page with a script: visual: its site module and the theme helpers it imports (measured 9360 / 6553 B).
+  visual: { pages: ["layouts/demo/orbit/"], css: 10.25 * 1024, js: 7.25 * 1024 },
   // A doc page with filter: on a list and a table: filter.js and the modules it imports (measured 9482 / 6784 B).
   // The records demo list (a directory with filter_text: true) loads the same filter modules (measured 9637 / 5376 B).
   filter: { pages: ["layouts/demo/filter/", "recipes/records/"], css: 10.25 * 1024, js: 7.5 * 1024 },

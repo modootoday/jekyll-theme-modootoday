@@ -1,5 +1,5 @@
 // Opt-in table variants by kramdown IAL: {: .mt-table--stack} (labelled blocks), {: .mt-table--dl} (key over value) and
-// {: .mt-table--fixed} (equal columns). The two stacked forms apply only once scroll-region.js has set roles and labels.
+// {: .mt-table--fixed} (equal columns). The two stacked forms apply only once table-stack.js has set roles and labels.
 @include mt-layer(components) {
   @media (max-width: 39.99rem) {
     // [role] lifts these over the table sheet's floors, widths and sticky first column.

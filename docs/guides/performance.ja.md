@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:2d5e16925556
+source_rev: sha256:3bd14f9b3060
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -23,6 +23,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `menu.js`、`theme-toggle.js`、`search.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
 | `code-copy.js` | コードブロックがあるページと、ページ操作メニューがあるページ |
 | `scroll-region.js` | コードブロックか表があるページ |
+| `table-stack.js` | 積み重ねる表があるページ（`c: params`、または `mt-table--stack` か `mt-table--dl` クラス） |
 | `tabs.js`、`accordion.js`、`share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
 | `filter/filter.js`（ES モジュール。`chips.js`、`text/normalize.js`、`dom/config.js` を含む） | `filter:` か `filter_text:` を使うページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |

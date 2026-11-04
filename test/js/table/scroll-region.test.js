@@ -1,5 +1,4 @@
-// jsdom tests for assets/js/modootoday/scroll-region.js: scroll regions on overflowing code and table wrappers, and the
-// roles and labels of stacked tables. Run: npm test
+// jsdom tests for assets/js/modootoday/scroll-region.js: scroll regions on overflowing code and table wrappers. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const fs = require("node:fs");
@@ -34,24 +33,4 @@ test("an overflowing table wrapper becomes a labelled focusable region; a fittin
 test("an overflowing code block is labelled with the code string", () => {
   const d = run('<pre data-w="300"><code>x</code></pre>');
   assert.strictEqual(d.querySelector("pre").getAttribute("aria-label"), "코드");
-});
-
-test("stack and dl tables get explicit roles, header labels on body cells, and the labelled flag", () => {
-  const d = run(`<div class="mt-table"><table class="mt-table--stack">${HEAD}${BODY}</table></div>` +
-    '<div class="mt-table"><table class="mt-table--dl"><tbody><tr><th scope="row">Key</th><td>Value</td></tr></tbody></table></div>');
-  const [stack, dl] = d.querySelectorAll("table");
-  assert.strictEqual(stack.getAttribute("role"), "table");
-  assert.strictEqual(stack.hasAttribute("data-mt-labelled"), true);
-  assert.deepStrictEqual([...stack.querySelectorAll("tbody td")].map((c) => c.dataset.label), ["Key", "Type", "Default", "Description"]);
-  assert.deepStrictEqual([...stack.querySelectorAll("thead, tr, th")].map((e) => e.getAttribute("role")),
-    ["rowgroup", "row", "columnheader", "columnheader", "columnheader", "columnheader", "row"]);
-  assert.strictEqual(stack.querySelector("td").getAttribute("role"), "cell");
-  assert.strictEqual(dl.querySelector("th").getAttribute("role"), "rowheader");
-  assert.strictEqual(dl.querySelector("td").hasAttribute("data-label"), false, "no header row, no labels");
-});
-
-test("a plain table gets no roles or labels", () => {
-  const d = run(`<div class="mt-table"><table>${HEAD}${BODY}</table></div>`);
-  assert.strictEqual(d.querySelector("table").hasAttribute("role"), false);
-  assert.strictEqual(d.querySelector("td").hasAttribute("data-label"), false);
 });

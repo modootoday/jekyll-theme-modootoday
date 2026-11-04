@@ -17,6 +17,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `menu.js`, `theme-toggle.js`, `search.js` | pages with the header, the toggle, or a search index |
 | `code-copy.js` | pages with a code block, and pages with the page actions menu |
 | `scroll-region.js` | pages with a code block or a table |
+| `table-stack.js` | pages with a stacked table (`c: params`, or the `mt-table--stack` or `mt-table--dl` class) |
 | `tabs.js`, `accordion.js`, `share.js` | pages that use tabs, an accordion, or a blog layout |
 | `filter/filter.js` (an ES module, with `chips.js`, `text/normalize.js` and `dom/config.js`) | pages with `filter:` or `filter_text:` |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |

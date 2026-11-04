@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:2d5e16925556
+source_rev: sha256:3bd14f9b3060
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -23,6 +23,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `menu.js`, `theme-toggle.js`, `search.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
 | `code-copy.js` | 코드 블록이 있는 페이지와 페이지 작업 메뉴가 있는 페이지 |
 | `scroll-region.js` | 코드 블록이나 표가 있는 페이지 |
+| `table-stack.js` | 쌓이는 표가 있는 페이지(`c: params`, 또는 `mt-table--stack`이나 `mt-table--dl` 클래스) |
 | `tabs.js`, `accordion.js`, `share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
 | `filter/filter.js`(ES 모듈. `chips.js`, `text/normalize.js`, `dom/config.js` 포함) | `filter:`나 `filter_text:`를 쓰는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |

@@ -7,6 +7,7 @@
 {%- endfor -%}
 {%- assign _mta_on = "|" -%}
 {%- if _mta_hit contains "|scroll-region|" -%}{%- assign _mta_on = "|scroll-region|" -%}{%- endif -%}
+{%- if _mta_hit contains "|table-stack|" -%}{%- assign _mta_on = _mta_on | append: "table-stack|" -%}{%- endif -%}
 {%- if mt_components contains "tabs" and mt_page_c contains "|tabs|" -%}{%- assign _mta_on = _mta_on | append: "tabs|" -%}{%- endif -%}
 {%- if site.title and _chrome -%}{%- assign _mta_on = _mta_on | append: "menu|" -%}{%- endif -%}
 {%- if mt_components contains "code-copy" and _mta_hit contains "|code-copy|" -%}{%- assign _mta_on = _mta_on | append: "code-copy|" -%}
