@@ -21,6 +21,8 @@
     margin-inline-end: .25rem; border: solid mt(muted-foreground); border-width: 0 1.5px 1.5px 0; rotate: -45deg; }
   [dir="rtl"] :is(.mt-sidebar-title, .mt-sidebar-mobile > summary, .mt-toc-mobile > summary)::after { rotate: 135deg; }
   [open] > :is(.mt-sidebar-title, .mt-sidebar-mobile > summary, .mt-toc-mobile > summary)::after { rotate: 45deg; }
+  // The skip link targets the text column past the sidebar (layouts/doc.html); like main, it shows no ring.
+  .mt-doc-main:focus { outline: none; }
   .mt-doc-nav { display: none; }
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }

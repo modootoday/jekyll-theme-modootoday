@@ -30,7 +30,7 @@ export async function skipLink(page, url, fails) {
   await page.keyboard.press("Enter");
   const id = await page.evaluate(() => document.activeElement.id);
   if (!shown) fails.push(`keyboard: skip link not on screen when focused ${url}`);
-  if (id !== "mt-main") fails.push(`keyboard: skip link does not move focus to main (${id}) ${url}`);
+  if (id !== "mt-main" && id !== "mt-content") fails.push(`keyboard: skip link does not move focus to the main text (${id}) ${url}`);
 }
 
 // The sticky TOC scrolls, so a focus ring drawn outside a link would be clipped by the column.

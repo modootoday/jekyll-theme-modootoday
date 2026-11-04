@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:dd46340a24ae
+source_rev: sha256:6979409e2f5d
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -192,4 +192,4 @@ columns:
 copyright: © 2026 You
 ```
 
-各列はタイトルで名前を付けた `nav` で、収まるだけ 10rem の列に並びます。スタイルは `footer` コンポーネントで、列があるページだけがそのシートを読み込みます。`modootoday.language_switcher: footer` なら言語の切り替えが列の後に続きます。自作の `_includes/footer-custom.html` はこれまでどおりフッター全体を置き換えます。列を残すには、その中で `modootoday/chrome/footer.html` を include してください。
+各列はタイトルで名前を付けたリストで、それ自体はランドマークではないため、Docs のようなタイトルがサイドバーの名前と重なっても問題ありません。列は収まるだけ 10rem の列に並びます。スタイルは `footer` コンポーネントで、列があるページだけがそのシートを読み込みます。`modootoday.language_switcher: footer` なら言語の切り替えが列の後に続きます。自作の `_includes/footer-custom.html` はこれまでどおりフッター全体を置き換えます。列を残すには、その中で `modootoday/chrome/footer.html` を include してください。

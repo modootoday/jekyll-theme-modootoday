@@ -63,7 +63,7 @@ The `sass:` line keeps a Jekyll 4 build from printing thousands of Dart Sass not
 
 ## Verify the build
 
-`--twins` also checks the files the theme publishes for AI agents ([For agents](../agents/)): a Markdown twin of each page, and `llms.txt` and `llms-full.txt`. On Jekyll 4, add `plugins: [jekyll-theme-modootoday]` and the build makes them. On classic GitHub Pages, run `modootoday-stubs . --twins --write` once to add a twin stub beside each page, and add two files at the site root that hold only front matter: `llms.txt` with `layout: llms` and `llms-full.txt` with `layout: llms-full`. To check only the Markdown, leave `--twins` out.
+`--twins` also checks the files the theme publishes for AI agents ([For agents](../agents/)): a Markdown twin of each page, and `llms.txt` and `llms-full.txt`. On Jekyll 4, add `plugins: [jekyll-theme-modootoday]` and the build makes them. On classic GitHub Pages, run `modootoday-stubs . --twins --write` once to add a twin stub beside each page, and add two files at the site root that hold only front matter: `llms.txt` with `layout: llms` and `llms-full.txt` with `layout: llms-full`. Error pages (`layout: error`, such as `404.md`) never get a twin; any other page that should not have one sets `twin: false`. To check only the Markdown, leave `--twins` out.
 
 ```sh
 bundle exec jekyll build

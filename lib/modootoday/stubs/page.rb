@@ -11,6 +11,8 @@ module Modootoday
       end
 
       def name = File.basename(rel)
+      # No Markdown twin: README.md, twin: false, and system pages (layout: error, such as /404.html).
+      def twin? = name != "README.md" && fm["twin"] != false && fm["layout"] != "error"
       def directory_url? = fm["permalink"].nil? || fm["permalink"].to_s.end_with?("/")
     end
   end

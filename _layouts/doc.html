@@ -13,7 +13,7 @@ layout: default
 {%- assign _toc = _toc | strip -%}
 <div class="mt-doc-layout{% if _toc != "" %} mt-has-toc{% elsif page.toc == false %} mt-toc-off{% endif %}{% if mt_sidebar %} mt-has-sidebar{% endif %}">
 {%- include modootoday/doc/sidebar.html part="aside" %}
-<div class="mt-doc-main">
+<div class="mt-doc-main"{% if mt_sidebar %} id="mt-content" tabindex="-1"{% endif %}>
 {%- include modootoday/doc/sidebar.html part="mobile" -%}
 {%- include modootoday/breadcrumb.html -%}
 {%- if _toc != "" %}{{ _toc | replace: '<nav class="mt-toc" aria-labelledby="mt-toc-title">', '<details class="mt-toc-mobile"><summary>' | replace: '<p class="mt-toc-title" id="mt-toc-title">', '' | replace: '</p><ol>', '</summary><ol>' | replace: '</nav>', '</details>' }}{% endif %}
@@ -23,6 +23,6 @@ layout: default
 </article>
 </div>
 {%- if _toc != "" %}
-<aside class="mt-doc-aside">{{ _toc }}</aside>
+<aside class="mt-doc-aside" role="none">{{ _toc }}</aside>
 {%- endif %}
 </div>

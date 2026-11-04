@@ -21,7 +21,7 @@ whose summary is the current group (or the label). include part=aside | mobile. 
 {%- endfor -%}
 </ul>{%- endcapture -%}
 {%- if include.part == "aside" %}
-<aside class="mt-doc-nav"><nav class="mt-sidebar" aria-label="{{ _sb_label }}">{{ _sb_list }}</nav></aside>
+<aside class="mt-doc-nav" role="none"><nav class="mt-sidebar" aria-label="{{ _sb_label }}">{{ _sb_list }}</nav></aside>
 {%- else %}
 <details class="mt-sidebar-mobile"><summary>{{ _sb_cur | default: _sb_label }}</summary><nav class="mt-sidebar" aria-label="{{ _sb_label }}">{{ _sb_list }}</nav></details>
 {%- endif -%}

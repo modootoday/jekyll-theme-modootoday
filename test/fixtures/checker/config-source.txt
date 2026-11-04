@@ -2,7 +2,7 @@ _config.yml: modootoday.twins: source needs the raw copies; remove optional_fron
 _config.yml: modootoday.twins: source conflicts with require_front_matter: true
 guide.md: no rendered page (guide.html or guide/index.html); is jekyll-optional-front-matter enabled? (local builds: list it in plugins:)
 $TMP/_site/guide.md: raw copy is not byte-identical to guide.md
-kept.md: twin missing at $TMP/_site/kept/index.md: add a stub kept.md.txt with front matter `layout: twin`, `twin_of: kept.md` and `permalink: /kept/index.md` (`modootoday-stubs SRC --twins --write` writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)
+kept.md: twin missing at $TMP/_site/kept/index.md: add a stub kept.md.txt with front matter `layout: twin`, `twin_of: kept.md` and `permalink: /kept/index.md` (`modootoday-stubs SRC --twins --write` writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages); a page that needs no twin sets `twin: false`
 $TMP/_site/llms-full.txt: does not contain the body of guide.md
 $TMP/_site/llms-full.txt: does not contain the body of kept.md
 md-components check: 7 problem(s)

@@ -39,7 +39,7 @@ class NavigationTest < Minitest::Test
   def test_sidebar_lists_groups_and_marks_current
     h = self.class.site.call("two")
     assert_includes h, "mt-has-sidebar"
-    assert_includes h, '<aside class="mt-doc-nav"><nav class="mt-sidebar"'
+    assert_includes h, '<aside class="mt-doc-nav" role="none"><nav class="mt-sidebar"'
     assert_match(%r{<details open><summary class="mt-sidebar-title">Guides</summary><ul><li><a href="/one/">One</a></li><li><a href="/two/" aria-current="page">Two</a>}, h)
     assert_match(%r{<details class="mt-sidebar-mobile"><summary>Guides</summary>}, h)
   end

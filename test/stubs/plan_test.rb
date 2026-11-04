@@ -9,6 +9,7 @@ class StubsPlanTest < StubsCase
     file "guides/install.md", "---\n---\n# Install\n"
     file "guides/raw.md", "# No front matter\n"
     file "off.md", "---\ntwin: false\n---\n# Off\n"
+    file "404.md", "---\nlayout: error\npermalink: /404.html\n---\n"
     file "README.md", "---\n---\n# Readme\n"
     file "_drafts/d.md", "---\n---\n# D\n"
     file "vendor/v.md", "---\n---\n# V\n"

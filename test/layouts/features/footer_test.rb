@@ -27,7 +27,7 @@ class FooterTest < Minitest::Test
   def test_columns_copyright_and_sheet
     _, s = site("data", { "_data/nav/footer.yml" => FOOTER, "_data/nav/footer-ko.yml" => FOOTER_KO })
     f = footer(html(s, "f/a"))
-    assert_match(%r{<div class="mt-footer-cols"><nav aria-label="Docs"><p class="mt-footer-title">Docs</p><ul><li><a href="/guides/install/">Install</a></li><li><a href="https://example.com/code">Code</a></li></ul></nav></div>}, f)
+    assert_match(%r{<div class="mt-footer-cols"><div><p class="mt-footer-title" id="mt-footer-1">Docs</p><ul aria-labelledby="mt-footer-1"><li><a href="/guides/install/">Install</a></li><li><a href="https://example.com/code">Code</a></li></ul></div></div>}, f)
     assert_includes f, '<p class="mt-footer-copy">(c) Site</p>'
     assert_includes html(s, "f/a"), "modootoday/chrome/footer.css"
     ko = footer(html(s, "f/b"))

@@ -13,7 +13,7 @@ $TMP/_site/a.css: @use/@forward left in built CSS (Ruby Sass passes them through
 $TMP/_site/a.css: custom property with a literal Sass variable (write --x: #{$var})
 $TMP/_site/a.css: var(--mt-missing) is never defined
 $TMP/src/Gemfile.lock: github-pages 231 != 232
-g.md: twin missing at $TMP/_site/g/index.md: add a stub g.md.txt with front matter `layout: twin`, `twin_of: g.md` and `permalink: /g/index.md` (`modootoday-stubs SRC --twins --write` writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)
+g.md: twin missing at $TMP/_site/g/index.md: add a stub g.md.txt with front matter `layout: twin`, `twin_of: g.md` and `permalink: /g/index.md` (`modootoday-stubs SRC --twins --write` writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages); a page that needs no twin sets `twin: false`
 index.md.txt: stub must set layout: twin
 $TMP/_site/index.md: twin is not byte-identical to the body of index.md
 $TMP/_site/llms.txt: must start with an H1 (llmstxt.org)

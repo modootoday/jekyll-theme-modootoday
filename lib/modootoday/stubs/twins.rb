@@ -11,7 +11,7 @@ module Modootoday
         @dir = dir
       end
 
-      def pages = @s.pages.reject { |p| p.name == "README.md" || p.fm["twin"] == false }
+      def pages = @s.pages.select(&:twin?)
 
       # { stub path relative to SRC => content }
       def wanted

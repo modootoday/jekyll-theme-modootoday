@@ -8,6 +8,7 @@
 #   llms.txt / llms-full.txt at / and at /<lang>/ for each language with pages (layouts llms / llms-full)
 # so output is identical to the stub-based (GitHub Pages) setup. Existing pages/stubs always win.
 require "jekyll"
+require_relative "modootoday/stubs/page"
 
 module JekyllThemeModootoday
   class Stub < Jekyll::PageWithoutAFile
@@ -37,7 +38,7 @@ module JekyllThemeModootoday
       raw = site.static_files.to_h { |f| [f.relative_path.sub(%r{\A/}, ""), true] }
       if cfg.fetch("twins", true)
         md.each do |p|
-          next if p.data["twin"] == false
+          next unless Modootoday::Stubs::Page.new(p.relative_path, p.data).twin?
           next if raw[p.relative_path.sub(%r{\A/}, "")] # front-matter-less mode: the source itself is the twin
 
           url = p.url.end_with?("/") ? "#{p.url}index.md" : p.url.sub(/\.html\z/, ".md")

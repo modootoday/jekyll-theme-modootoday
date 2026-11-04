@@ -1,5 +1,7 @@
 {%- comment -%}Site footer from _data/nav/footer-<lang>.yml, else _data/nav/footer.yml: columns: [{title, items: [{title, url}]}]
-  and copyright: (text). With modootoday.language_switcher: footer the switcher closes it. Renders nothing without either.
+  and copyright: (text). Columns are lists labelled by their titles, not landmarks, so a title never collides
+  with another landmark's name (the sidebar's "Docs"). With modootoday.language_switcher: footer the switcher
+  closes it. Renders nothing without either.
   The theme's footer-custom.html includes it; a site's own footer-custom.html replaces both.{%- endcomment -%}
 {%- assign _fl = page.lang | default: site.lang | default: "en" -%}
 {%- assign _fk = "footer-" | append: _fl -%}
@@ -7,7 +9,7 @@
 {%- assign _fsw = false -%}{%- if site.modootoday.language_switcher == "footer" and site.modootoday.languages -%}{%- assign _fsw = true -%}{%- endif -%}
 {%- if _fd.columns or _fd.copyright or _fsw %}
 <footer class="mt-footer"><div class="mt-footer-inner">
-{%- if _fd.columns %}<div class="mt-footer-cols">{% for _fc in _fd.columns %}<nav aria-label="{{ _fc.title | escape }}"><p class="mt-footer-title">{{ _fc.title }}</p><ul>{% for _fi in _fc.items %}<li><a href="{% include modootoday/link.html url=_fi.url %}">{{ _fi.title }}</a></li>{% endfor %}</ul></nav>{% endfor %}</div>{% endif %}
+{%- if _fd.columns %}<div class="mt-footer-cols">{% for _fc in _fd.columns %}<div><p class="mt-footer-title" id="mt-footer-{{ forloop.index }}">{{ _fc.title }}</p><ul aria-labelledby="mt-footer-{{ forloop.index }}">{% for _fi in _fc.items %}<li><a href="{% include modootoday/link.html url=_fi.url %}">{{ _fi.title }}</a></li>{% endfor %}</ul></div>{% endfor %}</div>{% endif %}
 {%- if _fd.copyright %}<p class="mt-footer-copy">{{ _fd.copyright }}</p>{% endif %}
 {%- if _fsw %}{% include modootoday/lang-switch.html %}{% endif %}
 </div></footer>

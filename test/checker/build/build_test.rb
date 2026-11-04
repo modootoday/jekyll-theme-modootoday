@@ -55,15 +55,16 @@ class CheckBuildTest < CheckerCase
     page "index.md.txt", "---\nlayout: twin\ntwin_of: index.md\npermalink: /index.md\n---\n"
     page "g.md", "---\n---\n# G\n"
     page "h.md", "---\ntwin: false\n---\n# H\n"
+    page "404.md", "---\nlayout: error\npermalink: /404.html\n---\n"
     out "index.md", "# T\n"
     out "llms.txt", ""
     out "llms-full.txt", "# T\n"
     o, code = check("--twins")
     assert_equal 1, code
-    assert_match(/g\.md: twin missing at .*g\/index\.md: add a stub g\.md\.txt .*plugins: \[jekyll-theme-modootoday\]/, o)
+    assert_match(/g\.md: twin missing at .*g\/index\.md: add a stub g\.md\.txt .*plugins: \[jekyll-theme-modootoday\].*`twin: false`/, o)
     assert_match(/llms\.txt: must start with an H1/, o)
     assert_match(/llms-full\.txt: does not contain the body of g\.md/, o)
-    refute_match(/index\.md: twin|h\.md/, o)
+    refute_match(/index\.md: twin|h\.md|404/, o)
     out "g/index.md", "# G\n"
     out "llms.txt", "# Site\n"
     out "llms-full.txt", "# T\n\n# G\n"

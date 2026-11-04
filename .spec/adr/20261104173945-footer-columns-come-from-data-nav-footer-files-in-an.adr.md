@@ -16,9 +16,10 @@ The theme had no footer of its own: `footer-custom.html` printed only the langua
 
 ## Decision
 
-- `_includes/modootoday/chrome/footer.html` reads `site.data.nav["footer-<lang>"]`, else `site.data.nav.footer` (`_data/nav/footer-ko.yml`, `_data/nav/footer.yml`). The data shape is frozen: `columns: [{title, items: [{title, url}]}]` and `copyright:` (text). Each column is a `nav` labelled by its title; links go through `modootoday/link.html`. With `language_switcher: footer` the switcher closes the footer. Without data or the switcher it prints nothing.
+- `_includes/modootoday/chrome/footer.html` reads `site.data.nav["footer-<lang>"]`, else `site.data.nav.footer` (`_data/nav/footer-ko.yml`, `_data/nav/footer.yml`). The data shape is frozen: `columns: [{title, items: [{title, url}]}]` and `copyright:` (text). Each column is a list labelled by its title (`aria-labelledby` on a `p.mt-footer-title` with an id), inside the footer landmark; links go through `modootoday/link.html`. With `language_switcher: footer` the switcher closes the footer. Without data or the switcher it prints nothing.
 - The theme's `footer-custom.html` includes it, so a site's own `footer-custom.html` still replaces the whole footer and can include `modootoday/chrome/footer.html` itself.
 - The column styles are the `footer` component in their own sheet, `assets/css/modootoday/chrome/footer.css` (partial `components/footer/_footer.scss`), linked right after the core sheet only when the page's footer data has columns. `footer` joins `modootoday.components`; it is not always on. The base footer rules stay in the core shell, which loses its fill and gets 3rem/2rem padding.
+- Amended for 1.5.0 (usability audit, round 2): the columns were `nav` landmarks named by their titles, so a column titled Docs repeated the doc sidebar landmark's name and failed axe `landmark-unique` on every page with a sidebar. A column is not a landmark of its own; the footer (`contentinfo`) already is one, so no title can collide with another landmark.
 - No new configuration key until the registry's `components.footer`.
 
 ## Consequences

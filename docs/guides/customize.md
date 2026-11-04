@@ -185,4 +185,4 @@ columns:
 copyright: © 2026 You
 ```
 
-The columns are `nav` elements labelled by their titles, as many 10rem columns as fit; their styles are the `footer` component, a sheet that only pages with columns link. With `modootoday.language_switcher: footer` the switcher follows them. Your own `_includes/footer-custom.html` still replaces the whole footer; include `modootoday/chrome/footer.html` in it to keep the columns.
+The columns are lists labelled by their titles inside the footer landmark, not landmarks of their own, so a title such as Docs never repeats the sidebar's name; as many 10rem columns as fit; their styles are the `footer` component, a sheet that only pages with columns link. With `modootoday.language_switcher: footer` the switcher follows them. Your own `_includes/footer-custom.html` still replaces the whole footer; include `modootoday/chrome/footer.html` in it to keep the columns.

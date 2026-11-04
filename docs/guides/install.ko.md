@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:cd357c0a7996
+source_rev: sha256:318242aa300d
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
@@ -69,7 +69,7 @@ defaults:
 
 ## 빌드 확인
 
-`--twins`는 테마가 AI 에이전트용으로 내보내는 파일도 확인합니다([에이전트용](../agents/)). 페이지마다 하나씩인 Markdown 버전과 `llms.txt`, `llms-full.txt`입니다. Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`를 추가하면 빌드가 만들어 줍니다. 기본 GitHub Pages에서는 `modootoday-stubs . --twins --write`를 한 번 실행해 페이지마다 Markdown 버전의 스텁을 추가하고, 사이트 루트에 front matter만 담은 파일 두 개를 둡니다. `layout: llms`인 `llms.txt`와 `layout: llms-full`인 `llms-full.txt`입니다. Markdown만 검사하려면 `--twins`를 빼세요.
+`--twins`는 테마가 AI 에이전트용으로 내보내는 파일도 확인합니다([에이전트용](../agents/)). 페이지마다 하나씩인 Markdown 버전과 `llms.txt`, `llms-full.txt`입니다. Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`를 추가하면 빌드가 만들어 줍니다. 기본 GitHub Pages에서는 `modootoday-stubs . --twins --write`를 한 번 실행해 페이지마다 Markdown 버전의 스텁을 추가하고, 사이트 루트에 front matter만 담은 파일 두 개를 둡니다. `layout: llms`인 `llms.txt`와 `layout: llms-full`인 `llms-full.txt`입니다. 오류 페이지(`404.md` 같은 `layout: error`)에는 Markdown 버전이 생기지 않습니다. 그 밖에 Markdown 버전이 필요 없는 페이지에는 `twin: false`를 넣으세요. Markdown만 검사하려면 `--twins`를 빼세요.
 
 ```sh
 bundle exec jekyll build

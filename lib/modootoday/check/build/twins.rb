@@ -4,7 +4,7 @@ require_relative "../../stubs/page"
 
 module Modootoday
   module Check
-    # 7. --twins: every Markdown page (except README.md and `twin: false`) has /<page>/index.md
+    # 7. --twins: every Markdown page (except README.md, `twin: false` and `layout: error`) has /<page>/index.md
     #    (/index.md for index.md), byte-identical to its source body. It comes from a stub <name>.md.txt
     #    (layout: twin; works on GitHub Pages) or from the opt-in plugin (plugins: [jekyll-theme-modootoday]).
     #    With modootoday.twins: source, a page without front matter is its own twin at /<path>.md.
@@ -14,7 +14,8 @@ module Modootoday
     #    every page body of its language.
     module Twins
       HINT = "add a stub %s with front matter `layout: twin`, `twin_of: %s` and `permalink: %s` (`modootoday-stubs SRC --twins --write` " \
-             "writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages)"
+             "writes every missing stub) or enable `plugins: [jekyll-theme-modootoday]` (not on classic GitHub Pages); " \
+             "a page that needs no twin sets `twin: false`"
       LLMS = "missing: add %s with only front matter `layout: %s`%s and no body, or enable `plugins: [jekyll-theme-modootoday]`"
 
       module_function
@@ -42,7 +43,7 @@ module Modootoday
         fm = (Markdown.fm(src) rescue {})
         lang = ctx.lang_of(rf, fm)
         bodies[lang] # a language with pages has llms files, even when none of them has a twin
-        return if fm["twin"] == false
+        return unless Stubs::Page.new(rf, fm.is_a?(Hash) ? fm : {}).twin?
         r = rf.delete_suffix(".md")
         if ctx.source_mode? && src !~ Markdown::FM
           # front-matter-less mode: rendered page + raw copy of the whole source at its own path

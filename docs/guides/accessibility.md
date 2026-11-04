@@ -11,7 +11,7 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 
 | Key | Where | Action |
 |---|---|---|
-| `Tab` | any page | the first stop is "Skip to content", which moves focus to the main text |
+| `Tab` | any page | the first stop is "Skip to content", which moves focus to the main text (on a doc page, past the sidebar) |
 | `/` or `Ctrl`+`K` (`Cmd`+`K` on macOS) | any page with search | focus the search box (`/` is ignored while you type in a field) |
 | `↓` `↑` | search results | move between results and back to the box |
 | `Esc` | search | leave the results, or clear the box |
