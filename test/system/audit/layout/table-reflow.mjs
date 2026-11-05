@@ -64,11 +64,18 @@ export function tableProblems() {
   return [...new Set(out)];
 }
 
+// A new viewport reaches the scripts only in the next rendering update: matchMedia listeners (table-stack.js) first,
+// ResizeObserver callbacks (scroll-region.js) after its layout. A read before it forces a layout they have not seen, so
+// wait for the width, then for the frame after that update.
+export async function settle(page, width) {
+  await page.waitForFunction((w) => window.innerWidth === w, width);
+  await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+}
+
 export async function checkTableReflow(page, scheme, url, fails) {
   for (const w of REFLOW_WIDTHS) {
     await page.setViewportSize({ width: w, height: 900 });
-    // scroll-region.js labels wrappers from a ResizeObserver callback.
-    await page.waitForTimeout(100);
+    await settle(page, w);
     const bad = await page.evaluate(`(${tableProblems})()`);
     for (const b of bad) {
       fails.push(`table reflow: ${b} at ${w}px ${scheme} ${url}`);
@@ -89,6 +96,7 @@ export function wideTableProblems() {
 export async function checkWideTables(page, scheme, url, fails) {
   for (const w of WIDE_WIDTHS) {
     await page.setViewportSize({ width: w, height: 900 });
+    await settle(page, w);
     const bad = await page.evaluate(`(${wideTableProblems})()`);
     for (const b of bad) {
       fails.push(`table width: ${b} at ${w}px ${scheme} ${url}`);
