@@ -142,7 +142,7 @@ class MessagesSnapshotTest < Minitest::Test
         "a.css" => "@use \"x\";\n:root { --mt-a: 1px; --mt-b: $v; }\na { margin: var(--mt-a); color: var(--mt-missing); }\n",
         "p/index.html" => %(<html lang="ko"><meta property="og:title" content="B"><p>[!NOTE]</p><code>status:available</code>) +
                           %(<a href="https://x.example" target="_blank">x</a><div class="mt-illustration">d</div>) +
-                          %(<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"#a","url":"/a/","name":"A","inLanguage":"en","colour":"x"},{"@type":"Webpage"}]}</script>),
+                          %(<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"#a","url":"/a/","name":"A","inLanguage":"en","colour":"x","publisher":{"@type":"Organization","url":"/o/"}},{"@type":"Webpage"}]}</script>),
       },
       flags: ["--twins", "--github-pages", "--schema-recommended"],
     },

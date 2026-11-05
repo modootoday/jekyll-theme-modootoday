@@ -16,5 +16,6 @@ venue: A홀
 address: 서울시 중구 세종대로 1
 online: "#"
 tickets: "#"
+schema: {offers: {type: Offer, price: 0, priceCurrency: KRW}}
 ---
 짧은 발표 두 개와 질의응답이 이어집니다.

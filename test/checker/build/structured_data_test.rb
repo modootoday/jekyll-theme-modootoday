@@ -43,6 +43,42 @@ class StructuredDataTest < Minitest::Test
     }.each { |html, msg| assert(run_on(html).errs.any? { |e| e.include?(msg) }, "#{msg}: #{run_on(html).errs}") }
   end
 
+  EVENT = { "@type" => "Event", "name" => "E", "startDate" => "2026-10-01", "location" => { "@type" => "Place", "name" => "Hall" } }.freeze
+  NESTED_NOTE = "; fix it now (in a nested object this is an error from 2.0)"
+
+  def test_nested_objects_are_checked_as_warnings
+    {
+      { "offers" => { "@type" => "Offer", "url" => "https://e.org/t/" } } => "Offer (@graph.offers) lacks required price/priceSpecification",
+      { "organizer" => { "@type" => "Organisation", "name" => "O" } } => "@type Organisation is not in the schema.org vocabulary",
+      { "organizer" => { "@type" => "Organization", "name" => "O", "colour" => "x" } } => "@graph.organizer.colour is not a schema.org property",
+      { "organizer" => { "@type" => "Organization", "name" => "O", "url" => "/o/" } } => "@graph.organizer.url is not an absolute URL",
+      { "organizer" => { "@type" => "Organization" } } => "Organization (@graph.organizer) lacks required name",
+      { "offers" => { "@type" => "Offer", "price" => 0, "priceCurrency" => "KRW", "seller" => { "@type" => "Person" } } } => "Person (@graph.offers.seller) lacks required name",
+      { "location" => { "@type" => "Place", "event" => [{ "@type" => "Event", "name" => "Q" }] } } => "Event (@graph.location.event[0]) lacks required startDate",
+    }.each do |extra, msg|
+      r = run_on(ld(g(EVENT.merge(extra))))
+      assert_empty r.errs, "#{msg}: #{r.errs}"
+      assert(r.warns.any? { |w| w.include?(msg) && w.end_with?(NESTED_NOTE) }, "#{msg}: #{r.warns}")
+    end
+  end
+
+  def test_nested_objects_without_type_or_problems_are_quiet
+    r = run_on(ld(g(EVENT.merge("offers" => { "@type" => "Offer", "price" => 0, "priceCurrency" => "KRW" }, "about" => { "name" => "Untyped" }))))
+    assert_empty r.errs
+    assert_empty r.warns
+  end
+
+  def test_top_level_and_listed_nodes_stay_errors
+    assert(run_on(ld(g(EVENT.merge("subEvent" => [{ "@type" => "Event", "name" => "S" }])))).errs.any? { |e| e.include?("Event (@graph.subEvent[0]) lacks required startDate") })
+    assert(run_on(ld(g(EVENT.except("location")))).errs.any? { |e| e.include?("Event (@graph) lacks required location") })
+  end
+
+  def test_recommended_inside_a_nested_object_needs_the_flag
+    html = ld(g(EVENT.merge("offers" => { "@type" => "Offer", "price" => 0, "priceCurrency" => "KRW" })))
+    assert_empty run_on(html).warns
+    assert(run_on(html, "--schema-recommended").warns.any? { |w| w.include?("Offer (@graph.offers) lacks recommended availability") })
+  end
+
   def test_recommended_only_with_flag
     html = ld(g({ "@type" => "BlogPosting", "headline" => "h" }))
     assert_empty run_on(html).warns

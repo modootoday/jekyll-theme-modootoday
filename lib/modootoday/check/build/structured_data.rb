@@ -2,6 +2,7 @@
 
 require "json"
 require_relative "../../schema/rules"
+require_relative "structured_data/nested"
 
 module Modootoday
   module Check
@@ -52,13 +53,13 @@ module Modootoday
         end
       end
 
-      # A node, then its nested nodes. Pure references ({"@id": ...}) need no @type.
+      # A node, then its nested nodes. Pure references ({"@id": ...}) and nested objects need no @type.
       def node(ctx, f, n, path)
         return unless n.is_a?(Hash)
 
         types = Array(n["@type"])
         if types.empty?
-          ctx.errs << "#{f}: JSON-LD #{path} has no @type" unless n.keys == ["@id"] || path.end_with?("]")
+          ctx.errs << "#{f}: JSON-LD #{path} has no @type" unless n.keys == ["@id"] || path != "@graph"
         end
         types.each { |t| ctx.errs << "#{f}: JSON-LD @type #{t} is not in the schema.org vocabulary" unless Schema.type?(t) }
         types.each { |t| required(ctx, f, n, t, path) }
@@ -72,6 +73,8 @@ module Modootoday
       end
 
       def values(ctx, f, k, v, path)
+        return Nested.call(ctx, f, v, path) if v.is_a?(Hash)
+
         Array(v).each_with_index do |x, i|
           next node(ctx, f, x, v.is_a?(Array) ? "#{path}[#{i}]" : path) if x.is_a?(Hash)
           next unless x.is_a?(String)
@@ -92,7 +95,7 @@ module Modootoday
         rec.each { |p| ctx.warns << "#{f}: JSON-LD #{type} (#{path}) lacks recommended #{p.tr('|', '/')}" unless has.(p) }
       end
 
-      # A single nested node is not walked by values, so the answer of a Question is judged here.
+      # An empty answer stays an error; the rest of a nested Answer is judged by Nested as a warning.
       def answer(ctx, f, n, path)
         a = n["acceptedAnswer"]
         return unless a.is_a?(Hash) && a["text"].to_s.strip.empty?

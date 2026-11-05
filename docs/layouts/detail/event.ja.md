@@ -16,5 +16,6 @@ venue: Aホール
 address: 東京都千代田区丸の内1-1
 online: "#"
 tickets: "#"
+schema: {offers: {type: Offer, price: 0, priceCurrency: KRW}}
 ---
 短い発表が2本と質疑応答です。

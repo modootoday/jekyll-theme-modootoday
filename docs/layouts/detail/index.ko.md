@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/
-source_rev: sha256:9c64aabd892f
+source_rev: sha256:0b01c3840a21
 title: 상세 페이지
 description: 프로젝트, 사례 연구, 채용 공고, 행사, 팟캐스트 에피소드를 한 페이지에 하나씩 보여 주며 정보 목록, 행동 유도 하나, 구조화 데이터를 갖춥니다.
 nav_order: 30
@@ -51,7 +51,7 @@ tickets: https://example.com/tickets
 ---
 ```
 
-캘린더 링크는 `data:` URL에 담긴 .ics 파일이라 서버 없이 동작합니다.
+캘린더 링크는 `data:` URL에 담긴 .ics 파일이라 서버 없이 동작합니다. `tickets:`는 `url`만 있는 행사의 `offers`도 됩니다. `modootoday-check`가 가격이 없다고 경고하므로, front matter에 판매 정보를 직접 적으세요. `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: https://example.com/tickets}}`
 
 ## 에피소드
 

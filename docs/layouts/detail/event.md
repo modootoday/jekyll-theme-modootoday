@@ -13,5 +13,6 @@ venue: Hall A
 address: 1 Sejong-daero, Seoul
 online: "#"
 tickets: "#"
+schema: {offers: {type: Offer, price: 0, priceCurrency: KRW}}
 ---
 Two short talks, then questions.
