@@ -61,6 +61,7 @@ progress: {label: ความคืบหน้า}
 subscribe: {email: อีเมล, submit: สมัครรับข่าวสาร}
 params: {required: จำเป็น}
 chart: {data: ข้อมูลแผนภูมิ}
+widget: {fallback: "เนื้อหาแบบโต้ตอบนี้ต้องใช้ JavaScript"}
 loading: {label: กำลังโหลด…}
 pages:
   not_found: "ไม่พบหน้า"

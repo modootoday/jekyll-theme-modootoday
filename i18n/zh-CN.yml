@@ -61,6 +61,7 @@ progress: {label: 进度}
 subscribe: {email: 电子邮箱, submit: 订阅}
 params: {required: 必填}
 chart: {data: 图表数据}
+widget: {fallback: "此交互内容需要 JavaScript。"}
 loading: {label: 加载中…}
 pages:
   not_found: "找不到页面"

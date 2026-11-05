@@ -1,0 +1,7 @@
+/* Docs demo widget (modootoday.scripts.counter.css): the controls x-counter adds, drawn with the theme's tokens. */
+.x-counter { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid var(--mt-border); border-radius: var(--mt-radius-lg); }
+.x-counter button { min-height: 2.75rem; padding: 0 1.25rem; font: inherit; font-weight: 600; color: var(--mt-primary-foreground); background: var(--mt-primary);
+  border: 1px solid transparent; border-radius: var(--mt-radius); cursor: pointer; }
+.x-counter button:focus-visible { outline: 2px solid var(--mt-ring); outline-offset: 2px; }
+.x-counter output { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+@media (forced-colors: active) { .x-counter button { border-color: ButtonText; } }

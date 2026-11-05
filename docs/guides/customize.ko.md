@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:6979409e2f5d
+source_rev: sha256:0a54d44932d2
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -141,6 +141,8 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 - 설정은 `readConfig`(`/assets/js/modootoday/dom/config.js`)로 `data-*` 속성에서 읽고, 라이트와 다크 전환은 `onThemeChange`(`/assets/js/modootoday/theme/current.js`, [이벤트](../../reference/api/#이벤트) 참고)로 따라갑니다. `../modootoday/dom/config.js`처럼 상대 경로로 가져오세요.
 
 [히어로 모듈 데모](../../layouts/demo/orbit/)는 이 계약을 따르는 40줄짜리 모듈입니다.
+
+`element: <name>`을 단 항목은 비주얼을 그리는 대신 custom element를 정의합니다. 그 요소가 있는 페이지는 `script:` 없이 모듈을 불러옵니다. [위젯](../../recipes/widgets/)은 그런 요소를 Markdown에서 대체 텍스트와 함께 놓습니다.
 
 `full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없앱니다(`.mt-main-full` 추가).
 

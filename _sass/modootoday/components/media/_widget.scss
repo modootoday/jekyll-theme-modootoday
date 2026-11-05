@@ -1,0 +1,7 @@
+// Widgets (a site custom element with class mt-widget, from c: widget or a widget: code span): a block whose light-DOM
+// div.mt-widget-fallback is the content until the element is defined; a script that fails or never loads leaves it shown.
+@include mt-layer(components) {
+  .mt-widget { display: block; margin: 0 0 1.5rem; }
+  .mt-widget:defined > .mt-widget-fallback { display: none; }
+  .mt-widget-fallback > :last-child { margin-bottom: 0; }
+}

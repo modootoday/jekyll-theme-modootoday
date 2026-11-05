@@ -61,6 +61,7 @@ progress: {label: پیشرفت}
 subscribe: {email: نشانی ایمیل, submit: اشتراک}
 params: {required: الزامی}
 chart: {data: داده‌های نمودار}
+widget: {fallback: "این محتوای تعاملی به JavaScript نیاز دارد."}
 loading: {label: در حال بارگذاری…}
 pages:
   not_found: "صفحه پیدا نشد"

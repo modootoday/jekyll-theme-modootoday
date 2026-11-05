@@ -1,13 +1,13 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:c66163876220
+source_rev: sha256:74503d0ba9df
 nav_order: 0
 layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줍니다.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -35,6 +35,7 @@ sections:
   - {c: faq, name: faq}
   - {c: params, name: params}
   - {c: chart, name: chart, type: bar}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 세기}}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -333,6 +334,10 @@ theme: jekyll-theme-modootoday
 | 3분기 | 5,910 | 3,120 |
 
 *분기별 방문 수*
+
+## 위젯
+
+`status:available` `c: widget` 섹션에서는 `widget:`이 가리키는 custom element(`modootoday.scripts`에 `element:`로 등록)가 제목 뒤에 오고, `props`는 `data-props`에 JSON으로 들어갑니다. 섹션 텍스트는 요소가 실행되기 전까지 보이는 대체 텍스트이고, 사이트의 모듈은 그 요소가 있는 페이지에서만 불러옵니다.
 
 ## 링크 카드
 

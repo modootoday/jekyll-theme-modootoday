@@ -61,6 +61,7 @@ progress: {label: Pesh-raft}
 subscribe: {email: Email pata, submit: Subscribe karein}
 params: {required: Laazmi}
 chart: {data: Chart ka data}
+widget: {fallback: "Is interactive content ke liye JavaScript zaroori hai."}
 loading: {label: Load ho raha hai…}
 pages:
   not_found: "Safha nahin mila"

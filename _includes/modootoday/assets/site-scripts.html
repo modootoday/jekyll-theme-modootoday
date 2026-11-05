@@ -1,8 +1,13 @@
-{%- comment -%}The site's module scripts named on this page by script: on hero: or a section item, from modootoday.scripts
-  (name: {src, css, preload}; site paths only). Once per name: the css sheet, modulepreload for each preload path (no ?v= query,
-  so the URL matches the module's import), then <script type="module">, which runs deferred under script-src 'self'.{%- endcomment -%}
+{%- comment -%}The site's module scripts named on this page by script: on hero: or a section item, or whose element: is in the
+  rendered body (a widget), from modootoday.scripts (name: {src, css, preload, element}; site paths only). Once per name: the css
+  sheet, modulepreload for each preload path (no ?v= query, so the URL matches the module's import), then <script type="module">,
+  which runs deferred under script-src 'self'.{%- endcomment -%}
 {%- assign _mtsn = "|" -%}{%- if page.hero.script -%}{%- assign _mtsn = _mtsn | append: page.hero.script | append: "|" -%}{%- endif -%}
 {%- for _mtsi in page.sections -%}{%- if _mtsi.script -%}{%- assign _mtsn = _mtsn | append: _mtsi.script | append: "|" -%}{%- endif -%}{%- endfor -%}
+{%- for _mtsi in site.modootoday.scripts -%}{%- assign _mtsl = _mtsi[1].element | append: "" -%}{%- if _mtsl contains "-" -%}
+{%- assign _mtst = "<" | append: _mtsl | append: " " -%}{%- assign _mtsu = "<" | append: _mtsl | append: ">" -%}
+{%- if content contains _mtst or content contains _mtsu -%}{%- assign _mtsn = _mtsn | append: _mtsi[0] | append: "|" -%}{%- endif -%}
+{%- endif -%}{%- endfor -%}
 {%- if _mtsn != "|" -%}{%- assign _mtsn = _mtsn | split: "|" | uniq -%}
 {%- for _mtsk in _mtsn -%}{%- assign _mtse = site.modootoday.scripts[_mtsk] -%}{%- assign _mtsp = _mtse.src | append: "" -%}
 {%- assign _mtsp1 = _mtsp | slice: 0, 1 -%}{%- assign _mtsp2 = _mtsp | slice: 0, 2 -%}

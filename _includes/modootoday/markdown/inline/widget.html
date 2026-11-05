@@ -1,0 +1,19 @@
+{%- comment -%}md-components v1 — `widget:<element>` alone in a paragraph, where <element> is the element: of a modootoday.scripts
+  entry → that custom element with class mt-widget, data-props from front matter widget_props.<element> and the
+  widget.fallback sentence as its light-DOM fallback. Called by markdown/inline.html; other names stay code spans.{%- endcomment -%}
+{%- assign _miw_x = include.html -%}{%- assign _miw_els = "|" -%}
+{%- for _miw_s in site.modootoday.scripts -%}{%- assign _miw_el = _miw_s[1].element | append: "" -%}
+{%- if _miw_el contains "-" -%}{%- assign _miw_els = _miw_els | append: _miw_el | append: "|" -%}{%- endif -%}{%- endfor -%}
+{%- assign _miw_ops = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
+{%- for _miw_o in _miw_ops -%}
+{%- assign _miw_key = "<p>" | append: _miw_o | append: "widget:" -%}
+{%- if _miw_x contains _miw_key -%}{%- assign _miw_bits = _miw_x | split: _miw_key -%}
+{%- capture _miw_x -%}{{ _miw_bits[0] }}{%- for _miw_b in _miw_bits offset: 1 -%}
+{%- assign _miw_v = _miw_b | split: "</code></p>" | first -%}{%- assign _miw_k = "|" | append: _miw_v | append: "|" -%}
+{%- assign _miw_ok = false -%}{%- if _miw_els contains _miw_k -%}{%- assign _miw_ok = true -%}{%- endif -%}
+{%- if _miw_v contains "|" or _miw_v == _miw_b or _miw_ok == false -%}{{ _miw_key }}{{ _miw_b }}
+{%- else -%}{%- assign _miw_p = page.widget_props[_miw_v] -%}
+<{{ _miw_v }} class="mt-widget"{% if _miw_p %} data-props="{{ _miw_p | jsonify | escape }}"{% endif %}><div class="mt-widget-fallback"><p>{{ mt_t_widget_fallback }}</p></div></{{ _miw_v }}>{{ _miw_b | remove_first: _miw_v | remove_first: "</code></p>" }}
+{%- endif -%}{%- endfor -%}{%- endcapture -%}{%- endif -%}
+{%- endfor -%}
+{{ _miw_x }}

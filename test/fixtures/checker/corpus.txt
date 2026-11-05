@@ -31,7 +31,10 @@ s09-h2-in-list.md:5: '##' inside a list item is not a section (sections split on
 t04-info-attrs.md:1: code fence info string must be a single language word (got "sh {title=install.sh}"); attributes like {title=…} break kramdown
 t05-info-space-attr.md:1: code fence info string must be a single language word (got "sh title=install.sh"); attributes like {title=…} break kramdown
 t06-info-lang-only-tilde-attr.md:1: code fence info string must be a single language word (got "sh {.x}"); attributes like {title=…} break kramdown
-md-components check: 33 problem(s)
+w01-widget-ok.md: `widget:x-counter`: no modootoday.scripts entry has element: x-counter, so it stays a code span
+w01-widget-props.md: `widget:x-counter`: no modootoday.scripts entry has element: x-counter, so it stays a code span
+w01-widget-unregistered.md: `widget:x-missing`: no modootoday.scripts entry has element: x-missing, so it stays a code span
+md-components check: 36 problem(s)
 warning: a26-space-inside.md:1: '[! TYPE]' with a space is not an alert (renders as a plain quote)
 warning: c01-cta.md:5: vague link text "Start"; name the destination so it makes sense out of context
 warning: c02-cta-separator.md:1: vague link text "Start"; name the destination so it makes sense out of context

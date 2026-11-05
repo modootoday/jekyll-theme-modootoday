@@ -136,6 +136,8 @@ Your module's side of the contract:
 
 The [hero module demo](../../layouts/demo/orbit/) is a 40-line module that follows this contract.
 
+An entry with `element: <name>` defines a custom element instead of drawing a visual: pages that contain that element load it, with no `script:`. [Widgets](../../recipes/widgets/) places such an element from Markdown, with a text fallback.
+
 `full_width: true` removes the reading-column width and side padding of `main.mt-main` (adds `.mt-main-full`) for landing pages.
 
 ## Sass partials

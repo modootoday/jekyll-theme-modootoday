@@ -95,6 +95,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | Filter | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`; `[hidden]` on items left out |
 | Chart | `figure.mt-chart` | `.mt-chart-canvas` (`[hidden]` until the chart module draws a `canvas[role=img]` named by the caption in it), `.mt-chart-data` > `div.mt-table` > `table` (`figure.mt-chart table`; folded into `details` > `summary` once drawn), `figcaption` | `[data-type]`, `[data-opts]`; colour hooks `--mt-chart-1` to `--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
+| Widget | `section.mt-c-widget`, the site's custom element with `.mt-widget` | `.mt-widget-fallback` (the section text, or the `widget.fallback` sentence; hidden once the element is defined) | `[data-props]` (the props as JSON) |
 
 Notes on the rows above:
 

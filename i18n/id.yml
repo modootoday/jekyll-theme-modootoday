@@ -61,6 +61,7 @@ progress: {label: Kemajuan}
 subscribe: {email: Alamat email, submit: Berlangganan}
 params: {required: Wajib}
 chart: {data: Data grafik}
+widget: {fallback: "Konten interaktif ini memerlukan JavaScript."}
 loading: {label: Memuat…}
 pages:
   not_found: "Halaman tidak ditemukan"

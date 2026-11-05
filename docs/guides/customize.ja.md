@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:6979409e2f5d
+source_rev: sha256:0a54d44932d2
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ
@@ -142,6 +142,8 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 - 設定は `readConfig`（`/assets/js/modootoday/dom/config.js`）で `data-*` 属性から読み、ライトとダークの切り替えには `onThemeChange`（`/assets/js/modootoday/theme/current.js`、[イベント](../../reference/api/#イベント)を参照）で追従します。`../modootoday/dom/config.js` のように相対パスで読み込んでください。
 
 [ヒーローモジュールのデモ](../../layouts/demo/orbit/)は、この契約に従う 40 行のモジュールです。
+
+`element: <name>` を付けた項目は、ビジュアルを描く代わりに custom element を定義します。その要素があるページは `script:` なしでモジュールを読み込みます。[ウィジェット](../../recipes/widgets/)は、そうした要素を Markdown から代替テキスト付きで置きます。
 
 `full_width: true` はランディングページ向けに、`main.mt-main` の本文幅の制限と左右の余白を外します（`.mt-main-full` を追加）。
 

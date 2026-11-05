@@ -18,3 +18,4 @@ pricing: {i18n: [pricing.recommended], params: {recommended: {required: false}},
 split: {params: {side: {allowed: [start, end], required: false}, ratio: {allowed: ["1:1", "5:7"], required: false}}, parts: [section.mt-c-split, .mt-section-in, .mt-section-body, .mt-section-visual, .mt-split-start, .mt-split-5-7]}
 subscribe: {i18n: [subscribe.email, subscribe.submit], slots: {lead: {min: 1}}, parts: [section.mt-c-subscribe]}
 chart: {i18n: [chart.data], params: {type: {allowed: [bar, line, area, pie, doughnut], required: true}, data: {required: false}, stacked: {allowed: [true, false], required: false}, horizontal: {allowed: [true, false], required: false}}, parts: [figure.mt-chart, .mt-chart-canvas, .mt-chart-data, 'figure.mt-chart table']}
+widget: {i18n: [widget.fallback], params: {widget: {required: true}, props: {required: false}}, slots: {lead: {min: 1}}, parts: [section.mt-c-widget, .mt-widget, .mt-widget-fallback]}

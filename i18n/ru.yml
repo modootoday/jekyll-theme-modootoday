@@ -61,6 +61,7 @@ progress: {label: Прогресс}
 subscribe: {email: Адрес эл. почты, submit: Подписаться}
 params: {required: Обязательно}
 chart: {data: Данные диаграммы}
+widget: {fallback: "Для этого интерактивного содержимого нужен JavaScript."}
 loading: {label: Загрузка…}
 pages:
   not_found: "Страница не найдена"

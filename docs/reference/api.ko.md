@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:0fecde96120b
+source_rev: sha256:e90caa24c9cc
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -101,6 +101,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | 필터 | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`, 빠진 항목의 `[hidden]` |
 | 차트 | `figure.mt-chart` | `.mt-chart-canvas`(차트 모듈이 캡션을 이름으로 단 `canvas[role=img]`를 그리기 전까지 `[hidden]`), `.mt-chart-data` > `div.mt-table` > `table`(`figure.mt-chart table`, 그린 뒤에는 `details` > `summary` 안으로 접힘), `figcaption` | `[data-type]`, `[data-opts]`, 색 훅 `--mt-chart-1`~`--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
+| 위젯 | `section.mt-c-widget`, `.mt-widget`을 단 사이트의 custom element | `.mt-widget-fallback`(섹션 텍스트 또는 `widget.fallback` 문장, 요소가 정의되면 숨김) | `[data-props]`(props의 JSON) |
 
 위 행에 대한 참고:
 

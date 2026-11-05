@@ -62,6 +62,7 @@ progress: {label: Progress}
 subscribe: {email: Email address, submit: Subscribe}
 params: {required: Required}
 chart: {data: Chart data}
+widget: {fallback: "This interactive content needs JavaScript."}
 loading: {label: Loading…}
 pages:
   not_found: "Page not found"

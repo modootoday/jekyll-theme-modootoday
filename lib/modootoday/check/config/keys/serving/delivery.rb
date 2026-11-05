@@ -30,8 +30,15 @@ module Modootoday
             errs << "#{w}.css must be a site path to a .css file (got #{e['css'].inspect})" if e.key?("css") && !e["css"].to_s.match?(SITE_CSS)
             errs << "#{w}.preload must be a list of site paths to .js files" if e.key?("preload") && !(e["preload"].is_a?(Array) && e["preload"].all? { |p| p.to_s.match?(SITE_JS) })
             errs << "#{w}.element must be a custom element name with a hyphen, such as x-counter (got #{e['element'].inspect})" if e.key?("element") && !(e["element"].to_s.match?(ELEMENT) && !RESERVED.include?(e["element"]))
+            errs << "#{w}.element: the mt- prefix is the theme's (got #{e['element']})" if e["element"].to_s.start_with?("mt-")
             errs + (e.keys - SCRIPT_KEYS).map { |k| "#{w}: unknown key #{k} (#{SCRIPT_KEYS.join(', ')})" }
-          end
+          end + duplicate_elements(map)
+        end
+
+        # A custom element is defined once per page, so two entries cannot share one.
+        def duplicate_elements(map)
+          els = map.values.filter_map { |e| e["element"] if e.is_a?(Hash) && e["element"].is_a?(String) }
+          els.tally.select { |_, n| n > 1 }.keys.map { |el| ": element #{el} is named by more than one entry" }
         end
 
         def preload_errors(list)

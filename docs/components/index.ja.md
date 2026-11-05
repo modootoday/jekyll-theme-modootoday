@@ -1,14 +1,14 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:c66163876220
+source_rev: sha256:74503d0ba9df
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -36,6 +36,7 @@ sections:
   - {c: faq, name: faq}
   - {c: params, name: params}
   - {c: chart, name: chart, type: bar}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 数える}}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -334,6 +335,10 @@ theme: jekyll-theme-modootoday
 | 第 3 四半期 | 5,910 | 3,120 |
 
 *四半期ごとの訪問数*
+
+## ウィジェット
+
+`status:available` `c: widget` セクションでは、`widget:` が指す custom element（`modootoday.scripts` に `element:` で登録）が見出しの後に置かれ、`props` は `data-props` に JSON として入ります。セクションのテキストは要素が動くまで表示される代替テキストで、サイトのモジュールはその要素があるページでだけ読み込まれます。
 
 ## リンクカード
 

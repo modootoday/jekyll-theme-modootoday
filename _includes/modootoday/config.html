@@ -17,7 +17,7 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.lists         {link_chips: true, titled_items: true}: optional list markup (markdown/lists.html, lists sheet)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart,widget" | split: "," -%}
 {%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
   Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (section rows of assets/registry.html).
   Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}

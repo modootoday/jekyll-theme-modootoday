@@ -79,6 +79,7 @@
     - {title: Search, url: /recipes/search/}
     - {title: Charts, url: /recipes/charts/}
     - {title: Generated pages, url: /recipes/generated-pages/}
+    - {title: Widgets, url: /recipes/widgets/}
     - {title: Product site, url: /recipes/marketing/}
     - {title: Company pages, url: /recipes/company/}
     - {title: Documentation site, url: /recipes/docs/}

@@ -61,6 +61,7 @@ progress: {label: 진행률}
 subscribe: {email: 이메일 주소, submit: 구독하기}
 params: {required: 필수}
 chart: {data: 차트 데이터}
+widget: {fallback: "이 대화형 콘텐츠는 JavaScript가 있어야 동작해요."}
 loading: {label: 불러오는 중…}
 pages:
   not_found: "페이지를 찾을 수 없어요"

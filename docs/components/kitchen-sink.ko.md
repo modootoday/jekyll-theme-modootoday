@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:99e3afd21baa
+source_rev: sha256:a638623e8380
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
@@ -26,6 +26,7 @@ sections:
   - tables
   - charts
   - {c: chart, name: chart-data, type: line, data: traffic-ko}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 세기}}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -287,6 +288,10 @@ flowchart LR
 `status:available` `data: traffic-ko`를 단 `c: chart` 섹션은 `_data/charts/traffic-ko.yml`을 같은 figure로 보여 주고, 표는 데이터로 만듭니다. 섹션의 마지막 강조 문단이 캡션이 됩니다.
 
 *1월부터 6월까지 월별 방문 수*
+
+## 위젯
+
+`status:available` `c: widget` 섹션은 사이트가 `modootoday.scripts`에 등록한 custom element를 놓습니다. 여기서는 3에서 시작하는 데모 카운터 `x-counter`입니다. 이 문단은 대체 텍스트로, 요소가 실행되기 전까지 보이고 JavaScript가 없는 독자에게는 그대로 남습니다.
 
 ## 코드
 

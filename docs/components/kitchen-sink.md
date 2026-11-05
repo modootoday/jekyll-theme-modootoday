@@ -23,6 +23,7 @@ sections:
   - tables
   - charts
   - {c: chart, name: chart-data, type: line, data: traffic}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: Count}}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -281,6 +282,10 @@ Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 `status:available` A `c: chart` section with `data: traffic` shows `_data/charts/traffic.yml` as the same figure, with the table built from the data. The last emphasis-only paragraph of the section is its caption.
 
 *Monthly visits, January to June*
+
+## Widget
+
+`status:available` A `c: widget` section places a custom element that the site registers in `modootoday.scripts`, here `x-counter`, a demo counter that starts at 3. This paragraph is its fallback: readers see it until the element runs, and readers without JavaScript keep it.
 
 ## Code
 

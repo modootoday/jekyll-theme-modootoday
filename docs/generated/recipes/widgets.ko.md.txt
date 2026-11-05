@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: widgets.ko.md
+lang: ko
+path: recipes/widgets.ko.md.txt
+permalink: /ko/recipes/widgets/index.md
+---

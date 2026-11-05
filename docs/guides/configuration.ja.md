@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:715ddd9a76e9
+source_rev: sha256:12cb16592ac2
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -42,7 +42,7 @@ modootoday:
 | `tokens`, `tokens_dark` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
 | `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |
 | `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |
-| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)を参照。 |
+| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/widgets/)を参照。 |
 | `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |
 | `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[エージェント](../agents/)を参照。 |
 | `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |
@@ -89,7 +89,7 @@ modootoday:
 - `page_actions`: Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューが出ます。front matter の `page_actions: false` はそのページだけ消し、完全に外すなら `components` から `page-actions` を除きます。
 - `tokens`, `tokens_dark`: 値はインラインの `<style>` に書き出されます。
 - `site_css`, `preload`: `site_css` のシートにはテーマのシートと同じ `?v=` クエリが付きます。`preload` の `href` はサイトパス、`as` は `font`、`image`、`style`、`script`、`fetch` のいずれかです。フォントと fetch には `crossorigin` が付き、`?v=` クエリは付きません。front matter の `site_css:` と `preload:` はそのページだけに追加します。
-- `scripts`: 各項目はサイトパスで書いた `{src, css, preload, element}` です。`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素です。
+- `scripts`: 各項目はサイトパスで書いた `{src, css, preload, element}` です。`src` は `.js` ファイル、`css` はシート、`preload` は `modulepreload` するモジュール、`element` はモジュールが定義するカスタム要素（ハイフンを含む小文字、`mt-` で始まらない、要素ごとに項目は一つ）で、`c: widget` と `widget:` がページに置きます。
 - `aliases`: スタブは `modootoday-stubs --aliases` が書き、`modootoday-check --aliases` が確認します。`twins: source` とは `md` を併用できません。
 - `records`: セットごとに `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}` を指定します。ページは `modootoday-stubs --records` が書き、`modootoday-check` が確認します。
 - `schema`: グラフの設定は `publisher`、`search_url`、`layouts`、`faq` です。

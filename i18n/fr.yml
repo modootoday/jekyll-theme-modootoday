@@ -61,6 +61,7 @@ progress: {label: Progression}
 subscribe: {email: Adresse e-mail, submit: S’abonner}
 params: {required: Obligatoire}
 chart: {data: Données du graphique}
+widget: {fallback: "Ce contenu interactif nécessite JavaScript."}
 loading: {label: Chargement…}
 pages:
   not_found: "Page introuvable"

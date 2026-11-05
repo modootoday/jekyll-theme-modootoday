@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:715ddd9a76e9
+source_rev: sha256:12cb16592ac2
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -42,7 +42,7 @@ modootoday:
 | `tokens`, `tokens_dark` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
 | `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |
 | `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |
-| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적은 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터) 참고. |
+| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/widgets/) 참고. |
 | `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |
 | `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [에이전트](../agents/) 참고. |
 | `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |
@@ -89,7 +89,7 @@ modootoday:
 - `page_actions`: Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴가 나옵니다. front matter의 `page_actions: false`는 그 페이지에서만 끄고, 아예 빼려면 `components`에서 `page-actions`를 제외합니다.
 - `tokens`, `tokens_dark`: 값은 인라인 `<style>`에 들어갑니다.
 - `site_css`, `preload`: `site_css` 시트에는 테마 시트와 같은 `?v=` 쿼리가 붙습니다. `preload`의 `href`는 사이트 경로, `as`는 `font`, `image`, `style`, `script`, `fetch` 중 하나입니다. 글꼴과 fetch에는 `crossorigin`이 붙고 `?v=` 쿼리는 붙지 않습니다. front matter의 `site_css:`와 `preload:`는 그 페이지에만 더합니다.
-- `scripts`: 항목마다 사이트 경로로 쓴 `{src, css, preload, element}`입니다. `src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소입니다.
+- `scripts`: 항목마다 사이트 경로로 쓴 `{src, css, preload, element}`입니다. `src`는 `.js` 파일, `css`는 시트, `preload`는 `modulepreload`할 모듈, `element`는 모듈이 정의하는 사용자 정의 요소(하이픈이 들어간 소문자, `mt-`로 시작하지 않음, 요소마다 항목 하나)로, `c: widget`과 `widget:`이 페이지에 놓습니다.
 - `aliases`: 스텁 파일은 `modootoday-stubs --aliases`가 쓰고 `modootoday-check --aliases`가 확인합니다. `twins: source`와는 `md`를 함께 쓸 수 없습니다.
 - `records`: 세트마다 `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`를 받습니다. 페이지는 `modootoday-stubs --records`가 쓰고 `modootoday-check`가 확인합니다.
 - `schema`: 그래프 설정은 `publisher`, `search_url`, `layouts`, `faq`입니다.

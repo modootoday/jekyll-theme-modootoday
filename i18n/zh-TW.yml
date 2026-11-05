@@ -61,6 +61,7 @@ progress: {label: 進度}
 subscribe: {email: 電子郵件地址, submit: 訂閱}
 params: {required: 必填}
 chart: {data: 圖表資料}
+widget: {fallback: "此互動內容需要 JavaScript。"}
 loading: {label: 載入中…}
 pages:
   not_found: "找不到頁面"

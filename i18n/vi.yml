@@ -61,6 +61,7 @@ progress: {label: Tiến độ}
 subscribe: {email: Địa chỉ email, submit: Đăng ký}
 params: {required: Bắt buộc}
 chart: {data: Dữ liệu biểu đồ}
+widget: {fallback: "Nội dung tương tác này cần JavaScript."}
 loading: {label: Đang tải…}
 pages:
   not_found: "Không tìm thấy trang"

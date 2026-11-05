@@ -2,11 +2,12 @@
 import { serveSite } from "../site/server.mjs";
 import { CSP } from "./config.mjs";
 import { checkChart } from "./features/chart.mjs";
+import { checkNoJs } from "./features/no-js.mjs";
 
 export async function checkFeatures(browser, site, fails) {
   const { origin, close } = await serveSite(site, { csp: CSP });
   try {
-    return { chart: await checkChart(browser, origin, fails) };
+    return { chart: await checkChart(browser, origin, fails), noJs: await checkNoJs(browser, origin, fails) };
   } finally {
     close();
   }

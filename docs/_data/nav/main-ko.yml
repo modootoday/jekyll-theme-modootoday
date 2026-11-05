@@ -79,6 +79,7 @@
     - {title: 검색, url: /ko/recipes/search/}
     - {title: 차트, url: /ko/recipes/charts/}
     - {title: 생성 페이지, url: /ko/recipes/generated-pages/}
+    - {title: 위젯, url: /ko/recipes/widgets/}
     - {title: 제품 사이트, url: /ko/recipes/marketing/}
     - {title: 회사 페이지, url: /ko/recipes/company/}
     - {title: 문서 사이트, url: /ko/recipes/docs/}

@@ -36,7 +36,7 @@ modootoday:
 | `tokens`, `tokens_dark` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
 | `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
 | `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
-| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:`. See [Module scripts and posters](../customize/#module-scripts-and-posters). |
+| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/widgets/). |
 | `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |
 | `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [Agents](../agents/). |
 | `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |
@@ -83,7 +83,7 @@ modootoday:
 - `page_actions`: the menu appears on pages with a Markdown twin and offers View as Markdown, Copy page and Copy for AI (the source URL, then the Markdown). `page_actions: false` in front matter turns it off on one page; leave `page-actions` out of `components` to drop it entirely.
 - `tokens`, `tokens_dark`: the values go into an inline `<style>`.
 - `site_css`, `preload`: `site_css` sheets get the same `?v=` query as the theme sheets. A `preload` `href` is a site path and `as` is one of `font`, `image`, `style`, `script`, `fetch`; fonts and fetches add `crossorigin`, and no `?v=` query is added. Front matter `site_css:` and `preload:` add more on one page.
-- `scripts`: each entry is `{src, css, preload, element}` with site paths: `src` a `.js` file, `css` a sheet, `preload` the modules to `modulepreload`, `element` the custom element it defines.
+- `scripts`: each entry is `{src, css, preload, element}` with site paths: `src` a `.js` file, `css` a sheet, `preload` the modules to `modulepreload`, `element` the custom element it defines (lowercase with a hyphen, not `mt-`, one entry per element), which `c: widget` and `widget:` place.
 - `aliases`: `modootoday-stubs --aliases` writes the stub files and `modootoday-check --aliases` checks them. `md` is not available with `twins: source`.
 - `records`: each set takes `{data, key, dir, permalink, layout, title, description, facts, labels, body, lang}`. `modootoday-stubs --records` writes the pages and `modootoday-check` checks them.
 - `schema`: the graph takes `publisher`, `search_url`, `layouts` and `faq`.

@@ -4,7 +4,7 @@ layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -32,6 +32,7 @@ sections:
   - {c: faq, name: faq}
   - {c: params, name: params}
   - {c: chart, name: chart, type: bar}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: Count}}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -327,6 +328,10 @@ Yes, with the github-pages gem.
 | Q3 | 5,910 | 3,120 |
 
 *Visits per quarter*
+
+## Widget
+
+`status:available` In a `c: widget` section, the custom element named by `widget:` (registered with `element:` in `modootoday.scripts`) follows the heading, with `props` as JSON in `data-props`. The section text is its fallback, shown until the element runs; the site's module loads only on pages that contain the element.
 
 ## Link cards
 

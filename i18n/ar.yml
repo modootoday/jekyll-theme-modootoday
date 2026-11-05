@@ -61,6 +61,7 @@ progress: {label: التقدّم}
 subscribe: {email: البريد الإلكتروني, submit: اشترك}
 params: {required: مطلوب}
 chart: {data: بيانات المخطط}
+widget: {fallback: "يحتاج هذا المحتوى التفاعلي إلى JavaScript."}
 loading: {label: جارٍ التحميل…}
 pages:
   not_found: "الصفحة غير موجودة"

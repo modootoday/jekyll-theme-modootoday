@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:99e3afd21baa
+source_rev: sha256:a638623e8380
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
@@ -26,6 +26,7 @@ sections:
   - tables
   - charts
   - {c: chart, name: chart-data, type: line, data: traffic-ja}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 数える}}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -287,6 +288,10 @@ flowchart LR
 `status:available` `data: traffic-ja` を付けた `c: chart` セクションは、`_data/charts/traffic-ja.yml` を同じ figure で表示し、表はデータから作ります。セクションの最後の強調だけの段落がキャプションになります。
 
 *1 月から 6 月までの月別訪問数*
+
+## ウィジェット
+
+`status:available` `c: widget` セクションは、サイトが `modootoday.scripts` に登録した custom element を置きます。ここでは 3 から始まるデモのカウンター `x-counter` です。この段落は代替テキストで、要素が動くまで表示され、JavaScript のない読者にはそのまま残ります。
 
 ## コード
 

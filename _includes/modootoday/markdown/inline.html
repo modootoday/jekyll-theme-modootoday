@@ -4,9 +4,11 @@
   `embed:https://… Title` alone in a paragraph → div.mt-embed > iframe (lazy; title = the words after the URL,
   else embed.title). `loading:spinner|bar` and `skeleton:text|card|image|avatar|row` → role=status
   placeholders labelled loading.label (optional loading sheet). Footnote back-links get aria-label footnote.back. modootoday-check validates the values.
-  With modootoday.chart.enabled, `chart:<type>` alone before a table → figure.mt-chart (inline/chart.html).{%- endcomment -%}
+  With modootoday.chart.enabled, `chart:<type>` alone before a table → figure.mt-chart (inline/chart.html).
+  `widget:<element>` alone in a paragraph, for an element: of modootoday.scripts → that custom element (inline/widget.html).{%- endcomment -%}
 {%- assign _x = include.html -%}
 {%- if site.modootoday.chart.enabled == true and mt_components contains "chart" and _x contains "chart:" -%}{%- capture _x %}{% include modootoday/markdown/inline/chart.html html=_x %}{% endcapture -%}{%- endif -%}
+{%- if site.modootoday.scripts and mt_components contains "widget" and _x contains "widget:" -%}{%- capture _x %}{% include modootoday/markdown/inline/widget.html html=_x %}{% endcapture -%}{%- endif -%}
 {%- assign _ops = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
 {%- for _o in _ops -%}
 {%- assign _key = "<p>" | append: _o | append: "file:" -%}

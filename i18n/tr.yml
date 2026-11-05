@@ -61,6 +61,7 @@ progress: {label: İlerleme}
 subscribe: {email: E-posta adresi, submit: Abone ol}
 params: {required: Zorunlu}
 chart: {data: Grafik verileri}
+widget: {fallback: "Bu etkileşimli içerik için JavaScript gerekir."}
 loading: {label: Yükleniyor…}
 pages:
   not_found: "Sayfa bulunamadı"
