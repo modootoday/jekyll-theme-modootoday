@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:9b6d1e58700e
+source_rev: sha256:f5a37bde0f73
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -28,6 +28,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 | `data/table-stack.js` | 본문에 표가 있는 페이지 |
 | `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | 탭, 아코디언, 블로그 레이아웃을 쓰는 페이지 |
 | `data/filter.js`(`data/filter-chips.js`, `text/normalize.js`, `dom/config.js`를 미리 불러옴) | `filter:`나 `filter_text:`를 쓰는 페이지 |
+| `data/chart.js`(`data/chart-table.js`, `theme/current.js`를 미리 불러옴), 사이트의 Chart.js 다음 | `modootoday.chart`가 사이트의 Chart.js(`src`)를 가리킬 때, 차트가 있는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
@@ -72,5 +73,5 @@ HTML은 TTL을 짧게 두어야 배포 뒤 새 `?v=`가 빨리 퍼집니다.
 테마의 CI는 페이지를 예산보다 무겁게 만드는 변경을 실패로 처리합니다.
 
 - 테마의 스타일시트와 스크립트 하나하나를 각자의 상한과 비교합니다(gzip 바이트). 상한은 잰 크기에 10%를 더한 값으로, 테마 자산 표에서 그 파일의 행에 적혀 있습니다. 그래서 기능이 커져도 자기 상한만 바뀝니다.
-- 페이지 유형(문서, 랜딩, 블로그, 컴포넌트 쇼케이스, 모듈 스크립트 비주얼이 있는 페이지, 목록 필터가 있는 페이지, 레코드 페이지)마다 한 페이지가 불러오는 CSS와 JavaScript(가져오는 모듈 포함)를 그 파일들의 상한 합계와 비교합니다. 한 페이지에 CSS 8 KiB, JavaScript 6 KiB, 테마 스타일시트 6개라는 목표는 경고로만 알려 줍니다(모든 컴포넌트를 일부러 불러오는 쇼케이스는 빼고요).
+- 페이지 유형(문서, 랜딩, 블로그, 컴포넌트 쇼케이스, 모듈 스크립트 비주얼이 있는 페이지, 목록 필터가 있는 페이지, 레코드 페이지, 차트 페이지)마다 한 페이지가 불러오는 CSS와 JavaScript(가져오는 모듈 포함) 중 테마 몫을 그 파일들의 상한 합계와 비교합니다. 한 페이지에 CSS 8 KiB, JavaScript 6 KiB, 테마 스타일시트 6개라는 목표는 경고로만 알려 줍니다(모든 컴포넌트를 일부러 불러오는 쇼케이스와, gzip 약 70 KB인 Chart.js를 싣는 차트 페이지는 빼고요).
 - 예시 페이지에 [엄격한 콘텐츠 보안 정책](../../recipes/csp/)을 걸었을 때 위반 0건([데모](../../layouts/demo/csp/))

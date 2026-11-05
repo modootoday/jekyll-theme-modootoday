@@ -10,9 +10,10 @@ const SHARED = {
   "text/normalize.js": ["includesAll", "matches", "normalize", "squash", "terms"],
   "theme/current.js": ["currentTheme", "onThemeChange"],
   "data/filter-chips.js": ["cellText", "chips"],
+  "data/chart-table.js": ["tableData"],
 };
 const FEATURES = ["chrome/menu.js", "chrome/theme-toggle.js", "chrome/search-keys.js", "chrome/search.js", "content/code-copy.js", "content/scroll-region.js",
-  "structure/tabs.js", "structure/accordion.js", "data/table-stack.js", "data/filter.js", "blog/share.js"];
+  "structure/tabs.js", "structure/accordion.js", "data/table-stack.js", "data/filter.js", "data/chart.js", "blog/share.js"];
 
 test("shared modules keep their export names", async () => {
   for (const [rel, names] of Object.entries(SHARED)) {

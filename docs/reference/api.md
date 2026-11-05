@@ -92,7 +92,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | News front | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
 | Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | Filter | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`; `[hidden]` on items left out |
-| Chart | `figure.mt-chart` | `.mt-chart-canvas` (`[hidden]` until a chart script draws), `.mt-chart-data` > `div.mt-table` > `table` (`figure.mt-chart table`), `figcaption` | `[data-type]`, `[data-opts]`; colour hooks `--mt-chart-1` to `--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
+| Chart | `figure.mt-chart` | `.mt-chart-canvas` (`[hidden]` until the chart module draws a `canvas[role=img]` named by the caption in it), `.mt-chart-data` > `div.mt-table` > `table` (`figure.mt-chart table`; folded into `details` > `summary` once drawn), `figcaption` | `[data-type]`, `[data-opts]`; colour hooks `--mt-chart-1` to `--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
 
 Notes on the rows above:
 

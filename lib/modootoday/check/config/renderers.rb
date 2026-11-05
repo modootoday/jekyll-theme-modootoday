@@ -2,8 +2,8 @@
 
 module Modootoday
   module Check
-    # Optional client-side renderers (modootoday.mermaid, modootoday.math): the settings here, ```math notation in
-    # page/math_notation.rb, and every third-party <script>/<link rel=stylesheet> in the build in build/third_party.rb.
+    # Optional client-side renderers (modootoday.mermaid, modootoday.math, modootoday.chart): the settings here, ```math
+    # notation in page/math_notation.rb, and every third-party <script>/<link rel=stylesheet> in build/third_party.rb.
     module Renderers
       SRI = /\A(sha256|sha384|sha512)-[A-Za-z0-9+\/]+={0,2}( (sha256|sha384|sha512)-[A-Za-z0-9+\/]+={0,2})*\z/
       PINNED = %r{@v?\d+\.\d+(\.\d+)?[^/]*/|/v?\d+\.\d+\.\d+[^/]*/}
@@ -26,6 +26,9 @@ module Modootoday
           out["math"] = [["src", x["src"], i["js"], "integrity.js"], ["css", x["css"], i["css"], "integrity.css"]]
           out["math"] << ["auto_render_src", x["auto_render_src"], x["auto_render_integrity"], "auto_render_integrity"] if x.key?("auto_render_src")
         end
+        # Charts without src stay tables, so only a declared src is checked.
+        c = mtc["chart"]
+        out["chart"] = [["src", c["src"], c["integrity"], "integrity"]] if c.is_a?(Hash) && c["enabled"] == true && c.key?("src")
         out
       end
 

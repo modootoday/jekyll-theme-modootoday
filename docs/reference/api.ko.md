@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:e54a2dcd678f
+source_rev: sha256:5c9a7e573bad
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -43,8 +43,8 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - `modootoday/brand/icon.html`은 `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), 선택 `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`를 받습니다. 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힙니다.
 - 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
-- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/math-diagrams/#다이어그램을-최신으로-유지하기) 참고).
-- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
+- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법).
+- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
 
@@ -98,7 +98,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 뉴스 첫 화면 | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
 | 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | 필터 | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`, 빠진 항목의 `[hidden]` |
-| 차트 | `figure.mt-chart` | `.mt-chart-canvas`(차트 스크립트가 그리기 전까지 `[hidden]`), `.mt-chart-data` > `div.mt-table` > `table`(`figure.mt-chart table`), `figcaption` | `[data-type]`, `[data-opts]`, 색 훅 `--mt-chart-1`~`--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
+| 차트 | `figure.mt-chart` | `.mt-chart-canvas`(차트 모듈이 캡션을 이름으로 단 `canvas[role=img]`를 그리기 전까지 `[hidden]`), `.mt-chart-data` > `div.mt-table` > `table`(`figure.mt-chart table`, 그린 뒤에는 `details` > `summary` 안으로 접힘), `figcaption` | `[data-type]`, `[data-opts]`, 색 훅 `--mt-chart-1`~`--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
 
 위 행에 대한 참고:
 

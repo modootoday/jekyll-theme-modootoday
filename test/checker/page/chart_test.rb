@@ -56,7 +56,7 @@ class CheckChartTest < CheckerCase
     page "a.md", "---\n---\n# A\n"
     o, code = check
     assert_equal 1, code
-    assert_includes o, "_config.yml: modootoday.chart must be a map {enabled: true or false}"
+    assert_includes o, "_config.yml: modootoday.chart.enabled must be true or false"
     page "_config.yml", ON
     out "a/index.html", "<p><code>chart:bar</code></p>\n<p>Mentions <code>chart:bar</code>.</p><pre><code>chart:bar</code></pre>"
     o, code = check

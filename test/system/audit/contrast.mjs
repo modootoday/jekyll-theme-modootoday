@@ -29,7 +29,12 @@ export async function checkContrast(page, scheme, rows, fails) {
     const d = document.createElement("i"); d.style.color = v; document.body.append(d);
     const c = getComputedStyle(d).color.match(/[\d.]+/g).slice(0, 3).map(Number); d.remove(); return [n, { c, used }];
   })), { pre, T });
-  for (const [f, b, min] of PAIRS) {
+  // Chart series hooks resolve on figure.mt-chart (data/chart.css), so they are read there: 3:1 on the page (WCAG 1.4.11).
+  Object.assign(rgb, await page.evaluate(() => Object.fromEntries([...document.querySelectorAll("figure.mt-chart")].slice(0, 1).flatMap((f) => [1, 2, 3, 4, 5, 6, 7, 8].map((i) => {
+    const d = document.createElement("i"); d.style.color = getComputedStyle(f).getPropertyValue(`--mt-chart-s${i}`).trim(); f.append(d);
+    const c = getComputedStyle(d).color.match(/[\d.]+/g).slice(0, 3).map(Number); d.remove(); return [`chart-${i}`, { c, used: `--mt-chart-${i}` }];
+  })))));
+  for (const [f, b, min] of [...PAIRS, ...[1, 2, 3, 4, 5, 6, 7, 8].map((i) => [`chart-${i}`, "bg", 3])]) {
     if (!rgb[f] || !rgb[b]) continue;
     const r = +ratio(rgb[f].c, rgb[b].c).toFixed(2);
     rows.push({ scheme, fg: rgb[f].used, bg: rgb[b].used, ratio: r, min });

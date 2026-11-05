@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:5991d74194e0
+source_rev: sha256:c56a0969f06e
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -75,7 +75,7 @@ modootoday:
 | `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
-| `chart` | 無効 | `{enabled: true}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になる。[グラフ](../../recipes/charts/)を参照。 |
+| `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/charts/)を参照。 |
 | `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
@@ -100,6 +100,7 @@ modootoday:
 - `header`: 画面の幅が 30rem(480px)より狭いと、`logo` のあるサイトはヘッダーにロゴだけを表示します。スクリーンリーダーはサイト名をそのまま読み上げます。`logo` がなければ名前は常に表示されます。
 - `diagrams`: ページは front matter の `diagrams:` に、```` ```mermaid ```` フェンスごとに項目を一つずつ並べます。`dir` はサイトのパスです。`dark: false` なら図ごとに SVG を一つ使い、ほかの `.svg` の図と同じように暗くします。`source: none` ならフェンスは HTML から外れます。
 - `mermaid`, `math`: 設定は `{enabled: true, src:, integrity:, theme: auto}` と `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、ブロックのあるページでだけ読み込みます。`src` はバージョンを固定した https URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。`inline: true` なら `$…$` も描画します。CDN を使うと `script-src`(数式は `style-src` と `font-src` も)にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。
+- `chart`: `src` は Chart.js 4(`dist/chart.umd.min.js`)で、URL と `integrity` の規則は同じです。Chart.js とテーマのグラフモジュールはグラフのあるページでだけ読み込みます。`src` がなければグラフは表のままです。
 - `banner`: バーはスキップリンクの下に表示されます。
 - `loading`: Markdown でスピナーやスケルトンを使うページは、シートを自動で読み込みます。
 

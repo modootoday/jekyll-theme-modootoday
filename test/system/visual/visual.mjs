@@ -30,9 +30,9 @@ const report = flag("--report");
 const site = path.resolve(args[0] || "docs/_site");
 if (!fs.existsSync(path.join(site, "index.html"))) { console.error(`visual: no index.html in ${site} (build it with test/system/site/build-docs.sh)`); process.exit(1); }
 
-// Representative pages: home (hero, CTA, cards), kitchen sink (every component), a long reference page, a translation, and a
-// script visual, which under reducedMotion "reduce" shows its poster only.
-export const PAGES = { home: "", "kitchen-sink": "components/kitchen-sink/", configuration: "guides/configuration/", "ko-home": "ko/", orbit: "layouts/demo/orbit/" };
+// Representative pages: home (hero, CTA, cards), kitchen sink (every component), a long reference page, a translation, a
+// script visual, which under reducedMotion "reduce" shows its poster only, and charts drawn by the self-hosted Chart.js.
+export const PAGES = { home: "", "kitchen-sink": "components/kitchen-sink/", configuration: "guides/configuration/", "ko-home": "ko/", orbit: "layouts/demo/orbit/", charts: "recipes/charts/" };
 export const WIDTHS = [360, 600, 720, 1024, 1440];
 export const SCHEMES = ["light", "dark"];
 

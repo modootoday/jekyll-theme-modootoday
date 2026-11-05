@@ -94,6 +94,23 @@ class RenderersCheckTest < Minitest::Test
     assert(page(%(<link rel="stylesheet" href="#{K}katex.min.css">), mx).any? { |e| e.include?("without integrity") })
   end
 
+  C = "https://cdn.example.test/chart.js@4.5.1/dist/chart.umd.min.js"
+  def ch(**o) = { "chart" => { "enabled" => true, "src" => C, "integrity" => SRI }.merge(o.transform_keys(&:to_s)) }
+
+  def test_chart_settings_and_built_pages
+    assert_empty settings(ch)
+    assert_empty settings(ch(src: "/assets/js/chart/chart.umd.min.js", integrity: nil))
+    assert_empty settings({ "chart" => { "enabled" => true } }), "without src charts stay tables"
+    {
+      ch(integrity: nil) => "modootoday.chart: src is an https URL, so integrity",
+      ch(src: "https://cdn.example.test/chart.js/dist/chart.umd.min.js") => "pin an exact version",
+      ch(src: "chart.js", integrity: nil) => "must be an https URL or a site path",
+    }.each { |cfg, msg| assert(settings(cfg).any? { |e| e.include?(msg) }, "#{msg}: #{settings(cfg)}") }
+    tag = %(<script src="#{C}" integrity="#{SRI}" crossorigin="anonymous" defer></script>)
+    assert_empty page(tag, ch)
+    assert(page(tag, ch(enabled: false)).any? { |e| e.include?("modootoday.chart") })
+  end
+
   def test_inline_dollar
     {
       "Energy $E=mc^2$ here.\n" => 1, "a\nSet $a$.\n" => 2,

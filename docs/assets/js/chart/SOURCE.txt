@@ -1,0 +1,9 @@
+Chart.js 4.5.1, the chart library of the docs pages recipes/charts/ and the kitchen sinks (not part of the theme gem).
+
+Licence: MIT, see LICENSE.txt in this directory (the package's LICENSE.md).
+Copyright 2014-2024 Chart.js Contributors (https://www.chartjs.org)
+
+Source: npm chart.js@4.5.1, dist/chart.umd.min.js, unmodified; the same bytes as
+  https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js
+  https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js
+  sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ (docs/_config.yml modootoday.chart.integrity)

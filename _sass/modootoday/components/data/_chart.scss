@@ -16,5 +16,10 @@ $mt-chart-dark: #60a5fa, #fb923c, #34d399, #a78bfa, #facc15, #f472b6, #22d3ee, #
   .mt-chart :is(th, td):not(:first-child) { text-align: end; }
   .mt-chart tbody th { font-weight: 400; color: mt(foreground); text-align: start; }
   @media (max-width: 39.99rem) { .mt-chart table[data-mt-labelled] :is(th, td) { text-align: start; } }
+  // The chart script (data/chart.js) shows the canvas box and folds the table into details; Chart.js fills the box.
+  .mt-chart-canvas { position: relative; height: 18rem; margin-bottom: .75rem; }
+  @media (forced-colors: active) { .mt-chart-canvas { display: none; } }
+  .mt-chart-data > details > summary { width: fit-content; min-height: 1.5rem; color: mt(muted-foreground); font-size: mt-size(sm); line-height: 1.5rem; cursor: pointer; }
+  .mt-chart-data > details[open] > summary { margin-bottom: .5rem; }
   .mt-chart > figcaption { margin-top: .5rem; font-size: mt-size(sm); line-height: mt-leading(sm); color: mt(muted-foreground); }
 }

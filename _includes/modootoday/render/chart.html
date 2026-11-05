@@ -1,0 +1,15 @@
+{%- comment -%}
+Optional chart renderer: site.modootoday.chart. assets/scripts.html includes it on pages whose body has a chart figure.
+  enabled    true turns charts on (markdown/inline/chart.html); without src they stay tables
+  src        Chart.js 4 (dist/chart.umd.min.js): a pinned, versioned https URL (with integrity), or a site path
+  integrity  SRI hash (sha256-/sha384-/sha512-…); required for an https src, optional for a site path
+Prints the library tag and sets mt_chart_on, so the chart module (data/chart.js) loads after it; front matter chart: false
+opts a page out. An https src without integrity loads nothing (modootoday-check reports it).
+{%- endcomment -%}
+{%- assign mt_chart_on = false -%}{%- assign _mc = site.modootoday.chart -%}
+{%- if _mc.enabled == true and page.chart != false and _mc.src -%}
+{%- include modootoday/render/asset.html src=_mc.src integrity=_mc.integrity -%}
+{%- if mt_asset_tag -%}{%- assign mt_chart_on = true %}
+{{ mt_asset_tag }}
+{%- endif -%}
+{%- endif -%}

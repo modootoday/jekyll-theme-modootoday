@@ -69,7 +69,7 @@ modootoday:
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
-| `chart` | off | `{enabled: true}`: a line holding only `chart:<type>` right before a table makes the table a chart figure. See [Charts](../../recipes/charts/). |
+| `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
@@ -94,6 +94,7 @@ modootoday:
 - `header`: on screens narrower than 30rem (480 px), a site with a `logo` shows only the logo in the header. Screen readers still read the site name. Without a `logo` the name always shows.
 - `diagrams`: a page lists its diagrams in front matter `diagrams:`, one entry per ```` ```mermaid ```` fence. `dir` is a site path; `dark: false` uses one SVG per diagram, darkened like other `.svg` figures; `source: none` drops the fence from the HTML.
 - `mermaid`, `math`: the settings are `{enabled: true, src:, integrity:, theme: auto}` and `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`, and they load only on pages with a block. `src` is a version-pinned https URL with an SRI `integrity` hash, or a path on your site. `inline: true` also renders `$…$`. A CDN adds its origin to `script-src` (math also to `style-src` and `font-src`) and sends visitors' IP addresses to it.
+- `chart`: `src` is Chart.js 4 (`dist/chart.umd.min.js`) with the same URL and `integrity` rules; it and the theme's chart module load only on pages with a chart. Without `src` charts stay tables.
 - `banner`: the bar sits under the skip link.
 - `loading`: pages that use the spinner or skeleton in Markdown load the sheet on their own.
 

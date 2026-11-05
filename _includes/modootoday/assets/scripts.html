@@ -18,6 +18,8 @@
 {%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search-keys|" -%}{%- endif -%}
 {%- if mt_components contains "filter" and _mta_hit contains "|filter|" -%}{%- assign _mta_on = _mta_on | append: "filter|" -%}{%- endif -%}
+{%- comment -%}The chart library tag comes before the module tags: deferred scripts run in document order.{%- endcomment -%}
+{%- if _mta_hit contains "|chart|" -%}{%- include modootoday/render/chart.html -%}{%- if mt_chart_on -%}{%- assign _mta_on = _mta_on | append: "chart|" -%}{%- endif -%}{%- endif -%}
 {%- assign _mta_done = "|" -%}{%- assign _mta_pre = "|" -%}
 {%- for _mta_r in mt_asset_rows -%}{%- assign _mta_c = _mta_r | split: "|" -%}{%- assign _mta_k = "|" | append: _mta_c[0] | append: "|" -%}
 {%- if _mta_c[1] == "js" or _mta_c[1] == "module" -%}{%- if _mta_on contains _mta_k -%}{%- unless _mta_done contains _mta_k -%}{%- assign _mta_done = _mta_done | append: _mta_c[0] | append: "|" -%}

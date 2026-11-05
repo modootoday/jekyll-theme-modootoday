@@ -263,7 +263,7 @@ Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 
 ## Charts
 
-`status:available` With `modootoday.chart.enabled`, a line holding only `chart:bar` right before a table makes the table a chart figure. The table stays the chart's text, and it is what readers see until a chart script draws it.
+`status:available` With `modootoday.chart.enabled`, a line holding only `chart:bar` right before a table makes the table a chart figure. The table stays the chart's text: this site's Chart.js draws the chart and folds the table under it, and readers without JavaScript see the table.
 
 `chart:bar stacked`
 

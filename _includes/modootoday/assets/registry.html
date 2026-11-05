@@ -24,7 +24,7 @@ visual|css|/assets/css/modootoday/media/visual.css|class="mt-visual-poster^data-
 filter|css|/assets/css/modootoday/data/filter.css|<div class="mt-filter"|filter|512
 table|css|/assets/css/modootoday/data/table.css|<table|/base/table table|1280
 table-stack|css|/assets/css/modootoday/data/table-stack.css|<table|table-stack|640
-chart|css|/assets/css/modootoday/data/chart.css|class="mt-chart|data/chart|640
+chart|css|/assets/css/modootoday/data/chart.css|class="mt-chart|data/chart|768
 cta|section|/assets/css/modootoday/showcase/cta.css|cta||256
 card|section|/assets/css/modootoday/showcase/card.css|features||640
 linkcards|section|/assets/css/modootoday/showcase/linkcards.css|linkcards||640
@@ -51,6 +51,7 @@ accordion|module|/assets/js/modootoday/structure/accordion.js|||640
 share|module|/assets/js/modootoday/blog/share.js|||640
 search-keys|module|/assets/js/modootoday/chrome/search-keys.js|||1024
 filter|module|/assets/js/modootoday/data/filter.js|<div class="mt-filter"||1152|/assets/js/modootoday/text/normalize.js /assets/js/modootoday/dom/config.js /assets/js/modootoday/data/filter-chips.js
+chart|module|/assets/js/modootoday/data/chart.js|class="mt-chart||1664|/assets/js/modootoday/data/chart-table.js /assets/js/modootoday/theme/current.js
 {%- endcapture -%}
 {%- capture _mta_fixed -%}
 core|sheet|/assets/css/modootoday.css|||4608
@@ -70,6 +71,7 @@ normalize|import|/assets/js/modootoday/text/normalize.js|||512
 search|import|/assets/js/modootoday/chrome/search.js|||1792|/assets/js/modootoday/text/normalize.js
 current|import|/assets/js/modootoday/theme/current.js|||640
 chips|import|/assets/js/modootoday/data/filter-chips.js|||640
+chart-table|import|/assets/js/modootoday/data/chart-table.js|||512
 {%- endcapture -%}
 {%- assign mt_asset_rows = _mta_rows | newline_to_br | strip_newlines | split: "<br />" -%}
 {%- assign _mta_cs = "" -%}{%- assign _mta_ss = "" -%}

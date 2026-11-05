@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:961e9355f6a5
+source_rev: sha256:c66163876220
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -325,7 +325,7 @@ theme: jekyll-theme-modootoday
 
 ## グラフ
 
-`status:available` `c: chart` セクションで、または `modootoday.chart.enabled` を有効にしたときに `chart:bar` だけの行の後で、表はグラフの figure になります。表はグラフのテキストとして残ります。グラフのスクリプトが描くまで読者にはこの表が表示され、表の後の強調だけの行はキャプションになります。
+`status:available` `c: chart` セクションで、または `modootoday.chart.enabled` を有効にしたときに `chart:bar` だけの行の後で、表はグラフの figure になります。表はグラフのテキストとして残ります。`modootoday.chart.src` があればサイトの Chart.js がグラフを描いて表はその下に畳まれ、なければ読者には表が表示されます。表の後の強調だけの行はキャプションになります。
 
 | 四半期 | ドキュメント | ブログ |
 |---|---|---|

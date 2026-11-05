@@ -318,7 +318,7 @@ Yes, with the github-pages gem.
 
 ## Chart
 
-`status:available` In a `c: chart` section, or after a line holding only `chart:bar` when `modootoday.chart.enabled` is on, a table becomes a chart figure. The table stays the chart's text: readers see it until a chart script draws the chart, and an emphasis-only line after it is the caption.
+`status:available` In a `c: chart` section, or after a line holding only `chart:bar` when `modootoday.chart.enabled` is on, a table becomes a chart figure. The table stays the chart's text: with `modootoday.chart.src` the site's Chart.js draws the chart and the table folds under it, otherwise readers see the table; an emphasis-only line after it is the caption.
 
 | Quarter | Docs | Blog |
 |---|---|---|

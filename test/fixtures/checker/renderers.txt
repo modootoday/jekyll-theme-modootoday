@@ -1,8 +1,8 @@
 _config.yml: modootoday.math.integrity.js: not an SRI hash (sha256-, sha384- or sha512- followed by base64)
 a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js: integrity differs from _config.yml
 a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without crossorigin="anonymous"
-a/index.html: external script https://evil.example/x.js is not a declared renderer URL (modootoday.mermaid, modootoday.math); self-host it or declare it
-a/index.html: external stylesheet //fonts.example/f.css is not a declared renderer URL (modootoday.mermaid, modootoday.math); self-host it or declare it
+a/index.html: external script https://evil.example/x.js is not a declared renderer URL (modootoday.mermaid, modootoday.math, modootoday.chart); self-host it or declare it
+a/index.html: external stylesheet //fonts.example/f.css is not a declared renderer URL (modootoday.mermaid, modootoday.math, modootoday.chart); self-host it or declare it
 a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without integrity="…" (SRI)
 a/index.html: external script https://cdn.example/mermaid@11.4.1/mermaid.min.js without crossorigin="anonymous"
 md-components check: 7 problem(s)

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:5991d74194e0
+source_rev: sha256:c56a0969f06e
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -75,7 +75,7 @@ modootoday:
 | `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
-| `chart` | 꺼짐 | `{enabled: true}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 됩니다. [차트](../../recipes/charts/) 참고. |
+| `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/charts/) 참고. |
 | `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
@@ -100,6 +100,7 @@ modootoday:
 - `header`: 화면 너비가 30rem(480px)보다 좁으면 `logo`가 있는 사이트는 헤더에 로고만 보여 줍니다. 스크린 리더는 사이트 이름을 그대로 읽습니다. `logo`가 없으면 이름이 항상 보입니다.
 - `diagrams`: 페이지는 front matter `diagrams:`에 ```` ```mermaid ```` 펜스마다 항목을 하나씩 나열합니다. `dir`는 사이트 경로입니다. `dark: false`면 다이어그램마다 SVG 하나를 쓰고 다른 `.svg` 그림처럼 어둡게 바꿉니다. `source: none`이면 펜스가 HTML에서 빠집니다.
 - `mermaid`, `math`: 설정은 `{enabled: true, src:, integrity:, theme: auto}`와 `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`이고, 블록이 있는 페이지에서만 불러옵니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`(수식은 `style-src`, `font-src`도)에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다.
+- `chart`: `src`는 Chart.js 4(`dist/chart.umd.min.js`)이고 URL과 `integrity` 규칙은 같습니다. Chart.js와 테마의 차트 모듈은 차트가 있는 페이지에서만 불러옵니다. `src`가 없으면 차트는 표로 남습니다.
 - `banner`: 막대는 건너뛰기 링크 아래에 놓입니다.
 - `loading`: Markdown에서 스피너나 스켈레톤을 쓰는 페이지는 알아서 시트를 불러옵니다.
 

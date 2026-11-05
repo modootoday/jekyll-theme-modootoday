@@ -22,6 +22,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `data/table-stack.js` | pages with a body table |
 | `structure/tabs.js`, `structure/accordion.js`, `blog/share.js` | pages that use tabs, an accordion, or a blog layout |
 | `data/filter.js` (with `data/filter-chips.js`, `text/normalize.js` and `dom/config.js`, preloaded) | pages with `filter:` or `filter_text:` |
+| `data/chart.js` (with `data/chart-table.js` and `theme/current.js`, preloaded), after your Chart.js | pages with a chart, when `modootoday.chart` names your Chart.js (`src`) |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
@@ -66,5 +67,5 @@ Only the files a page links carry `?v=`. The modules they import (such as `text/
 The theme's CI fails a change that makes pages heavier than its budgets:
 
 - every theme stylesheet and script against its own cap, in gzip bytes: the measured size plus 10%, written on the file's row in the theme's asset table, so a feature that grows changes only its own cap;
-- the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase, page with a module script visual, page with a list filter, record page), modules they import included, against the sum of the caps of those files. Targets of 8 KiB CSS, 6 KiB JavaScript and six theme stylesheets per page are reported as warnings (the showcase loads every component on purpose and is left out);
+- the CSS and JavaScript one page of each type loads (docs page, landing page, blog page, component showcase, page with a module script visual, page with a list filter, record page, chart page), modules they import included: the theme's part against the sum of the caps of those files. Targets of 8 KiB CSS, 6 KiB JavaScript and six theme stylesheets per page are reported as warnings (the showcase loads every component on purpose and the chart page carries Chart.js, about 70 KB gzip, so both are left out);
 - a [strict Content Security Policy](../../recipes/csp/) on sample pages, with zero violations ([demo](../../layouts/demo/csp/)).

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:9b6d1e58700e
+source_rev: sha256:f5a37bde0f73
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -28,6 +28,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `data/table-stack.js` | 本文に表があるページ |
 | `structure/tabs.js`、`structure/accordion.js`、`blog/share.js` | タブ、アコーディオン、ブログのレイアウトを使うページ |
 | `data/filter.js`（`data/filter-chips.js`、`text/normalize.js`、`dom/config.js` を先読み） | `filter:` か `filter_text:` を使うページ |
+| `data/chart.js`（`data/chart-table.js`、`theme/current.js` を先読み）、サイトの Chart.js の後 | `modootoday.chart` がサイトの Chart.js（`src`）を指すとき、グラフのあるページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
@@ -72,5 +73,5 @@ HTML の TTL は短くしておくと、デプロイ後に新しい `?v=` がす
 テーマの CI は、ページを予算より重くする変更を失敗にします。
 
 - テーマのスタイルシートとスクリプトを 1 つずつ、それぞれの上限と比べます (gzip バイト数)。上限は測った大きさに 10% を足した値で、テーマのアセット表のそのファイルの行に書いてあります。機能が大きくなっても、変わるのはその上限だけです。
-- ページの種類 (ドキュメント、ランディング、ブログ、コンポーネントのショーケース、モジュールスクリプトのビジュアルがあるページ、リストのフィルターがあるページ、レコードのページ) ごとに、1 ページが読み込む CSS と JavaScript (インポートするモジュールを含む) を、それらのファイルの上限の合計と比べます。1 ページあたり CSS 8 KiB、JavaScript 6 KiB、テーマのスタイルシート 6 枚という目標は警告として知らせるだけです (すべてのコンポーネントをわざと読み込むショーケースは除きます)。
+- ページの種類 (ドキュメント、ランディング、ブログ、コンポーネントのショーケース、モジュールスクリプトのビジュアルがあるページ、リストのフィルターがあるページ、レコードのページ、グラフのページ) ごとに、1 ページが読み込む CSS と JavaScript (インポートするモジュールを含む) のうちテーマの分を、それらのファイルの上限の合計と比べます。1 ページあたり CSS 8 KiB、JavaScript 6 KiB、テーマのスタイルシート 6 枚という目標は警告として知らせるだけです (すべてのコンポーネントをわざと読み込むショーケースと、gzip で約 70 KB の Chart.js を載せるグラフのページは除きます)。
 - サンプルページに[厳格な Content Security Policy](../../recipes/csp/) をかけたときの違反 0 件 ([デモ](../../layouts/demo/csp/))

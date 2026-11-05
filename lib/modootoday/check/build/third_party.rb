@@ -21,7 +21,7 @@ module Modootoday
           u = tag[/\b(?:src|href)="([^"]*)"/i, 1]
           next unless u && u =~ EXTERNAL
           kind = tag.start_with?("<link") ? "stylesheet" : "script"
-          next ctx.errs << "#{name}: external #{kind} #{u} is not a declared renderer URL (modootoday.mermaid, modootoday.math); self-host it or declare it" unless allowed.key?(u)
+          next ctx.errs << "#{name}: external #{kind} #{u} is not a declared renderer URL (modootoday.mermaid, modootoday.math, modootoday.chart); self-host it or declare it" unless allowed.key?(u)
           sri = tag[/\bintegrity="([^"]*)"/i, 1]
           ctx.errs << "#{name}: external #{kind} #{u} without integrity=\"…\" (SRI)" if sri.to_s.empty?
           ctx.errs << "#{name}: external #{kind} #{u}: integrity differs from _config.yml" if sri && !allowed[u].empty? && sri != allowed[u]

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/csp/
-source_rev: sha256:fe33784ad1fd
+source_rev: sha256:32cc1cc16a3d
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy
@@ -31,4 +31,4 @@ GitHub Pages はレスポンスヘッダーを送れません。これらのデ�
 
 テーマのドキュメント QA は、[厳格な CSP のデモ](../../layouts/demo/csp/)をはじめとするサンプルページをこのポリシーをレスポンスヘッダーに付けて返し、違反が 1 件でもあれば失敗します。
 
-このポリシーのもとで数式や図を追加するには、[数式と図](../math-diagrams/)を参照してください。[静的な Mermaid の図](../math-diagrams/#静的な-mermaid-の図)は追加するものがありません。ページは各図をサイトの画像として表示するので、スクリプトもインラインスタイルもありません。
+このポリシーのもとで数式や図を追加するには、[数式と図](../math-diagrams/)を参照してください。[静的な Mermaid の図](../math-diagrams/#静的な-mermaid-の図)は追加するものがありません。ページは各図をサイトの画像として表示するので、スクリプトもインラインスタイルもありません。[グラフ](../charts/)も、Chart.js がサイト上のファイルなら追加するものはありません。Chart.js は CSSOM で canvas の大きさを決め、`style-src 'self'` はそれを許可します。ドキュメント QA はこのポリシーのもとでグラフのページを開き、グラフにポインターを重ね、凡例をクリックして、違反が 0 件であることを確かめます。

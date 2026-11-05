@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:eac343d5e3d9
+source_rev: sha256:2369d116e535
 nav_order: 60
 nav_title: 移行
 title: 移行とアップグレード
@@ -73,7 +73,7 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 - 1.3: `reference` のサイドバー(`sidebar: true`)とパッケージ表(`packages:`)。どちらも任意です。
 - 1.4: `packages_compact` と `packages_position`(任意)。`reference` ページも `doc` と同じくアラートを変換するようになりました。
 - 1.5: 既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わります(下記参照)。
-- 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)と Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。[グラフ](../../recipes/charts/)を参照)、どちらも任意。
+- 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)と Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。`modootoday.chart.src` で指定したサイトの Chart.js が描画。[グラフ](../../recipes/charts/)を参照)、どちらも任意。
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:0636b2e4479e
+source_rev: sha256:99e3afd21baa
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
@@ -269,7 +269,7 @@ flowchart LR
 
 ## グラフ
 
-`status:available` `modootoday.chart.enabled` を有効にすると、表の直前に `chart:bar` だけの行を置くことで、その表をグラフの figure にします。表はグラフのテキストとして残り、グラフのスクリプトが描くまでは読者にこの表が表示されます。
+`status:available` `modootoday.chart.enabled` を有効にすると、表の直前に `chart:bar` だけの行を置くことで、その表をグラフの figure にします。表はグラフのテキストとして残ります。このサイトの Chart.js がグラフを描いて表をその下に畳み、JavaScript のない読者には表が表示されます。
 
 `chart:bar stacked`
 

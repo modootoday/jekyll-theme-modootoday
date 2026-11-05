@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:0636b2e4479e
+source_rev: sha256:99e3afd21baa
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
@@ -269,7 +269,7 @@ flowchart LR
 
 ## 차트
 
-`status:available` `modootoday.chart.enabled`를 켜면 표 바로 앞에 `chart:bar`만 있는 줄을 두어 그 표를 차트 figure로 만듭니다. 표는 차트의 텍스트로 남고, 차트 스크립트가 그리기 전까지는 독자가 이 표를 봅니다.
+`status:available` `modootoday.chart.enabled`를 켜면 표 바로 앞에 `chart:bar`만 있는 줄을 두어 그 표를 차트 figure로 만듭니다. 표는 차트의 텍스트로 남습니다. 이 사이트의 Chart.js가 차트를 그리고 표를 그 아래로 접으며, JavaScript가 없는 독자는 표를 봅니다.
 
 `chart:bar stacked`
 

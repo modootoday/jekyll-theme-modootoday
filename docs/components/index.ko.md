@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:961e9355f6a5
+source_rev: sha256:c66163876220
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -324,7 +324,7 @@ theme: jekyll-theme-modootoday
 
 ## 차트
 
-`status:available` `c: chart` 섹션에서, 또는 `modootoday.chart.enabled`를 켰을 때 `chart:bar`만 있는 줄 뒤에서 표는 차트 figure가 됩니다. 표는 차트의 텍스트로 남습니다. 차트 스크립트가 그리기 전까지 독자는 이 표를 보고, 표 뒤의 강조만 있는 줄은 캡션이 됩니다.
+`status:available` `c: chart` 섹션에서, 또는 `modootoday.chart.enabled`를 켰을 때 `chart:bar`만 있는 줄 뒤에서 표는 차트 figure가 됩니다. 표는 차트의 텍스트로 남습니다. `modootoday.chart.src`가 있으면 사이트의 Chart.js가 차트를 그리고 표는 그 아래로 접히며, 없으면 독자는 표를 봅니다. 표 뒤의 강조만 있는 줄은 캡션이 됩니다.
 
 | 분기 | 문서 | 블로그 |
 |---|---|---|
