@@ -62,6 +62,7 @@ subscribe: {email: Adresă de e-mail, submit: Abonează-te}
 params: {required: Obligatoriu}
 chart: {data: Datele graficului}
 widget: {fallback: "Acest conținut interactiv are nevoie de JavaScript."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Se încarcă…}
 pages:
   not_found: "Pagina nu a fost găsită"

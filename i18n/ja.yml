@@ -62,6 +62,7 @@ subscribe: {email: メールアドレス, submit: 購読する}
 params: {required: 必須}
 chart: {data: グラフのデータ}
 widget: {fallback: "このインタラクティブなコンテンツには JavaScript が必要です。"}
+region: {named: "[label]（[name]）", nth: "[name] [n]"}
 loading: {label: 読み込み中…}
 pages:
   not_found: "ページが見つかりません"

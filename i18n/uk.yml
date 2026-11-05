@@ -62,6 +62,7 @@ subscribe: {email: Адреса ел. пошти, submit: Підписатися
 params: {required: Обов’язково}
 chart: {data: Дані діаграми}
 widget: {fallback: "Для цього інтерактивного вмісту потрібен JavaScript."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Завантаження…}
 pages:
   not_found: "Сторінку не знайдено"

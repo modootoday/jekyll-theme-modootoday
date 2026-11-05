@@ -62,6 +62,7 @@ subscribe: {email: Email pata, submit: Subscribe karein}
 params: {required: Laazmi}
 chart: {data: Chart ka data}
 widget: {fallback: "Is interactive content ke liye JavaScript zaroori hai."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Load ho raha hai…}
 pages:
   not_found: "Safha nahin mila"

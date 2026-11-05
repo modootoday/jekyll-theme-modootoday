@@ -62,6 +62,7 @@ subscribe: {email: نشانی ایمیل, submit: اشتراک}
 params: {required: الزامی}
 chart: {data: داده‌های نمودار}
 widget: {fallback: "این محتوای تعاملی به JavaScript نیاز دارد."}
+region: {named: "[label]، [name]", nth: "[name] [n]"}
 loading: {label: در حال بارگذاری…}
 pages:
   not_found: "صفحه پیدا نشد"

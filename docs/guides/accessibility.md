@@ -17,7 +17,7 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 | `Esc` | search | leave the results, or clear the box |
 | `←` `→` `Home` `End` | tabs | switch tabs; left and right follow the reading direction in right-to-left pages |
 | `↓` `↑` `Esc` | language menu, nav "More" menu, page actions | move between items; `Esc` closes and returns focus |
-| `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a labelled region you can focus and scroll with the arrow keys |
+| `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a region you can focus and scroll with the arrow keys. Each has its own name: "Code" or "Table" with the file name, caption or language, else the nearest heading, and a number when two would match |
 
 Focus is always visible. Inside tabs, panels and scroll regions the focus ring is drawn inside the box so it is not clipped.
 

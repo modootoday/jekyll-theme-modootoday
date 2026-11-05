@@ -63,6 +63,7 @@ subscribe: {email: Email address, submit: Subscribe}
 params: {required: Required}
 chart: {data: Chart data}
 widget: {fallback: "This interactive content needs JavaScript."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Loading…}
 pages:
   not_found: "Page not found"

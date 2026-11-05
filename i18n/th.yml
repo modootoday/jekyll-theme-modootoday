@@ -62,6 +62,7 @@ subscribe: {email: อีเมล, submit: สมัครรับข่าว
 params: {required: จำเป็น}
 chart: {data: ข้อมูลแผนภูมิ}
 widget: {fallback: "เนื้อหาแบบโต้ตอบนี้ต้องใช้ JavaScript"}
+region: {named: "[label] [name]", nth: "[name] [n]"}
 loading: {label: กำลังโหลด…}
 pages:
   not_found: "ไม่พบหน้า"

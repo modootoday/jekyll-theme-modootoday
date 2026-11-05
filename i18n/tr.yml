@@ -62,6 +62,7 @@ subscribe: {email: E-posta adresi, submit: Abone ol}
 params: {required: Zorunlu}
 chart: {data: Grafik verileri}
 widget: {fallback: "Bu etkileşimli içerik için JavaScript gerekir."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Yükleniyor…}
 pages:
   not_found: "Sayfa bulunamadı"

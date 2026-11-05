@@ -19,6 +19,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - `modootoday-check` now checks typed objects nested in JSON-LD and reports problems as warnings (errors in 2.0) (adr:modootoday/20261103053804, adr:modootoday/20261105112439). A single object under a property (`offers`, `organizer`, `acceptedAnswer`) was skipped before; it now gets the rules of its `@type` (required properties, vocabulary, absolute URLs, ISO 8601 dates), and each finding ends in "fix it now (in a nested object this is an error from 2.0)". Objects in arrays and top-level nodes keep their errors, a nested object without `@type` is not asked for one, and an empty answer stays an error. An event's `tickets:` gives an `offers` with only a `url`, which now warns about the missing price: the Detail layouts page shows `schema: {offers: ...}` with `price` and `priceCurrency`, and the docs event demo uses it. The Structured data and Upgrade guides (en, ko, ja) say so.
 
+### Fixed
+
+- Two or more code blocks that scrolled sideways on one page were all named "Code" (and tables "Table"), which axe reports as `landmark-unique` and screen readers list as identical regions (adr:modootoday/20261105110246). `content/scroll-region.js` now names each region by its `file:` title, caption, code language or nearest heading, numbered while names repeat ("Code, yaml 2"), through the new `region.named` and `region.nth` patterns in all 23 catalogs; tables follow the same rule. The module is 1,129 bytes gzip (cap 640 to 1,280).
+
 ## [1.5.0] - 2026-11-04
 
 Visual: every page differs from 1.4.1 by design (flat overhaul); see [The 1.5 look](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/#the-15-look) in the Upgrade guide.

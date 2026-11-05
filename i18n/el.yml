@@ -62,6 +62,7 @@ subscribe: {email: Διεύθυνση email, submit: Εγγραφή}
 params: {required: Υποχρεωτικό}
 chart: {data: Δεδομένα γραφήματος}
 widget: {fallback: "Αυτό το διαδραστικό περιεχόμενο χρειάζεται JavaScript."}
+region: {named: "[label], [name]", nth: "[name] [n]"}
 loading: {label: Φόρτωση…}
 pages:
   not_found: "Η σελίδα δεν βρέθηκε"
