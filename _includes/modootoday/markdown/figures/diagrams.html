@@ -1,0 +1,28 @@
+{%- comment -%}Static diagrams: the n-th ```mermaid fence becomes figure.mt-diagram with the n-th entry of page.diagrams, showing the
+  committed <dir><name>.svg and, with dark: true, <dir><name>.dark.svg; the figure sheet swaps them with the colour scheme. Both
+  images carry the alt text: CSS hides one, which leaves the accessibility tree. A fence with no entry stays as it is.
+  site.modootoday.diagrams: dir (default /assets/diagrams/), dark (default true), source: details (default) | none{%- endcomment -%}
+{%- assign _mfd = site.modootoday.diagrams -%}
+{%- assign _mfd_dir = _mfd.dir | default: "/assets/diagrams/" -%}
+{%- assign _mfd_dark = true -%}{%- if _mfd.dark == false -%}{%- assign _mfd_dark = false -%}{%- endif -%}
+{%- assign _mfd_x = include.html -%}
+{%- assign _mfd_k = '<div class="language-mermaid highlighter-rouge">' -%}{%- assign _mfd_e = "</pre></div></div>" -%}
+{%- unless _mfd_x contains _mfd_k -%}{%- assign _mfd_k = '<pre><code class="language-mermaid">' -%}{%- assign _mfd_e = "</code></pre>" -%}{%- endunless -%}
+{%- if _mfd_x contains _mfd_k -%}
+{%- assign _mfd_bits = _mfd_x | split: _mfd_k -%}
+{%- capture _mfd_x -%}{{ _mfd_bits[0] }}{%- for _mfd_b in _mfd_bits offset: 1 -%}
+{%- assign _mfd_d = page.diagrams[forloop.index0] -%}
+{%- if _mfd_d.name and _mfd_d.name != "" and _mfd_b contains _mfd_e -%}
+{%- assign _mfd_src = _mfd_b | split: _mfd_e | first -%}{%- assign _mfd_rest = _mfd_b | remove_first: _mfd_src | remove_first: _mfd_e -%}
+{%- assign _mfd_alt = _mfd_d.alt | strip_html | escape -%}
+{%- capture _mfd_size %}{% if _mfd_d.width and _mfd_d.height %} width="{{ _mfd_d.width }}" height="{{ _mfd_d.height }}"{% endif %}{% endcapture -%}
+{%- assign _mfd_p = _mfd_dir | append: _mfd_d.name -%}
+<figure class="mt-figure mt-figure-svg mt-diagram"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="{{ _mfd_alt | default: mt_t_diagram_label }}">
+{%- if _mfd_dark -%}<img class="mt-diagram-light mt-no-filter" src="{{ _mfd_p | append: '.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async"><img class="mt-diagram-dark mt-no-filter" src="{{ _mfd_p | append: '.dark.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async">
+{%- else -%}<img class="mt-diagram-light" src="{{ _mfd_p | append: '.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async">{%- endif -%}
+</div>{%- if _mfd_d.caption -%}<figcaption>{{ _mfd_d.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>{%- endif -%}</figure>
+{%- unless _mfd.source == "none" -%}<details class="mt-diagram-source"><summary>{{ mt_t_diagram_source }}</summary>{{ _mfd_k }}{{ _mfd_src }}{{ _mfd_e }}</details>{%- endunless -%}{{ _mfd_rest }}
+{%- else -%}{{ _mfd_k }}{{ _mfd_b }}{%- endif -%}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{{ _mfd_x }}

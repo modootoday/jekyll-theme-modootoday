@@ -25,4 +25,4 @@ GitHub Pages cannot send response headers. A `<meta http-equiv="Content-Security
 
 The theme's docs QA serves sample pages, among them the [strict CSP demo](../../layouts/demo/csp/), with this policy as a response header and fails on any violation.
 
-To add math or diagrams under this policy, see [Math and diagrams](../math-diagrams/).
+To add math or diagrams under this policy, see [Math and diagrams](../math-diagrams/). [Static diagrams](../math-diagrams/#static-diagrams) need nothing added: the page shows each diagram as an image from your site, with no script or inline style.

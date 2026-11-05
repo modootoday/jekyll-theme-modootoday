@@ -1,0 +1,9 @@
+# Static diagrams (front matter diagrams:): one page with a committed SVG pair, one with a fence and no list.
+title: Figures
+lang: en
+theme: jekyll-theme-modootoday
+permalink: pretty
+markdown: kramdown
+kramdown: {input: GFM}
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}

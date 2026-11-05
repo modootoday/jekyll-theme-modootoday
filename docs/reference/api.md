@@ -23,6 +23,7 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Includes | `modootoday/t.html` prints a theme label in the page language. |
 | Data files | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
 | Checker | `modootoday-check` options and exit codes. |
+| Static figures | Front matter `diagrams:`, the `data-mt-src` digest rule and the `diagram.source` label. |
 | Record pages | `modootoday.records`, the record front matter and the facts list. |
 | Stub writer | `modootoday-stubs` options, stub file names and front matter, and exit codes. |
 
@@ -37,6 +38,7 @@ Details for the rows above:
 - Module helpers: `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`). The `mt:themechange` event is under [Events](#events). The `script:` visual contract is `data-mt-script`, `.mt-visual-stage` and `data-mt-ready`; see [Customize](../../guides/customize/#module-scripts-and-posters).
 - Data files: `_data/i18n/<lang>.yml` keys are optional overrides of the built-in catalogs; `_data/navigation.yml` is read for `main`.
 - Checker exit codes: 0 (no problems) and 1 (problems or bad usage).
+- Static figures: `diagrams: [{name, alt, caption, width, height}]` maps the n-th ```` ```mermaid ```` fence of a page to its n-th entry (see [Math and diagrams](../../recipes/math-diagrams/#static-diagrams)). `data-mt-src="sha256-<hex>"` on an SVG's root element records the fence it was drawn from: the SHA-256 of the fence body (the lines between the fence lines) with CRLF and CR turned into LF and the final newlines removed. `diagram.source` in `_data/i18n/<lang>.yml` names the source disclosure.
 - Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
 - Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt` and record pages `<dir>/<key>.md`. Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
 
@@ -83,6 +85,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Badge | `span.mt-badge` | the label (a status badge draws its dot with `::before`) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
 | Figure | `figure.mt-figure` | `img`, `figcaption` | — |
+| Static diagram | `figure.mt-figure.mt-figure-svg.mt-diagram` | `div.mt-figure-scroll[role=region]`, `img.mt-diagram-light`, `img.mt-diagram-dark`, `figcaption`, and after the figure `details.mt-diagram-source` | the image for the other colour scheme is hidden |
 | Post header | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
 | Post footer | `article.mt-doc` | `.mt-share` button, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | Post card | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
@@ -150,7 +153,7 @@ For one callback per real change that also works without the toggle, use `onThem
 ## Right-to-left and math
 
 - Pages in Arabic, Persian, Hebrew, Urdu and other RTL languages get `dir="rtl"` from `lang`; set `direction: rtl` or `ltr` in front matter (or `direction:` in `_data/i18n/<lang>.yml`) to override. Components use logical properties and mirror; code stays left-to-right.
-- The theme bundles no math or diagram renderer; see [Math and diagrams](../../recipes/math-diagrams/).
+- The theme bundles no math or diagram renderer; static diagrams show SVG files you commit. See [Math and diagrams](../../recipes/math-diagrams/).
 
 ## Posts and archives
 

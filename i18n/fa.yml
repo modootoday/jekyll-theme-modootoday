@@ -16,7 +16,7 @@ nav: {label: منوی اصلی, back_to_top: بازگشت به بالا, menu: �
 pagination: {label: صفحه‌ها, prev: قبلی, next: بعدی}
 code: {copy: کپی, copied: کپی شد, label: کد, file: پرونده}
 table: {label: جدول}
-diagram: {label: نمودار}
+diagram: {label: نمودار, source: منبع نمودار}
 search: {label: جستجو}
 filter: {label: "فیلتر", count: "نمایش [n] مورد"}
 page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی}

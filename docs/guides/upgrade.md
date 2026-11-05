@@ -59,6 +59,7 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 | 1.2 | 1.3 | Pin `~> 1.3` (with `remote_theme`, `@v1.3.0`). |
 | 1.3 | 1.4 | Pin `~> 1.4` (with `remote_theme`, `@v1.4.1`). |
 | 1.4 | 1.5 | Pin `~> 1.5` (with `remote_theme`, `@v1.5.0`). |
+| 1.5 | 1.6 | Pin `~> 1.6` (with `remote_theme`, `@v1.6.0`). |
 
 None of these upgrades needs page edits. What each one adds:
 
@@ -66,6 +67,7 @@ None of these upgrades needs page edits. What each one adds:
 - 1.3: the `reference` sidebar (`sidebar: true`) and package table (`packages:`), both opt-in.
 - 1.4: `packages_compact` and `packages_position`, both opt-in; `reference` pages now convert alerts like `doc`.
 - 1.5: the default look and the way pages load theme CSS and JavaScript change (see below).
+- 1.6: static diagrams (front matter `diagrams:`, see [Math and diagrams](../../recipes/math-diagrams/#static-diagrams)), opt-in.
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
 

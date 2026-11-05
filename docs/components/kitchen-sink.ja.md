@@ -1,11 +1,13 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:629228bf1e3d
+source_rev: sha256:b35b7a8c1399
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
+diagrams:
+  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 818, height: 63}
 sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
@@ -211,6 +213,15 @@ front matter 付きのページを作ります。
 ![左の Markdown ソースが右のスタイル付きページになる](../../../assets/images/sample.svg)
 
 *画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。*
+
+front matter の `diagrams:` に並べた ```` ```mermaid ```` フェンスは静的な図になり、ソースはその下の開閉要素に入ります。
+
+```mermaid
+flowchart LR
+  md[Markdown page] --> build[Jekyll build]
+  build --> html[HTML page]
+  html --> check[modootoday-check]
+```
 
 ## タイムライン
 

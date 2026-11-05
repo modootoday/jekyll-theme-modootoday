@@ -16,7 +16,7 @@ nav: {label: Meniu principal, back_to_top: Înapoi sus, menu: Meniu}
 pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
 code: {copy: Copiază, copied: Copiat, label: Cod, file: Fișier}
 table: {label: Tabel}
-diagram: {label: Diagramă}
+diagram: {label: Diagramă, source: Sursa diagramei}
 search: {label: Caută}
 filter: {label: "Filtrează", count: "[n] afișate"}
 page: {edit: Editează pagina, updated: Ultima actualizare}

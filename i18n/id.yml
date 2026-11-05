@@ -16,7 +16,7 @@ nav: {label: Menu utama, back_to_top: Kembali ke atas, menu: Menu}
 pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}
 code: {copy: Salin, copied: Tersalin, label: Kode, file: Berkas}
 table: {label: Tabel}
-diagram: {label: Diagram}
+diagram: {label: Diagram, source: Sumber diagram}
 search: {label: Cari}
 filter: {label: "Saring", count: "[n] ditampilkan"}
 page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}

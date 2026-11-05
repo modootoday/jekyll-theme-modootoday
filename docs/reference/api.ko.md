@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:e4115bfcab37
+source_rev: sha256:e017ebaa89ca
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -29,6 +29,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | include | `modootoday/t.html`은 페이지 언어로 테마 문구를 출력합니다. |
 | 데이터 파일 | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
 | 검사기 | `modootoday-check` 옵션과 종료 코드. |
+| 정적 그림 | front matter `diagrams:`, `data-mt-src` 다이제스트 규칙, `diagram.source` 레이블. |
 | 레코드 페이지 | `modootoday.records`, 레코드 front matter, 정보 목록. |
 | 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름과 front matter, 종료 코드. |
 
@@ -43,6 +44,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
 - 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법).
+- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
 
@@ -89,6 +91,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 배지 | `span.mt-badge` | 레이블(상태 배지의 점은 `::before`로 그림) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |
 | 그림 | `figure.mt-figure` | `img`, `figcaption` | — |
+| 정적 다이어그램 | `figure.mt-figure.mt-figure-svg.mt-diagram` | `div.mt-figure-scroll[role=region]`, `img.mt-diagram-light`, `img.mt-diagram-dark`, `figcaption`, 그림 뒤의 `details.mt-diagram-source` | 다른 색상 모드의 이미지는 숨김 |
 | 글 머리 | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
 | 글 끝 | `article.mt-doc` | `.mt-share` 버튼, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | 글 카드 | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
@@ -156,7 +159,7 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ## 오른쪽에서 왼쪽 쓰기와 수식
 
 - 아랍어, 페르시아어, 히브리어, 우르두어 등 RTL 언어 페이지는 `lang`에 따라 `dir="rtl"`을 받습니다. front matter의 `direction: rtl` 또는 `ltr`(또는 `_data/i18n/<lang>.yml`의 `direction:`)로 바꿀 수 있습니다. 컴포넌트는 논리 속성을 써서 좌우가 뒤집히고, 코드는 왼쪽에서 오른쪽으로 유지됩니다.
-- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. [수식과 다이어그램](../../recipes/math-diagrams/)을 보세요.
+- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. 정적 다이어그램은 커밋한 SVG 파일을 보여 줍니다. [수식과 다이어그램](../../recipes/math-diagrams/)을 보세요.
 
 ## 글과 아카이브
 

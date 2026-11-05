@@ -1,23 +1,113 @@
 ---
 lang: ja
 permalink: /ja/recipes/math-diagrams/
-source_rev: sha256:9fc93f1265d5
+source_rev: sha256:a7170180287e
 nav_order: 10
 title: 数式と図
-description: 組み込みローダー、ビルド時の描画、独自のローダーで Mermaid の図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
+description: Mermaid の図をコミットした静的な図として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
+diagrams:
+  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 818, height: 63}
 ---
 # 数式と図
 
 > [!NOTE]
 > このページは[英語の原文](../../../recipes/math-diagrams/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
-```` ```math ```` や ```` ```mermaid ```` のフェンスは、レンダラーを有効にするまでコードブロックとして表示され、github.com では GitHub が描画します。サイトで描画する方法は三つあります。
+```` ```math ```` や ```` ```mermaid ```` のフェンスは、レンダラーを有効にするまでコードブロックとして表示され、github.com では GitHub が描画します。サイトに表示する方法は三つあります。
 
 | 方法 | 動く環境 | CSP | ブラウザーの JavaScript |
 |---|---|---|---|
+| [静的な図](#静的な図)：描画した SVG をコミットし、front matter に並べる | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 厳格なまま、追加なし | なし |
 | [組み込みローダー](#組み込みローダー)：`modootoday.mermaid` と `modootoday.math` | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 自分でホスト：`'self'`、CDN：CDN のオリジンを追加（下記） | あり、ブロックのあるページだけ |
-| [ビルド時に描画](#ビルド時に描画する)して出力をコミットする | 従来の GitHub Pages、Jekyll 4、任意のホスト | 厳格なまま、追加なし | なし |
 | `_includes/footer-custom.html` の[独自のローダー](#独自のローダー) | 従来の GitHub Pages、Jekyll 4、任意のホスト | KaTeX は厳格なまま。Mermaid は `style-src 'unsafe-inline'` が必要 | あり |
+
+## 静的な図
+
+推奨の方法です。ページは静的な SVG を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。Markdown にはフェンスがそのまま残るので、github.com と [Markdown 版](../../guides/agents/)を読むエージェントにはソースが引き続き見えます。
+
+### 静的な Mermaid の図
+
+ページの図を front matter に並べます。ページの最初の ```` ```mermaid ```` フェンスが最初の項目に、2 番目のフェンスが 2 番目の項目に対応します。各フェンスは、コミットした明るい SVG を表示する図になり、ページが暗いとき (訪問者のシステム設定またはテーマの切り替えボタン) は暗い SVG を表示します。
+
+````markdown
+---
+diagrams:
+  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 818, height: 63}
+---
+```mermaid
+flowchart LR
+  md[Markdown page] --> build[Jekyll build]
+  build --> html[HTML page]
+  html --> check[modootoday-check]
+```
+````
+
+このページも同じ front matter を使っているので、同じフェンスがここではこう表示されます。
+
+```mermaid
+flowchart LR
+  md[Markdown page] --> build[Jekyll build]
+  build --> html[HTML page]
+  html --> check[modootoday-check]
+```
+
+- **項目。** `name` は `modootoday.diagrams.dir` の下のファイル名から `.svg` を除いたものです。`recipes/flow` は `/assets/diagrams/recipes/flow.svg` と `/assets/diagrams/recipes/flow.dark.svg` を表示します。`alt` は必須で、「図」ではなく図が示す内容を書きます。`caption` は任意で、インラインの Markdown を使えます。`width` と `height` は SVG のピクセル単位の大きさで、画像の読み込み中も図の場所を確保します。
+- **ソースはページに残ります。** フェンスは図の下の「図のソース」という開閉要素に移ります。`source: none` にすると HTML から外れますが、Markdown 版には残ります。
+- **ライトとダーク。** どちらの画像にも代替テキストがあります。figure のシート (figure.css) は色のトークンと同じ規則で一方を表示し、もう一方を隠すので、暗い SVG はテーマの切り替えボタンにも従い、隠れた画像は読み上げられません。`dark: false` にすると図ごとの SVG は一つになり、テーマが[画像の図](#画像の図)と同じように暗くします。
+- **項目のないフェンス**はコードブロックのまま残ります。`diagrams:` のあるページでは組み込みの Mermaid ローダーは動きません。
+- 幅の広い図は狭い画面でも読める幅を保ち、代替テキストを名前とするフォーカス可能な領域の中で横にスクロールします。
+- `modootoday-check` は、フェンスの数と項目の数が違うページ、`alt` のない項目、見つからない SVG をエラーとして報告します。`width` と `height` のない項目は警告し、SVG の `viewBox` から読んだ値を示します。
+
+```yaml
+modootoday:
+  diagrams:
+    dir: /assets/diagrams/  # SVG を置くサイトのパス (既定値)
+    dark: true              # 図ごとに .dark.svg もある (既定値)
+    source: details         # details (既定値) または none
+```
+
+Mermaid CLI で各フェンスを 2 回描画します。Mermaid の `default` テーマと `dark` テーマ、透明な背景で描き、両方のファイルをコミットします。`flow.mmd` にはフェンスの行の間の内容を入れます。
+
+```sh
+npx -y @mermaid-js/mermaid-cli -i flow.mmd -o assets/diagrams/recipes/flow.svg -t default -b transparent
+npx -y @mermaid-js/mermaid-cli -i flow.mmd -o assets/diagrams/recipes/flow.dark.svg -t dark -b transparent
+```
+
+SVG をどのフェンスから描いたかを記録するには、ルートの `<svg>` 要素に `data-mt-src="sha256-<hex>"` を付けます。値は、行末を LF にそろえて最後の改行を除いたフェンス本文の SHA-256 です。次のコマンドが `flow.mmd` の値を出力します。
+
+```sh
+printf 'sha256-%s\n' "$(printf '%s' "$(tr -d '\r' < flow.mmd)" | sha256sum | cut -d' ' -f1)"
+```
+
+Mermaid は各 SVG に `<style>` 要素を書き込みます。ここのように `<img>` で表示すれば、CSP に追加するものはありません。ブラウザーが SVG ファイルを単独で開くと、ホストがそのファイルと一緒に送る CSP ヘッダーが適用されるので、厳格なエッジの CSP から `.svg` ファイルを外すか、SVG の応答だけに `style-src 'unsafe-inline'` を許可してください。
+
+### 画像の図
+
+どの SVG も普通の図として使え、一つのファイルで両方の配色に対応します。画像として参照し、再生成できるようにソースを隣に置いておきます。
+
+```markdown
+![Markdown becomes a page, then the checker verifies the build](../../../assets/diagrams/flow.svg)
+
+*The build flow.*
+```
+
+画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。代替テキストには「図」ではなく図の意味を書きます。`.svg` の図は一つのファイルで両方の配色に対応します。ダークモードでは、テーマが色相を保ったまま反転し、`--mt-img-filter-dark` を適用します（トークン `--mt-diagram-filter-dark`）。暗くするだけなら `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`、サイト全体で無効にするなら `none` を設定します。一つの画像だけ描いたままにするには、パスの末尾に `#light` を付けます（`flow.svg#light`）。ラスター画像は従来の写真の色調のままです。狭い画面では、広い図が読める幅（`--mt-figure-min-width`、既定は `32rem`）を保ち、専用の領域の中で横にスクロールします。この領域はフォーカスでき、代替テキストが名前になります。
+
+### 数式
+
+コミット前に実行するスクリプト、または GitHub Actions 上の Jekyll 4 ビルドで、KaTeX を使って数式を一度 HTML に描画します。その後、KaTeX の CSS とフォントを自分のサイトから配信します。例の `/your-base` はサイトの `baseurl` に置き換えてください (または Jekyll の `relative_url` フィルターを使います):
+
+```sh
+npm install katex
+mkdir -p assets/katex && cp -r node_modules/katex/dist/katex.min.css node_modules/katex/dist/fonts assets/katex/
+```
+
+```html
+<!-- _includes/head-custom.html -->
+<link rel="stylesheet" href="/your-base/assets/katex/katex.min.css">
+```
+
+KaTeX の静的な出力は普通の HTML と CSS クラスなので、`style-src 'self'` で足ります。
 
 ## 組み込みローダー
 
@@ -60,42 +150,6 @@ CDN を使うと、コンテンツセキュリティポリシーと訪問者の�
 - **プライバシー。** 訪問者のブラウザーが CDN にファイルを要求するので、CDN は訪問者の IP アドレス、ページのアドレス（リファラー）、時刻を受け取ります。自分でホストすればこれを避けられます。CDN を使う場合は、プライバシーポリシーに記載してください。
 - **可用性。** CDN を使うと、その CDN に接続できるときだけブロックが描画され、できないときはソースのコードブロックが残ります。
 
-## ビルド時に描画する
-
-推奨の方法です。ページは静的な SVG を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。
-
-### 図
-
-Mermaid CLI で各 Mermaid ソースを SVG に描画し、SVG をコミットして図として参照します。図を再生成できるよう、ソースをその隣に置いておきます。
-
-```sh
-npx -y @mermaid-js/mermaid-cli -i assets/diagrams/flow.mmd -o assets/diagrams/flow.svg -b transparent
-```
-
-```markdown
-![Markdown becomes a page, then the checker verifies the build](../../assets/diagrams/flow.svg)
-
-*The build flow.*
-```
-
-画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。代替テキストには「図」ではなく図の意味を書きます。`.svg` の図は一つのファイルで両方の配色に対応します。ダークモードでは、テーマが色相を保ったまま反転し、`--mt-img-filter-dark` を適用します（トークン `--mt-diagram-filter-dark`）。暗くするだけなら `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`、サイト全体で無効にするなら `none` を設定します。一つの画像だけ描いたままにするには、パスの末尾に `#light` を付けます（`flow.svg#light`）。ラスター画像は従来の写真の色調のままです。狭い画面では、広い図が読める幅（`--mt-figure-min-width`、既定は `32rem`）を保ち、専用の領域の中で横にスクロールします。この領域はフォーカスでき、代替テキストが名前になります。
-
-### 数式
-
-コミット前に実行するスクリプト、または GitHub Actions 上の Jekyll 4 ビルドで、KaTeX を使って数式を一度 HTML に描画します。その後、KaTeX の CSS とフォントを自分のサイトから配信します。例の `/your-base` はサイトの `baseurl` に置き換えてください (または Jekyll の `relative_url` フィルターを使います):
-
-```sh
-npm install katex
-mkdir -p assets/katex && cp -r node_modules/katex/dist/katex.min.css node_modules/katex/dist/fonts assets/katex/
-```
-
-```html
-<!-- _includes/head-custom.html -->
-<link rel="stylesheet" href="/your-base/assets/katex/katex.min.css">
-```
-
-KaTeX の静的な出力は普通の HTML と CSS クラスなので、`style-src 'self'` で足ります。
-
 ## 独自のローダー
 
 ビルド手順を追加できないときに使います。レンダラーのファイルをサイトにコピーし、`_includes/footer-custom.html` から読み込みます。タグを Liquid の `if page.math` (または `if page.mermaid`) ブロックで囲み、front matter でそのキーを設定したページだけで読み込むようにします。
@@ -121,7 +175,7 @@ document.querySelectorAll("code.language-math").forEach((code) => {
 
 ### ブラウザーでの Mermaid
 
-Mermaid は各 SVG に `<style>` 要素を書き込むため、厳格な `style-src 'self'` ではスタイルがブロックされます。ビルド時に描画する (上記) か、そのページだけインラインスタイルを許可し、スクリプトは厳格なままにします:
+Mermaid は各 SVG に `<style>` 要素を書き込むため、厳格な `style-src 'self'` ではスタイルがブロックされます。[静的な Mermaid の図](#静的な-mermaid-の図)を使うか、そのページだけインラインスタイルを許可し、スクリプトは厳格なままにします:
 
 ```html
 <script defer src="/your-base/assets/mermaid/mermaid.min.js"></script>

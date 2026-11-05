@@ -19,7 +19,7 @@ A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them w
 - **Readable by agents.** Every page can have a byte-identical Markdown twin, plus `llms.txt` and `llms-full.txt`.
 - **Accessible.** Keyboard shortcuts, visible focus, safe areas on phones, 44 px touch targets, high contrast and reduced motion are built in.
 - **Checked.** `modootoday-check` validates the sources and the built site.
-- **Optional extras.** Search, a light/dark toggle, Mermaid diagrams and KaTeX math (off by default, loaded only on pages that use them) and schema.org JSON-LD.
+- **Optional extras.** Search, a light/dark toggle, Mermaid diagrams and KaTeX math (off by default, loaded only on pages that use them), static diagrams from SVG files you commit, and schema.org JSON-LD.
 
 ## Install
 

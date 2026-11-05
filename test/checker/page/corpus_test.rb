@@ -23,6 +23,7 @@ class CheckCorpusTest < CheckerCase
     "s09-h2-in-list" => ["'##' inside a list item"],
     "s02-hash-in-fence" => [], "s04-trailing-hashes" => [], "s07-no-space" => [], "s08-fence-4backticks" => [],
     "t01-tabs-backtick" => [], "t02-tabs-tilde" => [], "t03-tabs-indented" => [], "m01-mermaid" => [],
+    "d01-diagram-ok" => [], "d01-diagram-count" => [], "d01-diagram-alt" => [],
     "t04-info-attrs" => ["info string must be a single language word"],
     "t05-info-space-attr" => ["info string must be a single language word"],
     "t06-info-lang-only-tilde-attr" => ["info string must be a single language word"],

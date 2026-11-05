@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# The modootoday: keys of _config.yml, grouped by feature (appearance/, pages/, serving/). Load order is report order:
+# The modootoday: keys of _config.yml, grouped by feature (appearance/, figures/, pages/, serving/). Load order is report order:
 # keep it when adding a key.
 require_relative "schema"
 require_relative "validate"
@@ -16,3 +16,4 @@ require_relative "keys/serving/delivery"
 require_relative "keys/appearance/chrome"
 require_relative "keys/appearance/components"
 require_relative "keys/appearance/tokens"
+require_relative "keys/figures/diagrams"

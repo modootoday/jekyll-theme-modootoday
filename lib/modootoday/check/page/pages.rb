@@ -9,6 +9,7 @@ require_relative "filter"
 require_relative "a11y/content"
 require_relative "a11y/new_window"
 require_relative "a11y/illustration"
+require_relative "figures/diagrams"
 
 module Modootoday
   module Check
@@ -29,6 +30,7 @@ module Modootoday
           Filter.call(ctx, f, text, b, code)
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
           NewWindow.call(ctx, f, text, Markdown.strip_comments(code))
+          FigureDiagrams.call(ctx, f, text)
         end
       end
 

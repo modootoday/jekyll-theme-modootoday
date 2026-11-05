@@ -1,11 +1,13 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:629228bf1e3d
+source_rev: sha256:b35b7a8c1399
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
+diagrams:
+  - {name: recipes/flow, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "정적 다이어그램: 커밋한 밝은 SVG와 어두운 SVG 한 쌍.", width: 818, height: 63}
 sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
@@ -211,6 +213,15 @@ front matter가 있는 페이지를 만듭니다.
 ![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../../../assets/images/sample.svg)
 
 *이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다.*
+
+front matter `diagrams:`에 나열한 ```` ```mermaid ```` 펜스는 정적 그림이 되고, 원본은 그 아래 펼침 요소에 들어갑니다.
+
+```mermaid
+flowchart LR
+  md[Markdown page] --> build[Jekyll build]
+  build --> html[HTML page]
+  html --> check[modootoday-check]
+```
 
 ## 타임라인
 

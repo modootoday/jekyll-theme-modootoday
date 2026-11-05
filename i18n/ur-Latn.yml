@@ -16,7 +16,7 @@ nav: {label: Main menu, back_to_top: Upar jaayein, menu: Menu}
 pagination: {label: Safhaat, prev: Pichla, next: Agla}
 code: {copy: Copy karein, copied: Copy ho gaya, label: Code, file: File}
 table: {label: Jadval}
-diagram: {label: Khaka}
+diagram: {label: Khaka, source: Khake ka maakhaz}
 search: {label: Talaash}
 filter: {label: "Filter karen", count: "[n] dikhaye gaye"}
 page: {edit: Yeh safha edit karein, updated: Aakhri update}

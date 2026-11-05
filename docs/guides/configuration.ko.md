@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:00e9396d7ca4
+source_rev: sha256:423da8816ce1
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -66,6 +66,7 @@ modootoday:
 | `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
 | `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [수식과 다이어그램](../../recipes/math-diagrams/#내장-로더) 참고. |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
 | `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 KaTeX로 렌더링합니다. [수식과 다이어그램](../../recipes/math-diagrams/#csp와-개인정보) 참고. |
 | `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
 | `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
@@ -81,7 +82,7 @@ modootoday:
 ### 몇몇 키 자세히
 
 - `color_scheme`: `auto-dark`·`auto-light`는 전환 버튼을 두고 독자의 선택을 기억합니다. `light`·`dark`에는 전환 버튼이 없습니다. 시작 색은 HTML에 들어가므로 깜빡임이 없습니다.
-- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함됩니다. 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를 함께 넣으세요.
+- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함됩니다. 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤)을 유지하려면 `figure` 옆에 `figure-svg`를, 정적 다이어그램의 밝은 모드·다크 모드 전환을 유지하려면 `diagram`을 함께 넣으세요.
 - `nav`: 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따릅니다. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 HTML 페이지가 100개 이하인 사이트에서는 `title`이 있는 최상위 페이지(`/about/` 같은)를 모두 읽습니다(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `nav: false`는 마지막 목록을 끕니다.
 - `sidebar`: 64rem보다 좁으면 본문 위의 접이식 메뉴가 됩니다. front matter의 `sidebar: false`로 한 페이지에서만 숨깁니다.
 - `page_actions`: Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴가 나옵니다. front matter의 `page_actions: false`는 그 페이지에서만 끄고, 아예 빼려면 `components`에서 `page-actions`를 제외합니다.
@@ -96,6 +97,7 @@ modootoday:
 - `language_switcher`: 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 갑니다. 헤더 메뉴는 언어 수와 상관없이 폭이 같고, 언어가 둘 미만이면 표시하지 않습니다. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더합니다.
 - `logo`, `favicon`: `brand` 마크는 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 그립니다. 직접 지정한 로고 이미지는 장식용(`alt=""`)입니다. 다른 로고를 그리려면 `modootoday/brand/logo.html`을 덮어쓰세요. `brand` 파비콘은 SVG, 32px PNG, Apple 터치 아이콘을 연결합니다.
 - `header`: 화면 너비가 30rem(480px)보다 좁으면 `logo`가 있는 사이트는 헤더에 로고만 보여 줍니다. 스크린 리더는 사이트 이름을 그대로 읽습니다. `logo`가 없으면 이름이 항상 보입니다.
+- `diagrams`: 페이지는 front matter `diagrams:`에 ```` ```mermaid ```` 펜스마다 항목을 하나씩 나열합니다. `dir`는 사이트 경로입니다. `dark: false`면 다이어그램마다 SVG 하나를 쓰고 다른 `.svg` 그림처럼 어둡게 바꿉니다. `source: none`이면 펜스가 HTML에서 빠집니다.
 - `mermaid`, `math`: 설정은 `{enabled: true, src:, integrity:, theme: auto}`와 `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}`이고, 블록이 있는 페이지에서만 불러옵니다. `src`는 버전을 고정한 https URL과 SRI `integrity` 해시, 또는 사이트 안의 경로입니다. `inline: true`면 `$…$`도 렌더링합니다. CDN을 쓰면 `script-src`(수식은 `style-src`, `font-src`도)에 그 출처가 추가되고 방문자 IP 주소가 CDN에 전달됩니다.
 - `banner`: 막대는 건너뛰기 링크 아래에 놓입니다.
 - `loading`: Markdown에서 스피너나 스켈레톤을 쓰는 페이지는 알아서 시트를 불러옵니다.

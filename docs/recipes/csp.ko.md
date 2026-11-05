@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/csp/
-source_rev: sha256:ac360e7da233
+source_rev: sha256:fe33784ad1fd
 nav_order: 20
 nav_title: CSP
 title: 콘텐츠 보안 정책
@@ -31,4 +31,4 @@ GitHub Pages는 응답 헤더를 보낼 수 없습니다. 이 지시어들은 `_
 
 테마의 문서 QA는 [엄격한 CSP 데모](../../layouts/demo/csp/)를 비롯한 예시 페이지를 이 정책을 응답 헤더로 붙여 보내고, 위반이 하나라도 있으면 실패합니다.
 
-이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../math-diagrams/)을 보세요.
+이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../math-diagrams/)을 보세요. [정적 다이어그램](../math-diagrams/#정적-다이어그램)은 추가할 것이 없습니다. 페이지가 각 다이어그램을 사이트의 이미지로 보여 주므로 스크립트도 인라인 스타일도 없습니다.

@@ -3,6 +3,8 @@ nav_order: 10
 title: Kitchen sink
 description: Every implemented component and variant on one page, for visual review.
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
+diagrams:
+  - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "A static diagram: a committed light and dark SVG pair.", width: 818, height: 63}
 sections:
   - alerts
   - {c: features, name: cards-2, cols: 2}
@@ -205,6 +207,15 @@ Push to `main` and turn on GitHub Pages.
 ![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
 
 *An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption.*
+
+A ```` ```mermaid ```` fence listed in front matter `diagrams:` becomes a static figure, with its source in a disclosure below it.
+
+```mermaid
+flowchart LR
+  md[Markdown page] --> build[Jekyll build]
+  build --> html[HTML page]
+  html --> check[modootoday-check]
+```
 
 ## Timeline
 

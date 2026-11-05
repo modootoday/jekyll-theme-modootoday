@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:ddc457931bbf
+source_rev: sha256:5c04a3ef0cbc
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -65,6 +65,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 | 1.2 | 1.3 | `~> 1.3`으로 고정합니다(`remote_theme`은 `@v1.3.0`). |
 | 1.3 | 1.4 | `~> 1.4`로 고정합니다(`remote_theme`은 `@v1.4.1`). |
 | 1.4 | 1.5 | `~> 1.5`로 고정합니다(`remote_theme`은 `@v1.5.0`). |
+| 1.5 | 1.6 | `~> 1.6`으로 고정합니다(`remote_theme`은 `@v1.6.0`). |
 
 어느 업그레이드도 페이지를 고칠 필요가 없습니다. 버전마다 더해진 것:
 
@@ -72,6 +73,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 - 1.3: `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`). 모두 선택 사항입니다.
 - 1.4: `packages_compact`와 `packages_position`(선택 사항). `reference` 페이지도 이제 `doc`처럼 알림을 변환합니다.
 - 1.5: 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀝니다(아래 참고).
+- 1.6: 정적 다이어그램(front matter `diagrams:`, [수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고), 선택 사항.
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 

@@ -16,7 +16,7 @@ nav: {label: Menu chính, back_to_top: Lên đầu trang, menu: Menu}
 pagination: {label: Trang, prev: Trước, next: Tiếp}
 code: {copy: Sao chép, copied: Đã sao chép, label: Mã, file: Tệp}
 table: {label: Bảng}
-diagram: {label: Sơ đồ}
+diagram: {label: Sơ đồ, source: Mã nguồn sơ đồ}
 search: {label: Tìm kiếm}
 filter: {label: "Lọc", count: "Đang hiển thị [n]"}
 page: {edit: Sửa trang này, updated: Cập nhật lần cuối}

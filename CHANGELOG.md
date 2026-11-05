@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+### Added
+
+- Static diagrams (adr:modootoday/20261105075445): front matter `diagrams: [{name, alt, caption, width, height}]` replaces the n-th ```` ```mermaid ```` fence with a committed light and dark SVG pair (`<modootoday.diagrams.dir><name>.svg` and `.dark.svg`) that follows the theme toggle, keeps the fence in a `details` element (`modootoday.diagrams.source: none` drops it), and works under `style-src 'self'` with no script. `modootoday-check` checks the number of fences against the entries, `alt` and the files, and proposes `width` and `height` from the SVG's `viewBox`. The Mermaid loader skips such pages. New interface label `diagram.source` in every catalog; component name `diagram`. The figure sheet grows by 79 bytes gzip (792 of its 896 cap). New Sass partials start at their 2.0 path (adr:modootoday/20261105075436).
+
 ## [1.5.0] - 2026-11-04
 
 Visual: every page differs from 1.4.1 by design (flat overhaul); see [The 1.5 look](https://modootoday.github.io/jekyll-theme-modootoday/guides/upgrade/#the-15-look) in the Upgrade guide.
