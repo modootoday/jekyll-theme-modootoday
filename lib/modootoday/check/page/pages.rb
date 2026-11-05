@@ -11,6 +11,7 @@ require_relative "a11y/content"
 require_relative "a11y/new_window"
 require_relative "a11y/illustration"
 require_relative "figures/diagrams"
+require_relative "figures/freshness"
 
 module Modootoday
   module Check
@@ -33,6 +34,7 @@ module Modootoday
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
           NewWindow.call(ctx, f, text, Markdown.strip_comments(code))
           FigureDiagrams.call(ctx, f, text)
+          FigureFreshness.call(ctx, f, text)
         end
       end
 

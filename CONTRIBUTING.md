@@ -56,6 +56,22 @@ node test/system/lighthouse/budget.mjs qa-out/lighthouse
 
 Do not commit those files in a starter folder; the tests fail on a committed stub. `rake starters:check` fails when `pkg/starters/` differs from a fresh render, and `rake starters:build[NAME]` builds the starters with the current bundle and runs the checker with their manifest flags (plain `rake` runs it after the tests). The `starters.yml` workflow renders, builds and checks every starter on github-pages 232, Jekyll 4 and the GitHub Pages builder image. Publishing a rendered starter to its repository comes after 1.5.0; until then it is uploaded by hand. Sites that only tests use, such as the front-matter-less one, live in `test/fixtures/sites/`.
 
+### Rendering figures
+
+The static diagrams in `docs/` are committed SVG pairs under `docs/assets/diagrams/`, each tied to its Mermaid fence by `data-mt-src` (see [Math and diagrams](docs/recipes/math-diagrams.md)). After you change a fence, `ruby exe/modootoday-check docs --diagrams` lists what to render, and the full check fails on a stale SVG. `script/figures/diagrams.mjs` renders that list: it loads Mermaid from the pinned URL and hash in the script, renders each fence with the `default` and `dark` themes, sizes the SVG from its `viewBox` and writes `data-mt-src`; `script/figures/digest.mjs` is the digest rule in Node, kept equal to `lib/modootoday/figures.rb` by a shared fixture. Neither is in the gem. Pick one of three ways to run it; all three give the same files:
+
+- **GitHub Actions.** The `figures.yml` workflow runs on pushes and pull requests that touch `docs/`: it fails on a missing or stale SVG and uploads the rendered files as the `diagrams` artifact, which you copy into `docs/assets/diagrams/`. Run it by hand (`gh workflow run figures.yml -f commit=true`) to have it commit them to the branch. You need no browser on your machine.
+- **A remote browser.** Point the script at any Chrome that speaks the DevTools protocol (one started elsewhere with `--remote-debugging-port`, or a hosted browser service) with `--cdp=<websocket URL>`; set `CDP_AUTHORIZATION` to the `Authorization` header value if the service needs one. Nothing starts a browser locally.
+- **A local browser.** Without `--cdp` the script launches Playwright's Chromium (`npx playwright install chromium` once).
+
+```sh
+npm ci
+ruby exe/modootoday-check docs --diagrams | node script/figures/diagrams.mjs docs
+ruby exe/modootoday-check docs --diagrams | node script/figures/diagrams.mjs docs --cdp=wss://browser.example/devtools/browser
+```
+
+To move to another Mermaid version, change the URL and the `sha384` hash of that version's `dist/mermaid.min.js` together, then render every diagram again: an SVG only goes stale when its fence changes.
+
 ## Project layout
 
 These rules apply to everything in the repository: theme files, tools, tests, QA and new code. `test/project/layout_test.rb` enforces the measurable parts.
@@ -73,6 +89,7 @@ Where things live:
 | `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb` and `context.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, in `appearance/`, `pages/` and `serving/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
 | `lib/modootoday/markdown.rb` | Markdown source text (front matter, fences, code spans, comments): the one front matter parser for both executables, `script/` and `test/system/docs/` |
 | `lib/modootoday/figures.rb` | static figures: the fences a page replaces and the one digest rule (`data-mt-src`) that ties a committed render to its fence; any tool that writes the attribute follows it |
+| `script/figures/` | rendering the docs site's static figures (`diagrams.mjs`) and the digest rule in Node (`digest.mjs`); not in the gem, see Rendering figures above |
 | `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `page.rb` (a page and its URL, also used by `modootoday-check --aliases` and `script/docs`), `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`, `records.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` (with `dir: "generated"`) for the docs site, and `modootoday-check` uses the records plan for its verdict |
 | `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |

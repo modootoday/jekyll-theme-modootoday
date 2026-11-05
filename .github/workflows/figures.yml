@@ -1,0 +1,93 @@
+name: Figures
+
+# Static diagrams of docs/: modootoday-check --diagrams lists every SVG that is missing or was drawn from an older
+# fence, and script/figures/diagrams.mjs renders those in Chromium. Pushes and pull requests fail on a stale SVG and
+# upload the fresh files as the "diagrams" artifact; a manual run with "commit" set commits them to the branch.
+
+on:
+  push:
+    branches: [main]
+    paths: ["docs/**.md", "docs/assets/diagrams/**", "script/figures/**", "lib/modootoday/figures.rb", "lib/modootoday/check/page/figures/**", ".github/workflows/figures.yml"]
+  pull_request:
+    paths: ["docs/**.md", "docs/assets/diagrams/**", "script/figures/**", "lib/modootoday/figures.rb", "lib/modootoday/check/page/figures/**", ".github/workflows/figures.yml"]
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit the rendered SVG files to this branch
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: docs diagrams are fresh
+    runs-on: ubuntu-24.04
+    outputs:
+      stale: ${{ steps.list.outputs.stale }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+      - name: List missing and stale diagram SVGs
+        id: list
+        run: |
+          set +e
+          ruby exe/modootoday-check docs --diagrams > "$RUNNER_TEMP/diagrams.json"
+          code=$?
+          set -e
+          [ "$code" -le 1 ] || exit "$code"
+          echo "stale=$code" >> "$GITHUB_OUTPUT"
+          { echo '```json'; cat "$RUNNER_TEMP/diagrams.json"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/setup-node@v7
+        if: steps.list.outputs.stale == '1'
+        with:
+          node-version: 24
+          cache: npm
+      - name: Render them
+        if: steps.list.outputs.stale == '1'
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          node script/figures/diagrams.mjs docs "$RUNNER_TEMP/diagrams.json"
+          ruby exe/modootoday-check docs --diagrams
+      - uses: actions/upload-artifact@v7
+        if: steps.list.outputs.stale == '1'
+        with:
+          name: diagrams
+          path: docs/assets/diagrams
+          if-no-files-found: error
+      - name: Fail on stale diagrams
+        if: steps.list.outputs.stale == '1' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "::error::Diagram SVGs are missing or stale. Copy the diagrams artifact into docs/assets/diagrams, run this workflow by hand with commit set, or see CONTRIBUTING (Rendering figures)."
+          exit 1
+
+  commit:
+    name: commit the rendered diagrams
+    needs: render
+    if: github.event_name == 'workflow_dispatch' && inputs.commit && needs.render.outputs.stale == '1'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v7
+        with:
+          name: diagrams
+          path: docs/assets/diagrams
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets/diagrams
+          git commit -m "docs(diagrams): render the stale diagram SVGs"
+          git push

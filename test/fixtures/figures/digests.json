@@ -1,0 +1,22 @@
+[
+  {
+    "body": "flowchart LR\n  md[Markdown page] --> build[Jekyll build]\n  build --> html[HTML page]\n  html --> check[modootoday-check]\n",
+    "digest": "sha256-79eaf605a9a879820b538b7f10f67e7232e315b3cabe2d8188e56c3aa675b433"
+  },
+  {
+    "body": "flowchart LR\r\n  a[Ü é] --> b\r\n\r\n",
+    "digest": "sha256-2988eed739c4a229ce94d29901c92b84728cdd4177011a3dd1415af5df95348e"
+  },
+  {
+    "body": "graph TD\r  a --> b\r",
+    "digest": "sha256-d1b15283685836a7223910a62d4ed7fd26a3fd90fb96abb6704ce46cdf863c81"
+  },
+  {
+    "body": "  sequenceDiagram\n  A->>B: hi\n\n\n",
+    "digest": "sha256-6109e74cc2bb8531a028c563bd1966083f3b1cf453b5888191a2909197006776"
+  },
+  {
+    "body": "",
+    "digest": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

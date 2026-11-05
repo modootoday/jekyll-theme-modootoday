@@ -50,7 +50,7 @@ flowchart LR
 - **Light and dark.** Both images carry the alt text. The figure sheet shows one and hides the other with the same rules as the colour tokens, so the dark one also follows the theme toggle, and a hidden image is not read out. With `dark: false` each diagram has one SVG, which the theme darkens like an [image figure](#image-figures).
 - **Fences without an entry** stay code blocks. The built-in Mermaid loader does not run on a page with `diagrams:`.
 - A wide diagram keeps a readable width on narrow screens and scrolls sideways inside a focusable region named by the alt text.
-- `modootoday-check` reports a page whose number of fences differs from its number of entries, an entry without `alt`, and a missing SVG. It warns about an entry without `width` and `height` and prints the values from the SVG's `viewBox`.
+- `modootoday-check` reports a page whose number of fences differs from its number of entries, an entry without `alt`, and a missing SVG. It warns about an entry without `width` and `height` and prints the values from the SVG's `viewBox`. It also reports an SVG whose `data-mt-src` no longer matches its fence; see [Keep diagrams fresh](#keep-diagrams-fresh).
 
 ```yaml
 modootoday:
@@ -74,6 +74,40 @@ printf 'sha256-%s\n' "$(printf '%s' "$(tr -d '\r' < flow.mmd)" | sha256sum | cut
 ```
 
 Mermaid writes a `<style>` element into each SVG. Shown with `<img>`, as here, it needs nothing from your CSP. A browser that opens the SVG file on its own applies the CSP header your host sends with it, so exempt `.svg` files from a strict edge CSP, or allow `style-src 'unsafe-inline'` for SVG responses only.
+
+### Keep diagrams fresh
+
+When an SVG's root element carries `data-mt-src`, `modootoday-check` compares it with the digest of the fence its entry points to. Edit the fence without rendering it again and the check fails with "stale diagram", naming the page, the entry, the file and the fence's line. An SVG without the attribute is not compared, so a hand-drawn SVG never fails.
+
+`modootoday-check SRC --diagrams` checks nothing else: it prints the diagrams to render as JSON and exits with 1 when there are any. It needs no build, so a pre-commit hook can run it:
+
+```json
+[
+  {
+    "page": "recipes/math-diagrams.md",
+    "name": "recipes/flow",
+    "line": 41,
+    "fence": "flowchart LR\n  md[Markdown page] --> build[Jekyll build]\n  build --> html[HTML page]\n  html --> check[modootoday-check]",
+    "digest": "sha256-79eaf605a9a879820b538b7f10f67e7232e315b3cabe2d8188e56c3aa675b433",
+    "files": {"default": "assets/diagrams/recipes/flow.svg", "dark": "assets/diagrams/recipes/flow.dark.svg"},
+    "reason": "stale"
+  }
+]
+```
+
+- `reason` is `missing` (a file is not there yet) or `stale` (drawn from another fence).
+- `files` maps each Mermaid theme to the file to write, relative to SRC. With `dark: false` there is only `default`.
+- `fence` is the text to render, and `digest` the value for `data-mt-src`.
+
+```sh
+#!/bin/sh
+# .git/hooks/pre-commit
+bundle exec modootoday-check . --diagrams > /dev/null && exit 0
+echo "Diagram SVGs to render: bundle exec modootoday-check . --diagrams" >&2
+exit 1
+```
+
+Render each listed fence with the commands above into its `files`, then add `data-mt-src` with the listed `digest`. The theme's repository does all of this with [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs): it reads the list, renders in Chromium with a pinned Mermaid and writes the attribute. It is not part of the gem; copy it with `digest.mjs` into a folder Jekyll skips, such as `_scripts/`, to use it the same way in your site (it needs Node and Playwright): `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
 
 ### Image figures
 
@@ -197,3 +231,4 @@ Keep `securityLevel: "strict"`: it disables click handlers and HTML labels insid
 - No third-party origins in your CSP, or the CDN origin listed and pinned with `integrity`.
 - Every diagram has alt text or a caption that states what it shows.
 - Load renderers only on pages that need them.
+- `modootoday-check SRC --diagrams` prints an empty list: every committed diagram SVG matches its fence.

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:bc70610643b6
+source_rev: sha256:e54a2dcd678f
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -43,8 +43,8 @@ description: このテーマがサイト向けに文書化している名前、�
 - `modootoday/brand/icon.html` は `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand)、任意の `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class` を受け取ります。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、方向のあるアイコンには `.mt-icon-flip` が付き、RTL で反転します。
 - モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照。
 - データファイル: `_data/i18n/<lang>.yml` のキーは、組み込みのカタログを上書きするときだけ書きます。`_data/navigation.yml` は `main` を読みます。
-- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。
-- 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
+- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/math-diagrams/#図を最新に保つ)を参照)。
+- 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md` です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/math-diagrams/
-source_rev: sha256:a7170180287e
+source_rev: sha256:e078f40e56f5
 nav_order: 10
 title: 수식과 다이어그램
 description: Mermaid 다이어그램을 커밋한 정적 그림으로 보여 주거나, 내장 로더나 직접 만든 로더로 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.
@@ -56,7 +56,7 @@ flowchart LR
 - **밝은 모드와 다크 모드.** 두 이미지 모두 대체 텍스트가 있습니다. figure 시트(figure.css)는 색상 토큰과 같은 규칙으로 하나를 보여 주고 다른 하나를 숨기므로, 어두운 SVG는 테마 전환 버튼도 따르고 숨긴 이미지는 읽히지 않습니다. `dark: false`이면 다이어그램마다 SVG가 하나이고, 테마가 [이미지 그림](#이미지-그림)처럼 어둡게 바꿉니다.
 - **항목이 없는 펜스**는 코드 블록으로 남습니다. `diagrams:`가 있는 페이지에서는 내장 Mermaid 로더가 실행되지 않습니다.
 - 넓은 다이어그램은 좁은 화면에서도 읽을 수 있는 너비를 유지하고, 대체 텍스트를 이름으로 하는 포커스 가능한 영역 안에서 가로로 스크롤됩니다.
-- `modootoday-check`는 펜스 수와 항목 수가 다른 페이지, `alt`가 없는 항목, 없는 SVG를 오류로 알립니다. `width`와 `height`가 없는 항목은 경고하면서 SVG의 `viewBox`에서 읽은 값을 알려 줍니다.
+- `modootoday-check`는 펜스 수와 항목 수가 다른 페이지, `alt`가 없는 항목, 없는 SVG를 오류로 알립니다. `width`와 `height`가 없는 항목은 경고하면서 SVG의 `viewBox`에서 읽은 값을 알려 줍니다. `data-mt-src`가 더 이상 펜스와 맞지 않는 SVG도 알립니다. [다이어그램을 최신으로 유지하기](#다이어그램을-최신으로-유지하기)를 보세요.
 
 ```yaml
 modootoday:
@@ -80,6 +80,40 @@ printf 'sha256-%s\n' "$(printf '%s' "$(tr -d '\r' < flow.mmd)" | sha256sum | cut
 ```
 
 Mermaid는 각 SVG에 `<style>` 요소를 써 넣습니다. 여기처럼 `<img>`로 보여 주면 CSP에 추가할 것이 없습니다. 브라우저가 SVG 파일을 따로 열면 호스트가 그 파일과 함께 보내는 CSP 헤더를 적용하므로, 엄격한 엣지 CSP에서 `.svg` 파일을 빼거나 SVG 응답에만 `style-src 'unsafe-inline'`을 허용하세요.
+
+### 다이어그램을 최신으로 유지하기
+
+SVG 루트 요소에 `data-mt-src`가 있으면 `modootoday-check`는 그 값을 항목이 가리키는 펜스의 다이제스트와 비교합니다. 펜스를 고치고 다시 렌더링하지 않으면 검사가 "stale diagram"으로 실패하고, 페이지, 항목, 파일, 펜스의 줄 번호를 알려 줍니다. 이 속성이 없는 SVG는 비교하지 않으므로 직접 그린 SVG로 실패하는 일은 없습니다.
+
+`modootoday-check SRC --diagrams`는 다른 검사는 하지 않고, 렌더링할 다이어그램을 JSON으로 출력하며 하나라도 있으면 1로 끝납니다. 빌드가 필요 없어서 pre-commit 훅에서 실행할 수 있습니다.
+
+```json
+[
+  {
+    "page": "recipes/math-diagrams.md",
+    "name": "recipes/flow",
+    "line": 41,
+    "fence": "flowchart LR\n  md[Markdown page] --> build[Jekyll build]\n  build --> html[HTML page]\n  html --> check[modootoday-check]",
+    "digest": "sha256-79eaf605a9a879820b538b7f10f67e7232e315b3cabe2d8188e56c3aa675b433",
+    "files": {"default": "assets/diagrams/recipes/flow.svg", "dark": "assets/diagrams/recipes/flow.dark.svg"},
+    "reason": "stale"
+  }
+]
+```
+
+- `reason`은 `missing`(파일이 아직 없음) 또는 `stale`(다른 펜스에서 그림)입니다.
+- `files`는 Mermaid 테마마다 쓸 파일을 SRC 기준 경로로 알려 줍니다. `dark: false`면 `default`만 있습니다.
+- `fence`는 렌더링할 텍스트이고, `digest`는 `data-mt-src`에 넣을 값입니다.
+
+```sh
+#!/bin/sh
+# .git/hooks/pre-commit
+bundle exec modootoday-check . --diagrams > /dev/null && exit 0
+echo "Diagram SVGs to render: bundle exec modootoday-check . --diagrams" >&2
+exit 1
+```
+
+목록의 각 펜스를 위의 명령으로 `files`에 렌더링한 다음, 목록의 `digest`로 `data-mt-src`를 넣으세요. 테마 저장소는 이 과정을 [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs)로 처리합니다. 이 스크립트는 목록을 읽고, 버전을 고정한 Mermaid로 Chromium에서 렌더링하고, 속성을 씁니다. gem에는 들어 있지 않습니다. `digest.mjs`와 함께 Jekyll이 건너뛰는 폴더(예: `_scripts/`)에 복사하면 사이트에서도 같은 방식으로 쓸 수 있습니다(Node와 Playwright 필요). `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
 
 ### 이미지 그림
 
@@ -203,3 +237,4 @@ mermaid.run();
 - CSP에 제3자 출처가 없거나, CDN 출처를 명시하고 `integrity`로 고정했습니다.
 - 모든 다이어그램에 무엇을 보여 주는지 밝히는 대체 텍스트나 캡션이 있습니다.
 - 렌더러는 필요한 페이지에서만 불러옵니다.
+- `modootoday-check SRC --diagrams`의 목록이 비어 있습니다. 커밋한 다이어그램 SVG가 모두 자기 펜스와 맞습니다.
