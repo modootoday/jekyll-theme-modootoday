@@ -25,6 +25,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Fixed
 
 - Two or more code blocks that scrolled sideways on one page were all named "Code" (and tables "Table"), which axe reports as `landmark-unique` and screen readers list as identical regions (adr:modootoday/20261105110246). `content/scroll-region.js` now names each region by its `file:` title, caption, code language or nearest heading, numbered while names repeat ("Code, yaml 2"), through the new `region.named` and `region.nth` patterns in all 23 catalogs; tables follow the same rule. The module is 1,129 bytes gzip (cap 640 to 1,280).
+- A `list` post list (the author page, `variant: list`) shifted the page down as its covers loaded in windows 48rem and wider: the cover dropped its 16:9 ratio there, so each row grew from the text's height to the image's (a layout shift of about 0.014 on the blog starter's author page). The cover keeps the ratio and fills the row as before.
 
 ## [1.5.0] - 2026-11-04
 

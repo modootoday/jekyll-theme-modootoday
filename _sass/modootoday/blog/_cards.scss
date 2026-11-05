@@ -22,7 +22,8 @@
   @media (min-width: 48rem) {
     .mt-post-list[data-variant="list"] > .mt-card-post:has(.mt-card-post-cover) { flex-direction: row; gap: 1.5rem; }
     .mt-post-list[data-variant="list"] .mt-card-post-cover { display: block; flex: 0 0 14rem; }
-    .mt-post-list[data-variant="list"] .mt-card-post-cover img { block-size: 100%; aspect-ratio: auto; }
+    // The 16 / 9 ratio stays so the row has its height before the cover loads (no layout shift).
+    .mt-post-list[data-variant="list"] .mt-card-post-cover img { block-size: 100%; }
     .mt-post-list[data-variant="magazine"] > .mt-card-post-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 3fr 2fr; }
     .mt-post-list[data-variant="magazine"] > .mt-card-post-featured .mt-card-post-body { justify-content: center; padding: 0; padding-inline-start: 2rem; }
     .mt-card-post-featured .mt-card-post-title { font-size: 1.875rem; }
