@@ -52,7 +52,8 @@ class CheckCorpusTest < CheckerCase
 
   def test_every_fixture_has_an_expectation
     covered = EXPECT.keys + %w[a02-tip a03-important a04-warning a05-caution a26-space-inside b02-badge-double-backtick
-                               f03-liquid-in-code f11-math-dollar f15-smart-quotes]
+                               f03-liquid-in-code f11-math-dollar f15-smart-quotes
+                               h01-chart-ok h01-chart-no-table h01-chart-bad-type h01-chart-cells]
     assert_empty Dir.children(FIX).map { |f| File.basename(f, ".md") } - covered
   end
 end

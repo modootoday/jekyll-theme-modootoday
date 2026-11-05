@@ -59,6 +59,7 @@ footnote: {back: العودة إلى موضع الإحالة}
 progress: {label: التقدّم}
 subscribe: {email: البريد الإلكتروني, submit: اشترك}
 params: {required: مطلوب}
+chart: {data: بيانات المخطط}
 loading: {label: جارٍ التحميل…}
 pages:
   not_found: "الصفحة غير موجودة"

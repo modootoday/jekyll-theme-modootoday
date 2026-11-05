@@ -1,0 +1,4 @@
+{%- comment -%}One chart figure (markdown/inline/chart.html, markdown/c/chart.html): include.table is the rendered table, the
+  chart's only content until a script draws div.mt-chart-canvas; include.type, include.opts (space-separated) and
+  include.caption (an emphasis-only paragraph's text). Needs modootoday/i18n.html (chart.data names the folded table).{%- endcomment -%}
+<figure class="mt-chart" data-type="{{ include.type }}"{% if include.opts != "" %} data-opts="{{ include.opts }}"{% endif %}><div class="mt-chart-canvas" hidden></div><div class="mt-chart-data" data-label="{{ mt_t_chart_data }}">{{ include.table }}</div>{% if include.caption != "" %}<figcaption>{{ include.caption }}</figcaption>{% endif %}</figure>

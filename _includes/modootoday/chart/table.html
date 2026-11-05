@@ -1,0 +1,14 @@
+{%- comment -%}A chart data file (site.data.charts[<name>], include.data) as the table that is the chart's fallback:
+  {label, labels: [...], series: [{name, values: [...]}]}. Rows are the labels (row headers), columns the series; label
+  names the first column. Prints the table as kramdown does, so links/content.html wraps it in div.mt-table.{%- endcomment -%}
+{%- assign _mct = include.data -%}
+<table>
+  <thead>
+    <tr>{% if _mct.label %}<th scope="col">{{ _mct.label | escape }}</th>{% else %}<td></td>{% endif %}{% for _mcs in _mct.series %}<th scope="col">{{ _mcs.name | escape }}</th>{% endfor %}</tr>
+  </thead>
+  <tbody>
+{%- for _mcl in _mct.labels -%}{%- assign _mci = forloop.index0 %}
+    <tr><th scope="row">{{ _mcl | escape }}</th>{% for _mcs in _mct.series %}<td>{{ _mcs.values[_mci] | escape }}</td>{% endfor %}</tr>
+{%- endfor %}
+  </tbody>
+</table>

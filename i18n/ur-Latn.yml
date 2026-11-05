@@ -59,6 +59,7 @@ footnote: {back: Hawale par wapas}
 progress: {label: Pesh-raft}
 subscribe: {email: Email pata, submit: Subscribe karein}
 params: {required: Laazmi}
+chart: {data: Chart ka data}
 loading: {label: Load ho raha hai…}
 pages:
   not_found: "Safha nahin mila"

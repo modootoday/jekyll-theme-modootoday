@@ -4,7 +4,7 @@ layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -31,6 +31,7 @@ sections:
   - {c: details, name: details}
   - {c: faq, name: faq}
   - {c: params, name: params}
+  - {c: chart, name: chart, type: bar}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -314,6 +315,18 @@ Yes, with the github-pages gem.
 |---|---|---|---|
 | `title` | string | `required` | Page title |
 | `cols` | number | 2 | Card columns |
+
+## Chart
+
+`status:available` In a `c: chart` section, or after a line holding only `chart:bar` when `modootoday.chart.enabled` is on, a table becomes a chart figure. The table stays the chart's text: readers see it until a chart script draws the chart, and an emphasis-only line after it is the caption.
+
+| Quarter | Docs | Blog |
+|---|---|---|
+| Q1 | 4,160 | 2,030 |
+| Q2 | 5,270 | 2,770 |
+| Q3 | 5,910 | 3,120 |
+
+*Visits per quarter*
 
 ## Link cards
 

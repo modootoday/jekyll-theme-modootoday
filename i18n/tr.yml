@@ -59,6 +59,7 @@ footnote: {back: Göndermeye dön}
 progress: {label: İlerleme}
 subscribe: {email: E-posta adresi, submit: Abone ol}
 params: {required: Zorunlu}
+chart: {data: Grafik verileri}
 loading: {label: Yükleniyor…}
 pages:
   not_found: "Sayfa bulunamadı"

@@ -59,6 +59,7 @@ footnote: {back: Назад к ссылке}
 progress: {label: Прогресс}
 subscribe: {email: Адрес эл. почты, submit: Подписаться}
 params: {required: Обязательно}
+chart: {data: Данные диаграммы}
 loading: {label: Загрузка…}
 pages:
   not_found: "Страница не найдена"

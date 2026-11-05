@@ -1,0 +1,24 @@
+{%- comment -%}c: chart — params type (bar, line, area, pie, doughnut), stacked, horizontal and data: <name>. With data:,
+  site.data.charts[<name>] renders as a table (chart/table.html) at the end of the section and an emphasis-only paragraph
+  ending the section is its figcaption; otherwise the section's first table is the chart, captioned as inline charts are.{%- endcomment -%}
+{%- assign _mcc_b = include.html -%}{%- assign _mcc_s = include.s -%}
+{%- assign _mcc_q = "" -%}{%- if _mcc_s.stacked == true -%}{%- assign _mcc_q = "stacked" -%}{%- endif -%}
+{%- if _mcc_s.horizontal == true -%}{%- assign _mcc_q = _mcc_q | append: " horizontal" | strip -%}{%- endif -%}
+{%- assign _mcc_cap = "" -%}{%- assign _mcc_t = "" -%}{%- assign _mcc_a = "" -%}
+{%- if _mcc_s.data -%}{%- assign _mcc_d = site.data.charts[_mcc_s.data] -%}
+{%- if _mcc_d -%}{%- capture _mcc_t %}{% include modootoday/chart/table.html data=_mcc_d %}{% endcapture -%}{%- endif -%}
+{%- assign _mcc_pre = _mcc_b | rstrip -%}{%- assign _mcc_e = _mcc_pre | split: "<p><em>" | last -%}
+{%- assign _mcc_n = _mcc_e | size | minus: 9 -%}{%- assign _mcc_z = _mcc_e | slice: _mcc_n, 9 -%}{%- assign _mcc_c = _mcc_e | slice: 0, _mcc_n -%}
+{%- if _mcc_pre contains "<p><em>" and _mcc_z == "</em></p>" and _mcc_n > 0 -%}{%- unless _mcc_c contains "<" -%}{%- assign _mcc_cap = _mcc_c -%}
+{%- assign _mcc_n = _mcc_pre | size | minus: _mcc_e.size | minus: 7 -%}{%- assign _mcc_pre = _mcc_pre | slice: 0, _mcc_n | rstrip -%}{%- endunless -%}{%- endif -%}
+{%- assign _mcc_pre = _mcc_pre | append: "
+" -%}
+{%- elsif _mcc_b contains "<table" -%}{%- assign _mcc_pre = _mcc_b | split: "<table" | first -%}
+{%- assign _mcc_r = _mcc_b | remove_first: _mcc_pre -%}{%- assign _mcc_t = _mcc_r | split: "</table>" | first | append: "</table>" -%}
+{%- assign _mcc_a = _mcc_r | remove_first: _mcc_t | lstrip -%}{%- assign _mcc_h = _mcc_a | slice: 0, 7 -%}
+{%- if _mcc_h == "<p><em>" -%}{%- assign _mcc_e = _mcc_a | remove_first: "<p><em>" -%}{%- assign _mcc_c = _mcc_e | split: "</em></p>" | first -%}
+{%- unless _mcc_c contains "<" or _mcc_c == _mcc_e -%}{%- assign _mcc_cap = _mcc_c -%}{%- assign _mcc_a = _mcc_e | remove_first: _mcc_c | remove_first: "</em></p>" -%}{%- endunless -%}
+{%- endif -%}{%- endif -%}
+{%- if _mcc_t == "" -%}{{ _mcc_b }}{%- else -%}{%- assign _mcc_ty = _mcc_s.type -%}
+{{ _mcc_pre }}{% include modootoday/chart/figure.html table=_mcc_t caption=_mcc_cap type=_mcc_ty opts=_mcc_q %}{{ _mcc_a }}
+{%- endif -%}

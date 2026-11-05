@@ -59,6 +59,7 @@ footnote: {back: بازگشت به ارجاع}
 progress: {label: پیشرفت}
 subscribe: {email: نشانی ایمیل, submit: اشتراک}
 params: {required: الزامی}
+chart: {data: داده‌های نمودار}
 loading: {label: در حال بارگذاری…}
 pages:
   not_found: "صفحه پیدا نشد"

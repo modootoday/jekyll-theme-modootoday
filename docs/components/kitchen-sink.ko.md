@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:b35b7a8c1399
+source_rev: sha256:0636b2e4479e
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
@@ -24,6 +24,8 @@ sections:
   - {c: timeline, name: timeline-list}
   - keyboard
   - tables
+  - charts
+  - {c: chart, name: chart-data, type: line, data: traffic-ko}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -264,6 +266,27 @@ flowchart LR
 |:---|:---:|---:|
 | a | b | 1 |
 | 긴 셀 | 가운데 정렬 | 1,000 |
+
+## 차트
+
+`status:available` `modootoday.chart.enabled`를 켜면 표 바로 앞에 `chart:bar`만 있는 줄을 두어 그 표를 차트 figure로 만듭니다. 표는 차트의 텍스트로 남고, 차트 스크립트가 그리기 전까지는 독자가 이 표를 봅니다.
+
+`chart:bar stacked`
+
+| 분기 | 문서 | 블로그 |
+|---|---|---|
+| 1분기 | 4,160 | 2,030 |
+| 2분기 | 5,270 | 2,770 |
+| 3분기 | 5,910 | 3,120 |
+| 4분기 | 6,480 | 3,550 |
+
+*분기별 방문 수(누적)*
+
+## 데이터 파일 차트
+
+`status:available` `data: traffic-ko`를 단 `c: chart` 섹션은 `_data/charts/traffic-ko.yml`을 같은 figure로 보여 주고, 표는 데이터로 만듭니다. 섹션의 마지막 강조 문단이 캡션이 됩니다.
+
+*1월부터 6월까지 월별 방문 수*
 
 ## 코드
 

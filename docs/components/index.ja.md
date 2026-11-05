@@ -1,14 +1,14 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:e4fc96d3d7f1
+source_rev: sha256:961e9355f6a5
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -35,6 +35,7 @@ sections:
   - {c: details, name: details}
   - {c: faq, name: faq}
   - {c: params, name: params}
+  - {c: chart, name: chart, type: bar}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -321,6 +322,18 @@ theme: jekyll-theme-modootoday
 |---|---|---|---|
 | `title` | 文字列 | `required` | ページタイトル |
 | `cols` | 数値 | 2 | カードの列数 |
+
+## グラフ
+
+`status:available` `c: chart` セクションで、または `modootoday.chart.enabled` を有効にしたときに `chart:bar` だけの行の後で、表はグラフの figure になります。表はグラフのテキストとして残ります。グラフのスクリプトが描くまで読者にはこの表が表示され、表の後の強調だけの行はキャプションになります。
+
+| 四半期 | ドキュメント | ブログ |
+|---|---|---|
+| 第 1 四半期 | 4,160 | 2,030 |
+| 第 2 四半期 | 5,270 | 2,770 |
+| 第 3 四半期 | 5,910 | 3,120 |
+
+*四半期ごとの訪問数*
 
 ## リンクカード
 

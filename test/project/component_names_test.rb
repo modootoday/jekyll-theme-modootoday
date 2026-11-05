@@ -75,8 +75,11 @@ class ComponentNamesTest < Minitest::Test
     assert_empty core_partials - partials, "mt_core_partials names a partial that is not under #{PARTIALS}"
   end
 
+  # A section component whose markup also comes from an inline form (chart) has a class-probed css row of its own name.
+  def class_sheets = AssetRegistry.rows("_mta_rows").select { |r| r.kind == "css" }.map(&:name) & docs_components
+
   def test_section_sheets_match_the_docs_registry
-    assert_equal docs_components.sort, section_sheets.keys.sort, "registry section rows vs docs/_data/components.yml"
+    assert_equal docs_components.sort, (section_sheets.keys + class_sheets).sort, "registry section and css rows vs docs/_data/components.yml"
     assert_empty section_sheets.values.map { |v| "section/#{v}" } - partials, "a section sheet with no partial"
   end
 

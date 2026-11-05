@@ -6,6 +6,7 @@ require_relative "component_rules"
 require_relative "page_sections"
 require_relative "hero_script"
 require_relative "filter"
+require_relative "chart"
 require_relative "a11y/content"
 require_relative "a11y/new_window"
 require_relative "a11y/illustration"
@@ -28,6 +29,7 @@ module Modootoday
           ComponentRules.inline(ctx, ctx.rel(f), b)
           PageSections.call(ctx, f, text, b, code, h2)
           Filter.call(ctx, f, text, b, code)
+          Chart.call(ctx, f, text, b, code)
           A11yContent.call(ctx, f, Markdown.strip_comments(code))
           NewWindow.call(ctx, f, text, Markdown.strip_comments(code))
           FigureDiagrams.call(ctx, f, text)

@@ -1,13 +1,13 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:e4fc96d3d7f1
+source_rev: sha256:961e9355f6a5
 nav_order: 0
 layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줍니다.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
@@ -34,6 +34,7 @@ sections:
   - {c: details, name: details}
   - {c: faq, name: faq}
   - {c: params, name: params}
+  - {c: chart, name: chart, type: bar}
   - {c: linkcards, name: linkcards}
   - {c: quote, name: quote}
   - {c: gallery, name: gallery}
@@ -320,6 +321,18 @@ theme: jekyll-theme-modootoday
 |---|---|---|---|
 | `title` | 문자열 | `required` | 페이지 제목 |
 | `cols` | 숫자 | 2 | 카드 열 수 |
+
+## 차트
+
+`status:available` `c: chart` 섹션에서, 또는 `modootoday.chart.enabled`를 켰을 때 `chart:bar`만 있는 줄 뒤에서 표는 차트 figure가 됩니다. 표는 차트의 텍스트로 남습니다. 차트 스크립트가 그리기 전까지 독자는 이 표를 보고, 표 뒤의 강조만 있는 줄은 캡션이 됩니다.
+
+| 분기 | 문서 | 블로그 |
+|---|---|---|
+| 1분기 | 4,160 | 2,030 |
+| 2분기 | 5,270 | 2,770 |
+| 3분기 | 5,910 | 3,120 |
+
+*분기별 방문 수*
 
 ## 링크 카드
 

@@ -21,6 +21,8 @@ sections:
   - {c: timeline, name: timeline-list}
   - keyboard
   - tables
+  - charts
+  - {c: chart, name: chart-data, type: line, data: traffic}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -258,6 +260,27 @@ Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 |:---|:---:|---:|
 | a | b | 1 |
 | longer cell | centered | 1,000 |
+
+## Charts
+
+`status:available` With `modootoday.chart.enabled`, a line holding only `chart:bar` right before a table makes the table a chart figure. The table stays the chart's text, and it is what readers see until a chart script draws it.
+
+`chart:bar stacked`
+
+| Quarter | Docs | Blog |
+|---|---|---|
+| Q1 | 4,160 | 2,030 |
+| Q2 | 5,270 | 2,770 |
+| Q3 | 5,910 | 3,120 |
+| Q4 | 6,480 | 3,550 |
+
+*Visits per quarter, stacked*
+
+## Chart from a data file
+
+`status:available` A `c: chart` section with `data: traffic` shows `_data/charts/traffic.yml` as the same figure, with the table built from the data. The last emphasis-only paragraph of the section is its caption.
+
+*Monthly visits, January to June*
 
 ## Code
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:b35b7a8c1399
+source_rev: sha256:0636b2e4479e
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
@@ -24,6 +24,8 @@ sections:
   - {c: timeline, name: timeline-list}
   - keyboard
   - tables
+  - charts
+  - {c: chart, name: chart-data, type: line, data: traffic-ja}
   - code
   - {name: typography, visual: flat-list}
   - {c: cta, name: cta}
@@ -264,6 +266,27 @@ flowchart LR
 |:---|:---:|---:|
 | a | b | 1 |
 | 長めのセル | 中央揃え | 1,000 |
+
+## グラフ
+
+`status:available` `modootoday.chart.enabled` を有効にすると、表の直前に `chart:bar` だけの行を置くことで、その表をグラフの figure にします。表はグラフのテキストとして残り、グラフのスクリプトが描くまでは読者にこの表が表示されます。
+
+`chart:bar stacked`
+
+| 四半期 | ドキュメント | ブログ |
+|---|---|---|
+| 第 1 四半期 | 4,160 | 2,030 |
+| 第 2 四半期 | 5,270 | 2,770 |
+| 第 3 四半期 | 5,910 | 3,120 |
+| 第 4 四半期 | 6,480 | 3,550 |
+
+*四半期ごとの訪問数（積み上げ）*
+
+## データファイルのグラフ
+
+`status:available` `data: traffic-ja` を付けた `c: chart` セクションは、`_data/charts/traffic-ja.yml` を同じ figure で表示し、表はデータから作ります。セクションの最後の強調だけの段落がキャプションになります。
+
+*1 月から 6 月までの月別訪問数*
 
 ## コード
 

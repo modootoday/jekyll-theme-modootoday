@@ -35,6 +35,10 @@ md-components check: 33 problem(s)
 warning: a26-space-inside.md:1: '[! TYPE]' with a space is not an alert (renders as a plain quote)
 warning: c01-cta.md:5: vague link text "Start"; name the destination so it makes sense out of context
 warning: c02-cta-separator.md:1: vague link text "Start"; name the destination so it makes sense out of context
+warning: h01-chart-bad-type.md: `chart:` stays a code span until _config.yml sets modootoday.chart.enabled: true
+warning: h01-chart-cells.md: `chart:` stays a code span until _config.yml sets modootoday.chart.enabled: true
+warning: h01-chart-no-table.md: `chart:` stays a code span until _config.yml sets modootoday.chart.enabled: true
+warning: h01-chart-ok.md: `chart:` stays a code span until _config.yml sets modootoday.chart.enabled: true
 warning: t01-tabs-backtick.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip
 warning: t02-tabs-tilde.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip
 warning: t03-tabs-indented.md:1: heading jumps from h1 to h3; screen-reader users navigate by level, do not skip

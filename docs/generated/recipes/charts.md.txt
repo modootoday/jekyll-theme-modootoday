@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: charts.md
+path: recipes/charts.md.txt
+permalink: /recipes/charts/index.md
+---

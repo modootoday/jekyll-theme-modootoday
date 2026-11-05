@@ -69,6 +69,7 @@ modootoday:
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
+| `chart` | off | `{enabled: true}`: a line holding only `chart:<type>` right before a table makes the table a chart figure. See [Charts](../../recipes/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).

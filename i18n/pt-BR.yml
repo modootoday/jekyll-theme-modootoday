@@ -59,6 +59,7 @@ footnote: {back: Voltar à referência}
 progress: {label: Progresso}
 subscribe: {email: Endereço de e-mail, submit: Inscrever-se}
 params: {required: Obrigatório}
+chart: {data: Dados do gráfico}
 loading: {label: Carregando…}
 pages:
   not_found: "Página não encontrada"

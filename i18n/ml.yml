@@ -59,6 +59,7 @@ footnote: {back: സൂചനയിലേക്ക് മടങ്ങുക}
 progress: {label: പുരോഗതി}
 subscribe: {email: ഇമെയിൽ വിലാസം, submit: സബ്‌സ്‌ക്രൈബ് ചെയ്യുക}
 params: {required: നിർബന്ധം}
+chart: {data: ചാർട്ട് ഡാറ്റ}
 loading: {label: ലോഡ് ചെയ്യുന്നു…}
 pages:
   not_found: "പേജ് കണ്ടെത്തിയില്ല"

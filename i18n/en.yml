@@ -60,6 +60,7 @@ footnote: {back: Back to reference}
 progress: {label: Progress}
 subscribe: {email: Email address, submit: Subscribe}
 params: {required: Required}
+chart: {data: Chart data}
 loading: {label: Loading…}
 pages:
   not_found: "Page not found"

@@ -1,0 +1,20 @@
+// Charts (figure.mt-chart from a chart: code span or a c: chart section): the table is the chart until a script draws
+// div.mt-chart-canvas. Colour hooks --mt-chart-1..8, --mt-chart-grid and --mt-chart-text are never set by the theme;
+// .mt-chart resolves them per scheme into --mt-chart-s1..s8, -sg and -st (series 3:1 or more on the page background).
+$mt-chart-light: #2563eb, #c2410c, #047857, #7c3aed, #a16207, #be185d, #0e7490, #57534e;
+$mt-chart-dark: #60a5fa, #fb923c, #34d399, #a78bfa, #facc15, #f472b6, #22d3ee, #a8a29e;
+@mixin mt-chart-series($colors) {
+  @for $i from 1 through 8 { --mt-chart-s#{$i}: var(--mt-chart-#{$i}, #{nth($colors, $i)}); }
+}
+@include mt-layer(components) {
+  .mt-chart { margin: 0 0 1.5rem; @include mt-chart-series($mt-chart-light);
+    --mt-chart-sg: var(--mt-chart-grid, #{mt(border)}); --mt-chart-st: var(--mt-chart-text, #{mt(muted-foreground)}); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-chart { @include mt-chart-series($mt-chart-dark); } }
+  [data-theme="dark"] .mt-chart { @include mt-chart-series($mt-chart-dark); }
+  .mt-chart .mt-table { margin: 0; }
+  // Values line up by their last digit; the row labels read as text.
+  .mt-chart :is(th, td):not(:first-child) { text-align: end; }
+  .mt-chart tbody th { font-weight: 400; color: mt(foreground); text-align: start; }
+  @media (max-width: 39.99rem) { .mt-chart table[data-mt-labelled] :is(th, td) { text-align: start; } }
+  .mt-chart > figcaption { margin-top: .5rem; font-size: mt-size(sm); line-height: mt-leading(sm); color: mt(muted-foreground); }
+}

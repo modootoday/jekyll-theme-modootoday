@@ -59,6 +59,7 @@ footnote: {back: Επιστροφή στην παραπομπή}
 progress: {label: Πρόοδος}
 subscribe: {email: Διεύθυνση email, submit: Εγγραφή}
 params: {required: Υποχρεωτικό}
+chart: {data: Δεδομένα γραφήματος}
 loading: {label: Φόρτωση…}
 pages:
   not_found: "Η σελίδα δεν βρέθηκε"

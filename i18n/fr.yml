@@ -59,6 +59,7 @@ footnote: {back: Retour à l’appel de note}
 progress: {label: Progression}
 subscribe: {email: Adresse e-mail, submit: S’abonner}
 params: {required: Obligatoire}
+chart: {data: Données du graphique}
 loading: {label: Chargement…}
 pages:
   not_found: "Page introuvable"

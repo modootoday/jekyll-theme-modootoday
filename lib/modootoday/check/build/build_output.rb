@@ -2,17 +2,19 @@
 
 module Modootoday
   module Check
-    # 5. Built site: unconverted Markdown markers in HTML, CSS that GitHub Pages' Ruby Sass passes through or leaves
-    #    undefined, and the size of search.json.
+    # 5. Built site: unconverted Markdown markers in HTML (a chart: paragraph only with modootoday.chart.enabled), CSS
+    #    that GitHub Pages' Ruby Sass passes through or leaves undefined, and the size of search.json.
     module BuildOutput
       MARKS = /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i
 
       module_function
 
       def residue(ctx)
+        chart = ctx.mtc.is_a?(Hash) && ctx.mtc["chart"].is_a?(Hash) && ctx.mtc["chart"]["enabled"] == true
         Dir.glob("#{ctx.site}/**/*.html").each do |f|
-          t = File.read(f)
-          t = t.gsub(%r{<pre\b.*?</pre>}m, "").gsub(%r{<code\b.*?</code>}m) { |c| c.include?("status:") ? c : "" }
+          t = File.read(f).gsub(%r{<pre\b.*?</pre>}m, "")
+          ctx.errs << "#{f}: unconverted chart (a paragraph with only <code>chart:)" if chart && t.match?(%r{<p><code[^>]*>chart:[^<]*</code></p>})
+          t = t.gsub(%r{<code\b.*?</code>}m) { |c| c.include?("status:") ? c : "" }
           t.scan(MARKS) { ctx.errs << "#{f}: unconverted alert marker [!#{$1}]" }
           ctx.errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
         end

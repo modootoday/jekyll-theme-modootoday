@@ -59,6 +59,7 @@ footnote: {back: Kembali ke rujukan}
 progress: {label: Kemajuan}
 subscribe: {email: Alamat email, submit: Berlangganan}
 params: {required: Wajib}
+chart: {data: Data grafik}
 loading: {label: Memuat…}
 pages:
   not_found: "Halaman tidak ditemukan"

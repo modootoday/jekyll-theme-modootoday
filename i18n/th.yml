@@ -59,6 +59,7 @@ footnote: {back: กลับไปยังจุดอ้างอิง}
 progress: {label: ความคืบหน้า}
 subscribe: {email: อีเมล, submit: สมัครรับข่าวสาร}
 params: {required: จำเป็น}
+chart: {data: ข้อมูลแผนภูมิ}
 loading: {label: กำลังโหลด…}
 pages:
   not_found: "ไม่พบหน้า"

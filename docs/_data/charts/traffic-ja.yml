@@ -1,0 +1,6 @@
+# Sample data for the c: chart section of the kitchen sink and the Charts recipe.
+label: 月
+labels: [1月, 2月, 3月, 4月, 5月, 6月]
+series:
+  - {name: ドキュメント, values: [1200, 1350, 1610, 1580, 1840, 2050]}
+  - {name: ブログ, values: [640, 700, 690, 820, 910, 1040]}

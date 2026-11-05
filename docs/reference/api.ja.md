@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:e017ebaa89ca
+source_rev: sha256:bc70610643b6
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -98,6 +98,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | ニューストップ | `div.mt-news-top` | `.mt-news-lead`、`.mt-news-secondary`、`section.mt-news-latest`、`section.mt-news-section` | `[data-category]`、`.mt-badge[data-variant=breaking\|live]` |
 | 検索 | `div.mt-search[role=search]` | 入力欄、`.mt-search-results` | `[data-match=terms]`、`[data-compact]`、`[data-results]` |
 | 絞り込み | `[data-mt-filter]` | `div.mt-filter`、`.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`、外れた項目の `[hidden]` |
+| グラフ | `figure.mt-chart` | `.mt-chart-canvas`（グラフのスクリプトが描くまで `[hidden]`）、`.mt-chart-data` > `div.mt-table` > `table`（`figure.mt-chart table`）、`figcaption` | `[data-type]`、`[data-opts]`、色のフック `--mt-chart-1`〜`--mt-chart-8`、`--mt-chart-grid`、`--mt-chart-text` |
 
 上の行についての補足:
 

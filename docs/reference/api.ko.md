@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:e017ebaa89ca
+source_rev: sha256:bc70610643b6
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -98,6 +98,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 뉴스 첫 화면 | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
 | 검색 | `div.mt-search[role=search]` | 입력란, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | 필터 | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`, 빠진 항목의 `[hidden]` |
+| 차트 | `figure.mt-chart` | `.mt-chart-canvas`(차트 스크립트가 그리기 전까지 `[hidden]`), `.mt-chart-data` > `div.mt-table` > `table`(`figure.mt-chart table`), `figcaption` | `[data-type]`, `[data-opts]`, 색 훅 `--mt-chart-1`~`--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
 
 위 행에 대한 참고:
 

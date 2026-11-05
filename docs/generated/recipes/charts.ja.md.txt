@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: charts.ja.md
+lang: ja
+path: recipes/charts.ja.md.txt
+permalink: /ja/recipes/charts/index.md
+---

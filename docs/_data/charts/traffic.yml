@@ -1,0 +1,6 @@
+# Sample data for the c: chart section of the kitchen sink and the Charts recipe.
+label: Month
+labels: [Jan, Feb, Mar, Apr, May, Jun]
+series:
+  - {name: Docs, values: [1200, 1350, 1610, 1580, 1840, 2050]}
+  - {name: Blog, values: [640, 700, 690, 820, 910, 1040]}

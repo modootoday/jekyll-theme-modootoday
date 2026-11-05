@@ -59,6 +59,7 @@ footnote: {back: Înapoi la referință}
 progress: {label: Progres}
 subscribe: {email: Adresă de e-mail, submit: Abonează-te}
 params: {required: Obligatoriu}
+chart: {data: Datele graficului}
 loading: {label: Se încarcă…}
 pages:
   not_found: "Pagina nu a fost găsită"

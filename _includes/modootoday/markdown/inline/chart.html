@@ -1,0 +1,30 @@
+{%- comment -%}md-components v1 — `chart:<type> [stacked] [horizontal]` alone in a paragraph right before a table → figure.mt-chart
+  (chart/figure.html) around that table; an emphasis-only paragraph right after the table is its figcaption. Called by
+  markdown/inline.html when modootoday.chart.enabled; anything else stays a code span, and modootoday-check reports it.{%- endcomment -%}
+{%- assign _mch_x = include.html -%}
+{%- assign _mch_types = "bar,line,area,pie,doughnut" | split: "," -%}
+{%- assign _mch_opts = "stacked,horizontal" | split: "," -%}
+{%- assign _mch_ops = '<code class="language-plaintext highlighter-rouge">|<code>' | split: "|" -%}
+{%- for _mch_o in _mch_ops -%}
+{%- assign _mch_key = "<p>" | append: _mch_o | append: "chart:" -%}
+{%- if _mch_x contains _mch_key -%}{%- assign _mch_bits = _mch_x | split: _mch_key -%}
+{%- capture _mch_x -%}{{ _mch_bits[0] }}{%- for _mch_b in _mch_bits offset: 1 -%}
+{%- assign _mch_v = _mch_b | split: "</code></p>" | first -%}
+{%- assign _mch_r = _mch_b | remove_first: _mch_v | remove_first: "</code></p>" | lstrip -%}
+{%- assign _mch_w = _mch_v | split: " " -%}{%- assign _mch_ty = _mch_w | first -%}{%- assign _mch_ok = false -%}
+{%- if _mch_types contains _mch_ty -%}{%- assign _mch_ok = true -%}{%- endif -%}
+{%- for _mch_q in _mch_w offset: 1 -%}{%- unless _mch_opts contains _mch_q -%}{%- assign _mch_ok = false -%}{%- endunless -%}{%- endfor -%}
+{%- assign _mch_h = _mch_r | slice: 0, 6 -%}
+{%- if _mch_v contains "<" or _mch_v == _mch_b or _mch_h != "<table" or _mch_ok == false -%}{{ _mch_key }}{{ _mch_b }}
+{%- else -%}{%- assign _mch_t = _mch_r | split: "</table>" | first | append: "</table>" -%}
+{%- assign _mch_a = _mch_r | remove_first: _mch_t | lstrip -%}{%- assign _mch_cap = "" -%}
+{%- assign _mch_h = _mch_a | slice: 0, 7 -%}
+{%- if _mch_h == "<p><em>" -%}{%- assign _mch_e = _mch_a | remove_first: "<p><em>" -%}{%- assign _mch_cap = _mch_e | split: "</em></p>" | first -%}
+{%- if _mch_cap contains "<p" or _mch_cap contains "</em>" or _mch_cap == _mch_e -%}{%- assign _mch_cap = "" -%}
+{%- else -%}{%- assign _mch_a = _mch_a | remove_first: "<p><em>" | remove_first: _mch_cap | remove_first: "</em></p>" -%}{%- endif -%}
+{%- endif -%}
+{%- assign _mch_q = _mch_v | remove_first: _mch_ty | strip -%}
+{% include modootoday/chart/figure.html table=_mch_t caption=_mch_cap type=_mch_ty opts=_mch_q %}{{ _mch_a }}
+{%- endif -%}{%- endfor -%}{%- endcapture -%}{%- endif -%}
+{%- endfor -%}
+{{ _mch_x }}
