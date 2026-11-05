@@ -134,3 +134,12 @@ layouts:
   present: "Hiện tại"
   loading: "Đang tải…"
   contents: "Mục lục"
+showcase:
+  region: "Giới thiệu giao diện"
+  theme: "Giao diện modoo.today"
+  demo: "bản demo trực tiếp"
+  docs: "Tài liệu"
+  docs_short: "Tài liệu"
+  use: "Dùng mẫu này"
+  dismiss: "Ẩn trong lượt truy cập này"
+  starters: {docs: "Mẫu tài liệu", blog: "Mẫu blog", landing: "Mẫu trang đích"}

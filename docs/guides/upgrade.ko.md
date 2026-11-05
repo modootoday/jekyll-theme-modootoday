@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:2f2a3fc194fd
+source_rev: sha256:24d887094e6f
 nav_order: 60
 nav_title: 이전
 title: 이전과 업그레이드
@@ -73,7 +73,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 - 1.3: `reference` 사이드바(`sidebar: true`)와 패키지 표(`packages:`). 모두 선택 사항입니다.
 - 1.4: `packages_compact`와 `packages_position`(선택 사항). `reference` 페이지도 이제 `doc`처럼 알림을 변환합니다.
 - 1.5: 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀝니다(아래 참고).
-- 1.6: 정적 다이어그램(front matter `diagrams:`, [수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고), 정적 수식(`modootoday.math.mode: static`, `_data/math`의 MathML, [정적 수식](../../recipes/math-diagrams/#정적-수식) 참고), Markdown 표로 만드는 차트(`modootoday.chart`, `c: chart`, `modootoday.chart.src`에 지정한 사이트의 Chart.js가 그림, [차트](../../recipes/charts/) 참고), `c: widget`이나 `widget:`으로 놓는 직접 만든 custom element인 위젯(`modootoday.scripts`의 `element:`, [위젯](../../recipes/widgets/) 참고), 모두 선택 사항. `modootoday.math.base`는 로더가 쓰는 직접 호스팅 KaTeX 경로를 줄여 줍니다. `modootoday-check`는 이제 JSON-LD 안에 하나만 들어 있는 객체(`offers`, `organizer` 등)도 검사하고, 문제는 경고로 알려 줍니다. 2.0부터는 오류입니다([검사](../structured-data/#검사) 참고). 빌드는 그대로 통과하지만 `--strict`에서는 실패합니다.
+- 1.6: 정적 다이어그램(front matter `diagrams:`, [수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고), 정적 수식(`modootoday.math.mode: static`, `_data/math`의 MathML, [정적 수식](../../recipes/math-diagrams/#정적-수식) 참고), Markdown 표로 만드는 차트(`modootoday.chart`, `c: chart`, `modootoday.chart.src`에 지정한 사이트의 Chart.js가 그림, [차트](../../recipes/charts/) 참고), `c: widget`이나 `widget:`으로 놓는 직접 만든 custom element인 위젯(`modootoday.scripts`의 `element:`, [위젯](../../recipes/widgets/) 참고), 모두 선택 사항. `modootoday.math.base`는 로더가 쓰는 직접 호스팅 KaTeX 경로를 줄여 줍니다. `modootoday-check`는 이제 JSON-LD 안에 하나만 들어 있는 객체(`offers`, `organizer` 등)도 검사하고, 문제는 경고로 알려 줍니다. 2.0부터는 오류입니다([검사](../structured-data/#검사) 참고). 빌드는 그대로 통과하지만 `--strict`에서는 실패합니다. 스타터의 데모 빌드에는 쇼케이스 막대나 알약을 표시할 수 있습니다(`modootoday.showcase`, 데모 전용 설정 파일에 넣음. [스타터 데모 쇼케이스](../configuration/#스타터-데모-쇼케이스) 참고). 이때 모든 페이지에 `noindex`가 붙습니다.
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 

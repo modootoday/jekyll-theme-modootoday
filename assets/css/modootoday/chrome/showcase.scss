@@ -1,0 +1,8 @@
+---
+# md-components v1 — jekyll-theme-modootoday component sheet (the showcase bar or pill of a demo build (modootoday.showcase)).
+# Linked right after the core sheet, only when the showcase is enabled. Its partials are the parts of its row in assets/registry.html.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+{% include modootoday/assets/imports.html row="showcase" %}

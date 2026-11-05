@@ -135,3 +135,12 @@ layouts:
   present: "Present"
   loading: "Loading…"
   contents: "Contents"
+showcase:
+  region: "Theme showcase"
+  theme: "modoo.today theme"
+  demo: "live demo"
+  docs: "Documentation"
+  docs_short: "Docs"
+  use: "Use this starter"
+  dismiss: "Hide for this visit"
+  starters: {docs: "Docs starter", blog: "Blog starter", landing: "Landing starter"}

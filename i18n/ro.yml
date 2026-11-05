@@ -134,3 +134,12 @@ layouts:
   present: "Prezent"
   loading: "Se încarcă…"
   contents: "Cuprins"
+showcase:
+  region: "Prezentarea temei"
+  theme: "Tema modoo.today"
+  demo: "demo live"
+  docs: "Documentație"
+  docs_short: "Docs"
+  use: "Folosește acest șablon"
+  dismiss: "Ascunde pentru această vizită"
+  starters: {docs: "Șablon de documentație", blog: "Șablon de blog", landing: "Șablon de pagină de prezentare"}

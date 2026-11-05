@@ -134,3 +134,12 @@ layouts:
   present: "Ab tak"
   loading: "Load ho raha hai…"
   contents: "Fehrist"
+showcase:
+  region: "Theme ki numaish"
+  theme: "modoo.today theme"
+  demo: "live demo"
+  docs: "Dastavezat"
+  docs_short: "Dastavezat"
+  use: "Yeh starter istemal karein"
+  dismiss: "Is visit ke liye chhupayein"
+  starters: {docs: "Docs starter", blog: "Blog starter", landing: "Landing starter"}

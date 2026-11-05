@@ -134,3 +134,12 @@ layouts:
   present: "حتى الآن"
   loading: "جارٍ التحميل…"
   contents: "المحتويات"
+showcase:
+  region: "عرض القالب"
+  theme: "قالب modoo.today"
+  demo: "عرض حي"
+  docs: "التوثيق"
+  docs_short: "التوثيق"
+  use: "استخدم هذا النموذج"
+  dismiss: "إخفاء خلال هذه الزيارة"
+  starters: {docs: "نموذج التوثيق", blog: "نموذج المدونة", landing: "نموذج الصفحة المقصودة"}

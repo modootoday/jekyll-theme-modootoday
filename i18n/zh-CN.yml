@@ -134,3 +134,12 @@ layouts:
   present: "至今"
   loading: "正在加载…"
   contents: "目录"
+showcase:
+  region: "主题展示"
+  theme: "modoo.today 主题"
+  demo: "在线演示"
+  docs: "文档"
+  docs_short: "文档"
+  use: "使用此模板"
+  dismiss: "本次访问期间隐藏"
+  starters: {docs: "文档模板", blog: "博客模板", landing: "落地页模板"}

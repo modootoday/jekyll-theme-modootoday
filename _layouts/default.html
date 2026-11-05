@@ -12,7 +12,7 @@
 {%- assign _base = _lang | split: "-" | first -%}
 {%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
 {%- assign _dir = page.direction | default: mt_t_direction | default: _dir -%}
-<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_theme_start %} data-theme="{{ mt_theme_start }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}" data-mt-code="{{ mt_t_code_label }}" data-mt-table="{{ mt_t_table_label }}" data-mt-region-named="{{ mt_t_region_named }}" data-mt-region-nth="{{ mt_t_region_nth }}" data-mt-diagram="{{ mt_t_diagram_label }}">
+<html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_theme_start %} data-theme="{{ mt_theme_start }}"{% endif %}{% if mt_showcase %} data-mt-showcase="{{ mt_showcase_style }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}" data-mt-code="{{ mt_t_code_label }}" data-mt-table="{{ mt_t_table_label }}" data-mt-region-named="{{ mt_t_region_named }}" data-mt-region-nth="{{ mt_t_region_nth }}" data-mt-diagram="{{ mt_t_diagram_label }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1{% unless site.modootoday.viewport_fit == "auto" %}, viewport-fit=cover{% endunless %}">
@@ -20,7 +20,7 @@
 {%- if page.description or site.description %}
 <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
 {%- endif %}
-{%- if page.noindex or layout.mt_noindex %}
+{%- if page.noindex or layout.mt_noindex or mt_showcase %}
 <meta name="robots" content="noindex">
 {%- endif %}
 <meta name="color-scheme" content="{% if mt_color_scheme == "auto" or mt_color_scheme == "auto-light" %}light dark{% elsif mt_color_scheme == "auto-dark" %}dark light{% else %}{{ mt_color_scheme }}{% endif %}">
@@ -42,6 +42,9 @@
 </head>
 <body class="mt-body"{% unless site.modootoday.external_links.icon == false %} data-mt-nw-icon{% endunless %}>
 <a class="mt-skip" href="#{% if content contains 'id="mt-content"' %}mt-content{% else %}mt-main{% endif %}">{{ mt_t_skip }}</a>
+{%- if mt_showcase %}
+{% include modootoday/chrome/showcase.html %}
+{%- endif %}
 {%- assign _bn = site.modootoday.banner -%}{%- if mt_components contains "banner" and _bn.text %}
 <div class="mt-banner" role="region" aria-label="{{ mt_t_banner_label }}"><p>{{ _bn.text }}{% if _bn.url %} <a href="{% include modootoday/link.html url=_bn.url %}"{% include modootoday/links/attrs.html on=_bn.new_window target=_bn.target url=_bn.url %}>{{ _bn.link | default: _bn.url }}</a>{% endif %}</p></div>
 {%- endif %}

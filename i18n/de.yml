@@ -134,3 +134,12 @@ layouts:
   present: "Heute"
   loading: "Wird geladen…"
   contents: "Inhalt"
+showcase:
+  region: "Theme-Vorschau"
+  theme: "modoo.today Theme"
+  demo: "Live-Demo"
+  docs: "Dokumentation"
+  docs_short: "Doku"
+  use: "Diesen Starter verwenden"
+  dismiss: "Für diesen Besuch ausblenden"
+  starters: {docs: "Doku-Starter", blog: "Blog-Starter", landing: "Landingpage-Starter"}

@@ -1,13 +1,14 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:12cb16592ac2
+source_rev: sha256:e68e4a5a057a
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
 sections:
   - keys
   - new-window
+  - showcase
   - head
   - i18n
   - registry
@@ -75,6 +76,7 @@ modootoday:
 | `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
+| `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](#스타터-데모-쇼케이스) 참고. |
 | `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/charts/) 참고. |
 | `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
@@ -83,7 +85,7 @@ modootoday:
 ### 몇몇 키 자세히
 
 - `color_scheme`: `auto-dark`·`auto-light`는 전환 버튼을 두고 독자의 선택을 기억합니다. `light`·`dark`에는 전환 버튼이 없습니다. 시작 색은 HTML에 들어가므로 깜빡임이 없습니다.
-- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`은 항상 포함됩니다. 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤, 정적 수식을 감싸는 영역 포함)을 유지하려면 `figure` 옆에 `figure-svg`를, 정적 다이어그램의 밝은 모드·다크 모드 전환을 유지하려면 `diagram`을 함께 넣으세요.
+- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack`, `showcase`는 항상 포함됩니다. 그 시트는 `lists:` 또는 `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` 또는 `poster:`, `filter:` 또는 `filter_text:`, `modootoday.showcase`로 켜거나 본문에 표가 있는 페이지에만 연결됩니다. 목록을 줄일 때 SVG 그림 스타일(다크 톤, 가로 스크롤, 정적 수식을 감싸는 영역 포함)을 유지하려면 `figure` 옆에 `figure-svg`를, 정적 다이어그램의 밝은 모드·다크 모드 전환을 유지하려면 `diagram`을 함께 넣으세요.
 - `nav`: 이전·다음 링크는 이 파일 순서(그룹 자체 페이지, 그다음 하위 항목)를 따릅니다. 이 파일이 없으면 헤더는 `_data/navigation.yml`의 `main`, 그다음 `header_pages`(minima처럼 페이지 경로 목록), 그다음 HTML 페이지가 100개 이하인 사이트에서는 `title`이 있는 최상위 페이지(`/about/` 같은)를 모두 읽습니다(`nav_order` 먼저, 그다음 제목순. `nav: false`나 `nav_exclude: true`인 페이지는 빠짐). `nav: false`는 마지막 목록을 끕니다.
 - `sidebar`: 64rem보다 좁으면 본문 위의 접이식 메뉴가 됩니다. front matter의 `sidebar: false`로 한 페이지에서만 숨깁니다.
 - `page_actions`: Markdown 버전이 있는 페이지에 Markdown으로 보기, 페이지 복사, AI용으로 복사(출처 URL 뒤에 Markdown) 메뉴가 나옵니다. front matter의 `page_actions: false`는 그 페이지에서만 끄고, 아예 빼려면 `components`에서 `page-actions`를 제외합니다.
@@ -127,6 +129,31 @@ modootoday:
 ```
 
 이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 스크린 리더가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙습니다. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작합니다. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열립니다.
+
+## 스타터 데모 쇼케이스
+
+스타터의 라이브 데모에는 테마와 스타터 이름을 알리고 테마 문서로 돌아가는 링크를 담은 막대를 표시할 수 있습니다. 이 막대는 데모 빌드에만 씁니다. 데모 배포만 `_config.yml` 위에 겹치는 두 번째 설정 파일에 넣으면, 스타터로 만든 사이트에는 나타나지 않습니다. GitHub Pages 빌더는 `_config.yml`만 읽으므로, 이 빌더를 쓰는 워크플로는 빌드 전에 데모 파일을 `_config.yml`에 합칩니다.
+
+```yaml
+# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
+modootoday:
+  showcase:
+    enabled: true
+    style: bar            # bar (default) or pill
+    starter: blog         # names the starter in the label
+    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
+    use_url: https://github.com/<owner>/<repo>/generate   # optional
+```
+
+- **막대**(`style: bar`, 기본값): 헤더 위의 44 px 막대에 테마 이름, 스타터 이름, 문서 링크, 이 스타터로 시작 링크(`use_url`이 있을 때), 숨기기 버튼이 들어갑니다. 고정 헤더와 앵커 대상의 오프셋은 막대 높이만큼 내려갑니다. 40rem(640 px)보다 좁으면 테마 이름, 문서 링크, 버튼만 남습니다. 휴대폰을 가로로 들거나 200%로 확대해 창 높이가 30rem(480 px)보다 낮으면 막대가 페이지와 함께 스크롤됩니다.
+- **알약**(`style: pill`): 아래 가운데에 떠 있는 알약에 테마 이름, 스타터 이름, 문서 링크, 버튼이 들어갑니다. 페이지 아래에 여백을 두므로 알약이 마지막 줄, 맨 위로 링크, 안전 영역을 가리지 않습니다.
+- **색**은 페이지 색을 뒤집습니다. 밝은 페이지에는 어두운 막대, 어두운 페이지에는 밝은 막대가 나옵니다. `brand` 토큰은 표시 칸에만 씁니다.
+- **링크**는 설정에서만 읽습니다. 새 창으로 열리고, 화살표를 보여 주며, 이름에도 새 창에서 열린다고 적힙니다.
+- **포커스 순서**: 쇼케이스는 "테마 쇼케이스"라는 이름의 영역이며, 그 링크는 "본문으로 건너뛰기" 바로 다음에 옵니다.
+- **숨기기**는 그 탭에서 방문이 끝날 때까지 유지됩니다(`sessionStorage`). `<head>`의 작은 스크립트가 페이지를 그리기 전에 이 값을 읽으므로, 다음 페이지에는 막대도 그 자리도 없고 화면이 밀리지 않습니다. JavaScript가 없거나 저장소가 막혀 있으면 쇼케이스는 그대로 남습니다.
+- **검색 엔진**: 쇼케이스를 켜면 모든 페이지에 `<meta name="robots" content="noindex">`가 붙습니다. 데모의 예시 글은 스타터로 만든 모든 사이트가 처음에 갖는 글이기 때문입니다. 사이트맵에는 페이지가 남지만 noindex가 우선하며, 데모 빌드의 Lighthouse SEO 감사는 페이지가 색인에서 막혔다고 보고합니다.
+- **레이블**은 페이지 언어를 따릅니다. `starter`는 `showcase.starters.<name>` 레이블을 고르며, 테마에는 `docs`, `blog`, `landing`이 들어 있습니다. 다른 스타터는 `_data/i18n/<lang>.yml`에 그 키를 추가하세요. 없으면 레이블에 테마 이름만 나옵니다.
+- `modootoday-check`는 `_config.yml`과 `_config.demo.yml`의 키를 검사하고, `_config.yml` 자체에서 켜면 경고하며, noindex 태그가 없는 빌드 페이지도 경고합니다.
 
 ## 헤드와 SEO
 

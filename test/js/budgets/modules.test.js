@@ -64,7 +64,7 @@ test("over the cap fails that file only; a loose cap warns; a theme file without
   assert.match(warns[0], /^css\/modootoday\/small\.css: cap 1024 B is over twice/);
 });
 
-test("page types: the theme limit is the sum of the caps a page loads; guide targets warn, showcase excepted", async () => {
+test("page types: the theme limit is the sum of the caps a page loads; guide targets warn, components excepted", async () => {
   const { parseRegistry } = await load("registry.mjs");
   const { checkModules } = await load("modules.mjs");
   const { checkTypes } = await load("types.mjs");
@@ -76,7 +76,7 @@ test("page types: the theme limit is the sum of the caps a page loads; guide tar
     "core|sheet|/assets/css/modootoday.css|||16384\nd|import|/assets/js/modootoday/d.js|||128")), [], []);
   const fails = [];
   const warns = [];
-  const types = checkTypes(dir, modules, fails, warns, { doc: { pages: ["a/"] }, showcase: { pages: ["s/"] } });
+  const types = checkTypes(dir, modules, fails, warns, { doc: { pages: ["a/"] }, components: { pages: ["s/"] } });
   assert.deepStrictEqual(fails, []);
   assert.deepStrictEqual(types.doc.pages[0].limit, { css: 16384, js: 256 });
   assert.strictEqual(types.doc.sheets, 1);

@@ -4,7 +4,7 @@ module Modootoday
   module Check
     # The modootoday: settings in the site's _config.yml; each key's rule is registered under config/keys/.
     module SiteConfig
-      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe split loading figure-svg diagram lists reveal bleed terminal visual filter table table-stack footer chart widget].freeze
+      COMPONENTS = %w[callout badge hero cta card tabs code-copy nav sidebar page-actions pagination theme-toggle breadcrumb toc accordion steps figure timeline kbd search code footnotes progress embed banner filetree details faq params linkcards quote gallery pricing subscribe split loading figure-svg diagram lists reveal bleed terminal visual filter table table-stack footer chart widget showcase].freeze
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border border-input ring note tip important warning caution status-available status-partial
                     status-planned link link-hover font-sans font-mono font-heading heading-weight font-size line-height

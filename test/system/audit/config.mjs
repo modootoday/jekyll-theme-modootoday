@@ -9,12 +9,12 @@ export const RTL_PAGES = ["components/kitchen-sink-rtl/"]; // English tree only:
 export const EN_ONLY = ["guides/2026/10/28/archives/", "layouts/demo/error-rtl/", "recipes/records/", "recipes/records/lantern/"]; // a sample post (post layout + footer term links), URLs differ per language; the records demo is English only
 // Page types: the pages whose loaded CSS and JS (gzip) test/system/audit/budgets/types.mjs reports. Each page's limit is the sum of
 // the caps of what it loads (asset registry rows, adr:modootoday/20261104053146); GUIDE targets warn, and skip the
-// showcase type, whose pages load every component on purpose.
+// components type, whose pages load every component on purpose.
 export const PAGE_TYPES = {
   doc: { pages: ["guides/configuration/", "guides/install/", "recipes/csp/", "recipes/math-diagrams/"] },
   landing: { pages: ["", "layouts/demo/home/", "layouts/marketing/"] },
   blog: { pages: ["blog/", "guides/2026/10/28/archives/"] },
-  showcase: { pages: ["components/", "components/kitchen-sink/", "layouts/demo/csp/"] },
+  components: { pages: ["components/", "components/kitchen-sink/", "layouts/demo/csp/"] },
   // A doc page with a script: visual: its site module and the theme helpers it imports.
   visual: { pages: ["layouts/demo/orbit/"] },
   // Pages with filter: on a list and a table, and the records list (filter_text: true): filter.js and its imports.
@@ -24,7 +24,7 @@ export const PAGE_TYPES = {
   // A chart page: the site's Chart.js (about 70 KB gzip) counts in its total but not in a theme limit, so no GUIDE target.
   chart: { pages: ["recipes/charts/"] },
 };
-export const GUIDE = { css: 8 * 1024, js: 6 * 1024, sheets: 6, skip: ["showcase", "chart"] };
+export const GUIDE = { css: 8 * 1024, js: 6 * 1024, sheets: 6, skip: ["components", "chart"] };
 // Pages the CSP audit (csp.mjs) opens under a strict Content-Security-Policy header; a feature with a demo page adds it here.
 // The kitchen sink stays out: it embeds a third-party frame and aligned table columns (kramdown writes style attributes).
 export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blog/", "layouts/demo/search/", "recipes/brand-tokens/", "layouts/demo/code-github/", "layouts/demo/orbit/", "layouts/demo/filter/", "recipes/records/", "recipes/records/lantern/", "layouts/demo/error/", "recipes/math-diagrams/", "recipes/charts/", "recipes/widgets/"];

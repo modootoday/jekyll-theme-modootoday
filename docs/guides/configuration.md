@@ -5,6 +5,7 @@ description: Site-wide settings under the modootoday key in _config.yml.
 sections:
   - keys
   - new-window
+  - showcase
   - head
   - i18n
   - registry
@@ -69,6 +70,7 @@ modootoday:
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
+| `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](#starter-demo-showcase). |
 | `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
@@ -77,7 +79,7 @@ modootoday:
 ### More about some keys
 
 - `color_scheme`: `auto-dark` and `auto-light` keep the toggle and remember the reader's choice; `light` and `dark` have no toggle. The starting scheme is printed in the HTML, so nothing flashes.
-- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table` and `table-stack` are always included. Their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` or `poster:`, `filter:` or `filter_text:`, or have a table in the body. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll, also the region around static math), and `diagram` to keep the light and dark swap of static diagrams.
+- `components`: `lists`, `bleed`, `terminal`, `visual`, `filter`, `table`, `table-stack` and `showcase` are always included. Their sheets reach only pages that turn them on with `lists:` or `hero: {checks: true}`, `bleed:`, `chrome: terminal`, `script:` or `poster:`, `filter:` or `filter_text:`, or `modootoday.showcase`, or have a table in the body. With a shorter list, add `figure-svg` next to `figure` to keep the SVG figure styles (dark tone, horizontal scroll, also the region around static math), and `diagram` to keep the light and dark swap of static diagrams.
 - `nav`: previous and next links walk the file in order: a group's own page, then its items. Without that file the header reads `main` in `_data/navigation.yml`, then `header_pages` (a list of page paths, as in minima), then, on sites of up to 100 HTML pages, lists every top-level page (such as `/about/`) with a `title` (`nav_order` first, then by title; `nav: false` or `nav_exclude: true` leaves a page out). `nav: false` turns that last list off.
 - `sidebar`: below 64rem it folds into a menu above the page. `sidebar: false` in front matter hides it on one page.
 - `page_actions`: the menu appears on pages with a Markdown twin and offers View as Markdown, Copy page and Copy for AI (the source URL, then the Markdown). `page_actions: false` in front matter turns it off on one page; leave `page-actions` out of `components` to drop it entirely.
@@ -121,6 +123,31 @@ modootoday:
 ```
 
 Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arrow drawn in CSS, and a hidden hint ("opens in a new window", translated into the page language) that screen readers read through `aria-describedby`. There is no script, so a strict Content Security Policy keeps working. `new_window: false` on a link turns it off even when the site setting is on.
+
+## Starter demo showcase
+
+A starter's live demo can show a bar that names the theme and the starter and links back to the theme's documentation. It belongs to the demo build only: put it in a second config file that only the demo deploy layers over `_config.yml`, so a site made from the starter never shows it. The GitHub Pages builder reads only `_config.yml`, so a workflow using it merges the demo file into `_config.yml` before the build.
+
+```yaml
+# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
+modootoday:
+  showcase:
+    enabled: true
+    style: bar            # bar (default) or pill
+    starter: blog         # names the starter in the label
+    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
+    use_url: https://github.com/<owner>/<repo>/generate   # optional
+```
+
+- **Bar** (`style: bar`, the default): a 44 px bar above the header with the theme name, the starter name, a Documentation link, a Use this starter link (when `use_url` is set) and a button that hides it. The sticky header and the offset of anchor targets move down by its height. Below 40rem (640 px) only the theme name, a Docs link and the button remain. In a window less than 30rem (480 px) tall, such as a phone held sideways or 200% zoom, the bar scrolls away with the page.
+- **Pill** (`style: pill`): a floating pill at the bottom centre with the theme name, the starter name, a Docs link and the button. The page gets bottom padding, so the pill never covers the last line, the back-to-top link or the safe area.
+- **Colours** are the page's, inverted: a dark bar on a light page and a light one on a dark page. The `brand` token colours only the mark.
+- **Links** come only from the config. They open in a new window, show the arrow, and their names say so.
+- **Focus order**: the showcase is a region named "Theme showcase", and its links come right after "Skip to content".
+- **Hiding** lasts for the rest of the visit in that tab (`sessionStorage`). A small script in `<head>` reads it before the page is drawn, so the next page shows neither the bar nor its space, and nothing moves. Without JavaScript, or when storage is blocked, the showcase stays.
+- **Search engines**: with the showcase on, every page carries `<meta name="robots" content="noindex">`, because a demo's sample text is what every site made from the starter begins with. Sitemaps still list the pages, but noindex wins, and a Lighthouse SEO audit of a demo build reports the pages as blocked from indexing.
+- **Labels** follow the page language. `starter` picks the `showcase.starters.<name>` label, which the theme has for `docs`, `blog` and `landing`; for another starter add that key to `_data/i18n/<lang>.yml`, or the label names only the theme.
+- `modootoday-check` checks the key in `_config.yml` and `_config.demo.yml`, warns when `_config.yml` itself turns it on, and warns about built pages without the noindex tag.
 
 ## Head and SEO
 

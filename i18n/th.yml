@@ -134,3 +134,12 @@ layouts:
   present: "ปัจจุบัน"
   loading: "กำลังโหลด…"
   contents: "สารบัญ"
+showcase:
+  region: "ตัวอย่างธีม"
+  theme: "ธีม modoo.today"
+  demo: "เดโมสด"
+  docs: "เอกสาร"
+  docs_short: "เอกสาร"
+  use: "ใช้เทมเพลตนี้"
+  dismiss: "ซ่อนระหว่างการเข้าชมนี้"
+  starters: {docs: "เทมเพลตเอกสาร", blog: "เทมเพลตบล็อก", landing: "เทมเพลตหน้าแลนดิ้ง"}

@@ -1,0 +1,40 @@
+// Showcase bar and pill of a demo build (modootoday.showcase, chrome/showcase.html). Colours invert the page's and the
+// brand colour stays on the mark. <html data-mt-showcase> is bar, pill or off; the bar moves the sticky header and the
+// anchor offset down by its height, the pill pads the page bottom. Transparent borders show in forced colors.
+$mt-sc-clear: unquote("1px solid transparent");
+@include mt-layer(components) {
+  .mt-showcase-region { z-index: 25; display: flex; align-items: center; gap: .5rem; border: $mt-sc-clear; background: mt(foreground);
+    color: mt(background); font-size: .8125rem; line-height: 1.25; }
+  .mt-showcase-bar { position: sticky; top: 0; height: calc(2.75rem + var(--mt-safe-top)); border-width: 0 0 1px;
+    padding: var(--mt-safe-top) calc(var(--mt-gutter) + var(--mt-safe-right)) 0 calc(var(--mt-gutter) + var(--mt-safe-left)); }
+  .mt-showcase-pill { position: fixed; inset-inline: 0; bottom: calc(1rem + var(--mt-safe-bottom)); width: max-content;
+    max-width: calc(100% - 2rem); margin-inline: auto; padding: .375rem; padding-inline-start: 1rem; border-radius: 99rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .18); }
+  .mt-showcase-mark { flex: none; width: 1.25rem; height: 1.25rem; border-radius: .3rem; background: mt(brand); }
+  .mt-showcase-label { min-width: 0; margin: 0; margin-inline-end: auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .mt-showcase-label span { opacity: .75; }
+  .mt-showcase-region :is(a, button) { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 2rem;
+    min-height: 2rem; padding: 0 .75rem; border: $mt-sc-clear; border-radius: 99rem; background: none; color: inherit; font: inherit;
+    font-weight: 500; text-decoration: none; box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent); }
+  .mt-showcase-region button { padding: 0; box-shadow: none; cursor: pointer; }
+  .mt-showcase-region .mt-showcase-solid { box-shadow: none; background: mt(background); color: mt(foreground); }
+  .mt-showcase-region :focus-visible { outline: 2px solid mt(background); outline-offset: 2px; }
+  .mt-showcase-less, [data-mt-showcase="off"] .mt-showcase-region { display: none; }
+  @media (max-width: 39.99rem) {
+    .mt-showcase-region .mt-showcase-more { display: none; }
+    .mt-showcase-less { display: inline; }
+  }
+  // --mt-showcase-top: where the header sticks (the bar takes the top safe-area inset in its place).
+  [data-mt-showcase="bar"] { --mt-showcase-top: calc(2.75rem + var(--mt-safe-top));
+    scroll-padding-top: calc(#{mt(header-height)} + var(--mt-showcase-top) + 1rem); }
+  [data-mt-showcase="bar"] .mt-header { top: var(--mt-showcase-top); padding-top: 0; }
+  [data-mt-showcase="bar"] .mt-menu > ul { max-height: calc(100dvh - #{mt(header-height)} - var(--mt-showcase-top) - 1rem); }
+  [data-mt-showcase="bar"] :is(.mt-doc-aside .mt-toc, .mt-doc-nav .mt-sidebar) { top: calc(#{mt(header-height)} + var(--mt-showcase-top) + 2rem); }
+  // A short viewport (landscape phone, 200% zoom) lets the bar scroll away so the header and content keep the height.
+  @media (max-height: 30rem) {
+    .mt-showcase-bar { position: static; }
+    [data-mt-showcase="bar"] { --mt-showcase-top: var(--mt-safe-top); }
+    [data-mt-showcase="bar"] .mt-header { top: 0; padding-top: var(--mt-safe-top); }
+  }
+  [data-mt-showcase="pill"] body { padding-bottom: calc(4.75rem + var(--mt-safe-bottom)); }
+}

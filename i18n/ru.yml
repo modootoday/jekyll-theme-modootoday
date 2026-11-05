@@ -134,3 +134,12 @@ layouts:
   present: "По настоящее время"
   loading: "Загрузка…"
   contents: "Содержание"
+showcase:
+  region: "Витрина темы"
+  theme: "Тема modoo.today"
+  demo: "живое демо"
+  docs: "Документация"
+  docs_short: "Справка"
+  use: "Использовать этот шаблон"
+  dismiss: "Скрыть на время визита"
+  starters: {docs: "Шаблон документации", blog: "Шаблон блога", landing: "Шаблон лендинга"}

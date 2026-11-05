@@ -134,3 +134,12 @@ layouts:
   present: "Actualidad"
   loading: "Cargando…"
   contents: "Contenido"
+showcase:
+  region: "Muestra del tema"
+  theme: "Tema modoo.today"
+  demo: "demo en vivo"
+  docs: "Documentación"
+  docs_short: "Docs"
+  use: "Usar esta plantilla"
+  dismiss: "Ocultar durante esta visita"
+  starters: {docs: "Plantilla de documentación", blog: "Plantilla de blog", landing: "Plantilla de landing page"}

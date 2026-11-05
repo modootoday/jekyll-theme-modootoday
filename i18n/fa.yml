@@ -134,3 +134,12 @@ layouts:
   present: "تاکنون"
   loading: "در حال بارگذاری…"
   contents: "فهرست مطالب"
+showcase:
+  region: "نمایش پوسته"
+  theme: "پوستهٔ modoo.today"
+  demo: "دموی زنده"
+  docs: "مستندات"
+  docs_short: "مستندات"
+  use: "استفاده از این الگو"
+  dismiss: "پنهان کردن در این بازدید"
+  starters: {docs: "الگوی مستندات", blog: "الگوی وبلاگ", landing: "الگوی صفحهٔ فرود"}

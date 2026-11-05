@@ -25,6 +25,7 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Checker | `modootoday-check` options and exit codes. |
 | Static figures | Front matter `diagrams:`, the `data-mt-src` digest rule and the `diagram.source` label; `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:` and the `math.label` label. |
 | Record pages | `modootoday.records`, the record front matter and the facts list. |
+| Showcase | `modootoday.showcase`, the session storage key `mt-showcase` and the `showcase.*` labels. |
 | Stub writer | `modootoday-stubs` options, stub file names and front matter, and exit codes. |
 
 Details for the rows above:
@@ -41,6 +42,7 @@ Details for the rows above:
 - Static figures: `diagrams: [{name, alt, caption, width, height}]` maps the n-th ```` ```mermaid ```` fence of a page to its n-th entry (see [Math and diagrams](../../recipes/math-diagrams/#static-diagrams)). `data-mt-src="sha256-<hex>"` on an SVG's root element records the fence it was drawn from: the SHA-256 of the fence body (the lines between the fence lines) with CRLF and CR turned into LF and the final newlines removed. `modootoday-check` reports an SVG whose `data-mt-src` differs from its fence's digest as a stale diagram. `diagram.source` in `_data/i18n/<lang>.yml` names the source disclosure.
 - Static math: with `modootoday.math.mode: static`, the n-th ```` ```math ```` fence or `$$` block of a page is replaced by the `html` of the n-th entry of `_data/math/<key>.yml`, a list of `{src, html}` (see [Static math](../../recipes/math-diagrams/#static-math)). `<key>` is the default-language source path of the page without its extension, with `/` as `--` (front matter `math_key:` overrides it); `src` is the block's digest by the rule above, over the TeX between the delimiters. `math.label` (`Formula [n]`) names each block's region.
 - Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
+- Showcase: see [Starter demo showcase](../../guides/configuration/#starter-demo-showcase). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
 - Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt` and record pages `<dir>/<key>.md`. Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
 
 ## Markdown rules
@@ -82,6 +84,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |
+| Showcase | `div.mt-showcase-region[role=region]` with `.mt-showcase-bar` or `.mt-showcase-pill`, right after `a.mt-skip` | `.mt-showcase-mark`, `p.mt-showcase-label`, its links (the filled one `a.mt-showcase-solid`), `button.mt-showcase-dismiss` | `html[data-mt-showcase]` = bar, pill, off; `.mt-showcase-more` (hidden below 40rem), `.mt-showcase-less` (shown only there) |
 | Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | Badge | `span.mt-badge` | the label (a status badge draws its dot with `::before`) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |

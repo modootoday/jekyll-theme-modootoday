@@ -10,7 +10,7 @@ The theme loads its CSS and scripts from files under `assets/`. Two things are i
 
 | Inline item | When | Strict option |
 |---|---|---|
-| Pre-paint theme script (avoids a flash of the wrong colour scheme) | `theme-toggle` is on and `color_scheme: auto` | `modootoday.csp: strict` loads `assets/js/modootoday/chrome/theme-init.js` as a blocking script instead |
+| Pre-paint script (avoids a flash of the wrong colour scheme, or of a showcase the reader hid) | `theme-toggle` is on and `color_scheme: auto`, or `modootoday.showcase` is enabled | `modootoday.csp: strict` loads `assets/js/modootoday/chrome/theme-init.js` as a blocking script instead |
 | `<style id="mt-tokens">` | `modootoday.tokens` or `tokens_dark` is set | move the values into the token bridge (`_sass/modootoday/_site.scss`, see [Brand tokens](../brand-tokens/)) and remove the keys |
 
 With both handled, this policy works:

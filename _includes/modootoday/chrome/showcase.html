@@ -1,0 +1,13 @@
+{%- comment -%}Showcase of a starter demo build (modootoday.showcase; needs config.html and i18n.html): a named region right after the skip link
+  with links from config only, opened in a new window. <html data-mt-showcase> holds the style; theme-init.js sets it to off
+  before paint once the dismiss button (chrome/showcase.js) has stored the visit's flag. Below 40rem only the theme name stays.{%- endcomment -%}
+{%- assign _sc = mt_showcase -%}{%- assign _sct = nil -%}
+{%- if _sc.starter -%}{%- assign _sck = "showcase.starters." | append: _sc.starter -%}{%- capture _sct -%}{%- include modootoday/t.html key=_sck -%}{%- endcapture -%}{%- if _sct == _sck -%}{%- assign _sct = nil -%}{%- endif -%}{%- endif -%}
+{%- capture _scnw %} target="_blank" rel="noopener noreferrer" data-mt-new-window{% endcapture -%}
+{%- capture _scsr %}<span class="mt-sr-only">, {{ mt_t_new_window_hint }}</span>{% endcapture -%}
+{%- capture _scx -%}<button class="mt-showcase-dismiss" type="button" aria-label="{{ mt_t_showcase_dismiss }}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>{%- endcapture -%}
+{%- if mt_showcase_style == "pill" -%}
+<div class="mt-showcase-region mt-showcase-pill" role="region" aria-label="{{ mt_t_showcase_region }}"><p class="mt-showcase-label"><b>{{ mt_t_showcase_theme }}</b>{% if _sct %}<span class="mt-showcase-more"> · {{ _sct }}</span>{% endif %}</p><a class="mt-showcase-solid" href="{{ _sc.docs_url | escape }}"{{ _scnw }}>{{ mt_t_showcase_docs_short }}{{ _scsr }}</a>{{ _scx }}</div>
+{%- else -%}
+<div class="mt-showcase-region mt-showcase-bar" role="region" aria-label="{{ mt_t_showcase_region }}"><span class="mt-showcase-mark mt-showcase-more" aria-hidden="true"></span><p class="mt-showcase-label"><b>{{ mt_t_showcase_theme }}</b><span class="mt-showcase-more">{% if _sct %} · {{ _sct }}{% endif %} · {{ mt_t_showcase_demo }}</span></p><a href="{{ _sc.docs_url | escape }}"{{ _scnw }}><span class="mt-showcase-more">{{ mt_t_showcase_docs }}</span><span class="mt-showcase-less">{{ mt_t_showcase_docs_short }}</span>{{ _scsr }}</a>{% if _sc.use_url %}<a class="mt-showcase-solid mt-showcase-more" href="{{ _sc.use_url | escape }}"{{ _scnw }}>{{ mt_t_showcase_use }}{{ _scsr }}</a>{% endif %}{{ _scx }}</div>
+{%- endif -%}

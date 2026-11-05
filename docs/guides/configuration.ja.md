@@ -1,13 +1,14 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:12cb16592ac2
+source_rev: sha256:e68e4a5a057a
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
 sections:
   - keys
   - new-window
+  - showcase
   - head
   - i18n
   - registry
@@ -75,6 +76,7 @@ modootoday:
 | `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
+| `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](#スターターのデモのショーケース)を参照。 |
 | `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/charts/)を参照。 |
 | `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
@@ -83,7 +85,7 @@ modootoday:
 ### いくつかのキーの詳細
 
 - `color_scheme`: `auto-dark`・`auto-light` は切り替えボタンを残し、読者の選択を記憶します。`light`・`dark` には切り替えボタンがありません。開始時の配色は HTML に書き出されるので、ちらつきません。
-- `components`: `lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれます。そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル(ダークトーン、横スクロール、静的な数式を囲む領域も含む)を残すには `figure` と一緒に `figure-svg` を、静的な Mermaid の図のライトとダークの切り替えを残すには `diagram` を入れてください。
+- `components`: `lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack`・`showcase` は常に含まれます。そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:`、`modootoday.showcase` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル(ダークトーン、横スクロール、静的な数式を囲む領域も含む)を残すには `figure` と一緒に `figure-svg` を、静的な Mermaid の図のライトとダークの切り替えを残すには `diagram` を入れてください。
 - `nav`: 前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従います。このファイルがないとき、ヘッダーは `_data/navigation.yml` の `main`、次に `header_pages`(minima と同じページパスの一覧)、次に、HTML ページが 100 以下のサイトでは `title` のある最上位のページ(`/about/` など)をすべて読みます(`nav_order` が先、次にタイトル順。`nav: false` または `nav_exclude: true` のページは除く)。`nav: false` は最後の一覧を止めます。
 - `sidebar`: 64rem より狭い画面では本文の上の折りたたみメニューになります。front matter の `sidebar: false` でそのページだけ隠せます。
 - `page_actions`: Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューが出ます。front matter の `page_actions: false` はそのページだけ消し、完全に外すなら `components` から `page-actions` を除きます。
@@ -127,6 +129,31 @@ modootoday:
 ```
 
 こうしたリンクには `target="_blank"`、`rel="noopener noreferrer"`、CSS で描いた小さな矢印、そしてスクリーンリーダーが `aria-describedby` で読み上げる非表示の案内（「新しいウィンドウで開きます」、ページの言語に翻訳）が付きます。スクリプトは使わないので、厳しいコンテンツセキュリティポリシー（CSP）でもそのまま動きます。サイト設定を有効にしていても、リンクに `new_window: false` を書くとそのリンクは同じウィンドウで開きます。
+
+## スターターのデモのショーケース
+
+スターターのライブデモには、テーマとスターターの名前を示し、テーマのドキュメントへ戻るリンクを載せたバーを表示できます。このバーはデモのビルド専用です。デモのデプロイだけが `_config.yml` に重ねる 2 つ目の設定ファイルに書けば、スターターから作ったサイトには表示されません。GitHub Pages のビルダーは `_config.yml` しか読まないため、このビルダーを使うワークフローではビルドの前にデモのファイルを `_config.yml` に統合します。
+
+```yaml
+# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
+modootoday:
+  showcase:
+    enabled: true
+    style: bar            # bar (default) or pill
+    starter: blog         # names the starter in the label
+    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
+    use_url: https://github.com/<owner>/<repo>/generate   # optional
+```
+
+- **バー**(`style: bar`、既定): ヘッダーの上に 44 px のバーを置き、テーマ名、スターター名、ドキュメントへのリンク、このスターターで始めるリンク(`use_url` があるとき)、非表示にするボタンを並べます。固定ヘッダーとアンカー先のオフセットはバーの高さだけ下がります。40rem(640 px)より狭い画面では、テーマ名、ドキュメントへのリンク、ボタンだけが残ります。スマートフォンを横に持ったときや 200% に拡大したときなど、ウィンドウの高さが 30rem(480 px)未満になると、バーはページと一緒にスクロールします。
+- **ピル**(`style: pill`): 画面下の中央に浮かぶピルに、テーマ名、スターター名、ドキュメントへのリンク、ボタンを並べます。ページの下に余白を取るため、ピルが最後の行、トップへ戻るリンク、セーフエリアを隠すことはありません。
+- **色**はページの配色を反転したものです。明るいページには暗いバー、暗いページには明るいバーを表示します。`brand` トークンはマークにだけ使います。
+- **リンク**は設定からだけ読み込みます。新しいウィンドウで開き、矢印を表示し、名前でもそのことを伝えます。
+- **フォーカスの順序**: ショーケースは「テーマのショーケース」という名前の領域で、そのリンクは「本文へスキップ」のすぐ後に来ます。
+- **非表示**はそのタブでの訪問が終わるまで続きます(`sessionStorage`)。`<head>` の小さなスクリプトがページを描く前にこの値を読むため、次のページにはバーもその余白もなく、表示がずれることもありません。JavaScript がないときやストレージが使えないときは、ショーケースはそのまま残ります。
+- **検索エンジン**: ショーケースを有効にすると、すべてのページに `<meta name="robots" content="noindex">` が付きます。デモのサンプルの文章は、スターターから作ったどのサイトも最初に持つ文章だからです。サイトマップにはページが残りますが noindex が優先され、デモのビルドの Lighthouse SEO 監査はページがインデックスから除外されていると報告します。
+- **ラベル**はページの言語に従います。`starter` は `showcase.starters.<name>` のラベルを選び、テーマには `docs`、`blog`、`landing` があります。ほかのスターターでは `_data/i18n/<lang>.yml` にそのキーを追加してください。ない場合、ラベルにはテーマ名だけが表示されます。
+- `modootoday-check` は `_config.yml` と `_config.demo.yml` のキーを検査し、`_config.yml` 自体で有効にすると警告し、noindex のタグがないビルド済みのページも警告します。
 
 ## head と SEO
 

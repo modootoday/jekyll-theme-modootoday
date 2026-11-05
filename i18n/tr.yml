@@ -134,3 +134,12 @@ layouts:
   present: "Halen"
   loading: "Yükleniyor…"
   contents: "İçindekiler"
+showcase:
+  region: "Tema vitrini"
+  theme: "modoo.today teması"
+  demo: "canlı demo"
+  docs: "Belgeler"
+  docs_short: "Belgeler"
+  use: "Bu şablonu kullan"
+  dismiss: "Bu ziyaret boyunca gizle"
+  starters: {docs: "Belge şablonu", blog: "Blog şablonu", landing: "Açılış sayfası şablonu"}

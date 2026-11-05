@@ -5,7 +5,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
                              (a page with front matter ref: links the pages sharing that ref instead, whatever their paths)
   site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
-  site.modootoday.csp        strict loads the pre-paint theme script from a file instead of inline
+  site.modootoday.csp        strict loads the pre-paint script (theme, showcase dismissal) from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
   site.modootoday.schema     false drops the schema.org JSON-LD (modootoday/jsonld/graph.html)
 {%- endcomment -%}
@@ -17,12 +17,15 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- elsif _fav %}
 <link rel="icon" href="{{ _fav | relative_url }}">
 {%- endif -%}
-{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}
+{%- assign _mt_tt = false -%}{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}{%- assign _mt_tt = true -%}{%- endif -%}
+{%- if _mt_tt or mt_showcase -%}
 {%- if site.modootoday.csp == "strict" -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday/chrome/theme-init.js" %}
-<script src="{{ mt_asset_url }}"></script>
-{%- else %}
+<script src="{{ mt_asset_url }}"{% unless _mt_tt %} data-mt-no-theme{% endunless %}></script>
+{%- else -%}{%- if _mt_tt %}
 <script>try{var t=localStorage.getItem("mt-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-{%- endif -%}
+{%- endif -%}{%- if mt_showcase %}
+<script>try{if(sessionStorage.getItem("mt-showcase"))document.documentElement.dataset.mtShowcase="off"}catch(e){}</script>
+{%- endif -%}{%- endif -%}
 {%- endif -%}
 {%- unless site.modootoday.seo == false -%}
 {%- assign _mt_url = page.url | absolute_url -%}

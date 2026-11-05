@@ -5,9 +5,11 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
                                 auto*: toggle shown; auto follows the system, auto-dark/auto-light start in that scheme
   site.modootoday.css_layers    true | false                 (default false)
   site.modootoday.code_theme    theme | github: code block colours (default theme; github = the GitHub light and dark palettes)
-  site.modootoday.components    list of component names      (default: all); lists, bleed, terminal, visual, filter, table and table-stack
-                                are always added: their CSS only reaches pages that turn them on (modootoday.lists / hero.checks, bleed:,
-                                chrome: terminal, script: / poster:, filter: / filter_text:)
+  site.modootoday.components    list of component names      (default: all); lists, bleed, terminal, visual, filter, table, table-stack
+                                and showcase are always added: their CSS only reaches pages that turn them on (modootoday.lists /
+                                hero.checks, bleed:, chrome: terminal, script: / poster:, filter: / filter_text:, modootoday.showcase)
+  site.modootoday.showcase      {enabled, style: bar | pill, starter, docs_url, use_url}: a demo build's showcase (chrome/showcase.html);
+                                sets mt_showcase (the map, or false) and mt_showcase_style
   site.modootoday.css           split | bundle: split (default) links the core sheet plus only the sheets a page uses; bundle links one file with everything
   site.modootoday.nav           _data/nav/<name>.yml or _data/nav.yml (default main); _data/nav/<name>-<lang>.yml wins for that page.lang;
                                 then _data/navigation.yml main, header_pages, titled pages; false: no titled-page list (site/nav.html)
@@ -17,14 +19,15 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.lists         {link_chips: true, titled_items: true}: optional list markup (markdown/lists.html, lists sheet)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart,widget" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart,widget,showcase" | split: "," -%}
 {%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
   Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (section rows of assets/registry.html).
   Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}
 {%- assign mt_core_partials = "core/chrome/nav,core/chrome/theme-toggle" | split: "," -%}
 {%- include modootoday/assets/registry.html -%}
 {%- assign mt_components = mt_all_components -%}
-{%- if mt.components -%}{%- assign _mt_optin = "lists,bleed,terminal,visual,filter,table,table-stack" | split: "," -%}{%- assign mt_components = mt.components | concat: _mt_optin | uniq -%}{%- endif -%}
+{%- if mt.components -%}{%- assign _mt_optin = "lists,bleed,terminal,visual,filter,table,table-stack,showcase" | split: "," -%}{%- assign mt_components = mt.components | concat: _mt_optin | uniq -%}{%- endif -%}
+{%- assign mt_showcase = false -%}{%- assign mt_showcase_style = "bar" -%}{%- if mt.showcase.enabled == true -%}{%- assign mt_showcase = mt.showcase -%}{%- if mt.showcase.style == "pill" -%}{%- assign mt_showcase_style = "pill" -%}{%- endif -%}{%- endif -%}
 {%- assign mt_color_scheme = "auto" -%}
 {%- assign _mt_cs = "light dark auto-dark auto-light" | split: " " -%}
 {%- if _mt_cs contains mt.color_scheme -%}{%- assign mt_color_scheme = mt.color_scheme -%}{%- endif -%}

@@ -134,3 +134,12 @@ layouts:
   present: "現在"
   loading: "読み込み中…"
   contents: "目次"
+showcase:
+  region: "テーマのショーケース"
+  theme: "modoo.today テーマ"
+  demo: "デモ"
+  docs: "テーマのドキュメント"
+  docs_short: "ドキュメント"
+  use: "このスターターで始める"
+  dismiss: "このアクセス中は非表示"
+  starters: {docs: "ドキュメントのスターター", blog: "ブログのスターター", landing: "ランディングページのスターター"}

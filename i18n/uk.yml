@@ -134,3 +134,12 @@ layouts:
   present: "Дотепер"
   loading: "Завантаження…"
   contents: "Зміст"
+showcase:
+  region: "Вітрина теми"
+  theme: "Тема modoo.today"
+  demo: "живе демо"
+  docs: "Документація"
+  docs_short: "Довідка"
+  use: "Використати цей шаблон"
+  dismiss: "Сховати на час візиту"
+  starters: {docs: "Шаблон документації", blog: "Шаблон блогу", landing: "Шаблон лендингу"}

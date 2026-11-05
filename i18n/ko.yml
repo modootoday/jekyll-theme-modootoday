@@ -134,3 +134,12 @@ layouts:
   present: "현재"
   loading: "불러오는 중…"
   contents: "목차"
+showcase:
+  region: "테마 쇼케이스"
+  theme: "modoo.today 테마"
+  demo: "데모"
+  docs: "테마 문서"
+  docs_short: "문서"
+  use: "이 스타터로 시작"
+  dismiss: "이번 방문 동안 숨기기"
+  starters: {docs: "문서 스타터", blog: "블로그 스타터", landing: "랜딩 스타터"}

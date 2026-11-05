@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:e90caa24c9cc
+source_rev: sha256:fd857fd5828b
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -31,6 +31,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | チェッカー | `modootoday-check` のオプションと終了コード。 |
 | 静的な図 | front matter の `diagrams:`、`data-mt-src` のダイジェストの規則、`diagram.source` のラベル。`modootoday.math.mode: static`、`_data/math/<key>.yml`、front matter の `math_key:`、`math.label` のラベル。 |
 | レコードのページ | `modootoday.records`、レコードの front matter、事実の一覧。 |
+| ショーケース | `modootoday.showcase`、セッションストレージのキー `mt-showcase`、`showcase.*` のラベル。 |
 | スタブ作成 | `modootoday-stubs` のオプション、スタブのファイル名と front matter、終了コード。 |
 
 上の行の詳細:
@@ -47,6 +48,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
 - 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
+- ショーケース: [スターターのデモのショーケース](../../guides/configuration/#スターターのデモのショーケース)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md` です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
 
 ## Markdown のルール
@@ -88,6 +90,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | インライン追加要素 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 読み込み表示（任意シート） | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | バナー | `div.mt-banner` | その `p` とリンク、`a.mt-back-to-top` | — |
+| ショーケース | `a.mt-skip` のすぐ後の `div.mt-showcase-region[role=region]`、`.mt-showcase-bar` または `.mt-showcase-pill` | `.mt-showcase-mark`、`p.mt-showcase-label`、リンク(塗りつぶしたリンクは `a.mt-showcase-solid`)、`button.mt-showcase-dismiss` | `html[data-mt-showcase]` = bar、pill、off。`.mt-showcase-more`(40rem 未満で非表示)、`.mt-showcase-less`(そのときだけ表示) |
 | アラート | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`、本文 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | バッジ | `span.mt-badge` | ラベル(ステータスバッジの点は `::before` で描画) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | キーボードのキー | `kbd.mt-kbd` | キーごとの `kbd` | — |

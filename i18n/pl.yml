@@ -134,3 +134,12 @@ layouts:
   present: "Obecnie"
   loading: "Ładowanie…"
   contents: "Spis treści"
+showcase:
+  region: "Prezentacja motywu"
+  theme: "Motyw modoo.today"
+  demo: "demo na żywo"
+  docs: "Dokumentacja"
+  docs_short: "Docs"
+  use: "Użyj tego szablonu"
+  dismiss: "Ukryj na czas tej wizyty"
+  starters: {docs: "Szablon dokumentacji", blog: "Szablon bloga", landing: "Szablon strony docelowej"}

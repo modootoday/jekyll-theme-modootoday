@@ -134,3 +134,12 @@ layouts:
   present: "至今"
   loading: "載入中…"
   contents: "目錄"
+showcase:
+  region: "主題展示"
+  theme: "modoo.today 主題"
+  demo: "線上示範"
+  docs: "文件"
+  docs_short: "文件"
+  use: "使用這個範本"
+  dismiss: "本次造訪期間隱藏"
+  starters: {docs: "文件範本", blog: "部落格範本", landing: "登陸頁範本"}

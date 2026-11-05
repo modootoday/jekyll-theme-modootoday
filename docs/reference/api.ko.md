@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:e90caa24c9cc
+source_rev: sha256:fd857fd5828b
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -31,6 +31,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 검사기 | `modootoday-check` 옵션과 종료 코드. |
 | 정적 그림 | front matter `diagrams:`, `data-mt-src` 다이제스트 규칙, `diagram.source` 레이블. `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:`, `math.label` 레이블. |
 | 레코드 페이지 | `modootoday.records`, 레코드 front matter, 정보 목록. |
+| 쇼케이스 | `modootoday.showcase`, 세션 저장소 키 `mt-showcase`, `showcase.*` 레이블. |
 | 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름과 front matter, 종료 코드. |
 
 위 행의 자세한 내용:
@@ -47,6 +48,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
 - 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
+- 쇼케이스: [스타터 데모 쇼케이스](../../guides/configuration/#스타터-데모-쇼케이스)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
 
 ## Markdown 규칙
@@ -88,6 +90,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 인라인 추가 요소 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 로딩(선택 시트) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | 배너 | `div.mt-banner` | 그 `p`와 링크, `a.mt-back-to-top` | — |
+| 쇼케이스 | `a.mt-skip` 바로 뒤의 `div.mt-showcase-region[role=region]`, `.mt-showcase-bar` 또는 `.mt-showcase-pill` | `.mt-showcase-mark`, `p.mt-showcase-label`, 링크(채운 링크는 `a.mt-showcase-solid`), `button.mt-showcase-dismiss` | `html[data-mt-showcase]` = bar, pill, off; `.mt-showcase-more`(40rem 미만에서 숨김), `.mt-showcase-less`(그때만 표시) |
 | 알림 | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, 본문 | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
 | 배지 | `span.mt-badge` | 레이블(상태 배지의 점은 `::before`로 그림) | `.mt-badge-<status>`, `.mt-badge-tag`, `[data-variant]` |
 | 키보드 키 | `kbd.mt-kbd` | 키마다 `kbd` | — |

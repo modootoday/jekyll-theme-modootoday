@@ -134,3 +134,12 @@ layouts:
   present: "Sekarang"
   loading: "Memuat…"
   contents: "Daftar isi"
+showcase:
+  region: "Etalase tema"
+  theme: "Tema modoo.today"
+  demo: "demo langsung"
+  docs: "Dokumentasi"
+  docs_short: "Dok"
+  use: "Gunakan templat ini"
+  dismiss: "Sembunyikan selama kunjungan ini"
+  starters: {docs: "Templat dokumentasi", blog: "Templat blog", landing: "Templat halaman arahan"}
