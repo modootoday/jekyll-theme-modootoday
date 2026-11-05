@@ -26,6 +26,8 @@ modootoday:
   language_switcher: header
   logo: brand
   favicon: brand
+  # Math blocks are MathML from _data/math (recipes/math-diagrams, script/figures/math.mjs): no script, no stylesheet.
+  math: {mode: static}
   # No inline script, so the docs QA can serve every page under a strict CSP header (test/system/audit/csp.mjs).
   csp: strict
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/

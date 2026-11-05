@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/recipes/math-diagrams/
-source_rev: sha256:e078f40e56f5
+source_rev: sha256:49111bd2cf31
 nav_order: 10
 title: 数式と図
-description: Mermaid の図をコミットした静的な図として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
+description: Mermaid の図と数式をコミットした静的な SVG と MathML として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
 diagrams:
   - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 818, height: 63}
 ---
@@ -17,13 +17,13 @@ diagrams:
 
 | 方法 | 動く環境 | CSP | ブラウザーの JavaScript |
 |---|---|---|---|
-| [静的な図](#静的な図)：描画した SVG をコミットし、front matter に並べる | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 厳格なまま、追加なし | なし |
+| [静的な図](#静的な図)：描画した SVG や MathML をコミットする | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 厳格なまま、追加なし | なし |
 | [組み込みローダー](#組み込みローダー)：`modootoday.mermaid` と `modootoday.math` | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 自分でホスト：`'self'`、CDN：CDN のオリジンを追加（下記） | あり、ブロックのあるページだけ |
 | `_includes/footer-custom.html` の[独自のローダー](#独自のローダー) | 従来の GitHub Pages、Jekyll 4、任意のホスト | KaTeX は厳格なまま。Mermaid は `style-src 'unsafe-inline'` が必要 | あり |
 
 ## 静的な図
 
-推奨の方法です。ページは静的な SVG を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。Markdown にはフェンスがそのまま残るので、github.com と [Markdown 版](../../guides/agents/)を読むエージェントにはソースが引き続き見えます。
+推奨の方法です。ページは静的な SVG と MathML を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。Markdown にはフェンスやブロックがそのまま残るので、github.com と [Markdown 版](../../guides/agents/)を読むエージェントにはソースが引き続き見えます。
 
 ### 静的な Mermaid の図
 
@@ -127,21 +127,44 @@ exit 1
 
 画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。代替テキストには「図」ではなく図の意味を書きます。`.svg` の図は一つのファイルで両方の配色に対応します。ダークモードでは、テーマが色相を保ったまま反転し、`--mt-img-filter-dark` を適用します（トークン `--mt-diagram-filter-dark`）。暗くするだけなら `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`、サイト全体で無効にするなら `none` を設定します。一つの画像だけ描いたままにするには、パスの末尾に `#light` を付けます（`flow.svg#light`）。ラスター画像は従来の写真の色調のままです。狭い画面では、広い図が読める幅（`--mt-figure-min-width`、既定は `32rem`）を保ち、専用の領域の中で横にスクロールします。この領域はフォーカスでき、代替テキストが名前になります。
 
-### 数式
+### 静的な数式
 
-コミット前に実行するスクリプト、または GitHub Actions 上の Jekyll 4 ビルドで、KaTeX を使って数式を一度 HTML に描画します。その後、KaTeX の CSS とフォントを自分のサイトから配信します。例の `/your-base` はサイトの `baseurl` に置き換えてください (または Jekyll の `relative_url` フィルターを使います):
+`mode: static` を設定すると、すべての ```` ```math ```` フェンスと `$$` ブロックが、一度描画してコミットした MathML に置き換わります。MathML はブラウザーが自分で描くので、ページはスクリプトもスタイルシートもフォントも読み込まず、厳格な CSP に追加するものもありません。
 
-```sh
-npm install katex
-mkdir -p assets/katex && cp -r node_modules/katex/dist/katex.min.css node_modules/katex/dist/fonts assets/katex/
+```yaml
+modootoday:
+  math:
+    mode: static   # client（既定）は下の組み込みローダーです
 ```
 
-```html
-<!-- _includes/head-custom.html -->
-<link rel="stylesheet" href="/your-base/assets/katex/katex.min.css">
+````markdown
+```math
+e^{i\pi} + 1 = 0
 ```
 
-KaTeX の静的な出力は普通の HTML と CSS クラスなので、`style-src 'self'` で足ります。
+$$
+f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\frac{n \pi x}{L} \right)
+$$
+````
+
+このサイトは静的な数式を使うので、同じ二つのブロックがここで描画されます。
+
+```math
+e^{i\pi} + 1 = 0
+```
+
+$$
+f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\frac{n \pi x}{L} \right)
+$$
+
+- **MathML の置き場所。** `_data/math/<key>.yml` には、ブロックごとに一つの項目がページの順に並びます。`src` はブロックのダイジェスト（TeX に適用した [`data-mt-src` の規則](#静的な-mermaid-の図)）、`html` はその `<math>` 要素です。`<key>` は拡張子を除いたページのパスで、`/` を `--` と書きます。このページ `recipes/math-diagrams.md` は `_data/math/recipes--math-diagrams.yml` を読みます。翻訳（`math-diagrams.ja.md` や、言語フォルダーの下の同じパス）は英語ページのファイルを読むので、ブロックを同じに保ちます。別のファイルを使うには front matter に `math_key:` を書きます。
+- **一つのコマンドで描画。** `modootoday-check SRC --math` は `--diagrams` と同じく、書き出すファイルを JSON で出力し、一つでもあれば 1 で終了するので、pre-commit フックで実行できます。テーマのリポジトリーは、この一覧を [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs) で描画します。このスクリプトはブラウザーなしで Node 上の KaTeX を実行します。`digest.mjs` と一緒に `_scripts/` など Jekyll が読み飛ばすフォルダーにコピーし、`npm install --save-dev katex` と `bundle exec modootoday-check . --math | node _scripts/math.mjs .` を実行します。
+- **各数式**は、段より広いときに横へスクロールする領域の中にあります。この領域はフォーカスでき、ページの言語で「数式 1」「数式 2」のように名前が付きます。MathML は TeX の原文を注釈（annotation）として保持します。
+- **インラインの数式は静的にできません。** 静的モードでは `$…$` と、文中の `$$…$$` がエラーになります。数式はブロックで書きます。`inline: true` もエラーです。front matter に `math: false` を書いたページは、ブロックを TeX の原文のまま残します。
+- `modootoday-check` は、ブロックの数と項目の数が違うページ、ないファイル、別の TeX から描画した項目（"stale math"）を報告します。
+- テーマは、kramdown が行頭に出力する `\[` で `$$` ブロックを見つけます。静的な数式を使うページでは、`\[` で始まるコードブロックの行も数式ブロックと見なされるので、インデントするか文中に移します。
+
+KaTeX は HTML 出力も書けます（`--output=htmlAndMathml`）。どのブラウザーでも同じに見えますが、KaTeX のスタイルシートとフォントが必要で、`style` 属性を使うので CSP に `style-src 'unsafe-inline'` が必要です。`katex` パッケージから `katex.min.css` と `fonts/` をコピーし、`css:`（または下の `base:`）を設定します。テーマは、項目に KaTeX HTML があるページだけでスタイルシートを読み込みます。
 
 ## 組み込みローダー
 
@@ -157,17 +180,17 @@ modootoday:
   math:
     enabled: true
     engine: katex
-    src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+    src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css
     integrity: {js: sha384-…, css: sha384-…}
-    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js
     auto_render_integrity: sha384-…
     inline: false
 ```
 
 - **必要なページだけ。** ブロックのあるページだけでタグを読み込みます。Mermaid は `language-mermaid`、数式は ```` ```math ```` フェンスか `$$` ブロックが対象です。一つのページだけ除くには、front matter に `mermaid: false` か `math: false` を書きます。
 - **ハッシュがなければ読み込みません。** `integrity` のない CDN の URL（または https 以外の URL）は何も読み込まず、`modootoday-check` がエラーを報告します。チェッカーは URL に正確なバージョン（`@11` や `@latest` ではなく `@11.4.1`）も求め、ビルドしたページにあるほかの第三者のスクリプトやスタイルシートも報告します。
-- **自分でホストできます。** `/assets/vendor/mermaid.min.js` のようなパスはサイトから読み込みます（`relative_url` を適用、`integrity` は任意）。KaTeX は `katex` パッケージから `katex.min.js`、`katex.min.css`、`fonts/` フォルダー、`contrib/auto-render.min.js` をコピーします。
+- **自分でホストできます。** `/assets/vendor/mermaid.min.js` のようなパスはサイトから読み込みます（`relative_url` を適用、`integrity` は任意）。KaTeX は `katex` パッケージから `katex.min.js`、`katex.min.css`、`fonts/` フォルダー、`contrib/auto-render.min.js` を一つのフォルダーにコピーすれば、`base: /assets/vendor/katex/` だけで `src`、`css`、`auto_render_src` を表せます。自分で書いたキーが優先です。
 - **JavaScript なしでも読めます。** レンダラーが置き換えるまでソースはコードブロックとして残り、図や数式を解釈できない場合もそのまま残ります。
 - **ライトとダーク。** `theme: auto` では、ページがダーク（テーマの切り替えか訪問者のシステム設定）のとき Mermaid の `dark` テーマを使い、変わると描き直します。視差効果を減らす設定では図のアニメーションを止めます。本文より広い図は、キーボードでフォーカスできる専用の領域の中でスクロールします。
 - 各ローダーは小さな別のスクリプト（`assets/js/modootoday-mermaid.js`、`assets/js/modootoday-math.js`）で、コアのスクリプトとは別にサイズ予算があります。
@@ -238,3 +261,4 @@ mermaid.run();
 - すべての図に、何を示すかを述べる代替テキストかキャプションがあること。
 - レンダラーは必要なページだけで読み込むこと。
 - `modootoday-check SRC --diagrams` の一覧が空であること (コミットした図の SVG がすべて自分のフェンスと合っている)。
+- 静的な数式を使うなら、`modootoday-check SRC --math` の一覧も空であること (`_data/math` の項目がすべて自分のブロックと合っている)。

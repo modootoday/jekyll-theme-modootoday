@@ -1,0 +1,13 @@
+# Static math (modootoday.math.mode: static): kramdown block shapes, a translation sharing its source's data file,
+# math_key:, KaTeX HTML output, math: false and a page without math.
+title: Math
+lang: en
+theme: jekyll-theme-modootoday
+permalink: pretty
+markdown: kramdown
+kramdown: {input: GFM}
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+modootoday:
+  languages: [en, ko]
+  math: {mode: static, css: /assets/katex/katex.min.css}

@@ -17,6 +17,7 @@ pagination: {label: Páginas, prev: Anterior, next: Siguiente}
 code: {copy: Copiar, copied: Copiado, label: Código, file: Archivo}
 table: {label: Tabla}
 diagram: {label: Diagrama, source: Código del diagrama}
+math: {label: "Fórmula [n]"}
 search: {label: Buscar}
 filter: {label: "Filtrar", count: "[n] visibles"}
 page: {edit: Editar esta página, updated: Última actualización}

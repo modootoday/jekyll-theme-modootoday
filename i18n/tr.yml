@@ -17,6 +17,7 @@ pagination: {label: Sayfalar, prev: Önceki, next: Sonraki}
 code: {copy: Kopyala, copied: Kopyalandı, label: Kod, file: Dosya}
 table: {label: Tablo}
 diagram: {label: Diyagram, source: Diyagram kaynağı}
+math: {label: "Formül [n]"}
 search: {label: Ara}
 filter: {label: "Filtrele", count: "[n] gösteriliyor"}
 page: {edit: Bu sayfayı düzenle, updated: Son güncelleme}

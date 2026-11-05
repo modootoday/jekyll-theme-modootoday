@@ -1,6 +1,9 @@
 {%- comment -%}
 Optional math renderer: site.modootoday.math (off by default). Needs the page body (content) first.
   enabled                true turns it on;  engine: katex (the only engine)
+  mode                   client (default): this loader;  static: blocks were replaced from _data/math (markdown/figures/math.html),
+                         so no script loads; only KaTeX HTML output (mt_math_html) links css
+  base                   a site path such as /assets/vendor/katex/: src, css and auto_render_src default to the KaTeX dist/ files in it
   src, css               katex.min.js and katex.min.css: pinned, versioned https URLs (with integrity), or site paths (/assets/…)
   integrity              {js: sha384-…, css: sha384-…}; required for https URLs, optional for site paths
   auto_render_src        KaTeX auto-render (contrib/auto-render.min.js) for $$ blocks; auto_render_integrity is its SRI hash
@@ -10,18 +13,31 @@ or \( … \); with inline: true also on pages with a $. Front matter math: false
 If any declared URL cannot load (an https URL without integrity), nothing loads. Without JavaScript the TeX source stays.
 {%- endcomment -%}
 {%- assign _mx = site.modootoday.math -%}
-{%- if _mx.enabled == true and page.math != false and _mx.src and _mx.css -%}
+{%- assign _mx_src = _mx.src -%}{%- assign _mx_cssu = _mx.css -%}{%- assign _mx_aru = _mx.auto_render_src -%}
+{%- if _mx.base -%}
+{%- unless _mx_src -%}{%- assign _mx_src = _mx.base | append: "katex.min.js" -%}{%- endunless -%}
+{%- unless _mx_cssu -%}{%- assign _mx_cssu = _mx.base | append: "katex.min.css" -%}{%- endunless -%}
+{%- unless _mx_aru -%}{%- assign _mx_aru = _mx.base | append: "contrib/auto-render.min.js" -%}{%- endunless -%}
+{%- endif -%}
+{%- if _mx.mode == "static" -%}
+{%- if mt_math_html and _mx_cssu and _mx.enabled != false and page.math != false -%}
+{%- include modootoday/render/asset.html kind="css" src=_mx_cssu integrity=_mx.integrity.css -%}
+{%- if mt_asset_tag %}
+{{ mt_asset_tag }}
+{%- endif -%}
+{%- endif -%}
+{%- elsif _mx.enabled == true and page.math != false and _mx_src and _mx_cssu -%}
 {%- assign _mx_hit = false -%}
 {%- if content contains '<code class="language-math"' or content contains 'class="language-math highlighter-rouge"' -%}{%- assign _mx_hit = true -%}{%- endif -%}
-{%- if _mx.auto_render_src -%}
+{%- if _mx_aru -%}
 {%- if content contains '\[' or content contains '\(' -%}{%- assign _mx_hit = true -%}{%- endif -%}
 {%- if _mx.inline == true and content contains '$' -%}{%- assign _mx_hit = true -%}{%- endif -%}
 {%- endif -%}
 {%- if _mx_hit -%}
-{%- include modootoday/render/asset.html kind="css" src=_mx.css integrity=_mx.integrity.css -%}{%- assign _mx_css = mt_asset_tag -%}
-{%- include modootoday/render/asset.html src=_mx.src integrity=_mx.integrity.js -%}{%- assign _mx_js = mt_asset_tag -%}
+{%- include modootoday/render/asset.html kind="css" src=_mx_cssu integrity=_mx.integrity.css -%}{%- assign _mx_css = mt_asset_tag -%}
+{%- include modootoday/render/asset.html src=_mx_src integrity=_mx.integrity.js -%}{%- assign _mx_js = mt_asset_tag -%}
 {%- assign _mx_ar = "" -%}
-{%- if _mx.auto_render_src -%}{%- include modootoday/render/asset.html src=_mx.auto_render_src integrity=_mx.auto_render_integrity -%}{%- assign _mx_ar = mt_asset_tag -%}{%- endif -%}
+{%- if _mx_aru -%}{%- include modootoday/render/asset.html src=_mx_aru integrity=_mx.auto_render_integrity -%}{%- assign _mx_ar = mt_asset_tag -%}{%- endif -%}
 {%- if _mx_css and _mx_js and _mx_ar -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday-math.js" %}
 {{ _mx_css }}
 {{ _mx_js }}

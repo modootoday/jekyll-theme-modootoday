@@ -1,6 +1,8 @@
 {%- comment -%}Static figures: committed renders replace fenced sources (parts in markdown/figures/). Called by links/content.html on
-  every layout; a page without the front matter list returns include.html unchanged.
-  diagrams: [{name, alt, caption, width, height}]  the n-th ```mermaid fence becomes the n-th entry (figures/diagrams.html){%- endcomment -%}
+  every layout; a page without the front matter list or static math returns include.html unchanged.
+  diagrams: [{name, alt, caption, width, height}]  the n-th ```mermaid fence becomes the n-th entry (figures/diagrams.html)
+  modootoday.math.mode: static                    the n-th math block becomes the n-th entry of _data/math (figures/math.html){%- endcomment -%}
 {%- assign _mfg_h = include.html -%}
 {%- if page.diagrams and page.diagrams.size > 0 -%}{%- capture _mfg_h %}{% include modootoday/markdown/figures/diagrams.html html=_mfg_h %}{% endcapture -%}{%- endif -%}
+{%- if include.math -%}{%- capture _mfg_h %}{% include modootoday/markdown/figures/math.html html=_mfg_h %}{% endcapture -%}{%- endif -%}
 {{ _mfg_h }}

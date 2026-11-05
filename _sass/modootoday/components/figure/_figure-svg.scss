@@ -6,6 +6,8 @@
 @include mt-layer(components) {
   :where(:root) { --mt-img-filter-dark: brightness(.85) contrast(1.05) saturate(.9); --mt-diagram-filter-dark: invert(.9) hue-rotate(180deg) var(--mt-img-filter-dark); --mt-figure-min-width: 32rem; }
   .mt-figure-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border-radius: mt(radius); }
+  // Static math: a math font's ink can pass the <math> box, which the region would clip and scroll by a few pixels.
+  .mt-math > .mt-figure-scroll { padding-block: .5em; }
   .mt-figure-svg img { width: 100%; max-width: none; min-width: var(--mt-figure-min-width); height: auto; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); } }
   [data-theme="dark"] .mt-figure-svg img:not(.mt-no-filter):not([src$="#light"]) { filter: var(--mt-diagram-filter-dark); }

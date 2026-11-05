@@ -17,6 +17,7 @@ pagination: {label: الصفحات, prev: السابق, next: التالي}
 code: {copy: نسخ, copied: تم النسخ, label: شيفرة, file: ملف}
 table: {label: جدول}
 diagram: {label: مخطط, source: مصدر المخطط}
+math: {label: "الصيغة [n]"}
 search: {label: بحث}
 filter: {label: "تصفية", count: "المعروض: [n]"}
 page: {edit: تعديل هذه الصفحة, updated: آخر تحديث}

@@ -17,6 +17,7 @@ pagination: {label: ページ送り, prev: 前へ, next: 次へ}
 code: {copy: コピー, copied: コピーしました, label: コード, file: ファイル}
 table: {label: 表}
 diagram: {label: 図, source: 図のソース}
+math: {label: "数式 [n]"}
 search: {label: 検索}
 filter: {label: "絞り込み", count: "[n]件を表示"}
 page: {edit: このページを編集, updated: 最終更新}

@@ -8,7 +8,7 @@ nav_order: 0
 Each recipe solves one task on top of the guides.
 
 <!-- spec:docs-index:begin -->
-- [Math and diagrams](math-diagrams/) — Show Mermaid diagrams as committed static figures, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
+- [Math and diagrams](math-diagrams/) — Show Mermaid diagrams and math as committed static SVG and MathML, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
 - [Brand tokens](brand-tokens/) — Give the theme your brand's colours and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
 - [CSP](csp/) — Run the theme under a strict CSP without unsafe-inline.
 - [Search](search/) — Turn on the header search, choose what the index holds and how queries match, and let readers filter a long list or table.

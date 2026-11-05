@@ -17,6 +17,7 @@ pagination: {label: Страницы, prev: Назад, next: Далее}
 code: {copy: Копировать, copied: Скопировано, label: Код, file: Файл}
 table: {label: Таблица}
 diagram: {label: Диаграмма, source: Исходный код диаграммы}
+math: {label: "Формула [n]"}
 search: {label: Поиск}
 filter: {label: "Фильтр", count: "Показано: [n]"}
 page: {edit: Редактировать страницу, updated: Обновлено}

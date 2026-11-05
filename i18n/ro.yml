@@ -17,6 +17,7 @@ pagination: {label: Pagini, prev: Anterioara, next: Următoarea}
 code: {copy: Copiază, copied: Copiat, label: Cod, file: Fișier}
 table: {label: Tabel}
 diagram: {label: Diagramă, source: Sursa diagramei}
+math: {label: "Formula [n]"}
 search: {label: Caută}
 filter: {label: "Filtrează", count: "[n] afișate"}
 page: {edit: Editează pagina, updated: Ultima actualizare}

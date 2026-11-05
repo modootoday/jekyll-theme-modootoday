@@ -2,10 +2,12 @@
   Markdown links titled "new-window" ([text](url "new-window"), portable), or with kramdown {: .mt-new-window} or target="_blank", get rel, the data hook and the hint; with
   site.modootoday.external_links.new_window, external links (not starting with site.url) open in a new window too.
   Every table is wrapped in div.mt-table, the scroll region the table sheet styles and scroll-region.js labels.
-  Front matter diagrams: first swaps fences for static figures (markdown/figures.html).{%- endcomment -%}
+  Front matter diagrams: and static math (on pages with a math block) first swap their sources for static figures (markdown/figures.html).{%- endcomment -%}
 {%- assign _hash = "#" | relative_url | prepend: 'href="' | append: '"' -%}
 {%- assign _nwa = ' target="_blank" rel="noopener noreferrer" data-mt-new-window aria-describedby="mt-new-window-hint"' -%}
-{%- assign _h = include.html -%}{%- if page.diagrams -%}{%- capture _h %}{% include modootoday/markdown/figures.html html=_h %}{% endcapture -%}{%- endif -%}
+{%- assign _h = include.html -%}{%- assign _hm = false -%}{%- assign _hx = site.modootoday.math -%}
+{%- if _hx.mode == "static" and _hx.enabled != false and page.math != false -%}{%- if _h contains "language-math" or _h contains "\[" -%}{%- assign _hm = true -%}{%- endif -%}{%- endif -%}
+{%- if page.diagrams or _hm -%}{%- capture _h %}{% include modootoday/markdown/figures.html html=_h math=_hm %}{% endcapture -%}{%- endif -%}
 {%- if _hash contains "#" -%}{%- assign _h = _h | replace: _hash, 'href="#"' -%}{%- endif -%}
 {%- assign _nwc = _nwa | prepend: 'class="mt-new-window"' -%}{%- assign _nwt = _nwa | append: ">" -%}
 {%- if _h contains 'target="_blank">' -%}{%- assign _h = _h | replace: ' target="_blank">', _nwt -%}{%- endif -%}

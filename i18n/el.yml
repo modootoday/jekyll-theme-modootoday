@@ -17,6 +17,7 @@ pagination: {label: Σελίδες, prev: Προηγούμενη, next: Επόμ
 code: {copy: Αντιγραφή, copied: Αντιγράφηκε, label: Κώδικας, file: Αρχείο}
 table: {label: Πίνακας}
 diagram: {label: Διάγραμμα, source: Πηγή διαγράμματος}
+math: {label: "Τύπος [n]"}
 search: {label: Αναζήτηση}
 filter: {label: "Φιλτράρισμα", count: "Εμφανίζονται: [n]"}
 page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}

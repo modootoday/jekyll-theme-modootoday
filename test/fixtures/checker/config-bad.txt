@@ -24,7 +24,7 @@ _config.yml: modootoday.tokens_dark must be a map
 _config.yml: modootoday.mermaid: unknown key 'colour' (known: enabled, src, integrity, theme)
 _config.yml: modootoday.mermaid.enabled must be true or false
 _config.yml: modootoday.mermaid.theme must be auto, default, dark, neutral, forest
-_config.yml: modootoday.math: unknown key 'colour' (known: enabled, engine, src, css, integrity, auto_render_src, auto_render_integrity, inline)
+_config.yml: modootoday.math: unknown key 'colour' (known: enabled, engine, mode, base, src, css, integrity, auto_render_src, auto_render_integrity, inline)
 _config.yml: modootoday.math.inline must be true or false
 _config.yml: modootoday.math.engine must be katex
 _config.yml: modootoday.math.integrity must be a map {js: sha384-…, css: sha384-…}

@@ -17,6 +17,7 @@ pagination: {label: പേജുകൾ, prev: മുമ്പത്തേത്,
 code: {copy: പകർത്തുക, copied: പകർത്തി, label: കോഡ്, file: ഫയൽ}
 table: {label: പട്ടിക}
 diagram: {label: ഡയഗ്രം, source: ഡയഗ്രം ഉറവിടം}
+math: {label: "സൂത്രവാക്യം [n]"}
 search: {label: തിരയുക}
 filter: {label: "ഫിൽട്ടർ", count: "[n] എണ്ണം കാണിക്കുന്നു"}
 page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്}

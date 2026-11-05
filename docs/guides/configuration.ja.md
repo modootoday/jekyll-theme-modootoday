@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:c56a0969f06e
+source_rev: sha256:715ddd9a76e9
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -67,7 +67,7 @@ modootoday:
 | `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
 | `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[数式と図](../../recipes/math-diagrams/#組み込みローダー)を参照。 |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
-| `math` | 無効 | ```` ```math ```` と `$$` のブロックを KaTeX で描画する。[数式と図](../../recipes/math-diagrams/#csp-とプライバシー)を参照。 |
+| `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/math-diagrams/#静的な数式)を参照。 |
 | `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
 | `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
 | `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
@@ -83,7 +83,7 @@ modootoday:
 ### いくつかのキーの詳細
 
 - `color_scheme`: `auto-dark`・`auto-light` は切り替えボタンを残し、読者の選択を記憶します。`light`・`dark` には切り替えボタンがありません。開始時の配色は HTML に書き出されるので、ちらつきません。
-- `components`: `lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれます。そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル(ダークトーン、横スクロール)を残すには `figure` と一緒に `figure-svg` を、静的な Mermaid の図のライトとダークの切り替えを残すには `diagram` を入れてください。
+- `components`: `lists`・`bleed`・`terminal`・`visual`・`filter`・`table`・`table-stack` は常に含まれます。そのシートは `lists:` または `hero: {checks: true}`、`bleed:`、`chrome: terminal`、`script:` または `poster:`、`filter:` または `filter_text:` で有効にしたページか、本文に表があるページにだけ読み込まれます。リストを絞るときに SVG 図のスタイル(ダークトーン、横スクロール、静的な数式を囲む領域も含む)を残すには `figure` と一緒に `figure-svg` を、静的な Mermaid の図のライトとダークの切り替えを残すには `diagram` を入れてください。
 - `nav`: 前後のページへのリンクはこのファイルの順序(グループ自体のページ、次にその項目)に従います。このファイルがないとき、ヘッダーは `_data/navigation.yml` の `main`、次に `header_pages`(minima と同じページパスの一覧)、次に、HTML ページが 100 以下のサイトでは `title` のある最上位のページ(`/about/` など)をすべて読みます(`nav_order` が先、次にタイトル順。`nav: false` または `nav_exclude: true` のページは除く)。`nav: false` は最後の一覧を止めます。
 - `sidebar`: 64rem より狭い画面では本文の上の折りたたみメニューになります。front matter の `sidebar: false` でそのページだけ隠せます。
 - `page_actions`: Markdown 版があるページに「Markdown で表示」「ページをコピー」「AI 向けにコピー」(出典 URL のあとに Markdown)のメニューが出ます。front matter の `page_actions: false` はそのページだけ消し、完全に外すなら `components` から `page-actions` を除きます。
@@ -99,7 +99,7 @@ modootoday:
 - `logo`, `favicon`: `brand` のマークは `currentColor`(`brand` トークンなのでライト・ダークに追従)で描きます。独自のロゴ画像は装飾扱い(`alt=""`)です。別のロゴを描くには `modootoday/brand/logo.html` を上書きします。`brand` のファビコンは SVG、32px PNG、Apple タッチアイコンをリンクします。
 - `header`: 画面の幅が 30rem(480px)より狭いと、`logo` のあるサイトはヘッダーにロゴだけを表示します。スクリーンリーダーはサイト名をそのまま読み上げます。`logo` がなければ名前は常に表示されます。
 - `diagrams`: ページは front matter の `diagrams:` に、```` ```mermaid ```` フェンスごとに項目を一つずつ並べます。`dir` はサイトのパスです。`dark: false` なら図ごとに SVG を一つ使い、ほかの `.svg` の図と同じように暗くします。`source: none` ならフェンスは HTML から外れます。
-- `mermaid`, `math`: 設定は `{enabled: true, src:, integrity:, theme: auto}` と `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、ブロックのあるページでだけ読み込みます。`src` はバージョンを固定した https URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。`inline: true` なら `$…$` も描画します。CDN を使うと `script-src`(数式は `style-src` と `font-src` も)にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。
+- `mermaid`, `math`: 設定は `{enabled: true, src:, integrity:, theme: auto}` と `{enabled: true, engine: katex, src:, css:, integrity: {js:, css:}, auto_render_src:, auto_render_integrity:, inline: false}` で、ブロックのあるページでだけ読み込みます。`src` はバージョンを固定した https URL と SRI の `integrity` ハッシュ、またはサイト内のパスです。`inline: true` なら `$…$` も描画します。`base: /assets/vendor/katex/` は、KaTeX の `dist/` フォルダーを自分でホストするときに `src`、`css`、`auto_render_src` の代わりになります。`mode: static`（既定は `client`）はスクリプトを読み込まず、各ブロックを `_data/math/<key>.yml` の n 番目の項目に置き換えます。このファイルは `modootoday-check SRC --math` が一覧にし、`script/figures/math.mjs` が書き出します。`enabled`、`src`、`integrity` は不要で、`enabled: false` で無効になります。CDN を使うと `script-src`(数式は `style-src` と `font-src` も)にそのオリジンが加わり、訪問者の IP アドレスが CDN に送られます。
 - `chart`: `src` は Chart.js 4(`dist/chart.umd.min.js`)で、URL と `integrity` の規則は同じです。Chart.js とテーマのグラフモジュールはグラフのあるページでだけ読み込みます。`src` がなければグラフは表のままです。
 - `banner`: バーはスキップリンクの下に表示されます。
 - `loading`: Markdown でスピナーやスケルトンを使うページは、シートを自動で読み込みます。

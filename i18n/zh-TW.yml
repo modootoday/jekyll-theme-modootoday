@@ -17,6 +17,7 @@ pagination: {label: 換頁, prev: 上一頁, next: 下一頁}
 code: {copy: 複製, copied: 已複製, label: 程式碼, file: 檔案}
 table: {label: 表格}
 diagram: {label: 圖表, source: 圖表原始碼}
+math: {label: "公式 [n]"}
 search: {label: 搜尋}
 filter: {label: "篩選", count: "顯示 [n] 項"}
 page: {edit: 編輯此頁, updated: 最後更新}

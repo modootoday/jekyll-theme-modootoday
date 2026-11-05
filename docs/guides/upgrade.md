@@ -67,7 +67,7 @@ None of these upgrades needs page edits. What each one adds:
 - 1.3: the `reference` sidebar (`sidebar: true`) and package table (`packages:`), both opt-in.
 - 1.4: `packages_compact` and `packages_position`, both opt-in; `reference` pages now convert alerts like `doc`.
 - 1.5: the default look and the way pages load theme CSS and JavaScript change (see below).
-- 1.6: static diagrams (front matter `diagrams:`, see [Math and diagrams](../../recipes/math-diagrams/#static-diagrams)) and charts from Markdown tables (`modootoday.chart`, `c: chart`, drawn by your own Chart.js named in `modootoday.chart.src`; see [Charts](../../recipes/charts/)), both opt-in.
+- 1.6: static diagrams (front matter `diagrams:`, see [Math and diagrams](../../recipes/math-diagrams/#static-diagrams)), static math (`modootoday.math.mode: static`, MathML from `_data/math`; see [Static math](../../recipes/math-diagrams/#static-math)) and charts from Markdown tables (`modootoday.chart`, `c: chart`, drawn by your own Chart.js named in `modootoday.chart.src`; see [Charts](../../recipes/charts/)), all opt-in. `modootoday.math.base` shortens the self-hosted KaTeX paths of the loader.
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
 

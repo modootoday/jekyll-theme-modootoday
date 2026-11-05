@@ -1,7 +1,7 @@
 ---
 nav_order: 10
 title: Math and diagrams
-description: Show Mermaid diagrams as committed static figures, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
+description: Show Mermaid diagrams and math as committed static SVG and MathML, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
 diagrams:
   - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63}
 ---
@@ -11,13 +11,13 @@ A ```` ```math ```` or ```` ```mermaid ```` fence renders as a code block until 
 
 | Option | Works on | CSP | JavaScript in the browser |
 |---|---|---|---|
-| [Static figures](#static-figures): commit the rendered SVG and list it in front matter | classic GitHub Pages, Jekyll 3.10 and 4, any host | strict, nothing to add | none |
+| [Static figures](#static-figures): commit the rendered SVG or MathML | classic GitHub Pages, Jekyll 3.10 and 4, any host | strict, nothing to add | none |
 | [Built-in loaders](#built-in-loaders): `modootoday.mermaid` and `modootoday.math` | classic GitHub Pages, Jekyll 3.10 and 4, any host | self-hosted: `'self'`; CDN: add the CDN origin (below) | yes, only on pages with a block |
 | [Your own loader](#your-own-loader) in `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
 
 ## Static figures
 
-This is the recommended option. The page ships static SVG, so it works without JavaScript, prints well and passes a strict CSP. The Markdown keeps the fence, so github.com and agents reading the [Markdown twin](../../guides/agents/) still see the source.
+This is the recommended option. The page ships static SVG and MathML, so it works without JavaScript, prints well and passes a strict CSP. The Markdown keeps the fence or block, so github.com and agents reading the [Markdown twin](../../guides/agents/) still see the source.
 
 ### Static diagrams
 
@@ -121,21 +121,44 @@ Any SVG can also be an ordinary figure, one file for both colour schemes. Refere
 
 An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption. Write the alt text as the diagram's meaning, not "diagram". An `.svg` figure works in both colour schemes from one file: in dark mode the theme inverts it with the hues kept, then applies `--mt-img-filter-dark` (the token `--mt-diagram-filter-dark`). Set `--mt-diagram-filter-dark: var(--mt-img-filter-dark)` for a dimmer tone only, or `none` to turn it off for the site; end one image's path in `#light` (`flow.svg#light`) to keep it as drawn. Raster images keep the usual photo tone. On a narrow screen a wide diagram keeps a readable width (`--mt-figure-min-width`, default `32rem`) and scrolls sideways inside its own region, which is focusable and named by the alt text.
 
-### Math
+### Static math
 
-Render formulas to HTML with KaTeX once, in a script you run before committing, or in a Jekyll 4 build on GitHub Actions. Then serve KaTeX's CSS and fonts from your own site. In the examples, replace `/your-base` with your site's `baseurl` (or use Jekyll's `relative_url` filter):
+Set `mode: static` and every ```` ```math ```` fence and `$$` block is replaced by MathML that you render once and commit. Browsers draw MathML themselves, so the page loads no script, stylesheet or font, and a strict CSP needs nothing added:
 
-```sh
-npm install katex
-mkdir -p assets/katex && cp -r node_modules/katex/dist/katex.min.css node_modules/katex/dist/fonts assets/katex/
+```yaml
+modootoday:
+  math:
+    mode: static   # client (the default) is the built-in loader below
 ```
 
-```html
-<!-- _includes/head-custom.html -->
-<link rel="stylesheet" href="/your-base/assets/katex/katex.min.css">
+````markdown
+```math
+e^{i\pi} + 1 = 0
 ```
 
-KaTeX's static output is plain HTML and CSS classes, so `style-src 'self'` is enough.
+$$
+f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\frac{n \pi x}{L} \right)
+$$
+````
+
+This site uses static math, so the same two blocks render here:
+
+```math
+e^{i\pi} + 1 = 0
+```
+
+$$
+f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\frac{n \pi x}{L} \right)
+$$
+
+- **Where the MathML lives.** `_data/math/<key>.yml` lists one entry per block, in page order: `src` is the block's digest (the [rule of `data-mt-src`](#static-diagrams), over the TeX) and `html` its `<math>` element. `<key>` is the page's path without the extension, with `/` written as `--`: this page, `recipes/math-diagrams.md`, reads `_data/math/recipes--math-diagrams.yml`. A translation (`math-diagrams.ko.md`, or the same path under a language folder) reads its English page's file, so keep its blocks the same. `math_key:` in front matter picks another file.
+- **Render with one command.** `modootoday-check SRC --math` prints the files to write as JSON, like `--diagrams`, and exits with 1 when there are any, so a pre-commit hook can run it. The theme's repository renders that list with [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs), which runs KaTeX in Node, with no browser. Copy it with `digest.mjs` into a folder Jekyll skips, such as `_scripts/`, then: `npm install --save-dev katex` and `bundle exec modootoday-check . --math | node _scripts/math.mjs .`
+- **Each formula** sits in a region that scrolls sideways when the formula is wider than the column. The region is focusable and named "Formula 1", "Formula 2" and so on, in the page's language. MathML keeps the TeX source as an annotation.
+- **Inline math cannot be static.** `$…$`, and `$$…$$` inside a sentence, are errors in static mode: write the formula as a block. `inline: true` is an error too. Front matter `math: false` leaves a page's blocks as TeX source.
+- `modootoday-check` reports a page whose number of blocks differs from its number of entries, a missing file, and an entry rendered from other TeX ("stale math").
+- The theme finds a `$$` block by the `\[` that kramdown prints at the start of a line. On a page with static math, a code block line that starts with `\[` would be taken for one; indent it or move it into a sentence.
+
+KaTeX can also write its HTML output (`--output=htmlAndMathml`). It looks the same in every browser, but it needs KaTeX's stylesheet and fonts and sets `style` attributes, so your CSP needs `style-src 'unsafe-inline'`. Copy `katex.min.css` and `fonts/` from the `katex` package and set `css:` (or `base:`, below); the theme links the stylesheet only on pages whose entries hold KaTeX HTML.
 
 ## Built-in loaders
 
@@ -151,17 +174,17 @@ modootoday:
   math:
     enabled: true
     engine: katex
-    src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+    src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css
     integrity: {js: sha384-…, css: sha384-…}
-    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js
     auto_render_integrity: sha384-…
     inline: false
 ```
 
 - **Only where needed.** The tags load only on pages that contain a block: `language-mermaid` for Mermaid, a ```` ```math ```` fence or a `$$` block for math. Set `mermaid: false` or `math: false` in a page's front matter to skip one page.
 - **No hash, no load.** A CDN URL without `integrity` (or a non-https URL) loads nothing, and `modootoday-check` reports an error. The checker also requires an exact version in the URL (`@11.4.1`, not `@11` or `@latest`) and reports any other third-party script or stylesheet in the built pages.
-- **Self-hosted.** A path such as `/assets/vendor/mermaid.min.js` loads from your own site (`relative_url` is applied; `integrity` is optional). For KaTeX, copy `katex.min.js`, `katex.min.css`, the `fonts/` folder and `contrib/auto-render.min.js` from the `katex` package.
+- **Self-hosted.** A path such as `/assets/vendor/mermaid.min.js` loads from your own site (`relative_url` is applied; `integrity` is optional). For KaTeX, copy `katex.min.js`, `katex.min.css`, the `fonts/` folder and `contrib/auto-render.min.js` from the `katex` package into one folder, and `base: /assets/vendor/katex/` stands for `src`, `css` and `auto_render_src`; a key you set still wins.
 - **Readable without JavaScript.** The source stays on the page as a code block until the renderer replaces it, and stays if a diagram or formula fails to parse.
 - **Light and dark.** With `theme: auto`, diagrams use Mermaid's `dark` theme when the page is dark (the theme toggle or the visitor's system setting) and redraw when it changes. With reduced motion requested, diagram animations are off. A diagram wider than the column scrolls inside its own keyboard-focusable region.
 - Each loader is a small separate script (`assets/js/modootoday-mermaid.js`, `assets/js/modootoday-math.js`) with its own size budget, not part of the core script.
@@ -232,3 +255,4 @@ Keep `securityLevel: "strict"`: it disables click handlers and HTML labels insid
 - Every diagram has alt text or a caption that states what it shows.
 - Load renderers only on pages that need them.
 - `modootoday-check SRC --diagrams` prints an empty list: every committed diagram SVG matches its fence.
+- With static math, `modootoday-check SRC --math` prints an empty list too: every entry in `_data/math` matches its block.

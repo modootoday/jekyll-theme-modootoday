@@ -17,6 +17,7 @@ pagination: {label: หน้า, prev: ก่อนหน้า, next: ถั�
 code: {copy: คัดลอก, copied: คัดลอกแล้ว, label: โค้ด, file: ไฟล์}
 table: {label: ตาราง}
 diagram: {label: แผนภาพ, source: ซอร์สของแผนภาพ}
+math: {label: "สูตร [n]"}
 search: {label: ค้นหา}
 filter: {label: "กรอง", count: "แสดง [n] รายการ"}
 page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}

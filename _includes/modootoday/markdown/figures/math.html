@@ -1,0 +1,34 @@
+{%- comment -%}Static math (site.modootoday.math.mode: static): the n-th ```math fence or $$ block (kramdown prints \[ … \] at a line
+  start) becomes the html of the n-th entry of site.data.math[<key>] in a focusable region named math.label; a block with no
+  entry stays; figure.mt-figure gives the spacing. <key>: page.math_key, else the default-language source path without extension, / as -- (Figures.math_key).
+  Sets mt_math_html when an entry is KaTeX HTML output (class katex-html), so render/math.html links KaTeX's stylesheet.{%- endcomment -%}
+{%- assign _mfm_k = page.math_key | append: "" -%}
+{%- if _mfm_k == "" -%}
+{%- capture _mfm_ls -%}|{{ site.modootoday.languages | join: "|" }}|{%- for _mfm_i in site.data.i18n -%}{{ _mfm_i[0] }}|{%- endfor -%}{%- endcapture -%}
+{%- assign _mfm_def = site.lang | default: "en" | prepend: "|" | append: "|" -%}{%- assign _mfm_ls = _mfm_ls | replace: _mfm_def, "|" -%}
+{%- assign _mfm_d = page.path | split: "/" -%}{%- assign _mfm_b = _mfm_d | last | split: "." -%}{%- assign _mfm_d = _mfm_d | pop -%}
+{%- assign _mfm_s = "||" -%}{%- if _mfm_b.size > 2 -%}{%- assign _mfm_r = _mfm_b | reverse -%}{%- assign _mfm_s = _mfm_r[1] | prepend: "|" | append: "|" -%}{%- endif -%}
+{%- assign _mfm_f0 = _mfm_d.first | prepend: "|" | append: "|" -%}
+{%- if _mfm_s != "||" and _mfm_ls contains _mfm_s -%}{%- assign _mfm_b = _mfm_b | pop -%}{%- if _mfm_d.first == "home" -%}{%- assign _mfm_d = _mfm_d | shift -%}{%- endif -%}
+{%- elsif _mfm_d.size > 0 and _mfm_ls contains _mfm_f0 -%}{%- assign _mfm_d = _mfm_d | shift -%}{%- endif -%}
+{%- assign _mfm_b = _mfm_b | pop | join: "." -%}{%- assign _mfm_k = _mfm_d | push: _mfm_b | join: "--" -%}
+{%- endif -%}
+{%- assign _mfm_data = site.data.math[_mfm_k] -%}
+{%- assign _mfm_x = include.html -%}
+{%- if _mfm_data and _mfm_data.size > 0 -%}
+{%- capture _mfm_nl %}
+{% endcapture -%}{%- assign _mfm_t = _mfm_nl | append: "\[" -%}{%- assign _mfm_tn = _mfm_nl | append: "<!--mt-math-T-->" -%}
+{%- assign _mfm_f = '<div class="language-math highlighter-rouge">' -%}{%- assign _mfm_fe = "</pre></div></div>" -%}
+{%- unless _mfm_x contains _mfm_f -%}{%- assign _mfm_f = '<pre><code class="language-math">' -%}{%- assign _mfm_fe = "</code></pre>" -%}{%- endunless -%}
+{%- assign _mfm_bits = _mfm_x | prepend: _mfm_nl | replace: _mfm_f, "<!--mt-math-F-->" | replace: _mfm_t, _mfm_tn | split: "<!--mt-math-" -%}
+{%- capture _mfm_x -%}{{ _mfm_bits[0] | remove_first: _mfm_nl }}{%- for _mfm_raw in _mfm_bits offset: 1 -%}
+{%- assign _mfm_e = _mfm_data[forloop.index0] -%}{%- assign _mfm_kind = _mfm_raw | slice: 0 -%}{%- assign _mfm_seg = _mfm_raw | slice: 4, _mfm_raw.size -%}
+{%- if _mfm_kind == "F" -%}{%- assign _mfm_end = _mfm_fe -%}{%- assign _mfm_open = _mfm_f -%}{%- else -%}{%- assign _mfm_end = "\]" -%}{%- assign _mfm_open = "\[" -%}{%- endif -%}
+{%- if _mfm_e.html and _mfm_seg contains _mfm_end -%}
+{%- assign _mfm_src = _mfm_seg | split: _mfm_end | first -%}{%- assign _mfm_rest = _mfm_seg | remove_first: _mfm_src | remove_first: _mfm_end -%}
+{%- if _mfm_e.html contains "katex-html" -%}{%- assign mt_math_html = true -%}{%- endif -%}
+<figure class="mt-figure mt-math"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="{{ mt_t_math_label | replace: '[n]', forloop.index }}">{{ _mfm_e.html }}</div></figure>{{ _mfm_rest }}
+{%- else -%}{{ _mfm_open }}{{ _mfm_seg }}{%- endif -%}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{{ _mfm_x }}

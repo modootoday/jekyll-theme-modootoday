@@ -17,6 +17,7 @@ pagination: {label: Halaman, prev: Sebelumnya, next: Berikutnya}
 code: {copy: Salin, copied: Tersalin, label: Kode, file: Berkas}
 table: {label: Tabel}
 diagram: {label: Diagram, source: Sumber diagram}
+math: {label: "Rumus [n]"}
 search: {label: Cari}
 filter: {label: "Saring", count: "[n] ditampilkan"}
 page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}

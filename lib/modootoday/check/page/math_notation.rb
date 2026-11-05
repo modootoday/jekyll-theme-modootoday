@@ -11,7 +11,7 @@ module Modootoday
       # ```math fences and $$ blocks are the standard notation; inline $…$ renders only with inline: true.
       def notation(ctx)
         x = ctx.mtc.is_a?(Hash) ? ctx.mtc["math"] : nil
-        return unless x.is_a?(Hash) && x["enabled"] == true && x["inline"] != true && ctx.respond_to?(:mds)
+        return unless x.is_a?(Hash) && x["enabled"] == true && x["inline"] != true && ctx.respond_to?(:mds) && !static_math?(ctx.mtc)
         ctx.mds.each do |f|
           n = inline_dollar(File.read(f))
           ctx.warns << "#{ctx.rel(f)}:#{n}: inline $…$ stays plain text on this site (modootoday.math.inline is false); use a ```math fence or a $$ block, or set inline: true" if n

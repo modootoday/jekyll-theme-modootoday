@@ -17,6 +17,7 @@ pagination: {label: Сторінки, prev: Назад, next: Далі}
 code: {copy: Копіювати, copied: Скопійовано, label: Код, file: Файл}
 table: {label: Таблиця}
 diagram: {label: Діаграма, source: Вихідний код діаграми}
+math: {label: "Формула [n]"}
 search: {label: Пошук}
 filter: {label: "Фільтр", count: "Показано: [n]"}
 page: {edit: Редагувати сторінку, updated: Оновлено}

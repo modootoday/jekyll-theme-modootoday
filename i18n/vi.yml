@@ -17,6 +17,7 @@ pagination: {label: Trang, prev: Trước, next: Tiếp}
 code: {copy: Sao chép, copied: Đã sao chép, label: Mã, file: Tệp}
 table: {label: Bảng}
 diagram: {label: Sơ đồ, source: Mã nguồn sơ đồ}
+math: {label: "Công thức [n]"}
 search: {label: Tìm kiếm}
 filter: {label: "Lọc", count: "Đang hiển thị [n]"}
 page: {edit: Sửa trang này, updated: Cập nhật lần cuối}

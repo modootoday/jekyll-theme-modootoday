@@ -72,6 +72,12 @@ ruby exe/modootoday-check docs --diagrams | node script/figures/diagrams.mjs doc
 
 To move to another Mermaid version, change the URL and the `sha384` hash of that version's `dist/mermaid.min.js` together, then render every diagram again: an SVG only goes stale when its fence changes.
 
+The docs site uses static math (`modootoday.math.mode: static`): the MathML of each English page's math blocks is in `docs/_data/math/<key>.yml`, which its translations share. After you change a block, `ruby exe/modootoday-check docs --math` lists the files to write, and the full check fails on a stale entry. `script/figures/math.mjs` writes them with KaTeX in Node, from the exact `katex` version in `package.json`; it needs no browser:
+
+```sh
+ruby exe/modootoday-check docs --math | node script/figures/math.mjs docs
+```
+
 ## Project layout
 
 These rules apply to everything in the repository: theme files, tools, tests, QA and new code. `test/project/layout_test.rb` enforces the measurable parts.
@@ -89,7 +95,7 @@ Where things live:
 | `lib/modootoday/check.rb`, `lib/modootoday/check/` | `modootoday-check`: `cli.rb` and `context.rb` at the top; rule groups in `config/` (`_config.yml` settings; one file per key group under `config/keys/`, in `appearance/`, `pages/` and `serving/`, report order = load order in `config/keys.rb`), `page/` (page sources), `build/` (the built site), `registry/` (`_data/components.yml`, i18n catalogs), `source/` (Sass, `Gemfile.lock`, `gh` rendering) and `layouts/` (layout front matter) |
 | `lib/modootoday/markdown.rb` | Markdown source text (front matter, fences, code spans, comments): the one front matter parser for both executables, `script/` and `test/system/docs/` |
 | `lib/modootoday/figures.rb` | static figures: the fences a page replaces and the one digest rule (`data-mt-src`) that ties a committed render to its fence; any tool that writes the attribute follows it |
-| `script/figures/` | rendering the docs site's static figures (`diagrams.mjs`) and the digest rule in Node (`digest.mjs`); not in the gem, see Rendering figures above |
+| `script/figures/` | rendering the docs site's static figures (`diagrams.mjs`, `math.mjs`) and the digest rule in Node (`digest.mjs`); not in the gem, see Rendering figures above |
 | `lib/modootoday/stubs.rb`, `lib/modootoday/stubs/` | `modootoday-stubs`: `page.rb` (a page and its URL, also used by `modootoday-check --aliases` and `script/docs`), `source.rb` (the pages), one generator per stub kind (`twins.rb`, `aliases.rb`, `records.rb`), `plan.rb`, `writer.rb`, `report.rb` and `cli.rb`; `script/docs-index` uses `Twins` (with `dir: "generated"`) for the docs site, and `modootoday-check` uses the records plan for its verdict |
 | `test/stubs/` | `modootoday-stubs` plans, idempotence and the command line |
 | `test/checker/` | `modootoday-check` rules, in the same context subdirectories; `messages_snapshot_test.rb` pins the full output (`SNAPSHOT_UPDATE=1` refreshes `test/fixtures/checker/`) |

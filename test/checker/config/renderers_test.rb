@@ -87,6 +87,26 @@ class RenderersCheckTest < Minitest::Test
     assert(settings(no_ar, warns: true).any? { |x| x.include?("only ```math fences render") })
   end
 
+  def test_math_mode_and_base
+    base = { "math" => { "enabled" => true, "base" => "/assets/vendor/katex/" } }
+    assert_empty settings(base)
+    assert_empty settings(base, warns: true), "base also stands for auto_render_src"
+    assert_equal %w[/assets/vendor/katex/katex.min.js /assets/vendor/katex/katex.min.css /assets/vendor/katex/contrib/auto-render.min.js],
+                 R.math_urls(base["math"].merge("css" => nil)).values
+    assert_equal "/own.css", R.math_urls(base["math"].merge("css" => "/own.css"))["css"]
+    assert_empty settings({ "math" => { "mode" => "static" } })
+    assert_equal({ "math" => [] }, R.assets({ "math" => { "mode" => "static", "src" => "http://x/" } }), "static loads no script")
+    assert_empty R.assets({ "math" => { "mode" => "static", "enabled" => false } })
+    assert R.static_math?({ "math" => { "mode" => "static" } })
+    refute R.static_math?({ "math" => { "mode" => "static", "enabled" => false } })
+    {
+      { "math" => { "mode" => "server" } } => "modootoday.math.mode must be client or static",
+      { "math" => { "base" => "assets/katex" } } => "modootoday.math.base must be a site path",
+      { "math" => { "mode" => "static", "inline" => true } } => "mode: static cannot render inline $…$",
+      { "math" => { "mode" => "static", "css" => "https://cdn.example.test/katex@0.19.0/dist/katex.min.css" } } => "integrity.css (an SRI hash",
+    }.each { |cfg, msg| assert(settings(cfg).any? { |e| e.include?(msg) }, "#{msg}: #{settings(cfg)}") }
+  end
+
   def test_math_built_pages
     ok = %(<link rel="stylesheet" href="#{K}katex.min.css" integrity="#{SRI}" crossorigin="anonymous"><script src="#{K}katex.min.js" integrity="#{SRI}" crossorigin="anonymous" defer></script>)
     assert_empty page(ok, mx)
