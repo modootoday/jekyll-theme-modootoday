@@ -7,7 +7,7 @@ layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 함께 보여 줍니다.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, cards-4, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content

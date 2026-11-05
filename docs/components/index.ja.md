@@ -8,7 +8,7 @@ layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [alerts, alerts-content, cards, cards-3, cards-4, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
 sections:
   - alerts
   - alerts-content
