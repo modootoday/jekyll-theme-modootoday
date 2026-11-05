@@ -45,7 +45,7 @@ class ShowcaseTest < Minitest::Test
     assert_includes r, %(href="#{USE_URL}")
     assert_equal 2, r.scan('<span class="mt-sr-only">, opens in a new window</span>').size
     assert_includes r, '<button class="mt-showcase-dismiss" type="button" aria-label="Hide for this visit">'
-    assert_includes region(html("bar", "ko/index.html")), "<b>modoo.today 테마</b><span class=\"mt-showcase-more\"> · 문서 스타터 · 데모</span>"
+    assert_includes region(html("bar", "ko/index.html")), "<b>모두의오늘 테마</b><span class=\"mt-showcase-more\"> · 문서 스타터 · 데모</span>"
     assert_includes region(html("bar", "ja/index.html")), "aria-label=\"テーマのショーケース\""
   end
 

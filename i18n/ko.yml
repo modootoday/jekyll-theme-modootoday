@@ -136,7 +136,7 @@ layouts:
   contents: "목차"
 showcase:
   region: "테마 쇼케이스"
-  theme: "modoo.today 테마"
+  theme: "모두의오늘 테마"
   demo: "데모"
   docs: "테마 문서"
   docs_short: "문서"
