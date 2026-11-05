@@ -23,19 +23,9 @@ jobs:
         with:
           persist-credentials: false
 <% if remote? -%>
-      # The builder image classic GitHub Pages uses; the theme comes from remote_theme in _config.yml.
-      - uses: actions/jekyll-build-pages@v1
-        with:
-          source: .
-          destination: ./_site
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
-      # No --github-pages here: the build above is the GitHub Pages builder itself, and there is no Gemfile.lock to read.
-      - name: Check the built site
-        run: |
-          gem install <%= theme.name %> -v <%= theme.version %> --no-document
-          modootoday-check . _site <%= starter.check.join(" ") %>
 <% else -%>
       - uses: ruby/setup-ruby@v1
         with:
@@ -43,10 +33,40 @@ jobs:
           bundler-cache: true
       - id: pages
         uses: actions/configure-pages@v6
+<% end -%>
+      # The live demo only: in <%= starter.repo %>,
+      # _config.demo.yml (the showcase and noindex) is merged into _config.yml for the build.
+      # A repository created from this template, or a fork, skips this step and the restore step.
+      - name: Layer the demo config
+        if: github.repository == '<%= starter.repo %>'
+        run: |
+          cp _config.yml "$RUNNER_TEMP/_config.yml"
+          ruby -ryaml -rdate -e '
+            read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
+            merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
+            File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
+<% if remote? -%>
+      # The builder image classic GitHub Pages uses; the theme comes from remote_theme in _config.yml.
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+<% else -%>
       - name: Build
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+<% end -%>
+      - name: Restore _config.yml
+        if: github.repository == '<%= starter.repo %>'
+        run: mv "$RUNNER_TEMP/_config.yml" _config.yml
+<% if remote? -%>
+      # No --github-pages here: the build above is the GitHub Pages builder itself, and there is no Gemfile.lock to read.
+      - name: Check the built site
+        run: |
+          gem install <%= theme.name %> -v <%= theme.version %> --no-document
+          modootoday-check . _site <%= starter.check.join(" ") %>
+<% else -%>
       - name: Check the built site
         run: bundle exec modootoday-check . _site <%= starter.check.join(" ") %>
 <% end -%>

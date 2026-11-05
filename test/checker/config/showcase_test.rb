@@ -42,12 +42,19 @@ class CheckShowcaseTest < CheckerCase
   end
 
   def test_built_pages_without_noindex_warn_only_when_enabled
-    out "a/index.html", "<html><head><meta name=\"robots\" content=\"noindex\"></head><body></body></html>"
+    out "a/index.html", "<html data-mt-showcase=\"bar\"><head><meta name=\"robots\" content=\"noindex\"></head><body></body></html>"
     out "b/index.html", "<html><head><title>B</title></head><body></body></html>"
     assert_equal 0, check("--strict")[1]
     page "_config.demo.yml", "modootoday:\n  showcase: {enabled: true, docs_url: #{DOCS}}\n"
     o, = check
     assert_includes o, "b/index.html: no robots noindex meta although modootoday.showcase is enabled"
     refute_includes o, "a/index.html"
+  end
+
+  def test_a_build_without_the_demo_overlay_reports_nothing
+    page "_config.demo.yml", "modootoday:\n  showcase: {enabled: true, docs_url: #{DOCS}}\n"
+    out "index.html", "<html><head><title>A</title></head><body></body></html>"
+    o, code = check("--strict")
+    assert_equal 0, code, o
   end
 end

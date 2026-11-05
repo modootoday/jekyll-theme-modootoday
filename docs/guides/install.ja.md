@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:722b573e76b2
+source_rev: sha256:dc4c4d49ebc1
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -107,4 +107,4 @@ GitHub Actions では、ビルドの次のステップに同じ 2 行を入れ�
 
 ## スターターサイト
 
-テーマのリポジトリの [`example/`](https://github.com/modootoday/jekyll-theme-modootoday/tree/main/example) には 3 つのスターターサイトがあります。`docs`（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、`blog`（投稿、ニュース記事、著者ページ、フィード）、`landing`（ヒーロー、料金、規約ページ）で、それぞれ単独でビルドできます。どれかから始めるには、リポジトリをクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/github-pages/<name>/`（`remote_theme`）または `pkg/starters/jekyll4/<name>/`（gem）を新しいリポジトリにコピーします。コピーには `Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。
+テーマのリポジトリの [`example/`](https://github.com/modootoday/jekyll-theme-modootoday/tree/main/example) には 3 つのスターターサイトがあります。`docs`（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、`blog`（投稿、ニュース記事、著者ページ、フィード）、`landing`（ヒーロー、料金、規約ページ）で、それぞれ単独でビルドできます。どれかから始めるには、リポジトリをクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/github-pages/<name>/`（`remote_theme`）または `pkg/starters/jekyll4/<name>/`（gem）を新しいリポジトリにコピーします。コピーには `Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../configuration/#スターターのデモのショーケース)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。

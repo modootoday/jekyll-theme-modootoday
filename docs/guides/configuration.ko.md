@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:e68e4a5a057a
+source_rev: sha256:f0d63529ea10
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -132,7 +132,7 @@ modootoday:
 
 ## 스타터 데모 쇼케이스
 
-스타터의 라이브 데모에는 테마와 스타터 이름을 알리고 테마 문서로 돌아가는 링크를 담은 막대를 표시할 수 있습니다. 이 막대는 데모 빌드에만 씁니다. 데모 배포만 `_config.yml` 위에 겹치는 두 번째 설정 파일에 넣으면, 스타터로 만든 사이트에는 나타나지 않습니다. GitHub Pages 빌더는 `_config.yml`만 읽으므로, 이 빌더를 쓰는 워크플로는 빌드 전에 데모 파일을 `_config.yml`에 합칩니다.
+스타터의 라이브 데모에는 테마와 스타터 이름을 알리고 테마 문서로 돌아가는 링크를 담은 막대를 표시할 수 있습니다. 이 막대는 데모 빌드에만 씁니다. 데모 배포만 `_config.yml` 위에 겹치는 두 번째 설정 파일에 넣으면, 스타터로 만든 사이트에는 나타나지 않습니다. GitHub Pages 빌더는 `_config.yml`만 읽으므로, 이 빌더를 쓰는 워크플로는 빌드 전에 데모 파일을 `_config.yml`에 합칩니다. 테마의 스타터는 `if: github.repository == '<owner>/<repo>'` 조건이 붙은 워크플로 단계에서 이 일을 하므로, 포크나 템플릿으로 만든 저장소는 쇼케이스 없이 빌드됩니다.
 
 ```yaml
 # _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
@@ -153,7 +153,7 @@ modootoday:
 - **숨기기**는 그 탭에서 방문이 끝날 때까지 유지됩니다(`sessionStorage`). `<head>`의 작은 스크립트가 페이지를 그리기 전에 이 값을 읽으므로, 다음 페이지에는 막대도 그 자리도 없고 화면이 밀리지 않습니다. JavaScript가 없거나 저장소가 막혀 있으면 쇼케이스는 그대로 남습니다.
 - **검색 엔진**: 쇼케이스를 켜면 모든 페이지에 `<meta name="robots" content="noindex">`가 붙습니다. 데모의 예시 글은 스타터로 만든 모든 사이트가 처음에 갖는 글이기 때문입니다. 사이트맵에는 페이지가 남지만 noindex가 우선하며, 데모 빌드의 Lighthouse SEO 감사는 페이지가 색인에서 막혔다고 보고합니다.
 - **레이블**은 페이지 언어를 따릅니다. `starter`는 `showcase.starters.<name>` 레이블을 고르며, 테마에는 `docs`, `blog`, `landing`이 들어 있습니다. 다른 스타터는 `_data/i18n/<lang>.yml`에 그 키를 추가하세요. 없으면 레이블에 테마 이름만 나옵니다.
-- `modootoday-check`는 `_config.yml`과 `_config.demo.yml`의 키를 검사하고, `_config.yml` 자체에서 켜면 경고하며, noindex 태그가 없는 빌드 페이지도 경고합니다.
+- `modootoday-check`는 `_config.yml`과 `_config.demo.yml`의 키를 검사하고, `_config.yml` 자체에서 켜면 경고하며, 쇼케이스가 나오는 빌드에서는 noindex 태그가 없는 페이지도 경고합니다. `_config.demo.yml`이 있어도 그 파일 없이 빌드한 사이트에는 경고하지 않습니다.
 
 ## 헤드와 SEO
 

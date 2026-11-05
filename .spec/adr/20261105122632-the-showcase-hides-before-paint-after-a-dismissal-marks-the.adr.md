@@ -3,7 +3,7 @@ id: adr:modootoday/20261105122632
 title: "The showcase hides before paint after a dismissal, marks the build noindex and uses region-scoped class names"
 status: active
 created: 2026-11-05T12:26:32Z
-updated: 2026-11-05T12:27:03Z
+updated: 2026-11-05T13:21:18Z
 rel:
   governs: [_includes/modootoday/chrome/showcase.html, assets/js/modootoday/chrome/theme-init.js, _sass/modootoday/components/chrome/_showcase.scss]
   depends_on: [adr:modootoday/20261104170401, adr:modootoday/20261104171141]
@@ -28,7 +28,7 @@ rel:
 - **Pre-paint.** The dismiss module (`chrome/showcase.js`) sets `off` and stores `sessionStorage["mt-showcase"]`. Before the next page paints, a line reads the flag and sets `off` on a page that has a showcase: inline by default, in `theme-init.js` under `modootoday.csp: strict`. The theme-init file now loads when the toggle or the showcase is on; when only the showcase is on, its tag carries `data-mt-no-theme` and the stored colour scheme is not applied. The file measures 247 B gzip against its unchanged 256 B cap.
 - **Class names.** The region is `div.mt-showcase-region` with `.mt-showcase-bar` or `.mt-showcase-pill`; its parts are `.mt-showcase-mark`, `p.mt-showcase-label`, `a.mt-showcase-solid` (the filled link), `button.mt-showcase-dismiss`, `.mt-showcase-more` (hidden below 40rem) and `.mt-showcase-less` (shown only there). The bare `.mt-showcase` stays the hero visual's.
 - **Contents.** The label is the catalog's theme name (`showcase.theme`, "modoo.today theme"), then the starter's label (`showcase.starters.<name>`, when a catalog has it) and `showcase.demo`. Links name themselves in full, with the existing new-window hint in a visually hidden span, so the accessible name says the link opens a new window; the built-site check skips the region when it looks for `aria-describedby`. The pill shows the theme and starter names, a short Docs link and the dismiss button.
-- **noindex** is written by the default layout whenever the showcase is on, next to the page and layout switches. `modootoday-check` reads `_config.demo.yml` as well as `_config.yml` for the key and warns about built pages without the tag; its sample-link heuristic for `noindex` pages skips a showcase build.
+- **noindex** is written by the default layout whenever the showcase is on, next to the page and layout switches. `modootoday-check` reads `_config.demo.yml` as well as `_config.yml` for the key and, in a build that shows the showcase, warns about pages without the tag (a site made from a starter keeps `_config.demo.yml` but builds without it, [[adr:modootoday/20261104170556]]); its sample-link heuristic for `noindex` pages skips a showcase build.
 - **Budget.** The sheet holds both styles, the offsets, the short-viewport rule and the forced-colours borders: 919 B gzip as built with Dart Sass (the plan's 797 B draft lacked the sidebar, menu and short-viewport offsets). Its cap is 1,024 B, the measured size plus 10% rounded up to 128 ([[adr:modootoday/20261104053146]]). The dismiss module is 326 B against a 384 B cap. The core sheet is unchanged.
 
 ## Consequences

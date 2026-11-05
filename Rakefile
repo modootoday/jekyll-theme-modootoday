@@ -39,4 +39,34 @@ namespace :starters do
       end
     end
   end
+
+  desc "Build each starter (or NAME) with its _config.demo.yml at its Pages base path into OUT/<name>/ (default pkg/demo), " \
+       "check it and its qa: pages, and write OUT/<name>.json for test/system/showcase.mjs"
+  task(:demo, [:name, :out]) do |_, a|
+    require "json"
+    r = starters.call
+    out = File.expand_path(a[:out] || "pkg/demo")
+    stack = Gem.loaded_specs.key?("github-pages") ? "github-pages" : "jekyll4"
+    r.manifest.starters.select { |s| a[:name].to_s.empty? || s.name == a[:name] }.each do |s|
+      Dir.mktmpdir do |d|
+        site = File.join(out, s.name)
+        rm_rf site
+        r.one(s, "jekyll4", "#{d}/src")
+        sh "bundle", "exec", "jekyll", "build", "-q", "-s", "#{d}/src", "-d", site, "--baseurl", s.baseurl,
+           "--config", "#{d}/src/_config.yml,#{d}/src/_config.demo.yml"
+        sh RbConfig.ruby, "exe/modootoday-check", "#{d}/src", site, *Starters::Site.new(s, stack, r.theme).check_flags.split
+        missing = s.qa.reject { |p| File.file?(File.join(site, p.empty? || p.end_with?("/") ? "#{p}index.html" : p)) }
+        abort("starters: #{s.name}: qa: pages the demo build lacks: #{missing.join(", ")}") unless missing.empty?
+        File.write(File.join(out, "#{s.name}.json"), JSON.generate({ "name" => s.name, "base" => s.baseurl, "qa" => s.qa }))
+      end
+    end
+  end
+
+  desc "Print each starter repository's description, website and topics as JSON (the maintainer's repository settings)"
+  task(:repos) do
+    require "json"
+    puts JSON.pretty_generate(starters.call.manifest.starters.map do |s|
+      { "repo" => s.repo, "description" => s.description, "homepage" => s.demo_url, "topics" => s.topics, "template_url" => s.generate_url }
+    end)
+  end
 end

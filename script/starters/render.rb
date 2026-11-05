@@ -10,13 +10,16 @@ require_relative "site"
 
 module Starters
   # Renders each starter for each of its stacks into OUT/<stack>/<name>/: the source folder, then the files the
-  # theme owns (Gemfile, README.md, the Pages workflow, stubs). The same inputs give the same bytes. Interface
+  # theme owns (Gemfile, README.md, the Pages workflow, the demo overlay, stubs). The same inputs give the same bytes. Interface
   # catalogs are never copied: the theme ships every manifest language, and a copy would freeze its strings.
   class Render
     # Build output and lock files are never part of a starter, in the source or in a rendered tree.
     SKIP = %w[_site .jekyll-cache .sass-cache .jekyll-metadata Gemfile.lock].freeze
     # Written only by the renderer, so a source folder must not have them.
-    OWNED = %w[Gemfile README.md .github].freeze
+    OWNED = %w[Gemfile README.md .github _config.demo.yml].freeze
+    # Rendered path => template under templates/ (.erb).
+    RENDERED = { "Gemfile" => "Gemfile", "README.md" => "README.md", "_config.demo.yml" => "config.demo.yml",
+                 ".github/workflows/pages.yml" => "pages.yml" }.freeze
     TEMPLATES = File.join(__dir__, "templates")
 
     attr_reader :manifest, :theme
@@ -38,7 +41,7 @@ module Starters
       FileUtils.rm_rf(dir)
       self.class.files(starter.dir).each { |f| copy(File.join(starter.dir, f), File.join(dir, f)) }
       write(dir, "_config.yml", site.config)
-      { "Gemfile" => "Gemfile", "README.md" => "README.md", ".github/workflows/pages.yml" => "pages.yml" }.each do |path, t|
+      RENDERED.each do |path, t|
         write(dir, path, ERB.new(File.read(File.join(TEMPLATES, "#{t}.erb")), trim_mode: "-").result(site.instance_eval { binding }))
       end
       source = Modootoday::Stubs::Source.new(dir)

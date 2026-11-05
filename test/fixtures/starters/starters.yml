@@ -1,6 +1,11 @@
+demo:
+  docs_url: https://docs.example.com/theme/
 starters:
   - name: tiny
-    repo: owner/tiny-starter
+    repo: Owner/tiny-starter
+    description: A tiny starter for the renderer tests
     languages: [en, ko]
     stacks: [github-pages, jekyll4]
     check: [--twins]
+    showcase: {style: pill}
+    qa: ["", ko/]

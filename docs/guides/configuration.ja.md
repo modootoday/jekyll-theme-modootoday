@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:e68e4a5a057a
+source_rev: sha256:f0d63529ea10
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -132,7 +132,7 @@ modootoday:
 
 ## スターターのデモのショーケース
 
-スターターのライブデモには、テーマとスターターの名前を示し、テーマのドキュメントへ戻るリンクを載せたバーを表示できます。このバーはデモのビルド専用です。デモのデプロイだけが `_config.yml` に重ねる 2 つ目の設定ファイルに書けば、スターターから作ったサイトには表示されません。GitHub Pages のビルダーは `_config.yml` しか読まないため、このビルダーを使うワークフローではビルドの前にデモのファイルを `_config.yml` に統合します。
+スターターのライブデモには、テーマとスターターの名前を示し、テーマのドキュメントへ戻るリンクを載せたバーを表示できます。このバーはデモのビルド専用です。デモのデプロイだけが `_config.yml` に重ねる 2 つ目の設定ファイルに書けば、スターターから作ったサイトには表示されません。GitHub Pages のビルダーは `_config.yml` しか読まないため、このビルダーを使うワークフローではビルドの前にデモのファイルを `_config.yml` に統合します。テーマのスターターは `if: github.repository == '<owner>/<repo>'` の条件が付いたワークフローのステップでこれを行うため、フォークやテンプレートから作ったリポジトリはショーケースなしでビルドされます。
 
 ```yaml
 # _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
@@ -153,7 +153,7 @@ modootoday:
 - **非表示**はそのタブでの訪問が終わるまで続きます(`sessionStorage`)。`<head>` の小さなスクリプトがページを描く前にこの値を読むため、次のページにはバーもその余白もなく、表示がずれることもありません。JavaScript がないときやストレージが使えないときは、ショーケースはそのまま残ります。
 - **検索エンジン**: ショーケースを有効にすると、すべてのページに `<meta name="robots" content="noindex">` が付きます。デモのサンプルの文章は、スターターから作ったどのサイトも最初に持つ文章だからです。サイトマップにはページが残りますが noindex が優先され、デモのビルドの Lighthouse SEO 監査はページがインデックスから除外されていると報告します。
 - **ラベル**はページの言語に従います。`starter` は `showcase.starters.<name>` のラベルを選び、テーマには `docs`、`blog`、`landing` があります。ほかのスターターでは `_data/i18n/<lang>.yml` にそのキーを追加してください。ない場合、ラベルにはテーマ名だけが表示されます。
-- `modootoday-check` は `_config.yml` と `_config.demo.yml` のキーを検査し、`_config.yml` 自体で有効にすると警告し、noindex のタグがないビルド済みのページも警告します。
+- `modootoday-check` は `_config.yml` と `_config.demo.yml` のキーを検査し、`_config.yml` 自体で有効にすると警告し、ショーケースが表示されるビルドでは noindex のタグがないページも警告します。`_config.demo.yml` があっても、それなしでビルドしたサイトには警告しません。
 
 ## head と SEO
 

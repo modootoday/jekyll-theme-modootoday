@@ -1,7 +1,8 @@
 name: Starters
 
 # Renders every starter of example/starters.yml (rake starters:render), fails on drift, then builds and checks each
-# one on both stacks: the github-pages 232 bundle and Jekyll 4, and the real GitHub Pages builder on remote_theme.
+# one on both stacks: the github-pages 232 bundle and Jekyll 4, and the real GitHub Pages builder on remote_theme;
+# then builds each live demo with its _config.demo.yml and runs the showcase audit on it.
 on:
   push:
     branches: [main]
@@ -46,6 +47,9 @@ jobs:
         run: bundle exec rake starters:render starters:check
       - name: Build and check with the manifest flags
         run: bundle exec rake "starters:build[${{ matrix.starter }}]"
+      # The live demo's build: _config.demo.yml layered, at the repository's Pages base path, with its qa: pages.
+      - name: Demo build (showcase overlay)
+        run: bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/demo]"
       - name: Structured data (url overlay)
         run: |
           printf 'url: https://example.com\n' > "$RUNNER_TEMP/url.yml"
@@ -119,3 +123,40 @@ jobs:
         run: |
           flags=$(sed -n 's/^ *modootoday-check \. _site //p' "$CLASSIC_TREE/.github/workflows/pages.yml")
           ruby exe/modootoday-check "$CLASSIC_TREE" rt-site $flags --aliases
+
+  # Each live demo as its repository deploys it (_config.demo.yml layered, github-pages 232) in a browser: the showcase
+  # audit (test/system/audit/features/showcase.mjs) on the first two qa: pages of the manifest.
+  showcase:
+    name: ${{ matrix.starter }} demo showcase
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [docs, blog, landing]
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Demo build
+        run: bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/demo]"
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Showcase audit
+        run: node test/system/showcase.mjs "$RUNNER_TEMP/demo" "qa-out/showcase-${{ matrix.starter }}"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: showcase-${{ matrix.starter }}
+          path: qa-out
+          retention-days: 14
