@@ -108,12 +108,17 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          # git-cliff reads the commits and tags since the last release.
+          fetch-depth: 0
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
       - run: npm ci
       - run: npm test
+      # The pinned git-cliff is in node_modules here; the Ruby jobs skip this comparison without it.
+      - name: CHANGELOG [Unreleased] is generated from the commits
+        run: ruby script/changelog --check
 
   tokens:
     name: DTCG tokens.json (read-only artifact)

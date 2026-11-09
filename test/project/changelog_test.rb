@@ -4,6 +4,7 @@
 require "minitest/autorun"
 require "date"
 require "open3"
+require_relative "../../script/release/changelog"
 
 class ChangelogTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -72,6 +73,15 @@ class ChangelogTest < Minitest::Test
     newer = released.select { |v, _| Gem::Version.new(v) >= VISUAL_SINCE }
     refute_empty newer
     newer.each { |v, e| assert_match(/\A## [^\n]+\n\nVisual: \S/, e, "#{v}: open the entry with `Visual: `") }
+  end
+
+  # [Unreleased] is git-cliff's render of the commits since the last tag (adr:modootoday/20261109225758).
+  def test_unreleased_is_generated_from_the_commits
+    skip "git-cliff is not installed (npm ci); push CI runs script/changelog --check" unless Release::Changelog.cliff
+    log = Release::Changelog.new(source)
+    assert_equal log.expected_unreleased, log.unreleased, "run ruby script/changelog (or bundle exec rake fix), then amend"
+  rescue Release::Error => e
+    skip e.message
   end
 
   def test_released_entries_keep_no_release_prep_placeholder
