@@ -49,6 +49,8 @@ jobs:
         with:
           persist-credentials: false
           submodules: true
+          # Release tags let test/project/changelog_test.rb compare each released entry with its tag.
+          fetch-tags: true
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
