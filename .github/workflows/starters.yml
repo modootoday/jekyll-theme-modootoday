@@ -11,9 +11,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+# A newer push cancels the older run on its ref; a manual run has its own queue per ref, which pushes never cancel.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'auto' }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
 
 permissions:
   contents: read

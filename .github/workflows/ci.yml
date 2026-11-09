@@ -6,10 +6,11 @@ on:
   pull_request:
   workflow_dispatch:
 
-# A newer push to the same ref makes the older run moot.
+# A newer push to the same ref makes the older run moot. A manual run (the release check) has its own group per ref:
+# pushes never cancel it, and a second manual run waits for the first instead of racing it.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'auto' }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
 
 permissions:
   contents: read

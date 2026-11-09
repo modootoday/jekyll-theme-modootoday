@@ -16,6 +16,11 @@ on:
         description: Commit or tag to compare against (default the latest release tag)
         required: false
 
+# One run per ref at a time: a newer pull request event cancels the older run, a second manual run waits for the first.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
