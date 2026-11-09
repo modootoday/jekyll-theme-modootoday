@@ -23,7 +23,7 @@ test("an overflowing table wrapper becomes a labelled focusable region; a fittin
   const d = await run(`<div class="mt-table" id="wide" data-w="300"><table>${HEAD}${BODY}</table></div>` +
     `<div class="mt-table" id="fits" data-w="100"><table>${HEAD}${BODY}</table></div>`);
   const wide = d.getElementById("wide");
-  assert.deepStrictEqual([wide.tabIndex, wide.getAttribute("role"), wide.getAttribute("aria-label")], [0, "region", "표 1"], "numbered among all tables, so the name holds at every width");
+  assert.deepStrictEqual([wide.tabIndex, wide.getAttribute("role"), wide.getAttribute("aria-label")], [0, "region", "표"], "a number only among regions that exist");
   assert.strictEqual(d.getElementById("fits").hasAttribute("role"), false);
   assert.strictEqual(d.querySelector("table").hasAttribute("tabindex"), false, "the table itself is not the region");
 });
@@ -52,7 +52,32 @@ test("every overflowing region gets its own name: title, caption or language, el
 test("the name patterns come from the page language", async () => {
   const w = new JSDOM(`<!doctype html><html data-mt-code="コード" data-mt-region-named="[label]（[name]）" data-mt-region-nth="[name] [n]"><body><main class="mt-main">` +
     `<h2>例</h2>${code("ruby", "a")}${code("ruby", "b")}<pre id="c"><code>x</code></pre></main></body></html>`).window;
-  const { names } = await importModule("content/scroll-region.js");
-  const n = names(w.document, w.document.documentElement.dataset);
+  const { names, numbered } = await importModule("content/scroll-region.js");
+  const ds = w.document.documentElement.dataset;
+  const all = names(w.document, ds);
+  const n = numbered(all, new Set(all.keys()), ds);
   assert.deepStrictEqual(["a", "b", "c"].map((id) => n.get(w.document.getElementById(id))), ["コード（ruby） 1", "コード（ruby） 2", "コード（例）"]);
+});
+
+test("a heading that repeats the label is left out of the name", async () => {
+  const d = await run(`<h2>표</h2><div class="mt-table" id="a" data-w="300"><table>${HEAD}${BODY}</table></div>`);
+  assert.strictEqual(d.getElementById("a").getAttribute("aria-label"), "표");
+  const w = new JSDOM(`<!doctype html><html><body><main class="mt-main"><h2>Tables</h2><div class="mt-table" id="t"></div></main></body></html>`).window;
+  const { names } = await importModule("content/scroll-region.js");
+  assert.strictEqual(names(w.document, w.document.documentElement.dataset).get(w.document.getElementById("t")), "Table");
+});
+
+test("numbers count only the regions that overflow, so no name skips a number", async () => {
+  const d = await run(`${code("ruby", "r1")}<div class="language-ruby highlighter-rouge"><div class="highlight"><pre id="r2" data-w="100"><code>x</code></pre></div></div>${code("ruby", "r3")}${code("yaml", "y1")}`);
+  const label = (id) => d.getElementById(id).getAttribute("aria-label");
+  assert.deepStrictEqual(["r1", "r2", "r3", "y1"].map(label), ["코드, ruby 1", null, "코드, ruby 2", "코드, yaml"]);
+});
+
+test("a figure scroller keeps its own name and stops being a tab stop when its content fits", async () => {
+  const fig = (id, w, name) => `<figure class="mt-figure mt-math"><div class="mt-figure-scroll" id="${id}" data-w="${w}" tabindex="0" role="region" aria-label="${name}"><math></math></div></figure>`;
+  const d = await run(fig("f1", 100, "수식 1") + fig("f2", 300, "수식 2"));
+  const f1 = d.getElementById("f1");
+  assert.deepStrictEqual([f1.hasAttribute("tabindex"), f1.hasAttribute("role"), f1.hasAttribute("aria-label")], [false, false, false]);
+  const f2 = d.getElementById("f2");
+  assert.deepStrictEqual([f2.tabIndex, f2.getAttribute("role"), f2.getAttribute("aria-label")], [0, "region", "수식 2"]);
 });

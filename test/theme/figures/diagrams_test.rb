@@ -25,7 +25,7 @@ class DiagramsTest < Minitest::Test
   def test_the_first_fence_becomes_the_first_entry
     h = read(site(:pair, MERMAID), "index.html")
     fig = h[%r{<figure class="mt-figure mt-figure-svg mt-diagram">.*?</figure>}m]
-    assert_includes fig, %(<div class="mt-figure-scroll" tabindex="0" role="region" aria-label="Writing comes first, then the check">)
+    assert_includes fig, %(<div class="mt-figure-scroll" tabindex="0" role="region" aria-label="Diagram, The two steps.">), "named by the caption, so the alt text is read once"
     assert_includes fig, %(<img class="mt-diagram-light mt-no-filter" src="/assets/diagrams/flow.svg" alt="Writing comes first, then the check" width="240" height="60" loading="lazy" decoding="async">)
     assert_includes fig, %(<img class="mt-diagram-dark mt-no-filter" src="/assets/diagrams/flow.dark.svg" alt="Writing comes first, then the check" width="240" height="60")
     assert_includes fig, "<figcaption>The <em>two</em> steps.</figcaption>"

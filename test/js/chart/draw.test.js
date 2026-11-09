@@ -52,6 +52,22 @@ test("draws a bar chart from the table, named by the caption, with the table fol
   assert.deepStrictEqual([canvas.getAttribute("role"), canvas.getAttribute("aria-label"), canvas.parentElement.hidden], ["img", "Visits", false]);
   const details = doc.querySelector(".mt-chart-data > details");
   assert.deepStrictEqual([details.open, details.querySelector("summary").textContent, !!details.querySelector(".mt-table > table")], [false, "Chart data", true]);
+  assert.strictEqual(details.querySelector("summary").getAttribute("aria-label"), "Chart data, Visits");
+  assert.strictEqual(options.plugins.legend.labels.usePointStyle, undefined, "bar legends keep their filled box");
+});
+
+test("each Chart data disclosure is named after its chart, numbered when two charts share a name", async () => {
+  const { doc } = await page(figure("bar") + figure("line", "", "<figcaption>Sales</figcaption>") + figure("pie"));
+  assert.deepStrictEqual([...doc.querySelectorAll("summary")].map((s) => s.getAttribute("aria-label")),
+    ["Chart data, Visits 1", "Chart data, Sales", "Chart data, Visits 2"]);
+});
+
+test("a line chart's legend draws each key as a stroke in the series dash", async () => {
+  const { made } = await page(figure("line") + figure("area"));
+  for (const chart of made) {
+    const { usePointStyle, pointStyle } = chart.config.options.plugins.legend.labels;
+    assert.deepStrictEqual([usePointStyle, pointStyle], [true, "line"]);
+  }
 });
 
 test("line, area and pie charts; without a caption the series name the canvas", async () => {

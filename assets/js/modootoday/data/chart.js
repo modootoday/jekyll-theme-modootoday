@@ -4,6 +4,7 @@ import { tableData } from "./chart-table.js";
 import { onThemeChange } from "../theme/current.js";
 
 const DASH = [[], [6, 3], [2, 2], [8, 3, 2, 3]];
+const fill = (s, v) => s.replace(/\[(\w+)\]/g, (m, k) => v[k] ?? m);
 
 // Colours are the hooks chart.css resolves on the figure for the current scheme; area fills a #rrggbb hook at 20%.
 export function chartConfig(fig, data, still) {
@@ -26,7 +27,9 @@ export function chartConfig(fig, data, still) {
   const ticks = { color: hook("t") };
   const grid = { color: hook("g") };
   const axis = { stacked: opts.includes("stacked"), grid, border: grid, ticks };
-  const options = { maintainAspectRatio: false, indexAxis: opts.includes("horizontal") ? "y" : "x", plugins: { legend: { rtl, labels: ticks }, tooltip: { rtl } } };
+  // A line series legend key is a short stroke in its dash pattern; a dashed box outline reads as noise.
+  const labels = round || type == "bar" ? ticks : { ...ticks, usePointStyle: true, pointStyle: "line", pointStyleWidth: 28 };
+  const options = { maintainAspectRatio: false, indexAxis: opts.includes("horizontal") ? "y" : "x", plugins: { legend: { rtl, labels }, tooltip: { rtl } } };
   options.scales = round ? {} : { x: axis, y: { ...axis } };
   if (still) {
     options.animation = false;
@@ -42,6 +45,8 @@ export function init(root) {
     return;
   }
   const drawn = [];
+  const ds = doc.documentElement.dataset;
+  const named = new Map();
   for (const fig of root.querySelectorAll("figure.mt-chart")) {
     const box = fig.querySelector(".mt-chart-canvas");
     const holder = fig.querySelector(".mt-chart-data");
@@ -53,16 +58,26 @@ export function init(root) {
     const canvas = doc.createElement("canvas");
     const cap = fig.querySelector("figcaption");
     canvas.setAttribute("role", "img");
-    canvas.setAttribute("aria-label", cap ? cap.textContent.trim() : data.series.map((s) => s.name).join(", "));
+    const name = cap ? cap.textContent.trim() : data.series.map((s) => s.name).join(", ");
+    canvas.setAttribute("aria-label", name);
     box.append(canvas);
     box.hidden = false;
     const details = doc.createElement("details");
     details.append(doc.createElement("summary"), ...holder.childNodes);
     details.firstChild.textContent = holder.dataset.label;
     holder.append(details);
+    named.set(details.firstChild, fill(ds.mtRegionNamed || "[label], [name]", { label: holder.dataset.label, name }));
     const draw = (still) => new win.Chart(canvas, chartConfig(fig, data, still || query("(prefers-reduced-motion: reduce)")));
     drawn.push({ draw, chart: draw() });
   }
+  // Each disclosure is named after its chart, so two charts on a page do not read as the same toggle.
+  const count = {};
+  const seen = {};
+  named.forEach((n) => (count[n] = (count[n] || 0) + 1));
+  named.forEach((n, summary) => {
+    seen[n] = (seen[n] || 0) + 1;
+    summary.setAttribute("aria-label", count[n] > 1 ? fill(ds.mtRegionNth || "[name] [n]", { name: n, n: seen[n] }) : n);
+  });
   onThemeChange(() => drawn.forEach((d) => {
     d.chart.destroy();
     d.chart = d.draw(true);
