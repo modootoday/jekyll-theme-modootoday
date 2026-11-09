@@ -4,6 +4,8 @@ English is the canonical language. `README.md`, `RULES.md` and the English pages
 
 Translations are localized, not literal: follow the tone, glossary and spacing rules in [TRANSLATING.md](TRANSLATING.md).
 
+Coding agents start from [AGENTS.md](AGENTS.md), the short form of this file (`CLAUDE.md` imports it). Keep the two in step: a command or rule that changes here changes there in the same commit.
+
 
 1. Fork and branch from `main`, and clone with `git clone --recurse-submodules` (the published starters in `example/` are git submodules; in an existing clone run `git submodule update --init`, and `git config submodule.recurse true` keeps them in step on pull and checkout). Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:` …).
 2. Keep layouts and includes **Liquid only** — no custom Ruby plugins — so the theme keeps working with `remote_theme` on GitHub Pages.
