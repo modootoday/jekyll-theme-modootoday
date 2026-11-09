@@ -28,3 +28,18 @@ Charts render as tables inside `figure.mt-chart` (adr:modootoday/20261105075724)
 ## Consequences
 
 A site gets drawn charts by adding one file and two keys, and everything that reads the page without scripts still gets the table. The theme carries no third-party code and no CSP exception. Chart pages cost the library plus about 2 KB of theme script, and nothing elsewhere. The interaction paths (hover tooltip, legend click) are covered by the docs QA under the strict policy.
+
+## Amendment (1.6.0 audit fixes)
+
+The 1.6.0 usability and visual audit (audit:modootoday/20261105135021) found two faults in what this module draws:
+every disclosure on a page was named "Chart data", and the legend key of a dashed line series was a box outlined
+with the dash, which read as a scribbled block.
+
+- Each `summary` keeps its visible text and gets an accessible name from `region.named` with the chart's name
+  ("Chart data, Visits"), numbered with `region.nth` when two charts share one.
+- Line and area legends use Chart.js point-style keys drawn as a short line. Point-style keys take the point's style,
+  which has no dash, so the legend's `generateLabels` puts the series dash and a 2 px width back on each key; bar,
+  pie and doughnut legends keep their filled box.
+- **Budget.** `data/chart.js` measures 1,900 bytes gzip (from about 1,423): the summary naming and the legend keys.
+  Its cap moves from 1,664 to 2,176, the measured size plus 10% rounded up to 128 bytes
+  (adr:modootoday/20261104053146), in its registry row.

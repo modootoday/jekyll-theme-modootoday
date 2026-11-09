@@ -25,3 +25,20 @@ rel:
 ## Consequences
 
 Landmark lists read like "Code, yaml 2" or "Table, Settings" instead of a column of "Code". Every page's `<html>` gains two attributes, so every page's HTML differs from 1.5.0 by them; nothing else in the markup changes. Code and table regions share one rule, so a page can no longer mix a numbered code block with an identically named table.
+
+## Amendment (1.6.0 audit fixes)
+
+The 1.6.0 usability and visual audit (audit:modootoday/20261105135021) found three faults in the names and tab stops
+this decision sets: a nearest heading that only repeats the label gave "Table, Tables 1"; numbers counted blocks that
+did not scroll at that width, so a page could expose "Code, ruby 2" with no "Code, ruby 1"; and the static math,
+diagram and SVG figure scrollers stayed tab stops when their content fit, with a diagram named by its full alt text.
+
+- A heading equal to the label (ignoring case and a plural s) is left out of the name.
+- Numbers count only the regions that exist at the current width, and the names are recomputed when a region appears
+  or goes, so "numbered while names repeat" now means repeats among live regions.
+- `div.mt-figure-scroll` joins the module and its triggers (`mt-figure-scroll` in the registry row): the HTML keeps it a
+  named region for readers without JavaScript, and the module removes the tab stop while the content fits. Diagram
+  and SVG figure regions are named by `diagram.label` and the caption, not the alt text.
+- **Budget.** The module measures 1,445 bytes gzip (from 1,129): the live-region set, renumbering on resize and the
+  figure path. Its cap moves from 1,280 to 1,664, the measured size plus 10% rounded up to 128 bytes
+  (adr:modootoday/20261104053146), in its registry row.
