@@ -6,6 +6,10 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-11-09
+
+Visual: the intended differences from 1.5.0 are the new Charts and Widgets recipes, the chart, static diagram and static math figures on the recipe, components and kitchen-sink pages, the short dashed strokes that replace boxes as line and area chart legend keys, the line and dots of a timeline written as a list, the widget example on the Components page whose element fills only its result box, the admission price on the Event demo, the names of scroll regions, and figure scrollers that stop being tab stops when their content fits; core pages are otherwise unchanged.
+
 ### Added
 
 - Static diagrams (adr:modootoday/20261105075445): front matter `diagrams: [{name, alt, caption, width, height}]` replaces the n-th ```` ```mermaid ```` fence with a committed light and dark SVG pair (`<modootoday.diagrams.dir><name>.svg` and `.dark.svg`) that follows the theme toggle, keeps the fence in a `details` element (`modootoday.diagrams.source: none` drops it), and works under `style-src 'self'` with no script. `modootoday-check` checks the number of fences against the entries, `alt` and the files, and proposes `width` and `height` from the SVG's `viewBox`. The Mermaid loader skips such pages. New interface label `diagram.source` in every catalog; component name `diagram`. The figure sheet grows by 79 bytes gzip (792 of its 896 cap). New Sass partials start at their 2.0 path (adr:modootoday/20261105075436).
@@ -457,7 +461,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.6.0
 [1.5.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.5.0
 [1.4.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.1
 [1.4.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0
