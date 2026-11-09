@@ -20,6 +20,9 @@ module Modootoday
     def body(t) = t.sub(FM, "")
     def strip_index_lists(t) = t.gsub(INDEX_LIST, "")
 
+    # A badge prefix named in generated docs text (`status:` alone) would read as an empty badge; print its name.
+    def plain_badge_prefixes(t) = t.gsub(/`(status|tag|kbd|since):`/, '\1')
+
     # Blank out fenced code (CommonMark: closing fence = same char, length >= opener), keep line count.
     # Yields [line_no, info_string] for every opening fence.
     def strip_fences(t)

@@ -18,7 +18,7 @@ blocks = tables.to_h do |mark, table|
   [mark, [/#{Regexp.escape(begin_m)}\n.*?#{Regexp.escape("<!-- #{mark}:end -->")}/m, "#{begin_m}\n#{table}<!-- #{mark}:end -->"]]
 end
 b, e = Modootoday::Markdown::INDEX_MARK % "begin", Modootoday::Markdown::INDEX_MARK % "end"
-cli = tables.map { |mark, table| "### #{USAGE[mark].split.first}\n\n`#{USAGE[mark]}`\n\n#{table}" }.join("\n")
+cli = tables.map { |mark, table| "### #{USAGE[mark].split.first}\n\n`#{USAGE[mark]}`\n\n#{Modootoday::Markdown.plain_badge_prefixes(table)}" }.join("\n")
 drift = []
 write = lambda do |name, src, out|
   next if out == src

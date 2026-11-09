@@ -52,7 +52,7 @@ module DocsIndex
     # The item's opening words: links as their text, cut outside code at the first sentence end, colon or
     # parenthesis, then at a word end within LEAD characters.
     def lead(item)
-      t = item.gsub(/\s+/, " ").gsub(/\[([^\]]+)\]\([^)]+\)/, '\1').gsub(/\*\*([^*]+)\*\*/, '\1').strip
+      t = Modootoday::Markdown.plain_badge_prefixes(item.gsub(/\s+/, " ")).gsub(/\[([^\]]+)\]\([^)]+\)/, '\1').gsub(/\*\*([^*]+)\*\*/, '\1').strip
       parts = t.split(/(`[^`]*`)/)
       out = +""
       parts.each_with_index do |s, i|

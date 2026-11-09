@@ -310,7 +310,7 @@ description: 테마의 모든 릴리스를 최신순으로, 변경마다 한 줄
   - Doc-only includes live under `_includes/modootoday/doc/`
   - One prefix, no aliases
   - Theme includes and scripts live under `modootoday/`
-  - `since:` version badges are not part of 1.0
+  - since version badges are not part of 1.0
   - The docs site and the README quick start build CSS with `sass: {style: compressed}`
   - Header, navigation, search, theme toggle and code copy use logical properties, so they …
   - `modootoday-check` validates `_data/components.yml` itself
