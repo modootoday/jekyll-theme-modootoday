@@ -49,6 +49,8 @@ terms:
   - {en: header, ko: 헤더, ja: ヘッダー, avoid: {ja: [ヘッダ]}}
   - {en: footer, ko: 푸터, ja: フッター, avoid: {ko: [풋터], ja: [フッタ]}}
   - {en: contributor, ko: 기여자, ja: コントリビューター}
+  - {en: disclosure (component group), ko: 펼침, ja: 開閉}
+  - {en: site chrome (component group), ko: 사이트 공통 요소, ja: サイト共通要素}
 # Calques: literal English patterns that read as machine translation. Flagged in docs prose.
 calques:
   ko:

@@ -7,3 +7,6 @@
 .docs-flat-grid ul{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:0;list-style:none}.docs-flat-grid li{padding:.5rem;text-align:center;border:1px solid var(--mt-border);border-radius:.375rem}
 .docs-split-demo { margin: 0; color: var(--mt-primary); }
 .docs-decor-demo { display: block; margin: .75rem; color: var(--mt-primary); }
+/* Component group headings (docs/_data/component_groups.yml) open a band above the components they hold. */
+[data-section^="group-"] { padding-block-start: 1.5rem; border-block-start: 2px solid var(--mt-border); }
+[data-section^="group-"] > h2 { font-size: 1.75rem; }

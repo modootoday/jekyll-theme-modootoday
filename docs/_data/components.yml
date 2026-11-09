@@ -1,21 +1,22 @@
 # Registry checked by modootoday-check and by test/system/docs/coverage.rb (every section component must appear in components/kitchen-sink.md)
 # slots: the slot contract (see api.md#slot-contract); counts are checked per section. A list of maps = alternative forms.
+# Keys go A-Z; each component's group is in component_groups.yml (adr:modootoday/20261109141344).
 # parts: stable selectors you may style; each must appear in the Component structure table of api.md and in the built HTML.
-features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed: [bottom], required: false}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
-tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}, parts: ['section.mt-c-tabs[data-tabs]', '[role=tablist]', '[role=tab]', '[role=tabpanel]']}
-cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 accordion: {slots: {panels: {min: 1}}, parts: [section.mt-c-accordion, 'h3 > button[aria-expanded]']}
-steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
-timeline: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-timeline, ol > li]}
-filetree: {i18n: [filetree.label], slots: {items: {min: 1}}, parts: [section.mt-c-filetree, 'ul[aria-label]']}
+chart: {i18n: [chart.data], params: {type: {allowed: [bar, line, area, pie, doughnut], required: true}, data: {required: false}, stacked: {allowed: [true, false], required: false}, horizontal: {allowed: [true, false], required: false}}, parts: [figure.mt-chart, .mt-chart-canvas, .mt-chart-data, 'figure.mt-chart table']}
+cta: {slots: {actions: {required: true}}, parts: [.mt-cta]}
 details: {slots: {panels: {min: 1}}, parts: [section.mt-c-details, details.mt-details, summary > h3]}
 faq: {slots: {panels: {min: 1}}, parts: [section.mt-c-faq, details.mt-details]}
-params: {i18n: [params.required], slots: {rows: {min: 1}}, parts: [section.mt-c-params, 'th[scope=col]', .mt-param-required]}
-linkcards: {slots: {items: {min: 1}}, parts: [section.mt-c-linkcards, ul > li > a]}
-quote: {slots: {quotes: {min: 1}}, parts: [figure.mt-quote, figcaption]}
+features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed: [bottom], required: false}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
+filetree: {i18n: [filetree.label], slots: {items: {min: 1}}, parts: [section.mt-c-filetree, 'ul[aria-label]']}
 gallery: {i18n: [gallery.close], slots: {items: {min: 1}}, parts: [a.mt-gallery-thumb, a.mt-lightbox, .mt-lightbox-close]}
+linkcards: {slots: {items: {min: 1}}, parts: [section.mt-c-linkcards, ul > li > a]}
+params: {i18n: [params.required], slots: {rows: {min: 1}}, parts: [section.mt-c-params, 'th[scope=col]', .mt-param-required]}
 pricing: {i18n: [pricing.recommended], params: {recommended: {required: false}}, slots: {panels: {min: 1}}, parts: [.mt-plans, .mt-plan, .mt-plan-recommended, .mt-plan-flag]}
+quote: {slots: {quotes: {min: 1}}, parts: [figure.mt-quote, figcaption]}
 split: {params: {side: {allowed: [start, end], required: false}, ratio: {allowed: ["1:1", "5:7"], required: false}}, parts: [section.mt-c-split, .mt-section-in, .mt-section-body, .mt-section-visual, .mt-split-start, .mt-split-5-7]}
+steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-steps, ol > li]}
 subscribe: {i18n: [subscribe.email, subscribe.submit], slots: {lead: {min: 1}}, parts: [section.mt-c-subscribe]}
-chart: {i18n: [chart.data], params: {type: {allowed: [bar, line, area, pie, doughnut], required: true}, data: {required: false}, stacked: {allowed: [true, false], required: false}, horizontal: {allowed: [true, false], required: false}}, parts: [figure.mt-chart, .mt-chart-canvas, .mt-chart-data, 'figure.mt-chart table']}
+tabs: {i18n: [tabs.label], slots: {panels: {min: 2}, code: {min: 2}}, parts: ['section.mt-c-tabs[data-tabs]', '[role=tablist]', '[role=tab]', '[role=tabpanel]']}
+timeline: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-timeline, ol > li]}
 widget: {i18n: [widget.fallback], params: {widget: {required: true}, props: {required: false}}, slots: {lead: {min: 1}}, parts: [section.mt-c-widget, .mt-widget, .mt-widget-fallback]}

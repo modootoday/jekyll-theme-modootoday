@@ -1,68 +1,136 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:bb83bc281887
+source_rev: sha256:4d234fb1ee4f
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, cards-4, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
 sections:
-  - alerts
-  - alerts-content
+  - group-text
+  - badge
+  - badge-legend
+  - kbd
+  - lists
+  - loading
+  - progress
+  - group-blocks
+  - callout
+  - callout-content
+  - code
+  - code-titles
+  - {c: filetree, name: filetree}
+  - {c: quote, name: quote}
+  - group-media
+  - embed
+  - figure
+  - {c: gallery, name: gallery}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 数える}}
+  - group-data
+  - {c: chart, name: chart, type: bar}
+  - filter
+  - {c: params, name: params}
+  - table
+  - group-disclosure
+  - {c: accordion, name: accordion}
+  - {c: details, name: details}
+  - {c: faq, name: faq}
+  - {c: steps, name: steps}
+  - {c: steps, name: steps-headings}
+  - {c: tabs, name: tabs}
+  - {c: timeline, name: timeline}
+  - {c: timeline, name: timeline-list}
+  - group-sections
   - {c: features, name: cards, cols: 2, badge: bottom}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
-  - {c: tabs, name: tabs}
-  - badges
-  - keyboard
-  - {c: accordion, name: accordion}
-  - {c: steps, name: steps}
-  - {c: steps, name: steps-headings}
-  - {c: timeline, name: timeline}
-  - {c: timeline, name: timeline-list}
-  - figure
-  - tables
-  - code
-  - code-titles
-  - progress
-  - embeds
-  - loading
-  - {c: filetree, name: filetree}
-  - {c: details, name: details}
-  - {c: faq, name: faq}
-  - {c: params, name: params}
-  - {c: chart, name: chart, type: bar}
-  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: 数える}}
   - {c: linkcards, name: linkcards}
-  - {c: quote, name: quote}
-  - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
-  - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
-  - lists
-  - navigation
-  - language-switcher
-  - theme-toggle
-  - icons
-  - search
-  - filter
+  - {c: subscribe, name: subscribe, bleed: true}
+  - group-chrome
   - breadcrumb-toc
+  - icons
+  - language-switcher
+  - nav
   - pagination
   - posts
-  - status
+  - search
+  - theme-toggle
 ---
 # コンポーネント
 
 どのコンポーネントも普通の Markdown です。各例では Markdown のソースと、同じソースからテーマが描いた実際の表示結果を続けて示します。表示結果はいまお使いのライト／ダークモードのままです。ソースをコピーして貼り付ければ同じ結果になります。github.com では素の要素として表示されます。
 
+コンポーネントはテキストとインラインからサイト共通要素まで用途ごとにまとめ、まとまりの中では `components` の名前の A-Z 順に並べます。どの言語でも順序は同じです。
+
 [キッチンシンクを開く](kitchen-sink/) [設定](../guides/configuration/)
 
 > [!NOTE]
 > このページは[英語の原文](../../components/)の翻訳です。内容が異なる場合は英語版が優先されます。
+
+## テキストとインライン
+
+本文のテキストと、段落の中の短い要素に使うスタイルです。
+
+## バッジ
+
+`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータスバッジは名前の前に色の点を表示します。点は CSS で描くので、スクリーンリーダーは名前だけを読み上げ、強制カラーモードでも見えます。
+
+`status:available` `status:partial` `status:planned`
+
+`tag:beta`
+
+## ステータスの凡例
+
+| バッジ | 意味 |
+|---|---|
+| `status:available` | 提供中で安定 |
+| `status:partial` | 既知の制限あり |
+| `status:planned` | ロードマップにある |
+
+## キーボードキー
+
+`status:available` kbd とコロンで始まるコードスパンがキーボードキーになります。キーは空白なしの `+` でつなぎます。
+
+`kbd:Ctrl+K` か `kbd:/` で検索を開きます。
+
+## リスト
+
+`status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
+
+- [インストール](../guides/install/)
+- [設定](../guides/configuration/)
+- [アクセシビリティ](../guides/accessibility/)
+
+タイトル付きの項目:
+
+- **チップ**: リンクだけのリスト
+- **タイトル付き項目**: 太字のタイトル、コロン、続いてテキスト
+
+## 読み込み表示とスケルトン
+
+`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルが付き、利用者が視差効果を減らす設定にしていると動きません。スタイルは別のスタイルシートにあり、使うページだけが読み込みます。
+
+`loading:spinner`
+
+`skeleton:avatar`
+`skeleton:text`
+`skeleton:card`
+
+## 進捗
+
+`status:available` progress とコロンのあとに 0 から 100 の整数が続くコードスパンは、値をテキストでも示すラベル付きの進捗バーになります。
+
+翻訳 `progress:60`
+
+## ブロック
+
+段落と段落の間に単独で置くブロックです。
 
 ## アラート
 
@@ -92,6 +160,232 @@ sections:
 >
 > - `modootoday-check` を実行する
 > - `bundle exec jekyll serve` でプレビューする
+
+## コードブロック
+
+`status:available` フェンスのコードブロックは構文が色分けされ、ブロックの上端（`file:` のタイトルがある場合はタイトルの行）にアイコンのコピーボタンが付きます。コードがクリップボードにコピーされると、スクリーンリーダーに「コピーしました」と伝えます。長い行はスクロールし、キーボードでもブロックに移動できます。
+
+```ruby
+Jekyll::Hooks.register :site, :post_write do |site|
+  puts "Built #{site.pages.size} pages"
+end
+```
+
+## コードのタイトルと diff
+
+`status:available` フェンスのコードブロックの直前に、file とコロンで始まるコードスパンだけの行を置くと、ブロックのタイトルバーになります。`diff` ブロックは追加行と削除行に色を付け、プラスとマイナスの記号を残します。
+
+`file:_config.yml`
+
+```yaml
+theme: jekyll-theme-modootoday
+```
+
+```diff
+- remote_theme: old/theme
++ theme: jekyll-theme-modootoday
+```
+
+## ファイルツリー
+
+`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストがある項目はフォルダーです。
+
+- docs
+  - _config.yml
+  - index.md
+  - ko
+    - index.md
+
+## 引用
+
+`status:available` `c: quote` セクションでは、最終行がダッシュ（—）で始まる引用の、その行が出典になります。
+
+> ドキュメントが github.com でもサイトでも読みやすい。
+>
+> — テーマの利用者
+
+## メディア
+
+画像、図、ダイアグラム、埋め込みフレーム、ウィジェットです。
+
+## 埋め込み
+
+`status:available` embed とコロン、https の URL、任意のタイトルからなるコードスパンだけの段落は、遅延読み込みされる 16:9 のフレームになり、読み込み中も領域を確保します。
+
+`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg サンプルページの図`
+
+## 図
+
+`status:available` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
+
+![左の Markdown ソースが右のスタイル付きページになる](../../assets/images/sample.svg)
+
+*左が Markdown、右が表示結果です。*
+
+## ギャラリー
+
+`status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
+
+- ![植物とアームチェアのある日当たりのよい部屋](../../assets/images/gallery/room.webp)
+- ![低い太陽の下のピンク色の砂丘](../../assets/images/gallery/dunes.webp)
+- ![静かな池を囲む熱帯の葉](../../assets/images/gallery/leaves.webp)
+- ![山の湖に延びる木の桟橋](../../assets/images/news/travel-sm.webp)
+- ![緑の丘に並ぶ風力発電機と太陽光パネル](../../assets/images/news/energy-sm.webp)
+- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../../assets/images/projects/brand.webp)
+
+## ウィジェット
+
+`status:available` `c: widget` セクションでは、`widget:` が指す custom element（`modootoday.scripts` に `element:` で登録）が見出しの後に置かれ、`props` は `data-props` に JSON として入ります。セクションのテキストは要素が動くまで表示される代替テキストで、サイトのモジュールはその要素があるページでだけ読み込まれます。
+
+3 から数えるカウンターです。JavaScript がない場合は、代わりにこの文が表示されます。
+
+## データ
+
+表とグラフ、そしてそれらを読みやすくする機能です。
+
+## グラフ
+
+`status:available` `c: chart` セクションで、または `modootoday.chart.enabled` を有効にしたときに `chart:bar` だけの行の後で、表はグラフの figure になります。表はグラフのテキストとして残ります。`modootoday.chart.src` があればサイトの Chart.js がグラフを描いて表はその下に畳まれ、なければ読者には表が表示されます。表の後の強調だけの行はキャプションになります。
+
+| 四半期 | ドキュメント | ブログ |
+|---|---|---|
+| 第 1 四半期 | 4,160 | 2,030 |
+| 第 2 四半期 | 5,270 | 2,770 |
+| 第 3 四半期 | 5,910 | 3,120 |
+
+*四半期ごとの訪問数*
+
+## 絞り込み
+
+`status:available` `sections:` の項目に `filter: true` と書くと、そのセクションの最初のリストか表の上に検索欄ができます。入力した語をすべて含む項目だけが残り、表示中の件数を知らせます。`filter: {facet: 2}` は表の 2 列目の値ごとにボタンも追加します。`sections:` のないページでは front matter に `filter:` を、ディレクトリページでは `filter_text: true` を書きます。JavaScript がなければすべての項目が表示されます。[絞り込みデモ](../layouts/demo/filter/)と[検索のレシピ](../recipes/search/)を参照してください。
+
+## パラメーター表
+
+`status:available` `c: params` セクションでは、表が名前、型、既定値、説明でオプションを並べます。`required` だけのセルは必須バッジになります。
+
+| 名前 | 型 | 既定値 | 説明 |
+|---|---|---|---|
+| `title` | 文字列 | `required` | ページタイトル |
+| `cols` | 数値 | 2 | カードの列数 |
+
+## 表
+
+`status:available` すべての表は、テーマがページを描画するときに付けるスクロール枠（`div.mt-table`）に入ります。2〜3 列の表はセル内で折り返しますが、各列は 5rem（最後の列は 9rem）より狭くならず、それを超える分は枠がスクロールします。40rem 以上では、列より長い単語やコードだけが途中で折り返されます。4 列以上の表は 1 列あたり約 9rem まで広がってからスクロールし、最初の列は画面に残ります。最初の列のコードと右揃え・中央揃えのセルは折り返さず、端の影と、スクロール連動アニメーションに対応したブラウザーではその側の内容が薄くなる表示で、まだスクロールできることがわかります。
+
+40rem より狭い画面では、`c: params` の表は行ごとのブロックになり、各セルに列名のラベルが付きます。ほかの表も収まらなければ同じように積み重なります。2〜3 列ならスクロールが必要なとき、4 列以上なら 6 行を超えるセルがあるときです。そのため、ページに狭い画面向けの記述は要りません。
+
+3 つのクラスは、サイトがページ本文の外、自分で書くレイアウトや include に置く表のためのフックです。
+
+```text
+table.mt-table--stack  40rem 未満で行がラベル付きのブロックになる
+table.mt-table--dl     2 列の表：40rem 未満でキーの下に値
+table.mt-table--fixed  同じ幅の列、どこでも折り返す（比較表向け）
+```
+
+ページ本文では付けられません。kramdown の属性リスト（`{: .mt-table--stack}`）は kramdown 専用で、GitHub はそのまま文字として表示し、`modootoday-check` が報告します。積み重ねる表示には JavaScript が必要で、ない場合は表がスクロールします。`mt-table--fixed` を付けた表は積み重なりません。
+
+| キー | 既定値 | 説明 |
+|---|---|---|
+| `color_scheme` | `auto` | OS に合わせるか、ライトかダークに固定する |
+| `badges` | `true` | ステータスのコードスパンをバッジに変換する |
+
+## 開閉と順序
+
+必要なときに開く内容と、順に読む内容です。
+
+## アコーディオン
+
+`status:available` `c: accordion` セクションでは、`###` 見出しが下の内容を開閉するボタン（`aria-expanded`）になります。Enter か Space で切り替えます。JavaScript がなければすべての答えが表示されます。
+
+### JavaScript なしでも動きますか?
+
+はい。すべての答えが質問の下に表示されたままになります。
+
+### 答えにコードを入れられますか?
+
+```sh
+bundle exec jekyll serve
+```
+
+## 詳細
+
+`status:available` `c: details` セクションでは、各 `###` 見出しがブラウザー標準の開閉要素になります。JavaScript なしで開閉します。
+
+### 何が必要ですか？
+
+ブラウザーだけです。
+
+## よくある質問
+
+`status:available` `c: faq` セクションは詳細と同じように動きます。このページのように `schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../guides/structured-data/) を参照）。
+
+### テーマは無料ですか？
+
+はい、MIT ライセンスです。
+
+### GitHub Pages で動きますか？
+
+はい、github-pages gem で動きます。
+
+## ステップ
+
+`status:available` `c: steps` セクションでは、番号付きリストが番号付きのステップになります。
+
+1. `_config.yml` にテーマを追加します。
+2. プレーンな Markdown で `index.md` を書きます。
+3. `bundle exec jekyll build` を実行します。
+
+## 見出しで書くステップ
+
+1 つのステップに複数行が必要なら、リストの代わりに `###` 見出しを使います。
+
+### インストール
+
+`remote_theme` とプラグインを追加します。
+
+### 公開
+
+`main` にプッシュして GitHub Pages を有効にします。
+
+## タブ
+
+`status:available` `c: tabs` セクションでは、`###` 見出しと直後のコードブロックが 1 つのタブになります。2 つ以上書いてください。矢印キーでタブを移動し、Home と End で先頭と末尾に移ります。JavaScript がなければすべてのブロックが見出しの下に表示されます。
+
+### macOS
+
+```sh
+brew install ruby
+```
+
+### Linux
+
+```sh
+sudo apt install ruby-full
+```
+
+## タイムライン
+
+`status:available` `c: timeline` セクションでは、`###` 見出しが線上の点になります。
+
+### インストール
+
+アラート、セクション、カード、タブ。
+
+### 確認
+
+テーマ切り替え、パンくずリスト、目次。
+
+## リストで書くタイムライン
+
+番号付きリストでも書けます。
+
+1. インストール: アラート、セクション、カード。
+2. 執筆: デザイントークン、ナビゲーション。
+3. 確認: テーマ切り替え、ステップ。
+
+## ページセクション
+
+`sections:` の項目とヒーローでランディングページを組み立てる帯です。
 
 ## カード
 
@@ -125,248 +419,12 @@ sections:
 
 [はじめる](../guides/install/) [設定を読む](../guides/configuration/)
 
-## タブ
-
-`status:available` `c: tabs` セクションでは、`###` 見出しと直後のコードブロックが 1 つのタブになります。2 つ以上書いてください。矢印キーでタブを移動し、Home と End で先頭と末尾に移ります。JavaScript がなければすべてのブロックが見出しの下に表示されます。
-
-### macOS
-
-```sh
-brew install ruby
-```
-
-### Linux
-
-```sh
-sudo apt install ruby-full
-```
-
-## バッジ
-
-`status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータスバッジは名前の前に色の点を表示します。点は CSS で描くので、スクリーンリーダーは名前だけを読み上げ、強制カラーモードでも見えます。
-
-`status:available` `status:partial` `status:planned`
-
-`tag:beta`
-
-## キーボードキー
-
-`status:available` kbd とコロンで始まるコードスパンがキーボードキーになります。キーは空白なしの `+` でつなぎます。
-
-`kbd:Ctrl+K` か `kbd:/` で検索を開きます。
-
-## アコーディオン
-
-`status:available` `c: accordion` セクションでは、`###` 見出しが下の内容を開閉するボタン（`aria-expanded`）になります。Enter か Space で切り替えます。JavaScript がなければすべての答えが表示されます。
-
-### JavaScript なしでも動きますか?
-
-はい。すべての答えが質問の下に表示されたままになります。
-
-### 答えにコードを入れられますか?
-
-```sh
-bundle exec jekyll serve
-```
-
-## ステップ
-
-`status:available` `c: steps` セクションでは、番号付きリストが番号付きのステップになります。
-
-1. `_config.yml` にテーマを追加します。
-2. プレーンな Markdown で `index.md` を書きます。
-3. `bundle exec jekyll build` を実行します。
-
-## 見出しで書くステップ
-
-1 つのステップに複数行が必要なら、リストの代わりに `###` 見出しを使います。
-
-### インストール
-
-`remote_theme` とプラグインを追加します。
-
-### 公開
-
-`main` にプッシュして GitHub Pages を有効にします。
-
-## タイムライン
-
-`status:available` `c: timeline` セクションでは、`###` 見出しが線上の点になります。
-
-### インストール
-
-アラート、セクション、カード、タブ。
-
-### 確認
-
-テーマ切り替え、パンくずリスト、目次。
-
-## リストで書くタイムライン
-
-番号付きリストでも書けます。
-
-1. インストール: アラート、セクション、カード。
-2. 執筆: デザイントークン、ナビゲーション。
-3. 確認: テーマ切り替え、ステップ。
-
-## 図
-
-`status:available` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
-
-![左の Markdown ソースが右のスタイル付きページになる](../../assets/images/sample.svg)
-
-*左が Markdown、右が表示結果です。*
-
-## 表
-
-`status:available` すべての表は、テーマがページを描画するときに付けるスクロール枠（`div.mt-table`）に入ります。2〜3 列の表はセル内で折り返しますが、各列は 5rem（最後の列は 9rem）より狭くならず、それを超える分は枠がスクロールします。40rem 以上では、列より長い単語やコードだけが途中で折り返されます。4 列以上の表は 1 列あたり約 9rem まで広がってからスクロールし、最初の列は画面に残ります。最初の列のコードと右揃え・中央揃えのセルは折り返さず、端の影と、スクロール連動アニメーションに対応したブラウザーではその側の内容が薄くなる表示で、まだスクロールできることがわかります。
-
-40rem より狭い画面では、`c: params` の表は行ごとのブロックになり、各セルに列名のラベルが付きます。ほかの表も収まらなければ同じように積み重なります。2〜3 列ならスクロールが必要なとき、4 列以上なら 6 行を超えるセルがあるときです。そのため、ページに狭い画面向けの記述は要りません。
-
-3 つのクラスは、サイトがページ本文の外、自分で書くレイアウトや include に置く表のためのフックです。
-
-```text
-table.mt-table--stack  40rem 未満で行がラベル付きのブロックになる
-table.mt-table--dl     2 列の表：40rem 未満でキーの下に値
-table.mt-table--fixed  同じ幅の列、どこでも折り返す（比較表向け）
-```
-
-ページ本文では付けられません。kramdown の属性リスト（`{: .mt-table--stack}`）は kramdown 専用で、GitHub はそのまま文字として表示し、`modootoday-check` が報告します。積み重ねる表示には JavaScript が必要で、ない場合は表がスクロールします。`mt-table--fixed` を付けた表は積み重なりません。
-
-| キー | 既定値 | 説明 |
-|---|---|---|
-| `color_scheme` | `auto` | OS に合わせるか、ライトかダークに固定する |
-| `badges` | `true` | ステータスのコードスパンをバッジに変換する |
-
-## コードブロック
-
-`status:available` フェンスのコードブロックは構文が色分けされ、ブロックの上端（`file:` のタイトルがある場合はタイトルの行）にアイコンのコピーボタンが付きます。コードがクリップボードにコピーされると、スクリーンリーダーに「コピーしました」と伝えます。長い行はスクロールし、キーボードでもブロックに移動できます。
-
-```ruby
-Jekyll::Hooks.register :site, :post_write do |site|
-  puts "Built #{site.pages.size} pages"
-end
-```
-
-## コードのタイトルと diff
-
-`status:available` フェンスのコードブロックの直前に、file とコロンで始まるコードスパンだけの行を置くと、ブロックのタイトルバーになります。`diff` ブロックは追加行と削除行に色を付け、プラスとマイナスの記号を残します。
-
-`file:_config.yml`
-
-```yaml
-theme: jekyll-theme-modootoday
-```
-
-```diff
-- remote_theme: old/theme
-+ theme: jekyll-theme-modootoday
-```
-
-## 進捗
-
-`status:available` progress とコロンのあとに 0 から 100 の整数が続くコードスパンは、値をテキストでも示すラベル付きの進捗バーになります。
-
-翻訳 `progress:60`
-
-## 埋め込み
-
-`status:available` embed とコロン、https の URL、任意のタイトルからなるコードスパンだけの段落は、遅延読み込みされる 16:9 のフレームになり、読み込み中も領域を確保します。
-
-`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg サンプルページの図`
-
-## 読み込み表示とスケルトン
-
-`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルが付き、利用者が視差効果を減らす設定にしていると動きません。スタイルは別のスタイルシートにあり、使うページだけが読み込みます。
-
-`loading:spinner`
-
-`skeleton:avatar`
-`skeleton:text`
-`skeleton:card`
-
-## ファイルツリー
-
-`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストがある項目はフォルダーです。
-
-- docs
-  - _config.yml
-  - index.md
-  - ko
-    - index.md
-
-## 詳細
-
-`status:available` `c: details` セクションでは、各 `###` 見出しがブラウザー標準の開閉要素になります。JavaScript なしで開閉します。
-
-### 何が必要ですか？
-
-ブラウザーだけです。
-
-## よくある質問
-
-`status:available` `c: faq` セクションは詳細と同じように動きます。このページのように `schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../guides/structured-data/) を参照）。
-
-### テーマは無料ですか？
-
-はい、MIT ライセンスです。
-
-### GitHub Pages で動きますか？
-
-はい、github-pages gem で動きます。
-
-## パラメーター表
-
-`status:available` `c: params` セクションでは、表が名前、型、既定値、説明でオプションを並べます。`required` だけのセルは必須バッジになります。
-
-| 名前 | 型 | 既定値 | 説明 |
-|---|---|---|---|
-| `title` | 文字列 | `required` | ページタイトル |
-| `cols` | 数値 | 2 | カードの列数 |
-
-## グラフ
-
-`status:available` `c: chart` セクションで、または `modootoday.chart.enabled` を有効にしたときに `chart:bar` だけの行の後で、表はグラフの figure になります。表はグラフのテキストとして残ります。`modootoday.chart.src` があればサイトの Chart.js がグラフを描いて表はその下に畳まれ、なければ読者には表が表示されます。表の後の強調だけの行はキャプションになります。
-
-| 四半期 | ドキュメント | ブログ |
-|---|---|---|
-| 第 1 四半期 | 4,160 | 2,030 |
-| 第 2 四半期 | 5,270 | 2,770 |
-| 第 3 四半期 | 5,910 | 3,120 |
-
-*四半期ごとの訪問数*
-
-## ウィジェット
-
-`status:available` `c: widget` セクションでは、`widget:` が指す custom element（`modootoday.scripts` に `element:` で登録）が見出しの後に置かれ、`props` は `data-props` に JSON として入ります。セクションのテキストは要素が動くまで表示される代替テキストで、サイトのモジュールはその要素があるページでだけ読み込まれます。
-
-3 から数えるカウンターです。JavaScript がない場合は、代わりにこの文が表示されます。
-
 ## リンクカード
 
 `status:available` `c: linkcards` セクションでは、リンクで始まるリスト項目がカードになります。カード全体がリンク先です。
 
 - [インストール](../guides/install/) — サイトにテーマを追加します。
 - [設定](../guides/configuration/) — すべての設定を一か所で確認します。
-
-## 引用
-
-`status:available` `c: quote` セクションでは、最終行がダッシュ（—）で始まる引用の、その行が出典になります。
-
-> ドキュメントが github.com でもサイトでも読みやすい。
->
-> — テーマの利用者
-
-## ギャラリー
-
-`status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
-
-- ![植物とアームチェアのある日当たりのよい部屋](../../assets/images/gallery/room.webp)
-- ![低い太陽の下のピンク色の砂丘](../../assets/images/gallery/dunes.webp)
-- ![静かな池を囲む熱帯の葉](../../assets/images/gallery/leaves.webp)
-- ![山の湖に延びる木の桟橋](../../assets/images/news/travel-sm.webp)
-- ![緑の丘に並ぶ風力発電機と太陽光パネル](../../assets/images/news/energy-sm.webp)
-- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../../assets/images/projects/brand.webp)
 
 ## 料金プラン
 
@@ -389,13 +447,6 @@ theme: jekyll-theme-modootoday
 
 [チームを選ぶ](#)
 
-## 購読
-
-`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。 ここでは項目に `bleed: true` もあります。どのセクション項目と `hero:` にも指定でき、内容は読みやすい幅のまま、`--mt-bleed-bg`(既定は muted のサーフェス色)の背景帯が画面の全幅に広がります。`bleed: wide` は内容の幅もコンテナ幅まで広げます。サイドバーや目次があるページでは、帯は本文の列の中に収まります。
-
-リリースのたびにメールを 1 通受け取れます。
-
-
 ## 分割
 
 `status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。 ヒーローも同じ形にできます。`hero: {c: split, visual: <名前>, side: start, ratio: "5:7"}` は、タイトル、リード文、チェック行、ボタンをテキストの列に置き、include をその横に置きます。キッチンシンクのヒーローがこの形です。
@@ -404,48 +455,23 @@ theme: jekyll-theme-modootoday
 
 片側にテキスト、もう片側に画像が来ます。
 
-## リスト
+## 購読
 
-`status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
+`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。 ここでは項目に `bleed: true` もあります。どのセクション項目と `hero:` にも指定でき、内容は読みやすい幅のまま、`--mt-bleed-bg`(既定は muted のサーフェス色)の背景帯が画面の全幅に広がります。`bleed: wide` は内容の幅もコンテナ幅まで広げます。サイドバーや目次があるページでは、帯は本文の列の中に収まります。
 
-- [インストール](../guides/install/)
-- [設定](../guides/configuration/)
-- [アクセシビリティ](../guides/accessibility/)
+リリースのたびにメールを 1 通受け取れます。
 
-タイトル付きの項目:
+## サイト共通要素
 
-- **チップ**: リンクだけのリスト
-- **タイトル付き項目**: 太字のタイトル、コロン、続いてテキスト
+すべてのページに共通する部分で、ページに Markdown を書かなくてもレイアウトが追加します。
 
-## ナビゲーション
+## パンくずリストと目次
 
-`status:available` ヘッダーのメニューは `_data/nav/main.yml` から作られます。`items:` がある項目は広い画面でドロップダウンのグループになり、狭い画面ではメニューボタンが出ます。開いたメニューは Esc で閉じます。このページのヘッダーがその表示結果です。
-
-```yaml
-- {title: Install, url: /install/}
-- {title: Components, url: /components/}
-- title: More
-  items:
-    - {title: Public API, url: /api/}
-```
-
-## 言語切り替え
-
-`status:available` `languages:` と `language_switcher: header` を設定すると、ヘッダーに言語一覧を開く地球儀ボタンが出ます。言語が増えても幅は変わりません。言語名はそれぞれの言語で書かれ、現在の言語には `aria-current` が付きます。一覧は Esc で閉じます。このページのヘッダーの地球儀がその表示結果です。
+`status:available` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外すか、1 ページだけなら `toc: false` を書きます。サイドバーのあるページでは、80rem 以上で本文の列が目次の列の場所まで広がります。ホームページがその例です。このページの上部と横がその表示結果です。
 
 ```yaml
 modootoday:
-  languages: [en, ko, ja]
-  language_switcher: header
-```
-
-## テーマ切り替え
-
-`status:available` ヘッダーのボタンでライトとダークを切り替え、選んだ設定を記憶します。どちらかに固定するには `color_scheme` を使います。このページのヘッダーのボタンがその表示結果です。
-
-```yaml
-modootoday:
-  color_scheme: auto   # auto | light | dark
+  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination, theme-toggle]
 ```
 
 ## アイコンとロゴ
@@ -458,21 +484,26 @@ modootoday:
   favicon: brand     # brand | /favicon.ico
 ```
 
-## 検索
+## 言語切り替え
 
-`status:available` `search.json` ファイルを使うクライアント検索がヘッダーに入ります（`role="search"`）。`kbd:Ctrl+K` か `kbd:/` で検索欄に移動します。サイトのルートに `search.json` を置くと有効になります。[このサイトのファイル](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)をコピーしてください。このページのヘッダーの検索欄がその表示結果です。
-
-## 絞り込み
-
-`status:available` `sections:` の項目に `filter: true` と書くと、そのセクションの最初のリストか表の上に検索欄ができます。入力した語をすべて含む項目だけが残り、表示中の件数を知らせます。`filter: {facet: 2}` は表の 2 列目の値ごとにボタンも追加します。`sections:` のないページでは front matter に `filter:` を、ディレクトリページでは `filter_text: true` を書きます。JavaScript がなければすべての項目が表示されます。[絞り込みデモ](../layouts/demo/filter/)と[検索のレシピ](../recipes/search/)を参照してください。
-
-## パンくずリストと目次
-
-`status:available` ドキュメントページには、URL から作るパンくずリストと、`##`・`###` 見出しから作る目次が付きます。目次は広い画面では横に、狭い画面では折りたたみの箱に表示されます。レイアウトが付けるので、書くソースはありません。無効にするには `components` から `breadcrumb` か `toc` を外すか、1 ページだけなら `toc: false` を書きます。サイドバーのあるページでは、80rem 以上で本文の列が目次の列の場所まで広がります。ホームページがその例です。このページの上部と横がその表示結果です。
+`status:available` `languages:` と `language_switcher: header` を設定すると、ヘッダーに言語一覧を開く地球儀ボタンが出ます。言語が増えても幅は変わりません。言語名はそれぞれの言語で書かれ、現在の言語には `aria-current` が付きます。一覧は Esc で閉じます。このページのヘッダーの地球儀がその表示結果です。
 
 ```yaml
 modootoday:
-  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination, theme-toggle]
+  languages: [en, ko, ja]
+  language_switcher: header
+```
+
+## ナビゲーション
+
+`status:available` ヘッダーのメニューは `_data/nav/main.yml` から作られます。`items:` がある項目は広い画面でドロップダウンのグループになり、狭い画面ではメニューボタンが出ます。開いたメニューは Esc で閉じます。このページのヘッダーがその表示結果です。
+
+```yaml
+- {title: Install, url: /install/}
+- {title: Components, url: /components/}
+- title: More
+  items:
+    - {title: Public API, url: /api/}
 ```
 
 ## 前後のページ
@@ -500,10 +531,15 @@ tags: [release]
 ---
 ```
 
-## ステータスの凡例
+## 検索
 
-| バッジ | 意味 |
-|---|---|
-| `status:available` | 提供中で安定 |
-| `status:partial` | 既知の制限あり |
-| `status:planned` | ロードマップにある |
+`status:available` `search.json` ファイルを使うクライアント検索がヘッダーに入ります（`role="search"`）。`kbd:Ctrl+K` か `kbd:/` で検索欄に移動します。サイトのルートに `search.json` を置くと有効になります。[このサイトのファイル](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json)をコピーしてください。このページのヘッダーの検索欄がその表示結果です。
+
+## テーマ切り替え
+
+`status:available` ヘッダーのボタンでライトとダークを切り替え、選んだ設定を記憶します。どちらかに固定するには `color_scheme` を使います。このページのヘッダーのボタンがその表示結果です。
+
+```yaml
+modootoday:
+  color_scheme: auto   # auto | light | dark
+```

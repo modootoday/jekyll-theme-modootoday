@@ -1,0 +1,24 @@
+# The component order (adr:modootoday/20261109141344): purpose groups in this order, ids A-Z inside each, the same
+# in every language. Ids are the modootoday.components names; the few that are not (typography, icons,
+# language-switcher, posts) are docs topics shown on the components pages. test/system/docs/order.rb checks it.
+- id: text
+  title: {en: Text and inline, ko: 텍스트와 인라인, ja: テキストとインライン}
+  components: [badge, footnotes, kbd, lists, loading, progress, typography]
+- id: blocks
+  title: {en: Blocks, ko: 블록, ja: ブロック}
+  components: [callout, code, code-copy, filetree, quote, terminal]
+- id: media
+  title: {en: Media, ko: 미디어, ja: メディア}
+  components: [diagram, embed, figure, figure-svg, gallery, visual, widget]
+- id: data
+  title: {en: Data, ko: 데이터, ja: データ}
+  components: [chart, filter, params, table, table-stack]
+- id: disclosure
+  title: {en: Disclosure and sequence, ko: 펼침과 순서, ja: 開閉と順序}
+  components: [accordion, details, faq, steps, tabs, timeline]
+- id: sections
+  title: {en: Page sections, ko: 페이지 섹션, ja: ページセクション}
+  components: [bleed, card, cta, hero, linkcards, pricing, reveal, split, subscribe]
+- id: chrome
+  title: {en: Site chrome, ko: 사이트 공통 요소, ja: サイト共通要素}
+  components: [banner, breadcrumb, footer, icons, language-switcher, nav, page-actions, pagination, posts, search, showcase, sidebar, theme-toggle, toc]

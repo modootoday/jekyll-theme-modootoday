@@ -20,4 +20,9 @@ class DocsChecksTest < Minitest::Test
       assert st.success?, out
     end
   end
+
+  def test_component_order
+    out, st = run_check("test/system/docs/order.rb")
+    assert st.success?, out
+  end
 end

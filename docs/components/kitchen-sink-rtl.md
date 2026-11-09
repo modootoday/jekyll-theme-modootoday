@@ -5,16 +5,16 @@ description: A right-to-left sample in Arabic to check that every component mirr
 lang: ar
 twin: false
 sections:
-  - alerts
-  - {c: features, name: cards, cols: 3}
-  - {c: tabs, name: tabs}
-  - badges
+  - badge
+  - typography
+  - callout
+  - code
+  - table
   - {c: accordion, name: accordion}
   - {c: steps, name: steps}
+  - {c: tabs, name: tabs}
   - {c: timeline, name: timeline}
-  - tables
-  - code
-  - typography
+  - {c: features, name: cards, cols: 3}
   - {c: cta, name: cta}
 ---
 # صفحة العرض من اليمين إلى اليسار
@@ -22,6 +22,22 @@ sections:
 تعرض هذه الصفحة المكوّنات باتجاه من اليمين إلى اليسار. تضبط السمة `dir="rtl"` تلقائيًا للغات مثل العربية والعبرية والفارسية، أو عبر `direction: rtl` في رأس الصفحة.
 
 [ابدأ الآن](../../guides/install/) [المكوّنات](../)
+
+## الشارات
+
+`status:available` `status:partial` `status:planned` `tag:beta` واختصار لوحة المفاتيح `kbd:Ctrl+K`.
+
+## الطباعة
+
+نص عادي مع **خط عريض** و*مائل* و[رابط](#).[^1]
+
+> اقتباس عادي ليس تنبيهًا.
+
+- عنصر أول
+  - عنصر متداخل
+- عنصر ثانٍ
+
+[^1]: حاشية.
 
 ## التنبيهات
 
@@ -40,11 +56,46 @@ sections:
 > [!CAUTION]
 > تحذير من المخاطر أو النتائج السلبية.
 
-## البطاقات
+## الشيفرة
 
-- **التنبيهات** — خمسة أنواع من تنبيهات GitHub. `status:available`
-- **التبويبات** — تبويبات تثبيت سهلة الوصول. `status:partial`
-- **البحث** — بحث داخل الموقع. `status:planned`
+تبقى الشيفرة من اليسار إلى اليمين داخل النص العربي:
+
+```ruby
+puts "Hello, #{name}"
+```
+
+## الجداول
+
+| المفتاح | النوع | الافتراضي |
+|---|---|---|
+| `badges` | منطقي | `true` |
+| `color_scheme` | نص | `auto` |
+
+`chart:bar`
+
+| الربع | الزيارات |
+|---|---|
+| الأول | 4,160 |
+| الثاني | 5,270 |
+| الثالث | 5,910 |
+
+*الزيارات في كل ربع*
+
+## الأسئلة الشائعة
+
+### ما فائدة هذه الصفحة؟
+
+تكشف أي خاصية فيزيائية (left أو right) لم تتحول إلى خاصية منطقية.
+
+### هل تعمل بلا JavaScript؟
+
+نعم، تبقى كل إجابة ظاهرة تحت سؤالها.
+
+## الخطوات
+
+1. أضف السمة إلى `_config.yml`.
+2. اكتب `index.md` بلغة Markdown.
+3. شغّل `bundle exec jekyll build`.
 
 ## التبويبات
 
@@ -66,26 +117,6 @@ sudo apt install ruby-full
 winget install RubyInstallerTeam.Ruby
 ```
 
-## الشارات
-
-`status:available` `status:partial` `status:planned` `tag:beta` واختصار لوحة المفاتيح `kbd:Ctrl+K`.
-
-## الأسئلة الشائعة
-
-### ما فائدة هذه الصفحة؟
-
-تكشف أي خاصية فيزيائية (left أو right) لم تتحول إلى خاصية منطقية.
-
-### هل تعمل بلا JavaScript؟
-
-نعم، تبقى كل إجابة ظاهرة تحت سؤالها.
-
-## الخطوات
-
-1. أضف السمة إلى `_config.yml`.
-2. اكتب `index.md` بلغة Markdown.
-3. شغّل `bundle exec jekyll build`.
-
 ## السجل الزمني
 
 ### البداية
@@ -96,42 +127,11 @@ winget install RubyInstallerTeam.Ruby
 
 عقد المكوّنات، ودعم الاتجاه من اليمين إلى اليسار، ودليل الرياضيات والمخططات.
 
-## الجداول
+## البطاقات
 
-| المفتاح | النوع | الافتراضي |
-|---|---|---|
-| `badges` | منطقي | `true` |
-| `color_scheme` | نص | `auto` |
-
-`chart:bar`
-
-| الربع | الزيارات |
-|---|---|
-| الأول | 4,160 |
-| الثاني | 5,270 |
-| الثالث | 5,910 |
-
-*الزيارات في كل ربع*
-
-## الشيفرة
-
-تبقى الشيفرة من اليسار إلى اليمين داخل النص العربي:
-
-```ruby
-puts "Hello, #{name}"
-```
-
-## الطباعة
-
-نص عادي مع **خط عريض** و*مائل* و[رابط](#).[^1]
-
-> اقتباس عادي ليس تنبيهًا.
-
-- عنصر أول
-  - عنصر متداخل
-- عنصر ثانٍ
-
-[^1]: حاشية.
+- **التنبيهات** — خمسة أنواع من تنبيهات GitHub. `status:available`
+- **التبويبات** — تبويبات تثبيت سهلة الوصول. `status:partial`
+- **البحث** — بحث داخل الموقع. `status:planned`
 
 ## دعوة إلى العمل
 

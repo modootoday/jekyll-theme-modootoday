@@ -4,58 +4,126 @@ layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
 schema: {faq: auto}
-examples: [alerts, alerts-content, cards, cards-3, cards-4, buttons, tabs, badges, keyboard, accordion, steps, steps-headings, timeline, timeline-list, figure, tables, code, code-titles, progress, embeds, loading, filetree, details, faq, params, chart, widget, linkcards, quote, gallery, pricing, subscribe, split]
+examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
 sections:
-  - alerts
-  - alerts-content
+  - group-text
+  - badge
+  - badge-legend
+  - kbd
+  - lists
+  - loading
+  - progress
+  - group-blocks
+  - callout
+  - callout-content
+  - code
+  - code-titles
+  - {c: filetree, name: filetree}
+  - {c: quote, name: quote}
+  - group-media
+  - embed
+  - figure
+  - {c: gallery, name: gallery}
+  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: Count}}
+  - group-data
+  - {c: chart, name: chart, type: bar}
+  - filter
+  - {c: params, name: params}
+  - table
+  - group-disclosure
+  - {c: accordion, name: accordion}
+  - {c: details, name: details}
+  - {c: faq, name: faq}
+  - {c: steps, name: steps}
+  - {c: steps, name: steps-headings}
+  - {c: tabs, name: tabs}
+  - {c: timeline, name: timeline}
+  - {c: timeline, name: timeline-list}
+  - group-sections
   - {c: features, name: cards, cols: 2, badge: bottom}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
-  - {c: tabs, name: tabs}
-  - badges
-  - keyboard
-  - {c: accordion, name: accordion}
-  - {c: steps, name: steps}
-  - {c: steps, name: steps-headings}
-  - {c: timeline, name: timeline}
-  - {c: timeline, name: timeline-list}
-  - figure
-  - tables
-  - code
-  - code-titles
-  - progress
-  - embeds
-  - loading
-  - {c: filetree, name: filetree}
-  - {c: details, name: details}
-  - {c: faq, name: faq}
-  - {c: params, name: params}
-  - {c: chart, name: chart, type: bar}
-  - {c: widget, name: widget, widget: x-counter, props: {start: 3, label: Count}}
   - {c: linkcards, name: linkcards}
-  - {c: quote, name: quote}
-  - {c: gallery, name: gallery}
   - {c: pricing, name: pricing, recommended: 2}
-  - {c: subscribe, name: subscribe, bleed: true}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
-  - lists
-  - navigation
-  - language-switcher
-  - theme-toggle
-  - icons
-  - search
-  - filter
+  - {c: subscribe, name: subscribe, bleed: true}
+  - group-chrome
   - breadcrumb-toc
+  - icons
+  - language-switcher
+  - nav
   - pagination
   - posts
-  - status
+  - search
+  - theme-toggle
 ---
 # Components
 
 Each component is ordinary Markdown. Every example below shows the Markdown source and then the live result the theme renders from that same source, in the light or dark scheme you are using. Copy a source block into your page to get the same result. On github.com each one falls back to the plain element.
 
+Components are grouped by purpose, from text and inline marks to the site chrome, and sorted A-Z by their `components` name inside each group. Every language uses the same order.
+
 [Open the kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)
+
+## Text and inline
+
+Styles for running text and for short marks inside a paragraph.
+
+## Badges
+
+`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. A status badge shows a coloured dot before its label; the dot is drawn by CSS, so screen readers read only the label, and it stays visible in forced colours.
+
+`status:available` `status:partial` `status:planned`
+
+`tag:beta`
+
+## Status legend
+
+| Badge | Meaning |
+|---|---|
+| `status:available` | shipped and stable |
+| `status:partial` | works with known limits |
+| `status:planned` | on the roadmap |
+
+## Keyboard keys
+
+`status:available` A code span that starts with kbd and a colon becomes keyboard keys. Join keys with `+` and no spaces.
+
+Open search with `kbd:Ctrl+K`, or press `kbd:/`.
+
+## Lists
+
+`status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
+
+- [Install](../guides/install/)
+- [Configuration](../guides/configuration/)
+- [Accessibility](../guides/accessibility/)
+
+Items with a title:
+
+- **Chips**: a list of links only
+- **Titled items**: a bold title, a colon, then the text
+
+## Loading and skeletons
+
+`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional sheet that only pages using them load.
+
+`loading:spinner`
+
+`skeleton:avatar`
+`skeleton:text`
+`skeleton:card`
+
+## Progress
+
+`status:available` A code span that starts with progress and a colon, followed by a whole number from 0 to 100, becomes a labelled progress bar with the value as text.
+
+Translation `progress:60`
+
+## Blocks
+
+Blocks that stand on their own between paragraphs.
 
 ## Alerts
 
@@ -85,6 +153,232 @@ An alert can hold lists and code. Leave nothing after the marker on its line.
 >
 > - run `modootoday-check`
 > - preview with `bundle exec jekyll serve`
+
+## Code blocks
+
+`status:available` Fenced code blocks are highlighted and get a copy button, an icon at the top end of the block (in the title bar when the block has a `file:` title), which says "Copied" to screen readers once the code is on the clipboard. A long line scrolls, and the block can be reached with the keyboard.
+
+```ruby
+Jekyll::Hooks.register :site, :post_write do |site|
+  puts "Built #{site.pages.size} pages"
+end
+```
+
+## Code titles and diffs
+
+`status:available` A line holding only a code span that starts with file and a colon, right before a fenced block, becomes the block's title bar. A `diff` block tints added and removed lines and keeps the plus and minus signs.
+
+`file:_config.yml`
+
+```yaml
+theme: jekyll-theme-modootoday
+```
+
+```diff
+- remote_theme: old/theme
++ theme: jekyll-theme-modootoday
+```
+
+## File tree
+
+`status:available` In a `c: filetree` section, a nested list draws a folder tree. Items that hold a nested list are folders.
+
+- docs
+  - _config.yml
+  - index.md
+  - ko
+    - index.md
+
+## Quote
+
+`status:available` In a `c: quote` section, a quote whose last line starts with an em dash gets that line as its attribution.
+
+> The docs read well on github.com and on the site.
+>
+> — A theme user
+
+## Media
+
+Images, figures, diagrams, embedded frames and widgets.
+
+## Embeds
+
+`status:available` A paragraph holding only a code span that starts with embed and a colon, then an https URL and an optional title, becomes a lazy 16:9 frame that keeps its space while it loads.
+
+`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg Sample page drawing`
+
+## Figure
+
+`status:available` A paragraph with only an image, followed by a paragraph with only *emphasis*, becomes a figure with a caption. Alt text is required.
+
+![A Markdown source on the left becomes a styled page on the right](../assets/images/sample.svg)
+
+*Markdown on the left, the rendered page on the right.*
+
+## Gallery
+
+`status:available` In a `c: gallery` section, a list of images becomes a thumbnail grid. Each thumbnail opens a full-size view without JavaScript. Every image needs alt text.
+
+- ![A sunlit room with a plant and an armchair](../assets/images/gallery/room.webp)
+- ![Pink sand dunes under a low sun](../assets/images/gallery/dunes.webp)
+- ![Tropical leaves around a still pond](../assets/images/gallery/leaves.webp)
+- ![A wooden pier on a mountain lake](../assets/images/news/travel-sm.webp)
+- ![Wind turbines and solar panels on green hills](../assets/images/news/energy-sm.webp)
+- ![Fanned swatches in cream, violet and coral](../assets/images/projects/brand.webp)
+
+## Widget
+
+`status:available` In a `c: widget` section, the custom element named by `widget:` (registered with `element:` in `modootoday.scripts`) follows the heading, with `props` as JSON in `data-props`. The section text is its fallback, shown until the element runs; the site's module loads only on pages that contain the element.
+
+A counter that starts at 3. Readers without JavaScript see this sentence instead.
+
+## Data
+
+Tables and charts, and the tools that help read them.
+
+## Chart
+
+`status:available` In a `c: chart` section, or after a line holding only `chart:bar` when `modootoday.chart.enabled` is on, a table becomes a chart figure. The table stays the chart's text: with `modootoday.chart.src` the site's Chart.js draws the chart and the table folds under it, otherwise readers see the table; an emphasis-only line after it is the caption.
+
+| Quarter | Docs | Blog |
+|---|---|---|
+| Q1 | 4,160 | 2,030 |
+| Q2 | 5,270 | 2,770 |
+| Q3 | 5,910 | 3,120 |
+
+*Visits per quarter*
+
+## Filter
+
+`status:available` `filter: true` on a `sections:` item puts a search field above the first list or table of that section: only the items that contain every word typed stay, and a count says how many are shown. `filter: {facet: 2}` also adds a button for each value in the table's second column. On a page without `sections:`, set `filter:` in its front matter; on a directory page, `filter_text: true`. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter/) and the [Search recipe](../recipes/search/).
+
+## Parameter table
+
+`status:available` In a `c: params` section, a table lists options: name, type, default, description. A cell holding only `required` shows a Required badge.
+
+| Name | Type | Default | Description |
+|---|---|---|---|
+| `title` | string | `required` | Page title |
+| `cols` | number | 2 | Card columns |
+
+## Tables
+
+`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that; from 40rem a word or code span breaks only when it is longer than its column. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge, with the content fading there in browsers that support scroll-driven animations, shows there is more to scroll.
+
+Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. Any other table stacks the same way when it does not fit: two or three columns that would scroll, or four or more with a cell over six lines. So a page needs no markup for narrow screens.
+
+Three classes are hooks for tables a site writes in its own layouts or includes, outside page bodies:
+
+```text
+table.mt-table--stack  rows become labelled blocks below 40rem
+table.mt-table--dl     two columns: each key above its value below 40rem
+table.mt-table--fixed  equal columns that wrap anywhere, for comparison grids
+```
+
+A page body cannot set them: a kramdown attribute list (`{: .mt-table--stack}`) is kramdown-only, GitHub shows it as text, and `modootoday-check` reports it. The stacked forms need JavaScript; without it the table scrolls. `mt-table--fixed` keeps a table from stacking.
+
+| Key | Default | Description |
+|---|---|---|
+| `color_scheme` | `auto` | follow the OS or force light or dark |
+| `badges` | `true` | turn status code spans into badges |
+
+## Disclosure and sequence
+
+Content that opens on request or reads in order.
+
+## Accordion
+
+`status:available` In a `c: accordion` section, each `###` heading becomes a button that shows or hides the content under it (`aria-expanded`). Enter or Space toggles it. Without JavaScript every answer stays visible.
+
+### Does it work without JavaScript?
+
+Yes. Every answer stays visible under its question.
+
+### Can an answer hold code?
+
+```sh
+bundle exec jekyll serve
+```
+
+## Details
+
+`status:available` In a `c: details` section, each `###` heading becomes a native disclosure. It opens and closes without JavaScript.
+
+### What does it need?
+
+Nothing but the browser.
+
+## FAQ
+
+`status:available` A `c: faq` section works like details. With `schema: {faq: auto}`, which this page sets, its questions and answers also become the page's FAQPage structured data (see [Structured data](../guides/structured-data/)).
+
+### Is the theme free?
+
+Yes, under the MIT license.
+
+### Does it run on GitHub Pages?
+
+Yes, with the github-pages gem.
+
+## Steps
+
+`status:available` In a `c: steps` section, an ordered list becomes numbered steps.
+
+1. Add the theme to `_config.yml`.
+2. Write `index.md` in plain Markdown.
+3. Run `bundle exec jekyll build`.
+
+## Steps as headings
+
+Use `###` headings instead of a list when a step needs more than one line.
+
+### Install
+
+Add `remote_theme` and the plugin.
+
+### Publish
+
+Push to `main` and turn on GitHub Pages.
+
+## Tabs
+
+`status:available` In a `c: tabs` section, each `###` heading followed by a code block becomes a tab. Use at least two. Keyboard: arrow keys move between tabs, and Home and End jump to the first and last. Without JavaScript every block stays visible under its heading.
+
+### macOS
+
+```sh
+brew install ruby
+```
+
+### Linux
+
+```sh
+sudo apt install ruby-full
+```
+
+## Timeline
+
+`status:available` In a `c: timeline` section, `###` headings become points on a line.
+
+### Install
+
+Alerts, sections, cards and tabs.
+
+### Check
+
+Theme toggle, breadcrumb and table of contents.
+
+## Timeline as a list
+
+An ordered list works too.
+
+1. Install: alerts, sections and cards.
+2. Write: design tokens and navigation.
+3. Check: theme toggle and steps.
+
+## Page sections
+
+Bands that build a landing page from `sections:` items and the hero.
 
 ## Cards
 
@@ -118,248 +412,12 @@ The same idea with `cols: 4`: two by two in this text column, four across in a s
 
 [Get started](../guides/install/) [Read the configuration](../guides/configuration/)
 
-## Tabs
-
-`status:available` In a `c: tabs` section, each `###` heading followed by a code block becomes a tab. Use at least two. Keyboard: arrow keys move between tabs, and Home and End jump to the first and last. Without JavaScript every block stays visible under its heading.
-
-### macOS
-
-```sh
-brew install ruby
-```
-
-### Linux
-
-```sh
-sudo apt install ruby-full
-```
-
-## Badges
-
-`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. A status badge shows a coloured dot before its label; the dot is drawn by CSS, so screen readers read only the label, and it stays visible in forced colours.
-
-`status:available` `status:partial` `status:planned`
-
-`tag:beta`
-
-## Keyboard keys
-
-`status:available` A code span that starts with kbd and a colon becomes keyboard keys. Join keys with `+` and no spaces.
-
-Open search with `kbd:Ctrl+K`, or press `kbd:/`.
-
-## Accordion
-
-`status:available` In a `c: accordion` section, each `###` heading becomes a button that shows or hides the content under it (`aria-expanded`). Enter or Space toggles it. Without JavaScript every answer stays visible.
-
-### Does it work without JavaScript?
-
-Yes. Every answer stays visible under its question.
-
-### Can an answer hold code?
-
-```sh
-bundle exec jekyll serve
-```
-
-## Steps
-
-`status:available` In a `c: steps` section, an ordered list becomes numbered steps.
-
-1. Add the theme to `_config.yml`.
-2. Write `index.md` in plain Markdown.
-3. Run `bundle exec jekyll build`.
-
-## Steps as headings
-
-Use `###` headings instead of a list when a step needs more than one line.
-
-### Install
-
-Add `remote_theme` and the plugin.
-
-### Publish
-
-Push to `main` and turn on GitHub Pages.
-
-## Timeline
-
-`status:available` In a `c: timeline` section, `###` headings become points on a line.
-
-### Install
-
-Alerts, sections, cards and tabs.
-
-### Check
-
-Theme toggle, breadcrumb and table of contents.
-
-## Timeline as a list
-
-An ordered list works too.
-
-1. Install: alerts, sections and cards.
-2. Write: design tokens and navigation.
-3. Check: theme toggle and steps.
-
-## Figure
-
-`status:available` A paragraph with only an image, followed by a paragraph with only *emphasis*, becomes a figure with a caption. Alt text is required.
-
-![A Markdown source on the left becomes a styled page on the right](../assets/images/sample.svg)
-
-*Markdown on the left, the rendered page on the right.*
-
-## Tables
-
-`status:available` Every table sits in a scroll box (`div.mt-table`) that the theme adds when it renders the page. Tables of two or three columns wrap their cells, but each column stays at least 5rem wide (the last one 9rem) and the box scrolls past that; from 40rem a word or code span breaks only when it is longer than its column. Tables of four or more columns get about 9rem per column, scroll, and keep the first column in view. Code in the first column and right- or center-aligned cells never break, and a shade at an edge, with the content fading there in browsers that support scroll-driven animations, shows there is more to scroll.
-
-Below 40rem, `c: params` tables stack: each row becomes a block and each cell is labelled with its column name. Any other table stacks the same way when it does not fit: two or three columns that would scroll, or four or more with a cell over six lines. So a page needs no markup for narrow screens.
-
-Three classes are hooks for tables a site writes in its own layouts or includes, outside page bodies:
-
-```text
-table.mt-table--stack  rows become labelled blocks below 40rem
-table.mt-table--dl     two columns: each key above its value below 40rem
-table.mt-table--fixed  equal columns that wrap anywhere, for comparison grids
-```
-
-A page body cannot set them: a kramdown attribute list (`{: .mt-table--stack}`) is kramdown-only, GitHub shows it as text, and `modootoday-check` reports it. The stacked forms need JavaScript; without it the table scrolls. `mt-table--fixed` keeps a table from stacking.
-
-| Key | Default | Description |
-|---|---|---|
-| `color_scheme` | `auto` | follow the OS or force light or dark |
-| `badges` | `true` | turn status code spans into badges |
-
-## Code blocks
-
-`status:available` Fenced code blocks are highlighted and get a copy button, an icon at the top end of the block (in the title bar when the block has a `file:` title), which says "Copied" to screen readers once the code is on the clipboard. A long line scrolls, and the block can be reached with the keyboard.
-
-```ruby
-Jekyll::Hooks.register :site, :post_write do |site|
-  puts "Built #{site.pages.size} pages"
-end
-```
-
-## Code titles and diffs
-
-`status:available` A line holding only a code span that starts with file and a colon, right before a fenced block, becomes the block's title bar. A `diff` block tints added and removed lines and keeps the plus and minus signs.
-
-`file:_config.yml`
-
-```yaml
-theme: jekyll-theme-modootoday
-```
-
-```diff
-- remote_theme: old/theme
-+ theme: jekyll-theme-modootoday
-```
-
-## Progress
-
-`status:available` A code span that starts with progress and a colon, followed by a whole number from 0 to 100, becomes a labelled progress bar with the value as text.
-
-Translation `progress:60`
-
-## Embeds
-
-`status:available` A paragraph holding only a code span that starts with embed and a colon, then an https URL and an optional title, becomes a lazy 16:9 frame that keeps its space while it loads.
-
-`embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg Sample page drawing`
-
-## Loading and skeletons
-
-`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional sheet that only pages using them load.
-
-`loading:spinner`
-
-`skeleton:avatar`
-`skeleton:text`
-`skeleton:card`
-
-## File tree
-
-`status:available` In a `c: filetree` section, a nested list draws a folder tree. Items that hold a nested list are folders.
-
-- docs
-  - _config.yml
-  - index.md
-  - ko
-    - index.md
-
-## Details
-
-`status:available` In a `c: details` section, each `###` heading becomes a native disclosure. It opens and closes without JavaScript.
-
-### What does it need?
-
-Nothing but the browser.
-
-## FAQ
-
-`status:available` A `c: faq` section works like details. With `schema: {faq: auto}`, which this page sets, its questions and answers also become the page's FAQPage structured data (see [Structured data](../guides/structured-data/)).
-
-### Is the theme free?
-
-Yes, under the MIT license.
-
-### Does it run on GitHub Pages?
-
-Yes, with the github-pages gem.
-
-## Parameter table
-
-`status:available` In a `c: params` section, a table lists options: name, type, default, description. A cell holding only `required` shows a Required badge.
-
-| Name | Type | Default | Description |
-|---|---|---|---|
-| `title` | string | `required` | Page title |
-| `cols` | number | 2 | Card columns |
-
-## Chart
-
-`status:available` In a `c: chart` section, or after a line holding only `chart:bar` when `modootoday.chart.enabled` is on, a table becomes a chart figure. The table stays the chart's text: with `modootoday.chart.src` the site's Chart.js draws the chart and the table folds under it, otherwise readers see the table; an emphasis-only line after it is the caption.
-
-| Quarter | Docs | Blog |
-|---|---|---|
-| Q1 | 4,160 | 2,030 |
-| Q2 | 5,270 | 2,770 |
-| Q3 | 5,910 | 3,120 |
-
-*Visits per quarter*
-
-## Widget
-
-`status:available` In a `c: widget` section, the custom element named by `widget:` (registered with `element:` in `modootoday.scripts`) follows the heading, with `props` as JSON in `data-props`. The section text is its fallback, shown until the element runs; the site's module loads only on pages that contain the element.
-
-A counter that starts at 3. Readers without JavaScript see this sentence instead.
-
 ## Link cards
 
 `status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.
 
 - [Install](../guides/install/) — Add the theme to a site.
 - [Configuration](../guides/configuration/) — Every setting in one place.
-
-## Quote
-
-`status:available` In a `c: quote` section, a quote whose last line starts with an em dash gets that line as its attribution.
-
-> The docs read well on github.com and on the site.
->
-> — A theme user
-
-## Gallery
-
-`status:available` In a `c: gallery` section, a list of images becomes a thumbnail grid. Each thumbnail opens a full-size view without JavaScript. Every image needs alt text.
-
-- ![A sunlit room with a plant and an armchair](../assets/images/gallery/room.webp)
-- ![Pink sand dunes under a low sun](../assets/images/gallery/dunes.webp)
-- ![Tropical leaves around a still pond](../assets/images/gallery/leaves.webp)
-- ![A wooden pier on a mountain lake](../assets/images/news/travel-sm.webp)
-- ![Wind turbines and solar panels on green hills](../assets/images/news/energy-sm.webp)
-- ![Fanned swatches in cream, violet and coral](../assets/images/projects/brand.webp)
 
 ## Pricing
 
@@ -382,13 +440,6 @@ A counter that starts at 3. Readers without JavaScript see this sentence instead
 
 [Choose Team](#)
 
-## Subscribe
-
-`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text. Here the item also has `bleed: true`: any section item or `hero:` can take it to get a full-width background band in `--mt-bleed-bg` (default the muted surface) while its content keeps the reading column, and `bleed: wide` also widens the content up to the container width. With a sidebar or table of contents the band stays inside the main column.
-
-Get one email when a release ships.
-
-
 ## Split
 
 `status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament. The hero takes the same form: `hero: {c: split, visual: <name>, side: start, ratio: "5:7"}` puts the title, lead, check row and buttons in the text column and the include beside them.
@@ -397,48 +448,23 @@ Get one email when a release ships.
 
 Text on one side, the picture on the other.
 
-## Lists
+## Subscribe
 
-`status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
+`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text. Here the item also has `bleed: true`: any section item or `hero:` can take it to get a full-width background band in `--mt-bleed-bg` (default the muted surface) while its content keeps the reading column, and `bleed: wide` also widens the content up to the container width. With a sidebar or table of contents the band stays inside the main column.
 
-- [Install](../guides/install/)
-- [Configuration](../guides/configuration/)
-- [Accessibility](../guides/accessibility/)
+Get one email when a release ships.
 
-Items with a title:
+## Site chrome
 
-- **Chips**: a list of links only
-- **Titled items**: a bold title, a colon, then the text
+The parts every page shares, which the layouts add without any Markdown in the page.
 
-## Navigation
+## Breadcrumb and table of contents
 
-`status:available` The header menu comes from `_data/nav/main.yml`. An entry with `items:` becomes a dropdown group on wide screens, and narrow screens get a menu button. Esc closes an open menu. The result is the header of this page.
-
-```yaml
-- {title: Install, url: /install/}
-- {title: Components, url: /components/}
-- title: More
-  items:
-    - {title: Public API, url: /api/}
-```
-
-## Language switcher
-
-`status:available` With `languages:` and `language_switcher: header`, the header gets a globe button that opens a list of languages. It stays the same width however many languages you add. Each language is named in its own language, and the current one has `aria-current`. Esc closes the list. The result is the globe in the header of this page.
+`status:available` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off, or set `toc: false` on one page; on a page with a sidebar, the text column then also takes the contents column's space from 80rem, as the home page does. The result is at the top and side of this page.
 
 ```yaml
 modootoday:
-  languages: [en, ko, ja]
-  language_switcher: header
-```
-
-## Theme toggle
-
-`status:available` The header button switches between light and dark and remembers the choice. Use `color_scheme` to fix one scheme. The result is the button in the header of this page.
-
-```yaml
-modootoday:
-  color_scheme: auto   # auto | light | dark
+  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination, theme-toggle]
 ```
 
 ## Icons and logo
@@ -451,21 +477,26 @@ modootoday:
   favicon: brand     # brand | /favicon.ico
 ```
 
-## Search
+## Language switcher
 
-`status:available` Client-side search over a `search.json` file, in the header (`role="search"`). Press `kbd:Ctrl+K` or `kbd:/` to focus it. Add a `search.json` file at the site root to turn it on: copy [the one this site uses](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json). The result is the search box in the header of this page.
-
-## Filter
-
-`status:available` `filter: true` on a `sections:` item puts a search field above the first list or table of that section: only the items that contain every word typed stay, and a count says how many are shown. `filter: {facet: 2}` also adds a button for each value in the table's second column. On a page without `sections:`, set `filter:` in its front matter; on a directory page, `filter_text: true`. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter/) and the [Search recipe](../recipes/search/).
-
-## Breadcrumb and table of contents
-
-`status:available` Doc pages get a breadcrumb from the URL, and a table of contents from the `##` and `###` headings: at the side on wide screens and in a folding box on narrow ones. Both are added by the layout, so there is no source to write. Leave out `breadcrumb` or `toc` from `components` to turn them off, or set `toc: false` on one page; on a page with a sidebar, the text column then also takes the contents column's space from 80rem, as the home page does. The result is at the top and side of this page.
+`status:available` With `languages:` and `language_switcher: header`, the header gets a globe button that opens a list of languages. It stays the same width however many languages you add. Each language is named in its own language, and the current one has `aria-current`. Esc closes the list. The result is the globe in the header of this page.
 
 ```yaml
 modootoday:
-  components: [callout, badge, hero, cta, card, tabs, code-copy, nav, pagination, theme-toggle]
+  languages: [en, ko, ja]
+  language_switcher: header
+```
+
+## Navigation
+
+`status:available` The header menu comes from `_data/nav/main.yml`. An entry with `items:` becomes a dropdown group on wide screens, and narrow screens get a menu button. Esc closes an open menu. The result is the header of this page.
+
+```yaml
+- {title: Install, url: /install/}
+- {title: Components, url: /components/}
+- title: More
+  items:
+    - {title: Public API, url: /api/}
 ```
 
 ## Previous and next
@@ -493,10 +524,15 @@ tags: [release]
 ---
 ```
 
-## Status legend
+## Search
 
-| Badge | Meaning |
-|---|---|
-| `status:available` | shipped and stable |
-| `status:partial` | works with known limits |
-| `status:planned` | on the roadmap |
+`status:available` Client-side search over a `search.json` file, in the header (`role="search"`). Press `kbd:Ctrl+K` or `kbd:/` to focus it. Add a `search.json` file at the site root to turn it on: copy [the one this site uses](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/docs/search.json). The result is the search box in the header of this page.
+
+## Theme toggle
+
+`status:available` The header button switches between light and dark and remembers the choice. Use `color_scheme` to fix one scheme. The result is the button in the header of this page.
+
+```yaml
+modootoday:
+  color_scheme: auto   # auto | light | dark
+```
