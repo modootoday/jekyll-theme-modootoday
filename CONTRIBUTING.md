@@ -116,7 +116,7 @@ Where things live:
 | `test/starters/` | the starter manifest, the sources, rendering, drift, the published starters (gitlinks, pins) and the generated workflow |
 | `example/` | the starters (`starters.yml` and one git submodule, or a plain folder before it is published, per starter); see Starter sites above |
 | `script/starters/` | the starter renderer: `manifest.rb`, `theme.rb` (what it reads from the gemspec, `gemfiles/`, `i18n/` and the executables), `site.rb`, `published.rb` (a gitlinked starter's content and pin), `render.rb` and `templates/` |
-| `test/project/` | README, version, community files, this layout and the docs generator (`script/docs-index`) |
+| `test/project/` | README, version, community files, this layout, the docs generator (`script/docs-index`), and the docs structure and kitchen-sink checks of `test/system/docs/` that need no build |
 | `test/js/` | browser scripts (`node --test`) |
 | `test/fixtures/` | inputs shared by the tests |
 | `docs/generated/` | tool output: the docs site's twin stubs and per-language `llms.txt` / `llms-full.txt` stubs, written by `ruby script/docs-index` (`--check` fails when they are stale). Do not edit by hand; each stub sets `path:` to where it would sit beside its page and `permalink:` to its URL |
@@ -124,7 +124,7 @@ Where things live:
 | `test/system/audit.mjs`, `test/system/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
 | `test/system/visual/` | visual regression (`npm run qa:visual`) |
 | `test/system/lighthouse/` | Lighthouse runs and budget |
-| `test/system/docs/` | link check and kitchen-sink coverage |
+| `test/system/docs/` | docs structure, link check, kitchen-sink coverage and component examples; each script runs on its own |
 | `test/system/css/` | per-partial CSS sizes |
 | `test/system/bench/` | the records benchmark: a synthetic site of N records (`fixture.rb`) built with the GitHub Pages builder image (`records.rb`, Docker); CI fails over 300 s for 1,000 records |
 
