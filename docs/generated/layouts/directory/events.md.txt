@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: events.md
+path: layouts/directory/events.md.txt
+permalink: /layouts/directory/events/index.md
+---

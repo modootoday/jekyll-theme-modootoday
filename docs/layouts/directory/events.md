@@ -2,7 +2,6 @@
 title: "Events demo"
 description: "Events with a date tile and an add-to-calendar file."
 layout: events
-twin: false
 sitemap: false
 edit: false
 sections: []

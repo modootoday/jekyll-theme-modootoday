@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/widgets/
-source_rev: sha256:443928de4781
+source_rev: sha256:7a880ba56daa
 nav_order: 28
 title: ウィジェット
 description: 自作の custom element を Markdown からページに置き、JavaScript のない読者には代わりに読むテキストを渡します。
@@ -27,6 +27,7 @@ modootoday:
 - `element` は custom element の名前です。小文字でハイフンを含め、テーマの接頭辞である `mt-` で始めることはできず、`font-face` のように SVG と MathML が予約している名前も使えません。二つの項目が同じ要素を指すことはできません。
 - `src` と `css` はサイト内のパスです。`<x-counter` があるページは、[モジュールスクリプト](../../guides/customize/#module-scripts-and-posters)と同じく、その項目のシートと `<script type="module">` を `<head>` に一度だけ受け取ります。モジュールスクリプトは `script-src 'self'` で許可されるので、厳格な CSP を変える必要はありません。
 - 要素のないページは何も読み込みません。
+- モジュールとシートの URL には、テーマのファイルや `site_css` のシートと同じくテーマの `?v=` クエリが付くので、CDN が長くキャッシュできます。既定の `modootoday.asset_version: theme` では、クエリはテーマのバージョンが変わるときだけ変わります。テーマのリリースの間に自作のモジュールを直すなら、コミットを加える `asset_version: build` にしてください（[バージョン付きアセット URL](../../guides/performance/#バージョン付きアセット-url)）。エントリーのモジュールが読み込むモジュールの URL にはクエリが付きません。
 
 ## セクションに置く
 
@@ -76,7 +77,13 @@ props は要素名をキーにして front matter から取ります。`widget_p
 テーマとモジュールの間の約束は次のとおりです。
 
 - `customElements.define` で要素を定義します。それまでテーマは `div.mt-widget-fallback` を表示し、要素が定義されると（CSS の `:defined`）隠します。モジュールが失敗したり読み込まれなかったりすると代替テキストがそのまま残ります。`<noscript>` は使いません。
-- 設定は `data-props` から読みます。[`readConfig`](../../guides/customize/#module-scripts-and-posters) が解析します。`readConfig(this, {props: {}})` のように使います。
+- 設定は `data-props` から読みます。テーマの `/assets/js/modootoday/dom/config.js` が名前付きエクスポートで提供する [`readConfig`](../../guides/customize/#module-scripts-and-posters) が解析します。`readConfig(this, {props: {}})` のように使います。モジュールからの相対パスで読み込んでください。
+
+  ```js
+  // assets/js/widgets/x-counter.js
+  import { readConfig } from "../modootoday/dom/config.js";
+  ```
+
 - コントロールは代替テキストの後に追加し、代替テキストは要素の中に残します。
 - コントロールは `var(--mt-primary)` や `var(--mt-border)` などのテーマのトークンで装飾してライトモードとダークモードに従わせ、フォーカスが見えるようにします。
 

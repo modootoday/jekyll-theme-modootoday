@@ -139,6 +139,27 @@ modootoday:
     use_url: https://github.com/<owner>/<repo>/generate   # optional
 ```
 
+On classic GitHub Pages, build in a GitHub Actions workflow (Settings > Pages > Source: GitHub Actions) and merge the file in a guarded step before the builder runs. These are the steps the starters' `pages.yml` uses; the step after the build puts `_config.yml` back, so the check that follows sees the site's own settings:
+
+```yaml
+# .github/workflows/pages.yml: steps of the build job, around the build
+- name: Layer the demo config
+  if: github.repository == '<owner>/<repo>'
+  run: |
+    cp _config.yml "$RUNNER_TEMP/_config.yml"
+    ruby -ryaml -rdate -e '
+      read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
+      merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
+      File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
+- uses: actions/jekyll-build-pages@v1   # the classic GitHub Pages builder
+  with:
+    source: .
+    destination: ./_site
+- name: Restore _config.yml
+  if: github.repository == '<owner>/<repo>'
+  run: mv "$RUNNER_TEMP/_config.yml" _config.yml
+```
+
 - **Bar** (`style: bar`, the default): a 44 px bar above the header with the theme name, the starter name, a Documentation link, a Use this starter link (when `use_url` is set) and a button that hides it. The sticky header and the offset of anchor targets move down by its height. Below 40rem (640 px) only the theme name, a Docs link and the button remain. In a window less than 30rem (480 px) tall, such as a phone held sideways or 200% zoom, the bar scrolls away with the page.
 - **Pill** (`style: pill`): a floating pill at the bottom centre with the theme name, the starter name, a Docs link and the button. The page gets bottom padding, so the pill never covers the last line, the back-to-top link or the safe area.
 - **Colours** are the page's, inverted: a dark bar on a light page and a light one on a dark page. The `brand` token colours only the mark.

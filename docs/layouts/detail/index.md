@@ -48,7 +48,7 @@ tickets: https://example.com/tickets
 ---
 ```
 
-The calendar link is an .ics file in a `data:` URL, so it works without a server. `tickets:` also becomes the event's `offers` with only a `url`; `modootoday-check` warns that it lacks a price, so give the offer in front matter instead: `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: https://example.com/tickets}}`.
+The calendar link is an .ics file in a `data:` URL, so it works without a server. `tickets:` also becomes the event's `offers` with only a `url`; `modootoday-check` warns that it lacks a price, so give the offer in front matter instead: `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}`. Say the price on the page as well; the [Event demo](event/) does, and shows its own front matter.
 
 ## Episode
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:f0d63529ea10
+source_rev: sha256:3cd8c79d0233
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -143,6 +143,27 @@ modootoday:
     starter: blog         # names the starter in the label
     docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
     use_url: https://github.com/<owner>/<repo>/generate   # optional
+```
+
+클래식 GitHub Pages에서는 GitHub Actions 워크플로로 빌드하고(Settings > Pages > Source: GitHub Actions), 빌더가 실행되기 전에 조건이 붙은 단계에서 파일을 합칩니다. 아래는 스타터의 `pages.yml`이 쓰는 단계입니다. 빌드 다음 단계가 `_config.yml`을 되돌려 놓으므로, 이어지는 검사는 사이트 자체의 설정을 봅니다.
+
+```yaml
+# .github/workflows/pages.yml: steps of the build job, around the build
+- name: Layer the demo config
+  if: github.repository == '<owner>/<repo>'
+  run: |
+    cp _config.yml "$RUNNER_TEMP/_config.yml"
+    ruby -ryaml -rdate -e '
+      read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
+      merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
+      File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
+- uses: actions/jekyll-build-pages@v1   # the classic GitHub Pages builder
+  with:
+    source: .
+    destination: ./_site
+- name: Restore _config.yml
+  if: github.repository == '<owner>/<repo>'
+  run: mv "$RUNNER_TEMP/_config.yml" _config.yml
 ```
 
 - **막대**(`style: bar`, 기본값): 헤더 위의 44 px 막대에 테마 이름, 스타터 이름, 문서 링크, 이 스타터로 시작 링크(`use_url`이 있을 때), 숨기기 버튼이 들어갑니다. 고정 헤더와 앵커 대상의 오프셋은 막대 높이만큼 내려갑니다. 40rem(640 px)보다 좁으면 테마 이름, 문서 링크, 버튼만 남습니다. 휴대폰을 가로로 들거나 200%로 확대해 창 높이가 30rem(480 px)보다 낮으면 막대가 페이지와 함께 스크롤됩니다.

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:a71bbf09cd7b
+source_rev: sha256:31791b0561ae
 title: 성능
 nav_order: 75
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
@@ -51,7 +51,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위
 
 `build`는 GitHub Pages에서는 `site.github.build_revision`의 커밋을, 다른 곳에서는 빌드 시각을 씁니다.
 
-쿼리는 테마 자체의 CSS와 JavaScript, 그리고 `site_css`에 올린 시트에 붙습니다. 그 밖의 스타일시트, 이미지, 글꼴 URL은 그대로이고 `preload` 힌트도 그렇습니다. 힌트는 페이지나 스타일시트가 요청하는 URL과 같아야 하며, 다르면 브라우저가 파일을 두 번 내려받습니다.
+쿼리는 테마 자체의 CSS와 JavaScript, `site_css`에 올린 시트, 그리고 `modootoday.scripts` 항목의 `src`와 `css` 파일(히어로 모듈과 위젯)에 붙습니다. `theme`에서는 직접 만든 파일을 고쳐도 URL이 바뀌지 않으므로, 테마 릴리스 사이에 파일이 바뀐다면 `build`를 쓰세요. 그 밖의 스타일시트, 이미지, 글꼴 URL은 그대로이고 `preload` 힌트도 그렇습니다. 힌트는 페이지나 스타일시트가 요청하는 URL과 같아야 하며, 다르면 브라우저가 파일을 두 번 내려받습니다.
 
 ## CDN에서 오래 캐시하기
 

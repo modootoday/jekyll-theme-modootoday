@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:a71bbf09cd7b
+source_rev: sha256:31791b0561ae
 title: パフォーマンス
 nav_order: 75
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
@@ -51,7 +51,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 
 `build` は、GitHub Pages では `site.github.build_revision` のコミットを、それ以外ではビルド時刻を使います。
 
-クエリが付くのはテーマ自身の CSS と JavaScript、それに `site_css` に登録したシートです。それ以外のスタイルシート、画像、フォントの URL は変わらず、`preload` のヒントも同じです。ヒントはページやスタイルシートが要求する URL と一致する必要があり、違うとブラウザーがファイルを二度ダウンロードします。
+クエリが付くのはテーマ自身の CSS と JavaScript、`site_css` に登録したシート、そして `modootoday.scripts` の項目の `src` と `css` のファイル（ヒーローのモジュールとウィジェット）です。`theme` では自作のファイルを直しても URL が変わらないので、テーマのリリースの間にファイルが変わるなら `build` を使ってください。それ以外のスタイルシート、画像、フォントの URL は変わらず、`preload` のヒントも同じです。ヒントはページやスタイルシートが要求する URL と一致する必要があり、違うとブラウザーがファイルを二度ダウンロードします。
 
 ## CDN で長くキャッシュする
 

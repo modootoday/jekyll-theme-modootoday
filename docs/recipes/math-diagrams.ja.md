@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/math-diagrams/
-source_rev: sha256:49111bd2cf31
+source_rev: sha256:1a60d8940b32
 nav_order: 10
 title: 数式と図
 description: Mermaid の図と数式をコミットした静的な SVG と MathML として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
@@ -55,7 +55,7 @@ flowchart LR
 - **ソースはページに残ります。** フェンスは図の下の「図のソース」という開閉要素に移ります。`source: none` にすると HTML から外れますが、Markdown 版には残ります。
 - **ライトとダーク。** どちらの画像にも代替テキストがあります。figure のシート (figure.css) は色のトークンと同じ規則で一方を表示し、もう一方を隠すので、暗い SVG はテーマの切り替えボタンにも従い、隠れた画像は読み上げられません。`dark: false` にすると図ごとの SVG は一つになり、テーマが[画像の図](#画像の図)と同じように暗くします。
 - **項目のないフェンス**はコードブロックのまま残ります。`diagrams:` のあるページでは組み込みの Mermaid ローダーは動きません。
-- 幅の広い図は狭い画面でも読める幅を保ち、代替テキストを名前とするフォーカス可能な領域の中で横にスクロールします。
+- 幅の広い図は狭い画面でも読める幅を保ち、「図」とキャプションを名前とする領域の中で横にスクロールします。代替テキストは画像がすでに伝えるので領域の名前には使わず、この領域は図が段より広いときだけキーボードのフォーカスを受けます。
 - `modootoday-check` は、フェンスの数と項目の数が違うページ、`alt` のない項目、見つからない SVG をエラーとして報告します。`width` と `height` のない項目は警告し、SVG の `viewBox` から読んだ値を示します。`data-mt-src` がフェンスと合わなくなった SVG も報告します。[図を最新に保つ](#図を最新に保つ)を参照してください。
 
 ```yaml
@@ -66,7 +66,7 @@ modootoday:
     source: details         # details (既定値) または none
 ```
 
-Mermaid CLI で各フェンスを 2 回描画します。Mermaid の `default` テーマと `dark` テーマ、透明な背景で描き、両方のファイルをコミットします。`flow.mmd` にはフェンスの行の間の内容を入れます。
+Mermaid CLI で各フェンスを 2 回描画します。Mermaid の `default` テーマと `dark` テーマ、透明な背景で描き、両方のファイルをコミットします。`flow.mmd` にはフェンスの行の間の内容を入れます。CLI はこのマシンにヘッドレスの Chromium をダウンロードして起動します。リモートのブラウザーと CI は[ブラウザーを動かす場所](#ブラウザーを動かす場所)を参照してください。
 
 ```sh
 npx -y @mermaid-js/mermaid-cli -i flow.mmd -o assets/diagrams/recipes/flow.svg -t default -b transparent
@@ -113,7 +113,30 @@ echo "Diagram SVGs to render: bundle exec modootoday-check . --diagrams" >&2
 exit 1
 ```
 
-一覧の各フェンスを上のコマンドで `files` に描画し、一覧の `digest` で `data-mt-src` を付けてください。テーマのリポジトリはこれを [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs) で行います。このスクリプトは一覧を読み、バージョンを固定した Mermaid で Chromium の中で描画し、属性を書き込みます。gem には含まれません。`digest.mjs` と一緒に Jekyll が読み飛ばすフォルダー (`_scripts/` など) にコピーすれば、サイトでも同じように使えます (Node と Playwright が必要)。`bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+一覧の各フェンスを上のコマンドで `files` に描画し、一覧の `digest` で `data-mt-src` を付けてください。テーマのリポジトリはこれを [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs) で行います。このスクリプトは一覧を読み、バージョンを固定した Mermaid で Chromium の中で描画し、属性を書き込みます。gem には含まれません。[`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs) と一緒に Jekyll が読み飛ばすフォルダー (`_scripts/` など) にコピーすれば、サイトでも同じように使えます (Node と Playwright が必要)。`bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+
+#### ブラウザーを動かす場所
+
+図の描画にはブラウザーが必要です。Mermaid がブラウザーの中で文字を配置するためです。静的な数式は KaTeX が Node 上で動くので、ブラウザーは要りません。`diagrams.mjs`（使い方: `node _scripts/diagrams.mjs SRC [LIST.json] [--cdp=URL]`、`LIST.json` がなければ一覧を標準入力から読みます）は、次のどちらかの方法でブラウザーを使います。
+
+- **このマシンで。** `--cdp` を付けなければ Playwright の Chromium を起動します。`npm install --save-dev playwright` と `npx playwright install chromium` で一度インストールしてください。
+- **ほかの場所で。** `--cdp=URL` は、ほかの場所ですでに動いているブラウザーを Chrome DevTools Protocol で操作します。`--remote-debugging-port` を付けて起動した Chrome や Chromium、ブラウザーのコンテナー、ホスティングされたブラウザーサービスのどれでも使えます。`URL` はそのブラウザーの `http://` か `ws://`（`wss://`）のエンドポイントです。エンドポイントが `Authorization` ヘッダーを求める場合は、ヘッダーの値を環境変数 `CDP_AUTHORIZATION` に入れます。ブラウザーのダウンロードは不要で、`playwright` パッケージだけで足ります。リモートのブラウザーは cdn.jsdelivr.net から Mermaid を読み込むので、そのホストに接続できる必要があります。
+
+```sh
+export CDP_AUTHORIZATION="Bearer <token>"   # エンドポイントが求めるときだけ
+bundle exec modootoday-check . --diagrams > diagrams.json
+node _scripts/diagrams.mjs . diagrams.json --cdp=wss://browser.example.com/devtools
+```
+
+**CI では**ジョブがブラウザーを自分でインストールします。クラシックの GitHub Pages はコミットされたものしかビルドしないので、CI のジョブは一覧を描画し、リポジトリーの SVG ファイルと違えば失敗して、描画してコミットするよう知らせます。`--diagrams` は描画するものがあると 1 で終了するので、`|| true` を付けます。
+
+```yaml
+- run: npm install --save-dev playwright && npx playwright install --with-deps chromium
+- run: |
+    bundle exec modootoday-check . --diagrams > diagrams.json || true
+    node _scripts/diagrams.mjs . diagrams.json
+    test -z "$(git status --porcelain -- assets/diagrams)"
+```
 
 ### 画像の図
 
@@ -125,7 +148,7 @@ exit 1
 *The build flow.*
 ```
 
-画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。代替テキストには「図」ではなく図の意味を書きます。`.svg` の図は一つのファイルで両方の配色に対応します。ダークモードでは、テーマが色相を保ったまま反転し、`--mt-img-filter-dark` を適用します（トークン `--mt-diagram-filter-dark`）。暗くするだけなら `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`、サイト全体で無効にするなら `none` を設定します。一つの画像だけ描いたままにするには、パスの末尾に `#light` を付けます（`flow.svg#light`）。ラスター画像は従来の写真の色調のままです。狭い画面では、広い図が読める幅（`--mt-figure-min-width`、既定は `32rem`）を保ち、専用の領域の中で横にスクロールします。この領域はフォーカスでき、代替テキストが名前になります。
+画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。代替テキストには「図」ではなく図の意味を書きます。`.svg` の図は一つのファイルで両方の配色に対応します。ダークモードでは、テーマが色相を保ったまま反転し、`--mt-img-filter-dark` を適用します（トークン `--mt-diagram-filter-dark`）。暗くするだけなら `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`、サイト全体で無効にするなら `none` を設定します。一つの画像だけ描いたままにするには、パスの末尾に `#light` を付けます（`flow.svg#light`）。ラスター画像は従来の写真の色調のままです。狭い画面では、広い図が読める幅（`--mt-figure-min-width`、既定は `32rem`）を保ち、専用の領域の中で横にスクロールします。この領域の名前は「図」とキャプションで、画像がはみ出すときだけフォーカスできます。
 
 ### 静的な数式
 
@@ -158,8 +181,8 @@ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\fra
 $$
 
 - **MathML の置き場所。** `_data/math/<key>.yml` には、ブロックごとに一つの項目がページの順に並びます。`src` はブロックのダイジェスト（TeX に適用した [`data-mt-src` の規則](#静的な-mermaid-の図)）、`html` はその `<math>` 要素です。`<key>` は拡張子を除いたページのパスで、`/` を `--` と書きます。このページ `recipes/math-diagrams.md` は `_data/math/recipes--math-diagrams.yml` を読みます。翻訳（`math-diagrams.ja.md` や、言語フォルダーの下の同じパス）は英語ページのファイルを読むので、ブロックを同じに保ちます。別のファイルを使うには front matter に `math_key:` を書きます。
-- **一つのコマンドで描画。** `modootoday-check SRC --math` は `--diagrams` と同じく、書き出すファイルを JSON で出力し、一つでもあれば 1 で終了するので、pre-commit フックで実行できます。テーマのリポジトリーは、この一覧を [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs) で描画します。このスクリプトはブラウザーなしで Node 上の KaTeX を実行します。`digest.mjs` と一緒に `_scripts/` など Jekyll が読み飛ばすフォルダーにコピーし、`npm install --save-dev katex` と `bundle exec modootoday-check . --math | node _scripts/math.mjs .` を実行します。
-- **各数式**は、段より広いときに横へスクロールする領域の中にあります。この領域はフォーカスでき、ページの言語で「数式 1」「数式 2」のように名前が付きます。MathML は TeX の原文を注釈（annotation）として保持します。
+- **一つのコマンドで描画。** `modootoday-check SRC --math` は `--diagrams` と同じく、書き出すファイルを JSON で出力し、一つでもあれば 1 で終了するので、pre-commit フックで実行できます。テーマのリポジトリーは、この一覧を [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs) で描画します。このスクリプトはブラウザーなしで Node 上の KaTeX を実行します。[`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs) と一緒に `_scripts/` など Jekyll が読み飛ばすフォルダーにコピーし、`npm install --save-dev katex` と `bundle exec modootoday-check . --math | node _scripts/math.mjs .` を実行します。
+- **各数式**は、段より広いときに横へスクロールする領域の中にあります。この領域は数式がはみ出すときにフォーカスでき、ページの言語で「数式 1」「数式 2」のように名前が付きます。MathML は TeX の原文を注釈（annotation）として保持します。
 - **インラインの数式は静的にできません。** 静的モードでは `$…$` と、文中の `$$…$$` がエラーになります。数式はブロックで書きます。`inline: true` もエラーです。front matter に `math: false` を書いたページは、ブロックを TeX の原文のまま残します。
 - `modootoday-check` は、ブロックの数と項目の数が違うページ、ないファイル、別の TeX から描画した項目（"stale math"）を報告します。
 - テーマは、kramdown が行頭に出力する `\[` で `$$` ブロックを見つけます。静的な数式を使うページでは、`\[` で始まるコードブロックの行も数式ブロックと見なされるので、インデントするか文中に移します。

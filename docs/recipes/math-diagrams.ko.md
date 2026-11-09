@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/math-diagrams/
-source_rev: sha256:49111bd2cf31
+source_rev: sha256:1a60d8940b32
 nav_order: 10
 title: 수식과 다이어그램
 description: Mermaid 다이어그램과 수식을 커밋한 정적 SVG와 MathML로 보여 주거나, 내장 로더나 직접 만든 로더로 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.
@@ -55,7 +55,7 @@ flowchart LR
 - **원본은 페이지에 남습니다.** 펜스는 그림 아래의 "다이어그램 원본" 펼침 요소로 옮겨집니다. `source: none`이면 HTML에서 빠지고, Markdown 버전에는 그대로 남습니다.
 - **밝은 모드와 다크 모드.** 두 이미지 모두 대체 텍스트가 있습니다. figure 시트(figure.css)는 색상 토큰과 같은 규칙으로 하나를 보여 주고 다른 하나를 숨기므로, 어두운 SVG는 테마 전환 버튼도 따르고 숨긴 이미지는 읽히지 않습니다. `dark: false`이면 다이어그램마다 SVG가 하나이고, 테마가 [이미지 그림](#이미지-그림)처럼 어둡게 바꿉니다.
 - **항목이 없는 펜스**는 코드 블록으로 남습니다. `diagrams:`가 있는 페이지에서는 내장 Mermaid 로더가 실행되지 않습니다.
-- 넓은 다이어그램은 좁은 화면에서도 읽을 수 있는 너비를 유지하고, 대체 텍스트를 이름으로 하는 포커스 가능한 영역 안에서 가로로 스크롤됩니다.
+- 넓은 다이어그램은 좁은 화면에서도 읽을 수 있는 너비를 유지하고, "다이어그램"과 캡션을 이름으로 하는 영역 안에서 가로로 스크롤됩니다. 대체 텍스트는 이미지가 이미 전하므로 영역 이름으로 쓰지 않으며, 이 영역은 다이어그램이 단보다 넓을 때만 키보드 포커스를 받습니다.
 - `modootoday-check`는 펜스 수와 항목 수가 다른 페이지, `alt`가 없는 항목, 없는 SVG를 오류로 알립니다. `width`와 `height`가 없는 항목은 경고하면서 SVG의 `viewBox`에서 읽은 값을 알려 줍니다. `data-mt-src`가 더 이상 펜스와 맞지 않는 SVG도 알립니다. [다이어그램을 최신으로 유지하기](#다이어그램을-최신으로-유지하기)를 보세요.
 
 ```yaml
@@ -66,7 +66,7 @@ modootoday:
     source: details         # details(기본값) 또는 none
 ```
 
-Mermaid CLI로 각 펜스를 두 번 렌더링합니다. Mermaid의 `default` 테마와 `dark` 테마, 투명한 배경으로 그린 뒤 두 파일을 모두 커밋합니다. `flow.mmd`에는 펜스 줄 사이의 내용을 담습니다.
+Mermaid CLI로 각 펜스를 두 번 렌더링합니다. Mermaid의 `default` 테마와 `dark` 테마, 투명한 배경으로 그린 뒤 두 파일을 모두 커밋합니다. `flow.mmd`에는 펜스 줄 사이의 내용을 담습니다. CLI는 이 컴퓨터에 헤드리스 Chromium을 내려받아 실행합니다. 원격 브라우저와 CI는 [브라우저가 실행되는 곳](#브라우저가-실행되는-곳)을 보세요.
 
 ```sh
 npx -y @mermaid-js/mermaid-cli -i flow.mmd -o assets/diagrams/recipes/flow.svg -t default -b transparent
@@ -113,7 +113,30 @@ echo "Diagram SVGs to render: bundle exec modootoday-check . --diagrams" >&2
 exit 1
 ```
 
-목록의 각 펜스를 위의 명령으로 `files`에 렌더링한 다음, 목록의 `digest`로 `data-mt-src`를 넣으세요. 테마 저장소는 이 과정을 [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs)로 처리합니다. 이 스크립트는 목록을 읽고, 버전을 고정한 Mermaid로 Chromium에서 렌더링하고, 속성을 씁니다. gem에는 들어 있지 않습니다. `digest.mjs`와 함께 Jekyll이 건너뛰는 폴더(예: `_scripts/`)에 복사하면 사이트에서도 같은 방식으로 쓸 수 있습니다(Node와 Playwright 필요). `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+목록의 각 펜스를 위의 명령으로 `files`에 렌더링한 다음, 목록의 `digest`로 `data-mt-src`를 넣으세요. 테마 저장소는 이 과정을 [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs)로 처리합니다. 이 스크립트는 목록을 읽고, 버전을 고정한 Mermaid로 Chromium에서 렌더링하고, 속성을 씁니다. gem에는 들어 있지 않습니다. [`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs)와 함께 Jekyll이 건너뛰는 폴더(예: `_scripts/`)에 복사하면 사이트에서도 같은 방식으로 쓸 수 있습니다(Node와 Playwright 필요). `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+
+#### 브라우저가 실행되는 곳
+
+다이어그램을 렌더링하려면 브라우저가 필요합니다. Mermaid가 브라우저 안에서 글자를 배치하기 때문입니다. 정적 수식은 KaTeX가 Node에서 실행되므로 브라우저가 필요 없습니다. `diagrams.mjs`(사용법: `node _scripts/diagrams.mjs SRC [LIST.json] [--cdp=URL]`, `LIST.json`이 없으면 목록을 표준 입력에서 읽음)는 두 가지 방법 중 하나로 브라우저를 씁니다.
+
+- **이 컴퓨터에서.** `--cdp`가 없으면 Playwright의 Chromium을 실행합니다. `npm install --save-dev playwright`와 `npx playwright install chromium`으로 한 번 설치하세요.
+- **다른 곳에서.** `--cdp=URL`은 다른 곳에서 이미 실행 중인 브라우저를 Chrome DevTools Protocol로 조종합니다. `--remote-debugging-port`로 실행한 Chrome이나 Chromium, 브라우저 컨테이너, 호스팅 브라우저 서비스 모두 됩니다. `URL`은 그 브라우저의 `http://`나 `ws://`(`wss://`) 엔드포인트입니다. 엔드포인트에 `Authorization` 헤더가 필요하면 헤더 값을 `CDP_AUTHORIZATION` 환경 변수에 넣으세요. 브라우저를 내려받을 필요 없이 `playwright` 패키지만 있으면 됩니다. 원격 브라우저는 cdn.jsdelivr.net에서 Mermaid를 불러오므로 그 호스트에 접속할 수 있어야 합니다.
+
+```sh
+export CDP_AUTHORIZATION="Bearer <token>"   # 엔드포인트가 요구할 때만
+bundle exec modootoday-check . --diagrams > diagrams.json
+node _scripts/diagrams.mjs . diagrams.json --cdp=wss://browser.example.com/devtools
+```
+
+**CI에서는** 작업이 브라우저를 직접 설치합니다. 클래식 GitHub Pages는 커밋된 파일만 빌드하므로, CI 작업은 목록을 렌더링해 보고 저장소의 SVG 파일과 다르면 실패해서 렌더링하고 커밋하라고 알려 줍니다. `--diagrams`는 렌더링할 것이 있으면 1로 종료하므로 `|| true`를 붙입니다.
+
+```yaml
+- run: npm install --save-dev playwright && npx playwright install --with-deps chromium
+- run: |
+    bundle exec modootoday-check . --diagrams > diagrams.json || true
+    node _scripts/diagrams.mjs . diagrams.json
+    test -z "$(git status --porcelain -- assets/diagrams)"
+```
 
 ### 이미지 그림
 
@@ -125,7 +148,7 @@ exit 1
 *The build flow.*
 ```
 
-이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다. 대체 텍스트에는 "다이어그램"이 아니라 다이어그램의 의미를 쓰세요. `.svg` 그림은 파일 하나로 두 색 구성표에서 모두 동작합니다. 다크 모드에서는 테마가 색상은 유지한 채 반전하고 `--mt-img-filter-dark`를 적용합니다(토큰 `--mt-diagram-filter-dark`). 어둡게만 하려면 `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`, 사이트 전체에서 끄려면 `none`으로 설정하세요. 이미지 하나만 그대로 두려면 경로 끝에 `#light`를 붙입니다(`flow.svg#light`). 래스터 이미지는 기존 사진 톤 그대로입니다. 좁은 화면에서는 넓은 다이어그램이 읽을 수 있는 너비(`--mt-figure-min-width`, 기본 `32rem`)를 유지하고 자체 영역 안에서 가로로 스크롤됩니다. 이 영역은 포커스할 수 있고 대체 텍스트가 이름이 됩니다.
+이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다. 대체 텍스트에는 "다이어그램"이 아니라 다이어그램의 의미를 쓰세요. `.svg` 그림은 파일 하나로 두 색 구성표에서 모두 동작합니다. 다크 모드에서는 테마가 색상은 유지한 채 반전하고 `--mt-img-filter-dark`를 적용합니다(토큰 `--mt-diagram-filter-dark`). 어둡게만 하려면 `--mt-diagram-filter-dark: var(--mt-img-filter-dark)`, 사이트 전체에서 끄려면 `none`으로 설정하세요. 이미지 하나만 그대로 두려면 경로 끝에 `#light`를 붙입니다(`flow.svg#light`). 래스터 이미지는 기존 사진 톤 그대로입니다. 좁은 화면에서는 넓은 다이어그램이 읽을 수 있는 너비(`--mt-figure-min-width`, 기본 `32rem`)를 유지하고 자체 영역 안에서 가로로 스크롤됩니다. 이 영역의 이름은 "다이어그램"과 캡션이고, 이미지가 넘칠 때만 포커스할 수 있습니다.
 
 ### 정적 수식
 
@@ -158,8 +181,8 @@ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\fra
 $$
 
 - **MathML이 있는 곳.** `_data/math/<key>.yml`에는 블록마다 항목이 하나씩 페이지 순서대로 있습니다. `src`는 블록의 다이제스트(TeX에 적용한 [`data-mt-src` 규칙](#정적-다이어그램))이고 `html`은 블록의 `<math>` 요소입니다. `<key>`는 확장자를 뺀 페이지 경로에서 `/`를 `--`로 쓴 것입니다. 이 페이지 `recipes/math-diagrams.md`는 `_data/math/recipes--math-diagrams.yml`을 읽습니다. 번역(`math-diagrams.ko.md`나 언어 폴더 아래의 같은 경로)은 영어 페이지의 파일을 읽으므로 블록을 똑같이 유지하세요. 다른 파일을 쓰려면 front matter에 `math_key:`를 지정합니다.
-- **명령 하나로 렌더링.** `modootoday-check SRC --math`는 `--diagrams`처럼 써야 할 파일을 JSON으로 출력하고, 하나라도 있으면 1로 종료하므로 pre-commit 훅에서 실행할 수 있습니다. 테마 저장소는 이 목록을 [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs)로 렌더링합니다. 이 스크립트는 브라우저 없이 Node에서 KaTeX를 실행합니다. `digest.mjs`와 함께 `_scripts/`처럼 Jekyll이 건너뛰는 폴더에 복사한 뒤 `npm install --save-dev katex`, `bundle exec modootoday-check . --math | node _scripts/math.mjs .`를 실행합니다.
-- **각 수식**은 단보다 넓으면 가로로 스크롤되는 영역 안에 있습니다. 이 영역은 포커스할 수 있고 페이지 언어로 "수식 1", "수식 2"처럼 이름이 붙습니다. MathML은 TeX 원문을 주석(annotation)으로 함께 담습니다.
+- **명령 하나로 렌더링.** `modootoday-check SRC --math`는 `--diagrams`처럼 써야 할 파일을 JSON으로 출력하고, 하나라도 있으면 1로 종료하므로 pre-commit 훅에서 실행할 수 있습니다. 테마 저장소는 이 목록을 [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs)로 렌더링합니다. 이 스크립트는 브라우저 없이 Node에서 KaTeX를 실행합니다. [`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs)와 함께 `_scripts/`처럼 Jekyll이 건너뛰는 폴더에 복사한 뒤 `npm install --save-dev katex`, `bundle exec modootoday-check . --math | node _scripts/math.mjs .`를 실행합니다.
+- **각 수식**은 단보다 넓으면 가로로 스크롤되는 영역 안에 있습니다. 이 영역은 수식이 넘칠 때 포커스할 수 있고 페이지 언어로 "수식 1", "수식 2"처럼 이름이 붙습니다. MathML은 TeX 원문을 주석(annotation)으로 함께 담습니다.
 - **인라인 수식은 정적으로 만들 수 없습니다.** 정적 모드에서는 `$…$`와 문장 안의 `$$…$$`가 오류입니다. 수식을 블록으로 쓰세요. `inline: true`도 오류입니다. front matter `math: false`를 지정한 페이지는 블록을 TeX 원문 그대로 둡니다.
 - `modootoday-check`는 블록 수와 항목 수가 다른 페이지, 없는 파일, 다른 TeX로 렌더링한 항목("stale math")을 보고합니다.
 - 테마는 kramdown이 줄 맨 앞에 출력하는 `\[`로 `$$` 블록을 찾습니다. 정적 수식을 쓰는 페이지에서는 `\[`로 시작하는 코드 블록 줄도 수식 블록으로 잘못 인식되므로, 들여쓰거나 문장 안으로 옮기세요.

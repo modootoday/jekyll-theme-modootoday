@@ -49,7 +49,7 @@ flowchart LR
 - **The source stays on the page.** The fence moves under the figure into a "Diagram source" disclosure. `source: none` drops it from the HTML; the Markdown twin still has it.
 - **Light and dark.** Both images carry the alt text. The figure sheet shows one and hides the other with the same rules as the colour tokens, so the dark one also follows the theme toggle, and a hidden image is not read out. With `dark: false` each diagram has one SVG, which the theme darkens like an [image figure](#image-figures).
 - **Fences without an entry** stay code blocks. The built-in Mermaid loader does not run on a page with `diagrams:`.
-- A wide diagram keeps a readable width on narrow screens and scrolls sideways inside a focusable region named by the alt text.
+- A wide diagram keeps a readable width on narrow screens and scrolls sideways inside a region named "Diagram" and the caption, not the alt text that the image already gives; the region takes keyboard focus only while the diagram is wider than the column.
 - `modootoday-check` reports a page whose number of fences differs from its number of entries, an entry without `alt`, and a missing SVG. It warns about an entry without `width` and `height` and prints the values from the SVG's `viewBox`. It also reports an SVG whose `data-mt-src` no longer matches its fence; see [Keep diagrams fresh](#keep-diagrams-fresh).
 
 ```yaml
@@ -60,7 +60,7 @@ modootoday:
     source: details         # details (the default) or none
 ```
 
-Render each fence twice with the Mermaid CLI, with Mermaid's `default` and `dark` themes and a transparent background, and commit both files. `flow.mmd` holds the lines between the fence lines:
+Render each fence twice with the Mermaid CLI, with Mermaid's `default` and `dark` themes and a transparent background, and commit both files. `flow.mmd` holds the lines between the fence lines. The CLI downloads and starts a headless Chromium on this machine; [Where the browser runs](#where-the-browser-runs) has a remote browser and CI:
 
 ```sh
 npx -y @mermaid-js/mermaid-cli -i flow.mmd -o assets/diagrams/recipes/flow.svg -t default -b transparent
@@ -107,7 +107,30 @@ echo "Diagram SVGs to render: bundle exec modootoday-check . --diagrams" >&2
 exit 1
 ```
 
-Render each listed fence with the commands above into its `files`, then add `data-mt-src` with the listed `digest`. The theme's repository does all of this with [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs): it reads the list, renders in Chromium with a pinned Mermaid and writes the attribute. It is not part of the gem; copy it with `digest.mjs` into a folder Jekyll skips, such as `_scripts/`, to use it the same way in your site (it needs Node and Playwright): `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+Render each listed fence with the commands above into its `files`, then add `data-mt-src` with the listed `digest`. The theme's repository does all of this with [`script/figures/diagrams.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/diagrams.mjs): it reads the list, renders in Chromium with a pinned Mermaid and writes the attribute. It is not part of the gem; copy it with [`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs) into a folder Jekyll skips, such as `_scripts/`, to use it the same way in your site (it needs Node and Playwright): `bundle exec modootoday-check . --diagrams | node _scripts/diagrams.mjs .`
+
+#### Where the browser runs
+
+Rendering a diagram needs a browser, because Mermaid lays out its text in one; static math does not, as KaTeX runs in Node. `diagrams.mjs` (usage: `node _scripts/diagrams.mjs SRC [LIST.json] [--cdp=URL]`, the list from stdin without `LIST.json`) gets its browser in one of two ways:
+
+- **On this machine.** Without `--cdp` it starts Playwright's Chromium. Install it once with `npm install --save-dev playwright` and `npx playwright install chromium`.
+- **Anywhere else.** `--cdp=URL` drives a browser that already runs elsewhere through the Chrome DevTools Protocol: Chrome or Chromium started with `--remote-debugging-port`, a browser container, or a hosted browser service. `URL` is its `http://` or `ws://` (`wss://`) endpoint. If the endpoint needs an `Authorization` header, put the header's value in the `CDP_AUTHORIZATION` variable. Only the `playwright` package is needed, without a browser download. The remote browser loads Mermaid from cdn.jsdelivr.net, so it must be able to reach that host.
+
+```sh
+export CDP_AUTHORIZATION="Bearer <token>"   # only if the endpoint asks for one
+bundle exec modootoday-check . --diagrams > diagrams.json
+node _scripts/diagrams.mjs . diagrams.json --cdp=wss://browser.example.com/devtools
+```
+
+**In CI** the job installs the browser itself. Classic GitHub Pages builds only what is committed, so a CI job renders the list and fails when the SVG files in the repository differ from the renders, which tells you to render and commit them. `--diagrams` exits with 1 whenever there is something to render, hence `|| true`:
+
+```yaml
+- run: npm install --save-dev playwright && npx playwright install --with-deps chromium
+- run: |
+    bundle exec modootoday-check . --diagrams > diagrams.json || true
+    node _scripts/diagrams.mjs . diagrams.json
+    test -z "$(git status --porcelain -- assets/diagrams)"
+```
 
 ### Image figures
 
@@ -119,7 +142,7 @@ Any SVG can also be an ordinary figure, one file for both colour schemes. Refere
 *The build flow.*
 ```
 
-An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption. Write the alt text as the diagram's meaning, not "diagram". An `.svg` figure works in both colour schemes from one file: in dark mode the theme inverts it with the hues kept, then applies `--mt-img-filter-dark` (the token `--mt-diagram-filter-dark`). Set `--mt-diagram-filter-dark: var(--mt-img-filter-dark)` for a dimmer tone only, or `none` to turn it off for the site; end one image's path in `#light` (`flow.svg#light`) to keep it as drawn. Raster images keep the usual photo tone. On a narrow screen a wide diagram keeps a readable width (`--mt-figure-min-width`, default `32rem`) and scrolls sideways inside its own region, which is focusable and named by the alt text.
+An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption. Write the alt text as the diagram's meaning, not "diagram". An `.svg` figure works in both colour schemes from one file: in dark mode the theme inverts it with the hues kept, then applies `--mt-img-filter-dark` (the token `--mt-diagram-filter-dark`). Set `--mt-diagram-filter-dark: var(--mt-img-filter-dark)` for a dimmer tone only, or `none` to turn it off for the site; end one image's path in `#light` (`flow.svg#light`) to keep it as drawn. Raster images keep the usual photo tone. On a narrow screen a wide diagram keeps a readable width (`--mt-figure-min-width`, default `32rem`) and scrolls sideways inside its own region, named "Diagram" and the caption and focusable while the image overflows.
 
 ### Static math
 
@@ -152,8 +175,8 @@ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cos\frac{n \pi x}{L} + b_n \sin\fra
 $$
 
 - **Where the MathML lives.** `_data/math/<key>.yml` lists one entry per block, in page order: `src` is the block's digest (the [rule of `data-mt-src`](#static-diagrams), over the TeX) and `html` its `<math>` element. `<key>` is the page's path without the extension, with `/` written as `--`: this page, `recipes/math-diagrams.md`, reads `_data/math/recipes--math-diagrams.yml`. A translation (`math-diagrams.ko.md`, or the same path under a language folder) reads its English page's file, so keep its blocks the same. `math_key:` in front matter picks another file.
-- **Render with one command.** `modootoday-check SRC --math` prints the files to write as JSON, like `--diagrams`, and exits with 1 when there are any, so a pre-commit hook can run it. The theme's repository renders that list with [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs), which runs KaTeX in Node, with no browser. Copy it with `digest.mjs` into a folder Jekyll skips, such as `_scripts/`, then: `npm install --save-dev katex` and `bundle exec modootoday-check . --math | node _scripts/math.mjs .`
-- **Each formula** sits in a region that scrolls sideways when the formula is wider than the column. The region is focusable and named "Formula 1", "Formula 2" and so on, in the page's language. MathML keeps the TeX source as an annotation.
+- **Render with one command.** `modootoday-check SRC --math` prints the files to write as JSON, like `--diagrams`, and exits with 1 when there are any, so a pre-commit hook can run it. The theme's repository renders that list with [`script/figures/math.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/math.mjs), which runs KaTeX in Node, with no browser. Copy it with [`digest.mjs`](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/script/figures/digest.mjs) into a folder Jekyll skips, such as `_scripts/`, then: `npm install --save-dev katex` and `bundle exec modootoday-check . --math | node _scripts/math.mjs .`
+- **Each formula** sits in a region that scrolls sideways when the formula is wider than the column. The region is focusable while the formula overflows, and is named "Formula 1", "Formula 2" and so on, in the page's language. MathML keeps the TeX source as an annotation.
 - **Inline math cannot be static.** `$…$`, and `$$…$$` inside a sentence, are errors in static mode: write the formula as a block. `inline: true` is an error too. Front matter `math: false` leaves a page's blocks as TeX source.
 - `modootoday-check` reports a page whose number of blocks differs from its number of entries, a missing file, and an entry rendered from other TeX ("stale math").
 - The theme finds a `$$` block by the `\[` that kramdown prints at the start of a line. On a page with static math, a code block line that starts with `\[` would be taken for one; indent it or move it into a sentence.

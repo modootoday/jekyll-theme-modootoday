@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: event.ko.md
+lang: ko
+path: layouts/detail/event.ko.md.txt
+permalink: /ko/layouts/detail/event/index.md
+---

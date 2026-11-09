@@ -5,7 +5,6 @@ source_rev: sha256:033baedefa4e
 title: "イベントのデモ"
 description: "日付タイルとカレンダー追加ファイル付きのイベント一覧です。"
 layout: events
-twin: false
 sitemap: false
 edit: false
 sections: []

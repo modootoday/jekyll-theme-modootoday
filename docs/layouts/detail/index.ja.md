@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/
-source_rev: sha256:0b01c3840a21
+source_rev: sha256:27c842545752
 title: 詳細ページ
 description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを1件ずつ表示し、概要リスト、行動喚起1つ、構造化データを備えます。
 nav_order: 30
@@ -51,7 +51,7 @@ tickets: https://example.com/tickets
 ---
 ```
 
-カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は `url` だけがあるイベントの `offers` にもなります。`modootoday-check` が価格がないと警告するので、front matter に販売情報を直接書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: https://example.com/tickets}}`
+カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は `url` だけがあるイベントの `offers` にもなります。`modootoday-check` が価格がないと警告するので、front matter に販売情報を直接書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}` 価格はページにも書いてください。[イベントのデモ](event/)はそうしていて、自分の front matter も見せています。
 
 ## エピソード
 

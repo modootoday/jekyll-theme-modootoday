@@ -97,7 +97,7 @@ The figure carries eight series colours for each scheme, and every one has at le
 
 The theme does not ship Chart.js. Put one pinned copy on your site, so a strict Content Security Policy needs nothing added and no reader request goes to a CDN:
 
-1. Download `dist/chart.umd.min.js` of an exact Chart.js 4 release, for example from `https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js`, as `js/chart.min.js`, with its MIT licence beside it.
+1. Download `dist/chart.umd.min.js` of an exact Chart.js 4 release, for example from `https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js`, as `js/chart.min.js`, with its MIT licence beside it as `js/chart.LICENSE.txt`. Keep the licence a `.txt` file: GitHub Pages renders a Markdown file without front matter as a page, so `chart.LICENSE.md` would become one, and `modootoday-check` reports it.
 2. Compute its hash: `openssl dgst -sha384 -binary js/chart.min.js | openssl base64 -A`.
 3. Set `src: /js/chart.min.js` and `integrity: sha384-<that hash>`.
 
@@ -107,12 +107,12 @@ Pages load Chart.js (about 70 KB gzip) and the theme's chart module only when th
 
 ## What readers get
 
-- The chart is a `canvas` with `role="img"`, named by the caption (or by the series names when there is none). The table stays in the figure, folded into a *Chart data* disclosure that screen readers and keyboards open like any other.
-- Colours, grid lines and axis text come from the hooks above and follow the theme toggle and the system scheme without a reload. Line charts also give each series its own dash pattern, so series stay apart when colours are hard to tell apart.
+- The chart is a `canvas` with `role="img"`, named by the caption (or by the series names when there is none). The table stays in the figure, folded into a *Chart data* disclosure that screen readers and keyboards open like any other. Its accessible name adds the chart's name ("Chart data, Visits"), numbered when two charts share one, so the toggles on a page are told apart.
+- Colours, grid lines and axis text come from the hooks above and follow the theme toggle and the system scheme without a reload. Line charts also give each series its own dash pattern, so series stay apart when colours are hard to tell apart; their legend shows each series as a short stroke in that pattern.
 - With reduced motion set in the system, charts draw without animation.
 - In forced colours mode (Windows high contrast), the chart is not drawn and the table stays open, in the system colours.
 - Under a strict CSP the page needs no exception: Chart.js sizes the canvas through the CSSOM, which `style-src 'self'` allows ([CSP](../csp/)).
 
 ## What the checker reports
 
-`modootoday-check` reports, as errors, an unknown type or option, a `chart:` line with no table right after it, a `c: chart` section with both a table and `data:` or with neither, a missing data file and a data file whose series do not have one value per label. A cell or value that is not a number is a warning. In the built site, a paragraph still holding only `chart:` is an error when charts are on. `modootoday.chart.src` must be a version-pinned https URL with `integrity`, or a site path.
+`modootoday-check` reports, as errors, an unknown type or option, a `chart:` line with no table right after it, a `c: chart` section with both a table and `data:` or with neither, a missing data file and a data file whose series do not have one value per label. A cell or value that is not a number is a warning, reported even when the line's type is wrong. In the built site, a paragraph still holding only a valid `chart:` line is an error when charts are on; one with a wrong type is reported once, from the source. `modootoday.chart.src` must be a version-pinned https URL with `integrity`, or a site path.

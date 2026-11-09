@@ -45,7 +45,7 @@ Every theme stylesheet and script URL ends in `?v=` and the theme version, such 
 
 With `build`, the commit comes from `site.github.build_revision` on GitHub Pages, and the build time is used elsewhere.
 
-The theme's own CSS and JavaScript get the query, and so do the sheets you list in `site_css`. Your other stylesheets, images and fonts keep their URLs, and so do `preload` hints: a hint has to match the URL the page or stylesheet requests, or the browser downloads the file twice.
+The theme's own CSS and JavaScript get the query, and so do the sheets you list in `site_css` and the `src` and `css` files of your `modootoday.scripts` entries (hero modules and widgets). With `theme`, editing one of your own files does not change its URL, so use `build` when your files change between theme releases. Your other stylesheets, images and fonts keep their URLs, and so do `preload` hints: a hint has to match the URL the page or stylesheet requests, or the browser downloads the file twice.
 
 ## Long caching on a CDN
 

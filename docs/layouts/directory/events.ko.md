@@ -5,7 +5,6 @@ source_rev: sha256:033baedefa4e
 title: "행사 데모"
 description: "날짜 타일과 캘린더 추가 파일이 있는 행사 목록입니다."
 layout: events
-twin: false
 sitemap: false
 edit: false
 sections: []
