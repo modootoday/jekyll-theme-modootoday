@@ -44,7 +44,8 @@ export async function checkDemos(browser, dir, fails, { serve = (d) => serveSite
       const report = { axe: [], shots: 0 };
       await checkPages(browser, origin, demo, { origin, out: path.join(out, demo.name), report, fails, lists });
       const modules = checkModules(demo.site, readRegistry(), fails, warns);
-      const types = checkTypes(demo.site, modules, fails, warns, lists.types || {});
+      const pageTypes = Object.fromEntries(Object.entries(lists.types || {}).map(([type, pages]) => [type, { pages }]));
+      const types = checkTypes(demo.site, modules, fails, warns, pageTypes);
       const csp = lists.csp ? await checkCsp(browser, demo.site, fails, demo.qa, demo.base) : [];
       rows[demo.name] = { ...rows[demo.name], axe: report.axe, shots: report.shots, types, csp };
     } finally {
