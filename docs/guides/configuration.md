@@ -37,7 +37,7 @@ modootoday:
 | `tokens`, `tokens_dark` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
 | `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
 | `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
-| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/widgets/). |
+| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/figures/widgets/). |
 | `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |
 | `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [Agents](../agents/). |
 | `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |
@@ -60,9 +60,9 @@ modootoday:
 | `theme_color` | page background | Browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
 | `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`. |
 | `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
-| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Math and diagrams](../../recipes/math-diagrams/#built-in-loaders). |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |
-| `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/math-diagrams/#static-math). |
+| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Math and diagrams](../../recipes/figures/math-diagrams/#built-in-loaders). |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/figures/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |
+| `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/figures/math-diagrams/#static-math). |
 | `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |
 | `blog` | none | Blog settings, such as `per_page`. See [Blog and news](../../layouts/blog-news/#settings). |
 | `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |
@@ -71,7 +71,7 @@ modootoday:
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
 | `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](#starter-demo-showcase). |
-| `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/charts/). |
+| `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).

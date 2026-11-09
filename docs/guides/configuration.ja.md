@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:3cd8c79d0233
+source_rev: sha256:2f0047bb1b6c
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -43,7 +43,7 @@ modootoday:
 | `tokens`, `tokens_dark` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
 | `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |
 | `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |
-| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/widgets/)を参照。 |
+| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/figures/widgets/)を参照。 |
 | `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |
 | `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[エージェント](../agents/)を参照。 |
 | `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |
@@ -66,9 +66,9 @@ modootoday:
 | `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
 | `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。 |
 | `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
-| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[数式と図](../../recipes/math-diagrams/#組み込みローダー)を参照。 |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
-| `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/math-diagrams/#静的な数式)を参照。 |
+| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[数式と図](../../recipes/figures/math-diagrams/#組み込みローダー)を参照。 |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
+| `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/figures/math-diagrams/#静的な数式)を参照。 |
 | `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
 | `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
 | `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
@@ -77,7 +77,7 @@ modootoday:
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
 | `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](#スターターのデモのショーケース)を参照。 |
-| `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/charts/)を参照。 |
+| `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/figures/charts/)を参照。 |
 | `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。

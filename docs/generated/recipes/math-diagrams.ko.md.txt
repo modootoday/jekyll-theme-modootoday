@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: math-diagrams.ko.md
-lang: ko
-path: recipes/math-diagrams.ko.md.txt
-permalink: /ko/recipes/math-diagrams/index.md
----

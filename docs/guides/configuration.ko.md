@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:3cd8c79d0233
+source_rev: sha256:2f0047bb1b6c
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -43,7 +43,7 @@ modootoday:
 | `tokens`, `tokens_dark` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
 | `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |
 | `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |
-| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/widgets/) 참고. |
+| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/figures/widgets/) 참고. |
 | `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |
 | `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [에이전트](../agents/) 참고. |
 | `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |
@@ -66,9 +66,9 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
 | `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
-| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [수식과 다이어그램](../../recipes/math-diagrams/#내장-로더) 참고. |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
-| `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/math-diagrams/#정적-수식) 참고. |
+| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#내장-로더) 참고. |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
+| `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-수식) 참고. |
 | `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
 | `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
 | `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
@@ -77,7 +77,7 @@ modootoday:
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
 | `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](#스타터-데모-쇼케이스) 참고. |
-| `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/charts/) 참고. |
+| `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/figures/charts/) 참고. |
 | `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.

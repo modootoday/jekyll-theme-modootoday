@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261109124854
 title: The recipes sidebar may hold 14 entries until the 1.7.0 ordering item regroups it
-status: active
+status: superseded
 created: 2026-11-09T12:48:54Z
-updated: 2026-11-09T12:49:30Z
+updated: 2026-11-09T19:26:21Z
 rel:
   governs: [test/system/docs/structure.rb]
   depends_on: [adr:modootoday/20261030083000]

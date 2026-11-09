@@ -1,6 +1,0 @@
----
-layout: twin
-twin_of: widgets.md
-path: recipes/widgets.md.txt
-permalink: /recipes/widgets/index.md
----

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/roadmap/
-source_rev: sha256:953d11444d9b
+source_rev: sha256:4de87436a713
 nav_order: 50
 title: 로드맵
 description: 테마가 지원하는 것, 동작하는 환경, 앞으로의 방향.
@@ -20,7 +20,7 @@ description: 테마가 지원하는 것, 동작하는 환경, 앞으로의 방�
 - 직접 만드는 `_data/components.yml`용 슬롯 계약([API](../api/#슬롯-계약)).
 - AI 에이전트가 읽는 Markdown 버전과 `llms.txt`([에이전트](../../guides/agents/)).
 - `post` 레이아웃용 태그·카테고리 아카이브 페이지.
-- 엄격한 콘텐츠 보안 정책 지원([CSP](../../recipes/csp/))과 [수식·다이어그램 가이드](../../recipes/math-diagrams/).
+- 엄격한 콘텐츠 보안 정책 지원([CSP](../../recipes/csp/))과 [수식·다이어그램 가이드](../../recipes/figures/math-diagrams/).
 - 영어, 한국어, 일본어 문서.
 
 ## 호환성

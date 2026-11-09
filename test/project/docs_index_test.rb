@@ -76,6 +76,22 @@ class DocsIndexTest < Minitest::Test
     end
   end
 
+  # moved_from: keeps each old path of a moved page as a redirect to it, in every language the page has.
+  def test_moved_pages_leave_a_redirect_at_each_old_path
+    tree = DocsIndex::Tree.new(DOCS)
+    moved = tree.pages.select { |p| p.lang == tree.default_lang && p.fm["moved_from"] }
+    refute_empty moved
+    moved.each do |page|
+      Array(page.fm["moved_from"]).each do |old|
+        tree.langs.filter_map { |l| tree.localized(page, l) }.each do |to|
+          path = to.lang == tree.default_lang ? old : old.sub(/\.md\z/, ".#{to.lang}.md")
+          meta = fm(File.read("#{DOCS}/#{path}"))
+          assert_equal ["redirect", to.url, true], meta.values_at("layout", "redirect_to", "nav_exclude"), path
+        end
+      end
+    end
+  end
+
   def test_no_tool_output_outside_generated
     tracked = Dir.chdir(ROOT) { `git ls-files -z docs`.split("\0") }
     stray = tracked.reject { |f| f.start_with?("docs/generated/") }.select { |f| f.end_with?(".md.txt", "/llms.txt", "/llms-full.txt") }

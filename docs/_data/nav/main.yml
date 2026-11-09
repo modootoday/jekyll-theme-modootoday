@@ -73,13 +73,16 @@
 - title: Recipes
   url: /recipes/
   items:
-    - {title: Math and diagrams, url: /recipes/math-diagrams/}
+    - title: Figures and widgets
+      url: /recipes/figures/
+      items:
+        - {title: Math and diagrams, url: /recipes/figures/math-diagrams/}
+        - {title: Charts, url: /recipes/figures/charts/}
+        - {title: Widgets, url: /recipes/figures/widgets/}
     - {title: Brand tokens, url: /recipes/brand-tokens/}
     - {title: CSP, url: /recipes/csp/}
     - {title: Search, url: /recipes/search/}
-    - {title: Charts, url: /recipes/charts/}
     - {title: Generated pages, url: /recipes/generated-pages/}
-    - {title: Widgets, url: /recipes/widgets/}
     - {title: Product site, url: /recipes/marketing/}
     - {title: Company pages, url: /recipes/company/}
     - {title: Documentation site, url: /recipes/docs/}

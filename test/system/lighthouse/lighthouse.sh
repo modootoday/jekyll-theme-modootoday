@@ -15,7 +15,7 @@ cp -r "$site/." "$root/$name/"
 trap 'kill $srv 2>/dev/null; rm -rf "$root"' EXIT
 sleep 1
 base="http://localhost:$port/$name"
-pages=("" components/ components/kitchen-sink/ guides/install/ ko/ ko/components/kitchen-sink/ layouts/demo/orbit/ recipes/charts/ 404.html)
+pages=("" components/ components/kitchen-sink/ guides/install/ ko/ ko/components/kitchen-sink/ layouts/demo/orbit/ recipes/figures/charts/ 404.html)
 if [ -n "${PAGES:-}" ]; then IFS=' ' read -r -a pages <<< "$PAGES"; pages=("${pages[@]/#./}"); fi
 for p in "${pages[@]}"; do
   for f in mobile desktop; do

@@ -73,13 +73,16 @@
 - title: 레시피
   url: /ko/recipes/
   items:
-    - {title: 수식과 다이어그램, url: /ko/recipes/math-diagrams/}
+    - title: 그림과 위젯
+      url: /ko/recipes/figures/
+      items:
+        - {title: 수식과 다이어그램, url: /ko/recipes/figures/math-diagrams/}
+        - {title: 차트, url: /ko/recipes/figures/charts/}
+        - {title: 위젯, url: /ko/recipes/figures/widgets/}
     - {title: 브랜드 토큰, url: /ko/recipes/brand-tokens/}
     - {title: CSP, url: /ko/recipes/csp/}
     - {title: 검색, url: /ko/recipes/search/}
-    - {title: 차트, url: /ko/recipes/charts/}
     - {title: 생성 페이지, url: /ko/recipes/generated-pages/}
-    - {title: 위젯, url: /ko/recipes/widgets/}
     - {title: 제품 사이트, url: /ko/recipes/marketing/}
     - {title: 회사 페이지, url: /ko/recipes/company/}
     - {title: 문서 사이트, url: /ko/recipes/docs/}

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: charts.ko.md
+lang: ko
+path: recipes/figures/charts.ko.md.txt
+permalink: /ko/recipes/figures/charts/index.md
+---

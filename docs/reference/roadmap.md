@@ -14,7 +14,7 @@ description: What the theme supports, which stacks it runs on, and where it is h
 - A slot contract for your own `_data/components.yml` ([API](../api/#slot-contract)).
 - Markdown twins and `llms.txt` for AI agents ([Agents](../../guides/agents/)).
 - Tag and category archive pages for the `post` layout.
-- Strict Content Security Policy support ([CSP](../../recipes/csp/)) and a [math and diagrams guide](../../recipes/math-diagrams/).
+- Strict Content Security Policy support ([CSP](../../recipes/csp/)) and a [math and diagrams guide](../../recipes/figures/math-diagrams/).
 - Documentation in English, Korean and Japanese.
 
 ## Compatibility

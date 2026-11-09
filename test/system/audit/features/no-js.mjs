@@ -1,8 +1,8 @@
 // What readers without JavaScript get, and widgets with it: with JavaScript off, every widget shows its fallback, every
 // chart its table and every static diagram its image; with it on (strict CSP), a defined widget hides its fallback and
 // its controls take keyboard focus.
-export const NO_JS_PAGES = ["recipes/widgets/", "components/kitchen-sink/", "recipes/charts/", "recipes/math-diagrams/"];
-export const WIDGET_PAGE = "recipes/widgets/";
+export const NO_JS_PAGES = ["recipes/figures/widgets/", "components/kitchen-sink/", "recipes/figures/charts/", "recipes/figures/math-diagrams/"];
+export const WIDGET_PAGE = "recipes/figures/widgets/";
 
 const shown = () => ({
   widgets: [...document.querySelectorAll(".mt-widget")].map((w) => w.querySelector(":scope > .mt-widget-fallback")?.checkVisibility() === true),

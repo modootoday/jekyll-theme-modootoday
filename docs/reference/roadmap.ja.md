@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/roadmap/
-source_rev: sha256:953d11444d9b
+source_rev: sha256:4de87436a713
 nav_order: 50
 title: ロードマップ
 description: テーマがサポートする機能、動作環境、今後の方向。
@@ -20,7 +20,7 @@ description: テーマがサポートする機能、動作環境、今後の方�
 - 独自の `_data/components.yml` 向けのスロット契約 ([API](../api/#スロット契約))。
 - AI エージェント向けの Markdown 版と `llms.txt` ([エージェント](../../guides/agents/))。
 - `post` レイアウト用のタグ・カテゴリーのアーカイブページ。
-- 厳格なコンテンツセキュリティポリシーのサポート ([CSP](../../recipes/csp/)) と[数式と図のガイド](../../recipes/math-diagrams/)。
+- 厳格なコンテンツセキュリティポリシーのサポート ([CSP](../../recipes/csp/)) と[数式と図のガイド](../../recipes/figures/math-diagrams/)。
 - 英語、韓国語、日本語のドキュメント。
 
 ## 互換性

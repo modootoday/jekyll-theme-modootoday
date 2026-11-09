@@ -1,7 +1,7 @@
-// Charts on recipes/charts/ under the strict CSP: each figure.mt-chart draws a canvas named by its caption (role=img) and
+// Charts on recipes/figures/charts/ under the strict CSP: each figure.mt-chart draws a canvas named by its caption (role=img) and
 // folds its table into a closed details; hover and a legend click add no violation; the theme toggle redraws with the
 // other scheme's colours without a reload; reduced motion turns the animation off; forced colours keep the table.
-export const CHART_PAGE = "recipes/charts/";
+export const CHART_PAGE = "recipes/figures/charts/";
 
 const watch = () => {
   window.mtCspViolations = [];

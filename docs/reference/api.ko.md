@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:1abc7833e504
+source_rev: sha256:7b25c25fc01c
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -44,9 +44,9 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - `modootoday/brand/icon.html`은 `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), 선택 `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`를 받습니다. 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힙니다.
 - 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
-- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/math-diagrams/#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
-- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
-- 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
+- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/figures/math-diagrams/#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
+- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
+- 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - 쇼케이스: [스타터 데모 쇼케이스](../../guides/configuration/#스타터-데모-쇼케이스)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
@@ -166,7 +166,7 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ## 오른쪽에서 왼쪽 쓰기와 수식
 
 - 아랍어, 페르시아어, 히브리어, 우르두어 등 RTL 언어 페이지는 `lang`에 따라 `dir="rtl"`을 받습니다. front matter의 `direction: rtl` 또는 `ltr`(또는 `_data/i18n/<lang>.yml`의 `direction:`)로 바꿀 수 있습니다. 컴포넌트는 논리 속성을 써서 좌우가 뒤집히고, 코드는 왼쪽에서 오른쪽으로 유지됩니다.
-- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. 정적 다이어그램과 수식은 커밋한 SVG 파일과 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/math-diagrams/)을 보세요.
+- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. 정적 다이어그램과 수식은 커밋한 SVG 파일과 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/)을 보세요.
 
 ## 글과 아카이브
 

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: widgets.ja.md
+lang: ja
+path: recipes/figures/widgets.ja.md.txt
+permalink: /ja/recipes/figures/widgets/index.md
+---

@@ -454,7 +454,7 @@ Each row holds for `/ko` and `/ja` too unless marked E.
 | `/layouts/demo/code-github/` | `/components/content/code/` |
 | `/layouts/blog-news/article/` | `/layouts/blog-news/news-article/` |
 | `/layouts/docs-extra/api/` | `/recipes/docs/api-reference/` |
-| `/recipes/math-diagrams/` | `/guides/pages/math-and-diagrams/` |
+| `/recipes/figures/math-diagrams/` | `/guides/pages/math-and-diagrams/` |
 | `/recipes/brand-tokens/` | `/guides/customize/brand-tokens/` |
 | `/recipes/csp/` | `/quality/csp/` |
 | `/recipes/search/` | `/guides/pages/search/` |

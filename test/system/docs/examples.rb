@@ -9,8 +9,8 @@ require "yaml"
 site = File.expand_path(ARGV[0] || "docs/_site")
 docs = File.expand_path("../../../docs", __dir__)
 PAGES = { "components/index" => "components/", "components/kitchen-sink" => "components/kitchen-sink/",
-          "components/kitchen-sink-rtl" => "components/kitchen-sink-rtl/", "recipes/charts" => "recipes/charts/",
-          "recipes/widgets" => "recipes/widgets/", "recipes/math-diagrams" => "recipes/math-diagrams/" }.freeze
+          "components/kitchen-sink-rtl" => "components/kitchen-sink-rtl/", "recipes/figures/charts" => "recipes/figures/charts/",
+          "recipes/figures/widgets" => "recipes/figures/widgets/", "recipes/figures/math-diagrams" => "recipes/figures/math-diagrams/" }.freeze
 LEAKS = { /\{%|%\}|\{\{|\}\}/ => "Liquid", /\{:[\s.#\w]/ => "a kramdown attribute list", /\*\*\S/ => "literal **",
           /<\/?(div|span|p|details|summary)\b|markdown="?1/ => "raw HTML", /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i => "an alert marker" }.freeze
 SKIP = "pre, code, script, style, template, textarea, kbd"

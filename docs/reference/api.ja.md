@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:1abc7833e504
+source_rev: sha256:7b25c25fc01c
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -44,9 +44,9 @@ description: このテーマがサイト向けに文書化している名前、�
 - `modootoday/brand/icon.html` は `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand)、任意の `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class` を受け取ります。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、方向のあるアイコンには `.mt-icon-flip` が付き、RTL で反転します。
 - モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照。
 - データファイル: `_data/i18n/<lang>.yml` のキーは、組み込みのカタログを上書きするときだけ書きます。`_data/navigation.yml` は `main` を読みます。
-- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/math-diagrams/#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
-- 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
-- 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
+- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/figures/math-diagrams/#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
+- 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
+- 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
 - ショーケース: [スターターのデモのショーケース](../../guides/configuration/#スターターのデモのショーケース)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md` です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
@@ -166,7 +166,7 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ## 右から左への表記と数式
 
 - アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページは `lang` から `dir="rtl"` を受け取ります。front matter の `direction: rtl` または `ltr` (または `_data/i18n/<lang>.yml` の `direction:`) で上書きできます。コンポーネントは論理プロパティを使って左右が反転し、コードは左から右のままです。
-- テーマは数式や図のレンダラーを同梱しません。静的な図と数式は、コミットした SVG ファイルと MathML を表示します。[数式と図](../../recipes/math-diagrams/)を参照してください。
+- テーマは数式や図のレンダラーを同梱しません。静的な図と数式は、コミットした SVG ファイルと MathML を表示します。[数式と図](../../recipes/figures/math-diagrams/)を参照してください。
 
 ## 記事とアーカイブ
 

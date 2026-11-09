@@ -12,8 +12,8 @@ const ALL = ["", "ko/", "ja/"];
 // [url path, docs source without .md, languages]: the component pages, the kitchen sinks and the pages with examples.
 export const EXAMPLE_PAGES = [
   ["components/", "components/index", ALL], ["components/kitchen-sink/", "components/kitchen-sink", ALL],
-  ["components/kitchen-sink-rtl/", "components/kitchen-sink-rtl", [""]], ["recipes/charts/", "recipes/charts", ALL],
-  ["recipes/widgets/", "recipes/widgets", ALL], ["recipes/math-diagrams/", "recipes/math-diagrams", ALL],
+  ["components/kitchen-sink-rtl/", "components/kitchen-sink-rtl", [""]], ["recipes/figures/charts/", "recipes/figures/charts", ALL],
+  ["recipes/figures/widgets/", "recipes/figures/widgets", ALL], ["recipes/figures/math-diagrams/", "recipes/figures/math-diagrams", ALL],
   ["layouts/demo/filter/", "layouts/demo/filter", [""]], ["layouts/demo/orbit/", "layouts/demo/orbit", [""]],
   ["layouts/demo/csp/", "layouts/demo/csp", [""]],
 ];

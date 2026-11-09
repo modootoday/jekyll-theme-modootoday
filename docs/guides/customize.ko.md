@@ -37,7 +37,7 @@ sections:
 - 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적습니다. 테마가 자기 토큰과 같은 선택자로 인라인 `<style>`에 출력하므로, 엄격한 CSP에서는 막힙니다.
 - `modootoday.css_layers: true`로 설정합니다. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분합니다.
 
-다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/math-diagrams/#이미지-그림)을 참고하세요.
+다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#이미지-그림)을 참고하세요.
 
 ### 레이아웃 훅
 
@@ -142,7 +142,7 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 
 [히어로 모듈 데모](../../layouts/demo/orbit/)는 이 계약을 따르는 40줄짜리 모듈입니다.
 
-`element: <name>`을 단 항목은 비주얼을 그리는 대신 custom element를 정의합니다. 그 요소가 있는 페이지는 `script:` 없이 모듈을 불러옵니다. [위젯](../../recipes/widgets/)은 그런 요소를 Markdown에서 대체 텍스트와 함께 놓습니다.
+`element: <name>`을 단 항목은 비주얼을 그리는 대신 custom element를 정의합니다. 그 요소가 있는 페이지는 `script:` 없이 모듈을 불러옵니다. [위젯](../../recipes/figures/widgets/)은 그런 요소를 Markdown에서 대체 텍스트와 함께 놓습니다.
 
 `full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없앱니다(`.mt-main-full` 추가).
 

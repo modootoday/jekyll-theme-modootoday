@@ -1,6 +1,0 @@
----
-layout: twin
-twin_of: math-diagrams.md
-path: recipes/math-diagrams.md.txt
-permalink: /recipes/math-diagrams/index.md
----
