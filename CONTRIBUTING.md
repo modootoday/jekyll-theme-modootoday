@@ -196,3 +196,4 @@ Where things live:
 - This project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 - Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md), not in public issues.
 - Releases follow [RELEASING.md](RELEASING.md).
+- Dependabot pull requests merge by themselves (squash) once the required checks pass; the maintainer enables auto-merge in the repository settings once (RELEASING.md, "Dependency updates").

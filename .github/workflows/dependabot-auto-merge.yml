@@ -1,0 +1,31 @@
+name: Dependabot auto-merge
+
+# Dependabot's pull requests are the one pull request flow this repository keeps (adr:modootoday/20261109225836): each
+# one is set to squash-merge by itself once the required checks pass. Needs "Allow auto-merge" in the repository
+# settings and required status checks on main (RELEASING.md, "Dependency updates").
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  auto-merge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'modootoday/jekyll-theme-modootoday'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ github.token }}
+      - name: Squash-merge when the required checks pass
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          UPDATE: ${{ steps.metadata.outputs.update-type }}
+          DEPS: ${{ steps.metadata.outputs.dependency-names }}
+        run: |
+          echo "$DEPS ($UPDATE)"
+          gh pr merge --auto --squash "$PR_URL"
