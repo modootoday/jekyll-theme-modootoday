@@ -25,7 +25,7 @@ modootoday:
 ```
 
 - `element`는 custom element 이름입니다. 소문자로 쓰고 하이픈을 넣으며, 테마의 접두사인 `mt-`로 시작할 수 없고, `font-face`처럼 SVG와 MathML이 예약한 이름도 쓸 수 없습니다. 두 항목이 같은 요소를 가리킬 수 없습니다.
-- `src`와 `css`는 사이트 안의 경로입니다. `<x-counter`가 있는 페이지는 [모듈 스크립트](../../guides/customize/#module-scripts-and-posters)와 같이 그 항목의 시트와 `<script type="module">`을 `<head>`에 한 번 받습니다. 모듈 스크립트는 `script-src 'self'`가 허용하므로 엄격한 CSP를 바꿀 필요가 없습니다.
+- `src`와 `css`는 사이트 안의 경로입니다. `<x-counter`가 있는 페이지는 [모듈 스크립트](../../guides/customize/#모듈-스크립트와-포스터)와 같이 그 항목의 시트와 `<script type="module">`을 `<head>`에 한 번 받습니다. 모듈 스크립트는 `script-src 'self'`가 허용하므로 엄격한 CSP를 바꿀 필요가 없습니다.
 - 요소가 없는 페이지는 아무것도 불러오지 않습니다.
 - 모듈과 시트의 URL에는 테마 파일이나 `site_css` 시트처럼 테마의 `?v=` 쿼리가 붙으므로 CDN이 오래 캐시할 수 있습니다. 기본값 `modootoday.asset_version: theme`에서는 테마 버전이 바뀔 때만 쿼리가 바뀝니다. 테마 릴리스 사이에 직접 만든 모듈을 고친다면 커밋을 덧붙이는 `asset_version: build`로 설정하세요([버전 붙은 자산 URL](../../guides/performance/#버전-붙은-자산-url)). 진입 모듈이 가져오는 모듈의 URL에는 쿼리가 붙지 않습니다.
 
@@ -77,7 +77,7 @@ props는 요소 이름을 키로 해서 front matter에서 가져옵니다. `wid
 테마와 모듈 사이의 약속은 다음과 같습니다.
 
 - `customElements.define`으로 요소를 정의합니다. 그 전까지 테마는 `div.mt-widget-fallback`을 보여 주고, 요소가 정의되면(CSS `:defined`) 숨깁니다. 모듈이 실패하거나 불러와지지 않으면 대체 텍스트가 그대로 남으며, `<noscript>`는 쓰지 않습니다.
-- 설정은 `data-props`에서 읽습니다. 테마의 `/assets/js/modootoday/dom/config.js`가 이름 있는 내보내기로 제공하는 [`readConfig`](../../guides/customize/#module-scripts-and-posters)가 파싱합니다. `readConfig(this, {props: {}})`처럼 씁니다. 모듈 기준의 상대 경로로 가져오세요.
+- 설정은 `data-props`에서 읽습니다. 테마의 `/assets/js/modootoday/dom/config.js`가 이름 있는 내보내기로 제공하는 [`readConfig`](../../guides/customize/#모듈-스크립트와-포스터)가 파싱합니다. `readConfig(this, {props: {}})`처럼 씁니다. 모듈 기준의 상대 경로로 가져오세요.
 
   ```js
   // assets/js/widgets/x-counter.js

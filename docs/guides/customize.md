@@ -31,7 +31,7 @@ Overrides in your own stylesheet need to beat the theme's dark-scheme selectors 
 - Put the values in `modootoday.tokens` and `modootoday.tokens_dark`. The theme prints them in an inline `<style>` with the same selectors as its own tokens, so a strict CSP blocks them.
 - Set `modootoday.css_layers: true`. The theme CSS then sits in `@layer mt.*`, and any rule outside a layer wins, so a plain `:root { … }` is enough.
 
-Images in dark mode: photos use `--mt-img-filter-dark`; `.svg` figures (diagrams) use `--mt-diagram-filter-dark`, which inverts them with the hues kept and then applies `--mt-img-filter-dark`. Override either in your tokens, for example `--mt-diagram-filter-dark: none` to keep every diagram as drawn; a `#light` ending on one image's path (`flow.svg#light`) does the same for that image. See [Math and diagrams](../../recipes/math-diagrams/#diagrams).
+Images in dark mode: photos use `--mt-img-filter-dark`; `.svg` figures (diagrams) use `--mt-diagram-filter-dark`, which inverts them with the hues kept and then applies `--mt-img-filter-dark`. Override either in your tokens, for example `--mt-diagram-filter-dark: none` to keep every diagram as drawn; a `#light` ending on one image's path (`flow.svg#light`) does the same for that image. See [Math and diagrams](../../recipes/math-diagrams/#image-figures).
 
 ### Layout hooks
 
