@@ -26,9 +26,10 @@ npm test
 gem build jekyll-theme-modootoday.gemspec
 ```
 
-Generated files: run the generator without `--check` after a change, never edit its output. Each `--check` fails on stale output, and CI runs them all:
+Generated files: never edit their output. `bundle exec rake fix` runs every generator in write mode and lists what changed, to commit (translation stamps stay a deliberate `ruby script/docs-index --stamp`). Each `--check` fails on stale output, and CI runs them all:
 
 ```sh
+bundle exec rake fix
 ruby script/i18n-build --check
 ruby script/docs-index --check
 ruby script/readme-commands --check

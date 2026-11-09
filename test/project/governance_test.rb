@@ -85,7 +85,7 @@ class GovernanceTest < Minitest::Test
   def rake_task?(name)
     return true if %w[build install release].include?(name) # bundler/gem_tasks
     *spaces, task = name.split(":")
-    src = read("Rakefile")
+    src = (["Rakefile"] + Dir.glob("rakelib/*.rake", base: ROOT)).map { |f| read(f) }.join("\n")
     spaces.all? { |n| src.match?(/namespace[ (]:#{n}\b/) } && src.match?(/task[ (]:#{task}\b|task #{task}:|TestTask\.new\(:#{task}\)/)
   end
 

@@ -45,6 +45,7 @@ check "README commands" ruby script/readme-commands --check
 check "commit messages" ruby script/commit-check $ranges
 
 if [ "$fail" -ne 0 ]; then
+  echo "pre-push: stale generated files are fixed by: bundle exec rake fix (then commit or amend what it lists)"
   echo "pre-push: fix the failures above; git push --no-verify skips the hook, but push CI runs the same checks"
   exit 1
 fi
