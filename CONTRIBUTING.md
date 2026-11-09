@@ -18,6 +18,8 @@ npm ci && npm test
 gem build jekyll-theme-modootoday.gemspec
 ```
 
+A shared pre-push hook runs the checks that need no build in a few seconds: the docs structure, the CHANGELOG lint, the spec id resolution, `script/i18n-build --check`, `script/docs-index --check` and `script/readme-commands --check`. It is opt-in; turn it on once per clone with `git config core.hooksPath script/hooks`, or run `script/hooks/pre-push` by hand. Push CI runs the same checks, so `git push --no-verify` only moves a failure later.
+
 Changes to `docs/` or the theme's look: `test/system/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. Every theme CSS and JS file has a gzip cap on its row in `_includes/modootoday/assets/registry.html` (the measured size plus 10 %, rounded up to 128 bytes): a file over its cap, a row without a cap (the message prints the cap to use) and a theme file without a row fail. Per page type (`PAGE_TYPES` in `test/system/audit/config.mjs`) the limit is the sum of the caps of what one page loads; the `GUIDE` targets (8 KiB CSS, 6 KiB JavaScript, six theme sheets) only warn. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there. A demo that moved into a starter is checked in that starter's demo build instead (`STARTERS` in the same file).
 
 ### Visual regression

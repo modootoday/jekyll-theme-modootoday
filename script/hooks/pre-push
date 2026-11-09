@@ -1,0 +1,31 @@
+#!/bin/sh
+# Shared pre-push hook: the fast checks that need no build, run before a commit reaches the remote.
+# Opt in once per clone with: git config core.hooksPath script/hooks. Push CI repeats every check.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE
+
+fail=0
+check() {
+  name=$1
+  shift
+  if out=$("$@" 2>&1); then
+    echo "pre-push: ok    $name"
+  else
+    echo "pre-push: FAIL  $name ($*)"
+    printf '%s\n' "$out"
+    fail=1
+  fi
+}
+
+check "docs structure" ruby test/system/docs/structure.rb
+check "changelog lint" ruby test/project/changelog_test.rb
+check "spec ids resolve" ruby test/project/spec_ids_test.rb
+check "i18n catalogs" ruby script/i18n-build --check
+check "docs index" ruby script/docs-index --check
+check "README commands" ruby script/readme-commands --check
+
+if [ "$fail" -ne 0 ]; then
+  echo "pre-push: fix the failures above; git push --no-verify skips the hook, but push CI runs the same checks"
+  exit 1
+fi
