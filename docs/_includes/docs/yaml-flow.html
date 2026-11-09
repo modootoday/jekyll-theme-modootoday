@@ -1,0 +1,10 @@
+{%- comment -%}Docs site only: include.v (a sections: entry) as a YAML flow map a reader can copy, with nested maps one
+level deep (widget props); each scalar goes through docs/yaml-scalar.html.{%- endcomment -%}
+{%- assign _yf_o = "{" -%}{%- assign _yf_c = "}" -%}
+{%- capture _yf -%}
+{%- for _yf_kv in include.v -%}
+{%- assign _yf_v = _yf_kv[1] -%}{%- assign _yf_j = _yf_v | jsonify | slice: 0 -%}
+{{ _yf_kv[0] }}: {% if _yf_j == _yf_o %}{{ _yf_o }}{% for _yf_in in _yf_v %}{% assign _yf_iv = _yf_in[1] %}{{ _yf_in[0] }}: {% include docs/yaml-scalar.html v=_yf_iv %}{% unless forloop.last %}, {% endunless %}{% endfor %}{{ _yf_c }}{% else %}{% include docs/yaml-scalar.html v=_yf_v %}{% endif %}{% unless forloop.last %}, {% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+{{ _yf_o }}{{ _yf }}{{ _yf_c -}}

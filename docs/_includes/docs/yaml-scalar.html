@@ -1,0 +1,11 @@
+{%- comment -%}Docs site only: include.v (a scalar) as YAML. A string YAML would read differently (a colon, comma, bracket, quote
+or other indicator) is written as a JSON string; numbers and booleans as they are.{%- endcomment -%}
+{%- assign _ys_j = include.v | jsonify -%}
+{%- assign _ys_q = false -%}
+{%- if _ys_j contains '"' -%}
+{%- assign _ys_s = include.v | append: "" -%}
+{%- if _ys_s == "" or _ys_s contains '"' -%}{%- assign _ys_q = true -%}{%- endif -%}
+{%- assign _ys_bad = ":|,|{|}|[|]|#|&|*|!|>|%|@|`|'" | split: "|" -%}
+{%- for _ys_c in _ys_bad -%}{%- if _ys_s contains _ys_c -%}{%- assign _ys_q = true -%}{%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- if _ys_q -%}{{ _ys_j }}{%- else -%}{{ include.v }}{%- endif -%}

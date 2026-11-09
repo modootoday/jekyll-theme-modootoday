@@ -12,7 +12,7 @@ Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -
 {%- endcase -%}
 {%- assign _nl = "
 " -%}
-{%- assign _fence = "~~~~~" -%}{%- assign _ob = "{" -%}{%- assign _cb = "}" -%}
+{%- assign _fence = "~~~~~" -%}
 {%- capture _raw %}{% include modootoday/markdown/raw-body.html file=page.name %}{% endcapture -%}
 {%- assign _md = _raw | prepend: _nl | split: "
 ## " -%}
@@ -35,7 +35,7 @@ Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -
 {%- assign _lead = _h | split: "</p>" | first | append: "</p>" -%}
 {%- assign _rest = _h | remove_first: _lead -%}
 {%- capture _fm -%}{%- if _s.c -%}sections:
-  - {{ _ob }}{% for _kv in _s %}{{ _kv[0] }}: {{ _kv[1] }}{% unless forloop.last %}, {% endunless %}{% endfor %}{{ _cb }}{%- endif -%}{%- endcapture -%}
+  - {% include docs/yaml-flow.html v=_s %}{%- endif -%}{%- endcapture -%}
 {%- capture _srcmd -%}
 {%- if _fm != "" %}
 <p class="docs-ex-label docs-ex-fm">{{ _lf }}</p>
