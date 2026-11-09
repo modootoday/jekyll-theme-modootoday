@@ -2,7 +2,7 @@
 lang: ko
 permalink: /ko/guides/upgrade/
 source_rev: sha256:7dd06b300fcd
-nav_order: 60
+nav_order: 30
 title: 마이그레이션과 업그레이드
 description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
 ---

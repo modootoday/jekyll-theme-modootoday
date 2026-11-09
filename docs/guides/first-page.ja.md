@@ -2,7 +2,7 @@
 lang: ja
 permalink: /ja/guides/first-page/
 source_rev: sha256:914b5b73a5d1
-nav_order: 20
+nav_order: 40
 nav_title: "最初のページ"
 title: "最初のページを書く"
 description: front matter、セクション、アラートを使ってページを書きます。

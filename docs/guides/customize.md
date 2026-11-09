@@ -1,5 +1,5 @@
 ---
-nav_order: 40
+nav_order: 50
 title: Customize
 description: Change colors, radius and fonts with tokens and the token bridge, add your own stylesheets, or override Sass partials.
 sections:

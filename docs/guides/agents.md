@@ -1,5 +1,5 @@
 ---
-nav_order: 50
+nav_order: 60
 title: AI agents
 description: Publish each page's Markdown twin, URL aliases, llms.txt and llms-full.txt so AI agents read your site as written.
 sections:

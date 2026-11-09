@@ -2,7 +2,7 @@
 lang: ko
 permalink: /ko/guides/configuration/
 source_rev: sha256:f0b306cf80c5
-nav_order: 30
+nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
 sections:

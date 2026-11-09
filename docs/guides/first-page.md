@@ -1,5 +1,5 @@
 ---
-nav_order: 20
+nav_order: 40
 nav_title: "First page"
 title: "Write your first page"
 description: Write a page with front matter, sections and alerts.

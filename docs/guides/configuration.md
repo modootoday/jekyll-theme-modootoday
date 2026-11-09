@@ -1,5 +1,5 @@
 ---
-nav_order: 30
+nav_order: 20
 title: Configuration
 description: Site-wide settings under the modootoday key in _config.yml.
 sections:

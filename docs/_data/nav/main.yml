@@ -3,11 +3,11 @@
   url: /guides/
   items:
     - {title: Install, url: /guides/install/}
-    - {title: First page, url: /guides/first-page/}
     - {title: Configuration, url: /guides/configuration/}
+    - {title: Migrate and upgrade, url: /guides/upgrade/}
+    - {title: First page, url: /guides/first-page/}
     - {title: Customize, url: /guides/customize/}
     - {title: AI agents, url: /guides/agents/}
-    - {title: Migrate and upgrade, url: /guides/upgrade/}
     - {title: Accessibility, url: /guides/accessibility/}
     - {title: Performance, url: /guides/performance/}
     - {title: Structured data, url: /guides/structured-data/}

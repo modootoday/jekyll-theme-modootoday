@@ -196,7 +196,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | N5 | fixed | H1 equals title outside demos; nav_title only as a shorter form |
 | N6 | partly fixed | The demo index is linked from the CSP demo; error demos are exempt as error pages |
 | N7 | fixed | Tags and Categories left the Reference sidebar; R7 blocks sample pages in docs nav |
-| N8 | deferred | Splitting Guides needs an IA decision |
+| N8 | resolved | Guides keep their URLs; Install, Configuration and Migrate and upgrade come first in the sidebar, topic guides after ([[adr:modootoday/20261109225554]]) |
 | P1 | fixed | All ko/ja stamps current after review |
 | P2 | deferred | A `translate: false` flag is a new contract |
 | P3 | deferred | README.ja.md needs a decision |

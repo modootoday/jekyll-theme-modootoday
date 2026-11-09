@@ -2,7 +2,7 @@
 lang: ko
 permalink: /ko/guides/agents/
 source_rev: sha256:48bf8e2072ed
-nav_order: 50
+nav_order: 60
 title: AI 에이전트
 description: 페이지마다 Markdown 버전, URL 별칭, llms.txt, llms-full.txt를 게시해 AI 에이전트가 사이트를 쓴 그대로 읽게 합니다.
 sections:

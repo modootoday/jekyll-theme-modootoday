@@ -2,7 +2,7 @@
 lang: ko
 permalink: /ko/guides/first-page/
 source_rev: sha256:914b5b73a5d1
-nav_order: 20
+nav_order: 40
 nav_title: "첫 페이지"
 title: "첫 페이지 쓰기"
 description: front matter, 섹션, 알림으로 페이지를 씁니다.

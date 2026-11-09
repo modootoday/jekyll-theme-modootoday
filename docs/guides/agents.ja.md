@@ -2,7 +2,7 @@
 lang: ja
 permalink: /ja/guides/agents/
 source_rev: sha256:48bf8e2072ed
-nav_order: 50
+nav_order: 60
 title: AI エージェント
 description: ページごとの Markdown 版、URL エイリアス、llms.txt、llms-full.txt を公開し、AI エージェントがサイトを書いたとおりに読めるようにします。
 sections:

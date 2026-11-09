@@ -1,5 +1,5 @@
 ---
-nav_order: 60
+nav_order: 30
 title: Migrate and upgrade
 description: Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
 ---

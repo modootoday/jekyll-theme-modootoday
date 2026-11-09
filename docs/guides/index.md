@@ -5,15 +5,15 @@ nav_order: 0
 ---
 # Guides
 
-Start here, in order.
+Start with the first three: Install, Configuration, and Migrate and upgrade get a site running on the theme. The topic guides after them each cover one subject; read them in any order.
 
 <!-- spec:docs-index:begin -->
 - [Install](install/) — Add the theme to a GitHub Pages or Jekyll 4 site.
-- [First page](first-page/) — Write a page with front matter, sections and alerts.
 - [Configuration](configuration/) — Site-wide settings under the modootoday key in _config.yml.
+- [Migrate and upgrade](upgrade/) — Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
+- [First page](first-page/) — Write a page with front matter, sections and alerts.
 - [Customize](customize/) — Change colors, radius and fonts with tokens and the token bridge, add your own stylesheets, or override Sass partials.
 - [AI agents](agents/) — Publish each page's Markdown twin, URL aliases, llms.txt and llms-full.txt so AI agents read your site as written.
-- [Migrate and upgrade](upgrade/) — Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
 - [Accessibility](accessibility/) — Keyboard use, screen readers, safe areas, touch targets, high contrast and reduced motion.
 - [Performance](performance/) — What each page loads, versioned asset URLs for long CDN caching, and the size budgets CI keeps.
 - [Structured data](structured-data/) — The schema.org JSON-LD graph the theme prints on every page, and how to configure it.

@@ -2,7 +2,7 @@
 lang: ja
 permalink: /ja/guides/upgrade/
 source_rev: sha256:7dd06b300fcd
-nav_order: 60
+nav_order: 30
 title: 移行とアップグレード
 description: 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
 ---

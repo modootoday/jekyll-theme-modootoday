@@ -2,7 +2,7 @@
 lang: ja
 permalink: /ja/guides/configuration/
 source_rev: sha256:f0b306cf80c5
-nav_order: 30
+nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
 sections:
