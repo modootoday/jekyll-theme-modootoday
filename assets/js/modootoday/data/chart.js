@@ -27,8 +27,10 @@ export function chartConfig(fig, data, still) {
   const ticks = { color: hook("t") };
   const grid = { color: hook("g") };
   const axis = { stacked: opts.includes("stacked"), grid, border: grid, ticks };
-  // A line series legend key is a short stroke in its dash pattern; a dashed box outline reads as noise.
-  const labels = round || type == "bar" ? ticks : { ...ticks, usePointStyle: true, pointStyle: "line", pointStyleWidth: 28 };
+  // A line series legend key is a short stroke in its dash pattern; a dashed box outline reads as noise. Point-style
+  // keys take the point's style, so the series' dash and width are put back on each key.
+  const keys = (chart) => chart.constructor.defaults.plugins.legend.labels.generateLabels(chart).map((k) => ({ ...k, lineDash: DASH[k.datasetIndex % 4], lineWidth: 2 }));
+  const labels = round || type == "bar" ? ticks : { ...ticks, usePointStyle: true, pointStyle: "line", pointStyleWidth: 28, generateLabels: keys };
   const options = { maintainAspectRatio: false, indexAxis: opts.includes("horizontal") ? "y" : "x", plugins: { legend: { rtl, labels }, tooltip: { rtl } } };
   options.scales = round ? {} : { x: axis, y: { ...axis } };
   if (still) {

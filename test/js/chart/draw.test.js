@@ -65,8 +65,12 @@ test("each Chart data disclosure is named after its chart, numbered when two cha
 test("a line chart's legend draws each key as a stroke in the series dash", async () => {
   const { made } = await page(figure("line") + figure("area"));
   for (const chart of made) {
-    const { usePointStyle, pointStyle } = chart.config.options.plugins.legend.labels;
+    const { usePointStyle, pointStyle, generateLabels } = chart.config.options.plugins.legend.labels;
     assert.deepStrictEqual([usePointStyle, pointStyle], [true, "line"]);
+    class Fake {
+      static defaults = { plugins: { legend: { labels: { generateLabels: () => [{ datasetIndex: 0, lineWidth: 1 }, { datasetIndex: 1, lineWidth: 1 }] } } } };
+    }
+    assert.deepStrictEqual(generateLabels(new Fake()).map((k) => [k.lineDash, k.lineWidth]), [[[], 2], [[6, 3], 2]], "the point style drops the series dash");
   }
 });
 
