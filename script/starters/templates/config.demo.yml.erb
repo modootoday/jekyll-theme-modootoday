@@ -1,6 +1,9 @@
 # The live demo's settings. Only the Pages workflow of <%= starter.repo %>
 # layers this file over _config.yml, so a repository created from this template, or a fork, builds without it.
 # You may delete it.
+# The demo's own address: the classic builder takes it from the Pages API, which can answer with a wrong base path.
+url: <%= starter.demo_origin %>
+baseurl: <%= starter.baseurl %>
 modootoday:
   showcase:
     enabled: true

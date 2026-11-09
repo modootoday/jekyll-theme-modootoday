@@ -16,6 +16,7 @@ module Starters
     def demo_url = "https://#{repo.split("/").first.downcase}.github.io/#{repo.split("/").last}/"
     def generate_url = "https://github.com/#{repo}/generate"
     def baseurl = "/#{repo.split("/").last}"
+    def demo_origin = demo_url.delete_suffix("#{baseurl}/")
     def topics = ["jekyll", "jekyll-theme", "github-pages", "starter-template", name]
     # The gitlink's URL: GitHub Pages fetches only public HTTPS submodules.
     def submodule_url = "https://github.com/#{repo}.git"

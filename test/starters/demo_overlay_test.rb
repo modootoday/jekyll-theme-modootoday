@@ -26,10 +26,11 @@ class StarterDemoOverlayTest < Minitest::Test
   def steps(stack) = YAML.safe_load(File.read("#{tree}/#{stack}/tiny/.github/workflows/pages.yml")).dig("jobs", "build", "steps")
   def index(stack, &) = steps(stack).index(&)
 
-  def test_the_overlay_holds_only_the_showcase_with_addresses_from_the_manifest
+  def test_the_overlay_holds_the_demo_address_and_the_showcase_from_the_manifest
     %w[github-pages jekyll4].each do |stack|
       demo = YAML.safe_load(File.read("#{tree}/#{stack}/tiny/_config.demo.yml"))
-      assert_equal({ "modootoday" => { "showcase" => { "enabled" => true, "style" => "pill", "starter" => "tiny",
+      assert_equal({ "url" => "https://owner.github.io", "baseurl" => "/tiny-starter",
+                     "modootoday" => { "showcase" => { "enabled" => true, "style" => "pill", "starter" => "tiny",
                                                        "docs_url" => "https://docs.example.com/theme/",
                                                        "use_url" => "https://github.com/#{REPO}/generate" } } }, demo)
     end
@@ -58,7 +59,8 @@ class StarterDemoOverlayTest < Minitest::Test
       run_guarded(d, REPO, "Layer the demo config")
       merged = YAML.safe_load(File.read("#{d}/_config.yml"))
       assert_equal "pill", merged.dig("modootoday", "showcase", "style")
-      assert_equal YAML.safe_load(before).merge("modootoday" => YAML.safe_load(before).fetch("modootoday", {}).merge(merged["modootoday"])), merged
+      assert_equal ["https://owner.github.io", "/tiny-starter"], merged.values_at("url", "baseurl")
+      assert_equal YAML.safe_load(before).merge("url" => merged["url"], "baseurl" => merged["baseurl"], "modootoday" => YAML.safe_load(before).fetch("modootoday", {}).merge(merged["modootoday"])), merged
       run_guarded(d, REPO, "Restore _config.yml")
       assert_equal before, File.binread("#{d}/_config.yml")
     end
