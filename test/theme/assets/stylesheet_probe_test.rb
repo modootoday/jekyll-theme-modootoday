@@ -38,7 +38,8 @@ class StylesheetProbeTest < Minitest::Test
   # "docs/doc.css structure/tabs.js" short names expand to css/modootoday/docs/doc.css and js/modootoday/structure/tabs.js.
   def self.list(s) = s.split.map { |w| w.start_with?("css/", "js/") ? w : "#{w[/\w+\z/]}/modootoday/#{w}" }
 
-  # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>);
+  # scroll-region.js and code-copy.js load only on pages whose body has a <pre> (scroll-region.js also for a <table>
+  # and an SVG figure's scroller);
   # a <table> also brings table-stack.css and table-stack.js.
   CHROME = "chrome/menu.js content/scroll-region.js content/code-copy.js chrome/theme-toggle.js"
   PLAIN = "chrome/menu.js chrome/theme-toggle.js"
@@ -49,7 +50,7 @@ class StylesheetProbeTest < Minitest::Test
     "pr/spinner" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/skeleton" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
     "pr/topbar" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css content/loading.css #{PLAIN} #{SEARCH}",
-    "pr/svg" => "css/modootoday.css chrome/doc-nav.css media/figure.css chrome/footer.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
+    "pr/svg" => "css/modootoday.css chrome/doc-nav.css media/figure.css chrome/footer.css docs/doc.css chrome/search.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",
     "pr/note" => "css/modootoday.css chrome/doc-nav.css content/inline.css chrome/footer.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
     "pr/checks" => "css/modootoday.css chrome/doc-nav.css marketing/hero.css chrome/footer.css docs/doc.css chrome/search.css content/lists.css #{PLAIN} #{SEARCH}",
     "pr/titled" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
@@ -79,7 +80,7 @@ class StylesheetProbeTest < Minitest::Test
     "blog:." => "css/modootoday.css content/inline.css css/modootoday-blog.css content/loading.css chrome/menu.js content/code-copy.js",
   }.freeze
   BUNDLE = {
-    "pr/svg" => "css/modootoday.css #{PLAIN} #{SEARCH}",
+    "pr/svg" => "css/modootoday.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",
     "pr/note" => "css/modootoday.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css structure/tabs.js #{CHROME} structure/accordion.js #{SEARCH}",
     "pr/css" => "css/modootoday.css css/modootoday-hero.css #{PLAIN} #{SEARCH}",
