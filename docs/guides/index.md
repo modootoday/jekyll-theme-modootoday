@@ -1,7 +1,7 @@
 ---
+nav_order: 0
 title: Guides
 description: Install the theme, write your first pages, configure and customize it, then read the topic guides on agents, accessibility, performance and more.
-nav_order: 0
 ---
 # Guides
 

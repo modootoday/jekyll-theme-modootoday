@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/recipes/
 source_rev: sha256:c54d63f6760b
+nav_order: 0
 title: 레시피
 description: 가이드를 바탕으로 작업 하나씩을 다루는 짧은 안내입니다. 그림과 브랜드 토큰부터 검색, 엄격한 CSP, 데이터로 만드는 페이지까지 다룹니다.
-nav_order: 0
 ---
 # 레시피
 

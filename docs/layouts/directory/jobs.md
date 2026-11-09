@@ -1,6 +1,6 @@
 ---
+nav_order: 3
 title: "Jobs demo"
-description: Open positions as cards with the title, the location and the type of work, and a department filter that needs no JavaScript.
 layout: jobs
 twin: false
 sitemap: false
@@ -10,7 +10,7 @@ items:
   - {"title": "Frontend engineer", "department": "Engineering", "location": "Seoul", "type": "Full-time", "url": "#"}
   - {"title": "Product designer", "department": "Design", "location": "Remote", "type": "Full-time", "url": "#"}
   - {"title": "Support lead", "department": "Support", "location": "Tokyo", "type": "Contract", "url": "#"}
-nav_order: 3
+description: Open positions as cards with the title, the location and the type of work, and a department filter that needs no JavaScript.
 ---
 # Jobs demo
 

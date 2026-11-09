@@ -1,6 +1,6 @@
 ---
-nav_order: 28
 moved_from: [recipes/widgets.md]
+nav_order: 28
 title: Widgets
 description: Place your own custom element in a page from Markdown, with text that readers without JavaScript get instead.
 widget_props: {x-counter: {start: 10, step: 10, label: Add 10}}

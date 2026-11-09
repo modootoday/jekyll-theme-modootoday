@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/reference/
 source_rev: sha256:76c84548b8d9
+nav_order: 0
 title: リファレンス
 description: 安定した名前、コマンドのオプション、スターターのデモのショーケース、過去のリリース、次に計画している作業など、繰り返し調べる内容をまとめました。
-nav_order: 0
 ---
 # リファレンス
 

@@ -1,8 +1,8 @@
 ---
-title: Brand demo
-description: Colors and files for writing about the theme, with the color values to copy and the logo files to download in each format we provide.
-layout: brand
 nav_order: 4
+title: Brand demo
+layout: brand
+description: Colors and files for writing about the theme, with the color values to copy and the logo files to download in each format we provide.
 twin: false
 edit: false
 sections: []

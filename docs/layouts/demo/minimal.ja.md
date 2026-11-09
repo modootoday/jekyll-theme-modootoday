@@ -2,14 +2,14 @@
 lang: ja
 permalink: /ja/layouts/demo/minimal/
 source_rev: sha256:b8de27d129a1
+nav_exclude: true
 title: ミニマルレイアウトのデモ
-description: サイトのヘッダーとページ送りのない、中央寄せの狭い列です。短いお知らせや登録フォームのように、ほかから切り離して単独で見せたいページに使います。
 layout: minimal
 twin: false
 sitemap: false
 edit: false
 sections: []
-nav_exclude: true
+description: サイトのヘッダーとページ送りのない、中央寄せの狭い列です。短いお知らせや登録フォームのように、ほかから切り離して単独で見せたいページに使います。
 ---
 # ミニマル
 

@@ -2,11 +2,11 @@
 lang: ko
 permalink: /ko/layouts/docs-extra/book/
 source_rev: sha256:0dac52857e86
+nav_order: 7
 title: "책 데모"
-description: 끝까지 읽히는 문서를 쓰는 짧은 안내서입니다. 장을 차례로 읽거나 하나씩 골라 읽을 수 있으며, 저자와 ISBN이 함께 표시됩니다.
 layout: book
 image: /assets/images/site/book.webp
-nav_order: 7
+description: 끝까지 읽히는 문서를 쓰는 짧은 안내서입니다. 장을 차례로 읽거나 하나씩 골라 읽을 수 있으며, 저자와 ISBN이 함께 표시됩니다.
 twin: false
 edit: false
 sections: []

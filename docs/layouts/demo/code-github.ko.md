@@ -2,12 +2,12 @@
 lang: ko
 permalink: /ko/layouts/demo/code-github/
 source_rev: sha256:ed6279dfbed8
+nav_exclude: true
 title: GitHub 코드 색 데모
-description: GitHub 라이트·다크 팔레트로 칠한 코드 블록입니다. 사이트에서 modootoday.code_theme을 github로 설정했을 때의 모습을 보여 줍니다.
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: GitHub 라이트·다크 팔레트로 칠한 코드 블록입니다. 사이트에서 modootoday.code_theme을 github로 설정했을 때의 모습을 보여 줍니다.
 site_css: [/assets/css/code-github.css]
 ---
 # GitHub 코드 색

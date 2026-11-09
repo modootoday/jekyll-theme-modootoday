@@ -1,9 +1,9 @@
 ---
-title: Event demo
-image: {path: /assets/images/events/stage.webp, alt: "An empty stage under spotlights facing rows of seats", width: 800, height: 600}
-description: An evening meetup about building sites with the theme, with two short talks and then questions. Admission is free; register to get a ticket.
-layout: event
 nav_order: 4
+image: {path: /assets/images/events/stage.webp, alt: "An empty stage under spotlights facing rows of seats", width: 800, height: 600}
+title: Event demo
+layout: event
+description: An evening meetup about building sites with the theme, with two short talks and then questions. Admission is free; register to get a ticket.
 edit: false
 sections: []
 starts: "2026-11-20 19:00:00 +0900"

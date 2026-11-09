@@ -1,12 +1,12 @@
 ---
+nav_exclude: true
 title: Wide layout demo
-description: Full chrome, with the site header, sidebar and footer, but without the reading-width cap, for wide tables, dashboards and side-by-side code.
 layout: wide
 twin: false
 sitemap: false
 edit: false
 sections: []
-nav_exclude: true
+description: Full chrome, with the site header, sidebar and footer, but without the reading-width cap, for wide tables, dashboards and side-by-side code.
 ---
 # Wide
 

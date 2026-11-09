@@ -1,10 +1,10 @@
 ---
+nav_exclude: true
 title: Filter demo
-description: "A list and a table that readers narrow by typing, with a button per value on the table: the filter: section parameter."
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: "A list and a table that readers narrow by typing, with a button per value on the table: the filter: section parameter."
 sections: [{name: tools, filter: true}, {name: plans, filter: {facet: 3}}, setup]
 ---
 # Filter demo

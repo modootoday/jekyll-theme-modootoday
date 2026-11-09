@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/recipes/figures/
 source_rev: sha256:e242e2dd1f34
+nav_order: 10
 title: 図とウィジェット
 description: ダイアグラム、数式、グラフをスクリプトなしでも表示される図にし、独自のインタラクティブな要素を代わりのテキストと一緒に配置するレシピをまとめました。
-nav_order: 10
 ---
 # 図とウィジェット
 

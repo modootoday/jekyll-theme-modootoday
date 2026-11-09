@@ -1,6 +1,6 @@
 ---
+nav_order: 5
 title: "Sponsors demo"
-description: Sponsor logos grouped by tier, each with its name and a link, and a tier filter that shows only the sponsors of the tier you pick.
 layout: sponsors
 twin: false
 sitemap: false
@@ -10,7 +10,7 @@ items:
   - {"name": "Northpine", "tier": "Gold", "url": "#", "image": "/assets/images/logos/northwind.svg", "width": 96, "height": 96, "alt": ""}
   - {"name": "Lumen", "tier": "Gold", "url": "#", "image": "/assets/images/logos/lumen.svg", "width": 96, "height": 96, "alt": ""}
   - {"name": "Quill", "tier": "Silver", "url": "#", "image": "/assets/images/logos/quill.svg", "width": 96, "height": 96, "alt": ""}
-nav_order: 5
+description: Sponsor logos grouped by tier, each with its name and a link, and a tier filter that shows only the sponsors of the tier you pick.
 ---
 # Sponsors demo
 

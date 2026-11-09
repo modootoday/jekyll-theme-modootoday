@@ -1,8 +1,8 @@
 ---
-title: "Resume demo"
-description: A one-page CV with experience, education and skills that prints cleanly on A4 or Letter paper and reflows to fit a phone screen.
-layout: resume
 nav_order: 2
+title: "Resume demo"
+layout: resume
+description: A one-page CV with experience, education and skills that prints cleanly on A4 or Letter paper and reflows to fit a phone screen.
 twin: false
 edit: false
 sections: []

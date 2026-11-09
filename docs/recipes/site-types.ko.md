@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/recipes/site-types/
 source_rev: sha256:5bd64dd18a0c
+nav_order: 30
 title: 사이트 유형
 description: 제품, 회사, 문서, 개인, 커뮤니티 사이트를 어떤 레이아웃으로 만드는지, 그리고 모든 사이트에 필요한 시스템 페이지를 정리합니다.
-nav_order: 30
 ---
 # 사이트 유형
 

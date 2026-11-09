@@ -2,10 +2,10 @@
 lang: ko
 permalink: /ko/layouts/marketing/brand/
 source_rev: sha256:7ab6254164df
-title: 브랜드 데모
-description: 테마를 소개할 때 쓰는 색상과 파일입니다. 복사해 쓸 색상 값과, 제공하는 형식마다 내려받을 수 있는 로고 파일을 모았습니다.
-layout: brand
 nav_order: 4
+title: 브랜드 데모
+layout: brand
+description: 테마를 소개할 때 쓰는 색상과 파일입니다. 복사해 쓸 색상 값과, 제공하는 형식마다 내려받을 수 있는 로고 파일을 모았습니다.
 twin: false
 edit: false
 sections: []

@@ -2,11 +2,11 @@
 lang: ko
 permalink: /ko/layouts/detail/project/
 source_rev: sha256:c3d573caf684
-title: 프로젝트 데모
-image: {path: /assets/images/projects/network.webp, alt: "점으로 이어진 네트워크에 둘러싸인 빛나는 지구본", width: 800, height: 600}
-description: 고객, 우리가 맡은 역할, 연도, 사용한 기술 스택, 저장소 링크가 있는 완료된 프로젝트입니다. 작업의 개요를 한눈에 볼 수 있습니다.
-layout: project
 nav_order: 1
+image: {path: /assets/images/projects/network.webp, alt: "점으로 이어진 네트워크에 둘러싸인 빛나는 지구본", width: 800, height: 600}
+title: 프로젝트 데모
+layout: project
+description: 고객, 우리가 맡은 역할, 연도, 사용한 기술 스택, 저장소 링크가 있는 완료된 프로젝트입니다. 작업의 개요를 한눈에 볼 수 있습니다.
 twin: false
 edit: false
 sections: []

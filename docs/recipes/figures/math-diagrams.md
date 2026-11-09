@@ -1,6 +1,6 @@
 ---
-nav_order: 10
 moved_from: [recipes/math-diagrams.md]
+nav_order: 10
 title: Math and diagrams
 description: Show Mermaid diagrams and math as static SVG and MathML you commit, or render them with the built-in loaders or your own, and the cost to CSP and privacy.
 diagrams:

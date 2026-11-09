@@ -1,14 +1,14 @@
 ---
-title: "News article"
+nav_order: 4
 image: {path: /assets/images/news/tech.webp, alt: "A laptop surrounded by floating charts and spheres", width: 1024, height: 576}
-description: A news article with a deck under the headline, a live badge, a correction note and its sources, the way a newsroom publishes a developing story.
+nav_title: "News article demo"
 layout: news-article
 twin: false
 sitemap: false
 search: false
 noindex: true
-nav_title: "News article demo"
-nav_order: 4
+title: "News article"
+description: A news article with a deck under the headline, a live badge, a correction note and its sources, the way a newsroom publishes a developing story.
 edit: false
 sidebar: false
 date: "2026-10-29 14:30:00 +0900"

@@ -185,7 +185,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | T5 | deferred | Product name wording left as is; glossary already names it |
 | T6 | fixed | Nav label is the title; ko "마이그레이션과 업그레이드" |
 | F1 | fixed | Relative links; R8 blocks the base URL (error pages exempt) |
-| F2 | deferred | Key order reported by R3, about 190 pages differ |
+| F2 | fixed | `script/docs-key-order` reordered 163 pages once, values unchanged; R3 key order blocks ([[adr:modootoday/20261109225554]]) |
 | F3 | fixed | "What to read next" |
 | F4 | deferred | Manual back links left |
 | F5 | resolved | One glossary line per alert type; the docs rules block unknown types and report pages with more than three callouts ([[adr:modootoday/20261109225554]]) |
@@ -216,7 +216,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | X2 | partly fixed | Showcase moved to reference/showcase; components half waits for N2 |
 | X3 | fixed | Reference index rewritten; site-type recipes merged per D6 |
 | X4 | fixed | R7 reports groups from 11 entries |
-| X5 | partly fixed | Reference index; R3 reports about 200 short descriptions |
+| X5 | fixed | Reference index; 174 descriptions rewritten to 70-160 characters in every language; R3 description length blocks ([[adr:modootoday/20261109225554]]) |
 | X6 | deferred | llms.txt grouping changes the llms layouts (M) |
 | X7 | fixed | Guides and recipes link a related page; R8 blocks |
 | X8 | fixed | Demos set `twin:`; R3 blocks |

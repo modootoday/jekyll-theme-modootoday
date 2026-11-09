@@ -1,17 +1,17 @@
 ---
-title: "뉴스 기사"
-image: {path: /assets/images/news/tech.webp, alt: "떠 있는 차트와 구체에 둘러싸인 노트북", width: 1024, height: 576}
-description: 제목 아래 부제, 라이브 배지, 정정 안내, 출처가 붙은 뉴스 기사예요. 진행 중인 소식을 뉴스룸이 발행하는 방식 그대로 보여 줘요.
-layout: news-article
 lang: ko
+image: {path: /assets/images/news/tech.webp, alt: "떠 있는 차트와 구체에 둘러싸인 노트북", width: 1024, height: 576}
 permalink: /ko/layouts/blog-news/article/
+layout: news-article
 source_rev: sha256:aeee8f137b6c
+nav_order: 4
+nav_title: "뉴스 기사 데모"
 twin: false
 sitemap: false
 search: false
 noindex: true
-nav_title: "뉴스 기사 데모"
-nav_order: 4
+title: "뉴스 기사"
+description: 제목 아래 부제, 라이브 배지, 정정 안내, 출처가 붙은 뉴스 기사예요. 진행 중인 소식을 뉴스룸이 발행하는 방식 그대로 보여 줘요.
 edit: false
 sidebar: false
 date: "2026-10-29 14:30:00 +0900"

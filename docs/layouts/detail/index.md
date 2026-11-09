@@ -1,7 +1,7 @@
 ---
+nav_order: 30
 title: Detail pages
 description: One page per project, case study, job, event or podcast episode, with a facts list, one call to action and structured data.
-nav_order: 30
 ---
 # Detail pages
 

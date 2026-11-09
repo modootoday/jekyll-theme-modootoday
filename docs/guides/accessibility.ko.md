@@ -2,8 +2,8 @@
 lang: ko
 permalink: /ko/guides/accessibility/
 source_rev: sha256:cd4f78816d29
-title: 접근성
 nav_order: 70
+title: 접근성
 description: 키보드 사용, 스크린 리더, 휴대폰의 안전 영역, 터치 대상 크기, 고대비 모드, 동작 줄이기 설정을 테마가 어떻게 지원하는지 설명합니다.
 ---
 # 접근성

@@ -2,10 +2,10 @@
 lang: ko
 permalink: /ko/layouts/docs-extra/reference/
 source_rev: sha256:c3632f2ca43c
-title: "레퍼런스 데모"
-description: 명령줄 인터페이스를 명령마다 하나씩 설명합니다. 항목마다 시그니처, 짧은 설명, 알려진 경우 처음 들어간 버전이 있어 필요한 명령을 바로 찾습니다.
-layout: reference
 nav_order: 1
+title: "레퍼런스 데모"
+layout: reference
+description: 명령줄 인터페이스를 명령마다 하나씩 설명합니다. 항목마다 시그니처, 짧은 설명, 알려진 경우 처음 들어간 버전이 있어 필요한 명령을 바로 찾습니다.
 twin: false
 edit: false
 sections: []

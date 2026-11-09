@@ -2,10 +2,10 @@
 lang: ko
 permalink: /ko/layouts/docs-extra/course/
 source_rev: sha256:62bba60820e5
-title: "강좌 데모"
-description: 오후 한나절에 사이트를 만들고 게시합니다. 준비부터 첫 공개까지, 걸리는 시간이 표시된 짧은 강의를 모듈별로 따라가면 됩니다.
-layout: course
 nav_order: 6
+title: "강좌 데모"
+layout: course
+description: 오후 한나절에 사이트를 만들고 게시합니다. 준비부터 첫 공개까지, 걸리는 시간이 표시된 짧은 강의를 모듈별로 따라가면 됩니다.
 twin: false
 edit: false
 sections: []

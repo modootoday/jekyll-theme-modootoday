@@ -1,13 +1,13 @@
 ---
-title: "News front page"
-description: "A newsroom front page: lead story, secondary stories, latest list and sections."
+nav_order: 3
+nav_title: "News demo"
 layout: news
 twin: false
 sitemap: false
 search: false
 noindex: true
-nav_title: "News demo"
-nav_order: 3
+title: "News front page"
+description: "A newsroom front page: lead story, secondary stories, latest list and sections."
 edit: false
 sections: []
 news_sections: [releases, guides]

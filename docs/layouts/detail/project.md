@@ -1,9 +1,9 @@
 ---
-title: Project demo
-image: {path: /assets/images/projects/network.webp, alt: "A glowing globe wrapped in a network of linked points", width: 800, height: 600}
-description: A finished project with its client, the role we played, the year, the stack it was built with and a link to its repository.
-layout: project
 nav_order: 1
+image: {path: /assets/images/projects/network.webp, alt: "A glowing globe wrapped in a network of linked points", width: 800, height: 600}
+title: Project demo
+layout: project
+description: A finished project with its client, the role we played, the year, the stack it was built with and a link to its repository.
 twin: false
 edit: false
 sections: []

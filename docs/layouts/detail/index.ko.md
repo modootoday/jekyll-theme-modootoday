@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/layouts/detail/
 source_rev: sha256:98bb4eda253b
+nav_order: 30
 title: 상세 페이지
 description: 프로젝트, 사례 연구, 채용 공고, 행사, 팟캐스트 에피소드를 한 페이지에 하나씩 보여 주며 정보 목록, 행동 유도 하나, 구조화 데이터를 갖춥니다.
-nav_order: 30
 ---
 # 상세 페이지
 

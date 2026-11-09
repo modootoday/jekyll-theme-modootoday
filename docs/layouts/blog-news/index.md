@@ -1,6 +1,6 @@
 ---
-title: Blog and news
 nav_order: 50
+title: Blog and news
 description: Blog indexes, news front pages, article bylines, author pages and Atom feeds.
 ---
 # Blog and news

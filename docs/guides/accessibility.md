@@ -1,6 +1,6 @@
 ---
-title: Accessibility
 nav_order: 70
+title: Accessibility
 description: Keyboard use, screen readers, safe areas, touch targets, high contrast and reduced motion.
 ---
 # Accessibility

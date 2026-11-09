@@ -2,11 +2,11 @@
 lang: ko
 permalink: /ko/layouts/detail/event/
 source_rev: sha256:858acc578e19
-title: 행사 데모
-image: {path: /assets/images/events/stage.webp, alt: "객석을 마주한 조명 아래의 빈 무대", width: 800, height: 600}
-description: 이 테마로 사이트를 만드는 방법을 다루는 저녁 밋업입니다. 짧은 발표 두 개와 질문 시간이 있고, 참가비는 무료이니 신청해서 티켓을 받으세요.
-layout: event
 nav_order: 4
+image: {path: /assets/images/events/stage.webp, alt: "객석을 마주한 조명 아래의 빈 무대", width: 800, height: 600}
+title: 행사 데모
+layout: event
+description: 이 테마로 사이트를 만드는 방법을 다루는 저녁 밋업입니다. 짧은 발표 두 개와 질문 시간이 있고, 참가비는 무료이니 신청해서 티켓을 받으세요.
 edit: false
 sections: []
 starts: "2026-11-20 19:00:00 +0900"

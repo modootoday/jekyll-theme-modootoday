@@ -1,8 +1,8 @@
 ---
-title: Feature demo
-description: Write in Markdown, publish a fast site. Pages stay readable on GitHub, load little, work without JavaScript and come with a checker.
-layout: feature
 nav_order: 1
+title: Feature demo
+layout: feature
+description: Write in Markdown, publish a fast site. Pages stay readable on GitHub, load little, work without JavaScript and come with a checker.
 twin: false
 edit: false
 sections: []

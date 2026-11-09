@@ -2,12 +2,12 @@
 lang: ja
 permalink: /ja/layouts/demo/code-github/
 source_rev: sha256:ed6279dfbed8
+nav_exclude: true
 title: GitHub コードカラーのデモ
-description: GitHub のライトとダークのパレットで色付けしたコードブロックです。modootoday.code_theme github の見た目です。
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: GitHub のライトとダークのパレットで色付けしたコードブロックです。modootoday.code_theme github の見た目です。
 site_css: [/assets/css/code-github.css]
 ---
 # GitHub コードカラー

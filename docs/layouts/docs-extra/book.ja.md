@@ -2,11 +2,11 @@
 lang: ja
 permalink: /ja/layouts/docs-extra/book/
 source_rev: sha256:0dac52857e86
+nav_order: 7
 title: "書籍のデモ"
-description: 最後まで読まれるドキュメントを書くための短いガイドです。章を順に読んでも、1 章ずつ選んで読んでもよく、著者名と ISBN もあわせて表示します。
 layout: book
 image: /assets/images/site/book.webp
-nav_order: 7
+description: 最後まで読まれるドキュメントを書くための短いガイドです。章を順に読んでも、1 章ずつ選んで読んでもよく、著者名と ISBN もあわせて表示します。
 twin: false
 edit: false
 sections: []

@@ -2,8 +2,8 @@
 lang: ja
 permalink: /ja/guides/accessibility/
 source_rev: sha256:cd4f78816d29
-title: アクセシビリティ
 nav_order: 70
+title: アクセシビリティ
 description: キーボード操作、スクリーンリーダー、スマートフォンのセーフエリア、タッチターゲットの大きさ、ハイコントラスト、視差効果を減らす設定への対応を説明します。
 ---
 # アクセシビリティ

@@ -2,10 +2,10 @@
 lang: ja
 permalink: /ja/layouts/docs-extra/changelog/
 source_rev: sha256:75c43d6277cd
-title: "変更履歴のデモ"
-description: リリースごとの変更点を新しい順に示します。バージョンと日付ごとに追加、変更、修正を分けて並べるので、何が変わったのかをすぐに見つけられます。
-layout: changelog
 nav_order: 2
+title: "変更履歴のデモ"
+layout: changelog
+description: リリースごとの変更点を新しい順に示します。バージョンと日付ごとに追加、変更、修正を分けて並べるので、何が変わったのかをすぐに見つけられます。
 twin: false
 edit: false
 sections: []

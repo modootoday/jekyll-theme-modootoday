@@ -2,12 +2,12 @@
 lang: ko
 permalink: /ko/layouts/demo/orbit/
 source_rev: sha256:8989380cb3b1
+nav_exclude: true
 title: 히어로 모듈 데모
-description: "사이트 모듈 스크립트가 포스터 이미지 위에 그림을 그리는 분할 히어로입니다. script:와 poster:를 설정하는 방법입니다."
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: "사이트 모듈 스크립트가 포스터 이미지 위에 그림을 그리는 분할 히어로입니다. script:와 poster:를 설정하는 방법입니다."
 hero: {c: split, visual: orbit-stage, script: orbit, turn: 12, poster: {path: /assets/images/hero/orbit-960.webp, srcset: "/assets/images/hero/orbit-640.webp 640w, /assets/images/hero/orbit-960.webp 960w", width: 960, height: 960}}
 sections: [setup, contract]
 ---

@@ -1,7 +1,7 @@
 ---
+nav_order: 0
 title: Layouts
 description: Page layouts the theme ships, from docs pages to blogs, directories and marketing pages, and when to use each, with a demo of every one.
-nav_order: 0
 ---
 # Layouts
 

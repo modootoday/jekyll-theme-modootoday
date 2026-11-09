@@ -1,7 +1,7 @@
 ---
+nav_order: 60
 title: Docs extras
 description: Reference, changelog, roadmap, glossary, hub, course and book pages with one shared optional stylesheet.
-nav_order: 60
 ---
 # Docs extras
 

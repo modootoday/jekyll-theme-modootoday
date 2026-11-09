@@ -2,8 +2,8 @@
 lang: ja
 permalink: /ja/layouts/directory/portfolio/
 source_rev: sha256:bf499928fca6
+nav_order: 1
 title: "ポートフォリオのデモ"
-description: 画像、タイトル、短い説明、タグのあるプロジェクトのカードです。JavaScript なしで動くタグの絞り込みで、1 種類の作品だけを表示できます。
 layout: portfolio
 twin: false
 sitemap: false
@@ -13,7 +13,7 @@ items:
   - {"title": "ハーバーアプリ", "text": "スマートフォン向けのフェリー時刻表です。", "tags": ["Mobile", "Design"], "url": "#", "image": "/assets/images/projects/app.webp", "width": 800, "height": 600, "alt": ""}
   - {"title": "オープンデータポータル", "text": "都市のデータセットを検索してダウンロードします。", "tags": ["Web", "Data"], "url": "#", "image": "/assets/images/projects/data.webp", "width": 800, "height": 600, "alt": ""}
   - {"title": "ブランド刷新", "text": "パン屋のロゴ、色、書体です。", "tags": ["Design"], "url": "#", "image": "/assets/images/projects/brand.webp", "width": 800, "height": 600, "alt": ""}
-nav_order: 1
+description: 画像、タイトル、短い説明、タグのあるプロジェクトのカードです。JavaScript なしで動くタグの絞り込みで、1 種類の作品だけを表示できます。
 ---
 # ポートフォリオのデモ
 

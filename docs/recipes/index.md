@@ -1,7 +1,7 @@
 ---
+nav_order: 0
 title: Recipes
 description: Short how-tos for one task each, built on the guides, from figures and brand tokens to search, a strict CSP and pages generated from data.
-nav_order: 0
 ---
 # Recipes
 

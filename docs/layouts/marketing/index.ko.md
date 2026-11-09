@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/layouts/marketing/
 source_rev: sha256:bfd133775930
+nav_order: 40
 title: 마케팅 페이지
 description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지를 공유 선택 스타일시트 하나로 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
-nav_order: 40
 ---
 # 마케팅 페이지
 

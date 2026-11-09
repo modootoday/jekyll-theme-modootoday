@@ -1,8 +1,8 @@
 ---
-title: Job demo
-description: Write and maintain the product documentation, from guides to reference pages, and review changes with the engineers who build the product.
-layout: job
 nav_order: 3
+title: Job demo
+layout: job
+description: Write and maintain the product documentation, from guides to reference pages, and review changes with the engineers who build the product.
 twin: false
 edit: false
 date: 2026-10-01

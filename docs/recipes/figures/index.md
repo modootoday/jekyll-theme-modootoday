@@ -1,7 +1,7 @@
 ---
+nav_order: 10
 title: Figures and widgets
 description: Show diagrams, math and charts as figures that work without a script, and place your own interactive elements.
-nav_order: 10
 ---
 # Figures and widgets
 

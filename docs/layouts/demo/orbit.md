@@ -1,10 +1,10 @@
 ---
+nav_exclude: true
 title: Hero module demo
-description: "A split hero whose picture a site module script draws over a poster image, the setup of script: and poster:."
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: "A split hero whose picture a site module script draws over a poster image, the setup of script: and poster:."
 hero: {c: split, visual: orbit-stage, script: orbit, turn: 12, poster: {path: /assets/images/hero/orbit-960.webp, srcset: "/assets/images/hero/orbit-640.webp 640w, /assets/images/hero/orbit-960.webp 960w", width: 960, height: 960}}
 sections: [setup, contract]
 ---

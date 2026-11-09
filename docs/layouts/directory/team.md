@@ -1,6 +1,6 @@
 ---
+nav_order: 2
 title: "Team demo"
-description: The people behind the project as cards with a round photo, a name and a role, and a group filter that needs no JavaScript.
 layout: team
 twin: false
 sitemap: false
@@ -13,7 +13,7 @@ items:
   - {"name": "Eun Park", "role": "Advisor", "group": "Leadership", "image": "/assets/images/people/eun.webp", "width": 256, "height": 256, "alt": ""}
   - {"name": "Farid Haddad", "role": "Engineer", "group": "Engineering", "image": "/assets/images/people/farid.webp", "width": 256, "height": 256, "alt": ""}
   - {"name": "Hana Sato", "role": "Illustrator", "group": "Design", "image": "/assets/images/people/hana.webp", "width": 256, "height": 256, "alt": ""}
-nav_order: 2
+description: The people behind the project as cards with a round photo, a name and a role, and a group filter that needs no JavaScript.
 ---
 # Team demo
 

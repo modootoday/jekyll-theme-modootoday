@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/reference/rules/
 source_rev: sha256:850ecd98370e
+nav_order: 15
 title: Markdown ルール
 description: すべてのページ本文が従う md-components v1 のルールです。github.com、テーマ、Markdown 版で同じように表示するための基準をまとめます。
-nav_order: 15
 ---
 # Markdown ルール
 

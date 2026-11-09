@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/guides/
 source_rev: sha256:757c59e09039
+nav_order: 0
 title: 가이드
 description: 테마를 설치하고 첫 페이지를 쓰고 설정하고 꾸미는 방법부터, AI 에이전트, 접근성, 성능 같은 주제별 가이드까지 순서대로 안내합니다.
-nav_order: 0
 ---
 # 가이드
 

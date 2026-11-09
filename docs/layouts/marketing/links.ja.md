@@ -2,10 +2,10 @@
 lang: ja
 permalink: /ja/layouts/marketing/links/
 source_rev: sha256:9b494e10e28b
-title: リンクのデモ
-description: すべてのリンクをひとつに。ドキュメント、GitHub のソースコード、RubyGems の gem に、どのスマートフォンでも開ける 1 ページからすぐ移動できます。
-layout: links
 nav_order: 5
+title: リンクのデモ
+layout: links
+description: すべてのリンクをひとつに。ドキュメント、GitHub のソースコード、RubyGems の gem に、どのスマートフォンでも開ける 1 ページからすぐ移動できます。
 twin: false
 edit: false
 sections: []

@@ -1,6 +1,6 @@
 ---
-nav_order: 26
 moved_from: [recipes/charts.md]
+nav_order: 26
 title: Charts
 description: Turn a Markdown table into a chart figure, or show a data file as one, with the table as the text every reader gets.
 ---

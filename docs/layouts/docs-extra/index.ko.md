@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/layouts/docs-extra/
 source_rev: sha256:44b1c2e2c53b
+nav_order: 60
 title: 문서 확장
 description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 책 페이지를 공유 선택 스타일시트 하나로 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
-nav_order: 60
 ---
 # 문서 확장
 

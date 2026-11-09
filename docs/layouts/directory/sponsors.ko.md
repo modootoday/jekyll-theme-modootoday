@@ -2,8 +2,8 @@
 lang: ko
 permalink: /ko/layouts/directory/sponsors/
 source_rev: sha256:2b8600d0613f
+nav_order: 5
 title: "후원사 데모"
-description: 후원사 로고를 등급별로 묶어 이름과 링크를 함께 보여 주고, 고른 등급의 후원사만 화면에 남기는 등급 필터를 단 후원사 목록입니다.
 layout: sponsors
 twin: false
 sitemap: false
@@ -13,7 +13,7 @@ items:
   - {"name": "Northpine", "tier": "Gold", "url": "#", "image": "/assets/images/logos/northwind.svg", "width": 96, "height": 96, "alt": ""}
   - {"name": "Lumen", "tier": "Gold", "url": "#", "image": "/assets/images/logos/lumen.svg", "width": 96, "height": 96, "alt": ""}
   - {"name": "Quill", "tier": "Silver", "url": "#", "image": "/assets/images/logos/quill.svg", "width": 96, "height": 96, "alt": ""}
-nav_order: 5
+description: 후원사 로고를 등급별로 묶어 이름과 링크를 함께 보여 주고, 고른 등급의 후원사만 화면에 남기는 등급 필터를 단 후원사 목록입니다.
 ---
 # 후원사 데모
 

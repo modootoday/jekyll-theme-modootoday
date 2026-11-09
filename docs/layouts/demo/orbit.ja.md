@@ -2,12 +2,12 @@
 lang: ja
 permalink: /ja/layouts/demo/orbit/
 source_rev: sha256:8989380cb3b1
+nav_exclude: true
 title: ヒーローモジュールのデモ
-description: "サイトのモジュールスクリプトがポスター画像の上に絵を描く分割ヒーローです。script: と poster: の設定方法と、スクリプトが動かないときの表示を示します。"
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: "サイトのモジュールスクリプトがポスター画像の上に絵を描く分割ヒーローです。script: と poster: の設定方法と、スクリプトが動かないときの表示を示します。"
 hero: {c: split, visual: orbit-stage, script: orbit, turn: 12, poster: {path: /assets/images/hero/orbit-960.webp, srcset: "/assets/images/hero/orbit-640.webp 640w, /assets/images/hero/orbit-960.webp 960w", width: 960, height: 960}}
 sections: [setup, contract]
 ---

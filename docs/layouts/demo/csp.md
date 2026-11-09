@@ -1,10 +1,10 @@
 ---
+nav_exclude: true
 title: Strict CSP demo
-description: Core components on one page, checked under a strict Content Security Policy.
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: Core components on one page, checked under a strict Content Security Policy.
 sections:
   - alerts
   - {c: tabs, name: tabs}

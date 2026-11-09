@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/layouts/
 source_rev: sha256:fa8836cac047
+nav_order: 0
 title: 레이아웃
 description: 문서 페이지부터 블로그, 디렉터리, 마케팅 페이지까지 테마가 제공하는 페이지 레이아웃과 각각의 쓰임새를 레이아웃별 데모와 함께 설명합니다.
-nav_order: 0
 ---
 # 레이아웃
 

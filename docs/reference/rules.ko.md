@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/reference/rules/
 source_rev: sha256:850ecd98370e
+nav_order: 15
 title: Markdown 규칙
 description: 모든 페이지 본문이 따르는 md-components v1 규칙입니다. github.com, 테마, Markdown 버전에서 똑같이 보이게 하는 기준을 정리합니다.
-nav_order: 15
 ---
 # Markdown 규칙
 

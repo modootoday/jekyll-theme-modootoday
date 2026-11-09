@@ -2,12 +2,12 @@
 lang: ja
 permalink: /ja/layouts/demo/csp/
 source_rev: sha256:c965ae0df915
+nav_exclude: true
 title: 厳格な CSP のデモ
-description: コアコンポーネントを 1 ページに集め、インラインのスクリプトとスタイルを禁じる厳格な Content Security Policy の下でも正しく表示されるかを確認します。
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: コアコンポーネントを 1 ページに集め、インラインのスクリプトとスタイルを禁じる厳格な Content Security Policy の下でも正しく表示されるかを確認します。
 sections:
   - alerts
   - {c: tabs, name: tabs}

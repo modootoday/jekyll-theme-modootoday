@@ -2,8 +2,8 @@
 lang: ko
 permalink: /ko/guides/translation/
 source_rev: sha256:89c1e3974ae0
-title: 번역 규칙
 nav_order: 90
+title: 번역 규칙
 description: 한국어와 일본어 문서, 인터페이스 문구를 번역할 때 지키는 정본 스타일 규칙, 문체, 용어집, 그리고 그 규칙을 검사하는 도구를 정리합니다.
 ---
 # 번역 규칙

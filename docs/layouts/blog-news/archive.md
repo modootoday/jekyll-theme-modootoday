@@ -1,13 +1,13 @@
 ---
-title: "Yearly archive"
-description: Every post on this site grouped by year, newest first, with its date and title, so you can browse back through everything we have written.
+nav_order: 5
+nav_title: "Archive demo"
 layout: archive
 twin: false
 sitemap: false
 search: false
 noindex: true
-nav_title: "Archive demo"
-nav_order: 5
+title: "Yearly archive"
+description: Every post on this site grouped by year, newest first, with its date and title, so you can browse back through everything we have written.
 edit: false
 sidebar: false
 sections: []

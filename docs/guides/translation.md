@@ -1,6 +1,6 @@
 ---
-title: Translation rules
 nav_order: 90
+title: Translation rules
 description: The canonical style rules, glossary and lint for the Korean and Japanese docs and interface strings.
 ---
 # Translation rules

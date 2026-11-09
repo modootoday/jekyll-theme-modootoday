@@ -1,17 +1,17 @@
 ---
-title: "ニュース記事"
-image: {path: /assets/images/news/tech.webp, alt: "浮かぶグラフと球体に囲まれたノートパソコン", width: 1024, height: 576}
-description: 見出しの下のリード文、ライブバッジ、訂正のお知らせ、出典が付いたニュース記事です。進行中のニュースを報道機関が公開するときの形をそのまま示します。
-layout: news-article
 lang: ja
+image: {path: /assets/images/news/tech.webp, alt: "浮かぶグラフと球体に囲まれたノートパソコン", width: 1024, height: 576}
 permalink: /ja/layouts/blog-news/article/
+layout: news-article
 source_rev: sha256:aeee8f137b6c
+nav_order: 4
+nav_title: "ニュース記事デモ"
 twin: false
 sitemap: false
 search: false
 noindex: true
-nav_title: "ニュース記事デモ"
-nav_order: 4
+title: "ニュース記事"
+description: 見出しの下のリード文、ライブバッジ、訂正のお知らせ、出典が付いたニュース記事です。進行中のニュースを報道機関が公開するときの形をそのまま示します。
 edit: false
 sidebar: false
 date: "2026-10-29 14:30:00 +0900"

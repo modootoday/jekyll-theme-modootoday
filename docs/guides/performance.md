@@ -1,6 +1,6 @@
 ---
-title: Performance
 nav_order: 75
+title: Performance
 description: What each page loads, versioned asset URLs for long CDN caching, and the size budgets CI keeps.
 ---
 # Performance

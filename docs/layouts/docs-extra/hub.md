@@ -1,8 +1,8 @@
 ---
-title: "Hub demo"
-description: Start here and pick a path. Each card below opens one part of the docs, the guides, the layouts or the recipes, with a line on what it holds.
-layout: hub
 nav_order: 5
+title: "Hub demo"
+layout: hub
+description: Start here and pick a path. Each card below opens one part of the docs, the guides, the layouts or the recipes, with a line on what it holds.
 twin: false
 edit: false
 sections: []

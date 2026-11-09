@@ -1,7 +1,7 @@
 ---
+nav_order: 10
 title: Page shells
 description: Page shells for every kind of page, each with its own optional stylesheet.
-nav_order: 10
 ---
 # Page shells
 

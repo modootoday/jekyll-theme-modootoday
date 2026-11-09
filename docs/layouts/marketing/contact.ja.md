@@ -2,10 +2,10 @@
 lang: ja
 permalink: /ja/layouts/marketing/contact/
 source_rev: sha256:769b5a2589b7
-title: お問い合わせのデモ
-description: テーマについての質問はこちらへ。メール、GitHub の Issue、下のフォームのどれでもかまいません。たいてい 2 営業日以内にお返事します。
-layout: contact
 nav_order: 6
+title: お問い合わせのデモ
+layout: contact
+description: テーマについての質問はこちらへ。メール、GitHub の Issue、下のフォームのどれでもかまいません。たいてい 2 営業日以内にお返事します。
 twin: false
 edit: false
 sections: []

@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Puts the front matter keys of every docs page in the order rule R3 asks for (adr:modootoday/20261109200230), in
+# every language. Only the keys R3 orders move, into the slots they already hold; every other line, and every value,
+# stays byte for byte. The order is DocsRules::FrontMatter::ORDER, the pages those test/system/docs/rules.rb reads.
+#   ruby script/docs-key-order           rewrite the pages whose keys are out of order
+#   ruby script/docs-key-order --check   list them and exit 1 (write nothing)
+require "yaml"
+require "date"
+require_relative "../test/system/docs/rules/pages"
+require_relative "../test/system/docs/rules/front_matter"
+
+FM = /\A---\r?\n(.*?\r?\n)---\r?\n/m
+KEY = /\A([A-Za-z_][\w-]*):/
+
+# Front matter text as [prefix, [[key, text], ...]]: a block is a top-level key line plus the indented, blank or
+# comment lines after it, so moving a block moves its whole value.
+def blocks(text)
+  prefix = +""
+  out = []
+  text.each_line do |line|
+    if (k = line[KEY, 1])
+      out << [k, +line]
+    elsif out.empty?
+      prefix << line
+    else
+      out.last[1] << line
+    end
+  end
+  [prefix, out]
+end
+
+def reorder(text)
+  prefix, list = blocks(text)
+  order = DocsRules::FrontMatter::ORDER
+  slots = list.each_index.select { |i| order.include?(list[i][0]) }
+  moved = slots.map { |i| list[i] }.sort_by { |k, _| order.index(k) }
+  out = list.dup
+  slots.zip(moved).each { |i, b| out[i] = b }
+  prefix + out.map(&:last).join
+end
+
+root = File.expand_path("..", __dir__)
+pages = DocsRules::Pages.new("#{root}/docs")
+changed = []
+pages.tree.langs.each do |lang|
+  pages.docs(lang).each do |p|
+    src = File.read(p.path)
+    fm = src[FM, 1] or next
+    new_fm = reorder(fm)
+    next if new_fm == fm
+    load = ->(t) { YAML.safe_load(t, permitted_classes: [Date, Time]) }
+    abort "#{p.rel}: the values would change" unless load.(new_fm) == load.(fm) && new_fm.lines.sort == fm.lines.sort
+    changed << p.rel
+    File.write(p.path, src.sub(fm) { new_fm }) unless ARGV.include?("--check")
+  end
+end
+if ARGV.include?("--check")
+  changed.each { |r| warn "docs-key-order: out of order: #{r}" }
+  exit(changed.empty? ? 0 : 1)
+end
+puts "docs-key-order: #{changed.size} page(s) reordered"

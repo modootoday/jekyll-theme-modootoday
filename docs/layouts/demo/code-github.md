@@ -1,10 +1,10 @@
 ---
+nav_exclude: true
 title: GitHub code colors demo
-description: Code blocks in the GitHub light and dark palettes, the look of modootoday.code_theme github.
 twin: false
 sitemap: false
 edit: false
-nav_exclude: true
+description: Code blocks in the GitHub light and dark palettes, the look of modootoday.code_theme github.
 site_css: [/assets/css/code-github.css]
 ---
 # GitHub code colors

@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/recipes/figures/
 source_rev: sha256:e242e2dd1f34
+nav_order: 10
 title: 그림과 위젯
 description: 다이어그램, 수식, 차트를 스크립트 없이도 보이는 그림으로 만들고, 직접 만든 대화형 요소를 텍스트 대체 내용과 함께 넣는 레시피를 모았습니다.
-nav_order: 10
 ---
 # 그림과 위젯
 

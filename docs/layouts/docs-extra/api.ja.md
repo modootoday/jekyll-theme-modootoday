@@ -2,10 +2,10 @@
 lang: ja
 permalink: /ja/layouts/docs-extra/api/
 source_rev: sha256:7899f43591b2
-title: "API リファレンスのデモ"
-description: メンバーをグループ分けして並べるサイドバー、同梱するパッケージの表、シグネチャ付きの関数ごとの項目を備えた、ライブラリのリファレンスのページです。
-layout: reference
 nav_order: 8
+title: "API リファレンスのデモ"
+layout: reference
+description: メンバーをグループ分けして並べるサイドバー、同梱するパッケージの表、シグネチャ付きの関数ごとの項目を備えた、ライブラリのリファレンスのページです。
 edit: false
 sections: []
 sidebar: true

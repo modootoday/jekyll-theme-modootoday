@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/recipes/
 source_rev: sha256:c54d63f6760b
+nav_order: 0
 title: レシピ
 description: ガイドをもとに、1 つの作業ごとにまとめた短い手順です。図とブランドトークンから、検索、厳格な CSP、データから作るページまでを扱います。
-nav_order: 0
 ---
 # レシピ
 

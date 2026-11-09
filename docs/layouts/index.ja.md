@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/layouts/
 source_rev: sha256:fa8836cac047
+nav_order: 0
 title: レイアウト
 description: ドキュメントのページからブログ、ディレクトリ、マーケティングのページまで、テーマが提供するページレイアウトとそれぞれの用途を、デモと一緒に説明します。
-nav_order: 0
 ---
 # レイアウト
 

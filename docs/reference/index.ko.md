@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/reference/
 source_rev: sha256:76c84548b8d9
+nav_order: 0
 title: 레퍼런스
 description: 안정된 이름, 명령 옵션, 스타터 데모 쇼케이스, 지난 릴리스, 다음에 계획한 작업처럼 사이트를 만들며 다시 찾아볼 내용을 모았습니다.
-nav_order: 0
 ---
 # 레퍼런스
 

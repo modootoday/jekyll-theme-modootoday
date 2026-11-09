@@ -2,8 +2,8 @@
 lang: ko
 permalink: /ko/layouts/blog-news/
 source_rev: sha256:7cb4f7ae5f58
-title: 블로그와 뉴스
 nav_order: 50
+title: 블로그와 뉴스
 description: 블로그 목록, 뉴스 첫 화면, 글의 작성자 정보, 작성자 페이지, 언어별 Atom 피드를 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
 ---
 # 블로그와 뉴스

@@ -1,8 +1,8 @@
 ---
-title: "Changelog demo"
-description: What changed in each release, newest first, with the additions, changes and fixes listed separately for every version and its date.
-layout: changelog
 nav_order: 2
+title: "Changelog demo"
+layout: changelog
+description: What changed in each release, newest first, with the additions, changes and fixes listed separately for every version and its date.
 twin: false
 edit: false
 sections: []

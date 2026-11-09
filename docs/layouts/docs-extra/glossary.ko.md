@@ -2,10 +2,10 @@
 lang: ko
 permalink: /ko/layouts/docs-extra/glossary/
 source_rev: sha256:9f78eccd0569
-title: "용어집 데모"
-description: 이 문서에서 쓰는 낱말과 짧은 정의를 모았습니다. 낱말마다 앵커가 있어 어느 가이드에서든 필요한 용어로 바로 연결할 수 있습니다.
-layout: glossary
 nav_order: 4
+title: "용어집 데모"
+layout: glossary
+description: 이 문서에서 쓰는 낱말과 짧은 정의를 모았습니다. 낱말마다 앵커가 있어 어느 가이드에서든 필요한 용어로 바로 연결할 수 있습니다.
 twin: false
 edit: false
 sections: []

@@ -2,9 +2,9 @@
 lang: ko
 permalink: /ko/layouts/directory/
 source_rev: sha256:ee066a8fdb56
+nav_order: 20
 title: 디렉터리 레이아웃
 description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카드 목록으로 보여 주고, JavaScript 없이 동작하는 필터로 독자가 원하는 카드만 골라 보게 합니다.
-nav_order: 20
 ---
 # 디렉터리 레이아웃
 

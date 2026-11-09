@@ -2,10 +2,10 @@
 lang: ja
 permalink: /ja/layouts/documents/resume/
 source_rev: sha256:05bb6ba7a17e
-title: "履歴書のデモ"
-description: 経歴、学歴、スキルをまとめた 1 ページの履歴書です。A4 やレターの用紙にきれいに印刷でき、スマートフォンの画面では幅に合わせて並び直します。
-layout: resume
 nav_order: 2
+title: "履歴書のデモ"
+layout: resume
+description: 経歴、学歴、スキルをまとめた 1 ページの履歴書です。A4 やレターの用紙にきれいに印刷でき、スマートフォンの画面では幅に合わせて並び直します。
 twin: false
 edit: false
 sections: []

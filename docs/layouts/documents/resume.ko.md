@@ -2,10 +2,10 @@
 lang: ko
 permalink: /ko/layouts/documents/resume/
 source_rev: sha256:05bb6ba7a17e
-title: "이력서 데모"
-description: 경력, 학력, 기술을 담은 한 쪽 이력서입니다. A4나 Letter 용지에 깔끔하게 인쇄되고, 휴대폰 화면에서는 폭에 맞게 다시 배치됩니다.
-layout: resume
 nav_order: 2
+title: "이력서 데모"
+layout: resume
+description: 경력, 학력, 기술을 담은 한 쪽 이력서입니다. A4나 Letter 용지에 깔끔하게 인쇄되고, 휴대폰 화면에서는 폭에 맞게 다시 배치됩니다.
 twin: false
 edit: false
 sections: []

@@ -1,9 +1,9 @@
 ---
+nav_order: 7
 title: "Book demo"
-description: A short guide to writing documentation people finish, in chapters you can read in order or one at a time, with the author and an ISBN.
 layout: book
 image: /assets/images/site/book.webp
-nav_order: 7
+description: A short guide to writing documentation people finish, in chapters you can read in order or one at a time, with the author and an ISBN.
 twin: false
 edit: false
 sections: []

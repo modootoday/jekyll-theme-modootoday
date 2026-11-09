@@ -1,8 +1,8 @@
 ---
+lang: ar
 nav_exclude: true
 title: Kitchen sink (RTL)
 description: A right-to-left sample in Arabic to check that every component mirrors with dir="rtl".
-lang: ar
 twin: false
 sections:
   - badge

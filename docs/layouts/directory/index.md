@@ -1,7 +1,7 @@
 ---
+nav_order: 20
 title: Directory layouts
 description: Card lists for projects, people, jobs, events, sponsors and integrations, with a filter that needs no JavaScript.
-nav_order: 20
 ---
 # Directory layouts
 

@@ -2,9 +2,9 @@
 lang: ja
 permalink: /ja/guides/
 source_rev: sha256:757c59e09039
+nav_order: 0
 title: ガイド
 description: テーマのインストール、最初のページの作成、設定とカスタマイズから、AI エージェント、アクセシビリティ、パフォーマンスなどのトピック別ガイドまでを案内します。
-nav_order: 0
 ---
 # ガイド
 

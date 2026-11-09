@@ -1,7 +1,7 @@
 ---
+nav_order: 40
 title: Marketing pages
 description: Feature, pricing, download, brand, link and contact pages with a shared optional stylesheet.
-nav_order: 40
 ---
 # Marketing pages
 
