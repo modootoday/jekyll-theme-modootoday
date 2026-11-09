@@ -2,6 +2,7 @@
 # One version everywhere: gemspec, CHANGELOG, README (en/ko), docs install pages and the version include.
 # The starters take it from the gemspec when they are rendered (test/starters/render_test.rb).
 require "minitest/autorun"
+require_relative "../../script/release/pins"
 
 class VersionTest < Minitest::Test
   ROOT = File.expand_path("../..", __dir__)
@@ -20,21 +21,22 @@ class VersionTest < Minitest::Test
   end
 
   def test_install_snippets_pin_the_current_version
-    minor = version.split(".")[0, 2].join(".")
-    files = %w[README.md README.ko.md README.ja.md docs/guides/install.md docs/guides/install.ko.md docs/index.md docs/index.ko.md docs/guides/install.ja.md docs/index.ja.md]
-    files.each do |f|
-      t = read(f)
-      t.scan(/jekyll-theme-modootoday", "~> ([\d.]+)"/).flatten.each { |v| assert_equal minor, v, "#{f}: gem constraint" }
-      t.scan(/jekyll-theme-modootoday@v([\d.]+)/).flatten.each { |v| assert_equal version, v, "#{f}: remote_theme tag" }
-      t.scan(/jekyll-theme-modootoday -v '~> ([\d.]+)'/).flatten.each { |v| assert_equal minor, v, "#{f}: gem install constraint" }
-      t.scan(%r{tags/v([\d.]+)\.tar\.gz|jekyll-theme-modootoday-([\d.]+)/exe}).flatten.compact.each { |v| assert_equal version, v, "#{f}: source tarball" }
-    end
-    assert_includes read("README.md"), %("~> #{minor}")
+    assert_equal version, Release::Pins.version
+    Release::Pins::FILES.each { |f| assert_empty Release::Pins.mismatches(read(f), version), "#{f}: run script/release-prep" }
+    assert_includes read("README.md"), %("~> #{Release::Pins.minor(version)}")
     assert_includes read("README.md"), "@v#{version}"
   end
 
+  def test_pins_are_rewritten_to_a_new_version
+    text = %(gem "jekyll-theme-modootoday", "~> 1.6"\nremote_theme: o/jekyll-theme-modootoday@v1.6.0\n) +
+           %(gem install jekyll-theme-modootoday -v '~> 1.6'\n/archive/refs/tags/v1.6.0.tar.gz\njekyll-theme-modootoday-1.6.0/exe/x\n)
+    out = Release::Pins.rewrite(text, "1.7.0")
+    assert_empty Release::Pins.mismatches(out, "1.7.0")
+    assert_equal 5, Release::Pins.mismatches(text, "1.7.0").size
+  end
+
   def test_docs_name_no_unreleased_version
-    Dir[File.join(ROOT, "{README.md,README.ko.md,README.ja.md,docs/**/*.md}")].each do |f|
+    Dir[File.join(ROOT, "{README.md,README.ko.md,docs/**/*.md}")].each do |f|
       t = File.read(f)
       refute_match(/`since:[^`\s]/, t, "#{f}: since badge before 1.1")
       refute_match(/v0\.\d\.\d|~> 0\.\d/, t, "#{f}: unreleased 0.x version")

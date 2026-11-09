@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# One release command (RELEASING.md). Run it twice:
+#   script/release-prep X.Y.Z   before the release commit: writes the CHANGELOG entry (git-cliff), the version and
+#                               install pins, the version include and the docs release list, and checks the gem files
+#   script/release-prep X.Y.Z   once the release commit is on origin/main: dispatches ci, lighthouse and visual on it
+require "open3"
+require "rubygems"
+require_relative "release/changelog"
+require_relative "release/checks"
+require_relative "release/pins"
+
+ROOT = Release::Changelog::ROOT
+SHIPS = %w[_layouts/ _includes/ _sass/ assets/ exe/ lib/ i18n/ LICENSE README.md CHANGELOG.md].freeze
+NEVER = %w[.spec/ .github/ docs/ example/ script/ test/ RELEASING.md package.json cliff.toml].freeze
+
+def git(*args) = Open3.capture2("git", "-C", ROOT, *args, err: File::NULL).first.strip
+def say(msg) = puts("release-prep: #{msg}")
+
+def gem_files_problems
+  files = Dir.chdir(ROOT) { Gem::Specification.load("jekyll-theme-modootoday.gemspec").files }
+  never = files.select { |f| NEVER.any? { |p| f.start_with?(p) } }
+  missing = SHIPS.reject { |p| files.any? { |f| f == p || f.start_with?(p) } }
+  never.map { |f| "gem ships #{f}" } + missing.map { |p| "gem lacks #{p}" }
+end
+
+def prepare(version)
+  current = Release::Pins.version
+  abort "release-prep: #{version} is not newer than #{current}" unless Gem::Version.new(version) > Gem::Version.new(current)
+  abort "release-prep: commit or stash your changes first" unless git("status", "--porcelain", "--untracked-files=no").empty?
+
+  log = Release::Changelog.new
+  entry = log.render(tag: "v#{version}")
+  abort "release-prep: no changelog lines since v#{current}; nothing to release" unless entry.include?("\n### ")
+  File.write(Release::Changelog::FILE, log.release(version, entry))
+  changed = ["CHANGELOG.md"] + Release::Pins.bump(version)
+  %w[script/version-include script/docs-index].each { |s| system(RbConfig.ruby, File.join(ROOT, s)) or abort "release-prep: #{s} failed" }
+  problems = gem_files_problems
+  abort "release-prep: #{problems.join("; ")}" unless problems.empty?
+
+  say "wrote #{changed.join(", ")}, the version include and the docs release list"
+  say "next: in CHANGELOG.md, replace the two <!-- release-prep: --> placeholders of [#{version}] (the Visual line and the summary),"
+  say "then: git commit -am 'chore(release): #{version}' -m 'Changelog: none'; git push; script/release-prep #{version}"
+end
+
+def dispatch(version)
+  entry = Release::Changelog.new.text[/^## \[#{Regexp.escape(version)}\].*?(?=^## \[|^\[[^\]]+\]: https?:)/m].to_s
+  abort "release-prep: CHANGELOG.md has no [#{version}] entry" if entry.empty?
+  abort "release-prep: [#{version}] still holds a <!-- release-prep: --> placeholder" if entry.include?(Release::Changelog::PLACEHOLDER)
+  git("fetch", "--quiet", "origin", "main")
+  abort "release-prep: push the release commit first (HEAD is not origin/main)" unless git("rev-parse", "HEAD") == git("rev-parse", "origin/main")
+
+  previous = git("describe", "--tags", "--abbrev=0", "--match", "v[0-9]*", "HEAD")
+  Release::Checks.dispatch("main", previous)
+  say "dispatched #{Release::Checks::WORKFLOWS.join(", ")} on #{git("rev-parse", "--short", "HEAD")} (visual against #{previous})"
+  say "next: script/release-status, then tag v#{version} when all three succeeded"
+end
+
+version = ARGV.first.to_s
+abort "usage: script/release-prep X.Y.Z" unless version.match?(/\A\d+\.\d+\.\d+\z/)
+begin
+  Release::Pins.version == version ? dispatch(version) : prepare(version)
+rescue Release::Error => e
+  abort "release-prep: #{e.message}"
+end

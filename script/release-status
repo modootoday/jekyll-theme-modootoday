@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Prints the release check (the newest manual ci, lighthouse and visual runs) on one commit, as a table. Needs gh.
+#   script/release-status [SHA]            default HEAD
+#   script/release-status SHA --verify     exit 1 unless all three succeeded (release.yml, before the gem push)
+require "open3"
+require_relative "release/checks"
+
+ref = ARGV.reject { |a| a.start_with?("--") }.first || "HEAD"
+sha, st = Open3.capture2("git", "rev-parse", "#{ref}^{commit}", err: File::NULL)
+sha = st.success? ? sha.strip : ref
+begin
+  runs = Release::Checks.runs(sha)
+rescue Release::Error => e
+  abort "release-status: #{e.message}"
+end
+puts "release check on #{sha[0, 10]}:", Release::Checks.table(runs)
+exit 0 unless ARGV.include?("--verify")
+
+bad = runs.reject(&:ok?)
+abort "release-status: not green: #{bad.map(&:workflow).join(", ")} (RELEASING.md, step 3)" unless bad.empty?
+puts "release-status: all three succeeded"
