@@ -45,8 +45,9 @@ class StarterPublishedTest < Minitest::Test
 
   def with_published
     Dir.mktmpdir do |d|
-      Starters::Render.new(TINY, THEME).one(TINY.fetch("tiny"), "github-pages", "#{d}/tiny")
-      yield TINY.fetch("tiny").dup.tap { |s| s.dir, s.published, s.path = "#{d}/tiny", true, "example/tiny" }, d
+      tiny = TINY.fetch("tiny").dup.tap { |s| s.path = "example/tiny" }
+      Starters::Render.new(TINY, THEME).one(tiny, "github-pages", "#{d}/tiny")
+      yield tiny.dup.tap { |s| s.dir, s.published = "#{d}/tiny", true }, d
     end
   end
 

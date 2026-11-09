@@ -1,0 +1,83 @@
+# Keeps this starter on the theme's latest release, with no token beyond this repository's own GITHUB_TOKEN:
+# daily (or by hand: Actions > Theme update > Run workflow), it reads the latest release of <%= theme.repo %>
+# from the public API. When it is newer than remote_theme in _config.yml, it re-renders the starter with that release
+# (rake starters:render), commits "chore: theme vX.Y.Z" and deploys Pages here, since a GITHUB_TOKEN push starts no
+# other workflow. Only in <%= starter.repo %>: a repository created from this template skips it.
+name: Theme update
+
+on:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: theme-update
+
+jobs:
+  update:
+    if: github.repository == '<%= starter.repo %>'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: starter
+      - name: Compare the pin with the latest theme release
+        id: release
+        run: |
+          tag=$(curl -fsSL https://api.github.com/repos/<%= theme.repo %>/releases/latest | ruby -rjson -e 'puts JSON.parse($stdin.read)["tag_name"]')
+          pin=$(sed -n 's/^remote_theme: .*@\(v[0-9.]*\)$/\1/p' starter/_config.yml)
+          echo "theme $tag, pinned $pin"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if ruby -e 'exit Gem::Version.new(ARGV[0].delete_prefix("v")) > Gem::Version.new(ARGV[1].delete_prefix("v"))' "$tag" "$pin"; then
+            echo "newer=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v7
+        if: steps.release.outputs.newer == 'true'
+        with:
+          repository: <%= theme.repo %>
+          ref: ${{ steps.release.outputs.tag }}
+          path: theme
+          submodules: true
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        if: steps.release.outputs.newer == 'true'
+        with:
+          ruby-version: "3.3"
+      # The theme renders a published starter in its own work tree, so this checkout takes the gitlink's place.
+      - name: Render with the new release
+        if: steps.release.outputs.newer == 'true'
+        run: |
+          rm -rf theme/<%= starter.path %>
+          mv starter theme/<%= starter.path %>
+          cd theme
+          rake "starters:render[<%= starter.name %>,$RUNNER_TEMP/pkg]"
+      - name: Commit and push
+        id: commit
+        if: steps.release.outputs.newer == 'true'
+        working-directory: theme/<%= starter.path %>
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "chore: theme $TAG"
+          git push origin HEAD:main
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  pages:
+    needs: update
+    if: needs.update.outputs.sha != ''
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      ref: ${{ needs.update.outputs.sha }}

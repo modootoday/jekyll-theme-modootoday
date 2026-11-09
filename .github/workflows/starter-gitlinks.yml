@@ -1,0 +1,56 @@
+name: Starter gitlinks
+
+# Daily (or by hand: gh workflow run starter-gitlinks.yml): moves each example/<name> gitlink to its starter's public
+# main, where the starter's own Theme update workflow commits each theme release (adr:modootoday/20261109225836).
+# The starter checks run in this job, because a push made with GITHUB_TOKEN starts no other workflow. No other token.
+on:
+  schedule:
+    - cron: "47 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: starter-gitlinks
+
+permissions:
+  contents: read
+
+jobs:
+  gitlinks:
+    name: move the starter gitlinks
+    if: github.repository == 'modootoday/jekyll-theme-modootoday'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Fetch each starter's main
+        id: move
+        run: |
+          git submodule update --remote --checkout
+          if git diff --quiet -- example; then
+            echo "The starter gitlinks are current."
+          else
+            git diff --submodule=log -- example
+            echo "moved=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: ruby/setup-ruby@v1
+        if: steps.move.outputs.moved == 'true'
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+      - name: Render, check for drift and pins, build and check each starter
+        if: steps.move.outputs.moved == 'true'
+        run: bundle exec rake starters:render starters:check starters:build
+      - name: Commit and push the gitlinks
+        if: steps.move.outputs.moved == 'true'
+        run: |
+          pins=$(sed -n 's/^remote_theme: .*@\(v[0-9.]*\)$/\1/p' example/*/_config.yml | sort -u | paste -sd, -)
+          git add -- example
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "chore(starters): move the starter gitlinks to their main (theme $pins)"
+          git push origin HEAD:main

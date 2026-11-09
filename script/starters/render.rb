@@ -18,9 +18,11 @@ module Starters
     SKIP = %w[_site .jekyll-cache .sass-cache .jekyll-metadata Gemfile.lock .git].freeze
     # Written only by the renderer, so a source folder must not have them.
     OWNED = %w[Gemfile README.md .github _config.demo.yml].freeze
+    # The published (github-pages) tree updates itself to each theme release (adr:modootoday/20261109225836).
+    UPDATER = ".github/workflows/theme-update.yml"
     # Rendered path => template under templates/ (.erb).
     RENDERED = { "Gemfile" => "Gemfile", "README.md" => "README.md", "_config.demo.yml" => "config.demo.yml",
-                 ".github/workflows/pages.yml" => "pages.yml" }.freeze
+                 ".github/workflows/pages.yml" => "pages.yml", UPDATER => "theme-update.yml" }.freeze
     TEMPLATES = File.join(__dir__, "templates")
 
     attr_reader :manifest, :theme
@@ -50,6 +52,8 @@ module Starters
       self.class.files(starter.dir).each { |f| copy(File.join(starter.dir, f), File.join(dir, f)) }
       write(dir, "_config.yml", site.config)
       RENDERED.each do |path, t|
+        next if path == UPDATER && !site.remote?
+
         write(dir, path, ERB.new(File.read(File.join(TEMPLATES, "#{t}.erb")), trim_mode: "-").result(site.instance_eval { binding }))
       end
       source = Modootoday::Stubs::Source.new(dir)

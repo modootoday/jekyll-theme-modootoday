@@ -31,6 +31,28 @@ namespace :starters do
     puts changed.empty? ? "#{s.path}: up to date" : (["#{s.path}: rewrote (commit these in the starter's repository):"] + changed).join("\n  ")
   end
 
+  # The local fallback of each starter's Theme update workflow: the same render and commit, pushed with the
+  # maintainer's own git credentials. The Starter gitlinks workflow then moves the gitlinks.
+  desc "From a checkout at a release tag: re-render each published starter (or NAME) on its repository's main, " \
+       "commit \"chore: theme vX.Y.Z\" there and push it"
+  task(:publish, [:name]) do |_, a|
+    r = starters.call
+    v = r.theme.version
+    abort "starters:publish: #{v} is not released; run it from a checkout of tag v#{v}" unless r.theme.released.include?(v)
+    r.manifest.starters.select { |s| s.published && (a[:name].to_s.empty? || s.name == a[:name]) }.each do |s|
+      git = ->(*args) { sh("git", "-C", s.dir, *args) }
+      git.call("fetch", "--quiet", "origin", "main")
+      git.call("switch", "--quiet", "-C", "main", "origin/main")
+      changed = r.publish(s)
+      next puts("#{s.path}: already on v#{v}") if changed.empty?
+
+      git.call("add", "--all", "--", ".")
+      git.call("commit", "--quiet", "-m", "chore: theme v#{v}")
+      git.call("push", "origin", "HEAD:main")
+    end
+    puts "starters:publish: done; the Starter gitlinks workflow moves example/ (or: gh workflow run starter-gitlinks.yml)"
+  end
+
   desc "Fail when DIR (default pkg/starters) differs from a fresh render, a published starter from a render of its " \
        "content at the release it pins, or a pin is not a released version"
   task(:check, [:dir]) do |_, a|

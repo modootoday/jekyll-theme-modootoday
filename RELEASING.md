@@ -15,13 +15,13 @@ Releases are published only from a `v*` tag by `.github/workflows/release.yml`, 
 7. **Approve** the `rubygems` environment deployment when the run asks for it.
    After the gem is pushed, the same run creates the GitHub Release for the tag, with the `## [X.Y.Z]` entry of `CHANGELOG.md` as the notes (`ruby script/release-notes vX.Y.Z` prints them; run it before tagging to check). It skips the step when the Release already exists.
 8. **After release.** Check the gem page and the GitHub Release. The docs site stays on `remote_theme: …@main`, because it documents and demonstrates `main` (adr:modootoday/20261105073859); the install examples, README and starters carry the release pin.
-9. **Starters.** The published starters are gitlinks in `example/` to their own repositories (adr:modootoday/20261104171142). A starter pins only released tags and the theme's release never waits for one, so after the gem is out:
-   1. In each starter's repository (`cd example/<name>`, on `main`), merge `next` if it has commits.
-   2. From the theme checkout at the tag, run `bundle exec rake starters:render[<name>]`: it moves the `remote_theme` pin and the `Gemfile` line to `vX.Y.Z` and refreshes the files the theme renders in the work tree.
-   3. Commit `chore: theme vX.Y.Z` there and push `main`; the starter's Pages workflow redeploys its demo. Check the demo once it is green.
-   4. In the theme repository, one commit `chore(starters): pin starters to vX.Y.Z` moves every gitlink; `rake starters:check` must pass with no pin warning.
+9. **Starters.** The published starters are gitlinks in `example/` to their own repositories (adr:modootoday/20261104171142), and they update themselves; no token is stored anywhere (adr:modootoday/20261109225836). A starter pins only released tags and the theme's release never waits for one:
+   1. Each starter repository runs its **Theme update** workflow (`.github/workflows/theme-update.yml`, rendered by `rake starters:render`) daily. It reads the theme's latest release from the public GitHub API; when that is newer than the `remote_theme` pin, it checks out the theme at that tag, runs `rake starters:render[<name>,DIR]` on the starter's `main`, commits `chore: theme vX.Y.Z` with the repository's own `GITHUB_TOKEN` and deploys its Pages site in the same run (a `GITHUB_TOKEN` push starts no other workflow). It runs only in the starter's own repository, so a site made from the template never rewrites itself. For an immediate update, run it by hand: `gh workflow run theme-update.yml --repo <starter repository>`. Check each demo once it is green.
+   2. If a starter has commits on `next` that should ship with the release, merge them into its `main` first.
+   3. The theme's **Starter gitlinks** workflow (`.github/workflows/starter-gitlinks.yml`) runs daily, moves every `example/<name>` gitlink to its starter's `main`, runs `rake starters:render starters:check starters:build` in the same job and commits `chore(starters): move the starter gitlinks to their main` with the theme's own `GITHUB_TOKEN`. Run it by hand for an immediate move: `gh workflow run starter-gitlinks.yml`.
+   4. Fallback, from a theme checkout at the tag with the maintainer's own git credentials: `bundle exec rake starters:publish` (or `starters:publish[<name>]`) re-renders each published starter on its repository's `main`, commits `chore: theme vX.Y.Z` there and pushes it.
 
-   Until then `rake starters:check` warns that the pins are behind the gemspec version. A starter that is not published yet stays a plain folder rendered into `pkg/starters/<stack>/<name>/`.
+   Until the gitlinks move, `rake starters:check` warns that the pins are behind the gemspec version. A starter that is not published yet stays a plain folder rendered into `pkg/starters/<stack>/<name>/`.
 
 ## Overriding the release check
 
