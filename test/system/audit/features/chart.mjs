@@ -30,6 +30,11 @@ async function open(browser, origin, options) {
   await ctx.addInitScript(watch);
   const page = await ctx.newPage();
   await page.goto(origin + CHART_PAGE, { waitUntil: "networkidle" });
+  // A chart is drawn as it nears the viewport, so each one is brought into view before the page is measured.
+  for (const fig of await page.locator("figure.mt-chart").all()) {
+    await fig.scrollIntoViewIfNeeded();
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(1200);
   return { ctx, page };
 }

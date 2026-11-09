@@ -21,7 +21,7 @@ export async function checkParts(browser, origin, langs, fails) {
       }
     }
     const copy = await page.evaluate(() => {
-      const boxes = [...document.querySelectorAll(".mt-main pre")].map((pre) => pre.closest("div.highlighter-rouge") || pre);
+      const boxes = [...document.querySelectorAll(".mt-main pre")].map((pre) => pre.closest("div.highlighter-rouge, div.mt-code-box") || pre);
       const missing = boxes.filter((b) => !b.querySelector(".mt-code-copy")).length;
       const inTabs = document.querySelectorAll('section[data-c="tabs"] [role=tabpanel] .mt-code-copy').length;
       return { boxes: boxes.length, missing, inTabs };
