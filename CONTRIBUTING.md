@@ -90,6 +90,44 @@ The docs site uses static math (`modootoday.math.mode: static`): the MathML of e
 ruby exe/modootoday-check docs --math | node script/figures/math.mjs docs
 ```
 
+## Decisions
+
+A decision lives in an ADR under `.spec/adr/`, not in a commit message, an issue comment or a chat. Write one when a change:
+
+- sets or moves a rule, a limit or an exception: `RULES.md`, the docs and layout limits, the Lighthouse budget, the `GUIDE` targets, an allowlist entry whose reason is a choice;
+- changes public behaviour or the [public API](https://modootoday.github.io/jekyll-theme-modootoday/reference/api/), or deprecates or removes something;
+- changes how the project is built, tested or released (what CI runs and when, the release gate);
+- picks one of several reasonable designs that a later contributor could undo without knowing why.
+
+No ADR is needed for a registry cap moved by its rule (measured size plus 10 %), a fix that restores documented behaviour, or a wording change.
+
+Use the spec CLI (the `@modootoday/specfold` npm package, command `spec`) so ids and file names stay consistent; never name a `.spec/` file by hand:
+
+```sh
+spec new adr --governs <path> --title "<the decision, as a sentence>" --write
+spec set <id> status=active --write
+spec check
+```
+
+Cite the decision by id (`adr:modootoday/<timestamp>`) in the CHANGELOG entry, and next to a constant it sets. Every cited `adr:`, `audit:` or `research:` id must name a committed document under `.spec/` (`test/project/spec_ids_test.rb`); drafts in the git-ignored local spec directory cannot be cited. Everything in `.spec/` is public: no private paths, names or notes.
+
+## Definition of done
+
+A change is done when the files its kind touches are updated in the same commit and its checks pass. Every change also passes `bundle exec rake test` on both stacks and the pre-push hook.
+
+| Change | Files to touch | Checks |
+| --- | --- | --- |
+| Theme output (layout, include, Sass, script) | the theme files; the docs page that describes it in English, Korean and Japanese; `CHANGELOG.md` `[Unreleased]` | `npm test`; `npm run qa` on a docs build; the visual run of the release check |
+| Theme CSS or JS file added or resized | its row and gzip cap in `_includes/modootoday/assets/registry.html`; component CSS in a module sheet, not core; a new demo page in `CSP_PAGES` | `npm run qa` (budgets, page types, CSP) |
+| Component | `docs/_data/components.yml`, the settings and Sass import, the checker; the kitchen sinks and the Components page in all three languages | `rake test` (component names, kitchen-sink coverage); `npm run qa` |
+| Setting (`modootoday.*` key) | its key file under `lib/modootoday/check/config/keys/`; the Configuration guide in all three languages; `CHANGELOG.md` | `rake test` (checker, message snapshot: `SNAPSHOT_UPDATE=1` on purpose) |
+| Checker or stub writer option | `lib/modootoday/check/cli.rb` or `lib/modootoday/stubs/cli.rb`; `ruby script/readme-commands` | `ruby script/readme-commands --check` |
+| Interface string | `i18n/en.yml`, then every other catalog; `ruby script/i18n-build` | `ruby script/i18n-build --check` |
+| Docs page | the English page, then its `.ko.md` and `.ja.md` pages; `ruby script/docs-index`, then `ruby script/docs-index --stamp` on the translations | `ruby script/docs-index --check`; the docs structure check; a docs build with `modootoday-check --twins` |
+| Rule, limit, budget target or exception | an ADR (see Decisions); `RULES.md` with the includes, checker and tests it governs; `CHANGELOG.md` | `rake test`; `spec check` |
+| Tooling, tests or CI | `CONTRIBUTING.md` and `AGENTS.md` when a command changes; `CHANGELOG.md` only when users see it | `rake test` (`test/project/governance_test.rb` checks the commands in `AGENTS.md`) |
+| Release | the steps in [RELEASING.md](RELEASING.md) | the release check in RELEASING.md step 3 |
+
 ## Project layout
 
 These rules apply to everything in the repository: theme files, tools, tests, QA and new code. `test/project/layout_test.rb` enforces the measurable parts.
