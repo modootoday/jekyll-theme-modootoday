@@ -13,7 +13,12 @@ terms:
   - {en: Markdown twin, ko: Markdown 버전, ja: Markdown 版, avoid: {ko: [쌍둥이, 트윈], ja: [ツイン, 双子]}}
   - {en: front matter, ko: front matter, ja: front matter, avoid: {ko: [머리말, 프런트 매터, 프론트 매터], ja: [フロントマター]}}
   - {en: breadcrumb, ko: 이동 경로, ja: パンくずリスト, avoid: {ko: [브레드크럼, 빵 부스러기], ja: [ブレッドクラム]}}
-  - {en: alert (GitHub), ko: 알림, ja: アラート, note: "[!NOTE] markers stay in English"}
+  - {en: alert (GitHub), ko: 알림, ja: アラート, note: "[!NOTE] markers stay in English; at most three alerts on a docs page"}
+  - {en: NOTE alert, ko: NOTE 알림, ja: NOTE アラート, note: "side information the reader can skip and still succeed"}
+  - {en: TIP alert, ko: TIP 알림, ja: TIP アラート, note: "a shortcut or a better way to do what the text describes"}
+  - {en: IMPORTANT alert, ko: IMPORTANT 알림, ja: IMPORTANT アラート, note: "a step or condition the reader must not miss for the result to work"}
+  - {en: WARNING alert, ko: WARNING 알림, ja: WARNING アラート, note: "a mistake that breaks the site, the build or the reader's data"}
+  - {en: CAUTION alert, ko: CAUTION 알림, ja: CAUTION アラート, note: "a risk to security or privacy, or an action that cannot be undone"}
   - {en: callout (component), ko: 콜아웃, ja: コールアウト}
   - {en: component, ko: 컴포넌트, ja: コンポーネント, avoid: {ko: [콤포넌트], ja: [部品]}}
   - {en: layout, ko: 레이아웃, ja: レイアウト}

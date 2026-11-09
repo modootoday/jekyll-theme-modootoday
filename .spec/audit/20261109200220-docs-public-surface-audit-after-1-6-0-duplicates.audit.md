@@ -188,7 +188,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | F2 | deferred | Key order reported by R3, about 190 pages differ |
 | F3 | fixed | "What to read next" |
 | F4 | deferred | Manual back links left |
-| F5 | deferred | A callout-weight rule needs a style decision |
+| F5 | resolved | One glossary line per alert type; the docs rules block unknown types and report pages with more than three callouts ([[adr:modootoday/20261109225554]]) |
 | N1 | fixed | On main ([[adr:modootoday/20261109192542]]) |
 | N2 | deferred | Component sidebar groups need a decision (L) |
 | N3 | resolved | Each group index holds the front matter table and links each demo; the five reference pages are demo pages at the same URLs ([[adr:modootoday/20261109225554]]) |
