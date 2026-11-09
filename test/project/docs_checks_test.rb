@@ -25,4 +25,14 @@ class DocsChecksTest < Minitest::Test
     out, st = run_check("test/system/docs/order.rb")
     assert st.success?, out
   end
+
+  def test_docs_consistency_rules
+    out, st = run_check("test/system/docs/rules.rb")
+    assert st.success?, out
+  end
+
+  def test_docs_follow_the_code_registries
+    out, st = run_check("test/system/docs/registries.rb")
+    assert st.success?, out
+  end
 end

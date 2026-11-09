@@ -1,0 +1,9 @@
+# One canonical page per topic (adr:modootoday/20261109200230 R1). A page whose prose matches `phrase` (a case-
+# insensitive regular expression, code spans excluded) links `page`, the topic's canonical page, or is that page.
+# test/system/docs/rules.rb checks it; other pages summarize a topic in one short paragraph at most.
+- {topic: Markdown twins, page: guides/agents/, phrase: "\\bthree ways to publish"}
+- {topic: the token bridge, page: guides/customize/, phrase: "\\btoken bridge\\b"}
+- {topic: the command line, page: reference/cli/, phrase: "\\bevery (option|flag) of\\b"}
+- {topic: the supported stacks, page: guides/install/, phrase: "\\b(oldest|tested) (supported )?(floor|Jekyll)\\b"}
+- {topic: the layout list, page: reference/api/, phrase: "\\bevery shipped layout\\b"}
+- {topic: the starter demo showcase, page: reference/showcase/, phrase: "\\bshowcase (bar|pill)\\b"}

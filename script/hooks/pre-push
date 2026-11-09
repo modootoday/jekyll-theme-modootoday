@@ -20,6 +20,8 @@ check() {
 
 check "docs structure" ruby test/system/docs/structure.rb
 check "component order" ruby test/system/docs/order.rb
+check "docs rules" ruby test/system/docs/rules.rb
+check "docs registries" ruby test/system/docs/registries.rb
 check "changelog lint" ruby test/project/changelog_test.rb
 check "spec ids resolve" ruby test/project/spec_ids_test.rb
 check "i18n catalogs" ruby script/i18n-build --check
