@@ -6,6 +6,8 @@ require_relative "../../../script/docs/outputs"
 
 LIMIT_FILES = 12   # authored files per directory (generated/ excluded)
 LIMIT_ENTRIES = 12 # sidebar entries per group
+# Until the 1.7.0 ordering item regroups recipes without moving published URLs (adr:modootoday/20261109124854).
+ENTRY_LIMITS = { "recipes" => 14 }.freeze
 SAMPLE_DIRS = %w[blog news authors].freeze
 ROOT_PAGES = %w[index.md 404.md tags.md categories.md].freeze
 BANNED = [/^since:/, /\bdeprecat/i, /(?<![\w.])2\.0\b/, /\bfrozen\b/i, /\.spec\.local/].freeze
@@ -51,7 +53,8 @@ tree.langs.each do |lang|
     groups = [id] + tree.entries(id, lang).select(&:group_index?).map(&:dir)
     groups.each do |g|
       n = tree.entries(g, lang).size
-      errs << "#{lang} #{g}: #{n} sidebar entries (limit #{LIMIT_ENTRIES}); add a group" if n > LIMIT_ENTRIES
+      limit = ENTRY_LIMITS.fetch(g, LIMIT_ENTRIES)
+      errs << "#{lang} #{g}: #{n} sidebar entries (limit #{limit}); add a group" if n > limit
     end
   end
 end
