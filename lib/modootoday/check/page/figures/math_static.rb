@@ -21,7 +21,7 @@ module Modootoday
         r = rec[:page]
         n = inline(text)
         ctx.errs << "#{r}:#{n}: inline math cannot be rendered ahead of time (modootoday.math.mode: static); make it a $$ block on its own lines or a ```math fence" if n
-        return ctx.errs << "#{r}: math key #{rec[:key].inspect} is not a data file name Jekyll keeps; set math_key: to letters, digits, - and _" unless rec[:key].match?(KEY)
+        return ctx.errs << "#{r}: math key #{rec[:key].inspect} is not a data file name Jekyll keeps; set math_key: to letters, digits, - and _" unless rec[:key].match?(KEY) || rec[:blocks].empty?
         data(ctx, r, rec)
       end
 
@@ -36,13 +36,16 @@ module Modootoday
         blocks.zip(list).each_with_index do |(b, e), i|
           next unless b && e
           ctx.errs << "#{r}:#{b[:line]}: #{file} entry #{i + 1} has no html:" if e["html"].to_s.strip.empty?
-          ctx.errs << "#{r}:#{b[:line]}: stale math: entry #{i + 1} of #{file} was rendered from other TeX than this block (#{b[:digest]}); pages with the same key share the file; #{HINT}" if e["src"] != b[:digest]
+          ctx.errs << "#{r}:#{b[:line]}: stale math: entry #{i + 1} of #{file} was rendered from other TeX than this block (#{b[:digest]})#{shared(rec)}; #{HINT}" if e["src"] != b[:digest]
         end
         html = list.any? { |e| e["html"].to_s.include?("katex-html") }
         ctx.errs << "#{r}: #{file} holds KaTeX HTML output, which needs KaTeX's stylesheet: set modootoday.math.css or base, or render MathML" if html && !Renderers.math_urls(ctx.mtc["math"])["css"]
       end
 
-      # One page: {page:, key:, file:, blocks: [{line:, tex:, digest:}], data:, reason:}; nil with math: false.
+      # Only a translation or a page with its own math_key: reads a file another page may have rendered.
+      def shared(rec) = rec[:shared] ? "; #{rec[:file]} is shared by the pages with key #{rec[:key]}, so render them from one source" : ""
+
+      # One page: {page:, key:, file:, blocks: [{line:, tex:, digest:}], data:, reason:, shared:}; nil with math: false.
       def record(ctx, f, text)
         fm = Markdown.fm(text) rescue {}
         return nil if fm.is_a?(Hash) && fm["math"] == false
@@ -54,7 +57,8 @@ module Modootoday
         path = EXTS.map { |x| File.join(ctx.src, "_data/math/#{key}.#{x}") }.find { |p| File.file?(p) }
         list = path && load(path)
         reason = if list.nil? then ("missing" if blocks.any?) elsif !list.is_a?(Array) || list.size != blocks.size || blocks.zip(list).any? { |b, e| !e.is_a?(Hash) || e["src"] != b[:digest] } then "stale" end
-        { page: rel, key: key, file: path ? ctx.rel(path) : "_data/math/#{key}.yml", blocks: blocks, data: list, reason: reason }
+        shared = ctx.page_lang.translation?(rel) || (fm.is_a?(Hash) && !fm["math_key"].to_s.empty?)
+        { page: rel, key: key, file: path ? ctx.rel(path) : "_data/math/#{key}.yml", blocks: blocks, data: list, reason: reason, shared: shared }
       end
 
       def load(path) = path.end_with?(".json") ? JSON.parse(File.read(path)) : YAML.safe_load(File.read(path))

@@ -37,6 +37,7 @@ module Modootoday
         src, site = pos[0]&.chomp("/"), pos[1]&.chomp("/")
         return FigureFreshness.list(Context.new(src, site, argv)) if src && argv.include?("--diagrams")
         return MathStatic.list(Context.new(src, site, argv)) if src && argv.include?("--math")
+        abort "modootoday-check: SITE is missing: the checker reads the source and the built site, so build first and name both, such as\n  bundle exec jekyll build && bundle exec modootoday-check #{src} _site\n(--diagrams and --math need no SITE)\n\n#{USAGE}" if src && !site
         abort USAGE unless src && site
         ctx = Context.new(src, site, argv)
         RULES.each { |r| r.call(ctx) }

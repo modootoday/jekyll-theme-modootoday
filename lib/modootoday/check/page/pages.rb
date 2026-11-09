@@ -25,6 +25,7 @@ module Modootoday
         unchecked(ctx)
         ctx.mds.each do |f|
           text = File.read(f)
+          next licence(ctx, f) if licence?(f, text)
           b = Markdown.body(text)
           code = Markdown.strip_code(b)
           h2 = PageSyntax.call(ctx, f, text, b, code)
@@ -40,6 +41,17 @@ module Modootoday
           FigureFreshness.call(ctx, f, text)
           MathStatic.call(ctx, f, text)
         end
+      end
+
+      LICENCE = /\A(?:.+\.)?(?:LICEN[CS]E|COPYING|NOTICE)\z/i
+
+      # A vendored licence (chart.LICENSE.md) without front matter is no page of the site's, but the Pages builder
+      # renders Markdown without front matter, so the page rules would only misreport it.
+      def licence?(f, text) = File.basename(f, ".md").match?(LICENCE) && !(text.start_with?("---\n") && text =~ Markdown::FM)
+
+      def licence(ctx, f)
+        txt = ctx.rel(f).delete_suffix(".md") + ".txt"
+        ctx.errs << "#{ctx.rel(f)}: a licence file saved as Markdown becomes a page on GitHub Pages; save it as #{txt}, or list it in exclude:"
       end
 
       # Jekyll also renders .markdown, .mkd and .mkdn (jekyll new writes about.markdown); the rules read only .md.

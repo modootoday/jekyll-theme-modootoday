@@ -19,7 +19,7 @@ $TMP/_site/index.md: twin is not byte-identical to the body of index.md
 $TMP/_site/llms.txt: must start with an H1 (llmstxt.org)
 $TMP/_site/llms-full.txt: does not contain the body of g.md
 md-components check: 20 problem(s)
-warning: $TMP/_site/p/index.html: JSON-LD Organization (@graph.publisher) lacks required name; fix it now (in a nested object this is an error from 2.0)
+warning: $TMP/_site/p/index.html: JSON-LD Organization (@graph.publisher) lacks required name (a warning in a nested object, an error from 2.0)
 warning: $TMP/_site/p/index.html: JSON-LD Organization (@graph.publisher) lacks recommended logo
-warning: $TMP/_site/p/index.html: JSON-LD @graph.publisher.url is not an absolute URL (/o/); fix it now (in a nested object this is an error from 2.0)
+warning: $TMP/_site/p/index.html: JSON-LD @graph.publisher.url is not an absolute URL (/o/) (a warning in a nested object, an error from 2.0)
 exit 1

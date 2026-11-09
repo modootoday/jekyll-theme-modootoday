@@ -62,5 +62,17 @@ class CheckChartTest < CheckerCase
     o, code = check
     assert_equal 1, code
     assert_equal 1, o.scan("unconverted chart").size, o
+    assert_includes o, "unconverted chart `chart:bar`"
+  end
+
+  def test_a_wrong_type_is_one_error_and_keeps_the_cell_warnings
+    page "_config.yml", ON
+    page "a.md", "---\n---\n# A\n\n`chart:lines`\n\n| Month | Visits |\n|---|---|\n| Jan | many |\n"
+    out "a/index.html", "<p><code>chart:lines</code></p>"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "a.md: `chart:lines`: the type must be one of bar, line, area, pie, doughnut"
+    assert_includes o, "a.md: `chart:lines`: row 1 cell 'many' is not a number"
+    refute_includes o, "unconverted chart", "the source error already names the line"
   end
 end

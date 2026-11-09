@@ -44,7 +44,15 @@ class StructuredDataTest < Minitest::Test
   end
 
   EVENT = { "@type" => "Event", "name" => "E", "startDate" => "2026-10-01", "location" => { "@type" => "Place", "name" => "Hall" } }.freeze
-  NESTED_NOTE = "; fix it now (in a nested object this is an error from 2.0)"
+  NESTED_NOTE = " (a warning in a nested object, an error from 2.0)"
+  OFFERS_HINT = "; set the offer in front matter: schema: {offers: {type: Offer, price: ..., priceCurrency: ...}} (tickets: alone gives only its url)"
+
+  def test_an_offer_warning_names_the_front_matter_that_fixes_it
+    r = run_on(ld(g(EVENT.merge("offers" => { "@type" => "Offer", "url" => "https://e.org/t/" }, "organizer" => { "@type" => "Organization" }))))
+    offer = r.warns.find { |w| w.include?("Offer (@graph.offers) lacks required price/priceSpecification") }
+    assert_equal "Offer (@graph.offers) lacks required price/priceSpecification#{OFFERS_HINT}#{NESTED_NOTE}", offer[/Offer \(.*/], r.warns.inspect
+    refute(r.warns.any? { |w| w.include?("@graph.organizer") && w.include?("schema: {offers") }, "only offers get the offers hint")
+  end
 
   def test_nested_objects_are_checked_as_warnings
     {

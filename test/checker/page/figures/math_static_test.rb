@@ -60,6 +60,27 @@ class CheckMathStaticTest < CheckerCase
     assert_includes o, "guide/a.md:9: stale math: entry 2 of _data/math/guide--a.yml was rendered from other TeX than this block (#{F.digest('E = mc^2')})"
   end
 
+  def test_a_licence_beside_a_vendored_script_is_one_accurate_error
+    page "js/chart.LICENSE.md", "The MIT License (MIT)\n\nCopyright (c) Chart.js Contributors\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "js/chart.LICENSE.md: a licence file saved as Markdown becomes a page on GitHub Pages; save it as js/chart.LICENSE.txt, or list it in exclude:"
+    assert_equal 1, o.scan("js/chart.LICENSE.md:").size, o
+  end
+
+  def test_the_key_rule_needs_math_blocks
+    page "notes/v1.2.md", "---\n---\n# Notes\n\nNo math here.\n"
+    o, = check
+    refute_includes o, "math key"
+  end
+
+  def test_stale_math_names_a_shared_file_only_when_one_is_shared
+    fixture "m03-math-static-ok"
+    data "guide--a", ["x^2", "E = mc^3", "a < b", "\\alpha", "y"]
+    o, = check
+    refute_includes o, "shared by"
+  end
+
   def test_inline_math_is_an_error_in_static_mode
     fixture "m03-math-static-inline"
     data "guide--a", ["E = mc^2"]

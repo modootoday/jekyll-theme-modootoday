@@ -25,4 +25,12 @@ class CheckCliTest < CheckerCase
     assert st.success?
     assert_match(/usage: modootoday-check/, o)
   end
+
+  def test_a_source_without_a_site_gets_the_build_step
+    _, e, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, CHECK, ".")
+    assert_equal 1, st.exitstatus
+    assert_includes e, "SITE is missing"
+    assert_includes e, "bundle exec jekyll build && bundle exec modootoday-check . _site"
+    assert_includes e, "usage: modootoday-check SRC SITE"
+  end
 end

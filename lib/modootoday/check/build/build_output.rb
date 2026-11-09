@@ -13,11 +13,18 @@ module Modootoday
         chart = ctx.mtc.is_a?(Hash) && ctx.mtc["chart"].is_a?(Hash) && ctx.mtc["chart"]["enabled"] == true
         Dir.glob("#{ctx.site}/**/*.html").each do |f|
           t = File.read(f).gsub(%r{<pre\b.*?</pre>}m, "")
-          ctx.errs << "#{f}: unconverted chart (a paragraph with only <code>chart:)" if chart && t.match?(%r{<p><code[^>]*>chart:[^<]*</code></p>})
+          t.scan(%r{<p><code[^>]*>chart:([^<]*)</code></p>}) { unconverted_chart(ctx, f, $1) } if chart
           t = t.gsub(%r{<code\b.*?</code>}m) { |c| c.include?("status:") ? c : "" }
           t.scan(MARKS) { ctx.errs << "#{f}: unconverted alert marker [!#{$1}]" }
           ctx.errs << "#{f}: unconverted status badge (<code>status:)" if t =~ /<code[^>]*>status:/
         end
+      end
+
+      # A line with an unknown type or option is already a source error, so only a valid one left as code is reported.
+      def unconverted_chart(ctx, f, value)
+        words = value.split
+        return unless Chart::TYPES.include?(words.first) && (words.drop(1) - Chart::OPTS).empty?
+        ctx.errs << "#{f}: unconverted chart `chart:#{value}` (a paragraph with only <code>chart:); put it right before its table"
       end
 
       SEARCH_WARN = 1_500_000

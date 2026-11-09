@@ -35,9 +35,10 @@ module Modootoday
           v = lines[i].strip[SPAN, 1]
           w = "#{r}: `chart:#{v}`"
           words = v.split
-          next ctx.errs << "#{w}: the type must be one of #{TYPES.join(', ')}" unless TYPES.include?(words.first)
+          # A wrong type or option does not hide the table's own problems; the build check skips such a line.
+          ctx.errs << "#{w}: the type must be one of #{TYPES.join(', ')}" unless TYPES.include?(words.first)
           bad = words.drop(1) - OPTS
-          next ctx.errs << "#{w}: unknown option #{bad.join(', ')} (#{OPTS.join(', ')})" unless bad.empty?
+          ctx.errs << "#{w}: unknown option #{bad.join(', ')} (#{OPTS.join(', ')})" unless bad.empty?
           rows = table_after(lines, i + 1)
           next ctx.errs << "#{w} must be alone in a paragraph right before a table" unless rows
           cells(ctx, w, rows)
