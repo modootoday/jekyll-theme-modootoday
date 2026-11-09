@@ -6,7 +6,7 @@ module Modootoday
       # A single object under a property (offers, acceptedAnswer, hiringOrganization) gets the rules of a top-level
       # node, but what it breaks is a warning until 2.0 (adr:modootoday/20261103053804), so sites see it first.
       module Nested
-        NOTE = " (a warning in a nested object, an error from 2.0)"
+        NOTE = " (a warning in a nested object, an error in the next major version)"
         # The front matter that writes an offer, so the warning points at the fix rather than the JSON-LD path.
         OFFERS = "; set the offer in front matter: schema: {offers: {type: Offer, price: ..., priceCurrency: ...}} (tickets: alone gives only its url)"
 

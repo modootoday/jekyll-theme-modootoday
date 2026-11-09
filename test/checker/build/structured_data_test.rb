@@ -44,7 +44,7 @@ class StructuredDataTest < Minitest::Test
   end
 
   EVENT = { "@type" => "Event", "name" => "E", "startDate" => "2026-10-01", "location" => { "@type" => "Place", "name" => "Hall" } }.freeze
-  NESTED_NOTE = " (a warning in a nested object, an error from 2.0)"
+  NESTED_NOTE = " (a warning in a nested object, an error in the next major version)"
   OFFERS_HINT = "; set the offer in front matter: schema: {offers: {type: Offer, price: ..., priceCurrency: ...}} (tickets: alone gives only its url)"
 
   def test_an_offer_warning_names_the_front_matter_that_fixes_it
