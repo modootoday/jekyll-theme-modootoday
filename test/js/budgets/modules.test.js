@@ -64,6 +64,20 @@ test("over the cap fails that file only; a loose cap warns; a theme file without
   assert.match(warns[0], /^css\/modootoday\/small\.css: cap 1024 B is over twice/);
 });
 
+test("a file near its cap warns with the cap to use; one well under it does not", async () => {
+  const { parseRegistry } = await load("registry.mjs");
+  const { checkModules, capFor } = await load("modules.mjs");
+  const css = text(60);
+  const size = gz(css);
+  const tight = Math.ceil(size / 0.97);
+  const dir = site({ "css/modootoday/near.css": css, "css/modootoday/fine.css": css });
+  const fails = [];
+  const warns = [];
+  checkModules(dir, parseRegistry(registry(`near|css|/assets/css/modootoday/near.css|||${tight}\nfine|css|/assets/css/modootoday/fine.css|||${capFor(size)}`)), fails, warns);
+  assert.deepStrictEqual(fails, []);
+  assert.deepStrictEqual(warns, [`css/modootoday/near.css: ${size} B gzip is within 5% of cap ${tight} B; the cap to use when it grows is ${capFor(size)}`]);
+});
+
 test("page types: the theme limit is the sum of the caps a page loads; guide targets warn, components excepted", async () => {
   const { parseRegistry } = await load("registry.mjs");
   const { checkModules } = await load("modules.mjs");
