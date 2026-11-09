@@ -11,7 +11,7 @@ Releases are published only from a `v*` tag by `.github/workflows/release.yml`, 
 3. **Release check green on `main`** with no warnings. Run `script/release-prep X.Y.Z` again on the pushed release commit: it refuses while a placeholder is left, then starts the slow workflows by hand on that commit (`gh workflow run` for `ci.yml`, `lighthouse.yml`, and `visual.yml` with `base=` the previous tag). `script/release-status` prints the three runs on HEAD in one table. A later push does not cancel these manual runs, and a second manual run of the same workflow on the same branch waits for the first. The CI run covers the GitHub Pages stack, Jekyll 4 (oldest and newest Ruby), the Jekyll 3.9 floor, JS, tokens and docs QA; Lighthouse checks the budget (median of 3 runs); Visual regression reports every difference from the previous release tag, and each one must be intended.
 4. **Visual review.** Open the docs site and the kitchen sink in light and dark at phone and desktop widths, in English, Korean and Japanese; compare with the QA screenshots artifact. Every component example is checked at element level: each example section of the Components index, the kitchen sinks and the recipes with examples is shot on its own (English light and dark at 360 and 1440, Korean and Japanese light at 360) and looked at next to its source, and the docs QA component audit (`test/system/audit/features/components.mjs`) and `test/system/docs/examples.rb` report nothing. A whole-page look misses a broken example. `RULES.md` says `md-components v1` and Status final (done 2026-10-30).
 5. **Trusted publisher.** On rubygems.org, the gem (or, before the first release, a *pending* trusted publisher) must point at this repository, workflow `release.yml` and environment `rubygems`. For 1.0.0 this is the pending publisher: open rubygems.org → Trusted publishers and check it is still listed and not expired (a pending publisher expires if no gem is pushed in time); register it again with the same values if it has.
-6. **Tag.** `git tag vX.Y.Z && git push origin vX.Y.Z` (first release: `git tag v1.0.0 && git push origin v1.0.0`). The workflow checks that the tag equals the gem version.
+6. **Tag.** `git tag vX.Y.Z && git push origin vX.Y.Z` (first release: `git tag v1.0.0 && git push origin v1.0.0`). The workflow first checks the release check of step 3 on the tagged commit: it stops before anything is published unless the newest manual run of each of `ci.yml`, `lighthouse.yml` and `visual.yml` on that commit succeeded (`script/release-status SHA --verify`). Then it checks that the tag equals the gem version.
 7. **Approve** the `rubygems` environment deployment when the run asks for it.
    After the gem is pushed, the same run creates the GitHub Release for the tag, with the `## [X.Y.Z]` entry of `CHANGELOG.md` as the notes (`ruby script/release-notes vX.Y.Z` prints them; run it before tagging to check). It skips the step when the Release already exists.
 8. **After release.** Check the gem page and the GitHub Release. The docs site stays on `remote_theme: …@main`, because it documents and demonstrates `main` (adr:modootoday/20261105073859); the install examples, README and starters carry the release pin.
@@ -22,3 +22,14 @@ Releases are published only from a `v*` tag by `.github/workflows/release.yml`, 
    4. In the theme repository, one commit `chore(starters): pin starters to vX.Y.Z` moves every gitlink; `rake starters:check` must pass with no pin warning.
 
    Until then `rake starters:check` warns that the pins are behind the gemspec version. A starter that is not published yet stays a plain folder rendered into `pkg/starters/<stack>/<name>/`.
+
+## Overriding the release check
+
+The release workflow publishes nothing while the release check of the tagged commit is not green. When a run failed for a reason outside the release (a runner outage, a flaky external download) and the maintainer has decided to release anyway, set a repository variable to the tag and re-run the failed workflow run:
+
+```sh
+gh variable set RELEASE_CHECKS_OVERRIDE --body vX.Y.Z
+gh run rerun <run id> --failed
+```
+
+The step then prints the table, warns that the check was overridden, and continues. The variable names one tag, so it does not carry over to the next release; delete it afterwards (`gh variable delete RELEASE_CHECKS_OVERRIDE`) and say why in the release's summary paragraph.

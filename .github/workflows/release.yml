@@ -16,6 +16,7 @@ jobs:
     permissions:
       contents: write   # release-gem pushes the tag; the last step creates the GitHub Release
       id-token: write   # OIDC token for RubyGems trusted publishing
+      actions: read     # the release check runs on the tagged commit
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
     steps:
@@ -27,6 +28,19 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      # RELEASING.md step 3: the manual ci, lighthouse and visual runs on this commit all succeeded. The repository
+      # variable RELEASE_CHECKS_OVERRIDE set to this tag skips it once (RELEASING.md, "Overriding the release check").
+      - name: Release check succeeded on the tagged commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OVERRIDE: ${{ vars.RELEASE_CHECKS_OVERRIDE }}
+        run: |
+          if [ "$OVERRIDE" = "$GITHUB_REF_NAME" ]; then
+            ruby script/release-status "$GITHUB_SHA" || true
+            echo "::warning::release check overridden for $GITHUB_REF_NAME by RELEASE_CHECKS_OVERRIDE"
+            exit 0
+          fi
+          ruby script/release-status "$GITHUB_SHA" --verify
       - name: Test, then build and check the starter sites
         run: bundle exec rake
       - name: Check tag matches gem version
