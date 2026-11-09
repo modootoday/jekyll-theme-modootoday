@@ -3,10 +3,10 @@ id: adr:modootoday/20261109141605
 title: "1.8.0 scope: release surfaces, freshness, docs depth and the GitHub-surface items deferred from 1.7"
 status: active
 created: 2026-11-09T14:16:05Z
-updated: 2026-11-09T14:33:28Z
+updated: 2026-11-09T15:00:54Z
 rel:
   governs: [_layouts]
-  depends_on: [research:modootoday/20261109141301, adr:modootoday/20261109141321, research:modootoday/20261109143250]
+  depends_on: [research:modootoday/20261109141301, adr:modootoday/20261109141321, research:modootoday/20261109143250, research:modootoday/20261109150011]
 ---
 
 # 1.8.0 scope: release surfaces, freshness, docs depth and the GitHub-surface items deferred from 1.7
@@ -81,3 +81,18 @@ ADRs that come first: the companion packaging and edge endpoint contract (one co
 Later: Access in front of the companion's admin routes, a CSP report collector, server-side search, image transformations, view counts, an R2 release mirror, reactions. Rejected: moving hosting to Cloudflare Pages or Workers (an alternative only), Zaraz, the Web Analytics beacon by default, self-hosted comments, a runtime Releases proxy, Workers AI translations or summaries, Durable Objects counters, link checking at the edge, Snippets, and Access for "private docs" (the `github.io` URL and the public repository expose the same content).
 
 The theme's own docs run on a `github.io` host, which Cloudflare cannot proxy, so the edge layers (and redirects for moved docs pages) reach the docs only if they move to a custom domain; that is a separate maintainer decision.
+
+## Amendment (2026-11-09): governance, docs drift and changelog items
+
+From [[research:modootoday/20261109150011]], by the same maintainer decision that extended 1.7.0:
+
+- **B10** Install version pins are excluded from a translation's `source_rev` hash, with one restamp under an amendment of the ADR on page languages. Without this, every release marks the install and home translations stale.
+- **B11 strict** After B10, staleness fails the release check for en, ko and ja. Both land before D1 ("translation may be outdated"), which would otherwise fire on every release.
+- **B8, B9** A generated configuration reference table, and a test that every `modootoday-check` and `modootoday-stubs` flag appears in the docs.
+- **C6** The Upgrade guide is fed by changelog fragments marked `migration:` or `public_api: true`.
+- **A8** A `Decision:` trailer on commits that touch governed paths, after a report-only trial late in 1.7.
+- **A3** `AGENTS.md` for the checker and system-audit directories.
+- **B13** A "last verified" report, alongside C2's git-based "Last updated".
+- **C7** A richer GitHub Release body, if 1.7 did not ship it.
+
+Later: a Conventional Commits lint, prose linting, an entry-length guideline, git-cliff as a drafting helper, and CODEOWNERS once there is a second maintainer.
