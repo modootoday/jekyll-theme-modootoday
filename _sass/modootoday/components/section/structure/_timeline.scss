@@ -1,16 +1,20 @@
-// Timeline: sections with `c: timeline`; each ### heading is a date/milestone, content follows.
+// Timeline: sections with `c: timeline`; each ### heading (or each item of an ordered list) is a point on the line.
 @include mt-layer(components) {
   .mt-c-timeline { --mt-timeline-line: #{mt(border)}; --mt-timeline-dot: #{mt(primary)}; }
   .mt-c-timeline > h3, .mt-c-timeline > h3 ~ * { position: relative; margin-inline-start: .5rem; padding-inline-start: 1.5rem; border-inline-start: 2px solid var(--mt-timeline-line); }
   .mt-c-timeline > h3 { margin-bottom: 0; padding-top: 1.25rem; margin-top: 0; font-size: .8125rem; font-weight: 600; letter-spacing: .02em; color: mt(muted-foreground); font-family: mt(font-mono); }
   .mt-c-timeline > h2 + h3 { margin-top: 1rem; }
   .mt-c-timeline > h3 ~ * { margin-top: 0; margin-bottom: 0; padding-bottom: .5rem; }
-  .mt-c-timeline > h3::before { content: ""; position: absolute; inset-inline-start: -.45rem; top: 1.55rem;
+  .mt-c-timeline > h3::before, .mt-c-timeline > ol > li::before { content: ""; position: absolute; inset-inline-start: -.45rem; top: 1.55rem;
     width: .75rem; height: .75rem; border-radius: 50%; background: var(--mt-timeline-dot); box-shadow: 0 0 0 3px #{mt(background)}; }
+  // The list form: the ordered list carries the line and each item a dot on it, centred on the item's first line.
+  .mt-c-timeline > ol { list-style: none; margin: 1rem 0 0; margin-inline-start: .5rem; padding: 0; border-inline-start: 2px solid var(--mt-timeline-line); }
+  .mt-c-timeline > ol > li { position: relative; margin: 0; padding: .25rem 0 .75rem; padding-inline-start: 1.5rem; }
+  .mt-c-timeline > ol > li::before { top: calc(.8em - .125rem); }
 }
 // Forced colours drop backgrounds: the dot is drawn in CanvasText instead.
 @include mt-layer(components) {
   @media (forced-colors: active) {
-    .mt-c-timeline > h3::before { forced-color-adjust: none; background: CanvasText; box-shadow: none; }
+    .mt-c-timeline > h3::before, .mt-c-timeline > ol > li::before { forced-color-adjust: none; background: CanvasText; box-shadow: none; }
   }
 }
