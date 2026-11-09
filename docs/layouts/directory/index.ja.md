@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/
-source_rev: sha256:a75d29c3a572
+source_rev: sha256:ee066a8fdb56
 title: ディレクトリレイアウト
 description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで絞り込めます。
 nav_order: 20
@@ -22,6 +22,17 @@ nav_order: 20
 `layout: directory` は基本形です。`preset:` に上の名前のどれかを指定するか、省略すると簡単なカードになります。
 
 ほかのテーマから移ったサイトは、`defaults` でコレクションに同じ名前のレイアウトを付けることがよくあります。そのため `_portfolio/atlas.md` は `portfolio` になります。`items:`、`data:`、`records:` のない文書は一覧ではなく一つの項目なので、これらのレイアウトは対応する詳細ページとして描きます。`portfolio` は `project`、`jobs` は `job`、`events` は `event`、それ以外は `detail` になり、構造化データもそのページに従います。レイアウトがまったくないコレクション文書はテーマなしで出力されます(jekyll-default-layout はページと記事にだけレイアウトを付けます)。`modootoday-check` はこれを警告し、`defaults` に入れるレイアウトを示します。
+
+## front matter
+
+| キー | 用途 |
+|---|---|
+| `items` | カードの一覧: `title` または `name`、`url`、`text`、`image`、`alt`、`width`、`height`、下のプリセットのフィールド |
+| `data` | `items` の代わりにカードを読み込む `_data` のファイル名 |
+| `records` | `modootoday.records` のレコードのセット。カードごとにレコードのページへリンクします |
+| `preset` | `layout: directory` で、上の表のレイアウト名のどれか |
+| `filter` | `false` で絞り込みボタンを隠し、別のフィールド名を渡すとそのフィールドで絞り込みます |
+| `filter_text` | `true` で、入力に合わせてカードを絞る検索欄を加えます |
 
 ## 項目
 

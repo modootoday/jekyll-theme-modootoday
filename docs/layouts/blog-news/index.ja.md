@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/blog-news/
-source_rev: sha256:f76ef6fb5be6
+source_rev: sha256:7cb4f7ae5f58
 title: ブログとニュース
 nav_order: 50
 description: ブログ一覧、ニュースのトップページ、署名、著者ページ、Atom フィードを作ります。
@@ -21,7 +21,7 @@ description: ブログ一覧、ニュースのトップページ、署名、著�
 
 ## デモ
 
-以下のデモは、ドキュメントの外でレイアウトをひとつ使って作った実際のページです。ここで開くか、新しいウィンドウで開いてください。blog と post のレイアウトは、ここに説明のページがあり、ライブデモは blog スターターにあります。デモ内でサンプルの外に出てしまうリンクは `#` にしてあります。
+以下のデモは、ドキュメントの外でレイアウトをひとつ使って作った実際のページです。ここで開くか、新しいウィンドウで開いてください。blog と post のデモページはプレビューを表示し、blog スターターのライブデモにリンクします。デモ内でサンプルの外に出てしまうリンクは `#` にしてあります。
 
 | デモ | レイアウト | 新しいウィンドウ |
 | --- | --- | --- |
@@ -82,4 +82,20 @@ modootoday:
     share: true
 ```
 
-front matter の一覧は[英語のガイド](../../../layouts/blog-news/#settings)の表をご覧ください。
+| front matter | レイアウト | 意味 |
+| --- | --- | --- |
+| `variant` | blog, author | `list`、`grid`、`magazine` |
+| `category`, `tag` | blog, news, feed | 記事を絞り込みます |
+| `news_sections`, `secondary`, `latest` | news | カテゴリーのセクションと記事数 |
+| `posts_lang` | blog, news, author | `all` ですべての言語の記事を並べます |
+| `featured` | blog, post | ブログのページでは `true` で最初のカードを大きくし、記事ではその記事を先頭のカードに固定します |
+| `archive_url` | blog | 最後のカードの後にある過去の記事へのリンク先。例: `/archive/` |
+| `hidden`, `list: false` | post | 記事を一覧から外します |
+| `author`, `authors` | post, author | `_data/authors.yml` の id、名前、`{name, url, picture}`。既定はサイトの `author` |
+| `series` | post | 記事を番号付きの連載にまとめます |
+| `image`, `image_alt`, `image_caption` | post | カバー（パスまたは `{path, alt, width, height}`）、代替テキスト、キャプション |
+| `categories`, `tags` | post | 記事の下に表示し、関連記事を選ぶのに使います |
+| `last_modified_at` | post | 最後に更新した日付 |
+| `deck` | post, news-article | タイトルの下の 1 文 |
+| `breaking`, `live`, `correction`, `sources`, `credits` | news-article | ニュースの詳細 |
+| `feed_lang`, `limit`, `feed_content` | feed | フィードの範囲 |

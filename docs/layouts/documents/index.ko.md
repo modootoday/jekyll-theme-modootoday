@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/documents/
-source_rev: sha256:2e5bdc8f4eaa
+source_rev: sha256:5ab43dfe8f04
 title: 문서
 description: 법적 고지 페이지와 인쇄 우선 이력서입니다.
 nav_order: 70

@@ -28,7 +28,7 @@
         - {title: Jobs demo, url: /layouts/directory/jobs/}
         - {title: Events demo, url: /layouts/directory/events/}
         - {title: Sponsors demo, url: /layouts/directory/sponsors/}
-        - {title: Integrations layout, url: /layouts/directory/integrations/}
+        - {title: Integrations demo, url: /layouts/directory/integrations/}
     - title: Detail pages
       url: /layouts/detail/
       items:
@@ -41,7 +41,7 @@
       url: /layouts/marketing/
       items:
         - {title: Feature demo, url: /layouts/marketing/feature/}
-        - {title: Pricing layout, url: /layouts/marketing/pricing/}
+        - {title: Pricing demo, url: /layouts/marketing/pricing/}
         - {title: Download demo, url: /layouts/marketing/download/}
         - {title: Brand demo, url: /layouts/marketing/brand/}
         - {title: Links demo, url: /layouts/marketing/links/}
@@ -49,8 +49,8 @@
     - title: Blog and news
       url: /layouts/blog-news/
       items:
-        - {title: Blog layout, url: /layouts/blog-news/blog/}
-        - {title: Post layout, url: /layouts/blog-news/post/}
+        - {title: Blog demo, url: /layouts/blog-news/blog/}
+        - {title: Post demo, url: /layouts/blog-news/post/}
         - {title: News demo, url: /layouts/blog-news/news/}
         - {title: News article demo, url: /layouts/blog-news/article/}
         - {title: Archive demo, url: /layouts/blog-news/archive/}
@@ -68,7 +68,7 @@
     - title: Documents
       url: /layouts/documents/
       items:
-        - {title: Legal layout, url: /layouts/documents/legal/}
+        - {title: Legal demo, url: /layouts/documents/legal/}
         - {title: Resume demo, url: /layouts/documents/resume/}
 - title: Recipes
   url: /recipes/

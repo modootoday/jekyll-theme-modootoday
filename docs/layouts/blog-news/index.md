@@ -18,7 +18,7 @@ Five layouts turn the theme into a blog or a newsroom. They are Liquid only, so 
 
 ## Demos
 
-Each demo below is a real page built with one layout, outside the docs. Open it here or in a new window; the blog and post layouts have a reference page here and a live demo in the blog starter. Links inside the demos that would leave the sample point to `#`.
+Each demo below is a real page built with one layout, outside the docs. Open it here or in a new window; the blog and post demo pages here show a preview and link the live demo in the blog starter. Links inside the demos that would leave the sample point to `#`.
 
 | Demo | Layout | New window |
 | --- | --- | --- |
@@ -113,9 +113,14 @@ modootoday:
 | `category`, `tag` | blog, news, feed | Filter posts |
 | `news_sections`, `secondary`, `latest` | news | Category sections and story counts |
 | `posts_lang` | blog, news, author | `all` lists every language |
-| `featured` | post | Pins the post as the lead card |
+| `featured` | blog, post | On a blog page, `true` makes the first card lead; on a post, pins it as the lead card |
+| `archive_url` | blog | Where the older-posts link after the last card goes, such as `/archive/` |
 | `hidden`, `list: false` | post | Leaves the post out of lists |
 | `author`, `authors` | post, author | Ids from `_data/authors.yml`, names, or `{name, url, picture}`; default: the site's `author` |
 | `series` | post | Groups posts into numbered parts |
-| `deck`, `breaking`, `live`, `correction`, `sources`, `credits` | news-article | News details |
+| `image`, `image_alt`, `image_caption` | post | The cover (a path, or `{path, alt, width, height}`), its text alternative and its caption |
+| `categories`, `tags` | post | Listed under the post and used to pick related posts |
+| `last_modified_at` | post | The date of the last update |
+| `deck` | post, news-article | A sentence under the title |
+| `breaking`, `live`, `correction`, `sources`, `credits` | news-article | News details |
 | `feed_lang`, `limit`, `feed_content` | feed | Feed scope |

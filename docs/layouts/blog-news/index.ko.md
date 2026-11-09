@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/blog-news/
-source_rev: sha256:f76ef6fb5be6
+source_rev: sha256:7cb4f7ae5f58
 title: 블로그와 뉴스
 nav_order: 50
 description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 페이지, Atom 피드를 만듭니다.
@@ -21,7 +21,7 @@ description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 �
 
 ## 데모
 
-아래 데모는 문서 밖에서 레이아웃 하나로 만든 실제 페이지입니다. 여기서 열거나 새 창에서 열어 보세요. blog와 post 레이아웃은 여기에 설명 페이지가 있고, 라이브 데모는 blog 스타터에 있습니다. 데모 안에서 예시 밖으로 나가는 링크는 `#`로 되어 있습니다.
+아래 데모는 문서 밖에서 레이아웃 하나로 만든 실제 페이지입니다. 여기서 열거나 새 창에서 열어 보세요. blog와 post 데모 페이지는 미리 보기를 보여 주고 blog 스타터의 라이브 데모로 연결합니다. 데모 안에서 예시 밖으로 나가는 링크는 `#`로 되어 있습니다.
 
 | 데모 | 레이아웃 | 새 창 |
 | --- | --- | --- |
@@ -82,4 +82,20 @@ modootoday:
     share: true
 ```
 
-front matter 항목 전체는 [영어 안내](../../../layouts/blog-news/#settings)의 표를 보세요.
+| front matter | 레이아웃 | 뜻 |
+| --- | --- | --- |
+| `variant` | blog, author | `list`, `grid`, `magazine` |
+| `category`, `tag` | blog, news, feed | 글을 거릅니다 |
+| `news_sections`, `secondary`, `latest` | news | 카테고리 섹션과 기사 수 |
+| `posts_lang` | blog, news, author | `all`이면 모든 언어의 글을 보여 줍니다 |
+| `featured` | blog, post | 블로그 페이지에서는 `true`면 첫 카드를 크게 보여 주고, 글에서는 그 글을 머리 카드로 고정합니다 |
+| `archive_url` | blog | 마지막 카드 다음의 이전 글 링크가 가는 곳. 예: `/archive/` |
+| `hidden`, `list: false` | post | 목록에서 글을 뺍니다 |
+| `author`, `authors` | post, author | `_data/authors.yml`의 id, 이름, `{name, url, picture}`. 기본값은 사이트의 `author` |
+| `series` | post | 글을 번호 붙은 연재로 묶습니다 |
+| `image`, `image_alt`, `image_caption` | post | 표지(경로 또는 `{path, alt, width, height}`), 대체 텍스트, 설명 |
+| `categories`, `tags` | post | 글 아래에 나오고 관련 글을 고르는 데 씁니다 |
+| `last_modified_at` | post | 마지막으로 고친 날짜 |
+| `deck` | post, news-article | 제목 아래 한 문장 |
+| `breaking`, `live`, `correction`, `sources`, `credits` | news-article | 기사 정보 |
+| `feed_lang`, `limit`, `feed_content` | feed | 피드 범위 |

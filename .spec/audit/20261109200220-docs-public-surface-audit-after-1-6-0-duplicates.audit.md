@@ -191,7 +191,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | F5 | deferred | A callout-weight rule needs a style decision |
 | N1 | fixed | On main ([[adr:modootoday/20261109192542]]) |
 | N2 | deferred | Component sidebar groups need a decision (L) |
-| N3 | deferred | One pattern for layout pages needs a decision |
+| N3 | resolved | Each group index holds the front matter table and links each demo; the five reference pages are demo pages at the same URLs ([[adr:modootoday/20261109225554]]) |
 | N4 | fixed | Unique orders; R3 blocks ties |
 | N5 | fixed | H1 equals title outside demos; nav_title only as a shorter form |
 | N6 | partly fixed | The demo index is linked from the CSP demo; error demos are exempt as error pages |

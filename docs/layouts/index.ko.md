@@ -1,14 +1,14 @@
 ---
 lang: ko
 permalink: /ko/layouts/
-source_rev: sha256:f09a4440c59c
+source_rev: sha256:7659be22e20c
 title: 레이아웃
 description: 테마가 제공하는 페이지 레이아웃과 각각의 쓰임새입니다.
 nav_order: 0
 ---
 # 레이아웃
 
-front matter의 `layout:`으로 레이아웃을 지정합니다. 지정하지 않은 페이지는 `doc`을 씁니다.
+front matter의 `layout:`으로 레이아웃을 지정합니다. 지정하지 않은 페이지는 `doc`을 씁니다. 아래의 그룹 페이지마다 레이아웃의 front matter를 표 하나에 모으고 레이아웃별 데모로 연결합니다.
 
 | 레이아웃 | 용도 |
 | --- | --- |

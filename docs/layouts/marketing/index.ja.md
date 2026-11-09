@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/
-source_rev: sha256:530afdd98aef
+source_rev: sha256:bfd133775930
 title: マーケティングページ
 description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作ります。
 nav_order: 40
@@ -13,7 +13,7 @@ nav_order: 40
 | レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
 | `feature` | `features: [{title, text}]`、`cta` | WebPage | [機能](feature/) |
-| `pricing` | `plans`、`currency` | WebPage | [料金](pricing/) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`、`currency` | WebPage | [料金](pricing/) |
 | `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](download/) |
 | `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](brand/) |
 | `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](links/) |

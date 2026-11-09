@@ -9,7 +9,7 @@ Two layouts for pages people print or keep. Both hide the site header, footer an
 
 | Layout | Front matter | Bundle | Structured data | Demo |
 |---|---|---|---|---|
-| `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Terms](legal/) |
+| `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Legal](legal/) |
 | `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](resume/) |
 
 ## Legal

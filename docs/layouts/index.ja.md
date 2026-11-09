@@ -1,14 +1,14 @@
 ---
 lang: ja
 permalink: /ja/layouts/
-source_rev: sha256:f09a4440c59c
+source_rev: sha256:7659be22e20c
 title: レイアウト
 description: テーマが提供するページレイアウトと、それぞれの用途です。
 nav_order: 0
 ---
 # レイアウト
 
-front matter の `layout:` でレイアウトを指定します。指定のないページは `doc` を使います。
+front matter の `layout:` でレイアウトを指定します。指定のないページは `doc` を使います。下のグループのページごとに、レイアウトの front matter を 1 つの表にまとめ、レイアウトごとのデモにリンクします。
 
 | レイアウト | 用途 |
 | --- | --- |

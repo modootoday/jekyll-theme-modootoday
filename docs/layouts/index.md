@@ -5,7 +5,7 @@ nav_order: 0
 ---
 # Layouts
 
-Set a layout with `layout:` in front matter. Pages without one use `doc`.
+Set a layout with `layout:` in front matter. Pages without one use `doc`. Each group page below lists the front matter of its layouts in one table and links a demo of each layout.
 
 | Layout | Use it for |
 | --- | --- |

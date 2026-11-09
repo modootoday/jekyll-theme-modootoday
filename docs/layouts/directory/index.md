@@ -20,6 +20,17 @@ A directory page is your text followed by a list of cards. The cards come from `
 
 Sites from other themes often give a collection the layout named like it in `defaults`, so `_portfolio/atlas.md` gets `portfolio`. A document with no `items:`, `data:` or `records:` is one item, not a list, so these layouts draw it as the matching detail page: `project` for `portfolio`, `job` for `jobs`, `event` for `events`, and `detail` for the others, with that page's structured data. Collection documents without any layout are written without the theme (jekyll-default-layout sets layouts only for pages and posts); `modootoday-check` warns about them and names the layout to put in `defaults`.
 
+## Front matter
+
+| Key | Use |
+|---|---|
+| `items` | The cards: `title` or `name`, `url`, `text`, `image`, `alt`, `width`, `height`, and the preset fields below |
+| `data` | The name of a `_data` file to read the cards from instead of `items` |
+| `records` | A record set from `modootoday.records`; each card links to its record page |
+| `preset` | On `layout: directory`, one of the layout names above |
+| `filter` | `false` hides the filter buttons; another field name filters by that field |
+| `filter_text` | `true` adds a search field that narrows the cards as you type |
+
 ## Items
 
 ```yaml

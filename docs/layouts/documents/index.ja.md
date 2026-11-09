@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/documents/
-source_rev: sha256:2e5bdc8f4eaa
+source_rev: sha256:5ab43dfe8f04
 title: 文書
 description: 法的なページと印刷優先の履歴書です。
 nav_order: 70

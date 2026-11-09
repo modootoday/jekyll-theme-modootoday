@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/
-source_rev: sha256:530afdd98aef
+source_rev: sha256:bfd133775930
 title: 마케팅 페이지
 description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지를 공유 선택 스타일시트 하나로 만듭니다.
 nav_order: 40
@@ -13,7 +13,7 @@ nav_order: 40
 | 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
 | `feature` | `features: [{title, text}]`, `cta` | WebPage | [기능](feature/) |
-| `pricing` | `plans`, `currency` | WebPage | [요금](pricing/) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [요금](pricing/) |
 | `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](download/) |
 | `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](brand/) |
 | `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](links/) |

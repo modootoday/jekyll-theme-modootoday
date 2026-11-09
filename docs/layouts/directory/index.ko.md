@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/
-source_rev: sha256:a75d29c3a572
+source_rev: sha256:ee066a8fdb56
 title: 디렉터리 레이아웃
 description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카드 목록으로 보여 주며 JavaScript 없이 필터링합니다.
 nav_order: 20
@@ -22,6 +22,17 @@ nav_order: 20
 `layout: directory`는 기본형입니다. `preset:`에 위 이름 중 하나를 쓰거나, 생략하면 단순한 카드가 됩니다.
 
 다른 테마에서 온 사이트는 `defaults`에서 컬렉션에 같은 이름의 레이아웃을 붙이는 경우가 많습니다. 그래서 `_portfolio/atlas.md`는 `portfolio`가 됩니다. `items:`, `data:`, `records:`가 없는 문서는 목록이 아니라 항목 하나이므로, 이 레이아웃들은 그 문서를 짝이 되는 상세 페이지로 그립니다. `portfolio`는 `project`, `jobs`는 `job`, `events`는 `event`, 나머지는 `detail`이 되고 구조화 데이터도 그 페이지를 따릅니다. 레이아웃이 아예 없는 컬렉션 문서는 테마 없이 출력됩니다(jekyll-default-layout은 페이지와 글에만 레이아웃을 붙입니다). `modootoday-check`가 이를 경고하고 `defaults`에 넣을 레이아웃을 알려 줍니다.
+
+## front matter
+
+| 키 | 용도 |
+|---|---|
+| `items` | 카드 목록: `title` 또는 `name`, `url`, `text`, `image`, `alt`, `width`, `height`, 아래의 프리셋 필드 |
+| `data` | `items` 대신 카드를 읽어 올 `_data` 파일 이름 |
+| `records` | `modootoday.records`의 레코드 세트. 카드마다 레코드 페이지로 연결됩니다 |
+| `preset` | `layout: directory`에서 위 표의 레이아웃 이름 하나 |
+| `filter` | `false`면 필터 버튼을 숨기고, 다른 필드 이름을 주면 그 필드로 거릅니다 |
+| `filter_text` | `true`면 입력하는 대로 카드를 좁히는 검색 칸을 더합니다 |
 
 ## 항목
 

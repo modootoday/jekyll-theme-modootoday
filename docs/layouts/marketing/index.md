@@ -10,7 +10,7 @@ These layouts build the pages around a product: what it does, what it costs, whe
 | Layout | Front matter | Structured data | Demo |
 |---|---|---|---|
 | `feature` | `features: [{title, text}]`, `cta` | WebPage | [Feature](feature/) |
-| `pricing` | `plans`, `currency` | WebPage | [Pricing](pricing/) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [Pricing](pricing/) |
 | `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](download/) |
 | `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](brand/) |
 | `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](links/) |
