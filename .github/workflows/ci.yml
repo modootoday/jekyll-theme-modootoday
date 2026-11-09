@@ -81,6 +81,27 @@ jobs:
       - name: Build 250 and 1,000 records (times in the job summary)
         run: ruby test/system/bench/records.rb --records 250,1000 --limit 300 --work "$RUNNER_TEMP/bench"
 
+  # The commit rules the generated CHANGELOG relies on, over the pushed range or the pull request's commits.
+  commits:
+    name: commit messages
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Check the commit messages
+        env:
+          BEFORE: ${{ github.event.before }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          if [ -n "$BASE" ]; then range="$BASE..$HEAD"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = 0000000000000000000000000000000000000000 ]; then range="-1 $HEAD"
+          else range="$BEFORE..$HEAD"; fi
+          ruby script/commit-check $range
+
   js:
     runs-on: ubuntu-24.04
     steps:

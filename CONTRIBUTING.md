@@ -20,7 +20,23 @@ npm ci && npm test
 gem build jekyll-theme-modootoday.gemspec
 ```
 
-A shared pre-push hook runs the checks that need no build in a few seconds: the docs structure, the component order, the docs consistency rules, the docs-to-registry doctests, the CHANGELOG lint, the spec id resolution, `script/i18n-build --check`, `script/docs-index --check` and `script/readme-commands --check`. It is opt-in; turn it on once per clone with `git config core.hooksPath script/hooks`, or run `script/hooks/pre-push` by hand. Push CI runs the same checks, so `git push --no-verify` only moves a failure later.
+A shared pre-push hook runs the checks that need no build in a few seconds: the docs structure, the component order, the docs consistency rules, the docs-to-registry doctests, the CHANGELOG lint, the spec id resolution, `script/i18n-build --check`, `script/docs-index --check`, `script/readme-commands --check` and `script/commit-check` on the pushed commits. It is opt-in; turn it on once per clone with `git config core.hooksPath script/hooks`, or run `script/hooks/pre-push` by hand. Push CI runs the same checks, so `git push --no-verify` only moves a failure later.
+
+### Commits and the changelog
+
+The CHANGELOG's sections are generated from commit messages by [git-cliff](https://git-cliff.org/) (`cliff.toml`, the exact `git-cliff` version in `package.json`; adr:modootoday/20261109225758, adr:modootoday/20261109230955), so the commit is where a change note is written. A subject is a Conventional Commit, `type(scope): text`, and the text reads as a changelog line. `feat` goes to Added, `fix` to Fixed (`fix(security)` to Security), `perf` and `docs` (the docs site) to Changed, and `type!` to Changed with a "Breaking" mark; `chore`, `ci`, `test`, `build`, `style`, `refactor` and internal docs (`docs(spec)`, `docs(changelog)`, `docs(contributing)`, `docs(agents)`, `docs(releasing)`) are left out. Footers, in the last paragraph of the message, say what the subject cannot:
+
+| Footer | Effect |
+| --- | --- |
+| `Changelog: <text>` | the line to show instead of the subject; on a type that is left out, it puts the commit in Changed |
+| `Changelog: none` | leaves the commit out |
+| `Refs: adr:modootoday/<id>` | the ids after the line, in parentheses (several are separated by commas) |
+| `Visual: <text>` | joins the entry's `Visual:` line (the intended differences of the visual run) |
+| `Migration: <text>` | follows the line as "Upgrade: …"; the Upgrade guide takes it from there |
+| `Deprecated: <text>`, `Removed: <text>` | the line, in Deprecated or Removed |
+| `BREAKING CHANGE: <text>` | the commit goes to Changed with the "Breaking" mark |
+
+`script/commit-check [RANGE]` checks the rules the generator relies on: a commit that changes what the gem ships (`_layouts`, `_includes`, `_sass`, `assets`, `lib`, `exe`, `i18n`) has a Conventional subject, and one whose type is left out carries `Changelog: <text>` or `Changelog: none`; a footer is not empty and `Refs:` names spec ids. The pre-push hook runs it on the pushed commits and push CI on the pushed range or the pull request; fix a message with `git commit --amend` or a rebase before pushing.
 
 Changes to `docs/` or the theme's look: `test/system/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. Every theme CSS and JS file has a gzip cap on its row in `_includes/modootoday/assets/registry.html` (the measured size plus 10 %, rounded up to 128 bytes): a file over its cap, a row without a cap (the message prints the cap to use) and a theme file without a row fail. Per page type (`PAGE_TYPES` in `test/system/audit/config.mjs`) the limit is the sum of the caps of what one page loads; the `GUIDE` targets (8 KiB CSS, 6 KiB JavaScript, six theme sheets) only warn. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there. A demo that moved into a starter is checked in that starter's demo build instead (`STARTERS` in the same file).
 

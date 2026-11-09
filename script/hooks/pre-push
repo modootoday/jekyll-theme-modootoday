@@ -5,6 +5,19 @@ set -eu
 cd "$(git rev-parse --show-toplevel)"
 unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE
 
+# git passes one "<local ref> <local sha> <remote ref> <remote sha>" line per pushed ref; run by hand,
+# script/commit-check falls back to the commits the upstream lacks.
+z=0000000000000000000000000000000000000000
+ranges=""
+new=""
+if [ ! -t 0 ]; then
+  while read -r _ lsha _ rsha; do
+    [ "$lsha" = "$z" ] && continue
+    if [ "$rsha" = "$z" ]; then new="$new $lsha"; else ranges="$ranges $rsha..$lsha"; fi
+  done
+fi
+if [ -n "$new" ]; then ranges="$ranges$new --not --remotes"; fi
+
 fail=0
 check() {
   name=$1
@@ -27,6 +40,9 @@ check "spec ids resolve" ruby test/project/spec_ids_test.rb
 check "i18n catalogs" ruby script/i18n-build --check
 check "docs index" ruby script/docs-index --check
 check "README commands" ruby script/readme-commands --check
+# Word splitting is intended: ranges holds git rev-list arguments.
+# shellcheck disable=SC2086
+check "commit messages" ruby script/commit-check $ranges
 
 if [ "$fail" -ne 0 ]; then
   echo "pre-push: fix the failures above; git push --no-verify skips the hook, but push CI runs the same checks"

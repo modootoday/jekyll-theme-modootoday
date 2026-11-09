@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Checks the commit messages of a range against the rules the generated CHANGELOG relies on (CONTRIBUTING, Commits).
+#   ruby script/commit-check [RANGE...]   git rev-list arguments; default: the commits not on the upstream (or origin/main)
+# script/hooks/pre-push passes the pushed ranges; push CI passes the pushed or pull request range.
+require "open3"
+require_relative "release/commit_check"
+
+range = ARGV
+if range.empty?
+  up, st = Open3.capture2("git", "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}", err: File::NULL)
+  base = st.success? ? up.strip : "origin/main"
+  _, ok = Open3.capture2("git", "rev-parse", "--verify", "--quiet", base, err: File::NULL)
+  range = ok.success? ? ["#{base}..HEAD"] : ["HEAD", "--not", "--remotes"]
+end
+
+check = Release::CommitCheck.new
+begin
+  commits = check.commits(range)
+rescue ArgumentError => e
+  abort "commit-check: #{e.message}"
+end
+bad = commits.filter_map do |c|
+  p = check.problems(c.message, c.files)
+  "#{c.sha[0, 10]} #{c.message.lines.first.strip}\n  #{p.join("\n  ")}" unless p.empty?
+end
+abort "commit-check: #{bad.size} of #{commits.size} commits:\n#{bad.join("\n")}\n(fix with git commit --amend or git rebase before pushing)" unless bad.empty?
+puts "commit-check: #{commits.size} commits ok"

@@ -62,6 +62,7 @@ git config core.hooksPath script/hooks
 - **Docs in English, Korean and Japanese together.** English is canonical. The same change updates the English page and its `.ko.md` and `.ja.md` translations, then stamps them with `ruby script/docs-index --stamp`. User docs never name a future version.
 - **Docs consistency (adr:modootoday/20261109200230).** One canonical page per topic (others link it, never repeat it); one term per concept; the front matter contract; no past versions outside Upgrade and Changelog; docs match the code registries (config keys, layouts, components, CLI); groups of 12 or fewer with no orphans; relative links.
 - **CHANGELOG.** User-facing changes go under `## [Unreleased]` in Keep a Changelog sections; a released entry is never edited (`test/project/changelog_test.rb`).
+- **Commits.** Conventional Commit subjects. The footers `Changelog: <text>` (or `Changelog: none`), `Refs: adr:...`, `Visual: <text>` and `Migration: <text>` feed the CHANGELOG that `cliff.toml` generates (table in CONTRIBUTING, "Commits and the changelog"). A commit that touches shipped paths has a Conventional subject, and a left-out type there carries a `Changelog:` footer; `ruby script/commit-check` checks the unpushed commits.
 - **Public repository.** Commit nothing private: no local paths, e-mail addresses, tokens or internal notes.
 
 ```sh
