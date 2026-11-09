@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:2f0047bb1b6c
+source_rev: sha256:90428e3b560b
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
@@ -40,12 +40,13 @@ modootoday:
 | `nav` | `main` | メニューを作る `_data/nav/` のファイル。`items:` がある項目はグループになる。 |
 | `sidebar` | `auto` | `doc` ページのサイドメニュー。`auto` はメニューにグループがあるとき、`true` は常に表示、`false` は表示しない。 |
 | `page_actions` | `true` | ページのコピーや Markdown 表示ができるメニュー。`false` で消える。 |
-| `tokens`, `tokens_dark` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
+| `tokens` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
+| `tokens_dark` | テーマの値 | 同じことをダークモードだけで行う。 |
 | `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |
 | `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |
 | `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/figures/widgets/)を参照。 |
 | `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |
-| `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[エージェント](../agents/)を参照。 |
+| `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[AI エージェント](../agents/)を参照。 |
 | `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |
 | `records` | なし | `_data` ファイルの項目ごとにページを 1 つ作る。[生成ページ](../../recipes/generated-pages/)を参照。 |
 | `seo` | `true` | `false` で組み込みの canonical、`hreflang`、Open Graph タグを出さない。 |
@@ -71,6 +72,7 @@ modootoday:
 | `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/figures/math-diagrams/#静的な数式)を参照。 |
 | `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
 | `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
+| `authors` | `true` | `false` で記事と記事カードの署名を隠す。著者のデータは `_data/authors.yml` に残す。 |
 | `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
 | `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |
 | `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |

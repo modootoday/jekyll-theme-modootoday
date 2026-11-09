@@ -1,6 +1,5 @@
 ---
 nav_order: 60
-nav_title: Migrate
 title: Migrate and upgrade
 description: Move a site from another Jekyll theme, adopt the theme in an existing project, and upgrade between versions.
 ---
@@ -30,13 +29,7 @@ Prefer the gem or `remote_theme:` pinned to a tag. With copy-in, record which ve
 
 ## Markdown twins
 
-Pick one of three ways to publish the agent-readable twin of each page:
-
-- **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page.
-- **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
-- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source (see RULES.md §5a for the limits).
-
-Switching between them does not change page bodies. See [Agents](../agents/) and section 5a of `RULES.md`.
+Twins come from stub files, the plugin or source mode, and switching between them does not change page bodies. [AI agents](../agents/#markdown-twins) compares the three ways.
 
 ## From jekyll-seo-tag
 

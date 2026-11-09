@@ -6,8 +6,8 @@
     - {title: First page, url: /guides/first-page/}
     - {title: Configuration, url: /guides/configuration/}
     - {title: Customize, url: /guides/customize/}
-    - {title: Agents, url: /guides/agents/}
-    - {title: Migrate, url: /guides/upgrade/}
+    - {title: AI agents, url: /guides/agents/}
+    - {title: Migrate and upgrade, url: /guides/upgrade/}
     - {title: Accessibility, url: /guides/accessibility/}
     - {title: Performance, url: /guides/performance/}
     - {title: Structured data, url: /guides/structured-data/}
@@ -93,6 +93,7 @@
   url: /reference/
   items:
     - {title: Public API, url: /reference/api/}
+    - {title: Command line, url: /reference/cli/}
     - {title: Tags, url: /tags/}
     - {title: Categories, url: /categories/}
     - {title: Changelog, url: /reference/changelog/}

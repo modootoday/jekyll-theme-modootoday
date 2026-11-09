@@ -1,13 +1,12 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:24d887094e6f
+source_rev: sha256:7f48089dec16
 nav_order: 60
-nav_title: 이전
-title: 이전과 업그레이드
+title: 마이그레이션과 업그레이드
 description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
 ---
-# 이전과 업그레이드
+# 마이그레이션과 업그레이드
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../guides/upgrade/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
@@ -36,13 +35,7 @@ description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입
 
 ## Markdown 버전
 
-에이전트용 Markdown 버전을 내보내는 세 가지 방법 중 하나를 고릅니다.
-
-- **스텁 파일** (기본, 기본 GitHub Pages): 페이지마다 작은 `<page>.md.txt` 하나.
-- **플러그인** (Jekyll 4 또는 GitHub Actions): `plugins: [jekyll-theme-modootoday]`가 스텁 없이 Markdown 버전과 `llms.txt`를 만듭니다.
-- **소스 모드** (기본 GitHub Pages, 스텁 없음): front matter 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다(한계는 RULES.md §5a).
-
-방법을 바꿔도 페이지 본문은 바뀌지 않습니다. [에이전트](../agents/)와 `RULES.md` 5a절을 보세요.
+Markdown 버전은 스텁 파일, 플러그인, 소스 모드 중 하나로 만들고, 방법을 바꿔도 페이지 본문은 바뀌지 않습니다. 세 방법의 비교는 [AI 에이전트](../agents/)에 있습니다.
 
 ## jekyll-seo-tag에서 옮기기
 

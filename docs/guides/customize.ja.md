@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:0a54d44932d2
+source_rev: sha256:4f12a992f2ca
 nav_order: 40
 nav_title: カスタム
 title: カスタマイズ

@@ -12,6 +12,8 @@ module Modootoday
         (list.map(&:to_s) - langs).each { |l| ctx.errs << "_config.yml: #{path}: '#{l}' is not in modootoday.languages" }
       end
       Schema.register(Key.new(name: "full_languages", type: :list, message: "must be a list of codes from modootoday.languages", check: in_languages))
+      Schema.register(Key.new(name: "language_switcher", type: :enum, enum: ["header", "footer", false],
+                              message: "must be header, footer or false (got %{got})"))
     end
   end
 end

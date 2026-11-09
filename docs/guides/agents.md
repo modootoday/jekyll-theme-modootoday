@@ -1,20 +1,25 @@
 ---
 nav_order: 50
-nav_title: Agents
-title: For agents
-description: Markdown twins, URL aliases, llms.txt and llms-full.txt for AI agents.
+title: AI agents
+description: Publish each page's Markdown twin, URL aliases, llms.txt and llms-full.txt so AI agents read your site as written.
 sections:
   - twins
   - aliases
   - llms
 ---
-# Agent-readable Markdown
+# AI agents
 
 Every page is published twice: as HTML for people and as its original Markdown for agents.
 
 ## Markdown twins
 
-A page `guide.md` is also served at `/guide/index.md`, byte-identical to its body. On Jekyll 4 the theme plugin creates twins automatically:
+A page `guide.md` is also served at `/guide/index.md`, byte-identical to its body. Pick one of three ways to publish twins; switching between them does not change page bodies:
+
+- **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page, shown below.
+- **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
+- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source; section 5a of `RULES.md` lists the limits.
+
+On Jekyll 4 the theme plugin creates twins automatically:
 
 ```yaml
 plugins: [jekyll-theme-modootoday]
@@ -78,4 +83,4 @@ layout: llms
 
 Each other language with pages needs the same two files in its folder with its `lang:`, such as `ko/llms.txt` with `layout: llms` and `lang: ko`. `modootoday-check --twins` names any that are missing.
 
-Try them on this site: [llms.txt](../../llms.txt) and [llms-full.txt](../../llms-full.txt).
+Try them on this site: [llms.txt](../../llms.txt) and [llms-full.txt](../../llms-full.txt). [Install > Verify the build](../install/#verify-the-build) runs the checks on your own site.

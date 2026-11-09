@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/accessibility/
-source_rev: sha256:eb1e028918a5
+source_rev: sha256:feea71d637ba
 title: 접근성
 nav_order: 70
 description: 키보드, 스크린 리더, 안전 영역, 터치 대상, 고대비, 동작 줄이기.

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:790e09c43370
+source_rev: sha256:f3066943907d
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에서 시각 점검합니다.
@@ -55,7 +55,7 @@ sections:
 ---
 # 키친싱크
 
-테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 기본 렌더링 모습을 볼 수 있습니다. 컴포넌트는 컴포넌트 페이지와 같은 순서로, 용도별로 묶은 뒤 A-Z로 놓습니다. 한국어 줄바꿈 확인용 긴 문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
+테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 기본 렌더링 모습을 볼 수 있습니다. 컴포넌트는 [컴포넌트](../) 페이지와 같은 순서로, 용도별로 묶은 뒤 A-Z로 놓습니다. 각 컴포넌트가 하는 일과 쓰는 법은 그 페이지에 있고, 이 페이지는 보여 주기만 합니다. 한국어 줄바꿈 확인용 긴 문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
 
 - 평범한 Markdown
 - github.com에서도 읽힘
@@ -70,7 +70,7 @@ sections:
 
 본문 텍스트와 문단 안의 짧은 표시에 쓰는 스타일입니다.
 
-## 상태 배지
+## 배지
 
 인라인 배지: `status:available` `status:partial` `status:planned`
 
@@ -88,7 +88,7 @@ sections:
 
 ## 목록
 
-`status:available` `_config.yml`에 `modootoday.lists`를 두면 일반 섹션과 페이지에 목록 스타일 두 가지가 적용됩니다. `link_chips: true`는 모든 항목이 링크 하나뿐인 목록을 칩 한 줄로 바꾸고, `titled_items: true`는 굵은 제목과 콜론으로 시작하는 항목에 제목과 구분자를 따로 줍니다. `hero: {checks: true}`는 위처럼 히어로의 첫 목록을 체크 표시 줄로 바꿉니다. 컴포넌트 섹션의 목록은 원래 스타일을 유지합니다.
+목록 스타일 두 가지: 링크 칩과 제목 있는 항목.
 
 - [설치](../../guides/install/)
 - [설정](../../guides/configuration/)
@@ -101,7 +101,7 @@ sections:
 
 ## 로딩과 스켈레톤
 
-`status:available` loading 또는 skeleton과 콜론으로 시작하는 코드 스팬은 스피너, 얇은 상단 막대, 자리 표시자(text, card, image, avatar, row)가 됩니다. 모두 `role="status"`와 스크린 리더용 로딩 레이블이 붙고, 사용자가 동작 줄이기를 켜면 움직이지 않습니다. 스타일은 별도 스타일시트에 있어 이 요소를 쓰는 페이지만 불러옵니다.
+스피너, 상단 막대, 자리 표시자.
 
 `loading:spinner`
 
@@ -111,7 +111,7 @@ sections:
 
 ## 진행률
 
-`status:available` progress와 콜론 뒤에 0부터 100까지의 정수가 오는 코드 스팬은 값을 텍스트로 함께 보여 주는 레이블 있는 진행률 막대가 됩니다.
+값을 글자로도 보여 주는 진행 막대.
 
 번역 `progress:60`
 
@@ -170,7 +170,7 @@ sections:
 > echo "code inside an alert"
 > ```
 
-## 코드
+## 코드 블록
 
 인라인 `code`, 펜스 코드 블록, 가로로 스크롤되는 긴 줄:
 
@@ -188,7 +188,7 @@ end
 
 ## 코드 제목과 diff
 
-`status:available` 펜스 코드 블록 바로 앞에 file과 콜론으로 시작하는 코드 스팬만 있는 줄을 두면 블록의 제목 표시줄이 됩니다. `diff` 블록은 추가된 줄과 삭제된 줄에 색을 입히고 더하기·빼기 기호를 유지합니다.
+제목 있는 코드 블록과 diff.
 
 `file:_config.yml`
 
@@ -203,7 +203,7 @@ theme: jekyll-theme-modootoday
 
 ## 파일 트리
 
-`status:available` `c: filetree` 섹션에서는 중첩 목록이 폴더 트리로 그려집니다. 하위 목록이 있는 항목은 폴더입니다.
+작은 프로젝트 트리.
 
 - docs
   - _config.yml
@@ -213,7 +213,7 @@ theme: jekyll-theme-modootoday
 
 ## 인용
 
-`status:available` `c: quote` 섹션에서는 마지막 줄이 줄표(—)로 시작하는 인용문의 그 줄이 출처가 됩니다.
+출처가 붙은 인용.
 
 > 문서가 github.com에서도 사이트에서도 잘 읽힙니다.
 >
@@ -225,7 +225,7 @@ theme: jekyll-theme-modootoday
 
 ## 임베드
 
-`status:available` embed와 콜론, https URL, 선택 제목으로 된 코드 스팬만 있는 문단은 지연 로드되는 16:9 프레임이 되며, 로드되는 동안에도 자리를 유지합니다.
+지연 로딩되는 임베드.
 
 `embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg 샘플 페이지 그림`
 
@@ -246,7 +246,7 @@ flowchart LR
 
 ## 갤러리
 
-`status:available` `c: gallery` 섹션에서는 이미지 목록이 썸네일 격자가 됩니다. 각 썸네일은 JavaScript 없이 원본 크기 보기를 엽니다. 모든 이미지에 대체 텍스트가 필요합니다.
+썸네일 세 개.
 
 - ![화분과 안락의자가 있는 햇살 드는 방](../../../assets/images/gallery/room.webp)
 - ![낮은 해 아래 분홍빛 모래 언덕](../../../assets/images/gallery/dunes.webp)
@@ -257,7 +257,7 @@ flowchart LR
 
 ## 위젯
 
-`status:available` `c: widget` 섹션은 사이트가 `modootoday.scripts`에 등록한 custom element를 놓습니다. 여기서는 3에서 시작하는 데모 카운터 `x-counter`입니다. 이 문단은 대체 텍스트로, 요소가 실행되기 전까지 보이고 JavaScript가 없는 독자에게는 그대로 남습니다.
+대체 텍스트가 있는 데모 카운터 요소.
 
 ## 데이터
 
@@ -265,7 +265,7 @@ flowchart LR
 
 ## 차트
 
-`status:available` `modootoday.chart.enabled`를 켜면 표 바로 앞에 `chart:bar`만 있는 줄을 두어 그 표를 차트 figure로 만듭니다. 표는 차트의 텍스트로 남습니다. 이 사이트의 Chart.js가 차트를 그리고 표를 그 아래로 접으며, JavaScript가 없는 독자는 표를 봅니다.
+아래 표로 그린 막대 차트.
 
 `chart:bar stacked`
 
@@ -280,13 +280,13 @@ flowchart LR
 
 ## 데이터 파일 차트
 
-`status:available` `data: traffic-ko`를 단 `c: chart` 섹션은 `_data/charts/traffic-ko.yml`을 같은 figure로 보여 주고, 표는 데이터로 만듭니다. 섹션의 마지막 강조 문단이 캡션이 됩니다.
+데이터 파일로 그린 선 차트.
 
 *1월부터 6월까지 월별 방문 수*
 
 ## 매개변수 표
 
-`status:available` `c: params` 섹션에서는 표가 옵션을 이름, 유형, 기본값, 설명으로 나열합니다. `required`만 있는 셀은 필수 배지로 표시됩니다.
+카드 격자의 옵션.
 
 | 이름 | 유형 | 기본값 | 설명 |
 |---|---|---|---|
@@ -329,7 +329,7 @@ bundle exec jekyll serve
 
 ## 세부 정보
 
-`status:available` `c: details` 섹션에서는 각 `###` 제목이 브라우저 기본 펼침 요소가 됩니다. JavaScript 없이 열고 닫힙니다.
+펼침 요소 두 개.
 
 ### 무엇이 필요한가요?
 
@@ -337,7 +337,7 @@ bundle exec jekyll serve
 
 ## 자주 묻는 질문
 
-`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. `schema: {faq: auto}`를 켜면 질문과 답이 페이지의 FAQPage 구조화 데이터도 됩니다([구조화 데이터](../../guides/structured-data/) 참고).
+질문 두 개.
 
 ### 테마는 무료인가요?
 
@@ -347,14 +347,14 @@ bundle exec jekyll serve
 
 네, github-pages gem으로 동작합니다.
 
-## 목록으로 쓴 단계
+## 단계
 
 1. `_config.yml`에 테마를 추가합니다.
 2. 평범한 Markdown으로 `index.md`를 씁니다.
 3. `bundle exec jekyll build`를 실행합니다.
 4. `modootoday-check`로 결과를 확인합니다.
 
-## 제목으로 쓴 단계
+## 제목으로 쓰는 단계
 
 ### 설치
 
@@ -471,20 +471,20 @@ greeting: Hello
 - **그리드** — 폭이 67rem 이상인 섹션에서는 네 열, 본문 열에서는 2×2.
 - **줄** — 카드 여덟 장이 모든 줄을 채웁니다.
 
-## 행동 유도
+## 버튼
 
 [시작하기](../../guides/install/) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## 링크 카드
 
-`status:available` `c: linkcards` 섹션에서는 링크로 시작하는 목록 항목이 카드가 됩니다. 카드 전체가 링크 대상입니다.
+링크 카드 두 개.
 
 - [설치](../../guides/install/) — 사이트에 테마를 추가합니다.
 - [설정](../../guides/configuration/) — 모든 설정을 한곳에서 봅니다.
 
 ## 요금제
 
-`status:available` `c: pricing` 섹션에서는 각 `###` 제목이 가격, 기능 목록, 링크로 이루어진 요금제 카드가 됩니다. `recommended` 매개변수는 한 요금제에 추천 레이블을 붙입니다.
+요금제 세 개. 두 번째를 추천합니다.
 
 ### 무료
 
@@ -505,13 +505,9 @@ greeting: Hello
 
 ## 분할
 
-`status:available` `c: split` 섹션은 48rem 이상에서 텍스트와 그림을 나란히 놓고, 그보다 좁으면 위아래로 쌓습니다. 그림은 `visual:` include입니다. `side: start`는 그림을 시작 쪽으로 옮기고, `ratio: "5:7"`은 그림에 넓은 열을 줍니다. 여기의 `label:`처럼 항목의 다른 키는 include에서 `include.section.label`로 받습니다. 이 그림은 일러스트입니다. `class="mt-illustration"`, `role="img"`, `aria-label`이 있는 `figure`이고, `.mt-illustration-tag` 배지의 글자도 레이블에 들어 있습니다. `decor: decor-demo`는 위쪽 모서리의 점을 `aria-hidden` 장식으로 더합니다. 히어로도 같은 형태를 쓸 수 있습니다. `hero: {c: split, visual: <이름>, side: start, ratio: "5:7"}`는 제목, 리드 문단, 체크 행, 버튼을 텍스트 열에 두고 include를 그 옆에 놓습니다. 키친 싱크의 히어로가 이 형태입니다.
-
 한쪽에는 텍스트, 다른 쪽에는 그림이 옵니다.
 
 ## 코드 분할
-
-`status:available` `c: split` 섹션이나 분할 히어로의 `visual: code`는 include가 필요 없습니다. 그 섹션의 첫 코드 블록(`file:` 제목이 있으면 제목 포함)이 그림 열로 옮겨지고, 코드 스타일과 복사 버튼은 그대로입니다. `chrome: terminal`(사용하는 페이지에만 연결되는 작은 시트)은 테두리와 장식용 막대를 더하며, 스크린 리더는 이 막대를 건너뜁니다. 다른 곳에서 `visual: code`는 계속 `_includes/sections/code.html`을 뜻합니다.
 
 키트를 설치한 뒤 빌드할 때마다 검사기를 실행합니다.
 
@@ -523,7 +519,5 @@ bundle exec modootoday-check . _site
 ```
 
 ## 구독
-
-`status:available` `c: subscribe` 섹션은 텍스트와 `modootoday.subscribe.action`의 주소로 전송하는 이메일 양식을 표시합니다. 이 설정이 없으면 텍스트만 표시합니다. 여기서는 항목에 `bleed: true`도 있습니다. 모든 섹션 항목과 `hero:`에 쓸 수 있으며, 내용은 읽기 폭을 유지한 채 `--mt-bleed-bg`(기본값은 muted 표면색) 배경 띠가 화면 전체 폭으로 깔립니다. `bleed: wide`는 내용 폭도 컨테이너 폭까지 넓힙니다. 사이드바나 목차가 있는 페이지에서는 띠가 본문 열 안에 머뭅니다.
 
 릴리스가 나오면 이메일을 한 통 받으세요.

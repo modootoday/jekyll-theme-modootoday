@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: cli.ko.md
+lang: ko
+path: reference/cli.ko.md.txt
+permalink: /ko/reference/cli/index.md
+---

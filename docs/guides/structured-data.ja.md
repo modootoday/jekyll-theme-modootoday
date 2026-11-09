@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/structured-data/
-source_rev: sha256:88bb36805677
+source_rev: sha256:6be4467d99a8
 nav_order: 80
 title: 構造化データ
 description: テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。

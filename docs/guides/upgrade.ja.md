@@ -1,9 +1,8 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:24d887094e6f
+source_rev: sha256:7f48089dec16
 nav_order: 60
-nav_title: 移行
 title: 移行とアップグレード
 description: 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
 ---
@@ -36,13 +35,7 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 ## Markdown 版
 
-各ページのエージェント向け Markdown 版を公開する方法を三つから選びます。
-
-- **スタブファイル** (既定、クラシックな GitHub Pages): ページごとに小さな `<page>.md.txt` を一つ。
-- **プラグイン** (Jekyll 4 または GitHub Actions): `plugins: [jekyll-theme-modootoday]` がスタブなしで Markdown 版と `llms.txt` を作ります。
-- **ソースモード** (クラシックな GitHub Pages、スタブなし): front matter のないページで `modootoday.twins: source` を使います。クラシックな GitHub Pages は生のコピーをソースと同一のまま `text/markdown; charset=utf-8` として配信します (制限は RULES.md §5a を参照)。
-
-切り替えてもページ本文は変わりません。[エージェント](../agents/)と `RULES.md` の 5a 節を参照してください。
+Markdown 版はスタブファイル、プラグイン、ソースモードのどれかで作り、切り替えてもページ本文は変わりません。三つの方法の比較は [AI エージェント](../agents/)にあります。
 
 ## jekyll-seo-tag から移る
 

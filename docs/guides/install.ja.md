@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:e6d7459ecb9a
+source_rev: sha256:4bc017f56aa5
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -77,7 +77,7 @@ defaults:
 
 ## ビルドを確認する
 
-`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[エージェント向け](../agents/)）。ページごとの Markdown 版と、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横に Markdown 版のスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。エラーページ（`404.md` などの `layout: error`）には Markdown 版を作りません。ほかに Markdown 版が要らないページには `twin: false` を付けます。Markdown だけを確認するには `--twins` を外します。
+`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[AI エージェント](../agents/)）。ページごとの Markdown 版と、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横に Markdown 版のスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。エラーページ（`404.md` などの `layout: error`）には Markdown 版を作りません。ほかに Markdown 版が要らないページには `twin: false` を付けます。Markdown だけを確認するには `--twins` を外します。
 
 ```sh
 bundle exec jekyll build

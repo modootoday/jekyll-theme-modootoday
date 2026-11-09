@@ -5,6 +5,8 @@ module Modootoday
     module Config
       Schema.register(Key.new(name: "lists", type: :map, keys: %w[link_chips titled_items], values: :bool,
                               message: "must be a map of link_chips and titled_items set to true or false"))
+      Schema.register(Key.new(name: "external_links", type: :map, keys: %w[new_window icon], values: :bool,
+                              message: "must be a map of new_window and icon set to true or false"))
 
       site_paths = lambda do |ctx, path, map|
         map.each do |k, v|

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:0a45a2cafdb3
+source_rev: sha256:dccf6ea7cc54
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -28,11 +28,11 @@ description: このテーマがサイト向けに文書化している名前、�
 | 呼び出してよい include | `modootoday/archive.html`、`modootoday/brand/icon.html`、フッター用の include 2 つ。 |
 | include | `modootoday/t.html` はページの言語でテーマの文言を出力する。 |
 | データファイル | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| チェッカー | `modootoday-check` のオプションと終了コード。 |
+| チェッカー | `modootoday-check` のオプションと終了コード。[コマンドライン](../cli/)にまとめてある。 |
 | 静的な図 | front matter の `diagrams:`、`data-mt-src` のダイジェストの規則、`diagram.source` のラベル。`modootoday.math.mode: static`、`_data/math/<key>.yml`、front matter の `math_key:`、`math.label` のラベル。 |
 | レコードのページ | `modootoday.records`、レコードの front matter、事実の一覧。 |
 | ショーケース | `modootoday.showcase`、セッションストレージのキー `mt-showcase`、`showcase.*` のラベル。 |
-| スタブ作成 | `modootoday-stubs` のオプション、スタブのファイル名と front matter、終了コード。 |
+| スタブ作成 | `modootoday-stubs` のオプション ([コマンドライン](../cli/))、スタブのファイル名と front matter、終了コード。 |
 
 上の行の詳細:
 

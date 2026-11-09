@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:790e09c43370
+source_rev: sha256:f3066943907d
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
@@ -55,7 +55,7 @@ sections:
 ---
 # キッチンシンク
 
-テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。コンポーネントはコンポーネントのページと同じく、用途ごとにまとめてから A-Z 順に並べます。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
+テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。コンポーネントは[コンポーネント](../)のページと同じく、用途ごとにまとめてから A-Z 順に並べます。各コンポーネントの役割と書き方はそのページにあり、このページは表示だけを示します。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
 
 - 普通の Markdown
 - github.com でも読める
@@ -70,7 +70,7 @@ sections:
 
 本文のテキストと、段落の中の短い要素に使うスタイルです。
 
-## ステータスバッジ
+## バッジ
 
 インラインのバッジ: `status:available` `status:partial` `status:planned`
 
@@ -88,7 +88,7 @@ sections:
 
 ## リスト
 
-`status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
+2 つのリストスタイル: リンクのチップと見出し付きの項目。
 
 - [インストール](../../guides/install/)
 - [設定](../../guides/configuration/)
@@ -101,7 +101,7 @@ sections:
 
 ## 読み込み表示とスケルトン
 
-`status:available` loading または skeleton とコロンで始まるコードスパンは、スピナー、細い上部バー、プレースホルダー（text、card、image、avatar、row）になります。それぞれ `role="status"` とスクリーンリーダー向けの読み込みラベルが付き、利用者が視差効果を減らす設定にしていると動きません。スタイルは別のスタイルシートにあり、使うページだけが読み込みます。
+スピナー、上部のバー、プレースホルダー。
 
 `loading:spinner`
 
@@ -111,7 +111,7 @@ sections:
 
 ## 進捗
 
-`status:available` progress とコロンのあとに 0 から 100 の整数が続くコードスパンは、値をテキストでも示すラベル付きの進捗バーになります。
+値も文字で示す進捗バー。
 
 翻訳 `progress:60`
 
@@ -170,7 +170,7 @@ sections:
 > echo "code inside an alert"
 > ```
 
-## コード
+## コードブロック
 
 インラインの `code`、フェンスブロック、スクロールする長い行:
 
@@ -188,7 +188,7 @@ end
 
 ## コードのタイトルと diff
 
-`status:available` フェンスのコードブロックの直前に、file とコロンで始まるコードスパンだけの行を置くと、ブロックのタイトルバーになります。`diff` ブロックは追加行と削除行に色を付け、プラスとマイナスの記号を残します。
+タイトル付きのコードブロックと diff。
 
 `file:_config.yml`
 
@@ -203,7 +203,7 @@ theme: jekyll-theme-modootoday
 
 ## ファイルツリー
 
-`status:available` `c: filetree` セクションでは、入れ子のリストがフォルダーツリーとして描かれます。入れ子のリストがある項目はフォルダーです。
+小さなプロジェクトのツリー。
 
 - docs
   - _config.yml
@@ -213,7 +213,7 @@ theme: jekyll-theme-modootoday
 
 ## 引用
 
-`status:available` `c: quote` セクションでは、最終行がダッシュ（—）で始まる引用の、その行が出典になります。
+出典付きの引用。
 
 > ドキュメントが github.com でもサイトでも読みやすい。
 >
@@ -225,7 +225,7 @@ theme: jekyll-theme-modootoday
 
 ## 埋め込み
 
-`status:available` embed とコロン、https の URL、任意のタイトルからなるコードスパンだけの段落は、遅延読み込みされる 16:9 のフレームになり、読み込み中も領域を確保します。
+遅延読み込みの埋め込み。
 
 `embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg サンプルページの図`
 
@@ -246,7 +246,7 @@ flowchart LR
 
 ## ギャラリー
 
-`status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
+3 つのサムネイル。
 
 - ![植物とアームチェアのある日当たりのよい部屋](../../../assets/images/gallery/room.webp)
 - ![低い太陽の下のピンク色の砂丘](../../../assets/images/gallery/dunes.webp)
@@ -257,7 +257,7 @@ flowchart LR
 
 ## ウィジェット
 
-`status:available` `c: widget` セクションは、サイトが `modootoday.scripts` に登録した custom element を置きます。ここでは 3 から始まるデモのカウンター `x-counter` です。この段落は代替テキストで、要素が動くまで表示され、JavaScript のない読者にはそのまま残ります。
+代替テキスト付きのデモのカウンター要素。
 
 ## データ
 
@@ -265,7 +265,7 @@ flowchart LR
 
 ## グラフ
 
-`status:available` `modootoday.chart.enabled` を有効にすると、表の直前に `chart:bar` だけの行を置くことで、その表をグラフの figure にします。表はグラフのテキストとして残ります。このサイトの Chart.js がグラフを描いて表をその下に畳み、JavaScript のない読者には表が表示されます。
+下の表から描いた棒グラフ。
 
 `chart:bar stacked`
 
@@ -280,13 +280,13 @@ flowchart LR
 
 ## データファイルのグラフ
 
-`status:available` `data: traffic-ja` を付けた `c: chart` セクションは、`_data/charts/traffic-ja.yml` を同じ figure で表示し、表はデータから作ります。セクションの最後の強調だけの段落がキャプションになります。
+データファイルから描いた折れ線グラフ。
 
 *1 月から 6 月までの月別訪問数*
 
 ## パラメーター表
 
-`status:available` `c: params` セクションでは、表が名前、型、既定値、説明でオプションを並べます。`required` だけのセルは必須バッジになります。
+カードのグリッドのオプション。
 
 | 名前 | 型 | 既定値 | 説明 |
 |---|---|---|---|
@@ -329,7 +329,7 @@ bundle exec jekyll serve
 
 ## 詳細
 
-`status:available` `c: details` セクションでは、各 `###` 見出しがブラウザー標準の開閉要素になります。JavaScript なしで開閉します。
+2 つの開閉要素。
 
 ### 何が必要ですか？
 
@@ -337,7 +337,7 @@ bundle exec jekyll serve
 
 ## よくある質問
 
-`status:available` `c: faq` セクションは詳細と同じように動きます。`schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../../guides/structured-data/) を参照）。
+2 つの質問。
 
 ### テーマは無料ですか？
 
@@ -347,14 +347,14 @@ bundle exec jekyll serve
 
 はい、github-pages gem で動きます。
 
-## リスト形式のステップ
+## ステップ
 
 1. `_config.yml` にテーマを追加します。
 2. プレーンな Markdown で `index.md` を書きます。
 3. `bundle exec jekyll build` を実行します。
 4. `modootoday-check` で結果を確認します。
 
-## 見出し形式のステップ
+## 見出しで書くステップ
 
 ### インストール
 
@@ -471,20 +471,20 @@ greeting: Hello
 - **グリッド** — 幅が 67rem 以上のセクションでは 4 列、本文の列では 2×2。
 - **行** — 8 枚のカードがどの行も埋めます。
 
-## 行動を促す
+## ボタン
 
 [はじめる](../../guides/install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## リンクカード
 
-`status:available` `c: linkcards` セクションでは、リンクで始まるリスト項目がカードになります。カード全体がリンク先です。
+2 枚のリンクカード。
 
 - [インストール](../../guides/install/) — サイトにテーマを追加します。
 - [設定](../../guides/configuration/) — すべての設定を一か所で確認します。
 
 ## 料金プラン
 
-`status:available` `c: pricing` セクションでは、各 `###` 見出しが価格、機能リスト、リンクからなるプランカードになります。`recommended` パラメーターは一つのプランにおすすめラベルを付けます。
+3 つのプラン。2 つ目がおすすめです。
 
 ### 無料
 
@@ -505,13 +505,9 @@ greeting: Hello
 
 ## 分割
 
-`status:available` `c: split` セクションは、48rem 以上でテキストと画像を横に並べ、それより狭いと縦に積みます。画像は `visual:` の include です。`side: start` は画像を開始側に移し、`ratio: "5:7"` は画像に広い列を割り当てます。ここの `label:` のように、項目のほかのキーは include で `include.section.label` として受け取れます。 この画像はイラストです。`class="mt-illustration"`、`role="img"`、`aria-label` がある `figure` で、`.mt-illustration-tag` バッジの文字もラベルに含めます。`decor: decor-demo` は上の角の点を `aria-hidden` の装飾として加えます。 ヒーローも同じ形にできます。`hero: {c: split, visual: <名前>, side: start, ratio: "5:7"}` は、タイトル、リード文、チェック行、ボタンをテキストの列に置き、include をその横に置きます。キッチンシンクのヒーローがこの形です。
-
 片側にテキスト、もう片側に画像が来ます。
 
 ## コード付きの分割
-
-`status:available` `c: split` セクションや分割ヒーローの `visual: code` には include が不要です。そのセクションの最初のコードブロック（`file:` のタイトルがある場合はタイトルも）が画像の列に移り、コードのスタイルとコピーボタンはそのまま使えます。`chrome: terminal`（使うページだけに読み込まれる小さなシート）は枠線と装飾用のバーを加え、スクリーンリーダーはこのバーを読み飛ばします。ほかの場所の `visual: code` は、これまでどおり `_includes/sections/code.html` を指します。
 
 キットをインストールし、ビルドのたびに検査ツールを実行します。
 
@@ -523,7 +519,5 @@ bundle exec modootoday-check . _site
 ```
 
 ## 購読
-
-`status:available` `c: subscribe` セクションは、テキストと `modootoday.subscribe.action` のアドレスに送信するメールフォームを表示します。この設定がない場合はテキストだけを表示します。 ここでは項目に `bleed: true` もあります。どのセクション項目と `hero:` にも指定でき、内容は読みやすい幅のまま、`--mt-bleed-bg`(既定は muted のサーフェス色)の背景帯が画面の全幅に広がります。`bleed: wide` は内容の幅もコンテナ幅まで広げます。サイドバーや目次があるページでは、帯は本文の列の中に収まります。
 
 リリースのたびにメールを 1 通受け取れます。

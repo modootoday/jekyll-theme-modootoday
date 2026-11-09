@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: cli.md
+path: reference/cli.md.txt
+permalink: /reference/cli/index.md
+---

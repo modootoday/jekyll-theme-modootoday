@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:0a54d44932d2
+source_rev: sha256:4f12a992f2ca
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.

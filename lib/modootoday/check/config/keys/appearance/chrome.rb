@@ -8,6 +8,7 @@ module Modootoday
                               message: "must be a map with compact_title: set to true or false"))
       Schema.register(Key.new(name: "nav", type: :off_or_name, message: "must be the name of a _data/nav file, or false (no list of titled pages)"))
       Schema.register(Key.new(name: "sidebar", type: :enum, enum: [true, false, "auto"], message: "must be auto, true or false"))
+      Schema.register(Key.new(name: "viewport_fit", type: :enum, enum: %w[cover auto], message: "must be cover or auto (got %{got})"))
     end
   end
 end

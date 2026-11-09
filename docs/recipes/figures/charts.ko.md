@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/charts/
-source_rev: sha256:9c0e7341dab5
+source_rev: sha256:b11c6e8e7de7
 nav_order: 26
 title: 차트
 description: Markdown 표를 차트 figure로 바꾸거나 데이터 파일을 차트로 보여 주고, 표는 모든 독자가 받는 텍스트로 남깁니다.

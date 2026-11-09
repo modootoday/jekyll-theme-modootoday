@@ -34,12 +34,13 @@ modootoday:
 | `nav` | `main` | The menu file in `_data/nav/`. An entry with `items:` becomes a group. |
 | `sidebar` | `auto` | Side menu on `doc` pages: `auto` when the menu has groups, `true` always, `false` never. |
 | `page_actions` | `true` | A menu to copy the page or view it as Markdown. `false` turns it off. |
-| `tokens`, `tokens_dark` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
+| `tokens` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
+| `tokens_dark` | theme values | The same for dark mode only. |
 | `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
 | `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
 | `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/figures/widgets/). |
 | `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |
-| `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [Agents](../agents/). |
+| `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [AI agents](../agents/). |
 | `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |
 | `records` | none | One page for each entry of a `_data` file. See [Generated pages](../../recipes/generated-pages/). |
 | `seo` | `true` | `false` removes the built-in canonical, `hreflang` and Open Graph tags. |
@@ -65,6 +66,7 @@ modootoday:
 | `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/figures/math-diagrams/#static-math). |
 | `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |
 | `blog` | none | Blog settings, such as `per_page`. See [Blog and news](../../layouts/blog-news/#settings). |
+| `authors` | `true` | `false` hides the bylines on posts and post cards; author data stays in `_data/authors.yml`. |
 | `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |
 | `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |

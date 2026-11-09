@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: cli.ja.md
+lang: ja
+path: reference/cli.ja.md.txt
+permalink: /ja/reference/cli/index.md
+---

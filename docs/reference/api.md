@@ -22,11 +22,11 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Includes you may call | `modootoday/archive.html`, `modootoday/brand/icon.html` and the two footer includes. |
 | Includes | `modootoday/t.html` prints a theme label in the page language. |
 | Data files | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| Checker | `modootoday-check` options and exit codes. |
+| Checker | `modootoday-check` options and exit codes, listed on [Command line](../cli/). |
 | Static figures | Front matter `diagrams:`, the `data-mt-src` digest rule and the `diagram.source` label; `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:` and the `math.label` label. |
 | Record pages | `modootoday.records`, the record front matter and the facts list. |
 | Showcase | `modootoday.showcase`, the session storage key `mt-showcase` and the `showcase.*` labels. |
-| Stub writer | `modootoday-stubs` options, stub file names and front matter, and exit codes. |
+| Stub writer | `modootoday-stubs` options (on [Command line](../cli/)), stub file names and front matter, and exit codes. |
 
 Details for the rows above:
 

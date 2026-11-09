@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/accessibility/
-source_rev: sha256:eb1e028918a5
+source_rev: sha256:feea71d637ba
 title: アクセシビリティ
 nav_order: 70
 description: キーボード、スクリーンリーダー、セーフエリア、タッチターゲット、ハイコントラスト、視差効果を減らす設定。

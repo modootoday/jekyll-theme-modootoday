@@ -15,8 +15,8 @@ nav_order: 0
 - [첫 페이지](first-page/) — front matter, 섹션, 알림으로 페이지를 씁니다.
 - [설정](configuration/) — _config.yml의 modootoday 키 아래 사이트 전체 설정.
 - [커스터마이즈](customize/) — 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
-- [에이전트](agents/) — AI 에이전트가 읽는 Markdown 버전, URL 별칭, llms.txt, llms-full.txt.
-- [이전](upgrade/) — 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
+- [AI 에이전트](agents/) — 페이지마다 Markdown 버전, URL 별칭, llms.txt, llms-full.txt를 게시해 AI 에이전트가 사이트를 쓴 그대로 읽게 합니다.
+- [마이그레이션과 업그레이드](upgrade/) — 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
 - [접근성](accessibility/) — 키보드, 스크린 리더, 안전 영역, 터치 대상, 고대비, 동작 줄이기.
 - [성능](performance/) — 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
 - [구조화 데이터](structured-data/) — 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프와 설정 방법.

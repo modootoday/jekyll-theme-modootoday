@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:0a45a2cafdb3
+source_rev: sha256:dccf6ea7cc54
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -28,11 +28,11 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 호출해도 되는 include | `modootoday/archive.html`, `modootoday/brand/icon.html`, 푸터용 include 두 개. |
 | include | `modootoday/t.html`은 페이지 언어로 테마 문구를 출력합니다. |
 | 데이터 파일 | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| 검사기 | `modootoday-check` 옵션과 종료 코드. |
+| 검사기 | `modootoday-check` 옵션과 종료 코드. [명령줄](../cli/)에 정리되어 있습니다. |
 | 정적 그림 | front matter `diagrams:`, `data-mt-src` 다이제스트 규칙, `diagram.source` 레이블. `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:`, `math.label` 레이블. |
 | 레코드 페이지 | `modootoday.records`, 레코드 front matter, 정보 목록. |
 | 쇼케이스 | `modootoday.showcase`, 세션 저장소 키 `mt-showcase`, `showcase.*` 레이블. |
-| 스텁 작성기 | `modootoday-stubs` 옵션, 스텁 파일 이름과 front matter, 종료 코드. |
+| 스텁 작성기 | `modootoday-stubs` 옵션([명령줄](../cli/)), 스텁 파일 이름과 front matter, 종료 코드. |
 
 위 행의 자세한 내용:
 

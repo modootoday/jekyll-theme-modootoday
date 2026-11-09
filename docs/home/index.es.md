@@ -1,7 +1,7 @@
 ---
 lang: es
 permalink: /es/
-source_rev: sha256:65936e4f01e7
+source_rev: sha256:553827506a0a
 toc: false
 hero: {visual: showcase}
 title: Inicio

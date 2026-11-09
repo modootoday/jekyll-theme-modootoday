@@ -89,4 +89,21 @@ class CheckSiteConfigTest < CheckerCase
     page "_config.yml", "highlighter: none\nmodootoday:\n  code_theme: theme\n"
     refute_includes check[0], "code_theme"
   end
+
+  def test_brand_chrome_and_link_keys
+    page "_config.yml", "modootoday:\n  logo: brand\n  favicon: /icon.svg\n  og_image: /og.png\n  theme_color: {light: '#ffffff', dark: '#0a0a0a'}\n" \
+                        "  viewport_fit: auto\n  language_switcher: footer\n  external_links: {new_window: true, icon: false}\n  authors: false\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+    page "_config.yml", "modootoday:\n  logo: ''\n  theme_color: {light: red}\n  viewport_fit: edge\n  language_switcher: sidebar\n" \
+                        "  external_links: {new_window: yes please}\n  authors: none\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "logo must be brand or the path of an image"
+    assert_includes o, "theme_color must be a \"#hex\" color"
+    assert_includes o, "viewport_fit must be cover or auto (got \"edge\")"
+    assert_includes o, "language_switcher must be header, footer or false (got \"sidebar\")"
+    assert_includes o, "external_links must be a map of new_window and icon"
+    assert_includes o, "authors must be true or false"
+  end
 end

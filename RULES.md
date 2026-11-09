@@ -83,10 +83,13 @@ The bans are about **portability**: the same source must look the same on github
 
 Allowed and portable: footnotes `[^1]` (markup differs slightly), task lists, strikethrough, GFM tables, `<url>` autolinks, hard breaks. Note: `> [! NOTE]` (space inside) is not an alert; the checker warns, `--strict` makes it an error.
 
-## 5. Checker (`modootoday-check SRC SITE [--twins] [--github-pages[=VER]] [--strict] [--gh]`)
+## 5. Checker (`modootoday-check SRC SITE [options]`)
+Every option is listed on the docs site's [Command line](https://modootoday.github.io/jekyll-theme-modootoday/reference/cli/) page. The checks:
 1. front matter present 2. forbidden syntax, alert form, fence info strings 3. `status:` vocabulary 4. `sections:` count = top-level `## ` count, nested/setext/indented `##` 5. `_data/components.yml` if present 6. no `[!TYPE]` (any case, outside `<pre>`/`<code>`) / `<code>status:` in built HTML 7. `--github-pages`: `Gemfile.lock` pins github-pages VER (default 232, or `$MODOOTODAY_GITHUB_PAGES`) 8. `--twins`: rules below 8a. Sass sources (`_sass/`, `assets/**/*.scss`) and built CSS: no `@use`/`@forward`/`@supports selector()`, no `--x: $var` literals, every `var(--mt-*)` defined; the token hook `_sass/modootoday/_site.scss` holds only `$mt-overrides-base`, `$mt-overrides` and `$mt-overrides-dark` maps of theme token names 8b. `_config.yml` `modootoday:`: `twins` is `true`, `false` or `source`, known `color_scheme`/`components`, boolean `css_layers`/`badges`, `tokens`/`tokens_dark` values are plain CSS values (no `; { } < >`, valid hex), unknown token names warn; `site_css` (site paths to `.css` files) and `preload` (`{href, as, type}`, `as` one of font, image, style, script, fetch) in settings and front matter, each file present in the build; `scripts` (name: `{src, css, preload, element}`, site paths only, `element` a custom element name), each file present in the build 9. `--gh` (optional, network + `gh` auth): render with `gh api markdown`.
 
 ## 5a. Markdown twins
+This section is the contract; the [AI agents](https://modootoday.github.io/jekyll-theme-modootoday/guides/agents/) guide shows how to set each way up.
+
 Three ways to publish a page's raw Markdown next to its HTML. Pick one per site (stubs may be mixed with the others for single pages).
 
 | Mode | How | Twin URL | Use when | Limits |

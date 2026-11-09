@@ -6,8 +6,8 @@
     - {title: 最初の一歩, url: /ja/guides/first-page/}
     - {title: 設定, url: /ja/guides/configuration/}
     - {title: カスタム, url: /ja/guides/customize/}
-    - {title: AI 向け, url: /ja/guides/agents/}
-    - {title: 移行, url: /ja/guides/upgrade/}
+    - {title: AI エージェント, url: /ja/guides/agents/}
+    - {title: 移行とアップグレード, url: /ja/guides/upgrade/}
     - {title: アクセシビリティ, url: /ja/guides/accessibility/}
     - {title: パフォーマンス, url: /ja/guides/performance/}
     - {title: 構造化データ, url: /ja/guides/structured-data/}
@@ -93,6 +93,7 @@
   url: /ja/reference/
   items:
     - {title: 公開 API, url: /ja/reference/api/}
+    - {title: コマンドライン, url: /ja/reference/cli/}
     - {title: タグ, url: /ja/tags/}
     - {title: カテゴリー, url: /ja/categories/}
     - {title: 変更履歴, url: /ja/reference/changelog/}

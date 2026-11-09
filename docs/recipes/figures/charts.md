@@ -52,7 +52,7 @@ This page draws the same chart over four quarters:
 
 *Visits per quarter*
 
-The [kitchen sink](../../../components/kitchen-sink/#charts) shows more.
+The [kitchen sink](../../../components/kitchen-sink/#chart) shows more.
 
 ## A chart from a data file
 

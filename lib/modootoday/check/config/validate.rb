@@ -10,7 +10,8 @@ module Modootoday
         SITE_PATH = %r{\A/(\S*/)?\z}
         NAME = /\A[A-Za-z0-9_-]+\z/
         URL = %r{\Ahttps?://\S+\z}
-        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list", off_or_map: "must be false or a map", off_or_name: "must be false or a name" }.freeze
+        WORDING = { bool: "must be true or false", map: "must be a map", list: "must be a list", off_or_map: "must be false or a map",
+                    off_or_name: "must be false or a name", text: "must be a non-empty string" }.freeze
 
         module_function
 
@@ -21,7 +22,9 @@ module Modootoday
 
         def ok?(key, v)
           case key.type
+          when :any then true
           when :bool then BOOL.include?(v)
+          when :text then v.is_a?(String) && !v.strip.empty?
           when :enum then key.enum.include?(v)
           when :url then v.to_s.match?(key.pattern || URL)
           when :site_path then v.to_s.match?(SITE_PATH)

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/charts/
-source_rev: sha256:9c0e7341dab5
+source_rev: sha256:b11c6e8e7de7
 nav_order: 26
 title: グラフ
 description: Markdown の表をグラフの figure にしたり、データファイルをグラフとして表示したりします。表はすべての読者が受け取るテキストとして残ります。

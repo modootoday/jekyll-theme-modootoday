@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:2f0047bb1b6c
+source_rev: sha256:90428e3b560b
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
@@ -40,12 +40,13 @@ modootoday:
 | `nav` | `main` | 메뉴를 만드는 `_data/nav/`의 파일입니다. `items:`가 있는 항목은 그룹이 됩니다. |
 | `sidebar` | `auto` | `doc` 페이지의 사이드 메뉴입니다. `auto`는 메뉴에 그룹이 있을 때, `true`는 항상, `false`는 표시하지 않습니다. |
 | `page_actions` | `true` | 페이지를 복사하거나 Markdown으로 보는 메뉴입니다. `false`면 끕니다. |
-| `tokens`, `tokens_dark` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
+| `tokens` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
+| `tokens_dark` | 테마 값 | 같은 일을 다크 모드에서만 합니다. |
 | `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |
 | `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |
 | `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/figures/widgets/) 참고. |
 | `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |
-| `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [에이전트](../agents/) 참고. |
+| `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [AI 에이전트](../agents/) 참고. |
 | `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |
 | `records` | 없음 | `_data` 파일의 항목마다 페이지를 하나씩 만듭니다. [생성 페이지](../../recipes/generated-pages/) 참고. |
 | `seo` | `true` | `false`면 내장 canonical, `hreflang`, Open Graph 태그를 뺍니다. |
@@ -71,6 +72,7 @@ modootoday:
 | `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-수식) 참고. |
 | `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
 | `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
+| `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |
 | `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
 | `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
 | `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |

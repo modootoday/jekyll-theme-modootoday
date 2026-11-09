@@ -52,7 +52,7 @@ sections:
 ---
 # Kitchen sink
 
-Every component the theme ships, in every variant. The same file is readable on github.com, which shows the fallback. The components follow the order of the Components page: by purpose, then A-Z.
+Every component the theme ships, in every variant. The same file is readable on github.com, which shows the fallback. The components follow the order of the [Components](../) page: by purpose, then A-Z. That page says what each one does and how to write it; this one only shows them.
 
 - Plain Markdown
 - Reads on github.com
@@ -64,7 +64,7 @@ Every component the theme ships, in every variant. The same file is readable on 
 
 Styles for running text and for short marks inside a paragraph.
 
-## Status badges
+## Badges
 
 Inline badges: `status:available` `status:partial` `status:planned`
 
@@ -82,7 +82,7 @@ Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 
 ## Lists
 
-`status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
+Two list styles: link chips and titled items.
 
 - [Install](../../guides/install/)
 - [Configuration](../../guides/configuration/)
@@ -95,7 +95,7 @@ Items with a title:
 
 ## Loading and skeletons
 
-`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional sheet that only pages using them load.
+A spinner, a top bar and placeholders.
 
 `loading:spinner`
 
@@ -105,7 +105,7 @@ Items with a title:
 
 ## Progress
 
-`status:available` A code span that starts with progress and a colon, followed by a whole number from 0 to 100, becomes a labelled progress bar with the value as text.
+A progress bar with its value as text.
 
 Translation `progress:60`
 
@@ -164,7 +164,7 @@ Blocks that stand on their own between paragraphs.
 > echo "code inside an alert"
 > ```
 
-## Code
+## Code blocks
 
 Inline `code`, a fenced block and a long line that scrolls:
 
@@ -182,7 +182,7 @@ end
 
 ## Code titles and diffs
 
-`status:available` A line holding only a code span that starts with file and a colon, right before a fenced block, becomes the block's title bar. A `diff` block tints added and removed lines and keeps the plus and minus signs.
+A titled code block and a diff.
 
 `file:_config.yml`
 
@@ -197,7 +197,7 @@ theme: jekyll-theme-modootoday
 
 ## File tree
 
-`status:available` In a `c: filetree` section, a nested list draws a folder tree. Items that hold a nested list are folders.
+A small project tree.
 
 - docs
   - _config.yml
@@ -207,7 +207,7 @@ theme: jekyll-theme-modootoday
 
 ## Quote
 
-`status:available` In a `c: quote` section, a quote whose last line starts with an em dash gets that line as its attribution.
+A quote with its attribution.
 
 > The docs read well on github.com and on the site.
 >
@@ -219,7 +219,7 @@ Images, figures, diagrams, embedded frames and widgets.
 
 ## Embeds
 
-`status:available` A paragraph holding only a code span that starts with embed and a colon, then an https URL and an optional title, becomes a lazy 16:9 frame that keeps its space while it loads.
+A lazy-loaded embed.
 
 `embed:https://modootoday.github.io/jekyll-theme-modootoday/assets/images/sample.svg Sample page drawing`
 
@@ -240,7 +240,7 @@ flowchart LR
 
 ## Gallery
 
-`status:available` In a `c: gallery` section, a list of images becomes a thumbnail grid. Each thumbnail opens a full-size view without JavaScript. Every image needs alt text.
+Three thumbnails.
 
 - ![A sunlit room with a plant and an armchair](../../assets/images/gallery/room.webp)
 - ![Pink sand dunes under a low sun](../../assets/images/gallery/dunes.webp)
@@ -251,15 +251,15 @@ flowchart LR
 
 ## Widget
 
-`status:available` A `c: widget` section places a custom element that the site registers in `modootoday.scripts`, here `x-counter`, a demo counter that starts at 3. This paragraph is its fallback: readers see it until the element runs, and readers without JavaScript keep it.
+A demo counter element with its fallback text.
 
 ## Data
 
 Tables and charts, and the tools that help read them.
 
-## Charts
+## Chart
 
-`status:available` With `modootoday.chart.enabled`, a line holding only `chart:bar` right before a table makes the table a chart figure. The table stays the chart's text: this site's Chart.js draws the chart and folds the table under it, and readers without JavaScript see the table.
+A bar chart from the table below.
 
 `chart:bar stacked`
 
@@ -274,13 +274,13 @@ Tables and charts, and the tools that help read them.
 
 ## Chart from a data file
 
-`status:available` A `c: chart` section with `data: traffic` shows `_data/charts/traffic.yml` as the same figure, with the table built from the data. The last emphasis-only paragraph of the section is its caption.
+A line chart from a data file.
 
 *Monthly visits, January to June*
 
 ## Parameter table
 
-`status:available` In a `c: params` section, a table lists options: name, type, default, description. A cell holding only `required` shows a Required badge.
+Options of a card grid.
 
 | Name | Type | Default | Description |
 |---|---|---|---|
@@ -323,7 +323,7 @@ bundle exec jekyll serve
 
 ## Details
 
-`status:available` In a `c: details` section, each `###` heading becomes a native disclosure. It opens and closes without JavaScript.
+Two disclosures.
 
 ### What does it need?
 
@@ -331,7 +331,7 @@ Nothing but the browser.
 
 ## FAQ
 
-`status:available` A `c: faq` section works like details. With `schema: {faq: auto}` its questions and answers also become the page's FAQPage structured data (see [Structured data](../../guides/structured-data/)).
+Two questions.
 
 ### Is the theme free?
 
@@ -341,7 +341,7 @@ Yes, under the MIT license.
 
 Yes, with the github-pages gem.
 
-## Steps as a list
+## Steps
 
 1. Add the theme to `_config.yml`.
 2. Write `index.md` in plain Markdown.
@@ -465,20 +465,20 @@ Bands that build a landing page from `sections:` items and the hero.
 - **Grid** — Four across in a section 67rem wide or more, two by two in a text column.
 - **Rows** — Eight cards fill every row.
 
-## Call to action
+## Buttons
 
 [Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## Link cards
 
-`status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.
+Two link cards.
 
 - [Install](../../guides/install/) — Add the theme to a site.
 - [Configuration](../../guides/configuration/) — Every setting in one place.
 
 ## Pricing
 
-`status:available` In a `c: pricing` section, each `###` heading is a plan with a price, a feature list and a link. The `recommended` parameter marks one plan with a Recommended label.
+Three plans; the second is recommended.
 
 ### Free
 
@@ -499,13 +499,9 @@ Bands that build a landing page from `sections:` items and the hero.
 
 ## Split
 
-`status:available` A `c: split` section puts its text and a picture side by side from 48rem and stacks them below. The picture is the `visual:` include; `side: start` moves it to the start side and `ratio: "5:7"` gives it the wider column. Any other key on the item, such as `label:` here, reaches the include as `include.section.label`. The picture here is an illustration: a `figure` with `class="mt-illustration"`, `role="img"` and an `aria-label`, plus an `.mt-illustration-tag` badge whose text is also in the label. `decor: decor-demo` adds the dots in the top corner as an `aria-hidden` ornament. The hero takes the same form: `hero: {c: split, visual: <name>, side: start, ratio: "5:7"}` puts the title, lead, check row and buttons in the text column and the include beside them; the kitchen sink's hero uses it.
-
 Text on one side, the picture on the other.
 
 ## Split with code
-
-`status:available` `visual: code` on a `c: split` section or a split hero needs no include: the first fenced code block in that section, with its `file:` title if it has one, moves into the visual column and keeps the code styles and the copy button. `chrome: terminal` (its own small sheet, linked only where used) adds a border and a decorative bar that screen readers skip. Anywhere else, `visual: code` still means `_includes/sections/code.html`.
 
 Install the kit, then run the checker before each build.
 
@@ -517,7 +513,5 @@ bundle exec modootoday-check . _site
 ```
 
 ## Subscribe
-
-`status:available` A `c: subscribe` section prints its text and an email form that posts to the address in `modootoday.subscribe.action`. Without that setting it shows only the text. Here the item also has `bleed: true`: any section item or `hero:` can take it to get a full-width background band in `--mt-bleed-bg` (default the muted surface) while its content keeps the reading column, and `bleed: wide` also widens the content up to the container width. With a sidebar or table of contents the band stays inside the main column.
 
 Get one email when a release ships.
