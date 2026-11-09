@@ -35,17 +35,17 @@ rel:
 
   `script/release-status` reports those three runs in one table.
 - **The release workflow verifies the release checks** (research A12). Before pushing the gem, `release.yml` looks up the ci, lighthouse and visual runs on the tagged SHA and stops unless all three succeeded.
-- **Starters are published on tag.**
-  - After a release, a workflow renders each starter at the new version, commits "chore: theme vX.Y.Z" to the starter's repository and opens nothing else.
-  - The theme's gitlink bump then follows as one commit.
-  - The workflow needs a token with write access to the three starter repositories: a fine-grained token or GitHub App, stored as a repository secret. The maintainer creates it. Until it exists, `rake starters:publish` does the same from a maintainer's machine in one command.
+- **Starters update themselves; no token is stored anywhere.** A workflow's `GITHUB_TOKEN` can write only to its own repository, and a pushed token or App key is a long-lived secret. So the flow is pull-based (amended 2026-11-09, maintainer's request for a tokenless setup):
+  - Each starter repository runs an updater workflow, daily and on `workflow_dispatch`. It reads the theme's latest release from the public API with no token. If it is newer than the starter's pin, it checks out the public theme at that tag, re-renders the starter with `rake starters:render[NAME,DIR]`, commits "chore: theme vX.Y.Z" with its own `GITHUB_TOKEN` (`contents: write`), and builds and deploys its Pages site in the same workflow, because a `GITHUB_TOKEN` push starts no other workflow.
+  - The updater runs only in the starter's own repository (`if: github.repository == '<starter repo>'`, like the demo overlay), so a site made from the template never rewrites itself. Template users keep pinning by hand or opt in later (1.8 R7).
+  - The theme repository runs a gitlink workflow, daily and on `workflow_dispatch`. It reads the starters' public `main`, moves `example/<name>` to the new commits with its own `GITHUB_TOKEN`, and runs the starter checks in the same workflow.
+  - A release lands in the starters within a day; a manual `workflow_dispatch` makes it immediate. `rake starters:publish` stays as the local fallback.
 - **Dependabot updates land without a person.** Its pull requests for GitHub Actions, npm and bundler (the github-pages set stays ignored) are auto-merged once the required checks pass. This is the one pull request flow the repository keeps, because the bot cannot push to `main`; it amends [[adr:modootoday/20261102203210]] for bot dependency updates only.
 - **Byte caps:** the registry check prints the cap to use (measured + 10 %, rounded to 128 B) whenever a file grows. Raising a cap still needs an ADR, by the budget rule; the arithmetic is no longer manual.
 
 ## Consequences
 
 - A release is: write one summary paragraph, run `script/release-prep`, review the three results, tag. Everything else is generated or verified.
-- Two things stay with the maintainer:
-  - creating the starter publishing token;
+- One thing stays with the maintainer, once (no token anywhere):
   - enabling auto-merge for Dependabot in the repository settings.
 - Translations still need a deliberate stamp. Version-pin normalization in `source_rev`, which is in 1.8, removes the stamps that releases forced.
