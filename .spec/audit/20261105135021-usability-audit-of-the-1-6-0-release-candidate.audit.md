@@ -123,6 +123,9 @@ None. Every task finished.
 - `warning: _site/event/index.html: JSON-LD Offer (@graph.offers) lacks required price/priceSpecification; fix it now (in a nested object this is an error from 2.0)`
   (names the JSON-LD path, not the front matter that fixes it, `schema: {offers: ...}`; "fix it now"
   before the parenthesis reads oddly; the same object gives a second warning for `priceCurrency`).
+  After the fix (f521efb) the same object reads:
+  `warning: _site/event/index.html: JSON-LD Offer (@graph.offers) lacks required price/priceSpecification; set the offer in front matter: schema: {offers: {type: Offer, price: ..., priceCurrency: ...}} (tickets: alone gives only its url) (a warning in a nested object, an error from 2.0)`.
+  The second warning for `priceCurrency` stays: it is a second required property.
 - `math.md:12: stale math: entry 1 of _data/math/math.yml was rendered from other TeX than this block (...); pages with the same key share the file; render them again (modootoday-check SRC --math lists them)`
   (on a site with one math page, "pages with the same key share the file" is noise).
 - `_site/charts/index.html: unconverted chart (a paragraph with only <code>chart:)` (repeats the source
@@ -169,3 +172,45 @@ non-number cell, and the showcase-in-`_config.yml` warning.
   overflow still take focus (m10); long region name (m12).
 - Order: skip link, site title, navigation, theme toggle, breadcrumb, page actions, content, then the
   "On this page" links at desktop width. No traps; focus returns to the document after the last stop.
+
+## Status
+
+Fixed in four commits on top of this audit: 45a05ee (scroll regions, figure names, chart summaries and legend),
+f521efb (checker messages), e8a5a2c (docs, en/ko/ja) and d34a8b2 (legend keys keep the series dash). The release
+candidate's visual review added five findings (V1 to V5); V1 and V2 are deferred.
+
+| Finding | Status | Commit | Change |
+|---|---|---|---|
+| M1 remote rendering undocumented | fixed | e8a5a2c | Math and diagrams, "Where the browser runs": a browser is needed for diagrams, not math; `--cdp=URL` with any Chrome DevTools endpoint and `CDP_AUTHORIZATION`; a CI job that fails on uncommitted renders. The usage given there matches the script's usage line. |
+| m1 event front matter, twin 404 | fixed | e8a5a2c | The Event demo shows its front matter and links the Detail pages guide; Structured data, "Checking", links the event example; the Event and Events directory demos have Markdown twins. |
+| m2 digest.mjs not linked | fixed | e8a5a2c | Linked in "Static math" and "Keep diagrams fresh". |
+| m3 licence as Markdown | fixed | f521efb, e8a5a2c | One error: "a licence file saved as Markdown becomes a page on GitHub Pages; save it as js/chart.LICENSE.txt, or list it in exclude:". The math key rule needs math blocks; stale math names a shared file only when one is shared. The recipe names `js/chart.LICENSE.txt`. |
+| m4 check without SITE | fixed | f521efb | Says SITE is missing and prints the build-and-check command above the usage. |
+| m5 readConfig import | fixed | e8a5a2c | The widget recipe shows the import line and the named export. |
+| m6 theme `?v=` on site modules | kept, documented | e8a5a2c | Kept: site modules and sheets follow the same rule as `site_css`. Widgets and Performance say to use `asset_version: build` when a site's own files change between theme releases. |
+| m7 README list | fixed | e8a5a2c | Charts and Widgets in README and README.ko. |
+| m8 showcase merge snippet | fixed | e8a5a2c | Configuration shows the guarded workflow steps the starters use. |
+| m9 two errors for one chart type | fixed | f521efb | One source error; the cell warnings still appear; the build check quotes only valid unconverted lines. |
+| m10 regions that fit are tab stops | fixed | 45a05ee | `scroll-region.js` takes figure scrollers too and drops their tab stop while they fit. Remote check: no figure tab stop at 1280 (en, ko); the diagram is one at 360 (en, ja). |
+| m11 identical Chart data names | fixed | 45a05ee | Summaries are named "Chart data, <caption>", numbered when captions repeat. |
+| m12 diagram region named by alt | fixed | 45a05ee | Region named "Diagram, <caption>" (or "Diagram"); the alt text stays on the image. |
+| Nested Offer warning | fixed | f521efb | Quoted above under "Checker messages found ambiguous". |
+| V1 diagram SVG text English on ko/ja | deferred | | Follow-up for 1.7, below. |
+| V2 diagram text about 10 px at 360 | deferred | | Follow-up for 1.7, below. |
+| V3 dashed legend key looks like a block | fixed | 45a05ee, d34a8b2 | Line and area legends draw a short stroke in the series' dash. |
+| V4 "Table, Tables 1" and number gaps | fixed | 45a05ee | A heading that repeats the label is dropped; numbers count only live regions. Remote check: kitchen sink en/ko/ja at 360 and 1440, no duplicate, no gap. |
+| V5 event offers not on the page | fixed | e8a5a2c | "Admission: free" on the page; the offer has `availability` and `url`. |
+
+Verification: remote Chrome 152 through a tunnel on the strict-CSP docs build, axe (wcag2a/aa, 21a/aa, 22aa,
+best-practice) 0 violations on 26 loads of the changed pages (en light 1440 and dark 360; ko and ja at 360).
+
+## Follow-up for 1.7
+
+- **V1. Diagram SVG text is English on ko and ja pages.** The pixels of `recipes/flow.svg` keep the English node
+  labels; alt text and caption are translated. Proposal: give each translation its own `diagrams:` entry
+  (`recipes/flow-ko`, `recipes/flow-ja`) rendered from a translated fence, so one SVG pair per language; the
+  checker already compares each entry with its own fence. Until then, the recipe can say that one SVG is shared.
+- **V2. Diagram text is about 10 px at 360.** The 818 x 63 flowchart is drawn at the 32rem figure minimum.
+  Proposal: let a `diagrams:` entry set its own minimum render width (a `min_width:` that overrides
+  `--mt-figure-min-width` for that figure), and redraw the docs flowchart top-down (`flowchart TD`) so its
+  aspect suits a narrow column.
