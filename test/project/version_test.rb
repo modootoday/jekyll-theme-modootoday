@@ -21,7 +21,7 @@ class VersionTest < Minitest::Test
 
   def test_install_snippets_pin_the_current_version
     minor = version.split(".")[0, 2].join(".")
-    files = %w[README.md README.ko.md docs/guides/install.md docs/guides/install.ko.md docs/index.md docs/index.ko.md docs/guides/install.ja.md docs/index.ja.md]
+    files = %w[README.md README.ko.md README.ja.md docs/guides/install.md docs/guides/install.ko.md docs/index.md docs/index.ko.md docs/guides/install.ja.md docs/index.ja.md]
     files.each do |f|
       t = read(f)
       t.scan(/jekyll-theme-modootoday", "~> ([\d.]+)"/).flatten.each { |v| assert_equal minor, v, "#{f}: gem constraint" }
@@ -34,7 +34,7 @@ class VersionTest < Minitest::Test
   end
 
   def test_docs_name_no_unreleased_version
-    Dir[File.join(ROOT, "{README.md,README.ko.md,docs/**/*.md}")].each do |f|
+    Dir[File.join(ROOT, "{README.md,README.ko.md,README.ja.md,docs/**/*.md}")].each do |f|
       t = File.read(f)
       refute_match(/`since:[^`\s]/, t, "#{f}: since badge before 1.1")
       refute_match(/v0\.\d\.\d|~> 0\.\d/, t, "#{f}: unreleased 0.x version")

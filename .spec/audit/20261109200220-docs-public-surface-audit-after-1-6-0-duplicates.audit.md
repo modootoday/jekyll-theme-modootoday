@@ -199,7 +199,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | N8 | resolved | Guides keep their URLs; Install, Configuration and Migrate and upgrade come first in the sidebar, topic guides after ([[adr:modootoday/20261109225554]]) |
 | P1 | fixed | All ko/ja stamps current after review |
 | P2 | deferred | A `translate: false` flag is a new contract |
-| P3 | deferred | README.ja.md needs a decision |
+| P3 | resolved | README.ja.md added; readme_test and readme-commands cover en, ko and ja ([[adr:modootoday/20261109225554]]) |
 | V1 | fixed | Generated release list ([[adr:modootoday/20261109204422]]) |
 | V2 | fixed | "Supported now" and themes planned next |
 | V3 | fixed | Install > Requirements is the one place |

@@ -1,6 +1,6 @@
 # Contributing
 
-English is the canonical language. `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth; `README.ko.md` and the pages beside each English page in `docs/` (`install.ko.md`, `install.ja.md`, and the home pages in `docs/home/`) are translations and start with a note saying so. Change the English text first, then update the translations in the same pull request when you can. When they differ, English wins.
+English is the canonical language. `README.md`, `RULES.md` and the English pages in `docs/` are the source of truth; `README.ko.md`, `README.ja.md` and the pages beside each English page in `docs/` (`install.ko.md`, `install.ja.md`, and the home pages in `docs/home/`) are translations and start with a note saying so. Change the English text first, then update the translations in the same pull request when you can. When they differ, English wins.
 
 Translations are localized, not literal: follow the tone, glossary and spacing rules in [TRANSLATING.md](TRANSLATING.md).
 
@@ -9,7 +9,7 @@ Coding agents start from [AGENTS.md](AGENTS.md), the short form of this file (`C
 
 1. Fork and branch from `main`, and clone with `git clone --recurse-submodules` (the published starters in `example/` are git submodules; in an existing clone run `git submodule update --init`, and `git config submodule.recurse true` keeps them in step on pull and checkout). Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:` …).
 2. Keep layouts and includes **Liquid only** — no custom Ruby plugins — so the theme keeps working with `remote_theme` on GitHub Pages.
-3. `README.md` and `README.ko.md` keep the same sections (checked by `test/project/readme_test.rb`). The Commands tables are generated from `exe/modootoday-check` and `exe/modootoday-stubs`: run `script/readme-commands` after changing an option.
+3. `README.md`, `README.ko.md` and `README.ja.md` keep the same sections (checked by `test/project/readme_test.rb`). The Commands tables are generated from `exe/modootoday-check` and `exe/modootoday-stubs`: run `script/readme-commands` after changing an option.
 4. Rule changes (`RULES.md`) need a matching change in the includes, the checker and the tests, plus a CHANGELOG entry. The docs Markdown rules pages (`docs/reference/rules*.md`) carry its text: run `ruby script/docs-index` after editing it; `--check` fails while they differ.
 5. Run the checks for both stacks before opening a PR:
 

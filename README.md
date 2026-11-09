@@ -6,7 +6,7 @@ A Jekyll theme that keeps page bodies in plain GitHub Markdown and styles them w
 [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-modootoday)](https://rubygems.org/gems/jekyll-theme-modootoday)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[Documentation](https://modootoday.github.io/jekyll-theme-modootoday/) · [한국어](README.ko.md)
+[Documentation](https://modootoday.github.io/jekyll-theme-modootoday/) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
 ## Why
 

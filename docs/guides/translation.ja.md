@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/translation/
-source_rev: sha256:f52123edbcd3
+source_rev: sha256:89c1e3974ae0
 title: 翻訳ルール
 nav_order: 90
 description: 韓国語・日本語のドキュメントと UI 文言の正式なスタイルルール、用語集、チェック。
@@ -11,7 +11,7 @@ description: 韓国語・日本語のドキュメントと UI 文言の正式な
 > [!NOTE]
 > このページは[英語版](../../../guides/translation/)の翻訳です。内容が異なる場合は英語版が優先されます。
 
-原文は英語です。韓国語（`ko`）と日本語（`ja`）のページ、`README.ko.md`、`example/` のスターターサイト、`i18n/<code>.yml` の UI カタログは英語をローカライズしたものです。ルールはこのページだけで、`i18n/glossary.yml` が機械可読の用語集、`script/i18n-build --check` が両方を検査します。
+原文は英語です。韓国語（`ko`）と日本語（`ja`）のページ、`README.ko.md` と `README.ja.md`、`example/` のスターターサイト、`i18n/<code>.yml` の UI カタログは英語をローカライズしたものです。ルールはこのページだけで、`i18n/glossary.yml` が機械可読の用語集、`script/i18n-build --check` が両方を検査します。
 
 ブランド名: テーマ名は英語で **modoo.today theme**、韓国語で **모두의오늘 테마**、日本語で **modoo.today テーマ** と書きます。ほかの言語では `modoo.today` をそのまま残し、*theme* に当たる語を翻訳します（例: *thème modoo.today*）。modoo.today のサービスと混同されないよう、テーマを表す語を必ず付けます。gem 名 `jekyll-theme-modootoday`、リポジトリのパス、`modootoday-check` などのコード名は変えません。ヘッダーに表示する名前は、言語ごとに `_data/i18n/<lang>.yml` の `site_title` で指定します。
 

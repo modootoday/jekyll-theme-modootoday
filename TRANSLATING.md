@@ -14,7 +14,7 @@ English is canonical; every other language is localized from it. The rules, regi
 
 ## Where translations live
 
-A docs translation sits beside its English page: `docs/guides/install.ko.md` and `docs/guides/install.ja.md` next to `docs/guides/install.md`. Edit both in the same pull request. A language that translates only the home page keeps it in `docs/home/` (`docs/home/index.vi.md`).
+A docs translation sits beside its English page: `docs/guides/install.ko.md` and `docs/guides/install.ja.md` next to `docs/guides/install.md`. Edit both in the same pull request. A language that translates only the home page keeps it in `docs/home/` (`docs/home/index.vi.md`). The README has the same three languages: `README.ko.md` and `README.ja.md` beside `README.md`, with the same sections and code blocks (`test/project/readme_test.rb`).
 
 Write links in a translation as URLs relative to the page's URL (`../../guides/install/`, `../../../ko/feed.xml`), never as file paths. The classic GitHub Pages build resolves a link that names an existing file from the file's real place, which no longer mirrors its URL, so `../../feed.xml` in `layouts/blog-news/index.ko.md` would reach the English feed.
 

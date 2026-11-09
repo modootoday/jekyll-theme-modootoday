@@ -6,7 +6,7 @@
 [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-modootoday)](https://rubygems.org/gems/jekyll-theme-modootoday)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[문서](https://modootoday.github.io/jekyll-theme-modootoday/ko/) · [English](README.md)
+[문서](https://modootoday.github.io/jekyll-theme-modootoday/ko/) · [English](README.md) · [日本語](README.ja.md)
 
 > [!NOTE]
 > 이 문서는 [README.md](README.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
