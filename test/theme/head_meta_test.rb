@@ -22,7 +22,7 @@ class HeadMetaTest < Minitest::Test
 
   def test_defaults_include_og_and_inline_prepaint_but_no_canonical_without_url
     Dir.mktmpdir do |d|
-      html = File.read("#{build(d, "modootoday: {languages: [en]}\n")}/guide/index.html")
+      html = File.read("#{build(d, "modootoday: {languages: [en], csp: false}\n")}/guide/index.html")
       assert_includes html, '<meta property="og:title"'
       assert_includes html, '<meta name="twitter:card" content="summary">'
       assert_includes html, INLINE

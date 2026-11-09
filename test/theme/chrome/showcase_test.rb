@@ -11,7 +11,7 @@ class ShowcaseTest < Minitest::Test
   DOCS_URL = "https://modootoday.github.io/jekyll-theme-modootoday/"
   USE_URL = "https://github.com/modootoday/jekyll-theme-modootoday-docs-starter/generate"
   OVERLAYS = {
-    "bar" => "modootoday:\n  showcase: {enabled: true, starter: docs, docs_url: #{DOCS_URL}, use_url: #{USE_URL}}\n",
+    "bar" => "modootoday:\n  csp: false\n  showcase: {enabled: true, starter: docs, docs_url: #{DOCS_URL}, use_url: #{USE_URL}}\n",
     "pill" => "modootoday:\n  color_scheme: light\n  csp: strict\n  showcase: {enabled: true, style: pill, starter: nope, docs_url: #{DOCS_URL}}\n",
     "off" => "modootoday:\n  showcase: {enabled: false, docs_url: #{DOCS_URL}}\n",
   }.freeze

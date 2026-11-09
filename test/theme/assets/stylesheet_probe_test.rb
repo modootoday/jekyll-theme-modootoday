@@ -29,10 +29,11 @@ class StylesheetProbeTest < Minitest::Test
   }.freeze
 
   CONFIGS = {
-    "default" => "",
+    # The docs starter opts into csp: strict; these builds probe the theme default.
+    "default" => "modootoday: {csp: false}\n",
     "subset" => "modootoday: {components: [callout, tabs, page-actions, faq], color_scheme: light, loading: true, " \
                 "lists: {link_chips: true, titled_items: true}, blog: {share: false}}\n",
-    "bundle" => "modootoday: {css: bundle}\n",
+    "bundle" => "modootoday: {css: bundle, csp: false}\n",
   }.freeze
 
   # "docs/doc.css structure/tabs.js" short names expand to css/modootoday/docs/doc.css and js/modootoday/structure/tabs.js.
