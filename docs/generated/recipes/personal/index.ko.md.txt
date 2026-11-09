@@ -1,7 +1,0 @@
----
-layout: twin
-twin_of: index.ko.md
-lang: ko
-path: recipes/personal/index.ko.md.txt
-permalink: /ko/recipes/personal/index.md
----

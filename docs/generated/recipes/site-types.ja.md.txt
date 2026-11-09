@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: site-types.ja.md
+lang: ja
+path: recipes/site-types.ja.md.txt
+permalink: /ja/recipes/site-types/index.md
+---

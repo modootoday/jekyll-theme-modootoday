@@ -13,10 +13,5 @@ Each recipe solves one task on top of the guides.
 - [CSP](csp/) — Run the theme under a strict CSP without unsafe-inline.
 - [Search](search/) — Turn on the header search, choose what the index holds and how queries match, and let readers filter a long list or table.
 - [Generated pages](generated-pages/) — Give every record of a JSON or YAML data file its own page on classic GitHub Pages, with a filterable list of them all, and publish files byte for byte.
-- [Product site](marketing/) — Put a feature page, pricing, downloads and a brand kit together.
-- [Company pages](company/) — About, team, jobs, contact and legal pages for a small organization.
-- [Documentation site](docs/) — A docs home, a reference, a changelog and a glossary around your guides.
-- [Personal site](personal/) — A link page, a printable resume and a portfolio under one name.
-- [Community site](community/) — Events, a public roadmap and sponsors for an open project.
-- [System pages](system/) — Not-found, error, moved and search pages that every site needs.
+- [Site types](site-types/) — Which layouts make a product, company, documentation, personal or community site, and the system pages every site needs.
 <!-- spec:docs-index:end -->

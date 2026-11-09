@@ -1,13 +1,12 @@
 ---
 lang: ja
 permalink: /ja/recipes/company/
-source_rev: sha256:7c3cf4e0e33d
-title: 会社のページ
-description: 小さな組織向けの紹介、チーム、採用、問い合わせ、法的ページです。
-nav_order: 40
+source_rev: sha256:a4092b351184
+title: サイトの種類
+description: サイトの種類 のページに移りました。
+layout: redirect
+redirect_to: /ja/recipes/site-types/
+twin: false
+sitemap: false
+nav_exclude: true
 ---
-# 会社のページ
-
-人は `team`、採用は `jobs` と募集ごとの `job` ページ、連絡方法は `contact`、規約とプライバシーは `effective` の日付を付けた `legal` で作ります。サイトの `publisher` を 1 度設定すれば、すべてのページの構造化データが同じ Organization を指します。
-
-レイアウト: `team`, `jobs`, `contact`, `legal`.

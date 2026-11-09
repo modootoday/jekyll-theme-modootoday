@@ -84,12 +84,7 @@
     - {title: CSP, url: /ja/recipes/csp/}
     - {title: 検索, url: /ja/recipes/search/}
     - {title: 生成ページ, url: /ja/recipes/generated-pages/}
-    - {title: 製品サイト, url: /ja/recipes/marketing/}
-    - {title: 会社のページ, url: /ja/recipes/company/}
-    - {title: ドキュメントサイト, url: /ja/recipes/docs/}
-    - {title: 個人サイト, url: /ja/recipes/personal/}
-    - {title: コミュニティサイト, url: /ja/recipes/community/}
-    - {title: システムページ, url: /ja/recipes/system/}
+    - {title: サイトの種類, url: /ja/recipes/site-types/}
 - title: リファレンス
   url: /ja/reference/
   items:

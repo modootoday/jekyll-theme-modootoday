@@ -174,7 +174,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | D3 | fixed | README uses the flow-list `plugins:` line and links Install; Home keeps its pinned tabs |
 | D4 | fixed | AI agents is canonical with the three-ways list; Upgrade and README link it; RULES §5a stays the contract and links the guide |
 | D5 | fixed | Customize holds the map table; Brand tokens links it |
-| D6 | deferred | [[adr:modootoday/20261109192542]] keeps the six site groups; R7 reports them; merging needs a maintainer decision |
+| D6 | resolved | One Site types recipe with a section per site type; the six old URLs redirect through `moved_from` ([[adr:modootoday/20261109225554]]); R7 reports no index-only group |
 | D7 | deferred | Minor; TRANSLATING.md not on the cleaned pages |
 | D8 | deferred | Publishing RULES.md on the docs site needs a decision |
 | D9 | deferred | Records stubs are generated; their titles change with the generator |
@@ -214,7 +214,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | O7 | fixed | Neutral example paths |
 | X1 | fixed | recipes/figures/loaders |
 | X2 | partly fixed | Showcase moved to reference/showcase; components half waits for N2 |
-| X3 | partly fixed | Reference index rewritten; site-type recipes wait for D6 |
+| X3 | fixed | Reference index rewritten; site-type recipes merged per D6 |
 | X4 | fixed | R7 reports groups from 11 entries |
 | X5 | partly fixed | Reference index; R3 reports about 200 short descriptions |
 | X6 | deferred | llms.txt grouping changes the llms layouts (M) |

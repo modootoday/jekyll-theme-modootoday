@@ -1,13 +1,12 @@
 ---
 lang: ko
 permalink: /ko/recipes/system/
-source_rev: sha256:112755a408ed
-title: 시스템 페이지
-description: 모든 사이트에 필요한 없음, 오류, 이동, 검색 페이지입니다.
-nav_order: 80
+source_rev: sha256:a4092b351184
+title: 사이트 유형
+description: 사이트 유형 페이지로 옮겼습니다.
+layout: redirect
+redirect_to: /ko/recipes/site-types/
+twin: false
+sitemap: false
+nav_exclude: true
 ---
-# 시스템 페이지
-
-`layout: error`로 `404.md`를 추가하고, 옮긴 페이지는 `redirect`를 쓰며, 검색은 `layout: search`로 별도 페이지를 두세요. 이 페이지들은 작은 pages 번들을 씁니다. 오류 페이지에는 `sitemap: false`를 넣어 사이트맵에서 빼세요. 오류 페이지는 Markdown 버전이 없고 `llms.txt`에도 실리지 않으므로, `modootoday-check --twins`는 스텁 없이 통과합니다.
-
-레이아웃: `error`, `redirect`, `search`.

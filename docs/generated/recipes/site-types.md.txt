@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: site-types.md
+path: recipes/site-types.md.txt
+permalink: /recipes/site-types/index.md
+---

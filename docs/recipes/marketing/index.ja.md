@@ -1,13 +1,12 @@
 ---
 lang: ja
 permalink: /ja/recipes/marketing/
-source_rev: sha256:5a09d78e1827
-title: 製品サイト
-description: 機能、料金、ダウンロード、ブランドキットのページをまとめます。
-nav_order: 30
+source_rev: sha256:a4092b351184
+title: サイトの種類
+description: サイトの種類 のページに移りました。
+layout: redirect
+redirect_to: /ja/recipes/site-types/
+twin: false
+sitemap: false
+nav_exclude: true
 ---
-# 製品サイト
-
-`/` を `feature` ページにし、`actions:` で `/pricing/` と `/download/` にリンクします。料金プランは 1 つの `pricing` ページにまとめ、`download` の `version` と `date` はリリースに合わせて設定し、フッターから `brand` ページにリンクします。4 ページは `modootoday-marketing.css` を共有するので、訪問者が読み込むのは 1 回だけです。
-
-レイアウト: `feature`, `pricing`, `download`, `brand`.

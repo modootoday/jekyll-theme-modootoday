@@ -12,7 +12,7 @@ BLOCKING = [
   "R1 no repeated paragraph", "R1 a topic links its canonical page", "R3 H1 is the title", "R3 description repeats the title",
   "R3 nav_title shortens the title", "R3 unique nav_order", "R3 demo pages set twin", "R5 no version in a heading",
   "R5 no past version in the body", "R7 no orphan page", "R7 sample pages out of the docs nav", "R8 relative links",
-  "R8 guides and recipes link a related page"
+  "R8 guides and recipes link a related page", "R7 no index-only group"
 ].freeze
 
 pages = DocsRules::Pages.new(File.expand_path("../../../docs", __dir__))

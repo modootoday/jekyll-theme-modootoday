@@ -84,12 +84,7 @@
     - {title: CSP, url: /recipes/csp/}
     - {title: Search, url: /recipes/search/}
     - {title: Generated pages, url: /recipes/generated-pages/}
-    - {title: Product site, url: /recipes/marketing/}
-    - {title: Company pages, url: /recipes/company/}
-    - {title: Documentation site, url: /recipes/docs/}
-    - {title: Personal site, url: /recipes/personal/}
-    - {title: Community site, url: /recipes/community/}
-    - {title: System pages, url: /recipes/system/}
+    - {title: Site types, url: /recipes/site-types/}
 - title: Reference
   url: /reference/
   items:

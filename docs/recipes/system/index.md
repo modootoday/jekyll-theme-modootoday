@@ -1,10 +1,9 @@
 ---
-title: System pages
-description: Not-found, error, moved and search pages that every site needs.
-nav_order: 80
+title: Site types
+description: Moved to the Site types page.
+layout: redirect
+redirect_to: /recipes/site-types/
+twin: false
+sitemap: false
+nav_exclude: true
 ---
-# System pages
-
-Add `404.md` with `layout: error`, use `redirect` for pages that moved, and give search its own page with `layout: search`. These pages use the small `pages` optional stylesheet; set `sitemap: false` on error pages so they stay out of the sitemap. Error pages have no Markdown twin and stay out of `llms.txt`, so `modootoday-check --twins` passes without a stub for them.
-
-Layouts: `error`, `redirect`, `search`.
