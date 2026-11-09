@@ -89,6 +89,7 @@
   url: /reference/
   items:
     - {title: Public API, url: /reference/api/}
+    - {title: Markdown rules, url: /reference/rules/}
     - {title: Command line, url: /reference/cli/}
     - {title: Starter demo showcase, url: /reference/showcase/}
     - {title: Changelog, url: /reference/changelog/}

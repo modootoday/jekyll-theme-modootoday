@@ -17,7 +17,7 @@ A page `guide.md` is also served at `/guide/index.md`, byte-identical to its bod
 
 - **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page, shown below.
 - **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
-- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source; section 5a of `RULES.md` lists the limits.
+- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source; section 5a of the [Markdown rules](../../reference/rules/) lists the limits.
 
 On Jekyll 4 the theme plugin creates twins automatically:
 

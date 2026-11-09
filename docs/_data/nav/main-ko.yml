@@ -89,6 +89,7 @@
   url: /ko/reference/
   items:
     - {title: 공개 API, url: /ko/reference/api/}
+    - {title: Markdown 규칙, url: /ko/reference/rules/}
     - {title: 명령줄, url: /ko/reference/cli/}
     - {title: 스타터 데모 쇼케이스, url: /ko/reference/showcase/}
     - {title: 변경 기록, url: /ko/reference/changelog/}

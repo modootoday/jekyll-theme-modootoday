@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:97f1e499c017
+source_rev: sha256:78b9d30f44c2
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -70,7 +70,7 @@ description: このテーマがサイト向けに文書化している名前、�
 
 ## Markdown のルール
 
-`md-components v1` は `RULES.md` にある Markdown ルール標準の名前で、CSS の接頭辞ではありません。出力クラスは `mt-*` を使います。
+`md-components v1` は `RULES.md` にあり [Markdown ルール](../rules/)のページで公開している Markdown ルール標準の名前で、CSS の接頭辞ではありません。出力クラスは `mt-*` を使います。
 
 ## コンポーネントの構造
 

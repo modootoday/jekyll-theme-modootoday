@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/agents/
-source_rev: sha256:48bf8e2072ed
+source_rev: sha256:ada23255a862
 nav_order: 60
 title: AI エージェント
 description: ページごとの Markdown 版、URL エイリアス、llms.txt、llms-full.txt を公開し、AI エージェントがサイトを書いたとおりに読めるようにします。
@@ -23,7 +23,7 @@ sections:
 
 - **スタブファイル** (既定、クラシックな GitHub Pages): ページごとに小さな `<page>.md.txt` を一つ。下で説明します。
 - **プラグイン** (Jekyll 4 または GitHub Actions): `plugins: [jekyll-theme-modootoday]` がスタブなしで Markdown 版と `llms.txt` を作ります。
-- **ソースモード** (クラシックな GitHub Pages、スタブなし): front matter のないページで `modootoday.twins: source` を使います。クラシックな GitHub Pages は生のコピーをソースと同一のまま `text/markdown; charset=utf-8` として配信します。制限は `RULES.md` の 5a 節にあります。
+- **ソースモード** (クラシックな GitHub Pages、スタブなし): front matter のないページで `modootoday.twins: source` を使います。クラシックな GitHub Pages は生のコピーをソースと同一のまま `text/markdown; charset=utf-8` として配信します。制限は [Markdown ルール](../../reference/rules/)の 5a 節にあります。
 
 Jekyll 4 ではテーマのプラグインが Markdown 版を自動で作ります。
 

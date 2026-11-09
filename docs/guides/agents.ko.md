@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/agents/
-source_rev: sha256:48bf8e2072ed
+source_rev: sha256:ada23255a862
 nav_order: 60
 title: AI 에이전트
 description: 페이지마다 Markdown 버전, URL 별칭, llms.txt, llms-full.txt를 게시해 AI 에이전트가 사이트를 쓴 그대로 읽게 합니다.
@@ -23,7 +23,7 @@ sections:
 
 - **스텁 파일** (기본, 기본 GitHub Pages): 페이지마다 작은 `<page>.md.txt` 하나. 아래에서 설명합니다.
 - **플러그인** (Jekyll 4 또는 GitHub Actions): `plugins: [jekyll-theme-modootoday]`가 스텁 없이 Markdown 버전과 `llms.txt`를 만듭니다.
-- **소스 모드** (기본 GitHub Pages, 스텁 없음): front matter 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다. 한계는 `RULES.md` 5a절에 있습니다.
+- **소스 모드** (기본 GitHub Pages, 스텁 없음): front matter 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다. 한계는 [Markdown 규칙](../../reference/rules/) 5a절에 있습니다.
 
 Jekyll 4에서는 테마 플러그인이 Markdown 버전을 자동으로 만듭니다.
 

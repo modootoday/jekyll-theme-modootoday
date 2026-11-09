@@ -5,6 +5,7 @@ require_relative "translations"
 require_relative "moves"
 require_relative "redirects"
 require_relative "releases"
+require_relative "rules_page"
 
 module DocsIndex
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
@@ -20,10 +21,11 @@ module DocsIndex
 
     def files
       @files ||= fields.merge(moves.files).merge(redirects.files).merge(nav_files).merge(index_lists).merge(releases.files)
-        .merge(twins).merge(llms_files)
+        .merge(rules_page.files).merge(twins).merge(llms_files)
     end
 
     def releases = @releases ||= Releases.new(@t, method(:text))
+    def rules_page = @rules_page ||= RulesPage.new(@t, method(:text))
 
     def translations = @translations ||= Translations.new(@t)
     def moves = @moves ||= Moves.new(@t)

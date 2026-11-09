@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/first-page/
-source_rev: sha256:914b5b73a5d1
+source_rev: sha256:45442cbadd5e
 nav_order: 40
 nav_title: "最初のページ"
 title: "最初のページを書く"
@@ -62,7 +62,7 @@ One sentence that explains the page.
 | トップレベルの GitHub アラート | kramdown の属性と `{#id}` |
 | `<https://…>` 形式の自動リンク | 裸の URL |
 
-表に属性は要りません。40rem より狭いときに収まらない表は、自動でラベル付きのブロックに積み重なります。完全な一覧は [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md) にあります。
+表に属性は要りません。40rem より狭いときに収まらない表は、自動でラベル付きのブロックに積み重なります。完全な一覧は、RULES.md から作られる [Markdown ルール](../../reference/rules/)のページにあります。
 
 ## 次に読むもの
 

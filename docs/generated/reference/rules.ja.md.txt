@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: rules.ja.md
+lang: ja
+path: reference/rules.ja.md.txt
+permalink: /ja/reference/rules/index.md
+---

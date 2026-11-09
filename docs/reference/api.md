@@ -64,7 +64,7 @@ Every layout the theme ships, by the page that documents its front matter. The n
 
 ## Markdown rules
 
-`md-components v1` is the name of the Markdown rules standard in `RULES.md`; it is not a CSS prefix. Output classes use `mt-*`.
+`md-components v1` is the name of the Markdown rules standard in `RULES.md`, published as the [Markdown rules](../rules/) page; it is not a CSS prefix. Output classes use `mt-*`.
 
 ## Component structure
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:97f1e499c017
+source_rev: sha256:78b9d30f44c2
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -70,7 +70,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 
 ## Markdown 규칙
 
-`md-components v1`은 `RULES.md`에 있는 Markdown 규칙 표준의 이름이며, CSS 접두사가 아닙니다. 출력 클래스는 `mt-*`를 씁니다.
+`md-components v1`은 `RULES.md`에 있고 [Markdown 규칙](../rules/) 페이지로 공개하는 Markdown 규칙 표준의 이름이며, CSS 접두사가 아닙니다. 출력 클래스는 `mt-*`를 씁니다.
 
 ## 컴포넌트 구조
 

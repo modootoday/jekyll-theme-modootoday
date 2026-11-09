@@ -10,7 +10,7 @@ Coding agents start from [AGENTS.md](AGENTS.md), the short form of this file (`C
 1. Fork and branch from `main`, and clone with `git clone --recurse-submodules` (the published starters in `example/` are git submodules; in an existing clone run `git submodule update --init`, and `git config submodule.recurse true` keeps them in step on pull and checkout). Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:` …).
 2. Keep layouts and includes **Liquid only** — no custom Ruby plugins — so the theme keeps working with `remote_theme` on GitHub Pages.
 3. `README.md` and `README.ko.md` keep the same sections (checked by `test/project/readme_test.rb`). The Commands tables are generated from `exe/modootoday-check` and `exe/modootoday-stubs`: run `script/readme-commands` after changing an option.
-4. Rule changes (`RULES.md`) need a matching change in the includes, the checker and the tests, plus a CHANGELOG entry.
+4. Rule changes (`RULES.md`) need a matching change in the includes, the checker and the tests, plus a CHANGELOG entry. The docs Markdown rules pages (`docs/reference/rules*.md`) carry its text: run `ruby script/docs-index` after editing it; `--check` fails while they differ.
 5. Run the checks for both stacks before opening a PR:
 
 ```sh
@@ -128,7 +128,7 @@ A change is done when the files its kind touches are updated in the same commit 
 | Checker or stub writer option | `lib/modootoday/check/cli.rb` or `lib/modootoday/stubs/cli.rb`; `ruby script/readme-commands` (README tables and the docs Command line pages) | `ruby script/readme-commands --check` |
 | Interface string | `i18n/en.yml`, then every other catalog; `ruby script/i18n-build` | `ruby script/i18n-build --check` |
 | Docs page | the English page, then its `.ko.md` and `.ja.md` pages; `ruby script/docs-index`, then `ruby script/docs-index --stamp` on the translations; the rules of adr:modootoday/20261109200230 (link the topic's canonical page instead of repeating it, use the glossary terms of `i18n/glossary.yml`, add a topic to `docs/_data/topics.yml` when it gets a canonical page) | `ruby script/docs-index --check`; the docs structure check; `test/system/docs/rules.rb` (blocking rules fail, the others are reported); a docs build with `modootoday-check --twins` |
-| Rule, limit, budget target or exception | an ADR (see Decisions); `RULES.md` with the includes, checker and tests it governs; `CHANGELOG.md` | `rake test`; `spec check` |
+| Rule, limit, budget target or exception | an ADR (see Decisions); `RULES.md` with the includes, checker and tests it governs; `ruby script/docs-index` (the docs Markdown rules pages); `CHANGELOG.md` | `rake test`; `spec check`; `ruby script/docs-index --check` |
 | Tooling, tests or CI | `CONTRIBUTING.md` and `AGENTS.md` when a command changes; `CHANGELOG.md` only when users see it | `rake test` (`test/project/governance_test.rb` checks the commands in `AGENTS.md`) |
 | Release | the steps in [RELEASING.md](RELEASING.md) | the release check in RELEASING.md step 3 |
 

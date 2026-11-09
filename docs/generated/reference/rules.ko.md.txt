@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: rules.ko.md
+lang: ko
+path: reference/rules.ko.md.txt
+permalink: /ko/reference/rules/index.md
+---

@@ -176,7 +176,7 @@ Findings stay as written above; this table records what the 1.7.0 docs cleanup d
 | D5 | fixed | Customize holds the map table; Brand tokens links it |
 | D6 | resolved | One Site types recipe with a section per site type; the six old URLs redirect through `moved_from` ([[adr:modootoday/20261109225554]]); R7 reports no index-only group |
 | D7 | deferred | Minor; TRANSLATING.md not on the cleaned pages |
-| D8 | deferred | Publishing RULES.md on the docs site needs a decision |
+| D8 | resolved | reference/rules is generated from RULES.md by script/docs-index, with --check; api, first-page and agents link it ([[adr:modootoday/20261109225554]]) |
 | D9 | deferred | Records stubs are generated; their titles change with the generator |
 | T1 | fixed | Headings use display names, first lines show the id, glossary rows for callout, cta, features, params |
 | T2 | fixed | "AI agents" in title, H1, nav and links |

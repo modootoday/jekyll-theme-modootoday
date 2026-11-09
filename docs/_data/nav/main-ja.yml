@@ -89,6 +89,7 @@
   url: /ja/reference/
   items:
     - {title: 公開 API, url: /ja/reference/api/}
+    - {title: Markdown ルール, url: /ja/reference/rules/}
     - {title: コマンドライン, url: /ja/reference/cli/}
     - {title: スターターのデモのショーケース, url: /ja/reference/showcase/}
     - {title: 変更履歴, url: /ja/reference/changelog/}

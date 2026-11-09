@@ -111,4 +111,15 @@ class DocsIndexTest < Minitest::Test
       assert_equal versions, heads, page
     end
   end
+
+  def test_rules_page_carries_every_rules_heading_in_every_language
+    heads = File.read("#{ROOT}/RULES.md").scan(/^## .+$/)
+    pages = Dir.glob("#{DOCS}/reference/rules{,.*}.md")
+    assert_equal 3, pages.size
+    pages.each do |page|
+      list = File.read(page)[/<!-- spec:docs-index:begin -->(.*)<!-- spec:docs-index:end -->/m, 1].to_s
+      assert_equal heads, list.scan(/^## .+$/), page
+      refute_match(/\{[%{]/, list, "#{page}: Liquid opener in a page Jekyll renders")
+    end
+  end
 end

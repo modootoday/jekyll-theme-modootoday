@@ -12,6 +12,7 @@ nav_order: 0
 
 <!-- spec:docs-index:begin -->
 - [공개 API](api/) — 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
+- [Markdown 규칙](rules/) — 모든 페이지 본문이 따르는 md-components v1 규칙입니다. github.com, 테마, Markdown 버전에서 똑같이 보이게 하는 기준을 정리합니다.
 - [명령줄](cli/) — 검사기 modootoday-check와 스텁 작성기 modootoday-stubs의 모든 옵션, 그리고 각 종료 코드의 뜻을 정리합니다.
 - [스타터 데모 쇼케이스](showcase/) — 스타터의 라이브 데모에 테마 이름과 문서 링크를 담은 막대나 알약을 보여 주고, 복사한 사이트에는 나오지 않게 하는 방법을 설명합니다.
 - [변경 기록](changelog/) — 테마의 모든 릴리스를 최신순으로, 변경마다 한 줄 요약과 전체 기록 링크를 붙여 보여 줍니다.
