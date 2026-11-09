@@ -48,6 +48,14 @@ export function init(root) {
   }
   const drawn = [];
   const ds = doc.documentElement.dataset;
+  // A chart is drawn as it nears the viewport: each draw lays out the whole page, which on a long page blocks input.
+  const later = new Map();
+  const io = win.IntersectionObserver && new win.IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) {
+      io.unobserve(e.target);
+      later.get(e.target)();
+    }
+  }), { rootMargin: "200px" });
   const named = new Map();
   for (const fig of root.querySelectorAll("figure.mt-chart")) {
     const box = fig.querySelector(".mt-chart-canvas");
@@ -70,7 +78,14 @@ export function init(root) {
     holder.append(details);
     named.set(details.firstChild, fill(ds.mtRegionNamed || "[label], [name]", { label: holder.dataset.label, name }));
     const draw = (still) => new win.Chart(canvas, chartConfig(fig, data, still || query("(prefers-reduced-motion: reduce)")));
-    drawn.push({ draw, chart: draw() });
+    const item = { draw };
+    drawn.push(item);
+    later.set(box, () => (item.chart = draw()));
+    if (io) {
+      io.observe(box);
+    } else {
+      later.get(box)();
+    }
   }
   // Each disclosure is named after its chart, so two charts on a page do not read as the same toggle.
   const count = {};
@@ -81,8 +96,10 @@ export function init(root) {
     summary.setAttribute("aria-label", count[n] > 1 ? fill(ds.mtRegionNth || "[name] [n]", { name: n, n: seen[n] }) : n);
   });
   onThemeChange(() => drawn.forEach((d) => {
-    d.chart.destroy();
-    d.chart = d.draw(true);
+    if (d.chart) {
+      d.chart.destroy();
+      d.chart = d.draw(true);
+    }
   }));
 }
 

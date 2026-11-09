@@ -20,9 +20,10 @@ const scheme = (prefix) => {
   }
 };
 
-async function page(body, { chart = true, queries = [] } = {}) {
+async function page(body, { chart = true, queries = [], observer } = {}) {
   scheme("light");
   const w = new JSDOM(`<!doctype html><html lang="en"><body>${body}</body></html>`).window;
+  w.IntersectionObserver = observer;
   const made = [];
   if (chart) {
     w.Chart = function Chart(canvas, config) {
@@ -108,4 +109,26 @@ test("a scheme change redraws with the new colours and no animation", async () =
   assert.strictEqual(made.length, 2);
   assert.strictEqual(made[0].destroyed, true);
   assert.deepStrictEqual([made[1].config.data.datasets[1].backgroundColor, made[1].config.options.animation], ["dark-2", false]);
+});
+
+test("with an IntersectionObserver a chart is drawn only once its box nears the viewport", async () => {
+  let seen;
+  class Observer {
+    constructor(cb, opts) {
+      seen = { cb, opts, boxes: [], dropped: [] };
+    }
+    observe(el) {
+      seen.boxes.push(el);
+    }
+    unobserve(el) {
+      seen.dropped.push(el);
+    }
+  }
+  const { doc, made } = await page(figure("bar") + figure("line"), { observer: Observer });
+  assert.strictEqual(made.length, 0);
+  assert.strictEqual(seen.opts.rootMargin, "200px");
+  assert.ok(doc.querySelector("details"), "the table folds before the chart is drawn");
+  seen.cb([{ target: seen.boxes[1], isIntersecting: true }, { target: seen.boxes[0], isIntersecting: false }]);
+  assert.deepStrictEqual(made.map((c) => c.config.type), ["line"]);
+  assert.deepStrictEqual(seen.dropped, [seen.boxes[1]]);
 });

@@ -53,8 +53,8 @@ export function init(root) {
   const named = names(root, ds);
   // A figure scroller arrives as a region, so readers without this script can still scroll it from the keyboard.
   const live = new Set([...named.keys()].filter((el) => el.hasAttribute("role")));
-  const sync = (el) => {
-    const over = el.scrollWidth > el.clientWidth + 1;
+  const wide = (el) => el.scrollWidth > el.clientWidth + 1;
+  const sync = (el, over) => {
     const panel = el.closest("[role=tabpanel]");
     if (panel) {
       panel.tabIndex = over ? -1 : 0;
@@ -70,11 +70,12 @@ export function init(root) {
     }
   };
   const label = () => numbered(named, live, ds).forEach((name, el) => el.setAttribute("aria-label", name));
+  // Every width is read before any attribute is written, so one layout serves the whole batch.
   const ro = win.ResizeObserver && new win.ResizeObserver((es) => {
-    es.forEach((e) => sync(e.target));
+    es.map((e) => [e.target, wide(e.target)]).forEach(([el, over]) => sync(el, over));
     label();
   });
-  named.forEach((name, el) => (ro ? ro.observe(el) : sync(el)));
+  named.forEach((name, el) => (ro ? ro.observe(el) : sync(el, wide(el))));
   if (!ro) {
     label();
   }
