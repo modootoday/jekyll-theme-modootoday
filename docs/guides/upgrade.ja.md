@@ -4,7 +4,7 @@ permalink: /ja/guides/upgrade/
 source_rev: sha256:7dd06b300fcd
 nav_order: 30
 title: 移行とアップグレード
-description: 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
+description: 別の Jekyll テーマからサイトを移す方法、既存のプロジェクトにテーマを導入する方法、バージョン間でアップグレードするときに変える点を順に説明します。
 ---
 # 移行とアップグレード
 

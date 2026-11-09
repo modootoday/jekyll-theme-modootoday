@@ -4,7 +4,7 @@ permalink: /ja/reference/roadmap/
 source_rev: sha256:ed2219a83ec5
 nav_order: 50
 title: ロードマップ
-description: テーマがいまサポートしている機能、動作する環境、次に計画している作業のテーマをまとめます。
+description: テーマがいまサポートしている機能、動作する環境とバージョン、次に計画している作業のテーマをまとめます。進み具合はリポジトリの Issue で追えます。
 ---
 # ロードマップ
 

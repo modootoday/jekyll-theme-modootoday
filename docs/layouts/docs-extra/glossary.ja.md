@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/glossary/
-source_rev: sha256:4aff18f51173
+source_rev: sha256:9f78eccd0569
 title: "用語集のデモ"
-description: "このドキュメントで使う言葉です。"
+description: このドキュメントで使う言葉と短い定義をまとめました。言葉ごとにアンカーがあるので、どのガイドからでも必要な用語の説明へ直接リンクを張れます。
 layout: glossary
 nav_order: 4
 twin: false

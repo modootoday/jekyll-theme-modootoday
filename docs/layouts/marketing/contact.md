@@ -1,6 +1,6 @@
 ---
 title: Contact demo
-description: Questions about the theme? Write to us.
+description: Questions about the theme? Write to us by email, open an issue on GitHub or send the form below; we usually reply within two working days.
 layout: contact
 nav_order: 6
 twin: false

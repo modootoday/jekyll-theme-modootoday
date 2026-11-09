@@ -1,6 +1,6 @@
 ---
 title: Layouts
-description: Page layouts the theme ships and when to use each.
+description: Page layouts the theme ships, from docs pages to blogs, directories and marketing pages, and when to use each, with a demo of every one.
 nav_order: 0
 ---
 # Layouts
@@ -21,5 +21,5 @@ Set a layout with `layout:` in front matter. Pages without one use `doc`. Each g
 - [Marketing pages](marketing/) — Feature, pricing, download, brand, link and contact pages with a shared optional stylesheet.
 - [Blog and news](blog-news/) — Blog indexes, news front pages, article bylines, author pages and Atom feeds.
 - [Docs extras](docs-extra/) — Reference, changelog, roadmap, glossary, hub, course and book pages with one shared optional stylesheet.
-- [Documents](documents/) — Legal pages and a print-first resume.
+- [Documents](documents/) — Legal pages with dates, a version and a contents list, and a print-first resume, two layouts for pages that people keep or print.
 <!-- spec:docs-index:end -->

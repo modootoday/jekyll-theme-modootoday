@@ -1,11 +1,11 @@
 ---
 lang: ja
 permalink: /ja/recipes/csp/
-source_rev: sha256:2c7829030a64
+source_rev: sha256:044393be9a76
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy
-description: unsafe-inline なしの厳格な CSP でテーマを動かします。
+description: unsafe-inline なしの厳格な Content Security Policy でテーマを動かす方法です。送るヘッダーと、すべてのページを正しく動かす設定を説明します。
 ---
 # Content Security Policy
 

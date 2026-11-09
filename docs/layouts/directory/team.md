@@ -1,6 +1,6 @@
 ---
 title: "Team demo"
-description: "People with photo, role and a group filter."
+description: The people behind the project as cards with a round photo, a name and a role, and a group filter that needs no JavaScript.
 layout: team
 twin: false
 sitemap: false

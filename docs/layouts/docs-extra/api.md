@@ -1,6 +1,6 @@
 ---
 title: "API reference demo"
-description: "A library reference with a grouped sidebar and a package table."
+description: A library reference with a sidebar that groups its members, a table of the packages it ships, and one entry per function with its signature.
 layout: reference
 nav_order: 8
 edit: false

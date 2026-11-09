@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/feature/
-source_rev: sha256:753be4e8da78
+source_rev: sha256:16581e16a768
 title: 기능 데모
-description: Markdown으로 쓰고 빠른 사이트로 발행합니다.
+description: Markdown으로 쓰고 빠른 사이트로 발행합니다. 페이지는 GitHub에서도 잘 읽히고, 가볍게 불러오며, JavaScript 없이도 동작하고, 검사기가 함께 옵니다.
 layout: feature
 nav_order: 1
 twin: false

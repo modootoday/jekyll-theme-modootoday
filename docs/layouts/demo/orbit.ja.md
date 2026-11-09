@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/demo/orbit/
 source_rev: sha256:8989380cb3b1
 title: ヒーローモジュールのデモ
-description: "サイトのモジュールスクリプトがポスター画像の上に絵を描く分割ヒーローです。script: と poster: の設定方法です。"
+description: "サイトのモジュールスクリプトがポスター画像の上に絵を描く分割ヒーローです。script: と poster: の設定方法と、スクリプトが動かないときの表示を示します。"
 twin: false
 sitemap: false
 edit: false

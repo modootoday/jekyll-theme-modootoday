@@ -1,6 +1,6 @@
 ---
 title: "Jobs demo"
-description: "Open positions with a department filter."
+description: Open positions as cards with the title, the location and the type of work, and a department filter that needs no JavaScript.
 layout: jobs
 twin: false
 sitemap: false

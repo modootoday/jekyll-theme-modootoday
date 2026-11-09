@@ -1,7 +1,7 @@
 ---
 nav_order: 10
 title: Install
-description: Add the theme to a GitHub Pages or Jekyll 4 site.
+description: Add the theme to a classic GitHub Pages site or a Jekyll 4 site, start from a starter template, and check the build with the theme's checker.
 sections:
   - requirements
   - {c: tabs, name: methods}

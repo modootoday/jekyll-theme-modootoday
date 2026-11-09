@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/
-source_rev: sha256:615a949a6ecf
+source_rev: sha256:e8661a74e910
 title: レイアウトのデモ
-description: ページシェルのレイアウトを実際のページで確認できます。
+description: minimal、wide、error、search、redirect などのページシェルのレイアウトを、実際のページで確認できます。各ページは示すレイアウトだけで作りました。
 nav_exclude: true
 twin: false
 ---

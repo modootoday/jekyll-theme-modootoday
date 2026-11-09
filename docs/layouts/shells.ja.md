@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/shells/
 source_rev: sha256:40b7346b1355
 title: ページシェル
-description: ページの種類ごとのシェルと、レイアウト単位で読み込む任意のスタイルシートです。
+description: ホーム、エラー、リダイレクト、検索など、ページの種類ごとのシェルと、各レイアウトが必要なページだけで読み込む任意のスタイルシートを説明します。
 nav_order: 10
 ---
 # ページシェル

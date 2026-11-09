@@ -4,7 +4,7 @@ permalink: /ja/guides/translation/
 source_rev: sha256:89c1e3974ae0
 title: 翻訳ルール
 nav_order: 90
-description: 韓国語・日本語のドキュメントと UI 文言の正式なスタイルルール、用語集、チェック。
+description: 韓国語と日本語のドキュメントと UI の文言を翻訳するときに守る正式なスタイルルール、文体、用語集、そしてそれを検査するツールをまとめます。
 ---
 # 翻訳ルール
 

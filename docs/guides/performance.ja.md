@@ -4,7 +4,7 @@ permalink: /ja/guides/performance/
 source_rev: sha256:31791b0561ae
 title: パフォーマンス
 nav_order: 75
-description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算。
+description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算を説明し、サイトを軽く保つ方法を示します。
 ---
 # パフォーマンス
 

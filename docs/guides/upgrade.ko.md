@@ -4,7 +4,7 @@ permalink: /ko/guides/upgrade/
 source_rev: sha256:7dd06b300fcd
 nav_order: 30
 title: 마이그레이션과 업그레이드
-description: 다른 Jekyll 테마에서 옮기기, 기존 프로젝트에 도입하기, 버전 간 업그레이드.
+description: 다른 Jekyll 테마에서 사이트를 옮기는 방법, 기존 프로젝트에 테마를 도입하는 방법, 버전 사이에서 업그레이드할 때 바꿀 점을 단계별로 설명합니다.
 ---
 # 마이그레이션과 업그레이드
 

@@ -1,6 +1,6 @@
 ---
 title: "Portfolio demo"
-description: "Projects as cards with a tag filter."
+description: Projects as cards with an image, a title, a short text and tags, and a tag filter that needs no JavaScript to show one kind of work.
 layout: portfolio
 twin: false
 sitemap: false

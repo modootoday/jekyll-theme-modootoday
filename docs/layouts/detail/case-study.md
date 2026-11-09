@@ -1,7 +1,7 @@
 ---
 title: Case study demo
 image: {path: /assets/images/projects/data.webp, alt: "Tiles of bar and line charts on a dark dashboard", width: 800, height: 600}
-description: How a team cut their docs build time in half.
+description: How a team cut their docs build time in half, from eight minutes to four, with the client, their role, the year and the result.
 layout: case-study
 nav_order: 2
 twin: false

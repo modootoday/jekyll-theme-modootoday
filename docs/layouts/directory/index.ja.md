@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/directory/
 source_rev: sha256:ee066a8fdb56
 title: ディレクトリレイアウト
-description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで絞り込めます。
+description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで動く絞り込みで読者が見たいカードだけを選べるようにします。
 nav_order: 20
 ---
 # ディレクトリレイアウト

@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/jobs/
-source_rev: sha256:ce147cb50bc2
+source_rev: sha256:d453c9d6e26e
 title: "채용 데모"
-description: "부서 필터가 있는 채용 공고 목록입니다."
+description: 직무, 근무지, 고용 형태가 보이는 카드로 채용 공고를 나열하고, JavaScript 없이 동작하는 부서 필터로 원하는 공고만 골라 봅니다.
 layout: jobs
 twin: false
 sitemap: false

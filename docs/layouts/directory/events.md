@@ -1,6 +1,6 @@
 ---
 title: "Events demo"
-description: "Events with a date tile and an add-to-calendar file."
+description: Upcoming events as cards with a date tile, the place or an online link, and an add-to-calendar file that works without a server.
 layout: events
 sitemap: false
 edit: false

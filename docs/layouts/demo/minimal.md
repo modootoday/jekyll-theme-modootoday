@@ -1,6 +1,6 @@
 ---
 title: Minimal layout demo
-description: A narrow centred column without header or pagination.
+description: A narrow centred column without the site header or pagination, for a page that should stand on its own, such as a short notice or a sign-up form.
 layout: minimal
 twin: false
 sitemap: false

@@ -1,6 +1,6 @@
 ---
 title: "Yearly archive"
-description: "Every post on this site grouped by year, newest first."
+description: Every post on this site grouped by year, newest first, with its date and title, so you can browse back through everything we have written.
 layout: archive
 twin: false
 sitemap: false

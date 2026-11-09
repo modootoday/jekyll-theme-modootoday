@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/event/
-source_rev: sha256:2041653f680f
+source_rev: sha256:858acc578e19
 title: イベントのデモ
 image: {path: /assets/images/events/stage.webp, alt: "客席に向かうスポットライトの当たった舞台", width: 800, height: 600}
-description: このテーマでサイトを作る方法を扱う夜の勉強会です。
+description: このテーマでサイトを作る方法を扱う夜の勉強会です。短い発表が 2 つと質問の時間があります。参加は無料なので、申し込んでチケットを受け取ってください。
 layout: event
 nav_order: 4
 edit: false

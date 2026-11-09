@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/documents/
-source_rev: sha256:5ab43dfe8f04
+source_rev: sha256:95fa00b0eb03
 title: 文書
-description: 法的なページと印刷優先の履歴書です。
+description: 日付、版、目次のある法的なページと、印刷を優先した履歴書です。人が保存したり印刷したりするページのために用意した 2 つのレイアウトを説明します。
 nav_order: 70
 ---
 # 文書

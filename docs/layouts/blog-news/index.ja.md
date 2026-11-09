@@ -4,7 +4,7 @@ permalink: /ja/layouts/blog-news/
 source_rev: sha256:7cb4f7ae5f58
 title: ブログとニュース
 nav_order: 50
-description: ブログ一覧、ニュースのトップページ、署名、著者ページ、Atom フィードを作ります。
+description: ブログ一覧、ニュースのトップページ、記事の署名、著者ページ、言語ごとの Atom フィードを作るレイアウトと、それぞれの front matter を説明します。
 ---
 # ブログとニュース
 

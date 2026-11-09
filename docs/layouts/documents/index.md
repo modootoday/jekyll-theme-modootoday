@@ -1,6 +1,6 @@
 ---
 title: Documents
-description: Legal pages and a print-first resume.
+description: Legal pages with dates, a version and a contents list, and a print-first resume, two layouts for pages that people keep or print.
 nav_order: 70
 ---
 # Documents

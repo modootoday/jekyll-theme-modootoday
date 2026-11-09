@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/math-diagrams/
-source_rev: sha256:bf2a3888d365
+source_rev: sha256:8d87e84083c4
 nav_order: 10
 title: 数式と図
 description: Mermaid の図と数式をコミットした静的な SVG と MathML として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。

@@ -3,7 +3,7 @@ lang: ko
 permalink: /ko/layouts/demo/csp/
 source_rev: sha256:c965ae0df915
 title: 엄격한 CSP 데모
-description: 핵심 컴포넌트를 한 페이지에 모아 엄격한 콘텐츠 보안 정책에서 확인합니다.
+description: 핵심 컴포넌트를 한 페이지에 모아, 인라인 스크립트와 스타일을 막는 엄격한 콘텐츠 보안 정책 아래에서도 제대로 보이는지 확인합니다.
 twin: false
 sitemap: false
 edit: false

@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/feature/
-source_rev: sha256:753be4e8da78
+source_rev: sha256:16581e16a768
 title: 機能のデモ
-description: Markdown で書いて、速いサイトとして公開します。
+description: Markdown で書いて、速いサイトとして公開します。ページは GitHub でも読みやすく、軽く読み込まれ、JavaScript なしでも動き、チェッカーも付いてきます。
 layout: feature
 nav_order: 1
 twin: false

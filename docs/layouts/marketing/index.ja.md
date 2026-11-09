@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/marketing/
 source_rev: sha256:bfd133775930
 title: マーケティングページ
-description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作ります。
+description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作るレイアウトと、それぞれの front matter を説明します。
 nav_order: 40
 ---
 # マーケティングページ

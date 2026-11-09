@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/sponsors/
-source_rev: sha256:d872a0442320
+source_rev: sha256:2b8600d0613f
 title: "후원사 데모"
-description: "등급별 후원사 로고입니다."
+description: 후원사 로고를 등급별로 묶어 이름과 링크를 함께 보여 주고, 고른 등급의 후원사만 화면에 남기는 등급 필터를 단 후원사 목록입니다.
 layout: sponsors
 twin: false
 sitemap: false

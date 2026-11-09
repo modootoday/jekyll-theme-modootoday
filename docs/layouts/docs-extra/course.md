@@ -1,6 +1,6 @@
 ---
 title: "Course demo"
-description: "Build and publish a site in an afternoon."
+description: Build and publish a site in an afternoon, in short modules of lessons with the time each one takes, from setup to your first release.
 layout: course
 nav_order: 6
 twin: false

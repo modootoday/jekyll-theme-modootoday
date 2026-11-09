@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:fbba74ee43c3
+source_rev: sha256:00d77b629f7b
 nav_order: 10
 title: 설치
-description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
+description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
 sections:
   - requirements
   - {c: tabs, name: methods}

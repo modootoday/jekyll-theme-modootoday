@@ -2,7 +2,7 @@
 nav_order: 10
 moved_from: [recipes/math-diagrams.md]
 title: Math and diagrams
-description: Show Mermaid diagrams and math as committed static SVG and MathML, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
+description: Show Mermaid diagrams and math as static SVG and MathML you commit, or render them with the built-in loaders or your own, and the cost to CSP and privacy.
 diagrams:
   - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63}
 ---

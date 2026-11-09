@@ -1,6 +1,6 @@
 ---
 title: "뉴스 첫 화면"
-description: "머리기사, 보조 기사, 최신 목록, 섹션이 있는 뉴스 첫 화면이에요."
+description: 머리기사, 보조 기사, 최신 목록, 카테고리별 섹션이 있는 뉴스 첫 화면이에요. 오늘 가장 중요한 소식부터 차례로 읽을 수 있어요.
 layout: news
 lang: ko
 permalink: /ko/layouts/blog-news/news/

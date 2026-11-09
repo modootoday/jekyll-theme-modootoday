@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:f0b306cf80c5
+source_rev: sha256:d9fd3694a769
 nav_order: 20
 title: 설정
-description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
+description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
 sections:
   - keys
   - new-window

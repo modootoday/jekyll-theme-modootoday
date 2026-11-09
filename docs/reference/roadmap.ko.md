@@ -4,7 +4,7 @@ permalink: /ko/reference/roadmap/
 source_rev: sha256:ed2219a83ec5
 nav_order: 50
 title: 로드맵
-description: 테마가 지금 지원하는 것, 동작하는 환경, 다음에 계획한 작업의 주제를 정리합니다.
+description: 테마가 지금 지원하는 것, 동작하는 환경과 버전, 다음에 계획한 작업의 주제를 정리합니다. 작업 진행은 저장소의 이슈에서 따라갈 수 있습니다.
 ---
 # 로드맵
 

@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/case-study/
-source_rev: sha256:20c9084e68b3
+source_rev: sha256:e19254553e13
 title: 사례 연구 데모
 image: {path: /assets/images/projects/data.webp, alt: "어두운 대시보드에 놓인 막대 차트와 선 차트 타일", width: 800, height: 600}
-description: 한 팀이 문서 빌드 시간을 절반으로 줄인 방법입니다.
+description: 한 팀이 문서 빌드 시간을 8분에서 4분으로, 절반으로 줄인 방법입니다. 고객, 맡은 역할, 연도, 결과를 함께 정리했습니다.
 layout: case-study
 nav_order: 2
 twin: false

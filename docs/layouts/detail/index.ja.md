@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/detail/
 source_rev: sha256:98bb4eda253b
 title: 詳細ページ
-description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを1件ずつ表示し、概要リスト、行動喚起1つ、構造化データを備えます。
+description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを 1 件ずつ 1 ページで表示し、概要のリスト、行動喚起 1 つ、構造化データを備えます。
 nav_order: 30
 ---
 # 詳細ページ

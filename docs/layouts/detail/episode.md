@@ -1,7 +1,7 @@
 ---
 title: Episode demo
 image: {path: /assets/images/episodes/mic.webp, alt: "A studio microphone in soft light", width: 512, height: 512}
-description: Why the theme ships without a JavaScript framework.
+description: Why the theme ships without a JavaScript framework, and what that choice means for page weight and accessibility, in one podcast episode.
 layout: episode
 nav_order: 5
 twin: false

@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/reference/
-source_rev: sha256:f43656d16c66
+source_rev: sha256:c3632f2ca43c
 title: "リファレンスのデモ"
-description: "コマンドラインインターフェースをコマンドごとに説明します。"
+description: コマンドラインインターフェースをコマンドごとに説明します。項目ごとにシグネチャ、短い説明、わかる場合は追加されたバージョンがあり、必要なコマンドをすぐ見つけられます。
 layout: reference
 nav_order: 1
 twin: false

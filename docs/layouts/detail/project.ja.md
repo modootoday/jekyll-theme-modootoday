@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/project/
-source_rev: sha256:313775a7b127
+source_rev: sha256:c3d573caf684
 title: プロジェクトのデモ
 image: {path: /assets/images/projects/network.webp, alt: "つながった点のネットワークに包まれた光る地球儀", width: 800, height: 600}
-description: クライアント、技術、リンクのある完了したプロジェクトです。
+description: クライアント、担当した役割、年、使った技術、リポジトリへのリンクがある完了したプロジェクトです。どんな仕事だったかの概要を一目で確認できます。
 layout: project
 nav_order: 1
 twin: false

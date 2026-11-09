@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/sponsors/
-source_rev: sha256:d872a0442320
+source_rev: sha256:2b8600d0613f
 title: "スポンサーのデモ"
-description: "ランク別のスポンサーロゴです。"
+description: スポンサーのロゴをランク別にまとめて名前とリンクを添え、選んだランクのスポンサーだけを画面に残す、JavaScript なしの絞り込みを付けた一覧です。
 layout: sponsors
 twin: false
 sitemap: false

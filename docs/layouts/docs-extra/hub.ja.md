@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/hub/
-source_rev: sha256:ecb1d98c6e7b
+source_rev: sha256:0f13cee4ae06
 title: "ハブのデモ"
-description: "ここから始めて道を選んでください。"
+description: ここから始めて道を選んでください。下のカードはガイド、レイアウト、レシピなどドキュメントの一部を開き、そこに何があるかを 1 行で示します。
 layout: hub
 nav_order: 5
 twin: false

@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/events/
-source_rev: sha256:c04cd372a8d2
+source_rev: sha256:af6c5d0a0d18
 title: "행사 데모"
-description: "날짜 타일과 캘린더 추가 파일이 있는 행사 목록입니다."
+description: 다가오는 행사를 날짜 타일, 장소나 온라인 링크와 함께 카드로 보여 주고, 서버 없이 동작하는 캘린더 추가 파일을 붙인 목록입니다.
 layout: events
 sitemap: false
 edit: false

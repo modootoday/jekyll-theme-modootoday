@@ -1,6 +1,6 @@
 ---
 title: "Glossary demo"
-description: "Words used in these docs."
+description: Words used in these docs, each with a short definition and an anchor, so any guide can link straight to the term it relies on.
 layout: glossary
 nav_order: 4
 twin: false

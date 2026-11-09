@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/job/
-source_rev: sha256:4860e87e13a1
+source_rev: sha256:5989972d294c
 title: 채용 데모
-description: 제품 문서를 쓰고 관리합니다.
+description: 가이드부터 레퍼런스 페이지까지 제품 문서를 쓰고 관리하며, 제품을 만드는 엔지니어와 함께 문서의 변경 사항을 검토하는 원격 근무 자리입니다.
 layout: job
 nav_order: 3
 twin: false

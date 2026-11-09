@@ -1,6 +1,6 @@
 ---
 title: Search layout demo
-description: A full search page with a no-JavaScript fallback form.
+description: A full search page with results as you type, and a fallback form that still sends the query to a search engine when JavaScript is off.
 layout: search
 twin: false
 sitemap: false

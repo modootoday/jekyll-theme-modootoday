@@ -1,6 +1,6 @@
 ---
 title: "Reference demo"
-description: "The command-line interface, one entry per command."
+description: The command-line interface, one entry per command with its signature, a short description and, where known, the version that added it.
 layout: reference
 nav_order: 1
 twin: false

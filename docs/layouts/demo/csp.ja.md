@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/demo/csp/
 source_rev: sha256:c965ae0df915
 title: 厳格な CSP のデモ
-description: コアコンポーネントを 1 ページに集め、厳格な Content Security Policy で確認します。
+description: コアコンポーネントを 1 ページに集め、インラインのスクリプトとスタイルを禁じる厳格な Content Security Policy の下でも正しく表示されるかを確認します。
 twin: false
 sitemap: false
 edit: false

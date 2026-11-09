@@ -3,7 +3,7 @@ lang: ko
 permalink: /ko/layouts/demo/filter/
 source_rev: sha256:d9a038f1e026
 title: 필터 데모
-description: "입력해서 좁혀 보는 목록과 표, 그리고 표의 값마다 붙는 버튼입니다. 섹션 파라미터 filter:를 설정하는 방법입니다."
+description: 입력해서 좁혀 보는 목록과 표, 그리고 표의 값마다 붙는 버튼입니다. 섹션 파라미터 filter:로 필터를 설정하는 방법을 실제 페이지로 보여 줍니다.
 twin: false
 sitemap: false
 edit: false

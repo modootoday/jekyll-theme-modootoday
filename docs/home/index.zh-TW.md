@@ -5,7 +5,7 @@ source_rev: sha256:553827506a0a
 toc: false
 hero: {visual: showcase}
 title: 首頁
-description: 維持純 Markdown，在 GitHub、GitHub Pages 與 AI 代理中都清楚好讀的文件。
+description: 維持純 Markdown 寫作，產生在 GitHub、GitHub Pages 與 AI 代理中都清楚好讀的文件：一份原始檔，三處都能讀，不需要額外的建置腳本或標記。
 sections:
   - {c: features, name: why, cols: 3}
   - {c: tabs, name: quickstart}

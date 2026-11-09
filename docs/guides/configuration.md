@@ -1,7 +1,7 @@
 ---
 nav_order: 20
 title: Configuration
-description: Site-wide settings under the modootoday key in _config.yml.
+description: Every site-wide setting under the modootoday key in _config.yml, with its default value, what it changes and the page that explains it in full.
 sections:
   - keys
   - new-window

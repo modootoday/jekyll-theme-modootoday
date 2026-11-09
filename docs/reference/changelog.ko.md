@@ -4,7 +4,7 @@ permalink: /ko/reference/changelog/
 source_rev: sha256:ae5fb161b1ea
 nav_order: 40
 title: 변경 기록
-description: 테마의 모든 릴리스를 최신순으로, 변경마다 한 줄 요약과 전체 기록 링크를 붙여 보여 줍니다.
+description: 테마의 모든 릴리스를 최신순으로 보여 줍니다. 변경마다 한 줄 요약을 붙이고, 이유와 결정까지 담은 전체 기록으로 가는 링크를 함께 둡니다.
 ---
 # 변경 기록
 

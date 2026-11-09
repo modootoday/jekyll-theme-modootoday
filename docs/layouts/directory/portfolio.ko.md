@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/portfolio/
-source_rev: sha256:813f23a72039
+source_rev: sha256:bf499928fca6
 title: "포트폴리오 데모"
-description: "태그 필터가 있는 프로젝트 카드입니다."
+description: 이미지, 제목, 짧은 설명, 태그가 있는 프로젝트 카드입니다. JavaScript 없이 동작하는 태그 필터로 한 종류의 작업만 골라 볼 수 있습니다.
 layout: portfolio
 twin: false
 sitemap: false

@@ -1,6 +1,6 @@
 ---
 title: "Sponsors demo"
-description: "Sponsor logos grouped by tier."
+description: Sponsor logos grouped by tier, each with its name and a link, and a tier filter that shows only the sponsors of the tier you pick.
 layout: sponsors
 twin: false
 sitemap: false

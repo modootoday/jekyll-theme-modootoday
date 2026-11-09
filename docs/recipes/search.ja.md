@@ -4,7 +4,7 @@ permalink: /ja/recipes/search/
 source_rev: sha256:cafe0cd79859
 nav_order: 25
 title: 検索
-description: ヘッダー検索を有効にし、インデックスの内容と検索語の照合方法を決め、長いリストや表を読者が絞り込めるようにします。
+description: ヘッダーの検索を有効にし、インデックスに入れる内容と検索語の照合方法を決め、長いリストや表を読者が入力して絞り込めるようにする方法を説明します。
 ---
 # 検索
 

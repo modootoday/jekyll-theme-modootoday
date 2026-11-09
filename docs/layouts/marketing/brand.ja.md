@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/brand/
-source_rev: sha256:3039daec1a3c
+source_rev: sha256:7ab6254164df
 title: ブランドのデモ
-description: テーマを紹介するときの色とファイルです。
+description: テーマを紹介するときに使う色とファイルです。コピーして使える色の値と、用意している形式ごとにダウンロードできるロゴのファイルをまとめました。
 layout: brand
 nav_order: 4
 twin: false

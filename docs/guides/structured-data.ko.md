@@ -4,7 +4,7 @@ permalink: /ko/guides/structured-data/
 source_rev: sha256:1b9fc7b06a58
 nav_order: 80
 title: 구조화 데이터
-description: 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프와 설정 방법.
+description: 테마가 모든 페이지에 넣는 schema.org JSON-LD 그래프가 무엇을 담는지, 그리고 발행자, 작성자, 페이지 종류 같은 값을 설정하는 방법을 설명합니다.
 ---
 # 구조화 데이터
 

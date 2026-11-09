@@ -4,7 +4,7 @@ permalink: /ko/guides/performance/
 source_rev: sha256:31791b0561ae
 title: 성능
 nav_order: 75
-description: 페이지마다 불러오는 파일, CDN에 오래 캐시하기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산.
+description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산을 설명하고 사이트를 가볍게 유지하는 방법을 알려 줍니다.
 ---
 # 성능
 

@@ -2,7 +2,7 @@
 nav_order: 40
 nav_title: "First page"
 title: "Write your first page"
-description: Write a page with front matter, sections and alerts.
+description: Write a page with front matter, sections and alerts that reads the same on github.com and on your site, and learn the few Markdown rules it follows.
 sections:
   - front-matter
   - body

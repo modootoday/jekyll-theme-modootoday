@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/minimal/
-source_rev: sha256:0944921389c7
+source_rev: sha256:b8de27d129a1
 title: 미니멀 레이아웃 데모
-description: 헤더와 페이지 이동이 없는 좁은 가운데 정렬 열입니다.
+description: 사이트 헤더와 페이지 이동이 없는 좁은 가운데 정렬 열입니다. 짧은 공지나 가입 양식처럼 혼자 서 있어야 하는 페이지에 씁니다.
 layout: minimal
 twin: false
 sitemap: false

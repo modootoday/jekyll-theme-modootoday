@@ -4,7 +4,7 @@ permalink: /ja/guides/customize/
 source_rev: sha256:221af770fbea
 nav_order: 50
 title: カスタマイズ
-description: トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足すか、Sass パーシャルを上書きします。
+description: トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足したり Sass パーシャルを上書きしたりして、テーマをサイトに合わせる方法を説明します。
 sections:
   - tokens
   - bridge

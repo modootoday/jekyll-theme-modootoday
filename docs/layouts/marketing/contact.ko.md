@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/contact/
-source_rev: sha256:a6dc70fa16bd
+source_rev: sha256:769b5a2589b7
 title: 문의 데모
-description: 테마에 대해 궁금한 점이 있으면 알려 주세요.
+description: 테마에 대해 궁금한 점이 있으면 알려 주세요. 이메일, GitHub 이슈, 아래 양식 중 편한 방법으로 보내 주시면 보통 영업일 이틀 안에 답장 드립니다.
 layout: contact
 nav_order: 6
 twin: false

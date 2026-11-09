@@ -4,7 +4,7 @@ permalink: /ja/reference/changelog/
 source_rev: sha256:ae5fb161b1ea
 nav_order: 40
 title: 変更履歴
-description: テーマのすべてのリリースを新しい順に、変更ごとの 1 行の要約と完全な記録へのリンクを添えて示します。
+description: テーマのすべてのリリースを新しい順に示します。変更ごとに 1 行の要約を付け、理由や決定まで書いた完全な記録へのリンクもあわせて添えています。
 ---
 # 変更履歴
 

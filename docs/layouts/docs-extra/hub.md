@@ -1,6 +1,6 @@
 ---
 title: "Hub demo"
-description: "Start here and pick a path."
+description: Start here and pick a path. Each card below opens one part of the docs, the guides, the layouts or the recipes, with a line on what it holds.
 layout: hub
 nav_order: 5
 twin: false

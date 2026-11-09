@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/search/
-source_rev: sha256:a4893e1a5f53
+source_rev: sha256:bb4ddace2727
 title: 検索レイアウトのデモ
-description: JavaScript なしでも使える検索フォームを備えた検索ページです。
+description: 入力に合わせて結果を表示する検索ページです。JavaScript がオフのときでも、検索語を外部の検索エンジンに送れる代わりのフォームを備えています。
 layout: search
 twin: false
 sitemap: false

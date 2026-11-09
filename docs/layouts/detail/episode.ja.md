@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/episode/
-source_rev: sha256:d6289a52e949
+source_rev: sha256:476a8bc4c897
 title: エピソードのデモ
 image: {path: /assets/images/episodes/mic.webp, alt: "柔らかな光の中のスタジオマイク", width: 512, height: 512}
-description: このテーマが JavaScript フレームワークなしで提供される理由を話します。
+description: このテーマが JavaScript フレームワークなしで提供される理由と、その選択がページの重さとアクセシビリティに何をもたらすかを、1 回のエピソードで話します。
 layout: episode
 nav_order: 5
 twin: false

@@ -1,6 +1,6 @@
 ---
 title: "Resume demo"
-description: "A one-page CV that prints cleanly."
+description: A one-page CV with experience, education and skills that prints cleanly on A4 or Letter paper and reflows to fit a phone screen.
 layout: resume
 nav_order: 2
 twin: false

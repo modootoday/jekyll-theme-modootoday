@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/wide/
-source_rev: sha256:0fc14783ca9f
+source_rev: sha256:6c61fc6a0312
 title: ワイドレイアウトのデモ
-description: 読みやすさのための幅制限なしで、ヘッダーとフッターを保ちます。
+description: サイトのヘッダー、サイドバー、フッターはそのままに、読みやすさのための幅制限だけを外したレイアウトです。広い表やダッシュボード、並べたコードに使います。
 layout: wide
 twin: false
 sitemap: false

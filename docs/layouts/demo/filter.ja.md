@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/demo/filter/
 source_rev: sha256:d9a038f1e026
 title: 絞り込みデモ
-description: "入力して絞り込めるリストと表、表の値ごとのボタン。セクションパラメーター filter: の設定方法です。"
+description: "入力して絞り込めるリストと表、表の値ごとのボタンです。セクションパラメーター filter: で絞り込みを設定する方法を、実際のページで示します。"
 twin: false
 sitemap: false
 edit: false

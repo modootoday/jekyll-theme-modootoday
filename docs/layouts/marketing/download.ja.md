@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/download/
-source_rev: sha256:78fb31adb706
+source_rev: sha256:5f1d59122065
 title: ダウンロードのデモ
-description: サイトで使うテーマを入手します。
+description: サイトで使うテーマを入手します。最新のリリースを RubyGems か GitHub のソースから選び、先にバージョン、日付、サイズを確認してください。
 layout: download
 nav_order: 3
 twin: false

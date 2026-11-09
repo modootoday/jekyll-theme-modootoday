@@ -1,6 +1,6 @@
 ---
 title: Download demo
-description: Get the theme for your site.
+description: Get the theme for your site. Pick the latest release from RubyGems or the source on GitHub, and check its version, date and size first.
 layout: download
 nav_order: 3
 twin: false

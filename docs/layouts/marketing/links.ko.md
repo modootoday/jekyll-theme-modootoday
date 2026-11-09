@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/links/
-source_rev: sha256:9c1c4933a766
+source_rev: sha256:9b494e10e28b
 title: 링크 데모
-description: 모든 링크를 한곳에.
+description: 모든 링크를 한곳에. 문서, GitHub의 소스 코드, RubyGems의 gem을 어떤 휴대폰에서도 열리는 한 페이지에서 한 번에 찾아갈 수 있습니다.
 layout: links
 nav_order: 5
 twin: false

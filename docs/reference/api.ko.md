@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:78b9d30f44c2
+source_rev: sha256:0ea42afc5f89
 nav_order: 10
 title: 공개 API
-description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
+description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
 ---
 # 공개 API
 

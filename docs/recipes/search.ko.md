@@ -4,7 +4,7 @@ permalink: /ko/recipes/search/
 source_rev: sha256:cafe0cd79859
 nav_order: 25
 title: 검색
-description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 맞추는 방식을 정하고, 긴 목록이나 표를 독자가 거를 수 있게 합니다.
+description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 맞추는 방식을 정하며, 독자가 긴 목록이나 표를 입력해서 거를 수 있게 하는 방법을 설명합니다.
 ---
 # 검색
 

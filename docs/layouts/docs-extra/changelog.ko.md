@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/changelog/
-source_rev: sha256:1e86646fd504
+source_rev: sha256:75c43d6277cd
 title: "변경 이력 데모"
-description: "릴리스마다 바뀐 내용입니다."
+description: 릴리스마다 바뀐 내용을 최신순으로 보여 줍니다. 버전과 날짜마다 추가, 변경, 수정 항목을 따로 나누어 무엇이 달라졌는지 쉽게 찾습니다.
 layout: changelog
 nav_order: 2
 twin: false

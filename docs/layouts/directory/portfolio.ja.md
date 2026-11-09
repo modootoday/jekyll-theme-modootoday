@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/portfolio/
-source_rev: sha256:813f23a72039
+source_rev: sha256:bf499928fca6
 title: "ポートフォリオのデモ"
-description: "タグで絞り込めるプロジェクトのカードです。"
+description: 画像、タイトル、短い説明、タグのあるプロジェクトのカードです。JavaScript なしで動くタグの絞り込みで、1 種類の作品だけを表示できます。
 layout: portfolio
 twin: false
 sitemap: false

@@ -3,7 +3,7 @@ lang: ko
 permalink: /ko/layouts/shells/
 source_rev: sha256:40b7346b1355
 title: 페이지 셸
-description: 페이지 종류별 셸과 레이아웃마다 따로 불러오는 선택 스타일시트입니다.
+description: 홈, 오류, 리디렉션, 검색처럼 페이지 종류마다 쓰는 셸과, 각 레이아웃이 필요한 페이지에서만 따로 불러오는 선택 스타일시트를 설명합니다.
 nav_order: 10
 ---
 # 페이지 셸

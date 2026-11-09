@@ -5,7 +5,7 @@ source_rev: sha256:8f0903833158
 nav_order: 0
 layout: examples
 title: コンポーネント
-description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。
+description: すべてのコンポーネントについて、元の Markdown と実際の表示結果を並べて紹介します。欲しい見た目を選び、そのソースをそのままコピーして使えます。
 schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
 sections:

@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/jobs/
-source_rev: sha256:ce147cb50bc2
+source_rev: sha256:d453c9d6e26e
 title: "求人のデモ"
-description: "部署で絞り込める求人一覧です。"
+description: 職種、勤務地、雇用形態がわかるカードで求人を並べ、JavaScript なしで動く部署の絞り込みで、自分に関係のある求人だけを選んで見られる一覧です。
 layout: jobs
 twin: false
 sitemap: false

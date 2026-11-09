@@ -1,11 +1,11 @@
 ---
 lang: ja
 permalink: /ja/guides/first-page/
-source_rev: sha256:45442cbadd5e
+source_rev: sha256:7636e1aaba54
 nav_order: 40
 nav_title: "最初のページ"
 title: "最初のページを書く"
-description: front matter、セクション、アラートを使ってページを書きます。
+description: github.com でもサイトでも同じように読めるページを front matter、セクション、アラートで書き、そのページが従ういくつかの Markdown のルールを覚えます。
 sections:
   - front-matter
   - body

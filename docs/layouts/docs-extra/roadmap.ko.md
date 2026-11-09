@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/roadmap/
-source_rev: sha256:d9d54a973c2c
+source_rev: sha256:207e4b3380e8
 title: "로드맵 데모"
-description: "지금, 다음, 나중에 할 일입니다."
+description: 지금, 다음, 나중에 할 일입니다. 계획은 바뀔 수 있고 날짜는 약속이 아니므로, 작업이 앞으로 향하는 방향을 보여 주는 목록으로 읽어 주세요.
 layout: roadmap
 nav_order: 3
 twin: false

@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/team/
-source_rev: sha256:612342f81582
+source_rev: sha256:6271ae9721b9
 title: "팀 데모"
-description: "사진, 역할, 그룹 필터가 있는 구성원 목록입니다."
+description: 프로젝트를 만드는 사람들을 둥근 사진, 이름, 역할이 있는 카드로 보여 주고, JavaScript 없이 동작하는 그룹 필터를 단 구성원 목록입니다.
 layout: team
 twin: false
 sitemap: false

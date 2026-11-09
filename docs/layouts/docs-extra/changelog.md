@@ -1,6 +1,6 @@
 ---
 title: "Changelog demo"
-description: "What changed in each release."
+description: What changed in each release, newest first, with the additions, changes and fixes listed separately for every version and its date.
 layout: changelog
 nav_order: 2
 twin: false

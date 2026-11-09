@@ -1,11 +1,11 @@
 ---
 lang: ko
 permalink: /ko/guides/first-page/
-source_rev: sha256:45442cbadd5e
+source_rev: sha256:7636e1aaba54
 nav_order: 40
 nav_title: "첫 페이지"
 title: "첫 페이지 쓰기"
-description: front matter, 섹션, 알림으로 페이지를 씁니다.
+description: github.com과 사이트에서 똑같이 읽히는 페이지를 front matter, 섹션, 알림으로 써 보고, 그 페이지가 따르는 몇 가지 Markdown 규칙을 익힙니다.
 sections:
   - front-matter
   - body

@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/team/
-source_rev: sha256:612342f81582
+source_rev: sha256:6271ae9721b9
 title: "チームのデモ"
-description: "写真、役割、グループで絞り込めるメンバー一覧です。"
+description: プロジェクトを支えるメンバーを丸い写真、名前、役割のカードで並べ、JavaScript なしで動くグループの絞り込みを付けた、チームのメンバー一覧です。
 layout: team
 twin: false
 sitemap: false

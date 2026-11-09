@@ -4,7 +4,7 @@ permalink: /ja/recipes/brand-tokens/
 source_rev: sha256:6467da12bd77
 nav_order: 15
 title: ブランドトークン
-description: トークンブリッジでブランドの色とフォントをテーマに反映し、サイトのスタイルシートと先読みするフォントまで厳格な CSP で使います。
+description: トークンブリッジでブランドの色とフォントをテーマに反映し、サイトのスタイルシートと先読みするフォントまで、厳格な CSP の下で一緒に使う方法を説明します。
 site_css: [/assets/css/brand-demo.css]
 preload:
   - {href: /assets/fonts/fraunces/fraunces-600-latin.woff2, as: font, type: font/woff2}

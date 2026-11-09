@@ -1,6 +1,6 @@
 ---
 title: Links demo
-description: Everything in one place.
+description: Everything in one place. The documentation, the source code on GitHub and the gem on RubyGems, each a tap away on one page that works on any phone.
 layout: links
 nav_order: 5
 twin: false

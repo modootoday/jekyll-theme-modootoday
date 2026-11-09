@@ -4,7 +4,7 @@ permalink: /ja/guides/structured-data/
 source_rev: sha256:1b9fc7b06a58
 nav_order: 80
 title: 構造化データ
-description: テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。
+description: テーマが全ページに出力する schema.org JSON-LD グラフに何が入るかと、発行者、著者、ページの種類などの値を設定する方法を説明します。
 ---
 # 構造化データ
 

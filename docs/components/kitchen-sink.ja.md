@@ -4,7 +4,7 @@ permalink: /ja/components/kitchen-sink/
 source_rev: sha256:f3066943907d
 nav_order: 10
 title: キッチンシンク
-description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページで見た目を確認します。
+description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
 diagrams:
   - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 818, height: 63}

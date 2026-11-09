@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/api/
-source_rev: sha256:dff89f921ebb
+source_rev: sha256:7899f43591b2
 title: "API 레퍼런스 데모"
-description: "그룹으로 묶은 사이드바와 패키지 표가 있는 라이브러리 레퍼런스입니다."
+description: 멤버를 그룹별로 묶어 보여 주는 사이드바, 함께 배포하는 패키지 표, 시그니처가 붙은 함수별 항목이 있는 라이브러리 레퍼런스입니다.
 layout: reference
 nav_order: 8
 edit: false

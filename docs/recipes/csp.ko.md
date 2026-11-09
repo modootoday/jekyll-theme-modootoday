@@ -1,11 +1,11 @@
 ---
 lang: ko
 permalink: /ko/recipes/csp/
-source_rev: sha256:2c7829030a64
+source_rev: sha256:044393be9a76
 nav_order: 20
 nav_title: CSP
 title: 콘텐츠 보안 정책
-description: unsafe-inline 없이 엄격한 CSP에서 테마 쓰기.
+description: unsafe-inline 없이 엄격한 콘텐츠 보안 정책에서 테마를 쓰는 방법입니다. 보낼 헤더와 모든 페이지가 제대로 동작하게 하는 설정을 설명합니다.
 ---
 # 콘텐츠 보안 정책
 

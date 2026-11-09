@@ -1,7 +1,7 @@
 ---
 nav_order: 10
 title: Public API
-description: The names, classes and files this theme documents for your site.
+description: The names, classes, includes and files this theme documents for your site, which stay stable within a major version, and how they may change.
 ---
 # Public API
 

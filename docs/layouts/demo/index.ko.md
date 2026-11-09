@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/
-source_rev: sha256:615a949a6ecf
+source_rev: sha256:e8661a74e910
 title: 레이아웃 데모
-description: 페이지 셸 레이아웃을 실제 페이지로 보여 줍니다.
+description: minimal, wide, error, search, redirect 같은 페이지 셸 레이아웃을 실제 페이지로 보여 줍니다. 각 페이지는 보여 주는 레이아웃 하나로만 만들었습니다.
 nav_exclude: true
 twin: false
 ---

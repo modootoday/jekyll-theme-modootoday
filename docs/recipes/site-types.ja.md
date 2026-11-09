@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/recipes/site-types/
 source_rev: sha256:5bd64dd18a0c
 title: サイトの種類
-description: 製品、会社、ドキュメント、個人、コミュニティのサイトをどのレイアウトで作るか、そしてどのサイトにも必要なシステムページをまとめます。
+description: 製品、会社、ドキュメント、個人、コミュニティのサイトをどのレイアウトで作るか、そしてどのサイトにも必要なシステムページを 1 ページにまとめます。
 nav_order: 30
 ---
 # サイトの種類

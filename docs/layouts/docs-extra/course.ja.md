@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/course/
-source_rev: sha256:8261c0547f5f
+source_rev: sha256:62bba60820e5
 title: "コースのデモ"
-description: "午後のうちにサイトを作って公開します。"
+description: 午後のうちにサイトを作って公開します。準備から最初の公開まで、それぞれの所要時間が書かれた短いレッスンを、モジュールごとに順に進めていきます。
 layout: course
 nav_order: 6
 twin: false

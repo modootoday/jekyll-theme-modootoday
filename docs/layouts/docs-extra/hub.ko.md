@@ -1,9 +1,9 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/hub/
-source_rev: sha256:ecb1d98c6e7b
+source_rev: sha256:0f13cee4ae06
 title: "허브 데모"
-description: "여기서 시작해 길을 고르세요."
+description: 여기서 시작해 길을 고르세요. 아래 카드마다 가이드, 레이아웃, 레시피 같은 문서의 한 부분이 열리며, 무엇이 들어 있는지 한 줄로 알려 줍니다.
 layout: hub
 nav_order: 5
 twin: false

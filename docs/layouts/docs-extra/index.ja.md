@@ -3,7 +3,7 @@ lang: ja
 permalink: /ja/layouts/docs-extra/
 source_rev: sha256:44b1c2e2c53b
 title: ドキュメント拡張
-description: リファレンス、変更履歴、ロードマップ、用語集、ハブ、コース、書籍のページを共通の任意スタイルシート 1 つで作ります。
+description: リファレンス、変更履歴、ロードマップ、用語集、ハブ、コース、書籍のページを共通の任意スタイルシート 1 つで作るレイアウトと、それぞれの front matter を説明します。
 nav_order: 60
 ---
 # ドキュメント拡張

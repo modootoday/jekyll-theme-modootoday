@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/math-diagrams/
-source_rev: sha256:bf2a3888d365
+source_rev: sha256:8d87e84083c4
 nav_order: 10
 title: 수식과 다이어그램
 description: Mermaid 다이어그램과 수식을 커밋한 정적 SVG와 MathML로 보여 주거나, 내장 로더나 직접 만든 로더로 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.

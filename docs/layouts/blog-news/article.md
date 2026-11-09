@@ -1,7 +1,7 @@
 ---
 title: "News article"
 image: {path: /assets/images/news/tech.webp, alt: "A laptop surrounded by floating charts and spheres", width: 1024, height: 576}
-description: "A news article with a deck, live badge, correction and sources."
+description: A news article with a deck under the headline, a live badge, a correction note and its sources, the way a newsroom publishes a developing story.
 layout: news-article
 twin: false
 sitemap: false

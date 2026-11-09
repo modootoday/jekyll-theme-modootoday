@@ -1,6 +1,6 @@
 ---
 title: Job demo
-description: Write and maintain the product documentation.
+description: Write and maintain the product documentation, from guides to reference pages, and review changes with the engineers who build the product.
 layout: job
 nav_order: 3
 twin: false

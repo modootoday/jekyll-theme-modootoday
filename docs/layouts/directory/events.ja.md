@@ -1,9 +1,9 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/events/
-source_rev: sha256:c04cd372a8d2
+source_rev: sha256:af6c5d0a0d18
 title: "イベントのデモ"
-description: "日付タイルとカレンダー追加ファイル付きのイベント一覧です。"
+description: これからのイベントを日付タイル、会場やオンラインのリンクと一緒にカードで並べ、サーバーなしで使えるカレンダー追加用のファイルを付けた一覧です。
 layout: events
 sitemap: false
 edit: false

@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:78b9d30f44c2
+source_rev: sha256:0ea42afc5f89
 nav_order: 10
 title: 公開 API
-description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
+description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
 ---
 # 公開 API
 

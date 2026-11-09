@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/case-study/
-source_rev: sha256:20c9084e68b3
+source_rev: sha256:e19254553e13
 title: 事例のデモ
 image: {path: /assets/images/projects/data.webp, alt: "暗いダッシュボード上の棒グラフと折れ線グラフのタイル", width: 800, height: 600}
-description: あるチームがドキュメントのビルド時間を半分にした方法です。
+description: あるチームがドキュメントのビルド時間を 8 分から 4 分へと半分にした方法です。クライアント、担当した役割、年、得られた成果を 1 ページにまとめました。
 layout: case-study
 nav_order: 2
 twin: false

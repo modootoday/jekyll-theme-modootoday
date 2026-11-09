@@ -1,6 +1,6 @@
 ---
 title: "ニューストップ"
-description: "トップ記事、サブ記事、新着一覧、セクションがあるニュースのトップページです。"
+description: トップ記事、サブ記事、新着一覧、カテゴリーごとのセクションがあるニュースのトップページです。今日いちばん大事なニュースから順番に読んでいけます。
 layout: news
 lang: ja
 permalink: /ja/layouts/blog-news/news/

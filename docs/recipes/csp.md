@@ -2,7 +2,7 @@
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy
-description: Run the theme under a strict CSP without unsafe-inline.
+description: Run the theme under a strict Content Security Policy without unsafe-inline, with the headers to send and the settings that keep every page working.
 ---
 # Content Security Policy
 
