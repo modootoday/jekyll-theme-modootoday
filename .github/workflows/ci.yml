@@ -135,6 +135,8 @@ jobs:
         run: bundle exec ruby test/system/docs/links.rb docs/_site /jekyll-theme-modootoday
       - name: Kitchen-sink coverage
         run: ruby test/system/docs/coverage.rb
+      - name: Component examples in the built HTML (leaked source, empty or hidden source, front matter, list forms)
+        run: bundle exec ruby test/system/docs/examples.rb docs/_site
       - name: Docs structure (sections, front matter, generated nav and twins, size limits)
         run: ruby test/system/docs/structure.rb
       - name: Install Chromium
