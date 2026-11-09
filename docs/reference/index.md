@@ -11,6 +11,6 @@ Look things up here.
 - [Public API](api/) — The names, classes and files this theme documents for your site.
 - [Tags](../tags/) — Every post on this site, grouped by tag.
 - [Categories](../categories/) — Every post on this site, grouped by category.
-- [Changelog](changelog/) — Releases of jekyll-theme-modootoday.
-- [Roadmap](roadmap/) — What the theme supports, which stacks it runs on, and where it is heading.
+- [Changelog](changelog/) — Every release of the theme, newest first, with a one-line lead for each change and a link to its full notes.
+- [Roadmap](roadmap/) — What the theme supports today, which stacks it runs on, and the themes of the work planned next.
 <!-- spec:docs-index:end -->

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:7b25c25fc01c
+source_rev: sha256:0a45a2cafdb3
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -21,7 +21,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 | 디자인 토큰 | `--mt-*` 사용자 속성. 기본 토큰 `--mt-p-*`는 제외. |
 | Sass | 토큰 훅 `_sass/modootoday/_site.scss`와 그 덮어쓰기 맵만. [사용자 정의](../../guides/customize/#토큰-브리지) 참고. |
 | Markdown 규칙 | `RULES.md`의 패턴, 그 `mt-*` 클래스, `mt-flat-list`. |
-| 레이아웃 | `default`, `doc`, `page`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| 레이아웃 | 아래 [레이아웃](#레이아웃) 표의 모든 레이아웃. 내부용으로 표시한 하나는 API가 아닙니다. |
 | 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`, `modootoday/brand/logo.html`. |
 | 직접 만드는 include | `visual: <name>`으로 보여 주는 `_includes/sections/<name>.html`. [사용자 정의](../../guides/customize/#섹션-비주얼과-전체-폭-페이지) 참고. |
 | 모듈 도우미와 이벤트 | 사이트 `scripts`용 ES 모듈 두 개, `mt:themechange` 이벤트, `script:` 비주얼 계약. |
@@ -50,6 +50,23 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - 쇼케이스: [스타터 데모 쇼케이스](../../guides/configuration/#스타터-데모-쇼케이스)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
+
+## 레이아웃
+
+테마가 제공하는 모든 레이아웃을 front matter를 설명하는 페이지별로 나눴습니다. 이름이 `layout:` 값입니다.
+
+| 묶음 | 레이아웃 |
+|---|---|
+| [레이아웃](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
+| [페이지 셸](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [디렉터리 레이아웃](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [상세 페이지](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
+| [마케팅 페이지](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [블로그와 뉴스](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [문서 확장](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [문서](../../layouts/documents/) | `legal`, `resume` |
+| [AI 에이전트](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| 내부용 | `detail`. 상세 페이지 레이아웃들의 바탕이니 그중 하나를 쓰세요 |
 
 ## Markdown 규칙
 

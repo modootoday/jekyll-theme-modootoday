@@ -42,14 +42,18 @@ module I18nLint
   end
 
   # Prose with code, inline code, URLs, Liquid, HTML tags and front matter keys removed; [line, text] pairs.
+  # Generated page lists are skipped: their text comes from linted front matter or from CHANGELOG.md.
   def prose(src)
-    out, fence, fm = [], nil, src.start_with?("---\n")
+    out, fence, fm, gen = [], nil, src.start_with?("---\n"), false
     src.each_line.with_index(1) do |l, i|
       if fm
         fm = false if i > 1 && l.start_with?("---")
         out << [i, l.sub(/\A\s*[\w-]+:\s*/, "")] if l.match?(/\A(?:title|description|deck|nav_title):/)
         next
       end
+      gen = true if l.include?(Modootoday::Markdown::INDEX_MARK % "begin")
+      gen = false if l.include?(Modootoday::Markdown::INDEX_MARK % "end")
+      next if gen
       if (m = l.match(/\A\s*(```+|~~~+)[^`]*\z/))
         fence = fence ? (m[1].start_with?(fence) ? nil : fence) : m[1]
         next

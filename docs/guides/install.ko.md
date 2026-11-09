@@ -1,11 +1,12 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:5874158aea48
+source_rev: sha256:e6d7459ecb9a
 nav_order: 10
 title: 설치
 description: GitHub Pages 또는 Jekyll 4 사이트에 테마를 추가합니다.
 sections:
+  - requirements
   - {c: tabs, name: methods}
   - minimal
   - check
@@ -17,6 +18,12 @@ sections:
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../guides/install/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+
+## 요구 사항
+
+- `remote_theme`을 쓰는 GitHub Pages: 기본 빌드(`github-pages` 232, Jekyll 3.10).
+- 테마 gem을 쓰는 Jekyll 4.4, Ruby 3.3 또는 3.4.
+- 테스트하는 가장 오래된 Jekyll은 3.9입니다.
 
 ## 방식 고르기
 

@@ -1,27 +1,36 @@
 ---
 nav_order: 50
 title: Roadmap
-description: What the theme supports, which stacks it runs on, and where it is heading.
+description: What the theme supports today, which stacks it runs on, and the themes of the work planned next.
 ---
 # Roadmap
 
-## Supported in 1.0
+## Supported now
 
-- Components in light and dark: alerts, sections, cards, buttons, tabs, badges, tables, accordion, steps, figures, timeline, keyboard keys, breadcrumb, table of contents, theme toggle and search. See [Components](../../components/).
-- Final content rules (`md-components v1`) and a stable [public API](../api/).
+- Every component on the [Components](../../components/) page, in light and dark, from inline text to page sections and site chrome.
+- Every layout in the [Public API](../api/#layouts) list: doc pages, page shells, directories, detail pages, marketing pages, blog and news, docs extras and documents.
+- Content rules (`md-components v1`) that stay plain GitHub Markdown, and a stable [public API](../api/).
 - Canonical, `hreflang` and Open Graph tags by default; sitemap and feed when you add the plugins.
-- A language switcher for multilingual sites, and right-to-left scripts (see the [RTL kitchen sink](../../components/kitchen-sink-rtl/)).
-- A slot contract for your own `_data/components.yml` ([API](../api/#slot-contract)).
-- Markdown twins and `llms.txt` for AI agents ([Agents](../../guides/agents/)).
-- Tag and category archive pages for the `post` layout.
-- Strict Content Security Policy support ([CSP](../../recipes/csp/)) and a [math and diagrams guide](../../recipes/figures/math-diagrams/).
+- A language switcher, interface labels in every language of the language list, and right-to-left scripts (see the [RTL kitchen sink](../../components/kitchen-sink-rtl/)).
+- Markdown twins and `llms.txt` for AI agents ([AI agents](../../guides/agents/)).
+- Diagrams, math and charts as static figures, and your own interactive elements ([Figures and widgets](../../recipes/figures/)).
+- Pages generated from data files on classic GitHub Pages ([Generated pages](../../recipes/generated-pages/)), and header search with a list filter ([Search](../../recipes/search/)).
+- A strict Content Security Policy ([CSP](../../recipes/csp/)).
 - Documentation in English, Korean and Japanese.
 
 ## Compatibility
 
-- GitHub Pages (`github-pages` 232, Jekyll 3.10) with `remote_theme`, and Jekyll 4.4 on Ruby 3.3 to 3.4. Jekyll 3.9 is the oldest supported version.
-- The public API is documented on [Public API](../api/); changes are listed in the CHANGELOG. See [Migrate and upgrade](../../guides/upgrade/).
+- The stacks the theme runs on are listed under [Install > Requirements](../../guides/install/#requirements).
+- Changes to the public API are listed in the [Changelog](../changelog/); [Migrate and upgrade](../../guides/upgrade/) says what to change in a site.
 
 ## Next
 
-- New components and options are added without breaking existing sites where possible.
+The work planned next, in no promised order. New components and options are added without breaking existing sites.
+
+- Page footer links: edit this page, report an issue and a short feedback question, with no script and no analytics.
+- Heading anchor links, feed discovery links and a print stylesheet.
+- Release pages and download tables built from GitHub Releases.
+- Freshness: a last-updated date, a notice on translations that lag their source, and sitemap dates.
+- Code line highlighting, and search results that open at the matching heading.
+- Image zoom and a reading progress bar without script, and reading offline from an installed site.
+- Checker rules for image alt text and image sizes.

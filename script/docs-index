@@ -7,6 +7,7 @@
 # For the demos moved into published starters (the done waves of the docs demo to starter map): the redirect stubs at
 # their paths and docs/_data/starters.yml, read by docs/_includes/live-demo.html. Needs the starter submodules.
 # For pages moved inside docs/ (moved_from: in the English page): a redirect stub at each old path, in every language.
+# From CHANGELOG.md: docs/_data/releases.yml and the release list on the reference/changelog pages.
 #   ruby script/docs-index                 write
 #   ruby script/docs-index --check         fail if anything is out of date (CI)
 #   ruby script/docs-index --stamp PATH... record that each translation now follows its source (source_rev:)

@@ -3,6 +3,7 @@ nav_order: 10
 title: Install
 description: Add the theme to a GitHub Pages or Jekyll 4 site.
 sections:
+  - requirements
   - {c: tabs, name: methods}
   - minimal
   - check
@@ -11,6 +12,12 @@ sections:
 # Install
 
 Pick the build you already use. All three read the same Markdown.
+
+## Requirements
+
+- GitHub Pages with `remote_theme`: the classic build (`github-pages` 232, Jekyll 3.10).
+- Jekyll 4.4 with the theme gem, on Ruby 3.3 or 3.4.
+- The oldest Jekyll the tests run on is 3.9.
 
 ## Choose a method
 

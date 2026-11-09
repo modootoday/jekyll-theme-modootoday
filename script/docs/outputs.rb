@@ -4,6 +4,7 @@ require_relative "../../lib/modootoday/stubs"
 require_relative "translations"
 require_relative "moves"
 require_relative "redirects"
+require_relative "releases"
 
 module DocsIndex
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
@@ -18,8 +19,11 @@ module DocsIndex
     end
 
     def files
-      @files ||= fields.merge(moves.files).merge(redirects.files).merge(nav_files).merge(index_lists).merge(twins).merge(llms_files)
+      @files ||= fields.merge(moves.files).merge(redirects.files).merge(nav_files).merge(index_lists).merge(releases.files)
+        .merge(twins).merge(llms_files)
     end
+
+    def releases = @releases ||= Releases.new(@t, method(:text))
 
     def translations = @translations ||= Translations.new(@t)
     def moves = @moves ||= Moves.new(@t)

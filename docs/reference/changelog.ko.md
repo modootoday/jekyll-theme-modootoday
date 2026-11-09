@@ -1,32 +1,378 @@
 ---
 lang: ko
 permalink: /ko/reference/changelog/
-source_rev: sha256:7c233ca720c2
+source_rev: sha256:ae5fb161b1ea
 nav_order: 40
 title: 변경 기록
-description: jekyll-theme-modootoday 릴리스.
+description: 테마의 모든 릴리스를 최신순으로, 변경마다 한 줄 요약과 전체 기록 링크를 붙여 보여 줍니다.
 ---
 # 변경 기록
 
-전체 기록은 [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md)에 있습니다.
+모든 릴리스를 최신순으로, 변경마다 첫 구절만 보여 줍니다. 이유와 근거 결정까지 담긴 전체 기록은 [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md)에 있고, 각 버전은 GitHub 릴리스로 연결됩니다. 사이트를 새 릴리스로 옮기려면 [마이그레이션과 업그레이드](../../guides/upgrade/)를 읽으세요.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../reference/changelog/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](../../../reference/changelog/)의 번역입니다. 아래 릴리스 목록은 CHANGELOG.md에서 만들어지므로 영어 그대로 보여 줍니다.
 
-## 1.0.0 (첫 릴리스)
+## 릴리스
 
-RubyGems에 처음 공개되는 버전입니다.
+<!-- spec:docs-index:begin -->
+### [1.6.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.6.0) – 2026-11-09
 
-- 컴포넌트: 알림, 섹션, 카드, 버튼, 탭, 배지, 표, 아코디언, 단계, 그림, 타임라인, 키보드 키, 이동 경로, 목차, 테마 전환, 클라이언트 검색, `post` 레이아웃.
-- 디자인 토큰(`--mt-*`), 컴포넌트별 Sass 파셜, `modootoday:` 설정 블록.
-- 확정된 콘텐츠 규칙(`md-components v1`), 안정된 [공개 API](../api/), `modootoday-check` 검사기.
-- 기본 SEO 태그, 언어 선택기, 오른쪽에서 왼쪽 문자 지원, 엄격한 CSP 지원, 슬롯 계약.
-- AI 에이전트가 읽는 Markdown 버전과 `llms.txt`.
-- 영어, 한국어, 일본어 문서.
+- **Added (7)**
+  - Static diagrams
+  - Fresh diagrams
+  - Static math
+  - Charts from Markdown tables
+  - Charts are drawn by the site's Chart.js
+  - Widgets
+  - Starter demo showcase
+- **Changed (3)**
+  - Rendered starters
+  - `modootoday-check` now checks typed objects nested in JSON-LD and reports problems as …
+  - Docs
+- **Fixed (12)**
+  - `modootoday-check` misreported a licence saved beside a vendored script as Markdown
+  - `modootoday-check SRC` without SITE printed only the usage
+  - A `chart:` line with an unknown type gave a source error and a second "unconverted chart" …
+  - Scroll-region names read oddly in two cases
+  - A diagram or SVG figure region was named by the full alt text, which the image inside it …
+  - Every chart's disclosure was named "Chart data", so two charts on a page gave two …
+  - The legend key of a dashed line series was a box outlined with the dash, which read as a …
+  - A long page with charts blocked input while loading
+  - Two or more code blocks that scrolled sideways on one page were all named "Code"
+  - A `list` post list
+  - The list form of a `c: timeline` section
+  - A `c: widget` section whose body ends in a `[data-mt-result]` box, the hook a `c: cta` …
 
-1.0.0 이전에 저장소에서 바로 빌드한 사이트는 [마이그레이션과 업그레이드](../../guides/upgrade/)를 읽으세요.
+### [1.5.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.5.0) – 2026-11-04
 
-> [!IMPORTANT]
-> 규칙은 `md-components v1`으로 확정되었습니다. 변경 사항은 `CHANGELOG.md`에 기록됩니다.
+- **Added (28)**
+  - On screens narrower than 30rem a site with a `logo` shows only the logo in the header …
+  - Site footer from data
+  - Search highlights the matched words
+  - A site as `jekyll new` writes it
+  - The `home` layout lists the latest posts under the body when the page has no `hero:` and …
+  - Header navigation without `_data/nav`
+  - Authors in every shape
+  - Collection self-detail
+  - `modootoday-check` reports, as an error, a layout that neither the site nor the theme …
+  - Layouts in subfolders
+  - Layout hooks, read as `var(--mt-<name>, <default>)` and never set by the theme, so a …
+  - Per-language font stacks
+  - Two semantic tokens
+  - Translations beside their sources
+  - Pages from data
+  - `modootoday-stubs`, a second executable
+  - JSON-LD from page content
+  - Search options under `modootoday.search`. For the index
+  - List and table filter
+  - Module scripts for section visuals
+  - `mt:themechange`
+  - Token bridge
+  - New semantic tokens `font-heading` and `heading-weight`
+  - `modootoday.site_css`
+  - `modootoday.code_theme: github` colours code blocks with GitHub's light and dark palettes
+  - `modootoday.asset_version`
+  - Docs QA
+  - Starter sites
+- **Changed (41)**
+  - Layout widths
+  - Blog in the flat style
+  - Heroes and pricing in the flat style
+  - Buttons, badges, tabs and cards in the flat style
+  - Docs
+  - The header search loads on first use
+  - Theme scripts are ES modules
+  - The core sheet is capped at 4,608 bytes gzip
+  - The rest of the components leave the core sheet
+  - Code styles leave the core sheet for the component sheet `content/code.css`
+  - The core sheet sheds the inline content components
+  - The optional theme sheets move once to their final context paths …
+  - Callouts, quotes and figures in the flat style
+  - Tables
+  - Opt-in table variants by kramdown attribute list
+  - Docs QA budgets are per file
+  - Code blocks are 14px on a 24px line with 1rem padding, and their corners follow the new …
+  - Doc pages use wider columns
+  - The header is one row of `header-height`
+  - A role-based type scale on a 4px baseline
+  - A flat, neutral default look
+  - The example site is split by content into the three starters
+  - The docs site keeps each translation beside its English page
+  - `search.json` lists pages in URL order
+  - `script/docs-index` writes the docs site's twin stubs through the same code as …
+  - `search.js` is rewritten one statement per line and compares the query and the text in …
+  - `modootoday.components` gains `filter`, always included like `visual`
+  - `theme-toggle.js` is rewritten one statement per line
+  - `modootoday.components` gains `visual`, always included like `lists`, `bleed` and …
+  - The core sheet adds the four new tokens to `:root`
+  - The Customize guide recommends the token bridge and `site_css` instead of shadowing …
+  - The core sheet adds the ten code tokens to `:root` and the dark-scheme rules, and `pre` …
+  - Theme stylesheet and script URLs now end in `?v=<theme version>` by default
+  - `code-copy.js` loads only on pages with a code block
+  - The docs site sets `modootoday.csp: strict`, so its pre-paint theme script comes from …
+  - Ruby 3.3 is now the oldest supported Ruby
+  - Faster builds on large sites
+  - CI
+  - The optional stylesheets and theme scripts now come from one table …
+  - `modootoday-check` source is grouped by context under `lib/modootoday/check/`
+  - Contributors
+- **Deprecated (1)**
+  - `--mt-p-space-3`
+- **Fixed (44)**
+  - `modootoday-check --twins` asked a 404 page made as Layouts > Page shells shows it for a …
+  - Migrate and upgrade and the README said a `jekyll new` site needs only its theme line …
+  - "Skip to content" landed on `main`, so on a doc page the next Tab stops were the …
+  - The Korean, Japanese and Chinese search hints said two characters were needed, though one …
+  - A search snippet cut by its ellipsis through a match left a small tint chip past the …
+  - A doc page's flat `c: cta` section was left out of the section rule, so it sat about …
+  - Below 64rem the Guides and On this page disclosures kept the native triangle while the …
+  - A `reveal: true` section stayed invisible until it scrolled into view, so a page that is …
+  - `modootoday-check` printed "OK
+  - The error page's home button, and the buttons of the minimal and home shells and the …
+  - The stacked-table classes no longer contradict the rules
+  - `modootoday-check --twins` names what to add
+  - A short code span in running text no longer splits at a hyphen at the end of a line
+  - A scrolling table showed almost no hint at its edge when code chips or the sticky first …
+  - A doc page with a sidebar and `toc: false`, such as the docs home, kept the 45rem text …
+  - A `jekyll new` site switched to the theme lost its page headings
+  - Search results
+  - The header name no longer hides a dotted brand at 360px
+  - Footer
+  - A `c: cta` section was the last tinted surface in the flat docs
+  - `cols: 3` and `cols: 4` card grids showed two columns in a doc page's 45rem text column …
+  - A status badge showed two symbols before its label, the CSS dot and the old text glyph
+  - Doc sidebar group titles
+  - In a table of two or three columns, a short code span such as `header` no longer breaks …
+  - A table of four or more columns whose later cells hold long code no longer scrolls inside …
+  - Starters
+  - The error layout ran a body paragraph of links
+  - `url: ""`
+  - A long site name no longer ends in a cut letter in the header
+  - Below 40rem a body table that does not fit now stacks into labelled blocks, as …
+  - An empty `.mt-illustration-tag` no longer draws an empty pill above the art
+  - On touch screens
+  - Diff blocks showed each added line beside the removed one, off screen, because the line …
+  - With a doc sidebar, "Edit this page" and its rule sat 8px off the text column
+  - Below 64rem the header showed only the first group's links and grew to two or three rows
+  - Inline code in table cells no longer breaks letter by letter
+  - Korean table columns no longer shrink to one syllable at narrow widths
+  - The Japanese showcase hero no longer cuts off its heading at narrow widths
+  - `llms.txt` names each translation with the theme's language name
+  - `modootoday-check` no longer reads a Markdown file that `exclude:` names, such as a …
+  - The `resume` heading and the Person or Organization `name` in the JSON-LD of `resume` and …
+  - The Customize guide no longer says any theme `_sass/` file can be replaced by a site file …
+  - `modootoday-check` accepts `figure-svg` in `modootoday.components`. The theme already …
+  - The feature request form and a JSON-LD test fixture quote flow-mapping values that hold …
 
-[홈으로](../../)
+### [1.4.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.1) – 2026-10-31
+
+- **Fixed (1)**
+  - Markdown twins and `llms-full.txt` now include a `reference` page's `packages:` table as …
+
+### [1.4.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0) – 2026-10-31
+
+- **Added (1)**
+  - `reference` layout
+- **Fixed (3)**
+  - `reference` layout
+  - Package table
+  - Docs
+
+### [1.3.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.3.0) – 2026-10-31
+
+- **Added (4)**
+  - `reference` layout, opt-in API sidebar
+  - `reference` layout, opt-in package table
+  - `modootoday-check` reports a `sidebar:` that is not true or false, a package with no …
+  - API reference demo
+
+### [1.2.3](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.3) – 2026-10-31
+
+- **Changed (1)**
+  - In a `c: features` card, the separator after a bold title written as `Title: text` or …
+- **Fixed (3)**
+  - The `redirect` layout reads the target from `page.redirect.to`, where …
+  - On a site without search the header's language menu and theme toggle sit at the inline …
+  - `modootoday-check` accepts a link whose text is a code span, such as `file.tsx`
+- **Documentation (3)**
+  - README
+  - Migrate and upgrade
+  - Install
+
+### [1.2.2](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.2) – 2026-10-31
+
+- **Fixed (1)**
+  - Long inline code
+
+### [1.2.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.1) – 2026-10-31
+
+- **Fixed (2)**
+  - `hero.c` with a site's own component name
+  - With a `modootoday.components` list, the `lists`, `bleed` and `terminal` sheets were …
+
+### [1.2.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0) – 2026-10-31
+
+- **Added (3)**
+  - `bleed: true` / `bleed: wide` on `hero:` or a section item
+  - `hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}`
+  - `visual: code` on a `c: split` section or a split hero
+
+### [1.1.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1) – 2026-10-31
+
+- **Added (12)**
+  - Release workflow
+  - `mt-flat-list`
+  - `badge: bottom` on a `c: features` section
+  - `reveal: true` on `hero:` or a section item
+  - Optional list styles
+  - `decor: <include>` on `hero:` or a section item
+  - `.mt-illustration` convention
+  - `ref:` in front matter links translations that live under different paths
+  - `modootoday.full_languages` and `modootoday-check --i18n-pages`
+  - `c: split` section
+  - `visual:` include
+  - Docs
+- **Changed (2)**
+  - Brand
+  - Size budgets have a little more headroom
+- **Fixed (2)**
+  - Checker
+  - Checker
+
+### [1.1.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0) – 2026-10-31
+
+- **Added (7)**
+  - Checker
+  - Cards
+  - Diagrams
+  - Math
+  - Checker
+  - Figures
+  - Budgets
+- **Documentation (4)**
+  - Math and diagrams
+  - Install guide
+  - Page shells
+  - Twins
+
+### [1.0.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.0.0) – 2026-10-30
+
+- **Added (40)**
+  - Links that open a new window
+  - Blog and news demos
+  - Screen readers
+  - Accessibility
+  - Docs site structure
+  - Structured data
+  - Per-component stylesheets
+  - Content components
+  - Loading and skeleton UI
+  - Tabs and accordion scripts load only on pages that use them
+  - Page shells
+  - Detail layouts
+  - Marketing layouts
+  - Docs extras
+  - Documents
+  - Recipes by site type
+  - Directory layouts
+  - Doc sidebar
+  - Page actions
+  - `color_scheme: auto-dark` and `auto-light` start in that scheme and keep the toggle
+  - Blog and news layouts
+  - Result container for CTA sections
+  - `visual: <name>` on a `sections:` item and `hero: {visual: <name>}` render a site-provided
+  - `full_width: true` front matter removes the reading-column width of `main`
+  - Breadcrumb
+  - `modootoday-check` accepts tool region markers alone on a line
+  - `modootoday.hreflang` keeps `hreflang` alternates when `seo: false`
+  - Icons
+  - Logo and favicon
+  - Built-in translations
+  - Language switcher
+  - `menu.js`
+  - On screens under 30rem, search takes its own row under the site title
+  - Tag and category archives
+  - Slot contract
+  - Slot contract
+  - Right-to-left
+  - Math and diagrams guide
+  - Japanese documentation on the docs site
+  - Guide pages in Korean and Japanese on the example site, with twins and `llms.txt` entries
+- **Fixed (5)**
+  - Pages no longer flash on load
+  - Tabs
+  - Search on a page whose language has no other pages
+  - The table of contents sits a fixed gap after the text at wide widths instead of being …
+  - The header site title links to the current language's home
+- **Changed (16)**
+  - Previous/next follows the nav
+  - Doc-only includes live under `_includes/modootoday/doc/`
+  - One prefix, no aliases
+  - Theme includes and scripts live under `modootoday/`
+  - `since:` version badges are not part of 1.0
+  - The docs site and the README quick start build CSS with `sass: {style: compressed}`
+  - Header, navigation, search, theme toggle and code copy use logical properties, so they …
+  - `modootoday-check` validates `_data/components.yml` itself
+  - `modootoday-check` also looks up each `parts:` selector in the built HTML of the pages …
+  - The `caution` token is now rose
+  - Search results show the current language first, title matches before body matches, and a …
+  - Footnotes are rendered after the last section instead of inside it
+  - On screens under 48rem, code blocks with a Copy button start below the button so it never …
+  - The rules are final
+  - The public API is documented on the docs site
+  - `modootoday-check` also warns on `md-*` classes and `var(--md-*)` in the site's own …
+- **Pre-release history (52)**
+  - Layout
+  - Brand colour
+  - Head metadata on by default
+  - `modootoday.csp: strict` loads the pre-paint script from …
+  - Optional "Last updated"
+  - Checker validates `seo`, `feed`, `csp`, `languages` and `edit_url`, and warns on `md-*` …
+  - Docs
+  - SECURITY.md
+  - CI job for the Jekyll 3.9 floor
+  - Front-matter-less twin mode
+  - Checker
+  - Visual refresh
+  - Tokens
+  - An alert
+  - Feature cards no longer show a stray "—" before the description
+  - Header nav no longer wraps into several lines on narrow screens
+  - QA CSS budget raised from 20 KB to 32 KB
+  - P2 components
+  - Read-only DTCG `tokens.json` generated in CI from the Sass maps
+  - Checker
+  - Example site
+  - `_data/components.yml` slot contract
+  - P1 components
+  - Checker
+  - Status/tag badges are also turned off when `badge` is not in `modootoday.components`
+  - Three-layer design tokens
+  - Sass split into `_sass/modootoday/{_settings,_core}.scss`, `tools/`, `tokens/` …
+  - `modootoday:` config
+  - Components
+  - `_includes/footer-custom.html` hook
+  - Checker
+  - Tests
+  - CI
+  - `required_ruby_version` is now `>= 3.2`
+  - `badges: false` in `modootoday:` is honoured
+  - `_sass/modootoday/{_tokens,_base,_components}.scss`
+  - Gem-based Jekyll theme layout
+  - Default stylesheet with CSS custom-property design tokens, light and dark
+  - `assets/js/md-tabs.js`
+  - `modootoday-check` executable
+  - Neutral example site
+  - Ruby tests
+  - md-components v1 amendments from the standards audit
+  - Automatic twins and llms files
+  - Checker `--twins`
+  - `test/consumer_test.rb`
+  - Sections split only on top-level `<h2>`
+  - Docs
+  - Checker messages for `##` and alerts nested in quotes/lists explain why and what to use …
+  - `required_ruby_version` raised to 3.0
+  - Example
+  - Raw `<name>.md` copies in `_site` on GitHub Pages
+<!-- spec:docs-index:end -->

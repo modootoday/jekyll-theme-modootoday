@@ -97,4 +97,18 @@ class DocsIndexTest < Minitest::Test
     stray = tracked.reject { |f| f.start_with?("docs/generated/") }.select { |f| f.end_with?(".md.txt", "/llms.txt", "/llms-full.txt") }
     assert_empty stray
   end
+
+  def test_changelog_page_lists_every_release_in_every_language
+    versions = File.read("#{ROOT}/CHANGELOG.md").scan(/^## \[(\d+\.\d+\.\d+)\] - /).flatten
+    data = YAML.safe_load(File.read("#{DOCS}/_data/releases.yml"))
+    assert_equal versions, data.map { |r| r["version"] }
+    data.each do |r|
+      assert r["url"].to_s.end_with?("/v#{r["version"]}"), r["version"]
+      r["sections"].each { |s| assert_equal s["count"], s["items"].count { |i| !i.strip.empty? }, "#{r["version"]} #{s["name"]}" }
+    end
+    Dir.glob("#{DOCS}/reference/changelog{,.*}.md").each do |page|
+      heads = File.read(page).scan(/^### \[(\d+\.\d+\.\d+)\]/).flatten
+      assert_equal versions, heads, page
+    end
+  end
 end

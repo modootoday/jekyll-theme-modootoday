@@ -1,12 +1,13 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:5874158aea48
+source_rev: sha256:e6d7459ecb9a
 nav_order: 10
 nav_title: 導入
 title: インストール
 description: GitHub Pages または Jekyll 4 のサイトにテーマを追加します。
 sections:
+  - requirements
   - {c: tabs, name: methods}
   - minimal
   - check
@@ -18,6 +19,12 @@ sections:
 
 > [!NOTE]
 > このページは[英語の原文](../../../guides/install/)の翻訳です。内容が異なる場合は英語版が優先されます。
+
+## 動作要件
+
+- `remote_theme` を使う GitHub Pages: 従来のビルド (`github-pages` 232、Jekyll 3.10)。
+- テーマの gem を使う Jekyll 4.4、Ruby 3.3 または 3.4。
+- テストしている最も古い Jekyll は 3.9 です。
 
 ## 方法を選ぶ
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:7b25c25fc01c
+source_rev: sha256:0a45a2cafdb3
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -21,7 +21,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | デザイントークン | `--mt-*` カスタムプロパティ。プリミティブの `--mt-p-*` は除く。 |
 | Sass | トークンフック `_sass/modootoday/_site.scss` とその上書き用マップだけ。[カスタマイズ](../../guides/customize/#トークンブリッジ)を参照。 |
 | Markdown ルール | `RULES.md` のパターン、その `mt-*` クラス、`mt-flat-list`。 |
-| レイアウト | `default`, `doc`, `page`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| レイアウト | 下の[レイアウト](#レイアウト)の表のすべてのレイアウト。内部用と記した 1 つは API ではありません。 |
 | 上書きしてよい include | `head-custom.html`、`footer-custom.html`、`modootoday/brand/logo.html`。 |
 | 自分で用意する include | `visual: <name>` で表示される `_includes/sections/<name>.html`。[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照。 |
 | モジュールのヘルパーとイベント | サイトの `scripts` 向けの ES モジュール 2 つ、`mt:themechange` イベント、`script:` ビジュアルの契約。 |
@@ -50,6 +50,23 @@ description: このテーマがサイト向けに文書化している名前、�
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
 - ショーケース: [スターターのデモのショーケース](../../guides/configuration/#スターターのデモのショーケース)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md` です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
+
+## レイアウト
+
+テーマが提供するすべてのレイアウトを、front matter を説明しているページごとに分けています。名前が `layout:` の値です。
+
+| グループ | レイアウト |
+|---|---|
+| [レイアウト](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
+| [ページシェル](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [ディレクトリレイアウト](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [詳細ページ](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
+| [マーケティングページ](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [ブログとニュース](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [ドキュメント拡張](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [文書](../../layouts/documents/) | `legal`, `resume` |
+| [AI エージェント](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| 内部用 | `detail`。詳細ページのレイアウトの土台なので、そのどれかを使ってください |
 
 ## Markdown のルール
 

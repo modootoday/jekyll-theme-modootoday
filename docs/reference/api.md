@@ -15,7 +15,7 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 | Design tokens | The `--mt-*` custom properties, not the `--mt-p-*` primitives. |
 | Sass | Only the token hook `_sass/modootoday/_site.scss` and its override maps. See [Customize](../../guides/customize/#token-bridge). |
 | Markdown rules | The patterns in `RULES.md`, their `mt-*` classes, and `mt-flat-list`. |
-| Layouts | `default`, `doc`, `page`, `post`, `archive`, `twin`, `llms`, `llms-full` |
+| Layouts | Every layout in the [Layouts](#layouts) table below; the one marked internal is not part of the API. |
 | Includes you may override | `head-custom.html`, `footer-custom.html` and `modootoday/brand/logo.html`. |
 | Includes you provide | `_includes/sections/<name>.html`, shown by `visual: <name>`. See [Customize](../../guides/customize/#section-visuals-and-full-width-pages). |
 | Module helpers and events | Two ES modules for your `scripts`, the `mt:themechange` event and the `script:` visual contract. |
@@ -44,6 +44,23 @@ Details for the rows above:
 - Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
 - Showcase: see [Starter demo showcase](../../guides/configuration/#starter-demo-showcase). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
 - Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt` and record pages `<dir>/<key>.md`. Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
+
+## Layouts
+
+Every layout the theme ships, by the page that documents its front matter. The names are the `layout:` values.
+
+| Group | Layouts |
+|---|---|
+| [Layouts](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
+| [Page shells](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [Directory layouts](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [Detail pages](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
+| [Marketing pages](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [Blog and news](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [Docs extras](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [Documents](../../layouts/documents/) | `legal`, `resume` |
+| [AI agents](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| Internal | `detail`, the base the detail pages extend; use one of them instead |
 
 ## Markdown rules
 
