@@ -1,39 +1,36 @@
 ---
-title: "ブログ記事"
-image: {path: /assets/images/blog/layouts.webp, alt: "雑誌のグリッドのように並ぶ角の丸いページタイル", width: 1024, height: 576}
-description: "著者、読了時間、タグ、共有リンクが付いた長めの記事です。"
-layout: post
 lang: ja
 permalink: /ja/layouts/blog-news/post/
-source_rev: sha256:4a141d4abfff
-twin: false
-sitemap: false
-search: false
-noindex: true
-nav_title: "ブログ記事デモ"
+source_rev: sha256:0c9a316a44ca
+title: 投稿のレイアウト
+description: "著者、読了時間、カバー、シリーズ、タグ、共有リンク、関連する投稿を備えた 1 本の投稿のレイアウトです。"
+layout: layout-reference
 nav_order: 2
-edit: false
-sidebar: false
-date: "2026-10-20 09:00:00 +0900"
-author: modootoday
-categories: [guides]
-tags: [コンポーネント]
-deck: "白い紙でも真っ黒な OLED 画面でも読みやすい色トークンを選んだ経緯です。"
 ---
-# ダークモードでも崩れない色の選び方
+# 投稿のレイアウト
 
-最初のダークテーマは、ライトの配色を反転しただけでした。本文は問題ありませんでしたが、リンクは蛍光色になり、罫線は消え、コードブロックはまぶしく光りました。いま使っている三つのルールを紹介します。
+`layout: post` は `_posts` のファイルに既定で付くレイアウトです。本文の上にタイトル、デック、著者と日付と読了時間のバイライン、カバー画像を表示し、本文の下にシリーズ、タグとカテゴリー、共有リンク、前後の投稿、関連する投稿を表示します。ページには `BlogPosting` の構造化データと `article:*` の Open Graph タグが入ります。ライブデモは blog スターターの投稿です。
 
-## 色相より先にコントラスト
+## Front matter
 
-文字のトークンは背景に対して 4.5:1、罫線は 3:1 を確認します。明度を決めてから色相を選びます。
+| キー | 用途 |
+|---|---|
+| `author` または `authors` | `_data/authors.yml` の ID、名前、または `{name, url, picture}` |
+| `image` | カバー: パス、または `{path, alt, width, height}` |
+| `image_alt`, `image_caption` | カバーの代替テキストとキャプション |
+| `deck` | タイトルの下の 1 文 |
+| `series` | 同じシリーズの投稿に「全 3 回中 2 回目」と互いへのリンクが付きます |
+| `categories`, `tags` | 投稿の下に表示され、関連する投稿の選択に使われます |
+| `last_modified_at` | 最終更新日 |
 
-## 背景が暗いほど彩度を下げる
+```yaml
+---
+title: Shipping 1.0
+author: kim
+image: {path: /assets/cover.webp, alt: The release dashboard, width: 1024, height: 576}
+series: launch
+tags: [release]
+---
+```
 
-白地では落ち着いて見える青も、黒に近い背景ではちらついて見えます。ダークの配色は同じ色相のまま、彩度を約 20% 下げています。
-
-## 実際のコンテンツで確かめる
-
-表、コールアウト、シンタックスハイライトは、色見本では見えない問題を教えてくれます。変更する前に[キッチンシンク](#)を両方のテーマで開いてみてください。
-
-> 文字より先に色が目に入るなら、強すぎます。
+著者のデータとフィードは[ブログとニュース](../)で説明しています。

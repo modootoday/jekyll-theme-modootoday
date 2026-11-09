@@ -139,7 +139,7 @@ Walkthrough: [Write your first page](https://modootoday.github.io/jekyll-theme-m
 
 Issues and pull requests are welcome. English is the canonical language; translations follow it. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-[`example/`](example/) holds three starter sites, `docs`, `blog` and `landing`, listed in `example/starters.yml`. `bundle exec rake starters:render` writes each one for GitHub Pages (`remote_theme`) and Jekyll 4, with its `Gemfile`, `README.md`, a Pages workflow that runs `modootoday-check`, and its stubs.
+The three starter sites, `docs`, `blog` and `landing`, are template repositories with live demos, listed in `example/starters.yml` and held in [`example/`](example/) as git submodules (clone with `--recurse-submodules`). `bundle exec rake starters:render` writes each one for GitHub Pages (`remote_theme`) and Jekyll 4, with its `Gemfile`, `README.md`, a Pages workflow that runs `modootoday-check`, and its stubs.
 
 ## License
 

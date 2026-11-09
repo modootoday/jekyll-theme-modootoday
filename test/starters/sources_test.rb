@@ -3,7 +3,8 @@ require "minitest/autorun"
 require "yaml"
 require_relative "../support/starters"
 
-# example/starters.yml and the source folders it names: sources hold only what a person writes.
+# example/starters.yml and the source folders it names: plain folders hold only what a person writes (a published
+# starter's gitlink also holds the files the theme renders; test/starters/published_test.rb).
 class StarterSourcesTest < Minitest::Test
   def manifest = Starters::Sources.render.manifest
 
@@ -15,7 +16,7 @@ class StarterSourcesTest < Minitest::Test
   end
 
   def test_sources_hold_no_generated_files
-    manifest.starters.each do |s|
+    manifest.starters.reject(&:published).each do |s|
       files = Starters::Render.files(s.dir)
       assert_empty files.grep(/\.md\.txt\z/), "#{s.name}: stubs are written at render time"
       next unless YAML.safe_load(File.read("#{s.dir}/_config.yml")).dig("modootoday", "records")

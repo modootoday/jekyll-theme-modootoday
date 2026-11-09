@@ -15,4 +15,10 @@ Releases are published only from a `v*` tag by `.github/workflows/release.yml`, 
 7. **Approve** the `rubygems` environment deployment when the run asks for it.
    After the gem is pushed, the same run creates the GitHub Release for the tag, with the `## [X.Y.Z]` entry of `CHANGELOG.md` as the notes (`ruby script/release-notes vX.Y.Z` prints them; run it before tagging to check). It skips the step when the Release already exists.
 8. **After release.** Check the gem page and the GitHub Release. The docs site stays on `remote_theme: …@main`, because it documents and demonstrates `main` (adr:modootoday/20261105073859); the install examples, README and starters carry the release pin.
-9. **Starters.** On the tag, `bundle exec rake starters:render` writes the starter sites to `pkg/starters/<stack>/<name>/`, pinned to the new version (`remote_theme: …@vX.Y.Z` and the `Gemfile` line come from the gemspec), and `rake starters:check` confirms the tree matches a fresh render. Until publishing is automated (after 1.5.0; there is no `starters:publish` task yet), copy a rendered starter into its repository from `example/starters.yml` by hand.
+9. **Starters.** The published starters are gitlinks in `example/` to their own repositories (adr:modootoday/20261104171142). A starter pins only released tags and the theme's release never waits for one, so after the gem is out:
+   1. In each starter's repository (`cd example/<name>`, on `main`), merge `next` if it has commits.
+   2. From the theme checkout at the tag, run `bundle exec rake starters:render[<name>]`: it moves the `remote_theme` pin and the `Gemfile` line to `vX.Y.Z` and refreshes the files the theme renders in the work tree.
+   3. Commit `chore: theme vX.Y.Z` there and push `main`; the starter's Pages workflow redeploys its demo. Check the demo once it is green.
+   4. In the theme repository, one commit `chore(starters): pin starters to vX.Y.Z` moves every gitlink; `rake starters:check` must pass with no pin warning.
+
+   Until then `rake starters:check` warns that the pins are behind the gemspec version. A starter that is not published yet stays a plain folder rendered into `pkg/starters/<stack>/<name>/`.

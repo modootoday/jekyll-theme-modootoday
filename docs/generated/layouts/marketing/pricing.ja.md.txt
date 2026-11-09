@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: pricing.ja.md
+lang: ja
+path: layouts/marketing/pricing.ja.md.txt
+permalink: /ja/layouts/marketing/pricing/index.md
+---

@@ -1,19 +1,9 @@
 ---
-title: Home layout demo
-description: A hero from front matter, then the page body.
-layout: home
+title: Home
+description: Moved to the demo of the landing starter.
+layout: redirect
+redirect_to: https://modootoday.github.io/jekyll-theme-modootoday-landing-starter/
 twin: false
 sitemap: false
-edit: false
-hero:
-  image: {path: /assets/images/site/hero.webp, alt: "", width: 1024, height: 576}
-  title: Build a site from Markdown
-  text: Every layout in this kit is plain Liquid and works on GitHub Pages.
-  actions:
-    - {label: Layouts, url: /layouts/}
-    - {label: Install, url: /guides/install/}
 nav_exclude: true
 ---
-## What you get
-
-The hero comes from `hero:` in front matter. The page body follows, and the layout adds WebSite structured data.

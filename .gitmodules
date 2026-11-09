@@ -1,0 +1,9 @@
+[submodule "example/docs"]
+	path = example/docs
+	url = https://github.com/modootoday/jekyll-theme-modootoday-docs-starter.git
+[submodule "example/blog"]
+	path = example/blog
+	url = https://github.com/modootoday/jekyll-theme-modootoday-blog-starter.git
+[submodule "example/landing"]
+	path = example/landing
+	url = https://github.com/modootoday/jekyll-theme-modootoday-landing-starter.git

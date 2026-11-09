@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: pricing.md
+path: layouts/marketing/pricing.md.txt
+permalink: /layouts/marketing/pricing/index.md
+---

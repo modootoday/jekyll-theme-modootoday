@@ -42,3 +42,44 @@ jobs:
           name: lighthouse
           path: qa-out/lighthouse
           retention-days: 14
+
+  # The starter demo builds (rake starters:demo: _config.demo.yml layered, at the repository's base path) on their qa:
+  # pages. SEO is not scored: a demo carries noindex on purpose.
+  starters:
+    name: Lighthouse ${{ matrix.starter }} demo (median of 3)
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [docs, blog, landing]
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
+      RUNS: "3"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: true
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Demo build
+        run: bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/demo]"
+      - name: Run Lighthouse
+        run: |
+          demo="$RUNNER_TEMP/demo/${{ matrix.starter }}"
+          export BASE="$(ruby -rjson -e 'puts JSON.parse(File.read(ARGV[0]))["base"]' "$demo.json")"
+          export PAGES="$(ruby -rjson -e 'puts JSON.parse(File.read(ARGV[0]))["qa"].map { |p| p.empty? ? "." : p }.join(" ")' "$demo.json")"
+          CHROME_PATH="$(command -v google-chrome)" SKIP=seo test/system/lighthouse/lighthouse.sh "$demo" qa-out/lighthouse-${{ matrix.starter }}
+      - name: Check budget
+        run: node test/system/lighthouse/budget.mjs qa-out/lighthouse-${{ matrix.starter }} --skip seo
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: lighthouse-${{ matrix.starter }}
+          path: qa-out/lighthouse-${{ matrix.starter }}
+          retention-days: 14

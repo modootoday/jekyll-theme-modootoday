@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: integrations.md
+path: layouts/directory/integrations.md.txt
+permalink: /layouts/directory/integrations/index.md
+---

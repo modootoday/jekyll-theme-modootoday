@@ -32,7 +32,7 @@ export async function checkColumnAlign(page, scheme, url, fails) {
 
 // Measure: on wide layouts running text stops at the measure token (45rem), so no paragraph or plain list item in main is
 // wider than that at 1440px (about 90 Latin characters a line).
-export const MEASURE_PAGES = ["layouts/detail/project/", "layouts/directory/events/", "layouts/demo/search/", "layouts/documents/legal/", "layouts/docs-extra/api/"];
+export const MEASURE_PAGES = ["layouts/detail/project/", "layouts/directory/events/", "layouts/demo/search/", "layouts/docs-extra/api/"];
 export function wideText() {
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const max = Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--mt-measure")) * rem) || 45 * rem;

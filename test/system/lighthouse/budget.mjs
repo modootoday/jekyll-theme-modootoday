@@ -4,16 +4,19 @@ import fs from "node:fs";
 import path from "node:path";
 const args = process.argv.slice(2);
 const summaryOnly = args.includes("--summary-only");
-const dir = args.find((a) => !a.startsWith("--")) || "qa-out/lighthouse";
+// --skip seo: a starter demo build carries noindex on purpose, which fails the crawlable audit.
+const skip = args.includes("--skip") ? args[args.indexOf("--skip") + 1].split(",") : [];
+const dir = args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--skip") || "qa-out/lighthouse";
 const budget = JSON.parse(fs.readFileSync(new URL("./budget.json", import.meta.url)));
-const cats = ["performance", "accessibility", "best-practices", "seo"];
+const cats = ["performance", "accessibility", "best-practices", "seo"].filter((c) => !skip.includes(c));
 const groups = {};
 for (const f of fs.readdirSync(dir).filter((f) => /\.run\d+\.json$/.test(f))) {
   const name = f.replace(/\.run\d+\.json$/, "");
   try { (groups[name] ||= []).push(JSON.parse(fs.readFileSync(path.join(dir, f))).categories); } catch { (groups[name] ||= []).push(null); }
 }
 const median = (xs) => { const s = xs.filter((x) => x !== null).sort((a, b) => a - b); return s.length ? s[Math.floor((s.length - 1) / 2)] : null; };
-let fail = 0; const lines = ["| page | perf | a11y | bp | seo |", "|---|---|---|---|---|"];
+const short = { performance: "perf", accessibility: "a11y", "best-practices": "bp", seo: "seo" };
+let fail = 0; const lines = [`| page | ${cats.map((c) => short[c]).join(" | ")} |`, `|---|${cats.map(() => "---|").join("")}`];
 if (!Object.keys(groups).length) { console.error("lighthouse-budget: no runs in " + dir); process.exit(1); }
 for (const [name, runs] of Object.entries(groups).sort()) {
   const ff = name.endsWith("-desktop") ? "desktop" : "mobile";

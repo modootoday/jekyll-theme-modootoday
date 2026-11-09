@@ -28,7 +28,7 @@
         - {title: 채용 데모, url: /ko/layouts/directory/jobs/}
         - {title: 행사 데모, url: /ko/layouts/directory/events/}
         - {title: 후원사 데모, url: /ko/layouts/directory/sponsors/}
-        - {title: 연동 데모, url: /ko/layouts/directory/integrations/}
+        - {title: 연동 레이아웃, url: /ko/layouts/directory/integrations/}
     - title: 상세 페이지
       url: /ko/layouts/detail/
       items:
@@ -41,7 +41,7 @@
       url: /ko/layouts/marketing/
       items:
         - {title: 기능 데모, url: /ko/layouts/marketing/feature/}
-        - {title: 요금 데모, url: /ko/layouts/marketing/pricing/}
+        - {title: 요금제 레이아웃, url: /ko/layouts/marketing/pricing/}
         - {title: 다운로드 데모, url: /ko/layouts/marketing/download/}
         - {title: 브랜드 데모, url: /ko/layouts/marketing/brand/}
         - {title: 링크 데모, url: /ko/layouts/marketing/links/}
@@ -49,8 +49,8 @@
     - title: 블로그와 뉴스
       url: /ko/layouts/blog-news/
       items:
-        - {title: 블로그 데모, url: /ko/layouts/blog-news/blog/}
-        - {title: 블로그 글 데모, url: /ko/layouts/blog-news/post/}
+        - {title: 블로그 레이아웃, url: /ko/layouts/blog-news/blog/}
+        - {title: 글 레이아웃, url: /ko/layouts/blog-news/post/}
         - {title: 뉴스 데모, url: /ko/layouts/blog-news/news/}
         - {title: 뉴스 기사 데모, url: /ko/layouts/blog-news/article/}
         - {title: 아카이브 데모, url: /ko/layouts/blog-news/archive/}
@@ -68,7 +68,7 @@
     - title: 문서
       url: /ko/layouts/documents/
       items:
-        - {title: 이용 약관 데모, url: /ko/layouts/documents/legal/}
+        - {title: 약관 레이아웃, url: /ko/layouts/documents/legal/}
         - {title: 이력서 데모, url: /ko/layouts/documents/resume/}
 - title: 레시피
   url: /ko/recipes/

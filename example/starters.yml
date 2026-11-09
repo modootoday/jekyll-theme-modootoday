@@ -1,11 +1,14 @@
-# The starter sites. Each one is the folder of the same name beside this file and builds on its own.
+# The starter sites. Each one is the folder of the same name beside this file (or path:, from the theme root) and builds
+# on its own. A published starter's folder is a gitlink to its repository, holding the rendered github-pages tree.
 # `rake starters:render` writes each starter for each stack to pkg/starters/<stack>/<name>/, adding what the theme
-# owns: the remote_theme pin (github-pages stack), Gemfile, README.md, the Pages workflow, _config.demo.yml and stubs.
+# owns: the remote_theme pin (github-pages stack), Gemfile, README.md, the Pages workflow, _config.demo.yml and stubs;
+# `rake starters:render[NAME]` also rewrites those files in a published starter's work tree.
 #   repo: where the rendered starter is published; its Pages site is the live demo and "Use this starter" is its
 #         /generate link   description: that repository's one-line description
 #   languages: first = default, the others in <lang>/ folders   stacks: github-pages (remote_theme, classic builder)
 #   and/or jekyll4 (theme gem)   check: modootoday-check flags   showcase: {style: bar | pill} of the demo (bar)
-#   qa: pages of the demo build the QA opens (the showcase audit opens the first two)
+#   qa: pages of the demo build the QA opens (the showcase audit opens the first two; test/system/audit/config.mjs
+#       STARTERS names the checks each page gets)
 # demo.docs_url: the theme documentation every demo's showcase links to.
 demo:
   docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
@@ -17,7 +20,7 @@ starters:
     stacks: [github-pages, jekyll4]
     check: [--twins, --byte-exact=api]
     showcase: {style: bar}
-    qa: ["", guide/, ko/, ja/]
+    qa: ["", guide/, ko/, ja/, plugins/, plugins/lantern/]
   - name: blog
     repo: modootoday/jekyll-theme-modootoday-blog-starter
     description: A blog starter for jekyll-theme-modootoday, with posts, an author page and a feed
@@ -25,7 +28,7 @@ starters:
     stacks: [github-pages, jekyll4]
     check: [--twins]
     showcase: {style: pill}
-    qa: ["", authors/alex/]
+    qa: ["", authors/alex/, notes/2026/10/20/hello-blog/]
   - name: landing
     repo: modootoday/jekyll-theme-modootoday-landing-starter
     description: A product landing page starter for jekyll-theme-modootoday, with pricing and a legal page
@@ -33,4 +36,4 @@ starters:
     stacks: [github-pages, jekyll4]
     check: [--twins]
     showcase: {style: bar}
-    qa: ["", pricing/]
+    qa: ["", pricing/, privacy/]

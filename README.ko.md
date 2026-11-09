@@ -142,7 +142,7 @@ bundle exec modootoday-check . _site
 
 이슈와 풀 리퀘스트를 환영합니다. [CONTRIBUTING.md](CONTRIBUTING.md)를 보세요. 이 문서는 영어 [README.md](README.md)의 번역이며, 내용이 다르면 영어가 우선합니다.
 
-[`example/`](example/)에는 시작 사이트 세 개(`docs`, `blog`, `landing`)가 있고, 목록은 `example/starters.yml`에 있습니다. `bundle exec rake starters:render`는 각 사이트를 GitHub Pages(`remote_theme`)용과 Jekyll 4용으로 만들고, `Gemfile`, `README.md`, `modootoday-check`를 실행하는 Pages 워크플로, 스텁을 함께 씁니다.
+시작 사이트 세 개(`docs`, `blog`, `landing`)는 라이브 데모가 딸린 템플릿 저장소이고, 목록은 `example/starters.yml`에, 저장소는 [`example/`](example/)에 git 서브모듈로 있습니다(`--recurse-submodules`로 복제합니다). `bundle exec rake starters:render`는 각 사이트를 GitHub Pages(`remote_theme`)용과 Jekyll 4용으로 만들고, `Gemfile`, `README.md`, `modootoday-check`를 실행하는 Pages 워크플로, 스텁을 함께 씁니다.
 
 ## 라이선스
 

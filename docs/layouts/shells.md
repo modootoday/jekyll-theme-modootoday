@@ -11,7 +11,7 @@ Set `layout:` in a page's front matter. The page shells below load an extra styl
 |---|---|---|
 | `minimal` | Standalone notices, sign-in notes, link pages. No header, page meta or pagination. | [Minimal](/jekyll-theme-modootoday/layouts/demo/minimal/) |
 | `wide` | Card grids, wide tables and galleries. Full header and footer, no reading-width cap. | [Wide](/jekyll-theme-modootoday/layouts/demo/wide/) |
-| `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Without a hero title or a `# ` heading in the body, the page title, else the site title, is the `h1`. Adds WebSite structured data. | [Home](/jekyll-theme-modootoday/layouts/demo/home/) |
+| `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Without a hero title or a `# ` heading in the body, the page title, else the site title, is the `h1`. Adds WebSite structured data. | [Home](https://modootoday.github.io/jekyll-theme-modootoday-landing-starter/ "new-window") |
 | `page` | The name Jekyll, minima and `jekyll new` use for a plain page. It is the `doc` layout under that name. Like every `doc` page, it prints `title:` as the `h1` when the body has no `# ` heading, as minima does. | none |
 | `error` | 404, 410 and 500 pages with localized title and text. | [Error](/jekyll-theme-modootoday/layouts/demo/error/) |
 | `redirect` | A moved page. Sends visitors on without script, so it works under a strict CSP. | [Redirect](/jekyll-theme-modootoday/layouts/demo/redirect/) |

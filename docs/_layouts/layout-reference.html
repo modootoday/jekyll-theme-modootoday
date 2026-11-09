@@ -1,0 +1,10 @@
+---
+layout: doc
+---
+{%- comment -%}Docs site only: a layout's reference page (its demo moved into a starter). The body stays plain Markdown, so its
+  twin and llms-full.txt match it; the static preview and "Live demo" link (docs/_includes/live-demo.html) follow the lead
+  paragraph. Pure Liquid (Jekyll 3.10 and 4).{%- endcomment -%}
+{%- assign _lrl = content | split: "</p>" | first -%}
+{{ _lrl }}</p>
+{% include live-demo.html %}
+{{ content | remove_first: _lrl | remove_first: "</p>" }}

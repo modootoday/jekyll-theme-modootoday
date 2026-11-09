@@ -3,8 +3,9 @@
 import { serveSite } from "../site/server.mjs";
 import { CSP, CSP_PAGES } from "./config.mjs";
 
-export async function checkCsp(browser, site, fails) {
-  const { origin, close } = await serveSite(site, { csp: CSP });
+// pages and base: a starter demo build's qa: pages and its Pages base path (test/system/site/demos.mjs).
+export async function checkCsp(browser, site, fails, pages = CSP_PAGES, base = undefined) {
+  const { origin, close } = await serveSite(site, { csp: CSP, base });
   const ctx = await browser.newContext();
   // Registered before any page script runs, so violations during parsing are counted too.
   await ctx.addInitScript(() => {
@@ -24,7 +25,7 @@ export async function checkCsp(browser, site, fails) {
     errors.push(e.message);
   });
   const rows = [];
-  for (const p of CSP_PAGES) {
+  for (const p of pages) {
     errors = [];
     const res = await page.goto(origin + p, { waitUntil: "networkidle" });
     const header = res ? res.headers()["content-security-policy"] : undefined;

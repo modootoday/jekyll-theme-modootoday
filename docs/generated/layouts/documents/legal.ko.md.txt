@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: legal.ko.md
+lang: ko
+path: layouts/documents/legal.ko.md.txt
+permalink: /ko/layouts/documents/legal/index.md
+---

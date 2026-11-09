@@ -1,8 +1,10 @@
 name: Starters
 
-# Renders every starter of example/starters.yml (rake starters:render), fails on drift, then builds and checks each
-# one on both stacks: the github-pages 232 bundle and Jekyll 4, and the real GitHub Pages builder on remote_theme;
-# then builds each live demo with its _config.demo.yml and runs the showcase audit on it.
+# Renders every starter of example/starters.yml (rake starters:render), fails on drift (a published starter, a gitlink,
+# against a render of its content at the release it pins), then builds and checks each one on both stacks: the
+# github-pages 232 bundle and Jekyll 4, and the real GitHub Pages builder on remote_theme; then builds each live demo with
+# its _config.demo.yml and runs the starter audit on it. Visual and Lighthouse runs of the demos are in visual.yml and
+# lighthouse.yml, with the docs ones.
 on:
   push:
     branches: [main]
@@ -39,6 +41,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          submodules: true
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -104,6 +107,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          submodules: true
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.4"
@@ -115,6 +119,8 @@ jobs:
           kinds="$(sed -n 's/^bundle exec modootoday-stubs \. \(.*\) --write$/\1/p' "$CLASSIC_TREE/README.md") --aliases"
           ruby exe/modootoday-stubs "$CLASSIC_TREE" $kinds --write
           ruby exe/modootoday-stubs "$CLASSIC_TREE" $kinds --check
+          # remote_theme ignores the Gemfile; left in, the builder warns that the github-pages gem cannot satisfy it.
+          rm -f "$CLASSIC_TREE/Gemfile" "$CLASSIC_TREE/Gemfile.lock"
       - uses: actions/jekyll-build-pages@v1
         with:
           source: ${{ env.CLASSIC_TREE }}
@@ -125,9 +131,10 @@ jobs:
           ruby exe/modootoday-check "$CLASSIC_TREE" rt-site $flags --aliases
 
   # Each live demo as its repository deploys it (_config.demo.yml layered, github-pages 232) in a browser: the showcase
-  # audit (test/system/audit/features/showcase.mjs) on the first two qa: pages of the manifest.
+  # audit (test/system/audit/features/showcase.mjs) on the first two qa: pages of the manifest, then the page, budget and
+  # CSP checks that moved into the starters (test/system/audit/config.mjs STARTERS) on every qa: page.
   showcase:
-    name: ${{ matrix.starter }} demo showcase
+    name: ${{ matrix.starter }} demo audit
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -139,6 +146,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          submodules: true
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.4"
@@ -152,11 +160,11 @@ jobs:
         run: bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/demo]"
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Showcase audit
-        run: node test/system/showcase.mjs "$RUNNER_TEMP/demo" "qa-out/showcase-${{ matrix.starter }}"
+      - name: Starter audit
+        run: node test/system/starters.mjs "$RUNNER_TEMP/demo" "qa-out/starters-${{ matrix.starter }}"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: showcase-${{ matrix.starter }}
+          name: starters-${{ matrix.starter }}
           path: qa-out
           retention-days: 14

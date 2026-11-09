@@ -1,6 +1,0 @@
-# Only what this site changes; every other string comes from the theme's own catalog.
-title: 예제 문서
-description: Example Docs (ko).
-tabs: {label: 설치 방법}
-post: {date_format: "%Y년 %m월 %d일"}
-archive: {empty: 아직 글이 없습니다.}

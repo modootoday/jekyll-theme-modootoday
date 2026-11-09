@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/blog-news/
-source_rev: sha256:93a03a008efa
+source_rev: sha256:f76ef6fb5be6
 title: 블로그와 뉴스
 nav_order: 50
 description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 페이지, Atom 피드를 만듭니다.
@@ -21,12 +21,12 @@ description: 블로그 목록, 뉴스 첫 화면, 작성자 정보, 작성자 �
 
 ## 데모
 
-아래 데모는 문서 밖에서 레이아웃 하나로 만든 실제 페이지입니다. 여기서 열거나 새 창에서 열어 보세요. 데모 안에서 예시 밖으로 나가는 링크는 `#`로 되어 있습니다.
+아래 데모는 문서 밖에서 레이아웃 하나로 만든 실제 페이지입니다. 여기서 열거나 새 창에서 열어 보세요. blog와 post 레이아웃은 여기에 설명 페이지가 있고, 라이브 데모는 blog 스타터에 있습니다. 데모 안에서 예시 밖으로 나가는 링크는 `#`로 되어 있습니다.
 
 | 데모 | 레이아웃 | 새 창 |
 | --- | --- | --- |
-| [블로그 목록](blog/) | `blog` | [새 창에서 열기](blog/ "new-window") |
-| [블로그 글](post/) | `post` | [새 창에서 열기](post/ "new-window") |
+| [블로그 목록](blog/) | `blog` | [라이브 데모](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
+| [블로그 글](post/) | `post` | [라이브 데모](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
 | [뉴스 첫 화면](news/) | `news` | [새 창에서 열기](news/ "new-window") |
 | [뉴스 기사](article/) | `news-article` | [새 창에서 열기](article/ "new-window") |
 | [연도별 아카이브](archive/) | `archive` | [새 창에서 열기](archive/ "new-window") |

@@ -59,6 +59,12 @@ class StarterManifestTest < Minitest::Test
     refused(/is a map of/, [entry(extra: 1)])
   end
 
+  def test_path_is_a_folder_under_the_theme_root_and_a_plain_folder_is_not_published
+    refused(/path: a folder relative to the theme root/, [entry(path: "../s")])
+    refused(/path: a folder relative to the theme root/, [entry(path: "/tmp/s")])
+    refute site([entry]).fetch("s").published
+  end
+
   def test_source_must_leave_rendered_files_to_the_renderer
     m = site([entry], { "s/_config.yml" => CONFIG, "s/Gemfile" => "source x\n" })
     e = assert_raises(Starters::ManifestError) { Starters::Render.new(m, THEME).one(m.fetch("s"), "jekyll4", "#{@dir}/out") }

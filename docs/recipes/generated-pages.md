@@ -7,7 +7,7 @@ description: Give every record of a JSON or YAML data file its own page on class
 
 A catalog, a plugin list or a glossary often starts as one data file. Jekyll 4 plugins can turn each record into a page, but classic GitHub Pages runs no plugin of yours, so every page needs a file in the repository. `modootoday-stubs --records` writes those files for you: one short page per record, with only front matter. The layout reads the rest of the record from the data file when the site builds.
 
-See the [records demo](../records/): five records from one JSON file, each with its own page, and a list you can filter.
+The [docs starter's plugin list](https://modootoday.github.io/jekyll-theme-modootoday-docs-starter/plugins/ "new-window") shows it: five records from one JSON file, each with its own page, and a list you can filter.
 
 ## Declare a record set
 

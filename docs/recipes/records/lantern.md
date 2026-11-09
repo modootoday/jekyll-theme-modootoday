@@ -1,9 +1,9 @@
 ---
-layout: detail
-title: "Lantern"
-description: "Highlights the section a reader came to from a search result."
-permalink: /recipes/records/lantern/
-record: plugins/lantern
-record_index: 0
+title: Lantern
+description: Moved to the demo of the docs starter.
+layout: redirect
+redirect_to: https://modootoday.github.io/jekyll-theme-modootoday-docs-starter/plugins/lantern/
 twin: false
+sitemap: false
+nav_exclude: true
 ---

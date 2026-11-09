@@ -1,24 +1,31 @@
 # frozen_string_literal: true
 
 require "yaml"
+require_relative "published"
 
 module Starters
   ManifestError = Class.new(StandardError)
 
-  # One starter: its source folder, the repository it is published to, the one-line description that repository
-  # shows, its languages (first = default), the stacks it is rendered for, the modootoday-check flags its sites pass,
-  # its demo's showcase style, the pages its QA opens and the theme documentation the showcase links to.
-  Starter = Struct.new(:name, :dir, :repo, :description, :languages, :stacks, :check, :style, :qa, :docs_url, keyword_init: true) do
+  # One starter: its folder (path, from the theme root), whether git holds that folder as a gitlink to the published
+  # repository, the repository, the one-line description it shows, its languages (first = default), the stacks it is
+  # rendered for, the modootoday-check flags its sites pass, its demo's showcase style, the pages its QA opens and the
+  # theme documentation the showcase links to.
+  Starter = Struct.new(:name, :path, :dir, :published, :repo, :description, :languages, :stacks, :check, :style, :qa, :docs_url,
+                       keyword_init: true) do
     # The repository's own Pages site is the live demo; "Use this starter" is GitHub's template link.
     def demo_url = "https://#{repo.split("/").first.downcase}.github.io/#{repo.split("/").last}/"
     def generate_url = "https://github.com/#{repo}/generate"
     def baseurl = "/#{repo.split("/").last}"
     def topics = ["jekyll", "jekyll-theme", "github-pages", "starter-template", name]
+    # The gitlink's URL: GitHub Pages fetches only public HTTPS submodules.
+    def submodule_url = "https://github.com/#{repo}.git"
+    # For a bundle: on the classic stack --github-pages also reads the github-pages pin from Gemfile.lock.
+    def check_flags(remote) = (check + (remote ? ["--github-pages"] : [])).join(" ")
   end
 
-  # example/starters.yml: the one list of starters. Each source folder sits beside the manifest.
+  # example/starters.yml: the one list of starters. Each folder sits beside the manifest unless path: names another.
   class Manifest
-    FIELDS = %w[name repo description languages stacks check showcase qa].freeze
+    FIELDS = %w[name path repo description languages stacks check showcase qa].freeze
     NAME = /\A[a-z][a-z0-9-]*\z/
     REPO = %r{\A[\w.-]+/[\w.-]+\z}
     HTTPS = %r{\Ahttps://\S+/\z}
@@ -50,12 +57,23 @@ module Starters
       raise ManifestError, "#{path}: each starter is a map of #{FIELDS.join(", ")}" unless e.is_a?(Hash) && (e.keys - FIELDS).empty?
       name = e["name"].to_s
       raise ManifestError, "#{path}: name #{name.inspect}: lowercase letters, digits and -" unless name.match?(NAME)
-      dir = File.join(File.dirname(path), name)
-      raise ManifestError, "#{name}: source folder #{dir} has no _config.yml" unless File.file?(File.join(dir, "_config.yml"))
+      rel = folder(e, name)
+      dir = File.expand_path(rel, @theme.root)
+      published = Published.gitlink?(@theme.root, rel)
+      hint = published ? " (a gitlink: run git submodule update --init)" : ""
+      raise ManifestError, "#{name}: source folder #{dir} has no _config.yml#{hint}" unless File.file?(File.join(dir, "_config.yml"))
       raise ManifestError, "#{name}: repo: owner/name" unless e["repo"].to_s.match?(REPO)
-      Starter.new(name: name, dir: dir, repo: e["repo"], description: description(e, name),
+      Starter.new(name: name, path: rel, dir: dir, published: published, repo: e["repo"], description: description(e, name),
                   languages: list(e, name, "languages", @theme.languages), stacks: list(e, name, "stacks", @theme.stacks),
                   check: Array(e["check"]).map(&:to_s), style: style(e, name), qa: qa(e, name), docs_url: docs_url)
+    end
+
+    # path: relative to the theme root, without ..; by default the folder named like the starter beside the manifest.
+    def folder(e, name)
+      return File.join(File.dirname(path), name).delete_prefix("#{@theme.root}/") unless e.key?("path")
+      rel = e["path"].to_s
+      raise ManifestError, "#{name}: path: a folder relative to the theme root" if rel.empty? || rel.start_with?("/") || rel.split("/").include?("..")
+      rel
     end
 
     # GitHub shows it as the repository description: one line, at most 350 characters.

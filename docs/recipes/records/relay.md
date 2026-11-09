@@ -1,9 +1,9 @@
 ---
-layout: detail
-title: "Relay"
-description: "Sends new posts to a feed reader service."
-permalink: /recipes/records/relay/
-record: plugins/relay
-record_index: 4
+title: Relay
+description: Moved to the demo of the docs starter.
+layout: redirect
+redirect_to: https://modootoday.github.io/jekyll-theme-modootoday-docs-starter/plugins/relay/
 twin: false
+sitemap: false
+nav_exclude: true
 ---

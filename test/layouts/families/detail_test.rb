@@ -64,7 +64,6 @@ class DetailLayoutsTest < Minitest::Test
       assert_includes list, '<a href="/plugins/lantern/">Lantern</a>'
       assert_includes list, '<p class="mt-dir-text">Sends new posts to a feed reader service.</p>'
       assert_includes list, '<p class="mt-dir-meta">Publishing</p>'
-      assert_equal File.read("#{ROOT}/example/docs/_data/plugins.json"), File.read("#{ROOT}/docs/_data/plugins.json"), "the docs demo uses the docs starter's records"
       out, st = check(src, s, "--byte-exact=api")
       assert st.success?, out
     end

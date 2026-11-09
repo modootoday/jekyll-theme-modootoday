@@ -4,6 +4,8 @@
 # Docs site generator: one source of truth (docs/_data/sections.yml + each page's front matter).
 # Writes docs/_data/nav/main*.yml, the page list in each section index, lang: and permalink: in each translation
 # (guides/install.ko.md), and under docs/generated/ the .md.txt twin stubs and the llms.txt / llms-full.txt stubs.
+# For the demos moved into published starters (the done waves of the docs demo to starter map): the redirect stubs at
+# their paths and docs/_data/starters.yml, read by docs/_includes/live-demo.html. Needs the starter submodules.
 #   ruby script/docs-index                 write
 #   ruby script/docs-index --check         fail if anything is out of date (CI)
 #   ruby script/docs-index --stamp PATH... record that each translation now follows its source (source_rev:)

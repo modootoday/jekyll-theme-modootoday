@@ -1,0 +1,15 @@
+{%- comment -%}Docs site only: the static preview and "Live demo" link of a demo that moved into a starter, from _data/starters.yml,
+  which script/docs-index writes from example/starters.yml and the docs demo to starter map. key= the English source path
+  without .md (default: this page's). The link opens in a new tab with the theme's new-window attributes and hint.{%- endcomment -%}
+{%- assign _ldk = include.key | default: page.path | remove: ".md" | split: "." | first -%}
+{%- assign _ld = site.data.starters[_ldk] -%}
+{%- if _ld -%}
+{%- assign _ldl = page.lang | default: site.lang | default: "en" -%}
+{%- case _ldl -%}
+{%- when "ko" -%}{%- assign _ldt = "라이브 데모" -%}{%- assign _lda = "스타터 데모의 이 레이아웃 화면" -%}
+{%- when "ja" -%}{%- assign _ldt = "ライブデモ" -%}{%- assign _lda = "スターターのデモで表示したこのレイアウト" -%}
+{%- else -%}{%- assign _ldt = "Live demo" -%}{%- assign _lda = "This layout in the starter's demo" -%}
+{%- endcase %}
+{% if _ld.preview %}<p class="docs-live-preview"><img src="{{ _ld.preview | relative_url }}" alt="{{ _lda }}" width="800" height="500" loading="lazy"></p>
+{% endif %}<p class="docs-live-demo"><a href="{{ _ld.url }}"{% include modootoday/links/attrs.html on=true %}>{{ _ldt }}</a></p>
+{% endif -%}

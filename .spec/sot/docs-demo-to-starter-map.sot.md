@@ -52,7 +52,7 @@ Where each demo page of the docs site goes when its starter is published, what t
 | `layouts/marketing/links.md` | links | portfolio | `/links/` | 4 | ref |
 | `layouts/marketing/contact.md` | contact | saas | `/contact/` | 3 | ref |
 | `layouts/blog-news/blog.md` | blog | blog | `/` | 1 | ref |
-| `layouts/blog-news/post.md` | post | blog | a post page | 1 | ref |
+| `layouts/blog-news/post.md` | post | blog | `/notes/2026/10/20/hello-blog/` | 1 | ref |
 | `layouts/blog-news/news.md` | news | newsroom | `/` | 5 | ref |
 | `layouts/blog-news/article.md` | news-article | newsroom | an article page | 5 | ref |
 | `layouts/blog-news/archive.md` | archive | blog | `/archive/` | 2 | ref |
@@ -90,16 +90,18 @@ The six group index pages (`layouts/<group>/index.md`) and `layouts/shells.md` a
 
 ### 4. Waves
 
-| Wave | Starters published or republished | Theme prerequisite | Rows that move |
-|---|---|---|---|
-| 1 | docs, blog, landing, as they are today | the showcase (1.6.0) | 5 layout rows and 3 shell or record rows |
-| 2 | docs, blog, landing, reworked on the presets | registry, config and the `base`, `editorial` and `product` presets | 4 layout rows and 8 shell or feature rows |
-| 3 | saas, help-center | the product features and sibling-language mode | 8 layout rows and 2 shell rows |
-| 4 | portfolio, marketplace | the `studio` preset; the marketplace data shape | 4 layout rows and 1 feature row |
-| 5 | company, oss, course, newsroom | the `terminal` preset | 8 layout rows |
-| 6 | conference, podcast | the `stage` preset, schedule and audio | 3 layout rows |
+| Wave | Starters published or republished | Theme prerequisite | Rows that move | Status |
+|---|---|---|---|---|
+| 1 | docs, blog, landing, as they are today | the showcase (1.6.0) | 5 layout rows and 3 shell or record rows | done |
+| 2 | docs, blog, landing, reworked on the presets | registry, config and the `base`, `editorial` and `product` presets | 4 layout rows and 8 shell or feature rows | |
+| 3 | saas, help-center | the product features and sibling-language mode | 8 layout rows and 2 shell rows | |
+| 4 | portfolio, marketplace | the `studio` preset; the marketplace data shape | 4 layout rows and 1 feature row | |
+| 5 | company, oss, course, newsroom | the `terminal` preset | 8 layout rows | |
+| 6 | conference, podcast | the `stage` preset, schedule and audio | 3 layout rows | |
 
 Total: 32 layout rows and 14 shell, feature and record rows. The record row covers the records index and its five record pages.
+
+A wave's status becomes `done` in the theme change that moves its rows. `script/docs-index` reads the rows of done waves: it writes the redirect stubs and `docs/_data/starters.yml`, the "Live demo" link of each reference page. In a done wave, each page in the starter is a path, never a description.
 
 ### 5. What is not a demo and stays in the docs
 
@@ -119,7 +121,7 @@ Starters per layout. "+" lists further starters that also show it.
 
 | Layout | Starter |
 |---|---|
-| default, doc, error, twin, llms, llms-full | every starter |
+| default, doc, page (the plain Jekyll name of doc), error, twin, llms, llms-full | every starter |
 | home | landing (its home keeps `layout: home`) + portfolio |
 | minimal | landing |
 | wide | saas + company |

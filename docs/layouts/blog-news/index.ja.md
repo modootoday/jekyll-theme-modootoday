@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/blog-news/
-source_rev: sha256:93a03a008efa
+source_rev: sha256:f76ef6fb5be6
 title: ブログとニュース
 nav_order: 50
 description: ブログ一覧、ニュースのトップページ、署名、著者ページ、Atom フィードを作ります。
@@ -21,12 +21,12 @@ description: ブログ一覧、ニュースのトップページ、署名、著�
 
 ## デモ
 
-以下のデモは、ドキュメントの外でレイアウトをひとつ使って作った実際のページです。ここで開くか、新しいウィンドウで開いてください。デモ内でサンプルの外に出てしまうリンクは `#` にしてあります。
+以下のデモは、ドキュメントの外でレイアウトをひとつ使って作った実際のページです。ここで開くか、新しいウィンドウで開いてください。blog と post のレイアウトは、ここに説明のページがあり、ライブデモは blog スターターにあります。デモ内でサンプルの外に出てしまうリンクは `#` にしてあります。
 
 | デモ | レイアウト | 新しいウィンドウ |
 | --- | --- | --- |
-| [ブログ一覧](blog/) | `blog` | [新しいウィンドウで開く](blog/ "new-window") |
-| [ブログ記事](post/) | `post` | [新しいウィンドウで開く](post/ "new-window") |
+| [ブログ一覧](blog/) | `blog` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
+| [ブログ記事](post/) | `post` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
 | [ニューストップ](news/) | `news` | [新しいウィンドウで開く](news/ "new-window") |
 | [ニュース記事](article/) | `news-article` | [新しいウィンドウで開く](article/ "new-window") |
 | [年別アーカイブ](archive/) | `archive` | [新しいウィンドウで開く](archive/ "new-window") |

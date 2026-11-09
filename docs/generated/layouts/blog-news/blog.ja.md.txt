@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: blog.ja.md
+lang: ja
+path: layouts/blog-news/blog.ja.md.txt
+permalink: /ja/layouts/blog-news/blog/index.md
+---

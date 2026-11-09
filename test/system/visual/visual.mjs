@@ -4,6 +4,7 @@
 //   node test/system/visual/visual.mjs SITE_DIR [--baseline DIR] [--out DIR] [--update] [--report]
 //                      [--threshold 0.1] [--max-diff 0.001]
 //
+//   --demo FILE  a starter demo build's DIR/<name>.json (rake starters:demo): its qa: pages at its base path
 //   --update     write the screenshots as the new baseline instead of comparing
 //   --report     always exit 0 (CI report mode); the result goes to stdout and $GITHUB_STEP_SUMMARY
 //   --threshold  per-pixel colour distance tolerated by pixelmatch (0..1, default 0.1)
@@ -25,6 +26,7 @@ const baseline = path.resolve(opt("--baseline", "test/system/visual/baseline"));
 const out = path.resolve(opt("--out", "qa-out/visual"));
 const threshold = Number(opt("--threshold", "0.1"));
 const maxDiff = Number(opt("--max-diff", "0.001"));
+const demo = opt("--demo", null);
 const update = flag("--update");
 const report = flag("--report");
 const site = path.resolve(args[0] || "docs/_site");
@@ -36,7 +38,9 @@ export const PAGES = { home: "", "kitchen-sink": "components/kitchen-sink/", con
 export const WIDTHS = [360, 600, 720, 1024, 1440];
 export const SCHEMES = ["light", "dark"];
 
-const { origin, close } = await serveSite(site);
+const starter = demo ? JSON.parse(fs.readFileSync(demo, "utf8")) : null;
+const shots = starter ? Object.fromEntries(starter.qa.map((p) => [`${starter.name}-${(p || "home/").replace(/\/$/, "").replace(/\//g, "_")}`, p])) : PAGES;
+const { origin, close } = await serveSite(site, starter ? { base: starter.base } : {});
 
 // Freeze what changes between runs: animations, transitions, caret, and the "last updated" date.
 const FREEZE = `*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}
@@ -49,7 +53,7 @@ for (const scheme of SCHEMES) {
   for (const width of WIDTHS) {
     const ctx = await browser.newContext({ colorScheme: scheme, viewport: { width, height: 900 }, deviceScaleFactor: 1, reducedMotion: "reduce", locale: "en-US", timezoneId: "UTC" });
     const page = await ctx.newPage();
-    for (const [key, p] of Object.entries(PAGES)) {
+    for (const [key, p] of Object.entries(shots)) {
       const name = `${key}-${width}-${scheme}`;
       await page.goto(origin + p, { waitUntil: "networkidle" });
       await page.addStyleTag({ content: FREEZE });

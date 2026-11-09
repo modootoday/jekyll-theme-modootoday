@@ -15,7 +15,7 @@ export const EXAMPLE_PAGES = [
   ["components/kitchen-sink-rtl/", "components/kitchen-sink-rtl", [""]], ["recipes/charts/", "recipes/charts", ALL],
   ["recipes/widgets/", "recipes/widgets", ALL], ["recipes/math-diagrams/", "recipes/math-diagrams", ALL],
   ["layouts/demo/filter/", "layouts/demo/filter", [""]], ["layouts/demo/orbit/", "layouts/demo/orbit", [""]],
-  ["layouts/demo/csp/", "layouts/demo/csp", [""]], ["layouts/marketing/pricing/", "layouts/marketing/pricing", [""]],
+  ["layouts/demo/csp/", "layouts/demo/csp", [""]],
 ];
 // Views per language: English in both schemes at both ends, the other languages light at the narrow end.
 export const VIEWS = { "": [["light", 360], ["light", 1440], ["dark", 360], ["dark", 1440]], "ko/": [["light", 360]], "ja/": [["light", 360]] };

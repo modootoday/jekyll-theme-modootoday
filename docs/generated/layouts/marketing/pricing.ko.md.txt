@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: pricing.ko.md
+lang: ko
+path: layouts/marketing/pricing.ko.md.txt
+permalink: /ko/layouts/marketing/pricing/index.md
+---

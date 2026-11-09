@@ -1,9 +1,9 @@
 ---
-layout: detail
-title: "Ledger"
-description: "Keeps a changelog page from the release notes in your repository."
-permalink: /recipes/records/ledger/
-record: plugins/ledger
-record_index: 1
+title: Ledger
+description: Moved to the demo of the docs starter.
+layout: redirect
+redirect_to: https://modootoday.github.io/jekyll-theme-modootoday-docs-starter/plugins/ledger/
 twin: false
+sitemap: false
+nav_exclude: true
 ---

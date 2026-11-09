@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/generated-pages/
-source_rev: sha256:d63615a1dc8e
+source_rev: sha256:a2be5639b5f5
 nav_order: 27
 title: 生成ページ
 description: JSON や YAML のデータファイルにあるレコードごとに、クラシックな GitHub Pages でページを 1 つずつ作り、全体を絞り込めるリストにまとめ、ファイルをバイト単位でそのまま公開します。
@@ -13,7 +13,7 @@ description: JSON や YAML のデータファイルにあるレコードごと�
 
 カタログ、プラグイン一覧、用語集は、1 つのデータファイルから始まることがよくあります。Jekyll 4 のプラグインならレコードごとにページを作れますが、クラシックな GitHub Pages はサイト独自のプラグインを実行しないため、ページごとにリポジトリ内のファイルが必要です。そのファイルは `modootoday-stubs --records` が書きます。レコードごとに front matter だけの短いページを作り、残りの内容はサイトのビルド時にレイアウトがデータファイルから読み込みます。
 
-[レコードのデモ](../../../recipes/records/)を見てください。1 つの JSON ファイルにある 5 件のレコードにそれぞれページがあり、絞り込めるリストにまとまっています。
+[docs スターターのプラグイン一覧](https://modootoday.github.io/jekyll-theme-modootoday-docs-starter/plugins/ "new-window")で確認できます。1 つの JSON ファイルにある 5 件のレコードにそれぞれページがあり、絞り込めるリストにまとまっています。
 
 ## レコードセットの宣言
 

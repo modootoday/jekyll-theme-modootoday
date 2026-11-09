@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: blog.md
+path: layouts/blog-news/blog.md.txt
+permalink: /layouts/blog-news/blog/index.md
+---

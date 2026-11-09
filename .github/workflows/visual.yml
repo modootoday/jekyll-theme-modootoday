@@ -81,3 +81,68 @@ jobs:
           path: qa-out/visual
           retention-days: 14
           if-no-files-found: ignore
+
+  # The starter demo builds (rake starters:demo) on their qa: pages, from the base commit and from this commit.
+  starters:
+    name: ${{ matrix.starter }} demo screenshots vs base
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [docs, blog, landing]
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/github-pages.gemfile
+      BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
+      BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: true
+          fetch-depth: 0
+      - name: Default base is the latest release tag
+        if: env.BASE_SHA == ''
+        run: echo "BASE_SHA=$(git describe --tags --abbrev=0 --match 'v*')" >> "$GITHUB_ENV"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Demo build at the base commit
+        id: base
+        run: |
+          skip() {
+            echo "No usable base demo ($1); skipping the comparison." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          }
+          git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || skip "$BASE_SHA is not a commit here"
+          git worktree add -q "$RUNNER_TEMP/base" "$BASE_SHA"
+          git -C "$RUNNER_TEMP/base" submodule update --init --quiet
+          export BUNDLE_GEMFILE="$RUNNER_TEMP/base/gemfiles/github-pages.gemfile"
+          bundle install --quiet
+          (cd "$RUNNER_TEMP/base" && bundle exec rake -T starters:demo | grep -q starters:demo) || skip "$BASE_SHA has no starters:demo task"
+          (cd "$RUNNER_TEMP/base" && bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/base-demo]")
+      - name: Baseline from the base commit
+        if: steps.base.outputs.skip != 'true'
+        run: node test/system/visual/visual.mjs "$RUNNER_TEMP/base-demo/${{ matrix.starter }}" --demo "$RUNNER_TEMP/base-demo/${{ matrix.starter }}.json" --update --baseline qa-out/visual-${{ matrix.starter }}/baseline
+      - name: Demo build at this commit
+        if: steps.base.outputs.skip != 'true'
+        run: bundle exec rake "starters:demo[${{ matrix.starter }},$RUNNER_TEMP/demo]"
+      - name: Compare
+        if: steps.base.outputs.skip != 'true'
+        env:
+          REPORT: ${{ (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'visual-ok')) && '--report' || '' }}
+        run: node test/system/visual/visual.mjs "$RUNNER_TEMP/demo/${{ matrix.starter }}" --demo "$RUNNER_TEMP/demo/${{ matrix.starter }}.json" --baseline qa-out/visual-${{ matrix.starter }}/baseline --out qa-out/visual-${{ matrix.starter }}/changed $REPORT
+      - uses: actions/upload-artifact@v7
+        if: always() && steps.base.outputs.skip != 'true'
+        with:
+          name: visual-${{ matrix.starter }}
+          path: qa-out/visual-${{ matrix.starter }}
+          retention-days: 14
+          if-no-files-found: ignore

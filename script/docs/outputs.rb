@@ -2,10 +2,12 @@
 
 require_relative "../../lib/modootoday/stubs"
 require_relative "translations"
+require_relative "moves"
 
 module DocsIndex
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
-  # Tool output (twin stubs, llms files) lives under GENERATED, which only this class writes.
+  # Tool output (twin stubs, llms files) lives under GENERATED, which only this class writes; the redirect stubs of
+  # moved demos replace the demo pages at their own paths (Moves).
   class Outputs
     GENERATED = "generated"
     LLMS = %w[llms llms-full].freeze
@@ -15,10 +17,11 @@ module DocsIndex
     end
 
     def files
-      @files ||= fields.merge(nav_files).merge(index_lists).merge(twins).merge(llms_files)
+      @files ||= fields.merge(moves.files).merge(nav_files).merge(index_lists).merge(twins).merge(llms_files)
     end
 
     def translations = @translations ||= Translations.new(@t)
+    def moves = @moves ||= Moves.new(@t)
 
     # Files under GENERATED that no output wants any more.
     def orphans

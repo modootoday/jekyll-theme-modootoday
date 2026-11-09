@@ -18,12 +18,12 @@ Five layouts turn the theme into a blog or a newsroom. They are Liquid only, so 
 
 ## Demos
 
-Each demo below is a real page built with one layout, outside the docs. Open it here or in a new window. Links inside the demos that would leave the sample point to `#`.
+Each demo below is a real page built with one layout, outside the docs. Open it here or in a new window; the blog and post layouts have a reference page here and a live demo in the blog starter. Links inside the demos that would leave the sample point to `#`.
 
 | Demo | Layout | New window |
 | --- | --- | --- |
-| [Blog index](blog/) | `blog` | [Open in new window](blog/ "new-window") |
-| [Blog post](post/) | `post` | [Open in new window](post/ "new-window") |
+| [Blog index](blog/) | `blog` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
+| [Blog post](post/) | `post` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
 | [News front page](news/) | `news` | [Open in new window](news/ "new-window") |
 | [News article](article/) | `news-article` | [Open in new window](article/ "new-window") |
 | [Yearly archive](archive/) | `archive` | [Open in new window](archive/ "new-window") |

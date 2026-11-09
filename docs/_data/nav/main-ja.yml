@@ -28,7 +28,7 @@
         - {title: 求人のデモ, url: /ja/layouts/directory/jobs/}
         - {title: イベントのデモ, url: /ja/layouts/directory/events/}
         - {title: スポンサーのデモ, url: /ja/layouts/directory/sponsors/}
-        - {title: 連携のデモ, url: /ja/layouts/directory/integrations/}
+        - {title: 連携のレイアウト, url: /ja/layouts/directory/integrations/}
     - title: 詳細ページ
       url: /ja/layouts/detail/
       items:
@@ -41,7 +41,7 @@
       url: /ja/layouts/marketing/
       items:
         - {title: 機能のデモ, url: /ja/layouts/marketing/feature/}
-        - {title: 料金のデモ, url: /ja/layouts/marketing/pricing/}
+        - {title: 料金のレイアウト, url: /ja/layouts/marketing/pricing/}
         - {title: ダウンロードのデモ, url: /ja/layouts/marketing/download/}
         - {title: ブランドのデモ, url: /ja/layouts/marketing/brand/}
         - {title: リンクのデモ, url: /ja/layouts/marketing/links/}
@@ -49,8 +49,8 @@
     - title: ブログとニュース
       url: /ja/layouts/blog-news/
       items:
-        - {title: ブログデモ, url: /ja/layouts/blog-news/blog/}
-        - {title: ブログ記事デモ, url: /ja/layouts/blog-news/post/}
+        - {title: ブログのレイアウト, url: /ja/layouts/blog-news/blog/}
+        - {title: 投稿のレイアウト, url: /ja/layouts/blog-news/post/}
         - {title: ニュースデモ, url: /ja/layouts/blog-news/news/}
         - {title: ニュース記事デモ, url: /ja/layouts/blog-news/article/}
         - {title: アーカイブデモ, url: /ja/layouts/blog-news/archive/}
@@ -68,7 +68,7 @@
     - title: 文書
       url: /ja/layouts/documents/
       items:
-        - {title: 利用規約のデモ, url: /ja/layouts/documents/legal/}
+        - {title: 規約のレイアウト, url: /ja/layouts/documents/legal/}
         - {title: 履歴書のデモ, url: /ja/layouts/documents/resume/}
 - title: レシピ
   url: /ja/recipes/

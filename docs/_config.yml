@@ -41,9 +41,6 @@ modootoday:
   scripts:
     orbit: {src: /assets/js/hero/orbit.js, css: /assets/css/orbit.css}
     counter: {src: /assets/js/widgets/x-counter.js, css: /assets/css/widgets/x-counter.css, element: x-counter}
-  # demo only: one page per record of _data/plugins.json (recipes/records), written by modootoday-stubs docs --records --write
-  records:
-    plugins: {dir: recipes/records, title: name, description: summary, facts: [category, version, tags], body: readme}
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
   - {scope: {type: posts}, values: {layout: post}}

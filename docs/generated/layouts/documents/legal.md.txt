@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: legal.md
+path: layouts/documents/legal.md.txt
+permalink: /layouts/documents/legal/index.md
+---

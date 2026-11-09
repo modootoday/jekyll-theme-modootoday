@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: post.ko.md
+lang: ko
+path: layouts/blog-news/post.ko.md.txt
+permalink: /ko/layouts/blog-news/post/index.md
+---

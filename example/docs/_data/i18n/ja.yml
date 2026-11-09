@@ -1,7 +1,0 @@
-# Only what this site changes; every other string comes from the theme's own catalog.
-title: サンプル文書
-description: Example Docs (ja).
-callout: {note: 注記}
-tabs: {label: インストール方法}
-skip: 本文へスキップ
-post: {date_format: "%Y年%m月%d日"}

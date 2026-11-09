@@ -1,36 +1,33 @@
 ---
-title: "Blog post"
-image: {path: /assets/images/blog/layouts.webp, alt: "Rounded page tiles arranged like a magazine grid", width: 1024, height: 576}
-description: "A long-form post with byline, reading time, tags and share links."
-layout: post
-twin: false
-sitemap: false
-search: false
-noindex: true
-nav_title: "Post demo"
+title: Post layout
+description: "One post with a byline, reading time, a cover, series links, tags, share links and related posts."
+layout: layout-reference
 nav_order: 2
-edit: false
-sidebar: false
-date: "2026-10-20 09:00:00 +0900"
-author: modootoday
-categories: [guides]
-tags: [tokens, dark-mode]
-deck: "How we picked one set of colour tokens that reads well on paper white and on OLED black."
 ---
-# Choosing colours that survive dark mode
+# Post layout
 
-Our first dark theme simply inverted the light palette. Body text looked fine, but links turned neon, borders vanished and code blocks glowed. This post walks through the three rules we use now.
+`layout: post` is what a file in `_posts` gets by default. Above the text it prints the title, a deck, the byline with the authors, the dates and the reading time, and the cover image; below it, the series, tags and categories, share links, the previous and next posts and related posts. The page carries `BlogPosting` structured data and `article:*` Open Graph tags. The live demo is a post of the blog starter.
 
-## Start from contrast, not from hue
+## Front matter
 
-Every text token is checked against its background at 4.5:1 and every border at 3:1. We pick the hue last, once the lightness is right.
+| Key | Use |
+|---|---|
+| `author` or `authors` | Ids from `_data/authors.yml`, a name, or `{name, url, picture}` |
+| `image` | The cover: a path, or `{path, alt, width, height}` |
+| `image_alt`, `image_caption` | The cover's text alternative and caption |
+| `deck` | A sentence under the title |
+| `series` | Posts with the same series get "Part 2 of 3" and links to each other |
+| `categories`, `tags` | Listed under the post and used to pick related posts |
+| `last_modified_at` | The date of the last update |
 
-## Lower saturation as the background darkens
+```yaml
+---
+title: Shipping 1.0
+author: kim
+image: {path: /assets/cover.webp, alt: The release dashboard, width: 1024, height: 576}
+series: launch
+tags: [release]
+---
+```
 
-A blue that is calm on white vibrates on near-black. The dark palette keeps the same hues with about 20% less chroma.
-
-## Test with real content
-
-Tables, callouts and syntax-highlighted code catch problems that a colour swatch never shows. Open the [kitchen sink](#) in both themes before you ship a change.
-
-> Rule of thumb: if you notice the colour before the words, it is too strong.
+[Blog and news](../) covers author data and feeds.

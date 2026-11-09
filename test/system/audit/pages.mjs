@@ -16,9 +16,10 @@ import { checkCodeCopy } from "./layout/code-copy.mjs";
 import { checkTableReflow, checkWideTables, REFLOW_PAGES } from "./layout/table-reflow.mjs";
 import { checkPlanCta } from "./layout/plan-cta.mjs";
 
-// Header height: a doc page, pricing, the blog list and the home page; anchor jumps: two long pages.
-const HEADER_PAGES = ["guides/configuration/", "layouts/marketing/pricing/", "blog/", ""];
-const ANCHOR_PAGES = ["guides/configuration/", "layouts/documents/legal/"];
+// Header height: a doc page, the blog list and the home page; anchor jumps: a long page. A starter demo build passes its own
+// lists (config.mjs STARTERS): pricing and legal moved there with their rows.
+const HEADER_PAGES = ["guides/configuration/", "blog/", ""];
+const ANCHOR_PAGES = ["guides/configuration/"];
 
 async function checkRtl(page, scheme, url, fails) {
   // logical properties must mirror: callout icon and steps rail on the right, code left-to-right
@@ -33,7 +34,8 @@ async function checkRtl(page, scheme, url, fails) {
   for (const [k, ok] of Object.entries(r)) if (k === "dir" ? ok !== "rtl" : !ok) fails.push(`rtl ${k} not mirrored ${scheme} ${url}`);
 }
 
-export async function checkPage(page, { origin, out, report, fails }, { scheme, lang, p }) {
+export async function checkPage(page, { origin, out, report, fails, lists = {} }, { scheme, lang, p }) {
+  const { header = HEADER_PAGES, anchor = ANCHOR_PAGES, measure = MEASURE_PAGES, code = ["guides/agents/"] } = lists;
   const url = origin + lang + p;
   const resp = await page.goto(url, { waitUntil: "networkidle" });
   if (!resp || resp.status() !== 200) { if (lang === "ja/") return; fails.push(`HTTP ${resp && resp.status()} ${url}`); return; }
@@ -54,13 +56,13 @@ export async function checkPage(page, { origin, out, report, fails }, { scheme, 
   if (await page.$(".mt-badge")) await checkChipRows(page, scheme, url, fails);
   await checkListRows(page, scheme, url, fails);
   if (await page.$('[role="tablist"]')) await checkTabsScroll(page, scheme, url, fails);
-  if (p === "guides/agents/" || p === "layouts/blog-news/post/") await checkInlineCodeWrap(page, scheme, url, fails);
+  if (code.includes(p)) await checkInlineCodeWrap(page, scheme, url, fails);
   if ((p === "guides/agents/" && !lang) || RTL_PAGES.includes(p)) await checkHeaderEnd(page, scheme, url, fails);
   if (p === "" && (lang === "ko/" || lang === "ja/")) await checkCjkClip(page, scheme, url, fails);
-  if (!lang && HEADER_PAGES.includes(p)) await checkHeaderHeight(page, scheme, url, fails);
-  if (!lang && ANCHOR_PAGES.includes(p)) await checkAnchorOffset(page, scheme, url, fails);
+  if (!lang && header.includes(p)) await checkHeaderHeight(page, scheme, url, fails);
+  if (!lang && anchor.includes(p)) await checkAnchorOffset(page, scheme, url, fails);
   if (!lang && ALIGN_PAGES.includes(p)) await checkColumnAlign(page, scheme, url, fails);
-  if (!lang && MEASURE_PAGES.includes(p)) await checkMeasure(page, scheme, url, fails);
+  if (!lang && measure.includes(p)) await checkMeasure(page, scheme, url, fails);
   if (await page.$(".mt-code-copy")) await checkCodeCopy(page, scheme, url, fails);
   if (REFLOW_PAGES.includes(p)) {
     await checkTableReflow(page, scheme, url, fails);

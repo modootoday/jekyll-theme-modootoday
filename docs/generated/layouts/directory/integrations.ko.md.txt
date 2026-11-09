@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: integrations.ko.md
+lang: ko
+path: layouts/directory/integrations.ko.md.txt
+permalink: /ko/layouts/directory/integrations/index.md
+---
