@@ -74,6 +74,10 @@ class ChangelogTest < Minitest::Test
     newer.each { |v, e| assert_match(/\A## [^\n]+\n\nVisual: \S/, e, "#{v}: open the entry with `Visual: `") }
   end
 
+  def test_released_entries_keep_no_release_prep_placeholder
+    released.each { |v, e| refute_includes e, "<!-- release-prep:", "#{v}: write the Visual line and the summary" }
+  end
+
   def test_no_local_paths_or_addresses
     LOCAL.each { |re| refute_match re, source }
   end

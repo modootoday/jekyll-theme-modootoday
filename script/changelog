@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Writes the [Unreleased] section of CHANGELOG.md from the commits since the last release tag, through git-cliff and
+# cliff.toml; released entries are never touched. Commit, run this, then amend: the text depends on messages only.
+#   ruby script/changelog            write
+#   ruby script/changelog --check    fail when the committed section differs (CI)
+require_relative "release/changelog"
+
+log = Release::Changelog.new
+begin
+  want = log.expected_unreleased
+rescue Release::Error => e
+  abort "changelog: #{e.message}"
+end
+exit 0 if log.unreleased == want
+
+if ARGV.include?("--check")
+  warn "changelog: CHANGELOG.md [Unreleased] differs from the commits: run ruby script/changelog (or bundle exec rake fix)"
+  exit 1
+end
+File.write(Release::Changelog::FILE, log.with_unreleased(want))
+puts "changelog: wrote [Unreleased]"

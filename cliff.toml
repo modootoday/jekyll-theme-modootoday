@@ -1,0 +1,75 @@
+# git-cliff renders the CHANGELOG sections from Conventional Commits and their footers (adr:modootoday/20261109225758).
+# script/changelog writes [Unreleased]; script/release-prep writes a new version's entry. Released entries are never
+# regenerated. Footers: Changelog: <text> | none, Refs: <spec id>, Visual: <text>, Migration: <text>,
+# Deprecated: <text>, Removed: <text>, BREAKING CHANGE: <text>.
+
+[changelog]
+header = ""
+body = """
+{%- set_global visual = [] -%}
+{%- for commit in commits -%}
+  {%- for f in commit.footers -%}
+    {%- if f.token == "Visual" -%}{%- set_global visual = visual | concat(with=f.value | replace(from="\n", to=" ")) -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if version -%}
+## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d", timezone="UTC") }}
+{%- else -%}
+## [Unreleased]
+{%- endif %}
+{% if visual | length > 0 %}
+Visual: {{ visual | join(sep=" ") }}
+{% elif version %}
+Visual: <!-- release-prep: name the intended differences the visual run reports against the last release, or say there are none -->
+{% endif -%}
+{% if version %}
+<!-- release-prep: write a one-paragraph summary of this release here -->
+{% endif -%}
+{%- for group, commits in commits | filter(attribute="merge_commit", value=false) | group_by(attribute="group") -%}
+{%- if group is not ending_with("Unlisted") %}
+### {{ group | striptags | trim }}
+{% for commit in commits %}
+{%- set_global text = commit.message | split(pat="\n") | first | trim -%}
+{%- set_global refs = [] -%}
+{%- set_global upgrade = "" -%}
+{%- for f in commit.footers -%}
+  {%- if f.token == "Changelog" -%}{%- set_global text = f.value | replace(from="\n", to=" ") | trim -%}{%- endif -%}
+  {%- if f.token == "Deprecated" or f.token == "Removed" -%}{%- set_global text = f.value | replace(from="\n", to=" ") | trim -%}{%- endif -%}
+  {%- if f.token == "Refs" -%}{%- set_global refs = refs | concat(with=f.value | trim) -%}{%- endif -%}
+  {%- if f.token == "Migration" -%}{%- set_global upgrade = f.value | replace(from="\n", to=" ") | trim -%}{%- endif -%}
+{%- endfor %}
+- {% if commit.breaking %}**Breaking:** {% endif %}{{ text | upper_first }}{% if refs | length > 0 %} ({{ refs | join(sep=", ") }}){% endif %}{% if upgrade %} Upgrade: {{ upgrade }}{% endif %}
+{%- endfor %}
+{% endif -%}
+{%- endfor %}
+"""
+footer = ""
+trim = false
+postprocessors = []
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+split_commits = false
+protect_breaking_commits = true
+filter_commits = false
+tag_pattern = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+topo_order = false
+sort_commits = "oldest"
+# First match wins. Sections in Keep a Changelog order; "Unlisted" commits only lend their Visual: footer.
+commit_parsers = [
+  { footer = '^Changelog:\s*none\s*$', skip = true },
+  { footer = "^BREAKING[ -]CHANGE", group = "<!-- 1 -->Changed" },
+  { message = "^[a-z]+(\\([^)]*\\))?!:", group = "<!-- 1 -->Changed" },
+  { footer = "^Deprecated:", group = "<!-- 2 -->Deprecated" },
+  { footer = "^Removed:", group = "<!-- 3 -->Removed" },
+  { message = "^feat", group = "<!-- 0 -->Added" },
+  { message = "^fix\\(security\\)", group = "<!-- 5 -->Security" },
+  { message = "^fix", group = "<!-- 4 -->Fixed" },
+  { message = "^perf", group = "<!-- 1 -->Changed" },
+  { footer = "^Changelog:", group = "<!-- 1 -->Changed" },
+  { message = "^docs\\((spec|changelog|contributing|agents|releasing)\\)", skip = true },
+  { message = "^docs", group = "<!-- 1 -->Changed" },
+  { footer = "^Visual:", group = "<!-- 9 -->Unlisted" },
+  { message = ".*", skip = true },
+]
