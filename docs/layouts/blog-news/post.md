@@ -3,6 +3,7 @@ title: Post layout
 description: "One post with a byline, reading time, a cover, series links, tags, share links and related posts."
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # Post layout
 

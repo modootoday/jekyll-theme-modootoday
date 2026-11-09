@@ -19,4 +19,4 @@ nav_order: 2
 
 This page uses `layout: team`. Each person becomes a schema.org Person in the page's structured data.
 
-[Back to directory layouts](/jekyll-theme-modootoday/layouts/directory/)
+[Back to directory layouts](../)

@@ -9,12 +9,12 @@ These layouts build the pages around a product: what it does, what it costs, whe
 
 | Layout | Front matter | Structured data | Demo |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`, `cta` | WebPage | [Feature](/jekyll-theme-modootoday/layouts/marketing/feature/) |
-| `pricing` | `plans`, `currency` | WebPage | [Pricing](/jekyll-theme-modootoday/layouts/marketing/pricing/) |
-| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](/jekyll-theme-modootoday/layouts/marketing/download/) |
-| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](/jekyll-theme-modootoday/layouts/marketing/brand/) |
-| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](/jekyll-theme-modootoday/layouts/marketing/links/) |
-| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [Contact](/jekyll-theme-modootoday/layouts/marketing/contact/) |
+| `feature` | `features: [{title, text}]`, `cta` | WebPage | [Feature](feature/) |
+| `pricing` | `plans`, `currency` | WebPage | [Pricing](pricing/) |
+| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](download/) |
+| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](brand/) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](links/) |
+| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [Contact](contact/) |
 
 For product data, add a `schema:` map (for example `type: SoftwareApplication` with `offers`) and the page prints it as the main entity.
 

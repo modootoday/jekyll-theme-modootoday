@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/jobs/
-source_rev: sha256:a86167ed1795
+source_rev: sha256:ce147cb50bc2
 title: "求人のデモ"
 description: "部署で絞り込める求人一覧です。"
 layout: jobs
@@ -19,4 +19,4 @@ nav_order: 3
 
 このページは `layout: jobs` を使います。各行を `layout: job` のページにリンクすると詳細な求人になります。
 
-[ディレクトリレイアウトに戻る](/jekyll-theme-modootoday/ja/layouts/directory/)
+[ディレクトリレイアウトに戻る](../)

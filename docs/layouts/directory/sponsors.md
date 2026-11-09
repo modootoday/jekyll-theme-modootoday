@@ -16,4 +16,4 @@ nav_order: 5
 
 This page uses `layout: sponsors`. Pick a tier to show only those sponsors.
 
-[Back to directory layouts](/jekyll-theme-modootoday/layouts/directory/)
+[Back to directory layouts](../)

@@ -6,6 +6,7 @@ title: 投稿のレイアウト
 description: "著者、読了時間、カバー、シリーズ、タグ、共有リンク、関連する投稿を備えた 1 本の投稿のレイアウトです。"
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # 投稿のレイアウト
 

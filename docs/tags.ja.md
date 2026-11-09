@@ -3,7 +3,6 @@ lang: ja
 permalink: /ja/tags/
 source_rev: sha256:2204b6f9e6f3
 nav_order: 20
-nav_section: reference
 title: タグ
 description: このサイトのすべての記事をタグ別にまとめています。
 layout: archive

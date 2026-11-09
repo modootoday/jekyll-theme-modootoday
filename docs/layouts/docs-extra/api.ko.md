@@ -20,6 +20,7 @@ packages:
   - {name: "modootoday-core", version: "1.4.0", text: "파싱, 렌더링, 페이지 모델.", url: "#", links: [{label: "문서", url: "#"}, {label: "소스", url: "#"}]}
   - {name: "modootoday-cli", version: "1.4.0", text: "`modootoday` 명령.", url: "#", links: [{label: "문서", url: "#"}, {label: "소스", url: "#"}]}
   - {name: "modootoday-lint", version: "0.9.2", text: "페이지를 레이아웃 계약과 대조해 검사합니다.", url: "#", links: [{label: "문서", url: "#"}, {label: "소스", url: "#"}]}
+twin: false
 ---
 사이드바는 멤버를 `group:`으로 묶고, 표는 라이브러리를 이루는 패키지를 보여 줍니다.
 

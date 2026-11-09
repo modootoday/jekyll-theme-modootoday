@@ -1,6 +1,5 @@
 ---
 nav_order: 30
-nav_section: reference
 title: Categories
 description: Every post on this site, grouped by category.
 layout: archive

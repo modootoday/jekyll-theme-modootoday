@@ -6,6 +6,7 @@ title: 연동 레이아웃
 description: "연동이나 플러그인을 로고, 분류와 함께 카드로 보여 주고 분류로 거르는 레이아웃입니다."
 layout: layout-reference
 nav_order: 6
+twin: true
 ---
 # 연동 레이아웃
 

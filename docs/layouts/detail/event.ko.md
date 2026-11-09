@@ -16,6 +16,7 @@ address: 서울시 중구 세종대로 1
 online: "#"
 tickets: "#"
 schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/ko/layouts/detail/event/"}}
+twin: false
 ---
 짧은 발표 두 개와 질의응답이 이어집니다.
 

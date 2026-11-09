@@ -1,9 +1,8 @@
 ---
 lang: ja
 permalink: /ja/recipes/brand-tokens/
-source_rev: sha256:049fbb797e23
+source_rev: sha256:6467da12bd77
 nav_order: 15
-nav_title: ブランドトークン
 title: ブランドトークン
 description: トークンブリッジでブランドの色とフォントをテーマに反映し、サイトのスタイルシートと先読みするフォントまで厳格な CSP で使います。
 site_css: [/assets/css/brand-demo.css]

@@ -3,6 +3,7 @@ title: Blog layout
 description: "Posts as a list, a grid or a magazine, with pagination or a link to the archive."
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # Blog layout
 

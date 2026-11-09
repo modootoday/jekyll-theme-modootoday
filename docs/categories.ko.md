@@ -3,7 +3,6 @@ lang: ko
 permalink: /ko/categories/
 source_rev: sha256:65e814149870
 nav_order: 30
-nav_section: reference
 title: 카테고리
 description: 이 사이트의 모든 글을 카테고리별로 모았습니다.
 layout: archive

@@ -1,9 +1,8 @@
 ---
 lang: ko
 permalink: /ko/recipes/brand-tokens/
-source_rev: sha256:049fbb797e23
+source_rev: sha256:6467da12bd77
 nav_order: 15
-nav_title: 브랜드 토큰
 title: 브랜드 토큰
 description: 토큰 브리지로 브랜드의 색과 글꼴을 테마에 입히고, 사이트 스타일시트와 미리 불러오는 글꼴까지 엄격한 CSP에서 씁니다.
 site_css: [/assets/css/brand-demo.css]

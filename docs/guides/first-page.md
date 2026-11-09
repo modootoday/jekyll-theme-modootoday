@@ -1,6 +1,7 @@
 ---
 nav_order: 20
-title: First page
+nav_title: "First page"
+title: "Write your first page"
 description: Write a page with front matter, sections and alerts.
 sections:
   - front-matter
@@ -57,6 +58,6 @@ One sentence that explains the page.
 
 Tables need no attribute: below 40rem a table that does not fit stacks into labelled blocks by itself. The full list lives in [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md).
 
-## Next
+## What to read next
 
 [Explore components](../../components/) [Back to install](../install/)

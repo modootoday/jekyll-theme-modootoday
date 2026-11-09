@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/
-source_rev: sha256:3ef4ddc6d439
+source_rev: sha256:a75d29c3a572
 title: 디렉터리 레이아웃
 description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카드 목록으로 보여 주며 JavaScript 없이 필터링합니다.
 nav_order: 20
@@ -12,12 +12,12 @@ nav_order: 20
 
 | 레이아웃 | 카드 내용 | 필터 기준 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `portfolio` | 이미지, 제목, 설명, 태그 | `tags` | ItemList | [포트폴리오](/jekyll-theme-modootoday/ko/layouts/directory/portfolio/) |
-| `team` | 둥근 사진, 이름, 역할 | `group` | Person 목록 | [팀](/jekyll-theme-modootoday/ko/layouts/directory/team/) |
-| `jobs` | 직무, 근무지, 고용 형태 | `department` | ItemList | [채용](/jekyll-theme-modootoday/ko/layouts/directory/jobs/) |
-| `events` | 날짜 타일, 제목, 장소, 캘린더 파일 | 없음 | Event 목록 | [행사](/jekyll-theme-modootoday/ko/layouts/directory/events/) |
-| `sponsors` | 로고, 이름, 등급 | `tier` | ItemList | [후원사](/jekyll-theme-modootoday/ko/layouts/directory/sponsors/) |
-| `integrations` | 로고, 이름, 분류, 설명 | `category` | ItemList | [연동](/jekyll-theme-modootoday/ko/layouts/directory/integrations/) |
+| `portfolio` | 이미지, 제목, 설명, 태그 | `tags` | ItemList | [포트폴리오](portfolio/) |
+| `team` | 둥근 사진, 이름, 역할 | `group` | Person 목록 | [팀](team/) |
+| `jobs` | 직무, 근무지, 고용 형태 | `department` | ItemList | [채용](jobs/) |
+| `events` | 날짜 타일, 제목, 장소, 캘린더 파일 | 없음 | Event 목록 | [행사](events/) |
+| `sponsors` | 로고, 이름, 등급 | `tier` | ItemList | [후원사](sponsors/) |
+| `integrations` | 로고, 이름, 분류, 설명 | `category` | ItemList | [연동](integrations/) |
 
 `layout: directory`는 기본형입니다. `preset:`에 위 이름 중 하나를 쓰거나, 생략하면 단순한 카드가 됩니다.
 

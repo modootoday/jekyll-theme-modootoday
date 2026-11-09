@@ -6,6 +6,7 @@ title: 약관 레이아웃
 description: "날짜, 버전, 목차가 있는 약관과 정책 페이지 레이아웃입니다. 인쇄를 먼저 고려합니다."
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # 약관 레이아웃
 

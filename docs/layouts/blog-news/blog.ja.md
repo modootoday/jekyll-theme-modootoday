@@ -6,6 +6,7 @@ title: ブログのレイアウト
 description: "投稿をリスト、グリッド、マガジンで並べ、ページ送りかアーカイブへのリンクを付けるレイアウトです。"
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # ブログのレイアウト
 

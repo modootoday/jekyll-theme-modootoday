@@ -6,6 +6,7 @@ title: 글 레이아웃
 description: "작성자, 읽는 시간, 표지, 시리즈, 태그, 공유 링크, 관련 글이 있는 글 한 편의 레이아웃입니다."
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # 글 레이아웃
 

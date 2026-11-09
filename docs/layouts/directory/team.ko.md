@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/team/
-source_rev: sha256:2d3ed9a449c7
+source_rev: sha256:612342f81582
 title: "팀 데모"
 description: "사진, 역할, 그룹 필터가 있는 구성원 목록입니다."
 layout: team
@@ -22,4 +22,4 @@ nav_order: 2
 
 이 페이지는 `layout: team`을 씁니다. 각 구성원은 구조화 데이터에서 schema.org Person이 됩니다.
 
-[디렉터리 레이아웃으로 돌아가기](/jekyll-theme-modootoday/ko/layouts/directory/)
+[디렉터리 레이아웃으로 돌아가기](../)

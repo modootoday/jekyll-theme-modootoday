@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/jobs/
-source_rev: sha256:a86167ed1795
+source_rev: sha256:ce147cb50bc2
 title: "채용 데모"
 description: "부서 필터가 있는 채용 공고 목록입니다."
 layout: jobs
@@ -19,4 +19,4 @@ nav_order: 3
 
 이 페이지는 `layout: jobs`를 씁니다. 각 줄을 `layout: job` 페이지로 연결하면 상세 공고가 됩니다.
 
-[디렉터리 레이아웃으로 돌아가기](/jekyll-theme-modootoday/ko/layouts/directory/)
+[디렉터리 레이아웃으로 돌아가기](../)

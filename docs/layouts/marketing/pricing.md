@@ -3,6 +3,7 @@ title: Pricing layout
 description: "Plan cards with a monthly and yearly switch that needs no JavaScript."
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # Pricing layout
 

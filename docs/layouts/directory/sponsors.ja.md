@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/sponsors/
-source_rev: sha256:369accaaedb2
+source_rev: sha256:d872a0442320
 title: "スポンサーのデモ"
 description: "ランク別のスポンサーロゴです。"
 layout: sponsors
@@ -19,4 +19,4 @@ nav_order: 5
 
 このページは `layout: sponsors` を使います。ランクを選ぶとそのスポンサーだけが表示されます。
 
-[ディレクトリレイアウトに戻る](/jekyll-theme-modootoday/ja/layouts/directory/)
+[ディレクトリレイアウトに戻る](../)

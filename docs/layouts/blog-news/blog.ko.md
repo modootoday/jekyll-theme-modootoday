@@ -6,6 +6,7 @@ title: 블로그 레이아웃
 description: "글을 목록, 격자, 매거진으로 보여 주고 페이지 나누기나 보관함 링크를 다는 레이아웃입니다."
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # 블로그 레이아웃
 

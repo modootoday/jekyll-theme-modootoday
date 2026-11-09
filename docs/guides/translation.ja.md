@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/translation/
-source_rev: sha256:15be2c44615a
+source_rev: sha256:f52123edbcd3
 title: 翻訳ルール
 nav_order: 90
 description: 韓国語・日本語のドキュメントと UI 文言の正式なスタイルルール、用語集、チェック。
@@ -69,7 +69,7 @@ ASCII の数字と言語ごとの桁区切り（1,000）を使います。本文
 
 ## UI 文言
 
-カタログは `i18n/en.yml` のすべてのキーとプレースホルダー（`[n]`、`[total]`、`[section]`、`%{x}`）を保ち、値だけを変えます。ラベルは短い名詞句にします。編集したら `script/i18n-build` を実行して Liquid カタログを再生成します。
+カタログは `i18n/en.yml` のすべてのキーとプレースホルダー（`[n]`、`[total]`、`[section]`、`%{x}`）を保ち、値だけを変えます。ラベルは短い名詞句にします。編集したら `script/i18n-build` を実行して Liquid カタログを再生成します。サイトが言語を選び、ラベルを上書きする方法は[設定 > 言語](../configuration/#言語)にあります。
 
 ## チェック項目
 

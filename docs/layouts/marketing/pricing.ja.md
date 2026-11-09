@@ -6,6 +6,7 @@ title: 料金のレイアウト
 description: "JavaScript なしで月額と年額を切り替えられる料金プランのカードです。"
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # 料金のレイアウト
 

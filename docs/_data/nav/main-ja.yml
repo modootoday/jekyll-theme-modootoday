@@ -2,10 +2,10 @@
 - title: ガイド
   url: /ja/guides/
   items:
-    - {title: 導入, url: /ja/guides/install/}
-    - {title: 最初の一歩, url: /ja/guides/first-page/}
+    - {title: インストール, url: /ja/guides/install/}
+    - {title: 最初のページ, url: /ja/guides/first-page/}
     - {title: 設定, url: /ja/guides/configuration/}
-    - {title: カスタム, url: /ja/guides/customize/}
+    - {title: カスタマイズ, url: /ja/guides/customize/}
     - {title: AI エージェント, url: /ja/guides/agents/}
     - {title: 移行とアップグレード, url: /ja/guides/upgrade/}
     - {title: アクセシビリティ, url: /ja/guides/accessibility/}
@@ -95,8 +95,6 @@
   items:
     - {title: 公開 API, url: /ja/reference/api/}
     - {title: コマンドライン, url: /ja/reference/cli/}
-    - {title: タグ, url: /ja/tags/}
-    - {title: カテゴリー, url: /ja/categories/}
     - {title: スターターのデモのショーケース, url: /ja/reference/showcase/}
     - {title: 変更履歴, url: /ja/reference/changelog/}
     - {title: ロードマップ, url: /ja/reference/roadmap/}

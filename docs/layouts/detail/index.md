@@ -9,11 +9,11 @@ A detail page shows one item: a header, a list of facts read from front matter, 
 
 | Layout | Facts | Call to action | Structured data | Demo |
 |---|---|---|---|---|
-| `project` | client, role, year, stack, links | `cta` | CreativeWork | [Project](/jekyll-theme-modootoday/layouts/detail/project/) |
-| `case-study` | client, role, year, stack, links | `cta` | Article | [Case study](/jekyll-theme-modootoday/layouts/detail/case-study/) |
-| `job` | location, employment, salary, posted, deadline | Apply (`apply`) | JobPosting | [Job](/jekyll-theme-modootoday/layouts/detail/job/) |
-| `event` | starts, ends, venue, online | Tickets and an .ics file | Event | [Event](/jekyll-theme-modootoday/layouts/detail/event/) |
-| `episode` | season and episode, posted, duration; audio player | `cta` | PodcastEpisode | [Episode](/jekyll-theme-modootoday/layouts/detail/episode/) |
+| `project` | client, role, year, stack, links | `cta` | CreativeWork | [Project](project/) |
+| `case-study` | client, role, year, stack, links | `cta` | Article | [Case study](case-study/) |
+| `job` | location, employment, salary, posted, deadline | Apply (`apply`) | JobPosting | [Job](job/) |
+| `event` | starts, ends, venue, online | Tickets and an .ics file | Event | [Event](event/) |
+| `episode` | season and episode, posted, duration; audio player | `cta` | PodcastEpisode | [Episode](episode/) |
 
 ## Job
 

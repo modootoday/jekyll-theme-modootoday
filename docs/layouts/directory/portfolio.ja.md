@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/portfolio/
-source_rev: sha256:1c4f38bfd605
+source_rev: sha256:813f23a72039
 title: "ポートフォリオのデモ"
 description: "タグで絞り込めるプロジェクトのカードです。"
 layout: portfolio
@@ -19,4 +19,4 @@ nav_order: 1
 
 このページは `layout: portfolio` を使います。タグを選ぶと該当するプロジェクトだけが表示されます。フィルターは HTML と CSS だけで動きます。
 
-[ディレクトリレイアウトに戻る](/jekyll-theme-modootoday/ja/layouts/directory/)
+[ディレクトリレイアウトに戻る](../)

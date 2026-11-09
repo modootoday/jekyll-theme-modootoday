@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/
-source_rev: sha256:de40b075a77f
+source_rev: sha256:44b1c2e2c53b
 title: 문서 확장
 description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 책 페이지를 공유 선택 스타일시트 하나로 만듭니다.
-nav_order: 50
+nav_order: 60
 ---
 # 문서 확장
 
@@ -12,14 +12,14 @@ nav_order: 50
 
 | 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](/jekyll-theme-modootoday/ko/layouts/docs-extra/reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](/jekyll-theme-modootoday/ko/layouts/docs-extra/changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`, status는 `now`, `next`, `later` | WebPage | [로드맵](/jekyll-theme-modootoday/ko/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [용어집](/jekyll-theme-modootoday/ko/layouts/docs-extra/glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [허브](/jekyll-theme-modootoday/ko/layouts/docs-extra/hub/) |
-| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [강좌](/jekyll-theme-modootoday/ko/layouts/docs-extra/course/) |
-| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [책](/jekyll-theme-modootoday/ko/layouts/docs-extra/book/) |
-| `reference`에 `sidebar: true`, `packages:` | 멤버의 `group`, `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API 레퍼런스](/jekyll-theme-modootoday/ko/layouts/docs-extra/api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](reference/) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](changelog/) |
+| `roadmap` | `items: [{title, status, text, url}]`, status는 `now`, `next`, `later` | WebPage | [로드맵](roadmap/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [용어집](glossary/) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [허브](hub/) |
+| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [강좌](course/) |
+| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [책](book/) |
+| `reference`에 `sidebar: true`, `packages:` | 멤버의 `group`, `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API 레퍼런스](api/) |
 
 ## 변경 이력
 

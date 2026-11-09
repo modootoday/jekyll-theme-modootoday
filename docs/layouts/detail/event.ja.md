@@ -16,6 +16,7 @@ address: 東京都千代田区丸の内1-1
 online: "#"
 tickets: "#"
 schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/ja/layouts/detail/event/"}}
+twin: false
 ---
 短い発表が2本と質疑応答です。
 

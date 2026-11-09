@@ -156,7 +156,7 @@ Write your own rules in a stylesheet of your site and list it in `site_css`; it 
 .mt-hero h1 { letter-spacing: -0.02em; }
 ```
 
-Jekyll reads `_sass/` from your site before the theme. A site that already shadows `assets/css/modootoday.scss` keeps working, and its token hook applies there too, because the theme imports the hook from its core partial. Since 1.5 the core sheet holds only the tokens, the base rules and the shell, and components come in their own sheets; a copy made from an older version still keeps every component in the core sheet, so refresh it from the version you use, or delete it and set tokens instead.
+Jekyll reads `_sass/` from your site before the theme. A site that already shadows `assets/css/modootoday.scss` keeps working, and its token hook applies there too, because the theme imports the hook from its core partial. The core sheet holds only the tokens, the base rules and the shell, and components come in their own sheets; a copy made from an older version of the theme may still keep every component in the core sheet, so refresh it from the version you use, or delete it and set tokens instead.
 
 > [!WARNING]
 > Use `@import`, not `@use`. GitHub Pages compiles Sass with Ruby Sass, which passes `@use` through unchanged.

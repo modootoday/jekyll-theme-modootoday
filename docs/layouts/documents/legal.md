@@ -3,6 +3,7 @@ title: Legal layout
 description: "Terms, privacy and other policies with dates, a version and a contents list, laid out for print."
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # Legal layout
 

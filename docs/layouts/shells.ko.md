@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/shells/
-source_rev: sha256:4235cacb6ed3
+source_rev: sha256:40b7346b1355
 title: 페이지 셸
 description: 페이지 종류별 셸과 레이아웃마다 따로 불러오는 선택 스타일시트입니다.
 nav_order: 10
@@ -12,15 +12,15 @@ nav_order: 10
 
 | 레이아웃 | 용도 | 데모 |
 |---|---|---|
-| `minimal` | 단독 공지, 로그인 안내, 링크 모음. 헤더·페이지 정보·페이지 이동이 없습니다. | [미니멀](/jekyll-theme-modootoday/ko/layouts/demo/minimal/) |
-| `wide` | 카드 그리드, 넓은 표, 갤러리. 헤더와 푸터는 있고 읽기 폭 제한이 없습니다. | [와이드](/jekyll-theme-modootoday/ko/layouts/demo/wide/) |
+| `minimal` | 단독 공지, 로그인 안내, 링크 모음. 헤더·페이지 정보·페이지 이동이 없습니다. | [미니멀](../demo/minimal/) |
+| `wide` | 카드 그리드, 넓은 표, 갤러리. 헤더와 푸터는 있고 읽기 폭 제한이 없습니다. | [와이드](../demo/wide/) |
 | `home` | 랜딩 페이지. front matter의 히어로 다음에 본문이 오고, 히어로가 없으면 최근 글 목록이 이어집니다. 히어로 제목도 본문의 `# ` 제목도 없으면 페이지 제목(없으면 사이트 제목)이 `h1`이 됩니다. WebSite 구조화 데이터를 추가합니다. | [홈](https://modootoday.github.io/jekyll-theme-modootoday-landing-starter/ "new-window") |
 | `page` | Jekyll, minima, `jekyll new`가 일반 페이지에 쓰는 이름입니다. 이름만 다른 `doc` 레이아웃입니다. 다른 `doc` 페이지처럼, 본문에 `# ` 제목이 없으면 minima처럼 `title:`을 `h1`로 표시합니다. | 없음 |
-| `error` | 제목과 설명이 번역된 404, 410, 500 페이지. | [오류](/jekyll-theme-modootoday/ko/layouts/demo/error/) |
-| `redirect` | 옮겨진 페이지. 스크립트 없이 이동하므로 엄격한 CSP에서도 동작합니다. | [리디렉션](/jekyll-theme-modootoday/ko/layouts/demo/redirect/) |
-| `search` | JavaScript 없이도 쓸 수 있는 양식이 있는 전체 검색 페이지. | [검색](/jekyll-theme-modootoday/ko/layouts/demo/search/) |
+| `error` | 제목과 설명이 번역된 404, 410, 500 페이지. | [오류](../demo/error/) |
+| `redirect` | 옮겨진 페이지. 스크립트 없이 이동하므로 엄격한 CSP에서도 동작합니다. | [리디렉션](../demo/redirect/) |
+| `search` | JavaScript 없이도 쓸 수 있는 양식이 있는 전체 검색 페이지. | [검색](../demo/search/) |
 
-프로젝트, 구성원, 채용, 행사, 후원사, 연동 카드 목록은 [디렉터리 레이아웃](/jekyll-theme-modootoday/ko/layouts/directory/)에 있습니다.
+프로젝트, 구성원, 채용, 행사, 후원사, 연동 카드 목록은 [디렉터리 레이아웃](../directory/)에 있습니다.
 
 ## 홈
 
@@ -31,7 +31,7 @@ hero:
   title: Markdown으로 사이트 만들기
   text: 사이트를 소개하는 한 문장.
   actions:
-    - {label: 시작하기, url: /ko/install/}
+    - {label: 시작하기, url: /ko/docs/start/}
     - {label: GitHub, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
 ---
 ```
@@ -54,7 +54,7 @@ sitemap: false
 `status`는 `404`(기본값), `410`, `500` 중 하나입니다. 오류 페이지에는 Markdown 버전이 없습니다. 플러그인과 `modootoday-stubs`는 오류 페이지를 건너뛰고, `modootoday-check --twins`도 요구하지 않습니다. 제목과 설명은 테마에 내장된 23개 언어 카탈로그에서 가져옵니다. 제목을 바꾸려면 `heading:`을 지정합니다. 페이지 끝에는 항상 홈으로 가는 버튼이 있습니다. 바로가기 링크를 더하려면 링크를 공백으로 구분해 한 문단에 쓰세요. 칩 한 줄로 표시됩니다.
 
 ```markdown
-[컴포넌트](/components/) [검색](/search/) [English](/)
+[문서](/docs/) [검색](/search/) [English](/)
 ```
 
 ## 리디렉션

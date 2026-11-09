@@ -6,6 +6,7 @@ title: 連携のレイアウト
 description: "連携やプラグインをロゴと分類付きのカードで並べ、分類で絞り込めるレイアウトです。"
 layout: layout-reference
 nav_order: 6
+twin: true
 ---
 # 連携のレイアウト
 

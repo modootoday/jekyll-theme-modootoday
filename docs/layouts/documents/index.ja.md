@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/documents/
-source_rev: sha256:f8255e834611
+source_rev: sha256:2e5bdc8f4eaa
 title: 文書
 description: 法的なページと印刷優先の履歴書です。
-nav_order: 60
+nav_order: 70
 ---
 # 文書
 
@@ -12,8 +12,8 @@ nav_order: 60
 
 | レイアウト | front matter | バンドル | 構造化データ | デモ |
 |---|---|---|---|---|
-| `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](/jekyll-theme-modootoday/ja/layouts/documents/legal/) |
-| `resume` | `display_name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](/jekyll-theme-modootoday/ja/layouts/documents/resume/) |
+| `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](legal/) |
+| `resume` | `display_name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](resume/) |
 
 ## 法的ページ
 

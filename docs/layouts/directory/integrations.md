@@ -3,6 +3,7 @@ title: Integrations layout
 description: "Cards for integrations or plugins, with a logo, a category and a filter by category."
 layout: layout-reference
 nav_order: 6
+twin: true
 ---
 # Integrations layout
 

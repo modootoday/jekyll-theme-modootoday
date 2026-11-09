@@ -1,7 +1,7 @@
 ---
 title: Docs extras
 description: Reference, changelog, roadmap, glossary, hub, course and book pages with one shared optional stylesheet.
-nav_order: 50
+nav_order: 60
 ---
 # Docs extras
 
@@ -9,14 +9,14 @@ These layouts cover the pages around a manual. They load `modootoday-docs-extra.
 
 | Layout | Front matter | Structured data | Demo |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [Reference](/jekyll-theme-modootoday/layouts/docs-extra/reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [Changelog](/jekyll-theme-modootoday/layouts/docs-extra/changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`, status `now`, `next` or `later` | WebPage | [Roadmap](/jekyll-theme-modootoday/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [Glossary](/jekyll-theme-modootoday/layouts/docs-extra/glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](/jekyll-theme-modootoday/layouts/docs-extra/hub/) |
-| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](/jekyll-theme-modootoday/layouts/docs-extra/course/) |
-| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](/jekyll-theme-modootoday/layouts/docs-extra/book/) |
-| `reference` with `sidebar: true` and `packages:` | `group` on members; `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API reference](/jekyll-theme-modootoday/layouts/docs-extra/api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [Reference](reference/) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [Changelog](changelog/) |
+| `roadmap` | `items: [{title, status, text, url}]`, status `now`, `next` or `later` | WebPage | [Roadmap](roadmap/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [Glossary](glossary/) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](hub/) |
+| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](course/) |
+| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](book/) |
+| `reference` with `sidebar: true` and `packages:` | `group` on members; `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API reference](api/) |
 
 ## Changelog
 

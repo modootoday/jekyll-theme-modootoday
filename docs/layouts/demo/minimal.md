@@ -12,4 +12,4 @@ nav_exclude: true
 
 This page uses `layout: minimal`. It has no header, page meta or pagination, so it suits standalone notices and sign-in notes.
 
-[Back to Layouts](/jekyll-theme-modootoday/layouts/)
+[Back to Layouts](../../)

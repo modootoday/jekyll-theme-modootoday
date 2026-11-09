@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/structured-data/
-source_rev: sha256:6be4467d99a8
+source_rev: sha256:1b9fc7b06a58
 nav_order: 80
 title: 構造化データ
 description: テーマが全ページに出力する schema.org JSON-LD グラフと、その設定方法。
@@ -97,4 +97,4 @@ term_set: /glossary/
 
 `modootoday-check` はビルド済みサイトの全ブロックをオフラインで検査します。ページあたり 1 ブロック、正しい JSON、schema.org にある型とプロパティ、必須プロパティ(Google 基準)、重複のない `@id`、絶対 URL、ISO 8601 の日付、`og:url`・`og:title`・`og:image`・`<html lang>` との一致を確認します。質問のない `FAQPage`、回答が空の質問、`term_set` が `DefinedTermSet` のあるビルド済みページではない `DefinedTerm` はエラーで、`auto` か `false` 以外の `modootoday.schema.faq` もエラーです。推奨プロパティの欠落も見るには `--schema-recommended` を付けます。
 
-`offers`、`organizer`、`acceptedAnswer` のようにプロパティの下に 1 つだけあるオブジェクトも、最上位のノードと同じくその `@type` の規則で検査します。1.6 からは、ここでの問題(必須プロパティの欠落、存在しない型やプロパティ、相対 URL、ISO 8601 ではない日付)を "(a warning in a nested object, an error in the next major version)" で終わる警告として報告し、次のメジャーバージョンからはエラーになります。`@type` のない入れ子のオブジェクトには `@type` を求めず、回答が空の質問は引き続きエラーです。たとえばイベントの `offers` に `url` だけがあり `price` と `priceCurrency` がなければ警告になります。警告は直し方を示します。[イベントの例](../../layouts/detail/#イベント)のように、front matter に `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}` で販売情報を書いてください（`tickets:` だけでは `url` しか入りません）。価格はページにも表示し、読者に見えない内容をマークアップに書かないようにします。
+`offers`、`organizer`、`acceptedAnswer` のようにプロパティの下に 1 つだけあるオブジェクトも、最上位のノードと同じくその `@type` の規則で検査します。ここでの問題(必須プロパティの欠落、存在しない型やプロパティ、相対 URL、ISO 8601 ではない日付)を "(a warning in a nested object, an error in the next major version)" で終わる警告として報告し、次のメジャーバージョンからはエラーになります。`@type` のない入れ子のオブジェクトには `@type` を求めず、回答が空の質問は引き続きエラーです。たとえばイベントの `offers` に `url` だけがあり `price` と `priceCurrency` がなければ警告になります。警告は直し方を示します。[イベントの例](../../layouts/detail/#イベント)のように、front matter に `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}` で販売情報を書いてください（`tickets:` だけでは `url` しか入りません）。価格はページにも表示し、読者に見えない内容をマークアップに書かないようにします。

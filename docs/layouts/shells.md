@@ -9,15 +9,15 @@ Set `layout:` in a page's front matter. The page shells below load an extra styl
 
 | Layout | Use it for | Demo |
 |---|---|---|
-| `minimal` | Standalone notices, sign-in notes, link pages. No header, page meta or pagination. | [Minimal](/jekyll-theme-modootoday/layouts/demo/minimal/) |
-| `wide` | Card grids, wide tables and galleries. Full header and footer, no reading-width cap. | [Wide](/jekyll-theme-modootoday/layouts/demo/wide/) |
+| `minimal` | Standalone notices, sign-in notes, link pages. No header, page meta or pagination. | [Minimal](../demo/minimal/) |
+| `wide` | Card grids, wide tables and galleries. Full header and footer, no reading-width cap. | [Wide](../demo/wide/) |
 | `home` | A landing page: hero from front matter, then the body, then the latest posts when there is no hero. Without a hero title or a `# ` heading in the body, the page title, else the site title, is the `h1`. Adds WebSite structured data. | [Home](https://modootoday.github.io/jekyll-theme-modootoday-landing-starter/ "new-window") |
 | `page` | The name Jekyll, minima and `jekyll new` use for a plain page. It is the `doc` layout under that name. Like every `doc` page, it prints `title:` as the `h1` when the body has no `# ` heading, as minima does. | none |
-| `error` | 404, 410 and 500 pages with localized title and text. | [Error](/jekyll-theme-modootoday/layouts/demo/error/) |
-| `redirect` | A moved page. Sends visitors on without script, so it works under a strict CSP. | [Redirect](/jekyll-theme-modootoday/layouts/demo/redirect/) |
-| `search` | A full search page with a form that also works without JavaScript. | [Search](/jekyll-theme-modootoday/layouts/demo/search/) |
+| `error` | 404, 410 and 500 pages with localized title and text. | [Error](../demo/error/) |
+| `redirect` | A moved page. Sends visitors on without script, so it works under a strict CSP. | [Redirect](../demo/redirect/) |
+| `search` | A full search page with a form that also works without JavaScript. | [Search](../demo/search/) |
 
-Card lists for projects, people, jobs, events, sponsors and integrations are on [Directory layouts](/jekyll-theme-modootoday/layouts/directory/).
+Card lists for projects, people, jobs, events, sponsors and integrations are on [Directory layouts](../directory/).
 
 ## Home
 
@@ -28,7 +28,7 @@ hero:
   title: Build a site from Markdown
   text: One sentence about the site.
   actions:
-    - {label: Get started, url: /install/}
+    - {label: Get started, url: /docs/start/}
     - {label: GitHub, url: "https://github.com/modootoday/jekyll-theme-modootoday"}
 ---
 ```
@@ -51,7 +51,7 @@ sitemap: false
 `status` is `404` (default), `410` or `500`. An error page has no Markdown twin: the plugin and `modootoday-stubs` skip it, and `modootoday-check --twins` does not ask for one. The title and text come from the theme's catalogs in 23 languages; set `heading:` to replace the title. The page always ends with a button to the home page; to add quick links, write them as one paragraph of links separated by spaces, which becomes a row of chips:
 
 ```markdown
-[Components](/components/) [Search](/search/) [한국어](/ko/)
+[Docs](/docs/) [Search](/search/) [한국어](/ko/)
 ```
 
 ## Redirect

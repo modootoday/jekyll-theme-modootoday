@@ -1,6 +1,5 @@
 ---
 nav_order: 15
-nav_title: Brand tokens
 title: Brand tokens
 description: Give the theme your brand's colors and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
 site_css: [/assets/css/brand-demo.css]

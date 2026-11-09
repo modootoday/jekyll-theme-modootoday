@@ -1,7 +1,7 @@
 ---
 title: Documents
 description: Legal pages and a print-first resume.
-nav_order: 60
+nav_order: 70
 ---
 # Documents
 
@@ -9,8 +9,8 @@ Two layouts for pages people print or keep. Both hide the site header, footer an
 
 | Layout | Front matter | Bundle | Structured data | Demo |
 |---|---|---|---|---|
-| `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Terms](/jekyll-theme-modootoday/layouts/documents/legal/) |
-| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](/jekyll-theme-modootoday/layouts/documents/resume/) |
+| `legal` | `effective` (required), `updated`, `version`, `toc: false` | pages | WebPage with dates | [Terms](legal/) |
+| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [Resume](resume/) |
 
 ## Legal
 

@@ -6,6 +6,7 @@ title: 規約のレイアウト
 description: "日付、版、目次の付いた規約やポリシーのページです。印刷を前提にしています。"
 layout: layout-reference
 nav_order: 1
+twin: true
 ---
 # 規約のレイアウト
 

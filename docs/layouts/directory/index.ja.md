@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/
-source_rev: sha256:3ef4ddc6d439
+source_rev: sha256:a75d29c3a572
 title: ディレクトリレイアウト
 description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで絞り込めます。
 nav_order: 20
@@ -12,12 +12,12 @@ nav_order: 20
 
 | レイアウト | カードの内容 | 絞り込み | 構造化データ | デモ |
 |---|---|---|---|---|
-| `portfolio` | 画像、タイトル、説明、タグ | `tags` | ItemList | [ポートフォリオ](/jekyll-theme-modootoday/ja/layouts/directory/portfolio/) |
-| `team` | 丸い写真、名前、役割 | `group` | Person の一覧 | [チーム](/jekyll-theme-modootoday/ja/layouts/directory/team/) |
-| `jobs` | 職種、勤務地、雇用形態 | `department` | ItemList | [求人](/jekyll-theme-modootoday/ja/layouts/directory/jobs/) |
-| `events` | 日付タイル、タイトル、場所、カレンダーファイル | なし | Event の一覧 | [イベント](/jekyll-theme-modootoday/ja/layouts/directory/events/) |
-| `sponsors` | ロゴ、名前、ランク | `tier` | ItemList | [スポンサー](/jekyll-theme-modootoday/ja/layouts/directory/sponsors/) |
-| `integrations` | ロゴ、名前、カテゴリー、説明 | `category` | ItemList | [連携](/jekyll-theme-modootoday/ja/layouts/directory/integrations/) |
+| `portfolio` | 画像、タイトル、説明、タグ | `tags` | ItemList | [ポートフォリオ](portfolio/) |
+| `team` | 丸い写真、名前、役割 | `group` | Person の一覧 | [チーム](team/) |
+| `jobs` | 職種、勤務地、雇用形態 | `department` | ItemList | [求人](jobs/) |
+| `events` | 日付タイル、タイトル、場所、カレンダーファイル | なし | Event の一覧 | [イベント](events/) |
+| `sponsors` | ロゴ、名前、ランク | `tier` | ItemList | [スポンサー](sponsors/) |
+| `integrations` | ロゴ、名前、カテゴリー、説明 | `category` | ItemList | [連携](integrations/) |
 
 `layout: directory` は基本形です。`preset:` に上の名前のどれかを指定するか、省略すると簡単なカードになります。
 

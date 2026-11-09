@@ -3,7 +3,6 @@ lang: ja
 permalink: /ja/guides/install/
 source_rev: sha256:fbba74ee43c3
 nav_order: 10
-nav_title: 導入
 title: インストール
 description: GitHub Pages または Jekyll 4 のサイトにテーマを追加します。
 sections:

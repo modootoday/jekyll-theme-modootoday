@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/
-source_rev: sha256:27c842545752
+source_rev: sha256:98bb4eda253b
 title: 상세 페이지
 description: 프로젝트, 사례 연구, 채용 공고, 행사, 팟캐스트 에피소드를 한 페이지에 하나씩 보여 주며 정보 목록, 행동 유도 하나, 구조화 데이터를 갖춥니다.
 nav_order: 30
@@ -12,11 +12,11 @@ nav_order: 30
 
 | 레이아웃 | 정보 | 행동 유도 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `project` | 고객, 역할, 연도, 기술, 링크 | `cta` | CreativeWork | [프로젝트](/jekyll-theme-modootoday/ko/layouts/detail/project/) |
-| `case-study` | 고객, 역할, 연도, 기술, 링크 | `cta` | Article | [사례 연구](/jekyll-theme-modootoday/ko/layouts/detail/case-study/) |
-| `job` | 근무지, 고용 형태, 급여, 게시일, 마감일 | 지원하기 (`apply`) | JobPosting | [채용](/jekyll-theme-modootoday/ko/layouts/detail/job/) |
-| `event` | 시작, 종료, 장소, 온라인 | 티켓과 .ics 파일 | Event | [행사](/jekyll-theme-modootoday/ko/layouts/detail/event/) |
-| `episode` | 시즌과 회차, 게시일, 길이, 오디오 플레이어 | `cta` | PodcastEpisode | [에피소드](/jekyll-theme-modootoday/ko/layouts/detail/episode/) |
+| `project` | 고객, 역할, 연도, 기술, 링크 | `cta` | CreativeWork | [프로젝트](project/) |
+| `case-study` | 고객, 역할, 연도, 기술, 링크 | `cta` | Article | [사례 연구](case-study/) |
+| `job` | 근무지, 고용 형태, 급여, 게시일, 마감일 | 지원하기 (`apply`) | JobPosting | [채용](job/) |
+| `event` | 시작, 종료, 장소, 온라인 | 티켓과 .ics 파일 | Event | [행사](event/) |
+| `episode` | 시즌과 회차, 게시일, 길이, 오디오 플레이어 | `cta` | PodcastEpisode | [에피소드](episode/) |
 
 ## 채용 공고
 

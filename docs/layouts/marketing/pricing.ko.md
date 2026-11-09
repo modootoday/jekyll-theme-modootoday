@@ -6,6 +6,7 @@ title: 요금제 레이아웃
 description: "JavaScript 없이 월간과 연간을 바꾸는 요금제 카드 레이아웃입니다."
 layout: layout-reference
 nav_order: 2
+twin: true
 ---
 # 요금제 레이아웃
 

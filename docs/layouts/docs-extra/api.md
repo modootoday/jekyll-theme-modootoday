@@ -17,6 +17,7 @@ packages:
   - {name: "modootoday-core", version: "1.4.0", text: "Parsing, rendering and the page model.", url: "#", links: [{label: "Docs", url: "#"}, {label: "Source", url: "#"}]}
   - {name: "modootoday-cli", version: "1.4.0", text: "The `modootoday` command.", url: "#", links: [{label: "Docs", url: "#"}, {label: "Source", url: "#"}]}
   - {name: "modootoday-lint", version: "0.9.2", text: "Checks pages against the layout contracts.", url: "#", links: [{label: "Docs", url: "#"}, {label: "Source", url: "#"}]}
+twin: false
 ---
 The sidebar groups members by `group:`; the table lists the packages that make up the library.
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/
-source_rev: sha256:7d8bd197e10f
+source_rev: sha256:530afdd98aef
 title: マーケティングページ
 description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作ります。
 nav_order: 40
@@ -12,12 +12,12 @@ nav_order: 40
 
 | レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`、`cta` | WebPage | [機能](/jekyll-theme-modootoday/ja/layouts/marketing/feature/) |
-| `pricing` | `plans`、`currency` | WebPage | [料金](/jekyll-theme-modootoday/ja/layouts/marketing/pricing/) |
-| `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](/jekyll-theme-modootoday/ja/layouts/marketing/download/) |
-| `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](/jekyll-theme-modootoday/ja/layouts/marketing/brand/) |
-| `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](/jekyll-theme-modootoday/ja/layouts/marketing/links/) |
-| `contact` | `contacts: [{label, value, url}]`、`form: {action, fields}` | ContactPage | [お問い合わせ](/jekyll-theme-modootoday/ja/layouts/marketing/contact/) |
+| `feature` | `features: [{title, text}]`、`cta` | WebPage | [機能](feature/) |
+| `pricing` | `plans`、`currency` | WebPage | [料金](pricing/) |
+| `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](download/) |
+| `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](brand/) |
+| `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](links/) |
+| `contact` | `contacts: [{label, value, url}]`、`form: {action, fields}` | ContactPage | [お問い合わせ](contact/) |
 
 製品情報を構造化データにするには `schema:` マップ（例: `type: SoftwareApplication` と `offers`）を追加します。メインエンティティとして出力されます。
 

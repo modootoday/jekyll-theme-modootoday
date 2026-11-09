@@ -1,6 +1,5 @@
 ---
 nav_order: 20
-nav_section: reference
 title: Tags
 description: Every post on this site, grouped by tag.
 layout: archive

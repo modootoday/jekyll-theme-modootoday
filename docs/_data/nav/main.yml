@@ -95,8 +95,6 @@
   items:
     - {title: Public API, url: /reference/api/}
     - {title: Command line, url: /reference/cli/}
-    - {title: Tags, url: /tags/}
-    - {title: Categories, url: /categories/}
     - {title: Starter demo showcase, url: /reference/showcase/}
     - {title: Changelog, url: /reference/changelog/}
     - {title: Roadmap, url: /reference/roadmap/}

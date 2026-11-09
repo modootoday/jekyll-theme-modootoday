@@ -3,7 +3,6 @@ lang: ko
 permalink: /ko/tags/
 source_rev: sha256:2204b6f9e6f3
 nav_order: 20
-nav_section: reference
 title: 태그
 description: 이 사이트의 모든 글을 태그별로 모았습니다.
 layout: archive

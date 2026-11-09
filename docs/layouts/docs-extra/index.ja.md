@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/
-source_rev: sha256:de40b075a77f
+source_rev: sha256:44b1c2e2c53b
 title: ドキュメント拡張
 description: リファレンス、変更履歴、ロードマップ、用語集、ハブ、コース、書籍のページを共通の任意スタイルシート 1 つで作ります。
-nav_order: 50
+nav_order: 60
 ---
 # ドキュメント拡張
 
@@ -12,14 +12,14 @@ nav_order: 50
 
 | レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](/jekyll-theme-modootoday/ja/layouts/docs-extra/reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](/jekyll-theme-modootoday/ja/layouts/docs-extra/changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`、status は `now`、`next`、`later` | WebPage | [ロードマップ](/jekyll-theme-modootoday/ja/layouts/docs-extra/roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [用語集](/jekyll-theme-modootoday/ja/layouts/docs-extra/glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](/jekyll-theme-modootoday/ja/layouts/docs-extra/hub/) |
-| `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](/jekyll-theme-modootoday/ja/layouts/docs-extra/course/) |
-| `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](/jekyll-theme-modootoday/ja/layouts/docs-extra/book/) |
-| `reference` に `sidebar: true`、`packages:` | メンバーの `group`、`packages: [{name, version, text, url, links: [{label, url}]}]`、`packages_title`、`packages_compact`、`packages_position` | TechArticle | [API リファレンス](/jekyll-theme-modootoday/ja/layouts/docs-extra/api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](reference/) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](changelog/) |
+| `roadmap` | `items: [{title, status, text, url}]`、status は `now`、`next`、`later` | WebPage | [ロードマップ](roadmap/) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [用語集](glossary/) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](hub/) |
+| `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](course/) |
+| `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](book/) |
+| `reference` に `sidebar: true`、`packages:` | メンバーの `group`、`packages: [{name, version, text, url, links: [{label, url}]}]`、`packages_title`、`packages_compact`、`packages_position` | TechArticle | [API リファレンス](api/) |
 
 ## 変更履歴
 

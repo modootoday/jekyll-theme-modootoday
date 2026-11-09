@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/sponsors/
-source_rev: sha256:369accaaedb2
+source_rev: sha256:d872a0442320
 title: "후원사 데모"
 description: "등급별 후원사 로고입니다."
 layout: sponsors
@@ -19,4 +19,4 @@ nav_order: 5
 
 이 페이지는 `layout: sponsors`를 씁니다. 등급을 고르면 해당 후원사만 보입니다.
 
-[디렉터리 레이아웃으로 돌아가기](/jekyll-theme-modootoday/ko/layouts/directory/)
+[디렉터리 레이아웃으로 돌아가기](../)

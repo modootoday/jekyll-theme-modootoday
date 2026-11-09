@@ -16,4 +16,4 @@ nav_order: 1
 
 This page uses `layout: portfolio`. Pick a tag to show only matching projects; the filter is plain HTML and CSS.
 
-[Back to directory layouts](/jekyll-theme-modootoday/layouts/directory/)
+[Back to directory layouts](../)

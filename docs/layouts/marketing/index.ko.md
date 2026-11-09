@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/
-source_rev: sha256:7d8bd197e10f
+source_rev: sha256:530afdd98aef
 title: 마케팅 페이지
 description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지를 공유 선택 스타일시트 하나로 만듭니다.
 nav_order: 40
@@ -12,12 +12,12 @@ nav_order: 40
 
 | 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`, `cta` | WebPage | [기능](/jekyll-theme-modootoday/ko/layouts/marketing/feature/) |
-| `pricing` | `plans`, `currency` | WebPage | [요금](/jekyll-theme-modootoday/ko/layouts/marketing/pricing/) |
-| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](/jekyll-theme-modootoday/ko/layouts/marketing/download/) |
-| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](/jekyll-theme-modootoday/ko/layouts/marketing/brand/) |
-| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](/jekyll-theme-modootoday/ko/layouts/marketing/links/) |
-| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [문의](/jekyll-theme-modootoday/ko/layouts/marketing/contact/) |
+| `feature` | `features: [{title, text}]`, `cta` | WebPage | [기능](feature/) |
+| `pricing` | `plans`, `currency` | WebPage | [요금](pricing/) |
+| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](download/) |
+| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](brand/) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](links/) |
+| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [문의](contact/) |
 
 제품 정보를 구조화 데이터로 내보내려면 `schema:` 맵(예: `type: SoftwareApplication`과 `offers`)을 추가하세요. 주요 개체로 출력됩니다.
 

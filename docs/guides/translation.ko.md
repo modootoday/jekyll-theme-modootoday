@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/translation/
-source_rev: sha256:15be2c44615a
+source_rev: sha256:f52123edbcd3
 title: 번역 규칙
 nav_order: 90
 description: 한국어·일본어 문서와 인터페이스 문구의 정본 스타일 규칙, 용어집, 검사.
@@ -71,7 +71,7 @@ ASCII 숫자와 언어별 자릿수 구분(1,000)을 씁니다. 본문 날짜는
 
 ## 인터페이스 문구
 
-카탈로그는 `i18n/en.yml`의 모든 키와 자리 표시자(`[n]`, `[total]`, `[section]`, `%{x}`)를 그대로 유지하고 값만 바꿉니다. 레이블은 짧은 명사형으로 씁니다. 수정한 뒤에는 `script/i18n-build`를 실행해 Liquid 카탈로그를 다시 만듭니다.
+카탈로그는 `i18n/en.yml`의 모든 키와 자리 표시자(`[n]`, `[total]`, `[section]`, `%{x}`)를 그대로 유지하고 값만 바꿉니다. 레이블은 짧은 명사형으로 씁니다. 수정한 뒤에는 `script/i18n-build`를 실행해 Liquid 카탈로그를 다시 만듭니다. 사이트가 언어를 고르고 레이블을 덮어쓰는 방법은 [설정 > 언어](../configuration/#언어)에 있습니다.
 
 ## 검사 항목
 

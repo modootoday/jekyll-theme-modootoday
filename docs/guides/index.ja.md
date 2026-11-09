@@ -11,10 +11,10 @@ nav_order: 0
 初めての方は順番に読んでください。
 
 <!-- spec:docs-index:begin -->
-- [導入](install/) — GitHub Pages または Jekyll 4 のサイトにテーマを追加します。
-- [最初の一歩](first-page/) — front matter、セクション、アラートを使ってページを書きます。
+- [インストール](install/) — GitHub Pages または Jekyll 4 のサイトにテーマを追加します。
+- [最初のページ](first-page/) — front matter、セクション、アラートを使ってページを書きます。
 - [設定](configuration/) — _config.yml の modootoday キーで指定するサイト全体の設定。
-- [カスタム](customize/) — トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足すか、Sass パーシャルを上書きします。
+- [カスタマイズ](customize/) — トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足すか、Sass パーシャルを上書きします。
 - [AI エージェント](agents/) — ページごとの Markdown 版、URL エイリアス、llms.txt、llms-full.txt を公開し、AI エージェントがサイトを書いたとおりに読めるようにします。
 - [移行とアップグレード](upgrade/) — 別の Jekyll テーマからの移行、既存プロジェクトへの導入、バージョン間のアップグレード。
 - [アクセシビリティ](accessibility/) — キーボード、スクリーンリーダー、セーフエリア、タッチターゲット、ハイコントラスト、視差効果を減らす設定。

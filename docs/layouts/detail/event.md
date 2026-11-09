@@ -13,6 +13,7 @@ address: 1 Sejong-daero, Seoul
 online: "#"
 tickets: "#"
 schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/layouts/detail/event/"}}
+twin: false
 ---
 Two short talks, then questions.
 

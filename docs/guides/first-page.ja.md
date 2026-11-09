@@ -1,10 +1,10 @@
 ---
 lang: ja
 permalink: /ja/guides/first-page/
-source_rev: sha256:67e4443239e8
+source_rev: sha256:914b5b73a5d1
 nav_order: 20
-nav_title: 最初の一歩
-title: 最初のページ
+nav_title: "最初のページ"
+title: "最初のページを書く"
 description: front matter、セクション、アラートを使ってページを書きます。
 sections:
   - front-matter
@@ -64,6 +64,6 @@ One sentence that explains the page.
 
 表に属性は要りません。40rem より狭いときに収まらない表は、自動でラベル付きのブロックに積み重なります。完全な一覧は [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md) にあります。
 
-## 次へ
+## 次に読むもの
 
 [コンポーネントを見る](../../components/) [インストールに戻る](../install/)

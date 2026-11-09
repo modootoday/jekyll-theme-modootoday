@@ -20,6 +20,7 @@ packages:
   - {name: "modootoday-core", version: "1.4.0", text: "解析、変換、ページモデル。", url: "#", links: [{label: "ドキュメント", url: "#"}, {label: "ソース", url: "#"}]}
   - {name: "modootoday-cli", version: "1.4.0", text: "`modootoday` コマンド。", url: "#", links: [{label: "ドキュメント", url: "#"}, {label: "ソース", url: "#"}]}
   - {name: "modootoday-lint", version: "0.9.2", text: "ページをレイアウトの約束事と照らし合わせて検査します。", url: "#", links: [{label: "ドキュメント", url: "#"}, {label: "ソース", url: "#"}]}
+twin: false
 ---
 サイドバーはメンバーを `group:` でまとめ、表はライブラリを構成するパッケージを示します。
 

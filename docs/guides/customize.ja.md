@@ -1,9 +1,8 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:f4a3382cb2a5
+source_rev: sha256:221af770fbea
 nav_order: 40
-nav_title: カスタム
 title: カスタマイズ
 description: トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足すか、Sass パーシャルを上書きします。
 sections:
@@ -163,7 +162,7 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 .mt-hero h1 { letter-spacing: -0.02em; }
 ```
 
-Jekyll はテーマより先にサイトの `_sass/` を読みます。`assets/css/modootoday.scss` をすでに上書きしているサイトもそのまま動き、トークンフックも適用されます。テーマはフックをコアのパーシャルから読み込むためです。1.5 からコアシートにはトークン、基本ルール、シェルだけが入り、コンポーネントはそれぞれのシートで読み込みます。古いバージョンから作ったコピーはすべてのコンポーネントをコアシートに入れたままなので、使っているバージョンからコピーし直すか、コピーを削除してトークンで設定してください。
+Jekyll はテーマより先にサイトの `_sass/` を読みます。`assets/css/modootoday.scss` をすでに上書きしているサイトもそのまま動き、トークンフックも適用されます。テーマはフックをコアのパーシャルから読み込むためです。コアシートにはトークン、基本ルール、シェルだけが入り、コンポーネントはそれぞれのシートで読み込みます。テーマの古いバージョンから作ったコピーはすべてのコンポーネントをコアシートに入れたままのことがあるので、使っているバージョンからコピーし直すか、コピーを削除してトークンで設定してください。
 
 > [!WARNING]
 > `@use` ではなく `@import` を使ってください。GitHub Pages は Ruby Sass で Sass をコンパイルし、`@use` をそのまま出力します。

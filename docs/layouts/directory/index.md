@@ -9,12 +9,12 @@ A directory page is your text followed by a list of cards. The cards come from `
 
 | Layout | Cards show | Filter by | Structured data | Demo |
 |---|---|---|---|---|
-| `portfolio` | image, title, text, tags | `tags` | ItemList | [Portfolio](/jekyll-theme-modootoday/layouts/directory/portfolio/) |
-| `team` | round photo, name, role | `group` | ItemList of Person | [Team](/jekyll-theme-modootoday/layouts/directory/team/) |
-| `jobs` | title, location, type | `department` | ItemList | [Jobs](/jekyll-theme-modootoday/layouts/directory/jobs/) |
-| `events` | date tile, title, place, calendar file | none | ItemList of Event | [Events](/jekyll-theme-modootoday/layouts/directory/events/) |
-| `sponsors` | logo, name, tier | `tier` | ItemList | [Sponsors](/jekyll-theme-modootoday/layouts/directory/sponsors/) |
-| `integrations` | logo, name, category, text | `category` | ItemList | [Integrations](/jekyll-theme-modootoday/layouts/directory/integrations/) |
+| `portfolio` | image, title, text, tags | `tags` | ItemList | [Portfolio](portfolio/) |
+| `team` | round photo, name, role | `group` | ItemList of Person | [Team](team/) |
+| `jobs` | title, location, type | `department` | ItemList | [Jobs](jobs/) |
+| `events` | date tile, title, place, calendar file | none | ItemList of Event | [Events](events/) |
+| `sponsors` | logo, name, tier | `tier` | ItemList | [Sponsors](sponsors/) |
+| `integrations` | logo, name, category, text | `category` | ItemList | [Integrations](integrations/) |
 
 `layout: directory` is the plain version: set `preset:` to one of the names above, or leave it out for simple cards.
 

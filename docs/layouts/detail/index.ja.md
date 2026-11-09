@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/
-source_rev: sha256:27c842545752
+source_rev: sha256:98bb4eda253b
 title: 詳細ページ
 description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを1件ずつ表示し、概要リスト、行動喚起1つ、構造化データを備えます。
 nav_order: 30
@@ -12,11 +12,11 @@ nav_order: 30
 
 | レイアウト | 概要 | 行動喚起 | 構造化データ | デモ |
 |---|---|---|---|---|
-| `project` | クライアント、役割、年、技術、リンク | `cta` | CreativeWork | [プロジェクト](/jekyll-theme-modootoday/ja/layouts/detail/project/) |
-| `case-study` | クライアント、役割、年、技術、リンク | `cta` | Article | [事例](/jekyll-theme-modootoday/ja/layouts/detail/case-study/) |
-| `job` | 勤務地、雇用形態、給与、掲載日、締切 | 応募する（`apply`） | JobPosting | [求人](/jekyll-theme-modootoday/ja/layouts/detail/job/) |
-| `event` | 開始、終了、会場、オンライン | チケットと .ics ファイル | Event | [イベント](/jekyll-theme-modootoday/ja/layouts/detail/event/) |
-| `episode` | シーズンと回、掲載日、長さ、音声プレーヤー | `cta` | PodcastEpisode | [エピソード](/jekyll-theme-modootoday/ja/layouts/detail/episode/) |
+| `project` | クライアント、役割、年、技術、リンク | `cta` | CreativeWork | [プロジェクト](project/) |
+| `case-study` | クライアント、役割、年、技術、リンク | `cta` | Article | [事例](case-study/) |
+| `job` | 勤務地、雇用形態、給与、掲載日、締切 | 応募する（`apply`） | JobPosting | [求人](job/) |
+| `event` | 開始、終了、会場、オンライン | チケットと .ics ファイル | Event | [イベント](event/) |
+| `episode` | シーズンと回、掲載日、長さ、音声プレーヤー | `cta` | PodcastEpisode | [エピソード](episode/) |
 
 ## 求人
 

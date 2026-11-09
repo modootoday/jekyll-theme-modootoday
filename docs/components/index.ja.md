@@ -3,7 +3,6 @@ lang: ja
 permalink: /ja/components/
 source_rev: sha256:8f0903833158
 nav_order: 0
-nav_title: コンポーネント
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントを、元の Markdown と実際の表示結果を並べて紹介します。

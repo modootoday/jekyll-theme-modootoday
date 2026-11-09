@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:f4a3382cb2a5
+source_rev: sha256:221af770fbea
 nav_order: 40
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색·모서리·글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어씁니다.
@@ -162,7 +162,7 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 .mt-hero h1 { letter-spacing: -0.02em; }
 ```
 
-Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. 이미 `assets/css/modootoday.scss`를 섀도잉한 사이트도 그대로 동작하고, 토큰 훅도 그대로 적용됩니다. 테마가 훅을 core 파셜에서 가져오기 때문입니다. 1.5부터 핵심 시트에는 토큰, 기본 규칙, 셸만 들어 있고 컴포넌트는 각자의 시트로 들어옵니다. 예전 버전에서 만든 사본은 모든 컴포넌트를 핵심 시트에 계속 담으므로, 쓰는 버전에서 다시 복사하거나 사본을 지우고 토큰으로 설정하세요.
+Jekyll은 테마보다 사이트의 `_sass/`를 먼저 읽습니다. 이미 `assets/css/modootoday.scss`를 섀도잉한 사이트도 그대로 동작하고, 토큰 훅도 그대로 적용됩니다. 테마가 훅을 core 파셜에서 가져오기 때문입니다. 핵심 시트에는 토큰, 기본 규칙, 셸만 들어 있고 컴포넌트는 각자의 시트로 들어옵니다. 테마의 예전 버전에서 만든 사본은 모든 컴포넌트를 핵심 시트에 계속 담고 있을 수 있으므로, 쓰는 버전에서 다시 복사하거나 사본을 지우고 토큰으로 설정하세요.
 
 > [!WARNING]
 > `@use`가 아니라 `@import`를 쓰세요. GitHub Pages는 Ruby Sass로 컴파일하며 `@use`를 그대로 출력합니다.

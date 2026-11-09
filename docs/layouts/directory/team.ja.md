@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/team/
-source_rev: sha256:2d3ed9a449c7
+source_rev: sha256:612342f81582
 title: "チームのデモ"
 description: "写真、役割、グループで絞り込めるメンバー一覧です。"
 layout: team
@@ -22,4 +22,4 @@ nav_order: 2
 
 このページは `layout: team` を使います。各メンバーは構造化データで schema.org の Person になります。
 
-[ディレクトリレイアウトに戻る](/jekyll-theme-modootoday/ja/layouts/directory/)
+[ディレクトリレイアウトに戻る](../)

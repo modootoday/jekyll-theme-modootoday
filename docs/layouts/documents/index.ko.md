@@ -1,10 +1,10 @@
 ---
 lang: ko
 permalink: /ko/layouts/documents/
-source_rev: sha256:f8255e834611
+source_rev: sha256:2e5bdc8f4eaa
 title: 문서
 description: 법적 고지 페이지와 인쇄 우선 이력서입니다.
-nav_order: 60
+nav_order: 70
 ---
 # 문서
 
@@ -12,8 +12,8 @@ nav_order: 60
 
 | 레이아웃 | front matter | 번들 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](/jekyll-theme-modootoday/ko/layouts/documents/legal/) |
-| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](/jekyll-theme-modootoday/ko/layouts/documents/resume/) |
+| `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](legal/) |
+| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](resume/) |
 
 ## 법적 고지
 

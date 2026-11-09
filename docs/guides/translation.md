@@ -65,7 +65,7 @@ Brand name: write the theme as **modoo.today theme** in English, **모두의오�
 
 ## Interface strings
 
-Catalogs keep every key of `i18n/en.yml` and every placeholder (`[n]`, `[total]`, `[section]`, `%{x}`); only values change. Labels are short noun phrases. After an edit run `script/i18n-build` to regenerate the Liquid catalogs.
+Catalogs keep every key of `i18n/en.yml` and every placeholder (`[n]`, `[total]`, `[section]`, `%{x}`); only values change. Labels are short noun phrases. After an edit run `script/i18n-build` to regenerate the Liquid catalogs. How a site picks its languages and overrides a label is in [Configuration > Languages](../configuration/#languages).
 
 ## What the lint checks
 
