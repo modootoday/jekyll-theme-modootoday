@@ -30,9 +30,15 @@ async function open(browser, origin, options) {
   await ctx.addInitScript(watch);
   const page = await ctx.newPage();
   await page.goto(origin + CHART_PAGE, { waitUntil: "networkidle" });
-  // A chart is drawn as it nears the viewport, so each one is brought into view before the page is measured.
+  // A chart is drawn as it nears the viewport, so each one is brought into view and given until it is drawn: the
+  // observer reports on a later frame, and scrolling away first leaves it undrawn. Forced colours never draw one.
   for (const fig of await page.locator("figure.mt-chart").all()) {
     await fig.scrollIntoViewIfNeeded();
+    await fig.evaluate((f) => new Promise((done) => {
+      const drawn = () => !window.Chart || !f.querySelector("canvas") || window.Chart.getChart(f.querySelector("canvas"));
+      const wait = (n) => (drawn() || !n ? done() : requestAnimationFrame(() => wait(n - 1)));
+      wait(120);
+    }));
   }
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(1200);
