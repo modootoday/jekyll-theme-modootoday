@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:74503d0ba9df
+source_rev: sha256:bb83bc281887
 nav_order: 0
 nav_title: コンポーネント
 layout: examples
@@ -339,6 +339,8 @@ theme: jekyll-theme-modootoday
 ## ウィジェット
 
 `status:available` `c: widget` セクションでは、`widget:` が指す custom element（`modootoday.scripts` に `element:` で登録）が見出しの後に置かれ、`props` は `data-props` に JSON として入ります。セクションのテキストは要素が動くまで表示される代替テキストで、サイトのモジュールはその要素があるページでだけ読み込まれます。
+
+3 から数えるカウンターです。JavaScript がない場合は、代わりにこの文が表示されます。
 
 ## リンクカード
 

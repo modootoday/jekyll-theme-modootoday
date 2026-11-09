@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:fd857fd5828b
+source_rev: sha256:1abc7833e504
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、ファイル。
@@ -112,7 +112,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - ドキュメントのサイドバー: `nav.mt-sidebar` は 64rem 以上で、`details.mt-sidebar-mobile` はそれより狭いときに表示されます。現在のリンクには `aria-current=page` が付きます。
 - ページの操作: ボタンは `ul` の中にあり、JS が動くまで隠れています。`a[type="text/markdown"]` は「Markdown で表示」のリンクです。
 - ヒーロー: リードは `h1` の直後の最初の `p` です。リンクだけの `p` では最初のリンクが主ボタンになります。`.mt-hero-checks` は front matter の `hero: {checks: true}` で有効になり、最初の `ul` が `--mt-ok` の色の ✓ の行になります。
-- セクション: `[data-section]` は名前、`[data-c]` と `.mt-c-<c>` はコンポーネントです。`.mt-cta` はセクションに付き、セクション内に `[data-mt-result]` 要素があればその要素に付きます。
+- セクション: `[data-section]` は名前、`[data-c]` と `.mt-c-<c>` はコンポーネントです。`.mt-cta` はセクションに付き、セクション内に `[data-mt-result]` 要素があればその要素に付きます。このとき `c: widget` の要素はその要素の内容だけを包みます。
 - セクションの装飾: front matter の `decor: <include>` で有効にします。装飾は最後の子要素で、`_includes/sections/<include>.html` を含み、上の終端側の角に置かれ、ポインターイベントを受けません。
 - スクロール表示: front matter の `reveal: true` で有効にします。CSS のみで、`@supports (animation-timeline: view())` と `prefers-reduced-motion: no-preference` の場合だけゆっくり表示され、それ以外ではそのまま表示されます。
 - 全幅の帯: front matter の `bleed: true` または `bleed: wide` で有効にします。サイドバーや目次があるレイアウトでは、帯は本文の列の中に収まります。`bleed` シートを使います。

@@ -333,6 +333,8 @@ Yes, with the github-pages gem.
 
 `status:available` In a `c: widget` section, the custom element named by `widget:` (registered with `element:` in `modootoday.scripts`) follows the heading, with `props` as JSON in `data-props`. The section text is its fallback, shown until the element runs; the site's module loads only on pages that contain the element.
 
+A counter that starts at 3. Readers without JavaScript see this sentence instead.
+
 ## Link cards
 
 `status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.

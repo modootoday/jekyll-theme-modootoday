@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:fd857fd5828b
+source_rev: sha256:1abc7833e504
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, 파일.
@@ -112,7 +112,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, �
 - 문서 사이드바: `nav.mt-sidebar`는 64rem 이상에서, `details.mt-sidebar-mobile`은 그보다 좁을 때 보입니다. 현재 링크에는 `aria-current=page`가 붙습니다.
 - 페이지 도구: 버튼은 `ul` 안에 있고 JS가 돌기 전에는 숨겨집니다. `a[type="text/markdown"]`는 Markdown 보기 링크입니다.
 - 히어로: 리드는 `h1` 바로 다음의 첫 `p`입니다. 링크만 있는 `p`에서는 첫 링크가 주 버튼입니다. `.mt-hero-checks`는 front matter `hero: {checks: true}`로 켜며, 첫 `ul`이 `--mt-ok` 색 ✓ 표시 줄이 됩니다.
-- 섹션: `[data-section]`은 이름, `[data-c]`와 `.mt-c-<c>`는 컴포넌트입니다. `.mt-cta`는 섹션에 붙고, 섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에 붙습니다.
+- 섹션: `[data-section]`은 이름, `[data-c]`와 `.mt-c-<c>`는 컴포넌트입니다. `.mt-cta`는 섹션에 붙고, 섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에 붙습니다. 이때 `c: widget` 요소는 그 요소의 내용만 감쌉니다.
 - 섹션 장식: front matter `decor: <include>`로 켭니다. 장식은 마지막 자식이며 `_includes/sections/<include>.html`을 담고, 위쪽 끝 모서리에 놓이며 포인터 이벤트를 받지 않습니다.
 - 스크롤 등장: front matter `reveal: true`로 켭니다. CSS만 쓰며, `@supports (animation-timeline: view())`와 `prefers-reduced-motion: no-preference`일 때만 서서히 나타나고 그 밖에서는 그대로 보입니다.
 - 전체 폭 띠: front matter `bleed: true` 또는 `bleed: wide`로 켭니다. 사이드바나 목차가 있는 레이아웃에서는 띠가 본문 열 안에 머뭅니다. `bleed` 시트를 씁니다.

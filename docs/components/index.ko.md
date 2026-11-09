@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:74503d0ba9df
+source_rev: sha256:bb83bc281887
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -338,6 +338,8 @@ theme: jekyll-theme-modootoday
 ## 위젯
 
 `status:available` `c: widget` 섹션에서는 `widget:`이 가리키는 custom element(`modootoday.scripts`에 `element:`로 등록)가 제목 뒤에 오고, `props`는 `data-props`에 JSON으로 들어갑니다. 섹션 텍스트는 요소가 실행되기 전까지 보이는 대체 텍스트이고, 사이트의 모듈은 그 요소가 있는 페이지에서만 불러옵니다.
+
+3부터 세는 카운터입니다. JavaScript가 없으면 이 문장이 대신 보입니다.
 
 ## 링크 카드
 

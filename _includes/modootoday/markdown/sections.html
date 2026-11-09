@@ -5,7 +5,7 @@ No sections: whole body in one div.mt-prose (no implicit split).
 With sections: part 0 (before the first h2) is section.mt-hero; item i maps to the i-th top-level h2.
 Only top-level h2 split: kramdown prints them at column 0 ("\n<h2 "), nested ones (quote, list,
 alert) are indented and stay inside their section. modootoday-check rejects nested/setext/indented ##.
-Item: "name" or {c: component, name: key, ...params}. c: tabs → data-tabs, c: cta → (on the section, or on its [data-mt-result] element when it holds one, so a showcase box only frames the result).
+Item: "name" or {c: component, name: key, ...params}. c: tabs → data-tabs, c: cta → (on the section, or on its [data-mt-result] element when it holds one, so a showcase box only frames the result; c: widget puts its element in that element the same way).
 visual: <name> on an item (or include.hero.visual for the hero) appends the site's
 _includes/sections/<name>.html at the end of that section, called with section=<item> (hero=<hero>); every other key
 on the item (e.g. scene: 2) reaches the include as include.section.<key>.

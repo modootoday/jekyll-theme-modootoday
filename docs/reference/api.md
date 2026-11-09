@@ -106,7 +106,7 @@ Notes on the rows above:
 - Doc sidebar: `nav.mt-sidebar` shows from 64rem, `details.mt-sidebar-mobile` below. The current link has `aria-current=page`.
 - Page actions: the buttons sit in a `ul` and stay hidden until JS runs; `a[type="text/markdown"]` is View as Markdown.
 - Hero: the lead is the first `p` right after the `h1`; in the link-only `p` the first link is primary. `.mt-hero-checks` comes from front matter `hero: {checks: true}`: the first `ul` becomes a row of ✓ marks in `--mt-ok`.
-- Section: `[data-section]` is the name; `[data-c]` and `.mt-c-<c>` are the component. `.mt-cta` sits on the section, or on a `[data-mt-result]` element inside it when one is present.
+- Section: `[data-section]` is the name; `[data-c]` and `.mt-c-<c>` are the component. `.mt-cta` sits on the section, or on a `[data-mt-result]` element inside it when one is present; a `c: widget` element then wraps only that element's content.
 - Section decor: front matter `decor: <include>`. The decor is the last child, holds `_includes/sections/<include>.html`, sits in the top end corner and takes no pointer events.
 - Scroll reveal: front matter `reveal: true`. CSS only: it fades in inside `@supports (animation-timeline: view())` and `prefers-reduced-motion: no-preference`, and is shown as is otherwise.
 - Full-width band: front matter `bleed: true` or `bleed: wide`. Inside a sidebar or table-of-contents layout the band stays in the main column. It uses the `bleed` sheet.

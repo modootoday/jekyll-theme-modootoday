@@ -1,8 +1,16 @@
 {%- comment -%}c: widget — params widget (a custom element name, the element: of a modootoday.scripts entry) and props (a map of
   scalars, written to data-props as JSON). The section text after the h2 becomes the element's light-DOM fallback, shown
-  until the element is defined (widget sheet, :defined); assets/site-scripts.html loads the module where the element is.{%- endcomment -%}
+  until the element is defined (widget sheet, :defined); assets/site-scripts.html loads the module where the element is.
+  When the body ends in a [data-mt-result] box (as for c: cta), only that box's content becomes the fallback.{%- endcomment -%}
 {%- assign _mcw_b = include.html -%}{%- assign _mcw_e = include.s.widget | append: "" -%}
 {%- assign _mcw_h = _mcw_b | split: "</h2>" | first | append: "</h2>" -%}
+{%- assign _mcw_t = "" -%}
+{%- if _mcw_b contains "data-mt-result>" -%}
+{%- assign _mcw_t = _mcw_b | append: "@" | split: "</div>" | last | remove: "@" | prepend: "</div>" -%}
+{%- assign _mcw_n = _mcw_b | size | minus: _mcw_t.size -%}
+{%- assign _mcw_b = _mcw_b | slice: 0, _mcw_n -%}
+{%- assign _mcw_h = _mcw_b | split: "data-mt-result>" | first | append: "data-mt-result>" -%}
+{%- endif -%}
 {%- if _mcw_e contains "-" and _mcw_b contains "</h2>" -%}{%- unless _mcw_e contains "<" or _mcw_e contains '"' or _mcw_e contains " " or _mcw_e contains ">" -%}
 {%- assign _mcw_r = _mcw_b | remove_first: _mcw_h | strip -%}
 {%- capture _mcw_b %}{{ _mcw_h }}
@@ -11,4 +19,4 @@
 </div></{{ _mcw_e }}>
 {% endcapture -%}
 {%- endunless -%}{%- endif -%}
-{{ _mcw_b }}
+{{ _mcw_b }}{{ _mcw_t }}
