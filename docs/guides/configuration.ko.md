@@ -1,14 +1,13 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:90428e3b560b
+source_rev: sha256:f0b306cf80c5
 nav_order: 30
 title: 설정
 description: _config.yml의 modootoday 키 아래 사이트 전체 설정.
 sections:
   - keys
   - new-window
-  - showcase
   - head
   - i18n
   - registry
@@ -67,7 +66,7 @@ modootoday:
 | `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
 | `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
-| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#내장-로더) 참고. |
+| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
 | `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-수식) 참고. |
 | `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
@@ -78,7 +77,7 @@ modootoday:
 | `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
-| `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](#스타터-데모-쇼케이스) 참고. |
+| `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](../../reference/showcase/) 참고. |
 | `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/figures/charts/) 참고. |
 | `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
@@ -131,52 +130,6 @@ modootoday:
 ```
 
 이런 링크에는 `target="_blank"`, `rel="noopener noreferrer"`, CSS로 그린 작은 화살표, 그리고 스크린 리더가 `aria-describedby`로 읽는 숨은 안내("새 창에서 열림", 페이지 언어로 번역)가 붙습니다. 스크립트를 쓰지 않아서 엄격한 콘텐츠 보안 정책(CSP)에서도 그대로 동작합니다. 사이트 설정을 켰더라도 링크에 `new_window: false`를 쓰면 그 링크는 같은 창에서 열립니다.
-
-## 스타터 데모 쇼케이스
-
-스타터의 라이브 데모에는 테마와 스타터 이름을 알리고 테마 문서로 돌아가는 링크를 담은 막대를 표시할 수 있습니다. 이 막대는 데모 빌드에만 씁니다. 데모 배포만 `_config.yml` 위에 겹치는 두 번째 설정 파일에 넣으면, 스타터로 만든 사이트에는 나타나지 않습니다. GitHub Pages 빌더는 `_config.yml`만 읽으므로, 이 빌더를 쓰는 워크플로는 빌드 전에 데모 파일을 `_config.yml`에 합칩니다. 테마의 스타터는 `if: github.repository == '<owner>/<repo>'` 조건이 붙은 워크플로 단계에서 이 일을 하므로, 포크나 템플릿으로 만든 저장소는 쇼케이스 없이 빌드됩니다.
-
-```yaml
-# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
-modootoday:
-  showcase:
-    enabled: true
-    style: bar            # bar (default) or pill
-    starter: blog         # names the starter in the label
-    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
-    use_url: https://github.com/<owner>/<repo>/generate   # optional
-```
-
-클래식 GitHub Pages에서는 GitHub Actions 워크플로로 빌드하고(Settings > Pages > Source: GitHub Actions), 빌더가 실행되기 전에 조건이 붙은 단계에서 파일을 합칩니다. 아래는 스타터의 `pages.yml`이 쓰는 단계입니다. 빌드 다음 단계가 `_config.yml`을 되돌려 놓으므로, 이어지는 검사는 사이트 자체의 설정을 봅니다.
-
-```yaml
-# .github/workflows/pages.yml: steps of the build job, around the build
-- name: Layer the demo config
-  if: github.repository == '<owner>/<repo>'
-  run: |
-    cp _config.yml "$RUNNER_TEMP/_config.yml"
-    ruby -ryaml -rdate -e '
-      read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
-      merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
-      File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
-- uses: actions/jekyll-build-pages@v1   # the classic GitHub Pages builder
-  with:
-    source: .
-    destination: ./_site
-- name: Restore _config.yml
-  if: github.repository == '<owner>/<repo>'
-  run: mv "$RUNNER_TEMP/_config.yml" _config.yml
-```
-
-- **막대**(`style: bar`, 기본값): 헤더 위의 44 px 막대에 테마 이름, 스타터 이름, 문서 링크, 이 스타터로 시작 링크(`use_url`이 있을 때), 숨기기 버튼이 들어갑니다. 고정 헤더와 앵커 대상의 오프셋은 막대 높이만큼 내려갑니다. 40rem(640 px)보다 좁으면 테마 이름, 문서 링크, 버튼만 남습니다. 휴대폰을 가로로 들거나 200%로 확대해 창 높이가 30rem(480 px)보다 낮으면 막대가 페이지와 함께 스크롤됩니다.
-- **알약**(`style: pill`): 아래 가운데에 떠 있는 알약에 테마 이름, 스타터 이름, 문서 링크, 버튼이 들어갑니다. 페이지 아래에 여백을 두므로 알약이 마지막 줄, 맨 위로 링크, 안전 영역을 가리지 않습니다.
-- **색**은 페이지 색을 뒤집습니다. 밝은 페이지에는 어두운 막대, 어두운 페이지에는 밝은 막대가 나옵니다. `brand` 토큰은 표시 칸에만 씁니다.
-- **링크**는 설정에서만 읽습니다. 새 창으로 열리고, 화살표를 보여 주며, 이름에도 새 창에서 열린다고 적힙니다.
-- **포커스 순서**: 쇼케이스는 "테마 쇼케이스"라는 이름의 영역이며, 그 링크는 "본문으로 건너뛰기" 바로 다음에 옵니다.
-- **숨기기**는 그 탭에서 방문이 끝날 때까지 유지됩니다(`sessionStorage`). `<head>`의 작은 스크립트가 페이지를 그리기 전에 이 값을 읽으므로, 다음 페이지에는 막대도 그 자리도 없고 화면이 밀리지 않습니다. JavaScript가 없거나 저장소가 막혀 있으면 쇼케이스는 그대로 남습니다.
-- **검색 엔진**: 쇼케이스를 켜면 모든 페이지에 `<meta name="robots" content="noindex">`가 붙습니다. 데모의 예시 글은 스타터로 만든 모든 사이트가 처음에 갖는 글이기 때문입니다. 사이트맵에는 페이지가 남지만 noindex가 우선하며, 데모 빌드의 Lighthouse SEO 감사는 페이지가 색인에서 막혔다고 보고합니다.
-- **레이블**은 페이지 언어를 따릅니다. `starter`는 `showcase.starters.<name>` 레이블을 고르며, 테마에는 `docs`, `blog`, `landing`이 들어 있습니다. 다른 스타터는 `_data/i18n/<lang>.yml`에 그 키를 추가하세요. 없으면 레이블에 테마 이름만 나옵니다.
-- `modootoday-check`는 `_config.yml`과 `_config.demo.yml`의 키를 검사하고, `_config.yml` 자체에서 켜면 경고하며, 쇼케이스가 나오는 빌드에서는 noindex 태그가 없는 페이지도 경고합니다. `_config.demo.yml`이 있어도 그 파일 없이 빌드한 사이트에는 경고하지 않습니다.
 
 ## 헤드와 SEO
 

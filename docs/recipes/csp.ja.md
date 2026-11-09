@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/csp/
-source_rev: sha256:eba21fa5957b
+source_rev: sha256:7915521f0d7a
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy

@@ -72,7 +72,8 @@ Catalogs keep every key of `i18n/en.yml` and every placeholder (`[n]`, `[total]`
 `script/i18n-build --check` runs `script/i18n/lint.rb` and fails on:
 
 - catalogs: missing or unknown keys, empty values, leading or trailing spaces, placeholder mismatches, 합니다체 in Korean interface sentences;
-- ko and ja pages, READMEs, posts and example pages, outside code: glossary terms to avoid, calques, the wrong register (해요체 or 한다체 in Korean docs, 常体 sentences in Japanese prose) and untranslated English sentences.
+- ko and ja pages, READMEs, posts and example pages, outside code: glossary terms to avoid, calques, the wrong register (해요체 or 한다체 in Korean docs, 常体 sentences in Japanese prose) and untranslated English sentences;
+- English docs pages, outside code: the glossary's English terms to avoid, such as "colour" for "color" and "optional sheet" for "optional stylesheet".
 
 Style the lint cannot judge (word order, idiom, tone) is checked in review against this page.
 

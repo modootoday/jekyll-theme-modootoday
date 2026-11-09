@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: loaders.ja.md
+lang: ja
+path: recipes/figures/loaders.ja.md.txt
+permalink: /ja/recipes/figures/loaders/index.md
+---

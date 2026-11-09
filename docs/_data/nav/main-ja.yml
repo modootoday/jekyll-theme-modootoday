@@ -77,6 +77,7 @@
       url: /ja/recipes/figures/
       items:
         - {title: 数式と図, url: /ja/recipes/figures/math-diagrams/}
+        - {title: 図と数式のローダー, url: /ja/recipes/figures/loaders/}
         - {title: グラフ, url: /ja/recipes/figures/charts/}
         - {title: ウィジェット, url: /ja/recipes/figures/widgets/}
     - {title: ブランドトークン, url: /ja/recipes/brand-tokens/}
@@ -96,5 +97,6 @@
     - {title: コマンドライン, url: /ja/reference/cli/}
     - {title: タグ, url: /ja/tags/}
     - {title: カテゴリー, url: /ja/categories/}
+    - {title: スターターのデモのショーケース, url: /ja/reference/showcase/}
     - {title: 変更履歴, url: /ja/reference/changelog/}
     - {title: ロードマップ, url: /ja/reference/roadmap/}

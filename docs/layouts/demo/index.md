@@ -15,6 +15,6 @@ Each page below uses one layout so you can see it as a visitor would. See [Page 
 - [Redirect](redirect/)
 - [Search](search/)
 - [Strict CSP](csp/)
-- [GitHub code colours](code-github/)
+- [GitHub code colors](code-github/)
 - [Hero module](orbit/)
 - [Filter](filter/)

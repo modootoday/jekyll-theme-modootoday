@@ -2,7 +2,7 @@
 nav_order: 15
 nav_title: Brand tokens
 title: Brand tokens
-description: Give the theme your brand's colours and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
+description: Give the theme your brand's colors and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
 site_css: [/assets/css/brand-demo.css]
 preload:
   - {href: /assets/fonts/fraunces/fraunces-600-latin.woff2, as: font, type: font/woff2}
@@ -13,7 +13,7 @@ This page wears a made-up teal brand with a self-hosted heading font. Switch bet
 
 ## The token bridge
 
-Create `_sass/modootoday/_site.scss` in your site. The theme imports it before its own settings, so the maps you set there change the tokens in the core sheet and in every optional sheet. Nothing is inline, and you do not shadow `assets/css/modootoday.scss`.
+Create `_sass/modootoday/_site.scss` in your site. The theme imports it before its own settings, so the maps you set there change the tokens in the core sheet and in every optional stylesheet. Nothing is inline, and you do not shadow `assets/css/modootoday.scss`.
 
 ```scss
 // _sass/modootoday/_site.scss
@@ -28,18 +28,7 @@ $mt-overrides-dark: (
 );
 ```
 
-| Map | Tokens | Printed on |
-|---|---|---|
-| `$mt-overrides-base` | `font-sans`, `font-mono`, `font-heading`, `heading-weight`, `font-size`, `line-height`, `measure`, `narrow`, `radius` and the other scheme-free tokens | `:root` |
-| `$mt-overrides` | colour tokens such as `primary`, `link`, `link-hover`, `background`, `foreground`, `border` | `:root` (light) |
-| `$mt-overrides-dark` | the same colour tokens for dark mode | the dark-scheme selectors |
-
-Set each colour in both maps. The dark selectors print every colour token again, so a value you set only in `$mt-overrides` does not reach dark mode.
-
-The file holds only these three maps. `modootoday-check` fails on any other statement and on a token name the theme does not define, so a typo cannot pass unnoticed.
-
-> [!TIP]
-> `font-heading` and `heading-weight` style `h1` to `h4`; `link` and `link-hover` colour links in running text. By default they follow `font-sans`, 600 and `primary`, so a site that sets only `primary` sees no change. The recipe sets `heading-weight: 600` only to show where it goes; it is the default.
+Each color is set in both maps, for light and dark mode. `heading-weight: 600` is the default and is here only to show where it goes. Which tokens each map takes, and what `modootoday-check` rejects, is in [Customize > Token bridge](../../guides/customize/#token-bridge).
 
 ## Your own stylesheet and font
 

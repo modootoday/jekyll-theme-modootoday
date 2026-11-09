@@ -72,7 +72,7 @@ Styles for running text and for short marks inside a paragraph.
 
 ## Badges
 
-`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. A status badge shows a coloured dot before its label; the dot is drawn by CSS, so screen readers read only the label, and it stays visible in forced colours.
+`status:available` Code spans with a known prefix become badges: status (available, partial, planned) and tag. A status badge shows a colored dot before its label; the dot is drawn by CSS, so screen readers read only the label, and it stays visible in forced colors.
 
 `status:available` `status:partial` `status:planned`
 
@@ -107,7 +107,7 @@ Items with a title:
 
 ## Loading and skeletons
 
-`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional sheet that only pages using them load.
+`status:available` Code spans that start with loading or skeleton and a colon become a spinner, a thin top bar or a placeholder (text, card, image, avatar, row). Each one has `role="status"` and a Loading label for screen readers, and the motion stops when the reader asks for reduced motion. Their styles are an optional stylesheet that only pages using them load.
 
 `loading:spinner`
 

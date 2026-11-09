@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/code-github/
-source_rev: sha256:c19b4a2aa1c6
+source_rev: sha256:ed6279dfbed8
 title: GitHub 코드 색 데모
 description: GitHub 라이트·다크 팔레트로 칠한 코드 블록입니다. modootoday.code_theme github의 모습입니다.
 twin: false

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: loaders.md
+path: recipes/figures/loaders.md.txt
+permalink: /recipes/figures/loaders/index.md
+---

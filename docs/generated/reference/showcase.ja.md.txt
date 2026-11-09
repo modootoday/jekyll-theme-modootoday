@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: showcase.ja.md
+lang: ja
+path: reference/showcase.ja.md.txt
+permalink: /ja/reference/showcase/index.md
+---

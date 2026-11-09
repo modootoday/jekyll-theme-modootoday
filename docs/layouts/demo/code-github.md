@@ -1,5 +1,5 @@
 ---
-title: GitHub code colours demo
+title: GitHub code colors demo
 description: Code blocks in the GitHub light and dark palettes, the look of modootoday.code_theme github.
 twin: false
 sitemap: false
@@ -7,9 +7,9 @@ edit: false
 nav_exclude: true
 site_css: [/assets/css/code-github.css]
 ---
-# GitHub code colours
+# GitHub code colors
 
-This page shows code blocks as a site with `code_theme: github` sees them. Switch between light and dark to see both palettes; the rest of the docs keep the default code colours.
+This page shows code blocks as a site with `code_theme: github` sees them. Switch between light and dark to see both palettes; the rest of the docs keep the default code colors.
 
 ```yaml
 # _config.yml
@@ -17,7 +17,7 @@ modootoday:
   code_theme: github
 ```
 
-The colours come from GitHub's light and dark editor themes. Rouge sorts tokens differently from the editor, so the palette matches GitHub but a block can colour a word differently. See [Customize](../../../guides/customize/#code-colours).
+The colors come from GitHub's light and dark editor themes. Rouge sorts tokens differently from the editor, so the palette matches GitHub but a block can color a word differently. See [Customize](../../../guides/customize/#code-colors).
 
 ## Ruby
 

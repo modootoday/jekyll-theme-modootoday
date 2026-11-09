@@ -35,7 +35,7 @@ Images in dark mode: photos use `--mt-img-filter-dark`; `.svg` figures (diagrams
 
 ### Layout hooks
 
-Some sizes and the primary button colours are hooks: the theme reads them as `var(--mt-<name>, <default>)` and never sets them, so a plain rule in your own stylesheet (for example one linked with `site_css`) changes them without having to beat the theme's selectors.
+Some sizes and the primary button colors are hooks: the theme reads them as `var(--mt-<name>, <default>)` and never sets them, so a plain rule in your own stylesheet (for example one linked with `site_css`) changes them without having to beat the theme's selectors.
 
 | Hook | Default | What it sets |
 |---|---|---|
@@ -56,7 +56,7 @@ The defaults are in `_sass/modootoday/registry/_hooks.scss`.
 
 ## Token bridge
 
-Create `_sass/modootoday/_site.scss` in your site and set up to three maps. The theme imports this file before its settings, so the core sheet and every optional sheet use your values in light and dark mode:
+Create `_sass/modootoday/_site.scss` in your site and set up to three maps. The theme imports this file before its settings, so the core sheet and every optional stylesheet use your values in light and dark mode:
 
 ```scss
 // _sass/modootoday/_site.scss
@@ -65,7 +65,13 @@ $mt-overrides: (primary: #0f766e, link: #0f766e);
 $mt-overrides-dark: (primary: #2dd4bf, link: #5eead4);
 ```
 
-`$mt-overrides-base` takes the scheme-free tokens (fonts, sizes, radius); the other two take colours for light and dark mode. Besides the existing tokens there are `font-heading` and `heading-weight` for `h1` to `h4`, and `link` and `link-hover` for links in running text; by default they follow `font-sans`, 600 and `primary`. The file may hold only these three maps, with token names the theme defines; `modootoday-check` reports anything else.
+| Map | Tokens | Printed on |
+|---|---|---|
+| `$mt-overrides-base` | `font-sans`, `font-mono`, `font-heading`, `heading-weight`, `font-size`, `line-height`, `measure`, `narrow`, `radius` and the other scheme-free tokens | `:root` |
+| `$mt-overrides` | color tokens such as `primary`, `link`, `link-hover`, `background`, `foreground`, `border` | `:root` (light) |
+| `$mt-overrides-dark` | the same color tokens for dark mode | the dark-scheme selectors |
+
+Set each color in both maps: the dark selectors print every color token again, so a value set only in `$mt-overrides` does not reach dark mode. Besides the existing tokens there are `font-heading` and `heading-weight` for `h1` to `h4`, and `link` and `link-hover` for links in running text; by default they follow `font-sans`, 600 and `primary`, so a site that sets only `primary` sees no change. The file may hold only these three maps, with token names the theme defines; `modootoday-check` fails on anything else, so a typo cannot pass unnoticed.
 
 Korean, Japanese and Chinese pages get a `font-sans` stack of their own for each of those languages the site declares in `lang` or `modootoday.languages`: the system fonts of that script, with Pretendard first for Korean if your site loads it (the theme does not ship it). An English-only site prints none of them. Setting `font-sans` in the bridge or in `modootoday.tokens` turns them off, so your font applies to every language.
 
@@ -80,16 +86,16 @@ modootoday:
 
 A worked example with a palette, a self-hosted font and the contrast checks is in [Brand tokens](../../recipes/brand-tokens/).
 
-## Code colours
+## Code colors
 
-Code blocks take their colours from `--mt-code-*` tokens. `modootoday.code_theme: github` switches them to GitHub's light and dark palettes ([demo](../../layouts/demo/code-github/)):
+Code blocks take their colors from `--mt-code-*` tokens. `modootoday.code_theme: github` switches them to GitHub's light and dark palettes ([demo](../../layouts/demo/code-github/)):
 
 ```yaml
 modootoday:
   code_theme: github   # theme (default) or github
 ```
 
-The colours come from GitHub's editor themes (github-light-default and github-dark-default). Rouge sorts code into other token classes than the editor does, so the palette matches GitHub's but a word can get a different colour. The tokens are `code-background`, `code-foreground`, `code-keyword`, `code-string`, `code-comment`, `code-function`, `code-constant`, `code-variable`, `code-type`, `code-number`, `code-operator`, `code-tag`, `code-attribute`, `code-inserted` and `code-deleted`. With the default `theme`, the ten finer ones follow the older five, so code looks as before. The token bridge applies after the preset, so `$mt-overrides: (code-comment: #57606a)` changes one colour. Code colours need Rouge, the default `kramdown.syntax_highlighter`; `modootoday-check` warns when another highlighter is set.
+The colors come from GitHub's editor themes (github-light-default and github-dark-default). Rouge sorts code into other token classes than the editor does, so the palette matches GitHub's but a word can get a different color. The tokens are `code-background`, `code-foreground`, `code-keyword`, `code-string`, `code-comment`, `code-function`, `code-constant`, `code-variable`, `code-type`, `code-number`, `code-operator`, `code-tag`, `code-attribute`, `code-inserted` and `code-deleted`. With the default `theme`, the ten finer ones follow the older five, so code looks as before. The token bridge applies after the preset, so `$mt-overrides: (code-comment: #57606a)` changes one color. Code colors need Rouge, the default `kramdown.syntax_highlighter`; `modootoday-check` warns when another highlighter is set.
 
 ## Section visuals and full-width pages
 

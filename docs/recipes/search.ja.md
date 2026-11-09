@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/search/
-source_rev: sha256:cca538941b9c
+source_rev: sha256:cafe0cd79859
 nav_order: 25
 title: 検索
 description: ヘッダー検索を有効にし、インデックスの内容と検索語の照合方法を決め、長いリストや表を読者が絞り込めるようにします。

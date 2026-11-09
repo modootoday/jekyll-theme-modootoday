@@ -36,6 +36,14 @@ class I18nLintTest < Minitest::Test
     assert(run_lint.any? { |e| e.include?("'쌍둥이' → use 'Markdown 버전'") })
   end
 
+  def test_english_pages_use_the_glossary_term_outside_code
+    FileUtils.mkdir_p("#{@dir}/docs/guides")
+    w("docs/guides/a.md", "# Colors\n\nSet the colour of `colour-key` in [Customize](../b/#colours).\n")
+    w("docs/guides/a.ko.md", "# 색\n\ncolour는 영어 철자입니다.\n")
+    errs = run_lint
+    assert_equal ["docs/guides/a.md:3: 'colour' → use 'color' (i18n/glossary.yml)"], errs.select { |e| e.include?("'colour'") }
+  end
+
   def test_japanese_long_vowel_term_but_not_the_correct_form
     w("docs/ja/a.md", "サーバで動きます。\n\nサーバーで動きます。\n")
     assert_equal 1, run_lint.count { |e| e.include?("'サーバ'") }

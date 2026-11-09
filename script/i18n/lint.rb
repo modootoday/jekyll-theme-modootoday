@@ -5,6 +5,7 @@
 #   prose     ko/ja docs, READMEs, example pages and posts (code, inline code, URLs and Liquid removed):
 #             glossary `avoid` terms, calques, register (ko docs 합니다체 and ko UI 해요체; ja です・ます),
 #             and untranslated English sentences. Pages with `noindex: true` are samples and skip register.
+#   english   English docs pages: glossary avoid.en terms (one term per concept, adr:modootoday/20261109200230 R2)
 require "yaml"
 require_relative "../../lib/modootoday/markdown"
 
@@ -96,9 +97,17 @@ module I18nLint
     globs.flat_map { |g| Dir.glob(g, base: root) }.uniq.sort.reject { |r| r.match?(%r{guides/translation(\.[a-z]{2})?\.md\z}) } # the rules page quotes the bad forms
   end
 
+  # English docs pages (not translations, generated files or sample data): only the glossary's avoid.en terms.
+  def english(root)
+    Dir.glob("docs/**/*.md", base: root).sort.reject do |r|
+      r.match?(%r{\Adocs/(generated|home|[a-z]{2}(-[A-Za-z]+)?)/|/_|guides/translation\.md\z}) || r.match?(/\.[a-z]{2}(-[A-Za-z]+)?\.md\z/)
+    end
+  end
+
   def run(root)
     gl = YAML.safe_load(File.read("#{root}/i18n/glossary.yml", encoding: "UTF-8"))
     errs = catalogs(root)
+    english(root).each { |r| errs.concat(file("#{root}/#{r}", r, "en", gl, ui: true)) }
     %w[ko ja].each do |lang|
       targets(root, lang).each { |r| errs.concat(file("#{root}/#{r}", r, lang, gl)) }
       ["i18n/#{lang}.yml", "docs/_data/i18n/#{lang}.yml", *Dir.glob("example/*/_data/i18n/#{lang}.yml", base: root).sort].each do |r|

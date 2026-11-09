@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:4d234fb1ee4f
+source_rev: sha256:8f0903833158
 nav_order: 0
 nav_title: コンポーネント
 layout: examples

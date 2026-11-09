@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/system/
-source_rev: sha256:ff89fd56f71f
+source_rev: sha256:112755a408ed
 title: システムページ
 description: どのサイトにも必要な見つからない、エラー、移動、検索のページです。
 nav_order: 80

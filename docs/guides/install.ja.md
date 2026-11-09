@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:4bc017f56aa5
+source_rev: sha256:fbba74ee43c3
 nav_order: 10
 nav_title: 導入
 title: インストール
@@ -114,4 +114,4 @@ GitHub Actions では、ビルドの次のステップに同じ 2 行を入れ�
 
 ## スターターサイト
 
-テーマには 3 つのスターターサイトがあり、どれもライブデモ付きの GitHub のテンプレートリポジトリです。[docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、[blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)（投稿、ニュース記事、著者ページ、フィード）、[landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)（ヒーロー、料金、規約ページ）です。どれかから始めるには、そのリポジトリで **Use this template** を選び、GitHub Pages のソースを GitHub Actions にします。コピーは `remote_theme` でテーマを読み込み、`Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../configuration/#スターターのデモのショーケース)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。テーマの gem を使う Jekyll 4 で始めるには、テーマのリポジトリを `--recurse-submodules` 付きでクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/jekyll4/<name>/` をコピーします。
+テーマには 3 つのスターターサイトがあり、どれもライブデモ付きの GitHub のテンプレートリポジトリです。[docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、[blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)（投稿、ニュース記事、著者ページ、フィード）、[landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)（ヒーロー、料金、規約ページ）です。どれかから始めるには、そのリポジトリで **Use this template** を選び、GitHub Pages のソースを GitHub Actions にします。コピーは `remote_theme` でテーマを読み込み、`Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../../reference/showcase/)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。テーマの gem を使う Jekyll 4 で始めるには、テーマのリポジトリを `--recurse-submodules` 付きでクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/jekyll4/<name>/` をコピーします。

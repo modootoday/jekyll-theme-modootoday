@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:4d234fb1ee4f
+source_rev: sha256:8f0903833158
 nav_order: 0
 layout: examples
 title: 컴포넌트

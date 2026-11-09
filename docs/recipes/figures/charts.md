@@ -81,9 +81,9 @@ The theme writes the data as a table at the end of the section: a row per label,
 
 A `c: chart` section without `data:` uses its first table instead, captioned the same way as above. A chart section turns its table into a chart figure even when `modootoday.chart.enabled` is off, because the section asks for it by name.
 
-## Colours
+## Colors
 
-The figure carries eight series colours for each scheme, and every one has at least 3:1 contrast with the page background. Set the hooks in your own stylesheet to use your brand's:
+The figure carries eight series colors for each scheme, and every one has at least 3:1 contrast with the page background. Set the hooks in your own stylesheet to use your brand's:
 
 ```css
 :root {
@@ -109,9 +109,9 @@ Pages load Chart.js (about 70 KB gzip) and the theme's chart module only when th
 ## What readers get
 
 - The chart is a `canvas` with `role="img"`, named by the caption (or by the series names when there is none). The table stays in the figure, folded into a *Chart data* disclosure that screen readers and keyboards open like any other. Its accessible name adds the chart's name ("Chart data, Visits"), numbered when two charts share one, so the toggles on a page are told apart.
-- Colours, grid lines and axis text come from the hooks above and follow the theme toggle and the system scheme without a reload. Line charts also give each series its own dash pattern, so series stay apart when colours are hard to tell apart; their legend shows each series as a short stroke in that pattern.
+- Colors, grid lines and axis text come from the hooks above and follow the theme toggle and the system scheme without a reload. Line charts also give each series its own dash pattern, so series stay apart when colors are hard to tell apart; their legend shows each series as a short stroke in that pattern.
 - With reduced motion set in the system, charts draw without animation.
-- In forced colours mode (Windows high contrast), the chart is not drawn and the table stays open, in the system colours.
+- In forced colors mode (Windows high contrast), the chart is not drawn and the table stays open, in the system colors.
 - Under a strict CSP the page needs no exception: Chart.js sizes the canvas through the CSSOM, which `style-src 'self'` allows ([CSP](../../csp/)).
 
 ## What the checker reports

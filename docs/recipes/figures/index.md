@@ -9,6 +9,7 @@ These recipes turn Markdown that GitHub already understands (a Mermaid or math f
 
 <!-- spec:docs-index:begin -->
 - [Math and diagrams](math-diagrams/) — Show Mermaid diagrams and math as committed static SVG and MathML, or render diagrams and KaTeX math with the built-in loaders or your own, and what each does to your CSP and privacy.
+- [Diagram and math loaders](loaders/) — Render Mermaid diagrams and KaTeX math in the browser with the built-in loaders or your own, and what each one asks of your CSP and privacy.
 - [Charts](charts/) — Turn a Markdown table into a chart figure, or show a data file as one, with the table as the text every reader gets.
 - [Widgets](widgets/) — Place your own custom element in a page from Markdown, with text that readers without JavaScript get instead.
 <!-- spec:docs-index:end -->

@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: showcase.md
+path: reference/showcase.md.txt
+permalink: /reference/showcase/index.md
+---

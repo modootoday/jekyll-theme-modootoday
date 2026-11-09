@@ -1,7 +1,7 @@
 # Translation glossary and register rules (canonical: docs/guides/translation.md). Checked by
 # script/i18n-build --check (script/i18n/lint.rb). Keys: en = English term; ko/ja = the one approved
-# translation; avoid.<lang> = wordings that fail the lint outside code. Other languages: add a column
-# here when a native reviewer signs off a term.
+# translation; avoid.<lang> = wordings that fail the lint outside code (avoid.en on the English docs pages,
+# adr:modootoday/20261109200230 R2). Other languages: add a column here when a native reviewer signs off a term.
 register:
   ko: {docs: 합니다체, ui: 해요체, labels: noun phrase}
   ja: {docs: です・ます, ui: です・ます, labels: 体言止め, table_cells: 体言止め or 常体}
@@ -51,6 +51,17 @@ terms:
   - {en: contributor, ko: 기여자, ja: コントリビューター}
   - {en: disclosure (component group), ko: 펼침, ja: 開閉}
   - {en: site chrome (component group), ko: 사이트 공통 요소, ja: サイト共通要素}
+  # English spelling and docs terms: one word per concept on the English pages too.
+  - {en: color, ko: 색, ja: 色, avoid: {en: [colour, Colour]}, note: "American spelling in prose; token and key names are unchanged"}
+  - {en: optional stylesheet, ko: 선택 시트, ja: 任意シート, avoid: {en: [optional sheet, pages bundle, optional bundle]}, note: "a theme sheet that only pages using it link"}
+  - {en: starter site, ko: 시작 사이트, ja: スターターサイト, note: "a template repository with its live demo"}
+  - {en: AI agents (the guide), ko: AI 에이전트, ja: AI エージェント, avoid: {en: [For agents, Agents guide, Agent-readable Markdown]}}
+  - {en: Migrate and upgrade (the guide), ko: 마이그레이션과 업그레이드, ja: 移行とアップグレード, avoid: {ko: [이전과 업그레이드]}}
+  # Component display names: a heading shows the name; the id (what an author types) follows in its first line.
+  - {en: "Alerts (id callout)", ko: 알림, ja: アラート}
+  - {en: "Buttons (id cta)", ko: 버튼, ja: ボタン}
+  - {en: "Cards (id features, card)", ko: 카드, ja: カード}
+  - {en: "Parameter table (id params)", ko: 매개변수 표, ja: パラメーター表}
 # Calques: literal English patterns that read as machine translation. Flagged in docs prose.
 calques:
   ko:

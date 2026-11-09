@@ -1,14 +1,13 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:90428e3b560b
+source_rev: sha256:f0b306cf80c5
 nav_order: 30
 title: 設定
 description: _config.yml の modootoday キーで指定するサイト全体の設定。
 sections:
   - keys
   - new-window
-  - showcase
   - head
   - i18n
   - registry
@@ -67,7 +66,7 @@ modootoday:
 | `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
 | `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。 |
 | `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
-| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[数式と図](../../recipes/figures/math-diagrams/#組み込みローダー)を参照。 |
+| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[図と数式のローダー](../../recipes/figures/loaders/#組み込みローダー)を参照。 |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
 | `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/figures/math-diagrams/#静的な数式)を参照。 |
 | `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
@@ -78,7 +77,7 @@ modootoday:
 | `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
-| `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](#スターターのデモのショーケース)を参照。 |
+| `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](../../reference/showcase/)を参照。 |
 | `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/figures/charts/)を参照。 |
 | `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
@@ -131,52 +130,6 @@ modootoday:
 ```
 
 こうしたリンクには `target="_blank"`、`rel="noopener noreferrer"`、CSS で描いた小さな矢印、そしてスクリーンリーダーが `aria-describedby` で読み上げる非表示の案内（「新しいウィンドウで開きます」、ページの言語に翻訳）が付きます。スクリプトは使わないので、厳しいコンテンツセキュリティポリシー（CSP）でもそのまま動きます。サイト設定を有効にしていても、リンクに `new_window: false` を書くとそのリンクは同じウィンドウで開きます。
-
-## スターターのデモのショーケース
-
-スターターのライブデモには、テーマとスターターの名前を示し、テーマのドキュメントへ戻るリンクを載せたバーを表示できます。このバーはデモのビルド専用です。デモのデプロイだけが `_config.yml` に重ねる 2 つ目の設定ファイルに書けば、スターターから作ったサイトには表示されません。GitHub Pages のビルダーは `_config.yml` しか読まないため、このビルダーを使うワークフローではビルドの前にデモのファイルを `_config.yml` に統合します。テーマのスターターは `if: github.repository == '<owner>/<repo>'` の条件が付いたワークフローのステップでこれを行うため、フォークやテンプレートから作ったリポジトリはショーケースなしでビルドされます。
-
-```yaml
-# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
-modootoday:
-  showcase:
-    enabled: true
-    style: bar            # bar (default) or pill
-    starter: blog         # names the starter in the label
-    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
-    use_url: https://github.com/<owner>/<repo>/generate   # optional
-```
-
-クラシックの GitHub Pages では、GitHub Actions のワークフローでビルドし（Settings > Pages > Source: GitHub Actions）、ビルダーが動く前に条件付きのステップでファイルを統合します。次はスターターの `pages.yml` が使うステップです。ビルドの次のステップが `_config.yml` を元に戻すので、続く検査はサイト自身の設定を見ます。
-
-```yaml
-# .github/workflows/pages.yml: steps of the build job, around the build
-- name: Layer the demo config
-  if: github.repository == '<owner>/<repo>'
-  run: |
-    cp _config.yml "$RUNNER_TEMP/_config.yml"
-    ruby -ryaml -rdate -e '
-      read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
-      merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
-      File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
-- uses: actions/jekyll-build-pages@v1   # the classic GitHub Pages builder
-  with:
-    source: .
-    destination: ./_site
-- name: Restore _config.yml
-  if: github.repository == '<owner>/<repo>'
-  run: mv "$RUNNER_TEMP/_config.yml" _config.yml
-```
-
-- **バー**(`style: bar`、既定): ヘッダーの上に 44 px のバーを置き、テーマ名、スターター名、ドキュメントへのリンク、このスターターで始めるリンク(`use_url` があるとき)、非表示にするボタンを並べます。固定ヘッダーとアンカー先のオフセットはバーの高さだけ下がります。40rem(640 px)より狭い画面では、テーマ名、ドキュメントへのリンク、ボタンだけが残ります。スマートフォンを横に持ったときや 200% に拡大したときなど、ウィンドウの高さが 30rem(480 px)未満になると、バーはページと一緒にスクロールします。
-- **ピル**(`style: pill`): 画面下の中央に浮かぶピルに、テーマ名、スターター名、ドキュメントへのリンク、ボタンを並べます。ページの下に余白を取るため、ピルが最後の行、トップへ戻るリンク、セーフエリアを隠すことはありません。
-- **色**はページの配色を反転したものです。明るいページには暗いバー、暗いページには明るいバーを表示します。`brand` トークンはマークにだけ使います。
-- **リンク**は設定からだけ読み込みます。新しいウィンドウで開き、矢印を表示し、名前でもそのことを伝えます。
-- **フォーカスの順序**: ショーケースは「テーマのショーケース」という名前の領域で、そのリンクは「本文へスキップ」のすぐ後に来ます。
-- **非表示**はそのタブでの訪問が終わるまで続きます(`sessionStorage`)。`<head>` の小さなスクリプトがページを描く前にこの値を読むため、次のページにはバーもその余白もなく、表示がずれることもありません。JavaScript がないときやストレージが使えないときは、ショーケースはそのまま残ります。
-- **検索エンジン**: ショーケースを有効にすると、すべてのページに `<meta name="robots" content="noindex">` が付きます。デモのサンプルの文章は、スターターから作ったどのサイトも最初に持つ文章だからです。サイトマップにはページが残りますが noindex が優先され、デモのビルドの Lighthouse SEO 監査はページがインデックスから除外されていると報告します。
-- **ラベル**はページの言語に従います。`starter` は `showcase.starters.<name>` のラベルを選び、テーマには `docs`、`blog`、`landing` があります。ほかのスターターでは `_data/i18n/<lang>.yml` にそのキーを追加してください。ない場合、ラベルにはテーマ名だけが表示されます。
-- `modootoday-check` は `_config.yml` と `_config.demo.yml` のキーを検査し、`_config.yml` 自体で有効にすると警告し、ショーケースが表示されるビルドでは noindex のタグがないページも警告します。`_config.demo.yml` があっても、それなしでビルドしたサイトには警告しません。
 
 ## head と SEO
 

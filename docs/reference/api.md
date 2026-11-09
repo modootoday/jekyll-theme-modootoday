@@ -42,7 +42,7 @@ Details for the rows above:
 - Static figures: `diagrams: [{name, alt, caption, width, height}]` maps the n-th ```` ```mermaid ```` fence of a page to its n-th entry (see [Math and diagrams](../../recipes/figures/math-diagrams/#static-diagrams)). `data-mt-src="sha256-<hex>"` on an SVG's root element records the fence it was drawn from: the SHA-256 of the fence body (the lines between the fence lines) with CRLF and CR turned into LF and the final newlines removed. `modootoday-check` reports an SVG whose `data-mt-src` differs from its fence's digest as a stale diagram. `diagram.source` in `_data/i18n/<lang>.yml` names the source disclosure.
 - Static math: with `modootoday.math.mode: static`, the n-th ```` ```math ```` fence or `$$` block of a page is replaced by the `html` of the n-th entry of `_data/math/<key>.yml`, a list of `{src, html}` (see [Static math](../../recipes/figures/math-diagrams/#static-math)). `<key>` is the default-language source path of the page without its extension, with `/` as `--` (front matter `math_key:` overrides it); `src` is the block's digest by the rule above, over the TeX between the delimiters. `math.label` (`Formula [n]`) names each block's region.
 - Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
-- Showcase: see [Starter demo showcase](../../guides/configuration/#starter-demo-showcase). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
+- Showcase: see [Starter demo showcase](../showcase/). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
 - Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt` and record pages `<dir>/<key>.md`. Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
 
 ## Layouts
@@ -80,7 +80,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Section | `section.mt-section` | the `h2` and its content | `[data-section]`, `[data-c]`, `.mt-c-<c>`, `.mt-cols-<n>`, `.mt-cta` |
 | Section decor | `.mt-has-decor` on `section.mt-hero` or `section.mt-section` | `.mt-section-decor[aria-hidden=true]` | — |
 | Scroll reveal | `.mt-reveal` on `section.mt-hero` or `section.mt-section` | — | fades in on scroll |
-| Full-width band | `.mt-bleed`, `.mt-bleed-wide` on `section.mt-hero` or `section.mt-section` | — | `--mt-bleed-bg` sets the colour |
+| Full-width band | `.mt-bleed`, `.mt-bleed-wide` on `section.mt-hero` or `section.mt-section` | — | `--mt-bleed-bg` sets the color |
 | Illustration | `figure.mt-illustration[role=img][aria-label]` | `.mt-illustration-tag` | — |
 | List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` | the `li > a` chips; the title and separator | — |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
@@ -99,7 +99,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe`, `label`, `input[type=email]`, `button` | — |
 | Split | `section.mt-c-split` | `.mt-section-in` > `.mt-section-body` + `.mt-section-visual` | `.mt-split-start`, `.mt-split-5-7`, `.mt-split-code`, `.mt-split-terminal` |
 | Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
-| Loading (optional sheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
+| Loading (optional stylesheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
 | Banner | `div.mt-banner` | its `p` and link; `a.mt-back-to-top` | — |
 | Showcase | `div.mt-showcase-region[role=region]` with `.mt-showcase-bar` or `.mt-showcase-pill`, right after `a.mt-skip` | `.mt-showcase-mark`, `p.mt-showcase-label`, its links (the filled one `a.mt-showcase-solid`), `button.mt-showcase-dismiss` | `html[data-mt-showcase]` = bar, pill, off; `.mt-showcase-more` (hidden below 40rem), `.mt-showcase-less` (shown only there) |
 | Alert | `blockquote.mt-callout[role=note]` | `p.mt-callout-title`, the body | `.mt-callout-<type>`, `[data-variant]` = note, tip, important, warning, caution |
@@ -107,14 +107,14 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Keyboard keys | `kbd.mt-kbd` | `kbd` per key | — |
 | Figure | `figure.mt-figure` | `img`, `figcaption` | — |
 | Static math | `figure.mt-figure.mt-math` | `div.mt-figure-scroll[role=region]` holding the `<math>` element, or KaTeX's HTML | — |
-| Static diagram | `figure.mt-figure.mt-figure-svg.mt-diagram` | `div.mt-figure-scroll[role=region]`, `img.mt-diagram-light`, `img.mt-diagram-dark`, `figcaption`, and after the figure `details.mt-diagram-source` | the image for the other colour scheme is hidden |
+| Static diagram | `figure.mt-figure.mt-figure-svg.mt-diagram` | `div.mt-figure-scroll[role=region]`, `img.mt-diagram-light`, `img.mt-diagram-dark`, `figcaption`, and after the figure `details.mt-diagram-source` | the image for the other color scheme is hidden |
 | Post header | `header.mt-post-header` | `h1.mt-post-title`, `.mt-post-deck`, `.mt-byline`, `figure.mt-post-cover`, `nav.mt-series`, `p.mt-post-meta` | `[data-part]` = header, deck, byline, authors, dates, cover, terms |
 | Post footer | `article.mt-doc` | `.mt-share` button, `nav.mt-post-nav`, `section.mt-related`, `.mt-news-correction`, `.mt-news-sources` | `[data-part]` = share, post-nav, related, sources |
 | Post card | `article.mt-card-post` | `.mt-card-post-cover`, `.mt-card-post-meta`, `.mt-card-post-title`, `.mt-card-post-excerpt` | `.mt-card-post-featured`, `[data-kind=news]`, `.mt-post-list[data-variant=list\|grid\|magazine]` |
 | News front | `div.mt-news-top` | `.mt-news-lead`, `.mt-news-secondary`, `section.mt-news-latest`, `section.mt-news-section` | `[data-category]`, `.mt-badge[data-variant=breaking\|live]` |
 | Search | `div.mt-search[role=search]` | the input, `.mt-search-results` | `[data-match=terms]`, `[data-compact]`, `[data-results]` |
 | Filter | `[data-mt-filter]` | `div.mt-filter`, `.mt-filter-chips[role=group]` > `button[aria-pressed]` | `[data-facet]`; `[hidden]` on items left out |
-| Chart | `figure.mt-chart` | `.mt-chart-canvas` (`[hidden]` until the chart module draws a `canvas[role=img]` named by the caption in it), `.mt-chart-data` > `div.mt-table` > `table` (`figure.mt-chart table`; folded into `details` > `summary` once drawn), `figcaption` | `[data-type]`, `[data-opts]`; colour hooks `--mt-chart-1` to `--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
+| Chart | `figure.mt-chart` | `.mt-chart-canvas` (`[hidden]` until the chart module draws a `canvas[role=img]` named by the caption in it), `.mt-chart-data` > `div.mt-table` > `table` (`figure.mt-chart table`; folded into `details` > `summary` once drawn), `figcaption` | `[data-type]`, `[data-opts]`; color hooks `--mt-chart-1` to `--mt-chart-8`, `--mt-chart-grid`, `--mt-chart-text` |
 | Widget | `section.mt-c-widget`, the site's custom element with `.mt-widget` | `.mt-widget-fallback` (the section text, or the `widget.fallback` sentence; hidden once the element is defined) | `[data-props]` (the props as JSON) |
 
 Notes on the rows above:
@@ -170,7 +170,7 @@ A component entry takes only `params`, `i18n`, `slots` and `parts`, and a slot r
 |---|---|---|
 | `mt:themechange` | The page switches between light and dark mode. | `{theme: "light" or "dark", source: "toggle" or "system"}` |
 
-The theme toggle (`theme-toggle.js`) sends it on `document` after a click, and after a change of the system colour scheme while the reader has not chosen one. It stays in the same document, is never sent on the first paint, and is not sent on sites without the toggle (`color_scheme: light` or `dark`).
+The theme toggle (`theme-toggle.js`) sends it on `document` after a click, and after a change of the system color scheme while the reader has not chosen one. It stays in the same document, is never sent on the first paint, and is not sent on sites without the toggle (`color_scheme: light` or `dark`).
 
 For one callback per real change that also works without the toggle, use `onThemeChange` from `assets/js/modootoday/theme/current.js`: it listens to the event and to the system setting, and returns a function that stops listening.
 

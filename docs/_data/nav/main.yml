@@ -77,6 +77,7 @@
       url: /recipes/figures/
       items:
         - {title: Math and diagrams, url: /recipes/figures/math-diagrams/}
+        - {title: Diagram and math loaders, url: /recipes/figures/loaders/}
         - {title: Charts, url: /recipes/figures/charts/}
         - {title: Widgets, url: /recipes/figures/widgets/}
     - {title: Brand tokens, url: /recipes/brand-tokens/}
@@ -96,5 +97,6 @@
     - {title: Command line, url: /reference/cli/}
     - {title: Tags, url: /tags/}
     - {title: Categories, url: /categories/}
+    - {title: Starter demo showcase, url: /reference/showcase/}
     - {title: Changelog, url: /reference/changelog/}
     - {title: Roadmap, url: /reference/roadmap/}

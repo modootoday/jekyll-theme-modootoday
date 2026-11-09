@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/brand-tokens/
-source_rev: sha256:7e228dbb5e53
+source_rev: sha256:049fbb797e23
 nav_order: 15
 nav_title: ブランドトークン
 title: ブランドトークン
@@ -34,18 +34,7 @@ $mt-overrides-dark: (
 );
 ```
 
-| マップ | トークン | 出力先 |
-|---|---|---|
-| `$mt-overrides-base` | `font-sans`、`font-mono`、`font-heading`、`heading-weight`、`font-size`、`line-height`、`measure`、`narrow`、`radius` などカラースキームに依存しないトークン | `:root` |
-| `$mt-overrides` | `primary`、`link`、`link-hover`、`background`、`foreground`、`border` などの色トークン | `:root` (ライト) |
-| `$mt-overrides-dark` | ダークモードの同じ色トークン | ダークスキームのセレクター |
-
-色は両方のマップに指定してください。ダークのセレクターはすべての色トークンを出力し直すため、`$mt-overrides` にだけ置いた値はダークモードに反映されません。
-
-このファイルに置けるのはこの三つのマップだけです。ほかの文やテーマにないトークン名があると `modootoday-check` が失敗するので、タイプミスが見過ごされることはありません。
-
-> [!TIP]
-> `font-heading` と `heading-weight` は `h1`〜`h4` に、`link` と `link-hover` は本文のリンクに適用されます。既定値はそれぞれ `font-sans`、600、`primary` に従うため、`primary` だけを変えたサイトでは何も変わりません。例の `heading-weight: 600` は書く場所を示すためのもので、既定値と同じです。
+色はライトとダークのために両方のマップに指定します。`heading-weight: 600` は既定値で、書く場所を示すために入れています。マップごとに受け取るトークンと `modootoday-check` が拒否する内容は[カスタマイズ > トークンブリッジ](../../guides/customize/#トークンブリッジ)にあります。
 
 ## サイトのスタイルシートとフォント
 

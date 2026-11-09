@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/system/
-source_rev: sha256:ff89fd56f71f
+source_rev: sha256:112755a408ed
 title: 시스템 페이지
 description: 모든 사이트에 필요한 없음, 오류, 이동, 검색 페이지입니다.
 nav_order: 80

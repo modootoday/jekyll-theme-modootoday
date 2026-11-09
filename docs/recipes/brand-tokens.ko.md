@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/brand-tokens/
-source_rev: sha256:7e228dbb5e53
+source_rev: sha256:049fbb797e23
 nav_order: 15
 nav_title: 브랜드 토큰
 title: 브랜드 토큰
@@ -34,18 +34,7 @@ $mt-overrides-dark: (
 );
 ```
 
-| 맵 | 토큰 | 출력 위치 |
-|---|---|---|
-| `$mt-overrides-base` | `font-sans`, `font-mono`, `font-heading`, `heading-weight`, `font-size`, `line-height`, `measure`, `narrow`, `radius` 등 색 구성표와 무관한 토큰 | `:root` |
-| `$mt-overrides` | `primary`, `link`, `link-hover`, `background`, `foreground`, `border` 같은 색 토큰 | `:root`(라이트) |
-| `$mt-overrides-dark` | 다크 모드의 같은 색 토큰 | 다크 구성표 선택자 |
-
-색은 두 맵에 모두 지정하세요. 다크 선택자는 모든 색 토큰을 다시 출력하므로, `$mt-overrides`에만 둔 값은 다크 모드에 반영되지 않습니다.
-
-이 파일에는 이 세 맵만 둘 수 있습니다. 다른 문장이나 테마에 없는 토큰 이름이 있으면 `modootoday-check`가 실패하므로, 오타가 그대로 지나가지 않습니다.
-
-> [!TIP]
-> `font-heading`과 `heading-weight`는 `h1`~`h4`에, `link`와 `link-hover`는 본문 링크에 적용됩니다. 기본값은 각각 `font-sans`, 600, `primary`를 따르므로, `primary`만 바꾼 사이트에서는 달라지는 것이 없습니다. 예시의 `heading-weight: 600`은 쓰는 자리를 보여 주려는 것일 뿐, 기본값과 같습니다.
+색은 라이트와 다크 모드를 위해 두 맵에 모두 지정합니다. `heading-weight: 600`은 기본값이며 쓰는 자리를 보여 주려고 넣었습니다. 맵마다 받는 토큰과 `modootoday-check`가 거부하는 내용은 [사용자 정의 > 토큰 브리지](../../guides/customize/#토큰-브리지)에 있습니다.
 
 ## 사이트 스타일시트와 글꼴
 

@@ -19,7 +19,7 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 | `↓` `↑` `Esc` | language menu, nav "More" menu, page actions | move between items; `Esc` closes and returns focus |
 | `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a region you can focus and scroll with the arrow keys. Each has its own name: "Code" or "Table" with the file name, caption or language, else the nearest heading, and a number when two would match |
 
-On a starter demo with the [showcase](../configuration/#starter-demo-showcase), its links and its hide button come right after "Skip to content"; hiding it moves focus back to "Skip to content".
+On a starter demo with the [showcase](../../reference/showcase/), its links and its hide button come right after "Skip to content"; hiding it moves focus back to "Skip to content".
 
 Focus is always visible. Inside tabs, panels and scroll regions the focus ring is drawn inside the box so it is not clipped.
 
@@ -31,11 +31,11 @@ Landmarks (header, navigation, main, footer), the current page in navigation, br
 
 - **Safe areas.** Pages extend under the notch, rounded corners and home indicator, and the header, side padding and footer move clear of them.
 - **Touch targets.** On touch screens, links in the header, menus, tabs, copy buttons and pagination are at least 44 px tall, and the search box uses 16 px text so iOS does not zoom.
-- **Browser colour.** The address bar matches the page background in light and dark mode.
+- **Browser color.** The address bar matches the page background in light and dark mode.
 
 ## High contrast and motion
 
-- With Windows high contrast (forced colours), icon buttons and the search box keep visible borders. The showcase keeps a border around its bar or pill and its links.
+- With Windows high contrast (forced colors), icon buttons and the search box keep visible borders. The showcase keeps a border around its bar or pill and its links.
 - With "reduce motion" turned on, transitions and animations are off.
 
 ## Settings
@@ -49,7 +49,7 @@ modootoday:
 | Key | Default | Effect |
 |---|---|---|
 | `viewport_fit` | `cover` | `auto` keeps the page inside the safe area, letting the browser add the margins |
-| `theme_color` | page background | colour of the browser bar; one `"#hex"`, `{light, dark}`, or `false` to drop the tags |
+| `theme_color` | page background | color of the browser bar; one `"#hex"`, `{light, dark}`, or `false` to drop the tags |
 
 Your own CSS can read the insets as `--mt-safe-top`, `--mt-safe-right`, `--mt-safe-bottom` and `--mt-safe-left`.
 

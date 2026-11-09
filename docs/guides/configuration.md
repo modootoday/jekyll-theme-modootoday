@@ -5,7 +5,6 @@ description: Site-wide settings under the modootoday key in _config.yml.
 sections:
   - keys
   - new-window
-  - showcase
   - head
   - i18n
   - registry
@@ -27,14 +26,14 @@ modootoday:
 | Key | Default | What it does |
 |---|---|---|
 | `badges` | `true` | Shows status code spans as badges. `false` keeps them as code. |
-| `code_theme` | `theme` | Code block colours: the theme's (`theme`) or GitHub's (`github`). See [Code colours](../customize/#code-colours). |
+| `code_theme` | `theme` | Code block colors: the theme's (`theme`) or GitHub's (`github`). See [Code colors](../customize/#code-colors). |
 | `color_scheme` | `auto` | Light or dark mode. `auto` follows the device; `auto-dark` and `auto-light` pick a start; `light` and `dark` fix one. |
 | `components` | all | Limits which component CSS and JS the site ships. |
 | `css_layers` | `false` | Wraps the theme CSS in `@layer mt.*`. |
 | `nav` | `main` | The menu file in `_data/nav/`. An entry with `items:` becomes a group. |
 | `sidebar` | `auto` | Side menu on `doc` pages: `auto` when the menu has groups, `true` always, `false` never. |
 | `page_actions` | `true` | A menu to copy the page or view it as Markdown. `false` turns it off. |
-| `tokens` | theme values | Changes theme colours and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
+| `tokens` | theme values | Changes theme colors and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
 | `tokens_dark` | theme values | The same for dark mode only. |
 | `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
 | `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
@@ -58,10 +57,10 @@ modootoday:
 | `csp` | none | `strict` loads the early theme script from a file instead of inline. |
 | `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |
 | `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
-| `theme_color` | page background | Browser bar colour: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
+| `theme_color` | page background | Browser bar color: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
 | `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`. |
 | `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
-| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Math and diagrams](../../recipes/figures/math-diagrams/#built-in-loaders). |
+| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Diagram and math loaders](../../recipes/figures/loaders/#built-in-loaders). |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/figures/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |
 | `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/figures/math-diagrams/#static-math). |
 | `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |
@@ -72,7 +71,7 @@ modootoday:
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
-| `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](#starter-demo-showcase). |
+| `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](../../reference/showcase/). |
 | `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
 
@@ -125,52 +124,6 @@ modootoday:
 ```
 
 Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arrow drawn in CSS, and a hidden hint ("opens in a new window", translated into the page language) that screen readers read through `aria-describedby`. There is no script, so a strict Content Security Policy keeps working. `new_window: false` on a link turns it off even when the site setting is on.
-
-## Starter demo showcase
-
-A starter's live demo can show a bar that names the theme and the starter and links back to the theme's documentation. It belongs to the demo build only: put it in a second config file that only the demo deploy layers over `_config.yml`, so a site made from the starter never shows it. The GitHub Pages builder reads only `_config.yml`, so a workflow using it merges the demo file into `_config.yml` before the build. The theme's starters do this in a workflow step guarded by `if: github.repository == '<owner>/<repo>'`, so forks and repositories created from the template build without the showcase.
-
-```yaml
-# _config.demo.yml: jekyll build --config _config.yml,_config.demo.yml
-modootoday:
-  showcase:
-    enabled: true
-    style: bar            # bar (default) or pill
-    starter: blog         # names the starter in the label
-    docs_url: https://modootoday.github.io/jekyll-theme-modootoday/
-    use_url: https://github.com/<owner>/<repo>/generate   # optional
-```
-
-On classic GitHub Pages, build in a GitHub Actions workflow (Settings > Pages > Source: GitHub Actions) and merge the file in a guarded step before the builder runs. These are the steps the starters' `pages.yml` uses; the step after the build puts `_config.yml` back, so the check that follows sees the site's own settings:
-
-```yaml
-# .github/workflows/pages.yml: steps of the build job, around the build
-- name: Layer the demo config
-  if: github.repository == '<owner>/<repo>'
-  run: |
-    cp _config.yml "$RUNNER_TEMP/_config.yml"
-    ruby -ryaml -rdate -e '
-      read = ->(f) { YAML.safe_load_file(f, permitted_classes: [Date, Time], aliases: true) || {} }
-      merge = ->(a, b) { a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge.(x, y) : y } }
-      File.write("_config.yml", YAML.dump(merge.(read.("_config.yml"), read.("_config.demo.yml"))))'
-- uses: actions/jekyll-build-pages@v1   # the classic GitHub Pages builder
-  with:
-    source: .
-    destination: ./_site
-- name: Restore _config.yml
-  if: github.repository == '<owner>/<repo>'
-  run: mv "$RUNNER_TEMP/_config.yml" _config.yml
-```
-
-- **Bar** (`style: bar`, the default): a 44 px bar above the header with the theme name, the starter name, a Documentation link, a Use this starter link (when `use_url` is set) and a button that hides it. The sticky header and the offset of anchor targets move down by its height. Below 40rem (640 px) only the theme name, a Docs link and the button remain. In a window less than 30rem (480 px) tall, such as a phone held sideways or 200% zoom, the bar scrolls away with the page.
-- **Pill** (`style: pill`): a floating pill at the bottom centre with the theme name, the starter name, a Docs link and the button. The page gets bottom padding, so the pill never covers the last line, the back-to-top link or the safe area.
-- **Colours** are the page's, inverted: a dark bar on a light page and a light one on a dark page. The `brand` token colours only the mark.
-- **Links** come only from the config. They open in a new window, show the arrow, and their names say so.
-- **Focus order**: the showcase is a region named "Theme showcase", and its links come right after "Skip to content".
-- **Hiding** lasts for the rest of the visit in that tab (`sessionStorage`). A small script in `<head>` reads it before the page is drawn, so the next page shows neither the bar nor its space, and nothing moves. Without JavaScript, or when storage is blocked, the showcase stays.
-- **Search engines**: with the showcase on, every page carries `<meta name="robots" content="noindex">`, because a demo's sample text is what every site made from the starter begins with. Sitemaps still list the pages, but noindex wins, and a Lighthouse SEO audit of a demo build reports the pages as blocked from indexing.
-- **Labels** follow the page language. `starter` picks the `showcase.starters.<name>` label, which the theme has for `docs`, `blog` and `landing`; for another starter add that key to `_data/i18n/<lang>.yml`, or the label names only the theme.
-- `modootoday-check` checks the key in `_config.yml` and `_config.demo.yml`, warns when `_config.yml` itself turns it on, and, in a build that shows the showcase, warns about pages without the noindex tag. A site that keeps `_config.demo.yml` but builds without it gets no warning.
 
 ## Head and SEO
 

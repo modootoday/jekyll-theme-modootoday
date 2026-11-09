@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/
-source_rev: sha256:aca9e4e3bae2
+source_rev: sha256:615a949a6ecf
 title: 레이아웃 데모
 description: 페이지 셸 레이아웃을 실제 페이지로 보여 줍니다.
 nav_exclude: true
@@ -18,6 +18,6 @@ twin: false
 - [Redirect](redirect/)
 - [Search](search/)
 - [Strict CSP](csp/)
-- [GitHub code colours](code-github/)
+- [GitHub code colors](code-github/)
 - [Hero module](orbit/)
 - [Filter](filter/)

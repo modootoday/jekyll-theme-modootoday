@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: showcase.ko.md
+lang: ko
+path: reference/showcase.ko.md.txt
+permalink: /ko/reference/showcase/index.md
+---
