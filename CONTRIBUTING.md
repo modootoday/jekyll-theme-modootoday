@@ -125,7 +125,7 @@ A change is done when the files its kind touches are updated in the same commit 
 | Setting (`modootoday.*` key) | its key file under `lib/modootoday/check/config/keys/`; the Configuration guide in all three languages; `CHANGELOG.md` | `rake test` (checker, message snapshot: `SNAPSHOT_UPDATE=1` on purpose) |
 | Checker or stub writer option | `lib/modootoday/check/cli.rb` or `lib/modootoday/stubs/cli.rb`; `ruby script/readme-commands` | `ruby script/readme-commands --check` |
 | Interface string | `i18n/en.yml`, then every other catalog; `ruby script/i18n-build` | `ruby script/i18n-build --check` |
-| Docs page | the English page, then its `.ko.md` and `.ja.md` pages; `ruby script/docs-index`, then `ruby script/docs-index --stamp` on the translations | `ruby script/docs-index --check`; the docs structure check; a docs build with `modootoday-check --twins` |
+| Docs page | the English page, then its `.ko.md` and `.ja.md` pages; `ruby script/docs-index`, then `ruby script/docs-index --stamp` on the translations; the rules of adr:modootoday/20261109200230 (link the topic's canonical page instead of repeating it, use the glossary terms) | `ruby script/docs-index --check`; the docs structure check; a docs build with `modootoday-check --twins` |
 | Rule, limit, budget target or exception | an ADR (see Decisions); `RULES.md` with the includes, checker and tests it governs; `CHANGELOG.md` | `rake test`; `spec check` |
 | Tooling, tests or CI | `CONTRIBUTING.md` and `AGENTS.md` when a command changes; `CHANGELOG.md` only when users see it | `rake test` (`test/project/governance_test.rb` checks the commands in `AGENTS.md`) |
 | Release | the steps in [RELEASING.md](RELEASING.md) | the release check in RELEASING.md step 3 |

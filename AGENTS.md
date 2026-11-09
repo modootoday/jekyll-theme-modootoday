@@ -60,6 +60,7 @@ git config core.hooksPath script/hooks
 - **Small files.** Code files hold at most 150 lines, tests 300, and a directory at most 12 tracked files (`test/project/layout_test.rb`).
 - **Decisions in `.spec/`.** A decision that sets a rule, a limit, an exception or a public behaviour is an ADR under `.spec/adr/`, made with the spec CLI (`npm` package `@modootoday/specfold`, command `spec`), not left in a commit message or a chat. Cite it by id (`adr:modootoday/<timestamp>`); every cited id must name a committed document.
 - **Docs in English, Korean and Japanese together.** English is canonical. The same change updates the English page and its `.ko.md` and `.ja.md` translations, then stamps them with `ruby script/docs-index --stamp`. User docs never name a future version.
+- **Docs consistency (adr:modootoday/20261109200230).** One canonical page per topic (others link it, never repeat it); one term per concept; the front matter contract; no past versions outside Upgrade and Changelog; docs match the code registries (config keys, layouts, components, CLI); groups of 12 or fewer with no orphans; relative links.
 - **CHANGELOG.** User-facing changes go under `## [Unreleased]` in Keep a Changelog sections; a released entry is never edited (`test/project/changelog_test.rb`).
 - **Public repository.** Commit nothing private: no local paths, e-mail addresses, tokens or internal notes.
 
