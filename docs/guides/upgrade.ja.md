@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:0680a162464d
+source_rev: sha256:33cd479a4404
 nav_order: 30
 title: 移行とアップグレード
 description: 別の Jekyll テーマからサイトを移す方法、既存のプロジェクトにテーマを導入する方法、バージョン間でアップグレードするときに変える点を順に説明します。
@@ -68,7 +68,7 @@ Markdown 版はスタブファイル、プラグイン、ソースモードの�
 - 1.4: `packages_compact` と `packages_position`(任意)。`reference` ページも `doc` と同じくアラートを変換するようになりました。
 - 1.5: 既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わります(下記参照)。
 - 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)、静的な数式(`modootoday.math.mode: static`、`_data/math` の MathML。[静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)、Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。`modootoday.chart.src` で指定したサイトの Chart.js が描画。[グラフ](../../recipes/figures/charts/)を参照)、`c: widget` や `widget:` で置く自作の custom element であるウィジェット(`modootoday.scripts` の `element:`。[ウィジェット](../../recipes/figures/widgets/)を参照)、いずれも任意。`modootoday.math.base` は、ローダーが使う自分でホストした KaTeX のパスを短くします。`modootoday-check` は JSON-LD に 1 つだけ入れ子になったオブジェクト(`offers`、`organizer` など)も検査し、問題を警告として報告します。次のメジャーバージョンからはエラーです([検査](../structured-data/#検査)を参照)。ビルドはそのまま通りますが、`--strict` では失敗します。 スターターのデモのビルドには、ショーケースのバーかピルを表示できます(`modootoday.showcase`、デモ専用の設定ファイルに書きます。[スターターのデモのショーケース](../../reference/showcase/)を参照)。このときすべてのページに `noindex` が付きます。
-- 1.7: イベントの `tickets:` に `{url, price, currency}` のマップも書けるようになり、販売情報に価格が、情報リストに料金の行が入ります([詳細ページ](../../layouts/detail/#イベント)を参照)。`schema.offers` なしで `tickets:` に URL だけを書くと、`modootoday-check` がマップの形を示す警告を出します。URL だけのページも以前と同じくビルドされます。`modootoday.pwa`(既定はオフ)でサイトをインストールできるようになります。`enabled: true` と `modootoday-stubs . --pwa --write` で、サイトのタイトル、`theme_color`、ブランドのマークまたは独自のアイコンから作るウェブアプリマニフェストをリンクします([インストールできるサイト](../../recipes/pwa/)を参照)。このキーがないサイトは同じ HTML でビルドされ、gem には `assets/modootoday/` の下にアイコンのファイルが 3 つ加わります。
+- 1.7: イベントの `tickets:` に `{url, price, currency}` のマップも書けるようになり、販売情報に価格が、情報リストに料金の行が入ります([詳細ページ](../../layouts/detail/#イベント)を参照)。`schema.offers` なしで `tickets:` に URL だけを書くと、`modootoday-check` がマップの形を示す警告を出します。URL だけのページも以前と同じくビルドされます。`modootoday.pwa`(既定はオフ)でサイトをインストールできるようになります。`enabled: true` と `modootoday-stubs . --pwa --write` で、サイトのタイトル、`theme_color`、ブランドのマークまたは独自のアイコンから作るウェブアプリマニフェストをリンクします([インストールできるサイト](../../recipes/pwa/)を参照)。`enabled: true` ではサービスワーカーがテーマのファイルと訪れたページを保存してオフラインで読めるようにし(スタブ作成ツールが `sw.js` とオフラインページも書き出します)、`enabled: kill` は訪問者の端末からワーカーを取り除きます。このキーがないサイトは同じ HTML でビルドされ、gem には `assets/modootoday/` の下にアイコンのファイルが 3 つ加わります。
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
 

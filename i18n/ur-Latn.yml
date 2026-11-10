@@ -145,3 +145,8 @@ showcase:
   use: "Yeh starter istemal karein"
   dismiss: "Is visit ke liye chhupayein"
   starters: {docs: "Docs starter", blog: "Blog starter", landing: "Landing starter"}
+pwa:
+  offline_title: "Aap offline hain"
+  offline_text: "Yeh safha is device par mehfooz nahin hai. Apna connection check karein aur dobara koshish karein."
+  offline_pages: "Woh safhaat jo aap offline parh sakte hain"
+  retry: "Dobara koshish karein"

@@ -3,10 +3,11 @@
 module Modootoday
   module Check
     module Config
-      # modootoday.pwa: the web app manifest's settings. scope and theme_color are not keys: they come from the baseurl and
-      # modootoday.theme_color. start_url is a site path without a query, so the app cannot carry tracking parameters.
+      # modootoday.pwa: the web app manifest and service worker settings (enabled: kill ships a self-removing worker). scope and
+      # theme_color come from the baseurl and modootoday.theme_color. Paths carry no query, so no tracking parameters.
       module Pwa
-        KEYS = %w[enabled name short_name description display start_url icons background_color].freeze
+        KEYS = %w[enabled name short_name description display start_url icons background_color precache].freeze
+        ENABLED = [true, false, "kill"].freeze
         DISPLAY = %w[standalone minimal-ui browser].freeze
         PURPOSE = %w[any maskable monochrome].freeze
         ICON_KEYS = %w[src sizes purpose].freeze
@@ -20,13 +21,14 @@ module Modootoday
 
         def check(ctx, path, v)
           errs = (v.keys - KEYS).map { |k| ": unknown key '#{k}' (known: #{KEYS.join(', ')})" }
-          errs << ".enabled must be true or false" if v.key?("enabled") && !Validate::BOOL.include?(v["enabled"])
+          errs << ".enabled must be true, false or kill (got #{v['enabled'].inspect})" if v.key?("enabled") && !ENABLED.include?(v["enabled"])
           errs << ".display must be #{DISPLAY.join(', ')} (got #{v['display'].inspect})" if v.key?("display") && !DISPLAY.include?(v["display"])
           %w[name short_name description].each { |k| errs << ".#{k} must be text" if v.key?(k) && !(v[k].is_a?(String) && !v[k].strip.empty?) }
           errs << ".start_url must be a site path without a query or fragment, such as /guides/ (got #{v['start_url'].inspect})" if v.key?("start_url") && !v["start_url"].to_s.match?(START)
           errs << ".background_color must be a hex color such as #ffffff (got #{v['background_color'].inspect})" if v.key?("background_color") && !v["background_color"].to_s.match?(HEX)
           errs << ": no name (set modootoday.pwa.name or the site title)" if v["enabled"] == true && !v["name"] && ctx.site_cfg["title"].to_s.strip.empty?
           errs.concat(icon_errors(v["icons"])) if v.key?("icons")
+          errs << ".precache must be a list of site paths without a query, such as [/guides/] (got #{v['precache'].inspect})" if v.key?("precache") && !(v["precache"].is_a?(Array) && v["precache"].all? { |p| p.to_s.match?(START) })
           errs.each { |e| ctx.errs << "_config.yml: #{path}#{e}" }
           warnings(ctx, path, v)
         end

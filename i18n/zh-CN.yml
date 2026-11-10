@@ -145,3 +145,8 @@ showcase:
   use: "使用此模板"
   dismiss: "本次访问期间隐藏"
   starters: {docs: "文档模板", blog: "博客模板", landing: "落地页模板"}
+pwa:
+  offline_title: "您已离线"
+  offline_text: "此页面未保存在此设备上。请检查网络连接后重试。"
+  offline_pages: "可离线阅读的页面"
+  retry: "重试"

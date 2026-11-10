@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:053a7f2fe636
+source_rev: sha256:85a0ecfc0b78
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -59,7 +59,7 @@ modootoday:
 | `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
 | `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
-| `pwa` | 끔 | `enabled: true`면 사이트 제목, `theme_color`, 브랜드 마크로 만든 웹 앱 매니페스트를 연결해 브라우저가 사이트를 설치할 수 있습니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 보세요. |
+| `pwa` | 끔 | `enabled: true`면 사이트 제목, `theme_color`, 브랜드 마크로 만든 웹 앱 매니페스트를 연결해 브라우저가 사이트를 설치할 수 있고, 오프라인에서 읽을 수 있도록 서비스 워커를 등록합니다. `precache:`에는 더 보관할 사이트 경로를 적습니다(페이지는 front matter `pwa: precache`로 스스로 더할 수 있습니다). `enabled: kill`은 스스로를 제거하는 워커를 내보냅니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 보세요. |
 | `header` | `{compact_title: true}` | `compact_title: false`면 휴대폰에서도 로고 옆에 사이트 이름을 보여 줍니다. |
 | `csp` | 없음 | `strict`면 처음 그리기 전에 도는 테마 스크립트를 인라인 대신 파일로 불러옵니다. |
 | `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |

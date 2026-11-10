@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:31791b0561ae
+source_rev: sha256:f75d8fc5328b
 nav_order: 75
 title: 성능
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산을 설명하고 사이트를 가볍게 유지하는 방법을 알려 줍니다.
@@ -30,6 +30,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기
 | `data/filter.js`(`data/filter-chips.js`, `text/normalize.js`, `dom/config.js`를 미리 불러옴) | `filter:`나 `filter_text:`를 쓰는 페이지 |
 | `data/chart.js`(`data/chart-table.js`, `theme/current.js`를 미리 불러옴), 사이트의 Chart.js 다음 | `modootoday.chart`가 사이트의 Chart.js(`src`)를 가리킬 때, 차트가 있는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
+| `pwa/register.js`(오프라인 페이지에서는 `pwa/offline.js`도) | `modootoday.pwa.enabled: true`일 때 모든 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
 
@@ -37,7 +38,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기
 
 `chrome/footer`는 `_data/nav/footer.yml`(또는 페이지 언어의 `footer-<lang>.yml`)에 열이 있을 때 불러옵니다.
 
-테마 스크립트는 ES 모듈(`<script type="module">`)입니다. `defer`처럼 페이지를 다 읽은 뒤 순서대로 실행되므로 첫 화면 표시를 막지 않습니다. 모듈이 가져오는 파일에는 `<link rel="modulepreload">`가 붙어서, 하나씩 차례로 받지 않고 함께 받습니다. 클래식 스크립트는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트(`chrome/theme-init.js`) 하나뿐입니다. 첫 화면을 그리기 전에 실행되어야 하기 때문입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요.
+테마 스크립트는 ES 모듈(`<script type="module">`)입니다. `defer`처럼 페이지를 다 읽은 뒤 순서대로 실행되므로 첫 화면 표시를 막지 않습니다. 모듈이 가져오는 파일에는 `<link rel="modulepreload">`가 붙어서, 하나씩 차례로 받지 않고 함께 받습니다. 클래식 스크립트는 `csp: strict`일 때 파일로 불러오는 작은 사전 페인트 테마 스크립트(`chrome/theme-init.js`) 하나뿐입니다. 첫 화면을 그리기 전에 실행되어야 하기 때문입니다. `modootoday.css: bundle`로 두면 모든 시트가 핵심 시트 하나에 담깁니다. [설정](../configuration/)을 보세요. `modootoday.pwa`를 켜면 서비스 워커가 `pwa/worker.js`를 한 번 불러와 테마 파일과 함께 보관하며, 페이지는 이 파일을 불러오지 않습니다([설치할 수 있는 사이트](../../recipes/pwa/#오프라인에서-읽기) 참고).
 
 ## 버전 붙은 자산 URL
 

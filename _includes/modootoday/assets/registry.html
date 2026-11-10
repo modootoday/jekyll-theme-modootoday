@@ -55,6 +55,8 @@ share|module|/assets/js/modootoday/blog/share.js|||640
 search-keys|module|/assets/js/modootoday/chrome/search-keys.js|||1024
 filter|module|/assets/js/modootoday/data/filter.js|<div class="mt-filter"||1152|/assets/js/modootoday/text/normalize.js /assets/js/modootoday/dom/config.js /assets/js/modootoday/data/filter-chips.js
 chart|module|/assets/js/modootoday/data/chart.js|class="mt-chart||2176|/assets/js/modootoday/data/chart-table.js /assets/js/modootoday/theme/current.js
+pwa|module|/assets/js/modootoday/pwa/register.js|||768
+offline|module|/assets/js/modootoday/pwa/offline.js|data-mt-offline||768
 {%- endcapture -%}
 {%- capture _mta_fixed -%}
 core|sheet|/assets/css/modootoday.css|||4608
@@ -69,6 +71,7 @@ resume|sheet|/assets/css/modootoday-resume.css|||768
 theme-init|script|/assets/js/modootoday/chrome/theme-init.js|||256
 mermaid|script|/assets/js/modootoday-mermaid.js|||1152
 math|script|/assets/js/modootoday-math.js|||768
+worker|script|/assets/js/modootoday/pwa/worker.js|||2048
 config|import|/assets/js/modootoday/dom/config.js|||640
 normalize|import|/assets/js/modootoday/text/normalize.js|||512
 search|import|/assets/js/modootoday/chrome/search.js|||1792|/assets/js/modootoday/text/normalize.js
@@ -89,7 +92,5 @@ chart-table|import|/assets/js/modootoday/data/chart-table.js|||512
 {%- include modootoday/version.html -%}
 {%- assign _mta_av = site.modootoday.asset_version -%}{%- assign mt_asset_v = mt_version -%}
 {%- if _mta_av == false -%}{%- assign mt_asset_v = "" -%}
-{%- elsif _mta_av == "build" -%}{%- assign _mta_rev = site.github.build_revision | slice: 0, 7 -%}
-{%- if _mta_rev == "" -%}{%- assign _mta_rev = site.time | date: "%s" -%}{%- endif -%}
-{%- assign mt_asset_v = mt_version | append: "-" | append: _mta_rev -%}
+{%- elsif _mta_av == "build" -%}{%- include modootoday/assets/build.html -%}{%- assign mt_asset_v = mt_build_v -%}
 {%- endif -%}

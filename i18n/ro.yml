@@ -145,3 +145,8 @@ showcase:
   use: "Folosește acest șablon"
   dismiss: "Ascunde pentru această vizită"
   starters: {docs: "Șablon de documentație", blog: "Șablon de blog", landing: "Șablon de pagină de prezentare"}
+pwa:
+  offline_title: "Sunteți offline"
+  offline_text: "Această pagină nu este salvată pe acest dispozitiv. Verificați conexiunea și încercați din nou."
+  offline_pages: "Pagini pe care le puteți citi offline"
+  retry: "Încercați din nou"

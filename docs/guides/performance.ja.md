@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:31791b0561ae
+source_rev: sha256:f75d8fc5328b
 nav_order: 75
 title: パフォーマンス
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算を説明し、サイトを軽く保つ方法を示します。
@@ -30,6 +30,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `data/filter.js`（`data/filter-chips.js`、`text/normalize.js`、`dom/config.js` を先読み） | `filter:` か `filter_text:` を使うページ |
 | `data/chart.js`（`data/chart-table.js`、`theme/current.js` を先読み）、サイトの Chart.js の後 | `modootoday.chart` がサイトの Chart.js（`src`）を指すとき、グラフのあるページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
+| `pwa/register.js`(オフラインページでは `pwa/offline.js` も) | `modootoday.pwa.enabled: true` のとき、すべてのページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
 
@@ -37,7 +38,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 
 `chrome/footer` は、`_data/nav/footer.yml`(またはページの言語の `footer-<lang>.yml`)に列があるときに読み込みます。
 
-テーマのスクリプトは ES モジュール (`<script type="module">`) です。`defer` と同じく、ページを読み終えた後に順番に実行されるため、最初の描画を妨げません。モジュールが読み込むファイルには `<link rel="modulepreload">` が付き、1 つずつ順に取得せず一緒に取得します。クラシックスクリプトは、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプト (`chrome/theme-init.js`) だけです。最初の描画より前に実行する必要があるためです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。
+テーマのスクリプトは ES モジュール (`<script type="module">`) です。`defer` と同じく、ページを読み終えた後に順番に実行されるため、最初の描画を妨げません。モジュールが読み込むファイルには `<link rel="modulepreload">` が付き、1 つずつ順に取得せず一緒に取得します。クラシックスクリプトは、`csp: strict` のときにファイルから読み込む小さなペイント前テーマスクリプト (`chrome/theme-init.js`) だけです。最初の描画より前に実行する必要があるためです。`modootoday.css: bundle` にすると、すべてのシートがコアシート 1 枚にまとまります。[設定](../configuration/) を参照してください。`modootoday.pwa` をオンにすると、サービスワーカーが `pwa/worker.js` を 1 度読み込んでテーマのファイルと一緒に保存します。ページはこのファイルを読み込みません([インストールできるサイト](../../recipes/pwa/#オフラインで読む)を参照)。
 
 ## バージョン付きアセット URL
 

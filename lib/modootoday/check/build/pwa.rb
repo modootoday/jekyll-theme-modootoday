@@ -2,11 +2,14 @@
 
 require_relative "../../stubs"
 require_relative "pwa/manifest"
+require_relative "pwa/worker"
+require_relative "pwa/precache"
 
 module Modootoday
   module Check
-    # modootoday.pwa.enabled: true: the stubs are in place and current (the plan of modootoday-stubs --pwa --check, so the
-    # two never disagree), the built manifest is valid (pwa/manifest.rb) and every theme page links it.
+    # modootoday.pwa: with true or kill the stubs are in place and current (the plan of modootoday-stubs --pwa --check, so
+    # the two never disagree) and sw.js is built (pwa/worker.rb); with true also the manifest, the link on every theme
+    # page and the precache list. Off with the worker stub left: a warning.
     module Pwa
       HINT = "run modootoday-stubs SRC --pwa --write"
       THEME_PAGE = /<html\b[^>]*\sdata-mt-copy=/
@@ -16,10 +19,15 @@ module Modootoday
 
       def call(ctx)
         cfg = ctx.mtc.is_a?(Hash) ? ctx.mtc["pwa"] : nil
-        return unless cfg.is_a?(Hash) && cfg["enabled"] == true
+        mode = cfg.is_a?(Hash) ? cfg["enabled"] : nil
+        Precache.front_matter(ctx)
+        return Worker.leftover(ctx) unless Stubs::Pwa::ENABLED.include?(mode)
         stubs(ctx)
+        Worker.call(ctx, mode)
+        return unless mode == true
         Manifest.call(ctx)
         links(ctx)
+        Precache.call(ctx)
       end
 
       def stubs(ctx)

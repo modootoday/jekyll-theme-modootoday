@@ -145,3 +145,8 @@ showcase:
   use: "Usar esta plantilla"
   dismiss: "Ocultar durante esta visita"
   starters: {docs: "Plantilla de documentación", blog: "Plantilla de blog", landing: "Plantilla de landing page"}
+pwa:
+  offline_title: "Estás sin conexión"
+  offline_text: "Esta página no está guardada en este dispositivo. Comprueba tu conexión e inténtalo de nuevo."
+  offline_pages: "Páginas que puedes leer sin conexión"
+  retry: "Reintentar"

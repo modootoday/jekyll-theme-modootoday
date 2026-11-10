@@ -1,0 +1,19 @@
+{%- comment -%}Sets mt_pwa_precache (site URLs with the baseurl) and mt_pwa_offline (JSON: language prefix to its offline page): the
+  offline pages, the files they link (pwa/offline-assets.html), start_url, modootoday.pwa.precache and the pages with front
+  matter pwa: precache. Needs config.html. Only pwa/sw.js reads it, so the page scan runs once per build.{%- endcomment -%}
+{%- include modootoday/pwa/offline-assets.html -%}
+{%- assign _pcs = "/" | relative_url -%}{%- assign _pco = "/offline/" | relative_url -%}
+{%- assign _pck = _pcs | jsonify -%}{%- assign _pcv = _pco | jsonify -%}
+{%- assign _pcj = _pck | append: ":" | append: _pcv -%}{%- assign _pcl = _pco -%}
+{%- for _l in site.modootoday.full_languages -%}
+{%- assign _pclp = "/" | append: _l | append: "/" -%}{%- assign _pclo = _pclp | append: "offline/" | relative_url -%}
+{%- assign _pck = _pclp | relative_url | jsonify -%}{%- assign _pcv = _pclo | jsonify -%}
+{%- assign _pcj = _pcj | append: "," | append: _pck | append: ":" | append: _pcv -%}{%- assign _pcl = _pcl | append: " " | append: _pclo -%}
+{%- endfor -%}
+{%- assign mt_pwa_offline = "{" | append: _pcj | append: "}" -%}
+{%- for _pca in mt_pwa_offline_assets -%}{%- include modootoday/assets/url.html path=_pca -%}{%- assign _pcl = _pcl | append: " " | append: mt_asset_url -%}{%- endfor -%}
+{%- assign _pcu = site.modootoday.pwa.start_url | default: "/" | relative_url -%}{%- assign _pcl = _pcl | append: " " | append: _pcu -%}
+{%- for _pcp in site.modootoday.pwa.precache -%}{%- assign _pcu = _pcp | relative_url -%}{%- assign _pcl = _pcl | append: " " | append: _pcu -%}{%- endfor -%}
+{%- assign _pcf = site.pages | where: "pwa", "precache" -%}{%- assign _pcd = site.documents | where: "pwa", "precache" -%}{%- assign _pcf = _pcf | concat: _pcd -%}
+{%- for _pcp in _pcf -%}{%- assign _pcu = _pcp.url | relative_url -%}{%- assign _pcl = _pcl | append: " " | append: _pcu -%}{%- endfor -%}
+{%- assign mt_pwa_precache = _pcl | split: " " | uniq -%}

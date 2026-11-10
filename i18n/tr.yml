@@ -145,3 +145,8 @@ showcase:
   use: "Bu şablonu kullan"
   dismiss: "Bu ziyaret boyunca gizle"
   starters: {docs: "Belge şablonu", blog: "Blog şablonu", landing: "Açılış sayfası şablonu"}
+pwa:
+  offline_title: "Çevrimdışısınız"
+  offline_text: "Bu sayfa bu cihazda kayıtlı değil. Bağlantınızı kontrol edip yeniden deneyin."
+  offline_pages: "Çevrimdışı okuyabileceğiniz sayfalar"
+  retry: "Yeniden dene"

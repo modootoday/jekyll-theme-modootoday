@@ -145,3 +145,8 @@ showcase:
   use: "Utiliser ce modèle"
   dismiss: "Masquer pour cette visite"
   starters: {docs: "Modèle de documentation", blog: "Modèle de blog", landing: "Modèle de page d’atterrissage"}
+pwa:
+  offline_title: "Vous êtes hors ligne"
+  offline_text: "Cette page n’est pas enregistrée sur cet appareil. Vérifiez votre connexion, puis réessayez."
+  offline_pages: "Pages lisibles hors ligne"
+  retry: "Réessayer"

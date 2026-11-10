@@ -1,0 +1,14 @@
+---
+layout: minimal
+mt_main: mt-shell-minimal mt-error
+mt_noindex: true
+---
+{%- comment -%}pages/offline: what the service worker shows for a page it has no copy of (modootoday.pwa; stubs offline.md and
+  offline.<lang>.md). Try again reloads the requested URL with no script; pwa/offline.js fills the list of cached pages. The
+  files it links are precached (pwa/offline-assets.html).{%- endcomment -%}
+{%- include modootoday/i18n.html -%}{%- include modootoday/home-url.html -%}
+<h1>{{ page.heading | default: mt_t_pwa_offline_title }}</h1>
+<p>{{ mt_t_pwa_offline_text }}</p>
+{{ content }}
+<p class="mt-actions"><a href="">{{ mt_t_pwa_retry }}</a> <a href="{{ mt_home | relative_url }}">{{ mt_t_pages_home }}</a></p>
+<section data-mt-offline aria-labelledby="mt-offline-pages" hidden><h2 id="mt-offline-pages">{{ mt_t_pwa_offline_pages }}</h2><ul></ul></section>

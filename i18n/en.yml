@@ -146,3 +146,8 @@ showcase:
   use: "Use this starter"
   dismiss: "Hide for this visit"
   starters: {docs: "Docs starter", blog: "Blog starter", landing: "Landing starter"}
+pwa:
+  offline_title: "You are offline"
+  offline_text: "This page is not saved on this device. Check your connection and try again."
+  offline_pages: "Pages you can read offline"
+  retry: "Try again"

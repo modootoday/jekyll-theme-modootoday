@@ -145,3 +145,8 @@ showcase:
   use: "Gunakan templat ini"
   dismiss: "Sembunyikan selama kunjungan ini"
   starters: {docs: "Templat dokumentasi", blog: "Templat blog", landing: "Templat halaman arahan"}
+pwa:
+  offline_title: "Anda sedang offline"
+  offline_text: "Halaman ini tidak tersimpan di perangkat ini. Silakan periksa koneksi Anda, lalu coba lagi."
+  offline_pages: "Halaman yang dapat dibaca secara offline"
+  retry: "Coba lagi"

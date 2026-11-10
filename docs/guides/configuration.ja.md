@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:053a7f2fe636
+source_rev: sha256:85a0ecfc0b78
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -59,7 +59,7 @@ modootoday:
 | `feed` | `false` | `true` で `/feed.xml` にリンクする。`plugins` に `jekyll-feed` を追加する。 |
 | `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
 | `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
-| `pwa` | オフ | `enabled: true` でサイトのタイトル、`theme_color`、ブランドのマークから作るウェブアプリマニフェストをリンクし、ブラウザーがサイトをインストールできるようにします。[インストールできるサイト](../../recipes/pwa/)を参照。 |
+| `pwa` | オフ | `enabled: true` でサイトのタイトル、`theme_color`、ブランドのマークから作るウェブアプリマニフェストをリンクし、ブラウザーがサイトをインストールできるようにして、オフラインで読むためのサービスワーカーを登録します。`precache:` には追加で保存するサイトのパスを書きます(ページは front matter の `pwa: precache` で自分を加えられます)。`enabled: kill` は自分を取り除くワーカーを出します。[インストールできるサイト](../../recipes/pwa/)を参照。 |
 | `header` | `{compact_title: true}` | `compact_title: false` でスマートフォンでもロゴの横にサイト名を表示する。 |
 | `csp` | なし | `strict` で、最初の描画前に動くテーマのスクリプトをインラインではなくファイルから読み込む。 |
 | `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |

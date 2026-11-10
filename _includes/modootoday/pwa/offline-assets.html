@@ -1,0 +1,10 @@
+{%- comment -%}Sets mt_pwa_offline_assets: the theme files the offline page (layout pages/offline) links, for the worker to precache
+  (pwa/precache.html): core, the pages bundle, the hero sheet its actions row needs, the PWA modules and the theme toggle's
+  scripts. Needs config.html. test/theme/pwa/offline_test.rb compares it with built offline pages.{%- endcomment -%}
+{%- assign _pwo = "/assets/css/modootoday.css /assets/css/modootoday/marketing/hero.css /assets/css/modootoday-pages.css" -%}
+{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}
+{%- if site.modootoday.csp == "strict" -%}{%- assign _pwo = _pwo | append: " /assets/js/modootoday/chrome/theme-init.js" -%}{%- endif -%}
+{%- assign _pwo = _pwo | append: " /assets/js/modootoday/chrome/theme-toggle.js" -%}
+{%- endif -%}
+{%- assign _pwo = _pwo | append: " /assets/js/modootoday/pwa/register.js /assets/js/modootoday/pwa/offline.js" -%}
+{%- assign mt_pwa_offline_assets = _pwo | split: " " -%}

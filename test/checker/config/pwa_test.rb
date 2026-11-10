@@ -6,7 +6,7 @@ class CheckPwaConfigTest < CheckerCase
   def config(yaml) = page("_config.yml", "title: Example Docs\nmodootoday:\n  favicon: brand\n  pwa:\n#{yaml.gsub(/^/, '    ')}")
 
   def test_valid_settings_pass_strict
-    config "enabled: false\nname: Example Docs\nshort_name: Docs\ndescription: Guides.\ndisplay: minimal-ui\nstart_url: /guides/\n" \
+    config "enabled: false\nprecache: [/guides/, /]\nname: Example Docs\nshort_name: Docs\ndescription: Guides.\ndisplay: minimal-ui\nstart_url: /guides/\n" \
            "background_color: '#fafafa'\nicons:\n  - {src: /assets/a-192.png, sizes: 192x192}\n" \
            "  - {src: /assets/a-512.png, sizes: 512x512, purpose: any}\n  - {src: /assets/m.png, sizes: 512x512, purpose: maskable}\n"
     o, code = check("--strict")
@@ -14,11 +14,11 @@ class CheckPwaConfigTest < CheckerCase
   end
 
   def test_shapes
-    config "enabled: kill\ndisplay: fullscreen\nname: ''\nscope: /\nstart_url: /?utm_source=app\nbackground_color: white\n"
+    config "enabled: maybe\ndisplay: fullscreen\nname: ''\nscope: /\nstart_url: /?utm_source=app\nbackground_color: white\n"
     o, code = check
     assert_equal 1, code
     assert_includes o, "modootoday.pwa: unknown key 'scope'"
-    assert_includes o, "modootoday.pwa.enabled must be true or false"
+    assert_includes o, "modootoday.pwa.enabled must be true, false or kill (got \"maybe\")"
     assert_includes o, "modootoday.pwa.display must be standalone, minimal-ui, browser (got \"fullscreen\")"
     assert_includes o, "modootoday.pwa.name must be text"
     assert_includes o, "modootoday.pwa.start_url must be a site path without a query or fragment"
@@ -28,6 +28,13 @@ class CheckPwaConfigTest < CheckerCase
     %w[//cdn.example/ /#top guides/].each do |url|
       config "start_url: #{url.inspect}\n"
       assert_includes check[0], "start_url must be a site path", url
+    end
+  end
+
+  def test_precache_is_a_list_of_site_paths
+    ["precache: /guides/\n", "precache: ['/guides/?utm=1']\n", "precache: [//cdn.example/]\n", "precache: [guides/]\n"].each do |yaml|
+      config yaml
+      assert_includes check[0], "modootoday.pwa.precache must be a list of site paths without a query", yaml
     end
   end
 

@@ -19,6 +19,7 @@
 {%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search-keys|" -%}{%- endif -%}
 {%- if mt_components contains "filter" and _mta_hit contains "|filter|" -%}{%- assign _mta_on = _mta_on | append: "filter|" -%}{%- endif -%}
+{%- if site.modootoday.pwa.enabled == true -%}{%- assign _mta_on = _mta_on | append: "pwa|" -%}{%- if _mta_hit contains "|offline|" -%}{%- assign _mta_on = _mta_on | append: "offline|" -%}{%- endif -%}{%- endif -%}
 {%- comment -%}The chart library tag comes before the module tags: deferred scripts run in document order.{%- endcomment -%}
 {%- if _mta_hit contains "|chart|" -%}{%- include modootoday/render/chart.html -%}{%- if mt_chart_on -%}{%- assign _mta_on = _mta_on | append: "chart|" -%}{%- endif -%}{%- endif -%}
 {%- assign _mta_done = "|" -%}{%- assign _mta_pre = "|" -%}

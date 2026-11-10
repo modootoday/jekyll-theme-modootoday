@@ -145,3 +145,8 @@ showcase:
   use: "Użyj tego szablonu"
   dismiss: "Ukryj na czas tej wizyty"
   starters: {docs: "Szablon dokumentacji", blog: "Szablon bloga", landing: "Szablon strony docelowej"}
+pwa:
+  offline_title: "Jesteś offline"
+  offline_text: "Ta strona nie jest zapisana na tym urządzeniu. Sprawdź połączenie i spróbuj ponownie."
+  offline_pages: "Strony dostępne offline"
+  retry: "Spróbuj ponownie"

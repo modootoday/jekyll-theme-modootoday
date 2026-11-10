@@ -145,3 +145,8 @@ showcase:
   use: "Dùng mẫu này"
   dismiss: "Ẩn trong lượt truy cập này"
   starters: {docs: "Mẫu tài liệu", blog: "Mẫu blog", landing: "Mẫu trang đích"}
+pwa:
+  offline_title: "Bạn đang ngoại tuyến"
+  offline_text: "Trang này chưa được lưu trên thiết bị. Vui lòng kiểm tra kết nối rồi thử lại."
+  offline_pages: "Các trang có thể đọc ngoại tuyến"
+  retry: "Thử lại"

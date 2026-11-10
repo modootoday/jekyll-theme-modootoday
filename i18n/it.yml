@@ -145,3 +145,8 @@ showcase:
   use: "Usa questo modello"
   dismiss: "Nascondi per questa visita"
   starters: {docs: "Modello di documentazione", blog: "Modello di blog", landing: "Modello di landing page"}
+pwa:
+  offline_title: "Sei offline"
+  offline_text: "Questa pagina non è salvata su questo dispositivo. Controlla la connessione e riprova."
+  offline_pages: "Pagine leggibili offline"
+  retry: "Riprova"

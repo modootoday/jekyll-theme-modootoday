@@ -2,32 +2,13 @@
 # The web app manifest from existing settings: off links nothing; on, the stub renders JSON whose id, start_url and scope sit
 # under the baseurl, whose theme_color follows modootoday.theme_color, and whose brand icons are PNG files of their size.
 require "minitest/autorun"
-require "tmpdir"
-require "fileutils"
 require "json"
-require "jekyll"
-require_relative "../../../lib/modootoday/stubs"
+require_relative "../../support/pwa_site"
 
 class PwaManifestTest < Minitest::Test
-  ROOT = File.expand_path("../../..", __dir__)
-  STUB = Modootoday::Stubs::Pwa::FILES
+  ROOT = PwaSite::ROOT
 
-  def self.build(config, stub: true)
-    dir = Dir.mktmpdir
-    src = File.join(dir, "src")
-    FileUtils.mkdir_p(src)
-    FileUtils.cp_r(%w[_layouts _includes _sass assets].map { |d| File.join(ROOT, d) }, src)
-    File.write(File.join(src, "_config.yml"), "title: Example Docs\ndescription: Guides <b>and</b> notes.\nmarkdown: kramdown\npermalink: pretty\n" \
-               "defaults: [{scope: {path: ''}, values: {layout: doc}}]\n#{config}")
-    File.write(File.join(src, "index.md"), "---\ntitle: Home\n---\n# Home\n")
-    File.write(File.join(src, "about.md"), "---\ntitle: About\n---\n# About\n")
-    STUB.each { |name, text| File.write(File.join(src, name), text) } if stub
-    out = File.join(dir, "_site")
-    Jekyll.logger.log_level = :error
-    Dir.chdir(src) { Jekyll::Site.new(Jekyll.configuration("source" => src, "destination" => out, "quiet" => true)).process }
-    at_exit { FileUtils.rm_rf(dir) }
-    out
-  end
+  def self.build(config, stub: true) = PwaSite.build(config, stub: stub)
 
   def self.site(key, config, **opts) = ((@sites ||= {})[key] ||= build(config, **opts))
 
@@ -48,7 +29,7 @@ class PwaManifestTest < Minitest::Test
   end
 
   def test_on_links_the_manifest_from_every_page
-    link = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\">"
+    link = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\" data-mt-sw=\"/docs/sw.js\" data-mt-scope=\"/docs/\">"
     assert_includes html(on), link
     assert_includes html(on, "about/index.html"), link
     assert_equal 1, html(on).scan("rel=\"manifest\"").size

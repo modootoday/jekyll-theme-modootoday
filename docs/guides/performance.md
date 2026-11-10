@@ -24,6 +24,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `data/filter.js` (with `data/filter-chips.js`, `text/normalize.js` and `dom/config.js`, preloaded) | pages with `filter:` or `filter_text:` |
 | `data/chart.js` (with `data/chart-table.js` and `theme/current.js`, preloaded), after your Chart.js | pages with a chart, when `modootoday.chart` names your Chart.js (`src`) |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
+| `pwa/register.js` (`pwa/offline.js` on the offline page) | every page, with `modootoday.pwa.enabled: true` |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
 
@@ -31,7 +32,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 
 `chrome/footer` loads when `_data/nav/footer.yml` (or the page language's `footer-<lang>.yml`) has columns.
 
-Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/).
+Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/). With `modootoday.pwa`, the service worker loads `pwa/worker.js` once and keeps it with the theme files; no page loads it (see [Installable site](../../recipes/pwa/#offline-reading)).
 
 ## Versioned asset URLs
 

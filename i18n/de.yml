@@ -145,3 +145,8 @@ showcase:
   use: "Diesen Starter verwenden"
   dismiss: "Für diesen Besuch ausblenden"
   starters: {docs: "Doku-Starter", blog: "Blog-Starter", landing: "Landingpage-Starter"}
+pwa:
+  offline_title: "Sie sind offline"
+  offline_text: "Diese Seite ist auf diesem Gerät nicht gespeichert. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut."
+  offline_pages: "Offline lesbare Seiten"
+  retry: "Erneut versuchen"

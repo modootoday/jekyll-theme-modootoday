@@ -1,0 +1,6 @@
+{%- comment -%}Sets mt_build_v: the theme version and the commit the site is built from (site.github.build_revision), else the
+  build time, so it changes on every deploy. Read by assets/registry.html (asset_version: build) and pwa/sw.js.{%- endcomment -%}
+{%- include modootoday/version.html -%}
+{%- assign _mtb_rev = site.github.build_revision | slice: 0, 7 -%}
+{%- if _mtb_rev == "" -%}{%- assign _mtb_rev = site.time | date: "%s" -%}{%- endif -%}
+{%- assign mt_build_v = mt_version | append: "-" | append: _mtb_rev -%}

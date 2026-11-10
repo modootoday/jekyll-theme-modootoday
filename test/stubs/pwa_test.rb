@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-# modootoday-stubs --pwa: the manifest stub, preview, write and check, never pruned, a site file at the path, the config gate.
+# modootoday-stubs --pwa: the manifest, worker and offline page stubs, preview, write and check, never pruned, a site file at a
+# stub path, the offline page per full language and the config gate (true or kill).
 require_relative "stubs_case"
 require_relative "../../lib/modootoday/stubs"
 
@@ -8,12 +9,14 @@ class StubsPwaTest < StubsCase
 
   def test_preview_write_and_check
     config ON
-    assert_equal({ "manifest.webmanifest" => "create" }, plan("--pwa"))
+    assert_equal({ "manifest.webmanifest" => "create", "offline.md" => "create", "sw.js" => "create" }, plan("--pwa"))
     refute exist?("manifest.webmanifest"), "preview writes nothing"
     assert_equal 1, stubs("--pwa", "--check")[2]
     stubs("--pwa", "--write")
     assert_equal Modootoday::Stubs::Pwa::FILES["manifest.webmanifest"], read("manifest.webmanifest")
     assert_equal "---\nlayout: null\npermalink: /manifest.webmanifest\nsitemap: false\n---\n{% include modootoday/pwa/manifest.json %}\n", read("manifest.webmanifest")
+    assert_equal "---\nlayout: null\npermalink: /sw.js\nsitemap: false\n---\n{% include modootoday/pwa/sw.js %}\n", read("sw.js")
+    assert_equal Modootoday::Stubs::Pwa::FILES["offline.md"], read("offline.md")
     assert_equal 0, stubs("--pwa", "--check")[2]
     file "manifest.webmanifest", "---\nlayout: null\n---\n{% include modootoday/pwa/manifest.json %}\n"
     assert_equal({ "manifest.webmanifest" => "update" }, plan("--pwa"))
@@ -36,6 +39,31 @@ class StubsPwaTest < StubsCase
     assert_equal 3, code
     assert_match(/manifest\.webmanifest: the site's own file/, e)
     assert_equal "{\"name\": \"Mine\"}\n", read("manifest.webmanifest")
+  end
+
+  def test_an_offline_page_per_full_language
+    config "modootoday:\n  languages: [en, ko, pt-BR]\n  full_languages: [ko, pt-BR]\n  pwa: {enabled: true}\n"
+    assert_equal %w[manifest.webmanifest offline.ko.md offline.md offline.pt-BR.md sw.js], plan("--pwa").keys.sort
+    stubs("--pwa", "--write")
+    assert_equal "---\nlayout: pages/offline\nlang: pt-BR\npermalink: /pt-BR/offline/\nsitemap: false\nsearch: false\ntwin: false\n---\n", read("offline.pt-BR.md")
+    assert_equal({}, plan("--twins").select { |k, _| k.start_with?("offline") }, "no twin for the offline pages")
+    config "modootoday:\n  full_languages: [\"../x\"]\n  pwa: {enabled: true}\n"
+    _, e, code = stubs("--pwa")
+    assert_equal 3, code
+    assert_match(/full_languages: "\.\.\/x" is not a language code/, e)
+  end
+
+  def test_kill_keeps_writing_the_stubs
+    config "modootoday:\n  pwa: {enabled: kill}\n"
+    assert_equal %w[manifest.webmanifest offline.md sw.js], plan("--pwa").keys.sort
+  end
+
+  def test_a_site_offline_page_is_never_overwritten
+    config ON
+    file "offline.md", "---\ntitle: Offline\n---\n# Mine\n"
+    _, e, code = stubs("--pwa", "--write")
+    assert_equal 3, code
+    assert_match(/offline\.md: the site.s own file/, e)
   end
 
   def test_needs_the_pwa_enabled

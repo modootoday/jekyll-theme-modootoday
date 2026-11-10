@@ -145,3 +145,8 @@ showcase:
   use: "使用這個範本"
   dismiss: "本次造訪期間隱藏"
   starters: {docs: "文件範本", blog: "部落格範本", landing: "登陸頁範本"}
+pwa:
+  offline_title: "您已離線"
+  offline_text: "此頁面未儲存在這部裝置上。請檢查網路連線後再試一次。"
+  offline_pages: "可離線閱讀的頁面"
+  retry: "再試一次"

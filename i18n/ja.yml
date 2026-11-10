@@ -145,3 +145,8 @@ showcase:
   use: "このスターターで始める"
   dismiss: "このアクセス中は非表示"
   starters: {docs: "ドキュメントのスターター", blog: "ブログのスターター", landing: "ランディングページのスターター"}
+pwa:
+  offline_title: "オフラインです"
+  offline_text: "このページはこの端末に保存されていません。接続を確認して、もう一度お試しください。"
+  offline_pages: "オフラインで読めるページ"
+  retry: "再試行"
