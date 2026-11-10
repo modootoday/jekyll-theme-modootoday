@@ -53,7 +53,8 @@ class StarterRenderTest < Minitest::Test
       assert_equal "---\nlayout: twin\ntwin_of: index.md\npermalink: /ko/index.md\n---\n", read(d, "jekyll4", "ko/index.md.txt")
       assert_empty Dir.glob("*/tiny/_data/**/*", base: d), "the theme ships en and ko; the render copies no catalog"
       readme = read(d, "github-pages", "README.md")
-      THEME.commands.each_value { |table| assert_includes readme, table }
+      assert_includes readme, "[Command line](https://docs.example.com/theme/reference/cli/)"
+      refute_includes readme, "| Option |", "the README links the command tables instead of copying them"
       assert_includes readme, "modootoday-stubs . --twins --write"
       assert_includes readme, "one folder per language with the same page names: `ko/`."
     end

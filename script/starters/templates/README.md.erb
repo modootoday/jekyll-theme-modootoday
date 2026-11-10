@@ -53,9 +53,4 @@ Pages in the default language (`<%= starter.languages.first %>`) sit at the root
 
 ## Commands
 
-### modootoday-check
-
-<%= theme.commands["check"] %>
-### modootoday-stubs
-
-<%= theme.commands["stubs"] -%>
+The `Gemfile` installs the theme's two commands: `modootoday-check` reports anything that would not render the same on GitHub Pages, and `modootoday-stubs` writes the stub pages. The theme's [Command line](<%= starter.docs_url %>reference/cli/) page lists every option and exit code. `bundle exec modootoday-check --help` and `bundle exec modootoday-stubs --help` print the options of the version this starter pins.
