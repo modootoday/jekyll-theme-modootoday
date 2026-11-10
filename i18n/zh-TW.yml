@@ -95,6 +95,8 @@ layouts:
   online: "線上"
   agenda: "議程"
   tickets: "取得門票"
+  price: "價格"
+  free: "免費"
   calendar: "加入行事曆"
   episode: "第 [n] 集"
   season: "第 [n] 季"

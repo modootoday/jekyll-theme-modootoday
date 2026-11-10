@@ -95,6 +95,8 @@ layouts:
   online: "オンライン"
   agenda: "プログラム"
   tickets: "チケットを入手"
+  price: "料金"
+  free: "無料"
   calendar: "カレンダーに追加"
   episode: "エピソード [n]"
   season: "シーズン [n]"

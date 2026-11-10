@@ -95,6 +95,8 @@ layouts:
   online: "Онлайн"
   agenda: "Програма"
   tickets: "Придбати квиток"
+  price: "Ціна"
+  free: "Безкоштовно"
   calendar: "Додати до календаря"
   episode: "Випуск [n]"
   season: "Сезон [n]"

@@ -95,6 +95,8 @@ layouts:
   online: "线上"
   agenda: "议程"
   tickets: "获取门票"
+  price: "价格"
+  free: "免费"
   calendar: "添加到日历"
   episode: "第 [n] 集"
   season: "第 [n] 季"

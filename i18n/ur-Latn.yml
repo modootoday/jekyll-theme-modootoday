@@ -95,6 +95,8 @@ layouts:
   online: "Online"
   agenda: "Program"
   tickets: "Tickets hasil karein"
+  price: "Qeemat"
+  free: "Muft"
   calendar: "Calendar mein shamil karein"
   episode: "Episode [n]"
   season: "Season [n]"

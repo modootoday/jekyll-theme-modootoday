@@ -95,6 +95,8 @@ layouts:
   online: "ออนไลน์"
   agenda: "กำหนดการ"
   tickets: "รับบัตร"
+  price: "ราคา"
+  free: "ฟรี"
   calendar: "เพิ่มลงปฏิทิน"
   episode: "ตอนที่ [n]"
   season: "ซีซัน [n]"

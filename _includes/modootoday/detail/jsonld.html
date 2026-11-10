@@ -23,7 +23,12 @@ CreativeWork (project): keywords.{%- endcomment -%}
 {%- elsif page.venue %},"location":{"@type":"Place","name":{{ page.venue | jsonify }},"address":{{ page.address | default: page.venue | jsonify }}}
 {%- elsif page.online %},"location":{"@type":"VirtualLocation","url":"{% include modootoday/link.html url=page.online absolute=true %}"}{% endif -%}
 {%- endunless -%}
-{%- if page.tickets and _sc.offers == nil %},"offers":{"@type":"Offer","url":{{ page.tickets | absolute_url | jsonify }}}{% endif -%}
+{%- include modootoday/detail/tickets.html -%}
+{%- if mt_tickets_url and _sc.offers == nil -%}
+,"offers":{"@type":"Offer","url":{{ mt_tickets_url | absolute_url | jsonify }}
+{%- if mt_tickets_price != nil %},"price":{{ mt_tickets_price | jsonify }}{% endif -%}
+{%- if mt_tickets_currency %},"priceCurrency":{{ mt_tickets_currency | jsonify }}{% endif -%}
+}{% endif -%}
 {%- when "PodcastEpisode" -%}
 {%- if page.episode and _sc.episodeNumber == nil %},"episodeNumber":{{ page.episode | jsonify }}{% endif -%}
 {%- if page.season and _sc.partOfSeason == nil %},"partOfSeason":{"@type":"PodcastSeason","seasonNumber":{{ page.season | jsonify }}}{% endif -%}

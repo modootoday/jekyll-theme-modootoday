@@ -95,6 +95,8 @@ layouts:
   online: "عبر الإنترنت"
   agenda: "البرنامج"
   tickets: "احصل على التذاكر"
+  price: "السعر"
+  free: "مجاني"
   calendar: "أضف إلى التقويم"
   episode: "الحلقة [n]"
   season: "الموسم [n]"

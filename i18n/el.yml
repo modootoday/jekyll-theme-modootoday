@@ -95,6 +95,8 @@ layouts:
   online: "Διαδικτυακά"
   agenda: "Πρόγραμμα"
   tickets: "Εισιτήρια"
+  price: "Τιμή"
+  free: "Δωρεάν"
   calendar: "Προσθήκη στο ημερολόγιο"
   episode: "Επεισόδιο [n]"
   season: "Σεζόν [n]"

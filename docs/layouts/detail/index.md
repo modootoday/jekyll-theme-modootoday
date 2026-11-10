@@ -12,7 +12,7 @@ A detail page shows one item: a header, a list of facts read from front matter, 
 | `project` | client, role, year, stack, links | `cta` | CreativeWork | [Project](project/) |
 | `case-study` | client, role, year, stack, links | `cta` | Article | [Case study](case-study/) |
 | `job` | location, employment, salary, posted, deadline | Apply (`apply`) | JobPosting | [Job](job/) |
-| `event` | starts, ends, venue, online | Tickets and an .ics file | Event | [Event](event/) |
+| `event` | starts, ends, venue, online, price | Tickets and an .ics file | Event | [Event](event/) |
 | `episode` | season and episode, posted, duration; audio player | `cta` | PodcastEpisode | [Episode](episode/) |
 
 ## Job
@@ -44,11 +44,11 @@ ends: 2026-11-20 21:00:00 +0900
 venue: Hall A             # a place, an online URL, or both
 address: 1 Main St, Seoul
 online: https://example.com/live
-tickets: https://example.com/tickets
+tickets: {url: https://example.com/tickets, price: 15000, currency: KRW}   # or only the URL
 ---
 ```
 
-The calendar link is an .ics file in a `data:` URL, so it works without a server. `tickets:` also becomes the event's `offers` with only a `url`; `modootoday-check` warns that it lacks a price, so give the offer in front matter instead: `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}`. Say the price on the page as well; the [Event demo](event/) does, and shows its own front matter.
+The calendar link is an .ics file in a `data:` URL, so it works without a server. `tickets:` is the link of the Get tickets button and the event's `offers`. As a map, its `price` (a number, 0 or more) and `currency` (an ISO 4217 code such as KRW or USD) go into the offer and into a Price row of the facts, which reads Free for 0; give both or neither. With only a URL the offer has no price: `modootoday-check` warns about it (an error in the next major version) and names the map. To state more of the offer, such as `availability` or sale dates, write it yourself: `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}` replaces the offer made from `tickets:`. The [Event demo](event/) shows its own front matter.
 
 ## Episode
 

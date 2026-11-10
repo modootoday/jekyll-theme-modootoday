@@ -2,7 +2,7 @@
 {%- capture _a -%}
 {%- if include.kind == "job" and page.apply %}<a class="mt-detail-btn" href="{{ page.apply | relative_url }}">{{ mt_t_layouts_apply }}<span class="mt-sr-only">: {{ page.title | escape }}</span></a>{% endif -%}
 {%- if include.kind == "event" -%}
-{%- if page.tickets %}<a class="mt-detail-btn" href="{{ page.tickets | relative_url }}">{{ mt_t_layouts_tickets }}<span class="mt-sr-only">: {{ page.title | escape }}</span></a>{% endif -%}
+{%- if mt_tickets_url %}<a class="mt-detail-btn" href="{{ mt_tickets_url | relative_url }}">{{ mt_t_layouts_tickets }}<span class="mt-sr-only">: {{ page.title | escape }}</span></a>{% endif -%}
 {%- if page.starts %}{% include modootoday/directory/ics.html title=page.title start=page.starts end=page.ends location=page.venue url=page.url %}{% endif -%}
 {%- endif -%}
 {%- if page.cta.url %}<a class="mt-detail-btn" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a>{% endif -%}

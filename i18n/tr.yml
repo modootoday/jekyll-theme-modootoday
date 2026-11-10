@@ -95,6 +95,8 @@ layouts:
   online: "Çevrim içi"
   agenda: "Program"
   tickets: "Bilet al"
+  price: "Fiyat"
+  free: "Ücretsiz"
   calendar: "Takvime ekle"
   episode: "Bölüm [n]"
   season: "Sezon [n]"

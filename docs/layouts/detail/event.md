@@ -11,8 +11,7 @@ ends: "2026-11-20 21:00:00 +0900"
 venue: Hall A
 address: 1 Sejong-daero, Seoul
 online: "#"
-tickets: "#"
-schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/layouts/detail/event/"}}
+tickets: {url: "#", price: 0, currency: KRW}
 twin: false
 ---
 Two short talks, then questions.
@@ -29,8 +28,7 @@ ends: "2026-11-20 21:00:00 +0900"
 venue: Hall A
 address: 1 Sejong-daero, Seoul
 online: "#"
-tickets: "#"
-schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/layouts/detail/event/"}}
+tickets: {url: "#", price: 0, currency: KRW}
 ```
 
-The `offers` in `schema:` states the same free admission in the page's structured data, with the page as its `url`.
+The `tickets:` map gives the Get tickets button its link and the event's offer its price and currency, which the facts list shows as Free.

@@ -1,0 +1,6 @@
+{%- comment -%}The one reader of the event's tickets: a URL, or a map of url, price and currency. Sets mt_tickets_url,
+mt_tickets_price and mt_tickets_currency (nil when not given) for detail/cta, facts and jsonld. On a string, .url is nil.{%- endcomment -%}
+{%- assign mt_tickets_url = page.tickets.url -%}
+{%- assign mt_tickets_price = page.tickets.price -%}
+{%- assign mt_tickets_currency = page.tickets.currency -%}
+{%- unless mt_tickets_url -%}{%- assign mt_tickets_url = page.tickets -%}{%- endunless -%}

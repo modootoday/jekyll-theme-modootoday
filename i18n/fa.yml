@@ -95,6 +95,8 @@ layouts:
   online: "آنلاین"
   agenda: "برنامه"
   tickets: "تهیهٔ بلیت"
+  price: "قیمت"
+  free: "رایگان"
   calendar: "افزودن به تقویم"
   episode: "قسمت [n]"
   season: "فصل [n]"

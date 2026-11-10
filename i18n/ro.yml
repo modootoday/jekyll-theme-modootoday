@@ -95,6 +95,8 @@ layouts:
   online: "Online"
   agenda: "Program"
   tickets: "Ia bilete"
+  price: "Preț"
+  free: "Gratuit"
   calendar: "Adaugă în calendar"
   episode: "Episodul [n]"
   season: "Sezonul [n]"

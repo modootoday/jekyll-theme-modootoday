@@ -49,6 +49,34 @@ class DetailLayoutsTest < Minitest::Test
     end
   end
 
+  TICKETS = {
+    "free.md" => "title: Free\nlayout: event\nstarts: 2026-11-20 19:00:00 +0900\nvenue: Hall A\ntickets: {url: /t/, price: 0, currency: KRW}\n",
+    "paid.md" => "title: Paid\nlayout: event\nstarts: 2026-11-20 19:00:00 +0900\nvenue: Hall A\ntickets: {url: 'https://example.com/t', price: 12.5, currency: USD}\n",
+    "url.md" => "title: Url\nlayout: event\nstarts: 2026-11-20 19:00:00 +0900\nvenue: Hall A\ntickets: 'https://example.com/url'\n",
+    "own.md" => "title: Own\nlayout: event\nstarts: 2026-11-20 19:00:00 +0900\nvenue: Hall A\ntickets: {url: /t/, price: 5, currency: EUR}\nschema: {offers: {type: Offer, price: 9, priceCurrency: EUR}}\n",
+  }.freeze
+
+  # On a string tickets:, page.tickets.url is nil on Liquid 4.0 (Jekyll 3.10) and 4.0.4 (Jekyll 4) alike.
+  def test_tickets_map_and_string
+    Dir.mktmpdir do |d|
+      src, s = build_site(d, TICKETS)
+      assert_equal({ "@type" => "Offer", "url" => "https://example.org/t/", "price" => 0, "priceCurrency" => "KRW" }, main_node(s, "free.md")["offers"])
+      assert_equal({ "@type" => "Offer", "url" => "https://example.com/t", "price" => 12.5, "priceCurrency" => "USD" }, main_node(s, "paid.md")["offers"])
+      assert_includes html(s, "url.md"), '"offers":{"@type":"Offer","url":"https://example.com/url"}'
+      assert_equal({ "@type" => "Offer", "price" => 9, "priceCurrency" => "EUR" }, main_node(s, "own.md")["offers"])
+      assert_includes html(s, "free.md"), "<div><dt>Price</dt><dd>Free</dd></div>"
+      assert_includes html(s, "paid.md"), "<div><dt>Price</dt><dd>12.5 USD</dd></div>"
+      assert_includes html(s, "free.md"), '<a class="mt-detail-btn" href="/t/">Get tickets'
+      assert_includes html(s, "url.md"), '<a class="mt-detail-btn" href="https://example.com/url">Get tickets'
+      refute_includes html(s, "url.md"), "<dt>Price</dt>"
+      out, st = check(src, s)
+      assert st.success?, out
+      assert_includes out, "url.md: layout event: tickets: give {url, price, currency} so the event offer has a price"
+      assert_includes out, "url/index.html: JSON-LD Offer (@graph.offers) lacks required price/priceSpecification"
+      refute_match(%r{(free|paid|own)(\.md|/index\.html):}, out)
+    end
+  end
+
   # The docs starter's records (_data/plugins.json, plugins/*.md): facts, Markdown body, directory cards and a stale record_index.
   def test_record_pages
     Dir.mktmpdir do |d|

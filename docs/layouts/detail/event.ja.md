@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/event/
-source_rev: sha256:858acc578e19
+source_rev: sha256:4955a3bad893
 nav_order: 4
 image: {path: /assets/images/events/stage.webp, alt: "客席に向かうスポットライトの当たった舞台", width: 800, height: 600}
 title: イベントのデモ
@@ -14,8 +14,7 @@ ends: "2026-11-20 21:00:00 +0900"
 venue: Aホール
 address: 東京都千代田区丸の内1-1
 online: "#"
-tickets: "#"
-schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/ja/layouts/detail/event/"}}
+tickets: {url: "#", price: 0, currency: KRW}
 twin: false
 ---
 短い発表が2本と質疑応答です。
@@ -32,8 +31,7 @@ ends: "2026-11-20 21:00:00 +0900"
 venue: Aホール
 address: 東京都千代田区丸の内1-1
 online: "#"
-tickets: "#"
-schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: "https://schema.org/InStock", url: "https://modootoday.github.io/jekyll-theme-modootoday/ja/layouts/detail/event/"}}
+tickets: {url: "#", price: 0, currency: KRW}
 ```
 
-`schema:` の `offers` は同じ無料の参加情報をページの構造化データで示し、このページを `url` にします。
+`tickets:` のマップは「チケットを入手」ボタンのリンクになり、イベントの販売情報に価格と通貨を入れます。情報リストには無料と表示されます。

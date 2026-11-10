@@ -16,6 +16,7 @@ per include.kind), the body, then one call to action. A record page (record: set
 {%- endif %}
 </header>
 {%- include modootoday/detail/cover.html %}
+{%- if _k == "event" %}{% include modootoday/detail/tickets.html %}{% endif %}
 {%- include modootoday/detail/facts.html kind=_k %}
 {%- if page.record %}{% include modootoday/records/lookup.html %}{% include modootoday/records/facts.html %}{% endif %}
 {%- if _k == "episode" and page.audio %}

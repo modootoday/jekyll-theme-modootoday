@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/
-source_rev: sha256:98bb4eda253b
+source_rev: sha256:9a2703b36f11
 nav_order: 30
 title: 詳細ページ
 description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを 1 件ずつ 1 ページで表示し、概要のリスト、行動喚起 1 つ、構造化データを備えます。
@@ -15,7 +15,7 @@ description: プロジェクト、事例、求人、イベント、ポッドキ�
 | `project` | クライアント、役割、年、技術、リンク | `cta` | CreativeWork | [プロジェクト](project/) |
 | `case-study` | クライアント、役割、年、技術、リンク | `cta` | Article | [事例](case-study/) |
 | `job` | 勤務地、雇用形態、給与、掲載日、締切 | 応募する（`apply`） | JobPosting | [求人](job/) |
-| `event` | 開始、終了、会場、オンライン | チケットと .ics ファイル | Event | [イベント](event/) |
+| `event` | 開始、終了、会場、オンライン、料金 | チケットと .ics ファイル | Event | [イベント](event/) |
 | `episode` | シーズンと回、掲載日、長さ、音声プレーヤー | `cta` | PodcastEpisode | [エピソード](episode/) |
 
 ## 求人
@@ -47,11 +47,11 @@ ends: 2026-11-20 21:00:00 +0900
 venue: Aホール            # 会場、オンライン URL、またはその両方
 address: 東京都千代田区丸の内1-1
 online: https://example.com/live
-tickets: https://example.com/tickets
+tickets: {url: https://example.com/tickets, price: 2000, currency: JPY}   # または URL だけ
 ---
 ```
 
-カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は `url` だけがあるイベントの `offers` にもなります。`modootoday-check` が価格がないと警告するので、front matter に販売情報を直接書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}` 価格はページにも書いてください。[イベントのデモ](event/)はそうしていて、自分の front matter も見せています。
+カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は「チケットを入手」ボタンのリンクで、イベントの `offers` にもなります。マップで書くと `price`(0 以上の数値)と `currency`(KRW や USD などの ISO 4217 コード)が販売情報と情報リストの料金の行に入り、0 は無料と表示されます。両方書くか、どちらも書かないでください。URL だけだと販売情報に価格がないため、`modootoday-check` が警告し(次のメジャーバージョンからはエラー)、マップの形を示します。`availability` や販売期間など、さらに書くときは販売情報を自分で書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: JPY, availability: https://schema.org/InStock, url: https://example.com/tickets}}` は `tickets:` から作る販売情報の代わりになります。[イベントのデモ](event/)は自分の front matter を見せています。
 
 ## エピソード
 

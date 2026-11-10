@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:7dd06b300fcd
+source_rev: sha256:09c066b60927
 nav_order: 30
 title: 마이그레이션과 업그레이드
 description: 다른 Jekyll 테마에서 사이트를 옮기는 방법, 기존 프로젝트에 테마를 도입하는 방법, 버전 사이에서 업그레이드할 때 바꿀 점을 단계별로 설명합니다.
@@ -59,6 +59,7 @@ Markdown 버전은 스텁 파일, 플러그인, 소스 모드 중 하나로 만�
 | 1.3 | 1.4 | `~> 1.4`로 고정합니다(`remote_theme`은 `@v1.4.1`). |
 | 1.4 | 1.5 | `~> 1.5`로 고정합니다(`remote_theme`은 `@v1.5.0`). |
 | 1.5 | 1.6 | `~> 1.6`으로 고정합니다(`remote_theme`은 `@v1.6.0`). |
+| 1.6 | 1.7 | `~> 1.7`로 고정합니다(`remote_theme`은 `@v1.7.0`). |
 
 어느 업그레이드도 페이지를 고칠 필요가 없습니다. 버전마다 더해진 것:
 
@@ -67,6 +68,7 @@ Markdown 버전은 스텁 파일, 플러그인, 소스 모드 중 하나로 만�
 - 1.4: `packages_compact`와 `packages_position`(선택 사항). `reference` 페이지도 이제 `doc`처럼 알림을 변환합니다.
 - 1.5: 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀝니다(아래 참고).
 - 1.6: 정적 다이어그램(front matter `diagrams:`, [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고), 정적 수식(`modootoday.math.mode: static`, `_data/math`의 MathML, [정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고), Markdown 표로 만드는 차트(`modootoday.chart`, `c: chart`, `modootoday.chart.src`에 지정한 사이트의 Chart.js가 그림, [차트](../../recipes/figures/charts/) 참고), `c: widget`이나 `widget:`으로 놓는 직접 만든 custom element인 위젯(`modootoday.scripts`의 `element:`, [위젯](../../recipes/figures/widgets/) 참고), 모두 선택 사항. `modootoday.math.base`는 로더가 쓰는 직접 호스팅 KaTeX 경로를 줄여 줍니다. `modootoday-check`는 이제 JSON-LD 안에 하나만 들어 있는 객체(`offers`, `organizer` 등)도 검사하고, 문제는 경고로 알려 줍니다. 다음 메이저 버전부터는 오류입니다([검사](../structured-data/#검사) 참고). 빌드는 그대로 통과하지만 `--strict`에서는 실패합니다. 스타터의 데모 빌드에는 쇼케이스 막대나 알약을 표시할 수 있습니다(`modootoday.showcase`, 데모 전용 설정 파일에 넣음. [스타터 데모 쇼케이스](../../reference/showcase/) 참고). 이때 모든 페이지에 `noindex`가 붙습니다.
+- 1.7: 행사의 `tickets:`에 `{url, price, currency}` 맵도 쓸 수 있어 판매 정보에 가격이 들어가고 정보 목록에 가격 행이 생깁니다([상세 페이지](../../layouts/detail/#행사) 참고). `schema.offers` 없이 `tickets:`에 URL만 적으면 `modootoday-check`가 맵 형식을 알려 주는 경고를 냅니다. URL만 적은 페이지도 이전과 똑같이 빌드됩니다.
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 

@@ -95,6 +95,8 @@ layouts:
   online: "Daring"
   agenda: "Agenda"
   tickets: "Dapatkan tiket"
+  price: "Harga"
+  free: "Gratis"
   calendar: "Tambahkan ke kalender"
   episode: "Episode [n]"
   season: "Musim [n]"

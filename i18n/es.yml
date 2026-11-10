@@ -95,6 +95,8 @@ layouts:
   online: "En línea"
   agenda: "Programa"
   tickets: "Conseguir entradas"
+  price: "Precio"
+  free: "Gratis"
   calendar: "Añadir al calendario"
   episode: "Episodio [n]"
   season: "Temporada [n]"

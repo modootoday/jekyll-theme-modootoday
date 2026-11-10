@@ -96,6 +96,8 @@ layouts:
   online: "Online"
   agenda: "Agenda"
   tickets: "Get tickets"
+  price: "Price"
+  free: "Free"
   calendar: "Add to calendar"
   episode: "Episode [n]"
   season: "Season [n]"

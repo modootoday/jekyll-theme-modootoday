@@ -20,6 +20,7 @@ Dates use the language's post date format; times print when the value has one.{%
 {%- if page.ends %}<div><dt>{{ mt_t_layouts_ends }}</dt><dd><time datetime="{{ page.ends | date_to_xmlschema }}">{{ page.ends | date: _df }} {{ page.ends | date: "%H:%M" }}</time></dd></div>{% endif -%}
 {%- if page.venue %}<div><dt>{{ mt_t_layouts_venue }}</dt><dd>{{ page.venue }}{% if page.address %}<br>{{ page.address }}{% endif %}</dd></div>{% endif -%}
 {%- if page.online %}<div><dt>{{ mt_t_layouts_online }}</dt><dd><a href="{{ page.online }}">{{ page.online | remove: "https://" }}</a></dd></div>{% endif -%}
+{%- if mt_tickets_price != nil %}<div><dt>{{ mt_t_layouts_price }}</dt><dd>{% if mt_tickets_price == 0 %}{{ mt_t_layouts_free }}{% else %}{{ mt_tickets_price }} {{ mt_tickets_currency }}{% endif %}</dd></div>{% endif -%}
 {%- when "episode" -%}
 {%- if page.date %}<div><dt>{{ mt_t_layouts_posted }}</dt><dd><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: _df }}</time></dd></div>{% endif -%}
 {%- if page.duration %}<div><dt>{{ mt_t_layouts_duration }}</dt><dd>{{ mt_t_layouts_minutes | replace: "[n]", page.duration }}</dd></div>{% endif -%}

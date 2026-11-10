@@ -95,6 +95,8 @@ layouts:
   online: "Trực tuyến"
   agenda: "Chương trình"
   tickets: "Mua vé"
+  price: "Giá"
+  free: "Miễn phí"
   calendar: "Thêm vào lịch"
   episode: "Tập [n]"
   season: "Mùa [n]"

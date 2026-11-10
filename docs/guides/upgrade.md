@@ -53,6 +53,7 @@ Read `CHANGELOG.md` for every version you skip. The [Public API](../../reference
 | 1.3 | 1.4 | Pin `~> 1.4` (with `remote_theme`, `@v1.4.1`). |
 | 1.4 | 1.5 | Pin `~> 1.5` (with `remote_theme`, `@v1.5.0`). |
 | 1.5 | 1.6 | Pin `~> 1.6` (with `remote_theme`, `@v1.6.0`). |
+| 1.6 | 1.7 | Pin `~> 1.7` (with `remote_theme`, `@v1.7.0`). |
 
 None of these upgrades needs page edits. What each one adds:
 
@@ -61,6 +62,7 @@ None of these upgrades needs page edits. What each one adds:
 - 1.4: `packages_compact` and `packages_position`, both opt-in; `reference` pages now convert alerts like `doc`.
 - 1.5: the default look and the way pages load theme CSS and JavaScript change (see below).
 - 1.6: static diagrams (front matter `diagrams:`, see [Math and diagrams](../../recipes/figures/math-diagrams/#static-diagrams)), static math (`modootoday.math.mode: static`, MathML from `_data/math`; see [Static math](../../recipes/figures/math-diagrams/#static-math)), charts from Markdown tables (`modootoday.chart`, `c: chart`, drawn by your own Chart.js named in `modootoday.chart.src`; see [Charts](../../recipes/figures/charts/)) and widgets, your own custom elements placed with `c: widget` or `widget:` (`element:` in `modootoday.scripts`; see [Widgets](../../recipes/figures/widgets/)), all opt-in. `modootoday.math.base` shortens the self-hosted KaTeX paths of the loader. `modootoday-check` now also checks single objects nested in JSON-LD (`offers`, `organizer`, ...) and reports their problems as warnings, which the next major version makes errors (see [Checking](../structured-data/#checking)); a site's build still passes, but `--strict` fails on them. A starter's demo build can show the showcase bar or pill (`modootoday.showcase`, set in a demo-only config file; see [Starter demo showcase](../../reference/showcase/)), which also marks every page `noindex`.
+- 1.7: an event's `tickets:` also takes `{url, price, currency}`, which gives its offer a price and its facts a Price row (see [Detail pages](../../layouts/detail/#event)); a `tickets:` URL without `schema.offers` now gets a `modootoday-check` warning that names the map. A URL alone builds as before.
 
 If your pages come from a pre-1.0 draft that allowed fewer `sections:` items than `##` headings, add a plain name (such as `notes`) for each remaining heading: the count must now match, and `modootoday-check` reports the page and both numbers.
 
