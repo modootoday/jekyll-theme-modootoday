@@ -56,13 +56,13 @@ class StylesheetProbeTest < Minitest::Test
     "pr/checks" => "css/modootoday.css chrome/doc-nav.css marketing/hero.css chrome/footer.css docs/doc.css chrome/search.css content/lists.css #{PLAIN} #{SEARCH}",
     "pr/titled" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css #{PLAIN} #{SEARCH}",
     "pr/sections" => "css/modootoday.css content/code.css chrome/doc-nav.css marketing/hero.css chrome/footer.css docs/doc.css chrome/search.css structure/bleed.css structure/tabs.css structure/accordion.css structure/faq.css " \
-                     "structure/tabs.js #{CHROME} structure/accordion.js #{SEARCH}",
+                     "structure/tabs.js #{CHROME} structure/accordion.js structure/toc-spy.js #{SEARCH}",
     "pr/split" => "css/modootoday.css content/code.css chrome/doc-nav.css marketing/hero.css chrome/footer.css docs/doc.css chrome/search.css chrome/terminal.css structure/split.css #{CHROME} #{SEARCH}",
     "pr/css" => "css/modootoday.css chrome/doc-nav.css media/figure.css chrome/footer.css css/modootoday-hero.css docs/doc.css chrome/search.css content/lists.css structure/bleed.css #{PLAIN} #{SEARCH}",
     "pr/bare" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css docs/doc.css chrome/search.css chrome/theme-toggle.js #{SEARCH}",
     "pr/blog" => "css/modootoday.css chrome/doc-nav.css chrome/footer.css css/modootoday-blog.css docs/doc.css chrome/search.css #{PLAIN} blog/share.js #{SEARCH}",
     "." => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css marketing/hero.css chrome/footer.css css/modootoday-hero.css docs/doc.css chrome/search.css structure/bleed.css showcase/cta.css showcase/card.css " \
-           "structure/tabs.css structure/tabs.js #{CHROME} #{SEARCH}",
+           "structure/tabs.css structure/tabs.js #{CHROME} structure/toc-spy.js #{SEARCH}",
     "guide" => "css/modootoday.css content/code.css chrome/doc-nav.css content/inline.css chrome/footer.css docs/doc.css chrome/search.css data/table.css data/table-stack.css " \
                "chrome/menu.js content/scroll-region.js data/table-stack.js content/code-copy.js chrome/theme-toggle.js #{SEARCH}",
     "blog:." => "css/modootoday.css content/inline.css chrome/footer.css css/modootoday-blog.css chrome/search.css chrome/menu.js content/code-copy.js chrome/theme-toggle.js blog/share.js #{SEARCH}",
@@ -83,7 +83,7 @@ class StylesheetProbeTest < Minitest::Test
   BUNDLE = {
     "pr/svg" => "css/modootoday.css chrome/menu.js content/scroll-region.js chrome/theme-toggle.js #{SEARCH}",
     "pr/note" => "css/modootoday.css #{PLAIN} #{SEARCH}",
-    "pr/sections" => "css/modootoday.css structure/tabs.js #{CHROME} structure/accordion.js #{SEARCH}",
+    "pr/sections" => "css/modootoday.css structure/tabs.js #{CHROME} structure/accordion.js structure/toc-spy.js #{SEARCH}",
     "pr/css" => "css/modootoday.css css/modootoday-hero.css #{PLAIN} #{SEARCH}",
     "pr/bare" => "css/modootoday.css chrome/theme-toggle.js #{SEARCH}",
     "blog:." => "css/modootoday.css css/modootoday-blog.css chrome/menu.js content/code-copy.js chrome/theme-toggle.js blog/share.js #{SEARCH}",

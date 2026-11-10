@@ -74,7 +74,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Component | Root | Parts | States |
 |---|---|---|---|
 | Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` |
-| Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `a[aria-current=location]` in `.mt-toc` and `.mt-toc-mobile` |
 | Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar`; `details.mt-sidebar-mobile` | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
 | Page actions | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`, `a[type="text/markdown"]` | `[open]` |
 | Hero | `section.mt-hero` | the `h1`, `p.mt-hero-lead`, the link-only `p` (buttons) | `.mt-hero-checks` |
@@ -122,6 +122,7 @@ Notes on the rows above:
 
 - Page shell: `header.mt-header` > `.mt-header-inner` holds `.mt-site-title` > `.mt-site-name` (the name: up to two lines, a long word breaking after a dot, then an ellipsis; with a logo the title also has `.mt-compact-title`, which hides the name visually below 30rem), `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu` and `.mt-theme-toggle`. From 64rem `nav.mt-nav` is a `ul` row of links; below 64rem it is `details.mt-menu.mt-nav-sheet` with a `summary` menu button and a `ul` sheet with `.mt-nav-sheet-label` group titles. The language menu has a `summary` globe button and a `ul` of `a[lang][hreflang]`; the current one has `aria-current`. `html[data-theme]` is set by a fixed scheme or by the toggle.
 - Doc sidebar: `nav.mt-sidebar` shows from 64rem, `details.mt-sidebar-mobile` below. The current link has `aria-current=page`.
+- Doc contents: `nav.mt-toc` lists the `h2` and `h3` of the page (the column from 64rem shows the `h2` only), `details.mt-toc-mobile` the same list below 64rem. While the page is read, `structure/toc-spy.js` gives the link of the section being read `aria-current=location`, one link per list; in the column an `h3` section marks its `h2`. Without JavaScript neither list has a mark.
 - Page actions: the buttons sit in a `ul` and stay hidden until JS runs; `a[type="text/markdown"]` is View as Markdown.
 - Hero: the lead is the first `p` right after the `h1`; in the link-only `p` the first link is primary. `.mt-hero-checks` comes from front matter `hero: {checks: true}`: the first `ul` becomes a row of ✓ marks in `--mt-ok`.
 - Section: `[data-section]` is the name; `[data-c]` and `.mt-c-<c>` are the component. `.mt-cta` sits on the section, or on a `[data-mt-result]` element inside it when one is present; a `c: widget` element then wraps only that element's content.

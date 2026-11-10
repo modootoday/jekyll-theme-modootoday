@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:12c6633c8ad5
+source_rev: sha256:b58350f6cd1e
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -80,7 +80,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 | 컴포넌트 | 루트 | 부분 | 상태 |
 |---|---|---|---|
 | 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` |
-| 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `.mt-toc`·`.mt-toc-mobile` 안의 `a[aria-current=location]` |
 | 문서 사이드바 | `aside.mt-doc-nav` > `nav.mt-sidebar`, `details.mt-sidebar-mobile` | `.mt-sidebar-group`, `.mt-sidebar-title`, 링크 `ul` | `.mt-doc-layout.mt-has-sidebar`, 모바일 메뉴의 `[open]` |
 | 페이지 도구 | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`, `a[type="text/markdown"]` | `[open]` |
 | 히어로 | `section.mt-hero` | `h1`, `p.mt-hero-lead`, 링크만 있는 `p`(버튼) | `.mt-hero-checks` |
@@ -128,6 +128,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 
 - 페이지 틀: `header.mt-header` > `.mt-header-inner` 안에 `.mt-site-title` > `.mt-site-name`(사이트 이름, 두 줄까지 보이고 긴 단어는 점 뒤에서 나뉘며 넘치면 말줄임. 로고가 있으면 제목에 `.mt-compact-title`이 붙어 30rem보다 좁을 때 이름을 화면에서만 숨김), `nav.mt-nav`, `.mt-search`, `details.mt-lang.mt-menu`, `.mt-theme-toggle`이 있습니다. `nav.mt-nav`는 64rem 이상에서 링크가 한 줄로 놓인 `ul`이고, 그보다 좁으면 `details.mt-menu.mt-nav-sheet`가 됩니다. 이 메뉴에는 `summary` 메뉴 버튼과 `.mt-nav-sheet-label` 그룹 제목이 든 `ul` 시트가 있습니다. 언어 메뉴에는 `summary` 지구본 버튼과 `a[lang][hreflang]` 링크 `ul`이 있고, 현재 언어에는 `aria-current`가 붙습니다. `html[data-theme]`는 고정 색 구성이나 전환 버튼이 정합니다.
 - 문서 사이드바: `nav.mt-sidebar`는 64rem 이상에서, `details.mt-sidebar-mobile`은 그보다 좁을 때 보입니다. 현재 링크에는 `aria-current=page`가 붙습니다.
+- 문서 목차: `nav.mt-toc`는 페이지의 `h2`와 `h3`를 나열하고(64rem 이상의 옆 열에는 `h2`만 보입니다), `details.mt-toc-mobile`은 64rem보다 좁을 때 같은 목록을 보여 줍니다. 페이지를 읽는 동안 `structure/toc-spy.js`가 읽고 있는 섹션의 링크에 `aria-current=location`을 붙이며, 목록마다 링크 하나만 표시합니다. 옆 열에서는 `h3` 섹션이 그 `h2`를 표시합니다. JavaScript가 없으면 두 목록 모두 표시가 없습니다.
 - 페이지 도구: 버튼은 `ul` 안에 있고 JS가 돌기 전에는 숨겨집니다. `a[type="text/markdown"]`는 Markdown 보기 링크입니다.
 - 히어로: 리드는 `h1` 바로 다음의 첫 `p`입니다. 링크만 있는 `p`에서는 첫 링크가 주 버튼입니다. `.mt-hero-checks`는 front matter `hero: {checks: true}`로 켜며, 첫 `ul`이 `--mt-ok` 색 ✓ 표시 줄이 됩니다.
 - 섹션: `[data-section]`은 이름, `[data-c]`와 `.mt-c-<c>`는 컴포넌트입니다. `.mt-cta`는 섹션에 붙고, 섹션 안에 `[data-mt-result]` 요소가 있으면 그 요소에 붙습니다. 이때 `c: widget` 요소는 그 요소의 내용만 감쌉니다.

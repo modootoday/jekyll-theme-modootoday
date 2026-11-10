@@ -5,12 +5,13 @@ import { CSP, PWA_SITES } from "./config.mjs";
 import { checkChart } from "./features/chart.mjs";
 import { checkNoJs } from "./features/no-js.mjs";
 import { checkPwa } from "./features/pwa.mjs";
+import { checkToc } from "./features/toc.mjs";
 
 export async function checkFeatures(browser, site, fails) {
   const { origin, close } = await serveSite(site, { csp: CSP });
   let rows;
   try {
-    rows = { chart: await checkChart(browser, origin, fails), noJs: await checkNoJs(browser, origin, fails) };
+    rows = { chart: await checkChart(browser, origin, fails), noJs: await checkNoJs(browser, origin, fails), toc: await checkToc(browser, origin, fails) };
   } finally {
     close();
   }

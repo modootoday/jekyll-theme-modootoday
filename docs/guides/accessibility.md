@@ -28,6 +28,8 @@ Focus is always visible. Inside tabs, panels and scroll regions the focus ring i
 
 Landmarks (header, navigation, main, footer), the current page in navigation, breadcrumbs and the language menu (`aria-current`), and labels for icon buttons, code blocks and tables are built in. Labels follow `lang:` in 23 languages (see [Configuration](../configuration/#languages)). Icons are decorative unless they carry a label.
 
+The "On this page" list marks the section you are reading with `aria-current="location"`, so a screen reader says "current location" when it reaches that link. The mark is not announced as it moves, because a reader scrolling the page would otherwise hear every heading go by.
+
 ## Phones and tablets
 
 - **Safe areas.** Pages extend under the notch, rounded corners and home indicator, and the header, side padding and footer move clear of them.

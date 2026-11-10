@@ -9,6 +9,10 @@
   .mt-toc a, .mt-toc-mobile a { display: block; padding: .25rem 0 .25rem .85rem; line-height: mt-leading(sm); color: mt(muted-foreground); text-decoration: none; }
   .mt-toc a { margin-inline-start: -1px; border-inline-start: 1px solid transparent; }
   .mt-toc a:hover, .mt-toc-mobile a:hover { color: mt(foreground); border-inline-start-color: mt(muted-foreground); }
+  // The section being read (structure/toc-spy.js); after :hover, which has the same specificity.
+  .mt-toc a[aria-current], .mt-toc-mobile a[aria-current] { color: mt(foreground); font-weight: 500; }
+  .mt-toc a[aria-current] { border-inline-start-color: mt(primary); }
+  @media (forced-colors: active) { .mt-toc a[aria-current] { border-inline-start-color: Highlight; } }
   // The column scrolls (overflow-y: auto), which would clip an outer ring.
   .mt-toc a:focus-visible { outline-offset: -2px; }
   .mt-toc-mobile { margin: 0 0 1.5rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }

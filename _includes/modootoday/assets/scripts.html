@@ -16,6 +16,7 @@
 {%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}{%- assign _mta_on = _mta_on | append: "theme-toggle|" -%}{%- endif -%}
 {%- if mt_showcase -%}{%- assign _mta_on = _mta_on | append: "showcase|" -%}{%- endif -%}
 {%- if mt_components contains "accordion" and mt_page_c contains "|accordion|" -%}{%- assign _mta_on = _mta_on | append: "accordion|" -%}{%- endif -%}
+{%- if mt_components contains "toc" and _mta_hit contains "|toc-spy|" -%}{%- assign _mta_on = _mta_on | append: "toc-spy|" -%}{%- endif -%}
 {%- if mt_blog_css and site.modootoday.blog.share != false -%}{%- assign _mta_on = _mta_on | append: "share|" -%}{%- endif -%}
 {%- if mt_components contains "search" and mt_search_index -%}{%- assign _mta_on = _mta_on | append: "search-keys|" -%}{%- endif -%}
 {%- if mt_components contains "filter" and _mta_hit contains "|filter|" -%}{%- assign _mta_on = _mta_on | append: "filter|" -%}{%- endif -%}

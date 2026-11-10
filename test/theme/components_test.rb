@@ -62,6 +62,7 @@ class ComponentsTest < Minitest::Test
 
   def test_toc
     assert_match(%r{<nav class="mt-toc".*<a href="#faq">FAQ</a>.*mt-toc-h3"><a href="#question-one">Question one\?</a>.*<a href="#steps">Steps</a>}m, h)
+    assert_includes h, "/assets/js/modootoday/structure/toc-spy.js"
   end
 
   def test_figure
@@ -90,6 +91,6 @@ class ComponentsTest < Minitest::Test
 
   def test_components_can_be_disabled
     o = self.class.build("modootoday: {components: [callout], color_scheme: dark}\n")
-    %w[mt-breadcrumb mt-toc mt-figure mt-badge-tag mt-theme-toggle accordion.js].each { |s| refute_includes o, s }
+    %w[mt-breadcrumb mt-toc mt-figure mt-badge-tag mt-theme-toggle accordion.js toc-spy.js].each { |s| refute_includes o, s }
   end
 end

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:12c6633c8ad5
+source_rev: sha256:b58350f6cd1e
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -80,7 +80,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | コンポーネント | ルート | 部分 | 状態 |
 |---|---|---|---|
 | ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]` |
-| ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | — |
+| ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `.mt-toc`・`.mt-toc-mobile` 内の `a[aria-current=location]` |
 | ドキュメントのサイドバー | `aside.mt-doc-nav` > `nav.mt-sidebar`、`details.mt-sidebar-mobile` | `.mt-sidebar-group`、`.mt-sidebar-title`、リンクの `ul` | `.mt-doc-layout.mt-has-sidebar`、モバイルメニューの `[open]` |
 | ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`、`a[type="text/markdown"]` | `[open]` |
 | ヒーロー | `section.mt-hero` | `h1`、`p.mt-hero-lead`、リンクだけの `p`(ボタン) | `.mt-hero-checks` |
@@ -128,6 +128,7 @@ description: このテーマがサイト向けに文書化している名前、�
 
 - ページの枠: `header.mt-header` > `.mt-header-inner` の中に `.mt-site-title` > `.mt-site-name`(サイト名。2 行まで表示し、長い単語はドットの後ろで折り返し、あふれたら省略記号。ロゴがあるとタイトルに `.mt-compact-title` が付き、30rem より狭いと名前を画面上だけ隠す)、`nav.mt-nav`、`.mt-search`、`details.mt-lang.mt-menu`、`.mt-theme-toggle` があります。`nav.mt-nav` は 64rem 以上ではリンクが 1 行に並ぶ `ul`、それより狭いと `details.mt-menu.mt-nav-sheet` になります。そこには `summary` のメニューボタンと、`.mt-nav-sheet-label` のグループ名を含む `ul` のシートがあります。言語メニューには `summary` の地球儀ボタンと `a[lang][hreflang]` の `ul` があり、現在の言語には `aria-current` が付きます。`html[data-theme]` は固定の配色か切り替えボタンが設定します。
 - ドキュメントのサイドバー: `nav.mt-sidebar` は 64rem 以上で、`details.mt-sidebar-mobile` はそれより狭いときに表示されます。現在のリンクには `aria-current=page` が付きます。
+- ドキュメントの目次: `nav.mt-toc` はページの `h2` と `h3` を並べ (64rem 以上の横の列には `h2` だけが表示されます)、`details.mt-toc-mobile` は 64rem より狭いときに同じリストを表示します。ページを読んでいる間、`structure/toc-spy.js` が読んでいるセクションのリンクに `aria-current=location` を付けます。印は 1 つのリストに 1 つだけです。横の列では `h3` のセクションがその `h2` に印を付けます。JavaScript がないとどちらのリストにも印はありません。
 - ページの操作: ボタンは `ul` の中にあり、JS が動くまで隠れています。`a[type="text/markdown"]` は「Markdown で表示」のリンクです。
 - ヒーロー: リードは `h1` の直後の最初の `p` です。リンクだけの `p` では最初のリンクが主ボタンになります。`.mt-hero-checks` は front matter の `hero: {checks: true}` で有効になり、最初の `ul` が `--mt-ok` の色の ✓ の行になります。
 - セクション: `[data-section]` は名前、`[data-c]` と `.mt-c-<c>` はコンポーネントです。`.mt-cta` はセクションに付き、セクション内に `[data-mt-result]` 要素があればその要素に付きます。このとき `c: widget` の要素はその要素の内容だけを包みます。
