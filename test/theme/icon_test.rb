@@ -79,9 +79,9 @@ class IconTest < Minitest::Test
       assert_includes html, 'favicon.svg" type="image/svg+xml"'
       assert_includes html, 'rel="apple-touch-icon"'
       assert File.exist?("#{d}/s/assets/modootoday/favicon-32.png")
-      plain = File.read("#{build(d, "x: 1\n")}/guide/index.html")
+      plain = File.read("#{build(d, "modootoday: {favicon: false}\n")}/guide/index.html")
       refute_includes plain, "mt-has-logo"
-      refute_includes plain, 'rel="icon"'
+      refute_includes plain, 'rel="icon"', "the theme links no icon unless a site sets one"
       own = File.read("#{build(d, "modootoday: {favicon: /f.ico}\n")}/guide/index.html")
       assert_match(%r{<link rel="icon" href="[^"]*/f.ico">}, own)
     end

@@ -46,6 +46,14 @@ class StarterSourcesTest < Minitest::Test
     end
   end
 
+  # Without an icon link a demo under its baseurl requests /favicon.ico outside the site (adr:modootoday/20261110033804).
+  def test_every_starter_links_a_site_icon
+    manifest.starters.each do |s|
+      assert_equal "brand", YAML.safe_load(File.read("#{s.dir}/_config.yml")).dig("modootoday", "favicon"), s.name
+      assert_includes File.read("#{Starters::Sources.path(s.name)}/_config.yml"), "favicon: brand", "#{s.name}: rendered config"
+    end
+  end
+
   def test_rendered_sites_have_their_stubs
     docs = Starters::Sources.path("docs")
     %w[index.md.txt ko/guide.md.txt ja/index.md.txt plugins/lantern.md].each { |f| assert File.file?("#{docs}/#{f}"), f }
