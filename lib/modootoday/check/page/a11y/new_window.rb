@@ -48,12 +48,13 @@ module Modootoday
       def built(ctx)
         Dir.glob("#{ctx.site}/**/*.html").each do |f|
           # The showcase's links say "opens in a new window" in their name, and its noindex marks a demo build, not a sample page.
+          # The offline page (layout pages/offline) is noindex too, and its home link is real.
           t = File.read(f).gsub(%r{<pre\b.*?</pre>}m, "").gsub(%r{<div class="mt-showcase-region.*?</div>}m, "")
           t.scan(BLANK) do |a|
             next ctx.errs << "#{f}: target=\"_blank\" without rel=\"noopener\"" unless a =~ /\brel=["'][^"']*noopener/
             ctx.warns << "#{f}: new-window link without aria-describedby hint" unless a.include?("aria-describedby")
           end
-          next unless t.include?('name="robots" content="noindex"') && !t.include?('http-equiv="refresh"') && !t.include?("data-mt-showcase=")
+          next unless t.include?('name="robots" content="noindex"') && !t.include?('http-equiv="refresh"') && !t.include?("data-mt-showcase=") && !t.include?("<section data-mt-offline")
           t.scan(/<main\b.*<\/main>/m).join.gsub(%r{<nav[^>]*breadcrumb.*?</nav>}m, "").scan(/<a\b[^>]*\bhref="([^"]*)"/) do |(h)|
             ctx.warns << "#{f}: demo link #{h} resolves to the site root; write \"#\" for a sample link" if h =~ %r{\A(/[\w.-]+)?/#?\z}
           end

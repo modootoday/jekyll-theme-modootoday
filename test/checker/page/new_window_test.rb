@@ -34,6 +34,12 @@ class NewWindowCheckTest < Minitest::Test
     assert_match(/resolves to the site root/, run_on("A\n", html: html))
   end
 
+  def test_built_offline_page_home_link_ok
+    html = "<meta name=\"robots\" content=\"noindex\"><main><p class=\"mt-actions\"><a href=\"\">Try again</a> <a href=\"/base/\">Home</a></p>" \
+           "<section data-mt-offline aria-labelledby=\"mt-offline-pages\" hidden><h2 id=\"mt-offline-pages\">Pages</h2><ul></ul></section></main>"
+    refute_match(/resolves to the site root/, run_on("A\n", html: html))
+  end
+
   def test_built_blank_without_noopener_is_error
     assert_match(/p.html: target="_blank" without rel/, run_on("A\n", html: "<a href=\"https://x.test\" target=\"_blank\">X</a>"))
   end
