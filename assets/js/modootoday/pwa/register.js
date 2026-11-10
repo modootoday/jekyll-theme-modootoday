@@ -25,8 +25,11 @@ export function init(root) {
     offline();
   }
   const watch = (reg) => {
-    const notify = () => {
-      if (reg.waiting && sw.controller) {
+    // Only new theme files (a second assets cache) make a worker wait. Loading the notice through the leaving worker
+    // while another takes over by itself keeps it busy, and Chromium then never activates the new one.
+    const notify = async () => {
+      const names = reg.waiting && sw.controller ? await win.caches.keys().catch(() => []) : [];
+      if (names.filter((n) => n.startsWith("mt:" + link.dataset.mtScope + ":assets:")).length > 1) {
         toast().then((m) => m.update(doc, reg)).catch(() => {});
       }
     };

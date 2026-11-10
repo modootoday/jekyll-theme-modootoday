@@ -10,9 +10,12 @@ const RESOURCES = ["https://x.test/docs/assets/css/modootoday.css?v=1", "https:/
 
 // A page whose navigator has a fake service worker container; registered collects register() calls, posted the messages,
 // updates the registration's update() calls; reg.on holds its listeners.
-async function page({ head = LINK, controller = null, sw = true, waiting = null } = {}) {
+async function page({ head = LINK, controller = null, sw = true, waiting = null, names = ["mt:/docs/:assets:1", "mt:/docs/:assets:2"] } = {}) {
   const w = new JSDOM(`<!doctype html><html><head>${head}</head><body></body></html>`, { url: "https://x.test/docs/a/#top", pretendToBeVisual: true }).window;
-  w.caches = { keys: async () => ["mt:/docs/:assets:1", "mt:/docs/:assets:2"] };
+  w.caches = { keys: async () => names };
+  const query = w.document.querySelector.bind(w.document);
+  w.mtQueries = [];
+  w.document.querySelector = (s) => w.mtQueries.push(s) && query(s);
   const registered = [];
   const posted = [];
   const updates = [];
@@ -67,6 +70,12 @@ const until = async (fn) => {
 test("a controlled page with a worker waiting on new theme files loads the notice", async () => {
   const { w } = await page({ head: TOAST, controller: {}, waiting: { postMessage() {} } });
   assert.ok(await until(() => w.document.querySelector(".mt-toast")), "the notice region");
+});
+
+test("a worker waiting with the same theme files takes over by itself, so the notice module is not loaded", async () => {
+  const { w } = await page({ head: TOAST, controller: {}, waiting: { postMessage() {} }, names: ["mt:/docs/:assets:1", "mt:/docs/:pages:1", "mt:/other/:assets:2"] });
+  await new Promise((r) => setTimeout(r, 20));
+  assert.deepStrictEqual(w.mtQueries.filter((s) => s.includes("data-mt-toast-css")), []);
 });
 
 test("a worker that finishes installing later is noticed too; a first visit is not", async () => {

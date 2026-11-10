@@ -1,4 +1,4 @@
-// jsdom tests for assets/js/modootoday/pwa/update-toast.js: the update notice shows only for new theme files, after its
+// jsdom tests for assets/js/modootoday/pwa/update-toast.js: the update notice shows for a waiting worker, after its
 // sheet, without taking focus; Escape and Later close it; Reload hands over to the waiting worker; the offline notice
 // closes when the network is back. Run: npm test
 const test = require("node:test");
@@ -47,11 +47,8 @@ test("new theme files: the notice shows after its sheet, as a status, and focus 
   assert.strictEqual(doc.activeElement.id, "b");
 });
 
-test("the same theme files, or no waiting worker, show nothing", async () => {
+test("no waiting worker shows nothing", async () => {
   const m = await load("pwa/update-toast.js");
-  const same = page(["mt:/docs/:assets:1", "mt:/docs/:pages:1", "mt:/other/:assets:9"]);
-  await m.update(same.doc, same.reg);
-  assert.strictEqual(same.doc.querySelector(".mt-toast"), null);
   const gone = page();
   gone.reg.waiting = null;
   await m.update(gone.doc, gone.reg);

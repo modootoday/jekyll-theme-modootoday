@@ -46,13 +46,11 @@ export async function show(doc, text, buttons) {
   box.replaceChildren(p, row);
 }
 
-// Only new theme files make a worker wait (pwa/worker.js); their assets cache sits beside the current one.
+// pwa/register.js loads this only when the waiting worker brings new theme files (a second assets cache).
 export async function update(doc, reg) {
   const win = doc.defaultView;
   const d = doc.querySelector(LINK).dataset;
-  const assets = "mt:" + d.mtScope + ":assets:";
-  const names = (await win.caches.keys()).filter((n) => n.startsWith(assets));
-  if (!reg.waiting || names.length < 2) {
+  if (!reg.waiting) {
     return;
   }
   const reload = () => {
