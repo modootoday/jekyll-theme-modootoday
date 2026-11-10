@@ -1,5 +1,5 @@
 version: 2
-# Pull requests merge by themselves once the required checks pass (workflows/dependabot-auto-merge.yml); the
+# Pull requests are merged once every run on their head commit succeeds (workflows/dependabot-auto-merge.yml); the
 # build(deps) prefix keeps their squash commits Conventional, and the generated CHANGELOG leaves them out.
 updates:
   - package-ecosystem: github-actions

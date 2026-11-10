@@ -1,31 +1,40 @@
-name: Dependabot auto-merge
+name: Dependabot merge
 
-# Dependabot's pull requests are the one pull request flow this repository keeps (adr:modootoday/20261109225836): each
-# one is set to squash-merge by itself once the required checks pass. Needs "Allow auto-merge" in the repository
-# settings and required status checks on main (RELEASING.md, "Dependency updates").
-on: pull_request
+# Dependabot's pull requests are the one pull request flow this repository keeps (adr:modootoday/20261109225836).
+# Each one is squash-merged by this workflow once every workflow run on its head commit has succeeded. It needs no
+# repository setting and no branch rule, so direct pushes to main stay as they are.
+on:
+  workflow_run:
+    workflows: [CI, Starters]
+    types: [completed]
 
 permissions:
   contents: read
 
 jobs:
-  auto-merge:
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'modootoday/jekyll-theme-modootoday'
+  merge:
+    if: >-
+      github.repository == 'modootoday/jekyll-theme-modootoday' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      startsWith(github.event.workflow_run.head_branch, 'dependabot/')
     runs-on: ubuntu-24.04
     permissions:
       contents: write
       pull-requests: write
+      actions: read
     steps:
-      - id: metadata
-        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
-        with:
-          github-token: ${{ github.token }}
-      - name: Squash-merge when the required checks pass
+      - name: Squash-merge when every run on the head commit has succeeded
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          UPDATE: ${{ steps.metadata.outputs.update-type }}
-          DEPS: ${{ steps.metadata.outputs.dependency-names }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
-          echo "$DEPS ($UPDATE)"
-          gh pr merge --auto --squash "$PR_URL"
+          pr=$(gh pr list -R "$REPO" --head "$BRANCH" --state open --json number,author,headRefOid \
+            -q ".[] | select(.author.login == \"app/dependabot\" and .headRefOid == \"$SHA\") | .number")
+          if [ -z "$pr" ]; then echo "no open Dependabot pull request at $SHA"; exit 0; fi
+          runs=$(gh api "repos/$REPO/actions/runs?head_sha=$SHA&per_page=100" -q '.workflow_runs[] | "\(.name) \(.status) \(.conclusion)"')
+          echo "$runs"
+          if echo "$runs" | grep -Evq ' completed (success|skipped)$'; then echo "not every run on $SHA has succeeded yet"; exit 0; fi
+          gh pr merge -R "$REPO" "$pr" --squash --match-head-commit "$SHA" || echo "already merged or changed since $SHA"

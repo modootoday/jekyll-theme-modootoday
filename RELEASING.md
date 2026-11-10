@@ -36,9 +36,4 @@ The step then prints the table, warns that the check was overridden, and continu
 
 ## Dependency updates
 
-Dependabot (`.github/dependabot.yml`) opens weekly pull requests for GitHub Actions, npm and bundler; the GitHub Pages set (`github-pages`, `nokogiri`) stays ignored, because `gemfiles/github-pages.gemfile` pins the production versions on purpose. They are the one pull request flow this repository keeps: `.github/workflows/dependabot-auto-merge.yml` sets each one to squash-merge by itself once the required checks pass, and its `build(deps)` subject keeps it out of the CHANGELOG (adr:modootoday/20261109225836). A person reads one only when its checks fail.
-
-Once, in the repository settings, the maintainer:
-
-- turns on **Allow auto-merge** (Settings > General > Pull Requests), without which `gh pr merge --auto` fails;
-- marks the CI jobs as required status checks on `main` (a branch protection rule or ruleset), so auto-merge waits for them.
+Dependabot (`.github/dependabot.yml`) opens weekly pull requests for GitHub Actions, npm and bundler; the GitHub Pages set (`github-pages`, `nokogiri`) stays ignored, because `gemfiles/github-pages.gemfile` pins the production versions on purpose. They are the one pull request flow this repository keeps: `.github/workflows/dependabot-auto-merge.yml` squash-merges each one once every workflow run on its head commit (CI, Starters) has succeeded, and its `build(deps)` subject keeps it out of the CHANGELOG (adr:modootoday/20261109225836). A person reads one only when its checks fail. No repository setting or branch rule is needed: the workflow merges with its own token after checking the runs itself, so direct pushes to `main` are unaffected.

@@ -40,12 +40,11 @@ rel:
   - The updater runs only in the starter's own repository (`if: github.repository == '<starter repo>'`, like the demo overlay), so a site made from the template never rewrites itself. Template users keep pinning by hand or opt in later (1.8 R7).
   - The theme repository runs a gitlink workflow, daily and on `workflow_dispatch`. It reads the starters' public `main`, moves `example/<name>` to the new commits with its own `GITHUB_TOKEN`, and runs the starter checks in the same workflow.
   - A release lands in the starters within a day; a manual `workflow_dispatch` makes it immediate. `rake starters:publish` stays as the local fallback.
-- **Dependabot updates land without a person.** Its pull requests for GitHub Actions, npm and bundler (the github-pages set stays ignored) are auto-merged once the required checks pass. This is the one pull request flow the repository keeps, because the bot cannot push to `main`; it amends [[adr:modootoday/20261102203210]] for bot dependency updates only.
+- **Dependabot updates land without a person.** Its pull requests for GitHub Actions, npm and bundler (the github-pages set stays ignored) are squash-merged by a workflow (`workflow_run` after CI and Starters) once every run on the head commit has succeeded, with the repository's own token. GitHub's auto-merge is not used: it needs required status checks on `main`, which would also block the direct pushes this repository relies on. This is the one pull request flow the repository keeps, because the bot cannot push to `main`; it amends [[adr:modootoday/20261102203210]] for bot dependency updates only.
 - **Byte caps:** the registry check prints the cap to use (measured + 10 %, rounded to 128 B) whenever a file grows. Raising a cap still needs an ADR, by the budget rule; the arithmetic is no longer manual.
 
 ## Consequences
 
 - A release is: write one summary paragraph, run `script/release-prep`, review the three results, tag. Everything else is generated or verified.
-- One thing stays with the maintainer, once (no token anywhere):
-  - enabling auto-merge for Dependabot in the repository settings.
+- Nothing stays with the maintainer to set up: no token, no secret, no repository setting.
 - Translations still need a deliberate stamp. Version-pin normalization in `source_rev`, which is in 1.8, removes the stamps that releases forced.
