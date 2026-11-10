@@ -33,6 +33,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - Rewrite 174 page descriptions to 70-160 characters in every language
 - Reorder front matter keys with script/docs-key-order and make R3 block
 - For contributors: the CHANGELOG is generated from commit messages by git-cliff (cliff.toml), with the footers Changelog, Refs, Visual and Migration; script/commit-check checks them, bundle exec rake fix runs every generator, and script/release-prep and script/release-status make a release one command. (adr:modootoday/20261109225758, adr:modootoday/20261109225836)
+- KaTeX 0.19.1 renders static math, and the loader recipe's CDN example names it. (adr:modootoday/20261105101229)
 
 ### Fixed
 

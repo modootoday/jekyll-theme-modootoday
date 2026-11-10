@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/loaders/
-source_rev: sha256:ec9db6ff49cf
+source_rev: sha256:bff70c3e0e20
 nav_order: 20
 title: 図と数式のローダー
 description: 組み込みのローダーや独自のローダーで Mermaid の図と KaTeX の数式をブラウザーで描画する方法と、それぞれが CSP とプライバシーに求めることを説明します。
@@ -27,10 +27,10 @@ modootoday:
   math:
     enabled: true
     engine: katex
-    src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css
+    src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css
     integrity: {js: sha384-…, css: sha384-…}
-    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js
     auto_render_integrity: sha384-…
     inline: false
 ```

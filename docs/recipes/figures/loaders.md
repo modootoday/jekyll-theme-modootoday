@@ -21,10 +21,10 @@ modootoday:
   math:
     enabled: true
     engine: katex
-    src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css
+    src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css
     integrity: {js: sha384-…, css: sha384-…}
-    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js
     auto_render_integrity: sha384-…
     inline: false
 ```

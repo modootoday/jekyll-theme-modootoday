@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/loaders/
-source_rev: sha256:ec9db6ff49cf
+source_rev: sha256:bff70c3e0e20
 nav_order: 20
 title: 다이어그램과 수식 로더
 description: 내장 로더나 직접 만든 로더로 Mermaid 다이어그램과 KaTeX 수식을 브라우저에서 렌더링하는 방법과 각 방법이 CSP와 개인정보에 요구하는 것을 설명합니다.
@@ -27,10 +27,10 @@ modootoday:
   math:
     enabled: true
     engine: katex
-    src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css
+    src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css
     integrity: {js: sha384-…, css: sha384-…}
-    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js
+    auto_render_src: https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js
     auto_render_integrity: sha384-…
     inline: false
 ```
