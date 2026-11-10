@@ -2,6 +2,8 @@
 // the last 9rem) and show the last column up to 9rem before any scrolling; first-column code never breaks; 4+ column tables
 // keep a sticky first column and no cell over 6 lines; a scrolling wrapper is a labelled region; a stacked table fits.
 // At 768 and 1440px a four-column table fits its text column (later code cells may break), so no last column is cut.
+import { settle } from "../../site/viewport.mjs";
+
 export const REFLOW_WIDTHS = [320, 360, 390];
 export const REFLOW_PAGES = ["guides/configuration/", "components/", "components/kitchen-sink/", "components/kitchen-sink-rtl/", "layouts/detail/", "layouts/blog-news/", "reference/api/"];
 
@@ -62,14 +64,6 @@ export function tableProblems() {
     }
   });
   return [...new Set(out)];
-}
-
-// A new viewport reaches the scripts only in the next rendering update: matchMedia listeners (table-stack.js) first,
-// ResizeObserver callbacks (scroll-region.js) after its layout. A read before it forces a layout they have not seen, so
-// wait for the width, then for the frame after that update.
-export async function settle(page, width) {
-  await page.waitForFunction((w) => window.innerWidth === w, width);
-  await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
 }
 
 export async function checkTableReflow(page, scheme, url, fails) {

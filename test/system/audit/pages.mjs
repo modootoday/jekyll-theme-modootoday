@@ -15,6 +15,7 @@ import { checkColumnAlign, checkMeasure, ALIGN_PAGES, MEASURE_PAGES } from "./la
 import { checkCodeCopy } from "./layout/code-copy.mjs";
 import { checkTableReflow, checkWideTables, REFLOW_PAGES } from "./layout/table-reflow.mjs";
 import { checkPlanCta } from "./layout/plan-cta.mjs";
+import { settle } from "../site/viewport.mjs";
 
 // Header height: a doc page, the blog list and the home page; anchor jumps: a long page. A starter demo build passes its own
 // lists (config.mjs STARTERS): pricing and legal moved there with their rows.
@@ -68,6 +69,8 @@ export async function checkPage(page, { origin, out, report, fails, lists = {} }
     await checkTableReflow(page, scheme, url, fails);
     await checkWideTables(page, scheme, url, fails);
   }
+  // Every check above ends by restoring 1024px; axe must see the regions scroll-region.js marks for that width.
+  await settle(page, 1024);
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   for (const v of axe.violations) {
     report.axe.push({ scheme, url, id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) });

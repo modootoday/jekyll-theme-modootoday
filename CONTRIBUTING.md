@@ -185,7 +185,7 @@ Where things live:
 | `test/js/` | browser scripts (`node --test`) |
 | `test/fixtures/` | inputs shared by the tests |
 | `docs/generated/` | tool output: the docs site's twin stubs and per-language `llms.txt` / `llms-full.txt` stubs, written by `ruby script/docs-index` (`--check` fails when they are stale). Do not edit by hand; each stub sets `path:` to where it would sit beside its page and `permalink:` to its URL |
-| `test/system/site/` | building and serving the docs site |
+| `test/system/site/` | building and serving the docs site, and waiting after a viewport change until the page's scripts have seen it (`viewport.mjs`) |
 | `test/system/audit.mjs`, `test/system/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
 | `test/system/visual/` | visual regression (`npm run qa:visual`) |
 | `test/system/lighthouse/` | Lighthouse runs and budget |
