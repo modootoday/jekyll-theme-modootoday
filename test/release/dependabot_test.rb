@@ -27,4 +27,11 @@ class DependabotTest < Minitest::Test
     assert_includes run, "completed\\|(success|skipped)$"
     assert_includes run, '--match-head-commit "$SHA"'
   end
+
+  def test_updates_wait_two_weeks_and_leave_the_pages_pins_alone
+    updates = YAML.safe_load(File.read(File.join(ROOT, ".github/dependabot.yml")))["updates"]
+    updates.each { |u| assert_equal({ "default-days" => 14 }, u["cooldown"], u["package-ecosystem"]) }
+    bundler = updates.find { |u| u["package-ecosystem"] == "bundler" }["ignore"].map { |i| i["dependency-name"] }
+    assert_equal %w[github-pages jekyll-optional-front-matter jekyll-titles-from-headings nokogiri], bundler.sort
+  end
 end

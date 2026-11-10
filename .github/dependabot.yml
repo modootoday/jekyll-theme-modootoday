@@ -1,22 +1,29 @@
 version: 2
-# Pull requests are merged once every run on their head commit succeeds (workflows/dependabot-auto-merge.yml); the
-# build(deps) prefix keeps their squash commits Conventional, and the generated CHANGELOG leaves them out.
+# Pull requests are merged once the latest run of every pull request workflow on their head commit has passed
+# (workflows/dependabot-auto-merge.yml); the build(deps) prefix keeps their squash commits Conventional, and the
+# generated CHANGELOG leaves them out. The cooldown proposes only releases two weeks old (adr:modootoday/20261110020841).
 updates:
   - package-ecosystem: github-actions
     directory: /
     schedule: {interval: weekly}
+    cooldown: {default-days: 14}
     commit-message: {prefix: build, include: scope}
     groups: {actions: {patterns: ["*"]}}
   - package-ecosystem: bundler
     directory: /
     schedule: {interval: weekly}
+    cooldown: {default-days: 14}
     commit-message: {prefix: build, include: scope}
-    # gemfiles/github-pages.gemfile pins the GitHub Pages production set on purpose
+    # gemfiles/github-pages.gemfile pins the GitHub Pages production set on purpose. The two jekyll- plugins are dev
+    # pins that mimic GitHub Pages, and Pages supplies its own versions, so a newer one would test a set Pages never runs.
     ignore:
       - dependency-name: github-pages
       - dependency-name: nokogiri
+      - dependency-name: jekyll-titles-from-headings
+      - dependency-name: jekyll-optional-front-matter
   - package-ecosystem: npm
     directory: /
     schedule: {interval: weekly}
+    cooldown: {default-days: 14}
     commit-message: {prefix: build, include: scope}
     groups: {dev: {patterns: ["*"]}}
