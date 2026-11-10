@@ -8,12 +8,18 @@ const { run } = require("../support/module.js");
 const LINK = '<link rel="manifest" href="/docs/manifest.webmanifest" data-mt-sw="/docs/sw.js" data-mt-scope="/docs/">';
 const RESOURCES = ["https://x.test/docs/assets/css/modootoday.css?v=1", "https://x.test/other/a.css", "https://cdn.example/x.js"];
 
-// A page whose navigator has a fake service worker container; registered collects register() calls, posted the messages.
-async function page({ head = LINK, controller = null, sw = true } = {}) {
-  const w = new JSDOM(`<!doctype html><html><head>${head}</head><body></body></html>`, { url: "https://x.test/docs/a/#top" }).window;
+// A page whose navigator has a fake service worker container; registered collects register() calls, posted the messages,
+// updates the registration's update() calls; reg.on holds its listeners.
+async function page({ head = LINK, controller = null, sw = true, waiting = null } = {}) {
+  const w = new JSDOM(`<!doctype html><html><head>${head}</head><body></body></html>`, { url: "https://x.test/docs/a/#top", pretendToBeVisual: true }).window;
+  w.caches = { keys: async () => ["mt:/docs/:assets:1", "mt:/docs/:assets:2"] };
   const registered = [];
   const posted = [];
-  const reg = { active: { postMessage: (m) => posted.push(m) } };
+  const updates = [];
+  const reg = { active: { postMessage: (m) => posted.push(m) }, waiting, on: {}, update: async () => updates.push(1) };
+  reg.addEventListener = (type, fn) => {
+    reg.on[type] = fn;
+  };
   if (sw) {
     Object.defineProperty(w.navigator, "serviceWorker", {
       value: { controller, ready: Promise.resolve(reg), register: async (url, opts) => registered.push([url, opts]) && reg },
@@ -25,7 +31,7 @@ async function page({ head = LINK, controller = null, sw = true } = {}) {
     await new Promise((resolve) => w.addEventListener("load", resolve));
   }
   await new Promise((resolve) => setTimeout(resolve, 10));
-  return { registered, posted };
+  return { w, reg, registered, posted, updates };
 }
 
 test("registers the worker the manifest link names, with the site scope", async () => {
@@ -47,4 +53,48 @@ test("a controlled page posts nothing", async () => {
 test("without the link or service worker support nothing runs", async () => {
   assert.deepStrictEqual((await page({ head: '<link rel="manifest" href="/m.webmanifest">' })).registered, []);
   assert.deepStrictEqual((await page({ sw: false })).posted, []);
+});
+
+// The toast module reads Cache Storage: two assets versions mean new theme files.
+const TOAST = LINK.replace(">", ' data-mt-toast-css="/t.css" data-mt-update="New" data-mt-reload="Reload" data-mt-later="Later">');
+const until = async (fn) => {
+  for (let i = 0; i < 50 && !fn(); i++) {
+    await new Promise((r) => setTimeout(r, 2));
+  }
+  return fn();
+};
+
+test("a controlled page with a worker waiting on new theme files loads the notice", async () => {
+  const { w } = await page({ head: TOAST, controller: {}, waiting: { postMessage() {} } });
+  assert.ok(await until(() => w.document.querySelector(".mt-toast")), "the notice region");
+});
+
+test("a worker that finishes installing later is noticed too; a first visit is not", async () => {
+  const later = await page({ head: TOAST, controller: {} });
+  const next = { state: "installing", addEventListener: (type, fn) => (next.fire = fn) };
+  later.reg.installing = next;
+  later.reg.on.updatefound();
+  later.reg.waiting = next;
+  next.state = "installed";
+  next.fire();
+  assert.ok(await until(() => later.w.document.querySelector(".mt-toast")));
+  const first = await page({ head: TOAST, waiting: { postMessage() {} } });
+  await new Promise((r) => setTimeout(r, 20));
+  assert.strictEqual(first.w.document.querySelector(".mt-toast"), null);
+});
+
+test("a window shown again checks for a new worker at most once an hour", async () => {
+  const { w, updates } = await page({ controller: {} });
+  const show = () => w.document.dispatchEvent(new w.Event("visibilitychange"));
+  show();
+  assert.strictEqual(updates.length, 0, "not within the hour");
+  const now = Date.now;
+  Date.now = () => now() + 36e5 + 1;
+  try {
+    show();
+    show();
+  } finally {
+    Date.now = now;
+  }
+  assert.strictEqual(updates.length, 1);
 });

@@ -150,3 +150,6 @@ pwa:
   offline_text: "此頁面未儲存在這部裝置上。請檢查網路連線後再試一次。"
   offline_pages: "可離線閱讀的頁面"
   retry: "再試一次"
+  update: "本網站有新版本可用。"
+  reload: "重新載入"
+  later: "稍後"

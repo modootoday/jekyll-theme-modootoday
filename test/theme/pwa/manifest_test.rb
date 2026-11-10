@@ -29,7 +29,7 @@ class PwaManifestTest < Minitest::Test
   end
 
   def test_on_links_the_manifest_from_every_page
-    link = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\" data-mt-sw=\"/docs/sw.js\" data-mt-scope=\"/docs/\">"
+    link = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\" data-mt-sw=\"/docs/sw.js\" data-mt-scope=\"/docs/\" "
     assert_includes html(on), link
     assert_includes html(on, "about/index.html"), link
     assert_equal 1, html(on).scan("rel=\"manifest\"").size

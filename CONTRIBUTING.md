@@ -72,12 +72,12 @@ node test/system/lighthouse/budget.mjs qa-out/lighthouse
 
 ### PWA checks
 
-The service worker (`modootoday.pwa`) is checked on a fixture site, not on the docs site. `test/fixtures/sites/pwa/` holds three pages (English and Korean) and the stubs `modootoday-stubs --pwa --write` writes; `test/stubs/pwa_test.rb` runs `--check` on them. `test/system/site/build-pwa.sh [OUT]` builds it five times into `pkg/pwa/`: `v1`, `v2` (another `time:`, so `sw.js` changes) and `kill` (`enabled: kill`) at `/a`, then `v1` at `/b` and at the origin root, the way project sites share `<user>.github.io` with the user site. `test/system/site/server.mjs` serves them on one origin under the strict CSP header; it can swap the build behind a base path (a deploy) and cut every socket (a lost network). `npm run qa` runs the four flows in `test/system/audit/features/pwa/`:
+The service worker (`modootoday.pwa`) is checked on a fixture site, not on the docs site. `test/fixtures/sites/pwa/` holds three pages (English and Korean) and the stubs `modootoday-stubs --pwa --write` writes; `test/stubs/pwa_test.rb` runs `--check` on them. `test/system/site/build-pwa.sh [OUT]` builds it six times into `pkg/pwa/`: `v1`, `v2` (another `time:`, so `sw.js` changes), `next` (another theme version, so the theme files change too) and `kill` (`enabled: kill`) at `/a`, then `v1` at `/b` and at the origin root, the way project sites share `<user>.github.io` with the user site. `test/system/site/server.mjs` serves them on one origin under the strict CSP header; it can swap the build behind a base path (a deploy) and cut every socket (a lost network). `npm run qa` runs the four flows in `test/system/audit/features/pwa/`:
 
 | Flow | What it checks |
 | --- | --- |
 | `offline.mjs` | the worker registers with the site's scope; with the sockets cut, a visited page comes from the cache, an unvisited one gets the offline page with the kept pages listed, a Korean path gets the Korean offline page, and no page breaks the CSP |
-| `update.mjs` | a deploy from `v1` to `v2` installs a new worker, which takes over once `v1` has no page; the caches keep their names and the visited page stays kept |
+| `update.mjs` | a deploy from `v1` to `v2` (pages only) lets the new worker take over the open page with no notice and no reload, keeping the caches and the visited page; from `v2` to `next` (new theme files) the worker waits and the update notice shows as a status without taking focus, passes axe, closes with `Esc`, and its Reload hands over to the new worker and loads the new `?v=` files |
 | `kill.mjs` | the `enabled: kill` deploy deletes the `mt:/a/:` caches, unregisters and reloads the open page; the next visit has no worker |
 | `scope.mjs` | activating `/a` and the root, and the kill at `/a`, leave the other scopes' registrations and caches |
 

@@ -150,3 +150,6 @@ pwa:
   offline_text: "Această pagină nu este salvată pe acest dispozitiv. Verificați conexiunea și încercați din nou."
   offline_pages: "Pagini pe care le puteți citi offline"
   retry: "Încercați din nou"
+  update: "Este disponibilă o versiune nouă a acestui site."
+  reload: "Reîncărcați"
+  later: "Mai târziu"

@@ -150,3 +150,6 @@ pwa:
   offline_text: "此页面未保存在此设备上。请检查网络连接后重试。"
   offline_pages: "可离线阅读的页面"
   retry: "重试"
+  update: "本网站有新版本可用。"
+  reload: "重新加载"
+  later: "稍后"

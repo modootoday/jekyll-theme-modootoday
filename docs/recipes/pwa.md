@@ -115,6 +115,15 @@ The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `m
 
 `sw.js` changes on every deploy, which is how browsers find the new worker. If a CDN such as Cloudflare sits in front of your site, keep `/sw.js` out of long edge caching (a cache rule that bypasses the cache for that path); otherwise visitors keep the old worker until the edge copy expires.
 
+## Updates
+
+`sw.js` changes on every deploy. Browsers look for a new one when a page loads (at most once a day on their own), and the theme also asks when a window is shown again after an hour, because an installed app can stay open for days.
+
+- **A deploy that keeps the theme files** (your pages and files changed, the theme did not) shows nothing: the new worker takes over at once, and pages come from the network first anyway.
+- **A deploy that changes the theme files** (a theme update, or every deploy with `asset_version: build` or `false`) waits for the reader. A notice at the bottom of the page says that a new version is ready, with Reload and Later. Reload hands over to the new worker and reloads the page once; Later or `Esc` closes the notice until the next page. The page never reloads by itself, so nothing a reader typed is lost.
+
+The notice is a status message: screen readers announce it and it never takes focus. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
+
 ## Turn it off
 
 Do not just delete the files: a worker already on visitors' devices would keep serving the old copies. Instead:

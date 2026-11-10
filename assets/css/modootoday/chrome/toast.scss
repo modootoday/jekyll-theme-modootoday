@@ -1,0 +1,8 @@
+---
+# jekyll-theme-modootoday PWA notice sheet (modootoday.pwa): linked by pwa/update-toast.js only when a notice shows, never by
+# a layout. Its partial is modootoday/pwa/_toast.scss.
+---
+{%- include modootoday/config.html -%}
+$mt-css-layers: {{ mt_css_layers }};
+@import "modootoday/sheet";
+@import "modootoday/pwa/toast";

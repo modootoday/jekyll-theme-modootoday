@@ -12,7 +12,7 @@ import { checkUpdate } from "./pwa/update.mjs";
 import { checkKill } from "./pwa/kill.mjs";
 import { checkScope } from "./pwa/scope.mjs";
 
-export const BUILDS = ["v1", "v2", "kill", "b", "root"];
+export const BUILDS = ["v1", "v2", "next", "kill", "b", "root"];
 export const CHECKS = { offline: checkOffline, update: checkUpdate, kill: checkKill, scope: checkScope };
 
 // Build name => folder, or null after a fail naming the command when one is missing.

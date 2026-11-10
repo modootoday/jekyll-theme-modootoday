@@ -150,3 +150,6 @@ pwa:
   offline_text: "Ta strona nie jest zapisana na tym urządzeniu. Sprawdź połączenie i spróbuj ponownie."
   offline_pages: "Strony dostępne offline"
   retry: "Spróbuj ponownie"
+  update: "Dostępna jest nowa wersja tej witryny."
+  reload: "Odśwież"
+  later: "Później"

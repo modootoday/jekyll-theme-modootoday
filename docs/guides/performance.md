@@ -25,6 +25,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 | `data/chart.js` (with `data/chart-table.js` and `theme/current.js`, preloaded), after your Chart.js | pages with a chart, when `modootoday.chart` names your Chart.js (`src`) |
 | Mermaid and KaTeX | pages with a diagram or math block, when you turn them on |
 | `pwa/register.js` (`pwa/offline.js` on the offline page) | every page, with `modootoday.pwa.enabled: true` |
+| `pwa/update-toast.js` and `chrome/toast` | a page whose service worker has new theme files waiting |
 | Your `site_css` sheets and `preload` hints | every page, plus the pages whose front matter lists more |
 | Your `scripts` modules (with their sheet and the theme helpers they import) | pages whose hero or a section names one with `script:` |
 

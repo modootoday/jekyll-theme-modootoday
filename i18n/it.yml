@@ -150,3 +150,6 @@ pwa:
   offline_text: "Questa pagina non è salvata su questo dispositivo. Controlla la connessione e riprova."
   offline_pages: "Pagine leggibili offline"
   retry: "Riprova"
+  update: "È disponibile una nuova versione di questo sito."
+  reload: "Ricarica"
+  later: "Più tardi"

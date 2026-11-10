@@ -150,3 +150,6 @@ pwa:
   offline_text: "Bu sayfa bu cihazda kayıtlı değil. Bağlantınızı kontrol edip yeniden deneyin."
   offline_pages: "Çevrimdışı okuyabileceğiniz sayfalar"
   retry: "Yeniden dene"
+  update: "Bu sitenin yeni bir sürümü hazır."
+  reload: "Yeniden yükle"
+  later: "Daha sonra"

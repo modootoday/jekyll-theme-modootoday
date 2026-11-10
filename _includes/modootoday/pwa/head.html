@@ -1,5 +1,7 @@
 {%- comment -%}PWA head tags, only with modootoday.pwa.enabled: true. The manifest and worker URLs are the permalinks of the site's
-stubs (modootoday-stubs --pwa); pwa/register.js reads data-mt-sw and data-mt-scope. The apple-touch-icon stays with favicon.{%- endcomment -%}
-{%- if site.modootoday.pwa.enabled == true %}
-<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}" data-mt-sw="{{ '/sw.js' | relative_url }}" data-mt-scope="{{ '/' | relative_url }}">
+stubs (modootoday-stubs --pwa); pwa/register.js reads data-mt-sw and data-mt-scope, pwa/update-toast.js its sheet and labels
+(no inline script under csp: strict). The apple-touch-icon stays with favicon. Needs i18n.html.{%- endcomment -%}
+{%- if site.modootoday.pwa.enabled == true -%}
+{%- include modootoday/assets/url.html path="/assets/css/modootoday/chrome/toast.css" %}
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}" data-mt-sw="{{ '/sw.js' | relative_url }}" data-mt-scope="{{ '/' | relative_url }}" data-mt-toast-css="{{ mt_asset_url }}" data-mt-update="{{ mt_t_pwa_update | escape }}" data-mt-reload="{{ mt_t_pwa_reload | escape }}" data-mt-later="{{ mt_t_pwa_later | escape }}">
 {%- endif -%}

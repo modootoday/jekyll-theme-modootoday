@@ -169,8 +169,8 @@ jobs:
         run: ruby test/system/docs/coverage.rb
       - name: Component examples in the built HTML (leaked source, empty or hidden source, front matter, list forms)
         run: bundle exec ruby test/system/docs/examples.rb docs/_site
-      # The PWA flows of npm run qa serve these: v1, v2 and kill at /a, v1 at /b and at the origin root.
-      - name: Build the PWA fixture site five times
+      # The PWA flows of npm run qa serve these: v1, v2, next and kill at /a, v1 at /b and at the origin root.
+      - name: Build the PWA fixture site six times
         run: test/system/site/build-pwa.sh
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

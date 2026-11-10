@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:f75d8fc5328b
+source_rev: sha256:6bba9c63805a
 nav_order: 75
 title: パフォーマンス
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算を説明し、サイトを軽く保つ方法を示します。
@@ -31,6 +31,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 | `data/chart.js`（`data/chart-table.js`、`theme/current.js` を先読み）、サイトの Chart.js の後 | `modootoday.chart` がサイトの Chart.js（`src`）を指すとき、グラフのあるページ |
 | Mermaid と KaTeX | 有効にしたとき、図か数式のブロックがあるページ |
 | `pwa/register.js`(オフラインページでは `pwa/offline.js` も) | `modootoday.pwa.enabled: true` のとき、すべてのページ |
+| `pwa/update-toast.js` と `chrome/toast` | サービスワーカーが新しいテーマのファイルを受け取って待っているページ |
 | サイトの `site_css` のシートと `preload` のヒント | すべてのページと、front matter で追加したページ |
 | サイトの `scripts` のモジュール（そのシートと、モジュールが読み込むテーマのヘルパーを含む） | ヒーローかセクションが `script:` で名前を指定したページ |
 

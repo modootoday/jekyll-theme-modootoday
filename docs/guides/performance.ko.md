@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:f75d8fc5328b
+source_rev: sha256:6bba9c63805a
 nav_order: 75
 title: 성능
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산을 설명하고 사이트를 가볍게 유지하는 방법을 알려 줍니다.
@@ -31,6 +31,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기
 | `data/chart.js`(`data/chart-table.js`, `theme/current.js`를 미리 불러옴), 사이트의 Chart.js 다음 | `modootoday.chart`가 사이트의 Chart.js(`src`)를 가리킬 때, 차트가 있는 페이지 |
 | Mermaid와 KaTeX | 켜 두었을 때, 다이어그램이나 수식 블록이 있는 페이지 |
 | `pwa/register.js`(오프라인 페이지에서는 `pwa/offline.js`도) | `modootoday.pwa.enabled: true`일 때 모든 페이지 |
+| `pwa/update-toast.js`와 `chrome/toast` | 서비스 워커가 새 테마 파일을 받아 두고 기다리는 페이지 |
 | 사이트의 `site_css` 시트와 `preload` 힌트 | 모든 페이지, 그리고 front matter에 더 적은 페이지 |
 | 사이트의 `scripts` 모듈(그 시트와 모듈이 가져오는 테마 도우미 포함) | 히어로나 섹션이 `script:`로 이름을 적은 페이지 |
 

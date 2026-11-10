@@ -150,3 +150,6 @@ pwa:
   offline_text: "Yeh safha is device par mehfooz nahin hai. Apna connection check karein aur dobara koshish karein."
   offline_pages: "Woh safhaat jo aap offline parh sakte hain"
   retry: "Dobara koshish karein"
+  update: "Is site ka naya version tayyar hai."
+  reload: "Dobara load karein"
+  later: "Baad mein"

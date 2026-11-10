@@ -15,12 +15,12 @@ test("a missing fixture build fails with the command that makes it, before any b
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "mt-pwa-"));
   const fails = [];
   assert.strictEqual(builds(dir, fails), null);
-  assert.match(fails[0], /no fixture build v1, v2, kill, b, root in .*; run test\/system\/site\/build-pwa\.sh/);
+  assert.match(fails[0], /no fixture build v1, v2, next, kill, b, root in .*; run test\/system\/site\/build-pwa\.sh/);
   for (const b of BUILDS) {
     fs.mkdirSync(path.join(dir, b));
     fs.writeFileSync(path.join(dir, b, "index.html"), "");
   }
-  assert.deepStrictEqual(Object.keys(builds(dir, [])), ["v1", "v2", "kill", "b", "root"]);
+  assert.deepStrictEqual(Object.keys(builds(dir, [])), ["v1", "v2", "next", "kill", "b", "root"]);
 });
 
 test("the constants come from the line the sw.js include renders", async () => {

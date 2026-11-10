@@ -150,3 +150,6 @@ pwa:
   offline_text: "Halaman ini tidak tersimpan di perangkat ini. Silakan periksa koneksi Anda, lalu coba lagi."
   offline_pages: "Halaman yang dapat dibaca secara offline"
   retry: "Coba lagi"
+  update: "Versi baru situs ini sudah tersedia."
+  reload: "Muat ulang"
+  later: "Nanti"

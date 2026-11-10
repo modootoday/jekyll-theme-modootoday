@@ -46,7 +46,6 @@
       await cache.delete(k);
     }
   };
-
   const store = async (k, req) => {
     const res = await fetch(req);
     if (!ok(res)) {
@@ -54,13 +53,11 @@
     }
     await put(bucket(k), req, res);
   };
-
   const offline = (url) => {
     const path = new URL(url).pathname;
     const best = Object.keys(C.offline).filter((p) => path.startsWith(p)).sort((a, b) => b.length - a.length)[0];
     return cached(PAGES, C.offline[best]);
   };
-
   const fresh = async (e, k) => {
     const req = e.request;
     const nav = req.mode == "navigate";
@@ -99,19 +96,26 @@
     return copy || net;
   };
 
-  // Only a missing offline page fails the install.
+  // Only a missing offline page fails the install. With the theme files of the worker before (their cache is there) only
+  // pages changed, which are network first, so this worker takes over at once; new theme files wait for the notice.
   sw.addEventListener("install", (e) => {
     const pages = Object.values(C.offline);
-    e.waitUntil(Promise.all(C.precache.map((u) => {
-      const req = new Request(u, { cache: "reload" });
-      const done = store(kind(req) || "page", req);
-      return pages.includes(u) ? done : done.catch(noop);
-    })));
+    e.waitUntil((async () => {
+      if (await caches.has(ASSETS)) {
+        sw.skipWaiting();
+      }
+      await caches.open(ASSETS);
+      await Promise.all(C.precache.map((u) => {
+        const req = new Request(u, { cache: "reload" });
+        const done = store(kind(req) || "page", req);
+        return pages.includes(u) ? done : done.catch(noop);
+      }));
+    })());
   });
 
   sw.addEventListener("activate", (e) => {
     const keep = [ASSETS, PAGES, MEDIA];
-    const drop = async () => {
+    e.waitUntil((async () => {
       for (const n of await caches.keys()) {
         if (n.startsWith(prefix) && !keep.includes(n)) {
           await caches.delete(n);
@@ -119,8 +123,7 @@
       }
       await (sw.registration.navigationPreload && sw.registration.navigationPreload.enable());
       await sw.clients.claim();
-    };
-    e.waitUntil(drop());
+    })());
   });
 
   sw.addEventListener("fetch", (e) => {
@@ -132,8 +135,11 @@
     } catch (err) {}
   });
 
-  // URLs the first, uncontrolled page loaded (register.js), so an offline start is styled.
+  // mt:skip: Reload in pwa/update-toast.js. mt:warm: what the first, uncontrolled page loaded (an offline start is styled).
   sw.addEventListener("message", (e) => {
+    if (e.data && e.data.type == "mt:skip") {
+      sw.skipWaiting();
+    }
     const urls = e.data && e.data.type == "mt:warm" && Array.isArray(e.data.urls) ? e.data.urls : [];
     e.waitUntil(Promise.all(urls.map((u) => {
       const req = new Request(u);

@@ -45,6 +45,9 @@ class FakeCaches {
   async delete(name) {
     return this.map.delete(name);
   }
+  async has(name) {
+    return this.map.has(name);
+  }
   urls(name) {
     return this.map.has(name) ? [...this.map.get(name).map.keys()].map((u) => u.slice(ORIGIN.length)) : [];
   }

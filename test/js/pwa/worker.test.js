@@ -116,6 +116,25 @@ test("install precaches by kind; only a missing offline page fails it", async ()
   await assert.rejects(broken.dispatch("install"));
 });
 
+test("a new worker with the theme files of the one before takes over at once; new theme files wait", async () => {
+  const same = env({ constants: { build: "1.7.0-def5678" } });
+  await same.caches.open(ASSETS);
+  await same.dispatch("install");
+  assert.ok(same.state.skipped);
+  const next = env({ constants: { assets: "1.8.0" } });
+  await next.caches.open(ASSETS);
+  await next.dispatch("install");
+  assert.ok(!next.state.skipped);
+  assert.ok(await next.caches.has("mt:/docs/:assets:1.8.0"), "its assets cache is there for the notice to find");
+});
+
+test("the Reload message makes a waiting worker take over", async () => {
+  const w = env();
+  await w.dispatch("message", { data: { type: "mt:skip" } });
+  assert.ok(w.state.skipped);
+  assert.deepStrictEqual(w.fetched, []);
+});
+
 test("activate deletes this scope's other versions only, turns on navigation preload and claims", async () => {
   const w = env();
   for (const n of ["mt:/docs/:pages:old", "mt:/docs/:assets:1.6.0", PAGES, MEDIA, "mt:/docs/b/:pages:old", "mt:/other/:assets:1.6.0", "site-cache"]) {

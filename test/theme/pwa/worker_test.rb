@@ -51,13 +51,16 @@ class PwaWorkerTest < Minitest::Test
   end
 
   def test_on_links_the_worker_and_loads_register_on_every_page
-    tag = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\" data-mt-sw=\"/docs/sw.js\" data-mt-scope=\"/docs/\">"
+    tag = "<link rel=\"manifest\" href=\"/docs/manifest.webmanifest\" data-mt-sw=\"/docs/sw.js\" data-mt-scope=\"/docs/\" " \
+          "data-mt-toast-css=\"/docs/assets/css/modootoday/chrome/toast.css?v=#{version}\" data-mt-update="
     script = "<script type=\"module\" src=\"/docs/assets/js/modootoday/pwa/register.js?v=#{version}\"></script>"
     ["index.html", "about/index.html", "offline/index.html", "ko/offline/index.html"].each do |page|
       assert_includes html(on, page), tag, page
       assert_equal 1, html(on, page).scan(script).size, page
     end
     refute_includes html(on), "pwa/offline.js"
+    assert_includes html(on), 'data-mt-update="A new version of this site is ready." data-mt-reload="Reload" data-mt-later="Later">'
+    assert_includes html(on, "ko/offline/index.html"), 'data-mt-reload="새로고침" data-mt-later="나중에">'
   end
 
   def test_kill_renders_the_self_removing_worker_and_links_nothing
