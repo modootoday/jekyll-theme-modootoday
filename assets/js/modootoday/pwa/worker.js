@@ -3,7 +3,8 @@
   const C = sw.MT_PWA;
   const prefix = "mt:" + C.scope + ":";
   const ASSETS = prefix + "assets:" + C.assets;
-  const PAGES = prefix + "pages:" + C.build;
+  // Pages follow the theme files, not the build: a deploy that keeps them keeps what a reader saved for offline.
+  const PAGES = prefix + "pages:" + C.assets;
   const MEDIA = prefix + "media";
   const THEME = new RegExp("^" + C.scope + "assets/(css|js)/modootoday");
   const NETWORK = /(\.md|\/llms[^/]*\.txt|\/feed[^/]*\.xml|\/sitemap\.xml|\.webmanifest|\/sw\.js)$/;
@@ -20,14 +21,14 @@
     if (THEME.test(path)) {
       return "assets";
     }
+    if (NETWORK.test(path)) {
+      return "";
+    }
     if (req.mode == "navigate" || /\/$|\.html$/.test(path)) {
       return "page";
     }
     if (path == C.scope + "search.json") {
       return "search";
-    }
-    if (NETWORK.test(path)) {
-      return "";
     }
     return req.destination == "image" || req.destination == "font" || MEDIA_FILE.test(path) ? "media" : "site";
   };

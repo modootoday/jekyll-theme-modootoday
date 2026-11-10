@@ -77,7 +77,7 @@ The service worker (`modootoday.pwa`) is checked on a fixture site, not on the d
 | Flow | What it checks |
 | --- | --- |
 | `offline.mjs` | the worker registers with the site's scope; with the sockets cut, a visited page comes from the cache, an unvisited one gets the offline page with the kept pages listed, a Korean path gets the Korean offline page, and no page breaks the CSP |
-| `update.mjs` | a deploy from `v1` to `v2` installs a new worker, which takes over once `v1` has no page: the old pages cache is deleted and the assets cache stays |
+| `update.mjs` | a deploy from `v1` to `v2` installs a new worker, which takes over once `v1` has no page; the caches keep their names and the visited page stays kept |
 | `kill.mjs` | the `enabled: kill` deploy deletes the `mt:/a/:` caches, unregisters and reloads the open page; the next visit has no worker |
 | `scope.mjs` | activating `/a` and the root, and the kill at `/a`, leave the other scopes' registrations and caches |
 

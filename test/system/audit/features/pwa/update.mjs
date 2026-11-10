@@ -1,17 +1,13 @@
 // A deploy at /a: v1 controls the page, v2 (same theme files, another build) takes its place behind it. The browser
-// finds the new sw.js, the new worker fills the v2 pages cache, and once v1 has no page left v2 controls the next one:
-// the v1 pages cache is gone and the assets cache, whose name follows the theme files, is the same one.
-import { clean, constants, controlled, cachesOf, until, update } from "./session.mjs";
-
-const hasCache = (name) => caches.has(name);
+// finds the new sw.js and the new worker installs; once v1 has no page left v2 controls the next one, and the caches,
+// whose names follow the theme files, are the same ones, with the page the reader visited still kept.
+import { clean, constants, controlled, cachesOf, kept, until, update } from "./session.mjs";
 
 export async function checkUpdate(ctx, srv, dirs, fails) {
   const fail = (m) => fails.push(`pwa update: ${m}`);
   const a = srv.url("/a");
   const v1 = constants(dirs.v1);
   const v2 = constants(dirs.v2);
-  const pages = (c) => `mt:${c.scope}:pages:${c.build}`;
-  const assets = (c) => `mt:${c.scope}:assets:${c.assets}`;
   if (v1.build === v2.build || v1.assets !== v2.assets) {
     fail(`the fixture builds need another build and the same assets (v1 ${v1.build} ${v1.assets}, v2 ${v2.build} ${v2.assets})`);
     return {};
@@ -23,14 +19,14 @@ export async function checkUpdate(ctx, srv, dirs, fails) {
     await clean(page, srv.root);
     await page.goto(a);
     await controlled(page);
-    await until(page, "v1 caches", hasCache, pages(v1));
+    await page.goto(`${a}guide/`);
+    await kept(page, "mt:/a/:pages:", `${a}guide/`);
     rows.before = Object.keys(await cachesOf(page, "mt:/a/:"));
     srv.set("/a", dirs.v2);
     await update(page);
-    await until(page, "v2 worker installed with its pages cache", hasCache, pages(v2));
-    rows.waiting = await page.evaluate(async () => {
+    rows.waiting = await until(page, "v2 worker installed", async () => {
       const reg = await navigator.serviceWorker.getRegistration();
-      return { installing: !!reg.installing, waiting: !!reg.waiting, active: reg.active && reg.active.state };
+      return reg.waiting ? reg.waiting.state : null;
     });
     // A page outside the scope leaves v1 with no client, so v2 activates; the check reads the registration from there.
     await page.goto(`${srv.root}/__clean`);
@@ -40,14 +36,12 @@ export async function checkUpdate(ctx, srv, dirs, fails) {
     }, a);
     await page.goto(a);
     await controlled(page);
-    await until(page, "v1 pages cache deleted on activate", async (name) => !(await caches.has(name)), pages(v1));
     rows.after = Object.keys(await cachesOf(page, "mt:/a/:"));
-    if (!rows.after.includes(pages(v2))) {
-      fail(`after the swap the caches are ${rows.after.join(", ")}, without ${pages(v2)}`);
+    const versioned = (names) => names.filter((n) => !n.endsWith(":media")).join();
+    if (versioned(rows.after) !== versioned(rows.before)) {
+      fail(`a deploy with the same theme files changed the caches (${rows.before.join(", ")} -> ${rows.after.join(", ")})`);
     }
-    if (!rows.before.includes(assets(v1)) || !rows.after.includes(assets(v2))) {
-      fail(`the assets cache ${assets(v1)} did not carry over (${rows.before.join(", ")} -> ${rows.after.join(", ")})`);
-    }
+    await kept(page, "mt:/a/:pages:", `${a}guide/`);
   } finally {
     srv.set("/a", dirs.v1);
     await page.close();

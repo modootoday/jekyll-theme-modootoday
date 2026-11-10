@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:f3a73f7e7866
+source_rev: sha256:dcf7bb14bf1a
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -48,7 +48,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
 - 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
-- PWA: レイアウト `pages/offline`(オフラインページ。保存したページの一覧は `pwa/offline.js` が埋める `section[data-mt-offline]`)、front matter の `pwa: precache`、マニフェストのリンクの `data-mt-sw` と `data-mt-scope` 属性、キャッシュ名 `mt:<baseurl>/:assets:<version>`、`mt:<baseurl>/:pages:<build>`、`mt:<baseurl>/:media`、ラベル `pwa.offline_title`、`pwa.offline_text`、`pwa.offline_pages`、`pwa.retry` です。[インストールできるサイト](../../recipes/pwa/)を参照してください。
+- PWA: レイアウト `pages/offline`(オフラインページ。保存したページの一覧は `pwa/offline.js` が埋める `section[data-mt-offline]`)、front matter の `pwa: precache`、マニフェストのリンクの `data-mt-sw` と `data-mt-scope` 属性、キャッシュ名 `mt:<baseurl>/:assets:<version>`、`mt:<baseurl>/:pages:<version>`、`mt:<baseurl>/:media`、ラベル `pwa.offline_title`、`pwa.offline_text`、`pwa.offline_pages`、`pwa.retry` です。[インストールできるサイト](../../recipes/pwa/)を参照してください。
 - ショーケース: [スターターのデモのショーケース](../showcase/)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md`、そして `--pwa` では `manifest.webmanifest`(`layout: null`、`permalink: /manifest.webmanifest`、include `modootoday/pwa/manifest.json`)、`sw.js`(`permalink: /sw.js`、include `modootoday/pwa/sw.js`)、`offline.md` と `offline.<lang>.md`(`layout: pages/offline`、`permalink: /offline/` または `/<lang>/offline/`)です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
 

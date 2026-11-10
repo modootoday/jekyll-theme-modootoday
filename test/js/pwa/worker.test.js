@@ -7,7 +7,7 @@ const path = require("node:path");
 const { ROOT, env } = require("../support/sw-env.js");
 
 const ASSETS = "mt:/docs/:assets:1.7.0";
-const PAGES = "mt:/docs/:pages:1.7.0-abc1234";
+const PAGES = "mt:/docs/:pages:1.7.0";
 const MEDIA = "mt:/docs/:media";
 const OFFLINE = { "/docs/": "/docs/offline/", "/docs/ko/": "/docs/ko/offline/" };
 const page = (title, status = 200) => new Response(`<title>${title}</title>`, { status, headers: { "content-type": "text/html" } });
@@ -23,6 +23,14 @@ test("requests the worker leaves alone: not GET, cross-origin, outside the scope
     assert.strictEqual(await w.go(url, init), null, url);
   }
   assert.deepStrictEqual(w.fetched, []);
+});
+
+test("navigations to twins, llms.txt, feeds and the sitemap are left alone too", async () => {
+  const w = env();
+  for (const url of ["/docs/a/index.md", "/docs/llms.txt", "/docs/feed.xml", "/docs/sitemap.xml"]) {
+    assert.strictEqual(await w.go(url, { mode: "navigate" }), null, url);
+  }
+  assert.deepStrictEqual(w.caches.urls(PAGES), []);
 });
 
 test("theme files are cache first in the assets cache of the theme version", async () => {
@@ -116,6 +124,14 @@ test("activate deletes this scope's other versions only, turns on navigation pre
   await w.dispatch("activate");
   assert.deepStrictEqual((await w.caches.keys()).sort(), [MEDIA, PAGES, "mt:/docs/b/:pages:old", "mt:/other/:assets:1.6.0", "site-cache"].sort());
   assert.ok(w.state.preload && w.state.claimed);
+});
+
+test("a deploy that keeps the theme files keeps the pages cache; a theme update replaces it", async () => {
+  const w = env({ constants: { build: "1.7.0-def5678" } });
+  await w.caches.open(PAGES);
+  await w.caches.open("mt:/docs/:pages:1.6.0");
+  await w.dispatch("activate");
+  assert.deepStrictEqual((await w.caches.keys()).sort(), [PAGES]);
 });
 
 test("a handler that throws falls through to the network", async () => {

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/pwa/
-source_rev: sha256:95703fb4cbfc
+source_rev: sha256:37cbe934107c
 nav_order: 29
 title: 설치할 수 있는 사이트
 description: 이미 있는 사이트 설정으로 만든 웹 앱 매니페스트와 선택해서 켜는 서비스 워커로 브라우저가 사이트를 앱처럼 설치하고 오프라인에서도 읽을 수 있게 하는 방법을 설명합니다.
@@ -113,10 +113,10 @@ modootoday:
 
 ### 캐시, 버전, 같은 출처를 쓰는 사이트
 
-캐시 이름에는 사이트 경로가 들어갑니다. `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<build>`, `mt:<baseurl>/:media`입니다. 그래서 같은 `<user>.github.io`의 프로젝트 사이트 두 개가 서로의 캐시를 건드리지 않습니다.
+캐시 이름에는 사이트 경로가 들어갑니다. `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>`, `mt:<baseurl>/:media`입니다. 그래서 같은 `<user>.github.io`의 프로젝트 사이트 두 개가 서로의 캐시를 건드리지 않습니다.
 
-- 페이지 캐시는 배포할 때마다 바뀝니다. 이름에 테마 버전과 커밋(또는 빌드 시각)이 들어 있습니다.
-- 테마 파일 캐시는 `modootoday.asset_version`을 따릅니다([성능](../../guides/performance/#버전-붙은-자산-url) 참고). `theme`(기본값)이면 테마 버전이 바뀔 때, `build`나 `false`면 배포할 때마다 바뀝니다.
+- 두 캐시 모두 `modootoday.asset_version`을 따릅니다([성능](../../guides/performance/#버전-붙은-자산-url) 참고). `theme`(기본값)이면 테마 버전이 바뀔 때, `build`나 `false`면 배포할 때마다 바뀝니다.
+- 그래서 테마 파일이 그대로인 배포는 독자가 저장한 페이지를 그대로 둡니다. 테마를 업데이트하면 페이지 캐시도 바뀝니다. 보관한 페이지는 자기 버전의 테마 파일을 링크하기 때문입니다.
 - 새 워커는 이 사이트의 이전 캐시만 지웁니다.
 
 `sw.js`는 배포할 때마다 바뀌고, 브라우저는 이것으로 새 워커를 찾습니다. Cloudflare 같은 CDN을 사이트 앞에 두었다면 `/sw.js`를 긴 엣지 캐시에서 빼세요(그 경로의 캐시를 건너뛰는 캐시 규칙). 그렇지 않으면 엣지 사본이 만료될 때까지 방문자가 이전 워커를 씁니다.

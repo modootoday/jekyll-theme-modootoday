@@ -107,10 +107,10 @@ The offline page says the reader is offline, links Try again (it reloads the pag
 
 ### Caches, versions and shared origins
 
-The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<build>` and `mt:<baseurl>/:media`. Two project sites on the same `<user>.github.io` therefore never touch each other's caches.
+The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>` and `mt:<baseurl>/:media`. Two project sites on the same `<user>.github.io` therefore never touch each other's caches.
 
-- The pages cache is replaced on every deploy: its name carries the theme version and the commit (or the build time).
-- The theme files cache follows `modootoday.asset_version` (see [Performance](../../guides/performance/#versioned-asset-urls)): with `theme` (the default) it changes with the theme version; with `build` or `false`, on every deploy.
+- Both follow `modootoday.asset_version` (see [Performance](../../guides/performance/#versioned-asset-urls)): with `theme` (the default) they change with the theme version; with `build` or `false`, on every deploy.
+- A deploy that keeps the theme files therefore keeps the pages a reader saved; a theme update replaces them, because a kept page links the theme files of its own version.
 - A new worker deletes only this site's older caches.
 
 `sw.js` changes on every deploy, which is how browsers find the new worker. If a CDN such as Cloudflare sits in front of your site, keep `/sw.js` out of long edge caching (a cache rule that bypasses the cache for that path); otherwise visitors keep the old worker until the edge copy expires.
