@@ -3,5 +3,5 @@ stubs (modootoday-stubs --pwa); pwa/register.js reads data-mt-sw and data-mt-sco
 (no inline script under csp: strict). The apple-touch-icon stays with favicon. Needs i18n.html.{%- endcomment -%}
 {%- if site.modootoday.pwa.enabled == true -%}
 {%- include modootoday/assets/url.html path="/assets/css/modootoday/chrome/toast.css" %}
-<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}" data-mt-sw="{{ '/sw.js' | relative_url }}" data-mt-scope="{{ '/' | relative_url }}" data-mt-toast-css="{{ mt_asset_url }}" data-mt-update="{{ mt_t_pwa_update | escape }}" data-mt-reload="{{ mt_t_pwa_reload | escape }}" data-mt-later="{{ mt_t_pwa_later | escape }}">
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}" data-mt-sw="{{ '/sw.js' | relative_url }}" data-mt-scope="{{ '/' | relative_url }}" data-mt-toast-css="{{ mt_asset_url }}" data-mt-update="{{ mt_t_pwa_update | escape }}" data-mt-reload="{{ mt_t_pwa_reload | escape }}" data-mt-later="{{ mt_t_pwa_later | escape }}" data-mt-offline-notice="{{ mt_t_pwa_offline_notice | escape }}" data-mt-close="{{ mt_t_pwa_close | escape }}">
 {%- endif -%}

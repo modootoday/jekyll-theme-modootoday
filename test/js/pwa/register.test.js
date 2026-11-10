@@ -98,3 +98,14 @@ test("a window shown again checks for a new worker at most once an hour", async 
   }
   assert.strictEqual(updates.length, 1);
 });
+
+test("a lost network loads the offline notice, except on the offline page", async () => {
+  const { w } = await page({ head: TOAST, controller: {} });
+  w.dispatchEvent(new w.Event("offline"));
+  assert.ok(await until(() => w.document.querySelector(".mt-toast")));
+  const off = await page({ head: TOAST, controller: {} });
+  off.w.document.body.innerHTML = "<section data-mt-offline hidden></section>";
+  off.w.dispatchEvent(new off.w.Event("offline"));
+  await new Promise((r) => setTimeout(r, 20));
+  assert.strictEqual(off.w.document.querySelector(".mt-toast"), null);
+});

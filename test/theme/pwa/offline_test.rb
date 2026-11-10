@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 # The offline page (layout pages/offline): noindex, localized text, a Try again link that needs no script, a home link and a
-# hidden list for pwa/offline.js; every theme file it links is precached; the stubs keep it out of search and the sitemap.
+# hidden list for pwa/offline.js; every theme file it links is precached, with the notice's files; the stubs keep it out of
+# search and the sitemap.
 require "minitest/autorun"
 require "json"
 require_relative "../../support/pwa_site"
 
 class PwaOfflineTest < Minitest::Test
   THEME_FILE = %r{(?:href|src)="(/docs/assets/(?:css|js)/modootoday[^"]*)"}
+  NOTICE = %r{/chrome/toast\.css|/pwa/update-toast\.js}
 
   def self.site(key, config) = ((@sites ||= {})[key] ||= PwaSite.build(config, languages: ["ko"]))
 
@@ -38,7 +40,8 @@ class PwaOfflineTest < Minitest::Test
       %w[offline ko/offline].each do |rel|
         files = page(s, rel).scan(THEME_FILE).flatten
         assert_equal files.sort, (precache(s).grep(%r{/assets/}) & files).sort, rel
-        assert_equal precache(s).grep(%r{/assets/}).sort, files.sort, "#{rel}: offline-assets.html lists exactly what the page links"
+        assert_equal precache(s).grep(%r{/assets/}).grep_v(NOTICE).sort, files.sort, "#{rel}: offline-assets.html lists exactly what the page links"
+        assert_equal 2, precache(s).grep(NOTICE).size, "the notice's sheet and module, which also show offline"
       end
     end
     assert_includes precache(strict), "/docs/assets/js/modootoday/chrome/theme-init.js?v=#{precache(on)[2][/v=(.*)/, 1]}"

@@ -153,3 +153,5 @@ pwa:
   update: "이 사이트의 새 버전이 준비됐어요."
   reload: "새로고침"
   later: "나중에"
+  offline_notice: "오프라인 상태예요. 방문한 페이지는 계속 열 수 있어요."
+  close: "닫기"

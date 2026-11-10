@@ -153,3 +153,5 @@ pwa:
   update: "È disponibile una nuova versione di questo sito."
   reload: "Ricarica"
   later: "Più tardi"
+  offline_notice: "Sei offline. Le pagine già visitate restano consultabili."
+  close: "Chiudi"

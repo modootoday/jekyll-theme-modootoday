@@ -65,3 +65,13 @@ export async function update(doc, reg) {
   };
   await show(doc, d.mtUpdate, [[d.mtReload, reload], [d.mtLater, () => close(doc)]]);
 }
+
+// A lost network, as the browser reports it (pwa/register.js). A waiting update keeps its notice.
+export async function offline(doc) {
+  const d = doc.querySelector(LINK).dataset;
+  if (doc.querySelector(".mt-toast button")) {
+    return;
+  }
+  doc.defaultView.addEventListener("online", () => close(doc), { once: true });
+  await show(doc, d.mtOfflineNotice, [[d.mtClose, () => close(doc)]]);
+}

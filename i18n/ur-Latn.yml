@@ -153,3 +153,5 @@ pwa:
   update: "Is site ka naya version tayyar hai."
   reload: "Dobara load karein"
   later: "Baad mein"
+  offline_notice: "Aap offline hain. Jo safhaat aap dekh chuke hain woh ab bhi khulte hain."
+  close: "Band karein"

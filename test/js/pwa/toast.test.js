@@ -1,12 +1,13 @@
 // jsdom tests for assets/js/modootoday/pwa/update-toast.js: the update notice shows only for new theme files, after its
-// sheet, without taking focus; Escape and Later close it; Reload hands over to the waiting worker. Run: npm test
+// sheet, without taking focus; Escape and Later close it; Reload hands over to the waiting worker; the offline notice
+// closes when the network is back. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const { JSDOM } = require("jsdom");
 const { load } = require("../support/module.js");
 
 const LINK = '<link rel="manifest" href="/docs/manifest.webmanifest" data-mt-sw="/docs/sw.js" data-mt-scope="/docs/" ' +
-  'data-mt-toast-css="/docs/assets/css/modootoday/chrome/toast.css?v=1" data-mt-update="New version" data-mt-reload="Reload" data-mt-later="Later">';
+  'data-mt-toast-css="/docs/assets/css/modootoday/chrome/toast.css?v=1" data-mt-update="New version" data-mt-reload="Reload" data-mt-later="Later" data-mt-offline-notice="Offline" data-mt-close="Close">';
 const BOTH = ["mt:/docs/:assets:1", "mt:/docs/:assets:2", "mt:/docs/:pages:1", "mt:/other/:assets:9"];
 
 // A page with Cache Storage names, a waiting worker that records its messages and a page reload counter.
@@ -86,4 +87,19 @@ test("Reload asks the waiting worker to take over and reloads once when it does"
   assert.strictEqual(changes.length, 1);
   assert.strictEqual(changes[0][0], "controllerchange");
   assert.deepStrictEqual(changes[0][2], { once: true });
+});
+
+test("the offline notice closes when the network is back, and never replaces an update notice", async () => {
+  const m = await load("pwa/update-toast.js");
+  const { w, doc, reg } = page();
+  const shown = m.offline(doc);
+  await sheetLoads(doc);
+  await shown;
+  assert.strictEqual(doc.querySelector(".mt-toast p").textContent, "Offline");
+  assert.deepStrictEqual(buttons(doc), ["Close"]);
+  w.dispatchEvent(new w.Event("online"));
+  assert.deepStrictEqual(buttons(doc), []);
+  await m.update(doc, reg);
+  await m.offline(doc);
+  assert.deepStrictEqual(buttons(doc), ["Reload", "Later"]);
 });

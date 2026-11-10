@@ -153,3 +153,5 @@ pwa:
   update: "Bu sitenin yeni bir sürümü hazır."
   reload: "Yeniden yükle"
   later: "Daha sonra"
+  offline_notice: "Çevrimdışısınız. Ziyaret ettiğiniz sayfalar açılmaya devam eder."
+  close: "Kapat"

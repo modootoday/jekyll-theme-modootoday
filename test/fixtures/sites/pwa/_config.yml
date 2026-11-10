@@ -1,4 +1,4 @@
-# The PWA flows (test/system/audit/features/pwa/): built five times by test/system/site/build-pwa.sh. The stub files are
+# The PWA flows (test/system/audit/features/pwa/): built six times by test/system/site/build-pwa.sh. The stub files are
 # what modootoday-stubs --pwa --write writes; test/stubs/pwa_test.rb runs --check on them.
 title: PWA fixture
 description: A small site for the service worker flows.

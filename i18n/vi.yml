@@ -153,3 +153,5 @@ pwa:
   update: "Đã có phiên bản mới của trang web này."
   reload: "Tải lại"
   later: "Để sau"
+  offline_notice: "Bạn đang ngoại tuyến. Các trang đã xem vẫn mở được."
+  close: "Đóng"

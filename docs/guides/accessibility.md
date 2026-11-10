@@ -15,7 +15,7 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 | `/` or `Ctrl`+`K` (`Cmd`+`K` on macOS) | any page with search | focus the search box (`/` is ignored while you type in a field) |
 | `↓` `↑` | search results | move between results and back to the box |
 | `Esc` | search | leave the results, or clear the box |
-| `Esc` | the update notice of an [installable site](../../recipes/pwa/#updates) | close the notice (focus never moves to it) |
+| `Esc` | the update and offline notices of an [installable site](../../recipes/pwa/#updates) | close the notice (focus never moves to it) |
 | `←` `→` `Home` `End` | tabs | switch tabs; left and right follow the reading direction in right-to-left pages |
 | `↓` `↑` `Esc` | language menu, nav "More" menu, page actions | move between items; `Esc` closes and returns focus |
 | `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a region you can focus and scroll with the arrow keys. Each has its own name: "Code" or "Table" with the file name, caption or language, else the nearest heading, and a number when two would match |

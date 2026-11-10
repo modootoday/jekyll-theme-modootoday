@@ -153,3 +153,5 @@ pwa:
   update: "Versi baru situs ini sudah tersedia."
   reload: "Muat ulang"
   later: "Nanti"
+  offline_notice: "Anda sedang offline. Halaman yang pernah dibuka tetap bisa dibuka."
+  close: "Tutup"

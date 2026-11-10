@@ -154,3 +154,5 @@ pwa:
   update: "A new version of this site is ready."
   reload: "Reload"
   later: "Later"
+  offline_notice: "You are offline. Pages you visited still open."
+  close: "Close"

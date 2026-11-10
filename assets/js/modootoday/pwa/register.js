@@ -1,5 +1,6 @@
 // Registers the site's service worker after load (modootoday.pwa). A first, uncontrolled visit posts the URLs it fetched to
-// the worker; a waiting worker gets the notice (pwa/update-toast.js); a window shown after an hour checks for a new sw.js.
+// the worker; a waiting worker and a lost network get a notice (pwa/update-toast.js); a window shown after an hour checks
+// for a new sw.js.
 const HOUR = 36e5;
 
 export function init(root) {
@@ -12,10 +13,21 @@ export function init(root) {
   }
   const scope = new win.URL(link.dataset.mtScope, win.location.href).href;
   const first = !sw.controller;
+  const toast = () => import("./update-toast.js");
+  // The offline page says so itself.
+  const offline = () => {
+    if (!doc.querySelector("[data-mt-offline]")) {
+      toast().then((m) => m.offline(doc)).catch(() => {});
+    }
+  };
+  win.addEventListener("offline", offline);
+  if (win.navigator.onLine === false) {
+    offline();
+  }
   const watch = (reg) => {
     const notify = () => {
       if (reg.waiting && sw.controller) {
-        import("./update-toast.js").then((m) => m.update(doc, reg)).catch(() => {});
+        toast().then((m) => m.update(doc, reg)).catch(() => {});
       }
     };
     reg.addEventListener("updatefound", () => {

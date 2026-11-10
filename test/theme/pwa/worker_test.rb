@@ -43,7 +43,8 @@ class PwaWorkerTest < Minitest::Test
     v = "?v=#{version}"
     assert_equal ["/docs/offline/", "/docs/ko/offline/", "/docs/assets/css/modootoday.css#{v}", "/docs/assets/css/modootoday/marketing/hero.css#{v}",
                   "/docs/assets/css/modootoday-pages.css#{v}", "/docs/assets/js/modootoday/chrome/theme-toggle.js#{v}",
-                  "/docs/assets/js/modootoday/pwa/register.js#{v}", "/docs/assets/js/modootoday/pwa/offline.js#{v}", "/docs/", "/docs/about/", "/docs/guide/"],
+                  "/docs/assets/js/modootoday/pwa/register.js#{v}", "/docs/assets/js/modootoday/pwa/offline.js#{v}",
+                  "/docs/assets/css/modootoday/chrome/toast.css#{v}", "/docs/assets/js/modootoday/pwa/update-toast.js", "/docs/", "/docs/about/", "/docs/guide/"],
                  constants(on)["precache"]
     c = constants(self.class.site(:start, "modootoday:\n  pwa: {enabled: true, start_url: /guide/, precache: [/guide/]}\n", files: GUIDE))
     assert_equal ["/offline/"], c["precache"].first(1)
@@ -59,8 +60,9 @@ class PwaWorkerTest < Minitest::Test
       assert_equal 1, html(on, page).scan(script).size, page
     end
     refute_includes html(on), "pwa/offline.js"
-    assert_includes html(on), 'data-mt-update="A new version of this site is ready." data-mt-reload="Reload" data-mt-later="Later">'
-    assert_includes html(on, "ko/offline/index.html"), 'data-mt-reload="새로고침" data-mt-later="나중에">'
+    assert_includes html(on), 'data-mt-update="A new version of this site is ready." data-mt-reload="Reload" data-mt-later="Later" ' \
+                                 'data-mt-offline-notice="You are offline. Pages you visited still open." data-mt-close="Close">'
+    assert_includes html(on, "ko/offline/index.html"), 'data-mt-reload="새로고침" data-mt-later="나중에" '
   end
 
   def test_kill_renders_the_self_removing_worker_and_links_nothing

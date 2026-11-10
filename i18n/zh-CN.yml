@@ -153,3 +153,5 @@ pwa:
   update: "本网站有新版本可用。"
   reload: "重新加载"
   later: "稍后"
+  offline_notice: "您已离线。访问过的页面仍可打开。"
+  close: "关闭"

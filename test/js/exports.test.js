@@ -11,7 +11,7 @@ const SHARED = {
   "theme/current.js": ["currentTheme", "onThemeChange"],
   "data/filter-chips.js": ["cellText", "chips"],
   "data/chart-table.js": ["tableData"],
-  "pwa/update-toast.js": ["close", "show", "update"],
+  "pwa/update-toast.js": ["close", "offline", "show", "update"],
 };
 const FEATURES = ["chrome/menu.js", "chrome/theme-toggle.js", "chrome/search-keys.js", "chrome/search.js", "content/code-copy.js", "content/scroll-region.js",
   "structure/tabs.js", "structure/accordion.js", "data/table-stack.js", "data/filter.js", "data/chart.js", "blog/share.js",

@@ -153,3 +153,5 @@ pwa:
   update: "Este disponibilă o versiune nouă a acestui site."
   reload: "Reîncărcați"
   later: "Mai târziu"
+  offline_notice: "Sunteți offline. Paginile vizitate se deschid în continuare."
+  close: "Închideți"

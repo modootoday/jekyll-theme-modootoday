@@ -92,7 +92,7 @@ The worker handles only `GET` requests to your own site inside its scope. Everyt
 | Your own CSS and JavaScript (`site_css`, `scripts`) | fetches first, kept copy when offline |
 | Images and fonts | serves the kept copy and fetches a fresh one, at most 60 files |
 
-When the worker installs, it saves the offline pages and the files they link, `start_url`, the paths in `pwa.precache` and the pages whose front matter has `pwa: precache`:
+When the worker installs, it saves the offline pages and the files they link, the notice's sheet and script, `start_url`, the paths in `pwa.precache` and the pages whose front matter has `pwa: precache`:
 
 ```yaml
 modootoday:
@@ -104,6 +104,8 @@ modootoday:
 Keep this list short: every first visit downloads it. `modootoday-check` fails when a listed page is not in the build and warns when the list is over 1 MiB. The first page a reader opens is not served by the worker yet; once the worker is ready, the page sends it the URLs it loaded, so the site also looks right when the reader starts it offline.
 
 The offline page says the reader is offline, links Try again (it reloads the page they asked for) and the home page, and lists the pages the worker keeps on this device. It is not in the sitemap or the search index.
+
+When the browser reports that the network is gone, other pages show a short notice at the bottom: the reader is offline and the pages they visited still open. It closes by itself when the network is back, or with Close or `Esc`. The browser can be wrong (a network that needs a sign-in page counts as online), so the notice is a hint, and offline reading works without it.
 
 ### Caches, versions and shared origins
 
