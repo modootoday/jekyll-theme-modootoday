@@ -37,11 +37,12 @@ ruby script/version-include --check
 bundle exec rake starters:check
 ```
 
-Docs site build, checker and browser audits:
+Docs site build, checker and browser audits (`npm run qa` also runs the PWA flows on the fixture builds):
 
 ```sh
 test/system/site/build-docs.sh docs/_site
 bundle exec ruby exe/modootoday-check docs docs/_site --twins
+test/system/site/build-pwa.sh
 npm run qa
 ```
 

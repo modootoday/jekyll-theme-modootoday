@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /manifest.webmanifest
+sitemap: false
+---
+{% include modootoday/pwa/manifest.json %}

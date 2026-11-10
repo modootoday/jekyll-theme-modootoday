@@ -169,10 +169,18 @@ jobs:
         run: ruby test/system/docs/coverage.rb
       - name: Component examples in the built HTML (leaked source, empty or hidden source, front matter, list forms)
         run: bundle exec ruby test/system/docs/examples.rb docs/_site
+      # The PWA flows of npm run qa serve these: v1, v2 and kill at /a, v1 at /b and at the origin root.
+      - name: Build the PWA fixture site five times
+        run: test/system/site/build-pwa.sh
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Screenshots, axe, contrast, budgets, CSP
+      - name: Screenshots, axe, contrast, budgets, CSP, PWA flows
         run: npm run qa
+      # WebKit is a smoke test of offline reading only: registration, a kept page and the offline page.
+      - name: Install WebKit
+        run: npx playwright install --with-deps webkit
+      - name: PWA offline smoke (WebKit)
+        run: node test/system/audit/features/pwa.mjs pkg/pwa --browser=webkit --only=offline --smoke
       - uses: actions/upload-artifact@v7
         if: always()
         with:

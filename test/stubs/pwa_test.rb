@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # modootoday-stubs --pwa: the manifest, worker and offline page stubs, preview, write and check, never pruned, a site file at a
-# stub path, the offline page per full language and the config gate (true or kill).
+# stub path, the offline page per full language, the config gate (true or kill) and the stubs of the PWA fixture site.
 require_relative "stubs_case"
 require_relative "../../lib/modootoday/stubs"
 
@@ -73,6 +73,13 @@ class StubsPwaTest < StubsCase
       assert_equal 2, code, yaml
       assert_match(/--pwa: set modootoday\.pwa\.enabled: true/, e)
     end
+  end
+
+  def test_the_pwa_fixture_site_holds_current_stubs
+    fixture = File.expand_path("../fixtures/sites/pwa", __dir__)
+    o, e, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, STUBS, fixture, "--pwa", "--check")
+    assert_equal 0, st.exitstatus, o + e
+    assert_match(/up to date/, o + e)
   end
 
   def test_help_lists_the_option

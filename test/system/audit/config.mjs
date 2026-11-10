@@ -29,6 +29,8 @@ export const CSP_PAGES = ["layouts/demo/csp/", "", "guides/configuration/", "blo
 // Pages whose token palette the contrast check (contrast.mjs) measures in each scheme: the theme default, the brand tokens recipe,
 // the GitHub code colours (code_theme: github) and the chart series colours.
 export const CONTRAST_PAGES = ["", "recipes/brand-tokens/", "layouts/demo/code-github/", "recipes/figures/charts/"];
+// Where test/system/site/build-pwa.sh writes the PWA fixture builds that audit/features/pwa.mjs serves.
+export const PWA_SITES = "pkg/pwa";
 export const CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; worker-src 'self'; manifest-src 'self'";
 // The checks that moved with their rows into the starter demo builds (adr:modootoday/20261104171141). Every page named
 // here is one of that starter's qa: pages in example/starters.yml (test/project/docs_moves_test.rb), which the starter

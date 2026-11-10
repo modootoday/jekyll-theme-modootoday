@@ -1,0 +1,18 @@
+# The PWA flows (test/system/audit/features/pwa/): built five times by test/system/site/build-pwa.sh. The stub files are
+# what modootoday-stubs --pwa --write writes; test/stubs/pwa_test.rb runs --check on them.
+title: PWA fixture
+description: A small site for the service worker flows.
+lang: en
+theme: jekyll-theme-modootoday
+baseurl: /a
+markdown: kramdown
+kramdown: {input: GFM}
+permalink: pretty
+time: "2026-01-01T00:00:00+00:00"
+defaults:
+  - {scope: {path: ""}, values: {layout: doc}}
+modootoday:
+  languages: [en, ko]
+  full_languages: [ko]
+  csp: strict
+  pwa: {enabled: true, short_name: PWA, icons: brand}

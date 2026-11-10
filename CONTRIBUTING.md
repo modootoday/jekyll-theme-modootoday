@@ -42,7 +42,7 @@ The CHANGELOG's sections are generated from commit messages by [git-cliff](https
 
 `## [Unreleased]` is generated too: never edit it by hand. After a commit, `ruby script/changelog` (or `bundle exec rake fix`) rewrites it from the commits since the last tag; amend the commit with it, which renders the same text because only messages count. `test/project/changelog_test.rb` and the CI `js` job (`ruby script/changelog --check`) fail while it is stale. Released entries are never regenerated.
 
-Changes to `docs/` or the theme's look: `test/system/site/build-docs.sh docs/_site && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets and the CSP audit; CI runs the same job and uploads `qa-out/`. Every theme CSS and JS file has a gzip cap on its row in `_includes/modootoday/assets/registry.html` (the measured size plus 10 %, rounded up to 128 bytes): a file over its cap, a row without a cap and a theme file without a row fail, and a file within 5 % of its cap warns; each message prints the cap to use, so the arithmetic is never done by hand. Per page type (`PAGE_TYPES` in `test/system/audit/config.mjs`) the limit is the sum of the caps of what one page loads; the `GUIDE` targets (8 KiB CSS, 6 KiB JavaScript, six theme sheets) only warn. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there. A demo that moved into a starter is checked in that starter's demo build instead (`STARTERS` in the same file).
+Changes to `docs/` or the theme's look: `test/system/site/build-docs.sh docs/_site && test/system/site/build-pwa.sh && npm run qa` takes screenshots (4 widths, light and dark, every language) and runs axe, token contrast, size budgets, the CSP audit and the PWA flows (PWA checks below); CI runs the same job and uploads `qa-out/`. Every theme CSS and JS file has a gzip cap on its row in `_includes/modootoday/assets/registry.html` (the measured size plus 10 %, rounded up to 128 bytes): a file over its cap, a row without a cap and a theme file without a row fail, and a file within 5 % of its cap warns; each message prints the cap to use, so the arithmetic is never done by hand. Per page type (`PAGE_TYPES` in `test/system/audit/config.mjs`) the limit is the sum of the caps of what one page loads; the `GUIDE` targets (8 KiB CSS, 6 KiB JavaScript, six theme sheets) only warn. The CSP audit serves `CSP_PAGES` with a strict `Content-Security-Policy` header and fails on any violation or console error; a new feature adds its demo page there. A demo that moved into a starter is checked in that starter's demo build instead (`STARTERS` in the same file).
 
 ### Visual regression
 
@@ -68,6 +68,31 @@ Fonts and anti-aliasing differ between operating systems, so a baseline is only 
 test/system/site/build-docs.sh docs/_site
 RUNS=3 CHROME_PATH=$(command -v google-chrome) test/system/lighthouse/lighthouse.sh   # needs network for npx lighthouse
 node test/system/lighthouse/budget.mjs qa-out/lighthouse
+```
+
+### PWA checks
+
+The service worker (`modootoday.pwa`) is checked on a fixture site, not on the docs site. `test/fixtures/sites/pwa/` holds three pages (English and Korean) and the stubs `modootoday-stubs --pwa --write` writes; `test/stubs/pwa_test.rb` runs `--check` on them. `test/system/site/build-pwa.sh [OUT]` builds it five times into `pkg/pwa/`: `v1`, `v2` (another `time:`, so `sw.js` changes) and `kill` (`enabled: kill`) at `/a`, then `v1` at `/b` and at the origin root, the way project sites share `<user>.github.io` with the user site. `test/system/site/server.mjs` serves them on one origin under the strict CSP header; it can swap the build behind a base path (a deploy) and cut every socket (a lost network). `npm run qa` runs the four flows in `test/system/audit/features/pwa/`:
+
+| Flow | What it checks |
+| --- | --- |
+| `offline.mjs` | the worker registers with the site's scope; with the sockets cut, a visited page comes from the cache, an unvisited one gets the offline page with the kept pages listed, a Korean path gets the Korean offline page, and no page breaks the CSP |
+| `update.mjs` | a deploy from `v1` to `v2` installs a new worker, which takes over once `v1` has no page: the old pages cache is deleted and the assets cache stays |
+| `kill.mjs` | the `enabled: kill` deploy deletes the `mt:/a/:` caches, unregisters and reloads the open page; the next visit has no worker |
+| `scope.mjs` | activating `/a` and the root, and the kill at `/a`, leave the other scopes' registrations and caches |
+
+Cutting the sockets fails the worker's own fetches, which a browser's offline switch may not reach. The flows never read `navigator.onLine` (it can stay `true` while the worker is cut off), and each step waits for its completion state (a controlled page, a cache entry, a filled list) instead of a fixed time: a slower browser must not turn a race into a pass. CI's docs QA job builds the fixtures, runs the four flows in Chromium with `npm run qa`, then runs `offline.mjs` in WebKit as a smoke test. Safari on iOS, installing the site and storage eviction are not automated.
+
+```sh
+test/system/site/build-pwa.sh
+node test/system/audit/features/pwa.mjs pkg/pwa
+node test/system/audit/features/pwa.mjs pkg/pwa --browser=webkit --only=offline --smoke
+```
+
+With no browser on your machine, run the flows in a remote Chrome: start any HTTPS tunnel to a free local port, then pass the DevTools URL (`CDP_AUTHORIZATION` for its header, as for the figures), the tunnel's address and the port. The flows then reuse the browser's default context, the only one that reports installability, and start by removing every worker and `mt:` cache of the origin, because that context outlives one run. Behind a tunnel a cut origin answers 502 instead of failing, so the remote run cuts the network with the context's offline mode (Chromium applies it to the worker too).
+
+```sh
+node test/system/audit/features/pwa.mjs pkg/pwa --cdp=wss://browser.example/devtools/browser --origin=https://tunnel.example --port=8411
 ```
 
 ### Starter sites
@@ -185,8 +210,8 @@ Where things live:
 | `test/js/` | browser scripts (`node --test`) |
 | `test/fixtures/` | inputs shared by the tests |
 | `docs/generated/` | tool output: the docs site's twin stubs and per-language `llms.txt` / `llms-full.txt` stubs, written by `ruby script/docs-index` (`--check` fails when they are stale). Do not edit by hand; each stub sets `path:` to where it would sit beside its page and `permalink:` to its URL |
-| `test/system/site/` | building and serving the docs site, and waiting after a viewport change until the page's scripts have seen it (`viewport.mjs`) |
-| `test/system/audit.mjs`, `test/system/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP (`npm run qa`) |
+| `test/system/site/` | building and serving the docs site and the PWA fixture builds (`build-pwa.sh`; `server.mjs` serves several sites on one origin), and waiting after a viewport change until the page's scripts have seen it (`viewport.mjs`) |
+| `test/system/audit.mjs`, `test/system/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP, the PWA flows (`features/pwa/`, see PWA checks above) (`npm run qa`) |
 | `test/system/visual/` | visual regression (`npm run qa:visual`) |
 | `test/system/lighthouse/` | Lighthouse runs and budget |
 | `test/system/docs/` | docs structure, link check, kitchen-sink coverage, component order, component examples, the docs consistency rules (`rules.rb`, one file per rule in `rules/`) and the docs-to-registry doctests (`registries.rb`); each script runs on its own |
