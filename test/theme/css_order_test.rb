@@ -34,8 +34,12 @@ class CssOrderTest < Minitest::Test
     out.tally
   end
 
+  # The PWA notice sheet is linked by its script in both modes, never by a layout (adr:modootoday/20261110165219).
+  ON_DEMAND = %w[chrome/toast.css].freeze
+
   def theme_css(site, bundle:)
     files = bundle ? ["#{site}/assets/css/modootoday.css"] : Dir.glob("#{site}/assets/css/modootoday{.css,/**/*.css}")
+    files = files.reject { |f| ON_DEMAND.any? { |o| f.end_with?("/#{o}") } }
     files.sum("") { |f| "#{File.read(f)}\n" }
   end
 

@@ -33,7 +33,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 
 `chrome/footer` loads when `_data/nav/footer.yml` (or the page language's `footer-<lang>.yml`) has columns.
 
-Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead; see [Configuration](../configuration/). With `modootoday.pwa`, the service worker loads `pwa/worker.js` once and keeps it with the theme files; no page loads it (see [Installable site](../../recipes/pwa/#offline-reading)).
+Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead (only the PWA notice keeps its own sheet, loaded when it shows); see [Configuration](../configuration/). With `modootoday.pwa`, the service worker loads `pwa/worker.js` once and keeps it with the theme files; no page loads it (see [Installable site](../../recipes/pwa/#offline-reading)).
 
 ## Versioned asset URLs
 
