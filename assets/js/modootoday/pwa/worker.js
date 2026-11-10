@@ -34,10 +34,8 @@
   };
   const bucket = (k) => (k == "assets" ? ASSETS : k == "media" ? MEDIA : PAGES);
   const ok = (res) => res && res.ok && !res.redirected;
-  // Reads and writes never recreate a cache a kill worker or a newer worker deleted: install opens ASSETS first, so
-  // without it this worker is on its way out.
+  // Never recreate a cache a kill or newer worker deleted: install opens ASSETS first, so without it this worker is leaving.
   const cached = (name, req) => caches.match(req, { cacheName: name });
-
   // Re-putting moves an entry last, so trimming the first keeps the recently used.
   const put = async (name, req, res, max) => {
     if (!(await caches.has(ASSETS))) {
@@ -83,7 +81,6 @@
     }
     return res;
   };
-
   const kept = async (e, k) => {
     const req = e.request;
     const name = bucket(k);
@@ -100,7 +97,6 @@
     e.waitUntil(net.catch(noop));
     return copy || net;
   };
-
   // Only a missing offline page fails the install. With the theme files of the worker before (their cache is there) only
   // pages changed, which are network first, so this worker takes over at once; new theme files wait for the notice.
   sw.addEventListener("install", (e) => {
@@ -117,7 +113,6 @@
       }));
     })());
   });
-
   sw.addEventListener("activate", (e) => {
     const keep = [ASSETS, PAGES, MEDIA];
     e.waitUntil((async () => {

@@ -20,6 +20,21 @@ const state = (page) => page.evaluate(async () => {
   };
 });
 
+// Chromium's own view of each worker version (status, running status, controlled clients), which the page cannot see.
+async function versions(page) {
+  const cdp = await page.context().newCDPSession(page);
+  const seen = {};
+  cdp.on("ServiceWorker.workerVersionUpdated", (e) => {
+    for (const v of e.versions) {
+      seen[v.versionId] = `${v.status} ${v.runningStatus} ${new URL(v.scriptURL).pathname} clients=${(v.controlledClients || []).length}`;
+    }
+  });
+  await cdp.send("ServiceWorker.enable");
+  await page.waitForTimeout(500);
+  await cdp.detach();
+  return seen;
+}
+
 // Polls fn in the page until it returns a truthy value. A worker that reloads the page destroys the context mid-call,
 // which counts as not yet.
 export async function until(page, what, fn, arg, timeout = 20000) {
@@ -36,7 +51,8 @@ export async function until(page, what, fn, arg, timeout = 20000) {
     }
     if (Date.now() > end) {
       const now = await state(page).catch((e) => e.message.split("\n")[0]);
-      throw new Error(`${what}: not reached in ${timeout} ms (last: ${JSON.stringify(last)}; state: ${JSON.stringify(now)})`);
+      const chromium = await versions(page).catch(() => null);
+      throw new Error(`${what}: not reached in ${timeout} ms (last: ${JSON.stringify(last)}; state: ${JSON.stringify(now)}; versions: ${JSON.stringify(chromium)})`);
     }
     await page.waitForTimeout(150);
   }

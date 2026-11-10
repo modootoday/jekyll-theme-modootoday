@@ -43,5 +43,5 @@ test("until polls through a destroyed context and names what it waited for on ti
   }, waitForTimeout: async () => {} };
   assert.deepStrictEqual(await until(page, "x", () => 0), { scope: "/a/" });
   const never = { evaluate: async () => false, waitForTimeout: (ms) => new Promise((r) => setTimeout(r, ms)) };
-  await assert.rejects(until(never, "worker controls the page", () => 0, undefined, 300), /worker controls the page: not reached in 300 ms \(last: false\)/);
+  await assert.rejects(until(never, "worker controls the page", () => 0, undefined, 300), /worker controls the page: not reached in 300 ms \(last: false; state: /);
 });
