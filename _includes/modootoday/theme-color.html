@@ -2,6 +2,7 @@
 Browser UI colour (iOS Safari, Android Chrome address bar) matching the page background tokens.
   site.modootoday.theme_color  false drops the tags; {light: "#hex", dark: "#hex"} or one "#hex" replaces the defaults
 Defaults follow --mt-background: #ffffff light, #0a0a0a dark. With color_scheme light/dark only that colour is emitted.
+Leaves _tcl and _tcd set (unset with theme_color: false); pwa/manifest.json reads them.
 {%- endcomment -%}
 {%- assign _tc = site.modootoday.theme_color -%}
 {%- unless _tc == false -%}

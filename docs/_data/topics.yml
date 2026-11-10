@@ -7,3 +7,4 @@
 - {topic: the supported stacks, page: guides/install/, phrase: "\\b(oldest|tested) (supported )?(floor|Jekyll)\\b"}
 - {topic: the layout list, page: reference/api/, phrase: "\\bevery shipped layout\\b"}
 - {topic: the starter demo showcase, page: reference/showcase/, phrase: "\\bshowcase (bar|pill)\\b"}
+- {topic: the web app manifest, page: recipes/pwa/, phrase: "\\bweb app manifest\\b"}

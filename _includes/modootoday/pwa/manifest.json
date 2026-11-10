@@ -1,0 +1,43 @@
+{%- comment -%}
+Web app manifest, rendered by the site's manifest.webmanifest stub (modootoday-stubs --pwa). Every field comes from a setting
+the site already has: name, short_name and description (modootoday.pwa, else site.title and site.description), lang and dir
+of the default language, theme_color as the theme-color tag (the light one; dark with color_scheme: dark; none with
+theme_color: false), the brand icons or modootoday.pwa.icons. scope is the site root; start_url (no query) is also the id.
+{%- endcomment -%}
+{%- include modootoday/config.html -%}
+{%- assign _pw = site.modootoday.pwa -%}{%- assign _pwl = site.lang | default: "en" -%}
+{%- include modootoday/i18n.html lang=_pwl -%}{%- include modootoday/site/dir.html lang=_pwl -%}
+{%- assign _tcl = nil -%}{%- assign _tcd = nil -%}{%- capture _pwx -%}{%- include modootoday/theme-color.html -%}{%- endcapture -%}
+{%- if mt_color_scheme == "dark" -%}{%- assign _pwtc = _tcd -%}{%- assign _pwbg = "#0a0a0a" -%}
+{%- else -%}{%- assign _pwtc = _tcl -%}{%- assign _pwbg = "#ffffff" -%}{%- endif -%}
+{%- assign _pwn = _pw.name | default: site.title -%}{%- assign _pwd = _pw.description | default: site.description -%}
+{%- assign _pws = _pw.start_url | default: "/" | relative_url -%}
+{
+  "id": {{ _pws | jsonify }},
+  "name": {{ _pwn | jsonify }},
+  "short_name": {{ _pw.short_name | default: _pwn | jsonify }},
+{%- if _pwd %}
+  "description": {{ _pwd | strip_html | normalize_whitespace | jsonify }},
+{%- endif %}
+  "lang": {{ _pwl | jsonify }},
+  "dir": {{ mt_dir | default: "ltr" | jsonify }},
+  "start_url": {{ _pws | jsonify }},
+  "scope": {{ "/" | relative_url | jsonify }},
+  "display": {{ _pw.display | default: "standalone" | jsonify }},
+  "background_color": {{ _pw.background_color | default: _pwbg | jsonify }},
+{%- if _pwtc %}
+  "theme_color": {{ _pwtc | jsonify }},
+{%- endif %}
+  "icons": [
+{%- if _pw.icons == nil or _pw.icons == "brand" -%}
+{%- assign _pwb = "192,512,maskable-512" | split: "," -%}
+{%- for _b in _pwb -%}{%- assign _pwz = _b | remove: "maskable-" %}
+    {"src": {{ "/assets/modootoday/icon-" | append: _b | append: ".png" | relative_url | jsonify }}, "sizes": "{{ _pwz }}x{{ _pwz }}", "type": "image/png", "purpose": "{% if _b contains "maskable" %}maskable{% else %}any{% endif %}"}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- else -%}
+{%- for _i in _pw.icons %}
+    {"src": {{ _i.src | relative_url | jsonify }}, "sizes": {{ _i.sizes | jsonify }}, "type": "image/png", "purpose": {{ _i.purpose | default: "any" | jsonify }}}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endif %}
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:0ea42afc5f89
+source_rev: sha256:a24caf94b58b
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -49,7 +49,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - 쇼케이스: [스타터 데모 쇼케이스](../showcase/)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
-- 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
+- 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`, 그리고 `--pwa`일 때 `manifest.webmanifest`(`layout: null`, `permalink: /manifest.webmanifest`, include `modootoday/pwa/manifest.json`)입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
 
 ## 레이아웃
 

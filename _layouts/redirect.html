@@ -2,8 +2,7 @@
   works under a strict CSP), with a canonical link for search engines and a visible link for everyone else.{%- endcomment -%}
 {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/i18n.html lang=_lang -%}
-{%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}{%- assign _b = _lang | split: "-" | first -%}
-{%- if _rtl contains _b %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif %}{%- assign _dir = mt_t_direction | default: _dir -%}
+{%- include modootoday/site/dir.html lang=_lang -%}{%- assign _dir = mt_dir -%}
 {%- comment -%}jekyll-redirect-from gives page.redirect.to already resolved (site.url + baseurl); a hand-written
   redirect_to is a site path or a full URL. The refresh, canonical and link all use the same target.{%- endcomment -%}
 {%- if page.redirect.to -%}{%- assign _to = page.redirect.to -%}{%- assign _abs = _to -%}

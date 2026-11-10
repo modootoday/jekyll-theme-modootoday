@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:0ea42afc5f89
+source_rev: sha256:a24caf94b58b
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -49,7 +49,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
 - ショーケース: [スターターのデモのショーケース](../showcase/)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
-- スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md` です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
+- スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md`、そして `--pwa` では `manifest.webmanifest`(`layout: null`、`permalink: /manifest.webmanifest`、include `modootoday/pwa/manifest.json`)です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
 
 ## レイアウト
 

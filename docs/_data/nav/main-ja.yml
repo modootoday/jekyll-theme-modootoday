@@ -84,6 +84,7 @@
     - {title: CSP, url: /ja/recipes/csp/}
     - {title: 検索, url: /ja/recipes/search/}
     - {title: 生成ページ, url: /ja/recipes/generated-pages/}
+    - {title: インストールできるサイト, url: /ja/recipes/pwa/}
     - {title: サイトの種類, url: /ja/recipes/site-types/}
 - title: リファレンス
   url: /ja/reference/

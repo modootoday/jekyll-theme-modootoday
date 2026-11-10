@@ -4,13 +4,14 @@ module Modootoday
   module Stubs
     # Command line: options, modes (preview by default, --write, --check) and exit codes.
     module CLI
-      USAGE = "usage: modootoday-stubs SRC [--twins] [--aliases] [--records[=SET,...]] [--write | --check] [--no-prune] [--json] [--quiet]"
+      USAGE = "usage: modootoday-stubs SRC [--twins] [--aliases] [--records[=SET,...]] [--pwa] [--write | --check] [--no-prune] [--json] [--quiet]"
       # Single source for --help and the README "Commands" table (script/readme-commands).
       OPTIONS = [
         ["SRC", "the site source; without `--write` or `--check` nothing is written and the planned creates, updates and deletes are listed"],
         ["--twins", "a stub `<name>.md.txt` per page (`layout: twin`) for its twin at `/<name>/index.md`"],
         ["--aliases", "the aliases `modootoday.aliases` turns on: `md` a stub `<name>.flat.md.txt` (`layout: twin`) at `/<name>.md`, `html` a stub `<name>.html.md.txt` (`layout: redirect`) at `/<name>.html`"],
         ["--records[=SET,...]", "a page `<dir>/<key>.md` per record of each set in `modootoday.records` (or only the named sets): front matter only, with the title, description, permalink and `record:` the layout reads"],
+        ["--pwa", "the files `modootoday.pwa` needs at the site root: `manifest.webmanifest`, which renders the theme's web app manifest; never pruned, and a site file already at that path is never overwritten"],
         ["--write", "write the planned stubs; files whose content is already right are not touched"],
         ["--check", "write nothing; exit 1 when a stub is missing, out of date or orphaned"],
         ["--no-prune", "keep orphan stubs (by default a twin stub whose page is gone, an alias stub no page wants, or a record page whose record is gone, is deleted)"],
@@ -19,7 +20,7 @@ module Modootoday
         ["--help, -h", "print usage and options (`--help=markdown` prints the README table)"],
         ["--version", "print the version"],
       ].freeze
-      KINDS = { "--twins" => :twins, "--aliases" => :aliases, "--records" => :records }.freeze
+      KINDS = { "--twins" => :twins, "--aliases" => :aliases, "--records" => :records, "--pwa" => :pwa }.freeze
       FLAGS = (KINDS.keys + %w[--write --check --no-prune --prune --json --quiet]).freeze
 
       module_function
@@ -36,7 +37,7 @@ module Modootoday
         return usage("--write and --check exclude each other") if opts.include?("--write") && opts.include?("--check")
         return usage("--records=: name at least one set") if sets && sets.empty?
         kinds = KINDS.select { |flag, _| opts.include?(flag) }.values
-        return usage("choose what to make: --twins, --aliases, --records or a mix") if kinds.empty?
+        return usage("choose what to make: --twins, --aliases, --records, --pwa or a mix") if kinds.empty?
         execute(pos.first, kinds, opts, { records: { only: sets } })
       end
 
@@ -68,7 +69,7 @@ module Modootoday
           puts USAGE, "", "options:"
           OPTIONS.each { |o, d| puts format("  %-20s %s", o, d.delete("`")) }
           puts "", "exit status: 0 nothing to do, previewed or written; 1 --check found drift; 2 usage or _config.yml error;",
-               "3 data error (front matter, unsafe permalink, alias conflict, record without or with a duplicate key)"
+               "3 data error (front matter, unsafe permalink, alias conflict, record without or with a duplicate key, a site file at a PWA stub path)"
         end
         0
       end

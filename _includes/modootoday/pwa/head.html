@@ -1,0 +1,5 @@
+{%- comment -%}PWA head tags, only with modootoday.pwa.enabled: true. The manifest URL is the permalink of the site's stub
+(modootoday-stubs --pwa); the apple-touch-icon stays with modootoday.favicon.{%- endcomment -%}
+{%- if site.modootoday.pwa.enabled == true %}
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
+{%- endif -%}

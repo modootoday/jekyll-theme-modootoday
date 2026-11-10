@@ -8,10 +8,8 @@
 {%- comment -%}mt_home: this language's home (/<lang>/ when that page exists), else the site root; used by the brand link and footers.{%- endcomment -%}
 {%- assign mt_home = "/" -%}{%- assign _def_lang = site.lang | default: "en" -%}
 {%- if _lang != _def_lang -%}{%- assign _lh = "/" | append: _lang | append: "/" -%}{%- include modootoday/lookup/urls.html -%}{%- assign _lhk = "|" | append: _lh | append: "|" -%}{%- if mt_page_urls contains _lhk -%}{%- assign mt_home = _lh -%}{%- endif -%}{%- endif -%}
-{%- assign _rtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}
-{%- assign _base = _lang | split: "-" | first -%}
-{%- if _rtl contains _base %}{% assign _dir = "rtl" %}{% else %}{% assign _dir = nil %}{% endif -%}
-{%- assign _dir = page.direction | default: mt_t_direction | default: _dir -%}
+{%- include modootoday/site/dir.html lang=_lang -%}
+{%- assign _dir = page.direction | default: mt_dir -%}
 <html lang="{{ _lang }}"{% if _dir %} dir="{{ _dir }}"{% endif %}{% if mt_theme_start %} data-theme="{{ mt_theme_start }}"{% endif %}{% if mt_showcase %} data-mt-showcase="{{ mt_showcase_style }}"{% endif %} data-mt-copy="{{ mt_t_code_copy }}" data-mt-copied="{{ mt_t_code_copied }}" data-mt-code="{{ mt_t_code_label }}" data-mt-table="{{ mt_t_table_label }}" data-mt-region-named="{{ mt_t_region_named }}" data-mt-region-nth="{{ mt_t_region_nth }}" data-mt-diagram="{{ mt_t_diagram_label }}">
 <head>
 <meta charset="utf-8">

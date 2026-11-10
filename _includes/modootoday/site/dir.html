@@ -1,0 +1,5 @@
+{%- comment -%}Sets mt_dir for include.lang: the direction its catalog gives (mt_t_direction, so include modootoday/i18n.html for
+  that language first), else rtl for a right-to-left base subtag, else nil. Read by the layouts' dir attribute and the manifest.{%- endcomment -%}
+{%- assign _drtl = "ar fa he ur yi ps sd ug dv ckb" | split: " " -%}{%- assign _db = include.lang | split: "-" | first -%}
+{%- if _drtl contains _db -%}{%- assign mt_dir = "rtl" -%}{%- else -%}{%- assign mt_dir = nil -%}{%- endif -%}
+{%- assign mt_dir = mt_t_direction | default: mt_dir -%}

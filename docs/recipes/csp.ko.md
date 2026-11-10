@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/csp/
-source_rev: sha256:044393be9a76
+source_rev: sha256:ac3529bafc4b
 nav_order: 20
 nav_title: CSP
 title: 콘텐츠 보안 정책
@@ -32,3 +32,5 @@ GitHub Pages는 응답 헤더를 보낼 수 없습니다. 이 지시어들은 `_
 테마의 문서 QA는 [엄격한 CSP 데모](../../layouts/demo/csp/)를 비롯한 예시 페이지를 이 정책을 응답 헤더로 붙여 보내고, 위반이 하나라도 있으면 실패합니다.
 
 이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../figures/math-diagrams/)을 보세요. [정적 다이어그램](../figures/math-diagrams/#정적-다이어그램)과 MathML로 쓴 [정적 수식](../figures/math-diagrams/#정적-수식)은 추가할 것이 없습니다. 페이지가 각 다이어그램을 사이트의 이미지로, 각 수식을 MathML로 보여 주므로 스크립트도 인라인 스타일도 없습니다. KaTeX HTML로 쓴 정적 수식은 KaTeX가 `style` 속성을 쓰므로 `style-src 'unsafe-inline'`이 필요합니다. [차트](../figures/charts/)도 Chart.js가 사이트의 파일이면 추가할 것이 없습니다. Chart.js는 CSSOM으로 canvas 크기를 정하고 `style-src 'self'`는 이를 허용합니다. 문서 QA는 이 정책 아래에서 차트 페이지를 열고 차트에 마우스를 올리고 범례를 눌러 보며, 위반은 0건입니다.
+
+[웹 앱 매니페스트](../pwa/)(`modootoday.pwa`)도 더할 것이 없습니다. `manifest-src`는 `default-src 'self'`를 따릅니다. `default-src`가 그보다 좁은 정책이라면 `manifest-src 'self'`가 필요합니다.

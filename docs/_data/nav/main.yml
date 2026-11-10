@@ -84,6 +84,7 @@
     - {title: CSP, url: /recipes/csp/}
     - {title: Search, url: /recipes/search/}
     - {title: Generated pages, url: /recipes/generated-pages/}
+    - {title: Installable site, url: /recipes/pwa/}
     - {title: Site types, url: /recipes/site-types/}
 - title: Reference
   url: /reference/

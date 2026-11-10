@@ -7,6 +7,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
   site.modootoday.csp        strict loads the pre-paint script (theme, showcase dismissal) from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
+  site.modootoday.pwa        enabled: true links the web app manifest (modootoday/pwa/head.html)
   site.modootoday.schema     false drops the schema.org JSON-LD (modootoday/jsonld/graph.html)
 {%- endcomment -%}
 {%- assign _fav = site.modootoday.favicon -%}
@@ -17,6 +18,7 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 {%- elsif _fav %}
 <link rel="icon" href="{{ _fav | relative_url }}">
 {%- endif -%}
+{%- include modootoday/pwa/head.html -%}
 {%- assign _mt_tt = false -%}{%- if mt_components contains "theme-toggle" and mt_theme_toggle -%}{%- assign _mt_tt = true -%}{%- endif -%}
 {%- if _mt_tt or mt_showcase -%}
 {%- if site.modootoday.csp == "strict" -%}{%- include modootoday/assets/url.html path="/assets/js/modootoday/chrome/theme-init.js" %}

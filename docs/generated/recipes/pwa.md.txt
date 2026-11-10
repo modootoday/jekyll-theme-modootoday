@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: pwa.md
+path: recipes/pwa.md.txt
+permalink: /recipes/pwa/index.md
+---
