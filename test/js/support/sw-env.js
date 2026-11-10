@@ -48,6 +48,9 @@ class FakeCaches {
   async has(name) {
     return this.map.has(name);
   }
+  async match(req, { cacheName } = {}) {
+    return this.map.has(cacheName) ? this.map.get(cacheName).match(req) : undefined;
+  }
   urls(name) {
     return this.map.has(name) ? [...this.map.get(name).map.keys()].map((u) => u.slice(ORIGIN.length)) : [];
   }
@@ -69,8 +72,9 @@ function request(url, init = {}) {
   return new Request(abs, init);
 }
 
-// net(url, req) returns a Response or throws (a network error); every call is kept in fetched.
-function env({ scope = "/docs/", constants = {}, net = () => new Response("ok"), script } = {}) {
+// net(url, req) returns a Response or throws (a network error); every call is kept in fetched. installed: the assets
+// cache an install opens is there, as for any worker that answers requests.
+function env({ scope = "/docs/", constants = {}, net = () => new Response("ok"), script, installed = false } = {}) {
   const listeners = {};
   const fetched = [];
   const navigated = [];
@@ -98,6 +102,9 @@ function env({ scope = "/docs/", constants = {}, net = () => new Response("ok"),
     fetched.push(url.slice(ORIGIN.length));
     return state.net(url.slice(ORIGIN.length), req);
   };
+  if (installed) {
+    caches.map.set(`mt:${scope}:assets:${self.MT_PWA.assets}`, new FakeCache());
+  }
   const ctx = vm.createContext({ self, caches, fetch: doFetch, Request: WorkerRequest, Response, Headers, URL, console });
   vm.runInContext(script || fs.readFileSync(path.join(ROOT, "assets/js/modootoday/pwa/worker.js"), "utf8"), ctx);
 

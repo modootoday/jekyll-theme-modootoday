@@ -34,7 +34,7 @@ test("navigations to twins, llms.txt, feeds and the sitemap are left alone too",
 });
 
 test("theme files are cache first in the assets cache of the theme version", async () => {
-  const w = env();
+  const w = env({ installed: true });
   const url = "/docs/assets/css/modootoday.css?v=1.7.0";
   assert.strictEqual(await (await w.go(url)).text(), "ok");
   w.state.net = offlineNet;
@@ -44,7 +44,7 @@ test("theme files are cache first in the assets cache of the theme version", asy
 });
 
 test("navigations are network first: ok pages kept, a 404 not, a network error serves the copy", async () => {
-  const w = env({ net: (u) => (u == "/docs/gone/" ? page("Gone", 404) : page("A")) });
+  const w = env({ installed: true, net: (u) => (u == "/docs/gone/" ? page("Gone", 404) : page("A")) });
   assert.strictEqual(await (await w.go("/docs/a/", { mode: "navigate" })).text(), "<title>A</title>");
   assert.strictEqual((await w.go("/docs/gone/", { mode: "navigate" })).status, 404);
   assert.deepStrictEqual(w.caches.urls(PAGES), ["/docs/a/"]);
@@ -68,7 +68,7 @@ test("offline, an unvisited page gets the offline page of its longest language p
 });
 
 test("a 5xx serves the kept copy, and the 5xx itself when there is none", async () => {
-  const w = env({ net: () => page("A") });
+  const w = env({ installed: true, net: () => page("A") });
   await w.go("/docs/a/", { mode: "navigate" });
   w.state.net = () => page("Bad gateway", 502);
   assert.strictEqual(await (await w.go("/docs/a/", { mode: "navigate" })).text(), "<title>A</title>");
@@ -77,7 +77,7 @@ test("a 5xx serves the kept copy, and the 5xx itself when there is none", async 
 
 test("site files are network first; search.json and media are stale while revalidate", async () => {
   let n = 0;
-  const w = env({ net: () => new Response(`v${++n}`) });
+  const w = env({ installed: true, net: () => new Response(`v${++n}`) });
   assert.strictEqual(await (await w.go("/docs/assets/site.css?v=1.7.0")).text(), "v1");
   assert.strictEqual(await (await w.go("/docs/assets/site.css?v=1.7.0")).text(), "v2");
   assert.strictEqual(await (await w.go("/docs/search.json")).text(), "v3");
@@ -86,6 +86,14 @@ test("site files are network first; search.json and media are stale while revali
   await w.go("/docs/img/a.png");
   assert.deepStrictEqual(w.caches.urls(MEDIA), ["/docs/img/a.png"]);
   assert.deepStrictEqual(w.caches.urls(PAGES).sort(), ["/docs/assets/site.css?v=1.7.0", "/docs/search.json"]);
+});
+
+test("a worker whose caches a kill or a newer worker deleted answers but never recreates them", async () => {
+  const w = env({ installed: true, net: (u) => page(u) });
+  await w.caches.delete(ASSETS);
+  assert.strictEqual(await (await w.go("/docs/assets/js/modootoday/pwa/update-toast.js")).text(), "<title>/docs/assets/js/modootoday/pwa/update-toast.js</title>");
+  await w.go("/docs/a/", { mode: "navigate" });
+  assert.deepStrictEqual(await w.caches.keys(), []);
 });
 
 test("the pages cache keeps the 50 most recently used, never a precached page; media keeps 60", async () => {

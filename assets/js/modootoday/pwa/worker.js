@@ -34,10 +34,15 @@
   };
   const bucket = (k) => (k == "assets" ? ASSETS : k == "media" ? MEDIA : PAGES);
   const ok = (res) => res && res.ok && !res.redirected;
-  const cached = async (name, req) => (await caches.open(name)).match(req);
+  // Reads and writes never recreate a cache a kill worker or a newer worker deleted: install opens ASSETS first, so
+  // without it this worker is on its way out.
+  const cached = (name, req) => caches.match(req, { cacheName: name });
 
   // Re-putting moves an entry last, so trimming the first keeps the recently used.
   const put = async (name, req, res, max) => {
+    if (!(await caches.has(ASSETS))) {
+      return;
+    }
     const cache = await caches.open(name);
     await cache.delete(req);
     await cache.put(req, res);

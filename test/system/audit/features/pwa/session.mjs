@@ -7,6 +7,19 @@ import path from "node:path";
 // The constants a build's sw.js gives the worker (scope, build, assets, precache, offline).
 export const constants = (dir) => JSON.parse(fs.readFileSync(path.join(dir, "sw.js"), "utf8").match(/^self\.MT_PWA = (\{.*\});$/m)[1]);
 
+// The workers and mt: caches the page sees, printed with a timeout so a CI failure says where the flow stopped.
+const state = (page) => page.evaluate(async () => {
+  const at = (w) => w && `${w.state} ${new URL(w.scriptURL).pathname}`;
+  const regs = await navigator.serviceWorker.getRegistrations();
+  return {
+    controller: at(navigator.serviceWorker.controller),
+    regs: regs.map((r) => ({ scope: r.scope, installing: at(r.installing), waiting: at(r.waiting), active: at(r.active) })),
+    caches: (await caches.keys()).filter((n) => n.startsWith("mt:")),
+    swaps: window.mtSwaps,
+    toast: document.querySelector(".mt-toast")?.textContent,
+  };
+});
+
 // Polls fn in the page until it returns a truthy value. A worker that reloads the page destroys the context mid-call,
 // which counts as not yet.
 export async function until(page, what, fn, arg, timeout = 20000) {
@@ -22,7 +35,8 @@ export async function until(page, what, fn, arg, timeout = 20000) {
       last = e.message.split("\n")[0];
     }
     if (Date.now() > end) {
-      throw new Error(`${what}: not reached in ${timeout} ms (last: ${JSON.stringify(last)})`);
+      const now = await state(page).catch((e) => e.message.split("\n")[0]);
+      throw new Error(`${what}: not reached in ${timeout} ms (last: ${JSON.stringify(last)}; state: ${JSON.stringify(now)})`);
     }
     await page.waitForTimeout(150);
   }
