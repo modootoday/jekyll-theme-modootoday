@@ -1,11 +1,12 @@
 name: Dependabot merge
 
 # Dependabot's pull requests are the one pull request flow this repository keeps (adr:modootoday/20261109225836).
-# Each one is squash-merged by this workflow once every workflow run on its head commit has succeeded. It needs no
-# repository setting and no branch rule, so direct pushes to main stay as they are.
+# Each one is squash-merged by this workflow once the latest run of every workflow on its head commit has passed. It
+# needs no repository setting and no branch rule, so direct pushes to main stay as they are. The trigger list names
+# every workflow that runs on pull_request (test/release/dependabot_test.rb).
 on:
   workflow_run:
-    workflows: [CI, Starters]
+    workflows: [CI, Figures, Lighthouse, Starters, Visual regression]
     types: [completed]
 
 permissions:
@@ -16,7 +17,7 @@ jobs:
     if: >-
       github.repository == 'modootoday/jekyll-theme-modootoday' &&
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' &&
+      (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'skipped') &&
       startsWith(github.event.workflow_run.head_branch, 'dependabot/')
     runs-on: ubuntu-24.04
     permissions:
@@ -24,7 +25,8 @@ jobs:
       pull-requests: write
       actions: read
     steps:
-      - name: Squash-merge when every run on the head commit has succeeded
+      # A label event starts a second Visual run that cancels the first, so only the newest run per workflow counts.
+      - name: Squash-merge when the latest run of every workflow on the head commit has passed
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -34,7 +36,9 @@ jobs:
           pr=$(gh pr list -R "$REPO" --head "$BRANCH" --state open --json number,author,headRefOid \
             -q ".[] | select(.author.login == \"app/dependabot\" and .headRefOid == \"$SHA\") | .number")
           if [ -z "$pr" ]; then echo "no open Dependabot pull request at $SHA"; exit 0; fi
-          runs=$(gh api "repos/$REPO/actions/runs?head_sha=$SHA&per_page=100" -q '.workflow_runs[] | "\(.name) \(.status) \(.conclusion)"')
+          latest='[.workflow_runs[] | select(.event == "pull_request")] | group_by(.workflow_id) | map(max_by(.run_number))'
+          runs=$(gh api "repos/$REPO/actions/runs?head_sha=$SHA&per_page=100" -q "$latest | .[] | \"\(.name)|\(.status)|\(.conclusion)\"")
           echo "$runs"
-          if echo "$runs" | grep -Evq ' completed (success|skipped)$'; then echo "not every run on $SHA has succeeded yet"; exit 0; fi
+          if [ -z "$runs" ]; then echo "no pull request runs on $SHA"; exit 0; fi
+          if echo "$runs" | grep -Evq '\|completed\|(success|skipped)$'; then echo "a latest run on $SHA is pending or did not pass"; exit 0; fi
           gh pr merge -R "$REPO" "$pr" --squash --match-head-commit "$SHA" || echo "already merged or changed since $SHA"
