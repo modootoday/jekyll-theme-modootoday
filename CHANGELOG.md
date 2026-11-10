@@ -6,6 +6,8 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+Visual: the intended differences are the order of the Components page and the kitchen sinks, with a heading above each component group, and the recipes sidebar, where Math and diagrams, Charts and Widgets sit in a new Figures and widgets group. The docs cleanup adds the release list on the Changelog page, the rewritten Roadmap, a Requirements section at the top of the Install guide, a Layouts table on the Public API page, the new Command line page, the short sample lines and renamed headings of the kitchen sinks, the twins comparison at the top of the AI agents guide, and the new rows of the Configuration table; the map table moving from Brand tokens to Customize, the loader sections moving from Math and diagrams to the new Diagram and math loaders page, the showcase section moving from Configuration to the new Starter demo showcase page, and "color" for "colour" in the English pages; Tags and Categories leave the Reference sidebar, and the Layouts sidebar puts Docs extras after Blog and news.
+
 ### Added
 
 - Publish docs, blog and landing as gitlinks and move wave 1
@@ -28,6 +30,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - Callout rules, one glossary line per alert type and a lint
 - Rewrite 174 page descriptions to 70-160 characters in every language
 - Reorder front matter keys with script/docs-key-order and make R3 block
+- For contributors: the CHANGELOG is generated from commit messages by git-cliff (cliff.toml), with the footers Changelog, Refs, Visual and Migration; script/commit-check checks them, bundle exec rake fix runs every generator, and script/release-prep and script/release-status make a release one command. (adr:modootoday/20261109225758, adr:modootoday/20261109225836)
 
 ### Fixed
 
