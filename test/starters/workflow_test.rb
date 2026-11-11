@@ -35,6 +35,21 @@ class StarterWorkflowTest < Minitest::Test
     assert_equal ["pages.yml"], rendered("jekyll4").keys, "the gem stack is not published"
   end
 
+  def test_a_published_release_rebuilds_the_default_branch
+    %w[github-pages jekyll4].each do |stack|
+      text = rendered(stack).fetch("pages.yml")
+      pages = YAML.safe_load(text)
+      assert_equal({ "types" => ["published"] }, pages.dig(true, "release"), stack)
+      rebuild = pages.dig("jobs", "rebuild")
+      assert_equal "github.event_name == 'release'", rebuild["if"], stack
+      assert_equal({ "actions" => "write" }, rebuild["permissions"], stack)
+      assert_match(/gh workflow run pages\.yml .*--ref "\$BRANCH"/, rebuild.dig("steps", 0, "run"), stack)
+      assert_equal "github.event_name != 'release'", pages.dig("jobs", "build", "if"), "#{stack}: a tag run never deploys"
+      refute pages[true].key?("schedule"), "#{stack}: the weekly rebuild is opt-in"
+      assert_match(/^  # schedule:\n  #   - cron: /, text, stack)
+    end
+  end
+
   def test_theme_workflows_parse_and_use_no_secret
     Dir[File.join(ROOT, ".github/workflows/*.yml")].each do |f|
       assert_kind_of Hash, YAML.safe_load(File.read(f)), f

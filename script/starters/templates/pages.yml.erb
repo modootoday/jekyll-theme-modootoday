@@ -1,12 +1,19 @@
 # Builds the site, runs modootoday-check on it and, on main, deploys it to GitHub Pages
 # (Settings > Pages > Source: GitHub Actions). Pull requests are built and checked only. theme-update.yml calls it
-# after it commits a theme update, with ref: that commit.
+# after it commits a theme update, with ref: that commit. Publishing a release rebuilds main, so pages that show
+# release data from site.github are current (Tell readers about updates in the theme docs).
 name: Pages
 
 on:
   push:
     branches: [main]
   pull_request:
+  release:
+    types: [published]
+  # A weekly rebuild keeps build-time data such as site.github fresh; uncomment to turn it on. GitHub turns scheduled
+  # runs off after 60 days without activity in a public repository.
+  # schedule:
+  #   - cron: "17 3 * * 1"
   workflow_dispatch:
   workflow_call:
     inputs:
@@ -22,7 +29,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # A release run is on its tag, which the github-pages environment does not let deploy; it starts this workflow on
+  # the default branch instead (a run started with GITHUB_TOKEN through workflow_dispatch is allowed to start).
+  rebuild:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: write
+    steps:
+      - run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+
   build:
+    if: github.event_name != 'release'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7

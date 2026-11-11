@@ -22,6 +22,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - The On this page list marks the section you are reading. (adr:modootoday/20261110172642)
 - A `c: install` section shows an Install button when the browser offers to install the site (it never prompts by itself), with a hint for browsers that install from their own menu or share sheet; it hides in the installed app. (adr:modootoday/20261111002136)
 - The web app manifest takes `modootoday.pwa.shortcuts` (the app icon's menu) and `modootoday.pwa.screenshots` (pictures for the install dialog), both off until listed; `modootoday-check` checks their pages, files and sizes. (adr:modootoday/20261111002632)
+- Starter sites rebuild when a release is published, so release data from site.github is current; a weekly rebuild can be turned on in their pages.yml. (adr:modootoday/20261111011655)
 
 ### Changed
 
