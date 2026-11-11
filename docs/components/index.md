@@ -7,6 +7,7 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
+  - anchor
   - badge
   - badge-legend
   - kbd
@@ -70,6 +71,15 @@ Components are grouped by purpose, from text and inline marks to the site chrome
 ## Text and inline
 
 Styles for running text and for short marks inside a paragraph.
+
+## Heading anchors
+
+`status:available` With `modootoday.heading_anchors: true`, every `##` and `###` heading of a doc or post ends with a link to itself, so a reader can copy the address of one section. It shows when the pointer is over the heading or the link has keyboard focus, and always on touch screens. Hover over the headings of this page to see it. Headings in component sections keep their own behavior, and no script is involved.
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## Badges
 

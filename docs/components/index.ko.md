@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:a13120151f8e
+source_rev: sha256:8b746fdcf33b
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -10,6 +10,7 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
+  - anchor
   - badge
   - badge-legend
   - kbd
@@ -76,6 +77,15 @@ sections:
 ## 텍스트와 인라인
 
 본문 텍스트와 문단 안의 짧은 표시에 쓰는 스타일입니다.
+
+## 제목 앵커
+
+`status:available` `modootoday.heading_anchors: true`면 문서와 글의 `##`, `###` 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙어, 읽는 사람이 한 섹션의 주소를 복사할 수 있습니다. 포인터를 제목에 올리거나 키보드 포커스가 링크에 오면 보이고, 터치 화면에서는 늘 보입니다. 이 페이지의 제목에 포인터를 올려 확인해 보세요. 컴포넌트 섹션의 제목은 원래 동작을 유지하며, 스크립트는 쓰지 않습니다.
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## 배지
 

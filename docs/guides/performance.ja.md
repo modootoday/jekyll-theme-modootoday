@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/performance/
-source_rev: sha256:0c6395cda906
+source_rev: sha256:fc4c7e81c0af
 nav_order: 75
 title: パフォーマンス
 description: ページごとに読み込むファイル、CDN で長くキャッシュするためのバージョン付きアセット URL、CI が守るサイズ予算を説明し、サイトを軽く保つ方法を示します。
@@ -19,7 +19,7 @@ description: ページごとに読み込むファイル、CDN で長くキャッ
 |---|---|
 | `assets/css/modootoday.css` (コアシート: トークン、基本要素、ヘッダー、ナビゲーション、テーマ切り替えボタン) | すべてのページ |
 | コンポーネントシート (`content/code`、`chrome/doc-nav`、`content/inline`、`marketing/hero`、`content/extras`、`media/figure`、`chrome/banner`、`chrome/footer`)。コアシートのすぐ後に読み込む | 本文かページ下部がそのシートを使うページ |
-| コンテキストシート (`docs/doc`、`chrome/search`、`content/loading`、`content/lists`、`structure/bleed`、`chrome/terminal`、`media/visual`、`data/filter`、`data/table`、`data/table-stack`) | レイアウトか本文がそのシートを使うページ |
+| コンテキストシート (`docs/doc`、`chrome/search`、`content/loading`、`content/lists`、`content/anchor`、`structure/bleed`、`chrome/terminal`、`media/visual`、`data/filter`、`data/table`、`data/table-stack`) | レイアウトか本文がそのシートを使うページ |
 | セクションシート (`tabs`、`faq`、`pricing` など) | `sections:` でそのコンポーネントを使うページ |
 | `chrome/menu.js`、`chrome/theme-toggle.js`、`chrome/search-keys.js` | ヘッダー、テーマ切り替えボタン、検索インデックスがあるページ |
 | `chrome/search.js`（`text/normalize.js` を含む）と `search.json` | 読者が初めて検索ボックスにフォーカスしたとき、または `/` か Ctrl+K を押したとき |

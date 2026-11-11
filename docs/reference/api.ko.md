@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:4f87bbd91339
+source_rev: sha256:5374079e3798
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -41,7 +41,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - Markdown 규칙: `mt-flat-list`는 그 아래 목록 항목 사이 간격을 없애는 해제용 클래스입니다.
 - 레이아웃: `page`는 Jekyll과 minima가 쓰는 이름으로 부르는 `doc` 레이아웃입니다.
 - include: 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있습니다. 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰세요. `modootoday/archive.html`은 `by`와 `lang`을 받습니다. `modootoday/t.html`은 `key=`와 선택 `n=` / `name=`을 받습니다.
-- `modootoday/brand/icon.html`은 `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), 선택 `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`를 받습니다. 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힙니다.
+- `modootoday/brand/icon.html`은 `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand), 선택 `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`를 받습니다. 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힙니다.
 - 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
 - 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/figures/math-diagrams/#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
@@ -90,6 +90,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 | 전체 폭 띠 | `section.mt-hero` 또는 `section.mt-section`의 `.mt-bleed`, `.mt-bleed-wide` | — | `--mt-bleed-bg`로 띠 색 지정 |
 | 일러스트 | `figure.mt-illustration[role=img][aria-label]` | `.mt-illustration-tag` | — |
 | 목록 스타일 | `ul.mt-chips`, `li > strong.mt-item-title + span.mt-item-sep` | `li > a` 칩, 제목과 구분자 | — |
+| 제목 앵커 | `h2[id]`나 `h3[id]`의 마지막 자식인 `a.mt-anchor` | `svg.mt-icon-link[aria-hidden=true]` | 제목의 `:hover`, `:focus-visible`, `pointer: coarse`에서 보임 |
 | 본문(`sections:` 없음) | `div.mt-prose` | 렌더된 본문 | — |
 | 카드 그리드 | `section.mt-section` | `ul > li`, 맨 앞 `strong`이 제목 | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | 탭 | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` | `[aria-selected]` |
@@ -138,6 +139,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - 전체 폭 띠: front matter `bleed: true` 또는 `bleed: wide`로 켭니다. 사이드바나 목차가 있는 레이아웃에서는 띠가 본문 열 안에 머뭅니다. `bleed` 시트를 씁니다.
 - 일러스트: 사이트에서 만든 include입니다. 태그는 그림 위 시작 쪽에 놓이는 배지입니다. `role=img`의 자식은 읽히지 않으므로 태그 글자도 `aria-label`에 넣으세요.
 - 목록 스타일: `modootoday.lists`를 켜면 쓰입니다. 칩은 높이 44px이고 텍스트 뒤에 →가 붙습니다. 구분자는 `: `입니다.
+- 제목 앵커: `modootoday.heading_anchors: true`일 때 히어로, 일반 섹션, `sections:`가 없는 페이지에 붙습니다. 이름은 `anchor.label` 레이블에 제목 텍스트를 넣은 것이고, 누르는 영역은 24px 이상의 정사각형입니다. `anchor` 시트를 씁니다.
 - 탭: 탭 부분은 JS가 만듭니다. JS가 없으면 `h3`와 코드 블록이 그대로 남습니다.
 - 파일 트리: 중첩 `ul`이 있는 항목이 폴더입니다.
 - 표: `div.mt-table`은 렌더링할 때 본문의 모든 표를 감싸며, 스크롤되고 넘치면 이름 붙은 영역이 됩니다. 본문에는 클래스를 붙이지 않습니다. 세 클래스는 사이트가 직접 만든 레이아웃과 include의 표를 위한 훅입니다(본문의 kramdown 속성 목록은 이식되지 않고 `modootoday-check`가 보고합니다). `c: params` 표와 40rem보다 좁을 때 들어가지 않는 표는 `--stack`을 받습니다. 스크립트가 쌓인 표에 레이블을 붙이면 `[data-mt-labelled]`와 `td[data-label]`가 생깁니다. 스타일은 `table`·`table-stack` 시트에 있습니다.

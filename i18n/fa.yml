@@ -8,6 +8,7 @@ status: {available: در دسترس, partial: بخشی, planned: برنامه‌
 task: {done: انجام‌شده, open: انجام‌نشده}
 tabs: {label: گزینه‌ها}
 toc: {label: در این صفحه}
+anchor: {label: "پیوند به بخش: [name]"}
 theme: {toggle: حالت تاریک}
 sidebar: {label: "مستندات"}
 page_actions: {label: "کارهای صفحه", copy: "کپی صفحه", copy_ai: "کپی برای هوش مصنوعی", view: "نمایش به‌صورت Markdown", source: "منبع"}

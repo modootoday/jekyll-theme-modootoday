@@ -8,6 +8,7 @@ status: {available: 사용 가능, partial: 일부 구현, planned: 계획}
 task: {done: 완료, open: 진행 전}
 tabs: {label: 옵션}
 toc: {label: 이 페이지의 내용}
+anchor: {label: "섹션 링크: [name]"}
 theme: {toggle: 다크 모드}
 sidebar: {label: "문서"}
 page_actions: {label: "페이지 도구", copy: "페이지 복사", copy_ai: "AI용으로 복사", view: "Markdown으로 보기", source: "출처"}

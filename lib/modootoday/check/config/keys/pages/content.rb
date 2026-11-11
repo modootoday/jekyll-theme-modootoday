@@ -7,6 +7,13 @@ module Modootoday
                               message: "must be a map of link_chips and titled_items set to true or false"))
       Schema.register(Key.new(name: "external_links", type: :map, keys: %w[new_window icon], values: :bool,
                               message: "must be a map of new_window and icon set to true or false"))
+      anchor_on = lambda do |ctx, path, v|
+        list = ctx.mtc["components"]
+        next unless v == true && list.is_a?(Array) && !list.map(&:to_s).include?("anchor")
+        ctx.warns << "_config.yml: #{path}: true has no effect while modootoday.components leaves out anchor"
+      end
+      Schema.register(Key.new(name: "heading_anchors", type: :bool, check: anchor_on,
+                              message: "must be true or false (true links each ## and ### heading to itself)"))
 
       site_paths = lambda do |ctx, path, map|
         map.each do |k, v|

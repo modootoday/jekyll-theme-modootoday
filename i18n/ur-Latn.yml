@@ -8,6 +8,7 @@ status: {available: Dastiyab, partial: Juzvi, planned: Mansooba}
 task: {done: Mukammal, open: Baqi}
 tabs: {label: Options}
 toc: {label: Is safhe par}
+anchor: {label: "Hisse ka link: [name]"}
 theme: {toggle: Dark mode}
 sidebar: {label: "Dastavezat"}
 page_actions: {label: "Safhe ke iqdamat", copy: "Safha copy karein", copy_ai: "AI ke liye copy karein", view: "Markdown mein dekhein", source: "Maakhaz"}

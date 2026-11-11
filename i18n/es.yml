@@ -8,6 +8,7 @@ status: {available: Disponible, partial: Parcial, planned: Previsto}
 task: {done: Hecho, open: Pendiente}
 tabs: {label: Opciones}
 toc: {label: En esta página}
+anchor: {label: "Enlace a la sección: [name]"}
 theme: {toggle: Modo oscuro}
 sidebar: {label: "Documentación"}
 page_actions: {label: "Acciones de la página", copy: "Copiar página", copy_ai: "Copiar para IA", view: "Ver como Markdown", source: "Fuente"}

@@ -1,9 +1,10 @@
 // Keyboard flows: skip link, a visible focus ring on every Tab stop, the language menu, the header menu sheet, tabs (LTR and RTL),
-// search shortcuts and result arrows, focusable scrolling code blocks. Chromium, desktop and 360px.
+// search shortcuts and result arrows, focusable scrolling code blocks, heading anchors. Chromium, desktop and 360px.
 import { tabWalk, skipLink, tocRing, cardRing } from "./keyboard/focus.mjs";
 import { langMenu, navSheet, tabsKeys } from "./keyboard/menus.mjs";
 import { search } from "./keyboard/search.mjs";
 import { scrollRegions } from "./keyboard/scroll-regions.mjs";
+import { headingAnchors } from "./keyboard/anchors.mjs";
 
 export async function checkKeyboard(browser, origin, fails) {
   const ctx = await browser.newContext({ viewport: { width: 1024, height: 900 } });
@@ -19,6 +20,7 @@ export async function checkKeyboard(browser, origin, fails) {
   await tabsKeys(page, origin + "components/kitchen-sink-rtl/", fails, true);
   await search(page, origin + "guides/install/", fails);
   await scrollRegions(page, origin + "components/kitchen-sink/", fails);
+  await headingAnchors(page, origin + "components/kitchen-sink/", fails);
   await ctx.close();
-  return { flows: 12, fails: fails.length - before };
+  return { flows: 13, fails: fails.length - before };
 }

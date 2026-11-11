@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:c870682a9aa7
+source_rev: sha256:385d14c9a072
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
@@ -10,6 +10,7 @@ diagrams:
   - {name: recipes/flow, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "정적 다이어그램: 커밋한 밝은 SVG와 어두운 SVG 한 쌍.", width: 818, height: 63}
 sections:
   - group-text
+  - anchor
   - badge
   - kbd
   - lists
@@ -70,6 +71,14 @@ sections:
 ## 텍스트와 인라인
 
 본문 텍스트와 문단 안의 짧은 표시에 쓰는 스타일입니다.
+
+## 제목 앵커
+
+이 페이지의 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 제목에 포인터를 올리거나, 링크가 보일 때까지 Tab을 누르세요.
+
+### 한 단계 아래 제목
+
+`###` 제목에도 링크가 붙습니다.
 
 ## 배지
 

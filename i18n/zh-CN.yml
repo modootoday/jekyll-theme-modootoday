@@ -8,6 +8,7 @@ status: {available: 可用, partial: 部分支持, planned: 计划中}
 task: {done: 已完成, open: 未完成}
 tabs: {label: 选项}
 toc: {label: 本页内容}
+anchor: {label: "章节链接：[name]"}
 theme: {toggle: 深色模式}
 sidebar: {label: "文档"}
 page_actions: {label: "页面操作", copy: "复制页面", copy_ai: "复制给 AI", view: "以 Markdown 查看", source: "来源"}

@@ -8,6 +8,7 @@ status: {available: Доступно, partial: Частично, planned: Зап
 task: {done: Готово, open: Не выполнено}
 tabs: {label: Варианты}
 toc: {label: На этой странице}
+anchor: {label: "Ссылка на раздел: [name]"}
 theme: {toggle: Тёмная тема}
 sidebar: {label: "Документация"}
 page_actions: {label: "Действия со страницей", copy: "Копировать страницу", copy_ai: "Копировать для ИИ", view: "Открыть как Markdown", source: "Источник"}

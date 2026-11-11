@@ -20,13 +20,15 @@ the section's top end corner (section gets .mt-has-decor); for ornaments only, n
 bleed: true (item or hero) adds .mt-bleed: a full-width background band (--mt-bleed-bg) while the content keeps its column;
 bleed: wide also adds .mt-bleed-wide, which widens the content box up to the container. No wrappers; bleed sheet.
 The hero's first p after the h1 gets .mt-hero-lead; hero checks: true adds .mt-hero-checks (its first ul is a ✓ row, lists sheet).
-site.modootoday.lists (link_chips, titled_items) runs markdown/lists.html on the hero, plain sections and section-less pages.
+site.modootoday.lists (link_chips, titled_items) runs markdown/lists.html on the hero, plain sections and section-less pages;
+modootoday.heading_anchors runs markdown/anchors.html on the same parts, after the lists (never on c: sections).
 filter: true | {facet: <column>} on an item (or include.filter, the page's filter:, on a page without sections) adds
 data-mt-filter (data-facet) and the hidden controls of filter/controls.html; data/filter.js filters the first list or table.
 modootoday-check fails when the item count differs from the h2 count.
 {%- endcomment -%}
 {%- assign _lang = include.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/i18n.html lang=_lang -%}{%- assign _tl = mt_t_tabs_label -%}
+{%- assign _anc = false -%}{%- if site.modootoday.heading_anchors == true and mt_components contains "anchor" -%}{%- assign _anc = true -%}{%- endif -%}
 {%- if include.sections -%}
 {%- assign _nl = "
 " -%}
@@ -39,6 +41,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- assign _parts = _main | prepend: _nl | split: _sep -%}
 {%- assign mt_c_transforms = "|filetree|linkcards|details|faq|params|quote|gallery|pricing|subscribe|chart|widget|install|" -%}
 {%- assign _p0 = _parts[0] -%}{%- if site.modootoday.lists -%}{%- capture _p0 %}{% include modootoday/markdown/lists.html html=_p0 %}{% endcapture -%}{%- endif -%}
+{%- if _anc -%}{%- capture _p0 %}{% include modootoday/markdown/anchors.html html=_p0 %}{% endcapture -%}{%- endif -%}
 {%- capture _hero %}{% include modootoday/actions.html html=_p0 %}{% endcapture -%}{%- assign _hl = "</h1>" | append: _nl | append: _nl -%}{%- assign _hlp = _hl | append: "<p>" -%}{%- assign _hlc = _hl | append: '<p class="mt-hero-lead">' -%}{%- assign _hero = _hero | replace_first: _hlp, _hlc -%}
 <section class="mt-hero{% if include.hero.checks == true %} mt-hero-checks{% endif %}{% if include.hero.decor %} mt-has-decor{% endif %}{% if include.hero.reveal == true %} mt-reveal{% endif %}{% if include.hero.c == 'split' %} mt-c-split{% if include.hero.side == 'start' %} mt-split-start{% endif %}{% if include.hero.ratio == '5:7' %} mt-split-5-7{% endif %}{% endif %}{% if include.hero.bleed %} mt-bleed{% if include.hero.bleed == 'wide' %} mt-bleed-wide{% endif %}{% endif %}">{% if include.hero.c == 'split' %}{% include modootoday/markdown/split.html body=_hero s=include.hero hero=true %}{% else %}{{ _hero }}{% include modootoday/markdown/visual.html s=include.hero hero=true %}{% endif %}{% if include.hero.decor %}<div class="mt-section-decor" aria-hidden="true">{% include sections/{{ include.hero.decor }}.html section=include.hero %}</div>{% endif %}</section>
 {%- for _p in _parts offset:1 -%}
@@ -46,6 +49,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- if _s.name or _s.c -%}{%- assign _n = _s.name -%}{%- assign _cc = _s.c -%}{%- else -%}{%- assign _n = _s -%}{%- assign _cc = nil -%}{%- endif -%}
 {%- assign _body = _p -%}
 {%- if site.modootoday.lists and _cc == nil -%}{%- capture _body %}{% include modootoday/markdown/lists.html html=_p %}{% endcapture -%}{%- endif -%}
+{%- if _anc and _cc == nil -%}{%- assign _body = "<h2 " | append: _body -%}{%- capture _body %}{% include modootoday/markdown/anchors.html html=_body %}{% endcapture -%}{%- assign _body = _body | remove_first: "<h2 " -%}{%- endif -%}
 {%- if _cc == 'cta' -%}{%- capture _body %}{% include modootoday/actions.html html=_p %}{% endcapture -%}{%- endif -%}
 {%- if _cc == 'features' -%}{%- assign _body = _body | replace: "</strong> — ", "</strong> " | replace: "</strong> – ", "</strong> " | replace: "</strong> - ", "</strong> " -%}{%- endif -%}
 {%- comment -%}features: a card that starts with **Title**: or **Title**： drops that one separator (the title is its own line); later colons and other bold text stay.{%- endcomment -%}
@@ -67,5 +71,7 @@ modootoday-check fails when the item count differs from the h2 count.
 {%- else -%}
 {%- capture _fa %}{% if include.filter %} data-mt-filter{% if include.filter.facet %} data-facet="{{ include.filter.facet }}"{% endif %}{% endif %}{% endcapture -%}
 {%- capture _fc %}{% if include.filter %}{% include modootoday/filter/controls.html %}{% endif %}{% endcapture -%}
-{%- if site.modootoday.lists -%}<div class="mt-prose"{{ _fa }}>{% include modootoday/markdown/lists.html html=include.content %}{{ _fc }}</div>{%- else -%}<div class="mt-prose"{{ _fa }}>{{ include.content }}{{ _fc }}</div>{%- endif -%}
+{%- assign _pb = include.content -%}{%- if site.modootoday.lists -%}{%- capture _pb %}{% include modootoday/markdown/lists.html html=_pb %}{% endcapture -%}{%- endif -%}
+{%- if _anc -%}{%- capture _pb %}{% include modootoday/markdown/anchors.html html=_pb %}{% endcapture -%}{%- endif -%}
+<div class="mt-prose"{{ _fa }}>{{ _pb }}{{ _fc }}</div>
 {%- endif -%}

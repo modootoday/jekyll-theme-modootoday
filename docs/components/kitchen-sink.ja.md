@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:c870682a9aa7
+source_rev: sha256:385d14c9a072
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
@@ -10,6 +10,7 @@ diagrams:
   - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 818, height: 63}
 sections:
   - group-text
+  - anchor
   - badge
   - kbd
   - lists
@@ -70,6 +71,14 @@ sections:
 ## テキストとインライン
 
 本文のテキストと、段落の中の短い要素に使うスタイルです。
+
+## 見出しアンカー
+
+このページの見出しの末尾には、その見出し自身へのリンクが付きます。見出しにポインターを重ねるか、リンクが表示されるまで Tab を押してください。
+
+### 一段下の見出し
+
+`###` の見出しにもリンクが付きます。
 
 ## バッジ
 

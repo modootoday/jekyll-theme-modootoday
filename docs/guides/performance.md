@@ -13,7 +13,7 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 |---|---|
 | `assets/css/modootoday.css` (core sheet: tokens, base elements, header, nav, theme toggle) | every page |
 | Component sheets (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`, `chrome/footer`), linked right after the core sheet | pages whose body or page footer uses them |
-| Context sheets (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | pages whose layout or body uses them |
+| Context sheets (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `content/anchor`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | pages whose layout or body uses them |
 | Section sheets (`tabs`, `faq`, `pricing`, …) | pages whose `sections:` use that component |
 | `chrome/menu.js`, `chrome/theme-toggle.js`, `chrome/search-keys.js` | pages with the header, the toggle, or a search index |
 | `chrome/search.js` (with `text/normalize.js`) and `search.json` | the first time a reader focuses the search box or presses `/` or Ctrl+K |

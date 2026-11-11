@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:dee93ce4673b
+source_rev: sha256:35afd13d4090
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -54,6 +54,7 @@ modootoday:
 | `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. |
 | `full_languages` | 없음 | 모든 페이지를 번역하는 언어입니다(예: `[ko, ja]`). `modootoday-check --i18n-pages`가 빠진 번역을 알려 줍니다. |
 | `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |
+| `heading_anchors` | `false` | `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. |
 | `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
 | `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 페이지의 `image:`가 우선합니다. |
 | `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
@@ -99,6 +100,7 @@ modootoday:
 - `schema`: 그래프 설정은 `publisher`, `search_url`, `layouts`, `faq`입니다.
 - `languages`: 헤더의 사이트 제목은 해당 언어의 홈(`/<lang>/`)이 있으면 그곳으로 연결됩니다.
 - `lists`: 일반 섹션과 페이지에서 링크만 있는 목록은 `ul.mt-chips`가 되고, `**제목**:`으로 시작하는 항목은 `strong.mt-item-title`을 받습니다. 선택 시트 `lists`가 이것과 `hero: {checks: true}`를 꾸미며, 사용하는 페이지에만 연결됩니다.
+- `heading_anchors`: 링크는 제목 안, 텍스트 뒤에 붙는 `a.mt-anchor`이고, 이름은 페이지 언어로 된 "섹션 링크: <제목>"입니다. 스크립트는 필요 없습니다. 컴포넌트 섹션(`c:`)의 제목은 그대로 두며, 목차와 검색, Markdown 버전도 바뀌지 않습니다. `components` 목록을 쓰면 `anchor`를 넣어야 유지됩니다. 선택 시트 `anchor`가 링크를 꾸미며, 사용하는 페이지에만 연결됩니다.
 - `language_switcher`: 각 링크는 이 페이지의 번역본, 없으면 그 언어의 첫 페이지로 갑니다. 헤더 메뉴는 언어 수와 상관없이 폭이 같고, 언어가 둘 미만이면 표시하지 않습니다. 메뉴는 JavaScript 없이 열리고, `menu.js`가 Esc, 화살표 키, 바깥 클릭 시 닫기를 더합니다.
 - `logo`, `favicon`: `brand` 마크는 `currentColor`(`brand` 토큰이라 라이트·다크를 따라감)로 그립니다. 직접 지정한 로고 이미지는 장식용(`alt=""`)입니다. 다른 로고를 그리려면 `modootoday/brand/logo.html`을 덮어쓰세요. `brand` 파비콘은 SVG, 32px PNG, Apple 터치 아이콘을 연결합니다.
 - `header`: 화면 너비가 30rem(480px)보다 좁으면 `logo`가 있는 사이트는 헤더에 로고만 보여 줍니다. 스크린 리더는 사이트 이름을 그대로 읽습니다. `logo`가 없으면 이름이 항상 보입니다.

@@ -1,0 +1,9 @@
+// Heading anchor links (anchor sheet; modootoday.heading_anchors): the link at the end of an h2 or h3 shows while the
+// heading is hovered or the link has keyboard focus, and always on touch screens, which cannot hover.
+@include mt-layer(components) {
+  .mt-anchor { display: inline-flex; align-items: center; justify-content: center; min-width: 1.5rem; min-height: 1.5rem; margin-inline-start: .25rem; vertical-align: middle; border-radius: mt(radius); color: mt(muted-foreground); text-decoration: none; opacity: 0; }
+  :is(h2, h3):hover > .mt-anchor, .mt-anchor:focus-visible { opacity: 1; }
+  .mt-anchor:hover { color: mt(primary); }
+  @media (pointer: coarse) { .mt-anchor { opacity: 1; } }
+  @media (forced-colors: active) { .mt-anchor { color: LinkText; } }
+}

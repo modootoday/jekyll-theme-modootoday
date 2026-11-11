@@ -8,6 +8,7 @@ status: {available: Đã có, partial: Một phần, planned: Dự kiến}
 task: {done: Xong, open: Chưa xong}
 tabs: {label: Tùy chọn}
 toc: {label: Trên trang này}
+anchor: {label: "Liên kết đến mục: [name]"}
 theme: {toggle: Chế độ tối}
 sidebar: {label: "Tài liệu"}
 page_actions: {label: "Thao tác trang", copy: "Sao chép trang", copy_ai: "Sao chép cho AI", view: "Xem dạng Markdown", source: "Nguồn"}

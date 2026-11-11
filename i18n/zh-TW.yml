@@ -8,6 +8,7 @@ status: {available: 可用, partial: 部分支援, planned: 規劃中}
 task: {done: 已完成, open: 未完成}
 tabs: {label: 選項}
 toc: {label: 本頁內容}
+anchor: {label: "章節連結：[name]"}
 theme: {toggle: 深色模式}
 sidebar: {label: "文件"}
 page_actions: {label: "頁面操作", copy: "複製頁面", copy_ai: "複製給 AI", view: "以 Markdown 檢視", source: "來源"}

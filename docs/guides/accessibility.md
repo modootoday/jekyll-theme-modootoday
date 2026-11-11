@@ -19,6 +19,7 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 | `←` `→` `Home` `End` | tabs | switch tabs; left and right follow the reading direction in right-to-left pages |
 | `↓` `↑` `Esc` | language menu, nav "More" menu, page actions | move between items; `Esc` closes and returns focus |
 | `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a region you can focus and scroll with the arrow keys. Each has its own name: "Code" or "Table" with the file name, caption or language, else the nearest heading, and a number when two would match |
+| `Tab` | headings, with [`heading_anchors`](../configuration/) | each `##` and `###` heading adds one stop: the link to that heading, which shows while it has focus |
 
 On a starter demo with the [showcase](../../reference/showcase/), its links and its hide button come right after "Skip to content"; hiding it moves focus back to "Skip to content".
 
@@ -30,17 +31,19 @@ Landmarks (header, navigation, main, footer), the current page in navigation, br
 
 The "On this page" list marks the section you are reading with `aria-current="location"`, so a screen reader says "current location" when it reaches that link. The mark is not announced as it moves, because a reader scrolling the page would otherwise hear every heading go by.
 
+With `heading_anchors: true`, each `##` and `###` heading ends with a link to itself named "Link to section: <heading>". The link sits inside the heading, so a screen reader that reads the heading also reads that name after the text; the link holds only a hidden icon, so the table of contents and region names keep the plain heading text.
+
 The Install button of a `c: install` section is a plain button that appears only when the browser offers to install the site, and it opens the browser's own dialog only when pressed. Once the reader answers, the button hides and focus moves to the hint below it, so it is not lost.
 
 ## Phones and tablets
 
 - **Safe areas.** Pages extend under the notch, rounded corners and home indicator, and the header, side padding and footer move clear of them.
-- **Touch targets.** On touch screens, links in the header, menus, tabs, copy buttons and pagination are at least 44 px tall, and the search box uses 16 px text so iOS does not zoom.
+- **Touch targets.** On touch screens, links in the header, menus, tabs, copy buttons and pagination are at least 44 px tall, and the search box uses 16 px text so iOS does not zoom. Heading anchor links, which a touch screen cannot reveal by hovering, are always shown there, at least 24 px square.
 - **Browser color.** The address bar matches the page background in light and dark mode.
 
 ## High contrast and motion
 
-- With Windows high contrast (forced colors), icon buttons and the search box keep visible borders. The showcase keeps a border around its bar or pill and its links.
+- With Windows high contrast (forced colors), icon buttons and the search box keep visible borders, and heading anchor links take the system link color. The showcase keeps a border around its bar or pill and its links.
 - With "reduce motion" turned on, transitions and animations are off.
 
 ## Settings

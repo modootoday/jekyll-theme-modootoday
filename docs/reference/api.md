@@ -35,7 +35,7 @@ Details for the rows above:
 - Markdown rules: `mt-flat-list` is an opt-out class that removes the gap between the list items below it.
 - Layouts: `page` is the `doc` layout under the name Jekyll and minima use.
 - Includes: your footer can include `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`); override `modootoday/brand/logo.html` to draw your own logo. `modootoday/archive.html` takes `by` and `lang`. `modootoday/t.html` takes `key=`, optional `n=` / `name=`.
-- `modootoday/brand/icon.html` takes `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL).
+- `modootoday/brand/icon.html` takes `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL).
 - Module helpers: `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`). The `mt:themechange` event is under [Events](#events). The `script:` visual contract is `data-mt-script`, `.mt-visual-stage` and `data-mt-ready`; see [Customize](../../guides/customize/#module-scripts-and-posters).
 - Data files: `_data/i18n/<lang>.yml` keys are optional overrides of the built-in catalogs; `_data/navigation.yml` is read for `main`.
 - Checker exit codes: 0 (no problems) and 1 (problems or bad usage). `modootoday-check SRC --diagrams` prints the static diagrams whose SVG is missing or stale as JSON (`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`; see [Keep diagrams fresh](../../recipes/figures/math-diagrams/#keep-diagrams-fresh)) and exits with 1 when the list is not empty. `modootoday-check SRC --math` does the same for static math: the `_data/math` files to write (`key`, `file`, `page`, `blocks` with `line`, `tex` and `digest`, `reason`).
@@ -84,6 +84,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Full-width band | `.mt-bleed`, `.mt-bleed-wide` on `section.mt-hero` or `section.mt-section` | — | `--mt-bleed-bg` sets the color |
 | Illustration | `figure.mt-illustration[role=img][aria-label]` | `.mt-illustration-tag` | — |
 | List styles | `ul.mt-chips`; `li > strong.mt-item-title + span.mt-item-sep` | the `li > a` chips; the title and separator | — |
+| Heading anchor | `a.mt-anchor` as the last child of an `h2[id]` or `h3[id]` | `svg.mt-icon-link[aria-hidden=true]` | shown on `:hover` of the heading, `:focus-visible` and `pointer: coarse` |
 | Prose (no `sections:`) | `div.mt-prose` | the rendered body | — |
 | Card grid | `section.mt-section` | `ul > li`, its leading `strong` is the title | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | Tabs | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`, `[role=tab]`, `[role=tabpanel]` | `[aria-selected]` |
@@ -132,6 +133,7 @@ Notes on the rows above:
 - Full-width band: front matter `bleed: true` or `bleed: wide`. Inside a sidebar or table-of-contents layout the band stays in the main column. It uses the `bleed` sheet.
 - Illustration: your own include. The tag is a badge above the picture, at the start. Put its text in the `aria-label` too, because the children of `role=img` are not read.
 - List styles: with `modootoday.lists`. The chips are 44px tall with → after the text; the separator is `: `.
+- Heading anchor: with `modootoday.heading_anchors: true`, on the hero, plain sections and pages without `sections:`. Its name is the `anchor.label` label with the heading text; the target is at least 24px square. It uses the `anchor` sheet.
 - Tabs: JS builds the tab parts; without JS the `h3` and code blocks stay.
 - File tree: items holding a nested `ul` are folders.
 - Table: `div.mt-table` is added around every body table at render time; it scrolls, and becomes a labelled region when it overflows. `c: params` tables get `--stack`, and so does any table that does not fit below 40rem, so page bodies set no class; the three classes are hooks for tables in a site's own layouts and includes (a kramdown attribute list in a body is not portable, and `modootoday-check` reports it). Once the script has labelled a stacked table it has `[data-mt-labelled]` and `td[data-label]`. Styles come from the `table` and `table-stack` sheets.

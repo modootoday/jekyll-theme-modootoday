@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/performance/
-source_rev: sha256:0c6395cda906
+source_rev: sha256:fc4c7e81c0af
 nav_order: 75
 title: 성능
 description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기 위한 버전 붙은 자산 URL, CI가 지키는 크기 예산을 설명하고 사이트를 가볍게 유지하는 방법을 알려 줍니다.
@@ -19,7 +19,7 @@ description: 페이지마다 불러오는 파일, CDN에 오래 캐시해 두기
 |---|---|
 | `assets/css/modootoday.css` (핵심 시트: 토큰, 기본 요소, 헤더, 내비게이션, 테마 전환 버튼) | 모든 페이지 |
 | 컴포넌트 시트 (`content/code`, `chrome/doc-nav`, `content/inline`, `marketing/hero`, `content/extras`, `media/figure`, `chrome/banner`, `chrome/footer`). 핵심 시트 바로 뒤에 연결 | 본문이나 페이지 아래쪽이 그 시트를 쓰는 페이지 |
-| 맥락 시트 (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
+| 맥락 시트 (`docs/doc`, `chrome/search`, `content/loading`, `content/lists`, `content/anchor`, `structure/bleed`, `chrome/terminal`, `media/visual`, `data/filter`, `data/table`, `data/table-stack`) | 레이아웃이나 본문이 그 시트를 쓰는 페이지 |
 | 섹션 시트 (`tabs`, `faq`, `pricing` 등) | `sections:`에서 그 컴포넌트를 쓰는 페이지 |
 | `chrome/menu.js`, `chrome/theme-toggle.js`, `chrome/search-keys.js` | 헤더, 테마 전환 버튼, 검색 색인이 있는 페이지 |
 | `chrome/search.js`(`text/normalize.js` 포함)와 `search.json` | 독자가 검색창에 처음 들어가거나 `/`, Ctrl+K를 누를 때 |

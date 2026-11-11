@@ -8,6 +8,7 @@ status: {available: متاح, partial: جزئي, planned: مخطط له}
 task: {done: مكتمل, open: غير مكتمل}
 tabs: {label: الخيارات}
 toc: {label: في هذه الصفحة}
+anchor: {label: "رابط إلى القسم: [name]"}
 theme: {toggle: الوضع الداكن}
 sidebar: {label: "المستندات"}
 page_actions: {label: "إجراءات الصفحة", copy: "نسخ الصفحة", copy_ai: "نسخ للذكاء الاصطناعي", view: "عرض بصيغة Markdown", source: "المصدر"}

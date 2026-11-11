@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:a13120151f8e
+source_rev: sha256:8b746fdcf33b
 nav_order: 0
 layout: examples
 title: コンポーネント
@@ -10,6 +10,7 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
+  - anchor
   - badge
   - badge-legend
   - kbd
@@ -76,6 +77,15 @@ sections:
 ## テキストとインライン
 
 本文のテキストと、段落の中の短い要素に使うスタイルです。
+
+## 見出しアンカー
+
+`status:available` `modootoday.heading_anchors: true` のとき、ドキュメントと投稿の `##` と `###` の見出しの末尾に、その見出し自身へのリンクが付き、読む人がセクションごとのアドレスをコピーできます。見出しにポインターを重ねるか、リンクにキーボードのフォーカスがあると表示され、タッチ画面では常に表示されます。このページの見出しにポインターを重ねて確かめてください。コンポーネントセクションの見出しはもとの動作のままで、スクリプトは使いません。
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## バッジ
 

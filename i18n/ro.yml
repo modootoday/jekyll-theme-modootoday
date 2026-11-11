@@ -8,6 +8,7 @@ status: {available: Disponibil, partial: Parțial, planned: Planificat}
 task: {done: Gata, open: De făcut}
 tabs: {label: Opțiuni}
 toc: {label: Pe această pagină}
+anchor: {label: "Link către secțiune: [name]"}
 theme: {toggle: Mod întunecat}
 sidebar: {label: "Documentație"}
 page_actions: {label: "Acțiuni pentru pagină", copy: "Copiază pagina", copy_ai: "Copiază pentru AI", view: "Vezi ca Markdown", source: "Sursă"}

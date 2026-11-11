@@ -9,6 +9,7 @@ status: {available: Available, partial: Partial, planned: Planned}
 task: {done: Done, open: Open}
 tabs: {label: Options}
 toc: {label: On this page}
+anchor: {label: "Link to section: [name]"}
 theme: {toggle: Dark mode}
 sidebar: {label: "Docs"}
 page_actions: {label: "Page actions", copy: "Copy page", copy_ai: "Copy for AI", view: "View as Markdown", source: "Source"}

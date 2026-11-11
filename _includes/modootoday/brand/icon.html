@@ -3,7 +3,7 @@
   {% include modootoday/brand/icon.html name="rss" label="Feed" %}  labelled: role="img" + aria-label
   size (default 18) sets width/height; colour is currentColor (stroke icons; "brand" is filled).
   Names: globe sun moon search menu copy check external prev next chevron-right chevron-down
-         note tip important warning caution info danger edit rss tag folder brand
+         note tip important warning caution info danger edit link rss tag folder brand
   prev, next, chevron-right and external mirror in right-to-left pages (class mt-icon-flip).
   Shadow this file to change or add icons.
 {%- endcomment -%}
@@ -28,6 +28,7 @@
 {%- when "warning" -%}<path d="M12 3 2 20h20ZM12 9v5M12 17h.01"/>
 {%- when "caution", "danger" -%}<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8ZM12 7.5v5M12 16h.01"/>
 {%- when "edit" -%}<path d="M4 20h4L19 9l-4-4L4 16ZM13.5 6.5l4 4"/>
+{%- when "link" -%}<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>
 {%- when "rss" -%}<path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14"/><circle cx="6" cy="18" r="1"/>
 {%- when "tag" -%}<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9Z"/><circle cx="7.5" cy="7.5" r="1.5"/>
 {%- when "folder" -%}<path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/>

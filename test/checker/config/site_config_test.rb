@@ -106,4 +106,18 @@ class CheckSiteConfigTest < CheckerCase
     assert_includes o, "external_links must be a map of new_window and icon"
     assert_includes o, "authors must be true or false"
   end
+
+  def test_heading_anchors_is_a_switch
+    page "_config.yml", "modootoday:\n  heading_anchors: true\n  components: [anchor, toc]\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+    page "_config.yml", "modootoday:\n  heading_anchors: true\n  components: [toc]\n"
+    o, code = check("--strict")
+    assert_equal 1, code
+    assert_includes o, "heading_anchors: true has no effect while modootoday.components leaves out anchor"
+    page "_config.yml", "modootoday:\n  heading_anchors: hover\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "heading_anchors must be true or false"
+  end
 end

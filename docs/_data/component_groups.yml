@@ -3,7 +3,7 @@
 # language-switcher, posts) are docs topics shown on the components pages. test/system/docs/order.rb checks it.
 - id: text
   title: {en: Text and inline, ko: 텍스트와 인라인, ja: テキストとインライン}
-  components: [badge, footnotes, kbd, lists, loading, progress, typography]
+  components: [anchor, badge, footnotes, kbd, lists, loading, progress, typography]
 - id: blocks
   title: {en: Blocks, ko: 블록, ja: ブロック}
   components: [callout, code, code-copy, filetree, quote, terminal]

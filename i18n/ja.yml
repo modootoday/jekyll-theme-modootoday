@@ -8,6 +8,7 @@ status: {available: 利用可能, partial: 一部実装, planned: 予定}
 task: {done: 完了, open: 未着手}
 tabs: {label: オプション}
 toc: {label: このページの内容}
+anchor: {label: "セクション「[name]」へのリンク"}
 theme: {toggle: ダークモード}
 sidebar: {label: "ドキュメント"}
 page_actions: {label: "ページの操作", copy: "ページをコピー", copy_ai: "AI 向けにコピー", view: "Markdown で表示", source: "出典"}

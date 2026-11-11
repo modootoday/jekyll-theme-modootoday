@@ -1,0 +1,26 @@
+{%- comment -%}
+md-components v1 — heading anchor links (modootoday.heading_anchors; the anchor sheet styles them). Prints include.html with a
+link to itself at the end of every h2 and h3 that has an id: <h2 id="x">Text<a class="mt-anchor" href="#x" aria-label>icon</a></h2>.
+Inside the heading, so sibling selectors (h2 + h3, h2:first-child) keep working; a link already in the heading closes first.
+markdown/sections.html runs it on the hero, plain sections and pages without sections; component sections keep their headings.
+{%- endcomment -%}
+{%- assign _akh = include.html -%}
+{%- if _akh contains "<h2 " or _akh contains "<h3 " -%}
+{%- capture _aki %}{% include modootoday/brand/icon.html name="link" size=16 %}{% endcapture -%}
+{%- for _akl in (2..3) -%}
+{%- assign _ako = "<h" | append: _akl | append: " " -%}{%- assign _akc = "</h" | append: _akl | append: ">" -%}
+{%- if _akh contains _ako -%}
+{%- assign _akp = _akh | split: _ako -%}
+{%- capture _akh -%}{{ _akp[0] }}{%- for _akx in _akp offset:1 -%}
+{%- assign _akt = _akx | split: ">" | first -%}{%- assign _akd = "" -%}
+{%- assign _aks = " " | append: _akt -%}{%- if _aks contains ' id="' -%}{%- assign _akd = _aks | split: ' id="' | last | split: '"' | first -%}{%- endif -%}
+{%- if _akd != "" and _akx contains _akc -%}
+{%- assign _akn = _akx | split: _akc | first | remove_first: _akt | remove_first: ">" | strip_html | normalize_whitespace | strip | replace: '"', "&quot;" -%}
+{%- capture _aka %}<a class="mt-anchor" href="#{{ _akd }}" aria-label="{{ mt_t_anchor_label | replace: "[name]", _akn }}">{{ _aki }}</a>{{ _akc }}{% endcapture -%}
+{{ _ako }}{{ _akx | replace_first: _akc, _aka }}
+{%- else -%}{{ _ako }}{{ _akx }}{%- endif -%}
+{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+{{- _akh -}}

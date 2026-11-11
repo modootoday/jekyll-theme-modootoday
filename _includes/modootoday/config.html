@@ -17,9 +17,10 @@ Jekyll 3.10 / GitHub Pages, so every default lives here (Liquid). Sets mt_* vari
   site.modootoday.sidebar       auto | true | false: doc-page sidebar from the nav (default auto: on when the nav has a group)
   site.modootoday.badges        false disables status badges (default true)
   site.modootoday.lists         {link_chips: true, titled_items: true}: optional list markup (markdown/lists.html, lists sheet)
+  site.modootoday.heading_anchors  true: a link at the end of each h2 and h3 of a doc or post (markdown/anchors.html, anchor sheet)
 {%- endcomment -%}
 {%- assign mt = site.modootoday -%}
-{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart,widget,showcase,install" | split: "," -%}
+{%- assign mt_all_components = "callout,badge,hero,cta,card,tabs,code-copy,nav,sidebar,page-actions,pagination,theme-toggle,breadcrumb,toc,accordion,steps,figure,timeline,kbd,search,code,footnotes,progress,embed,banner,filetree,details,faq,params,linkcards,quote,gallery,pricing,subscribe,split,loading,figure-svg,diagram,lists,reveal,bleed,terminal,visual,filter,table,table-stack,footer,chart,widget,showcase,install,anchor" | split: "," -%}
 {%- comment -%}Sass partials by context (components/<group>/_<name>.scss). Core: always in assets/css/modootoday.css.
   Section sheets: assets/css/modootoday/<group>/<name>.css, linked when a page's sections: use c (section rows of assets/registry.html).
   Context sheets: assets/css/modootoday/<name>.css, linked by layout front matter mt_sheets (doc; blog layouts also get assets/css/modootoday-blog.css).{%- endcomment -%}

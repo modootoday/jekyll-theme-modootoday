@@ -7,6 +7,7 @@ diagrams:
   - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "A static diagram: a committed light and dark SVG pair.", width: 818, height: 63}
 sections:
   - group-text
+  - anchor
   - badge
   - kbd
   - lists
@@ -64,6 +65,14 @@ Every component the theme ships, in every variant. The same file is readable on 
 ## Text and inline
 
 Styles for running text and for short marks inside a paragraph.
+
+## Heading anchors
+
+Each heading on this page ends with a link to itself; hover over one, or press Tab until it shows.
+
+### A heading one level down
+
+The `###` headings get the link too.
 
 ## Badges
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:4f87bbd91339
+source_rev: sha256:5374079e3798
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -41,7 +41,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - Markdown ルール: `mt-flat-list` は、その下のリスト項目の間隔をなくすための解除用クラスです。
 - レイアウト: `page` は、Jekyll と minima が使う名前で呼ぶ `doc` レイアウトです。
 - include: 自分のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` を指定可)を include できます。独自のロゴを描くには `modootoday/brand/logo.html` を上書きします。`modootoday/archive.html` は `by` と `lang` を受け取ります。`modootoday/t.html` は `key=` と、任意の `n=` / `name=` を受け取ります。
-- `modootoday/brand/icon.html` は `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, rss, tag, folder, brand)、任意の `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class` を受け取ります。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、方向のあるアイコンには `.mt-icon-flip` が付き、RTL で反転します。
+- `modootoday/brand/icon.html` は `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand)、任意の `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class` を受け取ります。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、方向のあるアイコンには `.mt-icon-flip` が付き、RTL で反転します。
 - モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照。
 - データファイル: `_data/i18n/<lang>.yml` のキーは、組み込みのカタログを上書きするときだけ書きます。`_data/navigation.yml` は `main` を読みます。
 - チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/figures/math-diagrams/#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
@@ -90,6 +90,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | 全幅の帯 | `section.mt-hero` または `section.mt-section` の `.mt-bleed`、`.mt-bleed-wide` | — | `--mt-bleed-bg` で帯の色を指定 |
 | イラスト | `figure.mt-illustration[role=img][aria-label]` | `.mt-illustration-tag` | — |
 | リストスタイル | `ul.mt-chips`、`li > strong.mt-item-title + span.mt-item-sep` | `li > a` のチップ、タイトルと区切り | — |
+| 見出しアンカー | `h2[id]` か `h3[id]` の最後の子になる `a.mt-anchor` | `svg.mt-icon-link[aria-hidden=true]` | 見出しの `:hover`、`:focus-visible`、`pointer: coarse` で表示 |
 | 本文 (`sections:` なし) | `div.mt-prose` | 描画された本文 | — |
 | カードグリッド | `section.mt-section` | `ul > li`、先頭の `strong` がタイトル | `.mt-cols-2`, `.mt-cols-3`, `.mt-cols-4`, `.mt-badge-bottom` (`c: features`) |
 | タブ | `section.mt-c-tabs[data-tabs]` | `[role=tablist]`、`[role=tab]`、`[role=tabpanel]` | `[aria-selected]` |
@@ -138,6 +139,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - 全幅の帯: front matter の `bleed: true` または `bleed: wide` で有効にします。サイドバーや目次があるレイアウトでは、帯は本文の列の中に収まります。`bleed` シートを使います。
 - イラスト: サイトで用意する include です。タグは絵の上の開始側に置くバッジです。`role=img` の子要素は読み上げられないので、タグの文字も `aria-label` に入れてください。
 - リストスタイル: `modootoday.lists` を有効にすると使われます。チップは高さ 44px で、テキストの後に → が付きます。区切りは `: ` です。
+- 見出しアンカー: `modootoday.heading_anchors: true` のとき、ヒーロー、通常のセクション、`sections:` のないページに付きます。名前は `anchor.label` ラベルに見出しのテキストを入れたもので、押せる範囲は 24px 以上の正方形です。`anchor` シートを使います。
 - タブ: タブの部分は JS が作ります。JS がなければ `h3` とコードブロックがそのまま残ります。
 - ファイルツリー: 入れ子の `ul` がある項目がフォルダーです。
 - 表: `div.mt-table` は描画時に本文のすべての表を包み、スクロールでき、はみ出すとラベル付きの領域になります。本文ではクラスを付けません。3 つのクラスは、サイトが自分で書くレイアウトや include の表のためのフックです（本文の kramdown の属性リストは移植できず、`modootoday-check` が報告します）。`c: params` の表と、40rem より狭いときに収まらない表は `--stack` になります。スクリプトが積み重ねた表にラベルを付けると `[data-mt-labelled]` と `td[data-label]` が付きます。スタイルは `table`・`table-stack` シートにあります。

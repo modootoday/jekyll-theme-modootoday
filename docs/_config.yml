@@ -14,6 +14,7 @@ permalink: pretty
 exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
   lists: {link_chips: true, titled_items: true}
+  heading_anchors: true
   og_image: /assets/images/site/og.jpg
   nav: main
   # Front-matter-less pages are their own twins; other pages keep stubs.
