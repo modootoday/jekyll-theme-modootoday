@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/pwa/
-source_rev: sha256:95667f1a9d6d
+source_rev: sha256:d8e630dab38b
 nav_order: 29
 title: 설치할 수 있는 사이트
 description: 이미 있는 사이트 설정으로 만든 웹 앱 매니페스트와 선택해서 켜는 서비스 워커로 브라우저가 사이트를 앱처럼 설치하고 오프라인에서도 읽을 수 있게 하는 방법을 설명합니다.
@@ -54,6 +54,7 @@ modootoday-stubs . --pwa --write   # 아래 파일 쓰기
 | `theme_color` | `modootoday.theme_color`, 브라우저 막대 태그와 같은 색: 라이트 값, `color_scheme: dark`면 다크 값. `theme_color: false`면 넣지 않습니다. |
 | `background_color` | `pwa.background_color`(16진수 색), 없으면 페이지 배경: `#ffffff`, `color_scheme: dark`면 `#0a0a0a` |
 | `icons` | `pwa.icons`: `brand`(기본값) 또는 직접 지정한 목록 |
+| `shortcuts`, `screenshots` | `pwa.shortcuts`와 `pwa.screenshots`. 목록을 적었을 때만 들어갑니다(아래 참고). |
 
 ## 아이콘
 
@@ -75,6 +76,26 @@ modootoday:
 - `favicon`이 `brand`가 아닌데 `icons`를 정하지 않으면, 앱에 테마 마크가 보인다는 경고가 나옵니다. `icons:`에 직접 만든 아이콘을 넣거나, 그대로 쓰려면 `icons: brand`를 적으세요.
 
 Apple 터치 아이콘은 이전처럼 `favicon`에서 옵니다. Safari 16.4 이상도 매니페스트를 읽습니다.
+
+## 바로 가기와 스크린샷
+
+선택 목록 두 개로 앱에 보여 줄 것을 더할 수 있습니다. 목록을 적기 전에는 둘 다 매니페스트에 들어가지 않습니다.
+
+```yaml
+modootoday:
+  pwa:
+    enabled: true
+    shortcuts:
+      - {name: 가이드, url: /guides/}
+      - {name: API 레퍼런스, short_name: API, description: 모든 키와 파일, url: /reference/api/}
+    screenshots:
+      - {src: /assets/screens/home-wide.png, sizes: 1280x720, form_factor: wide, label: 홈 페이지}
+      - {src: /assets/screens/home-phone.png, sizes: 390x844, form_factor: narrow, label: 휴대폰에서 본 홈 페이지}
+```
+
+- `shortcuts`는 앱 아이콘 메뉴의 항목입니다(Android에서는 길게 누르기, 데스크톱에서는 오른쪽 클릭). 항목마다 `name`과 `url`이 있고, `url`은 쿼리 문자열이 없는 사이트의 페이지입니다. `short_name`과 `description`은 선택입니다. 아이콘은 앱 아이콘을 씁니다.
+- `screenshots`는 Chrome과 Edge의 설치 대화상자에 나옵니다. 항목마다 사이트의 PNG 파일과 그 `sizes`를 적습니다. `form_factor: wide`는 데스크톱 대화상자용, `narrow`는 휴대폰용이고, `label`은 스크린 리더를 위해 그림을 설명합니다. 한 변이 320px보다 작거나 3840px보다 크거나 한 변이 다른 변의 2.3배를 넘는 그림은 브라우저가 건너뛰고, 데스크톱 대화상자는 `wide` 그림이 하나라도 있어야 그림을 보여 줍니다. `modootoday-check`는 두 경우 모두 경고합니다.
+- 바로 가기의 페이지나 스크린샷이 빌드에 없거나 스크린샷의 실제 크기가 `sizes`와 다르면 `modootoday-check`가 실패합니다.
 
 ## 설치할 수 있는지 확인하기
 

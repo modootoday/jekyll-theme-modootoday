@@ -67,4 +67,36 @@ class CheckPwaConfigTest < CheckerCase
     page "_config.yml", "modootoday:\n  pwa: {enabled: true}\n"
     assert_includes check[0], "modootoday.pwa: no name (set modootoday.pwa.name or the site title)"
   end
+
+  def test_shortcuts_and_screenshots
+    config "shortcuts:\n  - {name: Guides, short_name: Guides, description: All guides., url: /guides/}\n" \
+           "screenshots:\n  - {src: /s/wide.png, sizes: 1280x720, form_factor: wide, label: The home page}\n  - {src: /s/phone.png, sizes: 390x844}\n"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+    config "shortcuts: /guides/\nscreenshots: []\n"
+    o, = check
+    assert_includes o, "modootoday.pwa.shortcuts must be a list of {name, short_name, description, url}"
+    assert_includes o, "modootoday.pwa.screenshots must be a list of {src, sizes, form_factor, label}"
+    config "shortcuts:\n  - {url: '/guides/?utm=1', icon: x}\n  - Guides\n" \
+           "screenshots:\n  - {src: /s/a.jpg, sizes: 1280, form_factor: tablet, label: ''}\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "modootoday.pwa.shortcuts[0]: unknown key icon"
+    assert_includes o, "modootoday.pwa.shortcuts[0].name must be text"
+    assert_includes o, "modootoday.pwa.shortcuts[0].url must be a site path without a query or fragment"
+    assert_includes o, "modootoday.pwa.shortcuts[1] must be a map with name and url"
+    assert_includes o, "modootoday.pwa.screenshots[0].src must be a site path to a .png file"
+    assert_includes o, "modootoday.pwa.screenshots[0].sizes must be one size such as 1280x720 (got 1280)"
+    assert_includes o, "modootoday.pwa.screenshots[0].form_factor must be wide or narrow (got \"tablet\")"
+    assert_includes o, "modootoday.pwa.screenshots[0].label must be text"
+  end
+
+  def test_screenshot_warnings
+    config "screenshots:\n  - {src: /s/a.png, sizes: 3000x1000}\n  - {src: /s/b.png, sizes: 200x400}\n"
+    o, code = check
+    assert_equal 0, code, o
+    assert_includes o, "modootoday.pwa.screenshots[0]: browsers skip 3000x1000 (each side 320-3840 px, at most 2.3:1)"
+    assert_includes o, "modootoday.pwa.screenshots[1]: browsers skip 200x400"
+    assert_includes o, "modootoday.pwa.screenshots: none has form_factor: wide, so desktop browsers show the plain install dialog"
+  end
 end

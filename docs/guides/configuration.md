@@ -53,7 +53,7 @@ modootoday:
 | `feed` | `false` | `true` links `/feed.xml`. Add `jekyll-feed` to `plugins`. |
 | `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
 | `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
-| `pwa` | off | `enabled: true` links a web app manifest built from the site title, `theme_color` and the brand mark, so browsers can install the site, and registers a service worker for offline reading; `precache:` lists more site paths to keep (a page can add itself with front matter `pwa: precache`). `enabled: kill` ships a worker that removes itself. See [Installable site](../../recipes/pwa/). |
+| `pwa` | off | `enabled: true` links a web app manifest built from the site title, `theme_color` and the brand mark, so browsers can install the site, and registers a service worker for offline reading; `precache:` lists more site paths to keep (a page can add itself with front matter `pwa: precache`); `shortcuts:` and `screenshots:` add the app icon's menu and the install dialog's pictures. `enabled: kill` ships a worker that removes itself. See [Installable site](../../recipes/pwa/). |
 | `header` | `{compact_title: true}` | `compact_title: false` keeps the site name beside the logo on phones. |
 | `csp` | none | `strict` loads the early theme script from a file instead of inline. |
 | `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |

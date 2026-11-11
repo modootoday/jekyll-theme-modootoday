@@ -65,4 +65,17 @@ class PwaManifestTest < Minitest::Test
                   { "src" => "/i/m.png", "sizes" => "512x512", "type" => "image/png", "purpose" => "maskable" }], m["icons"]
     assert_includes html(custom), "<html lang=\"ar\" dir=\"rtl\""
   end
+
+  def test_shortcuts_and_screenshots_only_when_listed
+    refute json(on).key?("shortcuts")
+    refute json(on).key?("screenshots")
+    m = json(self.class.site(:lists, "baseurl: /docs\nmodootoday:\n  pwa:\n    enabled: true\n    shortcuts:\n" \
+                                     "      - {name: Guides, url: /guides/}\n      - {name: \"API \\\"v2\\\"\", short_name: API, description: The API., url: /api/}\n" \
+                                     "    screenshots:\n      - {src: /s/wide.png, sizes: 1280x720, form_factor: wide, label: Home}\n      - {src: /s/phone.png, sizes: 390x844}\n"))
+    assert_equal %w[shortcuts screenshots icons], m.keys.last(3)
+    assert_equal [{ "name" => "Guides", "url" => "/docs/guides/" },
+                  { "name" => "API \"v2\"", "short_name" => "API", "description" => "The API.", "url" => "/docs/api/" }], m["shortcuts"]
+    assert_equal [{ "src" => "/docs/s/wide.png", "sizes" => "1280x720", "type" => "image/png", "form_factor" => "wide", "label" => "Home" },
+                  { "src" => "/docs/s/phone.png", "sizes" => "390x844", "type" => "image/png" }], m["screenshots"]
+  end
 end

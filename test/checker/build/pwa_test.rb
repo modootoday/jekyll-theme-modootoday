@@ -142,4 +142,20 @@ class CheckPwaBuildTest < CheckerCase
     o, code = check("--strict")
     assert_equal 0, code, o
   end
+
+  def test_shortcuts_and_screenshots_exist
+    shots = [{ "src" => "/docs/s/wide.png", "sizes" => "1280x720" }, { "src" => "/docs/s/none.png", "sizes" => "390x844" },
+             { "src" => "/docs/s/wide.png", "sizes" => "1280x800" }]
+    cuts = [{ "name" => "Home", "url" => "/docs/" }, { "name" => "Gone", "url" => "/docs/gone/" }, { "name" => "Out", "url" => "/other/" }]
+    site(manifest("screenshots" => shots, "shortcuts" => cuts))
+    out "s/wide.png", png(1280, 720)
+    o, code = check
+    assert_equal 1, code
+    assert_equal 1, o.scan("screenshot /docs/s/wide.png").size, "the first entry matches its file"
+    assert_includes o, "screenshot \"/docs/s/none.png\" is not in the build"
+    assert_includes o, "screenshot /docs/s/wide.png is 1280x720, not 1280x800"
+    refute_includes o, "shortcut \"/docs/\""
+    assert_includes o, "shortcut /docs/gone/ is not in the build"
+    assert_includes o, "shortcut \"/other/\" is outside the scope /docs/"
+  end
 end

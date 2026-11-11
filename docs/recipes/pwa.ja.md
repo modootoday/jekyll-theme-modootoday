@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/pwa/
-source_rev: sha256:95667f1a9d6d
+source_rev: sha256:d8e630dab38b
 nav_order: 29
 title: インストールできるサイト
 description: すでにある設定から作るウェブアプリマニフェストと、選んでオンにするサービスワーカーで、ブラウザーがサイトをアプリとしてインストールし、オフラインでも読めるようにする方法を説明します。
@@ -54,6 +54,7 @@ modootoday-stubs . --pwa --write   # 下のファイルを書き出す
 | `theme_color` | `modootoday.theme_color`。ブラウザーのバーのタグと同じ色で、ライトの値、`color_scheme: dark` ではダークの値。`theme_color: false` では入りません。 |
 | `background_color` | `pwa.background_color`(16 進数の色)、なければページの背景: `#ffffff`、`color_scheme: dark` では `#0a0a0a` |
 | `icons` | `pwa.icons`: `brand`(既定)または独自のリスト |
+| `shortcuts`、`screenshots` | `pwa.shortcuts` と `pwa.screenshots`。リストを書いたときだけ入ります(下記参照)。 |
 
 ## アイコン
 
@@ -75,6 +76,26 @@ modootoday:
 - `favicon` が `brand` でないのに `icons` を設定しないと、アプリにテーマのマークが表示されるという警告が出ます。`icons:` に独自のアイコンを書くか、そのまま使うなら `icons: brand` と書きます。
 
 Apple のタッチアイコンは以前と同じく `favicon` から来ます。Safari 16.4 以降もマニフェストを読みます。
+
+## ショートカットとスクリーンショット
+
+任意のリストを 2 つ書くと、アプリが見せるものを増やせます。リストを書くまで、どちらもマニフェストには入りません。
+
+```yaml
+modootoday:
+  pwa:
+    enabled: true
+    shortcuts:
+      - {name: ガイド, url: /guides/}
+      - {name: API リファレンス, short_name: API, description: すべてのキーとファイル, url: /reference/api/}
+    screenshots:
+      - {src: /assets/screens/home-wide.png, sizes: 1280x720, form_factor: wide, label: ホームページ}
+      - {src: /assets/screens/home-phone.png, sizes: 390x844, form_factor: narrow, label: スマートフォンで見たホームページ}
+```
+
+- `shortcuts` はアプリアイコンのメニューの項目です（Android では長押し、デスクトップでは右クリック）。各項目に `name` と `url` があり、`url` はクエリー文字列のないサイトのページです。`short_name` と `description` は任意です。アイコンはアプリのアイコンを使います。
+- `screenshots` は Chrome と Edge のインストールダイアログに表示されます。各項目にサイトの PNG ファイルとその `sizes` を書きます。`form_factor: wide` はデスクトップのダイアログ用、`narrow` はスマートフォン用で、`label` はスクリーンリーダーのために画像を説明します。一辺が 320px 未満か 3840px を超える画像、一辺がもう一辺の 2.3 倍を超える画像はブラウザーが飛ばし、デスクトップのダイアログは `wide` の画像が 1 つ以上あるときだけ画像を表示します。`modootoday-check` はどちらも警告します。
+- ショートカットのページやスクリーンショットがビルドにない場合、またはスクリーンショットの実際のサイズが `sizes` と違う場合、`modootoday-check` は失敗します。
 
 ## インストールできるか確認する
 

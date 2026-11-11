@@ -3,6 +3,7 @@ Web app manifest, rendered by the site's manifest.webmanifest stub (modootoday-s
 the site already has: name, short_name and description (modootoday.pwa, else site.title and site.description), lang and dir
 of the default language, theme_color as the theme-color tag (the light one; dark with color_scheme: dark; none with
 theme_color: false), the brand icons or modootoday.pwa.icons. scope is the site root; start_url (no query) is also the id.
+shortcuts and screenshots appear only when modootoday.pwa lists them.
 {%- endcomment -%}
 {%- include modootoday/config.html -%}
 {%- assign _pw = site.modootoday.pwa -%}{%- assign _pwl = site.lang | default: "en" -%}
@@ -27,6 +28,20 @@ theme_color: false), the brand icons or modootoday.pwa.icons. scope is the site 
   "background_color": {{ _pw.background_color | default: _pwbg | jsonify }},
 {%- if _pwtc %}
   "theme_color": {{ _pwtc | jsonify }},
+{%- endif -%}
+{%- if _pw.shortcuts.first %}
+  "shortcuts": [
+{%- for _s in _pw.shortcuts %}
+    {"name": {{ _s.name | jsonify }}{% if _s.short_name %}, "short_name": {{ _s.short_name | jsonify }}{% endif %}{% if _s.description %}, "description": {{ _s.description | jsonify }}{% endif %}, "url": {{ _s.url | relative_url | jsonify }}}{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ],
+{%- endif -%}
+{%- if _pw.screenshots.first %}
+  "screenshots": [
+{%- for _s in _pw.screenshots %}
+    {"src": {{ _s.src | relative_url | jsonify }}, "sizes": {{ _s.sizes | jsonify }}, "type": "image/png"{% if _s.form_factor %}, "form_factor": {{ _s.form_factor | jsonify }}{% endif %}{% if _s.label %}, "label": {{ _s.label | jsonify }}{% endif %}}{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ],
 {%- endif %}
   "icons": [
 {%- if _pw.icons == nil or _pw.icons == "brand" -%}

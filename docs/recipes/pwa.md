@@ -48,6 +48,7 @@ The writer never deletes these files and never overwrites a file of your own at 
 | `theme_color` | `modootoday.theme_color`, the same color as the browser bar tag: the light value, or the dark one with `color_scheme: dark`. With `theme_color: false` the manifest has none. |
 | `background_color` | `pwa.background_color` (a hex color), else the page background: `#ffffff`, or `#0a0a0a` with `color_scheme: dark` |
 | `icons` | `pwa.icons`: `brand` (default) or your own list |
+| `shortcuts`, `screenshots` | `pwa.shortcuts` and `pwa.screenshots`, only when you list them (see below) |
 
 ## Icons
 
@@ -69,6 +70,26 @@ modootoday:
 - When `favicon` is not `brand` and `icons` is not set, the check warns that the app shows the theme's mark. Set `icons:` to your own, or `icons: brand` to keep it.
 
 The Apple touch icon comes from `favicon`, as before. Safari 16.4 and later read the manifest too.
+
+## Shortcuts and screenshots
+
+Two optional lists give the app more to show. Neither is in the manifest until you list it.
+
+```yaml
+modootoday:
+  pwa:
+    enabled: true
+    shortcuts:
+      - {name: Guides, url: /guides/}
+      - {name: API reference, short_name: API, description: Every key and file, url: /reference/api/}
+    screenshots:
+      - {src: /assets/screens/home-wide.png, sizes: 1280x720, form_factor: wide, label: The home page}
+      - {src: /assets/screens/home-phone.png, sizes: 390x844, form_factor: narrow, label: The home page on a phone}
+```
+
+- `shortcuts` are the entries of the app icon's menu (a long press on Android, a right click on the desktop). Each has a `name` and a `url`, a page of your site without a query string, with `short_name` and `description` optional. They use the app icon.
+- `screenshots` appear in the install dialog of Chrome and Edge. Each is a PNG file on your site with its `sizes`; `form_factor: wide` is for desktop dialogs and `narrow` for phones, and `label` describes the picture for screen readers. Browsers skip a picture with a side under 320 or over 3840 px or one side over 2.3 times the other, and desktop dialogs show pictures only when one is `wide`; `modootoday-check` warns about both.
+- `modootoday-check` fails when a shortcut's page or a screenshot is not in the build, or a screenshot's real size differs from `sizes`.
 
 ## Check that browsers can install it
 
