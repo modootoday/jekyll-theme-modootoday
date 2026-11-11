@@ -25,6 +25,8 @@
 {%- include modootoday/theme-color.html %}
 {%- include modootoday/head-meta.html %}
 {%- include modootoday/stylesheets.html %}
+{%- comment -%}With cached sheets a slow page would paint a half-parsed header; Chromium holds the first frame until main starts.{%- endcomment %}
+<link rel="expect" href="#mt-main" blocking="render">
 {%- include modootoday/tokens.html %}
 {%- include modootoday/doc/twin.html -%}
 {%- if mt_twin %}
@@ -37,8 +39,10 @@
 <link rel="describedby" type="text/plain" href="{{ _ll | relative_url }}">
 {%- endif %}
 {%- include head-custom.html %}
+{%- comment -%}mt-body-sidebar: a layout with mt_sidebar (doc) on a site with a sidebar widens the shell. It sits on body, before
+the header, so the header has its width in the first frame even when the HTML streams in slowly.{%- endcomment %}
 </head>
-<body class="mt-body"{% unless site.modootoday.external_links.icon == false %} data-mt-nw-icon{% endunless %}>
+<body class="mt-body{% if layout.mt_sidebar and mt_sidebar %} mt-body-sidebar{% endif %}"{% unless site.modootoday.external_links.icon == false %} data-mt-nw-icon{% endunless %}>
 <a class="mt-skip" href="#{% if content contains 'id="mt-content"' %}mt-content{% else %}mt-main{% endif %}">{{ mt_t_skip }}</a>
 {%- if mt_showcase %}
 {% include modootoday/chrome/showcase.html %}

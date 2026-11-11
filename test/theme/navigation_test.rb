@@ -44,6 +44,13 @@ class NavigationTest < Minitest::Test
     assert_match(%r{<details class="mt-sidebar-mobile"><summary>Guides</summary>}, h)
   end
 
+  def test_first_frame_waits_for_main_and_has_the_sidebar_width
+    head, body = self.class.site.call("two").split("</head>", 2)
+    assert_includes head, '<link rel="expect" href="#mt-main" blocking="render">'
+    assert_includes body, '<main id="mt-main"'
+    assert_operator body.index('<body class="mt-body mt-body-sidebar"'), :<, body.index("<header")
+  end
+
   def test_sidebar_collapses_other_groups_and_nests_sub_items
     nested = "- {title: Start, url: /start/}\n- title: Guides\n  items:\n    - {title: One, url: /one/}\n- title: Ref\n  items:\n" \
              "    - title: Two\n      url: /two/\n      items:\n        - {title: End, url: /end/}\n"
@@ -57,6 +64,7 @@ class NavigationTest < Minitest::Test
     flat = "- {title: Start, url: /start/}\n- {title: One, url: /one/}\n"
     refute_includes self.class.site("", flat).call("one"), "mt-sidebar"
     refute_includes self.class.site("modootoday: {sidebar: false}\n").call("one"), "mt-sidebar"
+    refute_includes self.class.site("modootoday: {sidebar: false}\n").call("one"), "mt-body-sidebar"
     assert_includes self.class.site("modootoday: {sidebar: true}\n", flat).call("one"), "mt-doc-nav"
   end
 

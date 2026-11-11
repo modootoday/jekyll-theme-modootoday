@@ -35,6 +35,8 @@ The theme sends a page only the CSS and JavaScript it uses, and gives every them
 
 Theme scripts are ES modules (`<script type="module">`): like `defer`, they run after the page is parsed, in order, and do not block the first paint. A module's imports get a `<link rel="modulepreload">`, so they download with it instead of one after another. The one classic script is the small pre-paint theme script that `csp: strict` loads from a file (`chrome/theme-init.js`), because it must run before the first paint. `modootoday.css: bundle` folds every sheet into the core sheet instead (only the PWA notice keeps its own sheet, loaded when it shows); see [Configuration](../configuration/). With `modootoday.pwa`, the service worker loads `pwa/worker.js` once and keeps it with the theme files; no page loads it (see [Installable site](../../recipes/pwa/#offline-reading)).
 
+When the stylesheets are already cached and the page itself arrives slowly, a browser can paint before the header has been read. Every page carries `<link rel="expect" href="#mt-main" blocking="render">`, so Chromium waits for the start of `main` (the header is complete by then) before its first frame; other browsers ignore it. A doc page with a sidebar also gets its width from a `body` class, not from markup further down.
+
 ## Versioned asset URLs
 
 Every theme stylesheet and script URL ends in `?v=` and the theme version, such as `modootoday.css?v=X.Y.Z`. GitHub Pages ignores the query and serves the same file; a CDN keys its cache on it, so a new theme release reaches visitors at once even when the files are cached for a year.

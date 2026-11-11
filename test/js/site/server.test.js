@@ -1,5 +1,6 @@
 // Tests for test/system/site/server.mjs: sites by base path on one origin, swapped while serving, the manifest type, the
-// CSP header on HTML only, and the offline switch that fails every request at the socket. Run: npm test
+// CSP header on HTML only, the cache header on everything else, and the offline switch that fails every request at the
+// socket. Run: npm test
 const test = require("node:test");
 const assert = require("node:assert");
 const fs = require("node:fs");
@@ -25,7 +26,7 @@ const get = (url) => new Promise((resolve, reject) => {
   http.get(url, { agent }, (res) => {
     let body = "";
     res.on("data", (c) => (body += c));
-    res.on("end", () => resolve({ status: res.statusCode, type: res.headers["content-type"], csp: res.headers["content-security-policy"], body }));
+    res.on("end", () => resolve({ status: res.statusCode, type: res.headers["content-type"], csp: res.headers["content-security-policy"], cache: res.headers["cache-control"], body }));
   }).on("error", reject);
 });
 
@@ -74,6 +75,17 @@ test("serveSite keeps its single-site form at the Pages baseurl", async () => {
     assert.ok(origin.endsWith(`${BASE}/`));
     assert.strictEqual((await get(origin)).body, "docs");
     assert.strictEqual((await get(origin.replace(BASE, "/other"))).status, 404);
+  } finally {
+    close();
+  }
+});
+
+test("the cache option sets Cache-Control on every file but HTML", async () => {
+  const { serveSite } = await load();
+  const { origin, close } = await serveSite(site({ "index.html": "docs", "assets/a.css": "a{}" }), { cache: "max-age=600" });
+  try {
+    assert.strictEqual((await get(origin)).cache, undefined);
+    assert.strictEqual((await get(`${origin}assets/a.css?v=1`)).cache, "max-age=600");
   } finally {
     close();
   }

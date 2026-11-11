@@ -23,7 +23,8 @@ const out = path.resolve(process.argv[3] || "qa-out");
 const langs = langsOf(site);
 const fails = [];
 const warns = [];
-const { origin, close } = await serveSite(site);
+// Theme files are cacheable as on GitHub Pages; the first-paint check needs that for its warm case.
+const { origin, close } = await serveSite(site, { cache: "max-age=600" });
 const report = { origin, redirects: checkRedirects(site, fails), sizes: checkBudgets(site, fails, warns), contrast: [], axe: [], shots: 0, http: [] };
 
 const browser = await chromium.launch();
@@ -48,7 +49,7 @@ await Promise.all(ctxs.flatMap((ctx) => Array.from({ length: JOBS }, async () =>
 })));
 for (const ctx of ctxs) await ctx.close();
 report.parts = await checkParts(browser, origin, langs, fails);
-await checkFirstPaint(browser, origin, fails);
+report.firstPaint = await checkFirstPaint(browser, origin, fails);
 report.keyboard = await checkKeyboard(browser, origin, fails);
 report.mobile = (await checkMobile(browser, origin, out, fails)).length;
 report.csp = await checkCsp(browser, site, fails);

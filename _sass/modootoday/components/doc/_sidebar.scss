@@ -27,7 +27,9 @@
   .mt-sidebar-mobile { margin: 0 0 1rem; border: 1px solid mt(border); border-radius: mt(radius); background: mt(muted); font-size: .875rem; }
   .mt-sidebar-mobile > summary { cursor: pointer; padding: .55rem .85rem; font-weight: 600; }
   .mt-sidebar-mobile > .mt-sidebar { padding: 0 .5rem .6rem; max-height: 60vh; overflow-y: auto; }
-  // A page with a sidebar widens header, main and footer to doc-container.
+  // A page with a sidebar widens header, main and footer to doc-container. The class is on body (layouts/default.html),
+  // so the header is wide in the first frame while the HTML still streams; :has() keeps overridden default layouts wide.
+  .mt-body.mt-body-sidebar :is(.mt-header-inner,.mt-main,.mt-footer-inner) { max-width: mt-hook(doc-container); }
   .mt-body:has(.mt-has-sidebar) :is(.mt-header-inner,.mt-main,.mt-footer-inner) { max-width: mt-hook(doc-container); }
   @media (min-width: 64rem) {
     .mt-sidebar-mobile, .mt-has-sidebar .mt-doc-aside { display: none; }

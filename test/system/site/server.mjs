@@ -13,10 +13,10 @@ export function siteFor(sites, u) {
   return base === undefined ? null : { base, dir: sites[base] };
 }
 
-// sites: base path => built site folder, changeable with set(). csp: a Content-Security-Policy header for HTML; port: fixed
-// for a tunnel (default: any free one). offline(true) destroys every socket, open or new: a service worker's fetch gets a
-// network error, which a browser's own offline mode may not give it.
-export async function serveSites(sites, { csp, port = 0 } = {}) {
+// sites: base path => built site folder, changeable with set(). csp: a Content-Security-Policy header for HTML; cache: a
+// Cache-Control header for every other file (GitHub Pages sends max-age=600); port: fixed for a tunnel (default: any
+// free one). offline(true) destroys every socket, open or new: a service worker's fetch gets a network error.
+export async function serveSites(sites, { csp, cache, port = 0 } = {}) {
   const map = { ...sites };
   const sockets = new Set();
   let down = false;
@@ -41,6 +41,9 @@ export async function serveSites(sites, { csp, port = 0 } = {}) {
     const headers = { "content-type": TYPES[path.extname(f)] || "application/octet-stream" };
     if (csp && path.extname(f) === ".html") {
       headers["content-security-policy"] = csp;
+    }
+    if (cache && path.extname(f) !== ".html") {
+      headers["cache-control"] = cache;
     }
     res.writeHead(200, headers);
     fs.createReadStream(f).pipe(res);
@@ -75,7 +78,7 @@ export async function serveSites(sites, { csp, port = 0 } = {}) {
 
 // Returns { origin, close } where origin ends with base + "/". base: the site's baseurl (a starter demo's is its
 // repository name).
-export async function serveSite(site, { csp, base = BASE } = {}) {
-  const s = await serveSites({ [base]: site }, { csp });
+export async function serveSite(site, { csp, cache, base = BASE } = {}) {
+  const s = await serveSites({ [base]: site }, { csp, cache });
   return { origin: s.url(base), close: s.close };
 }
