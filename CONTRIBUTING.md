@@ -214,7 +214,7 @@ Where things live:
 | `test/system/audit.mjs`, `test/system/audit/` | screenshots, axe, contrast, size budgets (`budgets/`: registry rows, per-file caps, page types in gzip), keyboard flows (`keyboard/`), registry parts, strict CSP, the PWA flows (`features/pwa/`, see PWA checks above) (`npm run qa`) |
 | `test/system/visual/` | visual regression (`npm run qa:visual`) |
 | `test/system/lighthouse/` | Lighthouse runs and budget |
-| `test/system/docs/` | docs structure, link check, kitchen-sink coverage, component order, component examples, the docs consistency rules (`rules.rb`, one file per rule in `rules/`) and the docs-to-registry doctests (`registries.rb`); each script runs on its own |
+| `test/system/docs/` | docs structure, link check (the scan of `modootoday-check --links` in `lib/modootoday/check/build/links.rb`, plus the brand-link rule), kitchen-sink coverage, component order, component examples, the docs consistency rules (`rules.rb`, one file per rule in `rules/`) and the docs-to-registry doctests (`registries.rb`); each script runs on its own |
 | `test/system/css/` | per-partial CSS sizes |
 | `test/system/bench/` | the records benchmark: a synthetic site of N records (`fixture.rb`) built with the GitHub Pages builder image (`records.rb`, Docker); CI fails over 300 s for 1,000 records |
 

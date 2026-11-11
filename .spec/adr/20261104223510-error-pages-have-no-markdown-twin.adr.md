@@ -3,9 +3,9 @@ id: adr:modootoday/20261104223510
 title: Error pages have no Markdown twin
 status: active
 created: 2026-11-04T22:35:10Z
-updated: 2026-11-04T22:35:43Z
+updated: 2026-11-11T23:17:08Z
 rel:
-  governs: [lib/modootoday/stubs/page.rb, lib/modootoday/check/build/twins.rb]
+  governs: [lib/modootoday/stubs/page.rb, lib/modootoday/check/build/stubs/twins.rb]
 ---
 
 # Error pages have no Markdown twin

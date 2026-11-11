@@ -25,6 +25,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - Starter sites rebuild when a release is published, so release data from site.github is current; a weekly rebuild can be turned on in their pages.yml. (adr:modootoday/20261111011655)
 - Heading anchor links: with `modootoday.heading_anchors: true` each `##` and `###` heading of a doc or post ends with a link to itself, shown on hover and focus and always on touch screens; no script. (adr:modootoday/20261111115521, adr:modootoday/20261109141321)
 - Diagrams: a `diagrams:` entry takes `min_width` (24, 32, 40 or 48 rem), below which the figure scrolls sideways instead of shrinking; a translated page can list its own SVG pair drawn from a fence in its language. (adr:modootoday/20261111192610, adr:modootoday/20261109141321)
+- `modootoday-check --links` reports same-site links to missing pages and `#` links to missing anchors in the built site. (adr:modootoday/20261111231457, adr:modootoday/20261109141321)
 
 ### Changed
 
