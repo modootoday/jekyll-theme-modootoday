@@ -1,6 +1,8 @@
 // First paint: click the header logo (full load of the home page) on a throttled network and record screencast
 // frames. The first frame of the new page must match the settled page (no late header items, no scheme flip),
 // body background must never change, and CLS must stay under 0.02. Runs for each scheme and a stored "dark" choice.
+// Service workers are blocked: the throttle and the script hold reach only the page's own requests, so a worker serving
+// cached theme files would measure a warm cache instead (features/pwa/ covers the worker).
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 export const FIRST_PAINT_MAX_CLS = 0.02;
@@ -18,7 +20,7 @@ function probe() {
 }
 
 async function run(browser, origin, scheme, stored, viewport, fails) {
-  const ctx = await browser.newContext({ colorScheme: scheme, viewport: { width: viewport.width, height: viewport.height } });
+  const ctx = await browser.newContext({ colorScheme: scheme, viewport: { width: viewport.width, height: viewport.height }, serviceWorkers: "block" });
   const page = await ctx.newPage(), cdp = await ctx.newCDPSession(page);
   const tag = `${scheme}${stored ? "+stored " + stored : ""} ${viewport.width}x${viewport.height}`;
   if (stored) await page.addInitScript((t) => { try { localStorage.setItem("mt-theme", t); } catch (e) {} }, stored);
@@ -43,8 +45,9 @@ async function run(browser, origin, scheme, stored, viewport, fails) {
     if (n > 50) fails.push(`first paint: header changed after first paint (${n} px) after logo click (${tag})`);
   }
   if (viewport.anchor) {
-    // Hold scripts back so the page paints first, as on a slow phone; any regroup by JS then shows up as CLS.
-    await page.route(/\.js$/, async (r) => { await new Promise((t) => setTimeout(t, 800)); await r.continue(); });
+    // Hold scripts back (theme URLs end in ?v=) so the page paints first, as on a slow phone; any regroup by JS then
+    // shows up as CLS.
+    await page.route(/\.js(\?|$)/, async (r) => { await new Promise((t) => setTimeout(t, 800)); await r.continue(); });
     await page.goto("about:blank"); await page.goto(origin + viewport.anchor, { waitUntil: "load" }); await page.waitForTimeout(1500);
     const cls = await page.evaluate(() => window.__cls);
     if (cls >= ANCHOR_MAX_CLS) fails.push(`first paint: CLS ${cls.toFixed(4)} >= ${ANCHOR_MAX_CLS} at ${viewport.anchor} (${tag})`);
