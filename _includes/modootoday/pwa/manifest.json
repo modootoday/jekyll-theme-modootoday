@@ -1,10 +1,6 @@
-{%- comment -%}
-Web app manifest, rendered by the site's manifest.webmanifest stub (modootoday-stubs --pwa). Every field comes from a setting
-the site already has: name, short_name and description (modootoday.pwa, else site.title and site.description), lang and dir
-of the default language, theme_color as the theme-color tag (the light one; dark with color_scheme: dark; none with
-theme_color: false), the brand icons or modootoday.pwa.icons. scope is the site root; start_url (no query) is also the id.
-shortcuts and screenshots appear only when modootoday.pwa lists them.
-{%- endcomment -%}
+{%- comment -%}Web app manifest for the manifest.webmanifest stub (modootoday-stubs --pwa). Every field derives from a setting the site
+already has, so nothing is named twice; the field table is in docs/recipes/pwa.md. scope is the site root; start_url carries no
+query, so it is also the id. shortcuts and screenshots appear only when modootoday.pwa lists them.{%- endcomment -%}
 {%- include modootoday/config.html -%}
 {%- assign _pw = site.modootoday.pwa -%}{%- assign _pwl = site.lang | default: "en" -%}
 {%- include modootoday/i18n.html lang=_pwl -%}{%- include modootoday/site/dir.html lang=_pwl -%}
