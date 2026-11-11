@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:35afd13d4090
+source_rev: sha256:0cb9c146e053
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -100,7 +100,7 @@ modootoday:
 - `schema`: グラフの設定は `publisher`、`search_url`、`layouts`、`faq` です。
 - `languages`: ヘッダーのサイト名は、その言語のホーム(`/<lang>/`)があればそこにリンクします。
 - `lists`: 通常のセクションとページで、リンクだけのリストは `ul.mt-chips` に、`**タイトル**:` で始まる項目は `strong.mt-item-title` になります。任意のシート `lists` がこれらと `hero: {checks: true}` を整え、使うページにだけ読み込まれます。
-- `heading_anchors`: リンクは見出しの中、テキストの後に付く `a.mt-anchor` で、名前はページの言語の「セクション「<見出し>」へのリンク」です。スクリプトは要りません。コンポーネントセクション(`c:`)の見出しはそのままで、目次、検索、Markdown 版も変わりません。`components` のリストを使うときは `anchor` を入れると残ります。任意のシート `anchor` がリンクを整え、使うページにだけ読み込まれます。
+- `heading_anchors`: リンクは見出しの中、テキストの後に付く `a.mt-anchor` で、名前はページの言語の「セクション「[見出し]」へのリンク」です。スクリプトは要りません。コンポーネントセクション(`c:`)の見出しはそのままで、目次、検索、Markdown 版も変わりません。`components` のリストを使うときは `anchor` を入れると残ります。任意のシート `anchor` がリンクを整え、使うページにだけ読み込まれます。
 - `language_switcher`: 各リンクはこのページの翻訳、なければその言語のトップページに移動します。ヘッダーのメニューは言語数によらず幅が一定で、言語が 2 つ未満なら表示しません。メニューは JavaScript なしで開き、`menu.js` が Esc、矢印キー、外側のクリックで閉じる動作を加えます。
 - `logo`, `favicon`: `brand` のマークは `currentColor`(`brand` トークンなのでライト・ダークに追従)で描きます。独自のロゴ画像は装飾扱い(`alt=""`)です。別のロゴを描くには `modootoday/brand/logo.html` を上書きします。`brand` のファビコンは SVG、32px PNG、Apple タッチアイコンをリンクします。
 - `header`: 画面の幅が 30rem(480px)より狭いと、`logo` のあるサイトはヘッダーにロゴだけを表示します。スクリーンリーダーはサイト名をそのまま読み上げます。`logo` がなければ名前は常に表示されます。
