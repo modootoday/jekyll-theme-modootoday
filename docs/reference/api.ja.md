@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:5374079e3798
+source_rev: sha256:7a73a2163857
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -45,7 +45,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照。
 - データファイル: `_data/i18n/<lang>.yml` のキーは、組み込みのカタログを上書きするときだけ書きます。`_data/navigation.yml` は `main` を読みます。
 - チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/figures/math-diagrams/#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
-- 静的な図: `diagrams: [{name, alt, caption, width, height}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
+- 静的な図: `diagrams: [{name, alt, caption, width, height, min_width}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
 - 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
 - レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
 - PWA: レイアウト `pages/offline`(オフラインページ。保存したページの一覧は `pwa/offline.js` が埋める `section[data-mt-offline]`)、front matter の `pwa: precache`、マニフェストのリンクの `data-mt-sw`、`data-mt-scope`、`data-mt-toast-css`、`data-mt-update`、`data-mt-reload`、`data-mt-later`、`data-mt-offline-notice`、`data-mt-close` 属性、更新とオフラインの通知 `div.mt-toast[role=status]` と `.mt-toast-actions`、キャッシュ名 `mt:<baseurl>/:assets:<version>`、`mt:<baseurl>/:pages:<version>`、`mt:<baseurl>/:media`、ラベル `pwa.offline_title`、`pwa.offline_text`、`pwa.offline_pages`、`pwa.retry`、`pwa.update`、`pwa.reload`、`pwa.later`、`pwa.offline_notice`、`pwa.close` です。[インストールできるサイト](../../recipes/pwa/)を参照してください。

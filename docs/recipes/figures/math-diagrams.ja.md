@@ -1,12 +1,12 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/math-diagrams/
-source_rev: sha256:8d87e84083c4
+source_rev: sha256:6d173e5e2a1a
 nav_order: 10
 title: 数式と図
 description: Mermaid の図と数式をコミットした静的な SVG と MathML として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
 diagrams:
-  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 818, height: 63}
+  - {name: recipes/flow-ja, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 904, height: 63, min_width: 48}
 ---
 # 数式と図
 
@@ -32,12 +32,12 @@ diagrams:
 ````markdown
 ---
 diagrams:
-  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 818, height: 63}
+  - {name: recipes/flow-ja, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "ビルドの流れ。", width: 904, height: 63, min_width: 48}
 ---
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown のページ] --> build[Jekyll のビルド]
+  build --> html[HTML のページ]
   html --> check[modootoday-check]
 ```
 ````
@@ -46,14 +46,16 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown のページ] --> build[Jekyll のビルド]
+  build --> html[HTML のページ]
   html --> check[modootoday-check]
 ```
 
 - **項目。** `name` は `modootoday.diagrams.dir` の下のファイル名から `.svg` を除いたものです。`recipes/flow` は `/assets/diagrams/recipes/flow.svg` と `/assets/diagrams/recipes/flow.dark.svg` を表示します。`alt` は必須で、「図」ではなく図が示す内容を書きます。`caption` は任意で、インラインの Markdown を使えます。`width` と `height` は SVG のピクセル単位の大きさで、画像の読み込み中も図の場所を確保します。
 - **ソースはページに残ります。** フェンスは図の下の「図のソース」という開閉要素に移ります。`source: none` にすると HTML から外れますが、Markdown 版には残ります。
 - **ライトとダーク。** どちらの画像にも代替テキストがあります。figure のシート (figure.css) は色のトークンと同じ規則で一方を表示し、もう一方を隠すので、暗い SVG はテーマの切り替えボタンにも従い、隠れた画像は読み上げられません。`dark: false` にすると図ごとの SVG は一つになり、テーマが[画像の図](#画像の図)と同じように暗くします。
+- **狭い画面。** 図は少なくとも 32rem の幅で描かれ、それより狭い列では横にスクロールするので、文字が読みにくい大きさまで縮みません。`min_width` で図ごとにこの幅を 24、32、40、48 (rem) のどれかにします。横に長いフローチャートは大きい値を選ぶか、上から下へ (`flowchart TD`) 描きます。ほかの値は `modootoday-check` が報告します。このページの図は `min_width: 48` を使います。
+- **言語ごとに一組。** SVG の中の文字は絵の一部なので、翻訳したページにはその言語で書いたフェンスと、そのフェンスの項目を別に置きます。このページの韓国語版と日本語版は `recipes/flow-ko` と `recipes/flow-ja` を使います。検査は項目ごとにそのフェンスと比べるので、英語のフェンスのままの翻訳は英語の SVG の組を引き続き共有できます。
 - **項目のないフェンス**はコードブロックのまま残ります。`diagrams:` のあるページでは組み込みの Mermaid ローダーは動きません。
 - 幅の広い図は狭い画面でも読める幅を保ち、「図」とキャプションを名前とする領域の中で横にスクロールします。代替テキストは画像がすでに伝えるので領域の名前には使わず、この領域は図が段より広いときだけキーボードのフォーカスを受けます。
 - `modootoday-check` は、フェンスの数と項目の数が違うページ、`alt` のない項目、見つからない SVG をエラーとして報告します。`width` と `height` のない項目は警告し、SVG の `viewBox` から読んだ値を示します。`data-mt-src` がフェンスと合わなくなった SVG も報告します。[図を最新に保つ](#図を最新に保つ)を参照してください。

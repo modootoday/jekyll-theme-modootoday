@@ -1,5 +1,6 @@
 {%- comment -%}Static diagrams: the n-th ```mermaid fence becomes figure.mt-diagram with the n-th entry of page.diagrams, showing the
-  committed <dir><name>.svg and, with dark: true, <dir><name>.dark.svg; the figure sheet swaps them with the colour scheme. Both
+  committed <dir><name>.svg and, with dark: true, <dir><name>.dark.svg; the figure sheet swaps them with the colour scheme, and
+  min_width (24, 32, 40 or 48, checked) picks its mt-figure-min-* class. Both
   images carry the alt text: CSS hides one, which leaves the accessibility tree. The scroll region is named by diagram.label
   and the caption, not the alt text, so the image is not read twice. A fence with no entry stays as it is.
   site.modootoday.diagrams: dir (default /assets/diagrams/), dark (default true), source: details (default) | none{%- endcomment -%}
@@ -20,7 +21,7 @@
 {%- assign _mfd_p = _mfd_dir | append: _mfd_d.name -%}
 {%- assign _mfd_r = mt_t_diagram_label -%}{%- assign _mfd_c = _mfd_d.caption | markdownify | strip_html | strip | replace: '"', "&quot;" -%}
 {%- if _mfd_c != "" -%}{%- assign _mfd_r = mt_t_region_named | replace: "[label]", mt_t_diagram_label | replace: "[name]", _mfd_c -%}{%- endif -%}
-<figure class="mt-figure mt-figure-svg mt-diagram"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="{{ _mfd_r }}">
+<figure class="mt-figure mt-figure-svg mt-diagram{% if _mfd_d.min_width %} mt-figure-min-{{ _mfd_d.min_width }}{% endif %}"><div class="mt-figure-scroll" tabindex="0" role="region" aria-label="{{ _mfd_r }}">
 {%- if _mfd_dark -%}<img class="mt-diagram-light mt-no-filter" src="{{ _mfd_p | append: '.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async"><img class="mt-diagram-dark mt-no-filter" src="{{ _mfd_p | append: '.dark.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async">
 {%- else -%}<img class="mt-diagram-light" src="{{ _mfd_p | append: '.svg' | relative_url }}" alt="{{ _mfd_alt }}"{{ _mfd_size }} loading="lazy" decoding="async">{%- endif -%}
 </div>{%- if _mfd_d.caption -%}<figcaption>{{ _mfd_d.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>{%- endif -%}</figure>

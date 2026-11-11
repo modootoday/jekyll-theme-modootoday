@@ -1,6 +1,7 @@
 // Static diagrams (figure.mt-diagram, markdown/figures/diagrams.html): a committed light and dark SVG pair, each kept as
 // drawn (.mt-no-filter). The pair swaps with the token emit's selectors, so it follows the system scheme and the toggle;
-// a lone light image (diagrams.dark: false) stays and takes the figure-svg dark filter.
+// a lone light image (diagrams.dark: false) stays and takes the figure-svg dark filter. An entry's min_width picks a
+// step below which the figure scrolls sideways (the checker owns the list of steps).
 @include mt-layer(components) {
   .mt-diagram .mt-diagram-dark { display: none; }
   @media (prefers-color-scheme: dark) {
@@ -9,6 +10,7 @@
   }
   :root[data-theme="dark"] .mt-diagram .mt-diagram-dark { display: block; }
   :root[data-theme="dark"] .mt-diagram .mt-diagram-light:not(:only-child) { display: none; }
+  @each $rem in (24, 32, 40, 48) { .mt-figure-min-#{$rem} { --mt-figure-min-width: #{$rem}rem; } }
   .mt-diagram-source { margin: -.75rem 0 1.5rem; }
   .mt-diagram-source > summary { width: fit-content; color: mt(muted-foreground); font-size: mt-size(sm); line-height: mt-leading(sm); cursor: pointer; }
 }

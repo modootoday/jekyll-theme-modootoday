@@ -7,7 +7,7 @@ title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
 diagrams:
-  - {name: recipes/flow, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "정적 다이어그램: 커밋한 밝은 SVG와 어두운 SVG 한 쌍.", width: 818, height: 63}
+  - {name: recipes/flow-ko, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "정적 다이어그램: 커밋한 밝은 SVG와 어두운 SVG 한 쌍.", width: 840, height: 63}
 sections:
   - group-text
   - anchor
@@ -249,8 +249,8 @@ front matter `diagrams:`에 나열한 ```` ```mermaid ```` 펜스는 정적 그�
 
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown 페이지] --> build[Jekyll 빌드]
+  build --> html[HTML 페이지]
   html --> check[modootoday-check]
 ```
 

@@ -7,7 +7,7 @@ title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
 hero: {checks: true, c: split, visual: split-demo, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
 diagrams:
-  - {name: recipes/flow, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 818, height: 63}
+  - {name: recipes/flow-ja, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 904, height: 63}
 sections:
   - group-text
   - anchor
@@ -249,8 +249,8 @@ front matter の `diagrams:` に並べた ```` ```mermaid ```` フェンスは�
 
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown のページ] --> build[Jekyll のビルド]
+  build --> html[HTML のページ]
   html --> check[modootoday-check]
 ```
 

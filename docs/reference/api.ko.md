@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:5374079e3798
+source_rev: sha256:7a73a2163857
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -45,7 +45,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
 - 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/figures/math-diagrams/#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
-- 정적 그림: `diagrams: [{name, alt, caption, width, height}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
+- 정적 그림: `diagrams: [{name, alt, caption, width, height, min_width}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
 - 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
 - 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
 - PWA: 레이아웃 `pages/offline`(오프라인 페이지. 보관한 페이지 목록은 `pwa/offline.js`가 채우는 `section[data-mt-offline]`), front matter `pwa: precache`, 매니페스트 링크의 `data-mt-sw`, `data-mt-scope`, `data-mt-toast-css`, `data-mt-update`, `data-mt-reload`, `data-mt-later`, `data-mt-offline-notice`, `data-mt-close` 속성, 업데이트·오프라인 알림 `div.mt-toast[role=status]`와 `.mt-toast-actions`, 캐시 이름 `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>`, `mt:<baseurl>/:media`, 레이블 `pwa.offline_title`, `pwa.offline_text`, `pwa.offline_pages`, `pwa.retry`, `pwa.update`, `pwa.reload`, `pwa.later`, `pwa.offline_notice`, `pwa.close`입니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 참고하세요.

@@ -1,12 +1,12 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/math-diagrams/
-source_rev: sha256:8d87e84083c4
+source_rev: sha256:6d173e5e2a1a
 nav_order: 10
 title: 수식과 다이어그램
 description: Mermaid 다이어그램과 수식을 커밋한 정적 SVG와 MathML로 보여 주거나, 내장 로더나 직접 만든 로더로 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.
 diagrams:
-  - {name: recipes/flow, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "빌드 흐름.", width: 818, height: 63}
+  - {name: recipes/flow-ko, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "빌드 흐름.", width: 840, height: 63, min_width: 48}
 ---
 # 수식과 다이어그램
 
@@ -32,12 +32,12 @@ diagrams:
 ````markdown
 ---
 diagrams:
-  - {name: recipes/flow, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "빌드 흐름.", width: 818, height: 63}
+  - {name: recipes/flow-ko, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "빌드 흐름.", width: 840, height: 63, min_width: 48}
 ---
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown 페이지] --> build[Jekyll 빌드]
+  build --> html[HTML 페이지]
   html --> check[modootoday-check]
 ```
 ````
@@ -46,14 +46,16 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  md[Markdown page] --> build[Jekyll build]
-  build --> html[HTML page]
+  md[Markdown 페이지] --> build[Jekyll 빌드]
+  build --> html[HTML 페이지]
   html --> check[modootoday-check]
 ```
 
 - **항목.** `name`은 `modootoday.diagrams.dir` 아래의 파일 이름에서 `.svg`를 뺀 것입니다. `recipes/flow`는 `/assets/diagrams/recipes/flow.svg`와 `/assets/diagrams/recipes/flow.dark.svg`를 보여 줍니다. `alt`는 필수이며, "다이어그램"이 아니라 다이어그램이 보여 주는 내용을 씁니다. `caption`은 선택이고 인라인 Markdown을 쓸 수 있습니다. `width`와 `height`는 SVG의 픽셀 크기로, 이미지를 불러오는 동안 그림의 자리를 지켜 줍니다.
 - **원본은 페이지에 남습니다.** 펜스는 그림 아래의 "다이어그램 원본" 펼침 요소로 옮겨집니다. `source: none`이면 HTML에서 빠지고, Markdown 버전에는 그대로 남습니다.
 - **밝은 모드와 다크 모드.** 두 이미지 모두 대체 텍스트가 있습니다. figure 시트(figure.css)는 색상 토큰과 같은 규칙으로 하나를 보여 주고 다른 하나를 숨기므로, 어두운 SVG는 테마 전환 버튼도 따르고 숨긴 이미지는 읽히지 않습니다. `dark: false`이면 다이어그램마다 SVG가 하나이고, 테마가 [이미지 그림](#이미지-그림)처럼 어둡게 바꿉니다.
+- **좁은 화면.** 다이어그램은 최소 32rem 너비로 그려지고, 더 좁은 열에서는 옆으로 스크롤되므로 글자가 읽기 어려운 크기로 줄지 않습니다. `min_width`로 다이어그램마다 이 너비를 24, 32, 40, 48(rem) 중 하나로 정합니다. 가로로 긴 흐름도는 더 큰 값을 고르거나 위에서 아래로(`flowchart TD`) 그리세요. 다른 값은 `modootoday-check`가 보고합니다. 이 페이지의 다이어그램은 `min_width: 48`을 씁니다.
+- **언어마다 한 쌍.** SVG 안의 글자는 그림의 일부이므로, 번역한 페이지에는 그 언어로 쓴 펜스와 그 펜스의 항목을 따로 둡니다. 이 페이지의 한국어판과 일본어판은 `recipes/flow-ko`와 `recipes/flow-ja`를 씁니다. 검사기는 항목마다 그 펜스와 비교하므로, 영어 펜스를 그대로 둔 번역은 영어 SVG 쌍을 계속 함께 쓸 수 있습니다.
 - **항목이 없는 펜스**는 코드 블록으로 남습니다. `diagrams:`가 있는 페이지에서는 내장 Mermaid 로더가 실행되지 않습니다.
 - 넓은 다이어그램은 좁은 화면에서도 읽을 수 있는 너비를 유지하고, "다이어그램"과 캡션을 이름으로 하는 영역 안에서 가로로 스크롤됩니다. 대체 텍스트는 이미지가 이미 전하므로 영역 이름으로 쓰지 않으며, 이 영역은 다이어그램이 단보다 넓을 때만 키보드 포커스를 받습니다.
 - `modootoday-check`는 펜스 수와 항목 수가 다른 페이지, `alt`가 없는 항목, 없는 SVG를 오류로 알립니다. `width`와 `height`가 없는 항목은 경고하면서 SVG의 `viewBox`에서 읽은 값을 알려 줍니다. `data-mt-src`가 더 이상 펜스와 맞지 않는 SVG도 알립니다. [다이어그램을 최신으로 유지하기](#다이어그램을-최신으로-유지하기)를 보세요.

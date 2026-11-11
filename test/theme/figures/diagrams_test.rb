@@ -36,6 +36,13 @@ class DiagramsTest < Minitest::Test
     refute_includes h, "modootoday-mermaid.js", "the loader never runs on a page with diagrams:"
   end
 
+  def test_min_width_adds_its_step_class
+    s = site(:pair, MERMAID)
+    assert_includes read(s, "wide/index.html"), %(<figure class="mt-figure mt-figure-svg mt-diagram mt-figure-min-48">)
+    css = read(s, "assets/css/modootoday/media/figure.css").gsub(/\s+/, " ")
+    assert_match(/\.mt-figure-min-48 \{ --mt-figure-min-width: 48rem; \}/, css)
+  end
+
   def test_a_page_without_the_list_keeps_its_fence_and_loader
     h = read(site(:pair, MERMAID), "plain/index.html")
     refute_includes h, "<figure"

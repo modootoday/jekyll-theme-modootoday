@@ -56,15 +56,26 @@ class CheckDiagramsTest < CheckerCase
     assert_includes o, "a.md: diagrams: and mermaid: true together"
   end
 
+  def test_min_width_takes_one_of_the_sheet_steps
+    fixture "d01-diagram-ok", "diagrams: [{name: flow, alt: A flow, width: 240, height: 60, min_width: 48}]\n"
+    svgs "flow.svg", "flow.dark.svg"
+    o, code = check("--strict")
+    assert_equal 0, code, o
+    fixture "d01-diagram-ok", "diagrams: [{name: flow, alt: A flow, width: 240, height: 60, min_width: 30rem}]\n"
+    o, code = check
+    assert_equal 1, code
+    assert_includes o, "a.md: diagrams[0].min_width must be one of 24, 32, 40, 48: the width in rem below which the diagram scrolls sideways instead of shrinking (default 32; got \"30rem\")"
+  end
+
   def test_entry_shapes
     fixture "d01-diagram-count", "diagrams: [{name: flow.svg, alt: x}, {name: f, alt: x, width: wide, height: 1, size: 2}]\n"
     o, = check
     assert_includes o, "a.md: diagrams[0].name must be a file name without .svg under /assets/diagrams/"
-    assert_includes o, "a.md: diagrams[1]: unknown key size (name, alt, caption, width, height)"
+    assert_includes o, "a.md: diagrams[1]: unknown key size (name, alt, caption, width, height, min_width)"
     assert_includes o, "a.md: diagrams[1].width must be a whole number of pixels (got \"wide\")"
     fixture "d01-diagram-ok", "diagrams: flow\n"
     o, = check
-    assert_includes o, "a.md: diagrams: must be a list of {name, alt, caption, width, height}"
+    assert_includes o, "a.md: diagrams: must be a list of {name, alt, caption, width, height, min_width}"
   end
 
   def test_settings

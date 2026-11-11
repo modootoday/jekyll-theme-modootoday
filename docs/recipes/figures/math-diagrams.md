@@ -4,7 +4,7 @@ nav_order: 10
 title: Math and diagrams
 description: Show Mermaid diagrams and math as static SVG and MathML you commit, or render them with the built-in loaders or your own, and the cost to CSP and privacy.
 diagrams:
-  - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63}
+  - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63, min_width: 48}
 ---
 # Math and diagrams
 
@@ -27,7 +27,7 @@ List a page's diagrams in front matter. The first ```` ```mermaid ```` fence on 
 ````markdown
 ---
 diagrams:
-  - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63}
+  - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "The build flow.", width: 818, height: 63, min_width: 48}
 ---
 ```mermaid
 flowchart LR
@@ -49,6 +49,8 @@ flowchart LR
 - **Entries.** `name` is the file under `modootoday.diagrams.dir` without `.svg`: `recipes/flow` shows `/assets/diagrams/recipes/flow.svg` and `/assets/diagrams/recipes/flow.dark.svg`. `alt` is required; write what the diagram shows, not "diagram". `caption` is optional and may use inline Markdown. `width` and `height` are the SVG's size in pixels: they keep the figure's space while the image loads.
 - **The source stays on the page.** The fence moves under the figure into a "Diagram source" disclosure. `source: none` drops it from the HTML; the Markdown twin still has it.
 - **Light and dark.** Both images carry the alt text. The figure sheet shows one and hides the other with the same rules as the color tokens, so the dark one also follows the theme toggle, and a hidden image is not read out. With `dark: false` each diagram has one SVG, which the theme darkens like an [image figure](#image-figures).
+- **Narrow screens.** A diagram is drawn at least 32rem wide and scrolls sideways in a narrower column, so its text does not shrink below reading size. `min_width` sets that width for one diagram to 24, 32, 40 or 48 (rem); pick a larger one for a wide flowchart, or draw it top-down (`flowchart TD`). `modootoday-check` reports any other value. This page's diagram uses `min_width: 48`.
+- **One pair per language.** The text inside an SVG is part of the picture, so a translated page gets its own fence in its language and its own entry: the Korean and Japanese versions of this page list `recipes/flow-ko` and `recipes/flow-ja`. The checker compares each entry with its own fence, so a translation that keeps the English fence can keep sharing the English pair.
 - **Fences without an entry** stay code blocks. The built-in Mermaid loader does not run on a page with `diagrams:`.
 - A wide diagram keeps a readable width on narrow screens and scrolls sideways inside a region named "Diagram" and the caption, not the alt text that the image already gives; the region takes keyboard focus only while the diagram is wider than the column.
 - `modootoday-check` reports a page whose number of fences differs from its number of entries, an entry without `alt`, and a missing SVG. It warns about an entry without `width` and `height` and prints the values from the SVG's `viewBox`. It also reports an SVG whose `data-mt-src` no longer matches its fence; see [Keep diagrams fresh](#keep-diagrams-fresh).
