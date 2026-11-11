@@ -10,9 +10,10 @@ class PwaOfflineTest < Minitest::Test
   THEME_FILE = %r{(?:href|src)="(/docs/assets/(?:css|js)/modootoday[^"]*)"}
   NOTICE = %r{/chrome/toast\.css|/pwa/update-toast\.js}
 
-  def self.site(key, config) = ((@sites ||= {})[key] ||= PwaSite.build(config, languages: ["ko"]))
+  def self.site(key, config, files = {}) = ((@sites ||= {})[key] ||= PwaSite.build(config, languages: ["ko"], files: files))
+  NAMES = { "api.md" => "---\ntitle: API\n---\n# API\n\nThe list is `section[data-mt-offline]`, or `<section data-mt-offline>`.\n" }.freeze
 
-  def on = self.class.site(:on, "baseurl: /docs\nmodootoday:\n  languages: [en, ko]\n  full_languages: [ko]\n  pwa: {enabled: true}\n")
+  def on = self.class.site(:on, "baseurl: /docs\nmodootoday:\n  languages: [en, ko]\n  full_languages: [ko]\n  pwa: {enabled: true}\n", NAMES)
   def page(site, rel) = File.read(File.join(site, rel, "index.html"))
   def precache(site) = JSON.parse(File.read(File.join(site, "sw.js"))[/^self\.MT_PWA = (\{.*\});$/, 1])["precache"]
 
@@ -24,6 +25,7 @@ class PwaOfflineTest < Minitest::Test
     assert_match(%r{<section data-mt-offline aria-labelledby="mt-offline-pages" hidden><h2 id="mt-offline-pages">Pages you can read offline</h2><ul></ul></section>}, h)
     assert_includes h, "pwa/offline.js?v="
     refute_includes h, "<header"
+    refute_includes page(on, "api"), "pwa/offline.js", "a page that names the attribute in code loads no offline module"
   end
 
   def test_each_full_language_has_its_page

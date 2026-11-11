@@ -47,6 +47,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - The starter demo audit gives its page lists the shape the type budgets read
 - Print badge prefixes as names on the generated Command line and Changelog pages
 - Offline reading keeps the pages a reader visited across deploys that keep the theme files: the pages cache is now named by the theme files' version (`mt:<baseurl>/:pages:<version>`) and is replaced only with them; navigations to Markdown twins, `llms.txt`, feeds and the sitemap always go to the network. (adr:modootoday/20261110133153)
+- The offline module loads only on the offline page, not on a page that names its attribute (adr:modootoday/20261110133153)
 
 ## [1.6.0] - 2026-11-09
 
