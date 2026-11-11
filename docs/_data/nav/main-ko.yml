@@ -84,6 +84,7 @@
     - {title: CSP, url: /ko/recipes/csp/}
     - {title: 검색, url: /ko/recipes/search/}
     - {title: 생성 페이지, url: /ko/recipes/generated-pages/}
+    - {title: 독자에게 업데이트 알리기, url: /ko/recipes/updates/}
     - {title: 설치할 수 있는 사이트, url: /ko/recipes/pwa/}
     - {title: 사이트 유형, url: /ko/recipes/site-types/}
 - title: 레퍼런스

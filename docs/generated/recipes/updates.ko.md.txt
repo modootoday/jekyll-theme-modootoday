@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: updates.ko.md
+lang: ko
+path: recipes/updates.ko.md.txt
+permalink: /ko/recipes/updates/index.md
+---

@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: updates.ja.md
+lang: ja
+path: recipes/updates.ja.md.txt
+permalink: /ja/recipes/updates/index.md
+---

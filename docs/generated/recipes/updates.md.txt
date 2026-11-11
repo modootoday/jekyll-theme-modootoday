@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: updates.md
+path: recipes/updates.md.txt
+permalink: /recipes/updates/index.md
+---

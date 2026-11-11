@@ -172,6 +172,8 @@ The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `m
 
 The notice is a status message: screen readers announce it and it never takes focus. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
 
+Readers who have not installed the site learn of updates through feeds, release notifications or an email form: see [Tell readers about updates](../updates/).
+
 ## Turn it off
 
 Do not just delete the files: a worker already on visitors' devices would keep serving the old copies. Instead:
