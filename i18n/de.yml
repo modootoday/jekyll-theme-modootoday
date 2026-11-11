@@ -155,3 +155,5 @@ pwa:
   later: "Später"
   offline_notice: "Sie sind offline. Bereits besuchte Seiten lassen sich weiterhin öffnen."
   close: "Schließen"
+  install: "Installieren"
+  install_hint: "Sie können diese Website auch über das Menü oder das Teilen-Menü Ihres Browsers installieren."

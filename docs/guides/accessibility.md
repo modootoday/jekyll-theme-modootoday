@@ -30,6 +30,8 @@ Landmarks (header, navigation, main, footer), the current page in navigation, br
 
 The "On this page" list marks the section you are reading with `aria-current="location"`, so a screen reader says "current location" when it reaches that link. The mark is not announced as it moves, because a reader scrolling the page would otherwise hear every heading go by.
 
+The Install button of a `c: install` section is a plain button that appears only when the browser offers to install the site, and it opens the browser's own dialog only when pressed. Once the reader answers, the button hides and focus moves to the hint below it, so it is not lost.
+
 ## Phones and tablets
 
 - **Safe areas.** Pages extend under the notch, rounded corners and home indicator, and the header, side padding and footer move clear of them.

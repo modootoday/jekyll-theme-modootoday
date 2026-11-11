@@ -155,3 +155,5 @@ pwa:
   later: "Để sau"
   offline_notice: "Bạn đang ngoại tuyến. Các trang đã xem vẫn mở được."
   close: "Đóng"
+  install: "Cài đặt"
+  install_hint: "Bạn cũng có thể cài đặt trang web này từ menu hoặc menu chia sẻ của trình duyệt."

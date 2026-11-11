@@ -98,6 +98,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Gallery | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | `:target` on the open lightbox |
 | Pricing | `.mt-plans` | `.mt-plan`, its `h3`, link-only `p.mt-actions` | `.mt-plan-recommended` with `.mt-plan-flag` |
 | Subscribe | `section.mt-c-subscribe` | `form.mt-subscribe`, `label`, `input[type=email]`, `button` | — |
+| Install | `section.mt-c-install` | `button.mt-install` (`[hidden]` until the browser offers installing), `p.mt-install-hint` | `[hidden]` on the section inside the installed app |
 | Split | `section.mt-c-split` | `.mt-section-in` > `.mt-section-body` + `.mt-section-visual` | `.mt-split-start`, `.mt-split-5-7`, `.mt-split-code`, `.mt-split-terminal` |
 | Inline extras | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | Loading (optional stylesheet) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
@@ -136,6 +137,7 @@ Notes on the rows above:
 - Table: `div.mt-table` is added around every body table at render time; it scrolls, and becomes a labelled region when it overflows. `c: params` tables get `--stack`, and so does any table that does not fit below 40rem, so page bodies set no class; the three classes are hooks for tables in a site's own layouts and includes (a kramdown attribute list in a body is not portable, and `modootoday-check` reports it). Once the script has labelled a stacked table it has `[data-mt-labelled]` and `td[data-label]`. Styles come from the `table` and `table-stack` sheets.
 - Parameter table: below 40rem it stacks as `table.mt-table--stack`.
 - Subscribe: `form.mt-subscribe` appears when an action is set.
+- Install: `pwa/install.js` loads with `modootoday.pwa.enabled: true` on pages with the section; without it the button stays hidden and the hint shows.
 - Split: `.mt-section-body` holds the `h2` and text, `.mt-section-visual` the `visual:` include. `hero: {c: split}` puts `section.mt-hero` in the same wrappers, with the `h1`, lead, check row and actions in `.mt-section-body`. `visual: code` puts the first code block in `div.mt-section-visual.mt-split-code`; `chrome: terminal` adds `.mt-split-terminal` and `div.mt-split-bar` (`aria-hidden`).
 - Post header: `.mt-byline` holds `.mt-byline-authors` > `.mt-post-author` and `.mt-byline-dates` > `time`; `p.mt-post-meta` holds the tag badges.
 - Search: the states come from `modootoday.search`.

@@ -155,3 +155,5 @@ pwa:
   later: "Daha sonra"
   offline_notice: "Çevrimdışısınız. Ziyaret ettiğiniz sayfalar açılmaya devam eder."
   close: "Kapat"
+  install: "Yükle"
+  install_hint: "Bu siteyi tarayıcınızın menüsünden veya paylaş menüsünden de yükleyebilirsiniz."

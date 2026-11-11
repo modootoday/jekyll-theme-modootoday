@@ -1,0 +1,14 @@
+// Install: c: install; the button pwa/install.js shows while the browser offers installing, and the hint. Inside the
+// installed app the section hides (the module does the same where display-mode cannot be emulated). A transparent
+// border keeps the button's edge in forced colors.
+@include mt-layer(components) {
+  .mt-install { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 1rem; padding: 0 1.25rem;
+    border: 1px solid transparent; border-radius: mt(radius); background: mt(primary); color: mt(primary-foreground);
+    font: inherit; font-weight: 600; cursor: pointer; }
+  .mt-install[hidden] { display: none; }
+  .mt-install:focus-visible { outline: 2px solid mt(ring); outline-offset: 2px; }
+  .mt-install-hint { margin: 1rem 0 0; color: mt(muted-foreground); font-size: .875rem; }
+  @media (display-mode: standalone), (display-mode: minimal-ui) {
+    .mt-c-install { display: none; }
+  }
+}

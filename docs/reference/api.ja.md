@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:b58350f6cd1e
+source_rev: sha256:3939384fc116
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -104,6 +104,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | ギャラリー | `section.mt-c-gallery` | `a.mt-gallery-thumb`、`a.mt-lightbox`、`.mt-lightbox-close` | 開いたライトボックスの `:target` |
 | 料金プラン | `.mt-plans` | `.mt-plan`、その `h3`、リンクだけの `p.mt-actions` | `.mt-plan-recommended` と `.mt-plan-flag` |
 | 購読 | `section.mt-c-subscribe` | `form.mt-subscribe`、`label`、`input[type=email]`、`button` | — |
+| インストール | `section.mt-c-install` | `button.mt-install`（ブラウザーがインストールを提案するまで `[hidden]`）、`p.mt-install-hint` | インストールしたアプリの中ではセクションに `[hidden]` |
 | 分割 | `section.mt-c-split` | `.mt-section-in` > `.mt-section-body` + `.mt-section-visual` | `.mt-split-start`、`.mt-split-5-7`、`.mt-split-code`、`.mt-split-terminal` |
 | インライン追加要素 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 読み込み表示（任意シート） | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
@@ -142,6 +143,7 @@ description: このテーマがサイト向けに文書化している名前、�
 - 表: `div.mt-table` は描画時に本文のすべての表を包み、スクロールでき、はみ出すとラベル付きの領域になります。本文ではクラスを付けません。3 つのクラスは、サイトが自分で書くレイアウトや include の表のためのフックです（本文の kramdown の属性リストは移植できず、`modootoday-check` が報告します）。`c: params` の表と、40rem より狭いときに収まらない表は `--stack` になります。スクリプトが積み重ねた表にラベルを付けると `[data-mt-labelled]` と `td[data-label]` が付きます。スタイルは `table`・`table-stack` シートにあります。
 - パラメーター表: 40rem 未満で `table.mt-table--stack` として積み重なります。
 - 購読: `form.mt-subscribe` は action を設定したときに出ます。
+- インストール: `pwa/install.js` は `modootoday.pwa.enabled: true` のとき、このセクションがあるページで読み込まれます。オフのときボタンは隠れたままで、案内文だけが表示されます。
 - 分割: `.mt-section-body` には `h2` と本文、`.mt-section-visual` には `visual:` の include が入ります。`hero: {c: split}` は `section.mt-hero` を同じラッパーで包み、`h1`、リード、チェックの行、アクションは `.mt-section-body` に入ります。`visual: code` は最初のコードブロックを `div.mt-section-visual.mt-split-code` に入れ、`chrome: terminal` は `.mt-split-terminal` と `div.mt-split-bar`(`aria-hidden`)を加えます。
 - 記事ヘッダー: `.mt-byline` の中に `.mt-byline-authors` > `.mt-post-author` と `.mt-byline-dates` > `time` があり、`p.mt-post-meta` にはタグのバッジが入ります。
 - 検索: 状態の値は `modootoday.search` から付きます。

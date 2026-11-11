@@ -102,4 +102,12 @@ class ComponentRulesTest < Minitest::Test
     assert_includes out, "from 1 to 2"
     assert_includes out, "https://"
   end
+
+  def test_install_section_warns_without_the_pwa
+    md = page("[{c: install, name: i}]", "## Install\n\nRead it offline.\n")
+    out, = check(md, "modootoday: {pwa: {enabled: kill}}\n")
+    assert_includes out, "sections[0] install: the Install button never shows until _config.yml sets modootoday.pwa.enabled: true"
+    out, = check(md, "title: A\nmodootoday: {pwa: {enabled: true}}\n")
+    refute_includes out, "never shows"
+  end
 end

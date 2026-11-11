@@ -78,6 +78,31 @@ The Apple touch icon comes from `favicon`, as before. Safari 16.4 and later read
 
 In a private (incognito) window Chrome always reports that installing is not available. Test in a normal window.
 
+## Installing
+
+Browsers offer installing in their own interface, and the theme starts no prompt of its own. To give readers a visible way in, add a `c: install` section to a page, for example the home page or a Get the app page:
+
+```yaml
+sections:
+  - {c: install, name: app}
+```
+
+```markdown
+## Read it offline
+
+Keep these docs on your home screen and read them without a network.
+```
+
+The section prints its text, an Install button and a hint for browsers that install from their own menu or share sheet. The button stays hidden until the browser says it can install the site (`beforeinstallprompt`), and it opens the browser's own install dialog only when the reader clicks it. After the reader answers, or once the site is installed, the button hides again. Inside the installed app the whole section hides. The section's sheet (`showcase/install.css`) and script (`pwa/install.js`) load only on pages that have it, and the script only with `enabled: true`; `modootoday-check` warns about the section on a site without it.
+
+| Browser | How readers install the site |
+|---|---|
+| Chrome, Edge and other Chromium browsers on desktop and Android | the Install button, or the install icon in the address bar or the browser menu |
+| Safari on iPhone and iPad | Share, then Add to Home Screen (the hint) |
+| Safari on macOS 14 and later | File, then Add to Dock (the hint) |
+| Firefox on Android | the browser menu, Add to Home screen (the hint) |
+| Firefox on desktop | not available; the hint stays, and the site works as before |
+
 ## Offline reading
 
 The worker handles only `GET` requests to your own site inside its scope. Everything else (forms, other sites, embeds, CDNs) goes to the network as before, and a request that fails inside the worker also goes to the network.

@@ -155,3 +155,5 @@ pwa:
   later: "Más tarde"
   offline_notice: "Estás sin conexión. Las páginas que visitaste se siguen abriendo."
   close: "Cerrar"
+  install: "Instalar"
+  install_hint: "También puedes instalar este sitio desde el menú o el menú de compartir de tu navegador."

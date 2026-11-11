@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:b58350f6cd1e
+source_rev: sha256:3939384fc116
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -104,6 +104,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 | 갤러리 | `section.mt-c-gallery` | `a.mt-gallery-thumb`, `a.mt-lightbox`, `.mt-lightbox-close` | 열린 라이트박스의 `:target` |
 | 요금제 | `.mt-plans` | `.mt-plan`, 그 `h3`, 링크만 있는 `p.mt-actions` | `.mt-plan-recommended`와 `.mt-plan-flag` |
 | 구독 | `section.mt-c-subscribe` | `form.mt-subscribe`, `label`, `input[type=email]`, `button` | — |
+| 설치 | `section.mt-c-install` | `button.mt-install`(브라우저가 설치를 제안할 때까지 `[hidden]`), `p.mt-install-hint` | 설치된 앱 안에서는 섹션에 `[hidden]` |
 | 분할 | `section.mt-c-split` | `.mt-section-in` > `.mt-section-body` + `.mt-section-visual` | `.mt-split-start`, `.mt-split-5-7`, `.mt-split-code`, `.mt-split-terminal` |
 | 인라인 추가 요소 | `div.mt-code`, `span.mt-progress`, `div.mt-embed` | `.mt-code-title`, `progress`, `iframe` | — |
 | 로딩(선택 시트) | `.mt-spinner`, `.mt-topbar`, `.mt-skeleton` | `.mt-skeleton-text`, `-card`, `-image`, `-avatar`, `-row`; `.mt-ratio-16x9`, `-4x3`, `-1x1` | `[aria-busy=true]`, `[role=status]` |
@@ -142,6 +143,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - 표: `div.mt-table`은 렌더링할 때 본문의 모든 표를 감싸며, 스크롤되고 넘치면 이름 붙은 영역이 됩니다. 본문에는 클래스를 붙이지 않습니다. 세 클래스는 사이트가 직접 만든 레이아웃과 include의 표를 위한 훅입니다(본문의 kramdown 속성 목록은 이식되지 않고 `modootoday-check`가 보고합니다). `c: params` 표와 40rem보다 좁을 때 들어가지 않는 표는 `--stack`을 받습니다. 스크립트가 쌓인 표에 레이블을 붙이면 `[data-mt-labelled]`와 `td[data-label]`가 생깁니다. 스타일은 `table`·`table-stack` 시트에 있습니다.
 - 매개변수 표: 40rem 미만에서 `table.mt-table--stack`으로 쌓입니다.
 - 구독: `form.mt-subscribe`는 action을 설정했을 때 나옵니다.
+- 설치: `pwa/install.js`는 `modootoday.pwa.enabled: true`일 때 이 섹션이 있는 페이지에서 불러옵니다. 꺼져 있으면 버튼은 숨겨진 채로 남고 안내 문장만 보입니다.
 - 분할: `.mt-section-body`에는 `h2`와 텍스트가, `.mt-section-visual`에는 `visual:` include가 들어갑니다. `hero: {c: split}`는 `section.mt-hero`를 같은 래퍼로 감싸며, `h1`, 리드 문단, 체크 행, 액션은 `.mt-section-body`에 들어갑니다. `visual: code`는 첫 코드 블록을 `div.mt-section-visual.mt-split-code`에 넣고, `chrome: terminal`은 `.mt-split-terminal`과 `div.mt-split-bar`(`aria-hidden`)를 더합니다.
 - 글 머리: `.mt-byline` 안에 `.mt-byline-authors` > `.mt-post-author`와 `.mt-byline-dates` > `time`이 있고, `p.mt-post-meta`에는 태그 배지가 들어갑니다.
 - 검색: 상태 값은 `modootoday.search`에서 옵니다.

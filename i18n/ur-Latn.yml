@@ -155,3 +155,5 @@ pwa:
   later: "Baad mein"
   offline_notice: "Aap offline hain. Jo safhaat aap dekh chuke hain woh ab bhi khulte hain."
   close: "Band karein"
+  install: "Install karein"
+  install_hint: "Aap yeh site browser ke menu ya share menu se bhi install kar sakte hain."

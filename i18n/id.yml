@@ -155,3 +155,5 @@ pwa:
   later: "Nanti"
   offline_notice: "Anda sedang offline. Halaman yang pernah dibuka tetap bisa dibuka."
   close: "Tutup"
+  install: "Pasang"
+  install_hint: "Anda juga dapat memasang situs ini dari menu atau menu berbagi browser."

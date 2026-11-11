@@ -155,3 +155,5 @@ pwa:
   later: "稍後"
   offline_notice: "您已離線。造訪過的頁面仍可開啟。"
   close: "關閉"
+  install: "安裝"
+  install_hint: "也可以從瀏覽器選單或分享選單安裝此網站。"

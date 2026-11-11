@@ -1,0 +1,6 @@
+{%- comment -%}c: install — the section text, an Install button that stays hidden until pwa/install.js sees the browser offer
+  installing (it prompts only on a click), and a hint for browsers that install from their own menu or share sheet. The
+  module loads only with modootoday.pwa.enabled: true. Labels: pwa.install, pwa.install_hint.{%- endcomment -%}
+{{ include.html }}
+<button type="button" class="mt-install" hidden>{{ mt_t_pwa_install }}</button>
+<p class="mt-install-hint">{{ mt_t_pwa_install_hint }}</p>

@@ -10,8 +10,8 @@ const RESOURCES = ["https://x.test/docs/assets/css/modootoday.css?v=1", "https:/
 
 // A page whose navigator has a fake service worker container; registered collects register() calls, posted the messages,
 // updates the registration's update() calls; reg.on holds its listeners.
-async function page({ head = LINK, controller = null, sw = true, waiting = null, names = ["mt:/docs/:assets:1", "mt:/docs/:assets:2"] } = {}) {
-  const w = new JSDOM(`<!doctype html><html><head>${head}</head><body></body></html>`, { url: "https://x.test/docs/a/#top", pretendToBeVisual: true }).window;
+async function page({ head = LINK, controller = null, sw = true, waiting = null, names = ["mt:/docs/:assets:1", "mt:/docs/:assets:2"], body = "" } = {}) {
+  const w = new JSDOM(`<!doctype html><html><head>${head}</head><body>${body}</body></html>`, { url: "https://x.test/docs/a/#top", pretendToBeVisual: true }).window;
   w.caches = { keys: async () => names };
   const query = w.document.querySelector.bind(w.document);
   w.mtQueries = [];
@@ -117,4 +117,17 @@ test("a lost network loads the offline notice, except on the offline page", asyn
   off.w.dispatchEvent(new off.w.Event("offline"));
   await new Promise((r) => setTimeout(r, 20));
   assert.strictEqual(off.w.document.querySelector(".mt-toast"), null);
+});
+
+test("an install offer is kept on the manifest link only on a page with an Install button", async () => {
+  const { w } = await page({ body: '<button class="mt-install" hidden>Install</button>' });
+  const e = new w.Event("beforeinstallprompt", { cancelable: true });
+  w.dispatchEvent(e);
+  assert.strictEqual(w.document.querySelector("link").mtInstall, e);
+  assert.strictEqual(e.defaultPrevented, true);
+  const plain = await page();
+  const f = new plain.w.Event("beforeinstallprompt", { cancelable: true });
+  plain.w.dispatchEvent(f);
+  assert.strictEqual(plain.w.document.querySelector("link").mtInstall, undefined);
+  assert.strictEqual(f.defaultPrevented, false, "the browser keeps its own install UI elsewhere");
 });

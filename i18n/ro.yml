@@ -155,3 +155,5 @@ pwa:
   later: "Mai târziu"
   offline_notice: "Sunteți offline. Paginile vizitate se deschid în continuare."
   close: "Închideți"
+  install: "Instalați"
+  install_hint: "Puteți instala acest site și din meniul browserului sau din meniul de partajare."

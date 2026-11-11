@@ -1,6 +1,6 @@
 // Registers the site's service worker after load (modootoday.pwa). A first, uncontrolled visit posts the URLs it fetched to
 // the worker; a waiting worker and a lost network get a notice (pwa/update-toast.js); a window shown after an hour checks
-// for a new sw.js.
+// for a new sw.js. An early install offer is kept for pwa/install.js.
 const HOUR = 36e5;
 
 export function init(root) {
@@ -10,6 +10,13 @@ export function init(root) {
   const link = doc.querySelector("link[rel=manifest][data-mt-sw]");
   if (!link || !sw) {
     return;
+  }
+  // The browser can offer installing before pwa/install.js runs; keep the offer for it, only where a button waits.
+  if (doc.querySelector("button.mt-install")) {
+    win.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      link.mtInstall = e;
+    });
   }
   const scope = new win.URL(link.dataset.mtScope, win.location.href).href;
   const first = !sw.controller;

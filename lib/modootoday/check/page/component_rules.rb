@@ -3,7 +3,7 @@
 module Modootoday
   module Check
     # Values the transforms need (Rule 2b): inline `file:`, `progress:`, `embed:` code spans, and per-section
-    # content rules for c: gallery, quote, pricing, split and subscribe that slot counts cannot express.
+    # content rules for c: gallery, quote, pricing, split, subscribe and install that slot counts cannot express.
     module ComponentRules
       SKELETONS = %w[text card image avatar row].freeze
 
@@ -49,6 +49,10 @@ module Modootoday
           act = ctx.mtc.is_a?(Hash) && ctx.mtc.dig("subscribe", "action")
           ctx.warns << "#{w}: no form is shown until _config.yml sets modootoday.subscribe.action" unless act
           errs << "#{w}: modootoday.subscribe.action must be an https:// URL" if act && act.to_s !~ %r{\Ahttps://\S+\z}
+        when "install"
+          pwa = ctx.mtc.is_a?(Hash) ? ctx.mtc["pwa"] : nil
+          on = pwa.is_a?(Hash) && pwa["enabled"] == true
+          ctx.warns << "#{w}: the Install button never shows until _config.yml sets modootoday.pwa.enabled: true" unless on
         end
       end
     end

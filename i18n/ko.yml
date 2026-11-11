@@ -155,3 +155,5 @@ pwa:
   later: "나중에"
   offline_notice: "오프라인 상태예요. 방문한 페이지는 계속 열 수 있어요."
   close: "닫기"
+  install: "설치"
+  install_hint: "브라우저 메뉴나 공유 메뉴에서도 이 사이트를 설치할 수 있어요."

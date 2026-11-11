@@ -4,7 +4,7 @@ layout: examples
 title: Components
 description: Every component with the Markdown that produces it and the live result.
 schema: {faq: auto}
-examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
+examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
   - badge
@@ -44,6 +44,7 @@ sections:
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
+  - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
@@ -411,6 +412,12 @@ The same idea with `cols: 4`: two by two in this text column, four across in a s
 `status:available` A paragraph that holds only links becomes buttons. The first link is the primary one. It works in the hero (before the first `##`) and in a `c: cta` section.
 
 [Get started](../guides/install/) [Read the configuration](../guides/configuration/)
+
+## Install
+
+`status:available` A `c: install` section prints its text, an Install button and a hint. The button stays hidden until the browser offers to install the site, and it opens the browser's own dialog only when it is clicked; the hint covers browsers that install from their menu or share sheet. Inside the installed app the section hides. It needs `modootoday.pwa.enabled: true`: this site has it off, so only the hint shows here. See [Installable site](../recipes/pwa/#installing).
+
+Keep these docs on your home screen and read them offline.
 
 ## Link cards
 

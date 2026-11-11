@@ -1,13 +1,13 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:54b2426ad35e
+source_rev: sha256:7f737a534298
 nav_order: 0
 layout: examples
 title: コンポーネント
 description: すべてのコンポーネントについて、元の Markdown と実際の表示結果を並べて紹介します。欲しい見た目を選び、そのソースをそのままコピーして使えます。
 schema: {faq: auto}
-examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
+examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
   - badge
@@ -47,6 +47,7 @@ sections:
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
+  - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "イラスト", side: start, ratio: "5:7", label: "見出し、2 行のテキスト、ボタンがある画面"}
@@ -417,6 +418,12 @@ sudo apt install ruby-full
 `status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
 
 [はじめる](../guides/install/) [設定を読む](../guides/configuration/)
+
+## インストール
+
+`status:available` `c: install` セクションは本文、インストールボタン、案内文を出力します。ボタンはブラウザーがサイトのインストールを提案するまで隠れており、クリックしたときだけブラウザー自身のダイアログを開きます。案内文はメニューや共有メニューからインストールするブラウザー向けです。インストールしたアプリの中ではセクションが隠れます。`modootoday.pwa.enabled: true` が必要で、このサイトではオフのため、ここには案内文だけが表示されます。[インストールできるサイト](../recipes/pwa/#インストールする)を参照してください。
+
+このドキュメントをホーム画面に置き、オフラインでも読めます。
 
 ## リンクカード
 

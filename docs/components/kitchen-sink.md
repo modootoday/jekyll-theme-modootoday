@@ -44,6 +44,7 @@ sections:
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4, badge: bottom}
   - {c: cta, name: cta}
+  - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "Illustration", side: start, ratio: "5:7", label: "A screen with a heading, two lines of text and a button"}
@@ -468,6 +469,10 @@ Bands that build a landing page from `sections:` items and the hero.
 ## Buttons
 
 [Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+
+## Install
+
+Keep these docs on your home screen and read them offline.
 
 ## Link cards
 

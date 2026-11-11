@@ -18,7 +18,7 @@
   components: [accordion, details, faq, steps, tabs, timeline]
 - id: sections
   title: {en: Page sections, ko: 페이지 섹션, ja: ページセクション}
-  components: [bleed, card, cta, hero, linkcards, pricing, reveal, split, subscribe]
+  components: [bleed, card, cta, hero, install, linkcards, pricing, reveal, split, subscribe]
 - id: chrome
   title: {en: Site chrome, ko: 사이트 공통 요소, ja: サイト共通要素}
   components: [banner, breadcrumb, footer, icons, language-switcher, nav, page-actions, pagination, posts, search, showcase, sidebar, theme-toggle, toc]

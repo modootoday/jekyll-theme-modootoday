@@ -10,6 +10,7 @@ faq: {slots: {panels: {min: 1}}, parts: [section.mt-c-faq, details.mt-details]}
 features: {params: {cols: {allowed: [2, 3, 4], required: false}, badge: {allowed: [bottom], required: false}}, slots: {items: {min: 1}}, parts: [ul > li, .mt-cols-2, .mt-cols-3, .mt-cols-4, .mt-badge-bottom]}
 filetree: {i18n: [filetree.label], slots: {items: {min: 1}}, parts: [section.mt-c-filetree, 'ul[aria-label]']}
 gallery: {i18n: [gallery.close], slots: {items: {min: 1}}, parts: [a.mt-gallery-thumb, a.mt-lightbox, .mt-lightbox-close]}
+install: {i18n: [pwa.install, pwa.install_hint], slots: {lead: {min: 1}}, parts: [section.mt-c-install, button.mt-install, .mt-install-hint]}
 linkcards: {slots: {items: {min: 1}}, parts: [section.mt-c-linkcards, ul > li > a]}
 params: {i18n: [params.required], slots: {rows: {min: 1}}, parts: [section.mt-c-params, 'th[scope=col]', .mt-param-required]}
 pricing: {i18n: [pricing.recommended], params: {recommended: {required: false}}, slots: {panels: {min: 1}}, parts: [.mt-plans, .mt-plan, .mt-plan-recommended, .mt-plan-flag]}

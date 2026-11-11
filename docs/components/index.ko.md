@@ -1,13 +1,13 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:54b2426ad35e
+source_rev: sha256:7f737a534298
 nav_order: 0
 layout: examples
 title: 컴포넌트
 description: 모든 컴포넌트를 만드는 Markdown 소스와 실제 렌더링 결과를 나란히 보여 주므로, 원하는 모양을 골라 소스를 그대로 복사해 쓸 수 있습니다.
 schema: {faq: auto}
-examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, linkcards, pricing, split, subscribe]
+examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
   - badge
@@ -47,6 +47,7 @@ sections:
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
   - {c: cta, name: buttons}
+  - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
   - {c: split, name: split, visual: split-demo, decor: decor-demo, tag: "일러스트", side: start, ratio: "5:7", label: "제목, 텍스트 두 줄, 버튼이 있는 화면"}
@@ -417,6 +418,12 @@ sudo apt install ruby-full
 `status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼입니다. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작합니다.
 
 [시작하기](../guides/install/) [설정 읽기](../guides/configuration/)
+
+## 설치
+
+`status:available` `c: install` 섹션은 본문, 설치 버튼, 안내 문장을 출력합니다. 버튼은 브라우저가 사이트 설치를 제안할 때까지 숨겨져 있고, 누를 때만 브라우저의 설치 대화상자를 엽니다. 안내 문장은 메뉴나 공유 메뉴에서 설치하는 브라우저를 위한 것입니다. 설치된 앱 안에서는 섹션이 숨겨집니다. `modootoday.pwa.enabled: true`가 필요하며, 이 사이트는 꺼져 있어 여기서는 안내 문장만 보입니다. [설치할 수 있는 사이트](../recipes/pwa/#설치하기)를 참고하세요.
+
+이 문서를 홈 화면에 두고 오프라인에서도 읽을 수 있습니다.
 
 ## 링크 카드
 
