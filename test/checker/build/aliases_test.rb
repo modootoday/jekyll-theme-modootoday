@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# --aliases (lib/modootoday/check/build/aliases.rb): missing aliases, byte mismatch, redirect target, conflicts.
+# --aliases (lib/modootoday/check/build/stubs/aliases.rb): missing aliases, byte mismatch, redirect target, conflicts.
 require_relative "../checker_case"
 
 class CheckAliasesTest < CheckerCase

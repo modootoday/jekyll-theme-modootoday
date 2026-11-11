@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../stubs"
+require_relative "../../../stubs"
 
 module Modootoday
   module Check

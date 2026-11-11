@@ -32,7 +32,7 @@ module Modootoday
           d.is_a?(Hash) ? d["items"] : d
         end
 
-        # The records themselves are judged with modootoday.records (build/records.rb); here only the set name.
+        # The records themselves are judged with modootoday.records (build/stubs/records.rb); here only the set name.
         def records(errs, where, fm, ctx)
           sets = ctx.mtc.is_a?(Hash) && ctx.mtc["records"].is_a?(Hash) ? ctx.mtc["records"] : {}
           errs << "#{where}: records: #{fm['records']} is not a set in modootoday.records" unless sets.key?(fm["records"].to_s)
