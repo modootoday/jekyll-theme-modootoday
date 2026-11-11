@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/csp/
-source_rev: sha256:c965ae0df915
+source_rev: sha256:048d7062e0e6
 nav_exclude: true
 title: 厳格な CSP のデモ
 twin: false
@@ -18,6 +18,7 @@ sections:
   - tables
   - code
   - inline
+  - {c: install, name: install}
 ---
 # 厳格な CSP のデモ
 
@@ -98,3 +99,7 @@ modootoday:
 ## インライン
 
 バッジ `status:available` `tag:beta`、キー `kbd:Ctrl+K`、進捗 `progress:60`、スピナー `loading:spinner`。
+
+## インストール
+
+このドキュメントをホーム画面に置いて、ネットワークなしで読めます。ボタンはブラウザーがインストールを提案するときだけ表示されます。

@@ -23,8 +23,10 @@ module Modootoday
 
       FILES = { MANIFEST => root(MANIFEST, "manifest.json"), WORKER => root(WORKER, "sw.js"), OFFLINE => offline }.freeze
 
-      def initialize(source)
-        @s = source
+      # dir: as for Twins (script/docs-index keeps the docs site's stubs under one tool-owned directory); each stub then sets
+      # path: to where it would sit.
+      def initialize(source, dir: nil)
+        @s, @dir = source, dir
         cfg = source.modootoday["pwa"]
         raise ConfigError, "--pwa: set modootoday.pwa.enabled: true (or kill) in _config.yml" unless cfg.is_a?(Hash) && ENABLED.include?(cfg["enabled"])
       end
@@ -32,6 +34,7 @@ module Modootoday
       # A file of the site's own at a stub path is never overwritten.
       def wanted
         files = FILES.merge(languages.to_h { |l| ["offline.#{l}.md", self.class.offline(l)] })
+        files = files.to_h { |rel, body| [File.join(@dir, rel), body.sub("permalink:", "path: #{rel}\npermalink:")] } if @dir
         files.each_key do |rel|
           file = @s.path(rel)
           next unless File.exist?(file) && !self.class.ours?(File.read(file))

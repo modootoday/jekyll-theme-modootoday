@@ -46,10 +46,19 @@ class DocsIndexTest < Minitest::Test
     end
   end
 
+  # The docs site has the PWA on; its stubs come from Modootoday::Stubs::Pwa, each naming the path it stands for.
+  def test_pwa_stubs_name_the_root_path
+    pwa = stubs.select { |path, _| path.match?(%r{\A#{GEN}(sw\.js|manifest\.webmanifest|offline(\.[a-z]{2})?\.md)\z}) }
+    assert_equal %w[manifest.webmanifest offline.ja.md offline.ko.md offline.md sw.js], pwa.keys.map { |p| p.delete_prefix(GEN) }.sort
+    pwa.each { |path, body| assert_equal path.delete_prefix(GEN), fm(body)["path"], path }
+    assert_equal "/ko/offline/", fm(pwa.fetch("#{GEN}offline.ko.md"))["permalink"]
+    refute(DocsIndex::Tree.new(DOCS).pages.any? { |p| p.rel.start_with?("generated/") }, "the stubs are not docs pages")
+  end
+
   def test_translations_sit_beside_their_source_with_lang_permalink_and_source_rev
     tree = DocsIndex::Tree.new(DOCS)
     pl = tree.page_lang
-    tracked = Dir.chdir(ROOT) { `git ls-files -z docs`.split("\0") }.map { |f| f.delete_prefix("docs/") }
+    tracked = Dir.chdir(ROOT) { `git ls-files -z docs`.split("\0") }.map { |f| f.delete_prefix("docs/") }.reject { |f| f.start_with?("generated/") }
     refute(tracked.any? { |f| pl.folder(f) }, "no translation in a <lang>/ folder")
     translations = tracked.select { |f| pl.sibling?(f) }
     refute_empty translations

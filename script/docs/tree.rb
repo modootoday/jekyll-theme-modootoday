@@ -19,6 +19,7 @@ module DocsIndex
   # Reads docs/: languages from _config.yml, sections from _data/sections.yml, pages from front matter.
   # A page's language comes from its file name (Modootoday::I18n::PageLang), never from the lang: it is given.
   class Tree
+    GENERATED = "generated" # tool output (Outputs); its stubs are not pages of the tree
     attr_reader :root, :langs, :sections, :pages, :page_lang
 
     def initialize(root)
@@ -26,7 +27,7 @@ module DocsIndex
       @langs = Array(YAML.safe_load(File.read("#{root}/_config.yml")).dig("modootoday", "languages"))
       @sections = YAML.safe_load(File.read("#{root}/_data/sections.yml"))
       @page_lang = Modootoday::I18n::PageLang.new(@langs, default_lang)
-      files = Dir.glob("#{root}/**/*.md").reject { |f| f.delete_prefix("#{root}/").start_with?("_", "vendor/") }.sort
+      files = Dir.glob("#{root}/**/*.md").reject { |f| f.delete_prefix("#{root}/").start_with?("_", "vendor/", "#{GENERATED}/") }.sort
       @pages = files.map { |f| page(f) }
     end
 

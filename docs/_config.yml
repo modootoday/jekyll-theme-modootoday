@@ -30,6 +30,9 @@ modootoday:
   math: {mode: static}
   # No inline script, so the docs QA can serve every page under a strict CSP header (test/system/audit/csp.mjs).
   csp: strict
+  # Installable and readable offline (recipes/pwa); the stubs are written to generated/ by script/docs-index.
+  # Roll back with enabled: kill, never by deleting them (the recipe's Turn it off).
+  pwa: {enabled: true, short_name: modoo.today}
   edit_url: https://github.com/modootoday/jekyll-theme-modootoday/edit/main/docs/
   # Post footers link tags and categories here (/ko/tags/ for lang: ko posts).
   archive: {tags: /tags/, categories: /categories/}

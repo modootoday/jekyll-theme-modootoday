@@ -127,6 +127,18 @@ class CheckPwaBuildTest < CheckerCase
     assert_includes o, "sw.js: modootoday.pwa is off, so it serves a self-removing worker; delete the PWA stubs a week after the last enabled deploy"
   end
 
+  def test_stubs_under_generated_name_their_root_path
+    site(stub: nil)
+    STUBS.each_key { |name| FileUtils.rm_f(File.join(@src, name)) }
+    STUBS.each { |name, text| page "generated/#{name}", text.sub("permalink:", "path: #{name}\npermalink:") unless name == "offline.md" }
+    o, = check
+    assert_includes o, "generated/offline.md: missing"
+    refute_includes o, "manifest.webmanifest: missing"
+    page "generated/offline.md", STUBS["offline.md"].sub("permalink:", "path: offline.md\npermalink:")
+    o, code = check("--strict")
+    assert_equal 0, code, o
+  end
+
   def test_pwa_front_matter_takes_only_precache
     site
     page "a.md", "---\ntitle: A\npwa: precache\n---\n# A\n"

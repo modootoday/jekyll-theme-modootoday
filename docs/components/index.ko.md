@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:7f737a534298
+source_rev: sha256:a13120151f8e
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -421,7 +421,7 @@ sudo apt install ruby-full
 
 ## 설치
 
-`status:available` `c: install` 섹션은 본문, 설치 버튼, 안내 문장을 출력합니다. 버튼은 브라우저가 사이트 설치를 제안할 때까지 숨겨져 있고, 누를 때만 브라우저의 설치 대화상자를 엽니다. 안내 문장은 메뉴나 공유 메뉴에서 설치하는 브라우저를 위한 것입니다. 설치된 앱 안에서는 섹션이 숨겨집니다. `modootoday.pwa.enabled: true`가 필요하며, 이 사이트는 꺼져 있어 여기서는 안내 문장만 보입니다. [설치할 수 있는 사이트](../recipes/pwa/#설치하기)를 참고하세요.
+`status:available` `c: install` 섹션은 본문, 설치 버튼, 안내 문장을 출력합니다. 버튼은 브라우저가 사이트 설치를 제안할 때까지 숨겨져 있고, 누를 때만 브라우저의 설치 대화상자를 엽니다. 안내 문장은 메뉴나 공유 메뉴에서 설치하는 브라우저를 위한 것입니다. 설치된 앱 안에서는 섹션이 숨겨집니다. `modootoday.pwa.enabled: true`가 필요하며 이 사이트는 켜져 있습니다. Chrome과 Edge에서는 여기에 버튼이 나타나고, 다른 브라우저에서는 안내 문장이 보입니다. [설치할 수 있는 사이트](../recipes/pwa/#설치하기)를 참고하세요.
 
 이 문서를 홈 화면에 두고 오프라인에서도 읽을 수 있습니다.
 

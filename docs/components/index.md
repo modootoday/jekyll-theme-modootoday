@@ -415,7 +415,7 @@ The same idea with `cols: 4`: two by two in this text column, four across in a s
 
 ## Install
 
-`status:available` A `c: install` section prints its text, an Install button and a hint. The button stays hidden until the browser offers to install the site, and it opens the browser's own dialog only when it is clicked; the hint covers browsers that install from their menu or share sheet. Inside the installed app the section hides. It needs `modootoday.pwa.enabled: true`: this site has it off, so only the hint shows here. See [Installable site](../recipes/pwa/#installing).
+`status:available` A `c: install` section prints its text, an Install button and a hint. The button stays hidden until the browser offers to install the site, and it opens the browser's own dialog only when it is clicked; the hint covers browsers that install from their menu or share sheet. Inside the installed app the section hides. It needs `modootoday.pwa.enabled: true`, which this site has: in Chrome and Edge the button appears here, and other browsers show the hint. See [Installable site](../recipes/pwa/#installing).
 
 Keep these docs on your home screen and read them offline.
 

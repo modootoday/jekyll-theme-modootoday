@@ -45,7 +45,7 @@ module Modootoday
         end
 
         def leftover(ctx)
-          f = File.join(ctx.src, Stubs::Pwa::WORKER)
+          f = File.join(*[ctx.src, Pwa.dir(ctx), Stubs::Pwa::WORKER].compact)
           return unless File.file?(f) && Stubs::Pwa.ours?(File.read(f))
           ctx.warns << "#{ctx.rel(f)}: modootoday.pwa is off, so it serves a self-removing worker; delete the PWA stubs a week after the last enabled deploy"
         end

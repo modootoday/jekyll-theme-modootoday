@@ -9,10 +9,10 @@ require_relative "rules_page"
 
 module DocsIndex
   # Everything script/docs-index writes, as { path => content }, built from a Tree.
-  # Tool output (twin stubs, llms files) lives under GENERATED, which only this class writes; the redirect stubs of
+  # Tool output (twin, llms and PWA stubs) lives under GENERATED, which only this class writes; the redirect stubs of
   # moved demos (Moves) and of pages moved inside the docs (Redirects) sit at the old paths.
   class Outputs
-    GENERATED = "generated"
+    GENERATED = Tree::GENERATED
     LLMS = %w[llms llms-full].freeze
 
     def initialize(tree)
@@ -21,7 +21,7 @@ module DocsIndex
 
     def files
       @files ||= fields.merge(moves.files).merge(redirects.files).merge(nav_files).merge(index_lists).merge(releases.files)
-        .merge(rules_page.files).merge(twins).merge(llms_files)
+        .merge(rules_page.files).merge(twins).merge(llms_files).merge(pwa)
     end
 
     def releases = @releases ||= Releases.new(@t, method(:text))
@@ -97,6 +97,13 @@ module DocsIndex
     # Twin stubs come from the same code as the modootoday-stubs command.
     def twins = stub_twins.wanted.transform_keys { |r| "#{@t.root}/#{r}" }
     def stub_twins = @stub_twins ||= Modootoday::Stubs::Twins.new(source, dir: GENERATED)
+
+    # The PWA stubs from the same code as modootoday-stubs --pwa; with the PWA off none are wanted, and none are pruned.
+    def pwa
+      Modootoday::Stubs::Pwa.new(source, dir: GENERATED).wanted.transform_keys { |r| "#{@t.root}/#{r}" }
+    rescue Modootoday::Stubs::ConfigError
+      {}
+    end
     def source
       @source ||= Modootoday::Stubs::Source.new(@t.root).tap do |s|
         s.overlay(fields.transform_keys { |p| p.delete_prefix("#{@t.root}/") }.select { |r, _| r.end_with?(".md") }, [])

@@ -15,6 +15,7 @@ sections:
   - tables
   - code
   - inline
+  - {c: install, name: install}
 ---
 # Strict CSP demo
 
@@ -95,3 +96,7 @@ modootoday:
 ## Inline
 
 Badges `status:available` `tag:beta`, keys `kbd:Ctrl+K`, progress `progress:60` and a spinner `loading:spinner`.
+
+## Install
+
+Keep these docs on your home screen and read them offline. The button appears only where the browser offers installing.

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/csp/
-source_rev: sha256:c965ae0df915
+source_rev: sha256:048d7062e0e6
 nav_exclude: true
 title: 엄격한 CSP 데모
 twin: false
@@ -18,6 +18,7 @@ sections:
   - tables
   - code
   - inline
+  - {c: install, name: install}
 ---
 # 엄격한 CSP 데모
 
@@ -98,3 +99,7 @@ modootoday:
 ## 인라인
 
 배지 `status:available` `tag:beta`, 키 `kbd:Ctrl+K`, 진행률 `progress:60`, 스피너 `loading:spinner`.
+
+## 설치
+
+이 문서를 홈 화면에 두고 네트워크 없이 읽을 수 있습니다. 버튼은 브라우저가 설치를 제안할 때만 나타납니다.

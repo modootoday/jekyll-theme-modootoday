@@ -52,7 +52,7 @@ await checkFirstPaint(browser, origin, fails);
 report.keyboard = await checkKeyboard(browser, origin, fails);
 report.mobile = (await checkMobile(browser, origin, out, fails)).length;
 report.csp = await checkCsp(browser, site, fails);
-report.features = await checkFeatures(browser, site, fails);
+report.features = await checkFeatures(browser, site, fails, warns);
 report.components = await checkComponents(browser, origin, site, out, fails);
 await browser.close(); close();
 process.exit(writeReport(out, report, fails, warns));

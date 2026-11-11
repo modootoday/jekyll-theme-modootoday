@@ -14,6 +14,7 @@ module Modootoday
       HINT = "run modootoday-stubs SRC --pwa --write"
       THEME_PAGE = /<html\b[^>]*\sdata-mt-copy=/
       LINK = /<link rel="manifest" href=/
+      GENERATED = "generated"
 
       module_function
 
@@ -30,8 +31,11 @@ module Modootoday
         Precache.call(ctx)
       end
 
+      # Beside the pages, or under generated/ (the docs site, as for twin stubs).
+      def dir(ctx) = File.file?(File.join(ctx.src, GENERATED, Stubs::Pwa::WORKER)) ? GENERATED : nil
+
       def stubs(ctx)
-        Stubs::Plan.new(Stubs::Source.new(ctx.src), [:pwa], prune: false).changes.each do |c|
+        Stubs::Plan.new(Stubs::Source.new(ctx.src), [:pwa], prune: false, args: { pwa: { dir: dir(ctx) } }).changes.each do |c|
           ctx.errs << "#{c.path}: #{c.reason == 'missing' ? 'missing' : 'out of date'}: #{HINT}"
         end
       rescue Stubs::ConfigError, Stubs::DataError => e

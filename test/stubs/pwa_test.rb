@@ -53,6 +53,14 @@ class StubsPwaTest < StubsCase
     assert_match(/full_languages: "\.\.\/x" is not a language code/, e)
   end
 
+  def test_under_a_directory_each_stub_names_its_root_path
+    config "modootoday:\n  full_languages: [ko]\n  pwa: {enabled: true}\n"
+    wanted = Modootoday::Stubs::Pwa.new(Modootoday::Stubs::Source.new(@src), dir: "generated").wanted
+    assert_equal %w[generated/manifest.webmanifest generated/offline.ko.md generated/offline.md generated/sw.js], wanted.keys.sort
+    assert_equal "---\nlayout: null\npath: sw.js\npermalink: /sw.js\nsitemap: false\n---\n{% include modootoday/pwa/sw.js %}\n", wanted["generated/sw.js"]
+    assert_includes wanted["generated/offline.ko.md"], "lang: ko\npath: offline.ko.md\npermalink: /ko/offline/\n"
+  end
+
   def test_kill_keeps_writing_the_stubs
     config "modootoday:\n  pwa: {enabled: kill}\n"
     assert_equal %w[manifest.webmanifest offline.md sw.js], plan("--pwa").keys.sort
