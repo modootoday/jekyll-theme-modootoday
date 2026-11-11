@@ -47,7 +47,8 @@ export async function auditPage(browser, url, { theme, width, shots, interact })
       }
       window.scrollTo(0, 0);
     });
-    await page.waitForLoadState("networkidle");
+    // Scrolling starts lazy loads; a page that never idles (twice in CI) still gets probed after the bounded wait.
+    await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => null);
     await page.waitForTimeout(800);
     const rows = await page.evaluate(probeExamples);
     // A sticky header would cover the top of a tall example in its element shot.
