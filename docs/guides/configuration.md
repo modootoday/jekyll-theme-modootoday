@@ -74,6 +74,7 @@ modootoday:
 | `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |
 | `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. Without `text`, `release: latest` announces the repository's latest release ("1.7.0 is out." and a What's new link) from `site.github` at build time, and `release: {version, url}` does the same from the values given. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
+| `print` | `false` | `true` adds a print stylesheet, loaded only for printing: it leaves out the header, menus, banner, update notice, install section and page footer links, prints black on white, prints every tab panel, adds each link's address after it, and keeps figures, code and tables on one page. A `details`, accordion or FAQ item prints only its summary unless a reader opens it first. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
 | `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](../../reference/showcase/). |
 | `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |

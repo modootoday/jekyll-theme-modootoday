@@ -7,12 +7,13 @@ import { checkNoJs } from "./features/no-js.mjs";
 import { checkPwa } from "./features/pwa.mjs";
 import { checkDocsPwa } from "./features/pwa/docs.mjs";
 import { checkToc } from "./features/toc.mjs";
+import { checkPrint } from "./features/print.mjs";
 
 export async function checkFeatures(browser, site, fails, warns) {
   const { origin, close } = await serveSite(site, { csp: CSP });
   let rows;
   try {
-    rows = { chart: await checkChart(browser, origin, fails), noJs: await checkNoJs(browser, origin, fails), toc: await checkToc(browser, origin, fails) };
+    rows = { chart: await checkChart(browser, origin, fails), noJs: await checkNoJs(browser, origin, fails), toc: await checkToc(browser, origin, fails), print: await checkPrint(browser, origin, fails) };
     rows.pwaDocs = await checkDocsPwa(browser, origin, site, fails, warns);
   } finally {
     close();

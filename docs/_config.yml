@@ -15,6 +15,7 @@ exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
   lists: {link_chips: true, titled_items: true}
   heading_anchors: true
+  print: true
   feedback: {issues: https://github.com/modootoday/jekyll-theme-modootoday/issues, helpful: true, labels: [docs-feedback]}
   og_image: {path: /assets/images/site/og.jpg, alt: "jekyll-theme-modootoday: Markdown pages, light and dark, in three languages", width: 1200, height: 628}
   nav: main

@@ -32,6 +32,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - `layout: feed` with `feed_source:` publishes a changelog as Atom, one entry per release; `releases_feed:` links GitHub's releases.atom from changelog and download pages. (adr:modootoday/20261112085718, adr:modootoday/20261109141321)
 - `banner: {release: latest}` announces the repository's latest release, read when the site is built. (adr:modootoday/20261112112607, adr:modootoday/20261109141321)
 - Open Graph adds the image's alt text and size, and falls back to the hero image or poster before `og_image`. (adr:modootoday/20261112132133, adr:modootoday/20261109141321)
+- `modootoday.print: true` adds a print stylesheet (loaded for printing only) that hides the site chrome, the update notice and the install section, and prints link addresses. (adr:modootoday/20261112153723, adr:modootoday/20261109141321)
 
 ### Changed
 

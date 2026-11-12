@@ -1,0 +1,16 @@
+// Print sheet (modootoday.print: true), linked with media="print" after every other sheet. Unlayered, so it wins over
+// the layered theme. The page prints black on white whatever the theme; site chrome, the update notice and the install
+// section are left out; tab panels all print with their titles. details and FAQ items print only their summary (no script).
+@page { margin: 1.5cm; }
+html, body { background: #fff !important; color: #000 !important; color-scheme: light; }
+.mt-skip, .mt-header, .mt-banner, .mt-back-to-top, .mt-showcase, .mt-sidebar, .mt-doc-aside, .mt-toc-mobile, .mt-page-actions,
+.mt-nav-sheet, .mt-toast, .mt-c-install, .mt-anchor, .mt-page-feedback, .mt-pagination, .mt-search, .mt-footer,
+[role="tablist"] { display: none !important; }
+[role="tabpanel"][hidden], section[data-tabs] > h3[hidden] { display: block !important; }
+main, .mt-main, .mt-doc-layout, .mt-doc-main { display: block !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
+a { color: #000 !important; text-decoration: underline; }
+// Link addresses print after the link text; legal pages print their own (pages/_legal.scss), and in-page links are left alone.
+:is(.mt-prose, .mt-doc) a[href^="http"]:not(:is(.mt-legal-body *))::after { content: " (" attr(href) ")"; font-size: .85em; word-break: break-all; }
+pre, code, .mt-table, figure, .mt-callout, blockquote, img, tr { break-inside: avoid; }
+h1, h2, h3, h4 { break-after: avoid; }
+pre { white-space: pre-wrap; }

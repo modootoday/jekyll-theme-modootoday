@@ -12,6 +12,8 @@ module Modootoday
         next unless v == true && list.is_a?(Array) && !list.map(&:to_s).include?("anchor")
         ctx.warns << "_config.yml: #{path}: true has no effect while modootoday.components leaves out anchor"
       end
+      # print: true links the print sheet (chrome/print.css) with media="print".
+      Schema.register(Key.new(name: "print", type: :bool))
       Schema.register(Key.new(name: "heading_anchors", type: :bool, check: anchor_on,
                               message: "must be true or false (true links each ## and ### heading to itself)"))
 
