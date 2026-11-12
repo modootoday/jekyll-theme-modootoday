@@ -3,8 +3,12 @@
 require_relative "../checker_case"
 
 class CheckLinksTest < CheckerCase
+  # The Jekyll 4 and 3.9 test bundles carry no nokogiri; there --links only says it did not run.
+  NOKOGIRI = Open3.capture3(CLEAN_ENV, RbConfig.ruby, "-e", "require 'nokogiri'")[2].success?
+
   def setup
     super
+    skip "nokogiri not installed for this Ruby" unless NOKOGIRI || name == "test_without_nokogiri_the_check_says_it_did_not_run"
     write File.join(@src, "_config.yml"), "baseurl: /site\n"
     page "index.md", "---\n---\n# Home\n"
     out "index.html", %(<html><body><h2 id="top">Top</h2><a href="/site/guide/">Guide</a></body></html>)
@@ -56,6 +60,12 @@ class CheckLinksTest < CheckerCase
     out "guide/index.md", "# Guide\n"
     out "p/index.html", %(<html><body><a href="/site/guide.html">a</a><a href="/site/guide/index.md">t</a></body></html>)
     refute_match(/broken|missing/, warnings)
+  end
+
+  def test_without_nokogiri_the_check_says_it_did_not_run
+    skip "nokogiri is installed for this Ruby" if NOKOGIRI
+    link "/site/nowhere/"
+    assert_match(/warning: --links needs the nokogiri gem; links were not checked/, warnings)
   end
 
   def test_without_the_option_nothing_is_checked
