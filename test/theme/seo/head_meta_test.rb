@@ -5,10 +5,10 @@ require "minitest/autorun"
 require "tmpdir"
 require "fileutils"
 require "open3"
-require_relative "../support/starters"
+require_relative "../../support/starters"
 
 class HeadMetaTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   DOCS = Starters::Sources.path("docs")
   INLINE = "<script>try{var t=localStorage"
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:c22188e195ae
+source_rev: sha256:ef72db652cf5
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -56,7 +56,7 @@ modootoday:
 | `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |
 | `heading_anchors` | `false` | `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. |
 | `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
-| `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 페이지의 `image:`가 우선합니다. |
+| `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. |
 | `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
 | `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |

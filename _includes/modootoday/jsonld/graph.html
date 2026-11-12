@@ -12,7 +12,7 @@ an Article type or a front matter entity), BreadcrumbList (#breadcrumb). Absolut
 {%- assign _ld_lang = page.lang | default: site.lang | default: "en" -%}
 {%- assign _ld_title = page.title | default: site.title | strip_html | normalize_whitespace -%}
 {%- assign _ld_desc = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 300 -%}
-{%- assign _ld_img = page.image.path | default: page.image | default: site.modootoday.og_image -%}
+{%- include modootoday/meta/og-image.html -%}{%- assign _ld_img = nil -%}{%- if mt_og_img != "" -%}{%- assign _ld_img = mt_og_img -%}{%- endif -%}
 {%- capture _ld_g -%}
 {%- include modootoday/jsonld/website.html -%}
 {%- include modootoday/jsonld/publisher.html -%}

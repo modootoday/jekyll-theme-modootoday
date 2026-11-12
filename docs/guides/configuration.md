@@ -50,7 +50,7 @@ modootoday:
 | `lists` | none | `{link_chips: true, titled_items: true}` turns link-only lists into chips and `**Title**:` items into titled items. |
 | `heading_anchors` | `false` | `true` ends each `##` and `###` heading of a doc or post with a link to itself, shown on hover and focus and always on touch screens. |
 | `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |
-| `og_image` | none | Default image for link previews. A page's `image:` wins. |
+| `og_image` | none | Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. |
 | `feed` | `false` | `true` links `/feed.xml`. Add `jekyll-feed` to `plugins`. |
 | `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
 | `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |

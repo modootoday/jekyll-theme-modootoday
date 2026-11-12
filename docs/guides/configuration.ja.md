@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:c22188e195ae
+source_rev: sha256:ef72db652cf5
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -56,7 +56,7 @@ modootoday:
 | `lists` | なし | `{link_chips: true, titled_items: true}` で、リンクだけのリストをチップに、`**タイトル**:` の項目を見出し付きの項目にする。 |
 | `heading_anchors` | `false` | `true` で、ドキュメントと投稿の `##`・`###` 見出しの末尾に、その見出し自身へのリンクを付ける。ポインターを重ねるかフォーカスすると表示され、タッチ画面では常に表示される。 |
 | `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |
-| `og_image` | なし | リンクプレビューの既定の画像。ページの `image:` が優先。 |
+| `og_image` | なし | リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 |
 | `feed` | `false` | `true` で `/feed.xml` にリンクする。`plugins` に `jekyll-feed` を追加する。 |
 | `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
 | `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |

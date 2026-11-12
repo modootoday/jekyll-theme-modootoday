@@ -16,7 +16,7 @@ modootoday:
   lists: {link_chips: true, titled_items: true}
   heading_anchors: true
   feedback: {issues: https://github.com/modootoday/jekyll-theme-modootoday/issues, helpful: true, labels: [docs-feedback]}
-  og_image: /assets/images/site/og.jpg
+  og_image: {path: /assets/images/site/og.jpg, alt: "jekyll-theme-modootoday: Markdown pages, light and dark, in three languages", width: 1200, height: 628}
   nav: main
   # Front-matter-less pages are their own twins; other pages keep stubs.
   twins: source

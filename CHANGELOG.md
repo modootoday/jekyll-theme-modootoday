@@ -31,6 +31,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - Page footers can link Report an issue, a two-link Was this page helpful?, and Discuss, each a prefilled GitHub URL (`modootoday.feedback`); no script and no request until a reader clicks. (adr:modootoday/20261112032809, adr:modootoday/20261109141321)
 - `layout: feed` with `feed_source:` publishes a changelog as Atom, one entry per release; `releases_feed:` links GitHub's releases.atom from changelog and download pages. (adr:modootoday/20261112085718, adr:modootoday/20261109141321)
 - `banner: {release: latest}` announces the repository's latest release, read when the site is built. (adr:modootoday/20261112112607, adr:modootoday/20261109141321)
+- Open Graph adds the image's alt text and size, and falls back to the hero image or poster before `og_image`. (adr:modootoday/20261112132133, adr:modootoday/20261109141321)
 
 ### Changed
 

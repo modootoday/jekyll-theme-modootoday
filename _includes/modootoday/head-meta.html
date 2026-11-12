@@ -82,10 +82,19 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <meta property="og:url" content="{{ _mt_url }}">
 {%- endif -%}
 <meta property="og:locale" content="{{ page.lang | default: site.lang | default: 'en' | replace: '-', '_' }}">
-{%- assign _mt_img = page.image.path | default: page.image | default: site.modootoday.og_image -%}
-{%- if _mt_img %}
-<meta property="og:image" content="{{ _mt_img | absolute_url }}">
+{%- include modootoday/meta/og-image.html -%}
+{%- if mt_og_img != "" %}
+<meta property="og:image" content="{{ mt_og_img | absolute_url }}">
+{%- if mt_og_w != "" and mt_og_h != "" %}
+<meta property="og:image:width" content="{{ mt_og_w }}">
+<meta property="og:image:height" content="{{ mt_og_h }}">
+{%- endif -%}{%- if mt_og_alt != "" %}
+<meta property="og:image:alt" content="{{ mt_og_alt | strip_html | escape }}">
+{%- endif %}
 <meta name="twitter:card" content="summary_large_image">
+{%- if mt_og_alt != "" %}
+<meta name="twitter:image:alt" content="{{ mt_og_alt | strip_html | escape }}">
+{%- endif -%}
 {%- else %}
 <meta name="twitter:card" content="summary">
 {%- endif -%}

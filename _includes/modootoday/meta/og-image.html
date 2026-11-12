@@ -1,0 +1,15 @@
+{%- comment -%}The page's share image, the one owner for the Open Graph tags (head-meta.html) and JSON-LD (jsonld/graph.html), which
+  the structured-data check compares. Order: page.image (a path or {path, alt, width, height}), the hero image, the hero
+  poster, then modootoday.og_image (a path or the same map). Alt: page.image.alt, then image_alt, then the chosen image's alt.
+  Sets mt_og_img (a path or URL, "" when none), mt_og_alt, mt_og_w and mt_og_h ("" when unknown).{%- endcomment -%}
+{%- assign mt_og_img = "" -%}{%- assign mt_og_alt = "" -%}{%- assign mt_og_w = "" -%}{%- assign mt_og_h = "" -%}
+{%- assign _og = nil -%}{%- assign _og_page = false -%}
+{%- if page.image -%}{%- assign _og = page.image -%}{%- assign _og_page = true -%}
+{%- elsif page.hero.image -%}{%- assign _og = page.hero.image -%}
+{%- elsif page.hero.poster -%}{%- assign _og = page.hero.poster -%}
+{%- elsif site.modootoday.og_image -%}{%- assign _og = site.modootoday.og_image -%}{%- endif -%}
+{%- if _og -%}
+{%- assign mt_og_img = _og.path | default: _og -%}
+{%- assign mt_og_w = _og.width | default: "" -%}{%- assign mt_og_h = _og.height | default: "" -%}
+{%- if _og_page -%}{%- assign mt_og_alt = page.image.alt | default: page.image_alt | default: "" -%}{%- else -%}{%- assign mt_og_alt = _og.alt | default: "" -%}{%- endif -%}
+{%- endif -%}
