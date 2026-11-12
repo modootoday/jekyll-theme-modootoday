@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/blog-news/
-source_rev: sha256:23a9198663eb
+source_rev: sha256:4eb9ab48ddeb
 nav_order: 50
 title: ブログとニュース
 description: ブログ一覧、ニュースのトップページ、記事の署名、著者ページ、言語ごとの Atom フィードを作るレイアウトと、それぞれの front matter を説明します。
@@ -69,6 +69,8 @@ last_modified_at: 2026-10-30
 
 著者ページは `layout: author` と `author: kim` で作ります。言語フォルダーごとに `layout: feed` の `feed.xml` を置くと言語別の Atom フィードができ、head から自動でリンクされます。
 
+変更履歴もフィードにできます。`feed_source: data` は生成された `_data/releases.yml` を、`feed_source: /changelog/` は `layout: changelog` のページを、リリースごとに一つの項目として出力します。項目の id は変わらず、リンクは `home:`(既定は元のページ)に向かいます。変更履歴やダウンロードのページの front matter `releases_feed: true` は、サイトのリポジトリーの GitHub `releases.atom` を head とタイトルの下にリンクします。`site.github` が使えない環境では URL を直接書きます。
+
 `modootoday.feed` が `true` なら、`category` も `tag` もないブログ一覧は、その言語のフィードを head と紹介文の下の購読リンクでリンクします。ブログ、著者、アーカイブのページは `feed:` で自分のフィードを決めます。値は `layout: feed` のページのサイト内パスで、リンクしないなら `false` です。一人の著者の記事だけにするには、`layout: feed` と `author: kim` を書いた `/authors/kim.xml` のようなページを作り、著者ページに `feed: /authors/kim.xml` を書きます。ビルドにない `feed:` は `modootoday-check` が報告します。
 
 ## 設定
@@ -102,3 +104,5 @@ modootoday:
 | `deck` | post, news-article | タイトルの下の 1 文 |
 | `breaking`, `live`, `correction`, `sources`, `credits` | news-article | ニュースの詳細 |
 | `feed_lang`, `limit`, `feed_content` | feed | フィードの範囲 |
+| `feed_source`, `home` | feed | 変更履歴をフィードに:`data` か `layout: changelog` のページの URL と、項目のリンク先 |
+| `releases_feed` | changelog, download, 任意のページ | `true`(`site.github` から)か URL。GitHub の `releases.atom` を head とタイトルの下にリンク |

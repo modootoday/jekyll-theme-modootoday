@@ -2,6 +2,8 @@
 nav_order: 2
 title: "Changelog demo"
 layout: changelog
+feed: /layouts/docs-extra/changelog.xml
+releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.atom
 description: What changed in each release, newest first, with the additions, changes and fixes listed separately for every version and its date.
 twin: false
 edit: false

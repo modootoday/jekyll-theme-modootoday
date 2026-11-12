@@ -99,6 +99,7 @@ layouts:
   tickets: "티켓 받기"
   price: "가격"
   free: "무료"
+  releases_feed: "GitHub 릴리스 (Atom)"
   calendar: "캘린더에 추가"
   episode: "에피소드 [n]"
   season: "시즌 [n]"

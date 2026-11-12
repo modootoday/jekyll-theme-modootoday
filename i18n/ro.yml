@@ -99,6 +99,7 @@ layouts:
   tickets: "Ia bilete"
   price: "Preț"
   free: "Gratuit"
+  releases_feed: "Versiuni GitHub (Atom)"
   calendar: "Adaugă în calendar"
   episode: "Episodul [n]"
   season: "Sezonul [n]"

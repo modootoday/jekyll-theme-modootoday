@@ -5,6 +5,8 @@ source_rev: sha256:75c43d6277cd
 nav_order: 2
 title: "변경 이력 데모"
 layout: changelog
+feed: /layouts/docs-extra/changelog.xml
+releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.atom
 description: 릴리스마다 바뀐 내용을 최신순으로 보여 줍니다. 버전과 날짜마다 추가, 변경, 수정 항목을 따로 나누어 무엇이 달라졌는지 쉽게 찾습니다.
 twin: false
 edit: false

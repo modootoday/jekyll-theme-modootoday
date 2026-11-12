@@ -2,10 +2,12 @@
 nav_order: 40
 title: Changelog
 description: Every release of the theme, newest first, with a one-line lead for each change and a link to its full notes.
+feed: /changelog.xml
+releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.atom
 ---
 # Changelog
 
-Every release, newest first, with the opening words of each change. The full entries, with the reasons and the decisions they cite, are in [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md); each version links its release on GitHub. To move a site to a newer release, read [Migrate and upgrade](../../guides/upgrade/).
+Every release, newest first, with the opening words of each change. The full entries, with the reasons and the decisions they cite, are in [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md); each version links its release on GitHub. To move a site to a newer release, read [Migrate and upgrade](../../guides/upgrade/). Feed readers can follow [this list as Atom](../../changelog.xml), one entry per release, or [GitHub's releases feed](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom).
 
 ## Releases
 

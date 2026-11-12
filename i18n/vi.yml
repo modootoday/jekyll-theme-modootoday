@@ -99,6 +99,7 @@ layouts:
   tickets: "Mua vé"
   price: "Giá"
   free: "Miễn phí"
+  releases_feed: "Bản phát hành GitHub (Atom)"
   calendar: "Thêm vào lịch"
   episode: "Tập [n]"
   season: "Mùa [n]"

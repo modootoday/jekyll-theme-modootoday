@@ -1,0 +1,24 @@
+{%- comment -%}Atom entries for a changelog (layout: feed with feed_source:), one per release, newest first. include.releases is the
+  changelog layout's releases: ({version, date, url, added, changed, fixed, removed, security}) or the generated
+  _data/releases.yml ({version, date, url, sections: [{name, items}]}); include.home is the page an entry links to when the
+  release has no url; include.limit caps the count. Ids are tag URIs of the host, the release date and the version, so a
+  reader never sees an entry twice.{%- endcomment -%}
+{%- assign _fe_host = site.url | default: "localhost" | remove: "https://" | remove: "http://" | split: "/" | first -%}
+{%- assign _fe_cats = "added changed fixed removed security" | split: " " -%}
+{%- for r in include.releases limit: include.limit -%}
+{%- assign _fe_day = r.date | date: "%Y-%m-%d" -%}
+{%- assign _fe_anchor = r.version | prepend: "v" | slugify -%}
+{%- capture _fe_link -%}{%- if r.url -%}{{ r.url }}{%- else -%}{{ include.home | absolute_url }}#{{ _fe_anchor }}{%- endif -%}{%- endcapture -%}
+{%- capture _fe_html -%}
+{%- if r.sections -%}{%- for s in r.sections -%}<h3>{{ s.name }}</h3><ul>{%- for i in s.items -%}<li>{{ i | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>{%- endfor -%}</ul>{%- endfor -%}
+{%- else -%}{%- for c in _fe_cats -%}{%- if r[c] -%}{%- assign _fe_l = "layouts." | append: c -%}{%- capture _fe_cl -%}{%- include modootoday/t.html key=_fe_l -%}{%- endcapture -%}<h3>{{ _fe_cl | strip }}</h3><ul>{%- for i in r[c] -%}<li>{{ i | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>{%- endfor -%}</ul>{%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- endcapture %}
+<entry>
+<title>{{ r.version | xml_escape }}</title>
+<link href="{{ _fe_link | strip | xml_escape }}" rel="alternate" type="text/html"/>
+<id>tag:{{ _fe_host }},{{ _fe_day }}:{{ site.baseurl }}/{{ r.version | xml_escape }}</id>
+<updated>{{ r.date | date_to_xmlschema }}</updated>
+<content type="html">{{ _fe_html | xml_escape }}</content>
+</entry>
+{%- endfor -%}

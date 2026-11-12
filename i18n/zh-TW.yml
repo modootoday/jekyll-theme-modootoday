@@ -99,6 +99,7 @@ layouts:
   tickets: "取得門票"
   price: "價格"
   free: "免費"
+  releases_feed: "GitHub 版本發布 (Atom)"
   calendar: "加入行事曆"
   episode: "第 [n] 集"
   season: "第 [n] 季"

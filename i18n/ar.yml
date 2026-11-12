@@ -99,6 +99,7 @@ layouts:
   tickets: "احصل على التذاكر"
   price: "السعر"
   free: "مجاني"
+  releases_feed: "إصدارات GitHub (Atom)"
   calendar: "أضف إلى التقويم"
   episode: "الحلقة [n]"
   season: "الموسم [n]"

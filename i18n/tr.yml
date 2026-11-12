@@ -99,6 +99,7 @@ layouts:
   tickets: "Bilet al"
   price: "Fiyat"
   free: "Ücretsiz"
+  releases_feed: "GitHub sürümleri (Atom)"
   calendar: "Takvime ekle"
   episode: "Bölüm [n]"
   season: "Sezon [n]"

@@ -99,6 +99,7 @@ layouts:
   tickets: "Kup bilet"
   price: "Cena"
   free: "Bezpłatnie"
+  releases_feed: "Wydania w GitHub (Atom)"
   calendar: "Dodaj do kalendarza"
   episode: "Odcinek [n]"
   season: "Sezon [n]"

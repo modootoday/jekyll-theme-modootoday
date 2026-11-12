@@ -3,19 +3,28 @@
   layout: feed
   ---
   Front matter: feed_lang (default page.lang or site.lang; "all" mixes), limit (default 20), category / tag / author (filtered feed).
-  Content is the post's excerpt unless feed_content: full. Authors: site/author.html.{%- endcomment -%}
+  Content is the post's excerpt unless feed_content: full. Authors: site/author.html.
+  feed_source: a changelog instead of posts: "data" (the generated _data/releases.yml) or the URL of a layout: changelog
+  page; one entry per release (docs-extra/feed-entries.html), linking to home: (default the source page).{%- endcomment -%}
 {%- assign _fl = page.feed_lang | default: page.lang | default: site.lang | default: "en" -%}
 {%- include modootoday/blog/select.html lang=_fl category=page.category tag=page.tag author=page.author -%}
 {%- assign _flim = page.limit | default: 20 -%}
+{%- if page.feed_source -%}
+{%- assign _frel = nil -%}{%- assign _fhome = page.home -%}
+{%- if page.feed_source == "data" -%}{%- assign _frel = site.data.releases -%}
+{%- else -%}{%- include modootoday/lookup/page.html url=page.feed_source -%}{%- assign _frel = mt_lookup_page.releases -%}{%- assign _fhome = _fhome | default: page.feed_source -%}{%- endif -%}
+{%- unless _frel -%}{%- assign _frel = "" | split: "" -%}{%- endunless -%}
+{%- endif -%}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"{% unless _fl == "all" %} xml:lang="{{ _fl }}"{% endunless %}>
 <title>{{ page.feed_title | default: site.title | xml_escape }}</title>
 {%- if site.description %}<subtitle>{{ site.description | xml_escape }}</subtitle>{% endif %}
 <link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml"/>
-<link href="{{ page.home | default: '/' | absolute_url }}" rel="alternate" type="text/html"/>
+<link href="{{ _fhome | default: page.home | default: '/' | absolute_url }}" rel="alternate" type="text/html"/>
 <id>{{ page.url | absolute_url | xml_escape }}</id>
-<updated>{% if mt_posts.size > 0 %}{{ mt_posts.first.last_modified_at | default: mt_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+<updated>{% if page.feed_source %}{% if _frel.size > 0 %}{{ _frel.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}{% elsif mt_posts.size > 0 %}{{ mt_posts.first.last_modified_at | default: mt_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
 <generator uri="https://github.com/modootoday/jekyll-theme-modootoday">jekyll-theme-modootoday</generator>
+{%- if page.feed_source -%}{%- include modootoday/docs-extra/feed-entries.html releases=_frel home=_fhome limit=_flim -%}{%- assign mt_posts = "" | split: "" -%}{%- endif -%}
 {%- for _p in mt_posts limit: _flim %}
 <entry>
 <title type="html">{{ _p.title | strip_html | xml_escape }}</title>

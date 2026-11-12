@@ -99,6 +99,7 @@ layouts:
   tickets: "Dapatkan tiket"
   price: "Harga"
   free: "Gratis"
+  releases_feed: "Rilis GitHub (Atom)"
   calendar: "Tambahkan ke kalender"
   episode: "Episode [n]"
   season: "Musim [n]"

@@ -99,6 +99,7 @@ layouts:
   tickets: "Tickets hasil karein"
   price: "Qeemat"
   free: "Muft"
+  releases_feed: "GitHub releases (Atom)"
   calendar: "Calendar mein shamil karein"
   episode: "Episode [n]"
   season: "Season [n]"

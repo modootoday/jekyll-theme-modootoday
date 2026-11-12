@@ -1,0 +1,5 @@
+{%- comment -%}Sets mt_releases_feed: GitHub's releases.atom for front matter releases_feed: true (the repository from
+  meta/github.html, no API call) or the URL given; "" otherwise.{%- endcomment -%}
+{%- assign mt_releases_feed = "" -%}
+{%- if page.releases_feed == true -%}{%- include modootoday/meta/github.html -%}{%- if mt_gh_repo != "" -%}{%- assign mt_releases_feed = mt_gh_repo | append: "/releases.atom" -%}{%- endif -%}
+{%- elsif page.releases_feed -%}{%- assign mt_releases_feed = page.releases_feed -%}{%- endif -%}

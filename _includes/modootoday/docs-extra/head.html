@@ -1,7 +1,13 @@
 {%- include modootoday/i18n.html -%}
-{%- comment -%}Docs-extra page header: kicker (include.kicker), title (h1, id mt-dx-title), description as the lead.{%- endcomment -%}
+{%- comment -%}Docs-extra page header: kicker (include.kicker), title (h1, id mt-dx-title), description as the lead, then the
+  page's feed (feed:) and GitHub's releases feed (releases_feed:) as links.{%- endcomment -%}
 <header class="mt-dx-head">
 {%- if include.kicker %}<p class="mt-dx-kicker">{{ include.kicker }}</p>{% endif %}
 <h1 id="mt-dx-title">{{ page.title }}</h1>
 {%- if page.description %}<p class="mt-dx-lead">{{ page.description }}</p>{% endif %}
 </header>
+{%- include modootoday/blog/subscribe.html -%}
+{%- include modootoday/meta/releases-feed.html -%}
+{%- if mt_releases_feed != "" %}
+<p class="mt-feed-subscribe"><a href="{{ mt_releases_feed }}" type="application/atom+xml">{% include modootoday/brand/icon.html name="rss" size=14 %} {{ mt_t_layouts_releases_feed }}</a></p>
+{%- endif -%}

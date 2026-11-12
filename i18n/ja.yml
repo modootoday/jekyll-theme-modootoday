@@ -99,6 +99,7 @@ layouts:
   tickets: "チケットを入手"
   price: "料金"
   free: "無料"
+  releases_feed: "GitHub のリリース (Atom)"
   calendar: "カレンダーに追加"
   episode: "エピソード [n]"
   season: "シーズン [n]"

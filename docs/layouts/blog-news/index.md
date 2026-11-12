@@ -92,6 +92,8 @@ author: kim
 
 Add a `feed.xml` page with `layout: feed` in each language folder (`/ko/feed.xml`) to get one Atom feed per language. The head links to it. Set `feed_content: full` for full text.
 
+A changelog can be a feed too: `feed_source: data` publishes the generated `_data/releases.yml`, and `feed_source: /changelog/` a `layout: changelog` page, one entry per release with a stable id, linking to `home:` (default the source page). Front matter `releases_feed: true` on a changelog or download page links GitHub's `releases.atom` for the site's repository in the head and under the title; give the URL instead where `site.github` is not available.
+
 A blog index without `category` or `tag` links its language feed in the head and with a Subscribe link under its intro when `modootoday.feed` is `true`. Any blog, author or archive page names its own feed with `feed:`: a site path to a `layout: feed` page, or `false` for none. For one author's posts, add a page such as `/authors/kim.xml` with `layout: feed` and `author: kim`, and set `feed: /authors/kim.xml` on the author page. `modootoday-check` reports a `feed:` whose page is not in the build.
 
 ## Settings
@@ -127,3 +129,5 @@ modootoday:
 | `deck` | post, news-article | A sentence under the title |
 | `breaking`, `live`, `correction`, `sources`, `credits` | news-article | News details |
 | `feed_lang`, `limit`, `feed_content` | feed | Feed scope |
+| `feed_source`, `home` | feed | A changelog as the feed: `data` or a `layout: changelog` page URL, and where entries link |
+| `releases_feed` | changelog, download, any page | `true` (from `site.github`) or a URL: GitHub's `releases.atom` in the head and under the title |

@@ -28,4 +28,18 @@ class CheckFeedsTest < CheckerCase
     page "blog.md", "---\nfeed: feed.xml\n---\n# Blog\n"
     assert_match(/got "feed\.xml"/, errors)
   end
+
+  def test_feed_source_names_data_or_a_built_page
+    page "f.xml", "---\nlayout: feed\nfeed_source: /changes/\n---\n"
+    assert_match(%r{f\.xml: feed_source: /changes/ is not in the build}, errors)
+    out "changes/index.html", "<html></html>"
+    refute_match(/feed_source/, errors)
+    page "f.xml", "---\nlayout: feed\nfeed_source: changes\n---\n"
+    assert_match(/feed_source: must be data or the URL of a layout: changelog page/, errors)
+  end
+
+  def test_a_built_feed_must_be_well_formed
+    out "bad.xml", "<feed><entry></feed>"
+    assert_match(/bad\.xml: the Atom feed is not well-formed XML/, errors)
+  end
 end

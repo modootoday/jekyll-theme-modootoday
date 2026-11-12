@@ -99,6 +99,7 @@ layouts:
   tickets: "Εισιτήρια"
   price: "Τιμή"
   free: "Δωρεάν"
+  releases_feed: "Εκδόσεις στο GitHub (Atom)"
   calendar: "Προσθήκη στο ημερολόγιο"
   episode: "Επεισόδιο [n]"
   season: "Σεζόν [n]"

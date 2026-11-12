@@ -1,14 +1,16 @@
 ---
 lang: ja
 permalink: /ja/reference/changelog/
-source_rev: sha256:ae5fb161b1ea
+source_rev: sha256:6e75d58ebbfe
 nav_order: 40
 title: 変更履歴
 description: テーマのすべてのリリースを新しい順に示します。変更ごとに 1 行の要約を付け、理由や決定まで書いた完全な記録へのリンクもあわせて添えています。
+feed: /changelog.xml
+releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.atom
 ---
 # 変更履歴
 
-すべてのリリースを新しい順に、変更ごとの書き出しだけを示します。理由や根拠となる決定まで含む完全な記録は [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md) にあり、各バージョンは GitHub のリリースにリンクしています。サイトを新しいリリースに移すには[移行とアップグレード](../../guides/upgrade/)をお読みください。
+すべてのリリースを新しい順に、変更ごとの書き出しだけを示します。理由や根拠となる決定まで含む完全な記録は [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md) にあり、各バージョンは GitHub のリリースにリンクしています。サイトを新しいリリースに移すには[移行とアップグレード](../../guides/upgrade/)をお読みください。フィードリーダーでは、[この一覧の Atom フィード](../../changelog.xml)(リリースごとに一つの項目)か [GitHub のリリースのフィード](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom)を購読できます。
 
 > [!NOTE]
 > このページは[英語の原文](../../../reference/changelog/)の翻訳です。下のリリース一覧は CHANGELOG.md から作られるため、英語のまま表示します。

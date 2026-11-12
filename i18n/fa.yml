@@ -99,6 +99,7 @@ layouts:
   tickets: "تهیهٔ بلیت"
   price: "قیمت"
   free: "رایگان"
+  releases_feed: "نسخه‌های GitHub (Atom)"
   calendar: "افزودن به تقویم"
   episode: "قسمت [n]"
   season: "فصل [n]"
