@@ -1,5 +1,5 @@
 ---
 # md-components v1 — jekyll-theme-modootoday print sheet (modootoday.print: true). Linked with media="print" after every
-# other sheet, so it never blocks rendering on screen. Its rules are in _sass/modootoday/components/chrome/_print.scss.
+# other sheet, so it never blocks rendering on screen. Its rules are in _sass/modootoday/print/_sheet.scss.
 ---
-@import "modootoday/components/chrome/print";
+@import "modootoday/print/sheet";

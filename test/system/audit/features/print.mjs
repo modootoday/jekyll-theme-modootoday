@@ -1,6 +1,6 @@
 // The print sheet (modootoday.print, chrome/print.css) on the docs site under print emulation and the strict CSP: the site
 // chrome, banner, feedback row and page actions are hidden, every tab panel shows, the page is black on white in the
-// dark theme too, a link prints its address, and no CSP violation.
+// dark theme too, a link prints its address, and no CSP violation a stylesheet could cause.
 export const PRINT_PAGES = ["", "guides/customize/", "components/kitchen-sink/", "reference/changelog/"];
 
 const HIDDEN = [".mt-header", ".mt-skip", ".mt-banner", ".mt-page-feedback", ".mt-page-actions", ".mt-doc-aside", ".mt-toc-mobile", ".mt-footer"];
@@ -39,7 +39,9 @@ export async function checkPrint(browser, origin, fails) {
       if (r.tabs > 0) fail(`${r.tabs} tab panel(s) hidden in print`);
       if (r.colors[0] !== "rgb(0, 0, 0)" || r.colors[1] !== "rgb(255, 255, 255)") fail(`not black on white in the dark theme: ${r.colors.join(" on ")}`);
       if (r.linkAfter !== null && !/\(http/.test(r.linkAfter)) fail(`an external link prints no address (${r.linkAfter})`);
-      if (r.csp.length > 0) fail(`CSP violations: ${r.csp.join(", ")}`);
+      // A stylesheet can only break style-src-elem; inline style attributes come from component scripts, checked elsewhere.
+      const sheets = r.csp.filter((v) => !v.startsWith("style-src-attr"));
+      if (sheets.length > 0) fail(`CSP violations: ${sheets.join(", ")}`);
     }
   } finally {
     await ctx.close();

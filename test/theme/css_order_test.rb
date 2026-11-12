@@ -34,8 +34,9 @@ class CssOrderTest < Minitest::Test
     out.tally
   end
 
-  # The PWA notice sheet is linked by its script in both modes, never by a layout (adr:modootoday/20261110165219).
-  ON_DEMAND = %w[chrome/toast.css].freeze
+  # Sheets linked on their own in both modes, never part of the bundle: the PWA notice sheet by its script
+  # (adr:modootoday/20261110165219), the print sheet with media="print" (adr:modootoday/20261112153723).
+  ON_DEMAND = %w[chrome/toast.css chrome/print.css].freeze
 
   def theme_css(site, bundle:)
     files = bundle ? ["#{site}/assets/css/modootoday.css"] : Dir.glob("#{site}/assets/css/modootoday{.css,/**/*.css}")

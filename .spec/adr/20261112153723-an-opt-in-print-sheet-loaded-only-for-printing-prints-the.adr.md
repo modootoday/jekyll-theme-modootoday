@@ -5,7 +5,7 @@ status: active
 created: 2026-11-12T15:37:23Z
 updated: 2026-11-12T16:08:11Z
 rel:
-  governs: [_sass/modootoday/components/chrome/_print.scss, assets/css/modootoday/chrome/print.scss, _includes/modootoday/stylesheets.html]
+  governs: [_sass/modootoday/print/_sheet.scss, assets/css/modootoday/chrome/print.scss, _includes/modootoday/stylesheets.html]
   depends_on: [adr:modootoday/20261109141321]
 ---
 
