@@ -21,7 +21,7 @@ diagram: {label: Диаграмма, source: Исходный код диагр�
 math: {label: "Формула [n]"}
 search: {label: Поиск}
 filter: {label: "Фильтр", count: "Показано: [n]"}
-page: {edit: Редактировать страницу, updated: Обновлено, built: "Собрано из [commit]"}
+page: {edit: Редактировать страницу, updated: Обновлено, built: "Собрано из [commit]", issue: "Сообщить о проблеме", helpful: "Была ли эта страница полезной?", helpful_yes: "Да", helpful_no: "Нет", discuss: "Обсудить"}
 languages: {label: Языки}
 post: {date_format: "%d.%m.%Y", author: Об авторе, related: Похожие записи, share: Поделиться}
 fallback: {notice: "Эта страница ещё не переведена, поэтому показана на английском."}

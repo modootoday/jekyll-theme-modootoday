@@ -15,6 +15,7 @@ exclude: [Gemfile, Gemfile.lock, README.md, vendor]
 modootoday:
   lists: {link_chips: true, titled_items: true}
   heading_anchors: true
+  feedback: {issues: https://github.com/modootoday/jekyll-theme-modootoday/issues, helpful: true, labels: [docs-feedback]}
   og_image: /assets/images/site/og.jpg
   nav: main
   # Front-matter-less pages are their own twins; other pages keep stubs.

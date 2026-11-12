@@ -21,7 +21,7 @@ diagram: {label: Diyagram, source: Diyagram kaynağı}
 math: {label: "Formül [n]"}
 search: {label: Ara}
 filter: {label: "Filtrele", count: "[n] gösteriliyor"}
-page: {edit: Bu sayfayı düzenle, updated: Son güncelleme, built: "[commit] sürümünden derlendi"}
+page: {edit: Bu sayfayı düzenle, updated: Son güncelleme, built: "[commit] sürümünden derlendi", issue: "Sorun bildir", helpful: "Bu sayfa yardımcı oldu mu?", helpful_yes: "Evet", helpful_no: "Hayır", discuss: "Tartış"}
 languages: {label: Diller}
 post: {date_format: "%d.%m.%Y", author: Yazar hakkında, related: İlgili yazılar, share: Paylaş}
 fallback: {notice: Bu sayfa henüz çevrilmedi; İngilizce aslını görüyorsunuz.}

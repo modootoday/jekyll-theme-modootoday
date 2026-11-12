@@ -21,7 +21,7 @@ diagram: {label: Діаграма, source: Вихідний код діагра�
 math: {label: "Формула [n]"}
 search: {label: Пошук}
 filter: {label: "Фільтр", count: "Показано: [n]"}
-page: {edit: Редагувати сторінку, updated: Оновлено, built: "Зібрано з [commit]"}
+page: {edit: Редагувати сторінку, updated: Оновлено, built: "Зібрано з [commit]", issue: "Повідомити про проблему", helpful: "Чи була ця сторінка корисною?", helpful_yes: "Так", helpful_no: "Ні", discuss: "Обговорити"}
 languages: {label: Мови}
 post: {date_format: "%d.%m.%Y", author: Про автора, related: Схожі дописи, share: Поділитися}
 fallback: {notice: "Цю сторінку ще не перекладено, тому вона показана англійською."}

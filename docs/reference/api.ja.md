@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:7a73a2163857
+source_rev: sha256:99f011356888
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -80,7 +80,7 @@ description: このテーマがサイト向けに文書化している名前、�
 | コンポーネント | ルート | 部分 | 状態 |
 |---|---|---|---|
 | ページの枠 | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]`、サイドバーのあるドキュメントページの `body.mt-body-sidebar`(ヘッダー、本文、フッターがドキュメントの幅になります) |
-| ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `.mt-toc`・`.mt-toc-mobile` 内の `a[aria-current=location]` |
+| ドキュメントページ | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` と `.mt-doc-aside` (`nav.mt-toc` を含む), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `.mt-page-feedback`, `nav.mt-pagination` | `.mt-toc`・`.mt-toc-mobile` 内の `a[aria-current=location]` |
 | ドキュメントのサイドバー | `aside.mt-doc-nav` > `nav.mt-sidebar`、`details.mt-sidebar-mobile` | `.mt-sidebar-group`、`.mt-sidebar-title`、リンクの `ul` | `.mt-doc-layout.mt-has-sidebar`、モバイルメニューの `[open]` |
 | ページの操作 | `details.mt-menu.mt-page-actions` | `summary`、`button[data-mt-act=copy\|ai]`、`a[type="text/markdown"]` | `[open]` |
 | ヒーロー | `section.mt-hero` | `h1`、`p.mt-hero-lead`、リンクだけの `p`(ボタン) | `.mt-hero-checks` |

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:e9f883593bdb
+source_rev: sha256:ad5dd6365011
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -67,6 +67,7 @@ modootoday:
 | `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
 | `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
 | `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. `auto`이면 GitHub Pages가 빌드하는 저장소, 브랜치, 폴더로 만듭니다(아래 참고). |
+| `feedback` | 꺼짐 | 페이지 아래 한 줄. `issues`(`auto`, 저장소의 이슈 URL, 또는 `false`)는 "문제 신고", `helpful: true`는 답 두 개가 있는 "이 페이지가 도움이 되었나요?", `discuss`는 "토론" 링크를 더하고, `labels`는 미리 채운 이슈의 레이블입니다. front matter `feedback: false`면 그 페이지에서 숨깁니다. |
 | `build_link` | `false` | `true`이면 사이트를 빌드한 커밋을 "[commit]에서 빌드"로 보여 주고 GitHub의 그 커밋으로 연결합니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
 | `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |
@@ -147,7 +148,9 @@ modootoday:
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
 
-`edit_url: auto`와 `build_link: true`는 `site.github`를 읽습니다. GitHub Pages는 빌드하는 저장소에서 이 값을 채우고, 저장소나 커밋을 모르면 링크를 빼고 만듭니다. 다른 곳에서는 `jekyll-github-metadata` 플러그인을 쓰거나, `_config.yml`에 `repository_url`, `source: {branch, path}`, `build_revision`을 담은 `github:` 맵을 두면 그 값을 대신합니다. 이 중 아무것도 없으면 `modootoday-check`가 경고합니다. `edit_url`에 URL을 직접 쓰면 언제나 `auto`보다 앞섭니다. GitHub Pages가 저장소의 Pages 설정을 읽지 못하면(GitHub 밖의 빌드나 토큰 없는 빌드) `source`는 루트의 `gh-pages`나 `master` 브랜치로 돌아가므로, 그때는 URL을 직접 쓰세요.
+피드백 링크는 미리 채운 GitHub 양식을 엽니다. 이슈 제목은 페이지 제목이고(두 답에는 앞에 "Helpful: "나 "Not helpful: "가 붙습니다), 본문은 페이지 URL입니다. 테마는 스크립트를 넣지 않고 아무것도 보내지 않습니다. 독자가 누르기 전에는 브라우저가 요청을 하지 않고, 이슈를 올리기 전에 GitHub이 로그인을 요구합니다. 레이블은 독자가 그 저장소에서 레이블을 달 수 있을 때만 붙고, 없는 레이블은 무시됩니다.
+
+`edit_url: auto`, `build_link: true`, `feedback.issues: auto`는 `site.github`를 읽습니다. GitHub Pages는 빌드하는 저장소에서 이 값을 채우고, 저장소나 커밋을 모르면 링크를 빼고 만듭니다. 다른 곳에서는 `jekyll-github-metadata` 플러그인을 쓰거나, `_config.yml`에 `repository_url`, `source: {branch, path}`, `build_revision`을 담은 `github:` 맵을 두면 그 값을 대신합니다. 이 중 아무것도 없으면 `modootoday-check`가 경고합니다. `edit_url`에 URL을 직접 쓰면 언제나 `auto`보다 앞섭니다. GitHub Pages가 저장소의 Pages 설정을 읽지 못하면(GitHub 밖의 빌드나 토큰 없는 빌드) `source`는 루트의 `gh-pages`나 `master` 브랜치로 돌아가므로, 그때는 URL을 직접 쓰세요.
 
 `jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. front matter의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 이동 경로의 첫 항목은 홈 페이지 front matter에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줍니다. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
 

@@ -1,0 +1,14 @@
+{%- comment -%}Page feedback links (modootoday.feedback), resolved at build time with no request: issues: auto (the repository from
+  meta/github.html) | an issues URL | false, helpful: true (two prefilled issue links), discuss: a URL, labels: a list added
+  to the prefilled issues. Front matter feedback: false turns the row off for one page. Sets mt_fb_issues (the issues URL or
+  ""), mt_fb_helpful, mt_fb_discuss, mt_fb_labels and mt_fb_on.{%- endcomment -%}
+{%- assign _fb = site.modootoday.feedback -%}
+{%- assign mt_fb_issues = "" -%}{%- assign mt_fb_discuss = "" -%}{%- assign mt_fb_labels = "" -%}{%- assign mt_fb_helpful = false -%}{%- assign mt_fb_on = false -%}
+{%- if _fb and page.feedback != false -%}
+{%- if _fb.issues == "auto" -%}{%- include modootoday/meta/github.html -%}{%- if mt_gh_repo != "" -%}{%- assign mt_fb_issues = mt_gh_repo | append: "/issues" -%}{%- endif -%}
+{%- elsif _fb.issues -%}{%- assign mt_fb_issues = _fb.issues -%}{%- endif -%}
+{%- if _fb.labels -%}{%- assign mt_fb_labels = _fb.labels | join: "," -%}{%- endif -%}
+{%- if _fb.helpful == true and mt_fb_issues != "" -%}{%- assign mt_fb_helpful = true -%}{%- endif -%}
+{%- assign mt_fb_discuss = _fb.discuss | default: "" -%}
+{%- if mt_fb_issues != "" or mt_fb_discuss != "" -%}{%- assign mt_fb_on = true -%}{%- endif -%}
+{%- endif -%}

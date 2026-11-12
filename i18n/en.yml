@@ -22,7 +22,7 @@ diagram: {label: Diagram, source: Diagram source}
 math: {label: "Formula [n]"}
 search: {label: Search}
 filter: {label: "Filter", count: "[n] shown"}
-page: {edit: Edit this page, updated: Last updated, built: "Built from [commit]"}
+page: {edit: Edit this page, updated: Last updated, built: "Built from [commit]", issue: "Report an issue", helpful: "Was this page helpful?", helpful_yes: "Yes", helpful_no: "No", discuss: "Discuss"}
 languages: {label: Languages}
 post: {date_format: "%Y-%m-%d", author: About the author, related: Related posts, share: Share}
 fallback: {notice: "This page is not translated yet, so it is shown in English."}

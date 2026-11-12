@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:7a73a2163857
+source_rev: sha256:99f011356888
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -80,7 +80,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 | 컴포넌트 | 루트 | 부분 | 상태 |
 |---|---|---|---|
 | 페이지 틀 | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]`, 사이드바가 있는 문서 페이지의 `body.mt-body-sidebar`(헤더, 본문, 푸터가 문서 너비를 씁니다) |
-| 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `.mt-toc`·`.mt-toc-mobile` 안의 `a[aria-current=location]` |
+| 문서 페이지 | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main`, `.mt-doc-aside`(`nav.mt-toc` 포함), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `.mt-page-feedback`, `nav.mt-pagination` | `.mt-toc`·`.mt-toc-mobile` 안의 `a[aria-current=location]` |
 | 문서 사이드바 | `aside.mt-doc-nav` > `nav.mt-sidebar`, `details.mt-sidebar-mobile` | `.mt-sidebar-group`, `.mt-sidebar-title`, 링크 `ul` | `.mt-doc-layout.mt-has-sidebar`, 모바일 메뉴의 `[open]` |
 | 페이지 도구 | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`, `a[type="text/markdown"]` | `[open]` |
 | 히어로 | `section.mt-hero` | `h1`, `p.mt-hero-lead`, 링크만 있는 `p`(버튼) | `.mt-hero-checks` |

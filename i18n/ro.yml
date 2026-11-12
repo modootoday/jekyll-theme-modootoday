@@ -21,7 +21,7 @@ diagram: {label: Diagramă, source: Sursa diagramei}
 math: {label: "Formula [n]"}
 search: {label: Caută}
 filter: {label: "Filtrează", count: "[n] afișate"}
-page: {edit: Editează pagina, updated: Ultima actualizare, built: "Construit din [commit]"}
+page: {edit: Editează pagina, updated: Ultima actualizare, built: "Construit din [commit]", issue: "Raportează o problemă", helpful: "Ți-a fost utilă această pagină?", helpful_yes: "Da", helpful_no: "Nu", discuss: "Discută"}
 languages: {label: Limbi}
 post: {date_format: "%d.%m.%Y", author: Despre autor, related: Articole similare, share: Distribuie}
 fallback: {notice: "Această pagină nu a fost încă tradusă, așa că este afișată în engleză."}

@@ -21,7 +21,7 @@ diagram: {label: 다이어그램, source: 다이어그램 원본}
 math: {label: "수식 [n]"}
 search: {label: 검색}
 filter: {label: "필터", count: "[n]개 표시"}
-page: {edit: 이 페이지 편집, updated: 최종 수정, built: "[commit]에서 빌드"}
+page: {edit: 이 페이지 편집, updated: 최종 수정, built: "[commit]에서 빌드", issue: "문제 신고", helpful: "이 페이지가 도움이 되었나요?", helpful_yes: "예", helpful_no: "아니요", discuss: "토론"}
 languages: {label: 언어}
 post: {date_format: "%Y년 %-m월 %-d일", author: 글쓴이 소개, related: 관련 글, share: 공유}
 fallback: {notice: 이 페이지는 아직 번역되지 않아 영어로 보여 드려요.}

@@ -21,7 +21,7 @@ diagram: {label: ഡയഗ്രം, source: ഡയഗ്രം ഉറവിട�
 math: {label: "സൂത്രവാക്യം [n]"}
 search: {label: തിരയുക}
 filter: {label: "ഫിൽട്ടർ", count: "[n] എണ്ണം കാണിക്കുന്നു"}
-page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്, built: "[commit] ൽ നിന്ന് നിർമ്മിച്ചത്"}
+page: {edit: ഈ പേജ് എഡിറ്റ് ചെയ്യുക, updated: അവസാനം പുതുക്കിയത്, built: "[commit] ൽ നിന്ന് നിർമ്മിച്ചത്", issue: "പ്രശ്നം റിപ്പോർട്ട് ചെയ്യുക", helpful: "ഈ പേജ് സഹായകമായോ?", helpful_yes: "അതെ", helpful_no: "ഇല്ല", discuss: "ചർച്ച ചെയ്യുക"}
 languages: {label: ഭാഷകൾ}
 post: {date_format: "%d-%m-%Y", author: ലേഖകനെക്കുറിച്ച്, related: ബന്ധപ്പെട്ട പോസ്റ്റുകൾ, share: പങ്കിടുക}
 fallback: {notice: "ഈ പേജ് ഇതുവരെ വിവർത്തനം ചെയ്തിട്ടില്ല, അതിനാൽ ഇംഗ്ലീഷിൽ കാണിക്കുന്നു."}

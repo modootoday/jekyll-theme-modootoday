@@ -21,7 +21,7 @@ diagram: {label: نمودار, source: منبع نمودار}
 math: {label: "فرمول [n]"}
 search: {label: جستجو}
 filter: {label: "فیلتر", count: "نمایش [n] مورد"}
-page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی, built: "ساخته‌شده از [commit]"}
+page: {edit: ویرایش این صفحه, updated: آخرین به‌روزرسانی, built: "ساخته‌شده از [commit]", issue: "گزارش مشکل", helpful: "آیا این صفحه مفید بود؟", helpful_yes: "بله", helpful_no: "خیر", discuss: "گفت‌وگو"}
 languages: {label: زبان‌ها}
 post: {date_format: "%Y-%m-%d", author: درباره نویسنده, related: نوشته‌های مرتبط, share: هم‌رسانی}
 fallback: {notice: این صفحه هنوز ترجمه نشده و به انگلیسی نمایش داده می‌شود.}

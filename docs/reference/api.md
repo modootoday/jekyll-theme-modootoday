@@ -74,7 +74,7 @@ This is the markup you can target from your own CSS today. Classes and attribute
 | Component | Root | Parts | States |
 |---|---|---|---|
 | Page shell | `body.mt-body` | `a.mt-skip`, `header.mt-header`, `main.mt-main`, `footer.mt-footer` > `.mt-footer-inner` | `html[data-theme=light\|dark]`; `body.mt-body-sidebar` on a doc page with a sidebar (the header, main and footer take the doc width) |
-| Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `nav.mt-pagination` | `a[aria-current=location]` in `.mt-toc` and `.mt-toc-mobile` |
+| Doc page | `article.mt-doc` | `.mt-doc-layout` > `.mt-doc-main` and `.mt-doc-aside` (holds `nav.mt-toc`), `nav.mt-toc-mobile`, `nav.mt-breadcrumb`, `.mt-page-meta`, `.mt-page-feedback`, `nav.mt-pagination` | `a[aria-current=location]` in `.mt-toc` and `.mt-toc-mobile` |
 | Doc sidebar | `aside.mt-doc-nav` > `nav.mt-sidebar`; `details.mt-sidebar-mobile` | `.mt-sidebar-group`, `.mt-sidebar-title`, the `ul` of links | `.mt-doc-layout.mt-has-sidebar`; `[open]` on the mobile menu |
 | Page actions | `details.mt-menu.mt-page-actions` | `summary`, `button[data-mt-act=copy\|ai]`, `a[type="text/markdown"]` | `[open]` |
 | Hero | `section.mt-hero` | the `h1`, `p.mt-hero-lead`, the link-only `p` (buttons) | `.mt-hero-checks` |

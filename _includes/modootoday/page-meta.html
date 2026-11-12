@@ -5,6 +5,7 @@ Optional page footer line (needs modootoday/config.html first).
   site.modootoday.build_link     true adds "Built from <commit>", linked to that commit, when the repository and commit are known
   page.last_modified_at          date shown as "Last updated" (front matter, or a plugin that sets it)
   page.edit: false               hides the edit link on one page
+  site.modootoday.feedback       a second row: Report an issue, Was this page helpful? and Discuss (modootoday/meta/feedback.html)
 {%- endcomment -%}
 {%- include modootoday/i18n.html lang=_lang -%}
 {%- include modootoday/meta/github.html -%}
@@ -18,5 +19,16 @@ Optional page footer line (needs modootoday/config.html first).
 {%- if _pm_edit and page.last_modified_at %} · {% endif -%}
 {%- if _pm_edit -%}<a href="{{ _pm_edit }}" rel="nofollow">{% include modootoday/brand/icon.html name="edit" size=14 %} {{ mt_t_page_edit }}</a>{%- endif -%}
 {%- if _pm_built -%}{%- if _pm_edit or page.last_modified_at %} · {% endif -%}<a href="{{ mt_gh_repo }}/commit/{{ mt_gh_rev }}" rel="nofollow">{{ mt_t_page_built | replace: "[commit]", _pm_built }}</a>{%- endif -%}
+</p>
+{%- endif -%}
+{%- include modootoday/meta/feedback.html -%}
+{%- if mt_fb_on -%}
+{%- assign _pf_url = page.url | absolute_url -%}{%- assign _pf_title = page.title | default: site.title | strip_html -%}
+{%- capture _pf_body -%}Page: {{ _pf_url }}{%- endcapture -%}
+{%- capture _pf_q -%}&amp;body={{ _pf_body | url_encode }}{%- if mt_fb_labels != "" -%}&amp;labels={{ mt_fb_labels | url_encode }}{%- endif -%}{%- endcapture %}
+<p class="mt-page-feedback">
+{%- if mt_fb_issues != "" -%}<a href="{{ mt_fb_issues }}/new?title={{ _pf_title | url_encode }}{{ _pf_q }}" rel="nofollow">{{ mt_t_page_issue }}</a>{%- endif -%}
+{%- if mt_fb_helpful -%}{%- if mt_fb_issues != "" %} · {% endif -%}<span>{{ mt_t_page_helpful }} <a href="{{ mt_fb_issues }}/new?title={{ "Helpful: " | append: _pf_title | url_encode }}{{ _pf_q }}" rel="nofollow">{{ mt_t_page_helpful_yes }}</a> <a href="{{ mt_fb_issues }}/new?title={{ "Not helpful: " | append: _pf_title | url_encode }}{{ _pf_q }}" rel="nofollow">{{ mt_t_page_helpful_no }}</a></span>{%- endif -%}
+{%- if mt_fb_discuss != "" -%}{%- if mt_fb_issues != "" %} · {% endif -%}<a href="{{ mt_fb_discuss }}" rel="nofollow">{{ mt_t_page_discuss }}</a>{%- endif -%}
 </p>
 {%- endif -%}

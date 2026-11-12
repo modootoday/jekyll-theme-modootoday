@@ -21,7 +21,7 @@ diagram: {label: Diagram, source: Źródło diagramu}
 math: {label: "Wzór [n]"}
 search: {label: Szukaj}
 filter: {label: "Filtruj", count: "Widoczne: [n]"}
-page: {edit: Edytuj tę stronę, updated: Ostatnia aktualizacja, built: "Zbudowano z [commit]"}
+page: {edit: Edytuj tę stronę, updated: Ostatnia aktualizacja, built: "Zbudowano z [commit]", issue: "Zgłoś problem", helpful: "Czy ta strona była pomocna?", helpful_yes: "Tak", helpful_no: "Nie", discuss: "Dyskusja"}
 languages: {label: Języki}
 post: {date_format: "%d.%m.%Y", author: O autorze, related: Powiązane wpisy, share: Udostępnij}
 fallback: {notice: "Ta strona nie została jeszcze przetłumaczona, dlatego wyświetlamy ją po angielsku."}
