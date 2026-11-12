@@ -36,6 +36,7 @@ async function load(hash = "", scrollY = 0) {
   d.querySelector(".mt-header").getBoundingClientRect = () => rect(40);
   for (const [id] of ITEMS) {
     d.getElementById(id).getBoundingClientRect = () => rect(layout.tops[id] ?? 5000);
+    d.getElementById(id).getClientRects = () => (layout.hidden?.includes(id) ? [] : [rect(layout.tops[id] ?? 5000)]);
   }
   await run("structure/toc-spy.js", win);
   const frame = () => new Promise((done) => win.requestAnimationFrame(() => done()));
@@ -107,4 +108,15 @@ test("without IntersectionObserver the lists stay plain links", async () => {
   const dom = new JSDOM(PAGE, { pretendToBeVisual: true });
   await run("structure/toc-spy.js", dom.window);
   assert.strictEqual(dom.window.document.querySelectorAll("[aria-current]").length, 0);
+});
+
+test("a heading with no box, as in a closed tab panel, is never marked", async () => {
+  const { marked, scroll, layout } = await load();
+  layout.hidden = ["setup-mac"];
+  const tops = at(0);
+  tops["setup-mac"] = 0;
+  await scroll(0, tops);
+  assert.deepStrictEqual(marked(".mt-toc"), []);
+  await scroll(1300, { ...at(1300), "setup-mac": 0 });
+  assert.deepStrictEqual(marked(".mt-toc"), [["setup", "location"]], "the hidden setup-mac never wins over setup")
 });

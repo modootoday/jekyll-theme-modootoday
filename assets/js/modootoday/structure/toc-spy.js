@@ -68,6 +68,10 @@ export function init(root) {
     const bottom = view + win.scrollY >= html.scrollHeight - 2;
     let at = -1;
     heads.forEach((h, i) => {
+      // A heading with no box (in a closed tab panel) reports a top of 0 and would read as already passed.
+      if (!h[1].getClientRects().length) {
+        return;
+      }
       if (top(i) <= y || (bottom && win.scrollY > 0 && top(i) < view)) {
         at = i;
       }
