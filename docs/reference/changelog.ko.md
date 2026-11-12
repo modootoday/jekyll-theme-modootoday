@@ -19,6 +19,7 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
 
 <!-- spec:docs-index:begin -->
 ### [1.6.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.6.0) – 2026-11-09
+{: lang="en"}
 
 - **Added (7)**
   - Static diagrams
@@ -45,8 +46,10 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - A `list` post list
   - The list form of a `c: timeline` section
   - A `c: widget` section whose body ends in a `[data-mt-result]` box, the hook a `c: cta` …
+{: lang="en"}
 
 ### [1.5.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.5.0) – 2026-11-04
+{: lang="en"}
 
 - **Added (28)**
   - On screens narrower than 30rem a site with a `logo` shows only the logo in the header …
@@ -166,13 +169,17 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - The Customize guide no longer says any theme `_sass/` file can be replaced by a site file …
   - `modootoday-check` accepts `figure-svg` in `modootoday.components`. The theme already …
   - The feature request form and a JSON-LD test fixture quote flow-mapping values that hold …
+{: lang="en"}
 
 ### [1.4.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.1) – 2026-10-31
+{: lang="en"}
 
 - **Fixed (1)**
   - Markdown twins and `llms-full.txt` now include a `reference` page's `packages:` table as …
+{: lang="en"}
 
 ### [1.4.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.4.0) – 2026-10-31
+{: lang="en"}
 
 - **Added (1)**
   - `reference` layout
@@ -180,16 +187,20 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - `reference` layout
   - Package table
   - Docs
+{: lang="en"}
 
 ### [1.3.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.3.0) – 2026-10-31
+{: lang="en"}
 
 - **Added (4)**
   - `reference` layout, opt-in API sidebar
   - `reference` layout, opt-in package table
   - `modootoday-check` reports a `sidebar:` that is not true or false, a package with no …
   - API reference demo
+{: lang="en"}
 
 ### [1.2.3](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.3) – 2026-10-31
+{: lang="en"}
 
 - **Changed (1)**
   - In a `c: features` card, the separator after a bold title written as `Title: text` or …
@@ -201,26 +212,34 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - README
   - Migrate and upgrade
   - Install
+{: lang="en"}
 
 ### [1.2.2](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.2) – 2026-10-31
+{: lang="en"}
 
 - **Fixed (1)**
   - Long inline code
+{: lang="en"}
 
 ### [1.2.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.1) – 2026-10-31
+{: lang="en"}
 
 - **Fixed (2)**
   - `hero.c` with a site's own component name
   - With a `modootoday.components` list, the `lists`, `bleed` and `terminal` sheets were …
+{: lang="en"}
 
 ### [1.2.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.2.0) – 2026-10-31
+{: lang="en"}
 
 - **Added (3)**
   - `bleed: true` / `bleed: wide` on `hero:` or a section item
   - `hero: {c: split, visual: <name>, side: start|end, ratio: "1:1"|"5:7"}`
   - `visual: code` on a `c: split` section or a split hero
+{: lang="en"}
 
 ### [1.1.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.1) – 2026-10-31
+{: lang="en"}
 
 - **Added (12)**
   - Release workflow
@@ -241,8 +260,10 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
 - **Fixed (2)**
   - Checker
   - Checker
+{: lang="en"}
 
 ### [1.1.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.1.0) – 2026-10-31
+{: lang="en"}
 
 - **Added (7)**
   - Checker
@@ -257,8 +278,10 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - Install guide
   - Page shells
   - Twins
+{: lang="en"}
 
 ### [1.0.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.0.0) – 2026-10-30
+{: lang="en"}
 
 - **Added (40)**
   - Links that open a new window
@@ -377,4 +400,5 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
   - `required_ruby_version` raised to 3.0
   - Example
   - Raw `<name>.md` copies in `_site` on GitHub Pages
+{: lang="en"}
 <!-- spec:docs-index:end -->
