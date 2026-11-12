@@ -16,7 +16,7 @@ A static site cannot reach its readers on its own, so the theme gives readers wa
 
 ## Feeds
 
-Add a `feed.xml` page with `layout: feed` in each language folder; every page then links its language's feed in the head, so a feed reader finds it from any page address. See [Authors and feeds](../../layouts/blog-news/#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
+Add a `feed.xml` page with `layout: feed` in each language folder; every page then links its language's feed in the head, so a feed reader finds it from any page address. Blog, author and archive pages also show a Subscribe link to their feed (front matter `feed:`). See [Authors and feeds](../../layouts/blog-news/#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
 
 When you publish releases on GitHub, GitHub keeps a feed of them at `https://github.com/OWNER/REPO/releases.atom`. Link it from your changelog or news page for readers who want releases only.
 

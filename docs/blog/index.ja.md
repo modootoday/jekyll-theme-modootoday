@@ -6,6 +6,7 @@ title: ブログ
 description: "layout: blog で作ったブログ一覧の例です。"
 layout: blog
 variant: magazine
+feed: /ja/feed.xml
 ---
 # ブログ
 

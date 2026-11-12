@@ -45,6 +45,7 @@ blog:
   share: "リンクをコピー"
   copied: "リンクをコピーしました"
   feed: "フィード"
+  subscribe: "購読 (Atom)"
   latest: "最新"
   breaking: "速報"
   live: "ライブ"

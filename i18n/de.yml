@@ -45,6 +45,7 @@ blog:
   share: "Link kopieren"
   copied: "Link kopiert"
   feed: "Feed"
+  subscribe: "Abonnieren (Atom)"
   latest: "Neueste"
   breaking: "Eilmeldung"
   live: "Live"

@@ -45,6 +45,7 @@ blog:
   share: "Копировать ссылку"
   copied: "Ссылка скопирована"
   feed: "Лента"
+  subscribe: "Подписаться (Atom)"
   latest: "Последнее"
   breaking: "Срочно"
   live: "В эфире"

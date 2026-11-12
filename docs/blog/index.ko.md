@@ -6,6 +6,7 @@ title: 블로그
 description: "layout: blog로 만든 블로그 목록 예시입니다."
 layout: blog
 variant: magazine
+feed: /ko/feed.xml
 ---
 # 블로그
 

@@ -4,7 +4,8 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
   site.modootoday.hreflang   true keeps the hreflang alternates when seo is false (default: follows seo)
   site.modootoday.languages  list of language codes for hreflang, e.g. [en, ko]; site.lang is unprefixed, others live under /<lang>/
                              (a page with front matter ref: links the pages sharing that ref instead, whatever their paths)
-  site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed)
+  site.modootoday.feed       true adds the Atom link to /feed.xml, or /<lang>/feed.xml when that page exists (jekyll-feed or layout: feed);
+                             front matter feed: adds the page's own feed (modootoday/meta/feeds.html)
   site.modootoday.csp        strict loads the pre-paint script (theme, showcase dismissal) from a file instead of inline
   site.modootoday.favicon    brand links the theme's modootoday mark (SVG, 32px PNG, apple-touch); a path links your own icon
   site.modootoday.pwa        enabled: true links the web app manifest (modootoday/pwa/head.html)
@@ -89,9 +90,5 @@ SEO and theme-init head tags (needs modootoday/config.html first). Liquid only, 
 <meta name="twitter:card" content="summary">
 {%- endif -%}
 {%- endunless -%}
-{%- if site.modootoday.feed == true -%}
-{%- assign _mt_feed = "/feed.xml" -%}{%- assign _mt_fd = site.lang | default: "en" -%}{%- assign _mt_fl = page.lang | default: _mt_fd -%}
-{%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- include modootoday/lookup/urls.html -%}{%- assign _mt_lfk = "|" | append: _mt_lf | append: "|" -%}{%- if mt_page_urls contains _mt_lfk -%}{%- assign _mt_feed = _mt_lf -%}{%- endif -%}{%- endif %}
-<link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ _mt_feed | relative_url }}">
-{%- endif -%}
+{%- include modootoday/meta/feeds.html -%}
 {%- include modootoday/jsonld/graph.html -%}

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/blog-news/
-source_rev: sha256:7cb4f7ae5f58
+source_rev: sha256:23a9198663eb
 nav_order: 50
 title: 블로그와 뉴스
 description: 블로그 목록, 뉴스 첫 화면, 글의 작성자 정보, 작성자 페이지, 언어별 Atom 피드를 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
@@ -69,6 +69,8 @@ last_modified_at: 2026-10-30
 
 작성자 페이지는 `layout: author`와 `author: kim`으로 만듭니다. 언어 폴더마다 `layout: feed`인 `feed.xml`을 두면 언어별 Atom 피드가 생기고, head에 자동으로 연결됩니다.
 
+`modootoday.feed`가 `true`이면 `category`나 `tag`가 없는 블로그 목록은 그 언어의 피드를 head와 소개 아래 구독 링크로 연결합니다. 블로그, 작성자, 아카이브 페이지는 `feed:`로 자기 피드를 정합니다. 값은 `layout: feed` 페이지의 사이트 경로이고, 연결하지 않으려면 `false`입니다. 한 작성자의 글만 담으려면 `layout: feed`와 `author: kim`을 쓴 `/authors/kim.xml` 같은 페이지를 만들고, 작성자 페이지에 `feed: /authors/kim.xml`을 적습니다. 빌드에 없는 `feed:`는 `modootoday-check`가 알려 줍니다.
+
 ## 설정
 
 ```yaml
@@ -86,12 +88,13 @@ modootoday:
 | --- | --- | --- |
 | `variant` | blog, author | `list`, `grid`, `magazine` |
 | `category`, `tag` | blog, news, feed | 글을 거릅니다 |
+| `feed` | blog, author, archive | head와 구독 링크로 연결할 이 페이지의 Atom 피드. `/authors/kim.xml` 같은 사이트 경로, 또는 `false` |
 | `news_sections`, `secondary`, `latest` | news | 카테고리 섹션과 기사 수 |
 | `posts_lang` | blog, news, author | `all`이면 모든 언어의 글을 보여 줍니다 |
 | `featured` | blog, post | 블로그 페이지에서는 `true`면 첫 카드를 크게 보여 주고, 글에서는 그 글을 머리 카드로 고정합니다 |
 | `archive_url` | blog | 마지막 카드 다음의 이전 글 링크가 가는 곳. 예: `/archive/` |
 | `hidden`, `list: false` | post | 목록에서 글을 뺍니다 |
-| `author`, `authors` | post, author | `_data/authors.yml`의 id, 이름, `{name, url, picture}`. 기본값은 사이트의 `author` |
+| `author`, `authors` | post, author, feed | `_data/authors.yml`의 id, 이름, `{name, url, picture}`. 기본값은 사이트의 `author` |
 | `series` | post | 글을 번호 붙은 연재로 묶습니다 |
 | `image`, `image_alt`, `image_caption` | post | 표지(경로 또는 `{path, alt, width, height}`), 대체 텍스트, 설명 |
 | `categories`, `tags` | post | 글 아래에 나오고 관련 글을 고르는 데 씁니다 |

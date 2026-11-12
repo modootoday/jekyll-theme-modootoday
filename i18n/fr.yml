@@ -45,6 +45,7 @@ blog:
   share: "Copier le lien"
   copied: "Lien copié"
   feed: "Flux"
+  subscribe: "S’abonner (Atom)"
   latest: "Dernières nouvelles"
   breaking: "Urgent"
   live: "En direct"

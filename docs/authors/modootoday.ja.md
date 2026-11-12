@@ -6,4 +6,5 @@ source_rev: sha256:68eb2e41524b
 layout: author
 author: modootoday
 posts_lang: all
+feed: /authors/modootoday.xml
 ---

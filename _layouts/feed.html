@@ -2,10 +2,10 @@
   ---
   layout: feed
   ---
-  Front matter: feed_lang (default page.lang or site.lang; "all" mixes), limit (default 20), category / tag (filtered feed).
+  Front matter: feed_lang (default page.lang or site.lang; "all" mixes), limit (default 20), category / tag / author (filtered feed).
   Content is the post's excerpt unless feed_content: full. Authors: site/author.html.{%- endcomment -%}
 {%- assign _fl = page.feed_lang | default: page.lang | default: site.lang | default: "en" -%}
-{%- include modootoday/blog/select.html lang=_fl category=page.category tag=page.tag -%}
+{%- include modootoday/blog/select.html lang=_fl category=page.category tag=page.tag author=page.author -%}
 {%- assign _flim = page.limit | default: 20 -%}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"{% unless _fl == "all" %} xml:lang="{{ _fl }}"{% endunless %}>

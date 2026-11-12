@@ -14,6 +14,7 @@ layout: default
 {%- if content != "" %}
 <header class="mt-blog-intro mt-doc">{{ content }}</header>
 {%- endif -%}
+{%- include modootoday/blog/subscribe.html -%}
 {%- if paginator.posts -%}{%- assign _bp = paginator.posts -%}{%- assign _bmore = false -%}
 {%- else -%}
 {%- include modootoday/blog/select.html lang=page.posts_lang category=page.category tag=page.tag -%}

@@ -45,6 +45,7 @@ blog:
   share: "คัดลอกลิงก์"
   copied: "คัดลอกลิงก์แล้ว"
   feed: "ฟีด"
+  subscribe: "ติดตาม (Atom)"
   latest: "ล่าสุด"
   breaking: "ข่าวด่วน"
   live: "สด"

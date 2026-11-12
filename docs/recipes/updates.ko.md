@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/updates/
-source_rev: sha256:02b99db54186
+source_rev: sha256:d8f1d8fd4745
 nav_order: 28
 title: 독자에게 업데이트 알리기
 description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의 안내로 독자가 사이트의 변경을 따라오게 하고, 릴리스를 게시하면 사이트를 다시 빌드하는 방법을 설명합니다.
@@ -22,7 +22,7 @@ description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의
 
 ## 피드
 
-언어 폴더마다 `layout: feed`인 `feed.xml` 페이지를 추가합니다. 그러면 모든 페이지의 head가 그 언어의 피드를 링크하므로, 피드 리더는 어느 페이지 주소에서든 피드를 찾습니다. [작성자와 피드](../../layouts/blog-news/#작성자와-피드)를 참고하세요. 피드는 사이트에 있는 파일일 뿐이어서 누구도 가입하지 않고, 누가 읽는지도 알 수 없습니다.
+언어 폴더마다 `layout: feed`인 `feed.xml` 페이지를 추가합니다. 그러면 모든 페이지의 head가 그 언어의 피드를 링크하므로, 피드 리더는 어느 페이지 주소에서든 피드를 찾습니다. 블로그, 작성자, 아카이브 페이지는 자기 피드로 가는 구독 링크도 보여 줍니다(front matter `feed:`). [작성자와 피드](../../layouts/blog-news/#작성자와-피드)를 참고하세요. 피드는 사이트에 있는 파일일 뿐이어서 누구도 가입하지 않고, 누가 읽는지도 알 수 없습니다.
 
 GitHub에 릴리스를 게시하면 GitHub가 `https://github.com/OWNER/REPO/releases.atom`에 릴리스 피드를 둡니다. 릴리스만 받고 싶은 독자를 위해 변경 기록이나 뉴스 페이지에서 링크하세요.
 

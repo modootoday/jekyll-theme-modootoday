@@ -1,0 +1,5 @@
+{%- comment -%}A visible Subscribe link to the page's Atom feed (meta/feed-url.html), on blog, author and archive pages.{%- endcomment -%}
+{%- include modootoday/meta/feed-url.html -%}
+{%- if mt_feed_url != "" %}
+<p class="mt-feed-subscribe"><a href="{{ mt_feed_url | relative_url }}" type="application/atom+xml">{% include modootoday/brand/icon.html name="rss" size=14 %} {{ mt_t_blog_subscribe }}</a></p>
+{%- endif -%}

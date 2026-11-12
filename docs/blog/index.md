@@ -3,6 +3,7 @@ title: Blog
 description: "Sample blog index built with layout: blog."
 layout: blog
 variant: magazine
+feed: /feed.xml
 ---
 # Blog
 

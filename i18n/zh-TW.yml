@@ -45,6 +45,7 @@ blog:
   share: "複製連結"
   copied: "已複製連結"
   feed: "訂閱源"
+  subscribe: "訂閱 (Atom)"
   latest: "最新"
   breaking: "快訊"
   live: "直播"

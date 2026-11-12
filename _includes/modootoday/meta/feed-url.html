@@ -1,0 +1,13 @@
+{%- comment -%}Sets mt_site_feed (the language's Atom feed when modootoday.feed is true, else "") and mt_feed_url (this
+  page's own feed, else ""), without a pass over site.pages. Front matter feed: a site path (kept only when that page
+  exists; modootoday-check reports one that does not) or false. Without it a blog index with no category or tag
+  filter uses mt_site_feed.{%- endcomment -%}
+{%- assign mt_site_feed = "" -%}{%- assign mt_feed_url = "" -%}
+{%- if site.modootoday.feed == true -%}
+{%- assign mt_site_feed = "/feed.xml" -%}{%- assign _mt_fd = site.lang | default: "en" -%}{%- assign _mt_fl = page.lang | default: _mt_fd -%}
+{%- if _mt_fl != _mt_fd -%}{%- assign _mt_lf = "/" | append: _mt_fl | append: "/feed.xml" -%}{%- include modootoday/lookup/urls.html -%}{%- assign _mt_lfk = "|" | append: _mt_lf | append: "|" -%}{%- if mt_page_urls contains _mt_lfk -%}{%- assign mt_site_feed = _mt_lf -%}{%- endif -%}{%- endif -%}
+{%- endif -%}
+{%- if page.feed == false -%}{%- assign mt_feed_url = "" -%}
+{%- elsif page.feed -%}{%- include modootoday/lookup/urls.html -%}{%- assign _mt_pfk = "|" | append: page.feed | append: "|" -%}{%- if mt_page_urls contains _mt_pfk -%}{%- assign mt_feed_url = page.feed -%}{%- endif -%}
+{%- elsif page.layout == "blog" -%}{%- unless page.category or page.tag -%}{%- assign mt_feed_url = mt_site_feed -%}{%- endunless -%}
+{%- endif -%}

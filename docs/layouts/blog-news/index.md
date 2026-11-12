@@ -92,6 +92,8 @@ author: kim
 
 Add a `feed.xml` page with `layout: feed` in each language folder (`/ko/feed.xml`) to get one Atom feed per language. The head links to it. Set `feed_content: full` for full text.
 
+A blog index without `category` or `tag` links its language feed in the head and with a Subscribe link under its intro when `modootoday.feed` is `true`. Any blog, author or archive page names its own feed with `feed:`: a site path to a `layout: feed` page, or `false` for none. For one author's posts, add a page such as `/authors/kim.xml` with `layout: feed` and `author: kim`, and set `feed: /authors/kim.xml` on the author page. `modootoday-check` reports a `feed:` whose page is not in the build.
+
 ## Settings
 
 ```yaml
@@ -111,12 +113,13 @@ modootoday:
 | --- | --- | --- |
 | `variant` | blog, author | `list`, `grid` or `magazine` |
 | `category`, `tag` | blog, news, feed | Filter posts |
+| `feed` | blog, author, archive | The page's Atom feed, linked in the head and with a Subscribe link: a site path such as `/authors/kim.xml`, or `false` |
 | `news_sections`, `secondary`, `latest` | news | Category sections and story counts |
 | `posts_lang` | blog, news, author | `all` lists every language |
 | `featured` | blog, post | On a blog page, `true` makes the first card lead; on a post, pins it as the lead card |
 | `archive_url` | blog | Where the older-posts link after the last card goes, such as `/archive/` |
 | `hidden`, `list: false` | post | Leaves the post out of lists |
-| `author`, `authors` | post, author | Ids from `_data/authors.yml`, names, or `{name, url, picture}`; default: the site's `author` |
+| `author`, `authors` | post, author, feed | Ids from `_data/authors.yml`, names, or `{name, url, picture}`; default: the site's `author` |
 | `series` | post | Groups posts into numbered parts |
 | `image`, `image_alt`, `image_caption` | post | The cover (a path, or `{path, alt, width, height}`), its text alternative and its caption |
 | `categories`, `tags` | post | Listed under the post and used to pick related posts |
