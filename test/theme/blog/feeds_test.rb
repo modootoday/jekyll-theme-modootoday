@@ -7,7 +7,7 @@ require "fileutils"
 require "jekyll"
 
 class FeedsTest < Minitest::Test
-  ROOT = File.expand_path("../..", __dir__)
+  ROOT = File.expand_path("../../..", __dir__)
   ATOM = 'rel="alternate" type="application/atom+xml"'
 
   def self.site

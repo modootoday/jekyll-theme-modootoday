@@ -27,4 +27,4 @@ F6 in [[adr:modootoday/20261109141321]]: the head linked only the site's languag
 
 - The head's site-feed block moves from `head-meta.html` to `meta/feeds.html`; its output is unchanged.
 - The docs blog indexes and author pages gain `feed:`, and the docs site gains `/authors/modootoday.xml`; their pages show the Subscribe link (an intended visual change).
-- Tests: `test/theme/feeds_test.rb` (language feed once, filtered and `feed: false` pages without a link, author feed and a missing one dropped, archive link, author-filtered feed) and `test/checker/build/feeds_test.rb`.
+- Tests: `test/theme/blog/feeds_test.rb` (language feed once, filtered and `feed: false` pages without a link, author feed and a missing one dropped, archive link, author-filtered feed) and `test/checker/build/feeds_test.rb`.
