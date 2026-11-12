@@ -5,7 +5,7 @@
 {%- if site.modootoday.loading -%}{%- assign mt_page_c = mt_page_c | append: "loading|" -%}{%- endif -%}
 {%- if page.diagrams -%}{%- assign mt_page_c = mt_page_c | append: "figure|" -%}
 {%- elsif site.modootoday.math.mode == "static" and site.modootoday.math.enabled != false and page.math != false -%}{%- if content contains "language-math" or content contains "\[" -%}{%- assign mt_page_c = mt_page_c | append: "figure|" -%}{%- endif -%}{%- endif -%}
-{%- if mt_components contains "banner" -%}{%- if site.modootoday.banner.text or site.modootoday.back_to_top -%}{%- assign mt_page_c = mt_page_c | append: "banner|" -%}{%- endif -%}{%- endif -%}
+{%- if mt_components contains "banner" -%}{%- include modootoday/chrome/banner-text.html -%}{%- if mt_bn_on or site.modootoday.back_to_top -%}{%- assign mt_page_c = mt_page_c | append: "banner|" -%}{%- endif -%}{%- endif -%}
 {%- if mt_showcase -%}{%- assign mt_page_c = mt_page_c | append: "showcase|" -%}{%- endif -%}
 {%- assign _mta_fk = "footer-" | append: _lang -%}{%- assign _mta_fd = site.data.nav[_mta_fk] | default: site.data.nav.footer -%}
 {%- if _mta_fd.columns and mt_components contains "footer" -%}{%- assign mt_page_c = mt_page_c | append: "footer|" -%}{%- endif -%}

@@ -57,7 +57,7 @@ filetree: {label: 파일 구조}
 gallery: {close: 닫기}
 embed: {title: 삽입된 콘텐츠}
 pricing: {recommended: 추천}
-banner: {label: 공지}
+banner: {label: 공지, release: "[version]이(가) 나왔어요.", release_link: "새 기능 보기"}
 footnote: {back: 본문으로 돌아가기}
 progress: {label: 진행률}
 subscribe: {email: 이메일 주소, submit: 구독하기}

@@ -15,7 +15,7 @@ _config.yml: modootoday.page_actions must be true or false
 _config.yml: modootoday.back_to_top must be true or false
 _config.yml: modootoday.loading must be true or false
 _config.yml: modootoday.css must be split or bundle
-_config.yml: modootoday.banner must be a map with text: (and optional url:, link:)
+_config.yml: modootoday.banner needs text: or release: (latest, or {version, url})
 _config.yml: modootoday.header must be a map with compact_title: set to true or false
 _config.yml: modootoday.sidebar must be auto, true or false
 _config.yml: modootoday.components must be a list

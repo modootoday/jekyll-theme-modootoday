@@ -57,7 +57,7 @@ filetree: {label: Δομή αρχείων}
 gallery: {close: Κλείσιμο}
 embed: {title: Ενσωματωμένο περιεχόμενο}
 pricing: {recommended: Προτεινόμενο}
-banner: {label: Ανακοίνωση}
+banner: {label: Ανακοίνωση, release: "Κυκλοφόρησε η [version].", release_link: "Τι νέο υπάρχει"}
 footnote: {back: Επιστροφή στην παραπομπή}
 progress: {label: Πρόοδος}
 subscribe: {email: Διεύθυνση email, submit: Εγγραφή}

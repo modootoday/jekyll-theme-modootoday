@@ -57,7 +57,7 @@ filetree: {label: Cây thư mục}
 gallery: {close: Đóng}
 embed: {title: Nội dung nhúng}
 pricing: {recommended: Đề xuất}
-banner: {label: Thông báo}
+banner: {label: Thông báo, release: "Đã phát hành [version].", release_link: "Có gì mới"}
 footnote: {back: Quay lại chỗ tham chiếu}
 progress: {label: Tiến độ}
 subscribe: {email: Địa chỉ email, submit: Đăng ký}

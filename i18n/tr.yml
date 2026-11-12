@@ -57,7 +57,7 @@ filetree: {label: Dosya yapısı}
 gallery: {close: Kapat}
 embed: {title: Gömülü içerik}
 pricing: {recommended: Önerilen}
-banner: {label: Duyuru}
+banner: {label: Duyuru, release: "[version] çıktı.", release_link: "Yenilikler"}
 footnote: {back: Göndermeye dön}
 progress: {label: İlerleme}
 subscribe: {email: E-posta adresi, submit: Abone ol}

@@ -57,7 +57,7 @@ filetree: {label: ساختار پرونده‌ها}
 gallery: {close: بستن}
 embed: {title: محتوای جاسازی‌شده}
 pricing: {recommended: پیشنهادی}
-banner: {label: اطلاعیه}
+banner: {label: اطلاعیه, release: "[version] منتشر شد.", release_link: "تازه‌ها"}
 footnote: {back: بازگشت به ارجاع}
 progress: {label: پیشرفت}
 subscribe: {email: نشانی ایمیل, submit: اشتراک}

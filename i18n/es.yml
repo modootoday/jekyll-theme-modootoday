@@ -57,7 +57,7 @@ filetree: {label: Árbol de archivos}
 gallery: {close: Cerrar}
 embed: {title: Contenido incrustado}
 pricing: {recommended: Recomendado}
-banner: {label: Aviso}
+banner: {label: Aviso, release: "Ya está disponible [version].", release_link: "Novedades"}
 footnote: {back: Volver a la referencia}
 progress: {label: Progreso}
 subscribe: {email: Correo electrónico, submit: Suscribirse}

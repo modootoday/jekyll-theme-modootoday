@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/updates/
-source_rev: sha256:d8f1d8fd4745
+source_rev: sha256:7744f8126e43
 nav_order: 28
 title: 독자에게 업데이트 알리기
 description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의 안내로 독자가 사이트의 변경을 따라오게 하고, 릴리스를 게시하면 사이트를 다시 빌드하는 방법을 설명합니다.
@@ -19,6 +19,7 @@ description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의
 | GitHub 릴리스 알림 | GitHub에서 프로젝트를 쓰는 사람 | GitHub에 릴리스를 게시하는 것 말고는 없음 |
 | 이메일 양식 | 새 버전이 나오면 이메일을 받고 싶은 독자 | `c: subscribe` 섹션과 메일 서비스 |
 | 업데이트 안내 | 설치한 앱을 쓰는 독자 | `modootoday.pwa` |
+| 릴리스 막대 | 모든 방문자, 모든 페이지 | `banner: {release: latest}` |
 
 ## 피드
 
@@ -37,6 +38,10 @@ GitHub 계정이 있는 독자는 저장소에서 Watch, Custom을 차례로 고
 ## 설치한 앱
 
 `modootoday.pwa`를 켜면 열려 있는 앱은 배포가 테마 파일을 바꿨을 때 짧은 안내를 보여 주고, 페이지는 언제나 네트워크에서 먼저 가져옵니다. 설치할 수 있는 사이트 레시피의 [업데이트](../pwa/#업데이트)를 참고하세요. 안내는 사이트를 열어 둔 독자에게만 보이며 알림이 아닙니다.
+
+## 릴리스 막대
+
+`modootoday.banner: {release: latest}`는 모든 페이지에 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 보여 줍니다. 값은 사이트를 빌드할 때 `site.github`에서 읽고, 프리릴리스는 빠집니다. 사이트를 다시 빌드해야 바뀌므로, 릴리스마다 다시 빌드하도록(아래) 함께 설정하세요. GitHub Pages 밖에서는 `release: {version, url}`을 대신 씁니다.
 
 ## 푸시가 없는 이유
 

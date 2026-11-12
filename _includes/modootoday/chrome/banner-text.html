@@ -1,0 +1,16 @@
+{%- comment -%}Resolves the site banner (modootoday.banner) for chrome/banner.html and the banner sheet. text: (with optional url:,
+  link:) is shown as written. Without text:, release: latest takes the repository's latest release from site.github at
+  build time (GitHub leaves prereleases out) and release: {version, url} takes it from the map; either fills "[version] is
+  out." and a "What's new" link. Sets mt_bn_on, mt_bn_text, mt_bn_url and mt_bn_link; the text needs the i18n strings.{%- endcomment -%}
+{%- assign _bn = site.modootoday.banner -%}
+{%- assign mt_bn_on = false -%}{%- assign mt_bn_text = "" -%}{%- assign mt_bn_url = "" -%}{%- assign mt_bn_link = "" -%}
+{%- if _bn.text -%}
+{%- assign mt_bn_on = true -%}{%- assign mt_bn_text = _bn.text -%}{%- assign mt_bn_url = _bn.url | default: "" -%}{%- assign mt_bn_link = _bn.link | default: mt_bn_url -%}
+{%- elsif _bn.release -%}
+{%- if _bn.release == "latest" -%}{%- assign _bn_v = site.github.latest_release.tag_name | default: "" -%}{%- assign _bn_u = site.github.latest_release.html_url | default: "" -%}
+{%- else -%}{%- assign _bn_v = _bn.release.version | default: "" -%}{%- assign _bn_u = _bn.release.url | default: "" -%}{%- endif -%}
+{%- if _bn_v != "" -%}
+{%- assign mt_bn_on = true -%}{%- assign mt_bn_text = mt_t_banner_release | replace: "[version]", _bn_v -%}{%- assign mt_bn_url = _bn_u -%}
+{%- if _bn_u != "" -%}{%- assign mt_bn_link = mt_t_banner_release_link -%}{%- endif -%}
+{%- endif -%}
+{%- endif -%}

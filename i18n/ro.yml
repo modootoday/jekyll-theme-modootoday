@@ -57,7 +57,7 @@ filetree: {label: Structura fișierelor}
 gallery: {close: Închide}
 embed: {title: Conținut încorporat}
 pricing: {recommended: Recomandat}
-banner: {label: Anunț}
+banner: {label: Anunț, release: "A apărut [version].", release_link: "Noutăți"}
 footnote: {back: Înapoi la referință}
 progress: {label: Progres}
 subscribe: {email: Adresă de e-mail, submit: Abonează-te}

@@ -1,0 +1,5 @@
+{%- comment -%}Site banner region (modootoday.banner, resolved by chrome/banner-text.html), when the banner component is on.{%- endcomment -%}
+{%- include modootoday/chrome/banner-text.html -%}
+{%- if mt_components contains "banner" and mt_bn_on %}
+<div class="mt-banner" role="region" aria-label="{{ mt_t_banner_label }}"><p>{{ mt_bn_text }}{% if mt_bn_url != "" %} <a href="{% include modootoday/link.html url=mt_bn_url %}"{% include modootoday/links/attrs.html on=site.modootoday.banner.new_window target=site.modootoday.banner.target url=mt_bn_url %}>{{ mt_bn_link }}</a>{% endif %}</p></div>
+{%- endif %}

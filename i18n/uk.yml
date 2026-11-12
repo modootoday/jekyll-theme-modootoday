@@ -57,7 +57,7 @@ filetree: {label: Структура файлів}
 gallery: {close: Закрити}
 embed: {title: Вбудований вміст}
 pricing: {recommended: Рекомендовано}
-banner: {label: Оголошення}
+banner: {label: Оголошення, release: "Вийшла версія [version].", release_link: "Що нового"}
 footnote: {back: Назад до посилання}
 progress: {label: Прогрес}
 subscribe: {email: Адреса ел. пошти, submit: Підписатися}

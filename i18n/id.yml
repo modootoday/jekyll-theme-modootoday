@@ -57,7 +57,7 @@ filetree: {label: Struktur berkas}
 gallery: {close: Tutup}
 embed: {title: Konten sematan}
 pricing: {recommended: Direkomendasikan}
-banner: {label: Pengumuman}
+banner: {label: Pengumuman, release: "[version] sudah rilis.", release_link: "Yang baru"}
 footnote: {back: Kembali ke rujukan}
 progress: {label: Kemajuan}
 subscribe: {email: Alamat email, submit: Berlangganan}

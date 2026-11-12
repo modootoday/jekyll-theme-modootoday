@@ -57,7 +57,7 @@ filetree: {label: 文件结构}
 gallery: {close: 关闭}
 embed: {title: 嵌入内容}
 pricing: {recommended: 推荐}
-banner: {label: 公告}
+banner: {label: 公告, release: "[version] 已发布。", release_link: "新功能"}
 footnote: {back: 返回正文}
 progress: {label: 进度}
 subscribe: {email: 电子邮箱, submit: 订阅}

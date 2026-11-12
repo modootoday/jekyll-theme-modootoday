@@ -57,7 +57,7 @@ filetree: {label: بنية الملفات}
 gallery: {close: إغلاق}
 embed: {title: محتوى مضمّن}
 pricing: {recommended: موصى به}
-banner: {label: إعلان}
+banner: {label: إعلان, release: "صدر [version].", release_link: "ما الجديد"}
 footnote: {back: العودة إلى موضع الإحالة}
 progress: {label: التقدّم}
 subscribe: {email: البريد الإلكتروني, submit: اشترك}

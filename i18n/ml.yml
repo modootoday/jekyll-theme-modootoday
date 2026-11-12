@@ -57,7 +57,7 @@ filetree: {label: ഫയൽ ഘടന}
 gallery: {close: അടയ്ക്കുക}
 embed: {title: ഉൾച്ചേർത്ത ഉള്ളടക്കം}
 pricing: {recommended: ശുപാർശ ചെയ്യുന്നത്}
-banner: {label: അറിയിപ്പ്}
+banner: {label: അറിയിപ്പ്, release: "[version] പുറത്തിറങ്ങി.", release_link: "പുതിയതെന്ത്"}
 footnote: {back: സൂചനയിലേക്ക് മടങ്ങുക}
 progress: {label: പുരോഗതി}
 subscribe: {email: ഇമെയിൽ വിലാസം, submit: സബ്‌സ്‌ക്രൈബ് ചെയ്യുക}

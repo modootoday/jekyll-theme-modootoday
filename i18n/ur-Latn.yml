@@ -57,7 +57,7 @@ filetree: {label: File ka dhaancha}
 gallery: {close: Band karein}
 embed: {title: Embed kiya gaya mawaad}
 pricing: {recommended: Tajweez karda}
-banner: {label: Elaan}
+banner: {label: Elaan, release: "[version] aa gaya hai.", release_link: "Naya kya hai"}
 footnote: {back: Hawale par wapas}
 progress: {label: Pesh-raft}
 subscribe: {email: Email pata, submit: Subscribe karein}

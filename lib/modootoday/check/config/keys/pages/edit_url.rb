@@ -4,10 +4,10 @@ module Modootoday
   module Check
     module Config
       EDIT_URL = %r{\Ahttps?://\S+/\z}
-      # auto, build_link and feedback.issues: auto read site.github, which GitHub Pages (or the jekyll-github-metadata
+      # auto, build_link, feedback.issues: auto and banner.release: latest read site.github, which GitHub Pages (or the jekyll-github-metadata
       # plugin) provides; a github: map in _config.yml stands in for it elsewhere. Without either the link is left out.
       GITHUB_SOURCE = lambda do |ctx, path, v|
-        next unless v == "auto" || v == true
+        next unless v == "auto" || v == true || v == "latest"
         cfg = ctx.site_cfg
         next if ctx.option?("--github-pages") || cfg["github"].is_a?(Hash) || Array(cfg["plugins"]).include?("jekyll-github-metadata")
         ctx.warns << "_config.yml: #{path}: #{v.inspect} reads site.github, which this build may not have: build on GitHub Pages, " \

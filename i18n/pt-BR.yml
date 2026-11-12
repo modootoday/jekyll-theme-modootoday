@@ -57,7 +57,7 @@ filetree: {label: Estrutura de arquivos}
 gallery: {close: Fechar}
 embed: {title: Conteúdo incorporado}
 pricing: {recommended: Recomendado}
-banner: {label: Aviso}
+banner: {label: Aviso, release: "[version] foi lançada.", release_link: "Novidades"}
 footnote: {back: Voltar à referência}
 progress: {label: Progresso}
 subscribe: {email: Endereço de e-mail, submit: Inscrever-se}

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:ad5dd6365011
+source_rev: sha256:c22188e195ae
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -78,7 +78,7 @@ modootoday:
 | `authors` | `true` | `false` で記事と記事カードの署名を隠す。著者のデータは `_data/authors.yml` に残す。 |
 | `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
 | `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |
-| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。 |
+| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。`text` がないとき、`release: latest` はビルド時に `site.github` からリポジトリーの最新リリースを知らせ(「1.7.0 を公開しました。」と「新機能」リンク)、`release: {version, url}` は指定した値で同じバーを作る。 |
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
 | `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](../../reference/showcase/)を参照。 |

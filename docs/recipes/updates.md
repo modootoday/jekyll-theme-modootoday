@@ -13,6 +13,7 @@ A static site cannot reach its readers on its own, so the theme gives readers wa
 | GitHub release notifications | people who use your project on GitHub | nothing beyond publishing releases on GitHub |
 | Email form | readers who want an email when something ships | a `c: subscribe` section and a mail service |
 | Update notice | readers of the installed app | `modootoday.pwa` |
+| Release banner | every visitor, on every page | `banner: {release: latest}` |
 
 ## Feeds
 
@@ -31,6 +32,10 @@ A `c: subscribe` section prints your text and an email form that posts to your m
 ## The installed app
 
 With `modootoday.pwa` on, an open app shows a short notice when a deploy changes the theme files, and pages always come from the network first. See [Updates](../pwa/#updates) in the installable site recipe. The notice reaches only readers who have the site open; it is not a notification.
+
+## A release banner
+
+`modootoday.banner: {release: latest}` puts "1.7.0 is out." and a What's new link to the release on every page, read from `site.github` when the site is built; prereleases are left out. It changes only when the site is rebuilt, so pair it with a rebuild on each release (below). Outside GitHub Pages, give `release: {version, url}` instead.
 
 ## Why there is no push
 

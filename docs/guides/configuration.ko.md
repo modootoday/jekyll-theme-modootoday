@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:ad5dd6365011
+source_rev: sha256:c22188e195ae
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -78,7 +78,7 @@ modootoday:
 | `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |
 | `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
 | `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
-| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. |
+| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고, `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
 | `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](../../reference/showcase/) 참고. |

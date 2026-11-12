@@ -57,7 +57,7 @@ filetree: {label: Arborescence}
 gallery: {close: Fermer}
 embed: {title: Contenu intégré}
 pricing: {recommended: Recommandé}
-banner: {label: Annonce}
+banner: {label: Annonce, release: "[version] est disponible.", release_link: "Nouveautés"}
 footnote: {back: Retour à l’appel de note}
 progress: {label: Progression}
 subscribe: {email: Adresse e-mail, submit: S’abonner}
