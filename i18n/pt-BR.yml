@@ -21,7 +21,7 @@ diagram: {label: Diagrama, source: Código do diagrama}
 math: {label: "Fórmula [n]"}
 search: {label: Pesquisar}
 filter: {label: "Filtrar", count: "[n] exibidos"}
-page: {edit: Editar esta página, updated: Última atualização}
+page: {edit: Editar esta página, updated: Última atualização, built: "Gerado a partir de [commit]"}
 languages: {label: Idiomas}
 post: {date_format: "%d/%m/%Y", author: Sobre o autor, related: Posts relacionados, share: Compartilhar}
 fallback: {notice: "Esta página ainda não foi traduzida, por isso aparece em inglês."}

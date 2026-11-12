@@ -5,7 +5,7 @@ _config.yml: modootoday.languages must be a list of language codes such as [en, 
 _config.yml: modootoday.full_languages must be a list of codes from modootoday.languages
 _config.yml: modootoday.lists must be a map of link_chips and titled_items set to true or false
 _config.yml: modootoday.archive must be a map with tags: and/or categories: (archive page URLs)
-_config.yml: modootoday.edit_url must be an http(s) URL ending in / (page.path is appended)
+_config.yml: modootoday.edit_url must be auto or an http(s) URL ending in / (page.path is appended)
 _config.yml: modootoday.css_layers must be true or false
 _config.yml: modootoday.badges must be true or false
 _config.yml: modootoday.seo must be true or false

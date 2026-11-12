@@ -27,6 +27,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - Diagrams: a `diagrams:` entry takes `min_width` (24, 32, 40 or 48 rem), below which the figure scrolls sideways instead of shrinking; a translated page can list its own SVG pair drawn from a fence in its language. (adr:modootoday/20261111192610, adr:modootoday/20261109141321)
 - `modootoday-check --links` reports same-site links to missing pages and `#` links to missing anchors in the built site. (adr:modootoday/20261111231457, adr:modootoday/20261109141321)
 - Blog, author and archive pages link their Atom feed in the head and with a Subscribe link (front matter `feed:`); `layout: feed` takes `author:`. (adr:modootoday/20261112001116, adr:modootoday/20261109141321)
+- `edit_url: auto` builds the Edit this page link from the repository GitHub Pages builds the site from; `build_link: true` links the commit the site was built from. (adr:modootoday/20261112023954, adr:modootoday/20261109141321)
 
 ### Changed
 

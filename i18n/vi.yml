@@ -21,7 +21,7 @@ diagram: {label: Sơ đồ, source: Mã nguồn sơ đồ}
 math: {label: "Công thức [n]"}
 search: {label: Tìm kiếm}
 filter: {label: "Lọc", count: "Đang hiển thị [n]"}
-page: {edit: Sửa trang này, updated: Cập nhật lần cuối}
+page: {edit: Sửa trang này, updated: Cập nhật lần cuối, built: "Dựng từ [commit]"}
 languages: {label: Ngôn ngữ}
 post: {date_format: "%d/%m/%Y", author: Về tác giả, related: Bài viết liên quan, share: Chia sẻ}
 fallback: {notice: Trang này chưa được dịch nên đang hiển thị bằng tiếng Anh.}

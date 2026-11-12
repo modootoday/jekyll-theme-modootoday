@@ -38,7 +38,7 @@ class CheckSiteConfigTest < CheckerCase
     assert_equal 1, code
     assert_includes o, "csp must be strict or false"
     assert_includes o, "languages must be a list"
-    assert_includes o, "edit_url must be an http(s) URL"
+    assert_includes o, "edit_url must be auto or an http(s) URL"
     assert_includes o, "seo must be true or false"
     assert_includes o, "add jekyll-feed to plugins"
   end

@@ -10,8 +10,10 @@
 {%- assign _mta_fk = "footer-" | append: _lang -%}{%- assign _mta_fd = site.data.nav[_mta_fk] | default: site.data.nav.footer -%}
 {%- if _mta_fd.columns and mt_components contains "footer" -%}{%- assign mt_page_c = mt_page_c | append: "footer|" -%}{%- endif -%}
 {%- unless layout.mt_chrome == false or page.chrome == false -%}
-{%- if page.last_modified_at -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
-{%- elsif site.modootoday.edit_url and page.edit != false and page.path -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
+{%- include modootoday/meta/github.html -%}{%- assign _mta_ep = site.modootoday.edit_url -%}{%- if _mta_ep == "auto" -%}{%- assign _mta_ep = mt_gh_edit -%}{%- endif -%}
+{%- assign _mta_built = false -%}{%- if site.modootoday.build_link == true and mt_gh_repo != "" and mt_gh_rev != "" -%}{%- assign _mta_built = true -%}{%- endif -%}
+{%- if page.last_modified_at or _mta_built -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
+{%- elsif _mta_ep and _mta_ep != "" and page.edit != false and page.path -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}
 {%- elsif mt_nav and mt_components contains "pagination" and page.pagination != false -%}{%- assign _mta_nj = mt_nav | jsonify -%}
 {%- assign _mta_nu = '"url":"' | append: page.url | append: '"' -%}{%- if _mta_nj contains _mta_nu -%}{%- assign mt_page_c = mt_page_c | append: "doc-nav|" -%}{%- endif -%}
 {%- endif -%}

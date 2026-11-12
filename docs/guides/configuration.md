@@ -60,7 +60,8 @@ modootoday:
 | `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |
 | `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
 | `theme_color` | page background | Browser bar color: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
-| `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`. |
+| `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`; or `auto`: the repository, branch and folder GitHub Pages builds from (below). |
+| `build_link` | `false` | `true` adds "Built from" and the commit the site was built from, linked to it on GitHub. |
 | `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
 | `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Diagram and math loaders](../../recipes/figures/loaders/#built-in-loaders). |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/figures/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |
@@ -139,6 +140,8 @@ modootoday:
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
+
+`edit_url: auto` and `build_link: true` read `site.github`, which GitHub Pages fills in from the repository it builds; the link is left out when the repository or commit is unknown. Elsewhere add the `jekyll-github-metadata` plugin, or set a `github:` map in `_config.yml` with `repository_url`, `source: {branch, path}` and `build_revision`, which stands in for it; `modootoday-check` warns when none of these is there. An explicit `edit_url` URL always wins over `auto`. When GitHub Pages cannot read the repository's Pages settings (a build outside GitHub, or without a token), `source` falls back to the `gh-pages` or `master` branch at the root, so set the URL by hand there.
 
 To use `jekyll-seo-tag` instead, set `seo: false` and put the jekyll-seo-tag `seo` tag in `_includes/head-custom.html`. A page can show its date with `last_modified_at:` in front matter. The first breadcrumb shows the home page `short_title:` (front matter) when set, otherwise its `title`. Strict Content Security Policy: see [CSP](../../recipes/csp/).
 

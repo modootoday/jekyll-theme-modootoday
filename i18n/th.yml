@@ -21,7 +21,7 @@ diagram: {label: แผนภาพ, source: ซอร์สของแผน�
 math: {label: "สูตร [n]"}
 search: {label: ค้นหา}
 filter: {label: "กรอง", count: "แสดง [n] รายการ"}
-page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด}
+page: {edit: แก้ไขหน้านี้, updated: อัปเดตล่าสุด, built: "สร้างจาก [commit]"}
 languages: {label: ภาษา}
 post: {date_format: "%d/%m/%Y", author: เกี่ยวกับผู้เขียน, related: บทความที่เกี่ยวข้อง, share: แชร์}
 fallback: {notice: หน้านี้ยังไม่ได้แปล จึงแสดงเป็นภาษาอังกฤษ}

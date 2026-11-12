@@ -1,16 +1,22 @@
 {%- comment -%}
 Optional page footer line (needs modootoday/config.html first).
-  site.modootoday.edit_url       prefix joined with page.path, e.g. https://github.com/OWNER/REPO/edit/main/docs/
+  site.modootoday.edit_url       prefix joined with page.path, e.g. https://github.com/OWNER/REPO/edit/main/docs/,
+                                 or auto: the repository and folder GitHub Pages builds from (modootoday/meta/github.html)
+  site.modootoday.build_link     true adds "Built from <commit>", linked to that commit, when the repository and commit are known
   page.last_modified_at          date shown as "Last updated" (front matter, or a plugin that sets it)
   page.edit: false               hides the edit link on one page
 {%- endcomment -%}
 {%- include modootoday/i18n.html lang=_lang -%}
-{%- assign _pm_edit = nil -%}
-{%- if site.modootoday.edit_url and page.edit != false and page.path -%}{%- assign _pm_edit = site.modootoday.edit_url | append: page.path -%}{%- endif -%}
-{%- if _pm_edit or page.last_modified_at %}
+{%- include modootoday/meta/github.html -%}
+{%- assign _pm_edit = nil -%}{%- assign _pm_built = nil -%}
+{%- assign _pm_prefix = site.modootoday.edit_url -%}{%- if _pm_prefix == "auto" -%}{%- assign _pm_prefix = mt_gh_edit -%}{%- endif -%}
+{%- if _pm_prefix and _pm_prefix != "" and page.edit != false and page.path -%}{%- assign _pm_edit = _pm_prefix | append: page.path -%}{%- endif -%}
+{%- if site.modootoday.build_link == true and mt_gh_repo != "" and mt_gh_rev != "" -%}{%- assign _pm_built = mt_gh_rev | slice: 0, 7 -%}{%- endif -%}
+{%- if _pm_edit or _pm_built or page.last_modified_at %}
 <p class="mt-page-meta">
 {%- if page.last_modified_at -%}<span>{{ mt_t_page_updated }} <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%Y-%m-%d" }}</time></span>{%- endif -%}
 {%- if _pm_edit and page.last_modified_at %} · {% endif -%}
 {%- if _pm_edit -%}<a href="{{ _pm_edit }}" rel="nofollow">{% include modootoday/brand/icon.html name="edit" size=14 %} {{ mt_t_page_edit }}</a>{%- endif -%}
+{%- if _pm_built -%}{%- if _pm_edit or page.last_modified_at %} · {% endif -%}<a href="{{ mt_gh_repo }}/commit/{{ mt_gh_rev }}" rel="nofollow">{{ mt_t_page_built | replace: "[commit]", _pm_built }}</a>{%- endif -%}
 </p>
 {%- endif -%}

@@ -21,7 +21,7 @@ diagram: {label: 図, source: 図のソース}
 math: {label: "数式 [n]"}
 search: {label: 検索}
 filter: {label: "絞り込み", count: "[n]件を表示"}
-page: {edit: このページを編集, updated: 最終更新}
+page: {edit: このページを編集, updated: 最終更新, built: "[commit] からビルド"}
 languages: {label: 言語}
 post: {date_format: "%Y年%-m月%-d日", author: 著者について, related: 関連記事, share: 共有}
 fallback: {notice: このページはまだ翻訳されていないため、英語で表示しています。}

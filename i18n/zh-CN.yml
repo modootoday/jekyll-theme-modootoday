@@ -21,7 +21,7 @@ diagram: {label: 图表, source: 图表源码}
 math: {label: "公式 [n]"}
 search: {label: 搜索}
 filter: {label: "筛选", count: "显示 [n] 项"}
-page: {edit: 编辑此页, updated: 最后更新}
+page: {edit: 编辑此页, updated: 最后更新, built: "构建自 [commit]"}
 languages: {label: 语言}
 post: {date_format: "%Y年%-m月%-d日", author: 关于作者, related: 相关文章, share: 分享}
 fallback: {notice: 本页尚未翻译，以下为英文原文。}

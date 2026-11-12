@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:0cb9c146e053
+source_rev: sha256:e9f883593bdb
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -66,7 +66,8 @@ modootoday:
 | `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |
 | `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
 | `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
-| `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. |
+| `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. `auto`이면 GitHub Pages가 빌드하는 저장소, 브랜치, 폴더로 만듭니다(아래 참고). |
+| `build_link` | `false` | `true`이면 사이트를 빌드한 커밋을 "[commit]에서 빌드"로 보여 주고 GitHub의 그 커밋으로 연결합니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
 | `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
@@ -145,6 +146,8 @@ modootoday:
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
+
+`edit_url: auto`와 `build_link: true`는 `site.github`를 읽습니다. GitHub Pages는 빌드하는 저장소에서 이 값을 채우고, 저장소나 커밋을 모르면 링크를 빼고 만듭니다. 다른 곳에서는 `jekyll-github-metadata` 플러그인을 쓰거나, `_config.yml`에 `repository_url`, `source: {branch, path}`, `build_revision`을 담은 `github:` 맵을 두면 그 값을 대신합니다. 이 중 아무것도 없으면 `modootoday-check`가 경고합니다. `edit_url`에 URL을 직접 쓰면 언제나 `auto`보다 앞섭니다. GitHub Pages가 저장소의 Pages 설정을 읽지 못하면(GitHub 밖의 빌드나 토큰 없는 빌드) `source`는 루트의 `gh-pages`나 `master` 브랜치로 돌아가므로, 그때는 URL을 직접 쓰세요.
 
 `jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. front matter의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 이동 경로의 첫 항목은 홈 페이지 front matter에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줍니다. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
 

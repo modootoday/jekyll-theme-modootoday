@@ -21,7 +21,7 @@ diagram: {label: Diagram, source: Sumber diagram}
 math: {label: "Rumus [n]"}
 search: {label: Cari}
 filter: {label: "Saring", count: "[n] ditampilkan"}
-page: {edit: Sunting halaman ini, updated: Terakhir diperbarui}
+page: {edit: Sunting halaman ini, updated: Terakhir diperbarui, built: "Dibangun dari [commit]"}
 languages: {label: Bahasa}
 post: {date_format: "%d/%m/%Y", author: Tentang penulis, related: Tulisan terkait, share: Bagikan}
 fallback: {notice: "Halaman ini belum diterjemahkan, jadi ditampilkan dalam bahasa Inggris."}

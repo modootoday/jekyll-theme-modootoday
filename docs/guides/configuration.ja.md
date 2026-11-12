@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:0cb9c146e053
+source_rev: sha256:e9f883593bdb
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -66,7 +66,8 @@ modootoday:
 | `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |
 | `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |
 | `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
-| `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。 |
+| `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。`auto` なら GitHub Pages がビルドするリポジトリー、ブランチ、フォルダーから作ります(下記)。 |
+| `build_link` | `false` | `true` なら、サイトをビルドしたコミットを「[commit] からビルド」と表示し、GitHub のそのコミットにリンクします。 |
 | `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
 | `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[図と数式のローダー](../../recipes/figures/loaders/#組み込みローダー)を参照。 |
 | `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
@@ -145,6 +146,8 @@ modootoday:
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
 plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
 ```
+
+`edit_url: auto` と `build_link: true` は `site.github` を読みます。GitHub Pages はビルドするリポジトリーからこの値を埋め、リポジトリーやコミットがわからなければリンクを省きます。ほかの環境では `jekyll-github-metadata` プラグインを使うか、`_config.yml` に `repository_url`、`source: {branch, path}`、`build_revision` を書いた `github:` マップを置くと、その代わりになります。どれもなければ `modootoday-check` が警告します。`edit_url` に URL を直接書けば、常に `auto` より優先されます。GitHub Pages がリポジトリーの Pages 設定を読めないとき(GitHub の外でのビルドやトークンなしのビルド)、`source` はルートの `gh-pages` か `master` ブランチになるので、その場合は URL を直接書いてください。
 
 代わりに `jekyll-seo-tag` を使うなら、`seo: false` にして jekyll-seo-tag の `seo` タグを `_includes/head-custom.html` に入れます。front matter の `last_modified_at:` でページに日付を表示できます。パンくずリストの最初の項目は、ホームページの front matter に `short_title:` があればそれを、なければ `title` を表示します。厳格な Content Security Policy については [CSP](../../recipes/csp/) を参照してください。
 

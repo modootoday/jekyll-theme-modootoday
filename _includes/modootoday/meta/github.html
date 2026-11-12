@@ -1,0 +1,15 @@
+{%- comment -%}GitHub-derived URLs, the one owner (Liquid only). site.github comes from jekyll-github-metadata, which GitHub Pages
+  runs; elsewhere a github: map in _config.yml stands in. Read only when edit_url: auto or build_link: true asks, since the
+  plugin raises without a repository name. Sets mt_gh_repo (repository URL), mt_gh_edit (edit prefix ending in /, from the
+  Pages source branch and folder) and mt_gh_rev (the commit the site was built from); each is "" when unknown.{%- endcomment -%}
+{%- assign mt_gh_repo = "" -%}{%- assign mt_gh_edit = "" -%}{%- assign mt_gh_rev = "" -%}
+{%- if site.modootoday.edit_url == "auto" or site.modootoday.build_link == true -%}
+{%- assign mt_gh_repo = site.github.repository_url | default: "" -%}
+{%- assign mt_gh_rev = site.github.build_revision | default: "" -%}
+{%- assign _gh_branch = site.github.source.branch | default: "" -%}
+{%- if mt_gh_repo != "" and _gh_branch != "" -%}
+{%- assign _gh_path = site.github.source.path | default: "/" | remove_first: "/" -%}
+{%- if _gh_path != "" -%}{%- assign _gh_path = _gh_path | append: "/" -%}{%- endif -%}
+{%- assign mt_gh_edit = mt_gh_repo | append: "/edit/" | append: _gh_branch | append: "/" | append: _gh_path -%}
+{%- endif -%}
+{%- endif -%}

@@ -21,7 +21,7 @@ diagram: {label: Khaka, source: Khake ka maakhaz}
 math: {label: "Formula [n]"}
 search: {label: Talaash}
 filter: {label: "Filter karen", count: "[n] dikhaye gaye"}
-page: {edit: Yeh safha edit karein, updated: Aakhri update}
+page: {edit: Yeh safha edit karein, updated: Aakhri update, built: "[commit] se banaya gaya"}
 languages: {label: Zabanein}
 post: {date_format: "%d-%m-%Y", author: Musannif ke baare mein, related: Mutaalliqa posts, share: Share karein}
 fallback: {notice: "Yeh safha abhi tarjuma nahin hua, is liye English mein dikhaya ja raha hai."}

@@ -21,7 +21,7 @@ diagram: {label: Διάγραμμα, source: Πηγή διαγράμματος}
 math: {label: "Τύπος [n]"}
 search: {label: Αναζήτηση}
 filter: {label: "Φιλτράρισμα", count: "Εμφανίζονται: [n]"}
-page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση}
+page: {edit: Επεξεργασία σελίδας, updated: Τελευταία ενημέρωση, built: "Δημιουργήθηκε από [commit]"}
 languages: {label: Γλώσσες}
 post: {date_format: "%d/%m/%Y", author: Σχετικά με τον συγγραφέα, related: Σχετικά άρθρα, share: Κοινοποίηση}
 fallback: {notice: "Αυτή η σελίδα δεν έχει μεταφραστεί ακόμη, γι’ αυτό εμφανίζεται στα αγγλικά."}
