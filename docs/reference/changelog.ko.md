@@ -10,7 +10,7 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
 ---
 # 변경 기록
 
-모든 릴리스를 최신순으로, 변경마다 첫 구절만 보여 줍니다. 이유와 근거 결정까지 담긴 전체 기록은 [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md)에 있고, 각 버전은 GitHub 릴리스로 연결됩니다. 사이트를 새 릴리스로 옮기려면 [마이그레이션과 업그레이드](../../guides/upgrade/)를 읽으세요. 피드 리더로는 [이 목록의 Atom 피드](../../changelog.xml)(릴리스마다 항목 하나)나 [GitHub 릴리스 피드](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom)를 구독할 수 있습니다.
+모든 릴리스를 최신순으로, 변경마다 첫 구절만 보여 줍니다. 이유와 근거 결정까지 담긴 전체 기록은 [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md)에 있고, 각 버전은 GitHub 릴리스로 연결됩니다. 사이트를 새 릴리스로 옮기려면 [마이그레이션과 업그레이드](../../guides/upgrade/)를 읽으세요. 피드 리더로는 [이 목록의 Atom 피드](../../../changelog.xml)(릴리스마다 항목 하나)나 [GitHub 릴리스 피드](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom)를 구독할 수 있습니다.
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../reference/changelog/)의 번역입니다. 아래 릴리스 목록은 CHANGELOG.md에서 만들어지므로 영어 그대로 보여 줍니다.

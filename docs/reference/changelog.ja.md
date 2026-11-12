@@ -10,7 +10,7 @@ releases_feed: https://github.com/modootoday/jekyll-theme-modootoday/releases.at
 ---
 # 変更履歴
 
-すべてのリリースを新しい順に、変更ごとの書き出しだけを示します。理由や根拠となる決定まで含む完全な記録は [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md) にあり、各バージョンは GitHub のリリースにリンクしています。サイトを新しいリリースに移すには[移行とアップグレード](../../guides/upgrade/)をお読みください。フィードリーダーでは、[この一覧の Atom フィード](../../changelog.xml)(リリースごとに一つの項目)か [GitHub のリリースのフィード](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom)を購読できます。
+すべてのリリースを新しい順に、変更ごとの書き出しだけを示します。理由や根拠となる決定まで含む完全な記録は [CHANGELOG.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/CHANGELOG.md) にあり、各バージョンは GitHub のリリースにリンクしています。サイトを新しいリリースに移すには[移行とアップグレード](../../guides/upgrade/)をお読みください。フィードリーダーでは、[この一覧の Atom フィード](../../../changelog.xml)(リリースごとに一つの項目)か [GitHub のリリースのフィード](https://github.com/modootoday/jekyll-theme-modootoday/releases.atom)を購読できます。
 
 > [!NOTE]
 > このページは[英語の原文](../../../reference/changelog/)の翻訳です。下のリリース一覧は CHANGELOG.md から作られるため、英語のまま表示します。
