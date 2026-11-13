@@ -160,6 +160,20 @@ Each feedback link opens a prefilled GitHub form: the issue title is the page ti
 
 `edit_url: auto`, `build_link: true` and `feedback.issues: auto` read `site.github`, which GitHub Pages fills in from the repository it builds; the link is left out when the repository or commit is unknown. Elsewhere add the `jekyll-github-metadata` plugin, or set a `github:` map in `_config.yml` with `repository_url`, `source: {branch, path}` and `build_revision`, which stands in for it; `modootoday-check` warns when none of these is there. An explicit `edit_url` URL always wins over `auto`. When GitHub Pages cannot read the repository's Pages settings (a build outside GitHub, or without a token), `source` falls back to the `gh-pages` or `master` branch at the root, so set the URL by hand there.
 
+Outside GitHub Pages the `github:` map looks like this. `source.path` is the site's folder in the repository, with a leading slash and no trailing one: `/` for the root, `/docs` for a `docs` folder. Every key is optional; a link whose value is missing is left out.
+
+```yaml
+github:
+  repository_url: https://github.com/OWNER/REPO
+  source:
+    branch: main
+    path: /docs  # / for the repository root
+  build_revision: 0123456789abcdef0123456789abcdef01234567  # the full commit SHA, for build_link
+  latest_release:  # for banner: {release: latest}
+    tag_name: v1.2.0
+    html_url: https://github.com/OWNER/REPO/releases/tag/v1.2.0
+```
+
 To use `jekyll-seo-tag` instead, set `seo: false` and put the jekyll-seo-tag `seo` tag in `_includes/head-custom.html`. A page can show its date with `last_modified_at:` in front matter. The first breadcrumb shows the home page `short_title:` (front matter) when set, otherwise its `title`. Strict Content Security Policy: see [CSP](../../recipes/csp/).
 
 ## Languages

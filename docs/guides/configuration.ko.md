@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:8c6c9dae9ade
+source_rev: sha256:b3655c79ea80
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -165,6 +165,20 @@ modootoday:
 피드백 링크는 미리 채운 GitHub 양식을 엽니다. 이슈 제목은 페이지 제목이고(두 답에는 앞에 "Helpful: "나 "Not helpful: "가 붙습니다), 본문은 페이지 URL입니다. 테마는 스크립트를 넣지 않고 아무것도 보내지 않습니다. 독자가 누르기 전에는 브라우저가 요청을 하지 않고, 이슈를 올리기 전에 GitHub이 로그인을 요구합니다. 레이블은 독자가 그 저장소에서 레이블을 달 수 있을 때만 붙고, 없는 레이블은 무시됩니다.
 
 `edit_url: auto`, `build_link: true`, `feedback.issues: auto`는 `site.github`를 읽습니다. GitHub Pages는 빌드하는 저장소에서 이 값을 채우고, 저장소나 커밋을 모르면 링크를 빼고 만듭니다. 다른 곳에서는 `jekyll-github-metadata` 플러그인을 쓰거나, `_config.yml`에 `repository_url`, `source: {branch, path}`, `build_revision`을 담은 `github:` 맵을 두면 그 값을 대신합니다. 이 중 아무것도 없으면 `modootoday-check`가 경고합니다. `edit_url`에 URL을 직접 쓰면 언제나 `auto`보다 앞섭니다. GitHub Pages가 저장소의 Pages 설정을 읽지 못하면(GitHub 밖의 빌드나 토큰 없는 빌드) `source`는 루트의 `gh-pages`나 `master` 브랜치로 돌아가므로, 그때는 URL을 직접 쓰세요.
+
+GitHub Pages 밖에서는 `github:` 맵을 다음처럼 씁니다. `source.path`는 저장소 안에서 사이트가 있는 폴더이고, 앞에는 슬래시를 붙이고 끝에는 붙이지 않습니다. 루트는 `/`, `docs` 폴더는 `/docs`입니다. 키는 모두 선택이며, 값이 없는 링크는 빠집니다.
+
+```yaml
+github:
+  repository_url: https://github.com/OWNER/REPO
+  source:
+    branch: main
+    path: /docs  # 저장소 루트는 /
+  build_revision: 0123456789abcdef0123456789abcdef01234567  # build_link용 전체 커밋 SHA
+  latest_release:  # banner: {release: latest}용
+    tag_name: v1.2.0
+    html_url: https://github.com/OWNER/REPO/releases/tag/v1.2.0
+```
 
 `jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. front matter의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 이동 경로의 첫 항목은 홈 페이지 front matter에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줍니다. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
 

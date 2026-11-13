@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:8c6c9dae9ade
+source_rev: sha256:b3655c79ea80
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -165,6 +165,20 @@ modootoday:
 フィードバックのリンクは事前入力した GitHub のフォームを開きます。issue のタイトルはページのタイトルで(二つの答えでは前に "Helpful: " か "Not helpful: " が付きます)、本文はページの URL です。テーマはスクリプトを加えず、何も送りません。読者がクリックするまでブラウザーはリクエストせず、issue を作る前に GitHub がサインインを求めます。ラベルは読者がそのリポジトリーでラベルを付けられるときだけ付き、存在しないラベルは無視されます。
 
 `edit_url: auto`、`build_link: true`、`feedback.issues: auto` は `site.github` を読みます。GitHub Pages はビルドするリポジトリーからこの値を埋め、リポジトリーやコミットがわからなければリンクを省きます。ほかの環境では `jekyll-github-metadata` プラグインを使うか、`_config.yml` に `repository_url`、`source: {branch, path}`、`build_revision` を書いた `github:` マップを置くと、その代わりになります。どれもなければ `modootoday-check` が警告します。`edit_url` に URL を直接書けば、常に `auto` より優先されます。GitHub Pages がリポジトリーの Pages 設定を読めないとき(GitHub の外でのビルドやトークンなしのビルド)、`source` はルートの `gh-pages` か `master` ブランチになるので、その場合は URL を直接書いてください。
+
+GitHub Pages の外では、`github:` マップを次のように書きます。`source.path` はリポジトリー内でサイトがあるフォルダーで、先頭にスラッシュを付け、末尾には付けません。ルートは `/`、`docs` フォルダーは `/docs` です。キーはすべて任意で、値がないリンクは省かれます。
+
+```yaml
+github:
+  repository_url: https://github.com/OWNER/REPO
+  source:
+    branch: main
+    path: /docs  # リポジトリーのルートは /
+  build_revision: 0123456789abcdef0123456789abcdef01234567  # build_link 用の完全なコミット SHA
+  latest_release:  # banner: {release: latest} 用
+    tag_name: v1.2.0
+    html_url: https://github.com/OWNER/REPO/releases/tag/v1.2.0
+```
 
 代わりに `jekyll-seo-tag` を使うなら、`seo: false` にして jekyll-seo-tag の `seo` タグを `_includes/head-custom.html` に入れます。front matter の `last_modified_at:` でページに日付を表示できます。パンくずリストの最初の項目は、ホームページの front matter に `short_title:` があればそれを、なければ `title` を表示します。厳格な Content Security Policy については [CSP](../../recipes/csp/) を参照してください。
 
