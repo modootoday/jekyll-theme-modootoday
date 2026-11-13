@@ -3,7 +3,7 @@
 // dark theme too, a link prints its address, and no CSP violation a stylesheet could cause.
 export const PRINT_PAGES = ["", "guides/customize/", "components/kitchen-sink/", "reference/changelog/"];
 
-const HIDDEN = [".mt-header", ".mt-skip", ".mt-banner", ".mt-page-feedback", ".mt-page-actions", ".mt-doc-aside", ".mt-toc-mobile", ".mt-footer"];
+const HIDDEN = [".mt-header", ".mt-skip", ".mt-banner", ".mt-page-feedback", ".mt-page-actions", ".mt-doc-aside", ".mt-sidebar-mobile", ".mt-toc-mobile", ".mt-footer"];
 
 const watch = () => {
   window.mtCspViolations = [];

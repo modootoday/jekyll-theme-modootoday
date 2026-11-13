@@ -33,6 +33,7 @@ class PrintSheetTest < Minitest::Test
     css = File.read(File.join(s, "assets/css/modootoday/chrome/print.css"))
     refute_includes css, "@layer", "unlayered, so it wins over the layered theme"
     assert_includes css.gsub(/\s+/, " "), ".mt-toast, .mt-c-install"
+    assert_match(/\.mt-actions > a\s*\{\s*background: none !important/, css, "an action button prints as an outline")
   end
 
   def test_off_by_default
