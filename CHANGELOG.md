@@ -53,6 +53,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - KaTeX 0.19.1 renders static math, and the loader recipe's CDN example names it. (adr:modootoday/20261105101229)
 - The documentation site can be installed and read offline: it turns modootoday.pwa on. (adr:modootoday/20261111011654)
 - A recipe, Tell readers about updates, covers feeds, GitHub release notifications, an email form and the app's update notice, why the theme ships no push, and rebuilding a site when a release is published. (adr:modootoday/20261111011655, adr:modootoday/20261109141321)
+- The Korean and Japanese Changelog pages of the docs link the English release list instead of repeating it. (adr:modootoday/20261109204422)
 
 ### Fixed
 
@@ -62,6 +63,7 @@ Visual: the intended differences are the order of the Components page and the ki
 - Offline reading keeps the pages a reader visited across deploys that keep the theme files: the pages cache is now named by the theme files' version (`mt:<baseurl>/:pages:<version>`) and is replaced only with them; navigations to Markdown twins, `llms.txt`, feeds and the sitemap always go to the network. (adr:modootoday/20261110133153)
 - The offline module loads only on the offline page, not on a page that names its attribute (adr:modootoday/20261110133153)
 - The header is complete in the first frame when the theme's stylesheets are cached and the page arrives slowly (Chromium; doc pages with a sidebar also have their width from the first frame in every browser). A new body class, mt-body-sidebar, marks pages with the doc sidebar; a site that overrides _layouts/default.html keeps the wide doc shell as before and can print the class to get it in the first frame too. (adr:modootoday/20261111044513)
+- `modootoday-check` no longer warns that `modootoday.feed: true` needs jekyll-feed when a page with `layout: feed` writes `/feed.xml`; the warning now names both ways to write the feed. (audit:modootoday/20261113044135)
 
 ## [1.6.0] - 2026-11-09
 

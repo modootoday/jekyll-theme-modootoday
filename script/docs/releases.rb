@@ -5,8 +5,9 @@ require_relative "../../lib/modootoday/markdown"
 
 module DocsIndex
   # The docs Changelog page follows CHANGELOG.md: _data/releases.yml holds every released entry (version, date,
-  # tag URL, and per section the count and a short lead of each item), and the reference/changelog pages in every
-  # language carry the list made from it between the page-list markers. Release text stays English.
+  # tag URL, and per section the count and a short lead of each item), and the English reference/changelog page
+  # carries the list made from it between the page-list markers. Translations link that page instead of repeating
+  # English release text (adr:modootoday/20261109204422).
   class Releases
     DATA = "_data/releases.yml"
     PAGE = "reference/changelog"
@@ -19,7 +20,7 @@ module DocsIndex
 
     def files
       h = { "#{@t.root}/#{DATA}" => data }
-      @t.pages.select { |p| p.key == "#{PAGE}.md" }.each do |p|
+      @t.pages.select { |p| p.key == "#{PAGE}.md" && p.lang == @t.default_lang }.each do |p|
         src = @read.call(p.path)
         b, e = Modootoday::Markdown::INDEX_MARK % "begin", Modootoday::Markdown::INDEX_MARK % "end"
         next unless src.include?(b) && src.include?(e)

@@ -107,7 +107,7 @@ class DocsIndexTest < Minitest::Test
     assert_empty stray
   end
 
-  def test_changelog_page_lists_every_release_in_every_language
+  def test_changelog_page_lists_every_release_in_english_only
     versions = File.read("#{ROOT}/CHANGELOG.md").scan(/^## \[(\d+\.\d+\.\d+)\] - /).flatten
     data = YAML.safe_load(File.read("#{DOCS}/_data/releases.yml"))
     assert_equal versions, data.map { |r| r["version"] }
@@ -115,9 +115,14 @@ class DocsIndexTest < Minitest::Test
       assert r["url"].to_s.end_with?("/v#{r["version"]}"), r["version"]
       r["sections"].each { |s| assert_equal s["count"], s["items"].count { |i| !i.strip.empty? }, "#{r["version"]} #{s["name"]}" }
     end
-    Dir.glob("#{DOCS}/reference/changelog{,.*}.md").each do |page|
-      heads = File.read(page).scan(/^### \[(\d+\.\d+\.\d+)\]/).flatten
-      assert_equal versions, heads, page
+    assert_equal versions, File.read("#{DOCS}/reference/changelog.md").scan(/^### \[(\d+\.\d+\.\d+)\]/).flatten
+    translations = Dir.glob("#{DOCS}/reference/changelog.*.md")
+    refute_empty translations
+    translations.each do |page|
+      body = File.read(page)
+      assert_empty body.scan(/^### \[\d+\.\d+\.\d+\]/), "#{page}: no English release list"
+      refute_includes body, Modootoday::Markdown::INDEX_MARK % "begin", page
+      assert_includes body, "](../../../reference/changelog/)", "#{page}: links the English Changelog page"
     end
   end
 
