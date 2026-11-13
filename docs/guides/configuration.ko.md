@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:b3655c79ea80
+source_rev: sha256:48583d9f4365
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -183,6 +183,8 @@ github:
 `jekyll-seo-tag`를 쓰려면 `seo: false`로 두고 `_includes/head-custom.html`에 jekyll-seo-tag의 `seo` 태그를 넣으세요. front matter의 `last_modified_at:`으로 수정일을 표시할 수 있습니다. 이동 경로의 첫 항목은 홈 페이지 front matter에 `short_title:`이 있으면 그것을, 없으면 `title`을 보여 줍니다. 엄격한 콘텐츠 보안 정책은 [CSP](../../recipes/csp/)를 보세요.
 
 ## 언어
+
+순서대로 따라 할 단계는 [사이트 번역하기](../translate-site/)에 있고, 이 절은 전체 레퍼런스입니다.
 
 인터페이스 문자열은 `_data/i18n/<lang>.yml`에 둡니다. 번역 페이지는 원문 옆이나 `<lang>/`에 둡니다(아래 참고).
 

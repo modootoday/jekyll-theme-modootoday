@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: translate-site.ko.md
+lang: ko
+path: guides/translate-site.ko.md.txt
+permalink: /ko/guides/translate-site/index.md
+---

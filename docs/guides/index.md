@@ -17,5 +17,6 @@ Start with the first three: Install, Configuration, and Migrate and upgrade get 
 - [Accessibility](accessibility/) — Keyboard use, screen readers, safe areas, touch targets, high contrast and reduced motion.
 - [Performance](performance/) — What each page loads, versioned asset URLs for long CDN caching, and the size budgets CI keeps.
 - [Structured data](structured-data/) — The schema.org JSON-LD graph the theme prints on every page, and how to configure it.
+- [Translate your site](translate-site/) — The steps to publish your own site in more than one language, from the language list to the check that finds missing and outdated translations.
 - [Translation rules](translation/) — The canonical style rules, glossary and lint for the Korean and Japanese docs and interface strings.
 <!-- spec:docs-index:end -->

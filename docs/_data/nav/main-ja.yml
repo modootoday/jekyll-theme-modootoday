@@ -11,6 +11,7 @@
     - {title: アクセシビリティ, url: /ja/guides/accessibility/}
     - {title: パフォーマンス, url: /ja/guides/performance/}
     - {title: 構造化データ, url: /ja/guides/structured-data/}
+    - {title: サイトを翻訳する, url: /ja/guides/translate-site/}
     - {title: 翻訳ルール, url: /ja/guides/translation/}
 - title: コンポーネント
   url: /ja/components/

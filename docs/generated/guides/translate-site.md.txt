@@ -1,0 +1,6 @@
+---
+layout: twin
+twin_of: translate-site.md
+path: guides/translate-site.md.txt
+permalink: /guides/translate-site/index.md
+---

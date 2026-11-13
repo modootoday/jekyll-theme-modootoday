@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/translation/
-source_rev: sha256:89c1e3974ae0
+source_rev: sha256:365e58d10051
 nav_order: 90
 title: 번역 규칙
 description: 한국어와 일본어 문서, 인터페이스 문구를 번역할 때 지키는 정본 스타일 규칙, 문체, 용어집, 그리고 그 규칙을 검사하는 도구를 정리합니다.
@@ -10,6 +10,8 @@ description: 한국어와 일본어 문서, 인터페이스 문구를 번역할 
 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../guides/translation/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+
+이 페이지는 테마를 번역하는 기여자를 위한 것입니다. 내 사이트를 여러 언어로 게시하려면 [사이트 번역하기](../translate-site/)를 보세요.
 
 원문은 영어입니다. 한국어(`ko`)와 일본어(`ja`) 페이지, `README.ko.md`와 `README.ja.md`, `example/`의 시작 사이트, `i18n/<code>.yml`의 인터페이스 카탈로그는 모두 영어를 현지화한 것입니다. 이 페이지가 유일한 규칙이고, `i18n/glossary.yml`은 기계가 읽는 용어집이며, `script/i18n-build --check`가 두 가지를 모두 검사합니다.
 

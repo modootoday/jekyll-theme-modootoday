@@ -1,0 +1,7 @@
+---
+layout: twin
+twin_of: translate-site.ja.md
+lang: ja
+path: guides/translate-site.ja.md.txt
+permalink: /ja/guides/translate-site/index.md
+---

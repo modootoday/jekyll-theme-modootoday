@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:b3655c79ea80
+source_rev: sha256:48583d9f4365
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -183,6 +183,8 @@ github:
 代わりに `jekyll-seo-tag` を使うなら、`seo: false` にして jekyll-seo-tag の `seo` タグを `_includes/head-custom.html` に入れます。front matter の `last_modified_at:` でページに日付を表示できます。パンくずリストの最初の項目は、ホームページの front matter に `short_title:` があればそれを、なければ `title` を表示します。厳格な Content Security Policy については [CSP](../../recipes/csp/) を参照してください。
 
 ## 言語
+
+順に進める手順は[サイトを翻訳する](../translate-site/)にあり、この節は完全なリファレンスです。
 
 UI の文字列は `_data/i18n/<lang>.yml` に置きます。翻訳ページは原文の隣か `<lang>/` に置きます(後述)。
 

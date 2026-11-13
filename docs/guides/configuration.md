@@ -178,6 +178,8 @@ To use `jekyll-seo-tag` instead, set `seo: false` and put the jekyll-seo-tag `se
 
 ## Languages
 
+For the steps in order, see [Translate your site](../translate-site/); this section is the full reference.
+
 Put interface strings in `_data/i18n/<lang>.yml`; translated pages sit beside their source or in `<lang>/` (see below):
 
 ```yaml

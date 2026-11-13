@@ -11,6 +11,7 @@
     - {title: Accessibility, url: /guides/accessibility/}
     - {title: Performance, url: /guides/performance/}
     - {title: Structured data, url: /guides/structured-data/}
+    - {title: Translate your site, url: /guides/translate-site/}
     - {title: Translation rules, url: /guides/translation/}
 - title: Components
   url: /components/

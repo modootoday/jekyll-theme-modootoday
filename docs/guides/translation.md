@@ -5,6 +5,8 @@ description: The canonical style rules, glossary and lint for the Korean and Jap
 ---
 # Translation rules
 
+This page is for contributors who translate the theme. To publish your own site in more than one language, see [Translate your site](../translate-site/).
+
 English is the source. Korean (`ko`) and Japanese (`ja`) pages, `README.ko.md` and `README.ja.md`, the starter sites in `example/` and the interface catalogs in `i18n/<code>.yml` are localized from it. This page is the single set of rules; `i18n/glossary.yml` is its machine-readable glossary, and `script/i18n-build --check` enforces both.
 
 ## Principles

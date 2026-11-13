@@ -11,6 +11,7 @@
     - {title: 접근성, url: /ko/guides/accessibility/}
     - {title: 성능, url: /ko/guides/performance/}
     - {title: 구조화 데이터, url: /ko/guides/structured-data/}
+    - {title: 사이트 번역하기, url: /ko/guides/translate-site/}
     - {title: 번역 규칙, url: /ko/guides/translation/}
 - title: 컴포넌트
   url: /ko/components/

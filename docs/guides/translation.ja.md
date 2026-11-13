@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/translation/
-source_rev: sha256:89c1e3974ae0
+source_rev: sha256:365e58d10051
 nav_order: 90
 title: 翻訳ルール
 description: 韓国語と日本語のドキュメントと UI の文言を翻訳するときに守る正式なスタイルルール、文体、用語集、そしてそれを検査するツールをまとめます。
@@ -10,6 +10,8 @@ description: 韓国語と日本語のドキュメントと UI の文言を翻訳
 
 > [!NOTE]
 > このページは[英語版](../../../guides/translation/)の翻訳です。内容が異なる場合は英語版が優先されます。
+
+このページはテーマを翻訳するコントリビューター向けです。自分のサイトを複数の言語で公開するときは[サイトを翻訳する](../translate-site/)を参照してください。
 
 原文は英語です。韓国語（`ko`）と日本語（`ja`）のページ、`README.ko.md` と `README.ja.md`、`example/` のスターターサイト、`i18n/<code>.yml` の UI カタログは英語をローカライズしたものです。ルールはこのページだけで、`i18n/glossary.yml` が機械可読の用語集、`script/i18n-build --check` が両方を検査します。
 
