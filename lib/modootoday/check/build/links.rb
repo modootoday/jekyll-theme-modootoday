@@ -6,7 +6,8 @@ module Modootoday
   module Check
     # --links: every same-site a href, link href, img src, script src and source srcset in the built site points
     # at a file that exists, and a #fragment matches an id or a[name] on its target page. External URLs are not
-    # fetched. Warnings, which --strict turns into failures (adr:modootoday/20261111231457). Needs Nokogiri.
+    # fetched. Warnings, which --strict turns into failures (adr:modootoday/20261111231457). Needs Nokogiri:
+    # without it the run fails, so a links check that was asked for never passes unchecked.
     module Links
       TARGETS = "a[href], link[href], img[src], script[src], source[srcset]"
       EXTERNAL = %r{\A[a-z][a-z0-9+.-]*:|\A//}i
@@ -15,7 +16,7 @@ module Modootoday
 
       def call(ctx)
         return unless ctx.option?("--links")
-        return ctx.warns << "--links needs the nokogiri gem; links were not checked" unless nokogiri?
+        return ctx.errs << "--links needs the nokogiri gem: add gem \"nokogiri\" to the Gemfile and run bundle install (or gem install nokogiri)" unless nokogiri?
         found = scan(ctx.site, baseurl(ctx))
         found[:problems].each { |p| ctx.warns << p }
       end

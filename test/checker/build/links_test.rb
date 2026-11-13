@@ -3,12 +3,12 @@
 require_relative "../checker_case"
 
 class CheckLinksTest < CheckerCase
-  # The Jekyll 4 and 3.9 test bundles carry no nokogiri; there --links only says it did not run.
+  # The Jekyll 4 and 3.9 test bundles carry no nokogiri; there --links fails the run.
   NOKOGIRI = Open3.capture3(CLEAN_ENV, RbConfig.ruby, "-e", "require 'nokogiri'")[2].success?
 
   def setup
     super
-    skip "nokogiri not installed for this Ruby" unless NOKOGIRI || name == "test_without_nokogiri_the_check_says_it_did_not_run"
+    skip "nokogiri not installed for this Ruby" unless NOKOGIRI || name == "test_without_nokogiri_the_check_fails_and_names_the_gem"
     write File.join(@src, "_config.yml"), "baseurl: /site\n"
     page "index.md", "---\n---\n# Home\n"
     out "index.html", %(<html><body><h2 id="top">Top</h2><a href="/site/guide/">Guide</a></body></html>)
@@ -62,10 +62,14 @@ class CheckLinksTest < CheckerCase
     refute_match(/broken|missing/, warnings)
   end
 
-  def test_without_nokogiri_the_check_says_it_did_not_run
-    skip "nokogiri is installed for this Ruby" if NOKOGIRI
+  def test_without_nokogiri_the_check_fails_and_names_the_gem
     link "/site/nowhere/"
-    assert_match(/warning: --links needs the nokogiri gem; links were not checked/, warnings)
+    stub = File.join(@dir, "no-nokogiri")
+    write File.join(stub, "nokogiri.rb"), "raise LoadError, 'cannot load such file -- nokogiri'\n"
+    o, e, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, "-I", stub, CHECK, @src, @site, "--links")
+    assert_equal 1, st.exitstatus, o + e
+    assert_match(/--links needs the nokogiri gem: add gem "nokogiri" to the Gemfile/, o + e)
+    refute_match(/warning: --links/, o + e)
   end
 
   def test_without_the_option_nothing_is_checked
