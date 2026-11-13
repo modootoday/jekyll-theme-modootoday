@@ -54,7 +54,7 @@ Every docs page, in every language, follows these rules. A change that breaks on
 - **R5 Version mentions.**
   - No past version in a heading.
   - No past version in the body outside Upgrade and Changelog.
-  - Exception: the Configuration key table has a Since column naming the minor release that added a key or its newest form, so a reader on an older gem can tell which keys it lacks (m1 of [[audit:modootoday/20261113044135]]). It holds a bare version, never a sentence.
+  - Exception: a row of the Configuration key table whose key, or its newest form, a minor release added starts its description with that bare version in bold, so a reader on an older gem can tell which keys it lacks (m1 of [[audit:modootoday/20261113044135]]). It is a bare version, never a sentence; a column was tried first and left most rows blank (the 1.7.1 screenshot review).
   - The Changelog page is generated from CHANGELOG.md.
   - The Roadmap names no frozen version.
   Test: more patterns in the structure check's banned list, plus a `--check` on the generated pages.

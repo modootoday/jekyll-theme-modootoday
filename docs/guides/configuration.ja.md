@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:48583d9f4365
+source_rev: sha256:aed6bc9743a2
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -29,64 +29,64 @@ modootoday:
   nav: main
 ```
 
-| キー | 既定値 | 役割 | 導入 |
-|---|---|---|---|
-| `badges` | `true` | ステータスのコードスパンをバッジで表示する。`false` ならコードのまま。 |  |
-| `code_theme` | `theme` | コードブロックの色。テーマの色(`theme`)か GitHub の色(`github`)を選ぶ。[コードの色](../customize/#コードの色)を参照。 |  |
-| `color_scheme` | `auto` | ライト・ダークの表示。`auto` は端末に合わせ、`auto-dark`・`auto-light` は開始時の表示を、`light`・`dark` は固定の表示を決める。 |  |
-| `components` | すべて | サイトが配信するコンポーネントの CSS と JS を絞る。 |  |
-| `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む。 |  |
-| `nav` | `main` | メニューを作る `_data/nav/` のファイル。`items:` がある項目はグループになる。 |  |
-| `sidebar` | `auto` | `doc` ページのサイドメニュー。`auto` はメニューにグループがあるとき、`true` は常に表示、`false` は表示しない。 |  |
-| `page_actions` | `true` | ページのコピーや Markdown 表示ができるメニュー。`false` で消える。 |  |
-| `tokens` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |  |
-| `tokens_dark` | テーマの値 | 同じことをダークモードだけで行う。 |  |
-| `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |  |
-| `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |  |
-| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/figures/widgets/)を参照。 |  |
-| `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |  |
-| `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[AI エージェント](../agents/)を参照。 |  |
-| `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |  |
-| `records` | なし | `_data` ファイルの項目ごとにページを 1 つ作る。[生成ページ](../../recipes/generated-pages/)を参照。 |  |
-| `seo` | `true` | `false` で組み込みの canonical、`hreflang`、Open Graph タグを出さない。 |  |
-| `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` リンクを残す。`jekyll-seo-tag` を使うサイト向け。 |  |
-| `schema` | `url` があれば有効 | schema.org の構造化データを出す。`false` で無効。[構造化データ](../structured-data/)を参照。 |  |
-| `languages` | なし | `[en, ko]` のようなサイトの言語コード。`hreflang` と言語メニューに使う。 |  |
-| `full_languages` | なし | すべてのページを翻訳する言語(例: `[ko, ja]`)。`modootoday-check --i18n-pages` が足りない翻訳を警告する。 |  |
-| `lists` | なし | `{link_chips: true, titled_items: true}` で、リンクだけのリストをチップに、`**タイトル**:` の項目を見出し付きの項目にする。 |  |
-| `heading_anchors` | `false` | `true` で、ドキュメントと投稿の `##`・`###` 見出しの末尾に、その見出し自身へのリンクを付ける。ポインターを重ねるかフォーカスすると表示され、タッチ画面では常に表示される。 | 1.7 |
-| `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |  |
-| `og_image` | なし | リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 | 1.7 |
-| `feed` | `false` | `true` ですべてのページの head にサイトの Atom フィード(`/feed.xml`、またはフィードがある言語のページでは `/<lang>/feed.xml`)をリンクし、`category` も `tag` もないブログ一覧に購読リンクを加える。フィードのファイルは書かない。フィードは `layout: feed` の `feed.xml` ページがプラグインなしで書く([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)。そのページと `jekyll-feed` はどちらも `/feed.xml` を書くので、一方だけを使う。 | 1.7 |
-| `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |  |
-| `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |  |
-| `pwa` | オフ | `enabled: true` でサイトのタイトル、`theme_color`、ブランドのマークから作るウェブアプリマニフェストをリンクし、ブラウザーがサイトをインストールできるようにして、オフラインで読むためのサービスワーカーを登録します。`precache:` には追加で保存するサイトのパスを書きます(ページは front matter の `pwa: precache` で自分を加えられます)。`shortcuts:` と `screenshots:` はアプリアイコンのメニューとインストールダイアログの画像を加えます。`enabled: kill` は自分を取り除くワーカーを出します。[インストールできるサイト](../../recipes/pwa/)を参照。 | 1.7 |
-| `header` | `{compact_title: true}` | `compact_title: false` でスマートフォンでもロゴの横にサイト名を表示する。 |  |
-| `csp` | なし | `strict` で、最初の描画前に動くテーマのスクリプトをインラインではなくファイルから読み込む。 |  |
-| `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |  |
-| `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |  |
-| `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |  |
-| `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。`auto` なら GitHub Pages がビルドするリポジトリー、ブランチ、フォルダーから作ります(下記)。 | 1.7 |
-| `feedback` | オフ | ページ下の一行を作るマップです(例は head と SEO にあります)。`issues` は `auto`、`https://github.com/OWNER/REPO/issues` のようなリポジトリーの issue の URL、または `false` で、問題を報告するリンクを加えます。`helpful` は `true` か `false` で、`true` ならページが役に立ったかを尋ねる二択の質問を加え、`issues` が必要です。`discuss` はリポジトリーの Discussions ページのような http(s) の URL で、そこへのリンクを加えます。`labels` は事前入力する issue に付けるラベル名のリストです。front matter の `feedback: false` でそのページから隠します。 | 1.7 |
-| `build_link` | `false` | `true` なら、サイトをビルドしたコミットを「[commit] からビルド」と表示し、GitHub のそのコミットにリンクします。 | 1.7 |
-| `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |  |
-| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[図と数式のローダー](../../recipes/figures/loaders/#組み込みローダー)を参照。 |  |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |  |
-| `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/figures/math-diagrams/#静的な数式)を参照。 |  |
-| `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |  |
-| `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |  |
-| `authors` | `true` | `false` で記事と記事カードの署名を隠す。著者のデータは `_data/authors.yml` に残す。 |  |
-| `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |  |
-| `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |  |
-| `banner` | なし | `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。`text` がないとき、`release: latest` はビルド時に `site.github` からリポジトリーの最新リリースを知らせ(「1.7.0 を公開しました。」と「新機能」リンク)、`release: {version, url}` は指定した値で同じバーを作る。 | 1.7 |
-| `print` | `false` | `true` で、印刷のときだけ読み込む印刷用スタイルシートを加える。ヘッダー、メニュー、バナー、更新のお知らせ、インストールのセクション、ページ下のリンクを除き、白地に黒で印刷し、タブのパネルをすべて印刷し、リンクの後にアドレスを付け、図・コード・表をページの境目で分けない。`details`、アコーディオン、FAQ の項目は、読者が先に開かなければ要約だけを印刷する。 | 1.7 |
-| `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |  |
-| `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |  |
-| `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](../../reference/showcase/)を参照。 |  |
-| `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/figures/charts/)を参照。 |  |
-| `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |  |
+| キー | 既定値 | 役割 |
+|---|---|---|
+| `badges` | `true` | ステータスのコードスパンをバッジで表示する。`false` ならコードのまま。 |
+| `code_theme` | `theme` | コードブロックの色。テーマの色(`theme`)か GitHub の色(`github`)を選ぶ。[コードの色](../customize/#コードの色)を参照。 |
+| `color_scheme` | `auto` | ライト・ダークの表示。`auto` は端末に合わせ、`auto-dark`・`auto-light` は開始時の表示を、`light`・`dark` は固定の表示を決める。 |
+| `components` | すべて | サイトが配信するコンポーネントの CSS と JS を絞る。 |
+| `css_layers` | `false` | テーマの CSS を `@layer mt.*` で包む。 |
+| `nav` | `main` | メニューを作る `_data/nav/` のファイル。`items:` がある項目はグループになる。 |
+| `sidebar` | `auto` | `doc` ページのサイドメニュー。`auto` はメニューにグループがあるとき、`true` は常に表示、`false` は表示しない。 |
+| `page_actions` | `true` | ページのコピーや Markdown 表示ができるメニュー。`false` で消える。 |
+| `tokens` | テーマの値 | テーマの色などのデザイントークンを変える。厳格な CSP のサイトでは[トークンブリッジ](../customize/#トークンブリッジ)を使う。 |
+| `tokens_dark` | テーマの値 | 同じことをダークモードだけで行う。 |
+| `site_css` | なし | `[/assets/css/site.css]` のような独自のスタイルシートを、テーマのシートの後に読み込む。[ブランドトークン](../../recipes/brand-tokens/)を参照。 |
+| `preload` | なし | フォントなど、ブラウザーに先に取得させるファイル。`{href, as, type}` のリストで書く。 |
+| `scripts` | なし | 独自の JavaScript モジュール。`script:` で名前を指定したページか、その `element`（ウィジェット）があるページだけが読み込む。[モジュールスクリプトとポスター](../customize/#モジュールスクリプトとポスター)と[ウィジェット](../../recipes/figures/widgets/)を参照。 |
+| `search` | なし | ヘッダー検索の設定。索引する本文の量と、検索語の照合方法を決める。[検索](../../recipes/search/)を参照。 |
+| `twins` | スタブ | 各ページの Markdown 版の出し方。`source` は front matter のないページを使う。[AI エージェント](../agents/)を参照。 |
+| `aliases` | なし | エージェント向けの追加 URL。`md: true` は `/<page>.md` を加え、`html: true` は `/<page>.html` をリダイレクトする。[URL エイリアス](../agents/#url-エイリアス)を参照。 |
+| `records` | なし | `_data` ファイルの項目ごとにページを 1 つ作る。[生成ページ](../../recipes/generated-pages/)を参照。 |
+| `seo` | `true` | `false` で組み込みの canonical、`hreflang`、Open Graph タグを出さない。 |
+| `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` リンクを残す。`jekyll-seo-tag` を使うサイト向け。 |
+| `schema` | `url` があれば有効 | schema.org の構造化データを出す。`false` で無効。[構造化データ](../structured-data/)を参照。 |
+| `languages` | なし | `[en, ko]` のようなサイトの言語コード。`hreflang` と言語メニューに使う。 |
+| `full_languages` | なし | すべてのページを翻訳する言語(例: `[ko, ja]`)。`modootoday-check --i18n-pages` が足りない翻訳を警告する。 |
+| `lists` | なし | `{link_chips: true, titled_items: true}` で、リンクだけのリストをチップに、`**タイトル**:` の項目を見出し付きの項目にする。 |
+| `heading_anchors` | `false` | **1.7** `true` で、ドキュメントと投稿の `##`・`###` 見出しの末尾に、その見出し自身へのリンクを付ける。ポインターを重ねるかフォーカスすると表示され、タッチ画面では常に表示される。 |
+| `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |
+| `og_image` | なし | **1.7** リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 |
+| `feed` | `false` | **1.7** `true` ですべてのページの head にサイトの Atom フィード(`/feed.xml`、またはフィードがある言語のページでは `/<lang>/feed.xml`)をリンクし、`category` も `tag` もないブログ一覧に購読リンクを加える。フィードのファイルは書かない。フィードは `layout: feed` の `feed.xml` ページがプラグインなしで書く([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)。そのページと `jekyll-feed` はどちらも `/feed.xml` を書くので、一方だけを使う。 |
+| `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
+| `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
+| `pwa` | オフ | **1.7** `enabled: true` でサイトのタイトル、`theme_color`、ブランドのマークから作るウェブアプリマニフェストをリンクし、ブラウザーがサイトをインストールできるようにして、オフラインで読むためのサービスワーカーを登録します。`precache:` には追加で保存するサイトのパスを書きます(ページは front matter の `pwa: precache` で自分を加えられます)。`shortcuts:` と `screenshots:` はアプリアイコンのメニューとインストールダイアログの画像を加えます。`enabled: kill` は自分を取り除くワーカーを出します。[インストールできるサイト](../../recipes/pwa/)を参照。 |
+| `header` | `{compact_title: true}` | `compact_title: false` でスマートフォンでもロゴの横にサイト名を表示する。 |
+| `csp` | なし | `strict` で、最初の描画前に動くテーマのスクリプトをインラインではなくファイルから読み込む。 |
+| `asset_version` | `theme` | テーマのファイル URL の `?v=` に付ける値。`theme` はバージョン、`build` はコミットまで、`false` は何も付けない。[パフォーマンス](../performance/#バージョン付きアセット-url)を参照。 |
+| `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |
+| `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
+| `edit_url` | なし | **1.7** 「このページを編集」リンクの URL の先頭部分。末尾は `/`。`auto` なら GitHub Pages がビルドするリポジトリー、ブランチ、フォルダーから作ります(下記)。 |
+| `feedback` | オフ | **1.7** ページ下の一行を作るマップです(例は head と SEO にあります)。`issues` は `auto`、`https://github.com/OWNER/REPO/issues` のようなリポジトリーの issue の URL、または `false` で、問題を報告するリンクを加えます。`helpful` は `true` か `false` で、`true` ならページが役に立ったかを尋ねる二択の質問を加え、`issues` が必要です。`discuss` はリポジトリーの Discussions ページのような http(s) の URL で、そこへのリンクを加えます。`labels` は事前入力する issue に付けるラベル名のリストです。front matter の `feedback: false` でそのページから隠します。 |
+| `build_link` | `false` | **1.7** `true` なら、サイトをビルドしたコミットを「[commit] からビルド」と表示し、GitHub のそのコミットにリンクします。 |
+| `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
+| `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[図と数式のローダー](../../recipes/figures/loaders/#組み込みローダー)を参照。 |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [静的な Mermaid の図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)の SVG を置く場所、ダークモード用の SVG があるかどうか、Mermaid のソースをページに残すかどうかを決める。 |
+| `math` | 無効 | ```` ```math ```` と `$$` のブロックを ブラウザーの KaTeX で描画する。`mode: static` なら `_data/math` にコミットした MathML を表示する。[数式と図](../../recipes/figures/math-diagrams/#静的な数式)を参照。 |
+| `external_links` | なし | `new_window: true` で、ほかのサイトへのリンクを新しいウィンドウで開く。[新しいウィンドウで開くリンク](#新しいウィンドウで開くリンク)を参照。 |
+| `blog` | なし | `per_page` などのブログ設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
+| `authors` | `true` | `false` で記事と記事カードの署名を隠す。著者のデータは `_data/authors.yml` に残す。 |
+| `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
+| `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |
+| `banner` | なし | **1.7** `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。`text` がないとき、`release: latest` はビルド時に `site.github` からリポジトリーの最新リリースを知らせ(「1.7.0 を公開しました。」と「新機能」リンク)、`release: {version, url}` は指定した値で同じバーを作る。 |
+| `print` | `false` | **1.7** `true` で、印刷のときだけ読み込む印刷用スタイルシートを加える。ヘッダー、メニュー、バナー、更新のお知らせ、インストールのセクション、ページ下のリンクを除き、白地に黒で印刷し、タブのパネルをすべて印刷し、リンクの後にアドレスを付け、図・コード・表をページの境目で分けない。`details`、アコーディオン、FAQ の項目は、読者が先に開かなければ要約だけを印刷する。 |
+| `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
+| `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
+| `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](../../reference/showcase/)を参照。 |
+| `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/figures/charts/)を参照。 |
+| `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
 
-導入の列は、そのキー、または既存のキーの新しい形(`edit_url: auto` など)が追加されたリリースです。空欄はそれより前のリリースで、古い gem に固定したサイトにはまだありません。リリースごとの追加内容は[移行とアップグレード](../upgrade/#アップグレード)にあります。
+説明が **1.7** で始まる行は、リリース 1.7 で追加されたキー、または既存のキーの新しい形(`edit_url: auto` など)です。古い gem に固定したサイトにはまだありません。リリースごとの追加内容は[移行とアップグレード](../upgrade/#アップグレード)にあります。
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
 

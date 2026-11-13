@@ -67,7 +67,7 @@ change the docs only, each in English, Korean and Japanese. m7 had been fixed be
 
 | Finding | Status | Commit | Change |
 |---|---|---|---|
-| m1 no since marker | fixed | d6c2437 | The Configuration key table has a Since column, filled for the keys (or new forms of older keys) that 1.7 added, with a line that links the upgrade notes. The docs consistency ADR allows this bare version column as an exception to its version-mention rule. |
+| m1 no since marker | fixed | d6c2437, then a bold marker | The Configuration key table marks the keys (or new forms of older keys) that 1.7 added with a bold **1.7** at the start of their description, under a line that links the upgrade notes. A Since column came first (d6c2437) and was folded into the descriptions after the 1.7.1 screenshot review found 45 of 54 rows blank. The docs consistency ADR allows this bare version marker as an exception to its version-mention rule. |
 | m2 trying an unreleased version | fixed | ab241fa | Install, "Try the next release": the Gemfile `git:` and `branch: "main"` line, `remote_theme` `@main`, moving to a newer commit, and pinning a release again before publishing. |
 | m3 `--links` without nokogiri exits 0 | fixed | f10366f | The run fails with an error that says to add `gem "nokogiri"`; the CLI tables, Install and the links ADR say so. The test runs with nokogiri hidden, so it no longer skips where nokogiri is installed. |
 | m4 `banner: {release: latest}` silent | fixed | 9634367 | The checker warns when the key is set, the banner component is on and the built home page has no release banner. The updates recipe names the field, `site.github.latest_release` (`tag_name`, `html_url`). |

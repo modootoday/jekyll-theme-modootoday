@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:48583d9f4365
+source_rev: sha256:aed6bc9743a2
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -29,64 +29,64 @@ modootoday:
   nav: main
 ```
 
-| 키 | 기본값 | 하는 일 | 도입 |
-|---|---|---|---|
-| `badges` | `true` | 상태 코드 스팬을 배지로 보여 줍니다. `false`면 코드 그대로 둡니다. |  |
-| `code_theme` | `theme` | 코드 블록 색입니다. 테마 색(`theme`)이나 GitHub 색(`github`)을 고릅니다. [코드 색](../customize/#코드-색) 참고. |  |
-| `color_scheme` | `auto` | 라이트·다크 모드입니다. `auto`는 기기를 따르고, `auto-dark`·`auto-light`는 시작 모드를, `light`·`dark`는 고정 모드를 정합니다. |  |
-| `components` | 전체 | 사이트가 내보낼 컴포넌트 CSS와 JS를 줄입니다. |  |
-| `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌉니다. |  |
-| `nav` | `main` | 메뉴를 만드는 `_data/nav/`의 파일입니다. `items:`가 있는 항목은 그룹이 됩니다. |  |
-| `sidebar` | `auto` | `doc` 페이지의 사이드 메뉴입니다. `auto`는 메뉴에 그룹이 있을 때, `true`는 항상, `false`는 표시하지 않습니다. |  |
-| `page_actions` | `true` | 페이지를 복사하거나 Markdown으로 보는 메뉴입니다. `false`면 끕니다. |  |
-| `tokens` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |  |
-| `tokens_dark` | 테마 값 | 같은 일을 다크 모드에서만 합니다. |  |
-| `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |  |
-| `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |  |
-| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/figures/widgets/) 참고. |  |
-| `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |  |
-| `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [AI 에이전트](../agents/) 참고. |  |
-| `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |  |
-| `records` | 없음 | `_data` 파일의 항목마다 페이지를 하나씩 만듭니다. [생성 페이지](../../recipes/generated-pages/) 참고. |  |
-| `seo` | `true` | `false`면 내장 canonical, `hreflang`, Open Graph 태그를 뺍니다. |  |
-| `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 링크를 남깁니다. `jekyll-seo-tag`를 쓰는 사이트용입니다. |  |
-| `schema` | `url`이 있으면 켜짐 | schema.org 구조화 데이터를 넣습니다. `false`면 끕니다. [구조화 데이터](../structured-data/) 참고. |  |
-| `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. |  |
-| `full_languages` | 없음 | 모든 페이지를 번역하는 언어입니다(예: `[ko, ja]`). `modootoday-check --i18n-pages`가 빠진 번역을 알려 줍니다. |  |
-| `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |  |
-| `heading_anchors` | `false` | `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. | 1.7 |
-| `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |  |
-| `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. | 1.7 |
-| `feed` | `false` | `true`면 모든 페이지의 head에 사이트의 Atom 피드(`/feed.xml`, 또는 피드가 있는 언어의 페이지에서는 `/<lang>/feed.xml`)를 연결하고, `category`나 `tag`가 없는 블로그 목록에 구독 링크를 더합니다. 피드 파일을 쓰지는 않습니다. 피드는 `layout: feed`를 쓴 `feed.xml` 페이지가 플러그인 없이 씁니다([작성자와 피드](../../layouts/blog-news/#작성자와-피드) 참고). 그 페이지와 `jekyll-feed`는 둘 다 `/feed.xml`을 쓰므로 하나만 쓰세요. | 1.7 |
-| `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |  |
-| `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |  |
-| `pwa` | 끔 | `enabled: true`면 사이트 제목, `theme_color`, 브랜드 마크로 만든 웹 앱 매니페스트를 연결해 브라우저가 사이트를 설치할 수 있고, 오프라인에서 읽을 수 있도록 서비스 워커를 등록합니다. `precache:`에는 더 보관할 사이트 경로를 적습니다(페이지는 front matter `pwa: precache`로 스스로 더할 수 있습니다). `shortcuts:`와 `screenshots:`는 앱 아이콘 메뉴와 설치 대화상자의 그림을 더합니다. `enabled: kill`은 스스로를 제거하는 워커를 내보냅니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 보세요. | 1.7 |
-| `header` | `{compact_title: true}` | `compact_title: false`면 휴대폰에서도 로고 옆에 사이트 이름을 보여 줍니다. |  |
-| `csp` | 없음 | `strict`면 처음 그리기 전에 도는 테마 스크립트를 인라인 대신 파일로 불러옵니다. |  |
-| `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |  |
-| `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |  |
-| `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |  |
-| `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. `auto`이면 GitHub Pages가 빌드하는 저장소, 브랜치, 폴더로 만듭니다(아래 참고). | 1.7 |
-| `feedback` | 꺼짐 | 페이지 아래 한 줄을 만드는 맵입니다(예시는 헤드와 SEO에 있습니다). `issues`는 `auto`, `https://github.com/OWNER/REPO/issues` 같은 저장소의 이슈 URL, 또는 `false`이고 문제를 신고하는 링크를 더합니다. `helpful`은 `true`나 `false`이고, `true`면 페이지가 도움이 되었는지 묻는 답 두 개짜리 질문을 더하며 `issues`가 필요합니다. `discuss`는 저장소의 Discussions 페이지 같은 http(s) URL이고 그곳으로 가는 링크를 더합니다. `labels`는 미리 채운 이슈에 붙일 레이블 이름의 목록입니다. front matter `feedback: false`면 그 페이지에서 숨깁니다. | 1.7 |
-| `build_link` | `false` | `true`이면 사이트를 빌드한 커밋을 "[commit]에서 빌드"로 보여 주고 GitHub의 그 커밋으로 연결합니다. | 1.7 |
-| `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |  |
-| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |  |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |  |
-| `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-수식) 참고. |  |
-| `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |  |
-| `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |  |
-| `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |  |
-| `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |  |
-| `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |  |
-| `banner` | 없음 | `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고, `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. | 1.7 |
-| `print` | `false` | `true`면 인쇄할 때만 불러오는 인쇄용 스타일시트를 더합니다. 머리글, 메뉴, 배너, 업데이트 알림, 설치 섹션, 페이지 아래 링크를 빼고, 흰 바탕에 검은 글자로 인쇄하며, 탭 패널을 모두 인쇄하고, 링크 뒤에 주소를 붙이고, 그림·코드·표가 페이지 사이에서 끊기지 않게 합니다. `details`, 아코디언, FAQ 항목은 독자가 먼저 열지 않으면 요약만 인쇄됩니다. | 1.7 |
-| `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |  |
-| `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |  |
-| `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](../../reference/showcase/) 참고. |  |
-| `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/figures/charts/) 참고. |  |
-| `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |  |
+| 키 | 기본값 | 하는 일 |
+|---|---|---|
+| `badges` | `true` | 상태 코드 스팬을 배지로 보여 줍니다. `false`면 코드 그대로 둡니다. |
+| `code_theme` | `theme` | 코드 블록 색입니다. 테마 색(`theme`)이나 GitHub 색(`github`)을 고릅니다. [코드 색](../customize/#코드-색) 참고. |
+| `color_scheme` | `auto` | 라이트·다크 모드입니다. `auto`는 기기를 따르고, `auto-dark`·`auto-light`는 시작 모드를, `light`·`dark`는 고정 모드를 정합니다. |
+| `components` | 전체 | 사이트가 내보낼 컴포넌트 CSS와 JS를 줄입니다. |
+| `css_layers` | `false` | 테마 CSS를 `@layer mt.*`로 감쌉니다. |
+| `nav` | `main` | 메뉴를 만드는 `_data/nav/`의 파일입니다. `items:`가 있는 항목은 그룹이 됩니다. |
+| `sidebar` | `auto` | `doc` 페이지의 사이드 메뉴입니다. `auto`는 메뉴에 그룹이 있을 때, `true`는 항상, `false`는 표시하지 않습니다. |
+| `page_actions` | `true` | 페이지를 복사하거나 Markdown으로 보는 메뉴입니다. `false`면 끕니다. |
+| `tokens` | 테마 값 | 테마 색 같은 디자인 토큰을 바꿉니다. 엄격한 CSP 사이트는 [토큰 브리지](../customize/#토큰-브리지)를 씁니다. |
+| `tokens_dark` | 테마 값 | 같은 일을 다크 모드에서만 합니다. |
+| `site_css` | 없음 | `[/assets/css/site.css]`처럼 직접 만든 스타일시트를 테마 시트 뒤에 불러옵니다. [브랜드 토큰](../../recipes/brand-tokens/) 참고. |
+| `preload` | 없음 | 글꼴처럼 브라우저가 먼저 받을 파일입니다. `{href, as, type}` 목록으로 적습니다. |
+| `scripts` | 없음 | 직접 만든 JavaScript 모듈입니다. `script:`로 이름을 적었거나 그 `element`(위젯)가 있는 페이지만 불러옵니다. [모듈 스크립트와 포스터](../customize/#모듈-스크립트와-포스터), [위젯](../../recipes/figures/widgets/) 참고. |
+| `search` | 없음 | 헤더 검색 설정입니다. 색인할 글의 양과 검색어를 맞추는 방식을 정합니다. [검색](../../recipes/search/) 참고. |
+| `twins` | 스텁 | 페이지마다 Markdown 사본을 내는 방식입니다. `source`는 front matter 없는 페이지를 씁니다. [AI 에이전트](../agents/) 참고. |
+| `aliases` | 없음 | 에이전트용 추가 URL입니다. `md: true`는 `/<page>.md`를 더하고, `html: true`는 `/<page>.html`을 리다이렉트합니다. [URL 별칭](../agents/#url-별칭) 참고. |
+| `records` | 없음 | `_data` 파일의 항목마다 페이지를 하나씩 만듭니다. [생성 페이지](../../recipes/generated-pages/) 참고. |
+| `seo` | `true` | `false`면 내장 canonical, `hreflang`, Open Graph 태그를 뺍니다. |
+| `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 링크를 남깁니다. `jekyll-seo-tag`를 쓰는 사이트용입니다. |
+| `schema` | `url`이 있으면 켜짐 | schema.org 구조화 데이터를 넣습니다. `false`면 끕니다. [구조화 데이터](../structured-data/) 참고. |
+| `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. |
+| `full_languages` | 없음 | 모든 페이지를 번역하는 언어입니다(예: `[ko, ja]`). `modootoday-check --i18n-pages`가 빠진 번역을 알려 줍니다. |
+| `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |
+| `heading_anchors` | `false` | **1.7** `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. |
+| `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
+| `og_image` | 없음 | **1.7** 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. |
+| `feed` | `false` | **1.7** `true`면 모든 페이지의 head에 사이트의 Atom 피드(`/feed.xml`, 또는 피드가 있는 언어의 페이지에서는 `/<lang>/feed.xml`)를 연결하고, `category`나 `tag`가 없는 블로그 목록에 구독 링크를 더합니다. 피드 파일을 쓰지는 않습니다. 피드는 `layout: feed`를 쓴 `feed.xml` 페이지가 플러그인 없이 씁니다([작성자와 피드](../../layouts/blog-news/#작성자와-피드) 참고). 그 페이지와 `jekyll-feed`는 둘 다 `/feed.xml`을 쓰므로 하나만 쓰세요. |
+| `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
+| `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
+| `pwa` | 끔 | **1.7** `enabled: true`면 사이트 제목, `theme_color`, 브랜드 마크로 만든 웹 앱 매니페스트를 연결해 브라우저가 사이트를 설치할 수 있고, 오프라인에서 읽을 수 있도록 서비스 워커를 등록합니다. `precache:`에는 더 보관할 사이트 경로를 적습니다(페이지는 front matter `pwa: precache`로 스스로 더할 수 있습니다). `shortcuts:`와 `screenshots:`는 앱 아이콘 메뉴와 설치 대화상자의 그림을 더합니다. `enabled: kill`은 스스로를 제거하는 워커를 내보냅니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 보세요. |
+| `header` | `{compact_title: true}` | `compact_title: false`면 휴대폰에서도 로고 옆에 사이트 이름을 보여 줍니다. |
+| `csp` | 없음 | `strict`면 처음 그리기 전에 도는 테마 스크립트를 인라인 대신 파일로 불러옵니다. |
+| `asset_version` | `theme` | 테마 파일 URL의 `?v=`에 붙일 값입니다. `theme`은 버전, `build`는 커밋까지, `false`는 붙이지 않습니다. [성능](../performance/#버전-붙은-자산-url) 참고. |
+| `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
+| `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
+| `edit_url` | 없음 | **1.7** "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. `auto`이면 GitHub Pages가 빌드하는 저장소, 브랜치, 폴더로 만듭니다(아래 참고). |
+| `feedback` | 꺼짐 | **1.7** 페이지 아래 한 줄을 만드는 맵입니다(예시는 헤드와 SEO에 있습니다). `issues`는 `auto`, `https://github.com/OWNER/REPO/issues` 같은 저장소의 이슈 URL, 또는 `false`이고 문제를 신고하는 링크를 더합니다. `helpful`은 `true`나 `false`이고, `true`면 페이지가 도움이 되었는지 묻는 답 두 개짜리 질문을 더하며 `issues`가 필요합니다. `discuss`는 저장소의 Discussions 페이지 같은 http(s) URL이고 그곳으로 가는 링크를 더합니다. `labels`는 미리 채운 이슈에 붙일 레이블 이름의 목록입니다. front matter `feedback: false`면 그 페이지에서 숨깁니다. |
+| `build_link` | `false` | **1.7** `true`이면 사이트를 빌드한 커밋을 "[commit]에서 빌드"로 보여 주고 GitHub의 그 커밋으로 연결합니다. |
+| `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
+| `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | [정적 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램)의 SVG가 있는 곳, 다크 모드용 SVG가 따로 있는지, Mermaid 원본을 페이지에 남길지 정합니다. |
+| `math` | 꺼짐 | ```` ```math ````와 `$$` 블록을 브라우저에서 KaTeX로 렌더링하거나, `mode: static`이면 `_data/math`에 커밋한 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-수식) 참고. |
+| `external_links` | 없음 | `new_window: true`면 다른 사이트로 가는 링크를 새 창에서 엽니다. [새 창으로 여는 링크](#새-창으로-여는-링크) 참고. |
+| `blog` | 없음 | `per_page` 같은 블로그 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
+| `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |
+| `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
+| `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
+| `banner` | 없음 | **1.7** `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고, `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. |
+| `print` | `false` | **1.7** `true`면 인쇄할 때만 불러오는 인쇄용 스타일시트를 더합니다. 머리글, 메뉴, 배너, 업데이트 알림, 설치 섹션, 페이지 아래 링크를 빼고, 흰 바탕에 검은 글자로 인쇄하며, 탭 패널을 모두 인쇄하고, 링크 뒤에 주소를 붙이고, 그림·코드·표가 페이지 사이에서 끊기지 않게 합니다. `details`, 아코디언, FAQ 항목은 독자가 먼저 열지 않으면 요약만 인쇄됩니다. |
+| `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
+| `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
+| `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](../../reference/showcase/) 참고. |
+| `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/figures/charts/) 참고. |
+| `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
 
-도입 열은 그 키, 또는 기존 키의 새 형식(`edit_url: auto` 등)이 추가된 릴리스입니다. 비어 있으면 그보다 이전 릴리스이고, 더 오래된 gem에 고정한 사이트에는 아직 없습니다. 릴리스마다 추가된 내용은 [마이그레이션과 업그레이드](../upgrade/#업그레이드)에 있습니다.
+설명이 **1.7**로 시작하는 행은 릴리스 1.7이 추가한 키, 또는 기존 키의 새 형식(`edit_url: auto` 등)입니다. 더 오래된 gem에 고정한 사이트에는 아직 없습니다. 릴리스마다 추가된 내용은 [마이그레이션과 업그레이드](../upgrade/#업그레이드)에 있습니다.
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
 
