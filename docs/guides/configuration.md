@@ -51,7 +51,7 @@ modootoday:
 | `heading_anchors` | `false` | `true` ends each `##` and `###` heading of a doc or post with a link to itself, shown on hover and focus and always on touch screens. |
 | `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |
 | `og_image` | none | Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. |
-| `feed` | `false` | `true` links `/feed.xml`. Add `jekyll-feed` to `plugins`. |
+| `feed` | `false` | `true` links the site's Atom feed in the head of every page (`/feed.xml`, or `/<lang>/feed.xml` on pages of a language that has one) and adds a Subscribe link to blog indexes without `category` or `tag`. It does not write the feed: a `feed.xml` page with `layout: feed` writes it, with no plugin (see [Authors and feeds](../../layouts/blog-news/#authors-and-feeds)). Use that page or `jekyll-feed`, not both, since both write `/feed.xml`. |
 | `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
 | `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
 | `pwa` | off | `enabled: true` links a web app manifest built from the site title, `theme_color` and the brand mark, so browsers can install the site, and registers a service worker for offline reading; `precache:` lists more site paths to keep (a page can add itself with front matter `pwa: precache`); `shortcuts:` and `screenshots:` add the app icon's menu and the install dialog's pictures. `enabled: kill` ships a worker that removes itself. See [Installable site](../../recipes/pwa/). |
@@ -61,7 +61,7 @@ modootoday:
 | `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
 | `theme_color` | page background | Browser bar color: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
 | `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`; or `auto`: the repository, branch and folder GitHub Pages builds from (below). |
-| `feedback` | off | A row under the page: `issues` (`auto`, a repository's issues URL, or `false`) adds Report an issue, `helpful: true` adds Was this page helpful? with two answers, `discuss` adds a Discuss link, `labels` labels the prefilled issues. Front matter `feedback: false` hides it on one page. |
+| `feedback` | off | A row under the page, a map (example under Head and SEO): `issues` is `auto`, a repository's issues URL such as `https://github.com/OWNER/REPO/issues`, or `false`, and adds a link to report an issue; `helpful` is `true` or `false`, and `true` adds a question with two answers on whether the page helped, which needs `issues`; `discuss` is an http(s) URL, such as the repository's Discussions page, and adds a link to it; `labels` is a list of label names given to the prefilled issues. Front matter `feedback: false` hides the row on one page. |
 | `build_link` | `false` | `true` adds "Built from" and the commit the site was built from, linked to it on GitHub. |
 | `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
 | `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Diagram and math loaders](../../recipes/figures/loaders/#built-in-loaders). |
@@ -133,14 +133,25 @@ Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arro
 
 ## Head and SEO
 
-With `url:` set, every page gets a canonical link and Open Graph tags; no plugin is needed. With `languages:` set, pages that exist in several languages link each other with `hreflang`. Sitemaps and feeds are opt-in plugins that GitHub Pages allows:
+With `url:` set, every page gets a canonical link and Open Graph tags; no plugin is needed. With `languages:` set, pages that exist in several languages link each other with `hreflang`. A sitemap is an opt-in plugin that GitHub Pages allows; the Atom feed needs no plugin (the `feed` key above):
 
 ```yaml
 url: https://example.github.io
 modootoday:
   languages: [en, ko]
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
-plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
+plugins: [jekyll-remote-theme, jekyll-sitemap]
+```
+
+The feedback row takes a map; every key is optional:
+
+```yaml
+modootoday:
+  feedback:
+    issues: auto        # or https://github.com/OWNER/REPO/issues, or false
+    helpful: true       # true or false; needs issues
+    discuss: https://github.com/OWNER/REPO/discussions
+    labels: [docs, feedback]
 ```
 
 Each feedback link opens a prefilled GitHub form: the issue title is the page title ("Helpful: " or "Not helpful: " before it for the two answers), and the body is the page URL. The theme adds no script and sends nothing: a reader's browser makes no request until they click, and GitHub asks them to sign in before anything is filed. Labels apply only when the reader may label issues in that repository, and a label that does not exist is ignored.
@@ -178,6 +189,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 For a language the theme does not ship, add `_data/i18n/<code>.yml` with the keys of the English catalog and list the code in `languages`. Pages get `dir="rtl"` for Arabic, Persian, Hebrew, Urdu and other right-to-left languages (`ur-Latn` stays left-to-right); `direction: rtl` or `ltr` in a catalog or in front matter overrides it. Page content is translated as Markdown, not in the catalogs, in one of two layouts. Beside the source: `guides/start.ko.md` next to `guides/start.md`, with `lang: ko` and `permalink: /ko/guides/start/` in front matter, because Jekyll cannot derive that URL from the file name. Or in a folder: `ko/guides/start.md`, with a `defaults` scope (`path: ko`, `lang: ko`). A language that translates only the home page can keep it as `home/index.<lang>.md` (`permalink: /<lang>/`).
+
+Every language in `languages` other than the site's `lang` needs a home page at `/<lang>/`. The language menu (`language_switcher`) sends a reader there from any page that has no translation in that language, so without it the link is broken on every such page, and `modootoday-check --links` reports it. Make one as `index.<lang>.md` beside `index.md`, with `lang: <lang>` and `permalink: /<lang>/` in front matter (or `<lang>/index.md` in the folder layout); it can be as short as a title and a line that links the pages you have translated.
 
 Pages that translate each other under different paths share a `ref:` in front matter, such as `ref: guide` on `guides/start.md` and `ko/guides/sijak.md`. `hreflang` links and the language switcher then use that page; a page with `ref:` and no translation is left out of `hreflang`, and the switcher sends that language to its home page. In includes and layouts, `modootoday/link.html` with `ref="guide"` gives the URL of the `ref: guide` page in the current language, or in the default language when there is none (add `exact=true` for no fallback, `absolute=true` for a full URL); `modootoday-check` reports a `ref=` that no page defines. With `full_languages` set, `modootoday-check . _site --i18n-pages` lists default-language pages that have no translation in those languages (same `ref:`, `<name>.<lang>.md` beside the page, or the same path under `<lang>/`); they are warnings, and `--strict` makes them fail. Posts, record pages, lists of records and pages at a file URL such as `/404.html` are not translated page by page and are left out. The same option reads each translation's `source_rev:`, the revision of the source it was translated from (`sha256:` and 12 hex digits of the source's `title`, `description`, `nav_title` and body). A translation without one, or whose source changed since, is a warning that prints the current value. A translation beside its source whose `permalink` is not the source's URL under `/<lang>` is an error.
 

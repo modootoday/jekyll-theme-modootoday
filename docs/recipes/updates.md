@@ -17,9 +17,11 @@ A static site cannot reach its readers on its own, so the theme gives readers wa
 
 ## Feeds
 
-Add a `feed.xml` page with `layout: feed` in each language folder; every page then links its language's feed in the head, so a feed reader finds it from any page address. Blog, author and archive pages also show a Subscribe link to their feed (front matter `feed:`). See [Authors and feeds](../../layouts/blog-news/#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
+Add a `feed.xml` page with `layout: feed` at the site root and in each language folder; the theme writes the feed itself, so no plugin is needed. With `modootoday.feed: true`, every page then links its language's feed in the head, so a feed reader finds it from any page address. Blog, author and archive pages also show a Subscribe link to their feed (front matter `feed:`). See [Authors and feeds](../../layouts/blog-news/#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
 
-When you publish releases on GitHub, GitHub keeps a feed of them at `https://github.com/OWNER/REPO/releases.atom`. Link it from your changelog or news page for readers who want releases only.
+A changelog page can have a feed of its own, one entry per release: a `changelog.xml` with `layout: feed` and `feed_source:`, linked from the changelog page with `feed:`. See [Changelog](../../layouts/docs-extra/#changelog) in Docs extras for the two files.
+
+When you publish releases on GitHub, GitHub keeps a feed of them at `https://github.com/OWNER/REPO/releases.atom`. Front matter `releases_feed: true` on your changelog or download page links it for readers who want releases only.
 
 ## GitHub release notifications
 

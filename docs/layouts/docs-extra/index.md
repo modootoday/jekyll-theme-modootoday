@@ -22,6 +22,47 @@ These layouts cover the pages around a manual. They load `modootoday-docs-extra.
 
 Each release lists its changes under the five category headings, in that order, with labels in the page language. Items are Markdown. `modootoday-check` reports any other key, so a typo such as `fix:` does not vanish silently.
 
+Feed: a changelog can also be an Atom feed, one entry per release, with no plugin. Add a second file, `changelog.xml`, that holds only front matter and names the changelog page in `feed_source:`; then `feed:` on the changelog page links the feed in the head and as a Subscribe link under the title. `releases_feed: true` adds GitHub's releases feed of the site's repository (from `site.github`) as a second link; give its URL instead where `site.github` is not available.
+
+```yaml
+# changelog.md
+---
+layout: changelog
+title: Changelog
+feed: /changelog.xml
+releases_feed: true
+releases:
+  - {version: 1.1.0, date: 2026-11-01, added: ["Dark mode"], fixed: ["Search on phones"]}
+---
+```
+
+```yaml
+# changelog.xml
+---
+layout: feed
+feed_source: /changelog/
+feed_title: My project releases
+---
+```
+
+Each entry links to the release's `url`, or else to the version's heading on `home:` (default the `feed_source` page). Entry ids are built from the site host, the release date and the version, so a feed reader never shows a release twice.
+
+`feed_source: data` reads `_data/releases.yml` instead of a page. The theme does not write that file: you write it, by hand or with your own script, and set `home:` to the page that lists the releases. It is a list, newest first, with `version`, `date`, an optional `url`, and either `sections` (each a `name` and its `items`) or the changelog layout's five keys:
+
+```yaml
+# _data/releases.yml
+- version: 1.1.0
+  date: 2026-11-01
+  url: https://github.com/OWNER/REPO/releases/tag/v1.1.0
+  sections:
+    - name: Added
+      items: ["Dark mode"]
+    - name: Fixed
+      items: ["Search on phones"]
+```
+
+A `name` is shown as written; items are Markdown.
+
 ## Glossary
 
 Terms are sorted for you and grouped by first letter, with a letter bar that links only to letters in use. Every term gets an anchor (`id:` or a slug of the term), and the page data lists each one as a DefinedTerm.

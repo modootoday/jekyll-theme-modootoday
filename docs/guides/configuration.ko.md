@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:5f7f41c5a973
+source_rev: sha256:ee961bd838f7
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -57,7 +57,7 @@ modootoday:
 | `heading_anchors` | `false` | `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. |
 | `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
 | `og_image` | 없음 | 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. |
-| `feed` | `false` | `true`면 `/feed.xml`을 연결합니다. `plugins`에 `jekyll-feed`를 넣으세요. |
+| `feed` | `false` | `true`면 모든 페이지의 head에 사이트의 Atom 피드(`/feed.xml`, 또는 피드가 있는 언어의 페이지에서는 `/<lang>/feed.xml`)를 연결하고, `category`나 `tag`가 없는 블로그 목록에 구독 링크를 더합니다. 피드 파일을 쓰지는 않습니다. 피드는 `layout: feed`를 쓴 `feed.xml` 페이지가 플러그인 없이 씁니다([작성자와 피드](../../layouts/blog-news/#작성자와-피드) 참고). 그 페이지와 `jekyll-feed`는 둘 다 `/feed.xml`을 쓰므로 하나만 쓰세요. |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
 | `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
 | `pwa` | 끔 | `enabled: true`면 사이트 제목, `theme_color`, 브랜드 마크로 만든 웹 앱 매니페스트를 연결해 브라우저가 사이트를 설치할 수 있고, 오프라인에서 읽을 수 있도록 서비스 워커를 등록합니다. `precache:`에는 더 보관할 사이트 경로를 적습니다(페이지는 front matter `pwa: precache`로 스스로 더할 수 있습니다). `shortcuts:`와 `screenshots:`는 앱 아이콘 메뉴와 설치 대화상자의 그림을 더합니다. `enabled: kill`은 스스로를 제거하는 워커를 내보냅니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 보세요. |
@@ -67,7 +67,7 @@ modootoday:
 | `viewport_fit` | `cover` | `auto`면 휴대폰 노치를 피해 페이지를 그립니다. [접근성](../accessibility/#설정) 참고. |
 | `theme_color` | 페이지 배경 | 브라우저 막대 색입니다. `"#hex"` 하나, `{light: "#hex", dark: "#hex"}`, 또는 없애려면 `false`. |
 | `edit_url` | 없음 | "이 페이지 편집" 링크 URL의 앞부분입니다. `/`로 끝납니다. `auto`이면 GitHub Pages가 빌드하는 저장소, 브랜치, 폴더로 만듭니다(아래 참고). |
-| `feedback` | 꺼짐 | 페이지 아래 한 줄. `issues`(`auto`, 저장소의 이슈 URL, 또는 `false`)는 "문제 신고", `helpful: true`는 답 두 개가 있는 "이 페이지가 도움이 되었나요?", `discuss`는 "토론" 링크를 더하고, `labels`는 미리 채운 이슈의 레이블입니다. front matter `feedback: false`면 그 페이지에서 숨깁니다. |
+| `feedback` | 꺼짐 | 페이지 아래 한 줄을 만드는 맵입니다(예시는 헤드와 SEO에 있습니다). `issues`는 `auto`, `https://github.com/OWNER/REPO/issues` 같은 저장소의 이슈 URL, 또는 `false`이고 문제를 신고하는 링크를 더합니다. `helpful`은 `true`나 `false`이고, `true`면 페이지가 도움이 되었는지 묻는 답 두 개짜리 질문을 더하며 `issues`가 필요합니다. `discuss`는 저장소의 Discussions 페이지 같은 http(s) URL이고 그곳으로 가는 링크를 더합니다. `labels`는 미리 채운 이슈에 붙일 레이블 이름의 목록입니다. front matter `feedback: false`면 그 페이지에서 숨깁니다. |
 | `build_link` | `false` | `true`이면 사이트를 빌드한 커밋을 "[commit]에서 빌드"로 보여 주고 GitHub의 그 커밋으로 연결합니다. |
 | `archive` | 없음 | `{tags: /tags/, categories: /categories/}`처럼 태그·카테고리 페이지 URL입니다. 글 하단 링크가 여기로 갑니다. [글과 아카이브](../../reference/api/#글과-아카이브) 참고. |
 | `mermaid` | 꺼짐 | ```` ```mermaid ```` 블록을 다이어그램으로 그립니다. [다이어그램과 수식 로더](../../recipes/figures/loaders/#내장-로더) 참고. |
@@ -139,14 +139,25 @@ modootoday:
 
 ## 헤드와 SEO
 
-`url:`을 설정하면 모든 페이지에 canonical 링크와 Open Graph 태그가 들어가며 플러그인이 필요 없습니다. `languages:`를 설정하면 여러 언어로 있는 페이지끼리 `hreflang`으로 연결됩니다. 사이트맵과 피드는 GitHub Pages가 허용하는 플러그인으로 직접 켭니다.
+`url:`을 설정하면 모든 페이지에 canonical 링크와 Open Graph 태그가 들어가며 플러그인이 필요 없습니다. `languages:`를 설정하면 여러 언어로 있는 페이지끼리 `hreflang`으로 연결됩니다. 사이트맵은 GitHub Pages가 허용하는 플러그인으로 직접 켜고, Atom 피드는 플러그인이 필요 없습니다(위의 `feed` 키).
 
 ```yaml
 url: https://example.github.io
 modootoday:
   languages: [en, ko]
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
-plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
+plugins: [jekyll-remote-theme, jekyll-sitemap]
+```
+
+피드백 줄은 맵을 받고, 모든 키는 선택입니다.
+
+```yaml
+modootoday:
+  feedback:
+    issues: auto        # 또는 https://github.com/OWNER/REPO/issues, 또는 false
+    helpful: true       # true 또는 false; issues가 필요합니다
+    discuss: https://github.com/OWNER/REPO/discussions
+    labels: [docs, feedback]
 ```
 
 피드백 링크는 미리 채운 GitHub 양식을 엽니다. 이슈 제목은 페이지 제목이고(두 답에는 앞에 "Helpful: "나 "Not helpful: "가 붙습니다), 본문은 페이지 URL입니다. 테마는 스크립트를 넣지 않고 아무것도 보내지 않습니다. 독자가 누르기 전에는 브라우저가 요청을 하지 않고, 이슈를 올리기 전에 GitHub이 로그인을 요구합니다. 레이블은 독자가 그 저장소에서 레이블을 달 수 있을 때만 붙고, 없는 레이블은 무시됩니다.
@@ -184,6 +195,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 테마가 제공하지 않는 언어는 영어 카탈로그와 같은 키로 `_data/i18n/<code>.yml`을 만들고 `languages`에 코드를 추가하세요. 아랍어, 페르시아어, 히브리어, 우르두어 같은 RTL 언어 페이지에는 `dir="rtl"`이 붙습니다(`ur-Latn`은 왼쪽에서 오른쪽). 카탈로그나 front matter의 `direction: rtl` 또는 `ltr`로 바꿀 수 있습니다. 페이지 본문은 카탈로그가 아니라 Markdown으로 번역하며, 배치는 두 가지입니다. 원문 옆에 두려면 `guides/start.md` 옆에 `guides/start.ko.md`를 만들고 front matter에 `lang: ko`와 `permalink: /ko/guides/start/`를 씁니다. Jekyll은 이 파일 이름에서 그 URL을 만들 수 없기 때문입니다. 폴더에 두려면 `ko/guides/start.md`를 만들고 `defaults` 범위(`path: ko`, `lang: ko`)를 둡니다. 홈 페이지만 번역하는 언어는 `home/index.<lang>.md`(`permalink: /<lang>/`)로 둘 수 있습니다.
+
+`languages`에 있는 언어 가운데 사이트의 `lang`이 아닌 언어는 모두 `/<lang>/`에 홈 페이지가 있어야 합니다. 언어 메뉴(`language_switcher`)는 그 언어로 번역되지 않은 페이지에서 독자를 그곳으로 보내므로, 홈 페이지가 없으면 그런 페이지마다 링크가 깨지고 `modootoday-check --links`가 이를 보고합니다. `index.md` 옆에 `index.<lang>.md`를 만들고 front matter에 `lang: <lang>`과 `permalink: /<lang>/`을 쓰세요(폴더 배치라면 `<lang>/index.md`). 제목과, 번역한 페이지로 가는 링크 한 줄만 있어도 됩니다.
 
 경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 페이지 옆의 `<name>.<lang>.md`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다. 글, 레코드 페이지, 레코드 목록, `/404.html`처럼 파일 URL에 있는 페이지는 페이지마다 번역하지 않으므로 빠집니다. 같은 옵션은 각 번역의 `source_rev:`도 읽습니다. 이 값은 번역의 바탕이 된 원문 리비전입니다(원문의 `title`, `description`, `nav_title`과 본문으로 만든 `sha256:`와 16진수 12자리). 이 값이 없거나 그 뒤로 원문이 바뀐 번역은 경고로 알리며, 경고에 현재 값이 함께 나옵니다. 원문 옆에 둔 번역의 `permalink`가 원문 URL 앞에 `/<lang>`을 붙인 값과 다르면 오류입니다.
 

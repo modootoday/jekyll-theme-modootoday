@@ -90,11 +90,19 @@ author: kim
 ---
 ```
 
-Add a `feed.xml` page with `layout: feed` in each language folder (`/ko/feed.xml`) to get one Atom feed per language. The head links to it. Set `feed_content: full` for full text.
+A feed is a page with `layout: feed`. The theme writes it in Liquid, so it needs no plugin and builds on GitHub Pages. Add a `feed.xml` at the site root that holds only front matter, and one in each language folder (`/ko/feed.xml`) to get one Atom feed per language. Set `feed_content: full` for full text.
 
-A changelog can be a feed too: `feed_source: data` publishes the generated `_data/releases.yml`, and `feed_source: /changelog/` a `layout: changelog` page, one entry per release with a stable id, linking to `home:` (default the source page). Front matter `releases_feed: true` on a changelog or download page links GitHub's `releases.atom` for the site's repository in the head and under the title; give the URL instead where `site.github` is not available.
+```yaml
+---
+layout: feed
+---
+```
 
-A blog index without `category` or `tag` links its language feed in the head and with a Subscribe link under its intro when `modootoday.feed` is `true`. Any blog, author or archive page names its own feed with `feed:`: a site path to a `layout: feed` page, or `false` for none. For one author's posts, add a page such as `/authors/kim.xml` with `layout: feed` and `author: kim`, and set `feed: /authors/kim.xml` on the author page. `modootoday-check` reports a `feed:` whose page is not in the build.
+`modootoday.feed: true` links that feed in the head of every page (the language's own feed when it has one) and does not write a feed itself. Do not add `jekyll-feed` as well: it writes `/feed.xml` too.
+
+A changelog can be a feed too, one entry per release: [Changelog](../docs-extra/#changelog) in Docs extras shows the two files, `feed_source:` and `releases_feed:`.
+
+A blog index without `category` or `tag` links its language feed in the head and with a Subscribe link under its intro when `modootoday.feed` is `true`. Any blog, author or archive page, and any changelog or other Docs extras page, names its own feed with `feed:`: a site path to a `layout: feed` page, or `false` for none. Those layouts show it as a Subscribe link; on any other page, such as a download page, `feed:` adds only the head link. For one author's posts, add a page such as `/authors/kim.xml` with `layout: feed` and `author: kim`, and set `feed: /authors/kim.xml` on the author page. `modootoday-check` reports a `feed:` whose page is not in the build.
 
 ## Settings
 
@@ -115,7 +123,7 @@ modootoday:
 | --- | --- | --- |
 | `variant` | blog, author | `list`, `grid` or `magazine` |
 | `category`, `tag` | blog, news, feed | Filter posts |
-| `feed` | blog, author, archive | The page's Atom feed, linked in the head and with a Subscribe link: a site path such as `/authors/kim.xml`, or `false` |
+| `feed` | blog, author, archive, changelog and the other Docs extras; download and any page for the head link only | The page's Atom feed, linked in the head and, on the layouts named first, with a Subscribe link: a site path such as `/authors/kim.xml`, or `false` |
 | `news_sections`, `secondary`, `latest` | news | Category sections and story counts |
 | `posts_lang` | blog, news, author | `all` lists every language |
 | `featured` | blog, post | On a blog page, `true` makes the first card lead; on a post, pins it as the lead card |
@@ -130,4 +138,4 @@ modootoday:
 | `breaking`, `live`, `correction`, `sources`, `credits` | news-article | News details |
 | `feed_lang`, `limit`, `feed_content` | feed | Feed scope |
 | `feed_source`, `home` | feed | A changelog as the feed: `data` or a `layout: changelog` page URL, and where entries link |
-| `releases_feed` | changelog, download, any page | `true` (from `site.github`) or a URL: GitHub's `releases.atom` in the head and under the title |
+| `releases_feed` | changelog, download, any page | `true` (from `site.github`) or a URL: GitHub's `releases.atom` in the head, and under the title on changelog and the other Docs extras |

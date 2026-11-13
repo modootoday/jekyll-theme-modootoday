@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/
-source_rev: sha256:44b1c2e2c53b
+source_rev: sha256:88b275d8bd57
 nav_order: 60
 title: ドキュメント拡張
 description: リファレンス、変更履歴、ロードマップ、用語集、ハブ、コース、書籍のページを共通の任意スタイルシート 1 つで作るレイアウトと、それぞれの front matter を説明します。
@@ -24,6 +24,47 @@ description: リファレンス、変更履歴、ロードマップ、用語集�
 ## 変更履歴
 
 各リリースの変更を 5 つの分類見出しの下に決まった順で示し、見出しはページの言語で表示されます。項目は Markdown です。`modootoday-check` はそれ以外のキーを報告するので、`fix:` のような打ち間違いが黙って消えることはありません。
+
+フィード: 変更履歴は、プラグインなしで、リリースごとに一つの項目がある Atom フィードにもできます。front matter だけの二つ目のファイル `changelog.xml` を作って `feed_source:` に変更履歴のページを書くと、変更履歴のページの `feed:` がそのフィードを head とタイトルの下の購読リンクでリンクします。`releases_feed: true` は、サイトのリポジトリーの GitHub のリリースのフィード(`site.github` から読みます)を二つ目のリンクとして加えます。`site.github` が使えない環境では、その URL を直接書いてください。
+
+```yaml
+# changelog.md
+---
+layout: changelog
+title: Changelog
+feed: /changelog.xml
+releases_feed: true
+releases:
+  - {version: 1.1.0, date: 2026-11-01, added: ["Dark mode"], fixed: ["Search on phones"]}
+---
+```
+
+```yaml
+# changelog.xml
+---
+layout: feed
+feed_source: /changelog/
+feed_title: My project releases
+---
+```
+
+各項目はリリースの `url` に、なければ `home:`(既定は `feed_source` のページ)にあるそのバージョンの見出しにリンクします。項目の id はサイトのホスト、リリースの日付、バージョンから作るので、フィードリーダーに同じリリースが二度出ることはありません。
+
+`feed_source: data` はページの代わりに `_data/releases.yml` を読みます。テーマはこのファイルを書きません。手で書くか自分のスクリプトで作り、`home:` にはリリースを並べるページを書いてください。このファイルは新しい順のリストで、各項目に `version`、`date`、省略できる `url`、そして `sections`(それぞれ `name` とその `items`)か変更履歴レイアウトの五つのキーのどちらかを置きます。
+
+```yaml
+# _data/releases.yml
+- version: 1.1.0
+  date: 2026-11-01
+  url: https://github.com/OWNER/REPO/releases/tag/v1.1.0
+  sections:
+    - name: Added
+      items: ["Dark mode"]
+    - name: Fixed
+      items: ["Search on phones"]
+```
+
+`name` は書いたとおりに表示され、項目は Markdown です。
 
 ## 用語集
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:5f7f41c5a973
+source_rev: sha256:ee961bd838f7
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -57,7 +57,7 @@ modootoday:
 | `heading_anchors` | `false` | `true` で、ドキュメントと投稿の `##`・`###` 見出しの末尾に、その見出し自身へのリンクを付ける。ポインターを重ねるかフォーカスすると表示され、タッチ画面では常に表示される。 |
 | `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |
 | `og_image` | なし | リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 |
-| `feed` | `false` | `true` で `/feed.xml` にリンクする。`plugins` に `jekyll-feed` を追加する。 |
+| `feed` | `false` | `true` ですべてのページの head にサイトの Atom フィード(`/feed.xml`、またはフィードがある言語のページでは `/<lang>/feed.xml`)をリンクし、`category` も `tag` もないブログ一覧に購読リンクを加える。フィードのファイルは書かない。フィードは `layout: feed` の `feed.xml` ページがプラグインなしで書く([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)。そのページと `jekyll-feed` はどちらも `/feed.xml` を書くので、一方だけを使う。 |
 | `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
 | `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
 | `pwa` | オフ | `enabled: true` でサイトのタイトル、`theme_color`、ブランドのマークから作るウェブアプリマニフェストをリンクし、ブラウザーがサイトをインストールできるようにして、オフラインで読むためのサービスワーカーを登録します。`precache:` には追加で保存するサイトのパスを書きます(ページは front matter の `pwa: precache` で自分を加えられます)。`shortcuts:` と `screenshots:` はアプリアイコンのメニューとインストールダイアログの画像を加えます。`enabled: kill` は自分を取り除くワーカーを出します。[インストールできるサイト](../../recipes/pwa/)を参照。 |
@@ -67,7 +67,7 @@ modootoday:
 | `viewport_fit` | `cover` | `auto` でスマートフォンのノッチを避けてページを描く。[アクセシビリティ](../accessibility/#設定)を参照。 |
 | `theme_color` | ページ背景 | ブラウザーのバーの色。`"#hex"` 1 つ、`{light: "#hex", dark: "#hex"}`、または出さないなら `false`。 |
 | `edit_url` | なし | 「このページを編集」リンクの URL の先頭部分。末尾は `/`。`auto` なら GitHub Pages がビルドするリポジトリー、ブランチ、フォルダーから作ります(下記)。 |
-| `feedback` | オフ | ページ下の一行。`issues`(`auto`、リポジトリーの issue の URL、または `false`)は「問題を報告」、`helpful: true` は二つの答えがある「このページは役に立ちましたか?」、`discuss` は「ディスカッション」リンクを加え、`labels` は事前入力する issue のラベルです。front matter の `feedback: false` でそのページから隠します。 |
+| `feedback` | オフ | ページ下の一行を作るマップです(例は head と SEO にあります)。`issues` は `auto`、`https://github.com/OWNER/REPO/issues` のようなリポジトリーの issue の URL、または `false` で、問題を報告するリンクを加えます。`helpful` は `true` か `false` で、`true` ならページが役に立ったかを尋ねる二択の質問を加え、`issues` が必要です。`discuss` はリポジトリーの Discussions ページのような http(s) の URL で、そこへのリンクを加えます。`labels` は事前入力する issue に付けるラベル名のリストです。front matter の `feedback: false` でそのページから隠します。 |
 | `build_link` | `false` | `true` なら、サイトをビルドしたコミットを「[commit] からビルド」と表示し、GitHub のそのコミットにリンクします。 |
 | `archive` | なし | `{tags: /tags/, categories: /categories/}` のようなタグ・カテゴリーページの URL。記事フッターのリンク先になる。[記事とアーカイブ](../../reference/api/#記事とアーカイブ)を参照。 |
 | `mermaid` | 無効 | ```` ```mermaid ```` ブロックを図として描く。[図と数式のローダー](../../recipes/figures/loaders/#組み込みローダー)を参照。 |
@@ -139,14 +139,25 @@ modootoday:
 
 ## head と SEO
 
-`url:` を設定すると、すべてのページに canonical リンクと Open Graph タグが付きます。プラグインは要りません。`languages:` を設定すると、複数の言語にあるページが `hreflang` で互いにリンクします。サイトマップとフィードは、GitHub Pages が許可するプラグインを使う任意機能です。
+`url:` を設定すると、すべてのページに canonical リンクと Open Graph タグが付きます。プラグインは要りません。`languages:` を設定すると、複数の言語にあるページが `hreflang` で互いにリンクします。サイトマップは GitHub Pages が許可するプラグインを使う任意機能で、Atom フィードにはプラグインが要りません(上の `feed` キー)。
 
 ```yaml
 url: https://example.github.io
 modootoday:
   languages: [en, ko]
   edit_url: https://github.com/OWNER/REPO/edit/main/docs/
-plugins: [jekyll-remote-theme, jekyll-sitemap, jekyll-feed]
+plugins: [jekyll-remote-theme, jekyll-sitemap]
+```
+
+フィードバックの行はマップを取り、どのキーも省略できます。
+
+```yaml
+modootoday:
+  feedback:
+    issues: auto        # または https://github.com/OWNER/REPO/issues、または false
+    helpful: true       # true か false。issues が必要
+    discuss: https://github.com/OWNER/REPO/discussions
+    labels: [docs, feedback]
 ```
 
 フィードバックのリンクは事前入力した GitHub のフォームを開きます。issue のタイトルはページのタイトルで(二つの答えでは前に "Helpful: " か "Not helpful: " が付きます)、本文はページの URL です。テーマはスクリプトを加えず、何も送りません。読者がクリックするまでブラウザーはリクエストせず、issue を作る前に GitHub がサインインを求めます。ラベルは読者がそのリポジトリーでラベルを付けられるときだけ付き、存在しないラベルは無視されます。
@@ -184,6 +195,8 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 ```
 
 テーマにない言語を追加するには、英語のカタログと同じキーで `_data/i18n/<code>.yml` を作り、`languages` にコードを加えます。アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページには `dir="rtl"` が付きます（`ur-Latn` は左から右）。カタログか front matter の `direction: rtl` または `ltr` で上書きできます。ページ本文はカタログではなく Markdown で翻訳し、置き方は二通りです。原文の隣に置くなら、`guides/start.md` の隣に `guides/start.ko.md` を作り、front matter に `lang: ko` と `permalink: /ko/guides/start/` を書きます。Jekyll はこのファイル名からその URL を作れないためです。フォルダーに置くなら `ko/guides/start.md` を作り、`defaults` のスコープ(`path: ko`、`lang: ko`)を設定します。ホームページだけを翻訳する言語は `home/index.<lang>.md`(`permalink: /<lang>/`)に置けます。
+
+`languages` にある言語のうち、サイトの `lang` 以外の言語にはすべて `/<lang>/` にホームページが必要です。言語メニュー(`language_switcher`)は、その言語の翻訳がないページから読者をそこへ送るので、ホームページがなければそうしたページのすべてでリンクが切れ、`modootoday-check --links` がそれを報告します。`index.md` の隣に `index.<lang>.md` を作り、front matter に `lang: <lang>` と `permalink: /<lang>/` を書いてください(フォルダーに置く場合は `<lang>/index.md`)。タイトルと、翻訳したページへのリンクが一行あれば足ります。
 
 パスが異なる翻訳ページどうしは、front matter に同じ `ref:` を書きます。たとえば `guides/start.md` と `ko/guides/sijak.md` の両方に `ref: guide` を書きます。すると `hreflang` リンクと言語スイッチャーがそのページを使います。`ref:` があって翻訳がないページは `hreflang` から外れ、言語スイッチャーはその言語のホームへ案内します。include とレイアウトでは、`modootoday/link.html` に `ref="guide"` を渡すと、現在の言語の `ref: guide` ページの URL を、なければ既定言語のページの URL を返します(代替しない場合は `exact=true`、完全な URL は `absolute=true`)。どのページにもない `ref=` は `modootoday-check` がエラーにします。`full_languages` を設定すると、`modootoday-check . _site --i18n-pages` がその言語の翻訳(同じ `ref:`、ページの隣の `<name>.<lang>.md`、または `<lang>/` 以下の同じパス)がない既定言語のページを警告として表示します。`--strict` と併用すると失敗します。投稿、レコードページ、レコードの一覧、`/404.html` のようにファイルの URL にあるページは、ページごとに翻訳しないので対象外です。同じオプションは各翻訳の `source_rev:` も読みます。これは翻訳のもとになった原文のリビジョンです(原文の `title`、`description`、`nav_title` と本文から作る `sha256:` と 16 進数 12 桁)。この値がない翻訳や、その後に原文が変わった翻訳は警告になり、警告には現在の値が表示されます。原文の隣に置いた翻訳の `permalink` が、原文の URL の前に `/<lang>` を付けた値と違う場合はエラーです。
 

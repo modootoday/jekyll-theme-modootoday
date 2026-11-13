@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/
-source_rev: sha256:44b1c2e2c53b
+source_rev: sha256:88b275d8bd57
 nav_order: 60
 title: 문서 확장
 description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 책 페이지를 공유 선택 스타일시트 하나로 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
@@ -24,6 +24,47 @@ description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 
 ## 변경 이력
 
 릴리스마다 변경 사항을 다섯 분류 제목 아래 정해진 순서로 보여 주며, 제목은 페이지 언어로 표시됩니다. 항목은 Markdown입니다. `modootoday-check`는 다른 키를 보고하므로 `fix:` 같은 오타가 조용히 사라지지 않습니다.
+
+피드: 변경 이력은 플러그인 없이 릴리스마다 항목 하나인 Atom 피드도 될 수 있습니다. front matter만 담은 두 번째 파일 `changelog.xml`을 만들어 `feed_source:`에 변경 이력 페이지를 적으면, 변경 이력 페이지의 `feed:`가 그 피드를 head와 제목 아래 구독 링크로 연결합니다. `releases_feed: true`는 사이트 저장소의 GitHub 릴리스 피드(`site.github`에서 읽습니다)를 두 번째 링크로 더합니다. `site.github`를 쓸 수 없는 곳에서는 그 URL을 직접 쓰세요.
+
+```yaml
+# changelog.md
+---
+layout: changelog
+title: Changelog
+feed: /changelog.xml
+releases_feed: true
+releases:
+  - {version: 1.1.0, date: 2026-11-01, added: ["Dark mode"], fixed: ["Search on phones"]}
+---
+```
+
+```yaml
+# changelog.xml
+---
+layout: feed
+feed_source: /changelog/
+feed_title: My project releases
+---
+```
+
+항목은 릴리스의 `url`로 연결되고, 없으면 `home:`(기본은 `feed_source` 페이지)의 그 버전 제목으로 연결됩니다. 항목 id는 사이트 호스트, 릴리스 날짜, 버전으로 만들어지므로 피드 리더에 같은 릴리스가 두 번 나오지 않습니다.
+
+`feed_source: data`는 페이지 대신 `_data/releases.yml`을 읽습니다. 테마는 이 파일을 쓰지 않습니다. 직접 쓰거나 자신의 스크립트로 만들고, `home:`에는 릴리스를 나열하는 페이지를 적으세요. 이 파일은 최신순 목록이고, 항목마다 `version`, `date`, 선택인 `url`, 그리고 `sections`(각각 `name`과 그 `items`)를 두거나 그 대신 변경 이력 레이아웃의 다섯 키를 둡니다.
+
+```yaml
+# _data/releases.yml
+- version: 1.1.0
+  date: 2026-11-01
+  url: https://github.com/OWNER/REPO/releases/tag/v1.1.0
+  sections:
+    - name: Added
+      items: ["Dark mode"]
+    - name: Fixed
+      items: ["Search on phones"]
+```
+
+`name`은 적은 그대로 보이고, 항목은 Markdown입니다.
 
 ## 용어집
 

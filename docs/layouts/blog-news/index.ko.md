@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/blog-news/
-source_rev: sha256:4eb9ab48ddeb
+source_rev: sha256:7be356b2032b
 nav_order: 50
 title: 블로그와 뉴스
 description: 블로그 목록, 뉴스 첫 화면, 글의 작성자 정보, 작성자 페이지, 언어별 Atom 피드를 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
@@ -67,11 +67,21 @@ last_modified_at: 2026-10-30
 
 ## 작성자와 피드
 
-작성자 페이지는 `layout: author`와 `author: kim`으로 만듭니다. 언어 폴더마다 `layout: feed`인 `feed.xml`을 두면 언어별 Atom 피드가 생기고, head에 자동으로 연결됩니다.
+작성자 페이지는 `layout: author`와 `author: kim`으로 만듭니다.
 
-변경 이력도 피드가 될 수 있습니다. `feed_source: data`는 생성된 `_data/releases.yml`을, `feed_source: /changelog/`는 `layout: changelog` 페이지를 릴리스마다 항목 하나로 내보냅니다. 항목 id는 바뀌지 않고, 링크는 `home:`(기본은 원본 페이지)로 갑니다. 변경 이력이나 다운로드 페이지의 front matter `releases_feed: true`는 사이트 저장소의 GitHub `releases.atom`을 head와 제목 아래에 연결합니다. `site.github`를 쓸 수 없는 곳에서는 URL을 직접 씁니다.
+피드는 `layout: feed`를 쓴 페이지입니다. 테마가 Liquid로 쓰므로 플러그인이 필요 없고 GitHub Pages에서 그대로 빌드됩니다. 사이트 루트에 front matter만 담은 `feed.xml`을 두고, 언어 폴더마다(`/ko/feed.xml`) 하나씩 두면 언어별 Atom 피드가 생깁니다. 전문을 담으려면 `feed_content: full`을 씁니다.
 
-`modootoday.feed`가 `true`이면 `category`나 `tag`가 없는 블로그 목록은 그 언어의 피드를 head와 소개 아래 구독 링크로 연결합니다. 블로그, 작성자, 아카이브 페이지는 `feed:`로 자기 피드를 정합니다. 값은 `layout: feed` 페이지의 사이트 경로이고, 연결하지 않으려면 `false`입니다. 한 작성자의 글만 담으려면 `layout: feed`와 `author: kim`을 쓴 `/authors/kim.xml` 같은 페이지를 만들고, 작성자 페이지에 `feed: /authors/kim.xml`을 적습니다. 빌드에 없는 `feed:`는 `modootoday-check`가 알려 줍니다.
+```yaml
+---
+layout: feed
+---
+```
+
+`modootoday.feed: true`는 모든 페이지의 head에 그 피드(그 언어의 피드가 있으면 그 피드)를 연결할 뿐, 피드를 직접 쓰지는 않습니다. `jekyll-feed`를 함께 넣지 마세요. 그 플러그인도 `/feed.xml`을 씁니다.
+
+변경 이력도 릴리스마다 항목 하나인 피드가 될 수 있습니다. 파일 두 개와 `feed_source:`, `releases_feed:`는 문서 확장의 [변경 이력](../docs-extra/#변경-이력)에 있습니다.
+
+`modootoday.feed`가 `true`이면 `category`나 `tag`가 없는 블로그 목록은 그 언어의 피드를 head와 소개 아래 구독 링크로 연결합니다. 블로그, 작성자, 아카이브 페이지와 변경 이력 같은 문서 확장 페이지는 `feed:`로 자기 피드를 정합니다. 값은 `layout: feed` 페이지의 사이트 경로이고, 연결하지 않으려면 `false`입니다. 이 레이아웃들은 피드를 구독 링크로 보여 주고, 다운로드 페이지 같은 다른 페이지에서는 `feed:`가 head 링크만 더합니다. 한 작성자의 글만 담으려면 `layout: feed`와 `author: kim`을 쓴 `/authors/kim.xml` 같은 페이지를 만들고, 작성자 페이지에 `feed: /authors/kim.xml`을 적습니다. 빌드에 없는 `feed:`는 `modootoday-check`가 알려 줍니다.
 
 ## 설정
 
@@ -90,7 +100,7 @@ modootoday:
 | --- | --- | --- |
 | `variant` | blog, author | `list`, `grid`, `magazine` |
 | `category`, `tag` | blog, news, feed | 글을 거릅니다 |
-| `feed` | blog, author, archive | head와 구독 링크로 연결할 이 페이지의 Atom 피드. `/authors/kim.xml` 같은 사이트 경로, 또는 `false` |
+| `feed` | blog, author, archive, changelog와 다른 문서 확장. download와 모든 페이지는 head 링크만 | head에 연결하고, 앞에 적은 레이아웃에서는 구독 링크로도 보여 줄 이 페이지의 Atom 피드. `/authors/kim.xml` 같은 사이트 경로, 또는 `false` |
 | `news_sections`, `secondary`, `latest` | news | 카테고리 섹션과 기사 수 |
 | `posts_lang` | blog, news, author | `all`이면 모든 언어의 글을 보여 줍니다 |
 | `featured` | blog, post | 블로그 페이지에서는 `true`면 첫 카드를 크게 보여 주고, 글에서는 그 글을 머리 카드로 고정합니다 |
@@ -105,4 +115,4 @@ modootoday:
 | `breaking`, `live`, `correction`, `sources`, `credits` | news-article | 기사 정보 |
 | `feed_lang`, `limit`, `feed_content` | feed | 피드 범위 |
 | `feed_source`, `home` | feed | 변경 이력을 피드로: `data`나 `layout: changelog` 페이지 URL, 그리고 항목이 연결할 곳 |
-| `releases_feed` | changelog, download, 모든 페이지 | `true`(`site.github`에서) 또는 URL. GitHub `releases.atom`을 head와 제목 아래에 연결 |
+| `releases_feed` | changelog, download, 모든 페이지 | `true`(`site.github`에서) 또는 URL. GitHub `releases.atom`을 head에 연결하고, changelog와 다른 문서 확장에서는 제목 아래에도 연결 |
