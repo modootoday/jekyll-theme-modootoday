@@ -27,7 +27,7 @@ As a gem (`theme:`):
 
 ```ruby
 # Gemfile
-gem "jekyll-theme-modootoday", "~> 1.6"
+gem "jekyll-theme-modootoday", "~> 1.7"
 ```
 
 ```yaml
@@ -39,7 +39,7 @@ On GitHub Pages without a Gemfile (`remote_theme:`):
 
 ```yaml
 # _config.yml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.6.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.7.0
 plugins: [jekyll-remote-theme]
 ```
 
@@ -49,7 +49,7 @@ Pin a tag or a commit. The [Install guide](https://modootoday.github.io/jekyll-t
 
 ```sh
 mkdir my-docs && cd my-docs
-printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 1.6"\n' > Gemfile
+printf 'source "https://rubygems.org"\ngem "jekyll", "~> 4.4"\ngem "jekyll-theme-modootoday", "~> 1.7"\n' > Gemfile
 printf 'theme: jekyll-theme-modootoday\nmarkdown: kramdown\nkramdown: {input: GFM}\nsass: {style: compressed, silence_deprecations: [import, global-builtin]}\n' > _config.yml
 printf -- '---\nlayout: doc\ntitle: Home\n---\n# Hello\n\n> [!TIP]\n> Plain Markdown, styled.\n' > index.md
 bundle install && bundle exec jekyll build
