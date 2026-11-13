@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/updates/
-source_rev: sha256:9904f084ca96
+source_rev: sha256:fa57375a2009
 nav_order: 28
 title: 読者に更新を知らせる
 description: フィード、GitHub のリリース通知、メールフォーム、インストールしたアプリの案内で読者がサイトの変更を追えるようにし、リリースを公開したらサイトを再ビルドする方法を説明します。
@@ -43,7 +43,7 @@ GitHub のアカウントがある読者は、リポジトリで Watch、Custom 
 
 ## リリースのバー
 
-`modootoday.banner: {release: latest}` は、すべてのページに「1.7.0 を公開しました。」とそのリリースへの「新機能」リンクを表示します。値はサイトのビルド時に `site.github` から読み、プレリリースは除かれます。サイトを再ビルドしないと変わらないので、リリースごとの再ビルド(下記)と組み合わせてください。GitHub Pages の外では代わりに `release: {version, url}` を書きます。
+`modootoday.banner: {release: latest}` は、すべてのページに「1.7.0 を公開しました。」とそのリリースへの「新機能」リンクを表示します。値はサイトのビルド時に `site.github` から読み、プレリリースは除かれます。読むフィールドは `site.github.latest_release`(その `tag_name` と `html_url`)です。リポジトリーにまだ公開したリリースがない、またはビルドに GitHub のメタデータがないために最新リリースを読めないときはバーが表示されず、`modootoday-check` がビルドしたホームページにリリースのバーがないと警告します。サイトを再ビルドしないと変わらないので、リリースごとの再ビルド(下記)と組み合わせてください。GitHub Pages の外では代わりに `release: {version, url}` を書きます。
 
 ## プッシュがない理由
 
