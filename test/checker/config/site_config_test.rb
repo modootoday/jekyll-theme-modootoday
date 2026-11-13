@@ -40,7 +40,17 @@ class CheckSiteConfigTest < CheckerCase
     assert_includes o, "languages must be a list"
     assert_includes o, "edit_url must be auto or an http(s) URL"
     assert_includes o, "seo must be true or false"
-    assert_includes o, "add jekyll-feed to plugins"
+    assert_includes o, "or jekyll-feed to plugins"
+  end
+
+  def test_a_layout_feed_page_at_feed_xml_needs_no_plugin
+    page "_config.yml", "modootoday:\n  feed: true\n"
+    page "feed.xml", "---\nlayout: feed\n---\n"
+    refute_includes check[0], "jekyll-feed"
+    page "feed.xml", "---\nlayout: feed\npermalink: /blog/feed.xml\n---\n"
+    assert_includes check[0], "add a feed.xml page with layout: feed, or jekyll-feed to plugins"
+    page "atom.xml", "---\nlayout: feed\npermalink: /feed.xml\n---\n"
+    refute_includes check[0], "jekyll-feed"
   end
 
   def test_valid_head_options
