@@ -23,62 +23,64 @@ modootoday:
   nav: main
 ```
 
-| Key | Default | What it does |
-|---|---|---|
-| `badges` | `true` | Shows status code spans as badges. `false` keeps them as code. |
-| `code_theme` | `theme` | Code block colors: the theme's (`theme`) or GitHub's (`github`). See [Code colors](../customize/#code-colors). |
-| `color_scheme` | `auto` | Light or dark mode. `auto` follows the device; `auto-dark` and `auto-light` pick a start; `light` and `dark` fix one. |
-| `components` | all | Limits which component CSS and JS the site ships. |
-| `css_layers` | `false` | Wraps the theme CSS in `@layer mt.*`. |
-| `nav` | `main` | The menu file in `_data/nav/`. An entry with `items:` becomes a group. |
-| `sidebar` | `auto` | Side menu on `doc` pages: `auto` when the menu has groups, `true` always, `false` never. |
-| `page_actions` | `true` | A menu to copy the page or view it as Markdown. `false` turns it off. |
-| `tokens` | theme values | Changes theme colors and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |
-| `tokens_dark` | theme values | The same for dark mode only. |
-| `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |
-| `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |
-| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/figures/widgets/). |
-| `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |
-| `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [AI agents](../agents/). |
-| `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |
-| `records` | none | One page for each entry of a `_data` file. See [Generated pages](../../recipes/generated-pages/). |
-| `seo` | `true` | `false` removes the built-in canonical, `hreflang` and Open Graph tags. |
-| `hreflang` | follows `seo` | `true` keeps the `hreflang` links when `seo: false`, for sites that use `jekyll-seo-tag`. |
-| `schema` | on when `url` is set | Adds schema.org structured data. `false` turns it off. See [Structured data](../structured-data/). |
-| `languages` | none | The site's language codes, such as `[en, ko]`, used for `hreflang` and the language menu. |
-| `full_languages` | none | Languages that translate every page, such as `[ko, ja]`. `modootoday-check --i18n-pages` warns about missing pages. |
-| `lists` | none | `{link_chips: true, titled_items: true}` turns link-only lists into chips and `**Title**:` items into titled items. |
-| `heading_anchors` | `false` | `true` ends each `##` and `###` heading of a doc or post with a link to itself, shown on hover and focus and always on touch screens. |
-| `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |
-| `og_image` | none | Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. |
-| `feed` | `false` | `true` links the site's Atom feed in the head of every page (`/feed.xml`, or `/<lang>/feed.xml` on pages of a language that has one) and adds a Subscribe link to blog indexes without `category` or `tag`. It does not write the feed: a `feed.xml` page with `layout: feed` writes it, with no plugin (see [Authors and feeds](../../layouts/blog-news/#authors-and-feeds)). Use that page or `jekyll-feed`, not both, since both write `/feed.xml`. |
-| `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
-| `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
-| `pwa` | off | `enabled: true` links a web app manifest built from the site title, `theme_color` and the brand mark, so browsers can install the site, and registers a service worker for offline reading; `precache:` lists more site paths to keep (a page can add itself with front matter `pwa: precache`); `shortcuts:` and `screenshots:` add the app icon's menu and the install dialog's pictures. `enabled: kill` ships a worker that removes itself. See [Installable site](../../recipes/pwa/). |
-| `header` | `{compact_title: true}` | `compact_title: false` keeps the site name beside the logo on phones. |
-| `csp` | none | `strict` loads the early theme script from a file instead of inline. |
-| `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |
-| `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |
-| `theme_color` | page background | Browser bar color: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |
-| `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`; or `auto`: the repository, branch and folder GitHub Pages builds from (below). |
-| `feedback` | off | A row under the page, a map (example under Head and SEO): `issues` is `auto`, a repository's issues URL such as `https://github.com/OWNER/REPO/issues`, or `false`, and adds a link to report an issue; `helpful` is `true` or `false`, and `true` adds a question with two answers on whether the page helped, which needs `issues`; `discuss` is an http(s) URL, such as the repository's Discussions page, and adds a link to it; `labels` is a list of label names given to the prefilled issues. Front matter `feedback: false` hides the row on one page. |
-| `build_link` | `false` | `true` adds "Built from" and the commit the site was built from, linked to it on GitHub. |
-| `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |
-| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Diagram and math loaders](../../recipes/figures/loaders/#built-in-loaders). |
-| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/figures/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |
-| `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/figures/math-diagrams/#static-math). |
-| `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |
-| `blog` | none | Blog settings, such as `per_page`. See [Blog and news](../../layouts/blog-news/#settings). |
-| `authors` | `true` | `false` hides the bylines on posts and post cards; author data stays in `_data/authors.yml`. |
-| `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |
-| `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |
-| `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. Without `text`, `release: latest` announces the repository's latest release ("1.7.0 is out." and a What's new link) from `site.github` at build time, and `release: {version, url}` does the same from the values given. |
-| `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
-| `print` | `false` | `true` adds a print stylesheet, loaded only for printing: it leaves out the header, menus, banner, update notice, install section and page footer links, prints black on white, prints every tab panel, adds each link's address after it, and keeps figures, code and tables on one page. A `details`, accordion or FAQ item prints only its summary unless a reader opens it first. |
-| `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
-| `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](../../reference/showcase/). |
-| `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |
-| `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
+| Key | Default | What it does | Since |
+|---|---|---|---|
+| `badges` | `true` | Shows status code spans as badges. `false` keeps them as code. |  |
+| `code_theme` | `theme` | Code block colors: the theme's (`theme`) or GitHub's (`github`). See [Code colors](../customize/#code-colors). |  |
+| `color_scheme` | `auto` | Light or dark mode. `auto` follows the device; `auto-dark` and `auto-light` pick a start; `light` and `dark` fix one. |  |
+| `components` | all | Limits which component CSS and JS the site ships. |  |
+| `css_layers` | `false` | Wraps the theme CSS in `@layer mt.*`. |  |
+| `nav` | `main` | The menu file in `_data/nav/`. An entry with `items:` becomes a group. |  |
+| `sidebar` | `auto` | Side menu on `doc` pages: `auto` when the menu has groups, `true` always, `false` never. |  |
+| `page_actions` | `true` | A menu to copy the page or view it as Markdown. `false` turns it off. |  |
+| `tokens` | theme values | Changes theme colors and other design tokens. On a strict CSP site, use the [token bridge](../customize/#token-bridge). |  |
+| `tokens_dark` | theme values | The same for dark mode only. |  |
+| `site_css` | none | Your own stylesheets, such as `[/assets/css/site.css]`, loaded after the theme's. See [Brand tokens](../../recipes/brand-tokens/). |  |
+| `preload` | none | Files the browser should fetch early, such as fonts: a list of `{href, as, type}`. |  |
+| `scripts` | none | Your own JavaScript modules, loaded only on pages that name them with `script:` or contain their `element` (a widget). See [Module scripts and posters](../customize/#module-scripts-and-posters) and [Widgets](../../recipes/figures/widgets/). |  |
+| `search` | none | Header search settings: how much text is indexed and how queries match. See [Search](../../recipes/search/). |  |
+| `twins` | stubs | How each page's Markdown copy is published; `source` uses pages without front matter. See [AI agents](../agents/). |  |
+| `aliases` | none | Extra URLs for agents: `md: true` adds `/<page>.md`, `html: true` redirects `/<page>.html`. See [URL aliases](../agents/#url-aliases). |  |
+| `records` | none | One page for each entry of a `_data` file. See [Generated pages](../../recipes/generated-pages/). |  |
+| `seo` | `true` | `false` removes the built-in canonical, `hreflang` and Open Graph tags. |  |
+| `hreflang` | follows `seo` | `true` keeps the `hreflang` links when `seo: false`, for sites that use `jekyll-seo-tag`. |  |
+| `schema` | on when `url` is set | Adds schema.org structured data. `false` turns it off. See [Structured data](../structured-data/). |  |
+| `languages` | none | The site's language codes, such as `[en, ko]`, used for `hreflang` and the language menu. |  |
+| `full_languages` | none | Languages that translate every page, such as `[ko, ja]`. `modootoday-check --i18n-pages` warns about missing pages. |  |
+| `lists` | none | `{link_chips: true, titled_items: true}` turns link-only lists into chips and `**Title**:` items into titled items. |  |
+| `heading_anchors` | `false` | `true` ends each `##` and `###` heading of a doc or post with a link to itself, shown on hover and focus and always on touch screens. | 1.7 |
+| `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |  |
+| `og_image` | none | Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. | 1.7 |
+| `feed` | `false` | `true` links the site's Atom feed in the head of every page (`/feed.xml`, or `/<lang>/feed.xml` on pages of a language that has one) and adds a Subscribe link to blog indexes without `category` or `tag`. It does not write the feed: a `feed.xml` page with `layout: feed` writes it, with no plugin (see [Authors and feeds](../../layouts/blog-news/#authors-and-feeds)). Use that page or `jekyll-feed`, not both, since both write `/feed.xml`. | 1.7 |
+| `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |  |
+| `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |  |
+| `pwa` | off | `enabled: true` links a web app manifest built from the site title, `theme_color` and the brand mark, so browsers can install the site, and registers a service worker for offline reading; `precache:` lists more site paths to keep (a page can add itself with front matter `pwa: precache`); `shortcuts:` and `screenshots:` add the app icon's menu and the install dialog's pictures. `enabled: kill` ships a worker that removes itself. See [Installable site](../../recipes/pwa/). | 1.7 |
+| `header` | `{compact_title: true}` | `compact_title: false` keeps the site name beside the logo on phones. |  |
+| `csp` | none | `strict` loads the early theme script from a file instead of inline. |  |
+| `asset_version` | `theme` | What `?v=` adds to theme file URLs: `theme` the version, `build` also the commit, `false` nothing. See [Performance](../performance/#versioned-asset-urls). |  |
+| `viewport_fit` | `cover` | `auto` keeps the page clear of a phone's notch. See [Accessibility](../accessibility/#settings). |  |
+| `theme_color` | page background | Browser bar color: one `"#hex"`, `{light: "#hex", dark: "#hex"}`, or `false` for none. |  |
+| `edit_url` | none | Start of the "Edit this page" link URL, ending in `/`; or `auto`: the repository, branch and folder GitHub Pages builds from (below). | 1.7 |
+| `feedback` | off | A row under the page, a map (example under Head and SEO): `issues` is `auto`, a repository's issues URL such as `https://github.com/OWNER/REPO/issues`, or `false`, and adds a link to report an issue; `helpful` is `true` or `false`, and `true` adds a question with two answers on whether the page helped, which needs `issues`; `discuss` is an http(s) URL, such as the repository's Discussions page, and adds a link to it; `labels` is a list of label names given to the prefilled issues. Front matter `feedback: false` hides the row on one page. | 1.7 |
+| `build_link` | `false` | `true` adds "Built from" and the commit the site was built from, linked to it on GitHub. | 1.7 |
+| `archive` | none | Tag and category page URLs, such as `{tags: /tags/, categories: /categories/}`. Post footers link there; see [Posts and archives](../../reference/api/#posts-and-archives). |  |
+| `mermaid` | off | Draws diagrams from ```` ```mermaid ```` blocks. See [Diagram and math loaders](../../recipes/figures/loaders/#built-in-loaders). |  |
+| `diagrams` | `{dir: /assets/diagrams/, dark: true, source: details}` | Where the SVGs of [static diagrams](../../recipes/figures/math-diagrams/#static-diagrams) live, whether each has a dark twin, and whether the Mermaid source stays on the page. |  |
+| `math` | off | Renders ```` ```math ```` and `$$` blocks with KaTeX in the browser, or with `mode: static` shows the MathML committed in `_data/math`. See [Math and diagrams](../../recipes/figures/math-diagrams/#static-math). |  |
+| `external_links` | none | `new_window: true` opens links to other sites in a new window. See [Links that open a new window](#links-that-open-a-new-window). |  |
+| `blog` | none | Blog settings, such as `per_page`. See [Blog and news](../../layouts/blog-news/#settings). |  |
+| `authors` | `true` | `false` hides the bylines on posts and post cards; author data stays in `_data/authors.yml`. |  |
+| `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |  |
+| `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |  |
+| `banner` | none | `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. Without `text`, `release: latest` announces the repository's latest release ("1.7.0 is out." and a What's new link) from `site.github` at build time, and `release: {version, url}` does the same from the values given. | 1.7 |
+| `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |  |
+| `print` | `false` | `true` adds a print stylesheet, loaded only for printing: it leaves out the header, menus, banner, update notice, install section and page footer links, prints black on white, prints every tab panel, adds each link's address after it, and keeps figures, code and tables on one page. A `details`, accordion or FAQ item prints only its summary unless a reader opens it first. | 1.7 |
+| `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |  |
+| `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](../../reference/showcase/). |  |
+| `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |  |
+| `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |  |
+
+Since names the release that added a key, or the newest form of an older one (such as `edit_url: auto`); a blank means an earlier release, so a site pinned to an older gem does not have it yet. [Migrate and upgrade](../upgrade/#upgrading) lists what each release added.
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
 
