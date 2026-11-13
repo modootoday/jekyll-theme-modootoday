@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:5bc0b8fba6fb
+source_rev: sha256:e3c3ae64789c
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -11,6 +11,7 @@ sections:
   - minimal
   - check
   - starters
+  - next
 ---
 # インストール
 
@@ -116,3 +117,19 @@ GitHub Actions では、ビルドの次のステップに同じ 2 行を入れ�
 ## スターターサイト
 
 テーマには 3 つのスターターサイトがあり、どれもライブデモ付きの GitHub のテンプレートリポジトリです。[docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、[blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)（投稿、ニュース記事、著者ページ、フィード）、[landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)（ヒーロー、料金、規約ページ）です。どれかから始めるには、そのリポジトリで **Use this template** を選び、GitHub Pages のソースを GitHub Actions にします。コピーは `remote_theme` でテーマを読み込み、`Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../../reference/showcase/)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。テーマの gem を使う Jekyll 4 で始めるには、テーマのリポジトリを `--recurse-submodules` 付きでクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/jekyll4/<name>/` をコピーします。
+
+## 次のリリースを試す
+
+これは任意です。main ブランチに入ったがまだリリースされていない変更を試すには、リリースの代わりに `main` を指定します。
+
+```ruby
+# Gemfile
+gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-modootoday", branch: "main"
+```
+
+```yaml
+# _config.yml、remote_theme を使う場合
+remote_theme: modootoday/jekyll-theme-modootoday@main
+```
+
+`bundle install` を実行し、後で最新のコミットに移るには `bundle update jekyll-theme-modootoday` を実行します。Gemfile の行を使うと、`bundle exec modootoday-check` も同じコミットのチェッカーを実行します。main ブランチはいつでも変わりうるので、サイトを公開する前にはリリースに固定し直してください。

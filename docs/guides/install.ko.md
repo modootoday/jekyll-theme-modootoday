@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:5bc0b8fba6fb
+source_rev: sha256:e3c3ae64789c
 nav_order: 10
 title: 설치
 description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
@@ -11,6 +11,7 @@ sections:
   - minimal
   - check
   - starters
+  - next
 ---
 # 설치
 
@@ -116,3 +117,19 @@ GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 
 ## 시작 사이트
 
 테마에는 시작 사이트 세 개가 있고, 각각 라이브 데모가 딸린 GitHub 템플릿 저장소입니다. [docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)(가이드, 데이터에서 만드는 페이지, `ko/`와 `ja/`의 한국어·일본어), [blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)(글, 뉴스 기사, 작성자 페이지, 피드), [landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)(히어로, 요금제, 약관 페이지)입니다. 하나로 시작하려면 그 저장소에서 **Use this template**을 고르고, GitHub Pages의 소스를 GitHub Actions로 켭니다. 복사본은 `remote_theme`으로 테마를 불러오고, `Gemfile`, `README.md`, 스텁, 그리고 사이트를 빌드하고 `modootoday-check`를 실행한 뒤 배포하는 Pages 워크플로가 들어 있습니다. `_config.demo.yml`도 함께 들어 있는데, 그 스타터 자체 라이브 데모의 설정([쇼케이스](../../reference/showcase/) 바나 필, `noindex`)입니다. 워크플로는 스타터 자신의 저장소에서만 이 설정을 빌드에 합치므로 복사본은 이 설정 없이 빌드되고, 파일을 지워도 됩니다. 테마 gem을 쓰는 Jekyll 4로 시작하려면 테마 저장소를 `--recurse-submodules`로 복제한 곳에서 `bundle exec rake starters:render`를 실행하고 `pkg/starters/jekyll4/<name>/`을 복사합니다.
+
+## 다음 릴리스 미리 써 보기
+
+선택 사항입니다. main 브랜치에 들어갔지만 아직 릴리스되지 않은 변경을 써 보려면, 릴리스 대신 `main`을 가리키게 합니다.
+
+```ruby
+# Gemfile
+gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-modootoday", branch: "main"
+```
+
+```yaml
+# _config.yml, remote_theme을 쓸 때
+remote_theme: modootoday/jekyll-theme-modootoday@main
+```
+
+`bundle install`을 실행하고, 나중에 가장 새 커밋으로 옮기려면 `bundle update jekyll-theme-modootoday`를 실행합니다. Gemfile 줄을 쓰면 `bundle exec modootoday-check`도 같은 커밋의 검사기를 실행합니다. main 브랜치는 언제든 바뀔 수 있으므로, 사이트를 게시하기 전에는 다시 릴리스에 고정합니다.

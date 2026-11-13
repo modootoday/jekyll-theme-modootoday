@@ -8,6 +8,7 @@ sections:
   - minimal
   - check
   - starters
+  - next
 ---
 # Install
 
@@ -110,3 +111,19 @@ Two warnings from the `github-pages` gem are harmless: `To use retry middleware 
 ## Starter sites
 
 The theme has three starter sites, each a template repository on GitHub with its own live demo: [docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter) (a guide, pages from data, Korean and Japanese in `ko/` and `ja/`), [blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter) (posts, a news article, an author page and a feed) and [landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter) (a hero, pricing and a legal page). To start from one, open its repository, choose **Use this template** and turn on GitHub Pages with GitHub Actions as the source. The copy loads the theme with `remote_theme` and has a `Gemfile`, a `README.md`, the stubs, and a Pages workflow that builds the site, runs `modootoday-check` and deploys it. It also has `_config.demo.yml`, the settings of that starter's own live demo (the [showcase](../../reference/showcase/) bar or pill and `noindex`). The workflow merges them into the build only in the starter's own repository, so your copy builds without them, and you can delete the file. For Jekyll 4 with the theme gem, run `bundle exec rake starters:render` in a clone of the theme repository (with `--recurse-submodules`) and copy `pkg/starters/jekyll4/<name>/` instead.
+
+## Try the next release
+
+This is optional. To try changes that are on the main branch but not released yet, point the theme at `main` instead of a release.
+
+```ruby
+# Gemfile
+gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-modootoday", branch: "main"
+```
+
+```yaml
+# _config.yml with remote_theme
+remote_theme: modootoday/jekyll-theme-modootoday@main
+```
+
+Run `bundle install`, and later `bundle update jekyll-theme-modootoday` to move to the newest commit. With the Gemfile line, `bundle exec modootoday-check` runs the checker from the same commit. The main branch can change at any time, so pin a release again before you publish the site.
