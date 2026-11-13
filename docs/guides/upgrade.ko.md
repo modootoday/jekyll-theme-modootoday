@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/upgrade/
-source_rev: sha256:eb4d6621ba23
+source_rev: sha256:2866cb23a55c
 nav_order: 30
 title: 마이그레이션과 업그레이드
 description: 다른 Jekyll 테마에서 사이트를 옮기는 방법, 기존 프로젝트에 테마를 도입하는 방법, 버전 사이에서 업그레이드할 때 바꿀 점을 단계별로 설명합니다.
@@ -69,6 +69,8 @@ Markdown 버전은 스텁 파일, 플러그인, 소스 모드 중 하나로 만�
 - 1.5: 기본 모습과 페이지가 테마 CSS·JavaScript를 불러오는 방식이 바뀝니다(아래 참고).
 - 1.6: 정적 다이어그램(front matter `diagrams:`, [수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고), 정적 수식(`modootoday.math.mode: static`, `_data/math`의 MathML, [정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고), Markdown 표로 만드는 차트(`modootoday.chart`, `c: chart`, `modootoday.chart.src`에 지정한 사이트의 Chart.js가 그림, [차트](../../recipes/figures/charts/) 참고), `c: widget`이나 `widget:`으로 놓는 직접 만든 custom element인 위젯(`modootoday.scripts`의 `element:`, [위젯](../../recipes/figures/widgets/) 참고), 모두 선택 사항. `modootoday.math.base`는 로더가 쓰는 직접 호스팅 KaTeX 경로를 줄여 줍니다. `modootoday-check`는 이제 JSON-LD 안에 하나만 들어 있는 객체(`offers`, `organizer` 등)도 검사하고, 문제는 경고로 알려 줍니다. 다음 메이저 버전부터는 오류입니다([검사](../structured-data/#검사) 참고). 빌드는 그대로 통과하지만 `--strict`에서는 실패합니다. 스타터의 데모 빌드에는 쇼케이스 막대나 알약을 표시할 수 있습니다(`modootoday.showcase`, 데모 전용 설정 파일에 넣음. [스타터 데모 쇼케이스](../../reference/showcase/) 참고). 이때 모든 페이지에 `noindex`가 붙습니다.
 - 1.7: 행사의 `tickets:`에 `{url, price, currency}` 맵도 쓸 수 있어 판매 정보에 가격이 들어가고 정보 목록에 가격 행이 생깁니다([상세 페이지](../../layouts/detail/#행사) 참고). `schema.offers` 없이 `tickets:`에 URL만 적으면 `modootoday-check`가 맵 형식을 알려 주는 경고를 냅니다. URL만 적은 페이지도 이전과 똑같이 빌드됩니다. `modootoday.pwa`(기본값 꺼짐)로 사이트를 설치할 수 있습니다. `enabled: true`와 `modootoday-stubs . --pwa --write`로 사이트 제목, `theme_color`, 브랜드 마크나 직접 지정한 아이콘으로 만든 웹 앱 매니페스트를 연결합니다([설치할 수 있는 사이트](../../recipes/pwa/) 참고). `enabled: true`면 서비스 워커가 테마 파일과 방문한 페이지를 보관해 오프라인에서 읽을 수 있고(스텁 작성기가 `sw.js`와 오프라인 페이지도 씁니다), `enabled: kill`은 방문자 기기에서 워커를 제거합니다. 테마 파일이 바뀌는 배포는 독자에게 새로고침 버튼이 있는 알림을 띄우고, 페이지만 바뀐 배포는 알림 없이 적용됩니다. 이 키가 없는 사이트는 같은 HTML로 빌드되며, gem에는 `assets/modootoday/` 아래 아이콘 파일 세 개가 더해집니다.
+  - 1.7에서 직접 켜는 기능은 이 밖에도 있습니다([설정](../configuration/)의 키). 설치한 앱을 위한 `c: install` 섹션과 `pwa.shortcuts`, `pwa.screenshots`, 각 `##`·`###` 제목 끝에 자기 링크를 다는 `modootoday.heading_anchors: true`, `diagrams:` 항목의 `min_width`와 번역 페이지 자신의 다이어그램 쌍([수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고), `modootoday-check --links`, 피드를 위한 블로그·작성자·아카이브·문서 확장 페이지의 front matter `feed:`와 `author:`, `feed_source:`, `releases_feed:`([작성자와 피드](../../layouts/blog-news/#작성자와-피드) 참고), `edit_url: auto`와 `build_link: true`, 피드백 링크 줄인 `modootoday.feedback`, `modootoday.banner: {release: latest}`, `modootoday.print: true`입니다. 설정하기 전에는 아무것도 바뀌지 않으며, 피드백 줄과 제목 앵커도 켰을 때만 나타납니다.
+  - 다음은 새 설정 없이도 기존 사이트의 출력을 바꿉니다. `modootoday.feed: true`인 사이트에서는 `category`나 `tag`가 없는 블로그 목록의 소개 아래에 피드 구독 링크가 생깁니다(front matter `feed: false`로 뺄 수 있습니다). `image:` 없이 히어로 이미지나 포스터가 있는 페이지는 이제 `og_image`보다 그 그림을 `og:image`로 쓰고, 알 수 있으면 `og:image:alt`와 이미지 크기도 더합니다. 목차 목록은 지금 읽는 섹션을 표시하며, 목록이 있는 페이지에서 작은 스크립트를 불러옵니다. 사이드바가 있는 문서 페이지에는 body 클래스 `mt-body-sidebar`가 붙습니다. `_layouts/default.html`을 덮어쓴 사이트는 넓은 문서 틀을 그대로 유지하고, 이 클래스를 출력하면 첫 화면도 같아집니다.
 
 `sections:` 항목이 `##` 제목보다 적어도 되던 1.0 이전 초안을 쓰고 있었다면, 남은 제목마다 `notes` 같은 이름만 추가하세요. 이제 개수가 같아야 하고, `modootoday-check`가 페이지와 두 개수를 알려 줍니다.
 

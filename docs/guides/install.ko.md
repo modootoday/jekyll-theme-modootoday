@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:00d77b629f7b
+source_rev: sha256:2962696c5e57
 nav_order: 10
 title: 설치
 description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
@@ -84,6 +84,8 @@ bundle exec modootoday-check . _site --twins
 ```
 
 검사기는 github.com에서 똑같이 보이지 않을 문법을 알려 줍니다.
+
+`--links`를 더하면 빌드된 사이트의 링크도 검사합니다. 없는 페이지로 가는 같은 사이트 링크와 없는 앵커로 가는 `#` 링크를 알려 줍니다. 이 옵션에는 nokogiri gem이 필요합니다. `github-pages` 번들에는 이미 들어 있고, 그 밖에서는 Gemfile에 `gem "nokogiri"`를 더하거나 검사기와 같은 곳에 `gem install nokogiri`로 설치하세요. nokogiri가 없으면 검사기는 링크를 검사하지 않았다고 경고만 하고, `--strict`가 없으면 종료 코드 0으로 끝납니다.
 
 `remote_theme` 사이트는 Gemfile에 테마가 없으므로 `bundle exec modootoday-check`를 쓸 수 없습니다. 테마 태그와 같은 마이너 버전으로 gem을 한 번 설치하고, 빌드한 사이트에 검사기를 실행합니다.
 

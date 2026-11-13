@@ -79,6 +79,8 @@ bundle exec modootoday-check . _site --twins
 
 The checker reports any syntax that would not render the same on github.com.
 
+Add `--links` to also check the built site's links: same-site links to missing pages and `#` links to missing anchors. It needs the nokogiri gem, which the `github-pages` bundle already includes; elsewhere add `gem "nokogiri"` to the Gemfile, or run `gem install nokogiri` next to the checker. Without nokogiri the checker warns that links were not checked and still exits 0, unless `--strict` is set.
+
 A `remote_theme` site has no Gemfile entry for the theme, so `bundle exec modootoday-check` is not available. Install the gem once, at the same minor version as the theme tag, and run the checker on the built site:
 
 ```sh

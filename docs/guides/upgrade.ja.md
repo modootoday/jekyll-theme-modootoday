@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:eb4d6621ba23
+source_rev: sha256:2866cb23a55c
 nav_order: 30
 title: 移行とアップグレード
 description: 別の Jekyll テーマからサイトを移す方法、既存のプロジェクトにテーマを導入する方法、バージョン間でアップグレードするときに変える点を順に説明します。
@@ -69,6 +69,8 @@ Markdown 版はスタブファイル、プラグイン、ソースモードの�
 - 1.5: 既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わります(下記参照)。
 - 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)、静的な数式(`modootoday.math.mode: static`、`_data/math` の MathML。[静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)、Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。`modootoday.chart.src` で指定したサイトの Chart.js が描画。[グラフ](../../recipes/figures/charts/)を参照)、`c: widget` や `widget:` で置く自作の custom element であるウィジェット(`modootoday.scripts` の `element:`。[ウィジェット](../../recipes/figures/widgets/)を参照)、いずれも任意。`modootoday.math.base` は、ローダーが使う自分でホストした KaTeX のパスを短くします。`modootoday-check` は JSON-LD に 1 つだけ入れ子になったオブジェクト(`offers`、`organizer` など)も検査し、問題を警告として報告します。次のメジャーバージョンからはエラーです([検査](../structured-data/#検査)を参照)。ビルドはそのまま通りますが、`--strict` では失敗します。 スターターのデモのビルドには、ショーケースのバーかピルを表示できます(`modootoday.showcase`、デモ専用の設定ファイルに書きます。[スターターのデモのショーケース](../../reference/showcase/)を参照)。このときすべてのページに `noindex` が付きます。
 - 1.7: イベントの `tickets:` に `{url, price, currency}` のマップも書けるようになり、販売情報に価格が、情報リストに料金の行が入ります([詳細ページ](../../layouts/detail/#イベント)を参照)。`schema.offers` なしで `tickets:` に URL だけを書くと、`modootoday-check` がマップの形を示す警告を出します。URL だけのページも以前と同じくビルドされます。`modootoday.pwa`(既定はオフ)でサイトをインストールできるようになります。`enabled: true` と `modootoday-stubs . --pwa --write` で、サイトのタイトル、`theme_color`、ブランドのマークまたは独自のアイコンから作るウェブアプリマニフェストをリンクします([インストールできるサイト](../../recipes/pwa/)を参照)。`enabled: true` ではサービスワーカーがテーマのファイルと訪れたページを保存してオフラインで読めるようにし(スタブ作成ツールが `sw.js` とオフラインページも書き出します)、`enabled: kill` は訪問者の端末からワーカーを取り除きます。テーマのファイルが変わるデプロイでは読者に再読み込みのボタンがある通知を表示し、ページだけが変わったデプロイは通知なしで反映されます。このキーがないサイトは同じ HTML でビルドされ、gem には `assets/modootoday/` の下にアイコンのファイルが 3 つ加わります。
+  - 1.7 で自分で有効にする機能はほかにもあります([設定](../configuration/)のキー)。インストールしたアプリ向けの `c: install` セクションと `pwa.shortcuts`、`pwa.screenshots`、各 `##` と `###` の見出しの末尾に自身へのリンクを付ける `modootoday.heading_anchors: true`、`diagrams:` の項目の `min_width` と翻訳ページ独自の図の組([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)、`modootoday-check --links`、フィードのためのブログ、著者、アーカイブ、ドキュメント拡張のページの front matter `feed:` と `author:`、`feed_source:`、`releases_feed:`([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)、`edit_url: auto` と `build_link: true`、フィードバックのリンクの行である `modootoday.feedback`、`modootoday.banner: {release: latest}`、`modootoday.print: true` です。設定するまでは何も変わらず、フィードバックの行と見出しのアンカーも有効にしたときだけ表示されます。
+  - 次の変更は、新しい設定なしで既存のサイトの出力を変えます。`modootoday.feed: true` のサイトでは、`category` も `tag` もないブログ一覧の紹介文の下にフィードの購読リンクが出ます(front matter の `feed: false` で外せます)。`image:` がなくヒーロー画像かポスターがあるページは、`og_image` より先にその画像を `og:image` に使い、わかる場合は `og:image:alt` と画像のサイズも加えます。目次の一覧は読んでいるセクションを示し、一覧があるページで小さなスクリプトを読み込みます。サイドバーがある文書ページには body のクラス `mt-body-sidebar` が付きます。`_layouts/default.html` を上書きしたサイトは広い文書の枠をそのまま保ち、このクラスを出力すれば最初の描画も同じになります。
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
 

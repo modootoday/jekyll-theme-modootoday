@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:00d77b629f7b
+source_rev: sha256:2962696c5e57
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -84,6 +84,8 @@ bundle exec modootoday-check . _site --twins
 ```
 
 チェッカーは、github.com で同じように表示されない記法をすべて報告します。
+
+`--links` を加えると、ビルドしたサイトのリンクも検査します。存在しないページへのサイト内リンクと、存在しないアンカーへの `#` リンクを報告します。このオプションには nokogiri gem が必要です。`github-pages` のバンドルにはすでに含まれています。それ以外では Gemfile に `gem "nokogiri"` を加えるか、チェッカーと同じ場所に `gem install nokogiri` でインストールしてください。nokogiri がなければ、チェッカーはリンクを検査しなかったと警告するだけで、`--strict` がなければ終了コード 0 で終わります。
 
 `remote_theme` のサイトは Gemfile にテーマがないため、`bundle exec modootoday-check` は使えません。テーマのタグと同じマイナーバージョンで gem を一度インストールし、ビルドしたサイトにチェッカーを実行します。
 
