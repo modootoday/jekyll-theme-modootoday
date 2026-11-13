@@ -116,11 +116,8 @@ class DocsIndexTest < Minitest::Test
       r["sections"].each { |s| assert_equal s["count"], s["items"].count { |i| !i.strip.empty? }, "#{r["version"]} #{s["name"]}" }
     end
     Dir.glob("#{DOCS}/reference/changelog{,.*}.md").each do |page|
-      src = File.read(page)
-      heads = src.scan(/^### \[(\d+\.\d+\.\d+)\]/).flatten
+      heads = File.read(page).scan(/^### \[(\d+\.\d+\.\d+)\]/).flatten
       assert_equal versions, heads, page
-      marks = page.end_with?("changelog.md") ? 0 : versions.size * 2
-      assert_equal marks, src.scan(/^\{: lang="en"\}$/).size, "#{page}: the English release list is marked on translations only"
     end
   end
 

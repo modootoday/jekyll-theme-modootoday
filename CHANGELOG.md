@@ -62,7 +62,6 @@ Visual: the intended differences are the order of the Components page and the ki
 - Offline reading keeps the pages a reader visited across deploys that keep the theme files: the pages cache is now named by the theme files' version (`mt:<baseurl>/:pages:<version>`) and is replaced only with them; navigations to Markdown twins, `llms.txt`, feeds and the sitemap always go to the network. (adr:modootoday/20261110133153)
 - The offline module loads only on the offline page, not on a page that names its attribute (adr:modootoday/20261110133153)
 - The header is complete in the first frame when the theme's stylesheets are cached and the page arrives slowly (Chromium; doc pages with a sidebar also have their width from the first frame in every browser). A new body class, mt-body-sidebar, marks pages with the doc sidebar; a site that overrides _layouts/default.html keeps the wide doc shell as before and can print the class to get it in the first frame too. (adr:modootoday/20261111044513)
-- The translated Changelog pages of the docs mark the English release list as English, so screen readers read it with an English voice. (adr:modootoday/20261109204422)
 
 ## [1.6.0] - 2026-11-09
 
