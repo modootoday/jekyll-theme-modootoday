@@ -59,3 +59,20 @@ Totals: 0 blockers, 5 majors, 9 minors. Every task was finished.
 The PWA stubs, manifest, offline page and install section; blog and author feeds with Subscribe links;
 edit_url auto and the build link; the feedback row; Open Graph alt and size; the print sheet; heading anchors;
 the links check once nokogiri was installed; a Korean folder translation with hreflang and Korean labels.
+
+## Status
+
+The nine minors, fixed in eight commits after release 1.7.0: two change `modootoday-check` (f10366f, 9634367) and six
+change the docs only, each in English, Korean and Japanese. m7 had been fixed before the release (3f74b76).
+
+| Finding | Status | Commit | Change |
+|---|---|---|---|
+| m1 no since marker | fixed | d6c2437 | The Configuration key table has a Since column, filled for the keys (or new forms of older keys) that 1.7 added, with a line that links the upgrade notes. The docs consistency ADR allows this bare version column as an exception to its version-mention rule. |
+| m2 trying an unreleased version | fixed | ab241fa | Install, "Try the next release": the Gemfile `git:` and `branch: "main"` line, `remote_theme` `@main`, moving to a newer commit, and pinning a release again before publishing. |
+| m3 `--links` without nokogiri exits 0 | fixed | f10366f | The run fails with an error that says to add `gem "nokogiri"`; the CLI tables, Install and the links ADR say so. The test runs with nokogiri hidden, so it no longer skips where nokogiri is installed. |
+| m4 `banner: {release: latest}` silent | fixed | 9634367 | The checker warns when the key is set, the banner component is on and the built home page has no release banner. The updates recipe names the field, `site.github.latest_release` (`tag_name`, `html_url`). |
+| m5 no `github:` map example | fixed | 00ccf3f | Head and SEO shows the map with `source.path` (a leading slash, no trailing one; `/` for the root) and `latest_release` for the banner. |
+| m6 site-author translation steps | fixed | 4f9ded8 | New guide Translate your site: six steps, ending with `full_languages`, `--i18n-pages` and `source_rev`. Translation rules and Configuration, Languages link it. |
+| m7 upgrade note lists two features | fixed | 3f74b76 | Checked again: the 1.7 entry lists every key the Since column marks. |
+| m8 On this page mark | fixed | 539b595 | The Components table of contents section already said the list marks the section being read; it now says the mark has no setting of its own and goes with `toc: false` or a `components` list without `toc`. |
+| m9 seeing the update notice | fixed | a919a7f | Installable site, Updates: four steps with `asset_version: build` and two deploys. |
