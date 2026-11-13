@@ -170,6 +170,15 @@ The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `m
 - **A deploy that keeps the theme files** (your pages and files changed, the theme did not) shows nothing: the new worker takes over at once, and pages come from the network first anyway.
 - **A deploy that changes the theme files** (a theme update, or every deploy with `asset_version: build` or `false`) waits for the reader. A notice at the bottom of the page says that a new version is ready, with Reload and Later. Reload hands over to the new worker and reloads the page once; Later or `Esc` closes the notice until the next page. The page never reloads by itself, so nothing a reader typed is lost.
 
+To see the notice yourself:
+
+1. Set `modootoday.asset_version: build`, so the theme file URLs change on every deploy (with the commit on GitHub Pages, the build time elsewhere).
+2. Deploy, open the site and let one page load, so the service worker is installed.
+3. Deploy again; any commit will do.
+4. Reload the open page, or come back to its window after an hour. The notice appears at the bottom of the page.
+
+Set `asset_version` back afterwards if deploys of your pages alone should stay silent.
+
 The notice is a status message: screen readers announce it and it never takes focus. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
 
 Readers who have not installed the site learn of updates through feeds, release notifications or an email form: see [Tell readers about updates](../updates/).
