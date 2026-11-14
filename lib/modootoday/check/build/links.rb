@@ -16,7 +16,8 @@ module Modootoday
 
       def call(ctx)
         return unless ctx.option?("--links")
-        return ctx.errs << "--links needs the nokogiri gem: add gem \"nokogiri\" to the Gemfile and run bundle install (or gem install nokogiri)" unless nokogiri?
+        return ctx.errs << "--links needs the nokogiri gem: add gem \"nokogiri\" to the Gemfile and run bundle install " \
+                                   "(for a checker run without Bundler: gem install nokogiri)" unless nokogiri?
         found = scan(ctx.site, baseurl(ctx))
         found[:problems].each { |p| ctx.warns << p }
       end
