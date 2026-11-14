@@ -80,7 +80,7 @@ bundle exec modootoday-check . _site --twins
 
 The checker reports any syntax that would not render the same on github.com.
 
-Add `--links` to also check the built site's links: same-site links to missing pages and `#` links to missing anchors. It needs the nokogiri gem, which the `github-pages` bundle already includes; elsewhere add `gem "nokogiri"` to the Gemfile, or run `gem install nokogiri` next to the checker. Without nokogiri, `--links` fails the run with an error that says to add `gem "nokogiri"`.
+Add `--links` to also check the built site's links: same-site links to missing pages and `#` links to missing anchors. It needs the nokogiri gem, which the `github-pages` bundle already includes; elsewhere add `gem "nokogiri"` to the Gemfile and run `bundle install`. A checker run without Bundler, such as one installed with `gem install`, needs `gem install nokogiri` instead. Without nokogiri, `--links` fails the run with an error that says to add `gem "nokogiri"`.
 
 A `remote_theme` site has no Gemfile entry for the theme, so `bundle exec modootoday-check` is not available. Install the gem once, at the same minor version as the theme tag, and run the checker on the built site:
 
@@ -114,7 +114,7 @@ The theme has three starter sites, each a template repository on GitHub with its
 
 ## Try the next release
 
-This is optional. To try changes that are on the main branch but not released yet, point the theme at `main` instead of a release.
+This is optional. To try changes that are on the main branch but not released yet, point the theme at `main` instead of a release. Replace the theme's existing line with this one rather than adding it: Bundler refuses a Gemfile that lists the same gem twice.
 
 ```ruby
 # Gemfile
@@ -126,4 +126,4 @@ gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-
 remote_theme: modootoday/jekyll-theme-modootoday@main
 ```
 
-Run `bundle install`, and later `bundle update jekyll-theme-modootoday` to move to the newest commit. With the Gemfile line, `bundle exec modootoday-check` runs the checker from the same commit. The main branch can change at any time, so pin a release again before you publish the site.
+Run `bundle install`, and later `bundle update jekyll-theme-modootoday` to move to the newest commit. `bundle info jekyll-theme-modootoday` shows the version and the short commit you have; the full commit is the `revision:` line under `GIT` in `Gemfile.lock`. With the Gemfile line, `bundle exec modootoday-check` runs the checker from the same commit. The main branch can change at any time, so pin a release again before you publish the site.

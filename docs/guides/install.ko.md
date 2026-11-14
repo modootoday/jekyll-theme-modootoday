@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:e3c3ae64789c
+source_rev: sha256:39f29ea62280
 nav_order: 10
 title: 설치
 description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
@@ -86,7 +86,7 @@ bundle exec modootoday-check . _site --twins
 
 검사기는 github.com에서 똑같이 보이지 않을 문법을 알려 줍니다.
 
-`--links`를 더하면 빌드된 사이트의 링크도 검사합니다. 없는 페이지로 가는 같은 사이트 링크와 없는 앵커로 가는 `#` 링크를 알려 줍니다. 이 옵션에는 nokogiri gem이 필요합니다. `github-pages` 번들에는 이미 들어 있고, 그 밖에서는 Gemfile에 `gem "nokogiri"`를 더하거나 검사기와 같은 곳에 `gem install nokogiri`로 설치하세요. nokogiri가 없으면 `--links`는 `gem "nokogiri"`를 더하라는 오류와 함께 실패합니다.
+`--links`를 더하면 빌드된 사이트의 링크도 검사합니다. 없는 페이지로 가는 같은 사이트 링크와 없는 앵커로 가는 `#` 링크를 알려 줍니다. 이 옵션에는 nokogiri gem이 필요합니다. `github-pages` 번들에는 이미 들어 있고, 그 밖에서는 Gemfile에 `gem "nokogiri"`를 더하고 `bundle install`을 실행하세요. `gem install`로 설치한 검사기처럼 Bundler 없이 실행하는 검사기라면 대신 `gem install nokogiri`로 설치합니다. nokogiri가 없으면 `--links`는 `gem "nokogiri"`를 더하라는 오류와 함께 실패합니다.
 
 `remote_theme` 사이트는 Gemfile에 테마가 없으므로 `bundle exec modootoday-check`를 쓸 수 없습니다. 테마 태그와 같은 마이너 버전으로 gem을 한 번 설치하고, 빌드한 사이트에 검사기를 실행합니다.
 
@@ -120,7 +120,7 @@ GitHub Actions에서는 빌드 다음 단계에 같은 두 줄을 넣습니다. 
 
 ## 다음 릴리스 미리 써 보기
 
-선택 사항입니다. main 브랜치에 들어갔지만 아직 릴리스되지 않은 변경을 써 보려면, 릴리스 대신 `main`을 가리키게 합니다.
+선택 사항입니다. main 브랜치에 들어갔지만 아직 릴리스되지 않은 변경을 써 보려면, 릴리스 대신 `main`을 가리키게 합니다. 이 줄은 테마의 기존 줄에 더하지 말고 그 줄을 바꿔 씁니다. 같은 gem이 두 번 적힌 Gemfile은 Bundler가 거부합니다.
 
 ```ruby
 # Gemfile
@@ -132,4 +132,4 @@ gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-
 remote_theme: modootoday/jekyll-theme-modootoday@main
 ```
 
-`bundle install`을 실행하고, 나중에 가장 새 커밋으로 옮기려면 `bundle update jekyll-theme-modootoday`를 실행합니다. Gemfile 줄을 쓰면 `bundle exec modootoday-check`도 같은 커밋의 검사기를 실행합니다. main 브랜치는 언제든 바뀔 수 있으므로, 사이트를 게시하기 전에는 다시 릴리스에 고정합니다.
+`bundle install`을 실행하고, 나중에 가장 새 커밋으로 옮기려면 `bundle update jekyll-theme-modootoday`를 실행합니다. 설치된 버전과 짧은 커밋은 `bundle info jekyll-theme-modootoday`로 볼 수 있고, 전체 커밋은 `Gemfile.lock`의 `GIT` 아래 `revision:` 줄에 있습니다. Gemfile 줄을 쓰면 `bundle exec modootoday-check`도 같은 커밋의 검사기를 실행합니다. main 브랜치는 언제든 바뀔 수 있으므로, 사이트를 게시하기 전에는 다시 릴리스에 고정합니다.

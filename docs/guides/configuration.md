@@ -23,6 +23,8 @@ modootoday:
   nav: main
 ```
 
+A description that starts with **1.7** marks a key, or the newest form of an older one (such as `edit_url: auto`), that is new in that release; a site pinned to an older gem does not have it yet. The keys marked **1.7** are `heading_anchors`, `og_image`, `feed`, `pwa`, `edit_url`, `feedback`, `build_link`, `banner` and `print`. [Migrate and upgrade](../upgrade/#upgrading) lists what each release added.
+
 | Key | Default | What it does |
 |---|---|---|
 | `badges` | `true` | Shows status code spans as badges. `false` keeps them as code. |
@@ -45,12 +47,12 @@ modootoday:
 | `seo` | `true` | `false` removes the built-in canonical, `hreflang` and Open Graph tags. |
 | `hreflang` | follows `seo` | `true` keeps the `hreflang` links when `seo: false`, for sites that use `jekyll-seo-tag`. |
 | `schema` | on when `url` is set | Adds schema.org structured data. `false` turns it off. See [Structured data](../structured-data/). |
-| `languages` | none | The site's language codes, such as `[en, ko]`, used for `hreflang` and the language menu. |
+| `languages` | none | The site's language codes, such as `[en, ko]`, used for `hreflang` and the language menu. The `hreflang` links also need `url:`. |
 | `full_languages` | none | Languages that translate every page, such as `[ko, ja]`. `modootoday-check --i18n-pages` warns about missing pages. |
 | `lists` | none | `{link_chips: true, titled_items: true}` turns link-only lists into chips and `**Title**:` items into titled items. |
 | `heading_anchors` | `false` | **1.7** `true` ends each `##` and `###` heading of a doc or post with a link to itself, shown on hover and focus and always on touch screens. |
 | `language_switcher` | none | A language menu in the `header` (globe button) or the `footer` (list of names). |
-| `og_image` | none | **1.7** Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. |
+| `og_image` | none | **1.7** (the map form) Default image for link previews: a path, or `{path, alt, width, height}`, which adds the image's text alternative (`og:image:alt`) and size. A page's `image:` wins, then its hero image or poster; a page's `image.alt` or `image_alt` names its own. |
 | `feed` | `false` | **1.7** `true` links the site's Atom feed in the head of every page (`/feed.xml`, or `/<lang>/feed.xml` on pages of a language that has one) and adds a Subscribe link to blog indexes without `category` or `tag`. It does not write the feed: a `feed.xml` page with `layout: feed` writes it, with no plugin (see [Authors and feeds](../../layouts/blog-news/#authors-and-feeds)). Use that page or `jekyll-feed`, not both, since both write `/feed.xml`. |
 | `logo` | none | `brand` shows the theme's mark before the site title; a path shows your own image. |
 | `favicon` | none | `brand` uses the theme's mark as the site icon; a path uses your own icon. |
@@ -72,15 +74,13 @@ modootoday:
 | `authors` | `true` | `false` hides the bylines on posts and post cards; author data stays in `_data/authors.yml`. |
 | `news` | none | News settings, such as `sections:` for the front page. See [Blog and news](../../layouts/blog-news/#settings). |
 | `css` | `split` | `split` loads only the CSS a page uses; `bundle` loads one sheet with everything. |
-| `banner` | none | **1.7** `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. Without `text`, `release: latest` announces the repository's latest release ("1.7.0 is out." and a What's new link) from `site.github` at build time, and `release: {version, url}` does the same from the values given. |
+| `banner` | none | **1.7** `{text: "…", url: /path/, link: "Read more"}` shows an announcement bar on every page. Without `text`, `release: latest` announces the repository's latest release ("1.7.0 is out." and a What's new link, a leading `v` of the tag dropped) from `site.github` at build time, or outside GitHub Pages from a `github:` map with `latest_release` (example under Head and SEO), and `release: {version, url}` does the same from the values given. |
 | `back_to_top` | `false` | `true` adds a Back to top link at the end of every page. |
 | `print` | `false` | **1.7** `true` adds a print stylesheet, loaded only for printing: it leaves out the header, menus, banner, update notice, install section and page footer links, prints black on white, prints every tab panel, adds each link's address after it, and keeps figures, code and tables on one page. A `details`, accordion or FAQ item prints only its summary unless a reader opens it first. |
 | `loading` | `false` | `true` loads the spinner and skeleton styles on every page, for your own scripts. |
 | `showcase` | off | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: on a starter's demo build, a bar (or with `style: pill` a floating pill) that links back to the theme's documentation. Set it in a demo-only config file. See [Starter demo showcase](../../reference/showcase/). |
 | `chart` | off | `{enabled: true, src:, integrity:}`: a line holding only `chart:<type>` right before a table makes the table a chart figure, which your Chart.js (`src`) draws. See [Charts](../../recipes/figures/charts/). |
 | `subscribe` | none | `{action: https://…}`: where the `c: subscribe` email form sends sign-ups. |
-
-A description that starts with **1.7** marks a key, or the newest form of an older one (such as `edit_url: auto`), that is new in that release; a site pinned to an older gem does not have it yet. [Migrate and upgrade](../upgrade/#upgrading) lists what each release added.
 
 `modootoday-check` validates every key. The full list of stable names is in [Public API](../../reference/api/).
 
@@ -135,7 +135,7 @@ Each such link gets `target="_blank"`, `rel="noopener noreferrer"`, a small arro
 
 ## Head and SEO
 
-With `url:` set, every page gets a canonical link and Open Graph tags; no plugin is needed. With `languages:` set, pages that exist in several languages link each other with `hreflang`. A sitemap is an opt-in plugin that GitHub Pages allows; the Atom feed needs no plugin (the `feed` key above):
+With `url:` set, every page gets a canonical link and Open Graph tags; no plugin is needed. With `languages:` and `url:` set, pages that exist in several languages link each other with `hreflang`; without `url:` there are no `hreflang` links, because they need full addresses. GitHub Pages fills in `url` when `_config.yml` leaves it out; set it for any other build. A sitemap is an opt-in plugin that GitHub Pages allows; the Atom feed needs no plugin (the `feed` key above):
 
 ```yaml
 url: https://example.github.io
@@ -210,7 +210,7 @@ For a language the theme does not ship, add `_data/i18n/<code>.yml` with the key
 
 Every language in `languages` other than the site's `lang` needs a home page at `/<lang>/`. The language menu (`language_switcher`) sends a reader there from any page that has no translation in that language, so without it the link is broken on every such page, and `modootoday-check --links` reports it. Make one as `index.<lang>.md` beside `index.md`, with `lang: <lang>` and `permalink: /<lang>/` in front matter (or `<lang>/index.md` in the folder layout); it can be as short as a title and a line that links the pages you have translated.
 
-Pages that translate each other under different paths share a `ref:` in front matter, such as `ref: guide` on `guides/start.md` and `ko/guides/sijak.md`. `hreflang` links and the language switcher then use that page; a page with `ref:` and no translation is left out of `hreflang`, and the switcher sends that language to its home page. In includes and layouts, `modootoday/link.html` with `ref="guide"` gives the URL of the `ref: guide` page in the current language, or in the default language when there is none (add `exact=true` for no fallback, `absolute=true` for a full URL); `modootoday-check` reports a `ref=` that no page defines. With `full_languages` set, `modootoday-check . _site --i18n-pages` lists default-language pages that have no translation in those languages (same `ref:`, `<name>.<lang>.md` beside the page, or the same path under `<lang>/`); they are warnings, and `--strict` makes them fail. Posts, record pages, lists of records and pages at a file URL such as `/404.html` are not translated page by page and are left out. The same option reads each translation's `source_rev:`, the revision of the source it was translated from (`sha256:` and 12 hex digits of the source's `title`, `description`, `nav_title` and body). A translation without one, or whose source changed since, is a warning that prints the current value. A translation beside its source whose `permalink` is not the source's URL under `/<lang>` is an error.
+Pages that translate each other under different paths share a `ref:` in front matter, such as `ref: guide` on `guides/start.md` and `ko/guides/sijak.md`. `hreflang` links and the language switcher then use that page; a page with `ref:` and no translation is left out of `hreflang`, and the switcher sends that language to its home page. In includes and layouts, `modootoday/link.html` with `ref="guide"` gives the URL of the `ref: guide` page in the current language, or in the default language when there is none (add `exact=true` for no fallback, `absolute=true` for a full URL); `modootoday-check` reports a `ref=` that no page defines. With `full_languages` set, `modootoday-check . _site --i18n-pages` lists default-language pages that have no translation in those languages (same `ref:`, `<name>.<lang>.md` beside the page, or the same path under `<lang>/`); they are warnings, and `--strict` makes them fail. Posts, record pages, lists of records and pages at a file URL such as `/404.html` are not translated page by page and are left out. The same option reads each translation's `source_rev:`, the revision of the source it was translated from (`sha256:` and 12 hex digits of the source's `title`, `description`, `nav_title` and body). A translation without one, or whose source changed since, is a warning that prints the current value. The offline pages that `modootoday-stubs --pwa` writes for each language have nothing to translate, so they need no `source_rev`. A translation beside its source whose `permalink` is not the source's URL under `/<lang>` is an error.
 
 Some labels are your site's, not the theme's: `tabs.label` names the tab list on pages that use tabs (for example `tabs: {label: Install method}`), so screen readers announce what the tabs choose between. Put it in each language's catalog.
 

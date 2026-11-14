@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:aed6bc9743a2
+source_rev: sha256:4382e6084b9b
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -29,6 +29,8 @@ modootoday:
   nav: main
 ```
 
+설명이 **1.7**로 시작하는 행은 릴리스 1.7이 추가한 키, 또는 기존 키의 새 형식(`edit_url: auto` 등)입니다. 더 오래된 gem에 고정한 사이트에는 아직 없습니다. **1.7** 표시가 있는 키는 `heading_anchors`, `og_image`, `feed`, `pwa`, `edit_url`, `feedback`, `build_link`, `banner`, `print`입니다. 릴리스마다 추가된 내용은 [마이그레이션과 업그레이드](../upgrade/#업그레이드)에 있습니다.
+
 | 키 | 기본값 | 하는 일 |
 |---|---|---|
 | `badges` | `true` | 상태 코드 스팬을 배지로 보여 줍니다. `false`면 코드 그대로 둡니다. |
@@ -51,12 +53,12 @@ modootoday:
 | `seo` | `true` | `false`면 내장 canonical, `hreflang`, Open Graph 태그를 뺍니다. |
 | `hreflang` | `seo`를 따름 | `true`면 `seo: false`여도 `hreflang` 링크를 남깁니다. `jekyll-seo-tag`를 쓰는 사이트용입니다. |
 | `schema` | `url`이 있으면 켜짐 | schema.org 구조화 데이터를 넣습니다. `false`면 끕니다. [구조화 데이터](../structured-data/) 참고. |
-| `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. |
+| `languages` | 없음 | `[en, ko]` 같은 사이트 언어 코드입니다. `hreflang`과 언어 메뉴에 쓰입니다. `hreflang` 링크에는 `url:`도 필요합니다. |
 | `full_languages` | 없음 | 모든 페이지를 번역하는 언어입니다(예: `[ko, ja]`). `modootoday-check --i18n-pages`가 빠진 번역을 알려 줍니다. |
 | `lists` | 없음 | `{link_chips: true, titled_items: true}`면 링크만 있는 목록은 칩으로, `**제목**:` 항목은 제목 있는 항목으로 바뀝니다. |
 | `heading_anchors` | `false` | **1.7** `true`면 문서와 글의 `##`, `###` 제목 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 마우스를 올리거나 포커스하면 보이고, 터치 화면에서는 늘 보입니다. |
 | `language_switcher` | 없음 | 언어 메뉴를 `header`(지구본 버튼)나 `footer`(언어 이름 목록)에 표시합니다. |
-| `og_image` | 없음 | **1.7** 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. |
+| `og_image` | 없음 | **1.7** (맵 형식) 링크 미리보기의 기본 이미지입니다. 경로, 또는 이미지의 대체 텍스트(`og:image:alt`)와 크기를 더하는 `{path, alt, width, height}`입니다. 페이지의 `image:`가 우선하고, 그다음은 hero 이미지나 포스터입니다. 페이지의 `image.alt`나 `image_alt`는 그 이미지의 대체 텍스트입니다. |
 | `feed` | `false` | **1.7** `true`면 모든 페이지의 head에 사이트의 Atom 피드(`/feed.xml`, 또는 피드가 있는 언어의 페이지에서는 `/<lang>/feed.xml`)를 연결하고, `category`나 `tag`가 없는 블로그 목록에 구독 링크를 더합니다. 피드 파일을 쓰지는 않습니다. 피드는 `layout: feed`를 쓴 `feed.xml` 페이지가 플러그인 없이 씁니다([작성자와 피드](../../layouts/blog-news/#작성자와-피드) 참고). 그 페이지와 `jekyll-feed`는 둘 다 `/feed.xml`을 쓰므로 하나만 쓰세요. |
 | `logo` | 없음 | `brand`면 사이트 제목 앞에 테마 마크를, 경로를 주면 그 이미지를 보여 줍니다. |
 | `favicon` | 없음 | `brand`면 테마 마크를, 경로를 주면 그 아이콘을 사이트 아이콘으로 씁니다. |
@@ -78,15 +80,13 @@ modootoday:
 | `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |
 | `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../../layouts/blog-news/#설정) 참고. |
 | `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
-| `banner` | 없음 | **1.7** `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고, `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. |
+| `banner` | 없음 | **1.7** `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고(태그 앞의 `v`는 뺍니다), GitHub Pages 밖에서는 `latest_release`가 있는 `github:` 맵에서 읽습니다(예시는 헤드와 SEO에 있습니다). `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. |
 | `print` | `false` | **1.7** `true`면 인쇄할 때만 불러오는 인쇄용 스타일시트를 더합니다. 머리글, 메뉴, 배너, 업데이트 알림, 설치 섹션, 페이지 아래 링크를 빼고, 흰 바탕에 검은 글자로 인쇄하며, 탭 패널을 모두 인쇄하고, 링크 뒤에 주소를 붙이고, 그림·코드·표가 페이지 사이에서 끊기지 않게 합니다. `details`, 아코디언, FAQ 항목은 독자가 먼저 열지 않으면 요약만 인쇄됩니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
 | `showcase` | 꺼짐 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: 스타터의 데모 빌드에 테마 문서로 돌아가는 막대(`style: pill`이면 떠 있는 알약)를 표시합니다. 데모 전용 설정 파일에 넣습니다. [스타터 데모 쇼케이스](../../reference/showcase/) 참고. |
 | `chart` | 꺼짐 | `{enabled: true, src:, integrity:}`: 표 바로 앞에 `chart:<type>`만 있는 줄을 두면 그 표가 차트 figure가 되고, 사이트의 Chart.js(`src`)가 그립니다. [차트](../../recipes/figures/charts/) 참고. |
 | `subscribe` | 없음 | `{action: https://…}`: `c: subscribe` 이메일 양식이 신청을 보내는 주소입니다. |
-
-설명이 **1.7**로 시작하는 행은 릴리스 1.7이 추가한 키, 또는 기존 키의 새 형식(`edit_url: auto` 등)입니다. 더 오래된 gem에 고정한 사이트에는 아직 없습니다. 릴리스마다 추가된 내용은 [마이그레이션과 업그레이드](../upgrade/#업그레이드)에 있습니다.
 
 `modootoday-check`가 모든 키를 검사합니다. 안정 이름 전체 목록은 [공개 API](../../reference/api/)에 있습니다.
 
@@ -141,7 +141,7 @@ modootoday:
 
 ## 헤드와 SEO
 
-`url:`을 설정하면 모든 페이지에 canonical 링크와 Open Graph 태그가 들어가며 플러그인이 필요 없습니다. `languages:`를 설정하면 여러 언어로 있는 페이지끼리 `hreflang`으로 연결됩니다. 사이트맵은 GitHub Pages가 허용하는 플러그인으로 직접 켜고, Atom 피드는 플러그인이 필요 없습니다(위의 `feed` 키).
+`url:`을 설정하면 모든 페이지에 canonical 링크와 Open Graph 태그가 들어가며 플러그인이 필요 없습니다. `languages:`와 `url:`을 설정하면 여러 언어로 있는 페이지끼리 `hreflang`으로 연결됩니다. `hreflang` 링크는 전체 주소가 필요하므로 `url:`이 없으면 만들어지지 않습니다. `_config.yml`에 `url`이 없으면 GitHub Pages가 채워 주고, 다른 빌드에서는 직접 설정합니다. 사이트맵은 GitHub Pages가 허용하는 플러그인으로 직접 켜고, Atom 피드는 플러그인이 필요 없습니다(위의 `feed` 키).
 
 ```yaml
 url: https://example.github.io
@@ -216,7 +216,7 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 
 `languages`에 있는 언어 가운데 사이트의 `lang`이 아닌 언어는 모두 `/<lang>/`에 홈 페이지가 있어야 합니다. 언어 메뉴(`language_switcher`)는 그 언어로 번역되지 않은 페이지에서 독자를 그곳으로 보내므로, 홈 페이지가 없으면 그런 페이지마다 링크가 깨지고 `modootoday-check --links`가 이를 보고합니다. `index.md` 옆에 `index.<lang>.md`를 만들고 front matter에 `lang: <lang>`과 `permalink: /<lang>/`을 쓰세요(폴더 배치라면 `<lang>/index.md`). 제목과, 번역한 페이지로 가는 링크 한 줄만 있어도 됩니다.
 
-경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 페이지 옆의 `<name>.<lang>.md`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다. 글, 레코드 페이지, 레코드 목록, `/404.html`처럼 파일 URL에 있는 페이지는 페이지마다 번역하지 않으므로 빠집니다. 같은 옵션은 각 번역의 `source_rev:`도 읽습니다. 이 값은 번역의 바탕이 된 원문 리비전입니다(원문의 `title`, `description`, `nav_title`과 본문으로 만든 `sha256:`와 16진수 12자리). 이 값이 없거나 그 뒤로 원문이 바뀐 번역은 경고로 알리며, 경고에 현재 값이 함께 나옵니다. 원문 옆에 둔 번역의 `permalink`가 원문 URL 앞에 `/<lang>`을 붙인 값과 다르면 오류입니다.
+경로가 다른 번역 페이지끼리는 front matter에 같은 `ref:`를 둡니다. 예를 들어 `guides/start.md`와 `ko/guides/sijak.md`에 모두 `ref: guide`를 씁니다. 그러면 `hreflang` 링크와 언어 선택기가 그 페이지를 사용합니다. `ref:`가 있는데 번역이 없는 페이지는 `hreflang`에서 빠지고, 언어 선택기는 그 언어의 홈으로 보냅니다. include와 레이아웃에서 `modootoday/link.html`에 `ref="guide"`를 주면 현재 언어의 `ref: guide` 페이지 URL을, 없으면 기본 언어 페이지 URL을 얻습니다(대체하지 않으려면 `exact=true`, 전체 URL은 `absolute=true`). 어떤 페이지에도 없는 `ref=`는 `modootoday-check`가 오류로 알립니다. `full_languages`를 설정하면 `modootoday-check . _site --i18n-pages`가 그 언어의 번역(같은 `ref:`, 페이지 옆의 `<name>.<lang>.md`, 또는 `<lang>/` 아래 같은 경로)이 없는 기본 언어 페이지를 경고로 보여 줍니다. `--strict`를 함께 쓰면 실패합니다. 글, 레코드 페이지, 레코드 목록, `/404.html`처럼 파일 URL에 있는 페이지는 페이지마다 번역하지 않으므로 빠집니다. 같은 옵션은 각 번역의 `source_rev:`도 읽습니다. 이 값은 번역의 바탕이 된 원문 리비전입니다(원문의 `title`, `description`, `nav_title`과 본문으로 만든 `sha256:`와 16진수 12자리). 이 값이 없거나 그 뒤로 원문이 바뀐 번역은 경고로 알리며, 경고에 현재 값이 함께 나옵니다. `modootoday-stubs --pwa`가 언어마다 쓰는 오프라인 페이지는 번역할 내용이 없으므로 `source_rev`가 필요 없습니다. 원문 옆에 둔 번역의 `permalink`가 원문 URL 앞에 `/<lang>`을 붙인 값과 다르면 오류입니다.
 
 테마가 아니라 사이트가 정하는 문구도 있습니다. `tabs.label`은 탭을 쓰는 페이지에서 탭 목록의 이름입니다(예: `tabs: {label: 설치 방법}`). 스크린 리더가 무엇을 고르는 탭인지 읽어 주니, 언어별 카탈로그마다 넣어 주세요.
 

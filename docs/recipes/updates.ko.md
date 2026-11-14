@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/updates/
-source_rev: sha256:fa57375a2009
+source_rev: sha256:6f5b908e1891
 nav_order: 28
 title: 독자에게 업데이트 알리기
 description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의 안내로 독자가 사이트의 변경을 따라오게 하고, 릴리스를 게시하면 사이트를 다시 빌드하는 방법을 설명합니다.
@@ -43,7 +43,7 @@ GitHub 계정이 있는 독자는 저장소에서 Watch, Custom을 차례로 고
 
 ## 릴리스 막대
 
-`modootoday.banner: {release: latest}`는 모든 페이지에 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 보여 줍니다. 값은 사이트를 빌드할 때 `site.github`에서 읽고, 프리릴리스는 빠집니다. 읽는 필드는 `site.github.latest_release`(그 `tag_name`과 `html_url`)입니다. 저장소에 아직 게시한 릴리스가 없거나 빌드에 GitHub 메타데이터가 없어 최신 릴리스를 읽지 못하면 막대가 나타나지 않고, `modootoday-check`가 빌드된 홈 페이지에 릴리스 막대가 없다고 경고합니다. 사이트를 다시 빌드해야 바뀌므로, 릴리스마다 다시 빌드하도록(아래) 함께 설정하세요. GitHub Pages 밖에서는 `release: {version, url}`을 대신 씁니다.
+`modootoday.banner: {release: latest}`는 모든 페이지에 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 보여 줍니다. 값은 사이트를 빌드할 때 `site.github`에서 읽고, 프리릴리스는 빠집니다. 읽는 필드는 `site.github.latest_release`(그 `tag_name`과 `html_url`)입니다. 태그 앞의 `v`는 빼므로 `v1.7.0`도 1.7.0으로 보입니다. 저장소에 아직 게시한 릴리스가 없거나 빌드에 GitHub 메타데이터가 없어 최신 릴리스를 읽지 못하면 막대가 나타나지 않고, `modootoday-check`가 빌드된 홈 페이지에 릴리스 막대가 없다고 경고합니다. 사이트를 다시 빌드해야 바뀌므로, 릴리스마다 다시 빌드하도록(아래) 함께 설정하세요. GitHub Pages 밖에서는 `_config.yml`에 `latest_release`가 있는 `github:` 맵을 두어 `site.github`를 대신하거나([헤드와 SEO의 예시](../../guides/configuration/#헤드와-seo) 참고), `release: {version, url}`을 대신 씁니다.
 
 ## 푸시가 없는 이유
 

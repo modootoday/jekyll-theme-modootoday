@@ -177,9 +177,9 @@ To see the notice yourself:
 3. Deploy again; any commit will do.
 4. Reload the open page, or come back to its window after an hour. The notice appears at the bottom of the page.
 
-Set `asset_version` back afterwards if deploys of your pages alone should stay silent.
+A local `bundle exec jekyll serve` works as well: browsers allow service workers on `localhost`, and with `asset_version: build` each rebuild after you save a file counts as a deploy. Afterwards set `asset_version` back to `theme` (or remove it, since `theme` is the default) if deploys of your pages alone should stay silent.
 
-The notice is a status message: screen readers announce it and it never takes focus. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
+The notice is a status message: screen readers announce it and it never takes focus. It comes last in the page, so keyboard users reach Reload and Later by tabbing past the page's last link; `Esc` closes it from anywhere on the page. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
 
 Readers who have not installed the site learn of updates through feeds, release notifications or an email form: see [Tell readers about updates](../updates/).
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:e3c3ae64789c
+source_rev: sha256:39f29ea62280
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -86,7 +86,7 @@ bundle exec modootoday-check . _site --twins
 
 チェッカーは、github.com で同じように表示されない記法をすべて報告します。
 
-`--links` を加えると、ビルドしたサイトのリンクも検査します。存在しないページへのサイト内リンクと、存在しないアンカーへの `#` リンクを報告します。このオプションには nokogiri gem が必要です。`github-pages` のバンドルにはすでに含まれています。それ以外では Gemfile に `gem "nokogiri"` を加えるか、チェッカーと同じ場所に `gem install nokogiri` でインストールしてください。nokogiri がなければ、`--links` は `gem "nokogiri"` を加えるよう求めるエラーで失敗します。
+`--links` を加えると、ビルドしたサイトのリンクも検査します。存在しないページへのサイト内リンクと、存在しないアンカーへの `#` リンクを報告します。このオプションには nokogiri gem が必要です。`github-pages` のバンドルにはすでに含まれています。それ以外では Gemfile に `gem "nokogiri"` を加えて `bundle install` を実行してください。`gem install` で入れたチェッカーのように Bundler を使わずに実行するチェッカーでは、代わりに `gem install nokogiri` でインストールします。nokogiri がなければ、`--links` は `gem "nokogiri"` を加えるよう求めるエラーで失敗します。
 
 `remote_theme` のサイトは Gemfile にテーマがないため、`bundle exec modootoday-check` は使えません。テーマのタグと同じマイナーバージョンで gem を一度インストールし、ビルドしたサイトにチェッカーを実行します。
 
@@ -120,7 +120,7 @@ GitHub Actions では、ビルドの次のステップに同じ 2 行を入れ�
 
 ## 次のリリースを試す
 
-これは任意です。main ブランチに入ったがまだリリースされていない変更を試すには、リリースの代わりに `main` を指定します。
+これは任意です。main ブランチに入ったがまだリリースされていない変更を試すには、リリースの代わりに `main` を指定します。この行はテーマの既存の行に加えるのではなく、その行と置き換えます。同じ gem が 2 回書かれた Gemfile は Bundler が受け付けません。
 
 ```ruby
 # Gemfile
@@ -132,4 +132,4 @@ gem "jekyll-theme-modootoday", git: "https://github.com/modootoday/jekyll-theme-
 remote_theme: modootoday/jekyll-theme-modootoday@main
 ```
 
-`bundle install` を実行し、後で最新のコミットに移るには `bundle update jekyll-theme-modootoday` を実行します。Gemfile の行を使うと、`bundle exec modootoday-check` も同じコミットのチェッカーを実行します。main ブランチはいつでも変わりうるので、サイトを公開する前にはリリースに固定し直してください。
+`bundle install` を実行し、後で最新のコミットに移るには `bundle update jekyll-theme-modootoday` を実行します。入っているバージョンと短いコミットは `bundle info jekyll-theme-modootoday` で確認でき、完全なコミットは `Gemfile.lock` の `GIT` の下の `revision:` 行にあります。Gemfile の行を使うと、`bundle exec modootoday-check` も同じコミットのチェッカーを実行します。main ブランチはいつでも変わりうるので、サイトを公開する前にはリリースに固定し直してください。

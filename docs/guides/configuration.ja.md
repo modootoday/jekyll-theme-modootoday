@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/configuration/
-source_rev: sha256:aed6bc9743a2
+source_rev: sha256:4382e6084b9b
 nav_order: 20
 title: 設定
 description: _config.yml の modootoday キーに書くサイト全体の設定をすべてまとめ、それぞれの既定値、変わる点、詳しく説明しているページを示します。
@@ -29,6 +29,8 @@ modootoday:
   nav: main
 ```
 
+説明が **1.7** で始まる行は、リリース 1.7 で追加されたキー、または既存のキーの新しい形(`edit_url: auto` など)です。古い gem に固定したサイトにはまだありません。**1.7** の印が付いたキーは `heading_anchors`、`og_image`、`feed`、`pwa`、`edit_url`、`feedback`、`build_link`、`banner`、`print` です。リリースごとの追加内容は[移行とアップグレード](../upgrade/#アップグレード)にあります。
+
 | キー | 既定値 | 役割 |
 |---|---|---|
 | `badges` | `true` | ステータスのコードスパンをバッジで表示する。`false` ならコードのまま。 |
@@ -51,12 +53,12 @@ modootoday:
 | `seo` | `true` | `false` で組み込みの canonical、`hreflang`、Open Graph タグを出さない。 |
 | `hreflang` | `seo` に従う | `true` なら `seo: false` でも `hreflang` リンクを残す。`jekyll-seo-tag` を使うサイト向け。 |
 | `schema` | `url` があれば有効 | schema.org の構造化データを出す。`false` で無効。[構造化データ](../structured-data/)を参照。 |
-| `languages` | なし | `[en, ko]` のようなサイトの言語コード。`hreflang` と言語メニューに使う。 |
+| `languages` | なし | `[en, ko]` のようなサイトの言語コード。`hreflang` と言語メニューに使う。`hreflang` リンクには `url:` も必要。 |
 | `full_languages` | なし | すべてのページを翻訳する言語(例: `[ko, ja]`)。`modootoday-check --i18n-pages` が足りない翻訳を警告する。 |
 | `lists` | なし | `{link_chips: true, titled_items: true}` で、リンクだけのリストをチップに、`**タイトル**:` の項目を見出し付きの項目にする。 |
 | `heading_anchors` | `false` | **1.7** `true` で、ドキュメントと投稿の `##`・`###` 見出しの末尾に、その見出し自身へのリンクを付ける。ポインターを重ねるかフォーカスすると表示され、タッチ画面では常に表示される。 |
 | `language_switcher` | なし | 言語メニューを `header`(地球儀ボタン)か `footer`(言語名の一覧)に表示する。 |
-| `og_image` | なし | **1.7** リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 |
+| `og_image` | なし | **1.7** (マップの形) リンクプレビューの既定の画像。パス、または画像の代替テキスト(`og:image:alt`)とサイズを加える `{path, alt, width, height}`。ページの `image:` が優先し、次に hero の画像かポスター。ページの `image.alt` か `image_alt` がその画像の代替テキスト。 |
 | `feed` | `false` | **1.7** `true` ですべてのページの head にサイトの Atom フィード(`/feed.xml`、またはフィードがある言語のページでは `/<lang>/feed.xml`)をリンクし、`category` も `tag` もないブログ一覧に購読リンクを加える。フィードのファイルは書かない。フィードは `layout: feed` の `feed.xml` ページがプラグインなしで書く([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)。そのページと `jekyll-feed` はどちらも `/feed.xml` を書くので、一方だけを使う。 |
 | `logo` | なし | `brand` でサイト名の前にテーマのマークを、パスを指定するとその画像を表示する。 |
 | `favicon` | なし | `brand` でテーマのマークを、パスを指定するとそのアイコンをサイトのアイコンにする。 |
@@ -78,15 +80,13 @@ modootoday:
 | `authors` | `true` | `false` で記事と記事カードの署名を隠す。著者のデータは `_data/authors.yml` に残す。 |
 | `news` | なし | トップページの `sections:` などのニュース設定。[ブログとニュース](../../layouts/blog-news/#設定)を参照。 |
 | `css` | `split` | `split` はページが使う CSS だけを、`bundle` はすべてを含むシート 1 つを読み込む。 |
-| `banner` | なし | **1.7** `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。`text` がないとき、`release: latest` はビルド時に `site.github` からリポジトリーの最新リリースを知らせ(「1.7.0 を公開しました。」と「新機能」リンク)、`release: {version, url}` は指定した値で同じバーを作る。 |
+| `banner` | なし | **1.7** `{text: "…", url: /path/, link: "詳しく"}` で、すべてのページにお知らせバーを表示する。`text` がないとき、`release: latest` はビルド時に `site.github` からリポジトリーの最新リリースを知らせ(「1.7.0 を公開しました。」と「新機能」リンク。タグの先頭の `v` は除く)、GitHub Pages の外では `latest_release` を持つ `github:` マップから読む(例は head と SEO にある)。`release: {version, url}` は指定した値で同じバーを作る。 |
 | `print` | `false` | **1.7** `true` で、印刷のときだけ読み込む印刷用スタイルシートを加える。ヘッダー、メニュー、バナー、更新のお知らせ、インストールのセクション、ページ下のリンクを除き、白地に黒で印刷し、タブのパネルをすべて印刷し、リンクの後にアドレスを付け、図・コード・表をページの境目で分けない。`details`、アコーディオン、FAQ の項目は、読者が先に開かなければ要約だけを印刷する。 |
 | `back_to_top` | `false` | `true` ですべてのページの末尾に「先頭へ戻る」リンクを追加する。 |
 | `loading` | `false` | `true` で、独自スクリプトのためにスピナーとスケルトンのスタイルを全ページで読み込む。 |
 | `showcase` | 無効 | `{enabled: true, style: bar, starter:, docs_url:, use_url:}`: スターターのデモのビルドに、テーマのドキュメントへ戻るバー(`style: pill` なら浮かぶピル)を表示する。デモ専用の設定ファイルに書く。[スターターのデモのショーケース](../../reference/showcase/)を参照。 |
 | `chart` | 無効 | `{enabled: true, src:, integrity:}`: 表の直前に `chart:<type>` だけの行を置くと、その表がグラフの figure になり、サイトの Chart.js(`src`)が描画する。[グラフ](../../recipes/figures/charts/)を参照。 |
 | `subscribe` | なし | `{action: https://…}`: `c: subscribe` のメールフォームが登録を送る先。 |
-
-説明が **1.7** で始まる行は、リリース 1.7 で追加されたキー、または既存のキーの新しい形(`edit_url: auto` など)です。古い gem に固定したサイトにはまだありません。リリースごとの追加内容は[移行とアップグレード](../upgrade/#アップグレード)にあります。
 
 `modootoday-check` はすべてのキーを検証します。安定した名前の一覧は[公開 API](../../reference/api/)にあります。
 
@@ -141,7 +141,7 @@ modootoday:
 
 ## head と SEO
 
-`url:` を設定すると、すべてのページに canonical リンクと Open Graph タグが付きます。プラグインは要りません。`languages:` を設定すると、複数の言語にあるページが `hreflang` で互いにリンクします。サイトマップは GitHub Pages が許可するプラグインを使う任意機能で、Atom フィードにはプラグインが要りません(上の `feed` キー)。
+`url:` を設定すると、すべてのページに canonical リンクと Open Graph タグが付きます。プラグインは要りません。`languages:` と `url:` を設定すると、複数の言語にあるページが `hreflang` で互いにリンクします。`hreflang` リンクには完全なアドレスが必要なので、`url:` がなければ作られません。`_config.yml` に `url` がなければ GitHub Pages が補います。それ以外のビルドでは設定してください。サイトマップは GitHub Pages が許可するプラグインを使う任意機能で、Atom フィードにはプラグインが要りません(上の `feed` キー)。
 
 ```yaml
 url: https://example.github.io
@@ -216,7 +216,7 @@ modootoday-check . _site --i18n           # unknown keys and placeholder mismatc
 
 `languages` にある言語のうち、サイトの `lang` 以外の言語にはすべて `/<lang>/` にホームページが必要です。言語メニュー(`language_switcher`)は、その言語の翻訳がないページから読者をそこへ送るので、ホームページがなければそうしたページのすべてでリンクが切れ、`modootoday-check --links` がそれを報告します。`index.md` の隣に `index.<lang>.md` を作り、front matter に `lang: <lang>` と `permalink: /<lang>/` を書いてください(フォルダーに置く場合は `<lang>/index.md`)。タイトルと、翻訳したページへのリンクが一行あれば足ります。
 
-パスが異なる翻訳ページどうしは、front matter に同じ `ref:` を書きます。たとえば `guides/start.md` と `ko/guides/sijak.md` の両方に `ref: guide` を書きます。すると `hreflang` リンクと言語スイッチャーがそのページを使います。`ref:` があって翻訳がないページは `hreflang` から外れ、言語スイッチャーはその言語のホームへ案内します。include とレイアウトでは、`modootoday/link.html` に `ref="guide"` を渡すと、現在の言語の `ref: guide` ページの URL を、なければ既定言語のページの URL を返します(代替しない場合は `exact=true`、完全な URL は `absolute=true`)。どのページにもない `ref=` は `modootoday-check` がエラーにします。`full_languages` を設定すると、`modootoday-check . _site --i18n-pages` がその言語の翻訳(同じ `ref:`、ページの隣の `<name>.<lang>.md`、または `<lang>/` 以下の同じパス)がない既定言語のページを警告として表示します。`--strict` と併用すると失敗します。投稿、レコードページ、レコードの一覧、`/404.html` のようにファイルの URL にあるページは、ページごとに翻訳しないので対象外です。同じオプションは各翻訳の `source_rev:` も読みます。これは翻訳のもとになった原文のリビジョンです(原文の `title`、`description`、`nav_title` と本文から作る `sha256:` と 16 進数 12 桁)。この値がない翻訳や、その後に原文が変わった翻訳は警告になり、警告には現在の値が表示されます。原文の隣に置いた翻訳の `permalink` が、原文の URL の前に `/<lang>` を付けた値と違う場合はエラーです。
+パスが異なる翻訳ページどうしは、front matter に同じ `ref:` を書きます。たとえば `guides/start.md` と `ko/guides/sijak.md` の両方に `ref: guide` を書きます。すると `hreflang` リンクと言語スイッチャーがそのページを使います。`ref:` があって翻訳がないページは `hreflang` から外れ、言語スイッチャーはその言語のホームへ案内します。include とレイアウトでは、`modootoday/link.html` に `ref="guide"` を渡すと、現在の言語の `ref: guide` ページの URL を、なければ既定言語のページの URL を返します(代替しない場合は `exact=true`、完全な URL は `absolute=true`)。どのページにもない `ref=` は `modootoday-check` がエラーにします。`full_languages` を設定すると、`modootoday-check . _site --i18n-pages` がその言語の翻訳(同じ `ref:`、ページの隣の `<name>.<lang>.md`、または `<lang>/` 以下の同じパス)がない既定言語のページを警告として表示します。`--strict` と併用すると失敗します。投稿、レコードページ、レコードの一覧、`/404.html` のようにファイルの URL にあるページは、ページごとに翻訳しないので対象外です。同じオプションは各翻訳の `source_rev:` も読みます。これは翻訳のもとになった原文のリビジョンです(原文の `title`、`description`、`nav_title` と本文から作る `sha256:` と 16 進数 12 桁)。この値がない翻訳や、その後に原文が変わった翻訳は警告になり、警告には現在の値が表示されます。`modootoday-stubs --pwa` が言語ごとに書くオフラインページには翻訳する内容がないので、`source_rev` は要りません。原文の隣に置いた翻訳の `permalink` が、原文の URL の前に `/<lang>` を付けた値と違う場合はエラーです。
 
 テーマではなくサイト側で決める文言もあります。`tabs.label` はタブを使うページでタブ一覧に付ける名前です(例: `tabs: {label: インストール方法}`)。スクリーンリーダーが何を切り替えるタブかを読み上げるので、言語ごとのカタログに入れてください。
 

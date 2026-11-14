@@ -37,7 +37,7 @@ With `modootoday.pwa` on, an open app shows a short notice when a deploy changes
 
 ## A release banner
 
-`modootoday.banner: {release: latest}` puts "1.7.0 is out." and a What's new link to the release on every page, read from `site.github` when the site is built; prereleases are left out. The field is `site.github.latest_release` (its `tag_name` and `html_url`). When the build has no latest release, because the repository has published none yet or the build has no GitHub metadata, no banner is shown, and `modootoday-check` warns that the built home page has no release banner. It changes only when the site is rebuilt, so pair it with a rebuild on each release (below). Outside GitHub Pages, give `release: {version, url}` instead.
+`modootoday.banner: {release: latest}` puts "1.7.0 is out." and a What's new link to the release on every page, read from `site.github` when the site is built; prereleases are left out. The field is `site.github.latest_release` (its `tag_name` and `html_url`); a leading `v` of the tag is dropped, so `v1.7.0` also shows as 1.7.0. When the build has no latest release, because the repository has published none yet or the build has no GitHub metadata, no banner is shown, and `modootoday-check` warns that the built home page has no release banner. It changes only when the site is rebuilt, so pair it with a rebuild on each release (below). Outside GitHub Pages, either set a `github:` map with `latest_release` in `_config.yml`, which stands in for `site.github` (see [the example in Head and SEO](../../guides/configuration/#head-and-seo)), or give `release: {version, url}` instead.
 
 ## Why there is no push
 
