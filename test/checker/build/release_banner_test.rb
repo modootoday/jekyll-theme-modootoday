@@ -22,7 +22,16 @@ class CheckReleaseBannerTest < CheckerCase
     o, code = check
     assert_equal 0, code, o
     assert_includes o, WARNING
-    assert_includes o, "publish a release and rebuild, or give release: {version, url}"
+    assert_includes o, "set github: {latest_release: {tag_name, html_url}} in _config.yml as a stand-in, or give release: {version, url}"
+  end
+
+  def test_the_site_github_warning_names_latest_release_for_the_banner
+    stand_in = "set a github: map (latest_release: {tag_name, html_url}); without it no banner is shown"
+    out "index.html", "#{HEAD}#{BANNER}</body></html>"
+    config "{release: latest}"
+    assert_includes check[0], stand_in, "a github: map without latest_release makes no banner"
+    write File.join(@src, "_config.yml"), "github: {latest_release: {tag_name: v1.7.0}}\nmodootoday:\n  banner: {release: latest}\n"
+    refute_includes check[0], "reads site.github"
   end
 
   def test_latest_with_the_banner_built_is_quiet

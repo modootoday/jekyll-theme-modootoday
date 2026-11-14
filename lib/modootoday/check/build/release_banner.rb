@@ -19,7 +19,8 @@ module Modootoday
         return if html.match?(SHOWN) || !html.include?("/assets/css/modootoday.css")
         ctx.warns << "_config.yml: modootoday.banner.release: latest, but the build has no release banner: " \
                      "site.github.latest_release was empty (no published release, only prereleases, or no GitHub metadata in the build); " \
-                     "publish a release and rebuild, or give release: {version, url}"
+                     "publish a release and rebuild, set github: {latest_release: {tag_name, html_url}} in _config.yml as a stand-in, " \
+                     "or give release: {version, url}"
       end
     end
   end

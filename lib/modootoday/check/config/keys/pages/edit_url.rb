@@ -6,13 +6,16 @@ module Modootoday
       EDIT_URL = %r{\Ahttps?://\S+/\z}
       # auto, build_link, feedback.issues: auto and banner.release: latest read site.github, which GitHub Pages (or the jekyll-github-metadata
       # plugin) provides; a github: map in _config.yml stands in for it elsewhere. Without either the link is left out.
+      # The banner needs the map's latest_release, the links its other keys.
       GITHUB_SOURCE = lambda do |ctx, path, v|
         next unless v == "auto" || v == true || v == "latest"
         cfg = ctx.site_cfg
-        next if ctx.option?("--github-pages") || cfg["github"].is_a?(Hash) || Array(cfg["plugins"]).include?("jekyll-github-metadata")
+        gh = cfg["github"]
+        map = gh.is_a?(Hash) && (v != "latest" || gh["latest_release"].is_a?(Hash))
+        next if ctx.option?("--github-pages") || map || Array(cfg["plugins"]).include?("jekyll-github-metadata")
+        keys, lost = v == "latest" ? ["latest_release: {tag_name, html_url}", "no banner is shown"] : ["repository_url, source: {branch, path}, build_revision", "the link is left out"]
         ctx.warns << "_config.yml: #{path}: #{v.inspect} reads site.github, which this build may not have: build on GitHub Pages, " \
-                     "add the jekyll-github-metadata plugin, or set a github: map (repository_url, source: {branch, path}, " \
-                     "build_revision); without it the link is left out"
+                     "add the jekyll-github-metadata plugin, or set a github: map (#{keys}); without it #{lost}"
       end
       edit_url = lambda do |ctx, path, v|
         next ctx.errs << "_config.yml: #{path} must be auto or an http(s) URL ending in / (page.path is appended)" unless v == "auto" || v.to_s.match?(EDIT_URL)
