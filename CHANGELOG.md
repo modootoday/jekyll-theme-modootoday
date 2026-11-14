@@ -10,9 +10,19 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Modootoday-check warns when banner release: latest is set and the built site has no release banner (no release data in the build) (audit:modootoday/20261113044135)
 
+### Changed
+
+- List components A-Z by English title inside each purpose group, in every language (adr:modootoday/20261114090712)
+- The docs say how to try the main branch, which keys 1.7 added, how hreflang needs url:, and how to see the update notice locally (audit:modootoday/20261114090416)
+
 ### Fixed
 
 - Modootoday-check --links fails with an error that says to add gem "nokogiri" when nokogiri is missing, instead of warning and passing (audit:modootoday/20261113044135, adr:modootoday/20261111231457)
+- Modootoday-check --i18n-pages no longer asks for source_rev on the offline pages that modootoday-stubs --pwa writes (audit:modootoday/20261114090416)
+- Modootoday-check names github: {latest_release: {tag_name, html_url}} as the stand-in for banner: {release: latest}, and warns when a github: map lacks it (audit:modootoday/20261114090416)
+- The modootoday-check --links error without nokogiri says gem install nokogiri only for a checker run without Bundler (audit:modootoday/20261114090416)
+- Modootoday-check no longer reads the SITE folder or other underscore folders such as _site_ko as source pages (audit:modootoday/20261114090416)
+- The release banner drops a leading v of the tag, so v1.2.0 reads 1.2.0 is out. (adr:modootoday/20261112112607, audit:modootoday/20261114090416)
 
 ## [1.7.0] - 2026-11-13
 
