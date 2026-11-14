@@ -3,7 +3,7 @@ id: adr:modootoday/20261114115001
 title: "Docs links name the Markdown file, so they open on GitHub and jekyll-relative-links turns them into URLs on both builders"
 status: active
 created: 2026-11-14T11:50:01Z
-updated: 2026-11-14T12:11:18Z
+updated: 2026-11-14T22:49:34Z
 rel:
   governs: [docs]
   depends_on: [adr:modootoday/20261103071902]
@@ -31,11 +31,12 @@ The plugin also rewrites links inside fenced code. It already did that on the cl
 - `docs/_config.yml` names `jekyll-relative-links` in `plugins` and sets `relative_links: {collections: true}`. `gemfiles/jekyll4.gemfile` adds `jekyll-relative-links` 0.6.1 and `jekyll-sitemap` 1.4.0, the github-pages 232 versions, outside the `jekyll_plugins` group, so only a site that names them (the docs site) loads them and the docs site builds on that stack.
 - `script/docs-index` writes the section index lists and the Markdown rules page with file links.
 - The docs rule "R8 relative links name a file" (`test/system/docs/rules/links.rb`) blocks: a relative link in any docs Markdown file (pages, translations, sample posts; not `generated/`, not error pages) must name a file inside `docs/`, must not be root-absolute, and must not carry a title on its line. An error page keeps root-absolute links, as before.
+- The twin and llms-full layouts point each relative link that names a source file at its target's site URL (`_includes/modootoday/links/markdown.html`, called by `markdown/raw-body.html` when it is given the source page): the twin when the target page has one, else the page, post or static file, absolute when `url:` is set and root-relative otherwise, with the fragment kept. Code spans, fenced code, URL links and links that name no source file stay as written; every other byte stays the same. It is Liquid only, so it runs on classic GitHub Pages with `remote_theme` and on Jekyll 4, with or without jekyll-relative-links. Site URLs and not paths relative to the twin, because the same body is served at several URLs (the twin, a flat alias, `llms-full.txt`). `modootoday-check --twins` compares twins and llms-full with link targets masked and fails a rewritten link that reaches no file in the build.
 - Fragments stay as they are. GitHub's heading slugs and the kramdown GFM ids agree on every fragment the docs link to (217, Korean and Japanese headings included). They differ only for headings that contain a link, such as the Changelog's release headings, which no page links to.
 
 ## Consequences
 
 - 1,311 links in 217 files changed: 1,300 in place, 9 titled links on the Blog and news pages became reference definitions, and 2 links in the Korean and Japanese sample blog pages now reach the Blog and news page of their own language instead of the English one. 8 links already named the right file. The three root-absolute links of the 404 page stay.
 - The built HTML of both stacks reaches the same targets as before, except those 2 links. On the site the plugin writes root-relative URLs with the base URL (`/jekyll-theme-modootoday/guides/upgrade/`) where the source had a relative URL; the targets are the same.
-- The Markdown twins and `llms-full.txt` copy the source byte for byte, so their links now name source files (`upgrade.md`). A twin is served at `/<name>/index.md`, not at its source path, so such a link no longer reaches a page from the twin's URL; before, the URL-style links did. An agent reading a twin gets the GitHub paths instead. Rewriting links in twins would be a theme change and is left open.
+- The Markdown twins and `llms-full.txt` copied the source byte for byte, so their file links (`upgrade.md`) reached nothing from the URL a twin is served at (`/<name>/index.md`). The link rewrite above closes that: twins and llms-full now differ from the source only in those targets. Measured on the docs site, the same on github-pages 232 and Jekyll 4.4: in the 188 twins, 98 of 1,223 same-site links resolved before and 1,217 of 1,223 after; in the 23 llms-full files, 104 of 1,225 before and 1,219 of 1,225 after. The 6 left in each are the agents pages' links to `generated/llms.txt` and `generated/llms-full.txt`, stubs whose `path:` names another place, so no page has the linked path. No HTML page changed, and the docs build took about 10 % longer. A source-mode raw copy is the source file itself and keeps its links.
 - TRANSLATING.md asks for file links. A link that names a folder or a site URL fails the docs rules before a push.

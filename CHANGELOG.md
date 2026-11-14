@@ -9,6 +9,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 ### Added
 
 - Modootoday-check warns when banner release: latest is set and the built site has no release banner (no release data in the build) (audit:modootoday/20261113044135)
+- Markdown twins and llms-full.txt point links that name a source file (upgrade.md#x, ../b.ko.md, images) at their targets' site URLs, so they resolve from the twin's URL; modootoday-check --twins fails a rewritten link that reaches no file (adr:modootoday/20261114115001)
 
 ### Changed
 
