@@ -6,6 +6,7 @@ require "fileutils"
 require "open3"
 require "rbconfig"
 require_relative "../../../lib/modootoday/i18n"
+require_relative "../../../lib/modootoday/stubs/pwa"
 
 class I18nPagesTest < Minitest::Test
   CHECK = File.expand_path("../../../exe/modootoday-check", __dir__)
@@ -85,6 +86,15 @@ class I18nPagesTest < Minitest::Test
     assert_includes out, "guides/b.ko.md: permalink /ko/guides/b/ must be /ko/bee/, the URL of guides/b.md under /ko"
     refute_match(/index\.(ko\.)?md:/, out)
     refute_match(/404\.md|r\.md|rs\.md|_posts/, out, "posts, records and file URLs are not translated page by page")
+  end
+
+  def test_offline_pages_from_the_stub_writer_need_no_source_rev
+    sibling_site
+    put("src/offline.md", Modootoday::Stubs::Pwa.offline)
+    put("src/offline.ko.md", Modootoday::Stubs::Pwa.offline("ko"))
+    out, = run_check("--i18n-pages")
+    assert_includes out, "guides/a.ko.md: stale"
+    refute_match(/offline/, out)
   end
 
   def test_source_rev_ignores_line_endings_index_lists_and_other_front_matter

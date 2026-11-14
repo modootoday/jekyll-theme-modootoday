@@ -8,13 +8,16 @@ module Modootoday
     # no translation in a modootoday.full_languages language, a translation with no source_rev or a stale one.
     # Error: a sibling translation (x.ko.md) whose permalink is not its source's URL under /<lang>.
     module I18nPages
+      # Pages modootoday-stubs writes for each language: nothing to translate, so no source_rev to keep.
+      GENERATED = %w[twin pages/offline].freeze
+
       module_function
 
       def call(ctx)
         idx = I18n.page_index(ctx)
         missing(ctx, idx)
         idx.each do |r, fm, l|
-          next if l == ctx.default_lang || fm["layout"] == "twin"
+          next if l == ctx.default_lang || GENERATED.include?(fm["layout"])
           src = source_of(ctx, idx, r, fm)
           translation(ctx, r, fm, l, src) if src
         end
