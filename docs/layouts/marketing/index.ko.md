@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/
-source_rev: sha256:bfd133775930
+source_rev: sha256:bb4bc2e5e041
 nav_order: 40
 title: 마케팅 페이지
 description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지를 공유 선택 스타일시트 하나로 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
@@ -12,12 +12,12 @@ description: 기능, 요금, 다운로드, 브랜드, 링크, 문의 페이지�
 
 | 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`, `cta` | WebPage | [기능](feature/) |
-| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [요금](pricing/) |
-| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](download/) |
-| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](brand/) |
-| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](links/) |
-| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [문의](contact/) |
+| `feature` | `features: [{title, text}]`, `cta` | WebPage | [기능](feature.ko.md) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [요금](pricing.ko.md) |
+| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [다운로드](download.ko.md) |
+| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [브랜드](brand.ko.md) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [링크](links.ko.md) |
+| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [문의](contact.ko.md) |
 
 제품 정보를 구조화 데이터로 내보내려면 `schema:` 맵(예: `type: SoftwareApplication`과 `offers`)을 추가하세요. 주요 개체로 출력됩니다.
 

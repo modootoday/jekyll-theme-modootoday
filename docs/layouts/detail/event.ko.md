@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/event/
-source_rev: sha256:4955a3bad893
+source_rev: sha256:6f2de7d9e28d
 nav_order: 4
 image: {path: /assets/images/events/stage.webp, alt: "객석을 마주한 조명 아래의 빈 무대", width: 800, height: 600}
 title: 행사 데모
@@ -21,7 +21,7 @@ twin: false
 
 **참가비:** 무료입니다. 티켓 받기 버튼으로 신청하세요.
 
-이 페이지의 front matter입니다. [상세 페이지](../) 안내에서 설명합니다.
+이 페이지의 front matter입니다. [상세 페이지](index.ko.md) 안내에서 설명합니다.
 
 ```yaml
 layout: event

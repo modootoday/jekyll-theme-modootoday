@@ -54,7 +54,7 @@ sections:
 ---
 # Kitchen sink
 
-Every component the theme ships, in every variant. The same file is readable on github.com, which shows the fallback. The components follow the order of the [Components](../) page: by purpose, then A-Z. That page says what each one does and how to write it; this one only shows them.
+Every component the theme ships, in every variant. The same file is readable on github.com, which shows the fallback. The components follow the order of the [Components](index.md) page: by purpose, then A-Z. That page says what each one does and how to write it; this one only shows them.
 
 - Plain Markdown
 - Reads on github.com
@@ -94,9 +94,9 @@ Open search with `kbd:Ctrl+K`, or `kbd:/` on its own. Copy with `kbd:Cmd+C`.
 
 Two list styles: link chips and titled items.
 
-- [Install](../../guides/install/)
-- [Configuration](../../guides/configuration/)
-- [Accessibility](../../guides/accessibility/)
+- [Install](../guides/install.md)
+- [Configuration](../guides/configuration.md)
+- [Accessibility](../guides/accessibility.md)
 
 Items with a title:
 
@@ -121,7 +121,7 @@ Translation `progress:60`
 
 ## Typography
 
-Paragraph text with **bold**, *italic*, ~~strikethrough~~, `code` and a link to the [components index](../). Footnotes work too.[^1]
+Paragraph text with **bold**, *italic*, ~~strikethrough~~, `code` and a link to the [components index](index.md). Footnotes work too.[^1]
 
 ### Heading level 3
 
@@ -168,7 +168,7 @@ Blocks that stand on their own between paragraphs.
 > An alert with more content:
 >
 > - a list item with `inline code`
-> - a second item with a link to the [components index](../)
+> - a second item with a link to the [components index](index.md)
 >
 > ```sh
 > echo "code inside an alert"
@@ -235,7 +235,7 @@ A lazy-loaded embed.
 
 ## Figure
 
-![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
+![A Markdown source on the left becomes a styled page on the right](../assets/images/sample.svg)
 
 *An image-only paragraph followed by an emphasis-only paragraph becomes a figure with a caption.*
 
@@ -252,12 +252,12 @@ flowchart LR
 
 Three thumbnails.
 
-- ![A sunlit room with a plant and an armchair](../../assets/images/gallery/room.webp)
-- ![Pink sand dunes under a low sun](../../assets/images/gallery/dunes.webp)
-- ![Tropical leaves around a still pond](../../assets/images/gallery/leaves.webp)
-- ![A wooden pier on a mountain lake](../../assets/images/news/travel-sm.webp)
-- ![Wind turbines and solar panels on green hills](../../assets/images/news/energy-sm.webp)
-- ![Fanned swatches in cream, violet and coral](../../assets/images/projects/brand.webp)
+- ![A sunlit room with a plant and an armchair](../assets/images/gallery/room.webp)
+- ![Pink sand dunes under a low sun](../assets/images/gallery/dunes.webp)
+- ![Tropical leaves around a still pond](../assets/images/gallery/leaves.webp)
+- ![A wooden pier on a mountain lake](../assets/images/news/travel-sm.webp)
+- ![Wind turbines and solar panels on green hills](../assets/images/news/energy-sm.webp)
+- ![Fanned swatches in cream, violet and coral](../assets/images/projects/brand.webp)
 
 ## Widget
 
@@ -450,14 +450,14 @@ Bands that build a landing page from `sections:` items and the hero.
 
 ## Buttons
 
-[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[Get started](../guides/install.md) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## Cards in 2 columns
 
 - **Short** — One line.
 - **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
 - **With a badge** — Cards can carry status. `status:available`
-- **With a link** — Read the [install guide](../../guides/install/).
+- **With a link** — Read the [install guide](../guides/install.md).
 
 ## Cards in 3 columns
 
@@ -487,8 +487,8 @@ Keep these docs on your home screen and read them offline.
 
 Two link cards.
 
-- [Install](../../guides/install/) — Add the theme to a site.
-- [Configuration](../../guides/configuration/) — Every setting in one place.
+- [Install](../guides/install.md) — Add the theme to a site.
+- [Configuration](../guides/configuration.md) — Every setting in one place.
 
 ## Pricing
 

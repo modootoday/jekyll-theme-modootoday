@@ -56,8 +56,8 @@ One sentence that explains the page.
 | top-level GitHub alerts | kramdown attributes and `{#id}` |
 | `<https://…>` autolinks | bare URLs |
 
-Tables need no attribute: below 40rem a table that does not fit stacks into labelled blocks by itself. The full list is on the [Markdown rules](../../reference/rules/) page, generated from RULES.md.
+Tables need no attribute: below 40rem a table that does not fit stacks into labelled blocks by itself. The full list is on the [Markdown rules](../reference/rules.md) page, generated from RULES.md.
 
 ## What to read next
 
-[Explore components](../../components/) [Back to install](../install/)
+[Explore components](../components/index.md) [Back to install](install.md)

@@ -5,7 +5,7 @@ description: Render Mermaid diagrams and KaTeX math in the browser with the buil
 ---
 # Diagram and math loaders
 
-These options draw diagrams and math in the reader's browser. [Math and diagrams](../math-diagrams/) compares them with static figures, which need no script.
+These options draw diagrams and math in the reader's browser. [Math and diagrams](math-diagrams.md) compares them with static figures, which need no script.
 
 ## Built-in loaders
 
@@ -44,7 +44,7 @@ Use a ```` ```math ```` fence or a `$$` block on its own lines; both are the sta
 
 A CDN changes your Content Security Policy and your visitors' privacy:
 
-- **CSP.** Add the CDN origin to `script-src` (both), to `style-src` (KaTeX's stylesheet) and to `font-src` (KaTeX's fonts). Mermaid also writes `<style>` into each diagram, so it needs `style-src 'unsafe-inline'` wherever you host it. A self-hosted copy keeps `'self'` for scripts, styles and fonts. See [Content Security Policy](../../csp/).
+- **CSP.** Add the CDN origin to `script-src` (both), to `style-src` (KaTeX's stylesheet) and to `font-src` (KaTeX's fonts). Mermaid also writes `<style>` into each diagram, so it needs `style-src 'unsafe-inline'` wherever you host it. A self-hosted copy keeps `'self'` for scripts, styles and fonts. See [Content Security Policy](../csp.md).
 - **Privacy.** Each visitor's browser requests the files from the CDN, so the CDN receives the visitor's IP address, the page address (as referrer) and the time. Self-hosting avoids this; mention the CDN in your privacy notice if you use one.
 - **Availability.** With a CDN, the blocks render only while that CDN is reachable; the source code block remains otherwise.
 
@@ -73,7 +73,7 @@ Add `math: true` to the page's front matter. The script is a file, so `script-sr
 
 ### Mermaid in the browser
 
-Mermaid writes `<style>` elements into each SVG, so a strict `style-src 'self'` blocks its styling. Either use [static diagrams](../math-diagrams/#static-diagrams), or allow inline styles for that page only and keep scripts strict:
+Mermaid writes `<style>` elements into each SVG, so a strict `style-src 'self'` blocks its styling. Either use [static diagrams](math-diagrams.md#static-diagrams), or allow inline styles for that page only and keep scripts strict:
 
 ```html
 <script defer src="/your-base/assets/mermaid/mermaid.min.js"></script>

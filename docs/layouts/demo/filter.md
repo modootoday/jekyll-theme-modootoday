@@ -11,7 +11,7 @@ sections: [{name: tools, filter: true}, {name: plans, filter: {facet: 3}}, setup
 
 Type in the field above the list or the table: only the items that contain every word you type stay. Case, accents written two ways and Korean spacing do not matter. Without JavaScript every item stays visible.
 
-[Search recipe](../../../recipes/search/)
+[Search recipe](../../recipes/search.md)
 
 ## Tools
 

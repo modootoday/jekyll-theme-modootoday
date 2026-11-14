@@ -22,13 +22,13 @@ Each demo below is a real page built with one layout, outside the docs. Open it 
 
 | Demo | Layout | New window |
 | --- | --- | --- |
-| [Blog index](blog/) | `blog` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
-| [Blog post](post/) | `post` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
-| [News front page](news/) | `news` | [Open in new window](news/ "new-window") |
-| [News article](article/) | `news-article` | [Open in new window](article/ "new-window") |
-| [Yearly archive](archive/) | `archive` | [Open in new window](archive/ "new-window") |
+| [Blog index](blog.md) | `blog` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
+| [Blog post](post.md) | `post` | [Live demo](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
+| [News front page](news.md) | `news` | [Open in new window][news-demo] |
+| [News article](article.md) | `news-article` | [Open in new window][article-demo] |
+| [Yearly archive](archive.md) | `archive` | [Open in new window][archive-demo] |
 
-The Atom feed for English posts is at [feed.xml](../../feed.xml); [Korean](../../ko/feed.xml) and [Japanese](../../ja/feed.xml) have their own.
+The Atom feed for English posts is at [feed.xml](../../feed.xml); [Korean](../../feed.ko.xml) and [Japanese](../../feed.ja.xml) have their own.
 
 ## Blog index
 
@@ -41,7 +41,7 @@ category: guides   # optional filter; tag: works too
 ---
 ```
 
-See it rendered on the [sample blog](../../blog/), which lists the posts on this site.
+See it rendered on the [sample blog](../../blog/index.md), which lists the posts on this site.
 
 
 With `jekyll-paginate` on and `paginate:` set, the root `index.html` blog page shows pager links. Otherwise the page shows `per_page` posts and a link to `archive_url`.
@@ -79,7 +79,7 @@ news_sections: [releases, guides]
 ---
 ```
 
-An article uses `layout: news-article` and adds `deck:`, `breaking: true` or `live: true`, `correction:`, `sources: [...]` and `credits:`. It emits `NewsArticle` JSON-LD. See the [sample front page](../../news/) and the [sample article](../../releases/2026/10/29/blog-news-layouts/).
+An article uses `layout: news-article` and adds `deck:`, `breaking: true` or `live: true`, `correction:`, `sources: [...]` and `credits:`. It emits `NewsArticle` JSON-LD. See the [sample front page](../../news/index.md) and the [sample article](../../_posts/2026-10-29-blog-news-layouts.md).
 
 ## Authors and feeds
 
@@ -100,7 +100,7 @@ layout: feed
 
 `modootoday.feed: true` links that feed in the head of every page (the language's own feed when it has one) and does not write a feed itself. Do not add `jekyll-feed` as well: it writes `/feed.xml` too.
 
-A changelog can be a feed too, one entry per release: [Changelog](../docs-extra/#changelog) in Docs extras shows the two files, `feed_source:` and `releases_feed:`.
+A changelog can be a feed too, one entry per release: [Changelog](../docs-extra/index.md#changelog) in Docs extras shows the two files, `feed_source:` and `releases_feed:`.
 
 A blog index without `category` or `tag` links its language feed in the head and with a Subscribe link under its intro when `modootoday.feed` is `true`. Any blog, author or archive page, and any changelog or other Docs extras page, names its own feed with `feed:`: a site path to a `layout: feed` page, or `false` for none. Those layouts show it as a Subscribe link; on any other page, such as a download page, `feed:` adds only the head link. For one author's posts, add a page such as `/authors/kim.xml` with `layout: feed` and `author: kim`, and set `feed: /authors/kim.xml` on the author page. `modootoday-check` reports a `feed:` whose page is not in the build.
 
@@ -139,3 +139,10 @@ modootoday:
 | `feed_lang`, `limit`, `feed_content` | feed | Feed scope |
 | `feed_source`, `home` | feed | A changelog as the feed: `data` or a `layout: changelog` page URL, and where entries link |
 | `releases_feed` | changelog, download, any page | `true` (from `site.github`) or a URL: GitHub's `releases.atom` in the head, and under the title on changelog and the other Docs extras |
+
+[news-demo]: news.md
+  "new-window"
+[article-demo]: article.md
+  "new-window"
+[archive-demo]: archive.md
+  "new-window"

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/events/
-source_rev: sha256:af6c5d0a0d18
+source_rev: sha256:080b79474981
 nav_order: 4
 title: "행사 데모"
 layout: events
@@ -18,4 +18,4 @@ twin: false
 
 이 페이지는 `layout: events`를 씁니다. 각 행사는 .ics 파일을 제공하고 schema.org Event가 됩니다.
 
-[디렉터리 레이아웃으로 돌아가기](../)
+[디렉터리 레이아웃으로 돌아가기](index.ko.md)

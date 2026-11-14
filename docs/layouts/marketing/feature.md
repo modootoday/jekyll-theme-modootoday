@@ -15,4 +15,4 @@ cta: {label: Get started, url: /guides/first-page/}
 ---
 Every feature works without JavaScript.
 
-![Three phones showing chart dashboards](../../../assets/images/projects/app.webp)
+![Three phones showing chart dashboards](../../assets/images/projects/app.webp)

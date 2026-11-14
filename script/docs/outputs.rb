@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "pathname"
 require_relative "../../lib/modootoday/stubs"
 require_relative "translations"
 require_relative "moves"
@@ -88,11 +89,8 @@ module DocsIndex
       end
     end
 
-    # Relative link from a section index to a page (Markdown links stay relative, as on GitHub).
-    def rel(from, to)
-      return to.url.delete_prefix(from.url) if to.url.start_with?(from.url)
-      ("../" * (from.url.count("/") - 1)) + to.url.delete_prefix("/")
-    end
+    # Link from a section index to a page's file, which opens on GitHub and becomes its URL on the site.
+    def rel(from, to) = Pathname.new(to.rel).relative_path_from(Pathname.new(File.dirname(from.rel))).to_s
 
     # Twin stubs come from the same code as the modootoday-stubs command.
     def twins = stub_twins.wanted.transform_keys { |r| "#{@t.root}/#{r}" }

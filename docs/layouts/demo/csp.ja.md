@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/csp/
-source_rev: sha256:048d7062e0e6
+source_rev: sha256:a22b0fa5ed5d
 nav_exclude: true
 title: 厳格な CSP のデモ
 twin: false
@@ -22,12 +22,12 @@ sections:
 ---
 # 厳格な CSP のデモ
 
-このページには、コアコンポーネント、コード、表、図があります。ドキュメントの QA はこのページを厳格な `Content-Security-Policy` ヘッダー付きで返し、違反が 1 件でもあれば失敗します。[Content Security Policy](../../../recipes/csp/) を参照してください。
+このページには、コアコンポーネント、コード、表、図があります。ドキュメントの QA はこのページを厳格な `Content-Security-Policy` ヘッダー付きで返し、違反が 1 件でもあれば失敗します。[Content Security Policy](../../recipes/csp.ja.md) を参照してください。
 
 - 素の Markdown
 - インラインのスクリプトとスタイルなし
 
-[CSP のレシピを読む](../../../recipes/csp/) [パフォーマンス](../../../guides/performance/)
+[CSP のレシピを読む](../../recipes/csp.ja.md) [パフォーマンス](../../guides/performance.ja.md)
 
 ## アラート
 
@@ -35,7 +35,7 @@ sections:
 > アラートはクラス付きの引用で、インラインの要素はありません。
 
 > [!WARNING]
-> アラートには `inline code` や[レイアウトのデモ](../)へのリンクを入れられます。
+> アラートには `inline code` や[レイアウトのデモ](index.ja.md)へのリンクを入れられます。
 
 ## タブ
 
@@ -75,7 +75,7 @@ gem install jekyll-theme-modootoday
 
 ## 図
 
-![左の Markdown のソースが、右ではスタイルの付いたページになります](../../../../assets/images/sample.svg)
+![左の Markdown のソースが、右ではスタイルの付いたページになります](../../assets/images/sample.svg)
 
 *SVG の図は、インラインスタイルなしでフォーカスできる領域の中でスクロールします。*
 

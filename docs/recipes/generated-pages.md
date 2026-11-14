@@ -87,7 +87,7 @@ filter_text: true
 ---
 ```
 
-`layout: integrations` adds a button per `category`; `filter_text: true` adds a text filter. See [Directory layouts](../../layouts/directory/).
+`layout: integrations` adds a button per `category`; `filter_text: true` adds a text filter. See [Directory layouts](../layouts/directory/index.md).
 
 ## Check the site
 

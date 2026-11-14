@@ -9,12 +9,12 @@ A directory page is your text followed by a list of cards. The cards come from `
 
 | Layout | Cards show | Filter by | Structured data | Demo |
 |---|---|---|---|---|
-| `portfolio` | image, title, text, tags | `tags` | ItemList | [Portfolio](portfolio/) |
-| `team` | round photo, name, role | `group` | ItemList of Person | [Team](team/) |
-| `jobs` | title, location, type | `department` | ItemList | [Jobs](jobs/) |
-| `events` | date tile, title, place, calendar file | none | ItemList of Event | [Events](events/) |
-| `sponsors` | logo, name, tier | `tier` | ItemList | [Sponsors](sponsors/) |
-| `integrations` | logo, name, category, text | `category` | ItemList | [Integrations](integrations/) |
+| `portfolio` | image, title, text, tags | `tags` | ItemList | [Portfolio](portfolio.md) |
+| `team` | round photo, name, role | `group` | ItemList of Person | [Team](team.md) |
+| `jobs` | title, location, type | `department` | ItemList | [Jobs](jobs.md) |
+| `events` | date tile, title, place, calendar file | none | ItemList of Event | [Events](events.md) |
+| `sponsors` | logo, name, tier | `tier` | ItemList | [Sponsors](sponsors.md) |
+| `integrations` | logo, name, category, text | `category` | ItemList | [Integrations](integrations.md) |
 
 `layout: directory` is the plain version: set `preset:` to one of the names above, or leave it out for simple cards.
 
@@ -51,7 +51,7 @@ Each item needs `title` or `name`. All items take `url`, `text`, `image`, `alt`,
 - `integrations`: `category`
 - `portfolio`: `tags` (a list)
 
-To share a list between pages, put it in `_data/team.yml` and write `data: team` instead of `items:`. To give each item its own page as well, declare a record set and write `records: <set>`: every card then links to its record page (see [Generated pages](../../recipes/generated-pages/)).
+To share a list between pages, put it in `_data/team.yml` and write `data: team` instead of `items:`. To give each item its own page as well, declare a record set and write `records: <set>`: every card then links to its record page (see [Generated pages](../../recipes/generated-pages.md)).
 
 ## Filter
 

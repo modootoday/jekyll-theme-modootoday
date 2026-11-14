@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/cli/
-source_rev: sha256:08994607d983
+source_rev: sha256:260de5ad59fa
 nav_order: 20
 title: コマンドライン
 description: チェッカー modootoday-check とスタブ作成の modootoday-stubs のすべてのオプションと、各終了コードの意味をまとめます。
@@ -9,9 +9,9 @@ description: チェッカー modootoday-check とスタブ作成の modootoday-s
 # コマンドライン
 
 > [!NOTE]
-> このページは[英語の原文](../../../reference/cli/)の翻訳です。内容が異なる場合は英語版が優先されます。オプションの表はコマンドのヘルプから作られるため、英語のまま表示します。
+> このページは[英語の原文](cli.md)の翻訳です。内容が異なる場合は英語版が優先されます。オプションの表はコマンドのヘルプから作られるため、英語のまま表示します。
 
-テーマの gem には 2 つのコマンドが入っています。`modootoday-check` はソースとビルドしたサイトを読み、github.com で同じように表示されないものやルール違反を報告します。`jekyll build` の後に実行します。読むページは Jekyll が読むページと同じです。SITE のフォルダーと、`_site_ko` の別のビルドのように名前が `_` で始まるフォルダーは読みません。ただし `_posts`、`_drafts`、コレクション、`include:` に書いたフォルダーは読みます。`modootoday-stubs` は、従来の GitHub Pages が Markdown 版、URL エイリアス、レコードのページに必要とするスタブページを書きます。ビルドの前に実行します。gem がある場合とない場合の実行方法は[インストール > ビルドを確認する](../../guides/install/)にあります。
+テーマの gem には 2 つのコマンドが入っています。`modootoday-check` はソースとビルドしたサイトを読み、github.com で同じように表示されないものやルール違反を報告します。`jekyll build` の後に実行します。読むページは Jekyll が読むページと同じです。SITE のフォルダーと、`_site_ko` の別のビルドのように名前が `_` で始まるフォルダーは読みません。ただし `_posts`、`_drafts`、コレクション、`include:` に書いたフォルダーは読みます。`modootoday-stubs` は、従来の GitHub Pages が Markdown 版、URL エイリアス、レコードのページに必要とするスタブページを書きます。ビルドの前に実行します。gem がある場合とない場合の実行方法は[インストール > ビルドを確認する](../guides/install.ja.md)にあります。
 
 ## オプション
 

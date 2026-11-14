@@ -11,22 +11,22 @@ The public API is documented here; changes are listed in `CHANGELOG.md`. Anythin
 
 | Area | Stable names |
 |---|---|
-| Settings | Every key under `modootoday:` in [Configuration](../../guides/configuration/). |
+| Settings | Every key under `modootoday:` in [Configuration](../guides/configuration.md). |
 | Design tokens | The `--mt-*` custom properties, not the `--mt-p-*` primitives. |
-| Sass | Only the token hook `_sass/modootoday/_site.scss` and its override maps. See [Customize](../../guides/customize/#token-bridge). |
+| Sass | Only the token hook `_sass/modootoday/_site.scss` and its override maps. See [Customize](../guides/customize.md#token-bridge). |
 | Markdown rules | The patterns in `RULES.md`, their `mt-*` classes, and `mt-flat-list`. |
 | Layouts | Every layout in the [Layouts](#layouts) table below; the one marked internal is not part of the API. |
 | Includes you may override | `head-custom.html`, `footer-custom.html` and `modootoday/brand/logo.html`. |
-| Includes you provide | `_includes/sections/<name>.html`, shown by `visual: <name>`. See [Customize](../../guides/customize/#section-visuals-and-full-width-pages). |
+| Includes you provide | `_includes/sections/<name>.html`, shown by `visual: <name>`. See [Customize](../guides/customize.md#section-visuals-and-full-width-pages). |
 | Module helpers and events | Two ES modules for your `scripts`, the `mt:themechange` event and the `script:` visual contract. |
 | Includes you may call | `modootoday/archive.html`, `modootoday/brand/icon.html` and the two footer includes. |
 | Includes | `modootoday/t.html` prints a theme label in the page language. |
 | Data files | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| Checker | `modootoday-check` options and exit codes, listed on [Command line](../cli/). |
+| Checker | `modootoday-check` options and exit codes, listed on [Command line](cli.md). |
 | Static figures | Front matter `diagrams:`, the `data-mt-src` digest rule and the `diagram.source` label; `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:` and the `math.label` label. |
 | Record pages | `modootoday.records`, the record front matter and the facts list. |
 | Showcase | `modootoday.showcase`, the session storage key `mt-showcase` and the `showcase.*` labels. |
-| Stub writer | `modootoday-stubs` options (on [Command line](../cli/)), stub file names and front matter, and exit codes. |
+| Stub writer | `modootoday-stubs` options (on [Command line](cli.md)), stub file names and front matter, and exit codes. |
 
 Details for the rows above:
 
@@ -36,14 +36,14 @@ Details for the rows above:
 - Layouts: `page` is the `doc` layout under the name Jekyll and minima use.
 - Includes: your footer can include `modootoday/lang-switch.html` and `modootoday/brand/logo.html` (takes `size`); override `modootoday/brand/logo.html` to draw your own logo. `modootoday/archive.html` takes `by` and `lang`. `modootoday/t.html` takes `key=`, optional `n=` / `name=`.
 - `modootoday/brand/icon.html` takes `name` (globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand), optional `size` (px, default 18), `label` (makes it `role="img"` with that name; otherwise `aria-hidden`) and `class`. Output: `svg.mt-icon.mt-icon-<name>` in `currentColor`; directional icons add `.mt-icon-flip` (mirrored in RTL).
-- Module helpers: `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`). The `mt:themechange` event is under [Events](#events). The `script:` visual contract is `data-mt-script`, `.mt-visual-stage` and `data-mt-ready`; see [Customize](../../guides/customize/#module-scripts-and-posters).
+- Module helpers: `assets/js/modootoday/theme/current.js` (`currentTheme()`, `onThemeChange(callback)`, which returns a function that stops listening) and `assets/js/modootoday/dom/config.js` (`readConfig(element, defaults)`). The `mt:themechange` event is under [Events](#events). The `script:` visual contract is `data-mt-script`, `.mt-visual-stage` and `data-mt-ready`; see [Customize](../guides/customize.md#module-scripts-and-posters).
 - Data files: `_data/i18n/<lang>.yml` keys are optional overrides of the built-in catalogs; `_data/navigation.yml` is read for `main`.
-- Checker exit codes: 0 (no problems) and 1 (problems or bad usage). `modootoday-check SRC --diagrams` prints the static diagrams whose SVG is missing or stale as JSON (`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`; see [Keep diagrams fresh](../../recipes/figures/math-diagrams/#keep-diagrams-fresh)) and exits with 1 when the list is not empty. `modootoday-check SRC --math` does the same for static math: the `_data/math` files to write (`key`, `file`, `page`, `blocks` with `line`, `tex` and `digest`, `reason`).
-- Static figures: `diagrams: [{name, alt, caption, width, height, min_width}]` maps the n-th ```` ```mermaid ```` fence of a page to its n-th entry (see [Math and diagrams](../../recipes/figures/math-diagrams/#static-diagrams)). `data-mt-src="sha256-<hex>"` on an SVG's root element records the fence it was drawn from: the SHA-256 of the fence body (the lines between the fence lines) with CRLF and CR turned into LF and the final newlines removed. `modootoday-check` reports an SVG whose `data-mt-src` differs from its fence's digest as a stale diagram. `diagram.source` in `_data/i18n/<lang>.yml` names the source disclosure.
-- Static math: with `modootoday.math.mode: static`, the n-th ```` ```math ```` fence or `$$` block of a page is replaced by the `html` of the n-th entry of `_data/math/<key>.yml`, a list of `{src, html}` (see [Static math](../../recipes/figures/math-diagrams/#static-math)). `<key>` is the default-language source path of the page without its extension, with `/` as `--` (front matter `math_key:` overrides it); `src` is the block's digest by the rule above, over the TeX between the delimiters. `math.label` (`Formula [n]`) names each block's region.
-- Record pages: `modootoday.records` (see [Generated pages](../../recipes/generated-pages/)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
-- PWA: the layout `pages/offline` (the offline page; the list of kept pages is `section[data-mt-offline]`, filled by `pwa/offline.js`), the front matter `pwa: precache`, the `data-mt-sw`, `data-mt-scope`, `data-mt-toast-css`, `data-mt-update`, `data-mt-reload`, `data-mt-later`, `data-mt-offline-notice` and `data-mt-close` attributes on the manifest link, the update and offline notice `div.mt-toast[role=status]` with `.mt-toast-actions`, the cache names `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>` and `mt:<baseurl>/:media`, and the labels `pwa.offline_title`, `pwa.offline_text`, `pwa.offline_pages`, `pwa.retry`, `pwa.update`, `pwa.reload`, `pwa.later`, `pwa.offline_notice` and `pwa.close`. See [Installable site](../../recipes/pwa/).
-- Showcase: see [Starter demo showcase](../showcase/). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
+- Checker exit codes: 0 (no problems) and 1 (problems or bad usage). `modootoday-check SRC --diagrams` prints the static diagrams whose SVG is missing or stale as JSON (`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`; see [Keep diagrams fresh](../recipes/figures/math-diagrams.md#keep-diagrams-fresh)) and exits with 1 when the list is not empty. `modootoday-check SRC --math` does the same for static math: the `_data/math` files to write (`key`, `file`, `page`, `blocks` with `line`, `tex` and `digest`, `reason`).
+- Static figures: `diagrams: [{name, alt, caption, width, height, min_width}]` maps the n-th ```` ```mermaid ```` fence of a page to its n-th entry (see [Math and diagrams](../recipes/figures/math-diagrams.md#static-diagrams)). `data-mt-src="sha256-<hex>"` on an SVG's root element records the fence it was drawn from: the SHA-256 of the fence body (the lines between the fence lines) with CRLF and CR turned into LF and the final newlines removed. `modootoday-check` reports an SVG whose `data-mt-src` differs from its fence's digest as a stale diagram. `diagram.source` in `_data/i18n/<lang>.yml` names the source disclosure.
+- Static math: with `modootoday.math.mode: static`, the n-th ```` ```math ```` fence or `$$` block of a page is replaced by the `html` of the n-th entry of `_data/math/<key>.yml`, a list of `{src, html}` (see [Static math](../recipes/figures/math-diagrams.md#static-math)). `<key>` is the default-language source path of the page without its extension, with `/` as `--` (front matter `math_key:` overrides it); `src` is the block's digest by the rule above, over the TeX between the delimiters. `math.label` (`Formula [n]`) names each block's region.
+- Record pages: `modootoday.records` (see [Generated pages](../recipes/generated-pages.md)), the page front matter `record: <set>/<key>` and `record_index`, `records: <set>` on a directory page, and the facts list `dl.mt-detail-facts.mt-record-facts`.
+- PWA: the layout `pages/offline` (the offline page; the list of kept pages is `section[data-mt-offline]`, filled by `pwa/offline.js`), the front matter `pwa: precache`, the `data-mt-sw`, `data-mt-scope`, `data-mt-toast-css`, `data-mt-update`, `data-mt-reload`, `data-mt-later`, `data-mt-offline-notice` and `data-mt-close` attributes on the manifest link, the update and offline notice `div.mt-toast[role=status]` with `.mt-toast-actions`, the cache names `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>` and `mt:<baseurl>/:media`, and the labels `pwa.offline_title`, `pwa.offline_text`, `pwa.offline_pages`, `pwa.retry`, `pwa.update`, `pwa.reload`, `pwa.later`, `pwa.offline_notice` and `pwa.close`. See [Installable site](../recipes/pwa.md).
+- Showcase: see [Starter demo showcase](showcase.md). The labels are `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss` and `showcase.starters.<name>`; the session storage key `mt-showcase` holds `off` after a reader hides it.
 - Stub writer: the stub files are `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, record pages `<dir>/<key>.md` and, with `--pwa`, `manifest.webmanifest` (`layout: null`, `permalink: /manifest.webmanifest`, the include `modootoday/pwa/manifest.json`), `sw.js` (`permalink: /sw.js`, the include `modootoday/pwa/sw.js`) and `offline.md` and `offline.<lang>.md` (`layout: pages/offline`, `permalink: /offline/` or `/<lang>/offline/`). Exit codes: 0 (nothing to do, previewed or written), 1 (`--check` found drift), 2 (usage or `_config.yml`) and 3 (data).
 
 ## Layouts
@@ -52,20 +52,20 @@ Every layout the theme ships, by the page that documents its front matter. The n
 
 | Group | Layouts |
 |---|---|
-| [Layouts](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
-| [Page shells](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
-| [Directory layouts](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
-| [Detail pages](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
-| [Marketing pages](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
-| [Blog and news](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
-| [Docs extras](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
-| [Documents](../../layouts/documents/) | `legal`, `resume` |
-| [AI agents](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| [Layouts](../layouts/index.md) | `default`, `doc`, `page`, `post`, `archive` |
+| [Page shells](../layouts/shells.md) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [Directory layouts](../layouts/directory/index.md) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [Detail pages](../layouts/detail/index.md) | `project`, `case-study`, `job`, `event`, `episode` |
+| [Marketing pages](../layouts/marketing/index.md) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [Blog and news](../layouts/blog-news/index.md) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [Docs extras](../layouts/docs-extra/index.md) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [Documents](../layouts/documents/index.md) | `legal`, `resume` |
+| [AI agents](../guides/agents.md) | `twin`, `llms`, `llms-full` |
 | Internal | `detail`, the base the detail pages extend; use one of them instead |
 
 ## Markdown rules
 
-`md-components v1` is the name of the Markdown rules standard in `RULES.md`, published as the [Markdown rules](../rules/) page; it is not a CSS prefix. Output classes use `mt-*`.
+`md-components v1` is the name of the Markdown rules standard in `RULES.md`, published as the [Markdown rules](rules.md) page; it is not a CSS prefix. Output classes use `mt-*`.
 
 ## Component structure
 
@@ -183,7 +183,7 @@ For one callback per real change that also works without the toggle, use `onThem
 ## Right-to-left and math
 
 - Pages in Arabic, Persian, Hebrew, Urdu and other RTL languages get `dir="rtl"` from `lang`; set `direction: rtl` or `ltr` in front matter (or `direction:` in `_data/i18n/<lang>.yml`) to override. Components use logical properties and mirror; code stays left-to-right.
-- The theme bundles no math or diagram renderer; static diagrams and math show the SVG files and MathML you commit. See [Math and diagrams](../../recipes/figures/math-diagrams/).
+- The theme bundles no math or diagram renderer; static diagrams and math show the SVG files and MathML you commit. See [Math and diagrams](../recipes/figures/math-diagrams.md).
 
 ## Posts and archives
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/
-source_rev: sha256:ee066a8fdb56
+source_rev: sha256:cea5b17dd5a6
 nav_order: 20
 title: ディレクトリレイアウト
 description: プロジェクト、メンバー、求人、イベント、スポンサー、連携をカード一覧で表示し、JavaScript なしで動く絞り込みで読者が見たいカードだけを選べるようにします。
@@ -12,12 +12,12 @@ description: プロジェクト、メンバー、求人、イベント、スポ�
 
 | レイアウト | カードの内容 | 絞り込み | 構造化データ | デモ |
 |---|---|---|---|---|
-| `portfolio` | 画像、タイトル、説明、タグ | `tags` | ItemList | [ポートフォリオ](portfolio/) |
-| `team` | 丸い写真、名前、役割 | `group` | Person の一覧 | [チーム](team/) |
-| `jobs` | 職種、勤務地、雇用形態 | `department` | ItemList | [求人](jobs/) |
-| `events` | 日付タイル、タイトル、場所、カレンダーファイル | なし | Event の一覧 | [イベント](events/) |
-| `sponsors` | ロゴ、名前、ランク | `tier` | ItemList | [スポンサー](sponsors/) |
-| `integrations` | ロゴ、名前、カテゴリー、説明 | `category` | ItemList | [連携](integrations/) |
+| `portfolio` | 画像、タイトル、説明、タグ | `tags` | ItemList | [ポートフォリオ](portfolio.ja.md) |
+| `team` | 丸い写真、名前、役割 | `group` | Person の一覧 | [チーム](team.ja.md) |
+| `jobs` | 職種、勤務地、雇用形態 | `department` | ItemList | [求人](jobs.ja.md) |
+| `events` | 日付タイル、タイトル、場所、カレンダーファイル | なし | Event の一覧 | [イベント](events.ja.md) |
+| `sponsors` | ロゴ、名前、ランク | `tier` | ItemList | [スポンサー](sponsors.ja.md) |
+| `integrations` | ロゴ、名前、カテゴリー、説明 | `category` | ItemList | [連携](integrations.ja.md) |
 
 `layout: directory` は基本形です。`preset:` に上の名前のどれかを指定するか、省略すると簡単なカードになります。
 
@@ -54,7 +54,7 @@ items:
 - `integrations`: `category`
 - `portfolio`: `tags`(リスト)
 
-複数のページで同じ一覧を使うには `_data/team.yml` に置き、`items:` の代わりに `data: team` と書きます。項目ごとにページも用意するには、レコードセットを宣言して `records: <set>` と書きます。各カードがレコードのページにリンクします ([生成ページ](../../recipes/generated-pages/)を参照)。
+複数のページで同じ一覧を使うには `_data/team.yml` に置き、`items:` の代わりに `data: team` と書きます。項目ごとにページも用意するには、レコードセットを宣言して `records: <set>` と書きます。各カードがレコードのページにリンクします ([生成ページ](../../recipes/generated-pages.ja.md)を参照)。
 
 ## 絞り込み
 

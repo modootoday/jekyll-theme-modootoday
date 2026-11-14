@@ -21,7 +21,7 @@ sections:
 
 تعرض هذه الصفحة المكوّنات باتجاه من اليمين إلى اليسار. تضبط السمة `dir="rtl"` تلقائيًا للغات مثل العربية والعبرية والفارسية، أو عبر `direction: rtl` في رأس الصفحة.
 
-[ابدأ الآن](../../guides/install/) [المكوّنات](../)
+[ابدأ الآن](../guides/install.md) [المكوّنات](index.md)
 
 ## الشارات
 
@@ -129,7 +129,7 @@ winget install RubyInstallerTeam.Ruby
 
 ## دعوة إلى العمل
 
-[ابدأ الآن](../../guides/install/) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[ابدأ الآن](../guides/install.md) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## البطاقات
 

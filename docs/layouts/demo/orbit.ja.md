@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/orbit/
-source_rev: sha256:8989380cb3b1
+source_rev: sha256:04708e1542e8
 nav_exclude: true
 title: ヒーローモジュールのデモ
 twin: false
@@ -15,7 +15,7 @@ sections: [setup, contract]
 
 絵の中心を 3 つの点が回ります。このサイトのモジュールスクリプトがポスター画像の上に点を描いて回します。最初に見えるのはポスターで、JavaScript がオフのときや視差効果を減らす設定のときはポスターがそのまま残ります。
 
-[セクションのビジュアル](../../../guides/customize/)
+[セクションのビジュアル](../../guides/customize.ja.md)
 
 ## 設定
 

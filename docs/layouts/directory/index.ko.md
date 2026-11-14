@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/
-source_rev: sha256:ee066a8fdb56
+source_rev: sha256:cea5b17dd5a6
 nav_order: 20
 title: 디렉터리 레이아웃
 description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카드 목록으로 보여 주고, JavaScript 없이 동작하는 필터로 독자가 원하는 카드만 골라 보게 합니다.
@@ -12,12 +12,12 @@ description: 프로젝트, 구성원, 채용, 행사, 후원사, 연동을 카�
 
 | 레이아웃 | 카드 내용 | 필터 기준 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `portfolio` | 이미지, 제목, 설명, 태그 | `tags` | ItemList | [포트폴리오](portfolio/) |
-| `team` | 둥근 사진, 이름, 역할 | `group` | Person 목록 | [팀](team/) |
-| `jobs` | 직무, 근무지, 고용 형태 | `department` | ItemList | [채용](jobs/) |
-| `events` | 날짜 타일, 제목, 장소, 캘린더 파일 | 없음 | Event 목록 | [행사](events/) |
-| `sponsors` | 로고, 이름, 등급 | `tier` | ItemList | [후원사](sponsors/) |
-| `integrations` | 로고, 이름, 분류, 설명 | `category` | ItemList | [연동](integrations/) |
+| `portfolio` | 이미지, 제목, 설명, 태그 | `tags` | ItemList | [포트폴리오](portfolio.ko.md) |
+| `team` | 둥근 사진, 이름, 역할 | `group` | Person 목록 | [팀](team.ko.md) |
+| `jobs` | 직무, 근무지, 고용 형태 | `department` | ItemList | [채용](jobs.ko.md) |
+| `events` | 날짜 타일, 제목, 장소, 캘린더 파일 | 없음 | Event 목록 | [행사](events.ko.md) |
+| `sponsors` | 로고, 이름, 등급 | `tier` | ItemList | [후원사](sponsors.ko.md) |
+| `integrations` | 로고, 이름, 분류, 설명 | `category` | ItemList | [연동](integrations.ko.md) |
 
 `layout: directory`는 기본형입니다. `preset:`에 위 이름 중 하나를 쓰거나, 생략하면 단순한 카드가 됩니다.
 
@@ -54,7 +54,7 @@ items:
 - `integrations`: `category`
 - `portfolio`: `tags`(목록)
 
-여러 페이지에서 같은 목록을 쓰려면 `_data/team.yml`에 두고 `items:` 대신 `data: team`이라고 쓰세요. 항목마다 페이지도 따로 두려면 레코드 세트를 선언하고 `records: <set>`이라고 쓰세요. 그러면 카드마다 레코드 페이지로 연결됩니다([생성 페이지](../../recipes/generated-pages/) 참고).
+여러 페이지에서 같은 목록을 쓰려면 `_data/team.yml`에 두고 `items:` 대신 `data: team`이라고 쓰세요. 항목마다 페이지도 따로 두려면 레코드 세트를 선언하고 `records: <set>`이라고 쓰세요. 그러면 카드마다 레코드 페이지로 연결됩니다([생성 페이지](../../recipes/generated-pages.ko.md) 참고).
 
 ## 필터
 

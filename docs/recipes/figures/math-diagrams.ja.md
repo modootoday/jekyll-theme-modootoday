@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/math-diagrams/
-source_rev: sha256:6d173e5e2a1a
+source_rev: sha256:4a3d79987023
 nav_order: 10
 title: 数式と図
 description: Mermaid の図と数式をコミットした静的な SVG と MathML として表示する方法、または組み込みのローダーや独自のローダーで図と KaTeX の数式を描画する方法と、それぞれの CSP とプライバシーへの影響です。
@@ -11,19 +11,19 @@ diagrams:
 # 数式と図
 
 > [!NOTE]
-> このページは[英語の原文](../../../../recipes/figures/math-diagrams/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](math-diagrams.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ```` ```math ```` や ```` ```mermaid ```` のフェンスは、レンダラーを有効にするまでコードブロックとして表示され、github.com では GitHub が描画します。サイトに表示する方法は三つあります。
 
 | 方法 | 動く環境 | CSP | ブラウザーの JavaScript |
 |---|---|---|---|
 | [静的な図](#静的な図)：描画した SVG や MathML をコミットする | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 厳格なまま、追加なし | なし |
-| [組み込みローダー](../loaders/#組み込みローダー)：`modootoday.mermaid` と `modootoday.math` | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 自分でホスト：`'self'`、CDN：CDN のオリジンを追加（下記） | あり、ブロックのあるページだけ |
-| `_includes/footer-custom.html` の[独自のローダー](../loaders/#独自のローダー) | 従来の GitHub Pages、Jekyll 4、任意のホスト | KaTeX は厳格なまま。Mermaid は `style-src 'unsafe-inline'` が必要 | あり |
+| [組み込みローダー](loaders.ja.md#組み込みローダー)：`modootoday.mermaid` と `modootoday.math` | 従来の GitHub Pages、Jekyll 3.10 と 4、任意のホスト | 自分でホスト：`'self'`、CDN：CDN のオリジンを追加（下記） | あり、ブロックのあるページだけ |
+| `_includes/footer-custom.html` の[独自のローダー](loaders.ja.md#独自のローダー) | 従来の GitHub Pages、Jekyll 4、任意のホスト | KaTeX は厳格なまま。Mermaid は `style-src 'unsafe-inline'` が必要 | あり |
 
 ## 静的な図
 
-推奨の方法です。ページは静的な SVG と MathML を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。Markdown にはフェンスやブロックがそのまま残るので、github.com と [Markdown 版](../../../guides/agents/)を読むエージェントにはソースが引き続き見えます。
+推奨の方法です。ページは静的な SVG と MathML を配信するので、JavaScript なしで動き、印刷にも向き、厳格な CSP を通ります。Markdown にはフェンスやブロックがそのまま残るので、github.com と [Markdown 版](../../guides/agents.ja.md)を読むエージェントにはソースが引き続き見えます。
 
 ### 静的な Mermaid の図
 
@@ -191,11 +191,11 @@ $$
 
 KaTeX は HTML 出力も書けます（`--output=htmlAndMathml`）。どのブラウザーでも同じに見えますが、KaTeX のスタイルシートとフォントが必要で、`style` 属性を使うので CSP に `style-src 'unsafe-inline'` が必要です。`katex` パッケージから `katex.min.css` と `fonts/` をコピーし、`css:`（または下の `base:`）を設定します。テーマは、項目に KaTeX HTML があるページだけでスタイルシートを読み込みます。
 
-組み込みのローダーと独自のローダーは[図と数式のローダー](../loaders/)で説明します。
+組み込みのローダーと独自のローダーは[図と数式のローダー](loaders.ja.md)で説明します。
 
 ## チェックリスト
 
-- ソースは Markdown に残るので、github.com と [Markdown 版](../../../guides/agents/)を読むエージェントには引き続き見えます。
+- ソースは Markdown に残るので、github.com と [Markdown 版](../../guides/agents.ja.md)を読むエージェントには引き続き見えます。
 - CSP に第三者のオリジンがないこと。または CDN のオリジンを記載し、`integrity` で固定していること。
 - すべての図に、何を示すかを述べる代替テキストかキャプションがあること。
 - レンダラーは必要なページだけで読み込むこと。

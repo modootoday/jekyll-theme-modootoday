@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/charts/
-source_rev: sha256:91b5abe52a32
+source_rev: sha256:bfc6e3dda3e6
 nav_order: 26
 title: グラフ
 description: Markdown の表をグラフの figure にしたり、データファイルをグラフとして表示したりします。表はすべての読者が受け取るテキストとして残ります。
@@ -9,7 +9,7 @@ description: Markdown の表をグラフの figure にしたり、データフ�
 # グラフ
 
 > [!NOTE]
-> このページは[英語の原文](../../../../recipes/figures/charts/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](charts.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 グラフは Markdown の表から始まります。テーマは表をグラフの figure（`figure.mt-chart`）に入れ、表はその中にグラフのテキストとして残ります。そのため、JavaScript を使わない読者、スクリーンリーダー、github.com、ページの Markdown 版、`llms-full.txt` のどれもが数値を受け取れます。サイトに Chart.js を置くと、テーマが表からグラフを描き、表はその下の「グラフのデータ」の開閉ボックスに畳まれます。Chart.js がなければ、読者には表が表示されます。
 
@@ -57,7 +57,7 @@ modootoday:
 
 *四半期ごとの訪問数*
 
-[キッチンシンク](../../../components/kitchen-sink/#グラフ)にほかの例があります。
+[キッチンシンク](../../components/kitchen-sink.ja.md#グラフ)にほかの例があります。
 
 ## データファイルから作るグラフ
 
@@ -117,7 +117,7 @@ Chart.js（gzip で約 70 KB）とテーマのグラフモジュールは、グ�
 - 色、グリッド線、軸のテキストは上のフックから取り、再読み込みなしでテーマの切り替えとシステムの配色に従います。折れ線グラフは系列ごとに破線の形も変えるので、色を見分けにくい場合も系列を区別できます。凡例も系列ごとに、その破線の短い線で示します。
 - システムで視差効果を減らす設定にすると、グラフをアニメーションなしで描きます。
 - 強制カラーモード（Windows のハイコントラスト）ではグラフを描かず、表を開いたままシステムの色で表示します。
-- 厳格な CSP でも例外は要りません。Chart.js は CSSOM で canvas の大きさを決め、`style-src 'self'` はそれを許可します（[CSP](../../csp/)）。
+- 厳格な CSP でも例外は要りません。Chart.js は CSSOM で canvas の大きさを決め、`style-src 'self'` はそれを許可します（[CSP](../csp.ja.md)）。
 
 ## チェッカーが報告すること
 

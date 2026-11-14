@@ -16,4 +16,4 @@ description: Projects as cards with an image, a title, a short text and tags, an
 
 This page uses `layout: portfolio`. Pick a tag to show only matching projects; the filter is plain HTML and CSS.
 
-[Back to directory layouts](../)
+[Back to directory layouts](index.md)

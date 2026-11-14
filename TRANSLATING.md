@@ -16,7 +16,7 @@ English is canonical; every other language is localized from it. The rules, regi
 
 A docs translation sits beside its English page: `docs/guides/install.ko.md` and `docs/guides/install.ja.md` next to `docs/guides/install.md`. Edit both in the same pull request. A language that translates only the home page keeps it in `docs/home/` (`docs/home/index.vi.md`). The README has the same three languages: `README.ko.md` and `README.ja.md` beside `README.md`, with the same sections and code blocks (`test/project/readme_test.rb`).
 
-Write links in a translation as URLs relative to the page's URL (`../../guides/install/`, `../../../ko/feed.xml`), never as file paths. The classic GitHub Pages build resolves a link that names an existing file from the file's real place, which no longer mirrors its URL, so `../../feed.xml` in `layouts/blog-news/index.ko.md` would reach the English feed.
+Links in every docs page name the Markdown file, relative to the file you edit, so they also open on github.com: `upgrade.ko.md#업그레이드`, `../../feed.ko.xml`, `../install.md` for the English page. A translation links the file of its own language where one exists. The `jekyll-relative-links` plugin turns each link into the target's URL on both builders. It skips a link with a title on the same line (`"new-window"`), so such a link is a reference definition with the title on the next line. `ruby test/system/docs/rules.rb` fails on a relative link that names no file.
 
 `ruby script/docs-index` owns three front matter keys in a translation; do not write them by hand:
 

@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday는 표준 GitHub Flavored Markdown을 깔끔한 문서 사이트로 바꿔 줍니다. 같은 파일이 github.com에서도, GitHub Pages에서도, AI 에이전트가 가져가는 Markdown 버전으로도 잘 읽힙니다.
 
-[시작하기](guides/install/) [컴포넌트 보기](components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[시작하기](guides/install.ko.md) [컴포넌트 보기](components/index.ko.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## 왜 모두의오늘 테마인가
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## 문서 따라가기
 
-1. GitHub Pages나 Jekyll 4에 테마를 [설치](guides/install/)합니다.
-2. 평범한 Markdown으로 [첫 페이지](guides/first-page/)를 씁니다.
-3. [컴포넌트](components/)와 [키친싱크](components/kitchen-sink/)에서 고릅니다.
-4. [설정](guides/configuration/)을 조정하고 토큰과 `_sass`로 [모양을 바꿉니다](guides/customize/).
-5. Markdown 버전과 `llms.txt`로 [에이전트가 읽게](guides/agents/) 합니다.
+1. GitHub Pages나 Jekyll 4에 테마를 [설치](guides/install.ko.md)합니다.
+2. 평범한 Markdown으로 [첫 페이지](guides/first-page.ko.md)를 씁니다.
+3. [컴포넌트](components/index.ko.md)와 [키친싱크](components/kitchen-sink.ko.md)에서 고릅니다.
+4. [설정](guides/configuration.ko.md)을 조정하고 토큰과 `_sass`로 [모양을 바꿉니다](guides/customize.ko.md).
+5. Markdown 버전과 `llms.txt`로 [에이전트가 읽게](guides/agents.ko.md) 합니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](index.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 지금 시작
 
-[테마 설치하기](guides/install/) [모든 컴포넌트 보기](components/kitchen-sink/)
+[테마 설치하기](guides/install.ko.md) [모든 컴포넌트 보기](components/kitchen-sink.ko.md)

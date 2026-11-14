@@ -17,7 +17,7 @@ When `url:` is set in `_config.yml`, every page gets one `<script type="applicat
 | main entity | `<page>#main` | the article, job, event or other thing the page is about |
 | `BreadcrumbList` | `<page>#breadcrumb` | the same trail as the visible breadcrumb |
 
-Dates are ISO 8601 with the site time zone; text is escaped so the block is safe under a strict [CSP](../../recipes/csp/).
+Dates are ISO 8601 with the site time zone; text is escaped so the block is safe under a strict [CSP](../recipes/csp.md).
 
 ## Type per layout
 
@@ -56,7 +56,7 @@ modootoday:
 
 Turn it off with `modootoday.schema: false` (or `schema: {enabled: false}`), or for one page with `schema: false` in front matter. `seo: false` also removes it.
 
-With `seo: false` and `jekyll-seo-tag`, the plugin writes its own JSON-LD between the `<!-- Begin Jekyll SEO tag` and `<!-- End Jekyll SEO tag -->` comments. `modootoday-check` checks that block only for valid JSON and reports a warning, not errors: the kit does not write it, and its `WebPage` has `headline` but no `name`. schema.org marks no property as required, and Google lists no required properties for `WebPage`; the required-property list is the kit's own rule for the markup it writes. To have the page checked in full, move to the kit's tags ([Migrate](../upgrade/#from-jekyll-seo-tag)).
+With `seo: false` and `jekyll-seo-tag`, the plugin writes its own JSON-LD between the `<!-- Begin Jekyll SEO tag` and `<!-- End Jekyll SEO tag -->` comments. `modootoday-check` checks that block only for valid JSON and reports a warning, not errors: the kit does not write it, and its `WebPage` has `headline` but no `name`. schema.org marks no property as required, and Google lists no required properties for `WebPage`; the required-property list is the kit's own rule for the markup it writes. To have the page checked in full, move to the kit's tags ([Migrate](upgrade.md#from-jekyll-seo-tag)).
 
 ## Per-page entities
 
@@ -74,7 +74,7 @@ Other supported types include `SoftwareApplication` with `offers: {type: Offer, 
 
 ## FAQ, terms and learning resources
 
-**FAQPage from the page.** Set `faq: auto` under `modootoday.schema` for every page, or `schema: {faq: auto}` in one page's front matter. A page with a `c: faq` section then becomes an `FAQPage`: each `###` question of that section is a `Question`, and the text under it is the `Answer`. The visible text is the only source, so the structured data always matches what readers see; code blocks are left out of the answer, and `c: details` sections are not read. `schema.type` and `schema.mainEntity` in front matter still win, and `schema: {faq: false}` turns it off for one page. The [Components](../../components/) page uses it.
+**FAQPage from the page.** Set `faq: auto` under `modootoday.schema` for every page, or `schema: {faq: auto}` in one page's front matter. A page with a `c: faq` section then becomes an `FAQPage`: each `###` question of that section is a `Question`, and the text under it is the `Answer`. The visible text is the only source, so the structured data always matches what readers see; code blocks are left out of the answer, and `c: details` sections are not read. `schema.type` and `schema.mainEntity` in front matter still win, and `schema: {faq: false}` turns it off for one page. The [Components](../components/index.md) page uses it.
 
 **A page per term.** `schema: {type: DefinedTerm}` makes the page a `DefinedTerm` named by its title. `term_set:` with the glossary page's path links it to that page's `DefinedTermSet` (an absolute URL is printed as it is), and `term_code:` adds `termCode`. On the glossary, `url:` on an entry of `terms:` adds the term page's URL to that `DefinedTerm`.
 
@@ -91,4 +91,4 @@ term_set: /glossary/
 
 `modootoday-check` validates every block in the built site offline: one block per page, valid JSON, known schema.org types and properties, required properties (Google's list), unique `@id`s, absolute URLs, ISO 8601 dates, and agreement with `og:url`, `og:title`, `og:image` and `<html lang>`. An `FAQPage` without questions, a question with an empty answer, and a `DefinedTerm` whose `term_set` is not a built page holding a `DefinedTermSet` are errors, and so is a `modootoday.schema.faq` other than `auto` or `false`. Add `--schema-recommended` to also list missing recommended properties.
 
-A single object under a property, such as `offers`, `organizer` or `acceptedAnswer`, is checked with the rules of its `@type` like a top-level node. What it breaks (a missing required property, an unknown type or property, a relative URL, a date that is not ISO 8601) is reported as a warning ending in "(a warning in a nested object, an error in the next major version)"; the next major version makes it an error. A nested object without `@type` is not asked for one, and a question with an empty answer stays an error. For example, an event's `offers` with a `url` but no `price` and `priceCurrency` is a warning. On the `event` layout, `tickets: {url, price, currency}` writes both and shows the price on the page (see the [event example](../../layouts/detail/#event)); elsewhere give the offer in front matter, `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}`, and show the price on the page too, so the markup states nothing the reader cannot see.
+A single object under a property, such as `offers`, `organizer` or `acceptedAnswer`, is checked with the rules of its `@type` like a top-level node. What it breaks (a missing required property, an unknown type or property, a relative URL, a date that is not ISO 8601) is reported as a warning ending in "(a warning in a nested object, an error in the next major version)"; the next major version makes it an error. A nested object without `@type` is not asked for one, and a question with an empty answer stays an error. For example, an event's `offers` with a `url` but no `price` and `priceCurrency` is a warning. On the `event` layout, `tickets: {url, price, currency}` writes both and shows the price on the page (see the [event example](../layouts/detail/index.md#event)); elsewhere give the offer in front matter, `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}`, and show the price on the page too, so the markup states nothing the reader cannot see.

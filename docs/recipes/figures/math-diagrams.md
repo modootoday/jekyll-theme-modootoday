@@ -13,12 +13,12 @@ A ```` ```math ```` or ```` ```mermaid ```` fence renders as a code block until 
 | Option | Works on | CSP | JavaScript in the browser |
 |---|---|---|---|
 | [Static figures](#static-figures): commit the rendered SVG or MathML | classic GitHub Pages, Jekyll 3.10 and 4, any host | strict, nothing to add | none |
-| [Built-in loaders](../loaders/#built-in-loaders): `modootoday.mermaid` and `modootoday.math` | classic GitHub Pages, Jekyll 3.10 and 4, any host | self-hosted: `'self'`; CDN: add the CDN origin (below) | yes, only on pages with a block |
-| [Your own loader](../loaders/#your-own-loader) in `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
+| [Built-in loaders](loaders.md#built-in-loaders): `modootoday.mermaid` and `modootoday.math` | classic GitHub Pages, Jekyll 3.10 and 4, any host | self-hosted: `'self'`; CDN: add the CDN origin (below) | yes, only on pages with a block |
+| [Your own loader](loaders.md#your-own-loader) in `_includes/footer-custom.html` | classic GitHub Pages, Jekyll 4, any host | strict for KaTeX; Mermaid needs `style-src 'unsafe-inline'` | yes |
 
 ## Static figures
 
-This is the recommended option. The page ships static SVG and MathML, so it works without JavaScript, prints well and passes a strict CSP. The Markdown keeps the fence or block, so github.com and agents reading the [Markdown twin](../../../guides/agents/) still see the source.
+This is the recommended option. The page ships static SVG and MathML, so it works without JavaScript, prints well and passes a strict CSP. The Markdown keeps the fence or block, so github.com and agents reading the [Markdown twin](../../guides/agents.md) still see the source.
 
 ### Static diagrams
 
@@ -186,11 +186,11 @@ $$
 
 KaTeX can also write its HTML output (`--output=htmlAndMathml`). It looks the same in every browser, but it needs KaTeX's stylesheet and fonts and sets `style` attributes, so your CSP needs `style-src 'unsafe-inline'`. Copy `katex.min.css` and `fonts/` from the `katex` package and set `css:` (or `base:`, below); the theme links the stylesheet only on pages whose entries hold KaTeX HTML.
 
-The built-in loaders and your own loaders are described in [Diagram and math loaders](../loaders/).
+The built-in loaders and your own loaders are described in [Diagram and math loaders](loaders.md).
 
 ## Checklist
 
-- The source stays in the Markdown, so github.com and agents reading the [Markdown twin](../../../guides/agents/) still see it.
+- The source stays in the Markdown, so github.com and agents reading the [Markdown twin](../../guides/agents.md) still see it.
 - No third-party origins in your CSP, or the CDN origin listed and pinned with `integrity`.
 - Every diagram has alt text or a caption that states what it shows.
 - Load renderers only on pages that need them.

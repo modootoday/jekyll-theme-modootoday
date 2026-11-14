@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday biến GitHub Flavored Markdown chuẩn thành một trang tài liệu gọn gàng. Cùng một tệp đọc tốt trên github.com, trên GitHub Pages và dưới dạng bản Markdown cho các tác tử AI.
 
-[Bắt đầu](../guides/install/) [Xem các thành phần](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Bắt đầu](../guides/install.md) [Xem các thành phần](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Vì sao chọn giao diện modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Lộ trình đọc tài liệu
 
-1. [Cài đặt](../guides/install/) giao diện trên GitHub Pages hoặc Jekyll 4.
-2. [Viết trang đầu tiên](../guides/first-page/) bằng Markdown thuần.
-3. Chọn từ [các thành phần](../components/) và [trang tổng hợp thành phần](../components/kitchen-sink/).
-4. Tinh chỉnh trong phần [cấu hình](../guides/configuration/) và [tùy biến giao diện](../guides/customize/) bằng token và `_sass`.
-5. Giúp trang [dễ đọc với tác tử AI](../guides/agents/) nhờ bản Markdown và `llms.txt`.
+1. [Cài đặt](../guides/install.md) giao diện trên GitHub Pages hoặc Jekyll 4.
+2. [Viết trang đầu tiên](../guides/first-page.md) bằng Markdown thuần.
+3. Chọn từ [các thành phần](../components/index.md) và [trang tổng hợp thành phần](../components/kitchen-sink.md).
+4. Tinh chỉnh trong phần [cấu hình](../guides/configuration.md) và [tùy biến giao diện](../guides/customize.md) bằng token và `_sass`.
+5. Giúp trang [dễ đọc với tác tử AI](../guides/agents.md) nhờ bản Markdown và `llms.txt`.
 
 > [!NOTE]
-> Trang này được dịch từ [bản gốc tiếng Anh](../); nếu có khác biệt, bản tiếng Anh được ưu tiên. Các hướng dẫn được liên kết hiện chỉ có bằng tiếng Anh.
+> Trang này được dịch từ [bản gốc tiếng Anh](../index.md); nếu có khác biệt, bản tiếng Anh được ưu tiên. Các hướng dẫn được liên kết hiện chỉ có bằng tiếng Anh.
 
 ## Bắt đầu ngay
 
-[Cài đặt giao diện](../guides/install/) [Xem mọi thành phần](../components/kitchen-sink/)
+[Cài đặt giao diện](../guides/install.md) [Xem mọi thành phần](../components/kitchen-sink.md)

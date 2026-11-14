@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/code-github/
-source_rev: sha256:ed6279dfbed8
+source_rev: sha256:e7aa0034e85c
 nav_exclude: true
 title: GitHub 코드 색 데모
 twin: false
@@ -20,7 +20,7 @@ modootoday:
   code_theme: github
 ```
 
-색은 GitHub의 라이트·다크 편집기 테마에서 가져왔습니다. Rouge는 편집기와 토큰을 다르게 나누므로 팔레트는 GitHub와 같아도 단어 하나의 색은 다를 수 있습니다. [커스터마이즈](../../../guides/customize/)를 보세요.
+색은 GitHub의 라이트·다크 편집기 테마에서 가져왔습니다. Rouge는 편집기와 토큰을 다르게 나누므로 팔레트는 GitHub와 같아도 단어 하나의 색은 다를 수 있습니다. [커스터마이즈](../../guides/customize.ko.md)를 보세요.
 
 ## Ruby
 

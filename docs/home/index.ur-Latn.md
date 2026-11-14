@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday standard GitHub Flavored Markdown ko ek saaf suthri documentation site mein badal deta hai. Wohi file github.com par, GitHub Pages par aur AI agents ke liye Markdown version ke taur par achhi tarah parhi jati hai.
 
-[Shuru karein](../guides/install/) [Components dekhein](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Shuru karein](../guides/install.md) [Components dekhein](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## modoo.today theme kyun
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Docs mein aap ka raasta
 
-1. Theme ko GitHub Pages ya Jekyll 4 par [install karein](../guides/install/).
-2. Saada Markdown mein [apna pehla page likhein](../guides/first-page/).
-3. [Components](../components/) aur [tamam components wale page](../components/kitchen-sink/) se chunein.
-4. [Configuration](../guides/configuration/) mein settings badlein aur tokens aur `_sass` se look [customize karein](../guides/customize/).
-5. Markdown versions aur `llms.txt` se site ko [agents ke liye readable](../guides/agents/) banayein.
+1. Theme ko GitHub Pages ya Jekyll 4 par [install karein](../guides/install.md).
+2. Saada Markdown mein [apna pehla page likhein](../guides/first-page.md).
+3. [Components](../components/index.md) aur [tamam components wale page](../components/kitchen-sink.md) se chunein.
+4. [Configuration](../guides/configuration.md) mein settings badlein aur tokens aur `_sass` se look [customize karein](../guides/customize.md).
+5. Markdown versions aur `llms.txt` se site ko [agents ke liye readable](../guides/agents.md) banayein.
 
 > [!NOTE]
-> Yeh page [English original](../) ka tarjuma hai; farq ho to English version maana jaye ga. Link kiye gaye guides English mein hain.
+> Yeh page [English original](../index.md) ka tarjuma hai; farq ho to English version maana jaye ga. Link kiye gaye guides English mein hain.
 
 ## Abhi shuru karein
 
-[Theme install karein](../guides/install/) [Tamam components dekhein](../components/kitchen-sink/)
+[Theme install karein](../guides/install.md) [Tamam components dekhein](../components/kitchen-sink.md)

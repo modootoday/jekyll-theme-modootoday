@@ -9,4 +9,4 @@ twin: true
 
 The live demo is the docs starter's plugin list, a `layout: integrations` page built from five records: each card shows a logo, the name, a category and one line of text and links to its record page, and a row of buttons filters the cards by category without JavaScript.
 
-[Directory layouts](../) lists the front matter of every directory layout, and [Generated pages](../../../recipes/generated-pages/) shows how to give each record its own page.
+[Directory layouts](index.md) lists the front matter of every directory layout, and [Generated pages](../../recipes/generated-pages.md) shows how to give each record its own page.

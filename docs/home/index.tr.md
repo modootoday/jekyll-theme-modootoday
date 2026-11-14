@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday, standart GitHub Flavored Markdown dosyalarını sade bir belge sitesine dönüştürür. Aynı dosya github.com'da, GitHub Pages'te ve yapay zekâ ajanları için Markdown sürümü olarak rahatça okunur.
 
-[Başlayın](../guides/install/) [Bileşenlere göz atın](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Başlayın](../guides/install.md) [Bileşenlere göz atın](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Neden modoo.today teması
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Belgelerde izleyeceğiniz yol
 
-1. Temayı GitHub Pages'e veya Jekyll 4'e [kurun](../guides/install/).
-2. Düz Markdown ile [ilk sayfanızı yazın](../guides/first-page/).
-3. [Bileşenler](../components/) ve [tüm bileşenler sayfası](../components/kitchen-sink/) arasından seçin.
-4. [Yapılandırma](../guides/configuration/) ile ayarlayın, görünümü token'lar ve `_sass` ile [özelleştirin](../guides/customize/).
-5. Markdown sürümleri ve `llms.txt` ile sitenizi [ajanların okuyabileceği](../guides/agents/) hâle getirin.
+1. Temayı GitHub Pages'e veya Jekyll 4'e [kurun](../guides/install.md).
+2. Düz Markdown ile [ilk sayfanızı yazın](../guides/first-page.md).
+3. [Bileşenler](../components/index.md) ve [tüm bileşenler sayfası](../components/kitchen-sink.md) arasından seçin.
+4. [Yapılandırma](../guides/configuration.md) ile ayarlayın, görünümü token'lar ve `_sass` ile [özelleştirin](../guides/customize.md).
+5. Markdown sürümleri ve `llms.txt` ile sitenizi [ajanların okuyabileceği](../guides/agents.md) hâle getirin.
 
 > [!NOTE]
-> Bu sayfa [İngilizce aslından](../) çevrilmiştir; farklılık olursa İngilizce sürüm geçerlidir. Bağlantı verilen kılavuzlar İngilizcedir.
+> Bu sayfa [İngilizce aslından](../index.md) çevrilmiştir; farklılık olursa İngilizce sürüm geçerlidir. Bağlantı verilen kılavuzlar İngilizcedir.
 
 ## Hemen başlayın
 
-[Temayı kurun](../guides/install/) [Tüm bileşenleri görün](../components/kitchen-sink/)
+[Temayı kurun](../guides/install.md) [Tüm bileşenleri görün](../components/kitchen-sink.md)

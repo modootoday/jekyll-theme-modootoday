@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/filter/
-source_rev: sha256:d9a038f1e026
+source_rev: sha256:01755130ffb2
 nav_exclude: true
 title: 필터 데모
 twin: false
@@ -14,7 +14,7 @@ sections: [{name: tools, filter: true}, {name: plans, filter: {facet: 3}}, setup
 
 목록이나 표 위의 필드에 입력해 보세요. 입력한 단어가 모두 들어 있는 항목만 남습니다. 대소문자, 두 가지 방식으로 쓴 악센트, 한국어 띄어쓰기는 구분하지 않습니다. JavaScript가 없으면 모든 항목이 보입니다.
 
-[검색 레시피](../../../recipes/search/)
+[검색 레시피](../../recipes/search.ko.md)
 
 ## 도구
 

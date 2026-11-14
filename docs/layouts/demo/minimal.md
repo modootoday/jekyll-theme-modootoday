@@ -12,4 +12,4 @@ description: A narrow centred column without the site header or pagination, for 
 
 This page uses `layout: minimal`. It has no header, page meta or pagination, so it suits standalone notices and sign-in notes.
 
-[Back to Layouts](../../)
+[Back to Layouts](../index.md)

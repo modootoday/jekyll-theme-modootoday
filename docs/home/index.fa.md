@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday فایل‌های استاندارد GitHub Flavored Markdown را به یک سایت مستندات مرتب تبدیل می‌کند. همان فایل در github.com، در GitHub Pages و به‌صورت نسخهٔ Markdown برای عامل‌های هوش مصنوعی خوانا است.
 
-[شروع کنید](../guides/install/) [مرور مؤلفه‌ها](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[شروع کنید](../guides/install.md) [مرور مؤلفه‌ها](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## چرا پوستهٔ modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## مسیر شما در مستندات
 
-1. پوسته را روی GitHub Pages یا Jekyll 4 [نصب کنید](../guides/install/).
-2. [نخستین صفحهٔ خود را](../guides/first-page/) با Markdown ساده بنویسید.
-3. از میان [مؤلفه‌ها](../components/) و [صفحهٔ همهٔ مؤلفه‌ها](../components/kitchen-sink/) انتخاب کنید.
-4. در [پیکربندی](../guides/configuration/) تنظیم کنید و ظاهر را با توکن‌ها و `_sass` [سفارشی کنید](../guides/customize/).
-5. با نسخه‌های Markdown و `llms.txt` سایت را [برای عامل‌ها خوانا کنید](../guides/agents/).
+1. پوسته را روی GitHub Pages یا Jekyll 4 [نصب کنید](../guides/install.md).
+2. [نخستین صفحهٔ خود را](../guides/first-page.md) با Markdown ساده بنویسید.
+3. از میان [مؤلفه‌ها](../components/index.md) و [صفحهٔ همهٔ مؤلفه‌ها](../components/kitchen-sink.md) انتخاب کنید.
+4. در [پیکربندی](../guides/configuration.md) تنظیم کنید و ظاهر را با توکن‌ها و `_sass` [سفارشی کنید](../guides/customize.md).
+5. با نسخه‌های Markdown و `llms.txt` سایت را [برای عامل‌ها خوانا کنید](../guides/agents.md).
 
 > [!NOTE]
-> این صفحه از [متن اصلی انگلیسی](../) ترجمه شده است؛ در صورت تفاوت، متن انگلیسی معتبر است. راهنماهای پیوندشده به انگلیسی هستند.
+> این صفحه از [متن اصلی انگلیسی](../index.md) ترجمه شده است؛ در صورت تفاوت، متن انگلیسی معتبر است. راهنماهای پیوندشده به انگلیسی هستند.
 
 ## همین حالا شروع کنید
 
-[نصب پوسته](../guides/install/) [دیدن همهٔ مؤلفه‌ها](../components/kitchen-sink/)
+[نصب پوسته](../guides/install.md) [دیدن همهٔ مؤلفه‌ها](../components/kitchen-sink.md)

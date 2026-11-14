@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/widgets/
-source_rev: sha256:a5678f7f6535
+source_rev: sha256:2399c2e4c053
 nav_order: 28
 title: 위젯
 description: 직접 만든 custom element를 Markdown에서 페이지에 넣고, JavaScript가 없는 독자에게는 대신 읽을 텍스트를 줍니다.
@@ -10,7 +10,7 @@ widget_props: {x-counter: {start: 10, step: 10, label: 10 더하기}}
 # 위젯
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../../recipes/figures/widgets/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](widgets.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 위젯은 계산기나 실시간 상태 상자처럼 직접 만든 custom element를 Markdown에서 페이지에 넣은 것입니다. 테마는 위젯 코드를 제공하지 않습니다. 테마는 요소를 놓고, 설정을 넘기고, 그 요소가 있는 페이지에서만 모듈을 불러오며, JavaScript가 없는 독자와 github.com, 페이지의 Markdown 버전, `llms-full.txt`를 위해 대체 텍스트를 남깁니다.
 
@@ -25,9 +25,9 @@ modootoday:
 ```
 
 - `element`는 custom element 이름입니다. 소문자로 쓰고 하이픈을 넣으며, 테마의 접두사인 `mt-`로 시작할 수 없고, `font-face`처럼 SVG와 MathML이 예약한 이름도 쓸 수 없습니다. 두 항목이 같은 요소를 가리킬 수 없습니다.
-- `src`와 `css`는 사이트 안의 경로입니다. `<x-counter`가 있는 페이지는 [모듈 스크립트](../../../guides/customize/#모듈-스크립트와-포스터)와 같이 그 항목의 시트와 `<script type="module">`을 `<head>`에 한 번 받습니다. 모듈 스크립트는 `script-src 'self'`가 허용하므로 엄격한 CSP를 바꿀 필요가 없습니다.
+- `src`와 `css`는 사이트 안의 경로입니다. `<x-counter`가 있는 페이지는 [모듈 스크립트](../../guides/customize.ko.md#모듈-스크립트와-포스터)와 같이 그 항목의 시트와 `<script type="module">`을 `<head>`에 한 번 받습니다. 모듈 스크립트는 `script-src 'self'`가 허용하므로 엄격한 CSP를 바꿀 필요가 없습니다.
 - 요소가 없는 페이지는 아무것도 불러오지 않습니다.
-- 모듈과 시트의 URL에는 테마 파일이나 `site_css` 시트처럼 테마의 `?v=` 쿼리가 붙으므로 CDN이 오래 캐시할 수 있습니다. 기본값 `modootoday.asset_version: theme`에서는 테마 버전이 바뀔 때만 쿼리가 바뀝니다. 테마 릴리스 사이에 직접 만든 모듈을 고친다면 커밋을 덧붙이는 `asset_version: build`로 설정하세요([버전 붙은 자산 URL](../../../guides/performance/#버전-붙은-자산-url)). 진입 모듈이 가져오는 모듈의 URL에는 쿼리가 붙지 않습니다.
+- 모듈과 시트의 URL에는 테마 파일이나 `site_css` 시트처럼 테마의 `?v=` 쿼리가 붙으므로 CDN이 오래 캐시할 수 있습니다. 기본값 `modootoday.asset_version: theme`에서는 테마 버전이 바뀔 때만 쿼리가 바뀝니다. 테마 릴리스 사이에 직접 만든 모듈을 고친다면 커밋을 덧붙이는 `asset_version: build`로 설정하세요([버전 붙은 자산 URL](../../guides/performance.ko.md#버전-붙은-자산-url)). 진입 모듈이 가져오는 모듈의 URL에는 쿼리가 붙지 않습니다.
 
 ## 섹션에 넣기
 
@@ -58,7 +58,7 @@ sections:
 - `props`는 일반 값(텍스트, 숫자, `true`, `false`)의 맵입니다. 요소는 이를 `data-props`에서 JSON으로 읽습니다.
 - 섹션 제목 뒤에는 문단이 적어도 하나 있어야 합니다. 그 문단만으로도 뜻이 통하게 쓰십시오. 한 문장, 결과 표, 같은 일을 하는 페이지로 가는 링크 모두 좋습니다.
 
-[키친싱크](../../../components/kitchen-sink/#위젯)에 카운터 섹션이 있습니다.
+[키친싱크](../../components/kitchen-sink.ko.md#위젯)에 카운터 섹션이 있습니다.
 
 ## 문단에 넣기
 
@@ -77,7 +77,7 @@ props는 요소 이름을 키로 해서 front matter에서 가져옵니다. `wid
 테마와 모듈 사이의 약속은 다음과 같습니다.
 
 - `customElements.define`으로 요소를 정의합니다. 그 전까지 테마는 `div.mt-widget-fallback`을 보여 주고, 요소가 정의되면(CSS `:defined`) 숨깁니다. 모듈이 실패하거나 불러와지지 않으면 대체 텍스트가 그대로 남으며, `<noscript>`는 쓰지 않습니다.
-- 설정은 `data-props`에서 읽습니다. 테마의 `/assets/js/modootoday/dom/config.js`가 이름 있는 내보내기로 제공하는 [`readConfig`](../../../guides/customize/#모듈-스크립트와-포스터)가 파싱합니다. `readConfig(this, {props: {}})`처럼 씁니다. 모듈 기준의 상대 경로로 가져오세요.
+- 설정은 `data-props`에서 읽습니다. 테마의 `/assets/js/modootoday/dom/config.js`가 이름 있는 내보내기로 제공하는 [`readConfig`](../../guides/customize.ko.md#모듈-스크립트와-포스터)가 파싱합니다. `readConfig(this, {props: {}})`처럼 씁니다. 모듈 기준의 상대 경로로 가져오세요.
 
   ```js
   // assets/js/widgets/x-counter.js

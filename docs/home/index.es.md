@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday convierte GitHub Flavored Markdown estándar en un sitio de documentación limpio. El mismo archivo se lee bien en github.com, en GitHub Pages y como versión Markdown para agentes de IA.
 
-[Empieza](../guides/install/) [Explora los componentes](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Empieza](../guides/install.md) [Explora los componentes](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Por qué el tema modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Tu recorrido por la documentación
 
-1. [Instala](../guides/install/) el tema en GitHub Pages o Jekyll 4.
-2. [Escribe tu primera página](../guides/first-page/) con Markdown simple.
-3. Elige entre los [componentes](../components/) y la [página con todos los componentes](../components/kitchen-sink/).
-4. Ajústalo en la [configuración](../guides/configuration/) y [personaliza](../guides/customize/) el aspecto con tokens y `_sass`.
-5. Haz que sea [legible para agentes](../guides/agents/) con versiones Markdown y `llms.txt`.
+1. [Instala](../guides/install.md) el tema en GitHub Pages o Jekyll 4.
+2. [Escribe tu primera página](../guides/first-page.md) con Markdown simple.
+3. Elige entre los [componentes](../components/index.md) y la [página con todos los componentes](../components/kitchen-sink.md).
+4. Ajústalo en la [configuración](../guides/configuration.md) y [personaliza](../guides/customize.md) el aspecto con tokens y `_sass`.
+5. Haz que sea [legible para agentes](../guides/agents.md) con versiones Markdown y `llms.txt`.
 
 > [!NOTE]
-> Esta página es una traducción del [original en inglés](../); si hay diferencias, prevalece el inglés. Las guías enlazadas están en inglés.
+> Esta página es una traducción del [original en inglés](../index.md); si hay diferencias, prevalece el inglés. Las guías enlazadas están en inglés.
 
 ## Empieza ahora
 
-[Instala el tema](../guides/install/) [Ver todos los componentes](../components/kitchen-sink/)
+[Instala el tema](../guides/install.md) [Ver todos los componentes](../components/kitchen-sink.md)

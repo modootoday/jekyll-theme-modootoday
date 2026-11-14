@@ -1,17 +1,17 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/loaders/
-source_rev: sha256:bff70c3e0e20
+source_rev: sha256:65f59cf4e721
 nav_order: 20
 title: 다이어그램과 수식 로더
 description: 내장 로더나 직접 만든 로더로 Mermaid 다이어그램과 KaTeX 수식을 브라우저에서 렌더링하는 방법과 각 방법이 CSP와 개인정보에 요구하는 것을 설명합니다.
 ---
 # 다이어그램과 수식 로더
 
-이 방법들은 읽는 사람의 브라우저에서 다이어그램과 수식을 그립니다. 스크립트가 필요 없는 정적 그림과의 비교는 [수식과 다이어그램](../math-diagrams/)에 있습니다.
+이 방법들은 읽는 사람의 브라우저에서 다이어그램과 수식을 그립니다. 스크립트가 필요 없는 정적 그림과의 비교는 [수식과 다이어그램](math-diagrams.ko.md)에 있습니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../../recipes/figures/loaders/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](loaders.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 내장 로더
 
@@ -50,7 +50,7 @@ modootoday:
 
 CDN을 쓰면 콘텐츠 보안 정책과 방문자 개인정보가 달라집니다.
 
-- **CSP.** CDN 출처를 `script-src`(둘 다), `style-src`(KaTeX 스타일시트), `font-src`(KaTeX 글꼴)에 추가합니다. Mermaid는 각 다이어그램에 `<style>`을 쓰므로 어디서 호스팅하든 `style-src 'unsafe-inline'`이 필요합니다. 직접 호스팅하면 스크립트·스타일·글꼴 모두 `'self'`로 유지됩니다. [콘텐츠 보안 정책](../../csp/)을 참고하세요.
+- **CSP.** CDN 출처를 `script-src`(둘 다), `style-src`(KaTeX 스타일시트), `font-src`(KaTeX 글꼴)에 추가합니다. Mermaid는 각 다이어그램에 `<style>`을 쓰므로 어디서 호스팅하든 `style-src 'unsafe-inline'`이 필요합니다. 직접 호스팅하면 스크립트·스타일·글꼴 모두 `'self'`로 유지됩니다. [콘텐츠 보안 정책](../csp.ko.md)을 참고하세요.
 - **개인정보.** 방문자의 브라우저가 CDN에 파일을 요청하므로, CDN은 방문자의 IP 주소, 페이지 주소(리퍼러), 시각을 받습니다. 직접 호스팅하면 이를 피할 수 있습니다. CDN을 쓴다면 개인정보 처리방침에 밝히세요.
 - **가용성.** CDN을 쓰면 그 CDN에 접속할 수 있을 때만 블록이 렌더링되고, 아니면 소스 코드 블록이 남습니다.
 
@@ -79,7 +79,7 @@ document.querySelectorAll("code.language-math").forEach((code) => {
 
 ### 브라우저에서 Mermaid
 
-Mermaid는 각 SVG에 `<style>` 요소를 써 넣으므로 엄격한 `style-src 'self'`에서는 스타일이 막힙니다. [정적 다이어그램](../math-diagrams/#정적-다이어그램)을 쓰거나, 해당 페이지에서만 인라인 스타일을 허용하고 스크립트는 엄격하게 유지하세요.
+Mermaid는 각 SVG에 `<style>` 요소를 써 넣으므로 엄격한 `style-src 'self'`에서는 스타일이 막힙니다. [정적 다이어그램](math-diagrams.ko.md#정적-다이어그램)을 쓰거나, 해당 페이지에서만 인라인 스타일을 허용하고 스크립트는 엄격하게 유지하세요.
 
 ```html
 <script defer src="/your-base/assets/mermaid/mermaid.min.js"></script>

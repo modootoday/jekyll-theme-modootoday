@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/brand-tokens/
-source_rev: sha256:6467da12bd77
+source_rev: sha256:3d1eb13a0aa7
 nav_order: 15
 title: 브랜드 토큰
 description: 토큰 브리지로 브랜드의 색과 글꼴을 테마에 입히고, 사이트 스타일시트와 미리 불러오는 글꼴까지 엄격한 CSP 아래에서 함께 쓰는 방법을 설명합니다.
@@ -12,7 +12,7 @@ preload:
 # 브랜드 토큰
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../recipes/brand-tokens/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](brand-tokens.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 이 페이지에는 가상의 청록색 브랜드와 자체 호스팅한 제목 글꼴을 입혔습니다. 라이트와 다크를 바꿔 가며 두 팔레트를 확인해 보세요. 나머지 문서는 기본 모습을 그대로 유지합니다.
 
@@ -33,7 +33,7 @@ $mt-overrides-dark: (
 );
 ```
 
-색은 라이트와 다크 모드를 위해 두 맵에 모두 지정합니다. `heading-weight: 600`은 기본값이며 쓰는 자리를 보여 주려고 넣었습니다. 맵마다 받는 토큰과 `modootoday-check`가 거부하는 내용은 [사용자 정의 > 토큰 브리지](../../guides/customize/#토큰-브리지)에 있습니다.
+색은 라이트와 다크 모드를 위해 두 맵에 모두 지정합니다. `heading-weight: 600`은 기본값이며 쓰는 자리를 보여 주려고 넣었습니다. 맵마다 받는 토큰과 `modootoday-check`가 거부하는 내용은 [사용자 정의 > 토큰 브리지](../guides/customize.ko.md#토큰-브리지)에 있습니다.
 
 ## 사이트 스타일시트와 글꼴
 
@@ -64,7 +64,7 @@ modootoday:
 
 ## 엄격한 CSP에서
 
-브리지, `site_css`, `preload`는 모두 파일이므로 `default-src 'self'; style-src 'self'`로 충분합니다([CSP](../csp/) 참고). `modootoday.tokens`는 인라인 `<style>`로 출력되므로, 엄격한 CSP 사이트에서는 그 값을 브리지로 옮기세요.
+브리지, `site_css`, `preload`는 모두 파일이므로 `default-src 'self'; style-src 'self'`로 충분합니다([CSP](csp.ko.md) 참고). `modootoday.tokens`는 인라인 `<style>`로 출력되므로, 엄격한 CSP 사이트에서는 그 값을 브리지로 옮기세요.
 
 ## 데모 글꼴
 

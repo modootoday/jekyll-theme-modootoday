@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/team/
-source_rev: sha256:6271ae9721b9
+source_rev: sha256:df44cc5bcaf5
 nav_order: 2
 title: "チームのデモ"
 layout: team
@@ -22,4 +22,4 @@ description: プロジェクトを支えるメンバーを丸い写真、名前�
 
 このページは `layout: team` を使います。各メンバーは構造化データで schema.org の Person になります。
 
-[ディレクトリレイアウトに戻る](../)
+[ディレクトリレイアウトに戻る](index.ja.md)

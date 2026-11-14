@@ -17,7 +17,7 @@ A page `guide.md` is also served at `/guide/index.md`, byte-identical to its bod
 
 - **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page, shown below.
 - **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
-- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source; section 5a of the [Markdown rules](../../reference/rules/) lists the limits.
+- **Source mode** (classic GitHub Pages, no stubs): `modootoday.twins: source` with pages that have no front matter. Classic GitHub Pages serves the raw copy as `text/markdown; charset=utf-8`, identical to the source; section 5a of the [Markdown rules](../reference/rules.md) lists the limits.
 
 On Jekyll 4 the theme plugin creates twins automatically:
 
@@ -83,4 +83,4 @@ layout: llms
 
 Each other language with pages needs the same two files in its folder with its `lang:`, such as `ko/llms.txt` with `layout: llms` and `lang: ko`. `modootoday-check --twins` names any that are missing.
 
-Try them on this site: [llms.txt](../../llms.txt) and [llms-full.txt](../../llms-full.txt). [Install > Verify the build](../install/#verify-the-build) runs the checks on your own site.
+Try them on this site: [llms.txt](../generated/llms.txt) and [llms-full.txt](../generated/llms-full.txt). [Install > Verify the build](install.md#verify-the-build) runs the checks on your own site.

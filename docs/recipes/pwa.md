@@ -157,7 +157,7 @@ When the browser reports that the network is gone, other pages show a short noti
 
 The caches are named after the site's path: `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>` and `mt:<baseurl>/:media`. Two project sites on the same `<user>.github.io` therefore never touch each other's caches.
 
-- Both follow `modootoday.asset_version` (see [Performance](../../guides/performance/#versioned-asset-urls)): with `theme` (the default) they change with the theme version; with `build` or `false`, on every deploy.
+- Both follow `modootoday.asset_version` (see [Performance](../guides/performance.md#versioned-asset-urls)): with `theme` (the default) they change with the theme version; with `build` or `false`, on every deploy.
 - A deploy that keeps the theme files therefore keeps the pages a reader saved; a theme update replaces them, because a kept page links the theme files of its own version.
 - A new worker deletes only this site's older caches.
 
@@ -181,7 +181,7 @@ A local `bundle exec jekyll serve` works as well: browsers allow service workers
 
 The notice is a status message: screen readers announce it and it never takes focus. It comes last in the page, so keyboard users reach Reload and Later by tabbing past the page's last link; `Esc` closes it from anywhere on the page. Its sheet (`chrome/toast.css`) and script (`pwa/update-toast.js`) load only when it shows, and it keeps nothing on the device.
 
-Readers who have not installed the site learn of updates through feeds, release notifications or an email form: see [Tell readers about updates](../updates/).
+Readers who have not installed the site learn of updates through feeds, release notifications or an email form: see [Tell readers about updates](updates.md).
 
 ## Turn it off
 
@@ -199,4 +199,4 @@ Installing adds a shortcut and an app window. The worker stores, in Cache Storag
 
 ## Content Security Policy
 
-The manifest is a file from your own site, so a policy with `default-src 'self'` allows it. The worker and the scripts it loads come from your site too. If your policy sets `default-src` to something narrower, add `manifest-src 'self'` and `worker-src 'self'`. See [CSP](../csp/).
+The manifest is a file from your own site, so a policy with `default-src 'self'` allows it. The worker and the scripts it loads come from your site too. If your policy sets `default-src` to something narrower, add `manifest-src 'self'` and `worker-src 'self'`. See [CSP](csp.md).

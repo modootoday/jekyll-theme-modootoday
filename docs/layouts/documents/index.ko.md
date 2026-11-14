@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/documents/
-source_rev: sha256:95fa00b0eb03
+source_rev: sha256:ff432367b0e4
 nav_order: 70
 title: 문서
 description: 날짜, 버전, 목차가 있는 법적 고지 페이지와 인쇄를 먼저 고려한 이력서, 사람들이 보관하거나 인쇄하는 페이지를 위한 레이아웃 두 가지입니다.
@@ -12,8 +12,8 @@ description: 날짜, 버전, 목차가 있는 법적 고지 페이지와 인쇄�
 
 | 레이아웃 | front matter | 번들 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](legal/) |
-| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](resume/) |
+| `legal` | `effective`(필수), `updated`, `version`, `toc: false` | pages | 날짜가 있는 WebPage | [약관](legal.ko.md) |
+| `resume` | `display_name`, `headline`, `email`, `phone`, `location`, `links`, `experience`, `education`, `skills` | resume | ProfilePage + Person | [이력서](resume.ko.md) |
 
 ## 법적 고지
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/blog-news/
-source_rev: sha256:7be356b2032b
+source_rev: sha256:ae9709e8e9cf
 nav_order: 50
 title: ブログとニュース
 description: ブログ一覧、ニュースのトップページ、記事の署名、著者ページ、言語ごとの Atom フィードを作るレイアウトと、それぞれの front matter を説明します。
@@ -25,13 +25,13 @@ description: ブログ一覧、ニュースのトップページ、記事の署�
 
 | デモ | レイアウト | 新しいウィンドウ |
 | --- | --- | --- |
-| [ブログ一覧](blog/) | `blog` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
-| [ブログ記事](post/) | `post` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
-| [ニューストップ](news/) | `news` | [新しいウィンドウで開く](news/ "new-window") |
-| [ニュース記事](article/) | `news-article` | [新しいウィンドウで開く](article/ "new-window") |
-| [年別アーカイブ](archive/) | `archive` | [新しいウィンドウで開く](archive/ "new-window") |
+| [ブログ一覧](blog.ja.md) | `blog` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/ "new-window") |
+| [ブログ記事](post.ja.md) | `post` | [ライブデモ](https://modootoday.github.io/jekyll-theme-modootoday-blog-starter/notes/2026/10/20/hello-blog/ "new-window") |
+| [ニューストップ](news.ja.md) | `news` | [新しいウィンドウで開く][news-demo] |
+| [ニュース記事](article.ja.md) | `news-article` | [新しいウィンドウで開く][article-demo] |
+| [年別アーカイブ](archive.ja.md) | `archive` | [新しいウィンドウで開く][archive-demo] |
 
-日本語の記事の Atom フィードは [feed.xml](../../../ja/feed.xml) にあります。[英語](../../../feed.xml)と[韓国語](../../../ko/feed.xml)のフィードも別にあります。
+日本語の記事の Atom フィードは [feed.xml](../../feed.ja.xml) にあります。[英語](../../feed.xml)と[韓国語](../../feed.ko.xml)のフィードも別にあります。
 
 ## ブログ一覧
 
@@ -44,7 +44,7 @@ category: guides   # 任意の絞り込み。tag: も使えます
 ---
 ```
 
-[サンプルのブログ](../../blog/)で、このサイトの記事を表示した例を見られます。
+[サンプルのブログ](../../blog/index.ja.md)で、このサイトの記事を表示した例を見られます。
 
 
 ## 記事
@@ -63,7 +63,7 @@ last_modified_at: 2026-10-30
 
 ## ニュース
 
-`layout: news` に `news_sections: [releases, guides]` を書くとトップページになります。記事は `layout: news-article` を使い、`deck:`、`breaking: true`、`live: true`、`correction:`、`sources:`、`credits:` を指定できます。[サンプルのトップページ](../../news/)をご覧ください。
+`layout: news` に `news_sections: [releases, guides]` を書くとトップページになります。記事は `layout: news-article` を使い、`deck:`、`breaking: true`、`live: true`、`correction:`、`sources:`、`credits:` を指定できます。[サンプルのトップページ](../../news/index.ja.md)をご覧ください。
 
 ## 著者とフィード
 
@@ -79,7 +79,7 @@ layout: feed
 
 `modootoday.feed: true` はすべてのページの head にそのフィード(その言語のフィードがあればそちら)をリンクするだけで、フィード自体は書きません。`jekyll-feed` を一緒に入れないでください。このプラグインも `/feed.xml` を書きます。
 
-変更履歴も、リリースごとに一つの項目があるフィードにできます。二つのファイルと `feed_source:`、`releases_feed:` は、ドキュメント拡張の[変更履歴](../docs-extra/#変更履歴)にあります。
+変更履歴も、リリースごとに一つの項目があるフィードにできます。二つのファイルと `feed_source:`、`releases_feed:` は、ドキュメント拡張の[変更履歴](../docs-extra/index.ja.md#変更履歴)にあります。
 
 `modootoday.feed` が `true` なら、`category` も `tag` もないブログ一覧は、その言語のフィードを head と紹介文の下の購読リンクでリンクします。ブログ、著者、アーカイブのページと、変更履歴などのドキュメント拡張のページは `feed:` で自分のフィードを決めます。値は `layout: feed` のページのサイト内パスで、リンクしないなら `false` です。これらのレイアウトはフィードを購読リンクで示し、ダウンロードのページなどほかのページでは `feed:` は head のリンクだけを加えます。一人の著者の記事だけにするには、`layout: feed` と `author: kim` を書いた `/authors/kim.xml` のようなページを作り、著者ページに `feed: /authors/kim.xml` を書きます。ビルドにない `feed:` は `modootoday-check` が報告します。
 
@@ -116,3 +116,10 @@ modootoday:
 | `feed_lang`, `limit`, `feed_content` | feed | フィードの範囲 |
 | `feed_source`, `home` | feed | 変更履歴をフィードに:`data` か `layout: changelog` のページの URL と、項目のリンク先 |
 | `releases_feed` | changelog, download, 任意のページ | `true`(`site.github` から)か URL。GitHub の `releases.atom` を head にリンクし、changelog とほかのドキュメント拡張ではタイトルの下にもリンク |
+
+[news-demo]: news.ja.md
+  "new-window"
+[article-demo]: article.ja.md
+  "new-window"
+[archive-demo]: archive.ja.md
+  "new-window"

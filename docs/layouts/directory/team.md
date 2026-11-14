@@ -19,4 +19,4 @@ description: The people behind the project as cards with a round photo, a name a
 
 This page uses `layout: team`. Each person becomes a schema.org Person in the page's structured data.
 
-[Back to directory layouts](../)
+[Back to directory layouts](index.md)

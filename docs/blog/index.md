@@ -7,4 +7,4 @@ feed: /feed.xml
 ---
 # Blog
 
-A sample blog index (`layout: blog`, `variant: magazine`). See the [Blog and news guide](../layouts/blog-news/).
+A sample blog index (`layout: blog`, `variant: magazine`). See the [Blog and news guide](../layouts/blog-news/index.md).

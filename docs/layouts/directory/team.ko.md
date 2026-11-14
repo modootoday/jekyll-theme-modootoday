@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/team/
-source_rev: sha256:6271ae9721b9
+source_rev: sha256:df44cc5bcaf5
 nav_order: 2
 title: "팀 데모"
 layout: team
@@ -22,4 +22,4 @@ description: 프로젝트를 만드는 사람들을 둥근 사진, 이름, 역�
 
 이 페이지는 `layout: team`을 씁니다. 각 구성원은 구조화 데이터에서 schema.org Person이 됩니다.
 
-[디렉터리 레이아웃으로 돌아가기](../)
+[디렉터리 레이아웃으로 돌아가기](index.ko.md)

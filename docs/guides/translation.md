@@ -5,7 +5,7 @@ description: The canonical style rules, glossary and lint for the Korean and Jap
 ---
 # Translation rules
 
-This page is for contributors who translate the theme. To publish your own site in more than one language, see [Translate your site](../translate-site/).
+This page is for contributors who translate the theme. To publish your own site in more than one language, see [Translate your site](translate-site.md).
 
 English is the source. Korean (`ko`) and Japanese (`ja`) pages, `README.ko.md` and `README.ja.md`, the starter sites in `example/` and the interface catalogs in `i18n/<code>.yml` are localized from it. This page is the single set of rules; `i18n/glossary.yml` is its machine-readable glossary, and `script/i18n-build --check` enforces both.
 
@@ -67,7 +67,7 @@ Brand name: write the theme as **modoo.today theme** in English, **모두의오�
 
 ## Interface strings
 
-Catalogs keep every key of `i18n/en.yml` and every placeholder (`[n]`, `[total]`, `[section]`, `%{x}`); only values change. Labels are short noun phrases. After an edit run `script/i18n-build` to regenerate the Liquid catalogs. How a site picks its languages and overrides a label is in [Configuration > Languages](../configuration/#languages).
+Catalogs keep every key of `i18n/en.yml` and every placeholder (`[n]`, `[total]`, `[section]`, `%{x}`); only values change. Labels are short noun phrases. After an edit run `script/i18n-build` to regenerate the Liquid catalogs. How a site picks its languages and overrides a label is in [Configuration > Languages](configuration.md#languages).
 
 ## What the lint checks
 

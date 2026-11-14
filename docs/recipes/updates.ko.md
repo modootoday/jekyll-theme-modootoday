@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/updates/
-source_rev: sha256:6f5b908e1891
+source_rev: sha256:90a989e0d6bb
 nav_order: 28
 title: 독자에게 업데이트 알리기
 description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의 안내로 독자가 사이트의 변경을 따라오게 하고, 릴리스를 게시하면 사이트를 다시 빌드하는 방법을 설명합니다.
@@ -9,7 +9,7 @@ description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의
 # 독자에게 업데이트 알리기
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../recipes/updates/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](updates.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 정적 사이트는 스스로 독자에게 연락할 수 없습니다. 그래서 테마는 독자가 원할 때 소식을 가져가는 방법을 제공합니다. 독자에게 맞는 채널을 고르세요. 각 채널은 다른 채널 없이도 동작합니다.
 
@@ -23,9 +23,9 @@ description: 피드, GitHub 릴리스 알림, 이메일 양식, 설치된 앱의
 
 ## 피드
 
-사이트 루트와 언어 폴더마다 `layout: feed`인 `feed.xml` 페이지를 추가합니다. 피드는 테마가 직접 쓰므로 플러그인이 필요 없습니다. `modootoday.feed: true`를 두면 모든 페이지의 head가 그 언어의 피드를 링크하므로, 피드 리더는 어느 페이지 주소에서든 피드를 찾습니다. 블로그, 작성자, 아카이브 페이지는 자기 피드로 가는 구독 링크도 보여 줍니다(front matter `feed:`). [작성자와 피드](../../layouts/blog-news/#작성자와-피드)를 참고하세요. 피드는 사이트에 있는 파일일 뿐이어서 누구도 가입하지 않고, 누가 읽는지도 알 수 없습니다.
+사이트 루트와 언어 폴더마다 `layout: feed`인 `feed.xml` 페이지를 추가합니다. 피드는 테마가 직접 쓰므로 플러그인이 필요 없습니다. `modootoday.feed: true`를 두면 모든 페이지의 head가 그 언어의 피드를 링크하므로, 피드 리더는 어느 페이지 주소에서든 피드를 찾습니다. 블로그, 작성자, 아카이브 페이지는 자기 피드로 가는 구독 링크도 보여 줍니다(front matter `feed:`). [작성자와 피드](../layouts/blog-news/index.ko.md#작성자와-피드)를 참고하세요. 피드는 사이트에 있는 파일일 뿐이어서 누구도 가입하지 않고, 누가 읽는지도 알 수 없습니다.
 
-변경 이력 페이지도 릴리스마다 항목 하나인 자기 피드를 가질 수 있습니다. `layout: feed`와 `feed_source:`를 쓴 `changelog.xml`을 만들고, 변경 이력 페이지에서 `feed:`로 연결합니다. 두 파일은 문서 확장의 [변경 이력](../../layouts/docs-extra/#변경-이력)을 보세요.
+변경 이력 페이지도 릴리스마다 항목 하나인 자기 피드를 가질 수 있습니다. `layout: feed`와 `feed_source:`를 쓴 `changelog.xml`을 만들고, 변경 이력 페이지에서 `feed:`로 연결합니다. 두 파일은 문서 확장의 [변경 이력](../layouts/docs-extra/index.ko.md#변경-이력)을 보세요.
 
 GitHub에 릴리스를 게시하면 GitHub가 `https://github.com/OWNER/REPO/releases.atom`에 릴리스 피드를 둡니다. 릴리스만 받고 싶은 독자를 위해 변경 이력이나 다운로드 페이지의 front matter에 `releases_feed: true`를 두면 이 피드를 연결합니다.
 
@@ -35,15 +35,15 @@ GitHub 계정이 있는 독자는 저장소에서 Watch, Custom을 차례로 고
 
 ## 이메일 양식
 
-`c: subscribe` 섹션은 본문과, 메일 서비스(`modootoday.subscribe.action`)로 보내는 이메일 양식을 출력합니다. 주소를 보관하고 이메일을 보내는 일은 서비스가 하고, 테마는 양식만 그립니다. [구독](../../components/#구독)을 참고하세요.
+`c: subscribe` 섹션은 본문과, 메일 서비스(`modootoday.subscribe.action`)로 보내는 이메일 양식을 출력합니다. 주소를 보관하고 이메일을 보내는 일은 서비스가 하고, 테마는 양식만 그립니다. [구독](../components/index.ko.md#구독)을 참고하세요.
 
 ## 설치한 앱
 
-`modootoday.pwa`를 켜면 열려 있는 앱은 배포가 테마 파일을 바꿨을 때 짧은 안내를 보여 주고, 페이지는 언제나 네트워크에서 먼저 가져옵니다. 설치할 수 있는 사이트 레시피의 [업데이트](../pwa/#업데이트)를 참고하세요. 안내는 사이트를 열어 둔 독자에게만 보이며 알림이 아닙니다.
+`modootoday.pwa`를 켜면 열려 있는 앱은 배포가 테마 파일을 바꿨을 때 짧은 안내를 보여 주고, 페이지는 언제나 네트워크에서 먼저 가져옵니다. 설치할 수 있는 사이트 레시피의 [업데이트](pwa.ko.md#업데이트)를 참고하세요. 안내는 사이트를 열어 둔 독자에게만 보이며 알림이 아닙니다.
 
 ## 릴리스 막대
 
-`modootoday.banner: {release: latest}`는 모든 페이지에 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 보여 줍니다. 값은 사이트를 빌드할 때 `site.github`에서 읽고, 프리릴리스는 빠집니다. 읽는 필드는 `site.github.latest_release`(그 `tag_name`과 `html_url`)입니다. 태그 앞의 `v`는 빼므로 `v1.7.0`도 1.7.0으로 보입니다. 저장소에 아직 게시한 릴리스가 없거나 빌드에 GitHub 메타데이터가 없어 최신 릴리스를 읽지 못하면 막대가 나타나지 않고, `modootoday-check`가 빌드된 홈 페이지에 릴리스 막대가 없다고 경고합니다. 사이트를 다시 빌드해야 바뀌므로, 릴리스마다 다시 빌드하도록(아래) 함께 설정하세요. GitHub Pages 밖에서는 `_config.yml`에 `latest_release`가 있는 `github:` 맵을 두어 `site.github`를 대신하거나([헤드와 SEO의 예시](../../guides/configuration/#헤드와-seo) 참고), `release: {version, url}`을 대신 씁니다.
+`modootoday.banner: {release: latest}`는 모든 페이지에 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 보여 줍니다. 값은 사이트를 빌드할 때 `site.github`에서 읽고, 프리릴리스는 빠집니다. 읽는 필드는 `site.github.latest_release`(그 `tag_name`과 `html_url`)입니다. 태그 앞의 `v`는 빼므로 `v1.7.0`도 1.7.0으로 보입니다. 저장소에 아직 게시한 릴리스가 없거나 빌드에 GitHub 메타데이터가 없어 최신 릴리스를 읽지 못하면 막대가 나타나지 않고, `modootoday-check`가 빌드된 홈 페이지에 릴리스 막대가 없다고 경고합니다. 사이트를 다시 빌드해야 바뀌므로, 릴리스마다 다시 빌드하도록(아래) 함께 설정하세요. GitHub Pages 밖에서는 `_config.yml`에 `latest_release`가 있는 `github:` 맵을 두어 `site.github`를 대신하거나([헤드와 SEO의 예시](../guides/configuration.ko.md#헤드와-seo) 참고), `release: {version, url}`을 대신 씁니다.
 
 ## 푸시가 없는 이유
 

@@ -16,7 +16,7 @@ sections:
 
 يحوّل jekyll-theme-modootoday ملفات GitHub Flavored Markdown القياسية إلى موقع توثيق مرتّب. يُقرأ الملف نفسه بوضوح على github.com وعلى GitHub Pages، وكنسخة Markdown لوكلاء الذكاء الاصطناعي.
 
-[ابدأ الآن](../guides/install/) [تصفّح المكوّنات](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[ابدأ الآن](../guides/install.md) [تصفّح المكوّنات](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## لماذا قالب modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## مسارك في التوثيق
 
-1. [ثبّت](../guides/install/) القالب على GitHub Pages أو Jekyll 4.
-2. [اكتب صفحتك الأولى](../guides/first-page/) بلغة Markdown العادية.
-3. اختر من [المكوّنات](../components/) ومن [صفحة جميع المكوّنات](../components/kitchen-sink/).
-4. اضبطه عبر [الإعدادات](../guides/configuration/) و[خصّص المظهر](../guides/customize/) باستخدام الرموز المميّزة و`_sass`.
-5. اجعل موقعك [مقروءًا للوكلاء](../guides/agents/) بفضل نسخ Markdown و`llms.txt`.
+1. [ثبّت](../guides/install.md) القالب على GitHub Pages أو Jekyll 4.
+2. [اكتب صفحتك الأولى](../guides/first-page.md) بلغة Markdown العادية.
+3. اختر من [المكوّنات](../components/index.md) ومن [صفحة جميع المكوّنات](../components/kitchen-sink.md).
+4. اضبطه عبر [الإعدادات](../guides/configuration.md) و[خصّص المظهر](../guides/customize.md) باستخدام الرموز المميّزة و`_sass`.
+5. اجعل موقعك [مقروءًا للوكلاء](../guides/agents.md) بفضل نسخ Markdown و`llms.txt`.
 
 > [!NOTE]
-> هذه الصفحة مترجمة عن [الأصل الإنجليزي](../)، وعند أي اختلاف يُعتمد النص الإنجليزي. الأدلة المرتبطة متاحة بالإنجليزية.
+> هذه الصفحة مترجمة عن [الأصل الإنجليزي](../index.md)، وعند أي اختلاف يُعتمد النص الإنجليزي. الأدلة المرتبطة متاحة بالإنجليزية.
 
 ## ابدأ الآن
 
-[ثبّت القالب](../guides/install/) [اعرض جميع المكوّنات](../components/kitchen-sink/)
+[ثبّت القالب](../guides/install.md) [اعرض جميع المكوّنات](../components/kitchen-sink.md)

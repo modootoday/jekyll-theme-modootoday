@@ -18,7 +18,7 @@ Two short talks, then questions.
 
 **Admission:** free. Register with the Get tickets button.
 
-This page's front matter, which the [Detail pages](../) guide explains:
+This page's front matter, which the [Detail pages](index.md) guide explains:
 
 ```yaml
 layout: event

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/sponsors/
-source_rev: sha256:2b8600d0613f
+source_rev: sha256:4436f54a1a8a
 nav_order: 5
 title: "후원사 데모"
 layout: sponsors
@@ -19,4 +19,4 @@ description: 후원사 로고를 등급별로 묶어 이름과 링크를 함께 
 
 이 페이지는 `layout: sponsors`를 씁니다. 등급을 고르면 해당 후원사만 보입니다.
 
-[디렉터리 레이아웃으로 돌아가기](../)
+[디렉터리 레이아웃으로 돌아가기](index.ko.md)

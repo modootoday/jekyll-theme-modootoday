@@ -66,7 +66,7 @@ Each component is ordinary Markdown. Every example below shows the Markdown sour
 
 Components are grouped by purpose, from text and inline marks to the site chrome, and sorted A-Z by their English title inside each group. Every language uses the same order.
 
-[Open the kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)
+[Open the kitchen sink](kitchen-sink.md) [Configuration](../guides/configuration.md)
 
 ## Text and inline
 
@@ -99,9 +99,9 @@ Open search with `kbd:Ctrl+K`, or press `kbd:/`.
 
 `status:available` With `modootoday.lists` in `_config.yml`, plain sections and pages get two list styles. `link_chips: true` turns a list whose every item is one link into a row of chips; `titled_items: true` gives an item that starts with a bold title and a colon its own title and separator. `hero: {checks: true}` turns the first list in the hero into a row of check marks, as above. Lists in component sections keep their own style.
 
-- [Install](../guides/install/)
-- [Configuration](../guides/configuration/)
-- [Accessibility](../guides/accessibility/)
+- [Install](../guides/install.md)
+- [Configuration](../guides/configuration.md)
+- [Accessibility](../guides/accessibility.md)
 
 Items with a title:
 
@@ -261,7 +261,7 @@ Tables and charts, and the tools that help read them.
 
 ## Filter
 
-`status:available` `filter: true` on a `sections:` item puts a search field above the first list or table of that section: only the items that contain every word typed stay, and a count says how many are shown. `filter: {facet: 2}` also adds a button for each value in the table's second column. On a page without `sections:`, set `filter:` in its front matter; on a directory page, `filter_text: true`. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter/) and the [Search recipe](../recipes/search/).
+`status:available` `filter: true` on a `sections:` item puts a search field above the first list or table of that section: only the items that contain every word typed stay, and a count says how many are shown. `filter: {facet: 2}` also adds a button for each value in the table's second column. On a page without `sections:`, set `filter:` in its front matter; on a directory page, `filter_text: true`. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter.md) and the [Search recipe](../recipes/search.md).
 
 ## Parameter table
 
@@ -321,7 +321,7 @@ Nothing but the browser.
 
 ## FAQ
 
-`status:available` A `c: faq` section works like details. With `schema: {faq: auto}`, which this page sets, its questions and answers also become the page's FAQPage structured data (see [Structured data](../guides/structured-data/)).
+`status:available` A `c: faq` section works like details. With `schema: {faq: auto}`, which this page sets, its questions and answers also become the page's FAQPage structured data (see [Structured data](../guides/structured-data.md)).
 
 ### Is the theme free?
 
@@ -395,7 +395,7 @@ Bands that build a landing page from `sections:` items and the hero.
 
 `status:available` A paragraph that holds only links becomes buttons. The first link is the primary one. It works in the hero (before the first `##`) and in a `c: cta` section.
 
-[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
+[Get started](../guides/install.md) [Read the configuration](../guides/configuration.md)
 
 ## Cards
 
@@ -425,7 +425,7 @@ The same idea with `cols: 4`: two by two in this text column, four across in a s
 
 ## Install
 
-`status:available` A `c: install` section prints its text, an Install button and a hint. The button stays hidden until the browser offers to install the site, and it opens the browser's own dialog only when it is clicked; the hint covers browsers that install from their menu or share sheet. Inside the installed app the section hides. It needs `modootoday.pwa.enabled: true`, which this site has: in Chrome and Edge the button appears here, and other browsers show the hint. See [Installable site](../recipes/pwa/#installing).
+`status:available` A `c: install` section prints its text, an Install button and a hint. The button stays hidden until the browser offers to install the site, and it opens the browser's own dialog only when it is clicked; the hint covers browsers that install from their menu or share sheet. Inside the installed app the section hides. It needs `modootoday.pwa.enabled: true`, which this site has: in Chrome and Edge the button appears here, and other browsers show the hint. See [Installable site](../recipes/pwa.md#installing).
 
 Keep these docs on your home screen and read them offline.
 
@@ -433,8 +433,8 @@ Keep these docs on your home screen and read them offline.
 
 `status:available` In a `c: linkcards` section, list items that start with a link become cards. The whole card is the link target.
 
-- [Install](../guides/install/) — Add the theme to a site.
-- [Configuration](../guides/configuration/) — Every setting in one place.
+- [Install](../guides/install.md) — Add the theme to a site.
+- [Configuration](../guides/configuration.md) — Every setting in one place.
 
 ## Pricing
 

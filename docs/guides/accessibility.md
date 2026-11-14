@@ -15,19 +15,19 @@ The theme aims for WCAG 2.2 AA with no setup. This page lists what it does for r
 | `/` or `Ctrl`+`K` (`Cmd`+`K` on macOS) | any page with search | focus the search box (`/` is ignored while you type in a field) |
 | `↓` `↑` | search results | move between results and back to the box |
 | `Esc` | search | leave the results, or clear the box |
-| `Esc` | the update and offline notices of an [installable site](../../recipes/pwa/#updates) | close the notice (focus never moves to it) |
+| `Esc` | the update and offline notices of an [installable site](../recipes/pwa.md#updates) | close the notice (focus never moves to it) |
 | `←` `→` `Home` `End` | tabs | switch tabs; left and right follow the reading direction in right-to-left pages |
 | `↓` `↑` `Esc` | language menu, nav "More" menu, page actions | move between items; `Esc` closes and returns focus |
 | `Tab` | wide code blocks and tables | a block that scrolls sideways becomes a region you can focus and scroll with the arrow keys. Each has its own name: "Code" or "Table" with the file name, caption or language, else the nearest heading, and a number when two would match |
-| `Tab` | headings, with [`heading_anchors`](../configuration/) | each `##` and `###` heading adds one stop: the link to that heading, which shows while it has focus |
+| `Tab` | headings, with [`heading_anchors`](configuration.md) | each `##` and `###` heading adds one stop: the link to that heading, which shows while it has focus |
 
-On a starter demo with the [showcase](../../reference/showcase/), its links and its hide button come right after "Skip to content"; hiding it moves focus back to "Skip to content".
+On a starter demo with the [showcase](../reference/showcase.md), its links and its hide button come right after "Skip to content"; hiding it moves focus back to "Skip to content".
 
 Focus is always visible. Inside tabs, panels and scroll regions the focus ring is drawn inside the box so it is not clipped.
 
 ## Screen readers
 
-Landmarks (header, navigation, main, footer), the current page in navigation, breadcrumbs and the language menu (`aria-current`), and labels for icon buttons, code blocks and tables are built in. Labels follow `lang:` in 23 languages (see [Configuration](../configuration/#languages)). Icons are decorative unless they carry a label.
+Landmarks (header, navigation, main, footer), the current page in navigation, breadcrumbs and the language menu (`aria-current`), and labels for icon buttons, code blocks and tables are built in. Labels follow `lang:` in 23 languages (see [Configuration](configuration.md#languages)). Icons are decorative unless they carry a label.
 
 The "On this page" list marks the section you are reading with `aria-current="location"`, so a screen reader says "current location" when it reaches that link. The mark is not announced as it moves, because a reader scrolling the page would otherwise hear every heading go by.
 

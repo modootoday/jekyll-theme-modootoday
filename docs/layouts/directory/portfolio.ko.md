@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/portfolio/
-source_rev: sha256:bf499928fca6
+source_rev: sha256:5b6f77ba4c34
 nav_order: 1
 title: "포트폴리오 데모"
 layout: portfolio
@@ -19,4 +19,4 @@ description: 이미지, 제목, 짧은 설명, 태그가 있는 프로젝트 카
 
 이 페이지는 `layout: portfolio`를 씁니다. 태그를 고르면 해당 프로젝트만 보입니다. 필터는 HTML과 CSS만으로 동작합니다.
 
-[디렉터리 레이아웃으로 돌아가기](../)
+[디렉터리 레이아웃으로 돌아가기](index.ko.md)

@@ -52,4 +52,4 @@ sections:
   - {name: plans, filter: {facet: 3}}
 ```
 
-A field above the first list or table of that section shows only the items that contain every word typed, with the same matching as `compact: true`, and says how many are shown. `facet: 3` adds a button for each value in the table's third column. On a directory page, `filter_text: true` adds the same field above the cards. Without JavaScript every item stays visible. See the [filter demo](../../layouts/demo/filter/).
+A field above the first list or table of that section shows only the items that contain every word typed, with the same matching as `compact: true`, and says how many are shown. `facet: 3` adds a button for each value in the table's third column. On a directory page, `filter_text: true` adds the same field above the cards. Without JavaScript every item stays visible. See the [filter demo](../layouts/demo/filter.md).

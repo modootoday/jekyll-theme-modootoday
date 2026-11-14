@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:48b307dfd141
+source_rev: sha256:cfcc6715272c
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -69,10 +69,10 @@ sections:
 
 컴포넌트는 텍스트와 인라인부터 사이트 공통 요소까지 용도별로 묶고, 묶음 안에서는 영어 제목의 A-Z 순서로 놓습니다. 어느 언어에서나 영어 페이지와 순서가 같습니다.
 
-[키친싱크 열기](kitchen-sink/) [설정](../guides/configuration/)
+[키친싱크 열기](kitchen-sink.ko.md) [설정](../guides/configuration.ko.md)
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../components/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](index.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 텍스트와 인라인
 
@@ -105,9 +105,9 @@ modootoday:
 
 `status:available` `_config.yml`에 `modootoday.lists`를 두면 일반 섹션과 페이지에 목록 스타일 두 가지가 적용됩니다. `link_chips: true`는 모든 항목이 링크 하나뿐인 목록을 칩 한 줄로 바꾸고, `titled_items: true`는 굵은 제목과 콜론으로 시작하는 항목에 제목과 구분자를 따로 줍니다. `hero: {checks: true}`는 위처럼 히어로의 첫 목록을 체크 표시 줄로 바꿉니다. 컴포넌트 섹션의 목록은 원래 스타일을 유지합니다.
 
-- [설치](../guides/install/)
-- [설정](../guides/configuration/)
-- [접근성](../guides/accessibility/)
+- [설치](../guides/install.ko.md)
+- [설정](../guides/configuration.ko.md)
+- [접근성](../guides/accessibility.ko.md)
 
 제목이 있는 항목:
 
@@ -228,7 +228,7 @@ theme: jekyll-theme-modootoday
 
 `status:available` 이미지만 있는 문단 뒤에 *강조*만 있는 문단이 오면 캡션이 붙은 그림이 됩니다. 대체 텍스트는 필수입니다.
 
-![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../../assets/images/sample.svg)
+![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../assets/images/sample.svg)
 
 *왼쪽은 Markdown, 오른쪽은 렌더링된 페이지입니다.*
 
@@ -236,12 +236,12 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: gallery` 섹션에서는 이미지 목록이 썸네일 격자가 됩니다. 각 썸네일은 JavaScript 없이 원본 크기 보기를 엽니다. 모든 이미지에 대체 텍스트가 필요합니다.
 
-- ![화분과 안락의자가 있는 햇살 드는 방](../../assets/images/gallery/room.webp)
-- ![낮은 해 아래 분홍빛 모래 언덕](../../assets/images/gallery/dunes.webp)
-- ![잔잔한 연못을 둘러싼 열대 잎](../../assets/images/gallery/leaves.webp)
-- ![산속 호수의 나무 선착장](../../assets/images/news/travel-sm.webp)
-- ![초록 언덕 위의 풍력 발전기와 태양광 패널](../../assets/images/news/energy-sm.webp)
-- ![크림, 보라, 코랄 색 견본을 부채꼴로 펼친 모습](../../assets/images/projects/brand.webp)
+- ![화분과 안락의자가 있는 햇살 드는 방](../assets/images/gallery/room.webp)
+- ![낮은 해 아래 분홍빛 모래 언덕](../assets/images/gallery/dunes.webp)
+- ![잔잔한 연못을 둘러싼 열대 잎](../assets/images/gallery/leaves.webp)
+- ![산속 호수의 나무 선착장](../assets/images/news/travel-sm.webp)
+- ![초록 언덕 위의 풍력 발전기와 태양광 패널](../assets/images/news/energy-sm.webp)
+- ![크림, 보라, 코랄 색 견본을 부채꼴로 펼친 모습](../assets/images/projects/brand.webp)
 
 ## 위젯
 
@@ -267,7 +267,7 @@ theme: jekyll-theme-modootoday
 
 ## 필터
 
-`status:available` `sections:` 항목에 `filter: true`를 쓰면 그 섹션의 첫 목록이나 표 위에 검색 필드가 생깁니다. 입력한 단어가 모두 들어 있는 항목만 남고, 몇 개가 보이는지 알려 줍니다. `filter: {facet: 2}`는 표의 두 번째 열 값마다 버튼도 추가합니다. `sections:`가 없는 페이지는 front matter에 `filter:`를, 디렉터리 페이지는 `filter_text: true`를 쓰세요. JavaScript가 없으면 모든 항목이 보입니다. [필터 데모](../layouts/demo/filter/)와 [검색 레시피](../recipes/search/)를 보세요.
+`status:available` `sections:` 항목에 `filter: true`를 쓰면 그 섹션의 첫 목록이나 표 위에 검색 필드가 생깁니다. 입력한 단어가 모두 들어 있는 항목만 남고, 몇 개가 보이는지 알려 줍니다. `filter: {facet: 2}`는 표의 두 번째 열 값마다 버튼도 추가합니다. `sections:`가 없는 페이지는 front matter에 `filter:`를, 디렉터리 페이지는 `filter_text: true`를 쓰세요. JavaScript가 없으면 모든 항목이 보입니다. [필터 데모](../layouts/demo/filter.ko.md)와 [검색 레시피](../recipes/search.ko.md)를 보세요.
 
 ## 매개변수 표
 
@@ -327,7 +327,7 @@ bundle exec jekyll serve
 
 ## 자주 묻는 질문
 
-`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. 이 페이지처럼 `schema: {faq: auto}`를 켜면 질문과 답이 페이지의 FAQPage 구조화 데이터도 됩니다([구조화 데이터](../guides/structured-data/) 참고).
+`status:available` `c: faq` 섹션은 세부 정보처럼 동작합니다. 이 페이지처럼 `schema: {faq: auto}`를 켜면 질문과 답이 페이지의 FAQPage 구조화 데이터도 됩니다([구조화 데이터](../guides/structured-data.ko.md) 참고).
 
 ### 테마는 무료인가요?
 
@@ -401,7 +401,7 @@ sudo apt install ruby-full
 
 `status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼입니다. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작합니다.
 
-[시작하기](../guides/install/) [설정 읽기](../guides/configuration/)
+[시작하기](../guides/install.ko.md) [설정 읽기](../guides/configuration.ko.md)
 
 ## 카드
 
@@ -431,7 +431,7 @@ sudo apt install ruby-full
 
 ## 설치
 
-`status:available` `c: install` 섹션은 본문, 설치 버튼, 안내 문장을 출력합니다. 버튼은 브라우저가 사이트 설치를 제안할 때까지 숨겨져 있고, 누를 때만 브라우저의 설치 대화상자를 엽니다. 안내 문장은 메뉴나 공유 메뉴에서 설치하는 브라우저를 위한 것입니다. 설치된 앱 안에서는 섹션이 숨겨집니다. `modootoday.pwa.enabled: true`가 필요하며 이 사이트는 켜져 있습니다. Chrome과 Edge에서는 여기에 버튼이 나타나고, 다른 브라우저에서는 안내 문장이 보입니다. [설치할 수 있는 사이트](../recipes/pwa/#설치하기)를 참고하세요.
+`status:available` `c: install` 섹션은 본문, 설치 버튼, 안내 문장을 출력합니다. 버튼은 브라우저가 사이트 설치를 제안할 때까지 숨겨져 있고, 누를 때만 브라우저의 설치 대화상자를 엽니다. 안내 문장은 메뉴나 공유 메뉴에서 설치하는 브라우저를 위한 것입니다. 설치된 앱 안에서는 섹션이 숨겨집니다. `modootoday.pwa.enabled: true`가 필요하며 이 사이트는 켜져 있습니다. Chrome과 Edge에서는 여기에 버튼이 나타나고, 다른 브라우저에서는 안내 문장이 보입니다. [설치할 수 있는 사이트](../recipes/pwa.ko.md#설치하기)를 참고하세요.
 
 이 문서를 홈 화면에 두고 오프라인에서도 읽을 수 있습니다.
 
@@ -439,8 +439,8 @@ sudo apt install ruby-full
 
 `status:available` `c: linkcards` 섹션에서는 링크로 시작하는 목록 항목이 카드가 됩니다. 카드 전체가 링크 대상입니다.
 
-- [설치](../guides/install/) — 사이트에 테마를 추가합니다.
-- [설정](../guides/configuration/) — 모든 설정을 한곳에서 봅니다.
+- [설치](../guides/install.ko.md) — 사이트에 테마를 추가합니다.
+- [설정](../guides/configuration.ko.md) — 모든 설정을 한곳에서 봅니다.
 
 ## 요금제
 

@@ -1,17 +1,17 @@
 ---
 lang: ko
 permalink: /ko/reference/showcase/
-source_rev: sha256:91d858b34d4d
+source_rev: sha256:05c1df2b874c
 nav_order: 30
 title: 스타터 데모 쇼케이스
 description: 스타터의 라이브 데모에 테마 이름과 문서 링크를 담은 막대나 알약을 보여 주고, 복사한 사이트에는 나오지 않게 하는 방법을 설명합니다.
 ---
 # 스타터 데모 쇼케이스
 
-[설정](../../guides/configuration/) 표의 한 행인 `modootoday.showcase` 설정을 여기서 자세히 설명합니다.
+[설정](../guides/configuration.ko.md) 표의 한 행인 `modootoday.showcase` 설정을 여기서 자세히 설명합니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../reference/showcase/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](showcase.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 스타터의 라이브 데모에는 테마와 스타터 이름을 알리고 테마 문서로 돌아가는 링크를 담은 막대를 표시할 수 있습니다. 이 막대는 데모 빌드에만 씁니다. 데모 배포만 `_config.yml` 위에 겹치는 두 번째 설정 파일에 넣으면, 스타터로 만든 사이트에는 나타나지 않습니다. GitHub Pages 빌더는 `_config.yml`만 읽으므로, 이 빌더를 쓰는 워크플로는 빌드 전에 데모 파일을 `_config.yml`에 합칩니다. 테마의 스타터는 `if: github.repository == '<owner>/<repo>'` 조건이 붙은 워크플로 단계에서 이 일을 하므로, 포크나 템플릿으로 만든 저장소는 쇼케이스 없이 빌드됩니다.
 

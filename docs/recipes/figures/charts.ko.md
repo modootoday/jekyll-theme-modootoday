@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/charts/
-source_rev: sha256:91b5abe52a32
+source_rev: sha256:bfc6e3dda3e6
 nav_order: 26
 title: 차트
 description: Markdown 표를 차트 figure로 바꾸거나 데이터 파일을 차트로 보여 주고, 표는 모든 독자가 받는 텍스트로 남깁니다.
@@ -9,7 +9,7 @@ description: Markdown 표를 차트 figure로 바꾸거나 데이터 파일을 �
 # 차트
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../../recipes/figures/charts/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](charts.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 차트는 Markdown 표에서 시작합니다. 테마는 표를 차트 figure(`figure.mt-chart`)에 넣고, 표는 그 안에 차트의 텍스트로 남습니다. 그래서 JavaScript가 없는 독자, 스크린 리더, github.com, 페이지의 Markdown 버전과 `llms-full.txt`가 모두 숫자를 받습니다. 사이트에 Chart.js를 두면 테마가 표에서 차트를 그리고, 표는 그 아래 *차트 데이터* 펼침 상자로 접힙니다. Chart.js가 없으면 독자에게는 표가 보입니다.
 
@@ -57,7 +57,7 @@ modootoday:
 
 *분기별 방문 수*
 
-[키친싱크](../../../components/kitchen-sink/#차트)에 예가 더 있습니다.
+[키친싱크](../../components/kitchen-sink.ko.md#차트)에 예가 더 있습니다.
 
 ## 데이터 파일로 만드는 차트
 
@@ -117,7 +117,7 @@ Chart.js(gzip 약 70 KB)와 테마의 차트 모듈은 차트가 있는 페이�
 - 색, 격자선, 축 텍스트는 위의 훅에서 오고, 새로 고침 없이 테마 전환과 시스템 색 구성을 따라갑니다. 선 차트는 시리즈마다 점선 모양도 달라서 색을 구별하기 어려울 때도 시리즈가 구분됩니다. 범례도 시리즈마다 그 점선 모양의 짧은 선으로 보여 줍니다.
 - 시스템에서 동작 줄이기를 켜면 차트를 애니메이션 없이 그립니다.
 - 강제 색 모드(Windows 고대비)에서는 차트를 그리지 않고 표를 펼친 채 시스템 색으로 보여 줍니다.
-- 엄격한 CSP에서도 예외가 필요 없습니다. Chart.js는 CSSOM으로 canvas 크기를 정하고, `style-src 'self'`는 이를 허용합니다([CSP](../../csp/)).
+- 엄격한 CSP에서도 예외가 필요 없습니다. Chart.js는 CSSOM으로 canvas 크기를 정하고, `style-src 'self'`는 이를 허용합니다([CSP](../csp.ko.md)).
 
 ## 검사기가 알려 주는 것
 

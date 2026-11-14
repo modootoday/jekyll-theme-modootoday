@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/event/
-source_rev: sha256:4955a3bad893
+source_rev: sha256:6f2de7d9e28d
 nav_order: 4
 image: {path: /assets/images/events/stage.webp, alt: "客席に向かうスポットライトの当たった舞台", width: 800, height: 600}
 title: イベントのデモ
@@ -21,7 +21,7 @@ twin: false
 
 **参加費:** 無料です。「チケットを入手」ボタンから申し込んでください。
 
-このページの front matter です。[詳細ページ](../)のガイドで説明しています。
+このページの front matter です。[詳細ページ](index.ja.md)のガイドで説明しています。
 
 ```yaml
 layout: event

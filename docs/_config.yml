@@ -6,7 +6,9 @@ baseurl: /jekyll-theme-modootoday
 # Dogfooding: GitHub Pages (classic, main /docs) builds this site with the theme from this repo.
 # Pinned to main until the first release; switch to @vX.Y.Z when a tag is published.
 remote_theme: modootoday/jekyll-theme-modootoday@main
-plugins: [jekyll-remote-theme, jekyll-optional-front-matter, jekyll-titles-from-headings, jekyll-sitemap]
+plugins: [jekyll-remote-theme, jekyll-optional-front-matter, jekyll-titles-from-headings, jekyll-sitemap, jekyll-relative-links]
+# Links name files (upgrade.md#x), so they open on GitHub; the plugin turns them into URLs, in posts too.
+relative_links: {collections: true}
 markdown: kramdown
 kramdown: {input: GFM, syntax_highlighter: rouge}
 sass: {style: compressed, silence_deprecations: [import]}

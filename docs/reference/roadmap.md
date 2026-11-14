@@ -7,21 +7,21 @@ description: What the theme supports today, which stacks it runs on, and the the
 
 ## Supported now
 
-- Every component on the [Components](../../components/) page, in light and dark, from inline text to page sections and site chrome.
-- Every layout in the [Public API](../api/#layouts) list: doc pages, page shells, directories, detail pages, marketing pages, blog and news, docs extras and documents.
-- Content rules (`md-components v1`) that stay plain GitHub Markdown, and a stable [public API](../api/).
+- Every component on the [Components](../components/index.md) page, in light and dark, from inline text to page sections and site chrome.
+- Every layout in the [Public API](api.md#layouts) list: doc pages, page shells, directories, detail pages, marketing pages, blog and news, docs extras and documents.
+- Content rules (`md-components v1`) that stay plain GitHub Markdown, and a stable [public API](api.md).
 - Canonical, `hreflang` and Open Graph tags by default; sitemap and feed when you add the plugins.
-- A language switcher, interface labels in every language of the language list, and right-to-left scripts (see the [RTL kitchen sink](../../components/kitchen-sink-rtl/)).
-- Markdown twins and `llms.txt` for AI agents ([AI agents](../../guides/agents/)).
-- Diagrams, math and charts as static figures, and your own interactive elements ([Figures and widgets](../../recipes/figures/)).
-- Pages generated from data files on classic GitHub Pages ([Generated pages](../../recipes/generated-pages/)), and header search with a list filter ([Search](../../recipes/search/)).
-- A strict Content Security Policy ([CSP](../../recipes/csp/)).
+- A language switcher, interface labels in every language of the language list, and right-to-left scripts (see the [RTL kitchen sink](../components/kitchen-sink-rtl.md)).
+- Markdown twins and `llms.txt` for AI agents ([AI agents](../guides/agents.md)).
+- Diagrams, math and charts as static figures, and your own interactive elements ([Figures and widgets](../recipes/figures/index.md)).
+- Pages generated from data files on classic GitHub Pages ([Generated pages](../recipes/generated-pages.md)), and header search with a list filter ([Search](../recipes/search.md)).
+- A strict Content Security Policy ([CSP](../recipes/csp.md)).
 - Documentation in English, Korean and Japanese.
 
 ## Compatibility
 
-- The stacks the theme runs on are listed under [Install > Requirements](../../guides/install/#requirements).
-- Changes to the public API are listed in the [Changelog](../changelog/); [Migrate and upgrade](../../guides/upgrade/) says what to change in a site.
+- The stacks the theme runs on are listed under [Install > Requirements](../guides/install.md#requirements).
+- Changes to the public API are listed in the [Changelog](changelog.md); [Migrate and upgrade](../guides/upgrade.md) says what to change in a site.
 
 ## Next
 

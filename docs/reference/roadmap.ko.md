@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/roadmap/
-source_rev: sha256:ed2219a83ec5
+source_rev: sha256:6ee491a098e1
 nav_order: 50
 title: 로드맵
 description: 테마가 지금 지원하는 것, 동작하는 환경과 버전, 다음에 계획한 작업의 주제를 정리합니다. 작업 진행은 저장소의 이슈에서 따라갈 수 있습니다.
@@ -9,25 +9,25 @@ description: 테마가 지금 지원하는 것, 동작하는 환경과 버전, �
 # 로드맵
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../reference/roadmap/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](roadmap.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 지금 지원하는 것
 
-- [컴포넌트](../../components/) 페이지의 모든 컴포넌트를 라이트·다크 모드로, 인라인 텍스트부터 페이지 섹션과 사이트 틀까지.
-- [공개 API](../api/) 목록의 모든 레이아웃: 문서 페이지, 페이지 셸, 디렉터리, 상세 페이지, 마케팅 페이지, 블로그와 뉴스, 문서 확장, 문서.
-- GitHub Markdown 그대로인 콘텐츠 규칙(`md-components v1`)과 안정된 [공개 API](../api/).
+- [컴포넌트](../components/index.ko.md) 페이지의 모든 컴포넌트를 라이트·다크 모드로, 인라인 텍스트부터 페이지 섹션과 사이트 틀까지.
+- [공개 API](api.ko.md) 목록의 모든 레이아웃: 문서 페이지, 페이지 셸, 디렉터리, 상세 페이지, 마케팅 페이지, 블로그와 뉴스, 문서 확장, 문서.
+- GitHub Markdown 그대로인 콘텐츠 규칙(`md-components v1`)과 안정된 [공개 API](api.ko.md).
 - 기본으로 켜지는 canonical, `hreflang`, Open Graph 태그. 사이트맵과 피드는 플러그인을 추가하면 쓸 수 있습니다.
-- 언어 선택기, 언어 목록의 모든 언어로 된 인터페이스 문구, 오른쪽에서 왼쪽으로 쓰는 문자([RTL 키친싱크](../../../components/kitchen-sink-rtl/)).
-- AI 에이전트가 읽는 Markdown 버전과 `llms.txt`([AI 에이전트](../../guides/agents/)).
-- 정적 그림으로 보여 주는 다이어그램, 수식, 차트와 직접 만든 인터랙티브 요소([그림과 위젯](../../recipes/figures/)).
-- 기본 GitHub Pages에서 데이터 파일로 만드는 페이지([생성 페이지](../../recipes/generated-pages/))와 헤더 검색, 목록 필터([검색](../../recipes/search/)).
-- 엄격한 콘텐츠 보안 정책([CSP](../../recipes/csp/)).
+- 언어 선택기, 언어 목록의 모든 언어로 된 인터페이스 문구, 오른쪽에서 왼쪽으로 쓰는 문자([RTL 키친싱크](../components/kitchen-sink-rtl.md)).
+- AI 에이전트가 읽는 Markdown 버전과 `llms.txt`([AI 에이전트](../guides/agents.ko.md)).
+- 정적 그림으로 보여 주는 다이어그램, 수식, 차트와 직접 만든 인터랙티브 요소([그림과 위젯](../recipes/figures/index.ko.md)).
+- 기본 GitHub Pages에서 데이터 파일로 만드는 페이지([생성 페이지](../recipes/generated-pages.ko.md))와 헤더 검색, 목록 필터([검색](../recipes/search.ko.md)).
+- 엄격한 콘텐츠 보안 정책([CSP](../recipes/csp.ko.md)).
 - 영어, 한국어, 일본어 문서.
 
 ## 호환성
 
-- 테마가 동작하는 환경은 [설치 > 요구 사항](../../guides/install/)에 있습니다.
-- 공개 API의 변경은 [변경 기록](../changelog/)에 있고, 사이트에서 바꿀 것은 [마이그레이션과 업그레이드](../../guides/upgrade/)에 있습니다.
+- 테마가 동작하는 환경은 [설치 > 요구 사항](../guides/install.ko.md)에 있습니다.
+- 공개 API의 변경은 [변경 기록](changelog.ko.md)에 있고, 사이트에서 바꿀 것은 [마이그레이션과 업그레이드](../guides/upgrade.ko.md)에 있습니다.
 
 ## 다음
 

@@ -9,14 +9,14 @@ These layouts cover the pages around a manual. They load `modootoday-docs-extra.
 
 | Layout | Front matter | Structured data | Demo |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [Reference](reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [Changelog](changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`, status `now`, `next` or `later` | WebPage | [Roadmap](roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [Glossary](glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](hub/) |
-| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](course/) |
-| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](book/) |
-| `reference` with `sidebar: true` and `packages:` | `group` on members; `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API reference](api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [Reference](reference.md) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [Changelog](changelog.md) |
+| `roadmap` | `items: [{title, status, text, url}]`, status `now`, `next` or `later` | WebPage | [Roadmap](roadmap.md) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [Glossary](glossary.md) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [Hub](hub.md) |
+| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [Course](course.md) |
+| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [Book](book.md) |
+| `reference` with `sidebar: true` and `packages:` | `group` on members; `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API reference](api.md) |
 
 ## Changelog
 

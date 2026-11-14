@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/detail/
-source_rev: sha256:9a2703b36f11
+source_rev: sha256:0a9c1f47a2c2
 nav_order: 30
 title: 詳細ページ
 description: プロジェクト、事例、求人、イベント、ポッドキャストのエピソードを 1 件ずつ 1 ページで表示し、概要のリスト、行動喚起 1 つ、構造化データを備えます。
@@ -12,11 +12,11 @@ description: プロジェクト、事例、求人、イベント、ポッドキ�
 
 | レイアウト | 概要 | 行動喚起 | 構造化データ | デモ |
 |---|---|---|---|---|
-| `project` | クライアント、役割、年、技術、リンク | `cta` | CreativeWork | [プロジェクト](project/) |
-| `case-study` | クライアント、役割、年、技術、リンク | `cta` | Article | [事例](case-study/) |
-| `job` | 勤務地、雇用形態、給与、掲載日、締切 | 応募する（`apply`） | JobPosting | [求人](job/) |
-| `event` | 開始、終了、会場、オンライン、料金 | チケットと .ics ファイル | Event | [イベント](event/) |
-| `episode` | シーズンと回、掲載日、長さ、音声プレーヤー | `cta` | PodcastEpisode | [エピソード](episode/) |
+| `project` | クライアント、役割、年、技術、リンク | `cta` | CreativeWork | [プロジェクト](project.ja.md) |
+| `case-study` | クライアント、役割、年、技術、リンク | `cta` | Article | [事例](case-study.ja.md) |
+| `job` | 勤務地、雇用形態、給与、掲載日、締切 | 応募する（`apply`） | JobPosting | [求人](job.ja.md) |
+| `event` | 開始、終了、会場、オンライン、料金 | チケットと .ics ファイル | Event | [イベント](event.ja.md) |
+| `episode` | シーズンと回、掲載日、長さ、音声プレーヤー | `cta` | PodcastEpisode | [エピソード](episode.ja.md) |
 
 ## 求人
 
@@ -51,7 +51,7 @@ tickets: {url: https://example.com/tickets, price: 2000, currency: JPY}   # ま�
 ---
 ```
 
-カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は「チケットを入手」ボタンのリンクで、イベントの `offers` にもなります。マップで書くと `price`(0 以上の数値)と `currency`(KRW や USD などの ISO 4217 コード)が販売情報と情報リストの料金の行に入り、0 は無料と表示されます。両方書くか、どちらも書かないでください。URL だけだと販売情報に価格がないため、`modootoday-check` が警告し(次のメジャーバージョンからはエラー)、マップの形を示します。`availability` や販売期間など、さらに書くときは販売情報を自分で書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: JPY, availability: https://schema.org/InStock, url: https://example.com/tickets}}` は `tickets:` から作る販売情報の代わりになります。[イベントのデモ](event/)は自分の front matter を見せています。
+カレンダーのリンクは `data:` URL に入った .ics ファイルなので、サーバーなしで動きます。`tickets:` は「チケットを入手」ボタンのリンクで、イベントの `offers` にもなります。マップで書くと `price`(0 以上の数値)と `currency`(KRW や USD などの ISO 4217 コード)が販売情報と情報リストの料金の行に入り、0 は無料と表示されます。両方書くか、どちらも書かないでください。URL だけだと販売情報に価格がないため、`modootoday-check` が警告し(次のメジャーバージョンからはエラー)、マップの形を示します。`availability` や販売期間など、さらに書くときは販売情報を自分で書いてください。`schema: {offers: {type: Offer, price: 0, priceCurrency: JPY, availability: https://schema.org/InStock, url: https://example.com/tickets}}` は `tickets:` から作る販売情報の代わりになります。[イベントのデモ](event.ja.md)は自分の front matter を見せています。
 
 ## エピソード
 

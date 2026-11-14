@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/api/
-source_rev: sha256:99f011356888
+source_rev: sha256:afae7d9637f6
 nav_order: 10
 title: 公開 API
 description: このテーマがサイト向けに文書化している名前、クラス、include、ファイルをまとめます。メジャーバージョンの中では変わらず、変わるときの決まりも説明します。
@@ -9,7 +9,7 @@ description: このテーマがサイト向けに文書化している名前、�
 # 公開 API
 
 > [!NOTE]
-> このページは[英語の原文](../../../reference/api/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](api.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 公開 API はこのページにまとめてあり、変更は `CHANGELOG.md` に記録されます。一覧にないもの (内部の include、Sass パーシャルのパス、非公開の `--mt-p-*` プリミティブ、どのルールにも書かれていない HTML の細部) は、どのリリースでも変わることがあります。
 
@@ -17,22 +17,22 @@ description: このテーマがサイト向けに文書化している名前、�
 
 | 領域 | 安定した名前 |
 |---|---|
-| 設定 | [設定](../../guides/configuration/)に載っている `modootoday:` の下のすべてのキー。 |
+| 設定 | [設定](../guides/configuration.ja.md)に載っている `modootoday:` の下のすべてのキー。 |
 | デザイントークン | `--mt-*` カスタムプロパティ。プリミティブの `--mt-p-*` は除く。 |
-| Sass | トークンフック `_sass/modootoday/_site.scss` とその上書き用マップだけ。[カスタマイズ](../../guides/customize/#トークンブリッジ)を参照。 |
+| Sass | トークンフック `_sass/modootoday/_site.scss` とその上書き用マップだけ。[カスタマイズ](../guides/customize.ja.md#トークンブリッジ)を参照。 |
 | Markdown ルール | `RULES.md` のパターン、その `mt-*` クラス、`mt-flat-list`。 |
 | レイアウト | 下の[レイアウト](#レイアウト)の表のすべてのレイアウト。内部用と記した 1 つは API ではありません。 |
 | 上書きしてよい include | `head-custom.html`、`footer-custom.html`、`modootoday/brand/logo.html`。 |
-| 自分で用意する include | `visual: <name>` で表示される `_includes/sections/<name>.html`。[カスタマイズ](../../guides/customize/#セクションのビジュアルと全幅ページ)を参照。 |
+| 自分で用意する include | `visual: <name>` で表示される `_includes/sections/<name>.html`。[カスタマイズ](../guides/customize.ja.md#セクションのビジュアルと全幅ページ)を参照。 |
 | モジュールのヘルパーとイベント | サイトの `scripts` 向けの ES モジュール 2 つ、`mt:themechange` イベント、`script:` ビジュアルの契約。 |
 | 呼び出してよい include | `modootoday/archive.html`、`modootoday/brand/icon.html`、フッター用の include 2 つ。 |
 | include | `modootoday/t.html` はページの言語でテーマの文言を出力する。 |
 | データファイル | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| チェッカー | `modootoday-check` のオプションと終了コード。[コマンドライン](../cli/)にまとめてある。 |
+| チェッカー | `modootoday-check` のオプションと終了コード。[コマンドライン](cli.ja.md)にまとめてある。 |
 | 静的な図 | front matter の `diagrams:`、`data-mt-src` のダイジェストの規則、`diagram.source` のラベル。`modootoday.math.mode: static`、`_data/math/<key>.yml`、front matter の `math_key:`、`math.label` のラベル。 |
 | レコードのページ | `modootoday.records`、レコードの front matter、事実の一覧。 |
 | ショーケース | `modootoday.showcase`、セッションストレージのキー `mt-showcase`、`showcase.*` のラベル。 |
-| スタブ作成 | `modootoday-stubs` のオプション ([コマンドライン](../cli/))、スタブのファイル名と front matter、終了コード。 |
+| スタブ作成 | `modootoday-stubs` のオプション ([コマンドライン](cli.ja.md))、スタブのファイル名と front matter、終了コード。 |
 
 上の行の詳細:
 
@@ -42,14 +42,14 @@ description: このテーマがサイト向けに文書化している名前、�
 - レイアウト: `page` は、Jekyll と minima が使う名前で呼ぶ `doc` レイアウトです。
 - include: 自分のフッターから `modootoday/lang-switch.html` と `modootoday/brand/logo.html`(`size` を指定可)を include できます。独自のロゴを描くには `modootoday/brand/logo.html` を上書きします。`modootoday/archive.html` は `by` と `lang` を受け取ります。`modootoday/t.html` は `key=` と、任意の `n=` / `name=` を受け取ります。
 - `modootoday/brand/icon.html` は `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand)、任意の `size`(px、既定 18)、`label`(指定するとその名前の `role="img"`、なければ `aria-hidden`)、`class` を受け取ります。出力は `currentColor` の `svg.mt-icon.mt-icon-<name>` で、方向のあるアイコンには `.mt-icon-flip` が付き、RTL で反転します。
-- モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../../guides/customize/#モジュールスクリプトとポスター)を参照。
+- モジュールのヘルパー: `assets/js/modootoday/theme/current.js`(`currentTheme()` と、待ち受けを止める関数を返す `onThemeChange(callback)`)と `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)です。`mt:themechange` イベントは[イベント](#イベント)を参照してください。`script:` ビジュアルの契約は `data-mt-script`、`.mt-visual-stage`、`data-mt-ready` です。[カスタマイズ](../guides/customize.ja.md#モジュールスクリプトとポスター)を参照。
 - データファイル: `_data/i18n/<lang>.yml` のキーは、組み込みのカタログを上書きするときだけ書きます。`_data/navigation.yml` は `main` を読みます。
-- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../../recipes/figures/math-diagrams/#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
-- 静的な図: `diagrams: [{name, alt, caption, width, height, min_width}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
-- 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
-- レコードのページ: `modootoday.records`([生成ページ](../../recipes/generated-pages/)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
-- PWA: レイアウト `pages/offline`(オフラインページ。保存したページの一覧は `pwa/offline.js` が埋める `section[data-mt-offline]`)、front matter の `pwa: precache`、マニフェストのリンクの `data-mt-sw`、`data-mt-scope`、`data-mt-toast-css`、`data-mt-update`、`data-mt-reload`、`data-mt-later`、`data-mt-offline-notice`、`data-mt-close` 属性、更新とオフラインの通知 `div.mt-toast[role=status]` と `.mt-toast-actions`、キャッシュ名 `mt:<baseurl>/:assets:<version>`、`mt:<baseurl>/:pages:<version>`、`mt:<baseurl>/:media`、ラベル `pwa.offline_title`、`pwa.offline_text`、`pwa.offline_pages`、`pwa.retry`、`pwa.update`、`pwa.reload`、`pwa.later`、`pwa.offline_notice`、`pwa.close` です。[インストールできるサイト](../../recipes/pwa/)を参照してください。
-- ショーケース: [スターターのデモのショーケース](../showcase/)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
+- チェッカーの終了コード: 0(問題なし)と 1(問題あり、または使い方の誤り)。`modootoday-check SRC --diagrams` は、SVG がないか古い静的な図を JSON (`page`、`name`、`line`、`fence`、`digest`、`files`、`reason`) で出力し、一覧が空でなければ 1 で終わります ([図を最新に保つ](../recipes/figures/math-diagrams.ja.md#図を最新に保つ)を参照)。`modootoday-check SRC --math` は静的な数式について同じことをし、書き出す `_data/math` のファイル (`key`、`file`、`page`、`line`・`tex`・`digest` からなる `blocks`、`reason`) を出力します。
+- 静的な図: `diagrams: [{name, alt, caption, width, height, min_width}]` は、ページの n 番目の ```` ```mermaid ```` フェンスを n 番目の項目に対応させます ([数式と図](../recipes/figures/math-diagrams.ja.md#静的な-mermaid-の図)を参照)。SVG のルート要素の `data-mt-src="sha256-<hex>"` は、その SVG を描いたフェンスを記録します。値は、フェンス本文 (フェンスの行の間の行) の CRLF と CR を LF にし、最後の改行を除いた SHA-256 です。`data-mt-src` がフェンスのダイジェストと違う SVG は、`modootoday-check` が古い図 (stale diagram) として報告します。`_data/i18n/<lang>.yml` の `diagram.source` はソースの開閉要素の名前です。
+- 静的な数式: `modootoday.math.mode: static` では、ページの n 番目の ```` ```math ```` フェンスか `$$` ブロックが、`{src, html}` の一覧である `_data/math/<key>.yml` の n 番目の項目の `html` に置き換わります ([静的な数式](../recipes/figures/math-diagrams.ja.md#静的な数式)を参照)。`<key>` はページの既定言語の原文のパスから拡張子を除き、`/` を `--` と書いたものです (front matter の `math_key:` で変えられます)。`src` は区切りの間の TeX に上の規則を適用したブロックのダイジェストです。`math.label` (`数式 [n]`) が各ブロックの領域の名前です。
+- レコードのページ: `modootoday.records`([生成ページ](../recipes/generated-pages.ja.md)を参照)、ページの front matter `record: <set>/<key>` と `record_index`、ディレクトリページの `records: <set>`、事実の一覧 `dl.mt-detail-facts.mt-record-facts`。
+- PWA: レイアウト `pages/offline`(オフラインページ。保存したページの一覧は `pwa/offline.js` が埋める `section[data-mt-offline]`)、front matter の `pwa: precache`、マニフェストのリンクの `data-mt-sw`、`data-mt-scope`、`data-mt-toast-css`、`data-mt-update`、`data-mt-reload`、`data-mt-later`、`data-mt-offline-notice`、`data-mt-close` 属性、更新とオフラインの通知 `div.mt-toast[role=status]` と `.mt-toast-actions`、キャッシュ名 `mt:<baseurl>/:assets:<version>`、`mt:<baseurl>/:pages:<version>`、`mt:<baseurl>/:media`、ラベル `pwa.offline_title`、`pwa.offline_text`、`pwa.offline_pages`、`pwa.retry`、`pwa.update`、`pwa.reload`、`pwa.later`、`pwa.offline_notice`、`pwa.close` です。[インストールできるサイト](../recipes/pwa.ja.md)を参照してください。
+- ショーケース: [スターターのデモのショーケース](showcase.ja.md)を参照してください。ラベルは `showcase.region`、`showcase.theme`、`showcase.demo`、`showcase.docs`、`showcase.docs_short`、`showcase.use`、`showcase.dismiss`、`showcase.starters.<name>` です。読み手が非表示にすると、セッションストレージのキー `mt-showcase` に `off` が入ります。
 - スタブ作成: スタブのファイルは `<name>.md.txt`、`<name>.flat.md.txt`、`<name>.html.md.txt`、レコードのページ `<dir>/<key>.md`、そして `--pwa` では `manifest.webmanifest`(`layout: null`、`permalink: /manifest.webmanifest`、include `modootoday/pwa/manifest.json`)、`sw.js`(`permalink: /sw.js`、include `modootoday/pwa/sw.js`)、`offline.md` と `offline.<lang>.md`(`layout: pages/offline`、`permalink: /offline/` または `/<lang>/offline/`)です。終了コードは 0(何もすることがない、プレビューした、または書き込んだ)、1(`--check` が差分を見つけた)、2(使い方または `_config.yml`)、3(データ)です。
 
 ## レイアウト
@@ -58,20 +58,20 @@ description: このテーマがサイト向けに文書化している名前、�
 
 | グループ | レイアウト |
 |---|---|
-| [レイアウト](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
-| [ページシェル](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
-| [ディレクトリレイアウト](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
-| [詳細ページ](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
-| [マーケティングページ](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
-| [ブログとニュース](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
-| [ドキュメント拡張](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
-| [文書](../../layouts/documents/) | `legal`, `resume` |
-| [AI エージェント](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| [レイアウト](../layouts/index.ja.md) | `default`, `doc`, `page`, `post`, `archive` |
+| [ページシェル](../layouts/shells.ja.md) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [ディレクトリレイアウト](../layouts/directory/index.ja.md) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [詳細ページ](../layouts/detail/index.ja.md) | `project`, `case-study`, `job`, `event`, `episode` |
+| [マーケティングページ](../layouts/marketing/index.ja.md) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [ブログとニュース](../layouts/blog-news/index.ja.md) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [ドキュメント拡張](../layouts/docs-extra/index.ja.md) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [文書](../layouts/documents/index.ja.md) | `legal`, `resume` |
+| [AI エージェント](../guides/agents.ja.md) | `twin`, `llms`, `llms-full` |
 | 内部用 | `detail`。詳細ページのレイアウトの土台なので、そのどれかを使ってください |
 
 ## Markdown のルール
 
-`md-components v1` は `RULES.md` にあり [Markdown ルール](../rules/)のページで公開している Markdown ルール標準の名前で、CSS の接頭辞ではありません。出力クラスは `mt-*` を使います。
+`md-components v1` は `RULES.md` にあり [Markdown ルール](rules.ja.md)のページで公開している Markdown ルール標準の名前で、CSS の接頭辞ではありません。出力クラスは `mt-*` を使います。
 
 ## コンポーネントの構造
 
@@ -189,7 +189,7 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ## 右から左への表記と数式
 
 - アラビア語、ペルシア語、ヘブライ語、ウルドゥー語などの RTL 言語のページは `lang` から `dir="rtl"` を受け取ります。front matter の `direction: rtl` または `ltr` (または `_data/i18n/<lang>.yml` の `direction:`) で上書きできます。コンポーネントは論理プロパティを使って左右が反転し、コードは左から右のままです。
-- テーマは数式や図のレンダラーを同梱しません。静的な図と数式は、コミットした SVG ファイルと MathML を表示します。[数式と図](../../recipes/figures/math-diagrams/)を参照してください。
+- テーマは数式や図のレンダラーを同梱しません。静的な図と数式は、コミットした SVG ファイルと MathML を表示します。[数式と図](../recipes/figures/math-diagrams.ja.md)を参照してください。
 
 ## 記事とアーカイブ
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:25868cc87ab3
+source_rev: sha256:c477ccfacd2e
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
@@ -57,7 +57,7 @@ sections:
 ---
 # 키친싱크
 
-테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 기본 렌더링 모습을 볼 수 있습니다. 컴포넌트는 [컴포넌트](../) 페이지와 같은 순서로, 용도별로 묶은 뒤 A-Z로 놓습니다. 각 컴포넌트가 하는 일과 쓰는 법은 그 페이지에 있고, 이 페이지는 보여 주기만 합니다. 한국어 줄바꿈 확인용 긴 문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
+테마가 제공하는 모든 컴포넌트를 모든 변형으로 보여 줍니다. 같은 파일을 github.com에서 열면 기본 렌더링 모습을 볼 수 있습니다. 컴포넌트는 [컴포넌트](index.ko.md) 페이지와 같은 순서로, 용도별로 묶은 뒤 A-Z로 놓습니다. 각 컴포넌트가 하는 일과 쓰는 법은 그 페이지에 있고, 이 페이지는 보여 주기만 합니다. 한국어 줄바꿈 확인용 긴 문장: 가나다라마바사아자차카타파하가나다라마바사아자차카타파하.
 
 - 평범한 Markdown
 - github.com에서도 읽힘
@@ -66,7 +66,7 @@ sections:
 [주요 동작](#) [보조](#) [세 번째 링크](#)
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../components/kitchen-sink/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](kitchen-sink.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 텍스트와 인라인
 
@@ -100,9 +100,9 @@ sections:
 
 목록 스타일 두 가지: 링크 칩과 제목 있는 항목.
 
-- [설치](../../guides/install/)
-- [설정](../../guides/configuration/)
-- [접근성](../../guides/accessibility/)
+- [설치](../guides/install.ko.md)
+- [설정](../guides/configuration.ko.md)
+- [접근성](../guides/accessibility.ko.md)
 
 제목이 있는 항목:
 
@@ -127,7 +127,7 @@ sections:
 
 ## 타이포그래피
 
-**굵게**, *기울임*, ~~취소선~~, `code`, [컴포넌트 목록](../) 링크가 있는 문단입니다. 각주도 쓸 수 있습니다.[^1]
+**굵게**, *기울임*, ~~취소선~~, `code`, [컴포넌트 목록](index.ko.md) 링크가 있는 문단입니다. 각주도 쓸 수 있습니다.[^1]
 
 ### 3단계 제목
 
@@ -174,7 +174,7 @@ sections:
 > 내용이 많은 알림:
 >
 > - `inline code`가 들어간 목록 항목
-> - [컴포넌트 목록](../) 링크가 있는 두 번째 항목
+> - [컴포넌트 목록](index.ko.md) 링크가 있는 두 번째 항목
 >
 > ```sh
 > echo "code inside an alert"
@@ -241,7 +241,7 @@ theme: jekyll-theme-modootoday
 
 ## 그림
 
-![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../../../assets/images/sample.svg)
+![왼쪽 Markdown 소스가 오른쪽에서 스타일이 적용된 페이지로 바뀌는 모습](../assets/images/sample.svg)
 
 *이미지만 있는 문단 뒤에 강조만 있는 문단이 오면 캡션이 달린 그림이 됩니다.*
 
@@ -258,12 +258,12 @@ flowchart LR
 
 썸네일 세 개.
 
-- ![화분과 안락의자가 있는 햇살 드는 방](../../../assets/images/gallery/room.webp)
-- ![낮은 해 아래 분홍빛 모래 언덕](../../../assets/images/gallery/dunes.webp)
-- ![잔잔한 연못을 둘러싼 열대 잎](../../../assets/images/gallery/leaves.webp)
-- ![산속 호수의 나무 선착장](../../../assets/images/news/travel-sm.webp)
-- ![초록 언덕 위의 풍력 발전기와 태양광 패널](../../../assets/images/news/energy-sm.webp)
-- ![크림, 보라, 코랄 색 견본을 부채꼴로 펼친 모습](../../../assets/images/projects/brand.webp)
+- ![화분과 안락의자가 있는 햇살 드는 방](../assets/images/gallery/room.webp)
+- ![낮은 해 아래 분홍빛 모래 언덕](../assets/images/gallery/dunes.webp)
+- ![잔잔한 연못을 둘러싼 열대 잎](../assets/images/gallery/leaves.webp)
+- ![산속 호수의 나무 선착장](../assets/images/news/travel-sm.webp)
+- ![초록 언덕 위의 풍력 발전기와 태양광 패널](../assets/images/news/energy-sm.webp)
+- ![크림, 보라, 코랄 색 견본을 부채꼴로 펼친 모습](../assets/images/projects/brand.webp)
 
 ## 위젯
 
@@ -456,14 +456,14 @@ gem install jekyll bundler
 
 ## 버튼
 
-[시작하기](../../guides/install/) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[시작하기](../guides/install.ko.md) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## 2열 카드
 
 - **짧은 카드** — 한 줄.
 - **긴 카드** — 설명이 길어 여러 줄로 넘어가는 카드로, 그리드 전체의 간격, 줄 높이, 정렬을 확인합니다.
 - **배지 포함** — 카드에 상태를 표시할 수 있습니다. `status:available`
-- **링크 포함** — [설치 안내](../../guides/install/)를 읽어 보세요.
+- **링크 포함** — [설치 안내](../guides/install.ko.md)를 읽어 보세요.
 
 ## 3열 카드
 
@@ -493,8 +493,8 @@ gem install jekyll bundler
 
 링크 카드 두 개.
 
-- [설치](../../guides/install/) — 사이트에 테마를 추가합니다.
-- [설정](../../guides/configuration/) — 모든 설정을 한곳에서 봅니다.
+- [설치](../guides/install.ko.md) — 사이트에 테마를 추가합니다.
+- [설정](../guides/configuration.ko.md) — 모든 설정을 한곳에서 봅니다.
 
 ## 요금제
 

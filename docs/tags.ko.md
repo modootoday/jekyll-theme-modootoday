@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/tags/
-source_rev: sha256:2204b6f9e6f3
+source_rev: sha256:abbfd196c0da
 nav_order: 20
 title: 태그
 description: 이 사이트의 모든 글을 태그별로 모았습니다.
@@ -10,4 +10,4 @@ archive: tags
 ---
 # 태그
 
-모든 글을 태그별로 모았습니다. 각 글 하단의 태그 링크가 이 페이지의 해당 구역으로 이어집니다. [글과 아카이브](../reference/api/#글과-아카이브)를 참고하세요.
+모든 글을 태그별로 모았습니다. 각 글 하단의 태그 링크가 이 페이지의 해당 구역으로 이어집니다. [글과 아카이브](reference/api.ko.md#글과-아카이브)를 참고하세요.

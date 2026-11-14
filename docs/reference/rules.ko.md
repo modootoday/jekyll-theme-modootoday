@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/rules/
-source_rev: sha256:850ecd98370e
+source_rev: sha256:141e47eea414
 nav_order: 15
 title: Markdown 규칙
 description: 모든 페이지 본문이 따르는 md-components v1 규칙입니다. github.com, 테마, Markdown 버전에서 똑같이 보이게 하는 기준을 정리합니다.
@@ -9,9 +9,9 @@ description: 모든 페이지 본문이 따르는 md-components v1 규칙입니�
 # Markdown 규칙
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../reference/rules/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다. 규칙 본문은 RULES.md에서 만들어지므로 영어 그대로 보여 줍니다.
+> 이 페이지는 [영어 원문](rules.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다. 규칙 본문은 RULES.md에서 만들어지므로 영어 그대로 보여 줍니다.
 
-`modootoday-check`가 지키게 하는 Markdown 표준 `md-components v1`의 규칙입니다. 아래 본문은 저장소의 [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)에서 만들어지며, 그 파일이 유일한 원본입니다. 이 페이지도 Jekyll로 빌드하므로 Liquid 여는 기호는 중괄호 뒤에 공백을 넣어 보여 줍니다. 짧게 보려면 [첫 페이지 쓰기](../../guides/first-page/)를 읽으세요.
+`modootoday-check`가 지키게 하는 Markdown 표준 `md-components v1`의 규칙입니다. 아래 본문은 저장소의 [RULES.md](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)에서 만들어지며, 그 파일이 유일한 원본입니다. 이 페이지도 Jekyll로 빌드하므로 Liquid 여는 기호는 중괄호 뒤에 공백을 넣어 보여 줍니다. 짧게 보려면 [첫 페이지 쓰기](../guides/first-page.ko.md)를 읽으세요.
 
 <!-- spec:docs-index:begin -->
 Goal: page bodies (`*.md`, and translations such as `*.ko.md` or `<lang>/*.md`) use only standard GitHub Flavored Markdown (plus GitHub's alert extension) that renders unchanged on github.com. Design comes from layouts, includes, CSS and optional JS. Targets: the GitHub Pages build (`github-pages` gem 232, Jekyll 3.10, kramdown GFM, allowed plugins only, no build scripts) and Jekyll 4.
@@ -97,11 +97,11 @@ The bans are about **portability**: the same source must look the same on github
 Allowed and portable: footnotes `[^1]` (markup differs slightly), task lists, strikethrough, GFM tables, `<url>` autolinks, hard breaks. Note: `> [! NOTE]` (space inside) is not an alert; the checker warns, `--strict` makes it an error.
 
 ## 5. Checker (`modootoday-check SRC SITE [options]`)
-Every option is listed on the docs site's [Command line](../../reference/cli/) page. The checks:
+Every option is listed on the docs site's [Command line](cli.ko.md) page. The checks:
 1. front matter present 2. forbidden syntax, alert form, fence info strings 3. status vocabulary 4. `sections:` count = top-level `## ` count, nested/setext/indented `##` 5. `_data/components.yml` if present 6. no `[!TYPE]` (any case, outside `<pre>`/`<code>`) / `<code>status:` in built HTML 7. `--github-pages`: `Gemfile.lock` pins github-pages VER (default 232, or `$MODOOTODAY_GITHUB_PAGES`) 8. `--twins`: rules below 8a. Sass sources (`_sass/`, `assets/**/*.scss`) and built CSS: no `@use`/`@forward`/`@supports selector()`, no `--x: $var` literals, every `var(--mt-*)` defined; the token hook `_sass/modootoday/_site.scss` holds only `$mt-overrides-base`, `$mt-overrides` and `$mt-overrides-dark` maps of theme token names 8b. `_config.yml` `modootoday:`: `twins` is `true`, `false` or `source`, known `color_scheme`/`components`, boolean `css_layers`/`badges`, `tokens`/`tokens_dark` values are plain CSS values (no `; { } < >`, valid hex), unknown token names warn; `site_css` (site paths to `.css` files) and `preload` (`{href, as, type}`, `as` one of font, image, style, script, fetch) in settings and front matter, each file present in the build; `scripts` (name: `{src, css, preload, element}`, site paths only, `element` a custom element name), each file present in the build 9. `--gh` (optional, network + `gh` auth): render with `gh api markdown`.
 
 ## 5a. Markdown twins
-This section is the contract; the [AI agents](../../guides/agents/) guide shows how to set each way up.
+This section is the contract; the [AI agents](../guides/agents.ko.md) guide shows how to set each way up.
 
 Three ways to publish a page's raw Markdown next to its HTML. Pick one per site (stubs may be mixed with the others for single pages).
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/docs-extra/
-source_rev: sha256:88b275d8bd57
+source_rev: sha256:1722cc912328
 nav_order: 60
 title: ドキュメント拡張
 description: リファレンス、変更履歴、ロードマップ、用語集、ハブ、コース、書籍のページを共通の任意スタイルシート 1 つで作るレイアウトと、それぞれの front matter を説明します。
@@ -12,14 +12,14 @@ description: リファレンス、変更履歴、ロードマップ、用語集�
 
 | レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`、status は `now`、`next`、`later` | WebPage | [ロードマップ](roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [用語集](glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](hub/) |
-| `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](course/) |
-| `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](book/) |
-| `reference` に `sidebar: true`、`packages:` | メンバーの `group`、`packages: [{name, version, text, url, links: [{label, url}]}]`、`packages_title`、`packages_compact`、`packages_position` | TechArticle | [API リファレンス](api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [リファレンス](reference.ja.md) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [変更履歴](changelog.ja.md) |
+| `roadmap` | `items: [{title, status, text, url}]`、status は `now`、`next`、`later` | WebPage | [ロードマップ](roadmap.ja.md) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [用語集](glossary.ja.md) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [ハブ](hub.ja.md) |
+| `course` | `level`、`modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [コース](course.ja.md) |
+| `book` | `image`、`author`、`isbn`、`pages`、`chapters: [{title, url}]` | Book | [書籍](book.ja.md) |
+| `reference` に `sidebar: true`、`packages:` | メンバーの `group`、`packages: [{name, version, text, url, links: [{label, url}]}]`、`packages_title`、`packages_compact`、`packages_position` | TechArticle | [API リファレンス](api.ja.md) |
 
 ## 変更履歴
 

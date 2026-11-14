@@ -17,9 +17,9 @@ A static site cannot reach its readers on its own, so the theme gives readers wa
 
 ## Feeds
 
-Add a `feed.xml` page with `layout: feed` at the site root and in each language folder; the theme writes the feed itself, so no plugin is needed. With `modootoday.feed: true`, every page then links its language's feed in the head, so a feed reader finds it from any page address. Blog, author and archive pages also show a Subscribe link to their feed (front matter `feed:`). See [Authors and feeds](../../layouts/blog-news/#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
+Add a `feed.xml` page with `layout: feed` at the site root and in each language folder; the theme writes the feed itself, so no plugin is needed. With `modootoday.feed: true`, every page then links its language's feed in the head, so a feed reader finds it from any page address. Blog, author and archive pages also show a Subscribe link to their feed (front matter `feed:`). See [Authors and feeds](../layouts/blog-news/index.md#authors-and-feeds). A feed is a file on your site: nobody signs up, and you learn nothing about who reads it.
 
-A changelog page can have a feed of its own, one entry per release: a `changelog.xml` with `layout: feed` and `feed_source:`, linked from the changelog page with `feed:`. See [Changelog](../../layouts/docs-extra/#changelog) in Docs extras for the two files.
+A changelog page can have a feed of its own, one entry per release: a `changelog.xml` with `layout: feed` and `feed_source:`, linked from the changelog page with `feed:`. See [Changelog](../layouts/docs-extra/index.md#changelog) in Docs extras for the two files.
 
 When you publish releases on GitHub, GitHub keeps a feed of them at `https://github.com/OWNER/REPO/releases.atom`. Front matter `releases_feed: true` on your changelog or download page links it for readers who want releases only.
 
@@ -29,15 +29,15 @@ Readers with a GitHub account can open your repository, choose Watch, then Custo
 
 ## An email form
 
-A `c: subscribe` section prints your text and an email form that posts to your mail service (`modootoday.subscribe.action`). The service keeps the addresses and sends the emails; the theme only draws the form. See [Subscribe](../../components/#subscribe).
+A `c: subscribe` section prints your text and an email form that posts to your mail service (`modootoday.subscribe.action`). The service keeps the addresses and sends the emails; the theme only draws the form. See [Subscribe](../components/index.md#subscribe).
 
 ## The installed app
 
-With `modootoday.pwa` on, an open app shows a short notice when a deploy changes the theme files, and pages always come from the network first. See [Updates](../pwa/#updates) in the installable site recipe. The notice reaches only readers who have the site open; it is not a notification.
+With `modootoday.pwa` on, an open app shows a short notice when a deploy changes the theme files, and pages always come from the network first. See [Updates](pwa.md#updates) in the installable site recipe. The notice reaches only readers who have the site open; it is not a notification.
 
 ## A release banner
 
-`modootoday.banner: {release: latest}` puts "1.7.0 is out." and a What's new link to the release on every page, read from `site.github` when the site is built; prereleases are left out. The field is `site.github.latest_release` (its `tag_name` and `html_url`); a leading `v` of the tag is dropped, so `v1.7.0` also shows as 1.7.0. When the build has no latest release, because the repository has published none yet or the build has no GitHub metadata, no banner is shown, and `modootoday-check` warns that the built home page has no release banner. It changes only when the site is rebuilt, so pair it with a rebuild on each release (below). Outside GitHub Pages, either set a `github:` map with `latest_release` in `_config.yml`, which stands in for `site.github` (see [the example in Head and SEO](../../guides/configuration/#head-and-seo)), or give `release: {version, url}` instead.
+`modootoday.banner: {release: latest}` puts "1.7.0 is out." and a What's new link to the release on every page, read from `site.github` when the site is built; prereleases are left out. The field is `site.github.latest_release` (its `tag_name` and `html_url`); a leading `v` of the tag is dropped, so `v1.7.0` also shows as 1.7.0. When the build has no latest release, because the repository has published none yet or the build has no GitHub metadata, no banner is shown, and `modootoday-check` warns that the built home page has no release banner. It changes only when the site is rebuilt, so pair it with a rebuild on each release (below). Outside GitHub Pages, either set a `github:` map with `latest_release` in `_config.yml`, which stands in for `site.github` (see [the example in Head and SEO](../guides/configuration.md#head-and-seo)), or give `release: {version, url}` instead.
 
 ## Why there is no push
 

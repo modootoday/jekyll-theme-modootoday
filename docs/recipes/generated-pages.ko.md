@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/generated-pages/
-source_rev: sha256:a2be5639b5f5
+source_rev: sha256:b46e6832ebad
 nav_order: 27
 title: 생성 페이지
 description: JSON이나 YAML 데이터 파일의 레코드마다 클래식 GitHub Pages에서 페이지를 하나씩 주고, 전체를 거를 수 있는 목록을 만들고, 파일을 바이트 그대로 게시합니다.
@@ -9,7 +9,7 @@ description: JSON이나 YAML 데이터 파일의 레코드마다 클래식 GitHu
 # 생성 페이지
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../recipes/generated-pages/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](generated-pages.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 카탈로그, 플러그인 목록, 용어집은 데이터 파일 하나에서 시작하는 경우가 많습니다. Jekyll 4 플러그인은 레코드마다 페이지를 만들 수 있지만, 클래식 GitHub Pages는 사이트의 플러그인을 실행하지 않으므로 페이지마다 저장소에 파일이 있어야 합니다. `modootoday-stubs --records`가 그 파일을 대신 씁니다. 레코드마다 front matter만 있는 짧은 페이지를 하나씩 만들고, 나머지 내용은 사이트를 빌드할 때 레이아웃이 데이터 파일에서 읽습니다.
 
@@ -93,7 +93,7 @@ filter_text: true
 ---
 ```
 
-`layout: integrations`는 `category`마다 버튼을 더하고, `filter_text: true`는 글자 필터를 더합니다. [디렉터리 레이아웃](../../layouts/directory/)을 참고하세요.
+`layout: integrations`는 `category`마다 버튼을 더하고, `filter_text: true`는 글자 필터를 더합니다. [디렉터리 레이아웃](../layouts/directory/index.ko.md)을 참고하세요.
 
 ## 사이트 확인
 

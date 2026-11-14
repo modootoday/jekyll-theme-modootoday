@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:39f29ea62280
+source_rev: sha256:5d160c155fd0
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -18,7 +18,7 @@ sections:
 いま使っているビルド方法を選んでください。三つとも同じ Markdown を読みます。
 
 > [!NOTE]
-> このページは[英語の原文](../../../guides/install/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](install.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## 動作要件
 
@@ -77,7 +77,7 @@ defaults:
 
 ## ビルドを確認する
 
-`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[AI エージェント](../agents/)）。ページごとの Markdown 版と、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横に Markdown 版のスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。エラーページ（`404.md` などの `layout: error`）には Markdown 版を作りません。ほかに Markdown 版が要らないページには `twin: false` を付けます。Markdown だけを確認するには `--twins` を外します。
+`--twins` は、テーマが AI エージェント向けに公開するファイルも確認します（[AI エージェント](agents.ja.md)）。ページごとの Markdown 版と、`llms.txt`、`llms-full.txt` です。Jekyll 4 では `plugins: [jekyll-theme-modootoday]` を追加すると、ビルドが作ります。従来の GitHub Pages では、`modootoday-stubs . --twins --write` を一度実行して各ページの横に Markdown 版のスタブを追加し、サイトのルートに front matter だけを書いた 2 つのファイルを置きます。`layout: llms` の `llms.txt` と `layout: llms-full` の `llms-full.txt` です。エラーページ（`404.md` などの `layout: error`）には Markdown 版を作りません。ほかに Markdown 版が要らないページには `twin: false` を付けます。Markdown だけを確認するには `--twins` を外します。
 
 ```sh
 bundle exec jekyll build
@@ -116,7 +116,7 @@ GitHub Actions では、ビルドの次のステップに同じ 2 行を入れ�
 
 ## スターターサイト
 
-テーマには 3 つのスターターサイトがあり、どれもライブデモ付きの GitHub のテンプレートリポジトリです。[docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、[blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)（投稿、ニュース記事、著者ページ、フィード）、[landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)（ヒーロー、料金、規約ページ）です。どれかから始めるには、そのリポジトリで **Use this template** を選び、GitHub Pages のソースを GitHub Actions にします。コピーは `remote_theme` でテーマを読み込み、`Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../../reference/showcase/)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。テーマの gem を使う Jekyll 4 で始めるには、テーマのリポジトリを `--recurse-submodules` 付きでクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/jekyll4/<name>/` をコピーします。
+テーマには 3 つのスターターサイトがあり、どれもライブデモ付きの GitHub のテンプレートリポジトリです。[docs](https://github.com/modootoday/jekyll-theme-modootoday-docs-starter)（ガイド、データから作るページ、`ko/` と `ja/` の韓国語と日本語）、[blog](https://github.com/modootoday/jekyll-theme-modootoday-blog-starter)（投稿、ニュース記事、著者ページ、フィード）、[landing](https://github.com/modootoday/jekyll-theme-modootoday-landing-starter)（ヒーロー、料金、規約ページ）です。どれかから始めるには、そのリポジトリで **Use this template** を選び、GitHub Pages のソースを GitHub Actions にします。コピーは `remote_theme` でテーマを読み込み、`Gemfile`、`README.md`、スタブ、そしてサイトをビルドし `modootoday-check` を実行してからデプロイする Pages ワークフローが入っています。`_config.demo.yml` も入っていますが、これはそのスターター自身のライブデモの設定（[ショーケース](../reference/showcase.ja.md)のバーまたはピルと `noindex`）です。ワークフローはスターター自身のリポジトリでだけこの設定をビルドに重ねるので、コピーはこの設定なしでビルドされます。ファイルは削除してもかまいません。テーマの gem を使う Jekyll 4 で始めるには、テーマのリポジトリを `--recurse-submodules` 付きでクローンした場所で `bundle exec rake starters:render` を実行し、`pkg/starters/jekyll4/<name>/` をコピーします。
 
 ## 次のリリースを試す
 

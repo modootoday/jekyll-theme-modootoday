@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/blog/
-source_rev: sha256:e64a0c8c0c3b
+source_rev: sha256:2306624e4432
 title: 블로그
 description: "layout: blog로 만든 블로그 목록 예시입니다."
 layout: blog
@@ -10,4 +10,4 @@ feed: /ko/feed.xml
 ---
 # 블로그
 
-`layout: blog`와 `variant: magazine`으로 만든 블로그 목록 예시입니다. 자세한 내용은 [블로그와 뉴스 안내](../../layouts/blog-news/)를 보세요.
+`layout: blog`와 `variant: magazine`으로 만든 블로그 목록 예시입니다. 자세한 내용은 [블로그와 뉴스 안내](../layouts/blog-news/index.ko.md)를 보세요.

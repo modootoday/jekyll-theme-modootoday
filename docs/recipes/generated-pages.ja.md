@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/generated-pages/
-source_rev: sha256:a2be5639b5f5
+source_rev: sha256:b46e6832ebad
 nav_order: 27
 title: 生成ページ
 description: JSON や YAML のデータファイルにあるレコードごとに、クラシックな GitHub Pages でページを 1 つずつ作り、全体を絞り込めるリストにまとめ、ファイルをバイト単位でそのまま公開します。
@@ -9,7 +9,7 @@ description: JSON や YAML のデータファイルにあるレコードごと�
 # 生成ページ
 
 > [!NOTE]
-> このページは[英語の原文](../../../recipes/generated-pages/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](generated-pages.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 カタログ、プラグイン一覧、用語集は、1 つのデータファイルから始まることがよくあります。Jekyll 4 のプラグインならレコードごとにページを作れますが、クラシックな GitHub Pages はサイト独自のプラグインを実行しないため、ページごとにリポジトリ内のファイルが必要です。そのファイルは `modootoday-stubs --records` が書きます。レコードごとに front matter だけの短いページを作り、残りの内容はサイトのビルド時にレイアウトがデータファイルから読み込みます。
 
@@ -93,7 +93,7 @@ filter_text: true
 ---
 ```
 
-`layout: integrations` は `category` ごとにボタンを加え、`filter_text: true` は文字で絞り込むフィルターを加えます。[ディレクトリーレイアウト](../../layouts/directory/)を参照してください。
+`layout: integrations` は `category` ごとにボタンを加え、`filter_text: true` は文字で絞り込むフィルターを加えます。[ディレクトリーレイアウト](../layouts/directory/index.ja.md)を参照してください。
 
 ## サイトの確認
 

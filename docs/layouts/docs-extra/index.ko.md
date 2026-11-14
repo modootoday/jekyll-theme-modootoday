@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/docs-extra/
-source_rev: sha256:88b275d8bd57
+source_rev: sha256:1722cc912328
 nav_order: 60
 title: 문서 확장
 description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 책 페이지를 공유 선택 스타일시트 하나로 만드는 레이아웃과 각 레이아웃의 front matter를 설명합니다.
@@ -12,14 +12,14 @@ description: 레퍼런스, 변경 이력, 로드맵, 용어집, 허브, 강좌, 
 
 | 레이아웃 | front matter | 구조화 데이터 | 데모 |
 |---|---|---|---|
-| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](reference/) |
-| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](changelog/) |
-| `roadmap` | `items: [{title, status, text, url}]`, status는 `now`, `next`, `later` | WebPage | [로드맵](roadmap/) |
-| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [용어집](glossary/) |
-| `hub` | `cards: [{title, text, url}]` | CollectionPage | [허브](hub/) |
-| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [강좌](course/) |
-| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [책](book/) |
-| `reference`에 `sidebar: true`, `packages:` | 멤버의 `group`, `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API 레퍼런스](api/) |
+| `reference` | `members: [{name, signature, text, since, id}]` | TechArticle | [레퍼런스](reference.ko.md) |
+| `changelog` | `releases: [{version, date, url, added, changed, fixed, removed, security}]` | WebPage | [변경 이력](changelog.ko.md) |
+| `roadmap` | `items: [{title, status, text, url}]`, status는 `now`, `next`, `later` | WebPage | [로드맵](roadmap.ko.md) |
+| `glossary` | `terms: [{term, text, id, url}]` | DefinedTermSet | [용어집](glossary.ko.md) |
+| `hub` | `cards: [{title, text, url}]` | CollectionPage | [허브](hub.ko.md) |
+| `course` | `level`, `modules: [{title, lessons: [{title, url, minutes}]}]` | Course | [강좌](course.ko.md) |
+| `book` | `image`, `author`, `isbn`, `pages`, `chapters: [{title, url}]` | Book | [책](book.ko.md) |
+| `reference`에 `sidebar: true`, `packages:` | 멤버의 `group`, `packages: [{name, version, text, url, links: [{label, url}]}]`, `packages_title`, `packages_compact`, `packages_position` | TechArticle | [API 레퍼런스](api.ko.md) |
 
 ## 변경 이력
 

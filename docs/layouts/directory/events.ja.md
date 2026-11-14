@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/events/
-source_rev: sha256:af6c5d0a0d18
+source_rev: sha256:080b79474981
 nav_order: 4
 title: "イベントのデモ"
 layout: events
@@ -18,4 +18,4 @@ twin: false
 
 このページは `layout: events` を使います。各イベントは .ics ファイルを提供し、schema.org の Event になります。
 
-[ディレクトリレイアウトに戻る](../)
+[ディレクトリレイアウトに戻る](index.ja.md)

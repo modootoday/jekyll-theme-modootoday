@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/agents/
-source_rev: sha256:ada23255a862
+source_rev: sha256:b43aa88b289a
 nav_order: 60
 title: AI 에이전트
 description: 페이지마다 Markdown 버전, URL 별칭, llms.txt, llms-full.txt를 게시해 AI 에이전트가 사이트를 쓴 그대로 읽게 합니다.
@@ -15,7 +15,7 @@ sections:
 모든 페이지는 두 번 게시됩니다. 사람을 위한 HTML과 에이전트를 위한 원본 Markdown입니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../guides/agents/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](agents.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## Markdown 버전
 
@@ -23,7 +23,7 @@ sections:
 
 - **스텁 파일** (기본, 기본 GitHub Pages): 페이지마다 작은 `<page>.md.txt` 하나. 아래에서 설명합니다.
 - **플러그인** (Jekyll 4 또는 GitHub Actions): `plugins: [jekyll-theme-modootoday]`가 스텁 없이 Markdown 버전과 `llms.txt`를 만듭니다.
-- **소스 모드** (기본 GitHub Pages, 스텁 없음): front matter 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다. 한계는 [Markdown 규칙](../../reference/rules/) 5a절에 있습니다.
+- **소스 모드** (기본 GitHub Pages, 스텁 없음): front matter 없는 페이지와 `modootoday.twins: source`. 기본 GitHub Pages는 원본 사본을 원본과 똑같이 `text/markdown; charset=utf-8`로 제공합니다. 한계는 [Markdown 규칙](../reference/rules.ko.md) 5a절에 있습니다.
 
 Jekyll 4에서는 테마 플러그인이 Markdown 버전을 자동으로 만듭니다.
 
@@ -89,4 +89,4 @@ layout: llms
 
 페이지가 있는 다른 언어마다 그 언어 폴더에 같은 두 파일을 두고 `lang:`을 적습니다. 예를 들어 `ko/llms.txt`에는 `layout: llms`와 `lang: ko`를 씁니다. 빠진 파일은 `modootoday-check --twins`가 알려 줍니다.
 
-이 사이트에서 확인해 보세요: [llms.txt](../../llms.txt), [llms-full.txt](../../llms-full.txt). 내 사이트에서 검사하는 법은 [설치 > 빌드 확인](../install/)에 있습니다.
+이 사이트에서 확인해 보세요: [llms.txt](../generated/ko/llms.txt), [llms-full.txt](../generated/ko/llms-full.txt). 내 사이트에서 검사하는 법은 [설치 > 빌드 확인](install.ko.md)에 있습니다.

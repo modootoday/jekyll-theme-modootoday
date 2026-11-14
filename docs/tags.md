@@ -7,4 +7,4 @@ archive: tags
 ---
 # Tags
 
-Every post, grouped by tag. Each post's footer links its tags to the matching section here. See [Posts and archives](../reference/api/#posts-and-archives).
+Every post, grouped by tag. Each post's footer links its tags to the matching section here. See [Posts and archives](reference/api.md#posts-and-archives).

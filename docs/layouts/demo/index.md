@@ -6,15 +6,15 @@ twin: false
 ---
 # Layout demos
 
-Each page below uses one layout so you can see it as a visitor would. See [Page shells](../shells/) for how to use them.
+Each page below uses one layout so you can see it as a visitor would. See [Page shells](../shells.md) for how to use them.
 
-- [Minimal](minimal/)
-- [Wide](wide/)
-- [Home](home/)
-- [Error](error/)
-- [Redirect](redirect/)
-- [Search](search/)
-- [Strict CSP](csp/)
-- [GitHub code colors](code-github/)
-- [Hero module](orbit/)
-- [Filter](filter/)
+- [Minimal](minimal.md)
+- [Wide](wide.md)
+- [Home](home.md)
+- [Error](error.md)
+- [Redirect](redirect.md)
+- [Search](search.md)
+- [Strict CSP](csp.md)
+- [GitHub code colors](code-github.md)
+- [Hero module](orbit.md)
+- [Filter](filter.md)

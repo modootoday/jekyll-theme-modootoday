@@ -20,9 +20,9 @@ modootoday:
 ```
 
 - `element` is a custom element name: lowercase, with a hyphen, not starting with `mt-` (the theme's prefix), and not one of the names SVG and MathML reserve, such as `font-face`. Two entries cannot name the same element.
-- `src` and `css` are site paths. A page that contains `<x-counter` gets the entry's sheet and `<script type="module">` in `<head>`, once, as with [module scripts](../../../guides/customize/#module-scripts-and-posters). Module scripts are allowed by `script-src 'self'`, so a strict CSP needs no change.
+- `src` and `css` are site paths. A page that contains `<x-counter` gets the entry's sheet and `<script type="module">` in `<head>`, once, as with [module scripts](../../guides/customize.md#module-scripts-and-posters). Module scripts are allowed by `script-src 'self'`, so a strict CSP needs no change.
 - Pages without the element load nothing.
-- The module and sheet URLs end in the theme's `?v=` query, as theme files and `site_css` sheets do, so a CDN can cache them for long. With the default `modootoday.asset_version: theme` the query changes only with the theme version; when you edit your own module between theme releases, set `asset_version: build`, which adds the commit ([Versioned asset URLs](../../../guides/performance/#versioned-asset-urls)). Modules your entry imports keep plain URLs.
+- The module and sheet URLs end in the theme's `?v=` query, as theme files and `site_css` sheets do, so a CDN can cache them for long. With the default `modootoday.asset_version: theme` the query changes only with the theme version; when you edit your own module between theme releases, set `asset_version: build`, which adds the commit ([Versioned asset URLs](../../guides/performance.md#versioned-asset-urls)). Modules your entry imports keep plain URLs.
 
 ## Place it in a section
 
@@ -53,7 +53,7 @@ The theme writes:
 - `props` is a map of plain values (text, numbers, `true`, `false`). The element reads it as JSON from `data-props`.
 - The section needs at least one paragraph after the heading. Write it so it holds up on its own: a sentence, a table of results or a link to a page that does the same job.
 
-The [kitchen sink](../../../components/kitchen-sink/#widget) has a counter section.
+The [kitchen sink](../../components/kitchen-sink.md#widget) has a counter section.
 
 ## Place it in a paragraph
 
@@ -72,7 +72,7 @@ Its props come from front matter, keyed by element: `widget_props: {x-counter: {
 The contract between the theme and your module:
 
 - Define the element with `customElements.define`. Until then, the theme shows `div.mt-widget-fallback`; once the element is defined (CSS `:defined`), it hides it. A module that fails or never loads leaves the fallback in place, with no `<noscript>`.
-- Read the settings from `data-props`. [`readConfig`](../../../guides/customize/#module-scripts-and-posters), a named export of the theme's `/assets/js/modootoday/dom/config.js`, parses it: `readConfig(this, {props: {}})`. Import it by a path relative to your module:
+- Read the settings from `data-props`. [`readConfig`](../../guides/customize.md#module-scripts-and-posters), a named export of the theme's `/assets/js/modootoday/dom/config.js`, parses it: `readConfig(this, {props: {}})`. Import it by a path relative to your module:
 
   ```js
   // assets/js/widgets/x-counter.js

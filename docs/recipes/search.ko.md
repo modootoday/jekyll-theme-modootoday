@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/search/
-source_rev: sha256:cafe0cd79859
+source_rev: sha256:0139e8930923
 nav_order: 25
 title: 검색
 description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 맞추는 방식을 정하며, 독자가 긴 목록이나 표를 입력해서 거를 수 있게 하는 방법을 설명합니다.
@@ -9,7 +9,7 @@ description: 헤더 검색을 켜고, 색인에 담을 내용과 검색어를 �
 # 검색
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../recipes/search/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](search.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 헤더 검색은 Liquid가 만드는 `search.json` 파일 하나를 읽습니다. 그래서 플러그인이나 외부 서비스 없이 클래식 GitHub Pages에서도 동작합니다. 검색 스크립트와 이 파일은 독자가 검색창에 처음 들어가거나 `/`, Ctrl+K를 누를 때 불러옵니다. 그래서 검색하지 않는 방문에서는 둘 다 받지 않습니다.
 
@@ -58,4 +58,4 @@ sections:
   - {name: plans, filter: {facet: 3}}
 ```
 
-그 섹션의 첫 목록이나 표 위에 필드가 생기고, 입력한 단어가 모두 들어 있는 항목만 보이며 몇 개가 보이는지 알려 줍니다. 비교 방식은 `compact: true`와 같습니다. `facet: 3`은 표의 세 번째 열 값마다 버튼을 추가합니다. 디렉터리 페이지에서는 `filter_text: true`로 카드 위에 같은 필드를 둡니다. JavaScript가 없으면 모든 항목이 보입니다. [필터 데모](../../layouts/demo/filter/)를 보세요.
+그 섹션의 첫 목록이나 표 위에 필드가 생기고, 입력한 단어가 모두 들어 있는 항목만 보이며 몇 개가 보이는지 알려 줍니다. 비교 방식은 `compact: true`와 같습니다. `facet: 3`은 표의 세 번째 열 값마다 버튼을 추가합니다. 디렉터리 페이지에서는 `filter_text: true`로 카드 위에 같은 필드를 둡니다. JavaScript가 없으면 모든 항목이 보입니다. [필터 데모](../layouts/demo/filter.ko.md)를 보세요.

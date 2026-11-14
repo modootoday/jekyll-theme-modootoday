@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday സാധാരണ GitHub Flavored Markdown-നെ വൃത്തിയുള്ള ഒരു ഡോക്യുമെന്റേഷൻ സൈറ്റാക്കി മാറ്റുന്നു. ഒരേ ഫയൽ github.com-ലും GitHub Pages-ലും AI ഏജന്റുകൾക്കുള്ള Markdown പതിപ്പായും നന്നായി വായിക്കാം.
 
-[തുടങ്ങാം](../guides/install/) [ഘടകങ്ങൾ കാണുക](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[തുടങ്ങാം](../guides/install.md) [ഘടകങ്ങൾ കാണുക](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## എന്തുകൊണ്ട് modoo.today തീം
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## വായനയുടെ വഴി
 
-1. GitHub Pages-ലോ Jekyll 4-ലോ തീം [ഇൻസ്റ്റാൾ ചെയ്യുക](../guides/install/).
-2. സാധാരണ Markdown-ൽ [ആദ്യ പേജ് എഴുതുക](../guides/first-page/).
-3. [ഘടകങ്ങളിൽ](../components/) നിന്നും [എല്ലാ ഘടകങ്ങളുടെയും പേജിൽ](../components/kitchen-sink/) നിന്നും തിരഞ്ഞെടുക്കുക.
-4. [ക്രമീകരണങ്ങളിൽ](../guides/configuration/) മാറ്റം വരുത്തി, ടോക്കണുകളും `_sass`-ഉം ഉപയോഗിച്ച് [രൂപം ഇഷ്ടാനുസൃതമാക്കുക](../guides/customize/).
-5. Markdown പതിപ്പുകളും `llms.txt`-ഉം വഴി സൈറ്റ് [ഏജന്റുകൾക്ക് വായിക്കാവുന്നതാക്കുക](../guides/agents/).
+1. GitHub Pages-ലോ Jekyll 4-ലോ തീം [ഇൻസ്റ്റാൾ ചെയ്യുക](../guides/install.md).
+2. സാധാരണ Markdown-ൽ [ആദ്യ പേജ് എഴുതുക](../guides/first-page.md).
+3. [ഘടകങ്ങളിൽ](../components/index.md) നിന്നും [എല്ലാ ഘടകങ്ങളുടെയും പേജിൽ](../components/kitchen-sink.md) നിന്നും തിരഞ്ഞെടുക്കുക.
+4. [ക്രമീകരണങ്ങളിൽ](../guides/configuration.md) മാറ്റം വരുത്തി, ടോക്കണുകളും `_sass`-ഉം ഉപയോഗിച്ച് [രൂപം ഇഷ്ടാനുസൃതമാക്കുക](../guides/customize.md).
+5. Markdown പതിപ്പുകളും `llms.txt`-ഉം വഴി സൈറ്റ് [ഏജന്റുകൾക്ക് വായിക്കാവുന്നതാക്കുക](../guides/agents.md).
 
 > [!NOTE]
-> ഈ പേജ് [ഇംഗ്ലീഷ് മൂലരൂപത്തിൽ](../) നിന്നുള്ള വിവർത്തനമാണ്; വ്യത്യാസമുണ്ടെങ്കിൽ ഇംഗ്ലീഷ് പതിപ്പാണ് ആധികാരികം. ലിങ്ക് ചെയ്ത ഗൈഡുകൾ ഇംഗ്ലീഷിലാണ്.
+> ഈ പേജ് [ഇംഗ്ലീഷ് മൂലരൂപത്തിൽ](../index.md) നിന്നുള്ള വിവർത്തനമാണ്; വ്യത്യാസമുണ്ടെങ്കിൽ ഇംഗ്ലീഷ് പതിപ്പാണ് ആധികാരികം. ലിങ്ക് ചെയ്ത ഗൈഡുകൾ ഇംഗ്ലീഷിലാണ്.
 
 ## ഇപ്പോൾ തുടങ്ങാം
 
-[തീം ഇൻസ്റ്റാൾ ചെയ്യുക](../guides/install/) [എല്ലാ ഘടകങ്ങളും കാണുക](../components/kitchen-sink/)
+[തീം ഇൻസ്റ്റാൾ ചെയ്യുക](../guides/install.md) [എല്ലാ ഘടകങ്ങളും കാണുക](../components/kitchen-sink.md)

@@ -13,7 +13,7 @@ sections:
 
 jekyll-theme-modootoday turns standard GitHub Flavored Markdown into a clean documentation site. The same file reads well on github.com, on GitHub Pages and as a Markdown twin for AI agents.
 
-[Get started](guides/install/) [Browse components](components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Get started](guides/install.md) [Browse components](components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Why modoo.today theme
 
@@ -45,12 +45,12 @@ permalink: pretty
 
 ## Your path through the docs
 
-1. [Install](guides/install/) the theme on GitHub Pages or Jekyll 4.
-2. [Write your first page](guides/first-page/) with plain Markdown.
-3. Pick from the [components](components/) and the [kitchen sink](components/kitchen-sink/).
-4. Tune it in [configuration](guides/configuration/) and [customize](guides/customize/) the look with tokens and `_sass`.
-5. Make it [readable by agents](guides/agents/) with twins and `llms.txt`.
+1. [Install](guides/install.md) the theme on GitHub Pages or Jekyll 4.
+2. [Write your first page](guides/first-page.md) with plain Markdown.
+3. Pick from the [components](components/index.md) and the [kitchen sink](components/kitchen-sink.md).
+4. Tune it in [configuration](guides/configuration.md) and [customize](guides/customize.md) the look with tokens and `_sass`.
+5. Make it [readable by agents](guides/agents.md) with twins and `llms.txt`.
 
 ## Start now
 
-[Install the theme](guides/install/) [See every component](components/kitchen-sink/)
+[Install the theme](guides/install.md) [See every component](components/kitchen-sink.md)

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/figures/math-diagrams/
-source_rev: sha256:6d173e5e2a1a
+source_rev: sha256:4a3d79987023
 nav_order: 10
 title: 수식과 다이어그램
 description: Mermaid 다이어그램과 수식을 커밋한 정적 SVG와 MathML로 보여 주거나, 내장 로더나 직접 만든 로더로 다이어그램과 KaTeX 수식을 렌더링하는 방법과 각 방법이 CSP와 개인정보에 미치는 영향.
@@ -11,19 +11,19 @@ diagrams:
 # 수식과 다이어그램
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../../recipes/figures/math-diagrams/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](math-diagrams.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ```` ```math ````나 ```` ```mermaid ```` 펜스는 렌더러를 켜기 전까지 코드 블록으로 보이고, github.com에서는 GitHub가 렌더링합니다. 사이트에 보여 주는 방법은 세 가지입니다.
 
 | 방법 | 동작 환경 | CSP | 브라우저 JavaScript |
 |---|---|---|---|
 | [정적 그림](#정적-그림): 렌더링한 SVG나 MathML을 커밋 | 클래식 GitHub Pages, Jekyll 3.10과 4, 모든 호스트 | 엄격, 추가할 것 없음 | 없음 |
-| [내장 로더](../loaders/#내장-로더): `modootoday.mermaid`, `modootoday.math` | 클래식 GitHub Pages, Jekyll 3.10과 4, 모든 호스트 | 직접 호스팅: `'self'`, CDN: CDN 출처 추가(아래 참고) | 있음, 블록이 있는 페이지에서만 |
-| `_includes/footer-custom.html`의 [직접 만든 로더](../loaders/#직접-만든-로더) | 클래식 GitHub Pages, Jekyll 4, 모든 호스트 | KaTeX는 엄격 그대로, Mermaid는 `style-src 'unsafe-inline'` 필요 | 있음 |
+| [내장 로더](loaders.ko.md#내장-로더): `modootoday.mermaid`, `modootoday.math` | 클래식 GitHub Pages, Jekyll 3.10과 4, 모든 호스트 | 직접 호스팅: `'self'`, CDN: CDN 출처 추가(아래 참고) | 있음, 블록이 있는 페이지에서만 |
+| `_includes/footer-custom.html`의 [직접 만든 로더](loaders.ko.md#직접-만든-로더) | 클래식 GitHub Pages, Jekyll 4, 모든 호스트 | KaTeX는 엄격 그대로, Mermaid는 `style-src 'unsafe-inline'` 필요 | 있음 |
 
 ## 정적 그림
 
-권장하는 방법입니다. 페이지가 정적 SVG와 MathML을 내보내므로 JavaScript 없이 동작하고, 인쇄가 깔끔하며, 엄격한 CSP를 통과합니다. Markdown에는 펜스나 블록이 그대로 남으므로 github.com과 [Markdown 버전](../../../guides/agents/)을 읽는 에이전트도 원본을 볼 수 있습니다.
+권장하는 방법입니다. 페이지가 정적 SVG와 MathML을 내보내므로 JavaScript 없이 동작하고, 인쇄가 깔끔하며, 엄격한 CSP를 통과합니다. Markdown에는 펜스나 블록이 그대로 남으므로 github.com과 [Markdown 버전](../../guides/agents.ko.md)을 읽는 에이전트도 원본을 볼 수 있습니다.
 
 ### 정적 다이어그램
 
@@ -191,11 +191,11 @@ $$
 
 KaTeX는 HTML 출력도 만들 수 있습니다(`--output=htmlAndMathml`). 모든 브라우저에서 똑같이 보이지만 KaTeX의 스타일시트와 폰트가 필요하고 `style` 속성을 쓰므로 CSP에 `style-src 'unsafe-inline'`이 필요합니다. `katex` 패키지에서 `katex.min.css`와 `fonts/`를 복사하고 `css:`(또는 아래의 `base:`)를 설정하세요. 테마는 항목에 KaTeX HTML이 있는 페이지에서만 스타일시트를 연결합니다.
 
-내장 로더와 직접 만든 로더는 [다이어그램과 수식 로더](../loaders/)에서 설명합니다.
+내장 로더와 직접 만든 로더는 [다이어그램과 수식 로더](loaders.ko.md)에서 설명합니다.
 
 ## 점검 목록
 
-- 원본이 Markdown에 남아 있어 github.com과 [Markdown 버전](../../../guides/agents/)을 읽는 에이전트도 볼 수 있습니다.
+- 원본이 Markdown에 남아 있어 github.com과 [Markdown 버전](../../guides/agents.ko.md)을 읽는 에이전트도 볼 수 있습니다.
 - CSP에 제3자 출처가 없거나, CDN 출처를 명시하고 `integrity`로 고정했습니다.
 - 모든 다이어그램에 무엇을 보여 주는지 밝히는 대체 텍스트나 캡션이 있습니다.
 - 렌더러는 필요한 페이지에서만 불러옵니다.

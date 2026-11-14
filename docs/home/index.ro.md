@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday transformă GitHub Flavored Markdown standard într-un site de documentație curat. Același fișier se citește bine pe github.com, pe GitHub Pages și ca versiune Markdown pentru agenții AI.
 
-[Începe](../guides/install/) [Vezi componentele](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Începe](../guides/install.md) [Vezi componentele](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## De ce tema modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Drumul tău prin documentație
 
-1. [Instalează](../guides/install/) tema pe GitHub Pages sau Jekyll 4.
-2. [Scrie prima pagină](../guides/first-page/) în Markdown simplu.
-3. Alege dintre [componente](../components/) și din [pagina cu toate componentele](../components/kitchen-sink/).
-4. Ajustează [configurația](../guides/configuration/) și [personalizează](../guides/customize/) aspectul cu tokenuri și `_sass`.
-5. Fă site-ul [ușor de citit de agenți](../guides/agents/) cu versiuni Markdown și `llms.txt`.
+1. [Instalează](../guides/install.md) tema pe GitHub Pages sau Jekyll 4.
+2. [Scrie prima pagină](../guides/first-page.md) în Markdown simplu.
+3. Alege dintre [componente](../components/index.md) și din [pagina cu toate componentele](../components/kitchen-sink.md).
+4. Ajustează [configurația](../guides/configuration.md) și [personalizează](../guides/customize.md) aspectul cu tokenuri și `_sass`.
+5. Fă site-ul [ușor de citit de agenți](../guides/agents.md) cu versiuni Markdown și `llms.txt`.
 
 > [!NOTE]
-> Această pagină este o traducere a [originalului în engleză](../); în caz de diferențe, prevalează varianta în engleză. Ghidurile din linkuri sunt în engleză.
+> Această pagină este o traducere a [originalului în engleză](../index.md); în caz de diferențe, prevalează varianta în engleză. Ghidurile din linkuri sunt în engleză.
 
 ## Începe acum
 
-[Instalează tema](../guides/install/) [Vezi toate componentele](../components/kitchen-sink/)
+[Instalează tema](../guides/install.md) [Vezi toate componentele](../components/kitchen-sink.md)

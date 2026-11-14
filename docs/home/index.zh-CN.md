@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday 把标准的 GitHub Flavored Markdown 变成简洁的文档站点。同一个文件在 github.com、GitHub Pages 上都清晰易读，也能作为 Markdown 版本交给 AI 智能体。
 
-[开始使用](../guides/install/) [浏览组件](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[开始使用](../guides/install.md) [浏览组件](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## 为什么选择 modoo.today 主题
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## 文档阅读路线
 
-1. 在 GitHub Pages 或 Jekyll 4 上[安装](../guides/install/)主题。
-2. 用纯 Markdown [编写第一个页面](../guides/first-page/)。
-3. 从[组件](../components/)和[组件大全](../components/kitchen-sink/)中挑选。
-4. 在[配置](../guides/configuration/)中调整，并用 token 和 `_sass` [自定义外观](../guides/customize/)。
-5. 借助 Markdown 版本和 `llms.txt` 让页面[便于智能体读取](../guides/agents/)。
+1. 在 GitHub Pages 或 Jekyll 4 上[安装](../guides/install.md)主题。
+2. 用纯 Markdown [编写第一个页面](../guides/first-page.md)。
+3. 从[组件](../components/index.md)和[组件大全](../components/kitchen-sink.md)中挑选。
+4. 在[配置](../guides/configuration.md)中调整，并用 token 和 `_sass` [自定义外观](../guides/customize.md)。
+5. 借助 Markdown 版本和 `llms.txt` 让页面[便于智能体读取](../guides/agents.md)。
 
 > [!NOTE]
-> 本页译自[英文原文](../)，如有出入以英文为准。链接的指南目前只有英文版。
+> 本页译自[英文原文](../index.md)，如有出入以英文为准。链接的指南目前只有英文版。
 
 ## 现在开始
 
-[安装主题](../guides/install/) [查看全部组件](../components/kitchen-sink/)
+[安装主题](../guides/install.md) [查看全部组件](../components/kitchen-sink.md)

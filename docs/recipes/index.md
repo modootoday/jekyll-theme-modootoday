@@ -8,12 +8,12 @@ description: Short how-tos for one task each, built on the guides, from figures 
 Each recipe solves one task on top of the guides.
 
 <!-- spec:docs-index:begin -->
-- [Figures and widgets](figures/) — Show diagrams, math and charts as figures that work without a script, and place your own interactive elements.
-- [Brand tokens](brand-tokens/) — Give the theme your brand's colors and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
-- [CSP](csp/) — Run the theme under a strict Content Security Policy without unsafe-inline, with the headers to send and the settings that keep every page working.
-- [Search](search/) — Turn on the header search, choose what the index holds and how queries match, and let readers filter a long list or table.
-- [Generated pages](generated-pages/) — Give every record of a JSON or YAML data file its own page on classic GitHub Pages, with a filterable list of them all, and publish files byte for byte.
-- [Tell readers about updates](updates/) — Feeds, GitHub release notifications, an email form and the app's notice tell readers what changed; rebuild the site when a release is published.
-- [Installable site](pwa/) — Let browsers install the site as an app and keep it readable offline, with a manifest built from the settings you already have and a service worker.
-- [Site types](site-types/) — Which layouts make a product, company, documentation, personal or community site, and the system pages every site needs.
+- [Figures and widgets](figures/index.md) — Show diagrams, math and charts as figures that work without a script, and place your own interactive elements.
+- [Brand tokens](brand-tokens.md) — Give the theme your brand's colors and fonts through the token bridge, with your own stylesheet and a preloaded font, under a strict CSP.
+- [CSP](csp.md) — Run the theme under a strict Content Security Policy without unsafe-inline, with the headers to send and the settings that keep every page working.
+- [Search](search.md) — Turn on the header search, choose what the index holds and how queries match, and let readers filter a long list or table.
+- [Generated pages](generated-pages.md) — Give every record of a JSON or YAML data file its own page on classic GitHub Pages, with a filterable list of them all, and publish files byte for byte.
+- [Tell readers about updates](updates.md) — Feeds, GitHub release notifications, an email form and the app's notice tell readers what changed; rebuild the site when a release is published.
+- [Installable site](pwa.md) — Let browsers install the site as an app and keep it readable offline, with a manifest built from the settings you already have and a service worker.
+- [Site types](site-types.md) — Which layouts make a product, company, documentation, personal or community site, and the system pages every site needs.
 <!-- spec:docs-index:end -->

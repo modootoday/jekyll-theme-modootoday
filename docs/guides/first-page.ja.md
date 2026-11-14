@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/first-page/
-source_rev: sha256:7636e1aaba54
+source_rev: sha256:7b5c5644d682
 nav_order: 40
 nav_title: "最初のページ"
 title: "最初のページを書く"
@@ -17,7 +17,7 @@ sections:
 ページは先頭に小さな front matter ブロックがある Markdown ファイルです。残りはテーマが引き受けます。
 
 > [!NOTE]
-> このページは[英語の原文](../../../guides/first-page/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](first-page.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## Front matter
 
@@ -62,8 +62,8 @@ One sentence that explains the page.
 | トップレベルの GitHub アラート | kramdown の属性と `{#id}` |
 | `<https://…>` 形式の自動リンク | 裸の URL |
 
-表に属性は要りません。40rem より狭いときに収まらない表は、自動でラベル付きのブロックに積み重なります。完全な一覧は、RULES.md から作られる [Markdown ルール](../../reference/rules/)のページにあります。
+表に属性は要りません。40rem より狭いときに収まらない表は、自動でラベル付きのブロックに積み重なります。完全な一覧は、RULES.md から作られる [Markdown ルール](../reference/rules.ja.md)のページにあります。
 
 ## 次に読むもの
 
-[コンポーネントを見る](../../components/) [インストールに戻る](../install/)
+[コンポーネントを見る](../components/index.ja.md) [インストールに戻る](install.ja.md)

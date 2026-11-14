@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:25868cc87ab3
+source_rev: sha256:c477ccfacd2e
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
@@ -57,7 +57,7 @@ sections:
 ---
 # キッチンシンク
 
-テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。コンポーネントは[コンポーネント](../)のページと同じく、用途ごとにまとめてから A-Z 順に並べます。各コンポーネントの役割と書き方はそのページにあり、このページは表示だけを示します。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
+テーマが提供するすべてのコンポーネントを、すべてのバリエーションで表示します。同じファイルを github.com で開くとフォールバックの表示を確認できます。コンポーネントは[コンポーネント](index.ja.md)のページと同じく、用途ごとにまとめてから A-Z 順に並べます。各コンポーネントの役割と書き方はそのページにあり、このページは表示だけを示します。日本語の折り返し確認用の長い文: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
 
 - 普通の Markdown
 - github.com でも読める
@@ -66,7 +66,7 @@ sections:
 [主なアクション](#) [二番目](#) [三番目のリンク](#)
 
 > [!NOTE]
-> このページは[英語の原文](../../../components/kitchen-sink/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](kitchen-sink.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## テキストとインライン
 
@@ -100,9 +100,9 @@ sections:
 
 2 つのリストスタイル: リンクのチップと見出し付きの項目。
 
-- [インストール](../../guides/install/)
-- [設定](../../guides/configuration/)
-- [アクセシビリティ](../../guides/accessibility/)
+- [インストール](../guides/install.ja.md)
+- [設定](../guides/configuration.ja.md)
+- [アクセシビリティ](../guides/accessibility.ja.md)
 
 タイトル付きの項目:
 
@@ -127,7 +127,7 @@ sections:
 
 ## タイポグラフィ
 
-**太字**、*斜体*、~~取り消し線~~、`code`、[コンポーネント一覧](../)へのリンクを含む段落です。脚注も使えます。[^1]
+**太字**、*斜体*、~~取り消し線~~、`code`、[コンポーネント一覧](index.ja.md)へのリンクを含む段落です。脚注も使えます。[^1]
 
 ### 見出しレベル 3
 
@@ -174,7 +174,7 @@ sections:
 > 内容の多いアラート:
 >
 > - `inline code` を含むリスト項目
-> - [コンポーネント一覧](../)へのリンクを含む二つ目の項目
+> - [コンポーネント一覧](index.ja.md)へのリンクを含む二つ目の項目
 >
 > ```sh
 > echo "code inside an alert"
@@ -241,7 +241,7 @@ theme: jekyll-theme-modootoday
 
 ## 図
 
-![左の Markdown ソースが右のスタイル付きページになる](../../../assets/images/sample.svg)
+![左の Markdown ソースが右のスタイル付きページになる](../assets/images/sample.svg)
 
 *画像だけの段落の後に強調だけの段落が続くと、キャプション付きの図になります。*
 
@@ -258,12 +258,12 @@ flowchart LR
 
 3 つのサムネイル。
 
-- ![植物とアームチェアのある日当たりのよい部屋](../../../assets/images/gallery/room.webp)
-- ![低い太陽の下のピンク色の砂丘](../../../assets/images/gallery/dunes.webp)
-- ![静かな池を囲む熱帯の葉](../../../assets/images/gallery/leaves.webp)
-- ![山の湖に延びる木の桟橋](../../../assets/images/news/travel-sm.webp)
-- ![緑の丘に並ぶ風力発電機と太陽光パネル](../../../assets/images/news/energy-sm.webp)
-- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../../../assets/images/projects/brand.webp)
+- ![植物とアームチェアのある日当たりのよい部屋](../assets/images/gallery/room.webp)
+- ![低い太陽の下のピンク色の砂丘](../assets/images/gallery/dunes.webp)
+- ![静かな池を囲む熱帯の葉](../assets/images/gallery/leaves.webp)
+- ![山の湖に延びる木の桟橋](../assets/images/news/travel-sm.webp)
+- ![緑の丘に並ぶ風力発電機と太陽光パネル](../assets/images/news/energy-sm.webp)
+- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../assets/images/projects/brand.webp)
 
 ## ウィジェット
 
@@ -456,14 +456,14 @@ gem install jekyll bundler
 
 ## ボタン
 
-[はじめる](../../guides/install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+[はじめる](../guides/install.ja.md) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## 2 列のカード
 
 - **短い** — 1 行。
 - **長めのカード** — 説明が長く数行に折り返すカードで、グリッド全体の余白、行の高さ、揃えを確認します。
 - **バッジ付き** — カードにステータスを付けられます。 `status:available`
-- **リンク付き** — [インストールガイド](../../guides/install/)を読んでください。
+- **リンク付き** — [インストールガイド](../guides/install.ja.md)を読んでください。
 
 ## 3 列のカード
 
@@ -493,8 +493,8 @@ gem install jekyll bundler
 
 2 枚のリンクカード。
 
-- [インストール](../../guides/install/) — サイトにテーマを追加します。
-- [設定](../../guides/configuration/) — すべての設定を一か所で確認します。
+- [インストール](../guides/install.ja.md) — サイトにテーマを追加します。
+- [設定](../guides/configuration.ja.md) — すべての設定を一か所で確認します。
 
 ## 料金プラン
 

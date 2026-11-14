@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/jobs/
-source_rev: sha256:d453c9d6e26e
+source_rev: sha256:eb3a8af67a8c
 nav_order: 3
 title: "求人のデモ"
 layout: jobs
@@ -19,4 +19,4 @@ description: 職種、勤務地、雇用形態がわかるカードで求人を�
 
 このページは `layout: jobs` を使います。各行を `layout: job` のページにリンクすると詳細な求人になります。
 
-[ディレクトリレイアウトに戻る](../)
+[ディレクトリレイアウトに戻る](index.ja.md)

@@ -15,4 +15,4 @@ twin: false
 
 This page uses `layout: events`. Each event offers an .ics file and becomes a schema.org Event.
 
-[Back to directory layouts](../)
+[Back to directory layouts](index.md)

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/code-github/
-source_rev: sha256:ed6279dfbed8
+source_rev: sha256:e7aa0034e85c
 nav_exclude: true
 title: GitHub コードカラーのデモ
 twin: false
@@ -20,7 +20,7 @@ modootoday:
   code_theme: github
 ```
 
-色は GitHub のライトとダークのエディターテーマから取っています。Rouge はエディターとトークンの分け方が違うため、パレットは GitHub と同じでも、単語ひとつの色が異なることがあります。[カスタマイズ](../../../guides/customize/)を参照してください。
+色は GitHub のライトとダークのエディターテーマから取っています。Rouge はエディターとトークンの分け方が違うため、パレットは GitHub と同じでも、単語ひとつの色が異なることがあります。[カスタマイズ](../../guides/customize.ja.md)を参照してください。
 
 ## Ruby
 

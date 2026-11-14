@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/sponsors/
-source_rev: sha256:2b8600d0613f
+source_rev: sha256:4436f54a1a8a
 nav_order: 5
 title: "スポンサーのデモ"
 layout: sponsors
@@ -19,4 +19,4 @@ description: スポンサーのロゴをランク別にまとめて名前とリ�
 
 このページは `layout: sponsors` を使います。ランクを選ぶとそのスポンサーだけが表示されます。
 
-[ディレクトリレイアウトに戻る](../)
+[ディレクトリレイアウトに戻る](index.ja.md)

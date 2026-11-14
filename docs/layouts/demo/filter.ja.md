@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/demo/filter/
-source_rev: sha256:d9a038f1e026
+source_rev: sha256:01755130ffb2
 nav_exclude: true
 title: 絞り込みデモ
 twin: false
@@ -14,7 +14,7 @@ sections: [{name: tools, filter: true}, {name: plans, filter: {facet: 3}}, setup
 
 リストや表の上の欄に入力してみてください。入力した語をすべて含む項目だけが残ります。大文字と小文字、2 通りの書き方のアクセント、韓国語の分かち書きは区別しません。JavaScript がなければすべての項目が表示されます。
 
-[検索のレシピ](../../../recipes/search/)
+[検索のレシピ](../../recipes/search.ja.md)
 
 ## ツール
 

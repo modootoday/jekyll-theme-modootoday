@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/csp/
-source_rev: sha256:048d7062e0e6
+source_rev: sha256:a22b0fa5ed5d
 nav_exclude: true
 title: 엄격한 CSP 데모
 twin: false
@@ -22,12 +22,12 @@ sections:
 ---
 # 엄격한 CSP 데모
 
-이 페이지에는 핵심 컴포넌트와 코드, 표, 그림이 있습니다. 문서 QA는 이 페이지를 엄격한 `Content-Security-Policy` 헤더와 함께 보내고, 위반이 하나라도 있으면 실패합니다. [콘텐츠 보안 정책](../../../recipes/csp/)을 보세요.
+이 페이지에는 핵심 컴포넌트와 코드, 표, 그림이 있습니다. 문서 QA는 이 페이지를 엄격한 `Content-Security-Policy` 헤더와 함께 보내고, 위반이 하나라도 있으면 실패합니다. [콘텐츠 보안 정책](../../recipes/csp.ko.md)을 보세요.
 
 - 일반 Markdown
 - 인라인 스크립트와 스타일 없음
 
-[CSP 레시피 읽기](../../../recipes/csp/) [성능](../../../guides/performance/)
+[CSP 레시피 읽기](../../recipes/csp.ko.md) [성능](../../guides/performance.ko.md)
 
 ## 알림
 
@@ -35,7 +35,7 @@ sections:
 > 알림은 클래스가 붙은 인용문이며 인라인 요소가 없습니다.
 
 > [!WARNING]
-> 알림 안에 `inline code`와 [레이아웃 데모](../) 같은 링크를 넣을 수 있습니다.
+> 알림 안에 `inline code`와 [레이아웃 데모](index.ko.md) 같은 링크를 넣을 수 있습니다.
 
 ## 탭
 
@@ -75,7 +75,7 @@ gem install jekyll-theme-modootoday
 
 ## 그림
 
-![왼쪽의 Markdown 원본이 오른쪽에서 스타일이 적용된 페이지가 됩니다](../../../../assets/images/sample.svg)
+![왼쪽의 Markdown 원본이 오른쪽에서 스타일이 적용된 페이지가 됩니다](../../assets/images/sample.svg)
 
 *SVG 그림은 인라인 스타일 없이 포커스할 수 있는 영역 안에서 스크롤됩니다.*
 

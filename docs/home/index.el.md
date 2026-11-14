@@ -16,7 +16,7 @@ sections:
 
 Το jekyll-theme-modootoday μετατρέπει το τυπικό GitHub Flavored Markdown σε έναν καθαρό ιστότοπο τεκμηρίωσης. Το ίδιο αρχείο διαβάζεται άνετα στο github.com, στο GitHub Pages και ως έκδοση Markdown για πράκτορες τεχνητής νοημοσύνης.
 
-[Ξεκινήστε](../guides/install/) [Δείτε τα στοιχεία](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Ξεκινήστε](../guides/install.md) [Δείτε τα στοιχεία](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Γιατί το θέμα modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Η διαδρομή σας στην τεκμηρίωση
 
-1. [Εγκαταστήστε](../guides/install/) το θέμα στο GitHub Pages ή στο Jekyll 4.
-2. [Γράψτε την πρώτη σας σελίδα](../guides/first-page/) σε απλό Markdown.
-3. Επιλέξτε από τα [στοιχεία](../components/) και τη [σελίδα με όλα τα στοιχεία](../components/kitchen-sink/).
-4. Ρυθμίστε τη [διαμόρφωση](../guides/configuration/) και [προσαρμόστε την εμφάνιση](../guides/customize/) με tokens και `_sass`.
-5. Κάντε τον ιστότοπο [αναγνώσιμο από πράκτορες](../guides/agents/) με εκδόσεις Markdown και `llms.txt`.
+1. [Εγκαταστήστε](../guides/install.md) το θέμα στο GitHub Pages ή στο Jekyll 4.
+2. [Γράψτε την πρώτη σας σελίδα](../guides/first-page.md) σε απλό Markdown.
+3. Επιλέξτε από τα [στοιχεία](../components/index.md) και τη [σελίδα με όλα τα στοιχεία](../components/kitchen-sink.md).
+4. Ρυθμίστε τη [διαμόρφωση](../guides/configuration.md) και [προσαρμόστε την εμφάνιση](../guides/customize.md) με tokens και `_sass`.
+5. Κάντε τον ιστότοπο [αναγνώσιμο από πράκτορες](../guides/agents.md) με εκδόσεις Markdown και `llms.txt`.
 
 > [!NOTE]
-> Η σελίδα αυτή είναι μετάφραση του [αγγλικού πρωτοτύπου](../)· σε περίπτωση διαφοράς ισχύει το αγγλικό κείμενο. Οι οδηγοί στους συνδέσμους είναι στα αγγλικά.
+> Η σελίδα αυτή είναι μετάφραση του [αγγλικού πρωτοτύπου](../index.md)· σε περίπτωση διαφοράς ισχύει το αγγλικό κείμενο. Οι οδηγοί στους συνδέσμους είναι στα αγγλικά.
 
 ## Ξεκινήστε τώρα
 
-[Εγκατάσταση θέματος](../guides/install/) [Όλα τα στοιχεία](../components/kitchen-sink/)
+[Εγκατάσταση θέματος](../guides/install.md) [Όλα τα στοιχεία](../components/kitchen-sink.md)

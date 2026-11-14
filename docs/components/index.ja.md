@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:48b307dfd141
+source_rev: sha256:cfcc6715272c
 nav_order: 0
 layout: examples
 title: コンポーネント
@@ -69,10 +69,10 @@ sections:
 
 コンポーネントはテキストとインラインからサイト共通要素まで用途ごとにまとめ、まとまりの中では英語のタイトルの A-Z 順に並べます。どの言語でも英語のページと順序は同じです。
 
-[キッチンシンクを開く](kitchen-sink/) [設定](../guides/configuration/)
+[キッチンシンクを開く](kitchen-sink.ja.md) [設定](../guides/configuration.ja.md)
 
 > [!NOTE]
-> このページは[英語の原文](../../components/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](index.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## テキストとインライン
 
@@ -105,9 +105,9 @@ modootoday:
 
 `status:available` `_config.yml` に `modootoday.lists` を書くと、通常のセクションとページに 2 つのリストスタイルが適用されます。`link_chips: true` は、すべての項目がリンク 1 つだけのリストをチップの行にし、`titled_items: true` は太字のタイトルとコロンで始まる項目にタイトルと区切りを付けます。`hero: {checks: true}` は、上のようにヒーローの最初のリストをチェックマークの行にします。コンポーネントのセクションのリストは元のスタイルのままです。
 
-- [インストール](../guides/install/)
-- [設定](../guides/configuration/)
-- [アクセシビリティ](../guides/accessibility/)
+- [インストール](../guides/install.ja.md)
+- [設定](../guides/configuration.ja.md)
+- [アクセシビリティ](../guides/accessibility.ja.md)
 
 タイトル付きの項目:
 
@@ -228,7 +228,7 @@ theme: jekyll-theme-modootoday
 
 `status:available` 画像だけの段落のあとに*強調*だけの段落が続くと、キャプション付きの図になります。代替テキストは必須です。
 
-![左の Markdown ソースが右のスタイル付きページになる](../../assets/images/sample.svg)
+![左の Markdown ソースが右のスタイル付きページになる](../assets/images/sample.svg)
 
 *左が Markdown、右が表示結果です。*
 
@@ -236,12 +236,12 @@ theme: jekyll-theme-modootoday
 
 `status:available` `c: gallery` セクションでは、画像のリストがサムネイルのグリッドになります。各サムネイルは JavaScript なしで原寸表示を開きます。すべての画像に代替テキストが必要です。
 
-- ![植物とアームチェアのある日当たりのよい部屋](../../assets/images/gallery/room.webp)
-- ![低い太陽の下のピンク色の砂丘](../../assets/images/gallery/dunes.webp)
-- ![静かな池を囲む熱帯の葉](../../assets/images/gallery/leaves.webp)
-- ![山の湖に延びる木の桟橋](../../assets/images/news/travel-sm.webp)
-- ![緑の丘に並ぶ風力発電機と太陽光パネル](../../assets/images/news/energy-sm.webp)
-- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../../assets/images/projects/brand.webp)
+- ![植物とアームチェアのある日当たりのよい部屋](../assets/images/gallery/room.webp)
+- ![低い太陽の下のピンク色の砂丘](../assets/images/gallery/dunes.webp)
+- ![静かな池を囲む熱帯の葉](../assets/images/gallery/leaves.webp)
+- ![山の湖に延びる木の桟橋](../assets/images/news/travel-sm.webp)
+- ![緑の丘に並ぶ風力発電機と太陽光パネル](../assets/images/news/energy-sm.webp)
+- ![クリーム、紫、コーラルの色見本を扇形に広げた様子](../assets/images/projects/brand.webp)
 
 ## ウィジェット
 
@@ -267,7 +267,7 @@ theme: jekyll-theme-modootoday
 
 ## 絞り込み
 
-`status:available` `sections:` の項目に `filter: true` と書くと、そのセクションの最初のリストか表の上に検索欄ができます。入力した語をすべて含む項目だけが残り、表示中の件数を知らせます。`filter: {facet: 2}` は表の 2 列目の値ごとにボタンも追加します。`sections:` のないページでは front matter に `filter:` を、ディレクトリページでは `filter_text: true` を書きます。JavaScript がなければすべての項目が表示されます。[絞り込みデモ](../layouts/demo/filter/)と[検索のレシピ](../recipes/search/)を参照してください。
+`status:available` `sections:` の項目に `filter: true` と書くと、そのセクションの最初のリストか表の上に検索欄ができます。入力した語をすべて含む項目だけが残り、表示中の件数を知らせます。`filter: {facet: 2}` は表の 2 列目の値ごとにボタンも追加します。`sections:` のないページでは front matter に `filter:` を、ディレクトリページでは `filter_text: true` を書きます。JavaScript がなければすべての項目が表示されます。[絞り込みデモ](../layouts/demo/filter.ja.md)と[検索のレシピ](../recipes/search.ja.md)を参照してください。
 
 ## パラメーター表
 
@@ -327,7 +327,7 @@ bundle exec jekyll serve
 
 ## よくある質問
 
-`status:available` `c: faq` セクションは詳細と同じように動きます。このページのように `schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../guides/structured-data/) を参照）。
+`status:available` `c: faq` セクションは詳細と同じように動きます。このページのように `schema: {faq: auto}` を設定すると、質問と回答がページの FAQPage 構造化データにもなります（[構造化データ](../guides/structured-data.ja.md) を参照）。
 
 ### テーマは無料ですか？
 
@@ -401,7 +401,7 @@ sudo apt install ruby-full
 
 `status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
 
-[はじめる](../guides/install/) [設定を読む](../guides/configuration/)
+[はじめる](../guides/install.ja.md) [設定を読む](../guides/configuration.ja.md)
 
 ## カード
 
@@ -431,7 +431,7 @@ sudo apt install ruby-full
 
 ## インストール
 
-`status:available` `c: install` セクションは本文、インストールボタン、案内文を出力します。ボタンはブラウザーがサイトのインストールを提案するまで隠れており、クリックしたときだけブラウザー自身のダイアログを開きます。案内文はメニューや共有メニューからインストールするブラウザー向けです。インストールしたアプリの中ではセクションが隠れます。`modootoday.pwa.enabled: true` が必要で、このサイトではオンになっています。Chrome と Edge ではここにボタンが表示され、ほかのブラウザーでは案内文が表示されます。[インストールできるサイト](../recipes/pwa/#インストールする)を参照してください。
+`status:available` `c: install` セクションは本文、インストールボタン、案内文を出力します。ボタンはブラウザーがサイトのインストールを提案するまで隠れており、クリックしたときだけブラウザー自身のダイアログを開きます。案内文はメニューや共有メニューからインストールするブラウザー向けです。インストールしたアプリの中ではセクションが隠れます。`modootoday.pwa.enabled: true` が必要で、このサイトではオンになっています。Chrome と Edge ではここにボタンが表示され、ほかのブラウザーでは案内文が表示されます。[インストールできるサイト](../recipes/pwa.ja.md#インストールする)を参照してください。
 
 このドキュメントをホーム画面に置き、オフラインでも読めます。
 
@@ -439,8 +439,8 @@ sudo apt install ruby-full
 
 `status:available` `c: linkcards` セクションでは、リンクで始まるリスト項目がカードになります。カード全体がリンク先です。
 
-- [インストール](../guides/install/) — サイトにテーマを追加します。
-- [設定](../guides/configuration/) — すべての設定を一か所で確認します。
+- [インストール](../guides/install.ja.md) — サイトにテーマを追加します。
+- [設定](../guides/configuration.ja.md) — すべての設定を一か所で確認します。
 
 ## 料金プラン
 

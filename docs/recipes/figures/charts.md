@@ -52,7 +52,7 @@ This page draws the same chart over four quarters:
 
 *Visits per quarter*
 
-The [kitchen sink](../../../components/kitchen-sink/#chart) shows more.
+The [kitchen sink](../../components/kitchen-sink.md#chart) shows more.
 
 ## A chart from a data file
 
@@ -112,7 +112,7 @@ Pages load Chart.js (about 70 KB gzip) and the theme's chart module only when th
 - Colors, grid lines and axis text come from the hooks above and follow the theme toggle and the system scheme without a reload. Line charts also give each series its own dash pattern, so series stay apart when colors are hard to tell apart; their legend shows each series as a short stroke in that pattern.
 - With reduced motion set in the system, charts draw without animation.
 - In forced colors mode (Windows high contrast), the chart is not drawn and the table stays open, in the system colors.
-- Under a strict CSP the page needs no exception: Chart.js sizes the canvas through the CSSOM, which `style-src 'self'` allows ([CSP](../../csp/)).
+- Under a strict CSP the page needs no exception: Chart.js sizes the canvas through the CSSOM, which `style-src 'self'` allows ([CSP](../csp.md)).
 
 ## What the checker reports
 

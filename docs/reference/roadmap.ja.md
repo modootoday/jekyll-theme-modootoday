@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/reference/roadmap/
-source_rev: sha256:ed2219a83ec5
+source_rev: sha256:6ee491a098e1
 nav_order: 50
 title: ロードマップ
 description: テーマがいまサポートしている機能、動作する環境とバージョン、次に計画している作業のテーマをまとめます。進み具合はリポジトリの Issue で追えます。
@@ -9,25 +9,25 @@ description: テーマがいまサポートしている機能、動作する環�
 # ロードマップ
 
 > [!NOTE]
-> このページは[英語の原文](../../../reference/roadmap/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](roadmap.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## いまサポートしているもの
 
-- [コンポーネント](../../components/)ページのすべてのコンポーネントをライト・ダークで。インラインのテキストからページセクション、サイトの枠まで。
-- [公開 API](../api/) の一覧にあるすべてのレイアウト: ドキュメントページ、ページシェル、ディレクトリ、詳細ページ、マーケティングページ、ブログとニュース、ドキュメント拡張、文書。
-- GitHub の Markdown のままのコンテンツルール (`md-components v1`) と、安定した[公開 API](../api/)。
+- [コンポーネント](../components/index.ja.md)ページのすべてのコンポーネントをライト・ダークで。インラインのテキストからページセクション、サイトの枠まで。
+- [公開 API](api.ja.md) の一覧にあるすべてのレイアウト: ドキュメントページ、ページシェル、ディレクトリ、詳細ページ、マーケティングページ、ブログとニュース、ドキュメント拡張、文書。
+- GitHub の Markdown のままのコンテンツルール (`md-components v1`) と、安定した[公開 API](api.ja.md)。
 - 既定で有効な canonical、`hreflang`、Open Graph タグ。サイトマップとフィードはプラグインを追加すると使えます。
-- 言語切り替え、言語一覧のすべての言語のインターフェース文言、右から左に書く文字 ([RTL キッチンシンク](../../../components/kitchen-sink-rtl/))。
-- AI エージェント向けの Markdown 版と `llms.txt` ([AI エージェント](../../guides/agents/))。
-- 静的な図として表示する図、数式、グラフと、独自のインタラクティブ要素 ([図とウィジェット](../../recipes/figures/))。
-- 従来の GitHub Pages でデータファイルから作るページ ([生成ページ](../../recipes/generated-pages/)) と、ヘッダー検索と一覧のフィルター ([検索](../../recipes/search/))。
-- 厳格なコンテンツセキュリティポリシー ([CSP](../../recipes/csp/))。
+- 言語切り替え、言語一覧のすべての言語のインターフェース文言、右から左に書く文字 ([RTL キッチンシンク](../components/kitchen-sink-rtl.md))。
+- AI エージェント向けの Markdown 版と `llms.txt` ([AI エージェント](../guides/agents.ja.md))。
+- 静的な図として表示する図、数式、グラフと、独自のインタラクティブ要素 ([図とウィジェット](../recipes/figures/index.ja.md))。
+- 従来の GitHub Pages でデータファイルから作るページ ([生成ページ](../recipes/generated-pages.ja.md)) と、ヘッダー検索と一覧のフィルター ([検索](../recipes/search.ja.md))。
+- 厳格なコンテンツセキュリティポリシー ([CSP](../recipes/csp.ja.md))。
 - 英語、韓国語、日本語のドキュメント。
 
 ## 互換性
 
-- テーマが動作する環境は[インストール > 動作要件](../../guides/install/)にあります。
-- 公開 API の変更は[変更履歴](../changelog/)に、サイトで変えることは[移行とアップグレード](../../guides/upgrade/)にあります。
+- テーマが動作する環境は[インストール > 動作要件](../guides/install.ja.md)にあります。
+- 公開 API の変更は[変更履歴](changelog.ja.md)に、サイトで変えることは[移行とアップグレード](../guides/upgrade.ja.md)にあります。
 
 ## 今後
 

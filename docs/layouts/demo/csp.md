@@ -19,12 +19,12 @@ sections:
 ---
 # Strict CSP demo
 
-This page holds the core components, code, tables and a figure. The docs QA serves it with a strict `Content-Security-Policy` header and fails on any violation; see [Content Security Policy](../../../recipes/csp/).
+This page holds the core components, code, tables and a figure. The docs QA serves it with a strict `Content-Security-Policy` header and fails on any violation; see [Content Security Policy](../../recipes/csp.md).
 
 - Plain Markdown
 - No inline script or style
 
-[Read the CSP recipe](../../../recipes/csp/) [Performance](../../../guides/performance/)
+[Read the CSP recipe](../../recipes/csp.md) [Performance](../../guides/performance.md)
 
 ## Alerts
 
@@ -32,7 +32,7 @@ This page holds the core components, code, tables and a figure. The docs QA serv
 > Alerts are blockquotes with a class; nothing inline.
 
 > [!WARNING]
-> An alert can hold `inline code` and a link to the [layout demos](../).
+> An alert can hold `inline code` and a link to the [layout demos](index.md).
 
 ## Tabs
 
@@ -72,7 +72,7 @@ Yes. `code-copy.js` loads because the page has a code block.
 
 ## Figure
 
-![A Markdown source on the left becomes a styled page on the right](../../../assets/images/sample.svg)
+![A Markdown source on the left becomes a styled page on the right](../../assets/images/sample.svg)
 
 *An SVG figure scrolls inside a focusable region without inline styles.*
 

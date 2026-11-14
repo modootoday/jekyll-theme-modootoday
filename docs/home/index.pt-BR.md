@@ -16,7 +16,7 @@ sections:
 
 O jekyll-theme-modootoday transforma GitHub Flavored Markdown padrão em um site de documentação limpo. O mesmo arquivo fica legível no github.com, no GitHub Pages e como versão Markdown para agentes de IA.
 
-[Comece](../guides/install/) [Veja os componentes](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Comece](../guides/install.md) [Veja os componentes](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Por que o tema modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Seu caminho pela documentação
 
-1. [Instale](../guides/install/) o tema no GitHub Pages ou no Jekyll 4.
-2. [Escreva sua primeira página](../guides/first-page/) em Markdown simples.
-3. Escolha entre os [componentes](../components/) e a [página com todos os componentes](../components/kitchen-sink/).
-4. Ajuste na [configuração](../guides/configuration/) e [personalize](../guides/customize/) o visual com tokens e `_sass`.
-5. Deixe o site [legível para agentes](../guides/agents/) com versões Markdown e `llms.txt`.
+1. [Instale](../guides/install.md) o tema no GitHub Pages ou no Jekyll 4.
+2. [Escreva sua primeira página](../guides/first-page.md) em Markdown simples.
+3. Escolha entre os [componentes](../components/index.md) e a [página com todos os componentes](../components/kitchen-sink.md).
+4. Ajuste na [configuração](../guides/configuration.md) e [personalize](../guides/customize.md) o visual com tokens e `_sass`.
+5. Deixe o site [legível para agentes](../guides/agents.md) com versões Markdown e `llms.txt`.
 
 > [!NOTE]
-> Esta página é uma tradução do [original em inglês](../); se houver diferenças, vale o inglês. Os guias com link estão em inglês.
+> Esta página é uma tradução do [original em inglês](../index.md); se houver diferenças, vale o inglês. Os guias com link estão em inglês.
 
 ## Comece agora
 
-[Instale o tema](../guides/install/) [Veja todos os componentes](../components/kitchen-sink/)
+[Instale o tema](../guides/install.md) [Veja todos os componentes](../components/kitchen-sink.md)

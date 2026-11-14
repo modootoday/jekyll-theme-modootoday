@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/customize/
-source_rev: sha256:221af770fbea
+source_rev: sha256:2912c4425db1
 nav_order: 50
 title: 커스터마이즈
 description: 토큰과 토큰 브리지로 색, 모서리, 글꼴을 바꾸고, 직접 만든 스타일시트를 더하거나 Sass 파셜을 덮어써서 테마를 사이트에 맞추는 방법을 설명합니다.
@@ -18,7 +18,7 @@ sections:
 토큰부터 시작하세요. 토큰으로 부족할 때만 Sass 파셜을 씁니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../guides/customize/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](customize.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## 디자인 토큰
 
@@ -37,7 +37,7 @@ sections:
 - 값을 `modootoday.tokens`와 `modootoday.tokens_dark`에 적습니다. 테마가 자기 토큰과 같은 선택자로 인라인 `<style>`에 출력하므로, 엄격한 CSP에서는 막힙니다.
 - `modootoday.css_layers: true`로 설정합니다. 테마 CSS가 `@layer mt.*` 안에 들어가고 레이어 밖 규칙이 이기므로, 평범한 `:root { … }`로 충분합니다.
 
-다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/#이미지-그림)을 참고하세요.
+다크 모드의 이미지: 사진은 `--mt-img-filter-dark`를, `.svg` 그림(다이어그램)은 색상을 유지한 채 반전한 뒤 `--mt-img-filter-dark`를 적용하는 `--mt-diagram-filter-dark`를 씁니다. 둘 다 토큰에서 바꿀 수 있습니다. 예를 들어 `--mt-diagram-filter-dark: none`이면 모든 다이어그램을 그린 그대로 둡니다. 이미지 하나의 경로 끝에 `#light`를 붙이면(`flow.svg#light`) 그 이미지만 그대로 둡니다. [수식과 다이어그램](../recipes/figures/math-diagrams.ko.md#이미지-그림)을 참고하세요.
 
 ### 레이아웃 훅
 
@@ -90,11 +90,11 @@ modootoday:
     - {href: /assets/fonts/inter.woff2, as: font, type: font/woff2}
 ```
 
-색 팔레트, 자체 호스팅 글꼴, 대비 검사를 갖춘 예제는 [브랜드 토큰](../../recipes/brand-tokens/)에 있습니다.
+색 팔레트, 자체 호스팅 글꼴, 대비 검사를 갖춘 예제는 [브랜드 토큰](../recipes/brand-tokens.ko.md)에 있습니다.
 
 ## 코드 색
 
-코드 블록은 `--mt-code-*` 토큰에서 색을 가져옵니다. `modootoday.code_theme: github`를 설정하면 GitHub의 라이트·다크 팔레트로 바뀝니다([데모](../../layouts/demo/code-github/)).
+코드 블록은 `--mt-code-*` 토큰에서 색을 가져옵니다. `modootoday.code_theme: github`를 설정하면 GitHub의 라이트·다크 팔레트로 바뀝니다([데모](../layouts/demo/code-github.ko.md)).
 
 ```yaml
 modootoday:
@@ -115,7 +115,7 @@ sections: [{c: features, name: why, visual: chart, scene: night}, faq]
 ---
 ```
 
-테마에는 히어로 비주얼 `showcase`가 하나 들어 있습니다. 은은한 배경 이미지, 토큰 기반 오버레이, SVG로 그린 UI 장면 애니메이션을 겹쳐 보여 줍니다. 스타일시트는 이 비주얼을 쓰는 페이지에만 붙고, JavaScript 없이 5초 안에 움직임이 멈춥니다. 모션 줄이기 설정에서는 마지막 장면만 보입니다. 다크 모드에서는 같은 이미지를 CSS filter로 어둡게 하며, `--mt-img-filter-dark`로 바꿀 수 있습니다. 직접 만든 이미지를 쓰려면 `hero.image`에 경로나 `{path, srcset, width, height}`를 지정하세요. 홈 레이아웃의 히어로와 같은 `hero.image` 키입니다. [홈 화면](../../)에서 실제 모습을 볼 수 있습니다.
+테마에는 히어로 비주얼 `showcase`가 하나 들어 있습니다. 은은한 배경 이미지, 토큰 기반 오버레이, SVG로 그린 UI 장면 애니메이션을 겹쳐 보여 줍니다. 스타일시트는 이 비주얼을 쓰는 페이지에만 붙고, JavaScript 없이 5초 안에 움직임이 멈춥니다. 모션 줄이기 설정에서는 마지막 장면만 보입니다. 다크 모드에서는 같은 이미지를 CSS filter로 어둡게 하며, `--mt-img-filter-dark`로 바꿀 수 있습니다. 직접 만든 이미지를 쓰려면 `hero.image`에 경로나 `{path, srcset, width, height}`를 지정하세요. 홈 레이아웃의 히어로와 같은 `hero.image` 키입니다. [홈 화면](../index.ko.md)에서 실제 모습을 볼 수 있습니다.
 
 ```yaml
 hero: {visual: showcase}
@@ -144,11 +144,11 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 - `prefers-reduced-motion: reduce`이면 아무것도 하지 않습니다. 포스터가 남습니다. JavaScript가 꺼져 있거나 모듈이 실패해도 포스터가 남습니다.
 - 포스터 뒤에 있는 `mt-visual-stage` 클래스 요소에 그립니다. 이 요소는 `visual:` include에서 낼 수 있고, 포스터 자리를 덮습니다.
 - 첫 장면을 그린 뒤 `[data-mt-script]` 열에 `data-mt-ready`를 붙입니다. 그러면 테마가 포스터를 숨깁니다.
-- 설정은 `readConfig`(`/assets/js/modootoday/dom/config.js`)로 `data-*` 속성에서 읽고, 라이트와 다크 전환은 `onThemeChange`(`/assets/js/modootoday/theme/current.js`, [이벤트](../../reference/api/#이벤트) 참고)로 따라갑니다. `../modootoday/dom/config.js`처럼 상대 경로로 가져오세요.
+- 설정은 `readConfig`(`/assets/js/modootoday/dom/config.js`)로 `data-*` 속성에서 읽고, 라이트와 다크 전환은 `onThemeChange`(`/assets/js/modootoday/theme/current.js`, [이벤트](../reference/api.ko.md#이벤트) 참고)로 따라갑니다. `../modootoday/dom/config.js`처럼 상대 경로로 가져오세요.
 
-[히어로 모듈 데모](../../layouts/demo/orbit/)는 이 계약을 따르는 40줄짜리 모듈입니다.
+[히어로 모듈 데모](../layouts/demo/orbit.ko.md)는 이 계약을 따르는 40줄짜리 모듈입니다.
 
-`element: <name>`을 단 항목은 비주얼을 그리는 대신 custom element를 정의합니다. 그 요소가 있는 페이지는 `script:` 없이 모듈을 불러옵니다. [위젯](../../recipes/figures/widgets/)은 그런 요소를 Markdown에서 대체 텍스트와 함께 놓습니다.
+`element: <name>`을 단 항목은 비주얼을 그리는 대신 custom element를 정의합니다. 그 요소가 있는 페이지는 `script:` 없이 모듈을 불러옵니다. [위젯](../recipes/figures/widgets.ko.md)은 그런 요소를 Markdown에서 대체 텍스트와 함께 놓습니다.
 
 `full_width: true`는 랜딩 페이지용으로 `main.mt-main`의 본문 폭 제한과 좌우 여백을 없앱니다(`.mt-main-full` 추가).
 

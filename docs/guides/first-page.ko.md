@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/first-page/
-source_rev: sha256:7636e1aaba54
+source_rev: sha256:7b5c5644d682
 nav_order: 40
 nav_title: "첫 페이지"
 title: "첫 페이지 쓰기"
@@ -17,7 +17,7 @@ sections:
 페이지는 작은 front matter가 붙은 Markdown 파일입니다. 나머지는 테마가 합니다.
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../guides/first-page/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](first-page.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 ## Front matter
 
@@ -62,8 +62,8 @@ sections:
 | 최상위 GitHub 알림 | kramdown 속성과 `{#id}` |
 | `<https://…>` 자동 링크 | 맨 URL |
 
-표에는 속성이 필요 없습니다. 40rem보다 좁을 때 들어가지 않는 표는 저절로 레이블 붙은 블록으로 쌓입니다. 전체 목록은 RULES.md에서 만든 [Markdown 규칙](../../reference/rules/) 페이지에 있습니다.
+표에는 속성이 필요 없습니다. 40rem보다 좁을 때 들어가지 않는 표는 저절로 레이블 붙은 블록으로 쌓입니다. 전체 목록은 RULES.md에서 만든 [Markdown 규칙](../reference/rules.ko.md) 페이지에 있습니다.
 
 ## 다음에 읽을 것
 
-[컴포넌트 살펴보기](../../components/) [설치로 돌아가기](../install/)
+[컴포넌트 살펴보기](../components/index.ko.md) [설치로 돌아가기](install.ko.md)

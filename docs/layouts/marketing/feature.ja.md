@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/feature/
-source_rev: sha256:16581e16a768
+source_rev: sha256:175b356cdf9b
 nav_order: 1
 title: 機能のデモ
 layout: feature
@@ -18,4 +18,4 @@ cta: {label: はじめる, url: /ja/guides/first-page/}
 ---
 すべての機能が JavaScript なしで動きます。
 
-![チャートのダッシュボードを表示する3台のスマートフォン](../../../../assets/images/projects/app.webp)
+![チャートのダッシュボードを表示する3台のスマートフォン](../../assets/images/projects/app.webp)

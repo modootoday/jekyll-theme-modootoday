@@ -9,12 +9,12 @@ These layouts build the pages around a product: what it does, what it costs, whe
 
 | Layout | Front matter | Structured data | Demo |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`, `cta` | WebPage | [Feature](feature/) |
-| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [Pricing](pricing/) |
-| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](download/) |
-| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](brand/) |
-| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](links/) |
-| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [Contact](contact/) |
+| `feature` | `features: [{title, text}]`, `cta` | WebPage | [Feature](feature.md) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`, `currency` | WebPage | [Pricing](pricing.md) |
+| `download` | `version`, `date`, `downloads: [{label, url, size, checksum}]` | WebPage | [Download](download.md) |
+| `brand` | `colors: [{name, hex}]`, `assets: [{label, url, format}]` | WebPage | [Brand](brand.md) |
+| `links` | `image`, `display_name`, `links: [{label, url}]` | ProfilePage | [Links](links.md) |
+| `contact` | `contacts: [{label, value, url}]`, `form: {action, fields}` | ContactPage | [Contact](contact.md) |
 
 For product data, add a `schema:` map (for example `type: SoftwareApplication` with `offers`) and the page prints it as the main entity.
 

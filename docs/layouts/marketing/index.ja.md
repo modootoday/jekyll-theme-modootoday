@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/marketing/
-source_rev: sha256:bfd133775930
+source_rev: sha256:bb4bc2e5e041
 nav_order: 40
 title: マーケティングページ
 description: 機能、料金、ダウンロード、ブランド、リンク、お問い合わせのページを共通の任意スタイルシートで作るレイアウトと、それぞれの front matter を説明します。
@@ -12,12 +12,12 @@ description: 機能、料金、ダウンロード、ブランド、リンク、�
 
 | レイアウト | front matter | 構造化データ | デモ |
 |---|---|---|---|
-| `feature` | `features: [{title, text}]`、`cta` | WebPage | [機能](feature/) |
-| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`、`currency` | WebPage | [料金](pricing/) |
-| `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](download/) |
-| `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](brand/) |
-| `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](links/) |
-| `contact` | `contacts: [{label, value, url}]`、`form: {action, fields}` | ContactPage | [お問い合わせ](contact/) |
+| `feature` | `features: [{title, text}]`、`cta` | WebPage | [機能](feature.ja.md) |
+| `pricing` | `plans: [{name, monthly, yearly, features, recommended, cta}]`、`currency` | WebPage | [料金](pricing.ja.md) |
+| `download` | `version`、`date`、`downloads: [{label, url, size, checksum}]` | WebPage | [ダウンロード](download.ja.md) |
+| `brand` | `colors: [{name, hex}]`、`assets: [{label, url, format}]` | WebPage | [ブランド](brand.ja.md) |
+| `links` | `image`、`display_name`、`links: [{label, url}]` | ProfilePage | [リンク](links.ja.md) |
+| `contact` | `contacts: [{label, value, url}]`、`form: {action, fields}` | ContactPage | [お問い合わせ](contact.ja.md) |
 
 製品情報を構造化データにするには `schema:` マップ（例: `type: SoftwareApplication` と `offers`）を追加します。メインエンティティとして出力されます。
 

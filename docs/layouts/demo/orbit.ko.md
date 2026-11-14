@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/demo/orbit/
-source_rev: sha256:8989380cb3b1
+source_rev: sha256:04708e1542e8
 nav_exclude: true
 title: 히어로 모듈 데모
 twin: false
@@ -15,7 +15,7 @@ sections: [setup, contract]
 
 그림 가운데를 점 세 개가 돕니다. 이 사이트의 모듈 스크립트가 포스터 이미지 위에 점을 그리고 돌립니다. 처음 보이는 것은 포스터이고, JavaScript가 꺼져 있거나 동작 줄이기를 설정했으면 포스터가 그대로 남습니다.
 
-[섹션 비주얼](../../../guides/customize/)
+[섹션 비주얼](../../guides/customize.ko.md)
 
 ## 설정
 

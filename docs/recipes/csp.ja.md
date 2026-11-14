@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/csp/
-source_rev: sha256:1a60a09c6baf
+source_rev: sha256:42b0e13b1b33
 nav_order: 20
 nav_title: CSP
 title: Content Security Policy
@@ -10,14 +10,14 @@ description: unsafe-inline なしの厳格な Content Security Policy でテー�
 # Content Security Policy
 
 > [!NOTE]
-> このページは[英語の原文](../../../recipes/csp/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](csp.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 テーマは CSS とスクリプトを `assets/` 配下のファイルから読み込みます。既定でインラインになるものは二つです。
 
 | インラインの項目 | 条件 | 厳格にする方法 |
 |---|---|---|
 | ペイント前のスクリプト (誤った配色や、非表示にしたショーケースが一瞬表示されるのを防ぐ) | `theme-toggle` が有効で `color_scheme: auto`、または `modootoday.showcase` が有効 | `modootoday.csp: strict` で、代わりに `assets/js/modootoday/chrome/theme-init.js` をブロッキングスクリプトとして読み込む |
-| `<style id="mt-tokens">` | `modootoday.tokens` または `tokens_dark` を設定している | 値を[トークンブリッジ](../../guides/customize/#トークンブリッジ) (`_sass/modootoday/_site.scss`、例は[ブランドトークン](../brand-tokens/)) に移し、キーを削除する |
+| `<style id="mt-tokens">` | `modootoday.tokens` または `tokens_dark` を設定している | 値を[トークンブリッジ](../guides/customize.ja.md#トークンブリッジ) (`_sass/modootoday/_site.scss`、例は[ブランドトークン](brand-tokens.ja.md)) に移し、キーを削除する |
 
 両方に対応すれば、次のポリシーで動きます。
 
@@ -29,8 +29,8 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 
 GitHub Pages はレスポンスヘッダーを送れません。これらのディレクティブなら、`_includes/head-custom.html` に置いた `<meta http-equiv="Content-Security-Policy">` タグで機能します。インラインスクリプトを残す場合は、代わりにハッシュで許可してください。ハッシュはスクリプトが変わったときだけ変わり、その際は `CHANGELOG.md` で告知します。
 
-テーマのドキュメント QA は、[厳格な CSP のデモ](../../layouts/demo/csp/)をはじめとするサンプルページをこのポリシーをレスポンスヘッダーに付けて返し、違反が 1 件でもあれば失敗します。
+テーマのドキュメント QA は、[厳格な CSP のデモ](../layouts/demo/csp.ja.md)をはじめとするサンプルページをこのポリシーをレスポンスヘッダーに付けて返し、違反が 1 件でもあれば失敗します。
 
-このポリシーのもとで数式や図を追加するには、[数式と図](../figures/math-diagrams/)を参照してください。[静的な Mermaid の図](../figures/math-diagrams/#静的な-mermaid-の図)と、MathML で書いた[静的な数式](../figures/math-diagrams/#静的な数式)は追加するものがありません。ページは各図をサイトの画像として、各数式を MathML として表示するので、スクリプトもインラインスタイルもありません。KaTeX HTML で書いた静的な数式は、KaTeX が `style` 属性を使うので `style-src 'unsafe-inline'` が必要です。[グラフ](../figures/charts/)も、Chart.js がサイト上のファイルなら追加するものはありません。Chart.js は CSSOM で canvas の大きさを決め、`style-src 'self'` はそれを許可します。ドキュメント QA はこのポリシーのもとでグラフのページを開き、グラフにポインターを重ね、凡例をクリックして、違反が 0 件であることを確かめます。
+このポリシーのもとで数式や図を追加するには、[数式と図](figures/math-diagrams.ja.md)を参照してください。[静的な Mermaid の図](figures/math-diagrams.ja.md#静的な-mermaid-の図)と、MathML で書いた[静的な数式](figures/math-diagrams.ja.md#静的な数式)は追加するものがありません。ページは各図をサイトの画像として、各数式を MathML として表示するので、スクリプトもインラインスタイルもありません。KaTeX HTML で書いた静的な数式は、KaTeX が `style` 属性を使うので `style-src 'unsafe-inline'` が必要です。[グラフ](figures/charts.ja.md)も、Chart.js がサイト上のファイルなら追加するものはありません。Chart.js は CSSOM で canvas の大きさを決め、`style-src 'self'` はそれを許可します。ドキュメント QA はこのポリシーのもとでグラフのページを開き、グラフにポインターを重ね、凡例をクリックして、違反が 0 件であることを確かめます。
 
-[ウェブアプリマニフェストとサービスワーカー](../pwa/)(`modootoday.pwa`)も追加は不要です。`manifest-src` と `worker-src` は `default-src 'self'` に従い、ワーカーはインラインスクリプトを加えません。`default-src` がそれより狭いポリシーでは `manifest-src 'self'` と `worker-src 'self'` が必要です。
+[ウェブアプリマニフェストとサービスワーカー](pwa.ja.md)(`modootoday.pwa`)も追加は不要です。`manifest-src` と `worker-src` は `default-src 'self'` に従い、ワーカーはインラインスクリプトを加えません。`default-src` がそれより狭いポリシーでは `manifest-src 'self'` と `worker-src 'self'` が必要です。

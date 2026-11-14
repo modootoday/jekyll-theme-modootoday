@@ -12,7 +12,7 @@ sections: [setup, contract]
 
 Three dots circle the centre of the picture. A module script of this site draws and turns them over a poster image, which is what you see first and what stays when JavaScript is off or you prefer reduced motion.
 
-[Section visuals](../../../guides/customize/#section-visuals-and-full-width-pages)
+[Section visuals](../../guides/customize.md#section-visuals-and-full-width-pages)
 
 ## Setup
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/recipes/csp/
-source_rev: sha256:1a60a09c6baf
+source_rev: sha256:42b0e13b1b33
 nav_order: 20
 nav_title: CSP
 title: 콘텐츠 보안 정책
@@ -10,14 +10,14 @@ description: unsafe-inline 없이 엄격한 콘텐츠 보안 정책에서 테마
 # 콘텐츠 보안 정책
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../recipes/csp/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](csp.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 테마는 CSS와 스크립트를 `assets/` 아래 파일에서 불러옵니다. 기본값에서 인라인인 것은 두 가지입니다.
 
 | 인라인 항목 | 조건 | 엄격 옵션 |
 |---|---|---|
 | 사전 페인트 스크립트 (잘못된 색 모드나 숨긴 쇼케이스가 깜빡이는 것을 막음) | `theme-toggle`이 켜져 있고 `color_scheme: auto`, 또는 `modootoday.showcase`를 켬 | `modootoday.csp: strict`면 `assets/js/modootoday/chrome/theme-init.js`를 차단형 스크립트로 불러옴 |
-| `<style id="mt-tokens">` | `modootoday.tokens` 또는 `tokens_dark` 설정 시 | 값을 [토큰 브리지](../../guides/customize/#토큰-브리지)(`_sass/modootoday/_site.scss`, 예는 [브랜드 토큰](../brand-tokens/))로 옮기고 키를 제거 |
+| `<style id="mt-tokens">` | `modootoday.tokens` 또는 `tokens_dark` 설정 시 | 값을 [토큰 브리지](../guides/customize.ko.md#토큰-브리지)(`_sass/modootoday/_site.scss`, 예는 [브랜드 토큰](brand-tokens.ko.md))로 옮기고 키를 제거 |
 
 둘 다 처리하면 다음 정책으로 동작합니다.
 
@@ -29,8 +29,8 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 
 GitHub Pages는 응답 헤더를 보낼 수 없습니다. 이 지시어들은 `_includes/head-custom.html`의 `<meta http-equiv="Content-Security-Policy">` 태그로 쓸 수 있습니다. 인라인 스크립트를 유지하려면 해시로 허용하세요. 해시는 스크립트가 바뀔 때만 바뀌며 `CHANGELOG.md`에 공지합니다.
 
-테마의 문서 QA는 [엄격한 CSP 데모](../../layouts/demo/csp/)를 비롯한 예시 페이지를 이 정책을 응답 헤더로 붙여 보내고, 위반이 하나라도 있으면 실패합니다.
+테마의 문서 QA는 [엄격한 CSP 데모](../layouts/demo/csp.ko.md)를 비롯한 예시 페이지를 이 정책을 응답 헤더로 붙여 보내고, 위반이 하나라도 있으면 실패합니다.
 
-이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](../figures/math-diagrams/)을 보세요. [정적 다이어그램](../figures/math-diagrams/#정적-다이어그램)과 MathML로 쓴 [정적 수식](../figures/math-diagrams/#정적-수식)은 추가할 것이 없습니다. 페이지가 각 다이어그램을 사이트의 이미지로, 각 수식을 MathML로 보여 주므로 스크립트도 인라인 스타일도 없습니다. KaTeX HTML로 쓴 정적 수식은 KaTeX가 `style` 속성을 쓰므로 `style-src 'unsafe-inline'`이 필요합니다. [차트](../figures/charts/)도 Chart.js가 사이트의 파일이면 추가할 것이 없습니다. Chart.js는 CSSOM으로 canvas 크기를 정하고 `style-src 'self'`는 이를 허용합니다. 문서 QA는 이 정책 아래에서 차트 페이지를 열고 차트에 마우스를 올리고 범례를 눌러 보며, 위반은 0건입니다.
+이 정책에서 수식이나 다이어그램을 넣으려면 [수식과 다이어그램](figures/math-diagrams.ko.md)을 보세요. [정적 다이어그램](figures/math-diagrams.ko.md#정적-다이어그램)과 MathML로 쓴 [정적 수식](figures/math-diagrams.ko.md#정적-수식)은 추가할 것이 없습니다. 페이지가 각 다이어그램을 사이트의 이미지로, 각 수식을 MathML로 보여 주므로 스크립트도 인라인 스타일도 없습니다. KaTeX HTML로 쓴 정적 수식은 KaTeX가 `style` 속성을 쓰므로 `style-src 'unsafe-inline'`이 필요합니다. [차트](figures/charts.ko.md)도 Chart.js가 사이트의 파일이면 추가할 것이 없습니다. Chart.js는 CSSOM으로 canvas 크기를 정하고 `style-src 'self'`는 이를 허용합니다. 문서 QA는 이 정책 아래에서 차트 페이지를 열고 차트에 마우스를 올리고 범례를 눌러 보며, 위반은 0건입니다.
 
-[웹 앱 매니페스트와 서비스 워커](../pwa/)(`modootoday.pwa`)도 더할 것이 없습니다. `manifest-src`와 `worker-src`는 `default-src 'self'`를 따르고, 워커는 인라인 스크립트를 더하지 않습니다. `default-src`가 그보다 좁은 정책이라면 `manifest-src 'self'`와 `worker-src 'self'`가 필요합니다.
+[웹 앱 매니페스트와 서비스 워커](pwa.ko.md)(`modootoday.pwa`)도 더할 것이 없습니다. `manifest-src`와 `worker-src`는 `default-src 'self'`를 따르고, 워커는 인라인 스크립트를 더하지 않습니다. `default-src`가 그보다 좁은 정책이라면 `manifest-src 'self'`와 `worker-src 'self'`가 필요합니다.

@@ -5,7 +5,7 @@ description: Show a bar or a pill on a starter's live demo that names the theme 
 ---
 # Starter demo showcase
 
-The `modootoday.showcase` setting, one row of the [Configuration](../../guides/configuration/) table, is described here in full.
+The `modootoday.showcase` setting, one row of the [Configuration](../guides/configuration.md) table, is described here in full.
 
 A starter's live demo can show a bar that names the theme and the starter and links back to the theme's documentation. It belongs to the demo build only: put it in a second config file that only the demo deploy layers over `_config.yml`, so a site made from the starter never shows it. The GitHub Pages builder reads only `_config.yml`, so a workflow using it merges the demo file into `_config.yml` before the build. The theme's starters do this in a workflow step guarded by `if: github.repository == '<owner>/<repo>'`, so forks and repositories created from the template build without the showcase.
 

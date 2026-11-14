@@ -16,4 +16,4 @@ description: Sponsor logos grouped by tier, each with its name and a link, and a
 
 This page uses `layout: sponsors`. Pick a tier to show only those sponsors.
 
-[Back to directory layouts](../)
+[Back to directory layouts](index.md)

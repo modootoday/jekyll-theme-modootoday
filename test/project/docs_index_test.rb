@@ -122,7 +122,7 @@ class DocsIndexTest < Minitest::Test
       body = File.read(page)
       assert_empty body.scan(/^### \[\d+\.\d+\.\d+\]/), "#{page}: no English release list"
       refute_includes body, Modootoday::Markdown::INDEX_MARK % "begin", page
-      assert_includes body, "](../../../reference/changelog/)", "#{page}: links the English Changelog page"
+      assert_includes body, "](changelog.md)", "#{page}: links the English Changelog page"
     end
   end
 

@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/directory/jobs/
-source_rev: sha256:d453c9d6e26e
+source_rev: sha256:eb3a8af67a8c
 nav_order: 3
 title: "채용 데모"
 layout: jobs
@@ -19,4 +19,4 @@ description: 직무, 근무지, 고용 형태가 보이는 카드로 채용 공�
 
 이 페이지는 `layout: jobs`를 씁니다. 각 줄을 `layout: job` 페이지로 연결하면 상세 공고가 됩니다.
 
-[디렉터리 레이아웃으로 돌아가기](../)
+[디렉터리 레이아웃으로 돌아가기](index.ko.md)

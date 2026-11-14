@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/documents/
-source_rev: sha256:95fa00b0eb03
+source_rev: sha256:ff432367b0e4
 nav_order: 70
 title: 文書
 description: 日付、版、目次のある法的なページと、印刷を優先した履歴書です。人が保存したり印刷したりするページのために用意した 2 つのレイアウトを説明します。
@@ -12,8 +12,8 @@ description: 日付、版、目次のある法的なページと、印刷を優�
 
 | レイアウト | front matter | バンドル | 構造化データ | デモ |
 |---|---|---|---|---|
-| `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](legal/) |
-| `resume` | `display_name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](resume/) |
+| `legal` | `effective`（必須）、`updated`、`version`、`toc: false` | pages | 日付付きの WebPage | [規約](legal.ja.md) |
+| `resume` | `display_name`、`headline`、`email`、`phone`、`location`、`links`、`experience`、`education`、`skills` | resume | ProfilePage + Person | [履歴書](resume.ja.md) |
 
 ## 法的ページ
 

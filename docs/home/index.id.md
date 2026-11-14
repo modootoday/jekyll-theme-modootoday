@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday mengubah GitHub Flavored Markdown standar menjadi situs dokumentasi yang rapi. Berkas yang sama nyaman dibaca di github.com, di GitHub Pages, dan sebagai versi Markdown untuk agen AI.
 
-[Mulai](../guides/install/) [Lihat komponen](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Mulai](../guides/install.md) [Lihat komponen](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Mengapa tema modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Alur membaca dokumentasi
 
-1. [Pasang](../guides/install/) tema di GitHub Pages atau Jekyll 4.
-2. [Tulis halaman pertama](../guides/first-page/) dengan Markdown biasa.
-3. Pilih dari [komponen](../components/) dan [halaman semua komponen](../components/kitchen-sink/).
-4. Atur lewat [konfigurasi](../guides/configuration/) dan [sesuaikan tampilan](../guides/customize/) dengan token dan `_sass`.
-5. Buat situs [mudah dibaca agen](../guides/agents/) dengan versi Markdown dan `llms.txt`.
+1. [Pasang](../guides/install.md) tema di GitHub Pages atau Jekyll 4.
+2. [Tulis halaman pertama](../guides/first-page.md) dengan Markdown biasa.
+3. Pilih dari [komponen](../components/index.md) dan [halaman semua komponen](../components/kitchen-sink.md).
+4. Atur lewat [konfigurasi](../guides/configuration.md) dan [sesuaikan tampilan](../guides/customize.md) dengan token dan `_sass`.
+5. Buat situs [mudah dibaca agen](../guides/agents.md) dengan versi Markdown dan `llms.txt`.
 
 > [!NOTE]
-> Halaman ini diterjemahkan dari [naskah asli bahasa Inggris](../); jika ada perbedaan, versi bahasa Inggris yang berlaku. Panduan yang ditautkan tersedia dalam bahasa Inggris.
+> Halaman ini diterjemahkan dari [naskah asli bahasa Inggris](../index.md); jika ada perbedaan, versi bahasa Inggris yang berlaku. Panduan yang ditautkan tersedia dalam bahasa Inggris.
 
 ## Mulai sekarang
 
-[Pasang tema](../guides/install/) [Lihat semua komponen](../components/kitchen-sink/)
+[Pasang tema](../guides/install.md) [Lihat semua komponen](../components/kitchen-sink.md)

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/shells/
-source_rev: sha256:40b7346b1355
+source_rev: sha256:86ecda8e15e8
 nav_order: 10
 title: ページシェル
 description: ホーム、エラー、リダイレクト、検索など、ページの種類ごとのシェルと、各レイアウトが必要なページだけで読み込む任意のスタイルシートを説明します。
@@ -12,15 +12,15 @@ description: ホーム、エラー、リダイレクト、検索など、ペー�
 
 | レイアウト | 用途 | デモ |
 |---|---|---|
-| `minimal` | 単独のお知らせ、サインイン案内、リンク集。ヘッダー、ページ情報、ページ送りはありません。 | [ミニマル](../demo/minimal/) |
-| `wide` | カードグリッド、幅の広い表、ギャラリー。ヘッダーとフッターはあり、読みやすさのための幅制限はありません。 | [ワイド](../demo/wide/) |
+| `minimal` | 単独のお知らせ、サインイン案内、リンク集。ヘッダー、ページ情報、ページ送りはありません。 | [ミニマル](demo/minimal.ja.md) |
+| `wide` | カードグリッド、幅の広い表、ギャラリー。ヘッダーとフッターはあり、読みやすさのための幅制限はありません。 | [ワイド](demo/wide.ja.md) |
 | `home` | ランディングページ。front matter のヒーローの後に本文が続き、ヒーローがないときは最新の記事一覧が続きます。ヒーローのタイトルも本文の `# ` 見出しもなければ、ページのタイトル（なければサイト名）が `h1` になります。WebSite の構造化データを追加します。 | [ホーム](https://modootoday.github.io/jekyll-theme-modootoday-landing-starter/ "new-window") |
 | `page` | Jekyll、minima、`jekyll new` が通常のページに使う名前です。名前が違うだけの `doc` レイアウトです。ほかの `doc` ページと同じく、本文に `# ` の見出しがなければ minima と同じように `title:` を `h1` として表示します。 | なし |
-| `error` | タイトルと説明が翻訳された 404、410、500 ページ。 | [エラー](../demo/error/) |
-| `redirect` | 移動したページ。スクリプトを使わずに移動するため、厳しい CSP でも動きます。 | [リダイレクト](../demo/redirect/) |
-| `search` | JavaScript なしでも使えるフォームを備えた検索ページ。 | [検索](../demo/search/) |
+| `error` | タイトルと説明が翻訳された 404、410、500 ページ。 | [エラー](demo/error.ja.md) |
+| `redirect` | 移動したページ。スクリプトを使わずに移動するため、厳しい CSP でも動きます。 | [リダイレクト](demo/redirect.ja.md) |
+| `search` | JavaScript なしでも使えるフォームを備えた検索ページ。 | [検索](demo/search.ja.md) |
 
-プロジェクト、メンバー、求人、イベント、スポンサー、連携のカード一覧は[ディレクトリレイアウト](../directory/)にあります。
+プロジェクト、メンバー、求人、イベント、スポンサー、連携のカード一覧は[ディレクトリレイアウト](directory/index.ja.md)にあります。
 
 ## ホーム
 
@@ -36,7 +36,7 @@ hero:
 ---
 ```
 
-最初のアクションが主ボタンになります。`hero.title` がない場合は本文だけを表示します。`home` は本文を書いたとおりに表示し、`sections:` は読まないため、カード、タブ、ボタンのセクションは適用されません。こうしたセクションを使うホームページには、このサイトのホームと同じく `layout: doc` に `hero:` と `sections:` を組み合わせます。 任意の `hero.image`(パス、または `{path, alt, width, height, srcset}`)を指定すると、アクションの下に横長の画像を表示します。装飾目的なら `alt` は空にします。ヒーロー用ビジュアル `showcase` も同じ `hero.image` キーを読み込みます([カスタマイズ](../../guides/customize/)を参照)。
+最初のアクションが主ボタンになります。`hero.title` がない場合は本文だけを表示します。`home` は本文を書いたとおりに表示し、`sections:` は読まないため、カード、タブ、ボタンのセクションは適用されません。こうしたセクションを使うホームページには、このサイトのホームと同じく `layout: doc` に `hero:` と `sections:` を組み合わせます。 任意の `hero.image`(パス、または `{path, alt, width, height, srcset}`)を指定すると、アクションの下に横長の画像を表示します。装飾目的なら `alt` は空にします。ヒーロー用ビジュアル `showcase` も同じ `hero.image` キーを読み込みます([カスタマイズ](../guides/customize.ja.md)を参照)。
 
 `hero:` と `sections:` のないホームページは、サイトに記事があれば minima と同じく本文の下に最新の記事一覧を表示します。そのため `jekyll new` が作る `index.md` も一覧を保ちます。`posts: true` はどのホームページにも一覧を加え、`posts: false` は一覧を外します。`list_title:` は見出しを置き換え、`show_excerpts:`(ページ、次に `_config.yml`)は抜粋の表示と非表示を決めます。指定がなければ抜粋は `modootoday.blog.excerpt` に従います。`index.html` で jekyll-paginate を使うと一覧もページに分かれ、使わない場合は `modootoday.blog.per_page` 件を表示してアーカイブへリンクします。
 

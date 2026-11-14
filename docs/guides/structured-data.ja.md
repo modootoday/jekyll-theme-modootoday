@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/structured-data/
-source_rev: sha256:5d39c9e2bc0f
+source_rev: sha256:8900455eac5e
 nav_order: 80
 title: 構造化データ
 description: テーマが全ページに出力する schema.org JSON-LD グラフに何が入るかと、発行者、著者、ページの種類などの値を設定する方法を説明します。
@@ -9,7 +9,7 @@ description: テーマが全ページに出力する schema.org JSON-LD グラ�
 # 構造化データ
 
 > [!NOTE]
-> このページは[英語の原文](../../../guides/structured-data/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](structured-data.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 `_config.yml` に `url:` があると、全ページに schema.org の `@graph` を収めた `<script type="application/ld+json">` ブロックが 1 つ入ります。検索エンジンや AI ツールはこれでページの内容を把握します。schema.org の URL は絶対 URL である必要があるため、`url:` がなければ何も出力しません。
 
@@ -23,7 +23,7 @@ description: テーマが全ページに出力する schema.org JSON-LD グラ�
 | 主エンティティ | `<page>#main` | ページが扱う記事、求人、イベントなど |
 | `BreadcrumbList` | `<page>#breadcrumb` | 画面のパンくずと同じ内容 |
 
-日付はサイトのタイムゾーン付き ISO 8601 で、テキストはエスケープされるため厳格な [CSP](../../recipes/csp/) でも安全です。
+日付はサイトのタイムゾーン付き ISO 8601 で、テキストはエスケープされるため厳格な [CSP](../recipes/csp.ja.md) でも安全です。
 
 ## レイアウトごとの型
 
@@ -62,7 +62,7 @@ modootoday:
 
 `modootoday.schema: false`(または `schema: {enabled: false}`)で無効にし、1 ページだけなら front matter に `schema: false` を書きます。`seo: false` でも無効になります。
 
-`seo: false` と `jekyll-seo-tag` を併用すると、プラグインが `<!-- Begin Jekyll SEO tag` と `<!-- End Jekyll SEO tag -->` のコメントの間に独自の JSON-LD を書きます。`modootoday-check` はこのブロックが正しい JSON かどうかだけを検査し、エラーではなく警告を出します。キットが書くマークアップではなく、このブロックの `WebPage` には `headline` があって `name` がないためです。schema.org はどのプロパティも必須としておらず、Google も `WebPage` に必須プロパティを定めていません。必須プロパティの一覧は、キットが書くマークアップに適用するキット独自の規則です。ページ全体を検査させるには、キットのタグに移ります（[移行とアップグレード](../upgrade/)）。
+`seo: false` と `jekyll-seo-tag` を併用すると、プラグインが `<!-- Begin Jekyll SEO tag` と `<!-- End Jekyll SEO tag -->` のコメントの間に独自の JSON-LD を書きます。`modootoday-check` はこのブロックが正しい JSON かどうかだけを検査し、エラーではなく警告を出します。キットが書くマークアップではなく、このブロックの `WebPage` には `headline` があって `name` がないためです。schema.org はどのプロパティも必須としておらず、Google も `WebPage` に必須プロパティを定めていません。必須プロパティの一覧は、キットが書くマークアップに適用するキット独自の規則です。ページ全体を検査させるには、キットのタグに移ります（[移行とアップグレード](upgrade.ja.md)）。
 
 ## ページごとのエンティティ
 
@@ -80,7 +80,7 @@ schema:
 
 ## FAQ、用語、学習リソース
 
-**ページから作る FAQPage。** 全ページに適用するには `modootoday.schema` の下に `faq: auto` を、1 ページだけなら front matter に `schema: {faq: auto}` を書きます。すると `c: faq` セクションのあるページが `FAQPage` になります。そのセクションの `###` の質問がそれぞれ `Question` になり、その下の文章が `Answer` になります。画面に見える文章が唯一の元なので、構造化データは読者が見る内容と常に一致します。回答からコードブロックは除かれ、`c: details` セクションは読みません。front matter の `schema.type` と `schema.mainEntity` があればそちらが優先され、1 ページだけ無効にするには `schema: {faq: false}` を書きます。[コンポーネント](../../components/)のページがこの設定を使っています。
+**ページから作る FAQPage。** 全ページに適用するには `modootoday.schema` の下に `faq: auto` を、1 ページだけなら front matter に `schema: {faq: auto}` を書きます。すると `c: faq` セクションのあるページが `FAQPage` になります。そのセクションの `###` の質問がそれぞれ `Question` になり、その下の文章が `Answer` になります。画面に見える文章が唯一の元なので、構造化データは読者が見る内容と常に一致します。回答からコードブロックは除かれ、`c: details` セクションは読みません。front matter の `schema.type` と `schema.mainEntity` があればそちらが優先され、1 ページだけ無効にするには `schema: {faq: false}` を書きます。[コンポーネント](../components/index.ja.md)のページがこの設定を使っています。
 
 **用語ごとに 1 ページ。** `schema: {type: DefinedTerm}` にすると、ページはタイトルを名前とする `DefinedTerm` になります。`term_set:` に用語集ページのパスを書くとそのページの `DefinedTermSet` につながり(絶対 URL はそのまま出力)、`term_code:` は `termCode` を加えます。用語集の `terms:` の項目に `url:` があると、その `DefinedTerm` に用語ページの URL が付きます。
 
@@ -97,4 +97,4 @@ term_set: /glossary/
 
 `modootoday-check` はビルド済みサイトの全ブロックをオフラインで検査します。ページあたり 1 ブロック、正しい JSON、schema.org にある型とプロパティ、必須プロパティ(Google 基準)、重複のない `@id`、絶対 URL、ISO 8601 の日付、`og:url`・`og:title`・`og:image`・`<html lang>` との一致を確認します。質問のない `FAQPage`、回答が空の質問、`term_set` が `DefinedTermSet` のあるビルド済みページではない `DefinedTerm` はエラーで、`auto` か `false` 以外の `modootoday.schema.faq` もエラーです。推奨プロパティの欠落も見るには `--schema-recommended` を付けます。
 
-`offers`、`organizer`、`acceptedAnswer` のようにプロパティの下に 1 つだけあるオブジェクトも、最上位のノードと同じくその `@type` の規則で検査します。ここでの問題(必須プロパティの欠落、存在しない型やプロパティ、相対 URL、ISO 8601 ではない日付)を "(a warning in a nested object, an error in the next major version)" で終わる警告として報告し、次のメジャーバージョンからはエラーになります。`@type` のない入れ子のオブジェクトには `@type` を求めず、回答が空の質問は引き続きエラーです。たとえばイベントの `offers` に `url` だけがあり `price` と `priceCurrency` がなければ警告になります。`event` レイアウトでは `tickets: {url, price, currency}` が両方を書き、価格をページにも表示します([イベントの例](../../layouts/detail/#イベント)を参照)。ほかでは front matter に `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}` で販売情報を書き、価格はページにも表示して、読者に見えない内容をマークアップに書かないようにします。
+`offers`、`organizer`、`acceptedAnswer` のようにプロパティの下に 1 つだけあるオブジェクトも、最上位のノードと同じくその `@type` の規則で検査します。ここでの問題(必須プロパティの欠落、存在しない型やプロパティ、相対 URL、ISO 8601 ではない日付)を "(a warning in a nested object, an error in the next major version)" で終わる警告として報告し、次のメジャーバージョンからはエラーになります。`@type` のない入れ子のオブジェクトには `@type` を求めず、回答が空の質問は引き続きエラーです。たとえばイベントの `offers` に `url` だけがあり `price` と `priceCurrency` がなければ警告になります。`event` レイアウトでは `tickets: {url, price, currency}` が両方を書き、価格をページにも表示します([イベントの例](../layouts/detail/index.ja.md#イベント)を参照)。ほかでは front matter に `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, url: ...}}` で販売情報を書き、価格はページにも表示して、読者に見えない内容をマークアップに書かないようにします。

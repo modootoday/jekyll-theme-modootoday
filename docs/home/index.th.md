@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday เปลี่ยน GitHub Flavored Markdown มาตรฐานให้เป็นเว็บไซต์เอกสารที่เรียบร้อย ไฟล์เดียวกันอ่านง่ายทั้งบน github.com บน GitHub Pages และในรูปแบบ Markdown สำหรับเอเจนต์ AI
 
-[เริ่มต้นใช้งาน](../guides/install/) [ดูคอมโพเนนต์](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[เริ่มต้นใช้งาน](../guides/install.md) [ดูคอมโพเนนต์](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## ทำไมต้องธีม modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## เส้นทางการอ่านเอกสาร
 
-1. [ติดตั้ง](../guides/install/)ธีมบน GitHub Pages หรือ Jekyll 4
-2. [เขียนหน้าแรก](../guides/first-page/)ด้วย Markdown ธรรมดา
-3. เลือกจาก[คอมโพเนนต์](../components/)และ[หน้ารวมคอมโพเนนต์](../components/kitchen-sink/)
-4. ปรับแต่งใน[การตั้งค่า](../guides/configuration/) และ[ปรับหน้าตา](../guides/customize/)ด้วยโทเคนและ `_sass`
-5. ทำให้[เอเจนต์อ่านได้](../guides/agents/)ด้วยเวอร์ชัน Markdown และ `llms.txt`
+1. [ติดตั้ง](../guides/install.md)ธีมบน GitHub Pages หรือ Jekyll 4
+2. [เขียนหน้าแรก](../guides/first-page.md)ด้วย Markdown ธรรมดา
+3. เลือกจาก[คอมโพเนนต์](../components/index.md)และ[หน้ารวมคอมโพเนนต์](../components/kitchen-sink.md)
+4. ปรับแต่งใน[การตั้งค่า](../guides/configuration.md) และ[ปรับหน้าตา](../guides/customize.md)ด้วยโทเคนและ `_sass`
+5. ทำให้[เอเจนต์อ่านได้](../guides/agents.md)ด้วยเวอร์ชัน Markdown และ `llms.txt`
 
 > [!NOTE]
-> หน้านี้แปลจาก[ต้นฉบับภาษาอังกฤษ](../) หากเนื้อหาไม่ตรงกันให้ยึดฉบับภาษาอังกฤษ คู่มือที่ลิงก์ไว้มีเฉพาะภาษาอังกฤษ
+> หน้านี้แปลจาก[ต้นฉบับภาษาอังกฤษ](../index.md) หากเนื้อหาไม่ตรงกันให้ยึดฉบับภาษาอังกฤษ คู่มือที่ลิงก์ไว้มีเฉพาะภาษาอังกฤษ
 
 ## เริ่มเลย
 
-[ติดตั้งธีม](../guides/install/) [ดูคอมโพเนนต์ทั้งหมด](../components/kitchen-sink/)
+[ติดตั้งธีม](../guides/install.md) [ดูคอมโพเนนต์ทั้งหมด](../components/kitchen-sink.md)

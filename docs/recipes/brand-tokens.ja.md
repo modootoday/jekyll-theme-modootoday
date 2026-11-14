@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/recipes/brand-tokens/
-source_rev: sha256:6467da12bd77
+source_rev: sha256:3d1eb13a0aa7
 nav_order: 15
 title: ブランドトークン
 description: トークンブリッジでブランドの色とフォントをテーマに反映し、サイトのスタイルシートと先読みするフォントまで、厳格な CSP の下で一緒に使う方法を説明します。
@@ -12,7 +12,7 @@ preload:
 # ブランドトークン
 
 > [!NOTE]
-> このページは[英語の原文](../../../recipes/brand-tokens/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](brand-tokens.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 このページには、架空のティール色のブランドと、セルフホストした見出しフォントを適用しています。ライトとダークを切り替えて、二つの配色を確認してください。ほかのドキュメントは既定の見た目のままです。
 
@@ -33,7 +33,7 @@ $mt-overrides-dark: (
 );
 ```
 
-色はライトとダークのために両方のマップに指定します。`heading-weight: 600` は既定値で、書く場所を示すために入れています。マップごとに受け取るトークンと `modootoday-check` が拒否する内容は[カスタマイズ > トークンブリッジ](../../guides/customize/#トークンブリッジ)にあります。
+色はライトとダークのために両方のマップに指定します。`heading-weight: 600` は既定値で、書く場所を示すために入れています。マップごとに受け取るトークンと `modootoday-check` が拒否する内容は[カスタマイズ > トークンブリッジ](../guides/customize.ja.md#トークンブリッジ)にあります。
 
 ## サイトのスタイルシートとフォント
 
@@ -64,7 +64,7 @@ modootoday:
 
 ## 厳格な CSP で
 
-ブリッジ、`site_css`、`preload` はどれもファイルなので、`default-src 'self'; style-src 'self'` で足ります ([CSP](../csp/) を参照)。`modootoday.tokens` はインラインの `<style>` を出力するため、厳格な CSP のサイトでは値をブリッジに移してください。
+ブリッジ、`site_css`、`preload` はどれもファイルなので、`default-src 'self'; style-src 'self'` で足ります ([CSP](csp.ja.md) を参照)。`modootoday.tokens` はインラインの `<style>` を出力するため、厳格な CSP のサイトでは値をブリッジに移してください。
 
 ## デモのフォント
 

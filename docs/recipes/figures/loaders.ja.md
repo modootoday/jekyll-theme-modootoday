@@ -1,17 +1,17 @@
 ---
 lang: ja
 permalink: /ja/recipes/figures/loaders/
-source_rev: sha256:bff70c3e0e20
+source_rev: sha256:65f59cf4e721
 nav_order: 20
 title: 図と数式のローダー
 description: 組み込みのローダーや独自のローダーで Mermaid の図と KaTeX の数式をブラウザーで描画する方法と、それぞれが CSP とプライバシーに求めることを説明します。
 ---
 # 図と数式のローダー
 
-これらの方法は、読み手のブラウザーで図と数式を描きます。スクリプトの要らない静的な図との比較は[数式と図](../math-diagrams/)にあります。
+これらの方法は、読み手のブラウザーで図と数式を描きます。スクリプトの要らない静的な図との比較は[数式と図](math-diagrams.ja.md)にあります。
 
 > [!NOTE]
-> このページは[英語の原文](../../../../recipes/figures/loaders/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](loaders.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## 組み込みローダー
 
@@ -50,7 +50,7 @@ modootoday:
 
 CDN を使うと、コンテンツセキュリティポリシーと訪問者のプライバシーが変わります。
 
-- **CSP。** CDN のオリジンを `script-src`（両方）、`style-src`（KaTeX のスタイルシート）、`font-src`（KaTeX のフォント）に追加します。Mermaid は各図に `<style>` を書き込むため、どこでホストしても `style-src 'unsafe-inline'` が必要です。自分でホストすれば、スクリプト・スタイル・フォントはすべて `'self'` のままです。[コンテンツセキュリティポリシー](../../csp/)を参照してください。
+- **CSP。** CDN のオリジンを `script-src`（両方）、`style-src`（KaTeX のスタイルシート）、`font-src`（KaTeX のフォント）に追加します。Mermaid は各図に `<style>` を書き込むため、どこでホストしても `style-src 'unsafe-inline'` が必要です。自分でホストすれば、スクリプト・スタイル・フォントはすべて `'self'` のままです。[コンテンツセキュリティポリシー](../csp.ja.md)を参照してください。
 - **プライバシー。** 訪問者のブラウザーが CDN にファイルを要求するので、CDN は訪問者の IP アドレス、ページのアドレス（リファラー）、時刻を受け取ります。自分でホストすればこれを避けられます。CDN を使う場合は、プライバシーポリシーに記載してください。
 - **可用性。** CDN を使うと、その CDN に接続できるときだけブロックが描画され、できないときはソースのコードブロックが残ります。
 
@@ -79,7 +79,7 @@ document.querySelectorAll("code.language-math").forEach((code) => {
 
 ### ブラウザーでの Mermaid
 
-Mermaid は各 SVG に `<style>` 要素を書き込むため、厳格な `style-src 'self'` ではスタイルがブロックされます。[静的な Mermaid の図](../math-diagrams/#静的な-mermaid-の図)を使うか、そのページだけインラインスタイルを許可し、スクリプトは厳格なままにします:
+Mermaid は各 SVG に `<style>` 要素を書き込むため、厳格な `style-src 'self'` ではスタイルがブロックされます。[静的な Mermaid の図](math-diagrams.ja.md#静的な-mermaid-の図)を使うか、そのページだけインラインスタイルを許可し、スクリプトは厳格なままにします:
 
 ```html
 <script defer src="/your-base/assets/mermaid/mermaid.min.js"></script>

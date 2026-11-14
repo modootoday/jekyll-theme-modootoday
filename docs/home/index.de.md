@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday macht aus standardmäßigem GitHub Flavored Markdown eine aufgeräumte Dokumentationsseite. Dieselbe Datei liest sich gut auf github.com, in GitHub Pages und als Markdown-Fassung für KI-Agenten.
 
-[Loslegen](../guides/install/) [Komponenten ansehen](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Loslegen](../guides/install.md) [Komponenten ansehen](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Warum das modoo.today Theme
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Ihr Weg durch die Dokumentation
 
-1. [Installieren](../guides/install/) Sie das Theme in GitHub Pages oder Jekyll 4.
-2. [Schreiben Sie Ihre erste Seite](../guides/first-page/) in reinem Markdown.
-3. Wählen Sie aus den [Komponenten](../components/) und der [Gesamtübersicht](../components/kitchen-sink/).
-4. Passen Sie die [Konfiguration](../guides/configuration/) an und [gestalten Sie das Aussehen](../guides/customize/) mit Tokens und `_sass`.
-5. Machen Sie die Seite mit Markdown-Fassungen und `llms.txt` [für Agenten lesbar](../guides/agents/).
+1. [Installieren](../guides/install.md) Sie das Theme in GitHub Pages oder Jekyll 4.
+2. [Schreiben Sie Ihre erste Seite](../guides/first-page.md) in reinem Markdown.
+3. Wählen Sie aus den [Komponenten](../components/index.md) und der [Gesamtübersicht](../components/kitchen-sink.md).
+4. Passen Sie die [Konfiguration](../guides/configuration.md) an und [gestalten Sie das Aussehen](../guides/customize.md) mit Tokens und `_sass`.
+5. Machen Sie die Seite mit Markdown-Fassungen und `llms.txt` [für Agenten lesbar](../guides/agents.md).
 
 > [!NOTE]
-> Diese Seite ist eine Übersetzung des [englischen Originals](../); bei Abweichungen gilt die englische Fassung. Die verlinkten Anleitungen sind auf Englisch.
+> Diese Seite ist eine Übersetzung des [englischen Originals](../index.md); bei Abweichungen gilt die englische Fassung. Die verlinkten Anleitungen sind auf Englisch.
 
 ## Jetzt starten
 
-[Theme installieren](../guides/install/) [Alle Komponenten ansehen](../components/kitchen-sink/)
+[Theme installieren](../guides/install.md) [Alle Komponenten ansehen](../components/kitchen-sink.md)

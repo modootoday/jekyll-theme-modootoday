@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/api/
-source_rev: sha256:99f011356888
+source_rev: sha256:afae7d9637f6
 nav_order: 10
 title: 공개 API
 description: 이 테마가 사이트용으로 문서화한 이름, 클래스, include, 파일을 정리합니다. 이들은 메이저 버전 안에서 그대로 유지되며, 바뀌는 방식도 설명합니다.
@@ -9,7 +9,7 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 # 공개 API
 
 > [!NOTE]
-> 이 페이지는 [영어 원문](../../../reference/api/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
+> 이 페이지는 [영어 원문](api.md)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다.
 
 공개 API는 이 페이지에 정리되어 있고, 변경 사항은 `CHANGELOG.md`에 기록됩니다. 목록에 없는 것(내부 include, Sass 파셜 경로, 비공개 `--mt-p-*` 기본 토큰, 규칙에 없는 HTML 세부)은 어느 릴리스에서든 바뀔 수 있습니다.
 
@@ -17,22 +17,22 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 
 | 영역 | 안정 이름 |
 |---|---|
-| 설정 | [설정](../../guides/configuration/)에 나온 `modootoday:` 아래 모든 키. |
+| 설정 | [설정](../guides/configuration.ko.md)에 나온 `modootoday:` 아래 모든 키. |
 | 디자인 토큰 | `--mt-*` 사용자 속성. 기본 토큰 `--mt-p-*`는 제외. |
-| Sass | 토큰 훅 `_sass/modootoday/_site.scss`와 그 덮어쓰기 맵만. [사용자 정의](../../guides/customize/#토큰-브리지) 참고. |
+| Sass | 토큰 훅 `_sass/modootoday/_site.scss`와 그 덮어쓰기 맵만. [사용자 정의](../guides/customize.ko.md#토큰-브리지) 참고. |
 | Markdown 규칙 | `RULES.md`의 패턴, 그 `mt-*` 클래스, `mt-flat-list`. |
 | 레이아웃 | 아래 [레이아웃](#레이아웃) 표의 모든 레이아웃. 내부용으로 표시한 하나는 API가 아닙니다. |
 | 덮어써도 되는 include | `head-custom.html`, `footer-custom.html`, `modootoday/brand/logo.html`. |
-| 직접 만드는 include | `visual: <name>`으로 보여 주는 `_includes/sections/<name>.html`. [사용자 정의](../../guides/customize/#섹션-비주얼과-전체-폭-페이지) 참고. |
+| 직접 만드는 include | `visual: <name>`으로 보여 주는 `_includes/sections/<name>.html`. [사용자 정의](../guides/customize.ko.md#섹션-비주얼과-전체-폭-페이지) 참고. |
 | 모듈 도우미와 이벤트 | 사이트 `scripts`용 ES 모듈 두 개, `mt:themechange` 이벤트, `script:` 비주얼 계약. |
 | 호출해도 되는 include | `modootoday/archive.html`, `modootoday/brand/icon.html`, 푸터용 include 두 개. |
 | include | `modootoday/t.html`은 페이지 언어로 테마 문구를 출력합니다. |
 | 데이터 파일 | `_data/i18n/<lang>.yml`, `_data/nav/<name>.yml`, `_data/navigation.yml`, `_data/authors.yml`, `_data/components.yml` |
-| 검사기 | `modootoday-check` 옵션과 종료 코드. [명령줄](../cli/)에 정리되어 있습니다. |
+| 검사기 | `modootoday-check` 옵션과 종료 코드. [명령줄](cli.ko.md)에 정리되어 있습니다. |
 | 정적 그림 | front matter `diagrams:`, `data-mt-src` 다이제스트 규칙, `diagram.source` 레이블. `modootoday.math.mode: static`, `_data/math/<key>.yml`, front matter `math_key:`, `math.label` 레이블. |
 | 레코드 페이지 | `modootoday.records`, 레코드 front matter, 정보 목록. |
 | 쇼케이스 | `modootoday.showcase`, 세션 저장소 키 `mt-showcase`, `showcase.*` 레이블. |
-| 스텁 작성기 | `modootoday-stubs` 옵션([명령줄](../cli/)), 스텁 파일 이름과 front matter, 종료 코드. |
+| 스텁 작성기 | `modootoday-stubs` 옵션([명령줄](cli.ko.md)), 스텁 파일 이름과 front matter, 종료 코드. |
 
 위 행의 자세한 내용:
 
@@ -42,14 +42,14 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 - 레이아웃: `page`는 Jekyll과 minima가 쓰는 이름으로 부르는 `doc` 레이아웃입니다.
 - include: 직접 만든 푸터에서 `modootoday/lang-switch.html`과 `modootoday/brand/logo.html`(`size` 지정 가능)을 include할 수 있습니다. 직접 그린 로고를 쓰려면 `modootoday/brand/logo.html`을 덮어쓰세요. `modootoday/archive.html`은 `by`와 `lang`을 받습니다. `modootoday/t.html`은 `key=`와 선택 `n=` / `name=`을 받습니다.
 - `modootoday/brand/icon.html`은 `name`(globe, sun, moon, search, menu, copy, check, external, prev, next, chevron-right, chevron-down, note, tip, important, warning, caution, edit, link, rss, tag, folder, brand), 선택 `size`(px, 기본 18), `label`(주면 그 이름의 `role="img"`, 없으면 `aria-hidden`), `class`를 받습니다. 출력은 `currentColor`를 쓰는 `svg.mt-icon.mt-icon-<name>`이고, 방향 아이콘은 `.mt-icon-flip`이 붙어 RTL에서 뒤집힙니다.
-- 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../../guides/customize/#모듈-스크립트와-포스터) 참고.
+- 모듈 도우미: `assets/js/modootoday/theme/current.js`(`currentTheme()`, 듣기를 멈추는 함수를 돌려주는 `onThemeChange(callback)`)와 `assets/js/modootoday/dom/config.js`(`readConfig(element, defaults)`)입니다. `mt:themechange` 이벤트는 [이벤트](#이벤트)를 보세요. `script:` 비주얼 계약은 `data-mt-script`, `.mt-visual-stage`, `data-mt-ready`입니다. [사용자 정의](../guides/customize.ko.md#모듈-스크립트와-포스터) 참고.
 - 데이터 파일: `_data/i18n/<lang>.yml` 키는 내장 카탈로그를 덮어쓸 때만 씁니다. `_data/navigation.yml`은 `main`을 읽습니다.
-- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../../recipes/figures/math-diagrams/#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
-- 정적 그림: `diagrams: [{name, alt, caption, width, height, min_width}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../../recipes/figures/math-diagrams/#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
-- 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../../recipes/figures/math-diagrams/#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
-- 레코드 페이지: `modootoday.records`([생성 페이지](../../recipes/generated-pages/) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
-- PWA: 레이아웃 `pages/offline`(오프라인 페이지. 보관한 페이지 목록은 `pwa/offline.js`가 채우는 `section[data-mt-offline]`), front matter `pwa: precache`, 매니페스트 링크의 `data-mt-sw`, `data-mt-scope`, `data-mt-toast-css`, `data-mt-update`, `data-mt-reload`, `data-mt-later`, `data-mt-offline-notice`, `data-mt-close` 속성, 업데이트·오프라인 알림 `div.mt-toast[role=status]`와 `.mt-toast-actions`, 캐시 이름 `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>`, `mt:<baseurl>/:media`, 레이블 `pwa.offline_title`, `pwa.offline_text`, `pwa.offline_pages`, `pwa.retry`, `pwa.update`, `pwa.reload`, `pwa.later`, `pwa.offline_notice`, `pwa.close`입니다. [설치할 수 있는 사이트](../../recipes/pwa/)를 참고하세요.
-- 쇼케이스: [스타터 데모 쇼케이스](../showcase/)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
+- 검사기 종료 코드: 0(문제 없음), 1(문제 또는 잘못된 사용법). `modootoday-check SRC --diagrams`는 SVG가 없거나 낡은 정적 다이어그램을 JSON(`page`, `name`, `line`, `fence`, `digest`, `files`, `reason`)으로 출력하고, 목록이 비어 있지 않으면 1로 끝납니다([다이어그램을 최신으로 유지하기](../recipes/figures/math-diagrams.ko.md#다이어그램을-최신으로-유지하기) 참고). `modootoday-check SRC --math`는 정적 수식에 대해 같은 일을 합니다. 써야 할 `_data/math` 파일(`key`, `file`, `page`, `line`·`tex`·`digest`가 있는 `blocks`, `reason`)을 출력합니다.
+- 정적 그림: `diagrams: [{name, alt, caption, width, height, min_width}]`는 페이지의 n번째 ```` ```mermaid ```` 펜스를 n번째 항목에 대응시킵니다([수식과 다이어그램](../recipes/figures/math-diagrams.ko.md#정적-다이어그램) 참고). SVG 루트 요소의 `data-mt-src="sha256-<hex>"`는 그 SVG를 그린 펜스를 기록합니다. 값은 펜스 본문(펜스 줄 사이의 줄)의 CRLF와 CR을 LF로 바꾸고 마지막 줄바꿈을 뺀 SHA-256입니다. `data-mt-src`가 펜스의 다이제스트와 다른 SVG는 `modootoday-check`가 낡은 다이어그램(stale diagram)으로 보고합니다. `_data/i18n/<lang>.yml`의 `diagram.source`는 원본 펼침 요소의 이름입니다.
+- 정적 수식: `modootoday.math.mode: static`이면 페이지의 n번째 ```` ```math ```` 펜스나 `$$` 블록이 `{src, html}` 목록인 `_data/math/<key>.yml`의 n번째 항목의 `html`로 바뀝니다([정적 수식](../recipes/figures/math-diagrams.ko.md#정적-수식) 참고). `<key>`는 페이지의 기본 언어 원본 경로에서 확장자를 빼고 `/`를 `--`로 쓴 것입니다(front matter `math_key:`로 바꿀 수 있습니다). `src`는 구분자 사이의 TeX에 위 규칙을 적용한 블록의 다이제스트입니다. `math.label`(`수식 [n]`)이 각 블록 영역의 이름입니다.
+- 레코드 페이지: `modootoday.records`([생성 페이지](../recipes/generated-pages.ko.md) 참고), 페이지 front matter `record: <set>/<key>`와 `record_index`, 디렉터리 페이지의 `records: <set>`, 정보 목록 `dl.mt-detail-facts.mt-record-facts`.
+- PWA: 레이아웃 `pages/offline`(오프라인 페이지. 보관한 페이지 목록은 `pwa/offline.js`가 채우는 `section[data-mt-offline]`), front matter `pwa: precache`, 매니페스트 링크의 `data-mt-sw`, `data-mt-scope`, `data-mt-toast-css`, `data-mt-update`, `data-mt-reload`, `data-mt-later`, `data-mt-offline-notice`, `data-mt-close` 속성, 업데이트·오프라인 알림 `div.mt-toast[role=status]`와 `.mt-toast-actions`, 캐시 이름 `mt:<baseurl>/:assets:<version>`, `mt:<baseurl>/:pages:<version>`, `mt:<baseurl>/:media`, 레이블 `pwa.offline_title`, `pwa.offline_text`, `pwa.offline_pages`, `pwa.retry`, `pwa.update`, `pwa.reload`, `pwa.later`, `pwa.offline_notice`, `pwa.close`입니다. [설치할 수 있는 사이트](../recipes/pwa.ko.md)를 참고하세요.
+- 쇼케이스: [스타터 데모 쇼케이스](showcase.ko.md)를 참고하세요. 레이블은 `showcase.region`, `showcase.theme`, `showcase.demo`, `showcase.docs`, `showcase.docs_short`, `showcase.use`, `showcase.dismiss`, `showcase.starters.<name>`입니다. 읽는 사람이 숨기면 세션 저장소 키 `mt-showcase`에 `off`가 들어갑니다.
 - 스텁 작성기: 스텁 파일은 `<name>.md.txt`, `<name>.flat.md.txt`, `<name>.html.md.txt`, 레코드 페이지 `<dir>/<key>.md`, 그리고 `--pwa`일 때 `manifest.webmanifest`(`layout: null`, `permalink: /manifest.webmanifest`, include `modootoday/pwa/manifest.json`), `sw.js`(`permalink: /sw.js`, include `modootoday/pwa/sw.js`), `offline.md`와 `offline.<lang>.md`(`layout: pages/offline`, `permalink: /offline/` 또는 `/<lang>/offline/`)입니다. 종료 코드는 0(할 일 없음, 미리보기 또는 쓰기 완료), 1(`--check`가 차이를 찾음), 2(사용법 또는 `_config.yml`), 3(데이터)입니다.
 
 ## 레이아웃
@@ -58,20 +58,20 @@ description: 이 테마가 사이트용으로 문서화한 이름, 클래스, in
 
 | 묶음 | 레이아웃 |
 |---|---|
-| [레이아웃](../../layouts/) | `default`, `doc`, `page`, `post`, `archive` |
-| [페이지 셸](../../layouts/shells/) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
-| [디렉터리 레이아웃](../../layouts/directory/) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
-| [상세 페이지](../../layouts/detail/) | `project`, `case-study`, `job`, `event`, `episode` |
-| [마케팅 페이지](../../layouts/marketing/) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
-| [블로그와 뉴스](../../layouts/blog-news/) | `blog`, `news`, `news-article`, `author`, `feed` |
-| [문서 확장](../../layouts/docs-extra/) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
-| [문서](../../layouts/documents/) | `legal`, `resume` |
-| [AI 에이전트](../../guides/agents/) | `twin`, `llms`, `llms-full` |
+| [레이아웃](../layouts/index.ko.md) | `default`, `doc`, `page`, `post`, `archive` |
+| [페이지 셸](../layouts/shells.ko.md) | `home`, `wide`, `minimal`, `error`, `redirect`, `search` |
+| [디렉터리 레이아웃](../layouts/directory/index.ko.md) | `directory`, `team`, `jobs`, `events`, `sponsors`, `portfolio`, `integrations` |
+| [상세 페이지](../layouts/detail/index.ko.md) | `project`, `case-study`, `job`, `event`, `episode` |
+| [마케팅 페이지](../layouts/marketing/index.ko.md) | `feature`, `pricing`, `download`, `brand`, `links`, `contact` |
+| [블로그와 뉴스](../layouts/blog-news/index.ko.md) | `blog`, `news`, `news-article`, `author`, `feed` |
+| [문서 확장](../layouts/docs-extra/index.ko.md) | `reference`, `changelog`, `roadmap`, `glossary`, `hub`, `course`, `book` |
+| [문서](../layouts/documents/index.ko.md) | `legal`, `resume` |
+| [AI 에이전트](../guides/agents.ko.md) | `twin`, `llms`, `llms-full` |
 | 내부용 | `detail`. 상세 페이지 레이아웃들의 바탕이니 그중 하나를 쓰세요 |
 
 ## Markdown 규칙
 
-`md-components v1`은 `RULES.md`에 있고 [Markdown 규칙](../rules/) 페이지로 공개하는 Markdown 규칙 표준의 이름이며, CSS 접두사가 아닙니다. 출력 클래스는 `mt-*`를 씁니다.
+`md-components v1`은 `RULES.md`에 있고 [Markdown 규칙](rules.ko.md) 페이지로 공개하는 Markdown 규칙 표준의 이름이며, CSS 접두사가 아닙니다. 출력 클래스는 `mt-*`를 씁니다.
 
 ## 컴포넌트 구조
 
@@ -189,7 +189,7 @@ steps: {slots: [{items: {min: 1}}, {panels: {min: 1}}], parts: [section.mt-c-ste
 ## 오른쪽에서 왼쪽 쓰기와 수식
 
 - 아랍어, 페르시아어, 히브리어, 우르두어 등 RTL 언어 페이지는 `lang`에 따라 `dir="rtl"`을 받습니다. front matter의 `direction: rtl` 또는 `ltr`(또는 `_data/i18n/<lang>.yml`의 `direction:`)로 바꿀 수 있습니다. 컴포넌트는 논리 속성을 써서 좌우가 뒤집히고, 코드는 왼쪽에서 오른쪽으로 유지됩니다.
-- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. 정적 다이어그램과 수식은 커밋한 SVG 파일과 MathML을 보여 줍니다. [수식과 다이어그램](../../recipes/figures/math-diagrams/)을 보세요.
+- 테마는 수식·다이어그램 렌더러를 포함하지 않습니다. 정적 다이어그램과 수식은 커밋한 SVG 파일과 MathML을 보여 줍니다. [수식과 다이어그램](../recipes/figures/math-diagrams.ko.md)을 보세요.
 
 ## 글과 아카이브
 

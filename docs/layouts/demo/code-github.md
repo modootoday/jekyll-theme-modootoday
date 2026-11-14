@@ -17,7 +17,7 @@ modootoday:
   code_theme: github
 ```
 
-The colors come from GitHub's light and dark editor themes. Rouge sorts tokens differently from the editor, so the palette matches GitHub but a block can color a word differently. See [Customize](../../../guides/customize/#code-colors).
+The colors come from GitHub's light and dark editor themes. Rouge sorts tokens differently from the editor, so the palette matches GitHub but a block can color a word differently. See [Customize](../../guides/customize.md#code-colors).
 
 ## Ruby
 

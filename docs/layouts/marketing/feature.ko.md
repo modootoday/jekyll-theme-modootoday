@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/marketing/feature/
-source_rev: sha256:16581e16a768
+source_rev: sha256:175b356cdf9b
 nav_order: 1
 title: 기능 데모
 layout: feature
@@ -18,4 +18,4 @@ cta: {label: 시작하기, url: /ko/guides/first-page/}
 ---
 모든 기능이 JavaScript 없이 동작합니다.
 
-![차트 대시보드를 보여 주는 휴대폰 세 대](../../../../assets/images/projects/app.webp)
+![차트 대시보드를 보여 주는 휴대폰 세 대](../../assets/images/projects/app.webp)

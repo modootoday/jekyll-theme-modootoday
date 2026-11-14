@@ -16,4 +16,4 @@ description: Open positions as cards with the title, the location and the type o
 
 This page uses `layout: jobs`. Link each row to a page with `layout: job` for the full posting.
 
-[Back to directory layouts](../)
+[Back to directory layouts](index.md)

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/upgrade/
-source_rev: sha256:2866cb23a55c
+source_rev: sha256:648362c6ed51
 nav_order: 30
 title: 移行とアップグレード
 description: 別の Jekyll テーマからサイトを移す方法、既存のプロジェクトにテーマを導入する方法、バージョン間でアップグレードするときに変える点を順に説明します。
@@ -9,17 +9,17 @@ description: 別の Jekyll テーマからサイトを移す方法、既存の�
 # 移行とアップグレード
 
 > [!NOTE]
-> このページは[英語の原文](../../../guides/upgrade/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](upgrade.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## 別のテーマから
 
-1. `theme:` または `remote_theme:` をこのテーマに置き換え ([インストール](../install/)を参照)、バージョンを固定します。
+1. `theme:` または `remote_theme:` をこのテーマに置き換え ([インストール](install.ja.md)を参照)、バージョンを固定します。
 2. `_config.yml` で `layout: doc` を既定にするか、独自のレイアウトを残して必要な部分だけを include します。
 3. ページ本文はそのままにします。GitHub アラート、表、フェンスコードはすでに動きます。できるところでは本文から生の HTML と Liquid を取り除きます。移植できないものは `modootoday-check` が一覧にします。
 4. 色とフォントは CSS セレクターを上書きせず `modootoday.tokens` に移します。
 5. `jekyll build` と `modootoday-check SRC _site` を実行し、報告された内容を直します。
 
-`jekyll new` で作ったサイト(minima)は 2 か所を変えます。`_config.yml` のテーマの行と `Gemfile` のテーマの gem です。`gem "minima"` を `gem "jekyll-theme-modootoday"` に置き換えて `bundle install` を実行してください。置き換えないと Jekyll 4 は "The jekyll-theme-modootoday theme could not be found" で止まります。GitHub Pages では代わりに[インストール](../install/)の `remote_theme` の 2 行を使います。インストールの `sass: silence_deprecations` の行も加えてください。加えないと Jekyll 4 のビルドが Sass の通知を数百件出力します。ほかに直すところはありません。`layout: page` は名前が違うだけの `doc` レイアウトで、本文に見出しがなければ `title:` をページの見出しとして表示し（About ページ）、ホームページはサイト名を見出しにして記事一覧を表示し、ヘッダーは `header_pages` または `title` のある最上位のページをすべて表示し、記事にはサイトの `author:` が出ます。`modootoday-check` は `.md` のページだけを読み、`jekyll new` が作った `.markdown` ファイルごとに警告します。確認するには名前を `.md` に変えてください。`modootoday-check` はサイトにもテーマにもないレイアウトを報告し、`single`(`doc` または `post`)や `splash` などの Minimal Mistakes のレイアウトには代わりのレイアウトを示します。
+`jekyll new` で作ったサイト(minima)は 2 か所を変えます。`_config.yml` のテーマの行と `Gemfile` のテーマの gem です。`gem "minima"` を `gem "jekyll-theme-modootoday"` に置き換えて `bundle install` を実行してください。置き換えないと Jekyll 4 は "The jekyll-theme-modootoday theme could not be found" で止まります。GitHub Pages では代わりに[インストール](install.ja.md)の `remote_theme` の 2 行を使います。インストールの `sass: silence_deprecations` の行も加えてください。加えないと Jekyll 4 のビルドが Sass の通知を数百件出力します。ほかに直すところはありません。`layout: page` は名前が違うだけの `doc` レイアウトで、本文に見出しがなければ `title:` をページの見出しとして表示し（About ページ）、ホームページはサイト名を見出しにして記事一覧を表示し、ヘッダーは `header_pages` または `title` のある最上位のページをすべて表示し、記事にはサイトの `author:` が出ます。`modootoday-check` は `.md` のページだけを読み、`jekyll new` が作った `.markdown` ファイルごとに警告します。確認するには名前を `.md` に変えてください。`modootoday-check` はサイトにもテーマにもないレイアウトを報告し、`single`(`doc` または `post`)や `splash` などの Minimal Mistakes のレイアウトには代わりのレイアウトを示します。
 
 よくある対応: just-the-docs の `layout: default` は `layout: doc` になります。`include note.html` タグで作ったコールアウトは `> [!NOTE]` に、HTML で書いたバッジは `` `status:available` `` のコードスパンになります。
 
@@ -35,7 +35,7 @@ gem か、タグに固定した `remote_theme:` を推奨します。コピー�
 
 ## Markdown 版
 
-Markdown 版はスタブファイル、プラグイン、ソースモードのどれかで作り、切り替えてもページ本文は変わりません。三つの方法の比較は [AI エージェント](../agents/)にあります。
+Markdown 版はスタブファイル、プラグイン、ソースモードのどれかで作り、切り替えてもページ本文は変わりません。三つの方法の比較は [AI エージェント](agents.ja.md)にあります。
 
 ## jekyll-seo-tag から移る
 
@@ -43,13 +43,13 @@ Markdown 版はスタブファイル、プラグイン、ソースモードの�
 
 1. `plugins:` と `Gemfile` から `jekyll-seo-tag` を削除し、`_includes/head-custom.html` から `seo` タグを削除します。
 2. `modootoday:` から `seo: false` と `hreflang: true` を削除します。キットが canonical リンク、`hreflang` の alternate リンク、Open Graph を再び書きます。手で追加した alternate リンクは削除し、同じリンクが二重に出ないようにします。
-3. ブラウザーのバーの色は `modootoday.theme_color` で指定します（[設定](../configuration/)を参照）。キットは既定でライト用とダーク用の `theme-color` タグを 2 つ書きます。独自の `theme-color` タグがあれば削除します。残すと 1 ページに 3 つになります。
+3. ブラウザーのバーの色は `modootoday.theme_color` で指定します（[設定](configuration.ja.md)を参照）。キットは既定でライト用とダーク用の `theme-color` タグを 2 つ書きます。独自の `theme-color` タグがあれば削除します。残すと 1 ページに 3 つになります。
 4. キットが書くのは `twitter:card` だけです（ページに画像があれば `summary_large_image`）。`twitter:` の設定は読まないため、`twitter:site` が必要なら `_includes/head-custom.html` に meta タグで追加します。
 5. 再ビルドして `modootoday-check SRC _site` を実行します。jekyll-seo-tag の JSON-LD に関する警告が消えているはずです。
 
 ## アップグレード
 
-飛ばすすべてのバージョンについて `CHANGELOG.md` を読んでください。文書化された名前は[公開 API](../../reference/api/)にあります。アップグレード後にサイトをビルドし、`modootoday-check . _site --strict` を実行してください（ソースのフォルダー、ビルドしたサイトの順）。
+飛ばすすべてのバージョンについて `CHANGELOG.md` を読んでください。文書化された名前は[公開 API](../reference/api.ja.md)にあります。アップグレード後にサイトをビルドし、`modootoday-check . _site --strict` を実行してください（ソースのフォルダー、ビルドしたサイトの順）。
 
 | 移行元 | 移行先 | やること |
 |---|---|---|
@@ -67,9 +67,9 @@ Markdown 版はスタブファイル、プラグイン、ソースモードの�
 - 1.3: `reference` のサイドバー(`sidebar: true`)とパッケージ表(`packages:`)。どちらも任意です。
 - 1.4: `packages_compact` と `packages_position`(任意)。`reference` ページも `doc` と同じくアラートを変換するようになりました。
 - 1.5: 既定の見た目と、ページがテーマの CSS と JavaScript を読み込むしくみが変わります(下記参照)。
-- 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)、静的な数式(`modootoday.math.mode: static`、`_data/math` の MathML。[静的な数式](../../recipes/figures/math-diagrams/#静的な数式)を参照)、Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。`modootoday.chart.src` で指定したサイトの Chart.js が描画。[グラフ](../../recipes/figures/charts/)を参照)、`c: widget` や `widget:` で置く自作の custom element であるウィジェット(`modootoday.scripts` の `element:`。[ウィジェット](../../recipes/figures/widgets/)を参照)、いずれも任意。`modootoday.math.base` は、ローダーが使う自分でホストした KaTeX のパスを短くします。`modootoday-check` は JSON-LD に 1 つだけ入れ子になったオブジェクト(`offers`、`organizer` など)も検査し、問題を警告として報告します。次のメジャーバージョンからはエラーです([検査](../structured-data/#検査)を参照)。ビルドはそのまま通りますが、`--strict` では失敗します。 スターターのデモのビルドには、ショーケースのバーかピルを表示できます(`modootoday.showcase`、デモ専用の設定ファイルに書きます。[スターターのデモのショーケース](../../reference/showcase/)を参照)。このときすべてのページに `noindex` が付きます。
-- 1.7: イベントの `tickets:` に `{url, price, currency}` のマップも書けるようになり、販売情報に価格が、情報リストに料金の行が入ります([詳細ページ](../../layouts/detail/#イベント)を参照)。`schema.offers` なしで `tickets:` に URL だけを書くと、`modootoday-check` がマップの形を示す警告を出します。URL だけのページも以前と同じくビルドされます。`modootoday.pwa`(既定はオフ)でサイトをインストールできるようになります。`enabled: true` と `modootoday-stubs . --pwa --write` で、サイトのタイトル、`theme_color`、ブランドのマークまたは独自のアイコンから作るウェブアプリマニフェストをリンクします([インストールできるサイト](../../recipes/pwa/)を参照)。`enabled: true` ではサービスワーカーがテーマのファイルと訪れたページを保存してオフラインで読めるようにし(スタブ作成ツールが `sw.js` とオフラインページも書き出します)、`enabled: kill` は訪問者の端末からワーカーを取り除きます。テーマのファイルが変わるデプロイでは読者に再読み込みのボタンがある通知を表示し、ページだけが変わったデプロイは通知なしで反映されます。このキーがないサイトは同じ HTML でビルドされ、gem には `assets/modootoday/` の下にアイコンのファイルが 3 つ加わります。
-  - 1.7 で自分で有効にする機能はほかにもあります([設定](../configuration/)のキー)。インストールしたアプリ向けの `c: install` セクションと `pwa.shortcuts`、`pwa.screenshots`、各 `##` と `###` の見出しの末尾に自身へのリンクを付ける `modootoday.heading_anchors: true`、`diagrams:` の項目の `min_width` と翻訳ページ独自の図の組([数式と図](../../recipes/figures/math-diagrams/#静的な-mermaid-の図)を参照)、`modootoday-check --links`、フィードのためのブログ、著者、アーカイブ、ドキュメント拡張のページの front matter `feed:` と `author:`、`feed_source:`、`releases_feed:`([著者とフィード](../../layouts/blog-news/#著者とフィード)を参照)、`edit_url: auto` と `build_link: true`、フィードバックのリンクの行である `modootoday.feedback`、`modootoday.banner: {release: latest}`、`modootoday.print: true` です。設定するまでは何も変わらず、フィードバックの行と見出しのアンカーも有効にしたときだけ表示されます。
+- 1.6: 静的な Mermaid の図(front matter の `diagrams:`、[数式と図](../recipes/figures/math-diagrams.ja.md#静的な-mermaid-の図)を参照)、静的な数式(`modootoday.math.mode: static`、`_data/math` の MathML。[静的な数式](../recipes/figures/math-diagrams.ja.md#静的な数式)を参照)、Markdown の表から作るグラフ(`modootoday.chart`、`c: chart`。`modootoday.chart.src` で指定したサイトの Chart.js が描画。[グラフ](../recipes/figures/charts.ja.md)を参照)、`c: widget` や `widget:` で置く自作の custom element であるウィジェット(`modootoday.scripts` の `element:`。[ウィジェット](../recipes/figures/widgets.ja.md)を参照)、いずれも任意。`modootoday.math.base` は、ローダーが使う自分でホストした KaTeX のパスを短くします。`modootoday-check` は JSON-LD に 1 つだけ入れ子になったオブジェクト(`offers`、`organizer` など)も検査し、問題を警告として報告します。次のメジャーバージョンからはエラーです([検査](structured-data.ja.md#検査)を参照)。ビルドはそのまま通りますが、`--strict` では失敗します。 スターターのデモのビルドには、ショーケースのバーかピルを表示できます(`modootoday.showcase`、デモ専用の設定ファイルに書きます。[スターターのデモのショーケース](../reference/showcase.ja.md)を参照)。このときすべてのページに `noindex` が付きます。
+- 1.7: イベントの `tickets:` に `{url, price, currency}` のマップも書けるようになり、販売情報に価格が、情報リストに料金の行が入ります([詳細ページ](../layouts/detail/index.ja.md#イベント)を参照)。`schema.offers` なしで `tickets:` に URL だけを書くと、`modootoday-check` がマップの形を示す警告を出します。URL だけのページも以前と同じくビルドされます。`modootoday.pwa`(既定はオフ)でサイトをインストールできるようになります。`enabled: true` と `modootoday-stubs . --pwa --write` で、サイトのタイトル、`theme_color`、ブランドのマークまたは独自のアイコンから作るウェブアプリマニフェストをリンクします([インストールできるサイト](../recipes/pwa.ja.md)を参照)。`enabled: true` ではサービスワーカーがテーマのファイルと訪れたページを保存してオフラインで読めるようにし(スタブ作成ツールが `sw.js` とオフラインページも書き出します)、`enabled: kill` は訪問者の端末からワーカーを取り除きます。テーマのファイルが変わるデプロイでは読者に再読み込みのボタンがある通知を表示し、ページだけが変わったデプロイは通知なしで反映されます。このキーがないサイトは同じ HTML でビルドされ、gem には `assets/modootoday/` の下にアイコンのファイルが 3 つ加わります。
+  - 1.7 で自分で有効にする機能はほかにもあります([設定](configuration.ja.md)のキー)。インストールしたアプリ向けの `c: install` セクションと `pwa.shortcuts`、`pwa.screenshots`、各 `##` と `###` の見出しの末尾に自身へのリンクを付ける `modootoday.heading_anchors: true`、`diagrams:` の項目の `min_width` と翻訳ページ独自の図の組([数式と図](../recipes/figures/math-diagrams.ja.md#静的な-mermaid-の図)を参照)、`modootoday-check --links`、フィードのためのブログ、著者、アーカイブ、ドキュメント拡張のページの front matter `feed:` と `author:`、`feed_source:`、`releases_feed:`([著者とフィード](../layouts/blog-news/index.ja.md#著者とフィード)を参照)、`edit_url: auto` と `build_link: true`、フィードバックのリンクの行である `modootoday.feedback`、`modootoday.banner: {release: latest}`、`modootoday.print: true` です。設定するまでは何も変わらず、フィードバックの行と見出しのアンカーも有効にしたときだけ表示されます。
   - 次の変更は、新しい設定なしで既存のサイトの出力を変えます。`modootoday.feed: true` のサイトでは、`category` も `tag` もないブログ一覧の紹介文の下にフィードの購読リンクが出ます(front matter の `feed: false` で外せます)。`image:` がなくヒーロー画像かポスターがあるページは、`og_image` より先にその画像を `og:image` に使い、わかる場合は `og:image:alt` と画像のサイズも加えます。目次の一覧は読んでいるセクションを示し、一覧があるページで小さなスクリプトを読み込みます。サイドバーがある文書ページには body のクラス `mt-body-sidebar` が付きます。`_layouts/default.html` を上書きしたサイトは広い文書の枠をそのまま保ち、このクラスを出力すれば最初の描画も同じになります。
 
 `##` 見出しより少ない `sections:` 項目を許していた 1.0 以前の草案を使っていたなら、残りの見出しごとに `notes` のような名前だけを足してください。今は数が一致する必要があり、`modootoday-check` がページと両方の数を報告します。
@@ -109,7 +109,7 @@ $mt-overrides-dark: (
 
 記事は `narrow` の幅(40rem)で 18/28(韓国語・日本語・中国語は 18/32)になり、タイトルは `clamp(2.5rem, 2rem + 2vw, 3rem)` です。タグのフッターはページのメタ情報の行の下に 2 本目の線を足さなくなりました。カバーと本文の画像は角が 8px で、細い枠線が付きます。記事カードは箱をなくし、16:9 のカバーに角と枠線があり、タイトルは 18/28・太さ 600 でホバー時に下線が付き、抜粋は 2 行で切れ、グリッドとマガジンの一覧は 18rem の列と 2rem の間隔を使います。ブログの一覧にも記事と同じパンくずリストが表示されます。
 
-フッターは塗りがなくなり、余白が広がりました(上 3rem、下 2rem)。テーマが `_data/nav/footer.yml` からフッターを描けるようになりました([カスタマイズ](../customize/#フッター)を参照)。検索結果は一致した語を示し、エラーレイアウトはリンクだけの本文の段落をチップの行で表示します。ステータスコードは太さ 600 の前景色です(以前は太さ 800 のアクセントカラー)。
+フッターは塗りがなくなり、余白が広がりました(上 3rem、下 2rem)。テーマが `_data/nav/footer.yml` からフッターを描けるようになりました([カスタマイズ](customize.ja.md#フッター)を参照)。検索結果は一致した語を示し、エラーレイアウトはリンクだけの本文の段落をチップの行で表示します。ステータスコードは太さ 600 の前景色です(以前は太さ 800 のアクセントカラー)。
 
 どのレイアウトも 3 つの幅のどれかを使います。本文は `measure`(45rem)、グリッドは `container`(75rem)、法的なページ・リンクページ・履歴書・検索フォームは `narrow`(40rem)です。詳細、ディレクトリ、検索、マーケティング、docs-extra のページの段落と通常のリストは、コンテナいっぱいに広がらず `measure` で止まるようになりました。4 列以上の表では 1 列目より後のコードが折り返せるので、そうした表はスクロールせずに本文の列に収まります。
 

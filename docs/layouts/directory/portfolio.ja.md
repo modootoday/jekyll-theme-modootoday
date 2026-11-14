@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/layouts/directory/portfolio/
-source_rev: sha256:bf499928fca6
+source_rev: sha256:5b6f77ba4c34
 nav_order: 1
 title: "ポートフォリオのデモ"
 layout: portfolio
@@ -19,4 +19,4 @@ description: 画像、タイトル、短い説明、タグのあるプロジェ�
 
 このページは `layout: portfolio` を使います。タグを選ぶと該当するプロジェクトだけが表示されます。フィルターは HTML と CSS だけで動きます。
 
-[ディレクトリレイアウトに戻る](../)
+[ディレクトリレイアウトに戻る](index.ja.md)

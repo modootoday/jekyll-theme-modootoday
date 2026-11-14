@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/layouts/detail/
-source_rev: sha256:9a2703b36f11
+source_rev: sha256:0a9c1f47a2c2
 nav_order: 30
 title: 상세 페이지
 description: 프로젝트, 사례 연구, 채용 공고, 행사, 팟캐스트 에피소드를 한 페이지에 하나씩 보여 주며 정보 목록, 행동 유도 하나, 구조화 데이터를 갖춥니다.
@@ -12,11 +12,11 @@ description: 프로젝트, 사례 연구, 채용 공고, 행사, 팟캐스트 �
 
 | 레이아웃 | 정보 | 행동 유도 | 구조화 데이터 | 데모 |
 |---|---|---|---|---|
-| `project` | 고객, 역할, 연도, 기술, 링크 | `cta` | CreativeWork | [프로젝트](project/) |
-| `case-study` | 고객, 역할, 연도, 기술, 링크 | `cta` | Article | [사례 연구](case-study/) |
-| `job` | 근무지, 고용 형태, 급여, 게시일, 마감일 | 지원하기 (`apply`) | JobPosting | [채용](job/) |
-| `event` | 시작, 종료, 장소, 온라인, 가격 | 티켓과 .ics 파일 | Event | [행사](event/) |
-| `episode` | 시즌과 회차, 게시일, 길이, 오디오 플레이어 | `cta` | PodcastEpisode | [에피소드](episode/) |
+| `project` | 고객, 역할, 연도, 기술, 링크 | `cta` | CreativeWork | [프로젝트](project.ko.md) |
+| `case-study` | 고객, 역할, 연도, 기술, 링크 | `cta` | Article | [사례 연구](case-study.ko.md) |
+| `job` | 근무지, 고용 형태, 급여, 게시일, 마감일 | 지원하기 (`apply`) | JobPosting | [채용](job.ko.md) |
+| `event` | 시작, 종료, 장소, 온라인, 가격 | 티켓과 .ics 파일 | Event | [행사](event.ko.md) |
+| `episode` | 시즌과 회차, 게시일, 길이, 오디오 플레이어 | `cta` | PodcastEpisode | [에피소드](episode.ko.md) |
 
 ## 채용 공고
 
@@ -51,7 +51,7 @@ tickets: {url: https://example.com/tickets, price: 15000, currency: KRW}   # 또
 ---
 ```
 
-캘린더 링크는 `data:` URL에 담긴 .ics 파일이라 서버 없이 동작합니다. `tickets:`는 티켓 받기 버튼의 링크이자 행사의 `offers`가 됩니다. 맵으로 적으면 `price`(0 이상의 숫자)와 `currency`(KRW, USD 같은 ISO 4217 코드)가 판매 정보와 정보 목록의 가격 행에 들어가고, 0이면 무료로 표시됩니다. 둘 다 적거나 둘 다 빼세요. URL만 적으면 판매 정보에 가격이 없어 `modootoday-check`가 경고하고(다음 메이저 버전부터 오류) 맵 형식을 알려 줍니다. `availability`나 판매 기간처럼 더 많은 내용을 적으려면 판매 정보를 직접 쓰세요. `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}`는 `tickets:`로 만든 판매 정보를 대신합니다. [행사 데모](event/)는 자기 front matter를 보여 줍니다.
+캘린더 링크는 `data:` URL에 담긴 .ics 파일이라 서버 없이 동작합니다. `tickets:`는 티켓 받기 버튼의 링크이자 행사의 `offers`가 됩니다. 맵으로 적으면 `price`(0 이상의 숫자)와 `currency`(KRW, USD 같은 ISO 4217 코드)가 판매 정보와 정보 목록의 가격 행에 들어가고, 0이면 무료로 표시됩니다. 둘 다 적거나 둘 다 빼세요. URL만 적으면 판매 정보에 가격이 없어 `modootoday-check`가 경고하고(다음 메이저 버전부터 오류) 맵 형식을 알려 줍니다. `availability`나 판매 기간처럼 더 많은 내용을 적으려면 판매 정보를 직접 쓰세요. `schema: {offers: {type: Offer, price: 0, priceCurrency: KRW, availability: https://schema.org/InStock, url: https://example.com/tickets}}`는 `tickets:`로 만든 판매 정보를 대신합니다. [행사 데모](event.ko.md)는 자기 front matter를 보여 줍니다.
 
 ## 에피소드
 

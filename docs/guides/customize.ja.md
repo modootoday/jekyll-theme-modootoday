@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/customize/
-source_rev: sha256:221af770fbea
+source_rev: sha256:2912c4425db1
 nav_order: 50
 title: カスタマイズ
 description: トークンとトークンブリッジで色、角丸、フォントを変え、独自のスタイルシートを足したり Sass パーシャルを上書きしたりして、テーマをサイトに合わせる方法を説明します。
@@ -18,7 +18,7 @@ sections:
 まずはトークンから。トークンで足りないときだけ Sass パーシャルを使います。
 
 > [!NOTE]
-> このページは[英語の原文](../../../guides/customize/)の翻訳です。内容が異なる場合は英語版が優先されます。
+> このページは[英語の原文](customize.md)の翻訳です。内容が異なる場合は英語版が優先されます。
 
 ## デザイントークン
 
@@ -37,7 +37,7 @@ sections:
 - 値を `modootoday.tokens` と `modootoday.tokens_dark` に書きます。テーマ自身のトークンと同じセレクターでインラインの `<style>` に出力されるため、厳格な CSP ではブロックされます。
 - `modootoday.css_layers: true` にします。テーマの CSS が `@layer mt.*` に入り、レイヤー外のルールが勝つので、普通の `:root { … }` で足ります。
 
-ダークモードの画像：写真は `--mt-img-filter-dark` を、`.svg` の図は色相を保って反転してから `--mt-img-filter-dark` を適用する `--mt-diagram-filter-dark` を使います。どちらもトークンで変更できます。たとえば `--mt-diagram-filter-dark: none` にすると、すべての図が描いたままになります。一つの画像のパスの末尾に `#light` を付けると（`flow.svg#light`）、その画像だけが描いたままになります。[数式と図](../../recipes/figures/math-diagrams/#画像の図)を参照してください。
+ダークモードの画像：写真は `--mt-img-filter-dark` を、`.svg` の図は色相を保って反転してから `--mt-img-filter-dark` を適用する `--mt-diagram-filter-dark` を使います。どちらもトークンで変更できます。たとえば `--mt-diagram-filter-dark: none` にすると、すべての図が描いたままになります。一つの画像のパスの末尾に `#light` を付けると（`flow.svg#light`）、その画像だけが描いたままになります。[数式と図](../recipes/figures/math-diagrams.ja.md#画像の図)を参照してください。
 
 ### レイアウトのフック
 
@@ -90,11 +90,11 @@ modootoday:
     - {href: /assets/fonts/inter.woff2, as: font, type: font/woff2}
 ```
 
-配色、セルフホストのフォント、コントラストの確認までそろった例は[ブランドトークン](../../recipes/brand-tokens/)にあります。
+配色、セルフホストのフォント、コントラストの確認までそろった例は[ブランドトークン](../recipes/brand-tokens.ja.md)にあります。
 
 ## コードの色
 
-コードブロックは `--mt-code-*` トークンから色を取ります。`modootoday.code_theme: github` を設定すると、GitHub のライトとダークのパレットに切り替わります（[デモ](../../layouts/demo/code-github/)）。
+コードブロックは `--mt-code-*` トークンから色を取ります。`modootoday.code_theme: github` を設定すると、GitHub のライトとダークのパレットに切り替わります（[デモ](../layouts/demo/code-github.ja.md)）。
 
 ```yaml
 modootoday:
@@ -115,7 +115,7 @@ sections: [{c: features, name: why, visual: chart, scene: night}, faq]
 ---
 ```
 
-テーマにはヒーロー用ビジュアル `showcase` が 1 つ付属しています。やわらかな背景画像、トークンによるオーバーレイ、SVG で描いた UI シーンのアニメーションを重ねて表示します。スタイルシートはこのビジュアルを使うページにだけ読み込まれ、JavaScript を使わず 5 秒以内に動きが止まります。視差効果を減らす設定では最後の場面だけを表示します。ダークモードでは同じ画像を CSS filter で暗くし、`--mt-img-filter-dark` で調整できます。独自の画像を使うには `hero.image` にパスか `{path, srcset, width, height}` を指定してください。ホームレイアウトのヒーローと同じ `hero.image` キーです。[ホーム](../../)で実際の表示を確認できます。
+テーマにはヒーロー用ビジュアル `showcase` が 1 つ付属しています。やわらかな背景画像、トークンによるオーバーレイ、SVG で描いた UI シーンのアニメーションを重ねて表示します。スタイルシートはこのビジュアルを使うページにだけ読み込まれ、JavaScript を使わず 5 秒以内に動きが止まります。視差効果を減らす設定では最後の場面だけを表示します。ダークモードでは同じ画像を CSS filter で暗くし、`--mt-img-filter-dark` で調整できます。独自の画像を使うには `hero.image` にパスか `{path, srcset, width, height}` を指定してください。ホームレイアウトのヒーローと同じ `hero.image` キーです。[ホーム](../index.ja.md)で実際の表示を確認できます。
 
 ```yaml
 hero: {visual: showcase}
@@ -144,11 +144,11 @@ hero: {c: split, visual: orbit-stage, script: orbit, poster: {path: /assets/hero
 - `prefers-reduced-motion: reduce` のときは何もしません。ポスターが残ります。JavaScript がオフのときやモジュールが失敗したときもポスターが残ります。
 - ポスターの後ろにある `mt-visual-stage` クラスの要素に描きます。この要素は `visual:` の include から出力でき、ポスターの領域を覆います。
 - 最初の場面を描いたら `[data-mt-script]` の列に `data-mt-ready` を付けます。するとテーマがポスターを隠します。
-- 設定は `readConfig`（`/assets/js/modootoday/dom/config.js`）で `data-*` 属性から読み、ライトとダークの切り替えには `onThemeChange`（`/assets/js/modootoday/theme/current.js`、[イベント](../../reference/api/#イベント)を参照）で追従します。`../modootoday/dom/config.js` のように相対パスで読み込んでください。
+- 設定は `readConfig`（`/assets/js/modootoday/dom/config.js`）で `data-*` 属性から読み、ライトとダークの切り替えには `onThemeChange`（`/assets/js/modootoday/theme/current.js`、[イベント](../reference/api.ja.md#イベント)を参照）で追従します。`../modootoday/dom/config.js` のように相対パスで読み込んでください。
 
-[ヒーローモジュールのデモ](../../layouts/demo/orbit/)は、この契約に従う 40 行のモジュールです。
+[ヒーローモジュールのデモ](../layouts/demo/orbit.ja.md)は、この契約に従う 40 行のモジュールです。
 
-`element: <name>` を付けた項目は、ビジュアルを描く代わりに custom element を定義します。その要素があるページは `script:` なしでモジュールを読み込みます。[ウィジェット](../../recipes/figures/widgets/)は、そうした要素を Markdown から代替テキスト付きで置きます。
+`element: <name>` を付けた項目は、ビジュアルを描く代わりに custom element を定義します。その要素があるページは `script:` なしでモジュールを読み込みます。[ウィジェット](../recipes/figures/widgets.ja.md)は、そうした要素を Markdown から代替テキスト付きで置きます。
 
 `full_width: true` はランディングページ向けに、`main.mt-main` の本文幅の制限と左右の余白を外します（`.mt-main-full` を追加）。
 

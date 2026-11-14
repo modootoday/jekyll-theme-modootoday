@@ -27,7 +27,7 @@ $mt-overrides-dark: (
 );
 ```
 
-Each color is set in both maps, for light and dark mode. `heading-weight: 600` is the default and is here only to show where it goes. Which tokens each map takes, and what `modootoday-check` rejects, is in [Customize > Token bridge](../../guides/customize/#token-bridge).
+Each color is set in both maps, for light and dark mode. `heading-weight: 600` is the default and is here only to show where it goes. Which tokens each map takes, and what `modootoday-check` rejects, is in [Customize > Token bridge](../guides/customize.md#token-bridge).
 
 ## Your own stylesheet and font
 
@@ -58,7 +58,7 @@ Check both palettes before you ship them: body text on the background and on `mu
 
 ## Under a strict CSP
 
-The bridge, `site_css` and `preload` are all files, so `default-src 'self'; style-src 'self'` is enough (see [CSP](../csp/)). `modootoday.tokens` writes an inline `<style>` instead; on a strict CSP site, move those values into the bridge.
+The bridge, `site_css` and `preload` are all files, so `default-src 'self'; style-src 'self'` is enough (see [CSP](csp.md)). `modootoday.tokens` writes an inline `<style>` instead; on a strict CSP site, move those values into the bridge.
 
 ## The demo font
 

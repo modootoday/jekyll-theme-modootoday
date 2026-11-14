@@ -9,4 +9,4 @@ twin: true
 
 The live demo is the privacy policy of the landing starter, a `layout: legal` page: the effective date, the date of the last update and a version above the text, a contents list built from the `##` and `###` headings, and no site header, footer or banners on paper.
 
-[Documents](../) lists the front matter of the legal layout and of the resume layout.
+[Documents](index.md) lists the front matter of the legal layout and of the resume layout.

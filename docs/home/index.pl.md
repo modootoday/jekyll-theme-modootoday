@@ -16,7 +16,7 @@ sections:
 
 jekyll-theme-modootoday zamienia standardowy GitHub Flavored Markdown w przejrzystą witrynę z dokumentacją. Ten sam plik dobrze się czyta na github.com, w GitHub Pages i jako wersja Markdown dla agentów AI.
 
-[Zacznij](../guides/install/) [Przeglądaj komponenty](../components/) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
+[Zacznij](../guides/install.md) [Przeglądaj komponenty](../components/index.md) [GitHub](https://github.com/modootoday/jekyll-theme-modootoday)
 
 ## Dlaczego motyw modoo.today
 
@@ -48,15 +48,15 @@ permalink: pretty
 
 ## Jak czytać dokumentację
 
-1. [Zainstaluj](../guides/install/) motyw w GitHub Pages lub Jekyll 4.
-2. [Napisz pierwszą stronę](../guides/first-page/) w zwykłym Markdownie.
-3. Wybierz spośród [komponentów](../components/) i na [stronie ze wszystkimi komponentami](../components/kitchen-sink/).
-4. Dostosuj [konfigurację](../guides/configuration/) i [zmień wygląd](../guides/customize/) za pomocą tokenów i `_sass`.
-5. Spraw, by witryna była [czytelna dla agentów](../guides/agents/) dzięki wersjom Markdown i `llms.txt`.
+1. [Zainstaluj](../guides/install.md) motyw w GitHub Pages lub Jekyll 4.
+2. [Napisz pierwszą stronę](../guides/first-page.md) w zwykłym Markdownie.
+3. Wybierz spośród [komponentów](../components/index.md) i na [stronie ze wszystkimi komponentami](../components/kitchen-sink.md).
+4. Dostosuj [konfigurację](../guides/configuration.md) i [zmień wygląd](../guides/customize.md) za pomocą tokenów i `_sass`.
+5. Spraw, by witryna była [czytelna dla agentów](../guides/agents.md) dzięki wersjom Markdown i `llms.txt`.
 
 > [!NOTE]
-> Ta strona jest tłumaczeniem [angielskiego oryginału](../); w razie rozbieżności obowiązuje wersja angielska. Podlinkowane przewodniki są po angielsku.
+> Ta strona jest tłumaczeniem [angielskiego oryginału](../index.md); w razie rozbieżności obowiązuje wersja angielska. Podlinkowane przewodniki są po angielsku.
 
 ## Zacznij teraz
 
-[Zainstaluj motyw](../guides/install/) [Zobacz wszystkie komponenty](../components/kitchen-sink/)
+[Zainstaluj motyw](../guides/install.md) [Zobacz wszystkie komponenty](../components/kitchen-sink.md)
