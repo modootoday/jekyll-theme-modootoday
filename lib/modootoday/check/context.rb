@@ -22,13 +22,23 @@ module Modootoday
         @mtc = @site_cfg["modootoday"] || {}
         # files and folders listed in the site's exclude: are not pages (a repository README.md, a nested site)
         excl = Array(@site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }
-        @mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ SKIP }.sort
+        @mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ SKIP || unread?(f) }.sort
         @mds.reject! { |f| excl.any? { |e| rel(f) == e || rel(f).start_with?("#{e}/") } }
       end
 
       def option?(name) = argv.include?(name)
       def rel(f) = f.delete_prefix("#{src}/")
       def skipped?(f) = f.delete_prefix(src) =~ SKIP
+
+      # Files Jekyll does not read as pages: the SITE folder, and folders starting with _ (other builds such as
+      # _site_ko) other than _posts, _drafts and the collections.
+      def unread?(f)
+        @site_dir ||= site ? File.join(File.expand_path(site), "") : "\0"
+        return true if File.expand_path(f).start_with?(@site_dir)
+        @read_dirs ||= %w[_posts _drafts] + Array(site_cfg["collections"]).map { |c| "_#{c.is_a?(Array) ? c.first : c}" } +
+                       Array(site_cfg["include"]).map { |i| i.to_s.chomp("/") }
+        rel(f).split("/")[0..-2].any? { |d| d.start_with?("_") && !@read_dirs.include?(d) }
+      end
 
       # modootoday.twins: source = front-matter-less mode: a page without front matter is rendered by
       # jekyll-optional-front-matter AND copied raw to its own path, which then is its twin.

@@ -18,6 +18,19 @@ class CheckCliTest < CheckerCase
     assert_equal 1, check("--strict")[1]
   end
 
+  def test_the_site_folder_and_other_underscore_builds_are_not_scanned
+    page "_config.yml", "collections: {notes: {output: true}}\n"
+    page "a.md", "---\ntitle: A\n---\n# A\n"
+    page "_notes/n.md", "---\ntitle: N\n---\n# N\n"
+    page "_posts/2026-01-01-p.md", "---\ntitle: P\n---\nP\n"
+    bad = "---\nlayout: nope\n---\n> [! NOTE]\n> x\n"
+    %w[_site_ko/b.md build/c.md _site_ko/b.html].each { |f| page f, bad }
+    o, e, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, CHECK, @src, File.join(@src, "build"))
+    assert_equal 0, st.exitstatus, o + e
+    assert_match(/OK \(3 pages\)/, o)
+    refute_match(%r{_site_ko|build/c|nope}, o + e)
+  end
+
   def test_usage
     _, _, st = Open3.capture3(CLEAN_ENV, RbConfig.ruby, CHECK)
     refute st.success?

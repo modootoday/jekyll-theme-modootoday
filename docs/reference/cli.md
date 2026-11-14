@@ -5,7 +5,7 @@ description: Every option of the modootoday-check checker and the modootoday-stu
 ---
 # Command line
 
-The theme gem ships two commands. `modootoday-check` reads your sources and the built site and reports anything that would not render the same on github.com or break a rule; run it after `jekyll build`. `modootoday-stubs` writes the stub pages that classic GitHub Pages needs for twins, URL aliases and record pages; run it before the build. [Install > Verify the build](../../guides/install/#verify-the-build) shows how to run them with and without the gem.
+The theme gem ships two commands. `modootoday-check` reads your sources and the built site and reports anything that would not render the same on github.com or break a rule; run it after `jekyll build`. It reads the pages Jekyll reads: not the SITE folder, and not folders whose name starts with `_` (such as another build in `_site_ko`) other than `_posts`, `_drafts`, collections and folders that `include:` lists. `modootoday-stubs` writes the stub pages that classic GitHub Pages needs for twins, URL aliases and record pages; run it before the build. [Install > Verify the build](../../guides/install/#verify-the-build) shows how to run them with and without the gem.
 
 ## Options
 

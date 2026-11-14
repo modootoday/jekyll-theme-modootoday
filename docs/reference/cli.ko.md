@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/reference/cli/
-source_rev: sha256:a3bab784692f
+source_rev: sha256:08994607d983
 nav_order: 20
 title: 명령줄
 description: 검사기 modootoday-check와 스텁 작성기 modootoday-stubs의 모든 옵션, 그리고 각 종료 코드의 뜻을 정리합니다.
@@ -11,7 +11,7 @@ description: 검사기 modootoday-check와 스텁 작성기 modootoday-stubs의 
 > [!NOTE]
 > 이 페이지는 [영어 원문](../../../reference/cli/)의 번역입니다. 내용이 다르면 영어 문서가 우선합니다. 옵션 표는 명령의 도움말에서 만들어지므로 영어 그대로 보여 줍니다.
 
-테마 gem에는 명령이 두 개 들어 있습니다. `modootoday-check`는 원본과 빌드한 사이트를 읽고, github.com에서 다르게 보이거나 규칙을 어기는 것을 알려 줍니다. `jekyll build` 다음에 실행합니다. `modootoday-stubs`는 기본 GitHub Pages가 Markdown 버전, URL 별칭, 레코드 페이지에 필요로 하는 스텁 페이지를 씁니다. 빌드 전에 실행합니다. gem이 있을 때와 없을 때 실행하는 법은 [설치 > 빌드 확인](../../guides/install/)에 있습니다.
+테마 gem에는 명령이 두 개 들어 있습니다. `modootoday-check`는 원본과 빌드한 사이트를 읽고, github.com에서 다르게 보이거나 규칙을 어기는 것을 알려 줍니다. `jekyll build` 다음에 실행합니다. 읽는 페이지는 Jekyll이 읽는 페이지와 같습니다. SITE 폴더와, `_site_ko`의 다른 빌드처럼 이름이 `_`로 시작하는 폴더는 읽지 않습니다. 단 `_posts`, `_drafts`, 컬렉션, `include:`에 적은 폴더는 읽습니다. `modootoday-stubs`는 기본 GitHub Pages가 Markdown 버전, URL 별칭, 레코드 페이지에 필요로 하는 스텁 페이지를 씁니다. 빌드 전에 실행합니다. gem이 있을 때와 없을 때 실행하는 법은 [설치 > 빌드 확인](../../guides/install/)에 있습니다.
 
 ## 옵션
 

@@ -14,7 +14,7 @@ module Modootoday
         (@pages ||= {})[ctx.object_id] ||= begin
           excl = Array(ctx.site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }
           Dir.glob("#{ctx.src}/#{GLOB}").sort.filter_map do |f|
-            next if ctx.skipped?(f) || excl.any? { |e| ctx.rel(f) == e || ctx.rel(f).start_with?("#{e}/") }
+            next if ctx.skipped?(f) || ctx.unread?(f) || excl.any? { |e| ctx.rel(f) == e || ctx.rel(f).start_with?("#{e}/") }
             text = File.read(f, 4096)
             next unless text&.start_with?("---\n", "---\r\n")
             fm = (Markdown.fm(File.read(f)) rescue nil)
