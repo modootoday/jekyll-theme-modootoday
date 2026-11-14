@@ -17,7 +17,7 @@ R2 in [[adr:modootoday/20261109141321]]: a project site wants every visitor to s
 
 ## Decision
 
-- `modootoday.banner` keeps `text:` (with `url:`, `link:`) as before. Without `text:`, `release: latest` reads `site.github.latest_release` when the site is built (GitHub already leaves prereleases out) and `release: {version, url}` takes the values given; either fills "[version] is out." and a "What's new" link to the release. No release, no banner.
+- `modootoday.banner` keeps `text:` (with `url:`, `link:`) as before. Without `text:`, `release: latest` reads `site.github.latest_release` when the site is built (GitHub already leaves prereleases out) and `release: {version, url}` takes the values given; either fills "[version] is out." and a "What's new" link to the release. No release, no banner. A leading `v` before a digit is dropped (a tag `v1.2.0` reads "1.2.0 is out."), so the banner matches the docs whichever tag style a repository uses (added 2026-11-14, [[audit:modootoday/20261114090416]] m10).
 - The banner markup moves from `_layouts/default.html` to `chrome/banner.html`; `chrome/banner-text.html` resolves it once for the markup and for the banner sheet's condition. No new CSS; two labels in all 23 catalogs.
 - `modootoday-check` requires `text:` or `release:`, checks the release's shape, and shares the `site.github` warning with `edit_url: auto`.
 - The banner is as fresh as the last build, so the updates recipe pairs it with a rebuild on each published release. The docs site leaves it off.

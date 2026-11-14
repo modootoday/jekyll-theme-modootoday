@@ -33,13 +33,14 @@ class BannerTest < Minitest::Test
 
   def test_release_latest_reads_site_github
     h = build({ "release" => "latest" }, github: { "latest_release" => { "tag_name" => "v2.0.0", "html_url" => TAG } })
-    assert_includes bar(h), %(<p>v2.0.0 is out. <a href="#{TAG}")
+    assert_includes bar(h), %(<p>2.0.0 is out. <a href="#{TAG}"), "a leading v of the tag is dropped"
     assert_includes bar(h), ">What's new</a>"
     assert_includes h, "banner.css", "the banner sheet is linked"
   end
 
   def test_the_map_form_and_text_winning
     assert_includes bar(build({ "release" => { "version" => "3.1.0", "url" => "https://example.org/r" } })), "<p>3.1.0 is out. <a href=\"https://example.org/r\""
+    assert_includes bar(build({ "release" => { "version" => "very-1" } })), "<p>very-1 is out.", "only a v before a digit is dropped"
     h = build({ "text" => "Maintenance tonight", "release" => "latest" }, github: { "latest_release" => { "tag_name" => "v2.0.0" } })
     assert_includes bar(h), "<p>Maintenance tonight</p>"
   end
