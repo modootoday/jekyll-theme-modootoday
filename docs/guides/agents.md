@@ -13,7 +13,7 @@ Every page is published twice: as HTML for people and as its original Markdown f
 
 ## Markdown twins
 
-A page `guide.md` is also served at `/guide/index.md`, byte-identical to its body. Pick one of three ways to publish twins; switching between them does not change page bodies:
+A page `guide.md` is also served at `/guide/index.md`, byte-identical to its body except for one thing: a link that names a source file, such as `[Setup](setup.md)`, points at the site URL of its target's twin (or of the page or file when it has none), so it works from the twin's URL. Pick one of three ways to publish twins; switching between them does not change page bodies:
 
 - **Stub files** (default, classic GitHub Pages): one small `<page>.md.txt` per page, shown below.
 - **Plugin** (Jekyll 4 or GitHub Actions): `plugins: [jekyll-theme-modootoday]` creates twins and `llms.txt` without stubs.
@@ -72,7 +72,7 @@ Then `modootoday-stubs . --aliases --write` adds up to two stubs for each page w
 
 ## llms.txt
 
-`/llms.txt` lists every page of a language, following [llmstxt.org](https://llmstxt.org). `/llms-full.txt` concatenates every page body. The plugin adds both; on classic GitHub Pages they come from two files at the site root that hold only front matter, `llms.txt` and `llms-full.txt`:
+`/llms.txt` lists every page of a language, following [llmstxt.org](https://llmstxt.org). `/llms-full.txt` concatenates every page body, with the same links as the twins. The plugin adds both; on classic GitHub Pages they come from two files at the site root that hold only front matter, `llms.txt` and `llms-full.txt`:
 
 ```yaml
 # llms.txt (llms-full.txt is the same with layout: llms-full)

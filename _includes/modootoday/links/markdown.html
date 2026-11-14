@@ -1,0 +1,105 @@
+{%- comment -%}Sets mt_links_md to include.text, the Markdown body of the source file include.path, with each relative link
+that names a source file ([a](upgrade.md#x), [r]: ../b.ko.md, an image) pointed at its target's site URL: the twin of a
+page that has one, else the page, post or file. Other bytes, code spans and fenced code stay as they are.{%- endcomment -%}
+{%- include modootoday/lookup/urls.html -%}{%- include modootoday/lookup/paths.html -%}
+{%- assign _ml_nl = "
+" -%}
+{%- assign _ml_bt = "`" -%}
+{%- assign _ml_dir = include.path | split: "/" | pop -%}
+{%- assign _ml_fence = "" -%}
+{%- assign _ml_lines = include.text | append: _ml_nl | append: "mt" | split: _ml_nl -%}
+{%- capture mt_links_md -%}
+{%- for _ml_l in _ml_lines -%}
+{%- unless forloop.first -%}{{ _ml_nl }}{%- endunless -%}
+{%- assign _ml_s = _ml_l | lstrip -%}
+{%- assign _ml_f = _ml_s | slice: 0, 3 -%}
+{%- assign _ml_h = _ml_s | slice: 0, 1 -%}
+{%- assign _ml_h2 = _ml_s | slice: 0, 2 -%}
+{%- assign _ml_j = "" -%}
+{%- assign _ml_open = "" -%}
+{%- if _ml_fence == "" -%}{%- if _ml_f == "```" or _ml_f == "~~~" -%}
+{%- assign _ml_open = _ml_f -%}
+{%- assign _ml_oc = _ml_f | slice: 0, 1 -%}
+{%- for _ml_w in (4..8) -%}
+{%- assign _ml_x = _ml_open | append: _ml_oc -%}{%- assign _ml_y = _ml_s | slice: 0, _ml_w -%}
+{%- if _ml_y == _ml_x -%}{%- assign _ml_open = _ml_x -%}{%- else -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _ml_info = _ml_s | remove_first: _ml_open -%}
+{%- if _ml_oc == _ml_bt and _ml_info contains _ml_bt -%}{%- assign _ml_open = "" -%}{%- endif -%}
+{%- endif -%}{%- endif -%}
+{%- if _ml_fence != "" -%}
+{%- assign _ml_f = _ml_s | slice: 0, _ml_fence.size -%}
+{%- assign _ml_r = _ml_s | strip | remove: _ml_ch -%}
+{%- if _ml_f == _ml_fence and _ml_r == "" -%}{%- assign _ml_fence = "" -%}{%- endif -%}
+{%- elsif _ml_open != "" -%}{%- assign _ml_fence = _ml_open -%}{%- assign _ml_ch = _ml_oc -%}
+{%- elsif _ml_h == "[" and _ml_h2 != "[^" and _ml_s contains "]: " -%}{%- assign _ml_j = "]: " -%}
+{%- elsif _ml_s contains "](" -%}{%- assign _ml_j = "](" -%}
+{%- endif -%}
+{%- if _ml_j == "" -%}{{ _ml_l }}{%- else -%}
+{%- comment -%}A run of n backticks opens a code span that the next run of exactly n closes.{%- endcomment -%}
+{%- assign _ml_ps = _ml_l | append: _ml_bt | append: "m" | split: _ml_bt -%}
+{%- assign _ml_run = 0 -%}{%- assign _ml_code = 0 -%}
+{%- for _ml_p in _ml_ps -%}
+{%- if forloop.last -%}{%- break -%}{%- endif -%}
+{%- unless forloop.first -%}{{ _ml_bt }}{%- assign _ml_run = _ml_run | plus: 1 -%}{%- endunless -%}
+{%- if _ml_p != "" and _ml_run > 0 -%}
+{%- if _ml_code == 0 -%}{%- assign _ml_code = _ml_run -%}{%- elsif _ml_code == _ml_run -%}{%- assign _ml_code = 0 -%}{%- endif -%}
+{%- assign _ml_run = 0 -%}
+{%- endif -%}
+{%- if _ml_code > 0 -%}{{ _ml_p }}
+{%- elsif _ml_p contains _ml_j -%}
+{%- assign _ml_cs = _ml_p | append: _ml_j | append: "m" | split: _ml_j -%}
+{%- for _ml_c in _ml_cs -%}
+{%- if forloop.last -%}{%- break -%}{%- endif -%}
+{%- if forloop.first -%}{{ _ml_c }}{%- continue -%}{%- endif -%}
+{%- assign _ml_o = _ml_c -%}
+{%- assign _ml_c0 = _ml_c | slice: 0, 1 -%}
+{%- assign _ml_t = _ml_c | split: ")" | first | split: " " | first -%}
+{%- assign _ml_tp = _ml_t | split: "#" | first -%}
+{%- assign _ml_e = _ml_tp | slice: -1, 1 -%}
+{%- assign _ml_u = "" -%}
+{%- if _ml_tp and _ml_c0 != " " and _ml_c0 != "<" and _ml_c0 != "/" and _ml_c0 != "#" and _ml_e != "/" -%}
+{%- unless _ml_tp contains ":" -%}
+{%- assign _ml_segs = _ml_dir -%}
+{%- assign _ml_parts = _ml_tp | split: "/" -%}
+{%- for _ml_seg in _ml_parts -%}
+{%- if _ml_seg == ".." -%}{%- assign _ml_segs = _ml_segs | pop -%}
+{%- elsif _ml_seg != "." and _ml_seg != "" -%}{%- assign _ml_segs = _ml_segs | push: _ml_seg -%}{%- endif -%}
+{%- endfor -%}
+{%- assign _ml_path = _ml_segs | join: "/" -%}
+{%- assign _ml_k = "|" | append: _ml_path | append: "|" -%}
+{%- assign _ml_sk = "|/" | append: _ml_path | append: "|" -%}
+{%- if mt_static_paths contains _ml_sk -%}{%- assign _ml_u = "/" | append: _ml_path -%}
+{%- elsif mt_page_paths contains _ml_k -%}
+{%- assign _ml_i = mt_page_paths | split: _ml_k | first | prepend: "x" | split: "|" | size | minus: 1 -%}
+{%- assign _ml_pg = site.pages[_ml_i] -%}
+{%- if _ml_pg.path != _ml_path -%}{%- assign _ml_pg = site.pages | where: "path", _ml_path | first -%}{%- endif -%}
+{%- assign _ml_u = _ml_pg.url -%}
+{%- assign _ml_tw = _ml_u | append: "index.md" -%}
+{%- if _ml_u contains ".html" -%}{%- assign _ml_tw = _ml_u | replace: ".html", ".md" -%}{%- endif -%}
+{%- assign _ml_tk = "|" | append: _ml_tw | append: "|" -%}
+{%- if mt_page_urls contains _ml_tk -%}{%- assign _ml_u = _ml_tw -%}{%- endif -%}
+{%- elsif mt_doc_paths contains _ml_k -%}
+{%- assign _ml_i = mt_doc_paths | split: _ml_k | first | prepend: "x" | split: "|" | size | minus: 1 -%}
+{%- assign _ml_dc = site.documents[_ml_i] -%}
+{%- if _ml_dc.relative_path != _ml_path -%}{%- assign _ml_dc = site.documents | where: "relative_path", _ml_path | first -%}{%- endif -%}
+{%- assign _ml_u = _ml_dc.url -%}
+{%- endif -%}
+{%- endunless -%}
+{%- endif -%}
+{%- if _ml_u != "" -%}
+{%- if site.url and site.url != "" -%}{%- assign _ml_u = _ml_u | absolute_url -%}{%- else -%}{%- assign _ml_u = _ml_u | relative_url -%}{%- endif -%}
+{%- assign _ml_fr = _ml_t | remove_first: _ml_tp -%}
+{%- assign _ml_u = _ml_u | append: _ml_fr -%}
+{%- assign _ml_o = _ml_c | replace_first: _ml_t, _ml_u -%}
+{%- endif -%}
+{{- _ml_j -}}{{- _ml_o -}}
+{%- endfor -%}
+{%- else -%}{{ _ml_p }}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign _ml_n = mt_links_md.size | minus: 3 -%}
+{%- assign mt_links_md = mt_links_md | slice: 0, _ml_n -%}

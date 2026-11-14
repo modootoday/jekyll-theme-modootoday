@@ -5,7 +5,8 @@ require_relative "../../../stubs/page"
 module Modootoday
   module Check
     # 7. --twins: every Markdown page (except README.md, `twin: false` and `layout: error`) has /<page>/index.md
-    #    (/index.md for index.md), byte-identical to its source body. It comes from a stub <name>.md.txt
+    #    (/index.md for index.md), byte-identical to its source body except for the targets of links that name a
+    #    source file, which must reach a file in the site (TwinLinks). It comes from a stub <name>.md.txt
     #    (layout: twin; works on GitHub Pages) or from the opt-in plugin (plugins: [jekyll-theme-modootoday]).
     #    With modootoday.twins: source, a page without front matter is its own twin at /<path>.md.
     #    A reference page's packages: table is added to its twin as Markdown, before the body (or after it with
@@ -62,10 +63,14 @@ module Modootoday
         return errs << "#{rf}: twin missing at #{out}: #{format(HINT, "#{rf}.txt", File.basename(rf), out.delete_prefix(site))}" unless File.exist?(out)
         tw = File.binread(out)
         pk = fm["layout"] == "reference" && fm["packages"].is_a?(Array) && !fm["packages"].empty? ? fm["packages"] : nil
-        return errs << "#{out}: twin is not byte-identical to the body of #{rf}" unless pk || tw == b.b
-        return unless pk
+        return errs << "#{out}: twin is not byte-identical to the body of #{rf}" unless pk || TwinLinks.same?(tw, b.b)
         after = fm["packages_position"] == "after"
-        ok = after ? tw.start_with?(b.b) : tw.end_with?(b.b)
+        TwinLinks.broken(ctx, b.b, tw, table: pk && (after ? :after : :before)).each do |t|
+          errs << "#{out}: link #{t.dup.force_encoding('UTF-8')} (from #{rf}) reaches no file in the site"
+        end
+        return unless pk
+        mt, mb = TwinLinks.mask(tw), TwinLinks.mask(b.b)
+        ok = after ? mt.start_with?(mb) : mt.end_with?(mb)
         names = pk.map { |x| x.is_a?(Hash) ? x["name"].to_s : "" }
         ok &&= names.all? { |n| tw.include?("`#{n}`".b) }
         errs << "#{out}: twin must be the body of #{rf} with its packages: table #{after ? 'after' : 'before'} it" unless ok
@@ -88,7 +93,8 @@ module Modootoday
             if n == "llms.txt"
               ctx.errs << "#{p}: must start with an H1 (llmstxt.org)" unless txt.start_with?("# ")
             else
-              bodies[l].each { |(name, b)| ctx.errs << "#{p}: does not contain the body of #{name}" unless b.strip.empty? || txt.include?(b.strip) }
+              txt = TwinLinks.mask(txt)
+              bodies[l].each { |(name, b)| ctx.errs << "#{p}: does not contain the body of #{name}" unless b.strip.empty? || txt.include?(TwinLinks.mask(b.strip)) }
             end
           end
         end

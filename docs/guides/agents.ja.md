@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/agents/
-source_rev: sha256:b43aa88b289a
+source_rev: sha256:efe0f48ba86d
 nav_order: 60
 title: AI エージェント
 description: ページごとの Markdown 版、URL エイリアス、llms.txt、llms-full.txt を公開し、AI エージェントがサイトを書いたとおりに読めるようにします。
@@ -19,7 +19,7 @@ sections:
 
 ## Markdown 版
 
-`guide.md` というページは `/guide/index.md` でも配信され、その内容は本文とバイト単位で同一です。Markdown 版を公開する方法を三つから一つ選んでください。切り替えてもページ本文は変わりません。
+`guide.md` というページは `/guide/index.md` でも配信され、その内容は本文とバイト単位で同一です。ただし `[Setup](setup.md)` のようにソースファイルを指すリンクは、リンク先の Markdown 版のサイト URL (ない場合はページかファイルの URL) を指すので、Markdown 版の URL からもたどれます。Markdown 版を公開する方法を三つから一つ選んでください。切り替えてもページ本文は変わりません。
 
 - **スタブファイル** (既定、クラシックな GitHub Pages): ページごとに小さな `<page>.md.txt` を一つ。下で説明します。
 - **プラグイン** (Jekyll 4 または GitHub Actions): `plugins: [jekyll-theme-modootoday]` がスタブなしで Markdown 版と `llms.txt` を作ります。
@@ -78,7 +78,7 @@ modootoday:
 
 ## llms.txt
 
-`/llms.txt` は [llmstxt.org](https://llmstxt.org) に従って、ある言語のすべてのページを一覧にします。`/llms-full.txt` はすべてのページ本文をつなげたものです。プラグインが両方を追加します。従来の GitHub Pages では、サイトのルートに front matter だけを書いた 2 つのファイル `llms.txt` と `llms-full.txt` から作ります。
+`/llms.txt` は [llmstxt.org](https://llmstxt.org) に従って、ある言語のすべてのページを一覧にします。`/llms-full.txt` はすべてのページ本文を、Markdown 版と同じリンクのままつなげたものです。プラグインが両方を追加します。従来の GitHub Pages では、サイトのルートに front matter だけを書いた 2 つのファイル `llms.txt` と `llms-full.txt` から作ります。
 
 ```yaml
 # llms.txt（llms-full.txt は layout: llms-full にして同じように）

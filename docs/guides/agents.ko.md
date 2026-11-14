@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/agents/
-source_rev: sha256:b43aa88b289a
+source_rev: sha256:efe0f48ba86d
 nav_order: 60
 title: AI 에이전트
 description: 페이지마다 Markdown 버전, URL 별칭, llms.txt, llms-full.txt를 게시해 AI 에이전트가 사이트를 쓴 그대로 읽게 합니다.
@@ -19,7 +19,7 @@ sections:
 
 ## Markdown 버전
 
-`guide.md` 페이지는 `/guide/index.md`에서도 본문과 바이트 단위로 똑같이 제공됩니다. Markdown 버전을 게시하는 세 가지 방법 중 하나를 고르세요. 방법을 바꿔도 페이지 본문은 바뀌지 않습니다.
+`guide.md` 페이지는 `/guide/index.md`에서도 본문과 바이트 단위로 똑같이 제공됩니다. 단, `[Setup](setup.md)`처럼 소스 파일을 가리키는 링크는 대상의 Markdown 버전 사이트 URL(없으면 페이지나 파일의 URL)을 가리키므로 Markdown 버전의 URL에서도 이어집니다. Markdown 버전을 게시하는 세 가지 방법 중 하나를 고르세요. 방법을 바꿔도 페이지 본문은 바뀌지 않습니다.
 
 - **스텁 파일** (기본, 기본 GitHub Pages): 페이지마다 작은 `<page>.md.txt` 하나. 아래에서 설명합니다.
 - **플러그인** (Jekyll 4 또는 GitHub Actions): `plugins: [jekyll-theme-modootoday]`가 스텁 없이 Markdown 버전과 `llms.txt`를 만듭니다.
@@ -78,7 +78,7 @@ modootoday:
 
 ## llms.txt
 
-`/llms.txt`는 [llmstxt.org](https://llmstxt.org) 형식으로 한 언어의 모든 페이지를 나열합니다. `/llms-full.txt`는 모든 페이지 본문을 이어 붙입니다. 플러그인이 둘 다 추가하고, 기본 GitHub Pages에서는 사이트 루트에 front matter만 담은 파일 두 개, `llms.txt`와 `llms-full.txt`로 만듭니다.
+`/llms.txt`는 [llmstxt.org](https://llmstxt.org) 형식으로 한 언어의 모든 페이지를 나열합니다. `/llms-full.txt`는 모든 페이지 본문을 Markdown 버전과 같은 링크로 이어 붙입니다. 플러그인이 둘 다 추가하고, 기본 GitHub Pages에서는 사이트 루트에 front matter만 담은 파일 두 개, `llms.txt`와 `llms-full.txt`로 만듭니다.
 
 ```yaml
 # llms.txt (llms-full.txt는 layout: llms-full로 같게)

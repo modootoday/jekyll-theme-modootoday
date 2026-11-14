@@ -1,0 +1,8 @@
+{%- comment -%}Sets mt_page_paths and mt_doc_paths ("|a.md|b/c.md|": the source path of every page and collection document, in
+site.pages and site.documents order) and mt_static_paths (every static file path) once per render, so a source path is
+found with a string search; the position of "|path|" is the index, as in lookup/page.html.{%- endcomment -%}
+{%- unless mt_page_paths -%}
+{%- assign mt_page_paths = site.pages | map: "path" | join: "|" | prepend: "|" | append: "|" -%}
+{%- assign mt_doc_paths = site.documents | map: "relative_path" | join: "|" | prepend: "|" | append: "|" -%}
+{%- assign mt_static_paths = site.static_files | map: "path" | join: "|" | prepend: "|" | append: "|" -%}
+{%- endunless -%}
