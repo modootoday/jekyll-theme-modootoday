@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:8b8a0e9668cc
+source_rev: sha256:48b307dfd141
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -10,13 +10,13 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
-  - anchor
   - badge
-  - badge-legend
+  - anchor
   - kbd
   - lists
   - loading
   - progress
+  - badge-legend
   - group-blocks
   - callout
   - callout-content
@@ -44,10 +44,10 @@ sections:
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: buttons}
   - {c: features, name: cards, cols: 2, badge: bottom}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
-  - {c: cta, name: buttons}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -58,8 +58,8 @@ sections:
   - icons
   - language-switcher
   - nav
-  - pagination
   - posts
+  - pagination
   - search
   - theme-toggle
 ---
@@ -67,7 +67,7 @@ sections:
 
 모든 컴포넌트는 평범한 Markdown입니다. 아래 예시마다 Markdown 소스와, 같은 소스로 테마가 그려 낸 실제 결과를 이어서 보여 줍니다. 결과는 지금 쓰는 라이트·다크 모드 그대로입니다. 소스 블록을 복사해 붙이면 같은 결과를 얻습니다. github.com에서는 기본 요소로 보입니다.
 
-컴포넌트는 텍스트와 인라인부터 사이트 공통 요소까지 용도별로 묶고, 묶음 안에서는 `components` 이름의 A-Z 순서로 놓습니다. 어느 언어에서나 순서가 같습니다.
+컴포넌트는 텍스트와 인라인부터 사이트 공통 요소까지 용도별로 묶고, 묶음 안에서는 영어 제목의 A-Z 순서로 놓습니다. 어느 언어에서나 영어 페이지와 순서가 같습니다.
 
 [키친싱크 열기](kitchen-sink/) [설정](../guides/configuration/)
 
@@ -78,15 +78,6 @@ sections:
 
 본문 텍스트와 문단 안의 짧은 표시에 쓰는 스타일입니다.
 
-## 제목 앵커
-
-`status:available` `modootoday.heading_anchors: true`면 문서와 글의 `##`, `###` 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙어, 읽는 사람이 한 섹션의 주소를 복사할 수 있습니다. 포인터를 제목에 올리거나 키보드 포커스가 링크에 오면 보이고, 터치 화면에서는 늘 보입니다. 이 페이지의 제목에 포인터를 올려 확인해 보세요. 컴포넌트 섹션의 제목은 원래 동작을 유지하며, 스크립트는 쓰지 않습니다.
-
-```yaml
-modootoday:
-  heading_anchors: true
-```
-
 ## 배지
 
 `status:available` 정해진 접두어가 붙은 코드 스팬이 배지가 됩니다. status(available, partial, planned)와 tag가 있습니다. 상태 배지는 이름 앞에 색 점을 표시합니다. 점은 CSS로 그리므로 스크린 리더는 이름만 읽고, 강제 색상 모드에서도 보입니다.
@@ -95,13 +86,14 @@ modootoday:
 
 `tag:beta`
 
-## 상태 범례
+## 제목 앵커
 
-| 배지 | 의미 |
-|---|---|
-| `status:available` | 출시되어 안정적 |
-| `status:partial` | 알려진 한계가 있음 |
-| `status:planned` | 로드맵에 있음 |
+`status:available` `modootoday.heading_anchors: true`면 문서와 글의 `##`, `###` 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙어, 읽는 사람이 한 섹션의 주소를 복사할 수 있습니다. 포인터를 제목에 올리거나 키보드 포커스가 링크에 오면 보이고, 터치 화면에서는 늘 보입니다. 이 페이지의 제목에 포인터를 올려 확인해 보세요. 컴포넌트 섹션의 제목은 원래 동작을 유지하며, 스크립트는 쓰지 않습니다.
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## 키보드 키
 
@@ -137,6 +129,14 @@ modootoday:
 `status:available` progress와 콜론 뒤에 0부터 100까지의 정수가 오는 코드 스팬은 값을 텍스트로 함께 보여 주는 레이블 있는 진행률 막대가 됩니다.
 
 번역 `progress:60`
+
+## 상태 범례
+
+| 배지 | 의미 |
+|---|---|
+| `status:available` | 출시되어 안정적 |
+| `status:partial` | 알려진 한계가 있음 |
+| `status:planned` | 로드맵에 있음 |
 
 ## 블록
 
@@ -397,6 +397,12 @@ sudo apt install ruby-full
 
 `sections:` 항목과 히어로로 랜딩 페이지를 구성하는 띠 영역입니다.
 
+## 버튼
+
+`status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼입니다. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작합니다.
+
+[시작하기](../guides/install/) [설정 읽기](../guides/configuration/)
+
 ## 카드
 
 `status:available` `c: features` 섹션에서 **굵은 글씨**로 시작하는 목록 항목이 카드가 됩니다. 굵은 글씨가 카드 제목이 되고, 바로 뒤의 구분자 하나(` — `, `: `, 전각 `：`)는 표시하지 않습니다. 본문 뒤쪽의 콜론은 그대로 둡니다. `cols: 2`, `cols: 3`, `cols: 4`로 열 수를 정하며, 기준은 화면이 아니라 섹션의 폭입니다. 카드마다 16rem 이상을 지킬 수 있을 때만 열이 늘어납니다. 33rem 미만에서는 한 열, 33rem부터 두 열, `cols: 3`은 50rem부터 세 열, `cols: 4`는 67rem부터 네 열입니다. 두 열일 때 `cols: 3`의 홀수 번째 마지막 카드는 한 줄을 다 씁니다. 그래서 이 페이지 같은 본문 열에서 `cols: 3`은 카드 두 장과 한 줄짜리 카드 한 장으로, `cols: 4`는 2×2로 보이고, 넓은 화면의 문서 홈처럼 더 넓은 섹션에서는 `cols: 3`이 세 열로 보입니다.
@@ -422,12 +428,6 @@ sudo apt install ruby-full
 - **탭** — 접근성을 갖춘 코드 탭.
 - **검색** — 클라이언트 쪽 검색.
 - **카드** — 두 열에서 네 열까지의 그리드.
-
-## 버튼
-
-`status:available` 링크만 있는 문단이 버튼이 되고, 첫 링크가 주 버튼입니다. 히어로(첫 `##` 앞)와 `c: cta` 섹션에서 동작합니다.
-
-[시작하기](../guides/install/) [설정 읽기](../guides/configuration/)
 
 ## 설치
 
@@ -522,17 +522,6 @@ modootoday:
     - {title: Public API, url: /api/}
 ```
 
-## 이전·다음
-
-`status:available` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙습니다. 숨기려면 front matter에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과입니다.
-
-```yaml
----
-title: Components
-pagination: false
----
-```
-
 ## 글과 아카이브
 
 `status:available` `layout: post`는 날짜, 글쓴이, 태그를 보여 줍니다(`p.mt-post-meta`).
@@ -544,6 +533,17 @@ title: Hello
 date: 2026-10-30
 author: Won
 tags: [release]
+---
+```
+
+## 이전·다음
+
+`status:available` 내비게이션에 있는 페이지에는 내비게이션 순서대로 이전·다음 링크가 붙습니다. 숨기려면 front matter에 `pagination: false`를 쓰세요. 이 페이지 아래쪽이 그 결과입니다.
+
+```yaml
+---
+title: Components
+pagination: false
 ---
 ```
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/
-source_rev: sha256:8b8a0e9668cc
+source_rev: sha256:48b307dfd141
 nav_order: 0
 layout: examples
 title: コンポーネント
@@ -10,13 +10,13 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
-  - anchor
   - badge
-  - badge-legend
+  - anchor
   - kbd
   - lists
   - loading
   - progress
+  - badge-legend
   - group-blocks
   - callout
   - callout-content
@@ -44,10 +44,10 @@ sections:
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: buttons}
   - {c: features, name: cards, cols: 2, badge: bottom}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
-  - {c: cta, name: buttons}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -58,8 +58,8 @@ sections:
   - icons
   - language-switcher
   - nav
-  - pagination
   - posts
+  - pagination
   - search
   - theme-toggle
 ---
@@ -67,7 +67,7 @@ sections:
 
 どのコンポーネントも普通の Markdown です。各例では Markdown のソースと、同じソースからテーマが描いた実際の表示結果を続けて示します。表示結果はいまお使いのライト／ダークモードのままです。ソースをコピーして貼り付ければ同じ結果になります。github.com では素の要素として表示されます。
 
-コンポーネントはテキストとインラインからサイト共通要素まで用途ごとにまとめ、まとまりの中では `components` の名前の A-Z 順に並べます。どの言語でも順序は同じです。
+コンポーネントはテキストとインラインからサイト共通要素まで用途ごとにまとめ、まとまりの中では英語のタイトルの A-Z 順に並べます。どの言語でも英語のページと順序は同じです。
 
 [キッチンシンクを開く](kitchen-sink/) [設定](../guides/configuration/)
 
@@ -78,15 +78,6 @@ sections:
 
 本文のテキストと、段落の中の短い要素に使うスタイルです。
 
-## 見出しアンカー
-
-`status:available` `modootoday.heading_anchors: true` のとき、ドキュメントと投稿の `##` と `###` の見出しの末尾に、その見出し自身へのリンクが付き、読む人がセクションごとのアドレスをコピーできます。見出しにポインターを重ねるか、リンクにキーボードのフォーカスがあると表示され、タッチ画面では常に表示されます。このページの見出しにポインターを重ねて確かめてください。コンポーネントセクションの見出しはもとの動作のままで、スクリプトは使いません。
-
-```yaml
-modootoday:
-  heading_anchors: true
-```
-
 ## バッジ
 
 `status:available` 決まった接頭辞のコードスパンがバッジになります。status（available、partial、planned）と tag があります。ステータスバッジは名前の前に色の点を表示します。点は CSS で描くので、スクリーンリーダーは名前だけを読み上げ、強制カラーモードでも見えます。
@@ -95,13 +86,14 @@ modootoday:
 
 `tag:beta`
 
-## ステータスの凡例
+## 見出しアンカー
 
-| バッジ | 意味 |
-|---|---|
-| `status:available` | 提供中で安定 |
-| `status:partial` | 既知の制限あり |
-| `status:planned` | ロードマップにある |
+`status:available` `modootoday.heading_anchors: true` のとき、ドキュメントと投稿の `##` と `###` の見出しの末尾に、その見出し自身へのリンクが付き、読む人がセクションごとのアドレスをコピーできます。見出しにポインターを重ねるか、リンクにキーボードのフォーカスがあると表示され、タッチ画面では常に表示されます。このページの見出しにポインターを重ねて確かめてください。コンポーネントセクションの見出しはもとの動作のままで、スクリプトは使いません。
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## キーボードキー
 
@@ -137,6 +129,14 @@ modootoday:
 `status:available` progress とコロンのあとに 0 から 100 の整数が続くコードスパンは、値をテキストでも示すラベル付きの進捗バーになります。
 
 翻訳 `progress:60`
+
+## ステータスの凡例
+
+| バッジ | 意味 |
+|---|---|
+| `status:available` | 提供中で安定 |
+| `status:partial` | 既知の制限あり |
+| `status:planned` | ロードマップにある |
 
 ## ブロック
 
@@ -397,6 +397,12 @@ sudo apt install ruby-full
 
 `sections:` の項目とヒーローでランディングページを組み立てる帯です。
 
+## ボタン
+
+`status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
+
+[はじめる](../guides/install/) [設定を読む](../guides/configuration/)
+
 ## カード
 
 `status:available` `c: features` セクションでは、**太字**で始まるリスト項目がカードになります。太字がカードのタイトルになり、直後の区切り 1 つ（` — `、`: `、全角の `：`）は表示しません。本文の後ろにあるコロンはそのまま残ります。`cols: 2`、`cols: 3`、`cols: 4` で列数を決めます。基準は画面ではなくセクションの幅です。どのカードも 16rem 以上の幅を保てるときだけ列が増えます。33rem 未満では 1 列、33rem から 2 列、`cols: 3` は 50rem から 3 列、`cols: 4` は 67rem から 4 列です。2 列のとき、`cols: 3` の奇数枚目の最後のカードは 1 行を使います。そのため、このページのような本文の列では `cols: 3` は 2 枚と 1 行分の 1 枚、`cols: 4` は 2×2 になり、広い画面のドキュメントのホームのような広いセクションでは `cols: 3` が 3 列になります。
@@ -422,12 +428,6 @@ sudo apt install ruby-full
 - **タブ** — アクセシブルなコードタブ。
 - **検索** — クライアント側の検索。
 - **カード** — 2 列から 4 列のグリッド。
-
-## ボタン
-
-`status:available` リンクだけの段落がボタンになり、最初のリンクが主ボタンです。ヒーロー（最初の `##` の前）と `c: cta` セクションで使えます。
-
-[はじめる](../guides/install/) [設定を読む](../guides/configuration/)
 
 ## インストール
 
@@ -522,17 +522,6 @@ modootoday:
     - {title: Public API, url: /api/}
 ```
 
-## 前後のページ
-
-`status:available` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すには front matter に `pagination: false` と書きます。このページの下部がその表示結果です。
-
-```yaml
----
-title: Components
-pagination: false
----
-```
-
 ## 投稿とアーカイブ
 
 `status:available` `layout: post` は日付、著者、タグを表示します（`p.mt-post-meta`）。
@@ -544,6 +533,17 @@ title: Hello
 date: 2026-10-30
 author: Won
 tags: [release]
+---
+```
+
+## 前後のページ
+
+`status:available` ナビゲーションにあるページには、ナビゲーションの順に前後のページへのリンクが付きます。隠すには front matter に `pagination: false` と書きます。このページの下部がその表示結果です。
+
+```yaml
+---
+title: Components
+pagination: false
 ---
 ```
 

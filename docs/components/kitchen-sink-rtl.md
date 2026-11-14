@@ -14,8 +14,8 @@ sections:
   - {c: steps, name: steps}
   - {c: tabs, name: tabs}
   - {c: timeline, name: timeline}
-  - {c: features, name: cards, cols: 3}
   - {c: cta, name: cta}
+  - {c: features, name: cards, cols: 3}
 ---
 # صفحة العرض من اليمين إلى اليسار
 
@@ -127,12 +127,12 @@ winget install RubyInstallerTeam.Ruby
 
 عقد المكوّنات، ودعم الاتجاه من اليمين إلى اليسار، ودليل الرياضيات والمخططات.
 
+## دعوة إلى العمل
+
+[ابدأ الآن](../../guides/install/) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+
 ## البطاقات
 
 - **التنبيهات** — خمسة أنواع من تنبيهات GitHub. `status:available`
 - **التبويبات** — تبويبات تثبيت سهلة الوصول. `status:partial`
 - **البحث** — بحث داخل الموقع. `status:planned`
-
-## دعوة إلى العمل
-
-[ابدأ الآن](../../guides/install/) [اقرأ القواعد](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)

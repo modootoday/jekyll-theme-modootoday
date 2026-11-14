@@ -1,9 +1,9 @@
 ---
 id: adr:modootoday/20261109141344
 title: "Components are listed in fixed purpose groups, A-Z by id inside each, in every language"
-status: active
+status: superseded
 created: 2026-11-09T14:13:44Z
-updated: 2026-11-09T19:12:43Z
+updated: 2026-11-14T09:11:30Z
 rel:
   governs: [docs/_data/components.yml, docs/_data/component_groups.yml, test/system/docs/order.rb]
   depends_on: [adr:modootoday/20261109124854]

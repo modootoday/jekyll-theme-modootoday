@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:385d14c9a072
+source_rev: sha256:25868cc87ab3
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
@@ -10,8 +10,8 @@ diagrams:
   - {name: recipes/flow-ko, alt: "Markdown 페이지가 Jekyll 빌드를 거쳐 HTML 페이지가 되고, modootoday-check가 이를 검사합니다", caption: "정적 다이어그램: 커밋한 밝은 SVG와 어두운 SVG 한 쌍.", width: 840, height: 63}
 sections:
   - group-text
-  - anchor
   - badge
+  - anchor
   - kbd
   - lists
   - loading
@@ -39,15 +39,15 @@ sections:
   - {c: faq, name: faq}
   - {c: steps, name: steps-list}
   - {c: steps, name: steps-headings}
-  - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
+  - {c: tabs, name: tabs-2}
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: cta}
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4, badge: bottom}
-  - {c: cta, name: cta}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -72,14 +72,6 @@ sections:
 
 본문 텍스트와 문단 안의 짧은 표시에 쓰는 스타일입니다.
 
-## 제목 앵커
-
-이 페이지의 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 제목에 포인터를 올리거나, 링크가 보일 때까지 Tab을 누르세요.
-
-### 한 단계 아래 제목
-
-`###` 제목에도 링크가 붙습니다.
-
 ## 배지
 
 인라인 배지: `status:available` `status:partial` `status:planned`
@@ -91,6 +83,14 @@ sections:
 | 알림 | `status:available` |
 | 탭 | `status:partial` |
 | 검색 | `status:planned` |
+
+## 제목 앵커
+
+이 페이지의 제목마다 끝에 그 제목 자신을 가리키는 링크가 붙습니다. 제목에 포인터를 올리거나, 링크가 보일 때까지 Tab을 누르세요.
+
+### 한 단계 아래 제목
+
+`###` 제목에도 링크가 붙습니다.
 
 ## 키보드 키
 
@@ -378,22 +378,6 @@ front matter가 있는 페이지를 만듭니다.
 
 `main`에 푸시하고 GitHub Pages를 켭니다.
 
-## 패널이 두 개인 탭
-
-### macOS
-
-```sh
-brew install ruby
-gem install jekyll bundler
-```
-
-### Linux
-
-```sh
-sudo apt install ruby-full
-gem install jekyll bundler
-```
-
 ## 패널이 많은 탭
 
 ### Ruby
@@ -426,6 +410,22 @@ echo Hello
 greeting: Hello
 ```
 
+## 패널이 두 개인 탭
+
+### macOS
+
+```sh
+brew install ruby
+gem install jekyll bundler
+```
+
+### Linux
+
+```sh
+sudo apt install ruby-full
+gem install jekyll bundler
+```
+
 ## 타임라인
 
 ### 설치
@@ -454,6 +454,10 @@ greeting: Hello
 
 `sections:` 항목과 히어로로 랜딩 페이지를 구성하는 띠 영역입니다.
 
+## 버튼
+
+[시작하기](../../guides/install/) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+
 ## 2열 카드
 
 - **짧은 카드** — 한 줄.
@@ -480,10 +484,6 @@ greeting: Hello
 - **Markdown 버전** — 에이전트용 Markdown. `status:available`
 - **그리드** — 폭이 67rem 이상인 섹션에서는 네 열, 본문 열에서는 2×2.
 - **줄** — 카드 여덟 장이 모든 줄을 채웁니다.
-
-## 버튼
-
-[시작하기](../../guides/install/) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## 설치
 

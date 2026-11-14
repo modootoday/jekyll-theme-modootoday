@@ -7,13 +7,13 @@ schema: {faq: auto}
 examples: [badge, kbd, loading, progress, callout, callout-content, code, code-titles, filetree, quote, embed, figure, gallery, widget, chart, params, table, accordion, details, faq, steps, steps-headings, tabs, timeline, timeline-list, cards, cards-3, cards-4, buttons, install, linkcards, pricing, split, subscribe]
 sections:
   - group-text
-  - anchor
   - badge
-  - badge-legend
+  - anchor
   - kbd
   - lists
   - loading
   - progress
+  - badge-legend
   - group-blocks
   - callout
   - callout-content
@@ -41,10 +41,10 @@ sections:
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: buttons}
   - {c: features, name: cards, cols: 2, badge: bottom}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4}
-  - {c: cta, name: buttons}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -55,8 +55,8 @@ sections:
   - icons
   - language-switcher
   - nav
-  - pagination
   - posts
+  - pagination
   - search
   - theme-toggle
 ---
@@ -64,22 +64,13 @@ sections:
 
 Each component is ordinary Markdown. Every example below shows the Markdown source and then the live result the theme renders from that same source, in the light or dark scheme you are using. Copy a source block into your page to get the same result. On github.com each one falls back to the plain element.
 
-Components are grouped by purpose, from text and inline marks to the site chrome, and sorted A-Z by their `components` name inside each group. Every language uses the same order.
+Components are grouped by purpose, from text and inline marks to the site chrome, and sorted A-Z by their English title inside each group. Every language uses the same order.
 
 [Open the kitchen sink](kitchen-sink/) [Configuration](../guides/configuration/)
 
 ## Text and inline
 
 Styles for running text and for short marks inside a paragraph.
-
-## Heading anchors
-
-`status:available` With `modootoday.heading_anchors: true`, every `##` and `###` heading of a doc or post ends with a link to itself, so a reader can copy the address of one section. It shows when the pointer is over the heading or the link has keyboard focus, and always on touch screens. Hover over the headings of this page to see it. Headings in component sections keep their own behavior, and no script is involved.
-
-```yaml
-modootoday:
-  heading_anchors: true
-```
 
 ## Badges
 
@@ -89,13 +80,14 @@ modootoday:
 
 `tag:beta`
 
-## Status legend
+## Heading anchors
 
-| Badge | Meaning |
-|---|---|
-| `status:available` | shipped and stable |
-| `status:partial` | works with known limits |
-| `status:planned` | on the roadmap |
+`status:available` With `modootoday.heading_anchors: true`, every `##` and `###` heading of a doc or post ends with a link to itself, so a reader can copy the address of one section. It shows when the pointer is over the heading or the link has keyboard focus, and always on touch screens. Hover over the headings of this page to see it. Headings in component sections keep their own behavior, and no script is involved.
+
+```yaml
+modootoday:
+  heading_anchors: true
+```
 
 ## Keyboard keys
 
@@ -131,6 +123,14 @@ Items with a title:
 `status:available` A code span that starts with progress and a colon, followed by a whole number from 0 to 100, becomes a labelled progress bar with the value as text.
 
 Translation `progress:60`
+
+## Status legend
+
+| Badge | Meaning |
+|---|---|
+| `status:available` | shipped and stable |
+| `status:partial` | works with known limits |
+| `status:planned` | on the roadmap |
 
 ## Blocks
 
@@ -391,6 +391,12 @@ An ordered list works too.
 
 Bands that build a landing page from `sections:` items and the hero.
 
+## Buttons
+
+`status:available` A paragraph that holds only links becomes buttons. The first link is the primary one. It works in the hero (before the first `##`) and in a `c: cta` section.
+
+[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
+
 ## Cards
 
 `status:available` In a `c: features` section, each list item that starts with **bold** text becomes a card. The bold text is the card title; one separator after it (` — `, `: ` or the full-width `：`) is not shown, and colons later in the text stay. `cols: 2`, `cols: 3` or `cols: 4` sets the grid by the width of the section, not the screen: a column is added only when every card can stay at least 16rem wide. One column below 33rem, two from 33rem, `cols: 3` three across from 50rem and `cols: 4` four across from 67rem. In two columns, an odd last card of `cols: 3` spans the row. So in a text column like this one, `cols: 3` is two cards and one full-width card and `cols: 4` stays two by two; in a wider section, such as the docs home on a wide screen, `cols: 3` is three across.
@@ -400,7 +406,7 @@ Bands that build a landing page from `sections:` items and the hero.
 
 With `badge: bottom`, a status badge at the end of an item sits at the card's bottom edge, so badges line up across a row.
 
-## Cards in three columns
+## Cards in 3 columns
 
 The same list with `cols: 3`. With `reveal: true`, the section fades in as it scrolls into view, only in browsers with scroll-driven animations and when the reader allows motion; elsewhere it is shown as is, with no script.
 
@@ -408,7 +414,7 @@ The same list with `cols: 3`. With `reveal: true`, the section fades in as it sc
 - **Tabs** — Accessible code tabs.
 - **Search** — Client-side search.
 
-## Cards in four columns
+## Cards in 4 columns
 
 The same idea with `cols: 4`: two by two in this text column, four across in a section 67rem wide or more.
 
@@ -416,12 +422,6 @@ The same idea with `cols: 4`: two by two in this text column, four across in a s
 - **Tabs** — Accessible code tabs.
 - **Search** — Client-side search.
 - **Cards** — Grids of two to four columns.
-
-## Buttons
-
-`status:available` A paragraph that holds only links becomes buttons. The first link is the primary one. It works in the hero (before the first `##`) and in a `c: cta` section.
-
-[Get started](../guides/install/) [Read the configuration](../guides/configuration/)
 
 ## Install
 
@@ -516,17 +516,6 @@ modootoday:
     - {title: Public API, url: /api/}
 ```
 
-## Previous and next
-
-`status:available` Pages listed in the nav get previous and next links in nav order. Set `pagination: false` in front matter to hide them. The result is at the bottom of this page.
-
-```yaml
----
-title: Components
-pagination: false
----
-```
-
 ## Posts and archives
 
 `status:available` `layout: post` shows the date, author and tags (`p.mt-post-meta`).
@@ -538,6 +527,17 @@ title: Hello
 date: 2026-10-30
 author: Won
 tags: [release]
+---
+```
+
+## Previous and next
+
+`status:available` Pages listed in the nav get previous and next links in nav order. Set `pagination: false` in front matter to hide them. The result is at the bottom of this page.
+
+```yaml
+---
+title: Components
+pagination: false
 ---
 ```
 

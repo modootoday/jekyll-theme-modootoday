@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:385d14c9a072
+source_rev: sha256:25868cc87ab3
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
@@ -10,8 +10,8 @@ diagrams:
   - {name: recipes/flow-ja, alt: "Markdown のページが Jekyll のビルドを経て HTML のページになり、modootoday-check がそれを検査します", caption: "静的な図：コミットした明るい SVG と暗い SVG の組。", width: 904, height: 63}
 sections:
   - group-text
-  - anchor
   - badge
+  - anchor
   - kbd
   - lists
   - loading
@@ -39,15 +39,15 @@ sections:
   - {c: faq, name: faq}
   - {c: steps, name: steps-list}
   - {c: steps, name: steps-headings}
-  - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
+  - {c: tabs, name: tabs-2}
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: cta}
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4, badge: bottom}
-  - {c: cta, name: cta}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -72,14 +72,6 @@ sections:
 
 本文のテキストと、段落の中の短い要素に使うスタイルです。
 
-## 見出しアンカー
-
-このページの見出しの末尾には、その見出し自身へのリンクが付きます。見出しにポインターを重ねるか、リンクが表示されるまで Tab を押してください。
-
-### 一段下の見出し
-
-`###` の見出しにもリンクが付きます。
-
 ## バッジ
 
 インラインのバッジ: `status:available` `status:partial` `status:planned`
@@ -91,6 +83,14 @@ sections:
 | アラート | `status:available` |
 | タブ | `status:partial` |
 | 検索 | `status:planned` |
+
+## 見出しアンカー
+
+このページの見出しの末尾には、その見出し自身へのリンクが付きます。見出しにポインターを重ねるか、リンクが表示されるまで Tab を押してください。
+
+### 一段下の見出し
+
+`###` の見出しにもリンクが付きます。
 
 ## キーボードのキー
 
@@ -378,22 +378,6 @@ front matter 付きのページを作ります。
 
 `main` にプッシュして GitHub Pages を有効にします。
 
-## パネルが二つのタブ
-
-### macOS
-
-```sh
-brew install ruby
-gem install jekyll bundler
-```
-
-### Linux
-
-```sh
-sudo apt install ruby-full
-gem install jekyll bundler
-```
-
 ## パネルが多いタブ
 
 ### Ruby
@@ -426,6 +410,22 @@ echo Hello
 greeting: Hello
 ```
 
+## パネルが二つのタブ
+
+### macOS
+
+```sh
+brew install ruby
+gem install jekyll bundler
+```
+
+### Linux
+
+```sh
+sudo apt install ruby-full
+gem install jekyll bundler
+```
+
 ## タイムライン
 
 ### インストール
@@ -454,6 +454,10 @@ greeting: Hello
 
 `sections:` の項目とヒーローでランディングページを組み立てる帯です。
 
+## ボタン
+
+[はじめる](../../guides/install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+
 ## 2 列のカード
 
 - **短い** — 1 行。
@@ -480,10 +484,6 @@ greeting: Hello
 - **Markdown 版** — エージェント向けの Markdown。 `status:available`
 - **グリッド** — 幅が 67rem 以上のセクションでは 4 列、本文の列では 2×2。
 - **行** — 8 枚のカードがどの行も埋めます。
-
-## ボタン
-
-[はじめる](../../guides/install/) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## インストール
 

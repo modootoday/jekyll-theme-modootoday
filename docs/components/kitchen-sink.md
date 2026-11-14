@@ -7,8 +7,8 @@ diagrams:
   - {name: recipes/flow, alt: "A Markdown page goes through the Jekyll build and becomes an HTML page, which modootoday-check then verifies", caption: "A static diagram: a committed light and dark SVG pair.", width: 818, height: 63}
 sections:
   - group-text
-  - anchor
   - badge
+  - anchor
   - kbd
   - lists
   - loading
@@ -36,15 +36,15 @@ sections:
   - {c: faq, name: faq}
   - {c: steps, name: steps-list}
   - {c: steps, name: steps-headings}
-  - {c: tabs, name: tabs-2}
   - {c: tabs, name: tabs-many}
+  - {c: tabs, name: tabs-2}
   - {c: timeline, name: timeline}
   - {c: timeline, name: timeline-list}
   - group-sections
+  - {c: cta, name: cta}
   - {c: features, name: cards-2, cols: 2}
   - {c: features, name: cards-3, cols: 3, reveal: true}
   - {c: features, name: cards-4, cols: 4, badge: bottom}
-  - {c: cta, name: cta}
   - {c: install, name: install}
   - {c: linkcards, name: linkcards}
   - {c: pricing, name: pricing, recommended: 2}
@@ -66,14 +66,6 @@ Every component the theme ships, in every variant. The same file is readable on 
 
 Styles for running text and for short marks inside a paragraph.
 
-## Heading anchors
-
-Each heading on this page ends with a link to itself; hover over one, or press Tab until it shows.
-
-### A heading one level down
-
-The `###` headings get the link too.
-
 ## Badges
 
 Inline badges: `status:available` `status:partial` `status:planned`
@@ -85,6 +77,14 @@ Tag badges: `tag:beta` `tag:experimental`
 | Alerts | `status:available` |
 | Tabs | `status:partial` |
 | Search | `status:planned` |
+
+## Heading anchors
+
+Each heading on this page ends with a link to itself; hover over one, or press Tab until it shows.
+
+### A heading one level down
+
+The `###` headings get the link too.
 
 ## Keyboard keys
 
@@ -372,22 +372,6 @@ Create a page with front matter.
 
 Push to `main` and turn on GitHub Pages.
 
-## Tabs with two panels
-
-### macOS
-
-```sh
-brew install ruby
-gem install jekyll bundler
-```
-
-### Linux
-
-```sh
-sudo apt install ruby-full
-gem install jekyll bundler
-```
-
 ## Tabs with many panels
 
 ### Ruby
@@ -420,6 +404,22 @@ echo Hello
 greeting: Hello
 ```
 
+## Tabs with two panels
+
+### macOS
+
+```sh
+brew install ruby
+gem install jekyll bundler
+```
+
+### Linux
+
+```sh
+sudo apt install ruby-full
+gem install jekyll bundler
+```
+
 ## Timeline
 
 ### Install
@@ -448,14 +448,18 @@ Timeline, keyboard keys, client search and the post layout.
 
 Bands that build a landing page from `sections:` items and the hero.
 
-## Cards in two columns
+## Buttons
+
+[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
+
+## Cards in 2 columns
 
 - **Short** — One line.
 - **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.
 - **With a badge** — Cards can carry status. `status:available`
 - **With a link** — Read the [install guide](../../guides/install/).
 
-## Cards in three columns
+## Cards in 3 columns
 
 - **Alerts** — Five GitHub alert types. `status:available`
 - **Tabs** — Accessible install tabs. `status:partial`
@@ -464,7 +468,7 @@ Bands that build a landing page from `sections:` items and the hero.
 - **Sass** — One partial per component. `status:available`
 - **Twins** — Markdown for agents. `status:available`
 
-## Cards in four columns
+## Cards in 4 columns
 
 - **Alerts** — Five GitHub alert types. `status:available`
 - **Tabs** — Accessible install tabs. `status:partial`
@@ -474,10 +478,6 @@ Bands that build a landing page from `sections:` items and the hero.
 - **Twins** — Markdown for agents. `status:available`
 - **Grid** — Four across in a section 67rem wide or more, two by two in a text column.
 - **Rows** — Eight cards fill every row.
-
-## Buttons
-
-[Get started](../../guides/install/) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
 ## Install
 

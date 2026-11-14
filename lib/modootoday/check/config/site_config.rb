@@ -4,7 +4,7 @@ module Modootoday
   module Check
     # The modootoday: settings in the site's _config.yml; each key's rule is registered under config/keys/.
     module SiteConfig
-      # A-Z by id (adr:modootoday/20261109141344).
+      # A-Z by id, a lookup table (adr:modootoday/20261114090712).
       COMPONENTS = %w[accordion anchor badge banner bleed breadcrumb callout card chart code code-copy cta details diagram embed faq figure figure-svg filetree filter footer footnotes gallery hero install kbd linkcards lists loading nav page-actions pagination params pricing progress quote reveal search showcase sidebar split steps subscribe table table-stack tabs terminal theme-toggle timeline toc visual widget].freeze
       SEMANTIC = %w[background foreground muted muted-foreground card card-foreground primary primary-foreground brand accent
                     accent-foreground border border-input ring note tip important warning caution status-available status-partial
