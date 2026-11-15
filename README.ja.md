@@ -142,9 +142,7 @@ bundle exec modootoday-check . _site
 
 ## コントリビュート
 
-Issue とプルリクエストを歓迎します。[CONTRIBUTING.md](CONTRIBUTING.md) をご覧ください。この文書は英語の [README.md](README.md) の翻訳で、内容が異なる場合は英語版が優先されます。
-
-3 つのスターターサイト（`docs`、`blog`、`landing`）はライブデモ付きのテンプレートリポジトリで、一覧は `example/starters.yml` に、リポジトリは [`example/`](example/) に git サブモジュールとしてあります（`--recurse-submodules` でクローンします）。`bundle exec rake starters:render` は各サイトを GitHub Pages（`remote_theme`）用と Jekyll 4 用に書き出し、`Gemfile`、`README.md`、`modootoday-check` を実行する Pages のワークフロー、スタブも一緒に書きます。
+Issue とプルリクエストを歓迎します。[CONTRIBUTING.md](CONTRIBUTING.md) をご覧ください。この文書は英語の [README.md](README.md) の翻訳で、内容が異なる場合は英語版が優先されます。3 つのスターターサイト（`docs`、`blog`、`landing`）はライブデモ付きのテンプレートリポジトリで、一覧は `example/starters.yml` に、リポジトリは [`example/`](example/) に git サブモジュールとしてあります（`--recurse-submodules` でクローンします）。`bundle exec rake starters:render` は各サイトを GitHub Pages（`remote_theme`）用と Jekyll 4 用に書き出し、`Gemfile`、`README.md`、`modootoday-check` を実行する Pages のワークフロー、スタブも一緒に書きます。
 
 ## ライセンス
 
