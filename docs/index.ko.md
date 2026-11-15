@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/
-source_rev: sha256:553827506a0a
+source_rev: sha256:02ec6874f6c3
 toc: false
 hero: {visual: showcase}
 title: 홈
@@ -22,7 +22,7 @@ jekyll-theme-modootoday는 표준 GitHub Flavored Markdown을 깔끔한 문서 �
 
 - **표준 Markdown만** — 알림, 표, 목록, 코드 블록. 페이지에 HTML, Liquid, kramdown 전용 문법이 없습니다.
 - **GitHub Pages에서 동작** — 기본 `github-pages` 빌드용 Liquid 전용 테마이고, 그 밖에는 Jekyll 4를 지원합니다.
-- **에이전트가 읽기 쉬움** — 모든 페이지에 원본과 바이트 단위로 같은 Markdown 버전과 `llms.txt`, `llms-full.txt`가 있습니다.
+- **에이전트가 읽기 쉬움** — 모든 페이지에 원본 텍스트 그대로인 Markdown 버전과 `llms.txt`, `llms-full.txt`가 있습니다.
 
 ## 빠른 시작
 

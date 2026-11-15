@@ -19,7 +19,7 @@
 - **페이지 계열.** 문서 외에도 레이아웃이 많습니다([전체 목록](https://modootoday.github.io/jekyll-theme-modootoday/ko/reference/api/)). 홈, 블로그와 뉴스, 디렉터리(팀, 채용, 행사, 후원사, 포트폴리오), 상세 페이지, 마케팅(가격, 기능, 문의, 링크 모음), 문서(약관, 이력서), 문서 부가 페이지(레퍼런스, 변경 기록, 로드맵, 용어집, 강좌, 책)가 있습니다.
 - **디자인된 듯한 섹션.** `sections:` 항목에 `visual:` include나 코드와 함께 쓰는 `c: split`, 전체 너비 `bleed:` 띠, `reveal:` 페이드인, 4열 카드 같은 옵션을 줄 수 있고, 분할 히어로도 같은 방식으로 씁니다.
 - **23개 언어, LTR과 RTL.** 테마 문구가 23개 언어로 현지화되어 있고 언어 메뉴, `hreflang`, 오른쪽에서 왼쪽으로 쓰는 레이아웃을 지원합니다.
-- **에이전트가 읽기 쉬움.** 페이지마다 바이트 단위로 같은 Markdown 버전과 `llms.txt`, `llms-full.txt`를 둘 수 있습니다.
+- **에이전트가 읽기 쉬움.** 페이지마다 원본 텍스트 그대로인 Markdown 버전과 `llms.txt`, `llms-full.txt`를 둘 수 있습니다.
 - **접근성.** 키보드 단축키, 보이는 포커스, 휴대폰 안전 영역, 44 px 터치 대상, 고대비와 동작 줄이기가 기본으로 들어 있습니다.
 - **검사기.** `modootoday-check`가 원문과 빌드 결과를 검사합니다.
 - **선택 기능.** 검색, 라이트/다크 전환, Mermaid 다이어그램과 KaTeX 수식(기본은 꺼져 있고 쓰는 페이지에서만 불러옵니다), 커밋한 SVG 파일과 MathML로 보여 주는 정적 다이어그램과 수식, schema.org JSON-LD를 제공합니다.
@@ -79,7 +79,7 @@ bundle exec modootoday-check . _site
 | Option | Checks |
 |---|---|
 | `SRC SITE` | always: front matter, forbidden syntax, alerts, fence info strings, `status:`/`tag:`/`kbd:` values (`since:` is rejected), `sections:` count, `feed:` (false, or a site path to an Atom feed page in the build), `_data/i18n/<lang>.yml` keys against the default language and translated pages against default-language pages, `_data/components.yml` (keys, slot contract counts per section, `parts` against `api.md` and the built HTML), Sass/CSS rules, the token hook `_sass/modootoday/_site.scss` (only the three override maps, known token names), `site_css`, `preload` and `scripts` files present in the build, `script:` and `poster:` on hero and section items (a registered script, a sized poster that exists), `filter:` on section items and pages (a list or table to filter, a `facet` column the table has), `chart:` lines and `c: chart` sections (a type and options, a table or a `_data/charts` file, number cells), `widget:` lines, `widget_props` and `c: widget` sections (an element a `modootoday.scripts` entry defines, plain prop values, a lead paragraph), `diagrams:` (an entry per Mermaid fence, `alt`, the SVG files, an SVG drawn from another fence), static math (an entry per math block in `_data/math`, entries rendered from other TeX, no inline math),`modootoday.search` keys and collections, `modootoday.showcase` (also in `_config.demo.yml`) and, while it is enabled, the robots `noindex` on every built page (warning), `search.json` over 1.5 MB (warning), unconverted markers in the build, schema.org JSON-LD in the build (valid JSON, vocabulary, required properties per type, absolute URLs, ISO 8601 dates, one graph per page, agreement with Open Graph, a `DefinedTerm` page's `term_set` glossary), `modootoday.schema.faq`, `modootoday.records` (a page per record and a record per page, as `modootoday-stubs --records --check` judges), `modootoday.pwa` (its keys and icons, the stub `modootoday-stubs --pwa` writes, the built manifest's fields, icon files and their PNG sizes, the manifest link on every page), `modootoday.banner.release: latest` with no release banner on the built home page (warning) |
-| `--twins` | every page has a byte-identical Markdown twin, per-language `llms.txt` and `llms-full.txt` |
+| `--twins` | every page has a Markdown twin of its source text (links aimed at the site), per-language `llms.txt` and `llms-full.txt` |
 | `--links` | same-site links in the built HTML (`a`, `link`, `img`, `script`, `source srcset`) point at files that exist and `#` fragments match an `id` or `a[name]` on the target page; external URLs are not fetched. Warnings, failures with `--strict`; needs the nokogiri gem, and fails the run without it |
 | `--aliases` | the URL aliases `modootoday.aliases` declares: `/<page>.md` byte-identical to the twin (`md`), `/<page>.html` redirecting to the page with the page URL as canonical (`html`); two pages with one alias, or an alias over another source file, fail |
 | `--byte-exact=DIR,...` | files under these source folders (an API, downloads) are in the build with the same sha256; a folder under `_` or `.` or excluded, a file with front matter, or one Jekyll converts (Markdown, Sass) fails |
@@ -117,7 +117,7 @@ bundle exec modootoday-check . _site
 
 ## AI 에이전트
 
-- `guide.md`의 Markdown 버전은 `/guide/index.md`이며 본문과 바이트 단위로 같고, `rel="alternate" type="text/markdown"`으로 연결됩니다.
+- `guide.md`의 Markdown 버전은 `/guide/index.md`이며 본문 텍스트 그대로이고(소스 파일을 가리키는 링크는 사이트 주소로 바뀝니다), `rel="alternate" type="text/markdown"`으로 연결됩니다.
 - `llms.txt`와 `llms-full.txt`는 `/`와 각 `/<lang>/` 아래에 있습니다.
 - Jekyll 4에서는 `plugins: [jekyll-theme-modootoday]`가 만들고, 기본 GitHub Pages 빌드는 파일 하나짜리 스텁을 씁니다. 스텁은 `modootoday-stubs SRC --twins --write`가 씁니다.
 - 선택 URL 별칭(`modootoday.aliases`): `/guide.md`(Markdown 버전 그대로)와 `/guide.html`(`/guide/`로 리다이렉트)은 `modootoday-stubs SRC --aliases --write`가 만듭니다.
