@@ -37,7 +37,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
-gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # .md links become page URLs, as on GitHub Pages
+gem "jekyll-relative-links", group: :jekyll_plugins   # .md links become page URLs, as on GitHub Pages
 ```
 
 ### github-pages gem

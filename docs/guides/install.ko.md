@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:d1f45d37583a
+source_rev: sha256:352c5cd40b93
 nav_order: 10
 title: 설치
 description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
@@ -43,7 +43,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
-gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # GitHub Pages처럼 .md 링크를 페이지 URL로 바꿈
+gem "jekyll-relative-links", group: :jekyll_plugins   # GitHub Pages처럼 .md 링크를 페이지 URL로 바꿈
 ```
 
 ### github-pages gem

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:d1f45d37583a
+source_rev: sha256:352c5cd40b93
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -43,7 +43,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
-gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # GitHub Pages と同じく .md へのリンクをページの URL にする
+gem "jekyll-relative-links", group: :jekyll_plugins   # GitHub Pages と同じく .md へのリンクをページの URL にする
 ```
 
 ### github-pages gem
