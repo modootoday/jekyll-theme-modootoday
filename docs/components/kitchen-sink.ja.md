@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:b58acda8e81f
+source_rev: sha256:1552f299cb53
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
@@ -366,7 +366,7 @@ bundle exec jekyll serve
 
 ## 見出しで書くステップ
 
-### インストール
+### テーマの追加
 
 `remote_theme` とプラグインを追加します。
 
@@ -428,7 +428,7 @@ gem install jekyll bundler
 
 ## タイムライン
 
-### インストール
+### ビルド
 
 アラート、セクション、カード、タブ、ステータスバッジ、チェッカー。
 

@@ -360,7 +360,7 @@ Yes, with the github-pages gem.
 
 ## Steps as headings
 
-### Install
+### Add the theme
 
 Add `remote_theme` and the plugin.
 
@@ -422,7 +422,7 @@ gem install jekyll bundler
 
 ## Timeline
 
-### Install
+### Build
 
 Alerts, sections, cards, tabs, status badges and the checker.
 

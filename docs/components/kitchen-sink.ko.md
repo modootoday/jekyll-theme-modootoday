@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:b58acda8e81f
+source_rev: sha256:1552f299cb53
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
@@ -366,7 +366,7 @@ bundle exec jekyll serve
 
 ## 제목으로 쓰는 단계
 
-### 설치
+### 테마 추가
 
 `remote_theme`과 플러그인을 추가합니다.
 
@@ -428,7 +428,7 @@ gem install jekyll bundler
 
 ## 타임라인
 
-### 설치
+### 빌드
 
 알림, 섹션, 카드, 탭, 상태 배지, 검사기.
 
