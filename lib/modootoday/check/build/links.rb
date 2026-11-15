@@ -59,10 +59,17 @@ module Modootoday
           path += "/" if upath.end_with?("/") && !path.end_with?("/")
           return "#{rel}: #{url} is outside baseurl #{baseurl}" unless baseurl.empty? || path == baseurl || path.start_with?("#{baseurl}/")
           target = resolve(site, path.delete_prefix(baseurl))
+          return md_link(rel, url) if !target && !upath.start_with?("/") && upath.end_with?(".md")
           return "#{rel}: broken link #{url}" unless target
         end
         return if frag.nil? || frag.empty? || !target.end_with?(".html")
         "#{rel}: missing anchor #{url}" unless ids[target].include?(CGI.unescape(frag))
+      end
+
+      # A source link to a Markdown file that no twin or copy answers: the build did not run jekyll-relative-links.
+      def md_link(rel, url)
+        "#{rel}: broken link #{url}: a link to a Markdown file stays .md without the jekyll-relative-links plugin, " \
+          "which GitHub Pages runs and Jekyll 4 does not; add gem \"jekyll-relative-links\" to the Gemfile's :jekyll_plugins group"
       end
 
       def resolve(site, path)

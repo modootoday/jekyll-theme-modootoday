@@ -108,6 +108,10 @@ class MessagesSnapshotTest < Minitest::Test
       flags: ["--twins"],
     },
     "config-not-a-map" => { src: { "_config.yml" => "modootoday: [a]\n", "index.md" => "---\n---\n# A\n" } },
+    "release-banner" => {
+      src: { "_config.yml" => "modootoday:\n  banner: {release: latest}\n", "index.md" => "---\n---\n# A\n" },
+      site: { "index.html" => %(<html><head><link rel="stylesheet" href="/assets/css/modootoday.css"></head><body><h1>A</h1></body></html>) },
+    },
     "renderers" => {
       src: { "_config.yml" => RENDERERS, "a.md" => "---\n---\n# A\n\nCosts $5 or $x+1$.\n\n```math\nx\n```\n" },
       site: { "a/index.html" => %(<script src="#{M}" integrity="sha384-MMMM" crossorigin="anonymous"></script><script src="#{M}" integrity="sha384-OTHER"></script>) +

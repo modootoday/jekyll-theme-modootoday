@@ -34,6 +34,28 @@ class CheckReleaseBannerTest < CheckerCase
     refute_includes check[0], "reads site.github"
   end
 
+  def test_one_missing_release_prints_one_warning
+    write File.join(@src, "_config.yml"), "modootoday:\n  banner: {release: latest}\n"
+    out "index.html", "#{HEAD}<h1>Home</h1></body></html>"
+    o = check[0]
+    assert_equal 1, o.scan(/^warning: _config\.yml: modootoday\.banner\.release/).size, o
+    assert_includes o, "which GitHub Pages and the jekyll-github-metadata plugin provide"
+  end
+
+  def test_config_overlays_are_read_like_jekyll
+    write File.join(@src, "_config.yml"), "modootoday:\n  banner: {release: latest}\n"
+    overlay = File.join(@dir, "overlay.yml")
+    write overlay, "github: {latest_release: {tag_name: v1.7.0, html_url: https://github.com/o/r/releases/tag/v1.7.0}}\n"
+    out "index.html", "#{HEAD}#{BANNER}</body></html>"
+    assert_includes check[0], "reads site.github"
+    o, code = check("--config=#{@src}/_config.yml,#{overlay}")
+    assert_equal 0, code, o
+    refute_includes o, "reads site.github"
+    o, code = check("--config=#{@dir}/missing.yml")
+    assert_equal 1, code
+    assert_includes o, "--config: #{@dir}/missing.yml not found"
+  end
+
   def test_latest_with_the_banner_built_is_quiet
     config "{release: latest}"
     out "index.html", "#{HEAD}#{BANNER}</body></html>"

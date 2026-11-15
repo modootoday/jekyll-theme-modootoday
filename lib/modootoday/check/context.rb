@@ -17,14 +17,28 @@ module Modootoday
         comps_file = "#{src}/_data/components.yml"
         @comps = File.exist?(comps_file) ? (YAML.safe_load(File.read(comps_file)) || {}) : nil
         @i18n = Dir.glob("#{src}/_data/i18n/*.yml").to_h { |f| [File.basename(f, ".yml"), YAML.safe_load(File.read(f)) || {}] }
-        cfg_file = "#{src}/_config.yml"
-        @site_cfg = (File.exist?(cfg_file) && ((YAML.safe_load(File.read(cfg_file), permitted_classes: [Date, Time]) rescue nil) || {})) || {}
+        @site_cfg = config_files.reduce({}) { |cfg, f| merge(cfg, read_config(f)) }
         @mtc = @site_cfg["modootoday"] || {}
         # files and folders listed in the site's exclude: are not pages (a repository README.md, a nested site)
         excl = Array(@site_cfg["exclude"]).map { |e| e.to_s.chomp("/") }
         @mds = Dir.glob("#{src}/**/*.md").reject { |f| f.delete_prefix(src) =~ SKIP || unread?(f) }.sort
         @mds.reject! { |f| excl.any? { |e| rel(f) == e || rel(f).start_with?("#{e}/") } }
       end
+
+      # --config=a.yml,b.yml replaces SRC/_config.yml and merges the files in order, later keys winning, as jekyll does.
+      def config_files
+        opt = argv.find { |a| a.start_with?("--config=") }
+        return ["#{src}/_config.yml"] unless opt
+        opt.delete_prefix("--config=").split(",").each { |f| errs << "--config: #{f} not found" unless File.file?(f) }
+      end
+
+      def read_config(file)
+        return {} unless File.file?(file)
+        cfg = (YAML.safe_load(File.read(file), permitted_classes: [Date, Time]) rescue nil)
+        cfg.is_a?(Hash) ? cfg : {}
+      end
+
+      def merge(a, b) = a.merge(b) { |_, x, y| x.is_a?(Hash) && y.is_a?(Hash) ? merge(x, y) : y }
 
       def option?(name) = argv.include?(name)
       def rel(f) = f.delete_prefix("#{src}/")

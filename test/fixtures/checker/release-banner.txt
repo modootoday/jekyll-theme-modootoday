@@ -1,0 +1,3 @@
+md-components check: OK (1 pages)
+warning: _config.yml: modootoday.banner.release: latest, but the build has no release banner: site.github.latest_release was empty (no published release, only prereleases, or no GitHub metadata in the build, which GitHub Pages and the jekyll-github-metadata plugin provide); publish a release and rebuild, set github: {latest_release: {tag_name, html_url}} in _config.yml as a stand-in, or give release: {version, url}
+exit 0

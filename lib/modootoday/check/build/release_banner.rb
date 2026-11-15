@@ -6,6 +6,7 @@ module Modootoday
     # GitHub metadata) the banner is silently left out. The built home page shows whether the build had one.
     module ReleaseBanner
       SHOWN = /class="mt-banner"/
+      CONFIG_WARNING = "_config.yml: modootoday.banner.release: \"latest\" reads site.github"
 
       module_function
 
@@ -17,8 +18,11 @@ module Modootoday
         return unless home && File.file?(home)
         html = File.read(home)
         return if html.match?(SHOWN) || !html.include?("/assets/css/modootoday.css")
+        # One missing release, one message: it replaces the config rule's site.github warning for the same key.
+        ctx.warns.reject! { |w| w.start_with?(CONFIG_WARNING) }
         ctx.warns << "_config.yml: modootoday.banner.release: latest, but the build has no release banner: " \
-                     "site.github.latest_release was empty (no published release, only prereleases, or no GitHub metadata in the build); " \
+                     "site.github.latest_release was empty (no published release, only prereleases, or no GitHub metadata in the build, " \
+                     "which GitHub Pages and the jekyll-github-metadata plugin provide); " \
                      "publish a release and rebuild, set github: {latest_release: {tag_name, html_url}} in _config.yml as a stand-in, " \
                      "or give release: {version, url}"
       end

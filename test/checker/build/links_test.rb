@@ -62,6 +62,18 @@ class CheckLinksTest < CheckerCase
     refute_match(/broken|missing/, warnings)
   end
 
+  def test_a_relative_md_link_left_by_the_build_names_jekyll_relative_links
+    link "../guide.md#old"
+    o, code = check("--links", "--strict")
+    assert_equal 1, code
+    assert_match(%r{p/index\.html: broken link \.\./guide\.md#old: a link to a Markdown file stays \.md without the jekyll-relative-links plugin}, o)
+    link "/site/nowhere.md"
+    refute_match(/jekyll-relative-links/, warnings)
+    out "p/notes.md", "# Notes\n"
+    link "notes.md"
+    refute_match(/broken|missing/, warnings)
+  end
+
   def test_without_nokogiri_the_check_fails_and_names_the_gem
     link "/site/nowhere/"
     stub = File.join(@dir, "no-nokogiri")
