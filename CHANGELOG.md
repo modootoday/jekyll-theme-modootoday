@@ -27,6 +27,7 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 - Modootoday-check no longer reads the SITE folder or other underscore folders such as _site_ko as source pages (audit:modootoday/20261114090416)
 - The release banner drops a leading v of the tag, so v1.2.0 reads 1.2.0 is out. (adr:modootoday/20261112112607, audit:modootoday/20261114090416)
 - Footnote references carry role="doc-noteref" on their link instead of sup on GitHub Pages, and the On this page column scrolls back to its start at the top of the page. (adr:modootoday/20261110172642)
+- The Korean release banner no longer shows the 이(가) particle placeholder. (audit:modootoday/20261114090416)
 
 ## [1.7.0] - 2026-11-13
 

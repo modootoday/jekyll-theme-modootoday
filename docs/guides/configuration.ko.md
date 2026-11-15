@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/configuration/
-source_rev: sha256:5a2500886b61
+source_rev: sha256:6423b4b799ec
 nav_order: 20
 title: 설정
 description: _config.yml의 modootoday 키 아래에 두는 사이트 전체 설정을 모두 정리하고, 각 설정의 기본값, 바뀌는 점, 자세히 설명하는 페이지를 알려 줍니다.
@@ -80,7 +80,7 @@ modootoday:
 | `authors` | `true` | `false`면 글과 글 카드의 바이라인을 숨깁니다. 저자 데이터는 `_data/authors.yml`에 그대로 둡니다. |
 | `news` | 없음 | 첫 화면의 `sections:` 같은 뉴스 설정입니다. [블로그와 뉴스](../layouts/blog-news/index.ko.md#설정) 참고. |
 | `css` | `split` | `split`는 페이지가 쓰는 CSS만, `bundle`은 모든 것이 담긴 시트 하나를 불러옵니다. |
-| `banner` | 없음 | **1.7** `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고(태그 앞의 `v`는 뺍니다), GitHub Pages 밖에서는 `latest_release`가 있는 `github:` 맵에서 읽습니다(예시는 헤드와 SEO에 있습니다). `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. |
+| `banner` | 없음 | **1.7** `{text: "…", url: /path/, link: "더 보기"}`면 모든 페이지에 공지 막대를 표시합니다. `text`가 없을 때 `release: latest`는 빌드 시점에 `site.github`에서 저장소의 최신 릴리스 버전과 그 릴리스로 가는 "새 기능 보기" 링크를 알리고(태그 앞의 `v`는 뺍니다), GitHub Pages 밖에서는 `latest_release`가 있는 `github:` 맵에서 읽습니다(예시는 헤드와 SEO에 있습니다). `release: {version, url}`은 적은 값으로 같은 막대를 만듭니다. 맵을 따로 둔 설정 파일에 넣었다면 검사기에도 함께 넘깁니다(`modootoday-check --config=_config.yml,<파일>`). |
 | `print` | `false` | **1.7** `true`면 인쇄할 때만 불러오는 인쇄용 스타일시트를 더합니다. 머리글, 메뉴, 배너, 업데이트 알림, 설치 섹션, 페이지 아래 링크를 빼고, 흰 바탕에 검은 글자로 인쇄하며, 탭 패널을 모두 인쇄하고, 링크 뒤에 주소를 붙이고, 그림·코드·표가 페이지 사이에서 끊기지 않게 합니다. `details`, 아코디언, FAQ 항목은 독자가 먼저 열지 않으면 요약만 인쇄됩니다. |
 | `back_to_top` | `false` | `true`면 모든 페이지 끝에 맨 위로 링크를 더합니다. |
 | `loading` | `false` | `true`면 직접 만든 스크립트를 위해 스피너·스켈레톤 스타일을 모든 페이지에서 불러옵니다. |
