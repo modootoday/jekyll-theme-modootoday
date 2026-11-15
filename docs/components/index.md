@@ -343,7 +343,7 @@ Yes, with the github-pages gem.
 
 Use `###` headings instead of a list when a step needs more than one line.
 
-### Install
+### Add the theme
 
 Add `remote_theme` and the plugin.
 
@@ -371,7 +371,7 @@ sudo apt install ruby-full
 
 `status:available` In a `c: timeline` section, `###` headings become points on a line.
 
-### Install
+### Build
 
 Alerts, sections, cards and tabs.
 

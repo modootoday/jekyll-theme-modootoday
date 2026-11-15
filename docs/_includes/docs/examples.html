@@ -2,7 +2,7 @@
 Front matter `examples:` lists section names (from `sections:`). In each listed `##` section the first paragraph
 is the description; everything after it is the example. The layout reads the page's Markdown source, prints
 the example as a fenced block (highlighted, theme copy button) plus the section's `sections:` entry when it has
-`c:`, then labels the live output (a c: cta or c: widget result gets its own [data-mt-result] box, so the CTA frame or the widget's fallback never wraps the whole example; other components style direct children, which stay in place) that kramdown already rendered from the same text. Pure Liquid (GitHub Pages
+`c:`, then labels the live output (a c: cta or c: widget result gets its own [data-mt-result] box, so the CTA frame or the widget's fallback never wraps the whole example; other components style direct children, which stay in place) that kramdown already rendered from the same text. Headings in a result get class="docs-ex-h" before their id, which keeps them out of the On this page list (the toc lists only headings whose first attribute is the id). Pure Liquid (GitHub Pages
 Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -%}
 {%- assign _l = page.lang | default: site.lang | default: "en" -%}
 {%- case _l -%}
@@ -33,7 +33,7 @@ Jekyll 3.10 and Jekyll 4); the page itself stays plain Markdown.{%- endcomment -
 {%- endfor -%}
 {%- assign _ex = _ex | strip -%}
 {%- assign _lead = _h | split: "</p>" | first | append: "</p>" -%}
-{%- assign _rest = _h | remove_first: _lead -%}
+{%- assign _rest = _h | remove_first: _lead | replace: '<h3 id="', '<h3 class="docs-ex-h" id="' -%}
 {%- capture _fm -%}{%- if _s.c -%}sections:
   - {% include docs/yaml-flow.html v=_s %}{%- endif -%}{%- endcapture -%}
 {%- capture _srcmd -%}

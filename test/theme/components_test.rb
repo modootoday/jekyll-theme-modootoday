@@ -23,6 +23,8 @@ class ComponentsTest < Minitest::Test
 
     ![Alone](/x.png)
 
+    <h3 class="example" id="kept-out">Kept out</h3>
+
     ## FAQ
 
     ### Question one?
@@ -63,6 +65,8 @@ class ComponentsTest < Minitest::Test
   def test_toc
     assert_match(%r{<nav class="mt-toc".*<a href="#faq">FAQ</a>.*mt-toc-h3"><a href="#question-one">Question one\?</a>.*<a href="#steps">Steps</a>}m, h)
     assert_includes h, "/assets/js/modootoday/structure/toc-spy.js"
+    assert_includes h, 'id="kept-out"'
+    refute_includes h, 'href="#kept-out"'
   end
 
   def test_figure

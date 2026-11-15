@@ -1,5 +1,6 @@
 {%- comment -%}"On this page" from kramdown auto ids: <h2 id="..."> and <h3 id="...">. Shown with 2+ headings;
-front matter toc: false hides it. Usage: {% include modootoday/toc.html html=html %}{%- endcomment -%}
+front matter toc: false hides it. A heading whose first attribute is not its id (an example's result) is left out.
+Usage: {% include modootoday/toc.html html=html %}{%- endcomment -%}
 {%- if mt_components contains "toc" and page.toc != false -%}
 {%- assign _parts = include.html | split: '<h' -%}
 {%- capture _items -%}{%- for _p in _parts offset: 1 -%}

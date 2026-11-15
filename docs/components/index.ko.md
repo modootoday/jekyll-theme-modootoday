@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/
-source_rev: sha256:cfcc6715272c
+source_rev: sha256:fbaba2c02388
 nav_order: 0
 layout: examples
 title: 컴포넌트
@@ -67,7 +67,7 @@ sections:
 
 모든 컴포넌트는 평범한 Markdown입니다. 아래 예시마다 Markdown 소스와, 같은 소스로 테마가 그려 낸 실제 결과를 이어서 보여 줍니다. 결과는 지금 쓰는 라이트·다크 모드 그대로입니다. 소스 블록을 복사해 붙이면 같은 결과를 얻습니다. github.com에서는 기본 요소로 보입니다.
 
-컴포넌트는 텍스트와 인라인부터 사이트 공통 요소까지 용도별로 묶고, 묶음 안에서는 영어 제목의 A-Z 순서로 놓습니다. 어느 언어에서나 영어 페이지와 순서가 같습니다.
+컴포넌트는 텍스트와 인라인부터 사이트 공통 요소까지 용도별로 묶고, 묶음 안에서는 영어 제목의 A-Z 순서로 놓습니다. 어느 언어에서나 영어 페이지와 순서가 같습니다. 버튼과 카드는 [페이지 섹션](#페이지-섹션) 묶음에 있습니다.
 
 [키친싱크 열기](kitchen-sink.ko.md) [설정](../guides/configuration.ko.md)
 
@@ -349,7 +349,7 @@ bundle exec jekyll serve
 
 단계 하나에 여러 줄이 필요하면 목록 대신 `###` 제목을 쓰세요.
 
-### 설치
+### 테마 추가
 
 `remote_theme`과 플러그인을 추가합니다.
 
@@ -377,7 +377,7 @@ sudo apt install ruby-full
 
 `status:available` `c: timeline` 섹션에서 `###` 제목이 선 위의 지점이 됩니다.
 
-### 설치
+### 빌드
 
 알림, 섹션, 카드, 탭.
 
