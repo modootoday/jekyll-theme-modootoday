@@ -452,7 +452,7 @@ Bands that build a landing page from `sections:` items and the hero.
 
 [Get started](../guides/install.md) [Read the rules](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
-## Cards in 2 columns
+## Cards
 
 - **Short** — One line.
 - **Longer card** — A card with a longer description that wraps over several lines to check spacing, line height and alignment across the grid.

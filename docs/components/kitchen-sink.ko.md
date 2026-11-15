@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/components/kitchen-sink/
-source_rev: sha256:c477ccfacd2e
+source_rev: sha256:b58acda8e81f
 nav_order: 10
 title: 키친싱크
 description: 구현된 모든 컴포넌트와 변형을 한 페이지에 모아, 라이트·다크 모드와 화면 너비마다 모양이 어긋나지 않는지 눈으로 점검합니다.
@@ -458,7 +458,7 @@ gem install jekyll bundler
 
 [시작하기](../guides/install.ko.md) [규칙 읽기](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
-## 2열 카드
+## 카드
 
 - **짧은 카드** — 한 줄.
 - **긴 카드** — 설명이 길어 여러 줄로 넘어가는 카드로, 그리드 전체의 간격, 줄 높이, 정렬을 확인합니다.

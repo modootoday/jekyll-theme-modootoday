@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/components/kitchen-sink/
-source_rev: sha256:c477ccfacd2e
+source_rev: sha256:b58acda8e81f
 nav_order: 10
 title: キッチンシンク
 description: 実装済みのすべてのコンポーネントとバリエーションを 1 ページに集め、ライトとダーク、画面の幅ごとに見た目が崩れていないかを目で確認します。
@@ -458,7 +458,7 @@ gem install jekyll bundler
 
 [はじめる](../guides/install.ja.md) [ルールを読む](https://github.com/modootoday/jekyll-theme-modootoday/blob/main/RULES.md)
 
-## 2 列のカード
+## カード
 
 - **短い** — 1 行。
 - **長めのカード** — 説明が長く数行に折り返すカードで、グリッド全体の余白、行の高さ、揃えを確認します。

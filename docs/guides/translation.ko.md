@@ -93,8 +93,8 @@ ASCII 숫자와 언어별 자릿수 구분(1,000)을 씁니다. 본문 날짜는
 
 ## 참고 자료
 
-- [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides) (Korean and Japanese)
-- [MDN translated content guidelines](https://github.com/mdn/translated-content) and the Korean team notes
+- [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides)(한국어와 일본어)
+- [MDN translated content guidelines](https://github.com/mdn/translated-content)와 한국어 팀 노트
 - [Mozilla Korean style guide](https://mozilla-l10n.github.io/styleguides/ko/)
 - [JTF 日本語標準スタイルガイド](https://www.jtf.jp/tips/styleguide)
 - [Toss technical writing guide](https://technical-writing.dev/)

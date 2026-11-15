@@ -91,8 +91,8 @@ ASCII の数字と言語ごとの桁区切り（1,000）を使います。本文
 
 ## 参考資料
 
-- [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides) (Korean and Japanese)
-- [MDN translated content guidelines](https://github.com/mdn/translated-content) and the Korean team notes
+- [Microsoft localization style guides](https://learn.microsoft.com/globalization/reference/microsoft-style-guides)(韓国語と日本語)
+- [MDN translated content guidelines](https://github.com/mdn/translated-content)と韓国語チームのノート
 - [Mozilla Korean style guide](https://mozilla-l10n.github.io/styleguides/ko/)
 - [JTF 日本語標準スタイルガイド](https://www.jtf.jp/tips/styleguide)
 - [Toss technical writing guide](https://technical-writing.dev/)
