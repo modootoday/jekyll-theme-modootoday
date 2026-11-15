@@ -47,4 +47,6 @@
 {%- assign _x = _x | replace: _sf, _st -%}{%- endfor -%}
 {%- endfor -%}
 {%- capture _fb %}class="reversefootnote" role="doc-backlink" aria-label="{{ mt_t_footnote_back }}"{% endcapture -%}
-{{ _x | replace: 'class="reversefootnote" role="doc-backlink"', _fb }}
+{%- comment -%}doc-noteref is allowed on a link, not on sup: older kramdown (GitHub Pages) puts it on sup, so it moves
+  to the link inside; newer kramdown already writes it there.{%- endcomment -%}
+{{ _x | replace: 'class="reversefootnote" role="doc-backlink"', _fb | replace: '" role="doc-noteref"><a href="', '"><a role="doc-noteref" href="' }}

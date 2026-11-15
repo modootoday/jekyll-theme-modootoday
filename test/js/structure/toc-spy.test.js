@@ -120,3 +120,14 @@ test("a heading with no box, as in a closed tab panel, is never marked", async (
   await scroll(1300, { ...at(1300), "setup-mac": 0 });
   assert.deepStrictEqual(marked(".mt-toc"), [["setup", "location"]], "the hidden setup-mac never wins over setup")
 });
+
+test("back above the first heading, the sticky column scrolls to its start", async () => {
+  const { d, scroll, marked } = await load();
+  const column = d.querySelector(".mt-doc-aside .mt-toc");
+  await scroll(2900, at(2900));
+  assert.strictEqual(marked(".mt-toc").length, 1);
+  column.scrollTop = 120;
+  await scroll(0, at(0));
+  assert.deepStrictEqual(marked(".mt-toc"), []);
+  assert.strictEqual(column.scrollTop, 0);
+});

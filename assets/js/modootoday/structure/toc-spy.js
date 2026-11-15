@@ -59,6 +59,10 @@ export function init(root) {
         const b = list.getBoundingClientRect();
         list.scrollTop += Math.min(0, r.top - b.top) || Math.max(0, r.bottom - b.bottom);
       }
+      // Back above the first heading, the column shows its start again.
+      if (!a && column) {
+        list.scrollTop = 0;
+      }
     }
   };
   const update = () => {
