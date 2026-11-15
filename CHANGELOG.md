@@ -10,11 +10,13 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 - Modootoday-check warns when banner release: latest is set and the built site has no release banner (no release data in the build) (audit:modootoday/20261113044135)
 - Markdown twins and llms-full.txt point links that name a source file (upgrade.md#x, ../b.ko.md, images) at their targets' site URLs, so they resolve from the twin's URL; modootoday-check --twins fails a rewritten link that reaches no file (adr:modootoday/20261114115001)
+- Modootoday-check --links names the jekyll-relative-links plugin for a relative .md link left in the built HTML, --config=FILE,... reads overlay config files like jekyll build --config, and a missing release banner prints one warning instead of two (audit:modootoday/20261114090416)
 
 ### Changed
 
 - List components A-Z by English title inside each purpose group, in every language (adr:modootoday/20261114090712)
 - The docs say how to try the main branch, which keys 1.7 added, how hreflang needs url:, and how to see the update notice locally (audit:modootoday/20261114090416)
+- The Install guide's Jekyll 4 Gemfile adds jekyll-relative-links, so links that name a Markdown file become page URLs as on GitHub Pages (audit:modootoday/20261114090416)
 
 ### Fixed
 

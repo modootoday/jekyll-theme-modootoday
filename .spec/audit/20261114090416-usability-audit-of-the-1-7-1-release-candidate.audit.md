@@ -86,3 +86,31 @@ m6 is left as it is and m15 is fixed in part, for the reasons in the table.
 | m13 other `_site_*` folders scanned | fixed | 6d70d0c | Source pages skip the SITE folder and folders starting with `_` other than `_posts`, `_drafts`, collections and `include:` folders, for the page rules and the layout rules; a test puts bad pages in `_site_ko` and in a SITE folder named `build`. The Command line page says so. |
 | m14 seeing the notice locally | fixed | b2d0d4f | The Updates steps say a local `jekyll serve` works (service workers are allowed on `localhost`, and each rebuild with `asset_version: build` is a deploy) and that `asset_version` goes back to `theme`, the default. |
 | m15 keyboard and names | fixed in part | b2d0d4f | The Updates section says the notice comes last in the page, so keyboard users reach Reload and Later after the page's last link, and that `Esc` closes it from anywhere. Not changed: a static accessible name on every table scroll box and code block would make each one a labelled region, scrolling or not, so the name stays with the script that adds it only when the box overflows. Checked, no change: the two sidebar copies named Docs are never exposed together; below 64rem the desktop column is `display: none` and the mobile copy sits in a closed `details`, and from 64rem the mobile copy is `display: none`. |
+
+## Recheck on 4f1a682
+
+A fresh reader with the public docs only, after the fixes above, the docs link change (relative links name the
+Markdown file) and the component order by English title. Totals: 0 blockers, 1 major, 3 minors; every task finished.
+55 relative links opened a file on github.com with every fragment matching; the 1.7 legend, the banner without a
+leading v, the PWA stubs passing `--i18n-pages --strict`, the footnote role on the link, the twin links and the
+nokogiri message all worked from the docs.
+
+- **R1 (major)** On Jekyll 4 the `.md` file links stay `.md` in the HTML: GitHub Pages turns on jekyll-relative-links,
+  Jekyll 4 does not, and neither the Jekyll 4 install tab nor the minimal configuration says to add it, so
+  `--links --strict` fails until the reader guesses the plugin. The twins pass meanwhile.
+- r1 The checker reads only `SRC/_config.yml`; a `github:` map in an overlay config (`--config a.yml,b.yml`) builds a
+  banner but keeps the site.github warning, and one missing release prints two warning lines.
+- r2 The Components On this page list includes the headings inside the examples, and the Install component's id is
+  `install-2` because an example heading takes `install`.
+- r3 In Korean and Japanese the English-title order reads as unordered; the page explains it.
+
+### Recheck status
+
+All four are fixed in three commits.
+
+| Finding | Status | Commit | Change |
+| --- | --- | --- | --- |
+| R1 `.md` links on Jekyll 4 | fixed | 00f10bd, c3fad72 | The Install guide's Jekyll 4 Gemfile adds `jekyll-relative-links` in the `jekyll_plugins` group, the minimal configuration sets `relative_links: {collections: true}`, and a paragraph says why (GitHub Pages runs the plugin, Jekyll 4 does not). `--links` reports a relative `.md` link that no twin or Markdown copy answers with a message that names the plugin; a test covers it. The README shows no Jekyll 4 Gemfile in its install section, and the starters' Jekyll 4 Gemfile already lists the gem (their pages have no `.md` links), so neither changed. |
+| r1 overlay configs and two warnings | fixed | c3fad72 | `--config=FILE,...` reads the settings from those files instead of `SRC/_config.yml`, merged in order with later keys winning, as `jekyll build --config` does; a missing file fails. With no banner in the build, the release-banner warning replaces the site.github warning for the same key, so one missing release prints one message. Tests and a `release-banner` messages snapshot cover both. |
+| r2 example headings and the Install id | fixed | 9e1c9ca | The On this page list already lists only headings whose first attribute is their id; the docs examples include puts a class before the id of each heading in a live result, so the examples no longer fill the list. A theme test pins the rule. The Steps as headings and Timeline examples no longer use an Install heading, so the Install section's id is `install` (`설치`, `インストール`). No docs link pointed at the old ids. |
+| r3 order in Korean and Japanese | fixed | 9e1c9ca | The Korean and Japanese intros, which already explain the English-title order, add that Buttons and Cards are in the Page sections group, with a link to it. |
