@@ -1,7 +1,7 @@
 ---
 lang: ko
 permalink: /ko/guides/install/
-source_rev: sha256:5d160c155fd0
+source_rev: sha256:d1f45d37583a
 nav_order: 10
 title: 설치
 description: 기본 GitHub Pages 사이트나 Jekyll 4 사이트에 테마를 추가하고, 시작 사이트 템플릿에서 출발하며, 테마의 검사기로 빌드 결과를 확인합니다.
@@ -43,6 +43,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
+gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # GitHub Pages처럼 .md 링크를 페이지 URL로 바꿈
 ```
 
 ### github-pages gem
@@ -64,6 +65,7 @@ permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
 sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: Dart Sass의 @import 안내 숨김
+relative_links: {collections: true}                      # 글 안의 .md 링크도 URL로 바꿈
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
@@ -74,6 +76,8 @@ defaults:
 > 이 사이트를 내 컴퓨터에서 github-pages gem으로 빌드하려면 `repository: <owner>/<name>`(GitHub 저장소)도 추가하거나 환경 변수 `PAGES_REPO_NWO=<owner>/<name>`을 설정하세요. 둘 다 없고 GitHub `origin` 원격이 있는 복제본 밖에서 빌드하면 "No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository." 오류로 멈춥니다. GitHub Pages에서는 이 값을 자동으로 정합니다.
 
 `sass:` 줄은 Jekyll 4 빌드에서 `@import`에 관한 Dart Sass 안내가 수천 줄 출력되지 않게 합니다. 결과물은 어느 쪽이든 같습니다.
+
+`upgrade.md`처럼 Markdown 파일을 가리키는 링크는 github.com에서 열리고, 빌드에서는 jekyll-relative-links 플러그인이 페이지 URL로 바꿉니다. GitHub Pages는 이 플러그인을 알아서 실행하지만 Jekyll 4는 실행하지 않으므로, Jekyll 4 탭의 Gemfile에 넣었습니다. 이 플러그인이 없으면 그런 링크가 HTML에 `.md`로 남아 어느 페이지에도 닿지 않고, `modootoday-check --links`가 이를 알려 줍니다.
 
 ## 빌드 확인
 

@@ -1,7 +1,7 @@
 ---
 lang: ja
 permalink: /ja/guides/install/
-source_rev: sha256:5d160c155fd0
+source_rev: sha256:d1f45d37583a
 nav_order: 10
 title: インストール
 description: 従来の GitHub Pages のサイトや Jekyll 4 のサイトにテーマを追加し、スターターのテンプレートから始め、テーマのチェッカーでビルドを確認します。
@@ -43,6 +43,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
+gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # GitHub Pages と同じく .md へのリンクをページの URL にする
 ```
 
 ### github-pages gem
@@ -64,6 +65,7 @@ permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
 sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: Dart Sass の @import の通知を抑える
+relative_links: {collections: true}                      # 投稿の中の .md へのリンクも URL にする
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
@@ -74,6 +76,8 @@ defaults:
 > このサイトを手元の github-pages gem でビルドするには、`repository: <owner>/<name>`（GitHub のリポジトリ）も追加するか、環境変数 `PAGES_REPO_NWO=<owner>/<name>` を設定します。どちらもなく、GitHub の `origin` リモートがあるクローンの外でビルドすると、「No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository.」というエラーで止まります。GitHub Pages ではこの値が自動で設定されます。
 
 `sass:` の行は、Jekyll 4 のビルドで `@import` に関する Dart Sass の通知が何千行も出力されないようにします。出力結果はどちらでも同じです。
+
+`upgrade.md` のように Markdown ファイルを指すリンクは github.com で開け、ビルドでは jekyll-relative-links プラグインがページの URL に変えます。GitHub Pages はこのプラグインを自動で実行しますが、Jekyll 4 は実行しないため、Jekyll 4 タブの Gemfile に追加しています。プラグインがないと、そうしたリンクは HTML に `.md` のまま残ってどのページにも届かず、`modootoday-check --links` がそれを報告します。
 
 ## ビルドを確認する
 

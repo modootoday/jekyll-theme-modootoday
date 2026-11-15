@@ -37,6 +37,7 @@ plugins: [jekyll-remote-theme]
 source "https://rubygems.org"
 gem "jekyll", "~> 4.4"
 gem "jekyll-theme-modootoday", "~> 1.7"
+gem "jekyll-relative-links", "~> 0.6", group: :jekyll_plugins   # .md links become page URLs, as on GitHub Pages
 ```
 
 ### github-pages gem
@@ -58,6 +59,7 @@ permalink: pretty
 markdown: kramdown
 kramdown: {input: GFM}
 sass: {silence_deprecations: [import, global-builtin]}   # Jekyll 4: no Dart Sass @import notices
+relative_links: {collections: true}                      # .md links in posts become URLs too
 defaults:
   - {scope: {path: ""}, values: {layout: doc}}
 ```
@@ -68,6 +70,8 @@ defaults:
 > To build that site on your machine with the github-pages gem, also add `repository: <owner>/<name>` (your GitHub repository), or set the environment variable `PAGES_REPO_NWO=<owner>/<name>`. Without either, outside a clone with a GitHub `origin` remote, the build stops with "No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository." GitHub Pages itself sets it.
 
 The `sass:` line keeps a Jekyll 4 build from printing thousands of Dart Sass notices about `@import`; the output is the same either way.
+
+Links that name a Markdown file, such as `upgrade.md`, open on github.com, and the jekyll-relative-links plugin turns them into page URLs in the build. GitHub Pages runs it by itself, but Jekyll 4 does not, so the Jekyll 4 tab's Gemfile adds it: without it those links stay `.md` in the HTML and reach no page, which `modootoday-check --links` reports.
 
 ## Verify the build
 
