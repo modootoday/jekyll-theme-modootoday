@@ -29,7 +29,7 @@ jekyll-theme-modootoday는 표준 GitHub Flavored Markdown을 깔끔한 문서 �
 ### remote_theme
 
 ```yaml
-remote_theme: modootoday/jekyll-theme-modootoday@v1.7.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.7.1
 plugins: [jekyll-remote-theme]
 ```
 

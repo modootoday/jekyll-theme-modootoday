@@ -12,6 +12,26 @@ Every release, newest first, with the opening words of each change. The full ent
 ## Releases
 
 <!-- spec:docs-index:begin -->
+### [1.7.1](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.7.1) – 2026-11-16
+
+- **Added (3)**
+  - Modootoday-check warns when banner release
+  - Markdown twins and llms-full.txt point links that name a source file
+  - Modootoday-check --links names the jekyll-relative-links plugin for a relative .md link …
+- **Changed (3)**
+  - List components A-Z by English title inside each purpose group, in every language
+  - The docs say how to try the main branch, which keys 1.7 added, how hreflang needs url: …
+  - The Install guide's Jekyll 4 Gemfile adds jekyll-relative-links, so links that name a …
+- **Fixed (8)**
+  - Modootoday-check --links fails with an error that says to add gem "nokogiri" when …
+  - Modootoday-check --i18n-pages no longer asks for source_rev on the offline pages that …
+  - Modootoday-check names github
+  - The modootoday-check --links error without nokogiri says gem install nokogiri only for a …
+  - Modootoday-check no longer reads the SITE folder or other underscore folders such as …
+  - The release banner drops a leading v of the tag, so v1.2.0 reads 1.2.0 is out
+  - Footnote references carry role="doc-noteref" on their link instead of sup on GitHub …
+  - The Korean release banner no longer shows the 이(가) particle placeholder
+
 ### [1.7.0](https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.7.0) – 2026-11-13
 
 - **Added (23)**

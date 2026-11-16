@@ -6,6 +6,12 @@ The content rules have their own version header (`md-components v1`) in [RULES.m
 
 ## [Unreleased]
 
+## [1.7.1] - 2026-11-16
+
+Visual: the intended differences from 1.7.0 are the Components page and the kitchen sinks, whose components now run A-Z by English title inside each group, with the card sections named Cards and Cards in 3 or 4 columns and the example headings renamed so the Install section keeps its anchor; the Configuration page, whose key table marks the keys 1.7 added with a bold 1.7 under a legend above it and gains a github: map example; the Installable site recipe's longer Updates steps; the Install guide's Try the next release section and Jekyll 4 plugin line; the new Translate your site guide; and the home page's sentence about Markdown twins. The blog and landing demos do not change.
+
+1.7.1 makes the documentation read on GitHub as well as on the site: relative links name the Markdown file, Jekyll 4 sites turn them into page URLs with jekyll-relative-links, and the Markdown twins and llms-full.txt point their links at the site. `modootoday-check` fails `--links` without nokogiri, names the plugin when a `.md` link is left in the HTML, reads overlay configs with `--config`, and stops scanning other build folders; the release banner drops a tag's leading v, footnote references carry their role on the link, and the Components page lists its components A-Z by English title.
+
 ### Added
 
 - Modootoday-check warns when banner release: latest is set and the built site has no release banner (no release data in the build) (audit:modootoday/20261113044135)
@@ -548,7 +554,8 @@ Internal development milestones, never released. They are all part of 1.0.0.
 - Example: `sass.silence_deprecations: [import]` for Dart Sass; `llms.txt` per language generated instead of hand-written.
 - Raw `<name>.md` copies in `_site` on GitHub Pages: caused by content files without front matter (rendered by `jekyll-optional-front-matter` and also copied). Front matter is now required and checked.
 
-[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/modootoday/jekyll-theme-modootoday/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.7.1
 [1.7.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.7.0
 [1.6.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.6.0
 [1.5.0]: https://github.com/modootoday/jekyll-theme-modootoday/releases/tag/v1.5.0

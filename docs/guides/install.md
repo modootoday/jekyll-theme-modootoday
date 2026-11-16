@@ -26,7 +26,7 @@ Pick the build you already use. All three read the same Markdown.
 
 ```yaml
 # _config.yml (to build locally, see the github-pages gem tab)
-remote_theme: modootoday/jekyll-theme-modootoday@v1.7.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.7.1
 plugins: [jekyll-remote-theme]
 ```
 
@@ -102,8 +102,8 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 Without installing a gem, run the checker from the release source. It needs only Ruby:
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.7.0.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.7.0/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.7.1.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.7.1/exe/modootoday-check . _site --twins
 ```
 
 Use the tag your `remote_theme` line names.

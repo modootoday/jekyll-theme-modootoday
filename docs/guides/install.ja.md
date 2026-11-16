@@ -32,7 +32,7 @@ sections:
 
 ```yaml
 # _config.yml（ローカルでのビルドは github-pages gem のタブを参照）
-remote_theme: modootoday/jekyll-theme-modootoday@v1.7.0
+remote_theme: modootoday/jekyll-theme-modootoday@v1.7.1
 plugins: [jekyll-remote-theme]
 ```
 
@@ -108,8 +108,8 @@ GEM_PATH="$(gem env gemdir)" ruby -S modootoday-check . _site --twins
 gem をインストールしない場合は、リリースのソースからチェッカーを実行します。必要なのは Ruby だけです。
 
 ```sh
-curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.7.0.tar.gz | tar xz -C /tmp
-ruby /tmp/jekyll-theme-modootoday-1.7.0/exe/modootoday-check . _site --twins
+curl -sL https://github.com/modootoday/jekyll-theme-modootoday/archive/refs/tags/v1.7.1.tar.gz | tar xz -C /tmp
+ruby /tmp/jekyll-theme-modootoday-1.7.1/exe/modootoday-check . _site --twins
 ```
 
 `remote_theme` の行に書いたタグを使います。
