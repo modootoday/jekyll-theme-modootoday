@@ -114,3 +114,14 @@ All four are fixed in three commits.
 | r1 overlay configs and two warnings | fixed | c3fad72 | `--config=FILE,...` reads the settings from those files instead of `SRC/_config.yml`, merged in order with later keys winning, as `jekyll build --config` does; a missing file fails. With no banner in the build, the release-banner warning replaces the site.github warning for the same key, so one missing release prints one message. Tests and a `release-banner` messages snapshot cover both. |
 | r2 example headings and the Install id | fixed | 9e1c9ca | The On this page list already lists only headings whose first attribute is their id; the docs examples include puts a class before the id of each heading in a live result, so the examples no longer fill the list. A theme test pins the rule. The Steps as headings and Timeline examples no longer use an Install heading, so the Install section's id is `install` (`설치`, `インストール`). No docs link pointed at the old ids. |
 | r3 order in Korean and Japanese | fixed | 9e1c9ca | The Korean and Japanese intros, which already explain the English-title order, add that Buttons and Cards are in the Page sections group, with a link to it. |
+
+## Re-verification on ee12329
+
+A fresh reader followed the Jekyll 4 path from an empty site: GitHub-style `.md` links (with a fragment, from a
+subfolder, from a post, in a Korean translation), a footnote, and `banner: {release: latest}` with a `github:` map in an
+overlay config passed to the checker with `--config`. Every link became a page URL, the footnote role sat on the
+link, the banner dropped the tag's leading v, and `--links --strict --i18n-pages --twins` passed after pasting the
+`source_rev` values the checker printed. The Components Install section is `#install` (`#설치` in Korean) and the
+example headings are out of On this page. Totals: 0 blockers, 0 majors, 2 minors, both fixed in 227a03a: the Korean
+banner showed the particle placeholder 이(가), and the Configuration banner row did not say how the checker reads an
+overlay config.
